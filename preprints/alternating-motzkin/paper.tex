@@ -1,0 +1,403 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\title{Sharp root log-concavity of alternating Motzkin sums}
+\author{Dev D. Goyal}
+\date{26 October 2026}
+\usepackage[numbers]{natbib}
+\usepackage{xurl}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $M_n$ be the Motzkin numbers and let
+$T_n=\sum_{j=0}^n(-1)^{n-j}M_j$.
+The sequence $T_n^{1/n}$ is strictly log-concave on its tail
+starting at $n=5$. The inequality fails at center $n=5$, so no earlier tail
+is log-concave. This proves Conjecture~1 of Zhao, which asks for
+log-concavity from index nine. The argument combines established ratio
+bounds with a size estimate. These estimates prove the infinite range;
+exact integer comparisons cover the remaining 25 centers. A Lean
+development proves the real-root inequality and its sharpness. An added
+source-definition module identifies the recursive implementation with
+the finite sum used in the conjecture.
+\end{abstract}
+
+\noindent\textbf{Verification.}
+The source theorem uses only \texttt{propext}, \texttt{Classical.choice},
+and \texttt{Quot.sound}. The repository's
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/summary.md}{verification record}
+gives the exact builds, statement comparisons, independent kernel checks,
+and AI review status.
+
+\section{The problem and the result}
+
+A positive sequence $(a_n)$ is log-concave if
+$a_n^2\ge a_{n-1}a_{n+1}$ at each interior index.
+Strict log-concavity means that every such inequality is strict.
+For a tail starting at $s$, the interior indices are $n\ge s+1$.
+This distinction between a tail index and a center index is needed below.
+
+The Motzkin numbers satisfy the source recurrence and initial values:
+\begin{equation}\label{eq:motzkin}
+M_0=M_1=1,\qquad
+(n+3)M_{n+1}=(2n+3)M_n+3nM_{n-1}\quad(n\ge1).
+\end{equation}
+These conditions determine the sequence uniquely over $\mathbb Q$ or $\mathbb R$.
+Define
+\begin{equation}\label{eq:alternating}
+T_n=\sum_{j=0}^{n}(-1)^{n-j}M_j.
+\end{equation}
+The first values are
+\[
+T_0,T_1,\ldots,T_9=1,0,2,2,7,14,37,90,233,602.
+\]
+Cancellation of consecutive sums gives
+\begin{equation}\label{eq:Trec}
+T_{n+1}=M_{n+1}-T_n.
+\end{equation}
+
+Zhao studies this sequence in \cite{Zhao}. His Conjecture~1 asks whether
+$(T_n^{1/n})_{n\ge9}$ is log-concave. The following theorem gives a sharper statement.
+
+\begin{theorem}\label{thm:main}
+The values $T_n$ are positive for $n\ge2$. For every integer $n\ge6$,
+\begin{equation}\label{eq:main}
+T_n^{\,2(n^2-1)}>
+T_{n-1}^{\,n(n+1)}T_{n+1}^{\,n(n-1)}.
+\end{equation}
+Thus $(T_n^{1/n})_{n\ge5}$ is strictly log-concave.
+At center five the inequality is strictly reversed:
+\begin{equation}\label{eq:failure}
+(T_5^{1/5})^2<T_4^{1/4}T_6^{1/6}.
+\end{equation}
+Consequently, five is the smallest starting index of a log-concave tail.
+\end{theorem}
+
+The ratio bounds used in the proof are established ingredients.
+The Motzkin bounds come from the interlacing method of Do\v{s}li\'c and
+Veljan \cite{DV}. Zhao proves an interlacing estimate for the alternating
+sums \cite[eqs.~(7)--(8)]{Zhao}. Proofs of the needed estimates are included.
+General methods for root log-concavity also appear in
+Chen, Guo, and Wang \cite{CGW} and in Hou and Li \cite{HL}.
+The contribution here is the stated alternating-sum result and its sharp
+threshold. No claim is made that the general method is new.
+
+The proof has two parts. First, the proof bounds the logarithm of the ratio
+between the two sides of \eqref{eq:main}. The bound is positive for
+$n\ge31$. Second, the proof compares exact integers for $6\le n\le30$.
+This covers every required center.
+
+\section{Ratio and size estimates}
+
+Put
+\[
+x_n=\frac{M_{n+1}}{M_n},\qquad
+b_n=\frac{6(n+1)}{2n+5}.
+\]
+The recurrence shows by induction that $M_n>0$ for every $n$.
+
+\begin{lemma}\label{lem:ratios}
+For every integer $n\ge1$,
+\begin{equation}\label{eq:ratios}
+b_n\le x_n\le b_{n+1}.
+\end{equation}
+Moreover, $0<T_n\le M_n$ for $n\ge2$.
+\end{lemma}
+
+\begin{proof}
+At $n=1$, the values satisfy $x_1=2=b_2$ and $b_1\le2$.
+For $n\ge2$, define
+\[
+f_n(t)=\frac{2n+3}{n+3}+\frac{3n}{(n+3)t}\quad(t>0).
+\]
+The recurrence gives $x_n=f_n(x_{n-1})$.
+The function $f_n$ is decreasing. Thus the induction hypothesis gives
+\[
+f_n(b_n)\le x_n\le f_n(b_{n-1}).
+\]
+Direct calculation yields
+\[
+f_n(b_n)-b_n
+=\frac{3(n-2)}{2(n+1)(n+3)(2n+5)}\ge0,
+\]
+and
+\[
+b_{n+1}-f_n(b_{n-1})
+=\frac{9}{2(n+3)(2n+7)}>0.
+\]
+This proves \eqref{eq:ratios}.
+Since $b_n>1$ for $n\ge1$, the Motzkin numbers increase strictly from
+index one. Now $T_1=0$ and $T_2=2=M_2$.
+If $0\le T_{n-1}\le M_{n-1}$ and $n\ge2$, then
+\[
+M_n-M_{n-1}\le T_n=M_n-T_{n-1}\le M_n.
+\]
+The lower bound is positive. This proves the remaining claim by induction.
+\end{proof}
+
+\begin{lemma}\label{lem:interlace}
+Let $y_n=T_{n+1}/T_n$ for $n\ge2$. Then
+\begin{equation}\label{eq:interlace}
+x_n\le y_n\le x_{n+1}\qquad(n\ge9).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Equation~\eqref{eq:Trec} gives
+\begin{equation}\label{eq:yrec}
+y_{n+1}=x_{n+1}-1+\frac{x_{n+1}}{y_n}.
+\end{equation}
+At $n=9$, the values are
+\[
+x_9=\frac{2188}{835},\quad y_9=\frac{793}{301},\quad
+x_{10}=\frac{2899}{1094}.
+\]
+The two differences are $3567/251335$ and $5057/329294$, respectively.
+Both are positive.
+
+Suppose \eqref{eq:interlace} holds at $n\ge9$.
+Its upper bound and \eqref{eq:yrec} imply $y_{n+1}\ge x_{n+1}$.
+For the other bound, put
+\[
+f(t)=\frac{2n+5}{n+4}+\frac{3(n+1)}{(n+4)t},\quad
+c=\frac{2n+7}{n+5},\quad d=\frac{3(n+2)}{n+5},
+\]
+and define
+\[
+H(t)=f(t)-1+\frac{f(t)}t-c-\frac d{f(t)}\quad(t>0).
+\]
+The functions $f(t)$, $f(t)/t$, and $-d/f(t)$ are decreasing.
+For the middle function, write it as $A/t+B/t^2$ with $A,B>0$.
+Thus $H$ is decreasing. The recurrence and the induction hypothesis give
+\begin{align*}
+y_{n+1}-x_{n+2}
+&\le x_{n+1}-1+\frac{x_{n+1}}{x_n}-x_{n+2}\\
+&=H(x_n)\le H(b_n)\\
+&=-\frac{3(4n^2-13n-53)}{4(n+1)(n+4)(n+5)(2n+5)}<0.
+\end{align*}
+The numerator is positive for $n\ge9$.
+This proves the induction step.
+\end{proof}
+
+\begin{lemma}\label{lem:size}
+For every integer $n\ge0$,
+\begin{equation}\label{eq:size}
+M_n\le\frac{3^n}{n+1}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The cases $n=0,1$ hold directly. For $n\ge1$, apply the recurrence and
+the bounds at $n$ and $n-1$ to obtain
+\[
+M_{n+1}\le\frac{3^n(3n+4)}{(n+1)(n+3)}
+<\frac{3^{n+1}}{n+2}.
+\]
+The strict comparison follows from
+$3(n+1)(n+3)-(3n+4)(n+2)=2n+1>0$.
+\end{proof}
+
+\section{The infinite range}
+
+For $n\ge3$, put $q_n=T_n/T_{n-1}$ and define
+\[
+D_n=n(n^2-1)
+\left(\frac{2\log T_n}{n}
+-\frac{\log T_{n-1}}{n-1}
+-\frac{\log T_{n+1}}{n+1}\right).
+\]
+All values in the logarithms are positive by Lemma~\ref{lem:ratios}.
+The factor $n(n^2-1)$ is positive. Hence $D_n>0$ is equivalent both to
+strict root log-concavity at center $n$ and to \eqref{eq:main}.
+Substitution gives the useful identity
+\begin{equation}\label{eq:gap}
+D_n=2n\log q_n
+-n(n-1)\log\frac{q_{n+1}}{q_n}-2\log T_n.
+\end{equation}
+
+For $n\ge10$, Lemmas~\ref{lem:ratios} and \ref{lem:interlace} give
+\[
+q_n\ge b_{n-1}=\frac{3n}{n+3/2},\qquad
+\frac{q_{n+1}}{q_n}
+\le\frac{b_{n+2}}{b_{n-1}}
+=1+\frac9{n(2n+9)}.
+\]
+Also, Lemmas~\ref{lem:ratios} and \ref{lem:size} imply
+\[
+\log T_n\le n\log3-\log(n+1).
+\]
+Use these estimates in \eqref{eq:gap}. Since $\log(1+t)<t$ for $t>0$,
+\begin{align}
+D_n
+&\ge 2\log(n+1)
+-2n\log\left(1+\frac3{2n}\right)
+-n(n-1)\log\left(1+\frac9{n(2n+9)}\right)\notag\\
+&>2\log(n+1)-3-\frac{9(n-1)}{2n+9}
+=:F(n).\label{eq:F}
+\end{align}
+
+For real $x\ge10$,
+\[
+F'(x)=\frac{8x^2-27x+63}{(x+1)(2x+9)^2}>0.
+\]
+To give an exact positive value at the threshold, observe that
+\[
+\log2=2\int_0^{1/3}\frac{dt}{1-t^2}
+>2\int_0^{1/3}(1+t^2)\,dt
+=\frac{56}{81}.
+\]
+The strict inequality follows because
+$1/(1-t^2)>1+t^2$ for $0<t<1/3$.
+Consequently,
+\[
+F(31)=10\log2-3-\frac{270}{71}
+>\frac{560}{81}-3-\frac{270}{71}
+=\frac{637}{5751}>0.
+\]
+Monotonicity of $F$ and \eqref{eq:F} prove \eqref{eq:main} for every
+integer $n\ge31$.
+
+\section{The finite range and the sharp threshold}
+
+It remains to check the 25 centers $6\le n\le30$.
+Table~\ref{tab:values} gives the values required for those comparisons,
+together with the value $T_4$ needed for sharpness.
+Every value follows from \eqref{eq:motzkin} and \eqref{eq:Trec}.
+Substitution in \eqref{eq:main} gives a strict inequality at each of the
+25 centers. These comparisons use integers only.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{rr@{\qquad}rr}
+\toprule
+$n$&$T_n$&$n$&$T_n$\\\midrule
+4&7&18&4805596\\
+5&14&19&13393688\\
+6&37&20&37458331\\
+7&90&21&105089228\\
+8&233&22&295673995\\
+9&602&23&834086420\\
+10&1586&24&2358641377\\
+11&4212&25&6684761124\\
+12&11299&26&18985057352\\
+13&30536&27&54022715450\\
+14&83098&28&154000562759\\
+15&227474&29&439742222070\\
+16&625993&30&1257643249141\\
+17&1730786&31&3602118427250\\\bottomrule
+\end{tabular}
+\caption{Exact alternating Motzkin sums.}\label{tab:values}
+\end{table}
+
+The following complete arithmetic procedure reproduces the finite
+comparisons. The division in the recurrence is checked to be exact.
+\begin{verbatim}
+M = [1, 1]
+for n in range(1, 31):
+    numerator = (2*n + 3)*M[n] + 3*n*M[n-1]
+    assert numerator % (n + 3) == 0
+    M.append(numerator // (n + 3))
+T = [sum((-1)**(n-j)*M[j] for j in range(n+1))
+     for n in range(32)]
+for n in range(6, 31):
+    assert T[n]**(2*(n*n-1)) > (
+        T[n-1]**(n*(n+1))*T[n+1]**(n*(n-1)))
+assert T[5]**48 < T[4]**30*T[6]**20
+\end{verbatim}
+
+At center five, the reverse comparison follows from
+\[
+37^{10}-2^{24}7^9=4131563191399737>0.
+\]
+Indeed, $T_4=7$, $T_5=14$, and $T_6=37$.
+Squaring the inequality and multiplying by $7^{30}$ gives
+$14^{48}<7^{30}37^{20}$.
+It is equivalent to \eqref{eq:failure}.
+Every tail starting at an index at most four contains center five.
+The infinite argument and the finite comparisons prove
+Theorem~\ref{thm:main}.
+
+\section{Formal statements and reproducibility}
+
+The analytic Lean development defines rational Motzkin numbers through
+adjacent pairs. It defines the alternating sequence recursively through
+\eqref{eq:Trec}. A separate source-definition module proves uniqueness
+for \eqref{eq:motzkin} and identifies that recursion with
+\eqref{eq:alternating}. Thus its concluding theorem concerns the original
+finite sum. The recurrence assumptions in the general statement specify
+only the source sequence. They do not assume any estimate or part of the
+conclusion. The separate Challenge module imports only Mathlib. Its
+problem also requires existence of a sequence with the source recurrence.
+The Solution module proves this problem, including existence and the
+sharp threshold.
+
+Table~\ref{tab:lean} gives the principal correspondence. Names are written
+relative to the namespace \texttt{MathAndTheory.Motzkin}.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.38\linewidth}>{\raggedright\arraybackslash}p{0.54\linewidth}}
+\toprule
+Mathematical statement & Lean declaration\\\midrule
+Source recurrence correspondence &
+\path{Source.motzkin_isMotzkin};
+\path{Source.eq_motzkin_of_isMotzkin}\\
+Source finite-sum correspondence &
+\path{Source.alternatingSum_eq_alternating}\\
+Strict real-root inequality &
+\path{Source.finite_sum_roots_strict_log_concave}\\
+Original tail-nine conjecture &
+\path{Source.zhao_conjecture_one}\\
+Center-five failure &
+\path{Source.finite_sum_roots_sharp_failure}\\
+Optimal tail start &
+\path{Source.finite_sum_tail_start_optimal}\\
+Complete challenge &\texttt{Source.solution}\\\bottomrule
+\end{tabular}
+\caption{Principal formal statements. The source-definition module
+passed its native Lean build and axiom audit.}\label{tab:lean}
+\end{table}
+
+The underlying modules prove the ratio estimates, positivity, size
+bound, and infinite range. They then use proof-producing exact arithmetic
+for the remaining indices. The root function is the actual real power
+$T_n^{1/n}$. The formal proof does not replace that function with an
+uninterpreted symbol or an assumed inequality.
+
+An independent Python program also counts Motzkin paths and applies the
+finite alternating sum directly. It agrees with the published OEIS table
+through index 300 \cite{OEIS}. It checks the exact inequality at centers
+6 through 100 and the reverse comparison at center five. These finite
+checks support the result. They do not prove the infinite range.
+The Lean statement uses the recurrence characterization. It does not
+claim a formal proof of the lattice-path interpretation.
+
+The proof and reproducibility files form one result family.
+The supporting ratio lemmas are not separate publication claims.
+
+\section*{Authorship and AI use}
+
+Dev D. Goyal directed the project and is responsible for publication.
+The research proofs and original formalizations were produced with
+ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, under his
+direction. AI assistance was also used for the subsequent mathematical
+audit, the source-definition proof, the independent computation, and this
+manuscript. These contributions do not constitute independent human
+expert review. The result has not been peer reviewed. No claim of first
+priority is made. The repository records the completed review and
+verification checks.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+\end{document}

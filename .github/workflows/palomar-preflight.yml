@@ -1,0 +1,41 @@
+name: Palomar mechanical preflight
+
+# This workflow checks public source. It does not submit or register a result.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: ${{ matrix.family }}
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        include:
+          - family: gyires-circulant-five
+            request_id: pf0000000007
+          - family: q-permanent
+            request_id: pf0000000001
+          - family: best-of-n
+            request_id: pf0000000002
+          - family: hofstadter-iteration
+            request_id: pf0000000003
+          - family: diagonal-concavity
+            request_id: pf0000000004
+          - family: alternating-motzkin
+            request_id: pf0000000005
+          - family: domirank-entropy
+            request_id: pf0000000006
+    uses: PalomarRegistry/PalomarSubmission/.github/workflows/submission.yml@c02bbeaed888df45c4e28c4e99dba540ad21552a
+    with:
+      repository: ${{ github.repository }}
+      commit: ${{ github.sha }}
+      pipeline_commit: c02bbeaed888df45c4e28c4e99dba540ad21552a
+      request_id: ${{ matrix.request_id }}
+      mode: full
+      execution_profile: palomar-standard-v1
+      options: >-
+        {"project_path":"lean","formalization_metadata_path":"lean/formalization.yaml","comparator_config_path":"lean/comparator/${{ matrix.family }}.json","authorization_relationship":"I am a responsible author or maintainer"}

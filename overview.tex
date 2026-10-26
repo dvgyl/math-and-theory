@@ -1,0 +1,135 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{lmodern,amsmath,amssymb,microtype}
+
+\usepackage[margin=26mm]{geometry}
+
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{xurl}
+
+\title{Math and Theory: Collection Overview}
+
+\author{Dev D. Goyal}
+
+\date{26 October 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+This collection contains seven result families in mathematics and theoretical computer science. Each paper has a complete Lean formalization of its principal claims. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. Machine checking and AI review do not constitute independent human expert peer review.
+
+\end{abstract}
+
+\tableofcontents
+
+\section{How to use the collection}
+
+The \href{https://github.com/dvgyl/math-and-theory/blob/main/CONTENTS.md}{manuscript catalogue} links each paper to its formal statements and independent computations. The \href{https://github.com/dvgyl/math-and-theory/blob/main/verification/README.md}{verification guide} records the commands and their results. The project uses one Lake installation, pinned to Lean 4.35.0 and an exact Mathlib revision. The 21 selected submission statements include equality, sharpness, and auxiliary positivity claims. They are grouped into seven papers, not presented as 21 independent discoveries.
+
+\section{Mathematics}
+
+\subsection{Real positive-definite counterexamples to extended q-permanent monotonicity}
+
+For every real parameter $q>1$, some real symmetric positive-definite matrix has a negative $q$-permanent derivative at $q$. An explicit matrix of order five decreases from $q=14$ to $q=15$. The construction also gives correlation matrices with no zero entries and integer-entry examples. The dimension can depend on $q$. The real-symmetric question on $[-1,1]$ remains outside the result.
+
+\par\smallskip
+
+\noindent\textbf{Scope:} Counterexample and all-parameter extension.
+
+\par\smallskip
+
+\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/q-permanent/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/q-permanent.md}{Formal statement and prior work}.
+
+\subsection{Gyires's permanent inequality for nonnegative circulants of order five}
+
+Every nonnegative real circulant matrix $A$ of order five satisfies $24\operatorname{per}(AA^T)\leq625\operatorname{per}(A)^2$. Equality holds exactly for constant matrices. This proves the order-five circulant case of Gyires\textquotesingle s ratio inequality. A bound in sorted-gap coordinates has sharp coefficient $484$. The conjecture for arbitrary doubly stochastic matrices remains open.
+
+\par\smallskip
+
+\noindent\textbf{Scope:} Complete special case with equality and sharp margin.
+
+\par\smallskip
+
+\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/gyires-circulant-five/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/gyires-circulant-five.md}{Formal statement and prior work}.
+
+\subsection{An entropy increase for a structurally disassortative DomiRank graph}
+
+A connected graph with $14$ vertices and $32$ edges has negative degree--log-degree edge covariance. All resolvent scores are positive on $[251/1000,63/250]$ inside the stable domain. Its entropy nevertheless increases by more than $1/10000$ in natural-logarithm units. This refutes the source\textquotesingle s assertion for every positive-score interval.
+
+\par\smallskip
+
+\noindent\textbf{Scope:} Counterexample to an interval monotonicity conjecture.
+
+\par\smallskip
+
+\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/domirank-entropy/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/domirank-entropy.md}{Formal statement and prior work}.
+
+\subsection{Diagonal concavity does not imply concavity for sums of elementary symmetric polynomials}
+
+For $M>0$, let $f_M=1+M\sigma_1+\sigma_2+M\sigma_3+\sigma_4$ in four variables, where $\sigma_j$ is the elementary symmetric polynomial of degree $j$. The fourth root $f_M^{1/4}$ is concave on the positive diagonal exactly when $M\geq1$. It is concave on the full positive orthant exactly when $M=1$. Thus every $M>1$ disproves Lachaume\textquotesingle s criterion with strictly positive coefficients.
+
+\par\smallskip
+
+\noindent\textbf{Scope:} Counterexample and complete parameter classification.
+
+\par\smallskip
+
+\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/diagonal-concavity/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/diagonal-concavity.md}{Formal statement and prior work}.
+
+\subsection{Sharp root log-concavity of alternating Motzkin sums}
+
+Let $T_n=\sum_{j=0}^n(-1)^{n-j}M_j$, where $M_j$ is the Motzkin number. The sequence $T_n^{1/n}$ is strictly log-concave on its tail starting at five. The inequality reverses at center five, so no earlier tail is log-concave. This strengthens Zhao\textquotesingle s proposed tail starting at nine. The source recurrence and finite sum are linked in Lean.
+
+\par\smallskip
+
+\noindent\textbf{Scope:} Conjecture resolution with an optimal threshold.
+
+\par\smallskip
+
+\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/alternating-motzkin/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/alternating-motzkin.md}{Formal statement and prior work}.
+
+\subsection{Counterexamples to a late-iterate ordering conjecture for generalized Hofstadter functions}
+
+For every $k\geq4$, some input $n$ satisfies $F_k^{\circ(2k+1)}(n)>F_{k+1}^{\circ(2k+2)}(n)$. Here the superscript denotes repeated composition. The proof constructs inverse iterates with exact gap $k-3$. The witness $F_4^{\circ9}(132)=8>7=F_5^{\circ10}(132)$ gives the first instance. The result concerns infinitely many parameters. It does not assert infinitely many violating inputs for each fixed parameter.
+
+\par\smallskip
+
+\noindent\textbf{Scope:} Counterexamples for every parameter k$\geq$4.
+
+\par\smallskip
+
+\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/hofstadter-iteration/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/hofstadter-iteration.md}{Formal statement and prior work}.
+
+\section{Theoretical computer science}
+
+\subsection{Counterexamples to a best-of-$n$ win-rate bound at every budget}
+
+For every $n\geq2$ and $\delta>0$, a finite positive reference distribution with largest atom at most $\delta$ violates the proposed best-of-$n$ divergence--win-rate curve. A four-response best-of-two example gives exact probabilities and a strict logarithmic certificate. The all-budget proof uses finite interval bounds and gives a quantitative positive gap. It does not determine the sharp replacement curve.
+
+\par\smallskip
+
+\noindent\textbf{Scope:} Disproof for every budget n$\geq$2 and every positive atom cap.
+
+\par\smallskip
+
+\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/best-of-n/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/best-of-n.md}{Formal statement and prior work}.
+
+\section{Verification and authorship}
+
+Lean checks the proofs against their formal statements. Separate Challenge modules state the intended claims. Comparator checks these against their proved Solutions. The verification record identifies the runs of Lean, NanoDa, and con-ron. Independent exact and numerical programs test finite certificates and examples. These finite computations do not replace the general proofs.
+
+\par
+
+Dev D. Goyal directed the research and is responsible for publication. The original research agent was ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning. The earlier Gyires development also records work by Claude Opus 5.5, used with Claude Code. Codex, using GPT-6, audited and revised the collection. The \href{https://github.com/dvgyl/math-and-theory/blob/main/AUTHORSHIP.md}{authorship record} states the precise review scope and identifies the final independent AI reviewer.
+
+\par
+
+These papers have not been peer reviewed. The recorded personal review of the earlier Gyires proofs does not extend to this collection\textquotesingle s new material. No mathematical-physics result is included in this edition. New families can use the same structure after they pass the publication checks.
+
+\end{document}

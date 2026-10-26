@@ -1,0 +1,247 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype,needspace}
+\usepackage[margin=25mm]{geometry}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\N}{\mathbb N}
+\newcommand{\itf}[2]{F_{#1}^{\,#2}}
+\newcommand{\itl}[2]{L_{#1}^{\,#2}}
+\title{Counterexamples to a late-iterate ordering conjecture for generalized Hofstadter functions}
+\author{Dev D. Goyal}
+\date{26 October 2026}
+\usepackage[numbers]{natbib}
+\usepackage{xurl}
+\begin{document}
+\maketitle
+\begin{abstract}
+Letouzey, Li, and Steiner conjecture a pointwise order between successive generalized Hofstadter functions after more than twice the parameter number of iterations. The following counterexamples disprove this order. A finite witness gives $F_4^9(132)=8>7=F_5^{10}(132)$. An inverse recurrence gives a counterexample for every parameter $k\geq4$, at the first iteration index $j=2k+1$ in the conjectured range. The proof uses an exact inverse-orbit gap of $k-3$. The Lean development constructs the infinite functions from their defining recurrence and proves both the finite witness and the full parameter family.
+\end{abstract}
+\section{The precise question}
+
+For \(k\ge1\), define
+\[
+ F_k(0)=0,\qquad F_k(n+1)=n+1-\itf{k}{k}(n).
+ \tag{1}
+\]
+Here \(f^r\) means \(r\)-fold composition, with \(f^0\) the identity.
+These are the functions in Section 1.1 of \cite{LLS}.
+The unnumbered conjecture immediately before Lemma 7.6 of the current arXiv
+version asserts
+\[
+ \forall k\ge1\ \forall j>2k\ \forall n\in\N,
+ \qquad \itf{k}{j}(n)\le\itf{k+1}{j+1}(n).
+ \tag{C}
+\]
+Thus one counterexample resolves the entire universal assertion negatively.
+
+\begin{theorem}[Explicit disproof]
+The conjecture \textup{(C)} is false. More precisely,
+\[
+ \boxed{\itf{4}{9}(132)=8>7=\itf{5}{10}(132).}
+ \tag{2}
+\]
+The functions \(\itf{4}{9}\) and \(\itf{5}{10}\) are incomparable in pointwise
+order, since also
+\[
+ \itf{4}{9}(36)=2<3=\itf{5}{10}(36).
+ \tag{3}
+\]
+\end{theorem}
+
+\begin{proof}
+The defining recurrence gives the following exact iteration chains:
+\begin{align*}
+132&\xrightarrow{F_4}96\to70\to51\to37\to27\to20\to15\to11\to8,\\
+132&\xrightarrow{F_5}100\to75\to56\to42\to32\to25\to19\to14\to10\to7.
+\end{align*}
+The Lean certificate checks every entry of the two recurrence tables through
+index 132, proves their agreement with the infinite functions in (1), and
+deduces (2) and (3). Since \(9>2\cdot4\), (2) contradicts (C).
+The opposite strict inequalities at 132 and 36 prove incomparability.
+Section~\ref{sec:formal} gives the exact formal statements.
+\end{proof}
+
+\section{An infinite family}
+
+The following proof also explains why the failure is systematic. It uses only
+the defining recurrence and elementary properties proved below.
+For \(k\ge1\), set
+\[
+ L_k(n)=n+\itf{k}{k-1}(n).
+ \tag{4}
+\]
+
+\Needspace{10\baselineskip}
+\begin{theorem}[Failure for every parameter \(k\ge4\)]
+For each integer \(k\ge4\), let
+\[
+ p=k+3,\qquad B_k=\itl{k+1}{2k+2}(p).
+\]
+Then
+\[
+ \boxed{\itf{k}{2k+1}(B_k)>k+3
+      =\itf{k+1}{2k+2}(B_k).}
+ \tag{5}
+\]
+In particular the proposed pointwise ordering fails for every \(k\ge4\)
+at the first integer \(j\) strictly greater than \(2k\).
+\end{theorem}
+
+\subsection{The inverse relation}
+
+First, (1) defines a unique total function with \(0\le F_k(n)\le n\).
+Indeed, after all values below \(n+1\) have been constructed, every argument in
+\(\itf{k}{k}(n)\) remains at most \(n\). Subtraction is therefore nonnegative,
+and the bound is preserved.
+
+\begin{lemma}
+For \(k\ge1\), consecutive values of \(F_k\) differ by either zero or one.
+Moreover
+\[
+ F_k(L_k(n))=n,\qquad F_k(L_k(n)+1)=n+1,
+ \tag{6}
+\]
+and, for every \(r,n,m\in\N\),
+\[
+ \itf{k}{r}(n)\le m\quad\Longleftrightarrow\quad n\le\itl{k}{r}(m).
+ \tag{7}
+\]
+In particular \(\itf{k}{r}(\itl{k}{r}(m))=m\).
+\end{lemma}
+
+\begin{proof}
+The first step is \(F_k(1)-F_k(0)=1\). Suppose the zero-or-one step property
+has been proved up to input \(n+1\). Iterating \(F_k\) preserves two ordered
+inputs at distance at most one within that range: the outputs remain bounded
+by the inputs. Hence
+\(\itf{k}{k}(n+1)-\itf{k}{k}(n)\in\{0,1\}\).
+Subtracting the two instances of (1) proves the next step. This also proves
+monotonicity, both for \(F_k\) and for all its iterates.
+
+By (4), \(L_k(n+1)-L_k(n)\in\{1,2\}\). The first identity in (6) follows
+by induction on \(n\). It holds at zero. If \(u=L_k(n)\) and \(F_k(u)=n\),
+then (1) gives
+\[
+ F_k(u+1)=u+1-\itf{k}{k-1}(n)=n+1.
+\]
+Put \(v=L_k(n+1)\). If \(v=u+1\), the induction step is complete. If
+\(v=u+2\), applying (1) once more gives
+\[
+ F_k(v)=v-\itf{k}{k-1}(n+1)=n+1.
+\]
+The displayed calculation of \(F_k(u+1)\) also gives the second identity in (6).
+Monotonicity and (6) now imply
+\(F_k(n)\le m\) exactly when \(n\le L_k(m)\).
+Iteration proves (7), and iterating the first identity in (6) proves the final
+claim. Every step is valid at zero as well.
+\end{proof}
+
+\subsection{Recurrences for the inverse iterates}
+
+For a fixed starting value \(p\), write \(a_t=\itl{k}{t}(p)\).
+The cancellation identity in (6) and definition (4) imply, for all \(t\ge0\),
+\[
+ a_{t+k}=a_{t+k-1}+a_t.
+ \tag{8}
+\]
+To see this directly, apply (4) to \(\itl{k}{t+k-1}(p)\) and cancel
+\(k-1\) pairs of \(F_k\) and \(L_k\).
+
+Take now \(k\ge4\), \(p=k+3\), and define
+\[
+ q_t=p+\frac{t(t+5)}2.
+ \tag{9}
+\]
+The small values obtained from (1) are
+\[
+ F_k(n)=n-1\quad(2\le n\le k+2),\qquad F_k(k+3)=k+1.
+ \tag{10}
+\]
+For completeness, \(F_k(1)=1\); for \(2\le n\le k+2\), the previous values
+decrease by one until reaching the fixed point 1, so
+\(\itf{k}{k}(n-1)=1\). At \(n=k+3\), the same argument gives
+\(\itf{k}{k}(k+2)=2\). This proves (10) inductively, without guessing any
+later values.
+
+Using (10) and cancellation in (4), the initial segments of the two relevant
+inverse orbits are
+\[
+ \begin{array}{ll}
+ a_t=\itl{k}{t}(p)=q_t,&0\le t\le k-1,\\[2pt]
+ b_t=\itl{k+1}{t}(p)=q_t,&0\le t\le k.
+ \end{array}
+ \tag{11}
+\]
+Here is the increment calculation. If $1\leq t\leq k-1$, cancellation of $t-1$ pairs gives
+\[
+ a_t-a_{t-1}=F_k^{\,k-1}(L_k^{\,t-1}(p))
+ =F_k^{\,k-t}(p).
+\]
+The first application sends $p=k+3$ to $k+1$ by (10). Each of the remaining
+$k-t-1$ applications subtracts one. All these inputs lie between $2$ and
+$k+2$. Thus $a_t-a_{t-1}=k+1-(k-t-1)=t+2$.
+For the other orbit, $1\leq t\leq k$ gives
+\[
+ b_t-b_{t-1}=F_{k+1}^{\,k}(L_{k+1}^{\,t-1}(p))
+ =F_{k+1}^{\,k-t+1}(p).
+\]
+Now $p=k+3=(k+1)+2$ lies in the initial range of $F_{k+1}$.
+Each of the $k-t+1$ applications subtracts one, so the increment is again
+$k+3-(k-t+1)=t+2$. Both orbits start at $p$. Summing the increments
+$3,4,\ldots,t+2$ proves (9) and (11).
+
+Let \(S=\sum_{t=0}^{k-1}q_t\) and \(A_k=a_{2k+1}\). Summing (8) through one
+block, then taking the next two steps, yields
+\[
+ A_k=3q_{k-1}+S+2q_0+q_1.
+ \tag{12}
+\]
+In detail, \(a_{2k-1}=q_{k-1}+S\),
+\(a_k=q_{k-1}+q_0\), and
+\(a_{k+1}=q_{k-1}+q_0+q_1\); add the last two terms to the first.
+The same calculation with recurrence order \(k+1\) gives
+\[
+ B_k=b_{2k+2}=3q_k+S+q_0.
+ \tag{13}
+\]
+Consequently
+\begin{align*}
+ B_k-A_k
+ &=3(q_k-q_{k-1})-q_0-q_1\\
+ &=3(k+2)-(k+3)-(k+6)\\
+ &=k-3>0.
+ \tag{14}
+\end{align*}
+This cancellation is the central identity; a closed form for the sum \(S\)
+is unnecessary.
+
+\begin{proof}[Proof of Theorem 2]
+By (6) iterated,
+\(\itf{k+1}{2k+2}(B_k)=p\). Equation (14) says
+\(B_k>\itl{k}{2k+1}(p)\). The equivalence (7) therefore gives
+\(\itf{k}{2k+1}(B_k)>p\), proving (5).
+\end{proof}
+
+
+\section{Formal correspondence}\label{sec:formal}
+The Lean definition uses well-founded recursion. It does not define the infinite functions by the finite tables. The theorem \path{validTable_correct} proves that a table satisfying the recurrence agrees with the function throughout its index range. The tables for $k=4,5$ are then checked by kernel-reduced \texttt{decide}.
+
+The namespace \texttt{MathAndTheory.Hofstadter} proves \path{pointwise_incomparable} and \path{lateIterateOrderConjecture_false}. The foundation module proves the step property, both inverse identities, and the iterate equivalence (7). The family module proves \path{inverse_iterate_gap} and \path{general_counterexample}. The latter has the sole parameter hypothesis $k\geq4$. It does not assume any comparison conjecture or an unproved inverse formula.
+
+The independent arithmetic check computes the tables by the following rule. Begin with $a_0=0$. At step $m\geq1$, set $u=m-1$, replace $u$ by $a_u$ exactly $k$ times, and append $m-u$. All lookup indices are less than $m$ because $a_i\leq i$. Thus the check uses integers and terminates. A separate numerical computation is supporting evidence; the Lean theorem supplies the formal proof.
+
+\section{Relation to earlier work}
+The source conjecture is separate from the proved base comparison $F_k\leq F_{k+1}$. It is also separate from the comparison at $j=k+1$.
+Letouzey's later preprint \cite{new}, deposited on 26 October 2026, proves that earlier-index comparison and strict base ordering beyond an explicit bound. Its section 7.2 concerns $F_k^{k+1}\geq F_{k+1}^{k+2}$. The full preprint was retrieved and its relevant statements were compared with the present theorem.
+
+The associated Rocq development \cite{repo} contains the known witness to $F_k^j\not\geq F_{k+1}^{j+1}$ for $j\geq k+2$. Its opposite-direction witness applies when $j\leq2k$. Those results do not give the opposite-direction witness at $j=2k+1$ proved here. No prior proof of the present late-iterate disproof was found in the inspected literature and public source development. This assessment does not establish first priority or exclude unindexed work.
+
+The infinite family varies $k$. The theorem does not assert infinitely many violating inputs for each fixed $k$. It gives no classification of all pairs of iteration indices. The finite incomparability statement concerns the particular pair $F_4^9,F_5^{10}$.
+
+The original research and Lean development were generated by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, under the direction of Dev D. Goyal. This revision includes further AI-assisted mathematical checks and editing. The supporting inverse theory is credited to the earlier research even where it is proved again from the recurrence. Machine verification and AI review are distinct from independent expert peer review. This work has not been peer reviewed.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+\end{document}

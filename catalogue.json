@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "families": [
+    {
+      "id": "q-permanent",
+      "discipline": "Mathematics",
+      "area": "Matrix theory",
+      "title": "Real positive-definite counterexamples to extended q-permanent monotonicity",
+      "kind": "Counterexample and all-parameter extension",
+      "summary": "For every real parameter q>1, a real symmetric positive-definite matrix has a negative q-permanent derivative at q. An explicit matrix of order five decreases from q=14 to q=15. Correlation matrices with no zero entries and integer-entry examples are also obtained. The dimension can depend on q. The real-symmetric question on [−1,1] remains outside the result.",
+      "source": "Da Fonseca, 2010, Conjecture 1; 2018, Conjecture 2.",
+      "source_url": "https://arxiv.org/abs/1804.02231",
+      "module": "MathAndTheory.Mathematics.QPermanent.GeneralInteger",
+      "namespace": "MathAndTheory.QPermanent",
+      "zenodo": "A",
+      "reason": "The theorem rules out every dimension-independent extension above one and gives an explicit mechanism and exact witnesses.",
+      "comparator": "lean/comparator/q-permanent.json",
+      "theorems": [
+        "QPermanentProblem.finite_counterexample",
+        "QPermanentProblem.extended_conjecture_false",
+        "QPermanentProblem.negative_derivative_at_every_parameter",
+        "QPermanentProblem.dense_correlation_counterexamples",
+        "QPermanentProblem.integer_counterexamples"
+      ],
+      "paper": "preprints/q-permanent/paper.pdf"
+    },
+    {
+      "id": "gyires-circulant-five",
+      "discipline": "Mathematics",
+      "area": "Matrix theory",
+      "title": "Gyires’s permanent inequality for nonnegative circulants of order five",
+      "kind": "Complete special case with equality and sharp margin",
+      "summary": "Every nonnegative real circulant matrix of order five satisfies the stronger inequality 24 per(AAᵀ)≤625 per(A)². Equality holds exactly for constant matrices. This proves the order-five circulant case of Gyires’s ratio inequality. A quantitative bound in sorted-gap coordinates has sharp coefficient 484. The general conjecture for arbitrary doubly stochastic matrices remains open.",
+      "source": "Gyires, 1978; Cheon and Wanless, 2005, Conjecture 20. Earlier formalization at the pinned Gyires repository.",
+      "source_url": "https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448",
+      "module": "MathAndTheory.Mathematics.GyiresCirculant5.Main",
+      "namespace": "MathAndTheory.GyiresCirculant5",
+      "zenodo": "B",
+      "reason": "This is a substantial exact special case, but it already has a dedicated public repository. Prefer one archival version, not a duplicate deposit.",
+      "comparator": "lean/comparator/gyires-circulant-five.json",
+      "theorems": [
+        "MathAndTheory.GyiresCirculant5.gyires_ratio",
+        "MathAndTheory.GyiresCirculant5.gyires_ratio_eq_iff",
+        "MathAndTheory.GyiresCirculant5.gyires_denominator_pos",
+        "MathAndTheory.GyiresCirculant5.gyires_homogeneous",
+        "MathAndTheory.GyiresCirculant5.gyires_homogeneous_eq_iff",
+        "MathAndTheory.GyiresCirculant5.strong_inequality",
+        "MathAndTheory.GyiresCirculant5.strong_inequality_eq_iff",
+        "MathAndTheory.GyiresCirculant5.strong_margin",
+        "MathAndTheory.GyiresCirculant5.strong_margin_attained",
+        "MathAndTheory.GyiresCirculant5.strong_margin_sharp"
+      ],
+      "paper": "preprints/gyires-circulant-five/paper.pdf"
+    },
+    {
+      "id": "domirank-entropy",
+      "discipline": "Mathematics",
+      "area": "Graph theory and matrix analysis",
+      "title": "An entropy increase for a structurally disassortative DomiRank graph",
+      "kind": "Counterexample to an interval monotonicity conjecture",
+      "summary": "A connected graph with 14 vertices and 32 edges has negative degree–log-degree edge covariance. All resolvent scores are positive on [251/1000,63/250] inside the stable domain. Its entropy nevertheless increases by more than 1/10000 in natural-logarithm units. This refutes the source’s assertion for every positive-score interval.",
+      "source": "Zhang and Zhao, arXiv:2610.00107v4, Conjecture 4.9.",
+      "source_url": "https://arxiv.org/html/2610.00107v4",
+      "module": "MathAndTheory.Mathematics.DomiRank.Conclusion",
+      "namespace": "MathAndTheory.DomiRank",
+      "zenodo": "B",
+      "reason": "The exact graph resolves a precise recent conjecture. Its scope is narrow; repository publication may be sufficient until specialist review.",
+      "comparator": "lean/comparator/domirank-entropy.json",
+      "theorems": [
+        "DomiRankProblem.counterexample"
+      ],
+      "paper": "preprints/domirank-entropy/paper.pdf"
+    },
+    {
+      "id": "diagonal-concavity",
+      "discipline": "Mathematics",
+      "area": "Inequalities and real analysis",
+      "title": "Diagonal concavity does not imply concavity for sums of elementary symmetric polynomials",
+      "kind": "Counterexample and complete parameter classification",
+      "summary": "For positive M, let f=1+Mσ₁+σ₂+Mσ₃+σ₄ in four variables. Its fourth root is concave on the positive diagonal exactly when M≥1. It is concave on the full positive orthant exactly when M=1. Every M>1 therefore disproves Lachaume’s diagonal criterion with strictly positive coefficients.",
+      "source": "Lachaume, arXiv:1712.10327v1, Conjecture 1.",
+      "source_url": "https://arxiv.org/abs/1712.10327v1",
+      "module": "MathAndTheory.Mathematics.DiagonalConcavity",
+      "namespace": "MathAndTheory.DiagonalConcavity",
+      "zenodo": "A",
+      "reason": "Two explicit identities give a complete one-parameter classification and disprove a general criterion without a boundary or normalization exception.",
+      "comparator": "lean/comparator/diagonal-concavity.json",
+      "theorems": [
+        "ConcavityChallenge.result"
+      ],
+      "paper": "preprints/diagonal-concavity/paper.pdf"
+    },
+    {
+      "id": "alternating-motzkin",
+      "discipline": "Mathematics",
+      "area": "Integer sequences and combinatorics",
+      "title": "Sharp root log-concavity of alternating Motzkin sums",
+      "kind": "Conjecture resolution with an optimal threshold",
+      "summary": "Let Tₙ be the alternating sum of Motzkin numbers through index n. The sequence Tₙ^(1/n) is strictly log-concave on its tail starting at five. The inequality reverses at center five, so no earlier tail is log-concave. This strengthens Zhao’s proposed tail starting at nine. The source recurrence and finite sum are linked in Lean.",
+      "source": "Zhao, INTEGERS 26 (2026), A55, Conjecture 1; OEIS A187306.",
+      "source_url": "https://math.colgate.edu/~integers/aa55/aa55.pdf",
+      "module": "MathAndTheory.Mathematics.Motzkin.Source",
+      "namespace": "MathAndTheory.Motzkin",
+      "zenodo": "B",
+      "reason": "The sharp threshold is a complete improvement of the stated conjecture. The proof method is established, and the result concerns one sequence.",
+      "comparator": "lean/comparator/alternating-motzkin.json",
+      "theorems": [
+        "MathAndTheory.Motzkin.Palomar.source_defined_result"
+      ],
+      "paper": "preprints/alternating-motzkin/paper.pdf"
+    },
+    {
+      "id": "hofstadter-iteration",
+      "discipline": "Mathematics",
+      "area": "Integer sequences and combinatorics",
+      "title": "Counterexamples to a late-iterate ordering conjecture for generalized Hofstadter functions",
+      "kind": "Counterexamples for every parameter k≥4",
+      "summary": "For every k≥4, some input n satisfies Fₖ^(2k+1)(n)>Fₖ₊₁^(2k+2)(n). The proof constructs inverse iterates whose exact gap is k−3. The finite witness F₄⁹(132)=8>7=F₅¹⁰(132) gives the first instance. The result concerns infinitely many parameters, not infinitely many violating inputs for each fixed parameter.",
+      "source": "Letouzey, Li, and Steiner, Journal of Integer Sequences 29 (2026), 26.3.3, conjecture before Lemma 7.6.",
+      "source_url": "https://cs.uwaterloo.ca/journals/JIS/VOL29/Letouzey/letouzey3.pdf",
+      "module": "MathAndTheory.Mathematics.Hofstadter.Family",
+      "namespace": "MathAndTheory.Hofstadter.Family",
+      "zenodo": "A",
+      "reason": "The uniform inverse-iterate construction explains the failure beyond a single finite witness. The same-day related preprint was checked and does not prove this range.",
+      "comparator": "lean/comparator/hofstadter-iteration.json",
+      "theorems": [
+        "HofstadterChallenge.result"
+      ],
+      "paper": "preprints/hofstadter-iteration/paper.pdf"
+    },
+    {
+      "id": "best-of-n",
+      "discipline": "Theoretical computer science",
+      "area": "Sampling algorithms and information theory",
+      "title": "Counterexamples to a best-of-n win-rate bound at every budget",
+      "kind": "Disproof for every budget n≥2 and every positive atom cap",
+      "summary": "For every n≥2 and δ>0, there is a finite positive reference distribution whose largest atom is at most δ and whose best-of-n policy violates the proposed divergence–win-rate curve. A four-response best-of-two example gives exact probabilities and a strict logarithmic certificate. The proof uses finite interval bounds and gives a quantitative positive gap. It does not determine the sharp replacement curve.",
+      "source": "Beirami et al., ICML 2025, Conjecture 7.2 and equation (28).",
+      "source_url": "https://proceedings.mlr.press/v267/beirami25a.html",
+      "module": "MathAndTheory.TheoreticalCS.BestOfN.Extension",
+      "namespace": "MathAndTheory.BestOfNExtension",
+      "zenodo": "A",
+      "reason": "The all-budget and arbitrarily-small-atom theorem rules out a finite-atom exception to the proposed universal curve and addresses an active sampling-policy question.",
+      "comparator": "lean/comparator/best-of-n.json",
+      "theorems": [
+        "BestOfNChallenge.result",
+        "BestOfNChallenge.every_budget_small_atoms"
+      ],
+      "paper": "preprints/best-of-n/paper.pdf"
+    }
+  ]
+}

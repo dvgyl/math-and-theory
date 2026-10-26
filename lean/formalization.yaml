@@ -1,0 +1,478 @@
+---
+version: v0.4
+project:
+  name: Math and Theory
+  description: 'Seven result families with complete principal Lean proofs: extended
+    q-permanent monotonicity, order-five circulant Gyires inequalities, a DomiRank
+    entropy counterexample, a diagonal concavity classification, sharp alternating-Motzkin
+    root bounds, a uniform Hofstadter iterate disproof, and best-of-n counterexamples
+    for all budgets.'
+  authors:
+  - Dev D. Goyal
+  license: Apache-2.0
+  responsible_maintainers:
+  - Dev D. Goyal
+classification:
+  arxiv:
+  - math.CO
+  - cs.IT
+  msc2020:
+  - 15A15
+  - 15B05
+  - 05A20
+  - 26D15
+  - 11B37
+  - 05A15
+  - 68W20
+  - 94A17
+sources:
+- title: 'Source proof package: Real positive-definite counterexamples to extended
+    q-permanent monotonicity'
+  authors:
+  - Dev D. Goyal
+  type: other
+  id: sha256:9a0d21d73d8667257ebdd56bb2b7fba183002afb3b09970de8c5415baed19f59
+  relationship: adapts
+  note: Provided source package. Only this named family is used. Original proof generation
+    was by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning. The collection
+    records later proof and statement changes.
+  author_endorsement: participated
+- title: Da Fonseca, 2010, Conjecture 1; 2018, Conjecture 2.
+  type: paper
+  id: https://arxiv.org/abs/1804.02231
+  relationship: background
+  note: Original problem and prior context for q-permanent. The paper and family documentation
+    give exact scope and later comparisons.
+  author_endorsement: not-contacted
+- title: 'Gyires inequality for circulants of order five: earlier proof development'
+  authors:
+  - Dev D. Goyal
+  type: other
+  id: https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448
+  relationship: adapts
+  license: Apache-2.0
+  note: The order-five theorem is integrated with preserved attribution. No new arbitrary-order
+    Gyires theorem is claimed.
+  author_endorsement: participated
+- title: Gyires, 1978; Cheon and Wanless, 2005, Conjecture 20. Earlier formalization
+    at the pinned Gyires repository.
+  type: paper
+  id: https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448
+  relationship: background
+  note: Original problem and prior context for gyires-circulant-five. The paper and
+    family documentation give exact scope and later comparisons.
+  author_endorsement: not-contacted
+- title: 'Source proof package: An entropy increase for a structurally disassortative
+    DomiRank graph'
+  authors:
+  - Dev D. Goyal
+  type: other
+  id: sha256:4a1d7905ad298b175e31554d0da049facd1476ae21e8338134b9e95fe266bc15
+  relationship: adapts
+  note: Provided source package. Only this named family is used. Original proof generation
+    was by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning. The collection
+    records later proof and statement changes.
+  author_endorsement: participated
+- title: Zhang and Zhao, arXiv:2610.00107v4, Conjecture 4.9.
+  type: paper
+  id: https://arxiv.org/html/2610.00107v4
+  relationship: background
+  note: Original problem and prior context for domirank-entropy. The paper and family
+    documentation give exact scope and later comparisons.
+  author_endorsement: not-contacted
+- title: 'Source proof package: Diagonal concavity does not imply concavity for sums
+    of elementary symmetric polynomials'
+  authors:
+  - Dev D. Goyal
+  type: other
+  id: sha256:e8508af48cf3f2fe6b535dfbf813bcf85bb19152e49526efaa74fe61d69f76fe
+  relationship: adapts
+  note: Provided source package. Only this named family is used. Original proof generation
+    was by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning. The collection
+    records later proof and statement changes.
+  author_endorsement: participated
+- title: Lachaume, arXiv:1712.10327v1, Conjecture 1.
+  type: paper
+  id: https://arxiv.org/abs/1712.10327v1
+  relationship: background
+  note: Original problem and prior context for diagonal-concavity. The paper and family
+    documentation give exact scope and later comparisons.
+  author_endorsement: not-contacted
+- title: 'Source proof package: Sharp root log-concavity of alternating Motzkin sums'
+  authors:
+  - Dev D. Goyal
+  type: other
+  id: sha256:db2fc98cb0e0c8870196c3990940b49288b4ba9fbfe188a8fff2f9dc55779304
+  relationship: adapts
+  note: Provided source package. Only this named family is used. Original proof generation
+    was by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning. The collection
+    records later proof and statement changes.
+  author_endorsement: participated
+- title: Zhao, INTEGERS 26 (2026), A55, Conjecture 1; OEIS A187306.
+  type: paper
+  id: https://math.colgate.edu/~integers/aa55/aa55.pdf
+  relationship: background
+  note: Original problem and prior context for alternating-motzkin. The paper and
+    family documentation give exact scope and later comparisons.
+  author_endorsement: not-contacted
+- title: 'Source proof package: A uniform counterexample family for late iterates
+    of generalized Hofstadter functions'
+  authors:
+  - Dev D. Goyal
+  type: other
+  id: sha256:0a21feaf60f15a360b5670e6ba571795b83a7d8c77171b600076c2c262ae64bd
+  relationship: adapts
+  note: Provided source package. Only this named family is used. Original proof generation
+    was by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning. The collection
+    records later proof and statement changes.
+  author_endorsement: participated
+- title: Letouzey, Li, and Steiner, Journal of Integer Sequences 29 (2026), 26.3.3,
+    conjecture before Lemma 7.6.
+  type: paper
+  id: https://cs.uwaterloo.ca/journals/JIS/VOL29/Letouzey/letouzey3.pdf
+  relationship: background
+  note: Original problem and prior context for hofstadter-iteration. The paper and
+    family documentation give exact scope and later comparisons.
+  author_endorsement: not-contacted
+- title: 'Source proof package: Finite counterexamples to the proposed best-of-n divergence–win-rate
+    curve'
+  authors:
+  - Dev D. Goyal
+  type: other
+  id: sha256:e8508af48cf3f2fe6b535dfbf813bcf85bb19152e49526efaa74fe61d69f76fe
+  relationship: adapts
+  note: Provided source package. Only this named family is used. Original proof generation
+    was by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning. The collection
+    records later proof and statement changes.
+  author_endorsement: participated
+- title: Beirami et al., ICML 2025, Conjecture 7.2 and equation (28).
+  type: paper
+  id: https://proceedings.mlr.press/v267/beirami25a.html
+  relationship: background
+  note: Original problem and prior context for best-of-n. The paper and family documentation
+    give exact scope and later comparisons.
+  author_endorsement: not-contacted
+related_formalizations:
+- id: https://github.com/cozuya/gyires-permanent-4x4/tree/244f48c270d0a4d0801383e15202886b384b2d67
+  relationship: adapts
+  note: Chris Ozols’s permanent Gram reduction is adapted with its Apache-2.0 notice.
+    Its finite order-four certificate is not imported.
+- id: https://github.com/letouzey/hofstadter_g/tree/de2bc29a0b3a7dc1f57baf1131353856ee74ddf7
+  relationship: other
+  note: Inspected to compare definitions and the range of prior iterate comparisons.
+    No source code is imported.
+status:
+  scope: The 21 selected statements cover the seven catalogue families, including
+    equality, positivity, sharpness, and the stated generalizations. All essential
+    source-definition links are proved. Challenge holes are excluded from the proved
+    library. Finite computations support the proofs; they do not replace universal
+    formal theorems.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+  - propext
+  - Classical.choice
+  - Quot.sound
+automation:
+  methods:
+  - method: autonomous
+    models:
+    - ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning
+    framework: ChatGPT
+    tool_setup: Original mathematical exploration, proof construction, and Lean formalization
+      under human project direction.
+    cost:
+      wall_time: Not tracked for the original source work.
+      spend_usd: not tracked
+      hardware: not tracked
+    prompting_notes: Dev D. Goyal selected problems and requested proofs, verification,
+      and revisions. He did not provide proof ideas or intermediate arguments.
+  - method: agent
+    models:
+    - Codex, using GPT-6
+    framework: Codex
+    tool_setup: Independent audit, prior-work search, Lean 4.35 migration, source-definition
+      proofs, all-budget sampling formalization, computation, and manuscript editing.
+    cost:
+      wall_time: Recorded verification commands have their own run logs.
+      spend_usd: not tracked
+      hardware: Local macOS ARM64 host and isolated Ubuntu ARM64 verification VM.
+    prompting_notes: Audit source fidelity and originality. Admit only complete, reproducible
+      results.
+  - method: agent
+    models:
+    - Claude Opus 5.5, used with Claude Code
+    framework: Claude Code
+    tool_setup: Earlier Gyires development and review, as recorded by its pinned source
+      repository.
+    cost:
+      wall_time: not tracked
+      spend_usd: not tracked
+      hardware: not tracked
+    prompting_notes: Earlier source work; no new Claude review is claimed for this
+      collection.
+  - method: agent
+    models:
+    - GPT-6.1 Sol
+    framework: Codex
+    tool_setup: Two independent mathematical and editorial review passes, followed by
+      inspection of the completed local verification records. Publication review passed.
+    cost:
+      wall_time: not tracked
+      spend_usd: not tracked
+      hardware: not tracked
+    prompting_notes: Check the arguments and source fidelity independently. Inspect
+      corrections and completed evidence before the final publication decision.
+  spend_usd: not tracked
+  notes: Only the human project director is listed as author and responsible maintainer.
+    AI contribution is disclosed separately. The completed two-pass review is recorded
+    in verification/review.md. It is not human expert peer review.
+fidelity:
+  divergences: DomiRank uses natural logarithms in its quantified gap; the formal
+    development proves the base-two entropy implication. Motzkin uses the source recurrence
+    and proves equality with the source finite alternating sum. Best-of-n uses the
+    source finite cumulative-probability law; the all-budget construction uses explicitly
+    stated sufficient constants. Gyires uses only the order-five circulant scope.
+    Q-permanent retains the full coordinate order when counting inversions. Hofstadter
+    uses the original recurrence and proves the inverse correspondence. Concavity
+    uses unnormalized elementary symmetric polynomials and actual real fourth roots.
+review:
+  status: Two-pass GPT-6.1 Sol mathematical and editorial review passed on 26 October 2026.
+  reviewers: []
+  notes: The separate AI referee inspected the corrected collection and all completed
+    local verification records. No blocking criticism remained. The official full-profile
+    workflow and public-clone audit are separate post-publication checks. This is not
+    human expert peer review. No personal review of new material by Dev D. Goyal is claimed.
+alignment:
+  namespace: MathAndTheory
+  statements:
+  - source: Real positive-definite counterexamples to extended q-permanent monotonicity;
+      principal statement finite_counterexample
+    lean: QPermanentProblem.finite_counterexample
+    module: Solutions.QPermanent
+    status: proved
+    note: For every real parameter q>1, a real symmetric positive-definite matrix
+      has a negative q-permanent derivative at q. An explicit matrix of order five
+      decreases from q=14 to q=15. Correlation matrices with no zero entries and integer-entry
+      examples are also obtained. The dimension can depend on q. The real-symmetric
+      question on [−1,1] remains outside the result. The family documentation gives
+      the declaration-level correspondence.
+  - source: Real positive-definite counterexamples to extended q-permanent monotonicity;
+      principal statement extended_conjecture_false
+    lean: QPermanentProblem.extended_conjecture_false
+    module: Solutions.QPermanent
+    status: proved
+    note: For every real parameter q>1, a real symmetric positive-definite matrix
+      has a negative q-permanent derivative at q. An explicit matrix of order five
+      decreases from q=14 to q=15. Correlation matrices with no zero entries and integer-entry
+      examples are also obtained. The dimension can depend on q. The real-symmetric
+      question on [−1,1] remains outside the result. The family documentation gives
+      the declaration-level correspondence.
+  - source: Real positive-definite counterexamples to extended q-permanent monotonicity;
+      principal statement negative_derivative_at_every_parameter
+    lean: QPermanentProblem.negative_derivative_at_every_parameter
+    module: Solutions.QPermanent
+    status: proved
+    note: For every real parameter q>1, a real symmetric positive-definite matrix
+      has a negative q-permanent derivative at q. An explicit matrix of order five
+      decreases from q=14 to q=15. Correlation matrices with no zero entries and integer-entry
+      examples are also obtained. The dimension can depend on q. The real-symmetric
+      question on [−1,1] remains outside the result. The family documentation gives
+      the declaration-level correspondence.
+  - source: Real positive-definite counterexamples to extended q-permanent monotonicity;
+      principal statement dense_correlation_counterexamples
+    lean: QPermanentProblem.dense_correlation_counterexamples
+    module: Solutions.QPermanent
+    status: proved
+    note: For every real parameter q>1, a real symmetric positive-definite matrix
+      has a negative q-permanent derivative at q. An explicit matrix of order five
+      decreases from q=14 to q=15. Correlation matrices with no zero entries and integer-entry
+      examples are also obtained. The dimension can depend on q. The real-symmetric
+      question on [−1,1] remains outside the result. The family documentation gives
+      the declaration-level correspondence.
+  - source: Real positive-definite counterexamples to extended q-permanent monotonicity;
+      principal statement integer_counterexamples
+    lean: QPermanentProblem.integer_counterexamples
+    module: Solutions.QPermanent
+    status: proved
+    note: For every real parameter q>1, a real symmetric positive-definite matrix
+      has a negative q-permanent derivative at q. An explicit matrix of order five
+      decreases from q=14 to q=15. Correlation matrices with no zero entries and integer-entry
+      examples are also obtained. The dimension can depend on q. The real-symmetric
+      question on [−1,1] remains outside the result. The family documentation gives
+      the declaration-level correspondence.
+  - source: Gyires’s permanent inequality for nonnegative circulants of order five;
+      principal statement gyires_ratio
+    lean: MathAndTheory.GyiresCirculant5.gyires_ratio
+    module: Solutions.GyiresCirculant5
+    status: proved
+    note: Every nonnegative real circulant matrix of order five satisfies the stronger
+      inequality 24 per(AAᵀ)≤625 per(A)². Equality holds exactly for constant matrices.
+      This proves the order-five circulant case of Gyires’s ratio inequality. A quantitative
+      bound in sorted-gap coordinates has sharp coefficient 484. The general conjecture
+      for arbitrary doubly stochastic matrices remains open. The family documentation
+      gives the declaration-level correspondence.
+  - source: Gyires’s permanent inequality for nonnegative circulants of order five;
+      principal statement gyires_ratio_eq_iff
+    lean: MathAndTheory.GyiresCirculant5.gyires_ratio_eq_iff
+    module: Solutions.GyiresCirculant5
+    status: proved
+    note: Every nonnegative real circulant matrix of order five satisfies the stronger
+      inequality 24 per(AAᵀ)≤625 per(A)². Equality holds exactly for constant matrices.
+      This proves the order-five circulant case of Gyires’s ratio inequality. A quantitative
+      bound in sorted-gap coordinates has sharp coefficient 484. The general conjecture
+      for arbitrary doubly stochastic matrices remains open. The family documentation
+      gives the declaration-level correspondence.
+  - source: Gyires’s permanent inequality for nonnegative circulants of order five;
+      principal statement gyires_denominator_pos
+    lean: MathAndTheory.GyiresCirculant5.gyires_denominator_pos
+    module: Solutions.GyiresCirculant5
+    status: proved
+    note: Every nonnegative real circulant matrix of order five satisfies the stronger
+      inequality 24 per(AAᵀ)≤625 per(A)². Equality holds exactly for constant matrices.
+      This proves the order-five circulant case of Gyires’s ratio inequality. A quantitative
+      bound in sorted-gap coordinates has sharp coefficient 484. The general conjecture
+      for arbitrary doubly stochastic matrices remains open. The family documentation
+      gives the declaration-level correspondence.
+  - source: Gyires’s permanent inequality for nonnegative circulants of order five;
+      principal statement gyires_homogeneous
+    lean: MathAndTheory.GyiresCirculant5.gyires_homogeneous
+    module: Solutions.GyiresCirculant5
+    status: proved
+    note: Every nonnegative real circulant matrix of order five satisfies the stronger
+      inequality 24 per(AAᵀ)≤625 per(A)². Equality holds exactly for constant matrices.
+      This proves the order-five circulant case of Gyires’s ratio inequality. A quantitative
+      bound in sorted-gap coordinates has sharp coefficient 484. The general conjecture
+      for arbitrary doubly stochastic matrices remains open. The family documentation
+      gives the declaration-level correspondence.
+  - source: Gyires’s permanent inequality for nonnegative circulants of order five;
+      principal statement gyires_homogeneous_eq_iff
+    lean: MathAndTheory.GyiresCirculant5.gyires_homogeneous_eq_iff
+    module: Solutions.GyiresCirculant5
+    status: proved
+    note: Every nonnegative real circulant matrix of order five satisfies the stronger
+      inequality 24 per(AAᵀ)≤625 per(A)². Equality holds exactly for constant matrices.
+      This proves the order-five circulant case of Gyires’s ratio inequality. A quantitative
+      bound in sorted-gap coordinates has sharp coefficient 484. The general conjecture
+      for arbitrary doubly stochastic matrices remains open. The family documentation
+      gives the declaration-level correspondence.
+  - source: Gyires’s permanent inequality for nonnegative circulants of order five;
+      principal statement strong_inequality
+    lean: MathAndTheory.GyiresCirculant5.strong_inequality
+    module: Solutions.GyiresCirculant5
+    status: proved
+    note: Every nonnegative real circulant matrix of order five satisfies the stronger
+      inequality 24 per(AAᵀ)≤625 per(A)². Equality holds exactly for constant matrices.
+      This proves the order-five circulant case of Gyires’s ratio inequality. A quantitative
+      bound in sorted-gap coordinates has sharp coefficient 484. The general conjecture
+      for arbitrary doubly stochastic matrices remains open. The family documentation
+      gives the declaration-level correspondence.
+  - source: Gyires’s permanent inequality for nonnegative circulants of order five;
+      principal statement strong_inequality_eq_iff
+    lean: MathAndTheory.GyiresCirculant5.strong_inequality_eq_iff
+    module: Solutions.GyiresCirculant5
+    status: proved
+    note: Every nonnegative real circulant matrix of order five satisfies the stronger
+      inequality 24 per(AAᵀ)≤625 per(A)². Equality holds exactly for constant matrices.
+      This proves the order-five circulant case of Gyires’s ratio inequality. A quantitative
+      bound in sorted-gap coordinates has sharp coefficient 484. The general conjecture
+      for arbitrary doubly stochastic matrices remains open. The family documentation
+      gives the declaration-level correspondence.
+  - source: Gyires’s permanent inequality for nonnegative circulants of order five;
+      principal statement strong_margin
+    lean: MathAndTheory.GyiresCirculant5.strong_margin
+    module: Solutions.GyiresCirculant5
+    status: proved
+    note: Every nonnegative real circulant matrix of order five satisfies the stronger
+      inequality 24 per(AAᵀ)≤625 per(A)². Equality holds exactly for constant matrices.
+      This proves the order-five circulant case of Gyires’s ratio inequality. A quantitative
+      bound in sorted-gap coordinates has sharp coefficient 484. The general conjecture
+      for arbitrary doubly stochastic matrices remains open. The family documentation
+      gives the declaration-level correspondence.
+  - source: Gyires’s permanent inequality for nonnegative circulants of order five;
+      principal statement strong_margin_attained
+    lean: MathAndTheory.GyiresCirculant5.strong_margin_attained
+    module: Solutions.GyiresCirculant5
+    status: proved
+    note: Every nonnegative real circulant matrix of order five satisfies the stronger
+      inequality 24 per(AAᵀ)≤625 per(A)². Equality holds exactly for constant matrices.
+      This proves the order-five circulant case of Gyires’s ratio inequality. A quantitative
+      bound in sorted-gap coordinates has sharp coefficient 484. The general conjecture
+      for arbitrary doubly stochastic matrices remains open. The family documentation
+      gives the declaration-level correspondence.
+  - source: Gyires’s permanent inequality for nonnegative circulants of order five;
+      principal statement strong_margin_sharp
+    lean: MathAndTheory.GyiresCirculant5.strong_margin_sharp
+    module: Solutions.GyiresCirculant5
+    status: proved
+    note: Every nonnegative real circulant matrix of order five satisfies the stronger
+      inequality 24 per(AAᵀ)≤625 per(A)². Equality holds exactly for constant matrices.
+      This proves the order-five circulant case of Gyires’s ratio inequality. A quantitative
+      bound in sorted-gap coordinates has sharp coefficient 484. The general conjecture
+      for arbitrary doubly stochastic matrices remains open. The family documentation
+      gives the declaration-level correspondence.
+  - source: An entropy increase for a structurally disassortative DomiRank graph;
+      principal statement counterexample
+    lean: DomiRankProblem.counterexample
+    module: Solutions.DomiRank
+    status: proved
+    note: A connected graph with 14 vertices and 32 edges has negative degree–log-degree
+      edge covariance. All resolvent scores are positive on [251/1000,63/250] inside
+      the stable domain. Its entropy nevertheless increases by more than 1/10000 in
+      natural-logarithm units. This refutes the source’s assertion for every positive-score
+      interval. The family documentation gives the declaration-level correspondence.
+  - source: Diagonal concavity does not imply concavity for sums of elementary symmetric
+      polynomials; principal statement result
+    lean: ConcavityChallenge.result
+    module: Solutions.DiagonalConcavity
+    status: proved
+    note: For positive M, let f=1+Mσ₁+σ₂+Mσ₃+σ₄ in four variables. Its fourth root
+      is concave on the positive diagonal exactly when M≥1. It is concave on the full
+      positive orthant exactly when M=1. Every M>1 therefore disproves Lachaume’s
+      diagonal criterion with strictly positive coefficients. The family documentation
+      gives the declaration-level correspondence.
+  - source: Sharp root log-concavity of alternating Motzkin sums; principal statement
+      source_defined_result
+    lean: MathAndTheory.Motzkin.Palomar.source_defined_result
+    module: Solutions.Motzkin
+    status: proved
+    note: Let Tₙ be the alternating sum of Motzkin numbers through index n. The sequence
+      Tₙ^(1/n) is strictly log-concave on its tail starting at five. The inequality
+      reverses at center five, so no earlier tail is log-concave. This strengthens
+      Zhao’s proposed tail starting at nine. The source recurrence and finite sum
+      are linked in Lean. The family documentation gives the declaration-level correspondence.
+  - source: A uniform counterexample family for late iterates of generalized Hofstadter
+      functions; principal statement result
+    lean: HofstadterChallenge.result
+    module: Solutions.Hofstadter
+    status: proved
+    note: For every k≥4, some input n satisfies Fₖ^(2k+1)(n)>Fₖ₊₁^(2k+2)(n). The proof
+      constructs inverse iterates whose exact gap is k−3. The finite witness F₄⁹(132)=8>7=F₅¹⁰(132)
+      gives the first instance. The result concerns infinitely many parameters, not
+      infinitely many violating inputs for each fixed parameter. The family documentation
+      gives the declaration-level correspondence.
+  - source: Counterexamples to a best-of-n win-rate bound at every budget;
+      principal statement result
+    lean: BestOfNChallenge.result
+    module: Solutions.BestOfN
+    status: proved
+    note: For every n≥2 and δ>0, there is a finite positive reference distribution
+      whose largest atom is at most δ and whose best-of-n policy violates the proposed
+      divergence–win-rate curve. A four-response best-of-two example gives exact probabilities
+      and a strict logarithmic certificate. The proof uses finite interval bounds
+      and gives a quantitative positive gap. It does not determine the sharp replacement
+      curve. The family documentation gives the declaration-level correspondence.
+  - source: Counterexamples to a best-of-n win-rate bound at every budget;
+      principal statement every_budget_small_atoms
+    lean: BestOfNChallenge.every_budget_small_atoms
+    module: Solutions.BestOfN
+    status: proved
+    note: For every n≥2 and δ>0, there is a finite positive reference distribution
+      whose largest atom is at most δ and whose best-of-n policy violates the proposed
+      divergence–win-rate curve. A four-response best-of-two example gives exact probabilities
+      and a strict logarithmic certificate. The proof uses finite interval bounds
+      and gives a quantitative positive gap. It does not determine the sharp replacement
+      curve. The family documentation gives the declaration-level correspondence.
+acknowledgements: Lean, Mathlib, the bundled Comparator and independent kernels, Palomar’s
+  public validators, and the researchers credited in each paper. Third-party source
+  and data notices are preserved.

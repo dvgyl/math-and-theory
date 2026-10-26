@@ -1,0 +1,60 @@
+module
+
+/- This file comes from the order-five Gyires development.
+The collection changes module paths and namespaces. See PROVENANCE.md for attribution. -/
+
+public import MathAndTheory.Mathematics.GyiresCirculant5.CompactInputs.Chamber1
+
+/-!
+# Chamber 1 (ordering `01243`): coefficient of `a⁰ b^3`
+
+Generated certificate. The coefficient of `b^3` in the constant term (in the smallest weight
+`a`) of the chamber polynomial `chamberPoly1` is an explicit polynomial in `c`, `d`, `e` with
+nonnegative integer coefficients; it is proved equal to the computed coefficient by `ring` and
+nonnegative for `c, d, e ≥ 0` by `positivity`.
+-/
+
+@[expose] public section
+
+set_option Elab.async false
+set_option maxHeartbeats 0
+set_option maxRecDepth 100000
+set_option linter.unusedVariables false
+set_option linter.unusedSimpArgs false
+set_option linter.unusedTactic false
+set_option linter.unnecessarySeqFocus false
+namespace MathAndTheory.GyiresCirculant5
+
+def strong1_part_0_3 (c d e : ℝ) : ℝ :=
+  ((c * ((c * ((c * ((c * ((c * ((c * ((c * 7923830) + ((d * 39574110) + (e * 21668370)))) + ((d * ((d * 89930750) + (e * 100075340))) + (e * (e * 33030510))))) + ((d * ((d * ((d * 115345390) + (e * 195566630))) + (e * (e * 132389370)))) + (e * (e * (e * 31154280)))))) + ((d * ((d * ((d * ((d * 88310920) + (e * 202214520))) + (e * (e * 209933170)))) + (e * (e * (e * 100913040))))) + (e * (e * (e * (e * 18179550))))))) + ((d * ((d * ((d * ((d * ((d * 39922360) + (e * 115354490))) + (e * (e * 163196400)))) + (e * (e * (e * 120411750))))) + (e * (e * (e * (e * 44494580)))))) + (e * (e * (e * (e * (e * 6523110)))))))) + ((d * ((d * ((d * ((d * ((d * ((d * 9807380) + (e * 34145560))) + (e * (e * 61784000)))) + (e * (e * (e * 62423440))))) + (e * (e * (e * (e * 35601980)))))) + (e * (e * (e * (e * (e * 10745520))))))) + (e * (e * (e * (e * (e * (e * 1342890))))))))) + ((d * ((d * ((d * ((d * ((d * ((d * ((d * 1006480) + (e * 4065500))) + (e * (e * 9044080)))) + (e * (e * (e * 11788230))))) + (e * (e * (e * (e * 9269170)))))) + (e * (e * (e * (e * (e * 4340240))))))) + (e * (e * (e * (e * (e * (e * 1123320)))))))) + (e * (e * (e * (e * (e * (e * (e * 124540)))))))))
+
+private theorem strong1_part_0_3_nonneg (c d e : ℝ)
+    (hc : 0 ≤ c) (hd : 0 ≤ d) (he : 0 ≤ e) : 0 ≤ strong1_part_0_3 c d e := by
+  unfold strong1_part_0_3
+  positivity
+
+theorem strong1_part_0_3_eq (c d e : ℝ) :
+    polyCoeff (chamberPoly1 c d e 0) 3 = strong1_part_0_3 c d e := by
+  dsimp only [chamberPoly1, residualOuter]
+  simp only [ite_eq_left (show (0 : Fin 11) = 0 from rfl)]
+  dsimp only [liftedOuter, polyOuterCoeff, Matrix.cons_val]
+  dsimp only [polyOuterPart0, polyShiftCoeffs, polyGramShiftCoeffs, Matrix.cons_val]
+  simp only [compactShift1_0_eq, compactShift1_1_eq, compactShift1_2_eq,
+    compactShift1_3_eq, compactShift1_4_eq, compactShift1_5_eq,
+    compactGram1_0_eq, compactGram1_1_eq, compactGram1_2_eq]
+  dsimp only [compactShift1_0, compactShift1_1, compactShift1_2,
+    compactShift1_3, compactShift1_4, compactShift1_5,
+    compactGram1_0, compactGram1_1, compactGram1_2,
+    polyGramShiftCoeff0, polyGramShiftCoeff1, polyGramShiftCoeff2,
+    polyGramShiftCoeff3, polyGramShiftCoeff4, polyGramShiftCoeff5,
+    polySum5, basePoly1, gapPoly, Matrix.cons_val]
+  dsimp only [polyCoeff, polyAdd, polyScale, polyMul, polyPow, List.map]
+  norm_num [polyCoeff] <;> unfold strong1_part_0_3 <;> ring
+
+theorem strong1_part_0_3_coeff_nonneg (c d e : ℝ)
+    (hc : 0 ≤ c) (hd : 0 ≤ d) (he : 0 ≤ e) :
+    0 ≤ polyCoeff (chamberPoly1 c d e 0) 3 := by
+  rw [strong1_part_0_3_eq]
+  exact strong1_part_0_3_nonneg c d e hc hd he
+
+end MathAndTheory.GyiresCirculant5

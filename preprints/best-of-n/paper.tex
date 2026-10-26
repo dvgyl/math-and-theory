@@ -1,0 +1,214 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype,booktabs}
+\usepackage[margin=25mm]{geometry}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newcommand{\R}{\mathbb R}
+\title{Counterexamples to a best-of-$n$ win-rate bound at every budget}
+\author{Dev D. Goyal}
+\date{26 October 2026}
+\usepackage[numbers]{natbib}
+\usepackage{xurl}
+\begin{document}
+\maketitle
+\begin{abstract}
+A proposed bound relates the win rate of best-of-$n$ sampling to its Kullback--Leibler divergence from the reference distribution. A distribution on four responses with two independent draws disproves this bound. The reference probabilities are $(2/5,1/5,1/5,1/5)$. The selected law has win rate $163/250$ and lies strictly above the proposed curve. An exact rational certificate proves a positive gap between two expressions involving real logarithms. For every integer budget at least two, finite counterexamples also exist with an arbitrarily small largest reference probability. The accompanying Lean development proves the finite counterexample, its inverse-curve consequence, and the theorem for every budget.
+\end{abstract}
+
+\section{The proposed bound}
+Fix a prompt and responses $1,\ldots,k$ with strictly increasing rewards. Let $p_i>0$ be the reference probabilities, with $\sum_i p_i=1$. Put
+\[
+ F_0=0,\qquad F_i=\sum_{j=1}^i p_j.
+\]
+Best-of-$n$ sampling returns the highest-reward response among $n$ independent draws. Its selected probabilities are
+\begin{equation}\label{eq:q}
+ q_i=F_i^n-F_{i-1}^n.
+\end{equation}
+Indeed, the probability that all draws have index at most $i$ is $F_i^n$.
+A comparison with an independent reference draw gives one point for a strict win and one half for equality. Define
+\begin{equation}\label{eq:metrics}
+ W=\sum_i q_i\left(F_{i-1}+\frac{p_i}{2}\right),
+ \qquad D=\sum_i q_i\log\frac{q_i}{p_i}.
+\end{equation}
+All logarithms are natural. Thus $D$ is the Kullback--Leibler divergence of the selected law from the reference law.
+
+Beirami et al.\ \cite{beirami}, Conjecture 7.2, propose
+\begin{equation}\label{eq:conjecture}
+ W\leq \ell^{-1}(D),\qquad
+ \ell(w)=\log\frac{w}{1-w}+\frac1w-2,
+ \quad \frac12\leq w<1.
+\end{equation}
+Their equation (28) uses the same half-credit convention. Their Lemma 5.2 gives \eqref{eq:metrics}.
+Differentiation gives
+\[
+ \ell'(w)=\frac{2w-1}{w^2(1-w)}.
+\]
+Hence $\ell$ is strictly increasing on $[1/2,1)$. Also $\ell(1/2)=0$ and $\ell(w)\to\infty$ as $w\uparrow1$. Its inverse is therefore defined on $[0,\infty)$.
+
+\section{An exact counterexample}
+\begin{theorem}\label{thm:finite}
+Take $n=2$ and $p=(2/5,1/5,1/5,1/5)$. Then
+\[
+ q=(4/25,5/25,7/25,9/25),\qquad W=\frac{163}{250},
+\]
+and
+\begin{equation}\label{eq:gap}
+ \ell(W)-D>\frac1{2445}>0.
+\end{equation}
+In particular, \eqref{eq:conjecture} is false.
+\end{theorem}
+\begin{proof}
+Equation \eqref{eq:q} gives the table
+\[
+\begin{array}{c|cccc}
+ i&1&2&3&4\\\hline
+ p_i&2/5&1/5&1/5&1/5\\
+ F_i&2/5&3/5&4/5&1\\
+ q_i&4/25&5/25&7/25&9/25\\
+ F_{i-1}+p_i/2&1/5&1/2&7/10&9/10.
+\end{array}
+\]
+The two probability vectors have positive entries and sum to one. Substitution gives
+\[
+ D=\frac4{25}\log\frac25+\frac7{25}\log\frac75+\frac9{25}\log\frac95,
+ \qquad \ell(W)=\log\frac{163}{87}-\frac{76}{163}.
+\]
+Define the positive rational number
+\[
+ R=\frac{(163/87)^{25}(5/2)^4}{(7/5)^7(9/5)^9}
+   =\frac{163^{25}5^{20}}{87^{25}2^4 7^7 9^9}.
+\]
+Then
+\begin{equation}\label{eq:logR}
+ \ell(W)-D=\frac{\log R}{25}-\frac{76}{163}.
+\end{equation}
+The exact integer comparison
+\begin{equation}\label{eq:integer}
+ 120^{1400}87^{25}2^4 7^7 9^9
+ <119^{1400}163^{25}5^{20}
+\end{equation}
+gives $(120/119)^{1400}<R$. This is a finite arithmetic certificate. It can be checked by repeated integer multiplication; no numerical logarithm is needed.
+For $x>0$, the elementary inequality $\log x\geq1-x^{-1}$ gives
+\[
+ \log R>1400\log(120/119)\geq\frac{1400}{120}=\frac{35}{3}.
+\]
+Combining this with \eqref{eq:logR} yields
+\[
+ \ell(W)-D>\frac7{15}-\frac{76}{163}=\frac1{2445}.
+\]
+Finally, $D\geq0$. For completeness, applying $\log x\geq1-x^{-1}$ to each $q_i/p_i$ gives $q_i\log(q_i/p_i)\geq q_i-p_i$; summation proves the claim. Thus $u=\ell^{-1}(D)$ exists. Since $D<\ell(W)$, strict monotonicity gives $u<W$, as required.
+\end{proof}
+
+The certificate \eqref{eq:integer} is checked by the following integer expression in Python:
+\begin{verbatim}
+assert 120**1400 * 87**25 * 2**4 * 7**7 * 9**9 < \
+       119**1400 * 163**25 * 5**20
+\end{verbatim}
+The actual gap is approximately $0.002375504922$. This approximation is not used in the proof.
+
+\section{Every budget and arbitrarily small atoms}
+\begin{theorem}\label{thm:every}
+For every integer $n\geq2$ and every $\delta>0$, there is a finite positive reference distribution with $\max_i p_i\leq\delta$ such that best-of-$n$ has
+\[
+ \frac12\leq W<1,\qquad D<\ell(W).
+\]
+\end{theorem}
+\begin{proof}
+Set
+\[
+ a=\min\left\{\delta,\frac1{8(n+1)}\right\},\qquad
+ T=\frac{a^n}{48(n+1)}.
+\]
+Choose an integer $m>(1-a)/T$, and put $h=(1-a)/m$. Use the ordered probabilities
+\[
+ p_0=a,\qquad p_j=h\quad(1\leq j\leq m).
+\]
+All probabilities are positive and sum to one. Also $h<T\leq a\leq\delta$, since $0<a<1$ and $n\geq2$. Thus the atom cap holds.
+
+The first step bounds the finite sums. For $x>0$, define
+\[
+ f(x)=nx^{n-1},\qquad
+ K(x)=x^n\left(\log n+(n-1)\log x-\frac{n-1}{n}\right),
+ \qquad J(x)=\frac{n}{n+1}x^{n+1}.
+\]
+Their derivatives are $K'=f\log f$ and $J'=xf$.
+For $0<u<v$, put $q=v^n-u^n$ and $A=q/(v-u)>0$.
+The inequality $\log z\geq1-z^{-1}$ implies
+\[
+ f(x)\log\frac{f(x)}A-f(x)+A\geq0.
+\]
+Therefore $K(x)-x^n\log A-x^n+Ax$ is increasing. Evaluation at $u,v$ gives
+\begin{equation}\label{eq:intervalKL}
+ q\log\frac q{v-u}\leq K(v)-K(u).
+\end{equation}
+Also $vx^n-J(x)$ has derivative $f(x)(v-x)\geq0$ on $[u,v]$. Hence
+\begin{equation}\label{eq:intervalW}
+ J(v)-J(u)\leq vq
+ =q\frac{u+v}{2}+\frac{v-u}{2}q.
+\end{equation}
+These arguments use finite interval calculus. No limit of discrete distributions is needed.
+
+Apply \eqref{eq:intervalKL} and \eqref{eq:intervalW} to the $m$ intervals with endpoints $a+jh$. The primitive differences telescope. The first atom has selected mass $a^n$ and score $a/2$. Put
+\[
+ D_0=\log n-\frac{n-1}{n},\qquad w_0=\frac{n}{n+1},
+ \qquad c=\frac{n-1}{2(n+1)}.
+\]
+The resulting bounds are
+\begin{equation}\label{eq:finitebounds}
+ D\leq D_0(1-a^n),\qquad
+ W\geq w_0-ca^{n+1}-\frac h2.
+\end{equation}
+For the second bound, the sum of the high-interval selected masses is $1-a^n\leq1$.
+The strict bound $W<1$ follows because every score is less than one and the selected masses are positive and sum to one.
+
+The required domain and strict gap follow from the next estimates. For $n\geq2$,
+\[
+ w_0\geq\frac23,\quad 0<c<\frac12,\quad
+ a\leq\frac1{24},\quad a^{n+1}\leq a,\quad h\leq\frac1{144}.
+\]
+Equation \eqref{eq:finitebounds} therefore gives
+\[
+ W\geq\frac23-\frac1{48}-\frac1{288}>\frac12.
+\]
+The inequality $\log(1+x)>2x/(x+2)$ for $x>0$ gives
+\[
+ D_0>\frac{(n-1)^2}{n(n+1)}\geq\frac16.
+\]
+The last comparison is equivalent to $(n-2)(5n-3)\geq0$.
+Also $\ell(w_0)=D_0$ and
+\[
+ L:=\ell'(w_0)=\frac{(n-1)(n+1)^2}{n^2},\qquad 0<L<n+1.
+\]
+On $(0,1)$,
+\[
+ \ell''(w)=\frac{4w^2-5w+2}{w^3(1-w)^2}>0,
+ \qquad 4w^2-5w+2=4(w-5/8)^2+7/16.
+\]
+Thus the convex tangent inequality and \eqref{eq:finitebounds} imply
+\[
+ \ell(W)-D\geq a^nD_0-Lca^{n+1}-\frac{Lh}{2}.
+\]
+The parameter choices give $Lca\leq1/16$ and $Lh/2\leq a^n/96$. Consequently
+\[
+ \ell(W)-D>a^n\left(\frac16-\frac1{16}-\frac1{96}\right)
+ =\frac{3a^n}{32}>0.
+\]
+This proves the theorem.
+\end{proof}
+
+\section{Scope and formal correspondence}
+The result refutes the universal conjecture. It does not determine the sharp replacement curve. It does not contradict the proved bounds $D\leq\log n-(n-1)/n$ and $W\leq n/(n+1)$ in \cite{beirami}. The example has distinct rewards, so reward ties between different responses are not needed. Repeated sampling of the same response accounts for equality in a comparison.
+
+The Lean namespace \texttt{MathAndTheory.BestOfN} defines the cumulative probabilities and both quantities in \eqref{eq:metrics}. The theorem \path{selected_equals_independent_sampling} connects \eqref{eq:q} to all 16 independent sample pairs. Theorems \path{gap_positive} and \path{explicit_counterexample} prove \eqref{eq:gap}. The theorem \path{inverse_curve_exists} proves the inverse-point conclusion without an existence assumption. The theorem \path{universal_curve_false} states the resulting disproof.
+
+The namespace \texttt{MathAndTheory.BestOfNExtension} proves Theorem~\ref{thm:every}. Its theorem \path{every_budget_small_atoms} states all quantifiers, positivity, normalization, the atom cap, the win-rate domain, and the strict gap. Its intermediate lemmas prove the finite cumulative probabilities, the two interval bounds, the telescoping estimates, and each parameter bound. The witness uses the atom choice and integer condition stated above. These constants are conservative and are not claimed to be optimal.
+
+\section{Prior work and research disclosure}
+The primary source still states the proposed curve as a conjecture. Related work on soft best-of-$n$ sampling \cite{aminian} studies different divergence and regret bounds. The inspected statement does not supply this counterexample. Searches by the conjecture, its formula, and the explicit witness found no earlier resolution. This is a bounded literature assessment, not a claim of first priority.
+
+The original proof and Lean development were generated by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, under the direction of Dev D. Goyal. This revision includes further AI-assisted mathematical checks and editing. Machine verification and AI review are distinct from independent expert peer review. This work has not been peer reviewed.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+\end{document}

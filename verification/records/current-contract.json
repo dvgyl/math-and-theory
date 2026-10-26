@@ -1,0 +1,134 @@
+{
+  "status": "PASS",
+  "check_scope": "Selected current-verifier functions and documented source-type constraint only",
+  "full_mechanical_verification": "NOT RUN",
+  "checked_at_utc": "2026-10-26T19:00:18.437925+00:00",
+  "verifier_commit": "c02bbeaed888df45c4e28c4e99dba540ad21552a",
+  "retained_verifier_files_checked": 36,
+  "repository": "https://github.com/dvgyl/math-and-theory",
+  "metadata_sha256": "ca1ed6dba03002634a46e1c18a88d6b66ab6706ba6d2680967538823f8688cbb",
+  "metadata_validator": "PASS",
+  "review_status": "Two-pass GPT-6.1 Sol mathematical and editorial review passed on 26 October 2026.",
+  "result_origin": "source-based",
+  "source_types": [
+    "other",
+    "paper"
+  ],
+  "documented_source_type_constraint": "PASS",
+  "comparators": {
+    "lean/comparator/alternating-motzkin.json": {
+      "status": "PASS",
+      "sha256": "cc55702f8cf1400cf0972606b7ac17a60633c8e0878769896ac86442603892b3",
+      "selected_statements": 1
+    },
+    "lean/comparator/best-of-n.json": {
+      "status": "PASS",
+      "sha256": "0d77cf7ef52a4ce05ca512a56194c7ee739a3027c8b52a6d2efb28833be40a9f",
+      "selected_statements": 2
+    },
+    "lean/comparator/diagonal-concavity.json": {
+      "status": "PASS",
+      "sha256": "1e319d0dd23ae0583bd5f5459fa3d3ad7a08025cbb6bcbedcaac375c49e39742",
+      "selected_statements": 1
+    },
+    "lean/comparator/domirank-entropy.json": {
+      "status": "PASS",
+      "sha256": "fc3f46a1e54e9ef23d3997236c2d153bf478ee830e56d5459aff8fd38f9fc90b",
+      "selected_statements": 1
+    },
+    "lean/comparator/gyires-circulant-five.json": {
+      "status": "PASS",
+      "sha256": "a248bb2cc6d059d30b40b52746a577693e52163a29de7c49a08fcc96897e8a01",
+      "selected_statements": 10
+    },
+    "lean/comparator/hofstadter-iteration.json": {
+      "status": "PASS",
+      "sha256": "decfaf081d9fe076073f2c7c4cbee3434d89fb11390dc1e336e6effca837c9e4",
+      "selected_statements": 1
+    },
+    "lean/comparator/q-permanent.json": {
+      "status": "PASS",
+      "sha256": "50486561fae2c0350cdaa02c94647d7c5fe4083a05321639e683be7e0e1f6a17",
+      "selected_statements": 5
+    }
+  },
+  "total_selected_statements": 21,
+  "source_scan": {
+    "schema_version": 1,
+    "module_required": true,
+    "maximum_lines": 10000,
+    "files_checked": 221
+  },
+  "root_license_path": "LICENSE",
+  "license_identity_check": "NOT RUN",
+  "project_toolchain": "leanprover/lean4:v4.35.0",
+  "supported_release": "v4.35.0",
+  "observed_local_mathlib_toolchain": "leanprover/lean4:v4.35.0",
+  "manifest_packages": [
+    {
+      "name": "mathlib",
+      "manifest_name": "mathlib",
+      "repository": "leanprover-community/mathlib4",
+      "url": "https://github.com/leanprover-community/mathlib4.git",
+      "revision": "56a005855ea17e0b0958f73ec801ae140b0a1679"
+    },
+    {
+      "name": "plausible",
+      "manifest_name": "plausible",
+      "repository": "leanprover-community/plausible",
+      "url": "https://github.com/leanprover-community/plausible",
+      "revision": "dfa4f38190d07c37e315953e08b90fe2d95b3c24"
+    },
+    {
+      "name": "LeanSearchClient",
+      "manifest_name": "LeanSearchClient",
+      "repository": "leanprover-community/LeanSearchClient",
+      "url": "https://github.com/leanprover-community/LeanSearchClient",
+      "revision": "d6b4c7be5be75ec4917c873ac50c756dc1436372"
+    },
+    {
+      "name": "importGraph",
+      "manifest_name": "importGraph",
+      "repository": "leanprover-community/import-graph",
+      "url": "https://github.com/leanprover-community/import-graph",
+      "revision": "a41f0e9a4dea23188ea9cc1c41ac9f8bbafe0b93"
+    },
+    {
+      "name": "proofwidgets",
+      "manifest_name": "proofwidgets",
+      "repository": "leanprover-community/ProofWidgets4",
+      "url": "https://github.com/leanprover-community/ProofWidgets4",
+      "revision": "df72b022e558978a1c50264cfc4d7fec86fa8e04"
+    },
+    {
+      "name": "aesop",
+      "manifest_name": "aesop",
+      "repository": "leanprover-community/aesop",
+      "url": "https://github.com/leanprover-community/aesop",
+      "revision": "4a174c490d8707121c4a9290800489f105d85e07"
+    },
+    {
+      "name": "Qq",
+      "manifest_name": "Qq",
+      "repository": "leanprover-community/quote4",
+      "url": "https://github.com/leanprover-community/quote4",
+      "revision": "dce0ad79c486cb1fb504af04f953c3466b0c6db8"
+    },
+    {
+      "name": "batteries",
+      "manifest_name": "batteries",
+      "repository": "leanprover-community/batteries",
+      "url": "https://github.com/leanprover-community/batteries",
+      "revision": "66e469188fe07963e5cf666c7d4433f45b8131c5"
+    },
+    {
+      "name": "Cli",
+      "manifest_name": "Cli",
+      "repository": "leanprover/lean4-cli",
+      "url": "https://github.com/leanprover/lean4-cli",
+      "revision": "c24fe6078c630e89b489bffe59b3e20ac30d12c8"
+    }
+  ],
+  "dependency_history_authentication": "NOT RUN",
+  "errors": []
+}

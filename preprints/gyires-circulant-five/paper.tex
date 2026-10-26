@@ -1,0 +1,597 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{booktabs,array}
+\usepackage{enumitem}
+\usepackage[numbers]{natbib}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\setlist{itemsep=2pt,topsep=3pt}
+\raggedbottom
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\per}{\operatorname{per}}
+\newcommand{\T}{\mathsf{T}}
+\newcommand{\para}[1]{\par\medskip\noindent\textbf{#1}\enspace}
+\newcommand{\lean}[1]{\texttt{#1}}
+\hypersetup{pdftitle={Gyires's permanent inequality for nonnegative circulant matrices of order five},pdfauthor={Dev D. Goyal},pdfsubject={Permanents of doubly stochastic matrices}}
+\title{Gyires's permanent inequality for nonnegative circulant matrices of order five}
+\author{Dev D. Goyal}
+\date{October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Gyires's conjecture gives a lower bound for a ratio of permanents of doubly stochastic matrices.
+The result holds for every nonnegative circulant matrix of order five, including matrices with zero entries.
+Every nonnegative circulant $C$ of order five satisfies the stronger inequality
+$24\per(CC^\T)\le625\per(C)^2$.
+Equality holds exactly when all entries of $C$ are equal.
+A sharp bound for the difference also holds.
+Let $z_1,\ldots,z_4$ be the gaps between successive sorted weights of $C$.
+Then
+$625\per(C)^2-24\per(CC^\T)\ge484\sum_{j=1}^4z_j^{10}$,
+and the constant $484$ cannot be increased.
+An affine change of indices reduces the proof to six orderings of the weights.
+In each ordering, the difference is a polynomial with nonnegative integer coefficients.
+The principal inequalities, equality cases, and sharp constant have complete Lean~4 proofs.
+The result concerns this restricted matrix family. It does not settle the full conjecture.
+\end{abstract}
+\begin{center}\begin{minipage}{0.88\linewidth}\small
+\textbf{Authorship and review.}
+Dev~D.~Goyal directed the research and accepts responsibility for the paper.
+The original project records that ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning,
+found the proof and wrote the first formalization and draft.
+It records that Claude Opus~5.5, used with Claude Code, revised the paper, ported the proof, and performed additional checks.
+Those checks were not independent of the files that Claude itself wrote.
+This revision preserves that historical disclosure and separates it from the current audit.
+The paper has not received independent expert or journal peer review.
+The final section gives the contribution record and review limits.
+\end{minipage}\end{center}
+
+\section{Introduction}
+
+\subsection{The conjecture}\label{sec:conjecture}
+A real square matrix is \emph{doubly stochastic} if its entries are nonnegative and all its row sums and column sums
+equal $1$. Write $\Omega_n$ for the set of doubly stochastic $n\times n$ matrices, $J_n\in\Omega_n$ for the matrix
+all of whose entries equal $1/n$, and
+\[
+\per A=\sum_{\sigma\in S_n}\prod_{i=1}^n a_{i\sigma(i)}
+\]
+for the permanent of $A=(a_{ij})$. By van der Waerden's conjecture, proved independently by Gyires~\cite{gyires80},
+Egorychev~\cite{egorychev} and Falikman~\cite{falikman}, $\per A\ge n!/n^n$ for every $A\in\Omega_n$, with equality
+only at $J_n$. B.~Gyires~\cite{gyires} proposed a related lower bound for the square of the permanent. It is
+Conjecture~20 in the survey of open problems on permanents by Cheon and Wanless~\cite{cw}, in the following form, where
+$A^*$ denotes the conjugate transpose.
+
+\begin{conjecture}[Gyires; Cheon and Wanless~{\cite[Conjecture~20]{cw}}]\label{conj:gyires}
+For every $A\in\Omega_n$,
+\[
+\frac{4\per(A)^2}{\per(AA^*)+\per(A^*A)+2\per(A^2)}\ \ge\ \frac{n!}{n^n},
+\]
+with equality if and only if $A=J_n$.
+\end{conjecture}
+
+For real matrices $A^*=A^\T$, the transpose, and this is the form used below. For $A\in\Omega_n$ the matrices
+$AA^\T$, $A^\T A$ and $A^2$ are doubly stochastic, so by van der Waerden's theorem each of their permanents is at
+least $n!/n^n$, and the denominator is positive. The conjecture is therefore equivalent to the polynomial inequality
+\begin{equation}\label{eq:gyires-poly}
+\frac{n!}{n^n}\bigl(\per(AA^\T)+\per(A^\T A)+2\per(A^2)\bigr)\ \le\ 4\per(A)^2\qquad(A\in\Omega_n),
+\end{equation}
+with equality only at $J_n$. Call~\eqref{eq:gyires-poly} the \emph{homogeneous form} of Gyires's inequality: both
+sides are homogeneous of degree $2n$ in the entries of $A$, so it makes sense for every square matrix.
+
+\subsection{What this paper proves}
+A matrix $C$ of order five is \emph{circulant} if its entries depend only on the difference of the indices modulo five:
+$c_{ij}=w_{j-i}$ for a vector $w=(w_0,\dots,w_4)\in\R^5$, the indices being read in $\Z/5\Z$. Call $w$, the first
+row of $C$, its vector of \emph{weights}, and write $C=C(w)$. A circulant is doubly stochastic exactly when $w\ge0$ and
+$w_0+\dots+w_4=1$, so the doubly stochastic circulants of order five are the convex combinations $\sum_k w_kQ^k$ of
+the powers of the cyclic permutation matrix $Q=C(0,1,0,0,0)$. They form a four-dimensional simplex inside the
+sixteen-dimensional polytope $\Omega_5$; this simplex contains matrices with zero entries, among them its vertices
+$Q^k$. For $n=5$ the constant of the conjecture is $5!/5^5=24/625$.
+
+\para{Main results.} \emph{Let $C=C(w)$ be a circulant of order five with nonnegative weights.}
+\begin{enumerate}[label=(\alph*)]
+\item (Theorem~\ref{thm:strong}, the strong inequality.) $24\per(CC^\T)\le625\per(C)^2$, with equality if and only if
+all five weights are equal.
+\item (Theorem~\ref{thm:margin}, the margin.) If $w_{\pi(0)}\le w_{\pi(1)}\le\dots\le w_{\pi(4)}$ for a permutation
+$\pi$ and $z_j=w_{\pi(j)}-w_{\pi(j-1)}$ for $1\le j\le4$, then
+$625\per(C)^2-24\per(CC^\T)\ge484\,(z_1^{10}+z_2^{10}+z_3^{10}+z_4^{10})$, and no constant larger than $484$ is
+possible.
+\item (Corollary~\ref{cor:gyires}.) The homogeneous form~\eqref{eq:gyires-poly} of Gyires's inequality holds for $C$,
+with equality if and only if all five weights are equal. In particular Conjecture~\ref{conj:gyires} holds for every
+doubly stochastic circulant of order five, including its equality case.
+\end{enumerate}
+The strong inequality~(a) implies Gyires's inequality for $C$: for every real circulant $C$ one has $CC^\T=C^\T C$
+and $\per(C^2)\le\per(CC^\T)$ (Corollary~\ref{cor:gram}), so the left-hand side of~\eqref{eq:gyires-poly} is at most
+$\frac{24}{625}\cdot4\per(CC^\T)$, which by~(a) is at most $4\per(C)^2$.
+
+\subsection{Prior work and scope}
+For $n=2$, write
+$A=\bigl(\begin{smallmatrix}a&1-a\\1-a&a\end{smallmatrix}\bigr)$ with $0\le a\le1$.
+Put $s=a^2+(1-a)^2$ and $t=2a(1-a)$.
+Then $\per A=s$ and each permanent in the denominator is $s^2+t^2$.
+The conjecture reduces to $s\ge t$, or $(2a-1)^2\ge0$.
+Equality holds only at $J_2$.
+Chang~\cite{chang} proved the order-three inequality.
+His sufficient condition in every order requires each entry to be at least $(n-2)/(n-1)^2$.
+For order-five circulants, this condition covers weights in $[3/16,1/4]$.
+It excludes every zero weight.
+
+Ozols's public development~\cite{ozols} gives the full order-four inequality and equality case.
+It also gives $3\per(AA^\T)\le32\per(A)^2$.
+Its certificate uses \texttt{native\_decide}, which is outside the proof rule used for the present development.
+It remains relevant prior work.
+
+Lavi's current catalogue~\cite{lavi} lists the general conjecture as open.
+It announces boundary and neighborhood results, certain symmetric families, all-order mixtures of two permutations,
+and mixtures of three permutations in order five.
+These statements have narrower or different hypotheses from the theorem below.
+Their omission of a result is not evidence of novelty.
+
+Minc~\cite{minc72} already gave exact permanent formulas for three-term circulants.
+The present contribution is the order-five Gram inequality, its equality case, and the sharp sorted-gap constant.
+This is a revision of the existing result in~\cite{repo}, not a new theorem from the current audit.
+The prior-work comparison remains qualified by the source-access limits stated at the end.
+
+\subsection{Motivation}
+The general conjecture remains open in order five and above.
+Circulants reduce the four matrix permanents to polynomials in five weights.
+They also satisfy $CC^\T=C^\T C$.
+These properties make them a useful restricted family.
+Their permanents have a long history; Minc~\cite{minc72} treated three-term circulants.
+The present family has four independent parameters after normalization.
+A finite sample of matrices therefore cannot prove the theorem.
+The sorted-gap coordinates give an exact certificate over the whole family, including its boundary.
+
+\subsection{How to read this paper}
+Section~\ref{sec:background} collects the identities for circulants and a comparison lemma for permanents. Section~\ref{sec:results}
+states the results, and Section~\ref{sec:proofs} proves them. Section~\ref{sec:checks} describes the computer checks
+and the formal proof, and Section~\ref{sec:discussion} discusses the scope of the results.
+
+\section{Background}\label{sec:background}
+
+\subsection{Notation}
+Indices of rows, columns and weights are taken in $\Z/5\Z=\{0,1,2,3,4\}$. For $w\in\R^5$, write $C(w)$ for the
+circulant with entries $C(w)_{ij}=w_{j-i}$, and
+\[
+P(w)=\per C(w),\qquad g(w)_k=\sum_{i=0}^4w_iw_{i+k},\qquad h(w)_k=\sum_{i=0}^4w_iw_{k-i}\qquad(k\in\Z/5\Z),
+\]
+so that $g(w)$ is the circular autocorrelation of $w$ and $h(w)$ its circular self-convolution. Note that
+$g(w)_{-k}=g(w)_k$. The \emph{defects}, $D_s$ for the strong inequality and $D_G$ for Gyires's inequality, are the
+homogeneous polynomials of degree ten
+\begin{equation}\label{eq:defects}
+D_s(w)=625\,P(w)^2-24\,P(g(w)),\qquad D_G(w)=625\,P(w)^2-12\bigl(P(g(w))+P(h(w))\bigr).
+\end{equation}
+
+\begin{lemma}\label{lem:products}
+For every $w\in\R^5$, $C(w)C(w)^\T=C(w)^\T C(w)=C(g(w))$ and $C(w)^2=C(h(w))$.
+\end{lemma}
+
+\begin{proof}
+Write $C=C(w)$. Substituting $m=k-j$, respectively $m=i-k$ and $m=k-i$,
+\begin{align*}
+(CC^\T)_{ij}&=\sum_kw_{k-i}w_{k-j}=\sum_mw_mw_{m+j-i}=g_{j-i},\\
+(C^\T C)_{ij}&=\sum_kw_{i-k}w_{j-k}=\sum_mw_mw_{m+j-i}=g_{j-i},
+\end{align*}
+and $(C^2)_{ij}=\sum_kw_{k-i}w_{j-k}=\sum_mw_mw_{(j-i)-m}=h_{j-i}$.
+\end{proof}
+
+\begin{lemma}\label{lem:P}
+For every $w=(w_0,\dots,w_4)\in\R^5$, writing $w=(a,b,c,d,e)$,
+\begin{align*}
+P(w)={}&a^5+b^5+c^5+d^5+e^5+15\,abcde\\
+&+5\bigl(a^3be+a^3cd+a^2b^2d+a^2bc^2+a^2ce^2+a^2d^2e+ab^3c+ab^2e^2+abd^3+ac^3e\\
+&\qquad+ac^2d^2+ade^3+b^3de+b^2c^2e+b^2cd^2+bc^3d+bce^3+bd^2e^2+c^2de^2+cd^3e\bigr).
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+By definition $P(w)=\sum_{\sigma\in S_5}\prod_iw_{\sigma(i)-i}$, a sum of $120$ monomials of degree five; collecting
+them gives the $26$ terms displayed. For instance, the five translations $\sigma(i)=i+k$ give $w_k^5$, and the monomial
+$abcde$ arises from the $15$ permutations $\sigma$ for which $i\mapsto\sigma(i)-i$ is a bijection of $\Z/5\Z$. The
+coefficients add up to $120=5!$.
+\end{proof}
+
+The following comparison is used to pass from the stronger inequality to Gyires's inequality.
+
+\begin{lemma}\label{lem:gram}
+For real $n\times n$ matrices $M$ and $N$, $\ 2\per(MN^\T)\le\per(MM^\T)+\per(NN^\T)$.
+\end{lemma}
+
+\begin{proof}
+Let $x_1,\dots,x_n$ be indeterminates and define coefficients $\mu_\alpha$ and $\nu_\alpha$, indexed by
+$\alpha\in\N^n$ with $\alpha_1+\dots+\alpha_n=n$, by
+\[
+\prod_{i=1}^n\Bigl(\sum_{k=1}^nM_{ik}x_k\Bigr)=\sum_\alpha \mu_\alpha x^\alpha,\qquad
+\prod_{i=1}^n\Bigl(\sum_{k=1}^nN_{ik}x_k\Bigr)=\sum_\alpha \nu_\alpha x^\alpha .
+\]
+Thus $\mu_\alpha=\sum_\varphi\prod_iM_{i\varphi(i)}$, the sum over the maps $\varphi\colon\{1,\dots,n\}\to\{1,\dots,n\}$
+with occupancy $\alpha$, that is, with $|\varphi^{-1}(k)|=\alpha_k$ for every $k$; similarly for $\nu_\alpha$. Expanding,
+\[
+\per(MN^\T)=\sum_{\sigma\in S_n}\prod_i\sum_kM_{ik}N_{\sigma(i)k}
+=\sum_{\sigma\in S_n}\sum_\varphi\prod_iM_{i\varphi(i)}\prod_jN_{j,\varphi(\sigma^{-1}(j))}.
+\]
+For fixed $\varphi$ with occupancy $\alpha$, the map $\sigma\mapsto\varphi\circ\sigma^{-1}$ takes every map of
+occupancy $\alpha$ exactly $\alpha!=\prod_k\alpha_k!$ times, and no other map. Hence
+\begin{equation}\label{eq:occupancy}
+\per(MN^\T)=\sum_\alpha\alpha!\,\mu_\alpha \nu_\alpha .
+\end{equation}
+Applying~\eqref{eq:occupancy} also to $(M,M)$ and $(N,N)$, the claim follows from $2\mu_\alpha\nu_\alpha\le
+\mu_\alpha^2+\nu_\alpha^2$ and $\alpha!>0$.
+\end{proof}
+
+\begin{corollary}\label{cor:gram}
+For every $w\in\R^5$, $P(h(w))\le P(g(w))$. Consequently $D_G(w)\ge D_s(w)$.
+\end{corollary}
+
+\begin{proof}
+Take $M=C(w)$ and $N=C(w)^\T$ in Lemma~\ref{lem:gram}. By Lemma~\ref{lem:products}, $MN^\T=C(h(w))$ and
+$MM^\T=NN^\T=C(g(w))$, so $2P(h(w))\le2P(g(w))$. Finally $D_G-D_s=12\bigl(P(g)-P(h)\bigr)$.
+\end{proof}
+
+\section{Results}\label{sec:results}
+
+\begin{theorem}\label{thm:strong}
+Let $w\in\R^5$ with $w_i\ge0$ for all $i$, and let $C=C(w)$. Then
+\[
+24\per(CC^\T)\le625\per(C)^2,\qquad\text{that is,}\qquad \frac{5!}{5^5}\per(CC^\T)\le\per(C)^2 .
+\]
+Equality holds if and only if $w_0=w_1=w_2=w_3=w_4$.
+\end{theorem}
+
+\begin{theorem}\label{thm:margin}
+Let $w\in\R^5$ with $w_i\ge0$ for all $i$, let $C=C(w)$, let $\pi$ be a permutation of $\Z/5\Z$ with
+$w_{\pi(0)}\le w_{\pi(1)}\le\dots\le w_{\pi(4)}$, and put $z_j=w_{\pi(j)}-w_{\pi(j-1)}$ for $1\le j\le4$. Then
+\[
+D_s(w)=625\per(C)^2-24\per(CC^\T)\ \ge\ 484\,\bigl(z_1^{10}+z_2^{10}+z_3^{10}+z_4^{10}\bigr).
+\]
+Equality holds for $w=(1,1,0,0,0)$, for which $z_1^{10}+\dots+z_4^{10}=1$ and $D_s(w)=484$. Consequently, if a real
+constant $K$ satisfies $D_s(w)\ge K\,(z_1^{10}+\dots+z_4^{10})$ for all such $w$ and $\pi$, then $K\le484$.
+\end{theorem}
+
+\begin{corollary}\label{cor:gyires}
+Let $w\in\R^5$ with $w_i\ge0$ for all $i$, and let $C=C(w)$. Then
+\[
+24\bigl(\per(CC^\T)+\per(C^\T C)+2\per(C^2)\bigr)\le2500\per(C)^2,
+\]
+with equality if and only if all five weights are equal. If moreover $w_0+\dots+w_4=1$, then $C\in\Omega_5$, the
+denominator below is positive, and
+\[
+\frac{4\per(C)^2}{\per(CC^\T)+\per(C^\T C)+2\per(C^2)}\ \ge\ \frac{24}{625}=\frac{5!}{5^5},
+\]
+with equality if and only if $C=J_5$. Thus Conjecture~\ref{conj:gyires} holds for every doubly stochastic circulant
+matrix of order five.
+\end{corollary}
+
+\section{Proofs}\label{sec:proofs}
+
+\para{The idea in brief.} By Corollary~\ref{cor:gram} it suffices to bound $D_s$. The defect is invariant under the
+affine changes of indices $i\mapsto ai+b$ of $\Z/5\Z$, and these reduce the $120$ possible orderings of the weights to
+six. In each of the six chambers, the defect written in the smallest weight and the gaps between consecutive sorted
+weights is a polynomial with nonnegative integer coefficients, which proves the inequality, the margin and the equality
+case at once.
+
+\subsection{Affine symmetry}
+For $a\in(\Z/5\Z)^\times$ and $b\in\Z/5\Z$ let $(T_{a,b}w)_i=w_{ai+b}$; the twenty maps $i\mapsto ai+b$ are the affine
+bijections of $\Z/5\Z$.
+
+\begin{lemma}\label{lem:affine}
+For all $w\in\R^5$, $a$ and $b$: $P(T_{a,b}w)=P(w)$, $g(T_{a,b}w)_k=g(w)_{ak}$ and $h(T_{a,b}w)_k=h(w)_{ak+2b}$.
+Consequently $D_s(T_{a,b}w)=D_s(w)$ and $D_G(T_{a,b}w)=D_G(w)$.
+\end{lemma}
+
+\begin{proof}
+The identity $C(T_{a,b}w)_{ij}=w_{a(j-i)+b}=C(w)_{ai,\,aj+b}$ shows that $C(T_{a,b}w)$ arises from $C(w)$ by permuting the rows by
+$i\mapsto ai$ and the columns by $j\mapsto aj+b$; permanents are invariant under such permutations. Substituting
+$m=ai+b$,
+\begin{align*}
+g(T_{a,b}w)_k&=\sum_iw_{ai+b}w_{a(i+k)+b}=\sum_mw_mw_{m+ak},\\
+h(T_{a,b}w)_k&=\sum_iw_{ai+b}w_{a(k-i)+b}=\sum_mw_mw_{ak+2b-m}.
+\end{align*}
+Hence $g(T_{a,b}w)=T_{a,0}\,g(w)$ and $h(T_{a,b}w)=T_{a,2b}\,h(w)$, and the first part gives
+$P(g(T_{a,b}w))=P(g(w))$ and $P(h(T_{a,b}w))=P(h(w))$.
+\end{proof}
+
+\subsection{Six chambers}
+A \emph{canonical ordering} is one of the six sequences
+\begin{equation}\label{eq:orders}
+01234,\quad01243,\quad01324,\quad01342,\quad01423,\quad01432,
+\end{equation}
+that is, an ordering $\kappa=(\kappa(0),\dots,\kappa(4))$ of $\Z/5\Z$ with $\kappa(0)=0$ and $\kappa(1)=1$. For a
+canonical ordering $\kappa$ and $z=(z_0,\dots,z_4)\in\R^5$ let $L_\kappa(z)\in\R^5$ be the vector with
+\[
+L_\kappa(z)_{\kappa(j)}=z_0+z_1+\dots+z_j\qquad(0\le j\le4).
+\]
+If $z\ge0$, the weights of $L_\kappa(z)$ are nondecreasing along $\kappa$, $z_0$ is the smallest weight and
+$z_1,\dots,z_4$ are the gaps between consecutive sorted weights. The \emph{chamber} of $\kappa$ is the set
+$\{L_\kappa(z):z\ge0\}$ of nonnegative weight vectors that are nondecreasing along $\kappa$.
+
+\begin{lemma}\label{lem:chambers}
+Let $\pi$ be a permutation of $\Z/5\Z$. There are $a\in(\Z/5\Z)^\times$, $b\in\Z/5\Z$ and a canonical ordering
+$\kappa$ with $\pi(j)=a\kappa(j)+b$ for every $j$, and the triple $(a,b,\kappa)$ is unique. If $w\in\R^5$ satisfies
+$w_{\pi(0)}\le\dots\le w_{\pi(4)}$ and $w_{\pi(0)}\ge0$, then $T_{a,b}w=L_\kappa(z)$ with $z_0=w_{\pi(0)}$ and
+$z_j=w_{\pi(j)}-w_{\pi(j-1)}$ $(1\le j\le4)$, and $z\ge0$.
+\end{lemma}
+
+\begin{proof}
+Put $b=\pi(0)$ and $a=\pi(1)-\pi(0)\ne0$, and $\kappa(j)=a^{-1}(\pi(j)-b)$. Then $\kappa$ is an ordering of
+$\Z/5\Z$ with $\kappa(0)=0$ and $\kappa(1)=1$, hence canonical, and $\pi(j)=a\kappa(j)+b$; conversely the conditions
+$\kappa(0)=0$ and $\kappa(1)=1$ force $b=\pi(0)$ and $a=\pi(1)-\pi(0)$. For the second statement,
+$(T_{a,b}w)_{\kappa(j)}=w_{a\kappa(j)+b}=w_{\pi(j)}=z_0+\dots+z_j$, and $z\ge0$ because the sorted weights are
+nondecreasing and the smallest is nonnegative.
+\end{proof}
+
+\subsection{The chamber certificate}
+
+\begin{lemma}\label{lem:certificate}
+For each canonical ordering $\kappa$, the polynomial
+\[
+R_\kappa(z)=D_s\bigl(L_\kappa(z)\bigr)-484\,\bigl(z_1^{10}+z_2^{10}+z_3^{10}+z_4^{10}\bigr)
+\]
+in $z=(z_0,\dots,z_4)$ has nonnegative integer coefficients. More precisely, $D_s(L_\kappa(z))$ is homogeneous of degree
+ten, so it has $\binom{14}{4}=1001$ coefficients; $996$ of them are positive, and the five coefficients of $z_0^{10}$ and
+$z_0^9z_j$ $(1\le j\le4)$ are zero. The coefficients of $z_1^{10},z_2^{10},z_3^{10},z_4^{10}$ are
+$233\,296$, $44\,209$, $484$ and $601$, and every positive coefficient is at least $484$.
+\end{lemma}
+
+\begin{proof}
+This is a finite computation with integer polynomials. By Lemma~\ref{lem:P}, $P(w)$ is an explicit integer polynomial,
+and by definition so is $P(g(w))$; one substitutes $w=L_\kappa(z)$ into
+$625P(w)^2-24P(g(w))$, expands, and reads off the $1001$ coefficients, for each of the six orderings~\eqref{eq:orders}.
+All coefficient claims of the lemma are obtained in this way. The statement about $R_\kappa$ follows: the four pure
+powers $z_j^{10}$, $j\ge1$, have coefficients at least $484$, and every other coefficient is unchanged.
+\end{proof}
+
+The computation can be organized so that it is small enough to be checked by a proof assistant, and this is how it is
+done in the formal proof (Section~\ref{sec:checks}). Let $u=L_\kappa(0,z_1,\dots,z_4)$, so that
+$L_\kappa(z)=z_0\mathbf 1+u$, where $\mathbf 1=(1,\dots,1)$. Two identities make the dependence on $z_0$
+explicit. First, $P(t\mathbf1+u)=\sum_{k=0}^5p_k(u)\,t^k$ for explicit polynomials $p_k$. Second,
+$g(t\mathbf1+u)=(5t^2+2tS)\mathbf1+g(u)$, where $S=u_0+\dots+u_4$, so that
+$P(g(t\mathbf1+u))=\sum_{k=0}^5p_k(g(u))\,(5t^2+2tS)^k$. Hence $D_s(L_\kappa(z))=\sum_{j=0}^{10}Q_j\,z_0^{\,j}$ with
+explicit polynomials $Q_j$ in $z_1,\dots,z_4$, and each $Q_j$ is expanded in powers of $z_1$ with coefficients that are
+polynomials in $z_2,z_3,z_4$; by Lemma~\ref{lem:certificate}, $Q_9=Q_{10}=0$. The nonnegativity of the coefficients of
+$R_\kappa$ amounts to the statement that, after $484\,(z_1^{10}+\dots+z_4^{10})$ is subtracted from $Q_0$, each of
+these polynomials in $z_2,z_3,z_4$ has nonnegative coefficients.
+
+\subsection{Proof of Theorems~\ref{thm:margin} and~\ref{thm:strong}}
+
+\begin{proof}[Proof of Theorem~\ref{thm:margin}]
+Let $w\ge0$ and $\pi$ be as in the theorem, and choose $a$, $b$, $\kappa$ and $z$ by Lemma~\ref{lem:chambers}. By
+Lemmas~\ref{lem:affine} and~\ref{lem:certificate}, since $z\ge0$,
+\[
+D_s(w)=D_s(T_{a,b}w)=D_s\bigl(L_\kappa(z)\bigr)=484\,\bigl(z_1^{10}+\dots+z_4^{10}\bigr)+R_\kappa(z)
+\ \ge\ 484\,\bigl(z_1^{10}+\dots+z_4^{10}\bigr).
+\]
+For the equality case, let $w=(1,1,0,0,0)$, sorted by $\pi=(2,3,4,0,1)$, with gaps $(z_1,z_2,z_3,z_4)=(0,0,1,0)$. Here
+$g(w)=(2,1,0,0,1)$, and Lemma~\ref{lem:P} gives $P(w)=2$ and $P(g(w))=84$, so $D_s(w)=625\cdot4-24\cdot84=484$. A
+constant $K$ as in the theorem therefore satisfies $K\cdot1\le484$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:strong}]
+By Lemma~\ref{lem:products}, $\per(CC^\T)=P(g(w))$, so the inequality is $D_s(w)\ge0$, which follows from
+Theorem~\ref{thm:margin} applied with any permutation $\pi$ that sorts $w$. If $D_s(w)=0$, Theorem~\ref{thm:margin}
+gives $z_1=\dots=z_4=0$, so all weights are equal. Conversely, if every weight equals $c$, then $P(w)=120c^5$ (each of
+the $120$ permutations contributes $c^5$) and $g(w)=(5c^2,\dots,5c^2)$, so $P(g(w))=120\cdot5^5c^{10}$ and
+$625P(w)^2=9\,000\,000\,c^{10}=24P(g(w))$.
+\end{proof}
+
+\subsection{Proof of Corollary~\ref{cor:gyires}}
+
+\begin{proof}
+By Lemma~\ref{lem:products},
+$\per(CC^\T)+\per(C^\T C)+2\per(C^2)=2P(g(w))+2P(h(w))$, so the first inequality reads $4D_G(w)\ge0$. By
+Corollary~\ref{cor:gram} and Theorem~\ref{thm:strong}, $D_G(w)\ge D_s(w)\ge0$. If $D_G(w)=0$, then $D_s(w)=0$, and
+all weights are equal by Theorem~\ref{thm:strong}; conversely, for constant $w$ one has $h(w)=g(w)$, hence
+$D_G(w)=D_s(w)=0$.
+
+Now let also $\sum_iw_i=1$. Every row and every column of $C$ contains each weight once, so $C\in\Omega_5$. Some weight
+is positive, so $g(w)_0=\sum_iw_i^2>0$. The matrix $C(g(w))$ has nonnegative entries and diagonal entries $g(w)_0$, so
+$P(g(w))\ge g(w)_0^5>0$, the identity permutation contributing $g(w)_0^5$ and the others nonnegative terms. Since also
+$P(h(w))\ge0$, the denominator $2P(g(w))+2P(h(w))$ is positive, and dividing the first inequality by $625$ times the denominator gives
+the ratio inequality. Equality holds if and only if all weights are equal, that is, equal to $1/5$, which means
+$C=J_5$.
+\end{proof}
+
+\section{Checking the results}\label{sec:checks}
+
+The verification has two parts: exact polynomial computation and formal proof.
+The text distinguishes the original project records from checks performed for this revision.
+
+\para{Exact computations.}
+The original project reports $72$ checks with a PARI/GP script in exact integer and rational arithmetic.
+The present audit did not rerun that full PARI/GP script. It was
+written separately from the Lean files and does not use them, or the program that generated the certificate files; it is the file \texttt{independent\_checks.gp} in the directory
+\texttt{verification} of the accompanying repository~\cite{repo}. It computes every permanent from the definition, as a
+sum over all permutations, and compares it with PARI's implementation of Ryser's formula. It verifies
+Lemmas~\ref{lem:products}, \ref{lem:P} and~\ref{lem:affine} symbolically, and that each of the $120$ orderings is the image of exactly one canonical ordering
+under exactly one affine map (Lemma~\ref{lem:chambers}). It recomputes the chamber polynomials of
+Lemma~\ref{lem:certificate}, not only for the six canonical orderings but for all $120$ orderings, which gives
+$120\cdot1001=120\,120$ coefficients, of which $119\,520$ are positive and $600$ zero, with the zero coefficients, the
+least positive coefficient and the four pure-power coefficients as stated. It tests Lemma~\ref{lem:gram} on $200$ random
+rational matrices of orders one to five and identity~\eqref{eq:occupancy} on $24$ random integer pairs; it tests
+Theorems~\ref{thm:strong} and~\ref{thm:margin} and Corollary~\ref{cor:gyires}, with their equality cases, on
+$2000$ nonnegative weight vectors, many of them with zero or repeated weights; and it checks the example of
+Theorem~\ref{thm:margin}, the case $n=2$ of the introduction and the remarks of Section~\ref{sec:discussion}. The
+random tests are evidence, not proofs; the chamber computation, by contrast, is exact and exhaustive.
+
+\para{Checks in this revision.}
+A separate exact Python checker recomputed the order-five defect from the permutation definition of the permanent.
+It checked all $120$ orderings and the unique reduction to six affine representatives.
+It verified the polynomial identities by inverse binomial transforms.
+Every chamber has $1001$ coefficient positions, with $996$ positive coefficients and five zeros.
+The checker uses the normalization $625P(w)^2-24P(g(w))$.
+Its least positive coefficient is $484$.
+The four pure-gap coefficients agree with Lemma~\ref{lem:certificate}.
+This finite check supports the coefficient statistics. It does not replace the Lean proof.
+
+\para{Formal proof in Lean.}
+Lean~\cite{lean} is a \emph{proof assistant}. It checks a formal proof against
+its statement using basic logical rules. The results of
+Section~\ref{sec:results} are proved with Lean 4.35.0 and
+Mathlib~\cite{mathlib}, its library of formalized mathematics.
+
+The collection library is in
+\path{lean/MathAndTheory/Mathematics/GyiresCirculant5}.
+Its namespace is \path{MathAndTheory.GyiresCirculant5}.
+The source is derived from the immutable earlier development~\cite{repo}.
+
+In the library, \texttt{circ w} is the circulant with entries
+\texttt{w (j - i)}. The definition \texttt{P5} is the polynomial in
+Lemma~\ref{lem:P}. The definitions \texttt{gram} and \texttt{conv} give
+the vectors $g$ and $h$. The type \texttt{Fin 5}, with arithmetic modulo
+five, represents $\mathbb Z/5\mathbb Z$.
+
+The principal statements are restated, using only Mathlib's definitions, in a \emph{Challenge} file, which states the
+theorems with their proofs omitted, the file
+\texttt{lean/\allowbreak{}Challenges/\allowbreak{}GyiresCirculant5.lean} (namespace \texttt{MathAndTheory.GyiresCirculant5}). There a circulant is a matrix of
+the form \texttt{Matrix.circulant v}, whose entries are \texttt{v (i - j)}; this is the transpose of $C(v)$, which
+describes the same set of matrices. Doubly stochastic matrices are Mathlib's \texttt{doublyStochastic}, the permanent is
+Mathlib's \texttt{Matrix.permanent}, $5!/5^5$ is the real quotient \texttt{(Nat.factorial 5 :\ $\R$) / 5 \textasciicircum{} 5},
+and $J_5$ is the constant matrix with entries $5^{-1}$. The \emph{Solution} file
+\texttt{lean/\allowbreak{}Solutions/\allowbreak{}GyiresCirculant5.lean} proves the same theorems from the library. Lean's
+Comparator records from the original project report exact agreement with the Challenge statements and acceptance by Lean, NanoDa, and con-ron.
+Those records are historical evidence. The accompanying verification record gives the current check outcomes separately. The table lists where each statement of the paper is
+proved; all listed names are in the namespace \texttt{MathAndTheory.GyiresCirculant5}.
+\begin{center}\small\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.30\linewidth}>{\raggedright\arraybackslash}p{0.64\linewidth}}
+\toprule
+Statement in this paper & Lean declaration(s)\\
+\midrule
+Theorem~\ref{thm:strong} & \lean{strong\_inequality}, \lean{strong\_inequality\_eq\_iff} \\
+Theorem~\ref{thm:margin} & \lean{strong\_margin}, \lean{strong\_margin\_attained}, \lean{strong\_margin\_sharp} \\
+Corollary~\ref{cor:gyires}, homogeneous form & \lean{gyires\_homogeneous}, \lean{gyires\_homogeneous\_eq\_iff} \\
+Corollary~\ref{cor:gyires}, ratio form & \lean{gyires\_ratio}, \lean{gyires\_ratio\_eq\_iff}, \lean{gyires\_denominator\_pos} \\
+\midrule
+Lemma~\ref{lem:products} & \lean{circ\_mul\_transpose}, \lean{transpose\_mul\_circ}, \lean{circ\_mul\_self} \\
+Lemma~\ref{lem:P} & \lean{permanent\_circ} \\
+Lemma~\ref{lem:gram}, Corollary~\ref{cor:gram} & \lean{PermanentGram.permanent\_gram\_add\_ge}, \lean{conv\_permanent\_le\_gram} \\
+Lemma~\ref{lem:affine} & \lean{P5\_affine}, \lean{gram\_affine}, \lean{conv\_affine}, \lean{strongDefect\_affine}, \lean{gyiresDefect\_affine} \\
+Lemma~\ref{lem:chambers} & \lean{order\_affine\_cover}, \lean{order\_affine\_cover\_unique}, \lean{canonical\_chamber\_of\_monotone}, \lean{exists\_canonical\_chamber} \\
+Lemma~\ref{lem:certificate}, nonnegativity of $R_\kappa$ & \lean{strong\_chamber\_0}, \dots, \lean{strong\_chamber\_5}, \lean{strong\_chambers} \\
+Theorem~\ref{thm:margin}, the example & \lean{strongDefect\_twoSupport}, \lean{strongDefect\_margin\_attained}, \lean{strongDefect\_margin\_sharp} \\
+Corollary~\ref{cor:gyires}, positive denominator & \lean{positiveDenominator} \\
+Section~\ref{sec:discussion}, the two-point example & \lean{P5\_twoSupport}, \lean{P5\_gram\_twoSupport}, \lean{P5\_conv\_twoSupport}, \lean{gyiresDefect\_twoSupport}, \lean{gyiresDenominator\_twoSupport},  \lean{permanent\_twoSupport\_half}, \lean{permanent\_gram\_twoSupport\_half}, \lean{permanent\_square\_twoSupport\_half}, \lean{normalizedGyiresRatio\_twoSupport\_half} \\
+\bottomrule
+\end{tabular}
+\end{center}
+The original Lean project records a source build and an axiom audit. The theorem dependencies were listed with
+Lean's \texttt{\#print axioms} command. Every one depends only on the three standard axioms of Lean's logic
+(\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}); no step is left unproved, and the proofs use neither
+\texttt{native\_decide} nor any other evaluation by compiled code. The formal proof of Lemma~\ref{lem:certificate}
+follows the organization described after it: the six chamber polynomials are expanded in $z_0$ and $z_1$, and each of
+the resulting polynomials in $z_2,z_3,z_4$ is written with explicit nonnegative integer coefficients, proved equal to the
+corresponding expansion coefficient by the \texttt{ring} tactic and nonnegative by the \texttt{positivity} tactic. These explicit
+coefficients were produced by a computer program, but Lean does not rely on that program: it checks every identity and
+every inequality itself. The formal proof of Lemma~\ref{lem:gram} is not the occupancy argument given here but a
+sum-of-squares argument over permutations, adapted from the formalization of Ozols~\cite{ozols}.
+
+Several remarks are also formalized: the case $n=2$ of the introduction (\lean{gyires\_two}); the characterization of
+the doubly stochastic circulants of order five and their description as the combinations $\sum_kw_kQ^k$
+(\lean{circulant\_mem\_doublyStochastic\_iff}, \lean{circulant\_eq\_sum\_pow}); and, for real square matrices of
+every order, the reduction of Gyires's inequality to the strong form described in Section~\ref{sec:discussion}
+(\lean{gyires\_of\_strong}).
+
+\para{What is not formalized.}
+The formal proof establishes $R_\kappa(z)\ge0$ for all $z\ge0$, which is the part of Lemma~\ref{lem:certificate} that
+the theorems need. The finer statements of that lemma (the numbers $996$ and $5$ of positive and zero coefficients,
+the positions of the zeros, the four pure-power coefficients, and the least positive coefficient $484$) are not stated
+in Lean; they are verified by the exact computation described above. The remaining remarks of
+Section~\ref{sec:discussion}, which rest on random tests or on the literature, are not formalized.
+
+\section{Discussion}\label{sec:discussion}
+
+\para{Scope.} The results concern circulant matrices of order five only. They do not prove Gyires's conjecture for all of
+$\Omega_5$, or for any order $n\ge6$. Within the circulants of order five they cover every matrix in the
+four-dimensional simplex of doubly stochastic circulants, including all of its faces, and every nonnegative circulant
+without normalization.
+
+\para{The coordinates.} Written in the original weights, $D_s$ has negative coefficients, so its nonnegativity is not
+visible without the change to sorted gaps. In the chamber coordinates all coefficients are nonnegative, and the
+zero coefficients are exactly those of the monomials $z_0^{10}$ and $z_0^9z_j$, which reflects the fact that $D_s$
+vanishes to second order along the constant vectors.
+
+\para{The two-point example.} For $w=(t,t,0,0,0)$ one has $g(w)=(2t^2,t^2,0,0,t^2)$, $h(w)=(t^2,2t^2,t^2,0,0)$,
+$P(w)=2t^5$, $P(g(w))=P(h(w))=84t^{10}$, and $D_s(w)=D_G(w)=484t^{10}$; this is the example showing that $484$
+cannot be improved. For $t=\frac12$ the matrix is doubly stochastic, $\per C=\frac1{16}$ and $\per(CC^\T)=\per(C^2)=\frac{21}{256}$,
+and Gyires's ratio equals $\frac1{21}\approx0.048$, above $\frac{24}{625}=0.0384$. The example also shows that the
+inequality $\per(AA^\T)\le\per(A)$ fails for some doubly stochastic circulants. If it held, the strong form
+$\frac{n!}{n^n}\per(AA^\T)\le\per(A)^2$ would follow at once from van der Waerden's bound $\per(A)\ge n!/n^n$.
+According to Ryser's account, in the translation of Best and Wanless~\cite{bw}, an inequality of this form was once
+conjectured and was disproved by M.~Newman with the order-four analogue $\frac12(I+Q)$ of this example, for which
+$\per A=\frac18<\frac9{64}=\per(AA^\T)$.
+
+\para{A stronger question.} For every real square matrix $A$, Lemma~\ref{lem:gram} with $M=A$ and $N=A^\T$ gives
+$2\per(A^2)\le\per(AA^\T)+\per(A^\T A)$. Hence the strong form, applied to $A$ and to $A^\T$, implies Gyires's
+inequality for $A$; this is the reduction used by Ozols~\cite{ozols} for $n=4$. It is therefore natural to ask whether
+\[
+\frac{n!}{n^n}\per(AA^\T)\le\per(A)^2\qquad\text{for every }A\in\Omega_n .
+\]
+This holds for $n=2$ by the computation in the introduction, for $n=4$ by Ozols's theorem, and for the circulants of
+order five by Theorem~\ref{thm:strong}. The broader statement is not proved here.
+
+\para{Other orders.} Every real circulant of order $n$ is normal, and Lemma~\ref{lem:gram} gives
+$\per(C^2)\le\per(CC^\T)$ in every order, so Gyires's conjecture for circulants of order $n$ follows from the strong
+form $\frac{n!}{n^n}\per(CC^\T)\le\per(C)^2$. This paper makes no claim for higher orders. The method of this paper depends essentially on the value of $n$: the
+affine group of $\Z/n\Z$ reduces the $n!$ orderings of the weights to $(n-2)!$ chambers when $n$ is prime, and the
+degree of the defect grows with $n$.
+
+\section*{About this paper}\label{sec:about}
+\para{Contributions and review.}
+Dev~D.~Goyal selected the problem, requested proofs and checks, and accepts responsibility for publication.
+He did not supply proof ideas or intermediate arguments.
+The source repository~\cite{repo} records that ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning,
+constructed the proof and original Lean development.
+It records that Claude Opus~5.5, used with Claude Code, revised the formalization and manuscript and performed additional checks.
+
+Codex, using GPT-6, audited the mathematical arguments and source declarations,
+reconstructed the exact coefficient certificate independently, and prepared the present revision.
+The collection records the separate AI referee review and the completed verification checks.
+The recorded personal review by Dev~D.~Goyal applies to the earlier proof, not to the new formal statements or this revised manuscript.
+Machine verification and AI review do not constitute independent human expert review.
+The paper has not been peer reviewed.
+
+\para{Prior-work limits.}
+The audit consulted the sources listed here and used exact-name and equivalent-term web searches.
+It inspected the existing order-four and order-five repositories and the current Lavi catalogue.
+The original project also records earlier searches of several Lean collections.
+Those earlier searches are historical evidence, not fresh searches by this revision.
+Gyires's original 1978 article and the full Chang article were not retrieved.
+The author-hosted Cheon--Wanless PDF returned an access error, although its bibliographic record and relevant indexed text were available.
+The live Lavi catalogue was retrieved on 26~October~2026.
+MathSciNet, zbMATH, and complete Google Scholar citation chaining were not completed.
+These limits prevent an unconditional claim of priority.
+
+\para{Source record.}
+The existing order-five repository is cited at an immutable commit~\cite{repo}.
+This revision preserves the old repository and its contribution notices.
+The collection is at \url{https://github.com/dvgyl/math-and-theory}.
+Its verification report identifies the files and checks used for the current revision.
+
+\section*{Acknowledgements}
+The conjecture is due to B.~Gyires. The formal proof of Lemma~\ref{lem:gram} is adapted from the Lean formalization of
+the case $n=4$ by C.~Ozols~\cite{ozols}, which is licensed under the Apache License~2.0. Thanks to the developers of
+Lean and Mathlib.
+
+\begingroup
+\small\raggedright
+\bibliographystyle{plainnat}
+\bibliography{references}
+\endgroup
+\end{document}
