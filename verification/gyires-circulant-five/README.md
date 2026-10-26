@@ -1,6 +1,8 @@
+The [expanded continuous preprint](../../preprints/gyires-circulant-five/paper.pdf) contains broader ordinary proofs. Their [supporting record](../../research-notes/gyires-complete-support/README.md) is separate from the order-five Lean evidence below. No additional Lean verification is claimed.
+
 # Verification of the order-five Gyires result
 
-The library proves the order-five circulant theorem only. It has ten principal declarations. The continuous manuscript also maps its order-five supporting statements to Lean declarations. Its two all-order arguments have incomplete Lean verification. The [integrated preprint review](../../preprints/gyires-circulant-five/review.md) gives the current manuscript checks.
+The library proves the order-five circulant theorem only. It has ten principal declarations. The continuous manuscript also maps its order-five supporting statements to Lean declarations. Its broader arguments have incomplete Lean verification. The [integrated preprint review](../../preprints/gyires-circulant-five/review.md) gives the current manuscript checks.
 
 ## Current checks
 

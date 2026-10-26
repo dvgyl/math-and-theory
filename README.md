@@ -2,7 +2,7 @@
 
 I am Dev D. Goyal. I direct an AI research effort in mathematics, theoretical computer science, and mathematical physics. I choose problems and request proofs, formal verification, and revisions. I do not supply the proof ideas or intermediate arguments. The AI systems construct the proofs from my instructions.
 
-This collection contains seven preprints. Six have complete Lean proofs of their principal claims. The Gyires preprint combines verified order-five results with two all-order ordinary-proof arguments. Lean verification of those two arguments remains incomplete. The collection does not claim a general solution when a proof covers only a special case.
+This collection contains seven preprints. Six have complete Lean proofs of their principal claims. The Gyires preprint combines verified order-five results with the completed broader matrix and polynomial arguments. Lean verification of those additions remains incomplete. The collection does not claim a general solution when a proof covers only a special case.
 
 Start with the [manuscript catalogue](CONTENTS.md) or the [overview](overview.pdf). The [Lean guide](lean/README.md) explains the formal statements. The [verification guide](verification/README.md) gives the commands and recorded results. [AUTHORSHIP.md](AUTHORSHIP.md) identifies the human and AI contributions.
 
@@ -13,7 +13,7 @@ The catalogue groups papers into stable result families. Mathematics contains ma
 | Result family | Established result |
 |---|---|
 | [q-permanent](preprints/q-permanent/README.md) | Counterexamples at every real parameter greater than one. |
-| [Gyires](preprints/gyires-circulant-five/README.md) | Order-five circulants with equality and a sharp margin, plus two all-order arguments with incomplete Lean verification. |
+| [Gyires](preprints/gyires-circulant-five/README.md) | Circulants of orders five through seven, all-order structured matrix results, rank two through order fifteen, and supporting polynomial results. Broader Lean verification remains incomplete. |
 | [DomiRank entropy](preprints/domirank-entropy/README.md) | A 14-vertex counterexample with positive scores on the whole comparison interval. |
 | [Diagonal concavity](preprints/diagonal-concavity/README.md) | A counterexample and complete classification of a positive one-parameter family. |
 | [Alternating Motzkin sums](preprints/alternating-motzkin/README.md) | Strict root log-concavity with the optimal tail start. |
@@ -22,7 +22,7 @@ The catalogue groups papers into stable result families. Mathematics contains ma
 
 ## The continuous Gyires preprint
 
-The [Gyires preprint](preprints/gyires-circulant-five/paper.pdf) contains the full order-five proof and two broader ordinary-proof arguments. The [supporting record](research-notes/gyires-extensions/README.md) retains the source notes and certificate files. One covers A=aI+bQ+cQ² for any permutation matrix Q and nonnegative a,b,c in every dimension. The other covers doubly stochastic matrices with at most two row types and two column types, including unequal block sizes and boundary cases. The full arguments and exact certificate programs are included. Their Lean verification, novelty assessment, and independent human expert review remain incomplete. These two claims are included in the Gyires manuscript. They are outside its verified formal statements.
+The [Gyires preprint](preprints/gyires-circulant-five/paper.pdf) contains the full earlier order-five proof and all completed arguments from the supplied Gyires research materials. It includes circulants of orders six and seven, all-order permutation polynomials, all-order four-block matrices, one exceptional column or row, and rank-two matrices through order fifteen. It also includes the completed structural, scalar, deletion, balancing, local polynomial, and counting proofs. Exact counterexamples identify the limits of proposed extensions. The [complete supporting record](research-notes/gyires-complete-support/README.md) gives the source map, certificate files, and reproduction commands. The broader arguments have incomplete Lean verification. The manuscript does not establish the unrestricted conjecture.
 
 ## Verification and review
 

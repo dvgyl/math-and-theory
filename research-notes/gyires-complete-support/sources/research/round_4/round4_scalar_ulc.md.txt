@@ -1,0 +1,351 @@
+# An all-order scalar ultra-log-concave inequality
+
+## Theorem
+
+Let $n\ge2$, let $B$ be the probability mass function of
+$\operatorname{Bin}(n,1/n)$, and let $P$ be a probability mass function on
+$\{0,\ldots,n\}$ with mean one. Suppose
+
+\[
+r_k=\frac{P_k}{B_k}
+\]
+
+is log-concave, with interval support. Then
+
+\[
+\boxed{\ \sum_{k=0}^nB_kr_k^2\le r_1^2.\ }
+\tag{1}
+\]
+
+Equality holds exactly when $P=B$.
+
+The proof below is self-contained. It uses a discrete perturbation argument to reduce the convex optimization problem to truncated geometric likelihood ratios, then proves the required truncated-binomial estimate.
+
+## 1. Application to a one-special-variable Lorentzian polynomial
+
+Consider a homogeneous polynomial
+
+\[
+p(x)=\sum_{k=0}^na_kx_1^k
+       (x_2+\cdots+x_n)^{n-k}.
+\tag{2}
+\]
+
+Write $m=n-1$. Normalization $p(\mathbf1)=1$ gives the marginal probabilities
+
+\[
+P_k=a_km^{n-k}.
+\]
+
+Balance is equivalent to $\mathbb E_PK=1$: the other $m$ coordinates are symmetric, and homogeneity then makes each of their mean exponents one as well.
+
+The Lorentzian condition for (2) is log-concavity, with interval support, of $a_k/\binom nk$. Equivalently, $r_k=P_k/B_k$ is log-concave. This is the binary Lorentzian coefficient criterion applied to $x_1$ and the sum of the other variables; the quadratic derivative-Hessian characterization gives the same statement directly.
+
+The central coefficient and Fischer norm satisfy
+
+\[
+\frac{[x_1\cdots x_n]p}{c_n}=r_1,
+\qquad
+\frac{N(p)}{c_n}=\sum_kB_kr_k^2.
+\tag{3}
+\]
+
+For the second identity, the contribution with exponent $k$ on $x_1$ is
+
+\[
+k!(n-k)!\,a_k^2m^{n-k}.
+\]
+
+Thus (1) proves
+
+\[
+\bigl([x_1\cdots x_n]p\bigr)^2\ge c_nN(p)
+\]
+
+for this entire all-order Lorentzian family. Equality is the uniform power
+$p=((x_1+\cdots+x_n)/n)^n$.
+
+This is an all-order subfamily theorem, not a proof for arbitrary balanced Lorentzian polynomials or arbitrary matrix products.
+
+## 2. Remove the normalization
+
+The interval-support and mean assumptions imply $P_1>0$. Set
+
+\[
+u_k=\frac{r_k}{r_1}.
+\]
+
+Then $u_1=1$, the sequence $u$ is log-concave, and the mean constraint becomes
+
+\[
+\sum_{k=0}^n(k-1)B_ku_k=0.
+\tag{4}
+\]
+
+The desired inequality is simply
+
+\[
+\Phi(u):=\sum_kB_ku_k^2\le1.
+\tag{5}
+\]
+
+Conversely, any nonnegative log-concave sequence with interval support satisfying $u_1=1$ and (4) gives a mean-one probability distribution after normalization by $\sum_kB_ku_k$. Therefore no feasible inputs have been lost.
+
+If $u_0=0$, (4) forces $u_k=0$ for every $k\ge2$, and $\Phi(u)=B_1<1$.
+
+Otherwise the support is $\{0,\ldots,L\}$ for some $L\ge2$. The identity
+
+\[
+B_0=\sum_{k=2}^n(k-1)B_k
+\]
+
+shows that $u_0$ is a weighted average of the $u_k$, $k\ge2$. If $u_0>1$, log-concavity and $u_1=1$ imply
+$u_k\le u_0^{1-k}<1$ for every $k\ge2$, a contradiction. Thus $u_0\le1$. Equation (4) then bounds every remaining coordinate:
+
+\[
+u_k\le\frac{B_0}{(k-1)B_k}\quad(k\ge2).
+\]
+
+The feasible set is compact. Interval-support log-concavity is closed: the multi-step log-concavity inequalities prevent an internal zero between two positive limiting values.
+
+## 3. Localization to truncated geometric sequences
+
+Let $u$ maximize the strictly convex function $\Phi$ on this compact feasible set. Assume $u_0>0$, with support $\{0,\ldots,L\}$.
+
+Suppose at least one interior log-concavity inequality is strict. Consider vectors $h=(h_0,\ldots,h_L)$ satisfying
+
+\[
+2h_k=h_{k-1}+h_{k+1}
+\]
+
+at each index where $u_k^2=u_{k-1}u_{k+1}$.
+
+The second-difference equations are independent. Their solution space has dimension two plus the number of strict log-concavity inequalities, hence at least three. Impose the two additional linear conditions
+
+\[
+h_1=0,\qquad
+\sum_{k=0}^L(k-1)B_ku_kh_k=0.
+\]
+
+A nonzero solution remains.
+
+For sufficiently small $\varepsilon>0$, define
+
+\[
+u_k^\pm=u_k(1\pm\varepsilon h_k)
+\]
+
+on the same support, and retain zeros outside it. Both sequences stay positive on their support and satisfy the two feasibility constraints exactly.
+
+At an active log-concavity equality, the new normalized gap is
+
+\[
+(1\pm\varepsilon h_k)^2
+-(1\pm\varepsilon h_{k-1})(1\pm\varepsilon h_{k+1})
+=\varepsilon^2(h_k-h_{k-1})^2\ge0.
+\]
+
+At a strict inequality, positivity of the original gap persists for sufficiently small $\varepsilon$. Thus both $u^+$ and $u^-$ remain feasible.
+
+But
+
+\[
+\frac{\Phi(u^+)+\Phi(u^-)}2
+=\Phi(u)+\varepsilon^2\sum_kB_ku_k^2h_k^2>\Phi(u),
+\]
+
+contradicting maximality. Therefore every interior log-concavity inequality is an equality at a nondegenerate maximizer.
+
+It follows that every candidate maximizer has the form
+
+\[
+u_k=t^{k-1}\quad(0\le k\le L),\qquad u_k=0\quad(k>L).
+\tag{6}
+\]
+
+Define
+
+\[
+F_L(z)=\sum_{k=0}^LB_kz^k.
+\]
+
+The mean constraint determines $t=t_L$ uniquely by
+
+\[
+tF_L'(t)=F_L(t),
+\tag{7}
+\]
+
+or equivalently
+
+\[
+\sum_{k=2}^L(k-1)B_kt^k=B_0.
+\]
+
+The left side is strictly increasing in $t>0$. The root is $t_n=1$ for $L=n$, and $t_L>1$ for $L<n$.
+
+The remaining task is
+
+\[
+\Phi(u)=\frac{F_L(t_L^2)}{t_L^2}\le1.
+\tag{8}
+\]
+
+## 4. A uniform estimate for the balancing tilt
+
+Put $c_k=B_k/B_0$. For $k\ge1$,
+
+\[
+c_k=\frac{\binom nk}{(n-1)^k}
+\le\frac{n}{n-1}\frac1{k!}.
+\tag{9}
+\]
+
+Indeed the first factor in $(n)_k/(n-1)^k$ is $n/(n-1)$, the second is one, and all subsequent factors are at most one.
+
+Let
+
+\[
+G_L(t)=\sum_{k=2}^L(k-1)c_kt^k.
+\]
+
+Then $G_L(t_L)=1$, and
+
+\[
+1-G_L(1)=\sum_{k>L}(k-1)c_k
+\le\frac{n}{n-1}\sum_{k>L}\frac{k-1}{k!}
+=\frac{n}{n-1}\frac1{L!}.
+\]
+
+For $t\ge1$,
+
+\[
+G_L'(t)\ge2c_2=\frac{n}{n-1}.
+\]
+
+Consequently,
+
+\[
+\boxed{\ 0\le t_L-1\le\frac1{L!}.\ }
+\tag{10}
+\]
+
+The factorial smallness is what makes the truncated estimate straightforward.
+
+## 5. Compare the excess with the omitted binomial tail
+
+Fix $L<n$ and abbreviate $t=t_L>1$. Let
+
+\[
+M=\sum_{k>L}B_k,\qquad
+T=\sum_{k>L}(k-1)B_k.
+\]
+
+Subtracting the mean equation at $t=1$ from (7) gives
+
+\[
+T=\sum_{k=2}^L(k-1)B_k(t^k-1).
+\tag{11}
+\]
+
+Put $f(z)=F_L(z)/z$. Eliminating $B_0$ by (7) gives the exact identity
+
+\[
+f(t^2)-f(1)=\sum_{k=3}^LB_k\psi_k(t),
+\tag{12}
+\]
+
+where
+
+\[
+\psi_k(t)=t^{2k-2}-1-(k-1)t^{k-2}(t^2-1).
+\]
+
+The $k=2$ contribution vanishes exactly.
+
+If $L=2$, (12) is zero, and
+$f(t^2)=f(1)=1-M<1$, which proves (8) in that case.
+
+Now assume $L\ge3$. Write $s=\log t$ and $r=k-1$. Then
+
+\[
+\psi_k(t)=2e^{rs}\bigl(\sinh(rs)-r\sinh s\bigr).
+\]
+
+Taylor's integral remainder and $\sinh s\ge s$ give
+
+\[
+\sinh(rs)-r\sinh s
+\le \sinh(rs)-rs
+\le\frac{r^3s^3}{6}\cosh(rs).
+\]
+
+Also $e^{(r+1)s}-1\ge(r+1)s$. Hence
+
+\[
+\frac{\psi_k(t)}{(k-1)(t^k-1)}
+\le\frac{r^2}{3(r+1)}e^{2rs}s^2
+\le\frac r3e^{2rs}s^2.
+\]
+
+By (10), $s\le1/L!$ and $r\le L-1$, so $2rs\le2/3$ and $e^{2rs}<2$. We obtain
+
+\[
+\frac{\psi_k(t)}{(k-1)(t^k-1)}
+<
+C_L:=\frac{2(L-1)}{3(L!)^2}
+<
+\frac1{L+1}.
+\tag{13}
+\]
+
+The final inequality follows already from $L!\ge L$.
+
+The binomial tail satisfies a complementary estimate. For $k\ge L+1$,
+
+\[
+\frac{B_{k+1}}{B_k}
+=\frac{n-k}{(n-1)(k+1)}
+\le\frac1{L+2}.
+\]
+
+Conditioned on $K\ge L+1$, the excess $K-(L+1)$ is stochastically bounded by a geometric distribution with successive probability ratio $\rho=1/(L+2)$. More explicitly, write $b_i=B_{L+1+i}$, with zero values past the end of the support. The coefficient-ratio bound gives $b_{i+r}\le\rho^r b_i$ term by term, and hence
+
+\[
+\mathbb P(K-(L+1)\ge r\mid K>L)
+=\frac{\sum_{i\ge0}b_{i+r}}{\sum_{i\ge0}b_i}
+\le\rho^r.
+\]
+
+Summing these tail probabilities gives
+
+\[
+\frac TM
+=\mathbb E[K-1\mid K>L]
+\le L+\frac1{L+1}
+<L+1.
+\tag{14}
+\]
+
+Combining (11)–(14),
+
+\[
+f(t^2)-f(1)
+<\frac{T}{L+1}
+<M.
+\]
+
+Since $f(1)=F_L(1)=1-M$, this proves $f(t^2)<1$. Together with the $L=2$ case, every proper truncation has strictly smaller objective than one.
+
+For $L=n$, the unique root is $t=1$ and the objective is exactly one. The degenerate support $\{1\}$ also has objective $B_1<1$. Thus the maximum is one.
+
+## 6. Equality and interpretation
+
+If a feasible nongeometric sequence had objective one, the strict-convexity perturbation in Section 3 would produce a feasible sequence with objective greater than one, which is impossible. Every proper geometric truncation has objective strictly less than one by Section 5. The only remaining equality case is $L=n$, $t=1$, and $u_k=1$ for every $k$.
+
+Normalization then forces $r_k=1$ and $P=B$. This proves the equality characterization in the theorem.
+
+The proof applies to Lorentzian inputs, not only to real-stable inputs. Properly truncated geometric likelihood ratios usually yield binary polynomials with nonreal zeros, so restricting to Poisson-binomial distributions would miss these extremal candidates.
+
+For example, in order three with cutoff two, the resulting norm ratio is exactly $27/26$. In order four with cutoff three, the balanced ratio is approximately $1.003921142545742$, slightly below $256/255\approx1.003921568627451$ but still greater than one. The proof above does not use these numerical values.
+

@@ -1,0 +1,213 @@
+# Rank-two singleton deletion and capacity limits: independent audit
+
+## Conclusion
+
+The rank-two product class is closed under extracting one copy of a variable, except for the possible zero polynomial. For a balanced matrix product, that zero case cannot occur. Positive diagonal variable scaling preserves the class. If a capacity-balancing scale is not attained at a finite point, there is nevertheless a **unique coefficientwise balanced limit**, preserving the central coefficient. After normalization, that limit is the product polynomial of a doubly stochastic matrix of rank at most two.
+
+The proof below is self-contained. In particular, it does not assume finite Sinkhorn scaling or cite an unproved capacity-limit assertion. It establishes closure, not the still-missing deletion norm inequality. This is an independent AI mathematical audit, not human review or proof-assistant verification. No novelty claim is made.
+
+## 1. Every stochastic rank-two product has the required binary representation
+
+Let $A$ be a row-stochastic nonnegative matrix of rank at most two. Its rows lie in a linear space of dimension at most two and in the affine hyperplane whose coordinates sum to one. Hence their affine span has dimension at most one.
+
+If the rows are not all equal, choose the two endpoint rows $v_1,v_2$ of their convex hull. Every row is
+
+\[
+A_{i\bullet}=\theta_i v_1+(1-\theta_i)v_2,
+\qquad 0\le\theta_i\le1.
+\]
+
+The nonnegative linear forms $L_1(x)=v_1\cdot x$, $L_2(x)=v_2\cdot x$ therefore give
+
+\[
+p_A(x)=F(L_1(x),L_2(x)),
+\qquad
+F(u,v)=\prod_{i=1}^n(\theta_i u+(1-\theta_i)v).
+\tag{1}
+\]
+
+If all rows coincide, take $L_1=L_2$. This covers rank one without any separate nonnegative-factorization assumption.
+
+More generally, the following argument applies whenever $p=F(L_1,L_2)$, with $F$ a product of nonnegative binary linear forms and $L_1,L_2$ nonnegative.
+
+## 2. Singleton extraction remains a rank-two product
+
+Fix a variable $x_j$ and write
+
+\[
+L_1=a x_j+L'_1,\qquad L_2=b x_j+L'_2,
+\qquad a,b\ge0,
+\]
+
+where $L'_1,L'_2$ use only the remaining variables. The coefficient of exactly one copy of $x_j$ is
+
+\[
+q_j=[x_j]p
+=\bigl(a\partial_u+b\partial_v\bigr)F(L'_1,L'_2).
+\tag{2}
+\]
+
+The homogeneous binary polynomial
+
+\[
+G(u,v)=(a\partial_u+b\partial_v)F(u,v)
+\]
+
+is either zero or factors into nonnegative real linear forms. The following elementary proof checks that assertion, including degenerate factors.
+
+First suppose every factor $c_i u+d_i v$ has $c_i,d_i>0$, the ratios $-d_i/c_i$ are distinct, and $(a,b)\ne(0,0)$. At $v=1$, the derivative is a positive linear combination of the polynomials obtained by omitting one factor:
+
+\[
+G(t,1)=\sum_i (ac_i+bd_i)
+\prod_{k\ne i}(c_k t+d_k).
+\]
+
+Write the roots of $F(t,1)$ in increasing order as $r_1<\cdots<r_n<0$. At $r_i$, only the $i$th summand survives, with sign $(-1)^{n-i}$. The signs therefore alternate. The degree of $G(t,1)$ is $n-1$, so it has one root in each interval $(r_i,r_{i+1})$, and all its roots are real and negative. Its leading coefficient is positive, giving a factorization into nonnegative linear forms.
+
+For repeated roots or zero coefficients, approximate the original coefficients by strictly positive generic coefficients. Normalize each binary factor of $G$ to have coefficient sum one. Those normalized coefficient pairs belong to the compact segment $\{(s,1-s):0\le s\le1\}$, while the remaining overall scalar is $G(1,1)$. If the limiting $G$ is nonzero, that scalar has a positive limit. A convergent subsequence of the factors thus gives a nonnegative factorization of the limiting homogeneous polynomial. This handles factors $u$ or $v$, including roots at zero or infinity. If $(a,b)=(0,0)$, or the derivative vanishes for another degenerate reason, $G=0$ is the stated exceptional case.
+
+Substitute $L'_1,L'_2$ into the factorization of $G$. Each resulting factor is a nonnegative linear form in the remaining variables. Its row vector lies in the span of the two coefficient vectors of $L'_1,L'_2$. Therefore $q_j$ is either zero or the product polynomial of a nonnegative matrix of rank at most two.
+
+If one restricted form vanishes or the two become linearly dependent, the rank may decrease; it cannot increase. If a substituted factor vanishes, the whole polynomial is zero, which is harmless in the general algebraic statement and excluded below in the matrix application.
+
+## 3. Nonvanishing and positive capacity in the doubly stochastic case
+
+For a doubly stochastic $A$, its permanent is positive. One elementary justification is Hall's condition: if a set of rows had fewer neighboring positive columns than rows, its total row mass would exceed the combined capacity of those columns, contradicting the column sums. A positive perfect matching therefore exists.
+
+The central coefficient of every singleton deletion is unchanged:
+
+\[
+[\prod_{k\ne j}x_k]q_j=[x_1\cdots x_n]p_A
+=\operatorname{per}(A)>0.
+\tag{3}
+\]
+
+Consequently $q_j$ is nonzero. For any nonnegative homogeneous degree-$m$ polynomial $q$ in $m$ variables with central coefficient $d>0$, define
+
+\[
+\operatorname{cap}(q)=\inf_{x_i>0}
+\frac{q(x)}{x_1\cdots x_m}.
+\]
+
+The central monomial gives
+
+\[
+0<d\le\operatorname{cap}(q)\le q(\mathbf1)<\infty.
+\tag{4}
+\]
+
+Finite attainment should not be presumed for an arbitrary product polynomial. For example, $q(x,y)=x(x+y)$ has capacity one but no finite positive minimizer; the scales $(e^{-t},e^t)$ give $q_t=e^{-2t}x^2+xy\to xy$. The example is only to illustrate the general scaling issue; no claim is made that this particular polynomial is a singleton deletion of a balanced matrix product.
+
+## 4. A unique balanced limit for every capacity-minimizing sequence
+
+This argument holds for every nonnegative homogeneous polynomial of matching degree and number of variables with positive capacity, without a rank assumption.
+
+By homogeneity, restrict variable scales to determinant one. Write $z\in\mathbb R^m$ with $\sum_i z_i=0$, and put
+
+\[
+q_z(x)=q(e^{z_1}x_1,\ldots,e^{z_m}x_m),
+\qquad C(z)=q_z(\mathbf1),
+\qquad \gamma=\operatorname{cap}(q)>0.
+\]
+
+Let $q_\alpha(z)=q_\alpha e^{\alpha\cdot z}$. For any two determinant-one scale vectors $z,w$,
+
+\[
+\begin{aligned}
+\sum_\alpha\bigl(\sqrt{q_\alpha(z)}-
+\sqrt{q_\alpha(w)}\bigr)^2
+&=C(z)+C(w)-2C((z+w)/2)\\
+&\le C(z)+C(w)-2\gamma.
+\end{aligned}
+\tag{5}
+\]
+
+Thus, along any capacity-minimizing sequence, the finite vector of square-root coefficients is Cauchy. Its coefficientwise limit $\bar q$ is unique, even across different minimizing sequences: apply (5) to one point from each sequence. We have
+
+\[
+\bar q(\mathbf1)=\gamma,
+\qquad \bar q_{\mathbf1}=q_{\mathbf1}.
+\tag{6}
+\]
+
+For any fixed $h\in\mathbb R^m$, the capacity definition gives
+
+\[
+\frac{q_z(e^{h_1},\ldots,e^{h_m})}{e^{\sum_i h_i}}
+\ge\gamma.
+\]
+
+Pass to the coefficientwise limit. The smooth function
+$\bar q(e^h)e^{-\sum_i h_i}$ attains its minimum $\gamma$ at $h=0$. Differentiating there yields
+
+\[
+\partial_i\bar q(\mathbf1)=\bar q(\mathbf1)=\gamma
+\quad\text{for every }i.
+\tag{7}
+\]
+
+Hence $\bar q$ is balanced. This proof uses neither finite attainment nor an external matrix-scaling convergence theorem.
+
+Because the coefficient space is finite, the Fock norm is continuous. In particular,
+
+\[
+H(q):=N(\bar q)
+=\lim_{k\to\infty}N(q_{z_k})
+\tag{8}
+\]
+
+is well-defined and independent of the minimizing sequence. This supplies a precise definition of the capacity-balanced deletion norm at boundary points.
+
+## 5. The balanced limit is still a rank-two matrix product
+
+Now suppose $q$ is a product of $m$ nonnegative linear forms with coefficient matrix $B$ of rank at most two. Absorb any positive overall scalar into one row. Every row is nonzero because $q\ne0$.
+
+For a positive diagonal scale $D_z$, normalize the rows of $B D_z$ to sum one, obtaining $M_z$. Its entries lie in $[0,1]$, and its rank remains at most two. Since the product of those row sums is $C(z)$,
+
+\[
+p_{M_z}(x)=\frac{q_z(x)}{C(z)}.
+\tag{9}
+\]
+
+Along a capacity-minimizing sequence, take a convergent subsequence of the row-stochastic matrices $M_z$. Compactness gives a nonnegative row-stochastic limit $M$. Rank at most two is a closed condition, since all its $3\times3$ minors vanish. Equations (6) and (9) imply
+
+\[
+p_M=\frac{\bar q}{\gamma}.
+\tag{10}
+\]
+
+The right side is balanced. For a row-stochastic matrix,
+
+\[
+\partial_jp_M(\mathbf1)=\sum_iM_{ij}.
+\]
+
+Balance therefore makes every column sum one. Thus $M$ is doubly stochastic and has rank at most two, proving the claimed closure through capacity limits.
+
+The factor matrix limit need not be asserted unique; the polynomial limit and its norm are already unique by (5). That is all the induction would require.
+
+The case $m=1$ is immediate. The original $n=1$ problem has a constant singleton deletion and can be treated separately as the trivial induction base.
+
+## 6. Exact implication for a proposed rank-two induction
+
+The direct row-pair boundary reduction in `round5_matrix_boundary.md` also stays inside the rank-at-most-two class: every varied row is a linear combination of the two original rows, so the row space cannot enlarge. The class of doubly stochastic matrices of rank at most two is compact.
+
+Suppose one could prove the following missing statement for every rank-two boundary matrix of order $n$: at least one column $j$ containing a zero satisfies
+
+\[
+H(q_j)\ge g_nN(p_A),
+\qquad g_n=\left(\frac{n-1}{n}\right)^{n-1}.
+\tag{11}
+\]
+
+The closure proved above permits the induction hypothesis in order $n-1$ to be applied to $\bar q_j$. Since its central coefficient remains $\operatorname{per}(A)$,
+
+\[
+\operatorname{per}(A)^2
+\ge c_{n-1}H(q_j)
+\ge c_{n-1}g_nN(p_A)
+=c_nN(p_A).
+\]
+
+Together with the boundary reduction, this would prove the strong rank-two inequality in every order. But **(11) is not proved here**. The closure and scaling arguments do not imply it, and numerical success does not replace this missing inequality.
+

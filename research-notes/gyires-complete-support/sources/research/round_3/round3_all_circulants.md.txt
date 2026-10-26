@@ -1,0 +1,375 @@
+# All-support circulants: round-three findings
+
+## Status and target
+
+This note does **not** prove the all-order circulant case or the full Gyires conjecture. It records exact reductions, explicit obstructions to several possible proofs, and numerical searches. The earlier three-consecutive-shift theorem is recorded separately in `round2_circulant.md`; its finite-width transfer argument has not been extended to arbitrary support.
+
+For $w=(w_0,\ldots,w_{n-1})\ge0$, let $C(w)_{ij}=w_{j-i\pmod n}$, and put $c_n=n!/n^n$. The sufficient inequality under investigation is
+
+\[
+\operatorname{per}(C(w))^2\ge c_n\operatorname{per}(C(w)C(w)^T).
+\tag{1}
+\]
+
+It is homogeneous, so numerical searches use $\sum_iw_i=1$.
+
+## 1. Fourier magnitudes alone do not determine the permanent
+
+The Gram matrix depends on the squared Fourier magnitudes of the weight vector. The permanent also depends on Fourier phases. Already in order three, take
+
+\[
+w=(4,1,1),\qquad v=(3,3,0).
+\]
+
+Both have cyclic autocorrelation $(18,9,9)$, so their circulants have the same Gram matrix. Nevertheless,
+
+\[
+\operatorname{per}C(w)=78,\qquad
+\operatorname{per}C(v)=54,\qquad
+\operatorname{per}(C(w)C(w)^T)=11664.
+\]
+
+These follow directly from
+
+\[
+\operatorname{per}C(a,b,c)=a^3+b^3+c^3+3abc.
+\]
+
+After normalization by six, $C(w)$ is symmetric positive semidefinite with nontrivial eigenvalues $1/2,1/2$. The nontrivial eigenvalues of $C(v)$ have the same magnitudes but phases $\pm\pi/3$. Thus replacing a circulant's Fourier eigenvalues by their absolute values can **increase** its permanent. The existing positive-semidefinite argument cannot be extended by simply removing Fourier phases.
+
+## 2. Why the transfer spectral gap cannot be uniform in support width
+
+At $J_n=\mathbf1\mathbf1^T/n$,
+
+\[
+\frac{\operatorname{per}(J_nJ_n^T)}{\operatorname{per}(J_n)^2}
+=\frac{n^n}{n!}.
+\]
+
+Its $n$-th root tends to $e$. Therefore an estimate
+
+\[
+\operatorname{per}(CC^T)\le b_n K^n\operatorname{per}(C)^2,
+\qquad b_n^{1/n}\longrightarrow1,
+\]
+
+cannot hold for every circulant with a fixed $K<e$. The three-shift proof uses a strict transfer growth gap below $e$; any extension to arbitrary support must allow this gap to close and must retain the sharp factorial-scale correction. This is an obstruction to that proof mechanism, not to (1).
+
+## 3. An exact coefficient reformulation, and failure of stable closure
+
+Define the product of linear forms
+
+\[
+p_C(x)=\prod_{i=0}^{n-1}(Cx)_i=\sum_{|\alpha|=n}p_\alpha x^\alpha.
+\]
+
+It is a homogeneous real-stable polynomial with nonnegative coefficients. The Cauchy–Binet formula for permanents gives
+
+\[
+F_C(x):=\operatorname{per}(C\operatorname{diag}(x)C^T)
+=\sum_{|\alpha|=n}\alpha!\,p_\alpha^2x^\alpha.
+\tag{2}
+\]
+
+In particular,
+
+\[
+F_C(\mathbf1)=\operatorname{per}(CC^T),\qquad
+[x_0\cdots x_{n-1}]F_C=\operatorname{per}(C)^2.
+\tag{3}
+\]
+
+For a circulant, $F_C$ is invariant under cyclic permutations of its variables. Homogeneity and this transitive symmetry imply that the distribution obtained by normalizing its coefficients has mean exponent one in every variable. Weighted AM–GM therefore gives
+
+\[
+F_C(x)\ge F_C(\mathbf1)\prod_jx_j\quad(x_j>0),
+\qquad \operatorname{cap}(F_C)=F_C(\mathbf1).
+\tag{4}
+\]
+
+Consequently (1) is exactly a van der Waerden coefficient bound for the special polynomials (2). This is a useful all-order reformulation. However, $F_C$ need not be stable or Lorentzian, so the standard stable-polynomial coefficient theorem does not apply to it.
+
+### Exact counterexample to stability and Lorentzian closure
+
+Let $C=I+P_4$, with the cyclic orientation chosen so that
+
+\[
+p_C(x)=(x_0+x_1)(x_1+x_2)(x_2+x_3)(x_3+x_0).
+\]
+
+Expanding (2) gives
+
+\[
+\partial_{x_0}^2F_C
+=4\bigl(x_1x_2+x_1x_3+2x_2^2+x_2x_3\bigr).
+\tag{5}
+\]
+
+At $x_1=x_3=1,x_2=t$, the right side is $4(2t^2+2t+1)$, with nonreal roots $(-1\pm i)/2$. A real-stable polynomial remains stable or zero under differentiation and real specialization; (5) disproves real stability. The nonzero Hessian block, in variables $x_1,x_2,x_3$, is
+
+\[
+\begin{pmatrix}
+0&4&4\\
+4&16&4\\
+4&4&0
+\end{pmatrix},
+\]
+
+whose eigenvalues are $-4,10-2\sqrt{17},10+2\sqrt{17}$. There are two positive eigenvalues, violating the necessary quadratic condition for Lorentzian polynomials.
+
+This does not refute the special coefficient inequality (1); it rules out a convenient but false closure assertion.
+
+## 4. The ratio need not improve monotonically under mixing with $J_n$
+
+Let $A=(I+P_3)/2$, and $A_t=(1-t)J_3+tA$. Direct expansion gives
+
+\[
+p(t):=\operatorname{per}(A_t)
+=\frac29+\frac{t^2}{12}-\frac{t^3}{18},
+\]
+
+\[
+q(t):=\operatorname{per}(A_tA_t^T)
+=\frac29+\frac{t^4}{48}+\frac{t^6}{144}.
+\]
+
+At $t=1$, $p=q=1/4$, $p'=0$, and $q'=1/8$, so
+
+\[
+\left.\frac{d}{dt}\log\frac{p(t)^2}{q(t)}\right|_{t=1}=-\frac12.
+\]
+
+Thus the desired ratio is not monotonically increasing along every ray from $J_n$. A proof based on such monotonicity would fail even in order three. Here $A_t^2$ is a permutation translate of $A_tA_t^T$, so the same example also defeats the corresponding monotonicity argument for the original Gyires ratio.
+
+## 5. Mixed nested-gap coefficient extraction does not preserve stability
+
+A weaker possible route would be a mixed van der Waerden inequality for nested sums of disjoint permutation matrices. One might first extract a prescribed coefficient in the gap variables, and then apply a capacity bound in the column variables. The extracted polynomial need not remain stable.
+
+In order four let
+
+\[
+R_0=I+P+P^2+P^3,\quad R_1=P+P^2+P^3,
+\quad R_2=P^2+P^3,\quad R_3=P^3,
+\]
+
+and set
+
+\[
+f(y)=[z_0z_1z_2z_3]
+\prod_{i=0}^3\left(\sum_{j=0}^3\sum_{r=0}^3z_r(R_r)_{ij}y_j\right).
+\]
+
+An exact expansion gives the Hessian of the quadratic $\partial_{y_0}^2f$:
+
+\[
+H=\begin{pmatrix}
+24&36&48&48\\
+36&48&56&56\\
+48&56&56&60\\
+48&56&60&48
+\end{pmatrix}.
+\]
+
+The leading $3\times3$ principal block has determinant $-384$, positive trace, and two positive eigenvalues. More explicitly, on the real specialization
+
+\[
+y_3=0,\qquad (y_0,y_1,y_2)=(-30+t,38+t,-13+t),
+\]
+
+the quadratic becomes $204(1+t^2)$. This disproves stability. The exact coefficient computation is implemented in `round3_nested_capacity_probe.py`.
+
+The failure concerns the proposed closure step. It is not a negative coefficient in the original sorted-gap defect; the all-order positivity of that defect remains unproved and unrefuted here.
+
+## 6. All-support and fixed-Gram numerical searches
+
+`round3_circ_search.py` minimizes
+
+\[
+R(w)=\frac{\operatorname{per}(C(w))^2}
+{c_n\operatorname{per}(C(w)C(w)^T)}.
+\]
+
+It uses the positive subset-DP permanent and gradient implementation in `permanent_numeric.so`, through `ratio_search.py`. Searches are floating-point local optimizations, not global certificates.
+
+### Full simplex searches
+
+There were 40 starts in each order $8,10,12,14,16$. Starts included several Dirichlet concentrations, sparse random supports with nonuniform weights, uniform weights on random supports, and dense perturbations. SLSQP used analytic gradients, the constraints $w\ge0,\sum w=1$, and an iteration limit of 300.
+
+| Order | Starts | Optimizer success reports | Smallest observed ratio |
+|---:|---:|---:|---:|
+| 8 | 40 | 40 | $1-3.6\times10^{-15}$ |
+| 10 | 40 | 40 | $1+7.1\times10^{-15}$ |
+| 12 | 40 | 40 | $1+3.6\times10^{-15}$ |
+| 14 | 40 | 39 | $1-7.1\times10^{-15}$ |
+| 16 | 40 | 38 | $1$ |
+
+The deviations below one are floating-point rounding at near-uniform weights. No candidate counterexample was found. Results and initial/final weights are saved as `round3_circ_full_n*.json`.
+
+### Fixed-Gram Fourier-phase searches
+
+These keep all Fourier magnitudes fixed, and also keep the real Nyquist eigenvalue fixed in even order. Conjugate Fourier phases vary subject to the inverse Fourier weights being nonnegative. The Gram permanent is therefore constant on each exact feasible search surface. There were 30 starts in each order.
+
+| Order | Starts | Optimizer success reports | Smallest feasible observed ratio | Smallest ratio among reported successful solves |
+|---:|---:|---:|---:|---:|
+| 8 | 30 | 26 | 1.000000 | 1.000000 |
+| 10 | 30 | 27 | 1.120158 | 1.120158 |
+| 12 | 30 | 25 | 1.312790 | 1.312790 |
+| 14 | 30 | 22 | 1.096436 | 1.096436 |
+| 16 | 30 | 16 | 1.300263 | 2.533075 |
+
+The feasibility cutoff was a minimum weight of at least $-10^{-7}$; tiny negative weights were clipped only for the final ratio evaluation. Gram errors for the unmodified reconstructed weights were below $1.1\times10^{-14}$. Several constrained phase runs did not converge, particularly near sparse boundary points. No candidate counterexample was found. Full records, including these limitations, are in `round3_circ_phase_n*.json`.
+
+## 7. Remaining structural frontier
+
+The exact reformulation (2)–(4) asks for a central-coefficient lower bound for a special factorial-weighted coefficient square of a balanced product of linear forms. It has more structure than an arbitrary cyclic polynomial, but less stability than a product of linear forms. A full proof needs an inequality that uses this intermediate structure directly.
+
+The sorted-gap route also remains viable as a conjectured mechanism, but neither the arbitrary-Birkhoff version nor the mixed-coefficient stability shortcut is valid. The finite evidence from earlier rounds cannot establish the all-order statement.
+
+An alternative under investigation is adaptive variable deletion of the original stable polynomial, followed by capacity balancing. For circulant products, all deleted polynomials are cyclic relabelings, so the putative existence of a good deletion becomes a single inequality. The next sections give exact identities and limited additional evidence for that route.
+
+## 8. Adaptive deletion: an exact permanent-gradient identity
+
+For a homogeneous degree-$n$ polynomial $p=\sum p_\alpha x^\alpha$, define its squared Fischer norm
+
+\[
+N(p)=\sum_\alpha \alpha!p_\alpha^2.
+\]
+
+Let $q_j=[x_j]p$, where the coefficient is regarded as a polynomial in the other $n-1$ variables. Let positive diagonal $D_j$ balance the capacity of $q_j$, and put
+
+\[
+H_j=\frac{N(q_j(D_jx))}{(\prod_k(D_j)_{kk})^2},
+\qquad g(n)=\left(\frac{n-1}{n}\right)^{n-1}.
+\]
+
+The proposed, **unproved** general deletion lemma is
+
+\[
+\max_j H_j\ge g(n)N(p)
+\tag{6}
+\]
+
+for every balanced homogeneous real-stable polynomial of degree $n$ in $n$ variables. It would support induction because $c_n=g(n)c_{n-1}$, and a positive diagonal scaling does not change the central coefficient after division by its determinant. For a circulant product $p_C$, all $H_j$ are equal by cyclic relabeling.
+
+For a matrix product $p_A=\prod_i(Ax)_i$, (6) can be tested without storing its exponentially many monomial coefficients. Fix $j$, write
+
+\[
+a=A[:,j],\qquad B=A[:,\{0,\ldots,n-1\}\setminus\{j\}]D_j,
+\qquad G=BB^T.
+\]
+
+Differentiating the product gives
+
+\[
+q_j(D_jx)=\sum_i a_i\prod_{r\ne i}(Bx)_r.
+\]
+
+The Fischer inner product of the products indexed by $i,k$ is the permanent of $G$ with row $i$ and column $k$ deleted. Consequently,
+
+\[
+H_j=\frac{a^T\bigl(\nabla\operatorname{per}(G)\bigr)a}{(\det D_j)^2}.
+\tag{7}
+\]
+
+Here the gradient is the entrywise matrix derivative. Identity (7) is exact. The capacity optimization also has a compact expression: with $L_i(x)=\sum_{k\ne j}a_{ik}x_k$,
+
+\[
+q_j(x)=\left(\prod_iL_i(x)\right)\left(\sum_i\frac{a_{ij}}{L_i(x)}\right).
+\tag{8}
+\]
+
+`round3_circ_deletion_fast.py` uses (7) and (8), Newton balancing in logarithmic coordinates, and the existing permanent-gradient DP. Against the independent coefficient-array implementation in `round3_deletion_circulant_search.py`, 30 random cases in orders three through seven agreed to within $10^{-14}$.
+
+The stored additional optimization records contain 30 starts in order eight, 30 in order ten, 20 in order twelve, nine in order fourteen, and six in order sixteen. All 95 reported optimizer success. Every observed $H/(g(n)N(p))$ was at least one up to numerical precision; the smallest values were attained near uniform weights. Capacity-gradient residuals were below $2.8\times10^{-12}$. This is numerical evidence only. The underlying general deletion lemma remains unproved.
+
+## 9. Exact behavior of deletion on a two-shift cycle
+
+This section establishes the proposed deletion inequality on a family already known to satisfy the permanent inequality. Its purpose is to describe how balancing and deletion interact, not to claim a solution of the general problem.
+
+Take
+
+\[
+p_n(x)=\prod_{i\bmod n}(a x_i+b x_{i+1}),\qquad a,b\ge0.
+\]
+
+Deleting one variable joins its adjacent factors:
+
+\[
+q_j=(a^2x_{j-1}+b^2x_{j+1})
+\prod_{i\notin\{j-1,j\}}(a x_i+b x_{i+1}).
+\tag{9}
+\]
+
+For $a,b>0$, diagonal balancing turns (9), after division by the product of diagonal entries, into the length-$n-1$ cycle product with weights
+
+\[
+a'=a^{n/(n-1)},\qquad b'=b^{n/(n-1)}.
+\tag{10}
+\]
+
+To verify this, view (9) as a cycle of $n-1$ two-term forms with coefficient pairs $\alpha_i,\beta_i$. Their products are $a^n,b^n$. Choose variable scales so that every transformed ratio of coefficients is $a'/b'$; this is possible because the product of the required ratios is one. The product of row multipliers is exactly the product of variable scales. The resulting circulant product is balanced, and therefore realizes the capacity minimum.
+
+Let $N_n(a,b)=N(p_n)$. With $d=a^2+b^2$, let $\lambda,\mu$ be the roots of $z^2-dz-a^2b^2=0$. The cyclic tridiagonal permanent formula gives
+
+\[
+N_n(a,b)=2(ab)^n+\lambda^n+\mu^n.
+\tag{11}
+\]
+
+At $n=1$, this reads $2ab+\lambda+\mu=(a+b)^2$, which also agrees with the coincident-shift one-dimensional matrix.
+
+Thus (10) gives the exact identity
+
+\[
+H_j=N_{n-1}\bigl(a^{n/(n-1)},b^{n/(n-1)}\bigr).
+\tag{12}
+\]
+
+One can prove from (11) that
+
+\[
+H_j\ge(\sqrt2-1)N_n(a,b)\quad(n\ge2).
+\tag{13}
+\]
+
+By homogeneity assume $ab=1$ and put $t=\log(a/b)$. Define
+
+\[
+\phi(t)=\operatorname{arsinh}(\cosh t),\qquad
+h=\phi(0)=\log(1+\sqrt2).
+\]
+
+Then
+
+\[
+\phi''(t)=\frac{2\cosh t}{(1+\cosh^2t)^{3/2}}>0,
+\]
+
+so with $u=n\phi(t)$ and $v=(n-1)\phi(nt/(n-1))$, convexity yields $v\ge u-h$. Write $r=e^{-h}=\sqrt2-1$. Formula (11) becomes $N_n=2+e^u+(-1)^ne^{-u}$, and its analog for (12) has exponent $v$ and the opposite parity. These expressions increase with their nonnegative exponent. If $n$ is odd,
+
+\[
+\bigl(2+e^{u-h}+e^{-u+h}\bigr)
+-r\bigl(2+e^u-e^{-u}\bigr)
+=2(1-r)+e^{-u}(r+r^{-1})>0.
+\]
+
+If $n$ is even, the corresponding difference is
+
+\[
+2(1-r)-e^{-u}(r+r^{-1})
+=(r+r^{-1})(r-e^{-u})\ge0,
+\]
+
+because $u\ge h$. This proves (13), with zero weights handled by continuity.
+
+Since $g(n)$ decreases with $n$, and $g(5)=256/625<\sqrt2-1$, (13) proves (6) for this family in every order $n\ge5$. The small orders follow directly:
+
+- For $n=2$, $H=(a^2+b^2)^2\ge\tfrac12((a^2+b^2)^2+4a^2b^2)=g(2)N_2$.
+- For $n=3$, after division by $a^3b^3$, $9H-4N_3$ equals $5z^3-39z+46$, where $z=a/b+b/a\ge2$. Its derivative is positive for $z\ge2$, and its value at two is eight.
+- For $n=4$, with $ab=1$, set $x=\cosh(2t/3)=1+y$, $y\ge0$. The difference $64H-27N_4$ is
+  \[
+  52+1848y+11892y^2+31424y^3+31968y^4+14208y^5+2368y^6,
+  \]
+  which is positive.
+
+Accordingly the capacity-balanced deletion inequality is proved on every two-shift cycle. No analogous closure under deletion has been established for three or more arbitrary shifts: the deletion becomes a sum of products, and does not generally remain a single circulant product.

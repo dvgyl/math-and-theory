@@ -1,0 +1,212 @@
+# A sharp analytic bound for the Gram transfer blocks
+
+This lemma was derived independently in two calculations during the second attempt. It removes the need for numerical spectral estimates or a subdivided Bernstein certificate in the all-order consecutive-three-shift argument. The remaining finitely many permanent inequalities are separate from this lemma.
+
+Let
+
+\[
+\kappa=1+\sqrt2,\qquad \kappa^2=2\kappa+1.
+\]
+
+For nonnegative \(a,b,c\), set
+
+\[
+d=a^2+b^2+c^2,\qquad e=b(a+c),\qquad f=ac,
+\]
+
+and define
+
+\[
+T_1(d,e,f)=
+\begin{pmatrix}
+e&d&e&f\\
+f&0&0&0\\
+0&f&0&0\\
+0&0&f&0
+\end{pmatrix},
+\]
+
+\[
+T_2(d,e,f)=
+\begin{pmatrix}
+d&e&0&f&0&0\\
+e&0&e&0&f&0\\
+f&0&0&0&0&0\\
+0&e&d&0&0&f\\
+0&f&0&0&0&0\\
+0&0&f&0&0&0
+\end{pmatrix}.
+\]
+
+Let
+
+\[
+\lambda=\frac{b+\sqrt{b^2+4ac}}2,
+\qquad m=\max\{a,c,\lambda\}.
+\]
+
+**Lemma.** If \(m>0\), then
+
+\[
+\rho(T_1(d,e,f))\le\kappa m^2,
+\qquad
+\rho(T_2(d,e,f))\le\kappa m^2.
+\]
+
+The constant \(\kappa\) cannot be decreased in the second bound uniformly in \(a,b,c\).
+
+## 1. Reduction to one variable
+
+By homogeneity, divide \(a,b,c\) by \(m\). It suffices to treat \(m=1\). Then \(0\le a,c\le1\) and \(\lambda\le1\). Since \(\lambda\) is the nonnegative root of \(x^2-bx-ac\), this implies
+
+\[
+b+ac\le1.
+\]
+
+Both transfer blocks increase entrywise when \(d\), \(e\), or \(f\) increases. Raising \(b\) to \(1-ac\) increases \(d\) and \(e\), leaving \(f\) fixed. It is therefore enough to consider \(b=1-ac\).
+
+Put \(u=ac\in[0,1]\). Since
+
+\[
+(1-a)(1-c)\ge0,
+\qquad a+c\le1+u,
+\]
+
+we have
+
+\[
+\begin{aligned}
+d&=(a+c)^2-2u+(1-u)^2\le2-2u+2u^2=:D(u),\\
+e&=(1-u)(a+c)\le1-u^2=:E(u),\\
+f&=u.
+\end{aligned}
+\]
+
+Monotonicity of the spectral radius for nonnegative matrices reduces the proof to
+
+\[
+T_j(D(u),E(u),u),\qquad0\le u\le1.
+\]
+
+Notice \(D(u)\le2\), \(E(u)\le1\).
+
+## 2. The four-dimensional block
+
+Use the strictly positive vector
+
+\[
+w=(1,\kappa^{-1},\kappa^{-2},\kappa^{-3})^T.
+\]
+
+The last three coordinates of \(T_1w\) are at most the corresponding coordinates of \(\kappa w\), because \(0\le u\le1\). Its first coordinate is at most
+
+\[
+1+\frac2\kappa+\frac1{\kappa^2}+\frac1{\kappa^3}
+=\frac5\kappa<\kappa.
+\]
+
+The identity follows from \(\kappa^2=2\kappa+1\), and the strict inequality from \(\kappa^2>5\). Thus \(T_1w\le\kappa w\), so \(\rho(T_1)\le\kappa\).
+
+## 3. The six-dimensional block
+
+For \(0<u<1\), abbreviate \(D=D(u)\), \(E=E(u)\), and choose the strictly positive vector
+
+\[
+\begin{aligned}
+v_1&=1,&
+v_2&=\frac{E}{\kappa-u},&
+v_3&=\frac{u}{\kappa},\\
+v_4&=\frac{E^2}{\kappa(\kappa-u)}
+       +\frac{Du}{\kappa^2}+\frac{u^3}{\kappa^3},&
+v_5&=\frac{uE}{\kappa(\kappa-u)},&
+v_6&=\frac{u^2}{\kappa^2}.
+\end{aligned}
+\]
+
+Direct substitution gives
+
+\[
+(T_2v)_i=\kappa v_i\qquad(i=2,3,4,5,6).
+\]
+
+For example, the second row uses
+
+\[
+E\left(1+\frac u\kappa\right)
++\frac{u^2E}{\kappa(\kappa-u)}
+=\frac{\kappa E}{\kappa-u}.
+\]
+
+The first-row residual is
+
+\[
+\kappa v_1-(T_2v)_1
+=\kappa-D\left(1+\frac{u^2}{\kappa^2}\right)
+-\frac{E^2(\kappa+u)}{\kappa(\kappa-u)}
+-\frac{u^4}{\kappa^3}
+=\frac{P(u)}{\kappa^3(\kappa-u)},
+\]
+
+where
+
+\[
+\begin{aligned}
+P(u)={}&\kappa^4(\kappa-u)
+-D\kappa(\kappa-u)(\kappa^2+u^2)\\
+&-E^2\kappa^2(\kappa+u)-u^4(\kappa-u).
+\end{aligned}
+\]
+
+Expanding and using \(\kappa^2=2\kappa+1\) yields the exact factorization
+
+\[
+P(u)=u(1-u)
+\left[(20\kappa+8)-(8\kappa+4)u+(12\kappa+4)u^2\right].
+\]
+
+The bracket has the explicitly positive decomposition
+
+\[
+(12\kappa+4)+(8\kappa+4)(1-u)+(12\kappa+4)u^2.
+\]
+
+Thus \(P(u)>0\) on \(0<u<1\). We have \(T_2v\le\kappa v\), so \(\rho(T_2)\le\kappa\). Continuity of the spectral radius extends this bound to \(u=0,1\). This use of continuity avoids requiring the displayed vector to remain strictly positive at the endpoints.
+
+At \(u=0\), \(D=2\), \(E=1\), and the first two coordinates contain the block
+
+\[
+\begin{pmatrix}2&1\\1&0\end{pmatrix},
+\]
+
+whose positive eigenvalue is \(\kappa\); all remaining eigenvalues of \(T_2(D,E,0)\) are zero. Hence equality is attained in the spectral-radius bound. This endpoint corresponds to \((a,b,c)=(1,1,0)\), for which \(m=1\).
+
+Rescaling by \(m\) multiplies every transfer-matrix entry by \(m^2\), proving the lemma. \(\square\)
+
+## 4. How the lemma supplies the all-order tail
+
+For \(C_n=aP_n^{-1}+bI_n+cP_n\), the Gram transfer matrix has two scalar blocks \(f\), two four-dimensional blocks with the same spectral radius as \(T_1\), and the six-dimensional block \(T_2\). Consequently, once the transfer trace identity is established,
+
+\[
+\operatorname{per}(C_nC_n^T)
+\le2m^{2n}+14\kappa^nm^{2n}
+\le16\kappa^nm^{2n}.
+\]
+
+Here \(|\operatorname{tr}(T^n)|\le\dim(T)\rho(T)^n\), which follows by summing the \(n\)-th powers of the eigenvalues. The permanent is nonnegative.
+
+The exact one-cycle permanent formula supplies \(\operatorname{per}(C_n)\ge m^n\). Indeed, if \(\mu=ac/\lambda\) when \(\lambda>0\), that formula is
+
+\[
+\operatorname{per}(C_n)=a^n+c^n+\lambda^n+(-\mu)^n.
+\]
+
+If \(m=a\) or \(m=c\), the all-one-direction permutation already gives \(\operatorname{per}(C_n)\ge m^n\). If \(m=\lambda\), then \(\mu\le\min\{a,c\}\). For even \(n\) every displayed term is nonnegative; for odd \(n\), \(a^n+c^n\ge\mu^n\), so the same bound follows. Degenerate cases with \(\lambda=0\) are handled directly or by continuity.
+
+Therefore
+
+\[
+\frac{c_n\operatorname{per}(C_nC_n^T)}{\operatorname{per}(C_n)^2}
+\le16c_n\kappa^n.
+\]
+
+Any exact threshold beyond which \(16c_n\kappa^n<1\), combined with exact certificates for the finitely many smaller orders, closes this family in every order. The threshold check and finite certificates are separate parts of the full proof and must both be included.

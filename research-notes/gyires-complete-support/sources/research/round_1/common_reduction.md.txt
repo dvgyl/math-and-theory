@@ -1,0 +1,50 @@
+# Permanent Gram comparison and the reduction to Gyires
+
+This note supplies the elementary common reduction used throughout the package. It is the same mathematical identity used in the existing order-five manuscript; it is not a new result.
+
+For a real n-by-n matrix M, define coefficients m_alpha by
+
+\[
+\prod_{i=1}^n\left(\sum_j M_{ij}x_j\right)=\sum_{|\alpha|=n}m_\alpha x^\alpha,
+\qquad \alpha!=\prod_j\alpha_j!.
+\]
+
+For a second matrix N, define n_alpha in the same way. Expanding the permanent and grouping maps with common occupancy vectors gives
+
+\[
+\operatorname{per}(MN^T)=\sum_\alpha \alpha!m_\alpha n_\alpha.
+\]
+
+For any two maps from the n row labels to column labels with the same occupancy alpha, exactly alpha! row permutations carry one map to the other. This explains the multiplicity in the expansion.
+
+Ordinary Cauchy–Schwarz therefore gives
+
+\[
+|\operatorname{per}(MN^T)|^2
+\le\operatorname{per}(MM^T)\operatorname{per}(NN^T).
+\]
+
+Set M=A, N=A^T. With p=per(A), g_L=per(AA^T), g_R=per(A^TA), and q=per(A^2),
+
+\[
+2q\le g_L+g_R.
+\]
+
+If for some delta>=0 both strong margins satisfy
+
+\[
+p^2-c_ng_L\ge\delta,\qquad p^2-c_ng_R\ge\delta,
+\]
+
+then
+
+\[
+G(A)=4p^2-c_n(g_L+g_R+2q)
+\ge4p^2-2c_n(g_L+g_R)\ge4\delta.
+\]
+
+In particular, a strictly positive strong margin away from J_n proves the equality clause of Gyires on that family.
+
+Circulants are normal, so g_L=g_R and q<=g_L. Their single strong inequality therefore suffices. A nonnegative circulant with a nonzero weight has positive permanent: the corresponding cyclic permutation contributes that weight to the nth power. Scaling its common row sum to one gives a doubly stochastic matrix. At constant weights the strong and Gyires defects vanish directly; among doubly stochastic matrices this is exactly J_n.
+
+The original conjecture's denominator is positive for doubly stochastic A. For example, van der Waerden's theorem applies to each of AA^T, A^TA and A^2, all of which are doubly stochastic. The polynomial form and ratio form are therefore equivalent on this domain.

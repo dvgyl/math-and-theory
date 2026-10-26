@@ -1,0 +1,263 @@
+# Round 6: stochastic-complement induction and exact obstructions
+
+## Status
+
+This investigation does not complete the strong Gram inequality or original Gyires. It examines a candidate induction that stays within doubly stochastic matrices. The unrestricted best-pivot comparison remains unproved and unrefuted here. Two plausible restrictions of that comparison, and two natural averaged versions, are disproved exactly below.
+
+This is a mathematical derivation with exact rational checks, not a Lean proof, human peer review, or a claim of novelty.
+
+## 1. A valid conditional induction
+
+For a doubly stochastic matrix $A$ of order $n$, put
+
+\[
+R(A)=\frac{\operatorname{per}(A)^2}{\operatorname{per}(AA^T)},
+\qquad c_n=\frac{n!}{n^n},
+\qquad g_n=\left(\frac{n-1}{n}\right)^{n-1}.
+\]
+
+The strong target is $R(A)\ge c_n$, and $c_n=g_n c_{n-1}$.
+
+For a pivot $(i,j)$ with $a_{ij}<1$, define the $(n-1)\times(n-1)$ stochastic complement
+
+\[
+B^{ij}_{kl}=a_{kl}+\frac{a_{kj}a_{il}}{1-a_{ij}},
+\qquad k\ne i,\ l\ne j.
+\tag{1}
+\]
+
+Every entry is nonnegative. Its row sums are
+
+\[
+\sum_{l\ne j}B^{ij}_{kl}
+=1-a_{kj}+a_{kj}\frac{1-a_{ij}}{1-a_{ij}}=1,
+\]
+
+and its column sums are one by the analogous calculation. Thus $B^{ij}$ is doubly stochastic.
+
+The following is an explicit **unproved** sufficient lemma:
+
+\[
+\boxed{\quad
+\text{For some admissible pivot }(i,j),\qquad
+R(A)\ge g_nR(B^{ij}).
+\quad}
+\tag{2}
+\]
+
+If (2) held in every order, the induction hypothesis $R(B^{ij})\ge c_{n-1}$ would imply $R(A)\ge c_n$. This is a genuine induction within the original matrix class; no stability or product-closure issue intervenes. It still requires proof of (2).
+
+Write
+
+\[
+Q_{ij}(A)=\frac{g_nR(B^{ij})}{R(A)}.
+\]
+
+Then (2) asks for $\min Q_{ij}\le1$. It does not demand that every pivot work, or that a pivot belong to a prescribed support class.
+
+## 2. A symmetric star family
+
+For $n=m+1\ge3$, let
+
+\[
+S_n=\frac1m
+\begin{pmatrix}
+0&1&1&\cdots&1\\
+1&m-1&0&\cdots&0\\
+1&0&m-1&\cdots&0\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+1&0&0&\cdots&m-1
+\end{pmatrix}.
+\tag{3}
+\]
+
+This matrix is symmetric and doubly stochastic. Its nonzero entries are the center-to-leaf and leaf-to-center entries $1/m$, and the leaf diagonal entries $(m-1)/m$.
+
+A contributing permutation must interchange the center with exactly one leaf and fix all other leaves. The $m$ contributing permutations have equal weight. Hence
+
+\[
+\operatorname{per}(S_n)
+=m\left(\frac1m\right)^2
+\left(\frac{m-1}{m}\right)^{m-1}
+=\frac{(m-1)^{m-1}}{m^m}.
+\tag{4}
+\]
+
+The matching marginal of an entry is
+
+\[
+\pi_{ij}=
+\frac{a_{ij}\operatorname{per}(A_{\widehat i,\widehat j})}
+{\operatorname{per}(A)}.
+\]
+
+For (3), a center edge occurs in one of the $m$ equal-weight matchings, while a leaf diagonal occurs in $m-1$ of them. Therefore
+
+\[
+\pi_{ij}=a_{ij}.
+\tag{5}
+\]
+
+### All positive pivots give the same complement
+
+There are two types of positive pivot: a center edge, or a leaf diagonal. In both cases the complement (1), after grouping its remaining indices, is
+
+\[
+T_m=\frac1m
+\begin{pmatrix}
+1&1&1&\cdots&1\\
+1&m-1&0&\cdots&0\\
+1&0&m-1&\cdots&0\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+1&0&0&\cdots&m-1
+\end{pmatrix}
+\quad\text{of order }m.
+\tag{6}
+\]
+
+For a leaf diagonal pivot, $1-a_{ij}=1/m$, and the rank-one update puts $1/m$ in the center diagonal. For a center edge pivot, the affected leaf row becomes the uniform row; its remaining center column entries are also $1/m$. This gives the same matrix (6). The transpose orientation gives the same conclusion by symmetry.
+
+## 3. Order six refutes all positive-pivot and averaged variants
+
+Take $n=6$, $m=5$. Exact permanent evaluation gives
+
+\[
+\operatorname{per}(S_6)=\frac{256}{3125},\qquad
+\operatorname{per}(S_6S_6^T)=\frac{3222392}{48828125},
+\]
+
+and therefore
+
+\[
+R(S_6)=\frac{40960}{402799}.
+\tag{7}
+\]
+
+For the common positive-pivot complement,
+
+\[
+\operatorname{per}(T_5)=\frac{512}{3125},\qquad
+\operatorname{per}(T_5T_5^T)=\frac{40856}{390625},
+\qquad
+R(T_5)=\frac{32768}{127675}.
+\]
+
+Consequently every positive pivot satisfies
+
+\[
+\boxed{\quad
+Q_{ij}(S_6)=\frac{10069975}{9928008}
+=1+\frac{141967}{9928008}>1.
+\quad}
+\tag{8}
+\]
+
+This refutes each of the following auxiliary claims:
+
+1. A pivot with $a_{ij}>0$ always suffices in (2).
+2. A pivot of maximum entry always suffices.
+3. The entry-weighted average obeys
+   $\frac1n\sum_{ij}a_{ij}Q_{ij}\le1$.
+4. The perfect-matching-marginal average obeys
+   $\frac1n\sum_{ij}\pi_{ij}Q_{ij}\le1$.
+
+Indeed all positive terms in the two averages have the identical value (8), and the weights in either average sum to one after division by $n$. Equality of the two weight systems also follows from (5).
+
+This does **not** refute (2). A zero pivot between two distinct leaves has
+
+\[
+Q_{12}(S_6)=\frac{53959742125}{81341812224}<1,
+\tag{9}
+\]
+
+whereas the center zero pivot has
+
+\[
+Q_{00}(S_6)=
+\frac{4412398635249631}{1254003292274688}>1.
+\]
+
+Nor is $S_6$ a counterexample to Gyires: (7) is strictly larger than $c_6=5/324$. Since $S_6$ is symmetric, the original and strong inequalities coincide on this matrix.
+
+## 4. Order three refutes restriction to zero pivots
+
+Conversely, one cannot insist that the pivot in (2) be a zero entry. For $S_3$,
+
+\[
+\operatorname{per}(S_3)=\operatorname{per}(S_3S_3^T)=\frac14,
+\qquad R(S_3)=\frac14.
+\]
+
+All its positive pivots have
+
+\[
+Q_{ij}(S_3)=\frac89<1,
+\]
+
+but all its zero pivots have
+
+\[
+\boxed{\quad Q_{ij}(S_3)=\frac{200}{153}>1.\quad}
+\tag{10}
+\]
+
+The zero-pivot complement is, up to relabeling,
+
+\[
+\begin{pmatrix}3/4&1/4\\1/4&3/4\end{pmatrix},
+\]
+
+whose ratio is $25/34$; multiplication by $g_3/R(S_3)=16/9$ gives (10).
+
+Together, (8) and (10) show that a valid proof of the best-pivot induction must choose among both positive and zero pivots. The sign of the pivot entry alone cannot identify a useful contraction.
+
+## 5. Relation to the boundary reduction
+
+The direct row-pair theorem from `round5_matrix_boundary.md` remains valid: a global maximizer of
+
+\[
+F(A)=\sqrt{c_n}\sqrt{\operatorname{per}(AA^T)}-\operatorname{per}(A)
+\]
+
+has identical rows within each row-support class. In particular, an interior maximizer is $J_n$.
+
+That theorem cannot be extended by the same extrapolation to two rows with different supports. For such a pair, the symmetric interpolation between their mean plus/minus their difference has the original matrix already at its admissible endpoint whenever one row has a positive entry where the other has zero. There is no strict interior convexity contradiction. No further support-extremizer classification was proved in this round.
+
+The zero-pivot failure (10) also means that boundary reduction does not automatically make the stochastic-complement induction easier by letting one choose the known zero.
+
+## 6. Exact checks and exploratory work
+
+`round6_boundary_exact.py` is self-contained and uses only Python's standard library. It evaluates permanents by subset dynamic programming with `fractions.Fraction`, checks double stochasticity of every complement, verifies the matching marginals, and proves every rational value and strict comparison in Sections 3–4. Run:
+
+```bash
+python3 round6_boundary_exact.py
+```
+
+Its report is `round6_boundary_exact.json`. All assertions passed. The exact examples do not rely on floating-point optimization.
+
+The candidate in Section 3 was discovered by `round6_complement_optimization.py`, which uses analytic gradients and constrained numerical maximization. The gradient was compared with a finite-difference check on an interior order-three matrix (absolute discrepancy approximately $4.1\times10^{-8}$). The final feasible numerical candidate had constraint error below $2\times10^{-13}$ and reconstructed to the exact rational star matrix. The JSON retains all numerical runs, including their convergence flags.
+
+`round6_boundary_probe.py` records preliminary structured searches of several possible average inequalities. The preliminary successes of the entry-weighted and matching-weighted averages were superseded by the exact counterexample above. These preliminary passes must not be cited as supporting a universal averaged theorem.
+
+## 7. Separate convexity also reduces rank-two contraction
+
+The rank-two profile reduction in `round5_rank2.md` applies both to the squared strong target and to the stronger contraction. For clarity, write
+
+\[
+E(r,s)=\langle r,T_{\kappa(s)}r\rangle_B-\langle r,s\rangle_B.
+\]
+
+For fixed $s$, the first term is a positive quadratic form in $r$, so $E$ is convex in $r$. For fixed $r$, expand in the orthonormal binomial-noise eigenbasis. Mass and matching mean give
+
+\[
+\langle r,T_\kappa r\rangle_B
+=1+\sum_{k=2}^n a_k^2\kappa^k.
+\]
+
+On $\kappa\ge0$ this is convex. At a fixed mean, $\kappa(s)$ is affine in the law, while the cross term is linear. Thus $E$ is separately convex, and the same fixed-sum Bernoulli-pair extremizer argument reduces it to shifted-binomial pairs.
+
+Accordingly, an exact finite certificate covering every ordered shifted-binomial profile and every allowed real mean in certain orders proves contraction for every rank-two doubly stochastic matrix in those orders. A finite list of orders supplies no all-order conclusion without an additional argument uniform in the order and profile multiplicities.
+
+## Remaining status
+
+The unrestricted comparison (2), the full rank-two profile inequality, and the original unrestricted Gyires conjecture are not proved by this note. The exact counterexamples above identify invalid attempts to complete the proof; they do not fill the remaining gap.

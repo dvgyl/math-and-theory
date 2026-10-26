@@ -29,8 +29,8 @@
       "discipline": "Mathematics",
       "area": "Matrix theory",
       "title": "Gyires's permanent inequality for structured matrices",
-      "kind": "Verified order-five results and two all-order ordinary-proof arguments",
-      "summary": "This continuous preprint combines three structured cases of Gyires's permanent inequality. The order-five circulant theorem includes equality and a sharp sorted-gap bound with coefficient 484. Its principal claims have complete Lean proofs. The all-order permutation-polynomial argument covers A=aI+bQ+cQ² for any permutation matrix Q and nonnegative a,b,c. The all-order four-block argument covers doubly stochastic matrices with at most two row types and two column types, including unequal block sizes and zero entries. The two all-order arguments have incomplete Lean verification. The unrestricted conjecture remains outside these results.",
+      "kind": "Verified order-five claims and broader ordinary proofs in one continuous preprint",
+      "summary": "The preprint includes nonnegative circulants of orders five, six, and seven; all-order permutation polynomials aI+bQ+cQ²; all-order four-block matrices; one exceptional column or row; and all rank-at-most-two doubly stochastic matrices through order fifteen. It also gives completed structural, scalar, polynomial, deletion, balancing, local, and counting arguments. Exact counterexamples identify failed auxiliary assertions. Only the principal order-five claims have complete Lean proofs. The broader arguments have incomplete Lean verification. The unrestricted conjecture remains outside these results.",
       "source": "Gyires, 1978; Cheon and Wanless, 2005, Conjecture 20. Earlier formalization at the pinned Gyires repository.",
       "source_url": "https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448",
       "module": "MathAndTheory.Mathematics.GyiresCirculant5.Main",
@@ -51,7 +51,7 @@
         "MathAndTheory.GyiresCirculant5.strong_margin_sharp"
       ],
       "paper": "preprints/gyires-circulant-five/paper.pdf",
-      "formal_scope": "The selected statements cover order-five circulants only. The two all-order arguments have incomplete Lean verification."
+      "formal_scope": "The selected statements cover order-five circulants only. The broader arguments have incomplete Lean verification."
     },
     {
       "id": "domirank-entropy",
@@ -168,8 +168,18 @@
         }
       ],
       "comparator": null,
-      "zenodo": "Deferred pending further verification and novelty assessment",
+      "zenodo": "Included as supporting material for the unified Gyires preprint.",
       "paper": "preprints/gyires-circulant-five/paper.pdf"
+    },
+    {
+      "id": "gyires-complete-support",
+      "related_formal_family": "gyires-circulant-five",
+      "title": "Supporting records for the complete Gyires preprint",
+      "path": "research-notes/gyires-complete-support/README.md",
+      "status": "Ordinary proofs and exact certificates. Broader Lean verification, novelty assessment, and independent human expert review remain incomplete.",
+      "comparator": null,
+      "paper": "preprints/gyires-circulant-five/paper.pdf",
+      "zenodo": "Included as supporting material for the unified Gyires preprint."
     }
   ]
 }

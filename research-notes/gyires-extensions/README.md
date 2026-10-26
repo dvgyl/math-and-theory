@@ -1,3 +1,5 @@
+The expanded [continuous preprint](../../preprints/gyires-circulant-five/paper.pdf) now includes all completed arguments from the supplied Gyires materials. See the [complete supporting record](../gyires-complete-support/README.md). This directory preserves the earlier all-order source and certificate record.
+
 # Later Gyires results
 
 This research record contains two claimed results in arbitrary dimensions. Both have complete written arguments in the supplied research materials. Their Lean formalizations, novelty assessment, and independent human expert review remain incomplete. They are included with the earlier order-five result in the [continuous Gyires preprint](../../preprints/gyires-circulant-five/paper.pdf). They are outside the 21 selected Comparator statements.

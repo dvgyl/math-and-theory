@@ -1,0 +1,125 @@
+# Independent audit of the Round 5 scalar theorems
+
+Reviewer: the combinatorial agent, independently from the author of `round5_scalar.md`. This is an ordinary mathematical review by another AI agent. It is not human peer review or proof-assistant verification, and it makes no novelty claim.
+
+## Outcome
+
+I found no mathematical gap in `round5_scalar.md` Sections 2–8. In particular, the following claims are proved on their stated domains:
+
+1. Localization of a squared-likelihood norm, under an integer mean and a log-concave likelihood ratio, to geometric likelihood ratios on intervals.
+2. The squared-central bound for every finite strictly positive symmetric reference law.
+3. Its lift to balanced Lorentzian polynomials with two variable groups of equal size.
+4. The stronger central-peak bound for Poisson-binomial laws at every integer mean, including the stated equality cases.
+5. The duplication-to-Gram bridge for every mean-one ultra-log-concave law, and hence for the full one-special-variable Lorentzian family.
+6. Original Gyires, with the stated stronger margin and equality case, for doubly stochastic matrices with at most two row types and at most two column types.
+
+None of these statements proves the arbitrary multivariate norm inequality. The arbitrary integer-mean binomial reference problem for all ultra-log-concave laws remains open in this work when the reference is asymmetric and the mean is neither one nor its reflection.
+
+## 1. General localization
+
+The compactness argument is valid. For $u_m=1$, mean balance, and $P_k=B_ku_k/Z$, concavity of the interpolated $\log u$ gives
+
+\[
+D(P\Vert B)+\log Z=\mathbb E_P\log u\le0.
+\]
+
+Thus $Z\le1$ and $u_k\le B_k^{-1}$. The continuous multi-step log-concavity inequalities exclude internal zeros in a limit and prove closedness of the feasible set, including changes of support.
+
+At an active equality, the two-sided perturbation $u_k(1\pm\varepsilon h_k)$ preserves log-concavity when $h$ is affine across that triple: after cancellation the new gap is exactly $\varepsilon^2(h_k-h_{k-1})^2$ times the common positive coefficient factor. Strict inequalities persist for sufficiently small $\varepsilon$. If even one internal equality is inactive, the affine constraints leave dimension at least three before imposing the normalization and mean equations, so a nonzero feasible two-sided direction remains. A strictly convex quadratic objective must increase in at least one direction. Hence every maximizer is geometric on its support or a singleton at the prescribed mean.
+
+The proof works for any strictly positive reference and for any strictly convex quadratic objective, not only a diagonal squared norm. This last observation is used correctly in the duplication bridge.
+
+## 2. Symmetric-reference theorem
+
+The paired identity is exact. For a localized ratio $u_j=e^{sj}$ on $[-a,b]$ and $s>0$, balance forces $a>b$. The positive mean from the symmetric pairs equals the negative mean from the unpaired tail:
+
+\[
+\sum_{j=1}^b2jB_j\sinh(sj)
+=\sum_{j=b+1}^a jB_je^{-sj}.
+\]
+
+The squared-norm excess over the interval's reference mass is
+
+\[
+\sum_{j=1}^b4B_j\sinh^2(sj)
+-\sum_{j=b+1}^aB_j(1-e^{-2sj}).
+\]
+
+Strict increase of $\sinh(sx)/x$ gives the author's comparison with a strict sign because the unpaired tail is nonempty. Reflection handles negative $s$. At $s=0$, balance forces a symmetric interval, and only the full interval attains reference mass one. A nongeometric equality case would admit an improving two-sided perturbation. Therefore equality occurs exactly at the reference law itself.
+
+The statement correctly assumes $N\ge1$, so the singleton has mass $B_0<1$. The proof makes no hidden assumption that $B$ is log-concave.
+
+## 3. Polynomial lift and scope
+
+For $p=\sum a_kX^kY^{n-k}$ with group sizes $m,\ell$, the identities
+
+\[
+P_k=a_km^k\ell^{n-k},\qquad
+\frac{p_{\mathbf1}}{c_n}=\frac{P_m}{B_m},\qquad
+\frac{N(p)}{c_n}=\sum_k\frac{P_k^2}{B_k}
+\]
+
+follow by multinomial expansion. The Fock contribution at group degree $k$ is $k!(n-k)!a_k^2m^k\ell^{n-k}$. Balance is equivalent to mean $m$. Binary Lorentzianity is precisely interval support and log-concavity of $a_k/\binom nk$; nonnegative linear substitutions give the stated multivariate lift, and restriction back to a common group variable gives the converse.
+
+The equal-size group consequence is therefore valid. An exponential tilt of an asymmetric binomial reference changes the mean constraint, so the symmetric theorem does not prove the unequal-group Lorentzian case; the author's limitation is necessary and correct.
+
+## 4. Poisson-binomial central peak
+
+The finite-dimensional extremizer argument is sound. At fixed sum of two Bernoulli parameters, any linear expectation of the resulting law is affine in their product. If two unequal parameters are strictly inside $(0,1)$ at a global maximizer, that product is strictly inside its feasible interval. The affine objective must be constant there. Moving to the smaller feasible product preserves the objective, reaches a parameter endpoint, and strictly increases the sum of parameter squares, contradicting the selected tie-break. Thus a suitable maximizer has only zeros, ones, and equal fractional parameters.
+
+For the resulting translated binomial law $a+\operatorname{Bin}(b,r/b)$ with integer $r=m-a$, the two adjacent ratios are exactly
+
+\[
+\frac{P_{m+1}}{P_m}=\frac r{r+1},\qquad
+\frac{P_{m-1}}{P_m}=\frac{b-r}{b-r+1}.
+\]
+
+They imply the author's adjacent central inequalities for every Poisson-binomial law, by maximizing the corresponding linear objectives. Newton log-concavity of $P_k/B_k$ then makes the central ratio a global maximum. Averaging the pointwise bound proves the stronger norm bound.
+
+The equality argument also checks. A constant likelihood ratio on its support makes $P$ a restricted binomial law. If that interval has width $d\ge2$, Newton's inequalities for the actual degree $d$ after removing its initial power contradict the binomial coefficient ratios unless the interval is full. Width one cannot have integer mean with both masses positive. The only equality cases in the stronger bound are therefore the full binomial and the deterministic law at the mean. Only the full binomial is an equality case in the squared-central bound.
+
+## 5. Duplication bridge: independent constant check
+
+For $B=\operatorname{Bin}(n,1/n)$, put $q=(n-1)/n$ and $g=B_1=q^{n-1}$. Then $B_0=qg$ and $B_2=g/2$. Dividing by the squared central likelihood ratio transforms the proposed bridge into
+
+\[
+\Psi(u)=(1+q)\sum_k B_ku_k^2-q u_0u_2\le1.
+\]
+
+The only nondiagonal block of this quadratic form is positive definite exactly when
+
+\[
+2(1+q)^2g^2>q.
+\]
+
+The estimates $g>e^{-1}$ and $(1+q)^2/q\ge4$ imply a lower bound $8/e^2>1$ for the relevant ratio. Hence the form is strictly convex, and the localization argument applies without modification.
+
+On a geometric interval containing zero, one and two, $u_0u_2=1$; the previously proved mean-one norm theorem gives $\Psi\le1$. Every nondegenerate mean-one interval has exactly this form. On the singleton at one, $\Psi=(1+q)g<1$ since $g\le1/2$ and $q<1$. The earlier strictness and the two-sided perturbation exclude other equality cases.
+
+For the polynomial form, if $p=\sum a_kx_1^k(x_2+\cdots+x_n)^{n-k}$, then
+
+\[
+2^n[x_1^2\cdots x_n^2]p^2
+=2(2n-2)!(a_1^2+2a_0a_2).
+\]
+
+Substituting $P_k=a_k(n-1)^{n-k}$ and $N(p)=c_n\sum P_k^2/B_k$ yields exactly
+
+\[
+[x_1^2\cdots x_n^2]p^2
+\ge\frac{(2n)!}{2^n n!n^n}N(p).
+\]
+
+For a matrix product polynomial, multiplying this coefficient by $2^n$ indeed gives $\operatorname{per}(A\otimes E_2)$: the two copies of every column contribute the factor $(2!)^n$. Equality is the uniform power after probability normalization. These factors and the scope of the theorem are correct.
+
+## 6. Two row types and two column types: audit of the added Section 8
+
+The original-Gyires corollary added to `round5_scalar.md` also passes review. Two column types give a Poisson-binomial group-count law of integer mean equal to the first column-class size. The stronger central-peak norm theorem therefore yields $\operatorname{per}(AA^T)\le\operatorname{per}(A)$. Applying the same argument to the transpose when there are two row types yields the other Gram contraction. Permanent Cauchy–Schwarz is applied to the original matrix and gives $\operatorname{per}(A^2)\le\operatorname{per}(A)$, without assuming invariance of the square term under independent row and column relabeling.
+
+The four-block parametrization has the correct masses $h,r-h,s-h,n-r-s+h$, denominator factors, and range $\max(0,r+s-n)\le h\le\min(r,s)$. It includes zero blocks and arbitrary nonempty class sizes. Summing the contractions gives the stated margin $4d(d-c_n)$. If $d=c_n$, the pointwise likelihood bound and normalization force the binomial reference law, and uniqueness of the Bernoulli linear factors forces every entry of the matrix to be $1/n$. This verifies equality only at $J_n$.
+
+This family has at most two row types and at most two column types simultaneously. It is a proper subclass of rank-two matrices, as the theorem explicitly states.
+
+## Verification limits
+
+This audit rederived the key algebra, endpoint cases, and equality conditions. It relies on the already separately audited mean-one scalar theorem for the proper-truncation norm bound. No numerical optimizer or numerical sampling is used to justify any theorem reviewed here. No proof-assistant certificate has been produced.

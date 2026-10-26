@@ -1,0 +1,205 @@
+# Independent audit: order-three deletion certificate and proposed induction
+
+## Verdict
+
+The exact order-three average-deletion certificate is valid for products associated with nonnegative $3\times3$ matrices having a common row and column sum. In particular, it proves the stated average-deletion lemma for every doubly stochastic matrix of order three. The equality case is the uniform matrix.
+
+The proposed induction is logically valid **conditional on the deletion lemma for all balanced real-stable polynomials**, or for a suitably larger class closed under the operations used. The order-three certificate for matrix products alone does not supply that missing general lemma.
+
+## 1. Derivation of the certified polynomial
+
+Write
+
+\[
+p_A(x)=\prod_{i=1}^3(Ax)_i,\qquad
+b=[x_1x_2x_3]p_A=\operatorname{per}A.
+\]
+
+For each $j$, the deletion $q_j=[x_j]p_A$ is a binary quadratic
+
+\[
+q_j(x_k,x_\ell)=a_jx_k^2+b x_kx_\ell+c_jx_\ell^2.
+\]
+
+When $a_j,c_j>0$, choose diagonal scales with product one and with
+$a_jd_k^2=c_jd_\ell^2=\sqrt{a_jc_j}$. The scaled quadratic is balanced and realizes the capacity infimum, so its squared Fischer norm is
+
+\[
+H_j=2a_jc_j+b^2+2a_jc_j=b^2+4a_jc_j.
+\]
+
+If one of $a_j,c_j$ vanishes, this expression is the limit of the balanced norms. A finite balancing diagonal need not exist in that degenerate case. The final polynomial inequality extends to it by continuity.
+
+The permanent Cauchy–Binet identity gives
+
+\[
+N(p_A)=\operatorname{per}(AA^T).
+\]
+
+Since $g(3)=4/9$, the average-deletion statement
+$\frac13\sum_jH_j\ge g(3)N(p_A)$ is exactly
+
+\[
+3\sum_jH_j-4N(p_A)
+=9b^2+12\sum_ja_jc_j-4\operatorname{per}(AA^T)\ge0.
+\tag{A}
+\]
+
+These are the factors and coefficients implemented by the primary certificate. There is no missing factorial or factor of three.
+
+## 2. Birkhoff parametrization and chamber coverage
+
+List the six permutation matrices of order three as $P_0,\ldots,P_5$, with $P_0=I$, and write
+
+\[
+A=\sum_{r=0}^5t_rP_r,\qquad t_r\ge0.
+\]
+
+For a doubly stochastic matrix the weights can be chosen with sum one. The polynomial in (A) is homogeneous of degree six in the weights, so the coefficient calculation need not impose this normalization. It proves the inequality for every common row and column sum.
+
+Given an ordering $\pi$ of the six weights, set
+
+\[
+t_{\pi(r)}=z_0+\cdots+z_r,\qquad z_r\ge0.
+\]
+
+The 720 chambers cover the nonnegative orthant, including ties. A row permutation of $A$ leaves $p_A$ unchanged because it only reorders its linear factors. Its action on the six permutation matrices is transitive. Therefore whichever Birkhoff vertex has the smallest weight can be sent to $P_0$. This justifies the primary reduction to the 120 orderings with $\pi(0)=0$.
+
+The base-seven monomial encoding in the primary certificate is also safe: every total degree is at most six, so every individual exponent is at most six and additions never cause an exponent carry.
+
+## 3. Independent exact verification
+
+The independent audit uses a different route:
+
+- It builds the matrix directly in gap coordinates, without expanding in raw Birkhoff weights and without applying the primary triangular substitution.
+- It computes $N(p_A)$ directly as $\operatorname{per}(AA^T)$, rather than summing factorial-weighted squares of product-polynomial coefficients.
+- It obtains $a_j,c_j$ from the three possible choices of the unique row assigned to column $j$.
+- It uses base-eight exponent encoding and checks all 720 chambers without relying on the symmetry reduction.
+
+The program is round3_deletion_n3_independent_audit.py; its machine-readable report is round3_deletion_n3_independent_audit.json.
+
+All exact integer checks passed:
+
+| Audit item | Result |
+|---|---:|
+| Chambers checked | 720 |
+| Positive coefficient positions checked | 324,360 |
+| Smallest positive coefficient | 5 |
+| Primary chamber counts and minima matched | 120 of 120 |
+| Independent scalar integer point checks | 5,760 |
+
+The positive coefficient counts per chamber have the following histogram:
+
+| Number of positive coefficients | Number of chambers |
+|---:|---:|
+| 411 | 72 |
+| 452 | 72 |
+| 454 | 144 |
+| 455 | 144 |
+| 456 | 288 |
+
+The scalar checks evaluate the generated polynomial at nonnegative integer gap vectors and compare it with direct scalar permanents and the explicit binary-quadratic formula for $H_j$. They do not reuse the primary coefficient-norm expansion.
+
+These computations establish an exact computer-assisted certificate. They are not a Lean verification.
+
+## 4. Equality in the order-three certificate
+
+The independent audit also checks the coefficients of the pure powers $z_r^6$. In every chamber:
+
+- The coefficient of $z_0^6$ is zero.
+- The coefficients of $z_1^6,z_2^6,z_4^6,z_5^6$ are positive.
+- The coefficient of $z_3^6$ is positive in 648 chambers and zero in 72 chambers.
+- In each of those 72 chambers, the three permutation matrices in the tail sum to the all-ones matrix $E$.
+
+Since all coefficients are nonnegative, equality in (A) forces
+$z_1=z_2=z_4=z_5=0$. If $z_3$ is nonzero, its coefficient must vanish, and its tail is therefore $E$. The uniform baseline is $\sum_rP_r=2E$. In either case, $A$ is a scalar multiple of $E$.
+
+Conversely, a scalar multiple of $E$ gives equality directly. Thus equality in the average-deletion certificate holds exactly at $J_3$ among doubly stochastic matrices.
+
+## 5. Conditional induction: normalization and closure
+
+For a homogeneous degree-$n$ polynomial $p$ with nonnegative coefficients, call it balanced when
+
+\[
+\partial_ip(\mathbf1)=p(\mathbf1)\quad\text{for every }i.
+\]
+
+The coefficient distribution then has mean exponent one in each coordinate. Weighted AM–GM gives $\operatorname{cap}(p)=p(\mathbf1)$.
+
+Suppose the following lemma were proved for every $n\ge2$ and every balanced real-stable polynomial with strictly positive degree-$n$ coefficients:
+
+\[
+\max_j H_j\ge g(n)N(p),\qquad
+g(n)=\left(\frac{n-1}{n}\right)^{n-1}.
+\tag{B}
+\]
+
+For an index $j$ supplied by (B), put
+
+\[
+r(x)=\frac{q_j(D_jx)}{\det D_j},\qquad q_j=[x_j]p.
+\]
+
+Then:
+
+1. Differentiation followed by specialization $x_j=0$ preserves real stability, or gives zero. Here strict coefficient positivity prevents zero.
+2. $q_j$ has nonnegative coefficients, degree $n-1$, and $n-1$ variables.
+3. Positive diagonal scaling and positive scalar multiplication preserve stability and coefficient positivity.
+4. The capacity critical-point equations say that $r$ is balanced.
+5. The central coefficient of $r$ equals the central coefficient of $p$: diagonal scaling multiplies that coefficient by exactly $\det D_j$.
+6. $N(r)=H_j$ by definition.
+
+Therefore the inductive inequality in degree $n-1$ would give
+
+\[
+\bigl([x_1\cdots x_n]p\bigr)^2
+\ \ge c_{n-1}H_j
+\ \ge c_{n-1}g(n)N(p)
+\ =c_nN(p).
+\]
+
+No normalization to $p(\mathbf1)=1$ is necessary, since all these inequalities are homogeneous of degree two in the polynomial coefficients. If the lemma is instead stated with that normalization, divide by $p(\mathbf1)$ and restore the scalar afterward.
+
+The degree-one base case is equality. In degree two, a balanced binary quadratic has the form $a x^2+bxy+a y^2$. Real stability gives $b^2\ge4a^2$, and hence
+
+\[
+b^2\ge\frac12(b^2+4a^2)=c_2N(p).
+\]
+
+This also shows that the degree-three matrix-product certificate, together with the valid binary base case, independently implies the strong permanent inequality for all doubly stochastic matrices of order three.
+
+The important closure issue is the class of inputs. The polynomial $q_j$ is generally a sum of products, not a single product of nonnegative linear forms. A theorem about matrix products in degree three does not establish (B) for all stable polynomials in degree three, and therefore does not by itself enable the next induction step in degree four.
+
+## 6. Boundary cases can be handled without assuming finite balancing
+
+For strictly positive coefficients, capacity balancing exists. On the logarithmic gauge $\sum_i y_i=0$, the function
+
+\[
+\log q(e^y)-\sum_i y_i
+\]
+
+is coercive because $q$ contains every pure power with a positive coefficient. It therefore attains a minimum. The Hessian is a covariance matrix; with full monomial support it is positive definite on the gauge subspace. The balancing diagonal is unique up to common scalar multiplication, which does not change $H_j$.
+
+For a general nonnegative balanced real-stable polynomial, a clean approximation is
+
+\[
+p_\varepsilon(x)=p(M_\varepsilon x),\qquad
+M_\varepsilon=(1-\varepsilon)I+\varepsilon J_n,\quad 0<\varepsilon<1.
+\]
+
+This approximation has all the required properties:
+
+- $M_\varepsilon$ is strictly positive and doubly stochastic.
+- It maps vectors with all imaginary parts positive to vectors with all imaginary parts positive, so $p_\varepsilon$ is real stable.
+- The chain rule and double stochasticity preserve balance.
+- It preserves degree and makes every degree-$n$ coefficient strictly positive.
+- $p_\varepsilon\to p$ coefficientwise as $\varepsilon\downarrow0$.
+
+Thus one can prove the conditional induction for strictly positive coefficient polynomials and pass directly to the final inequality by continuity of its central coefficient and Fischer norm. This avoids asserting that a finite capacity-balancing diagonal exists for every degenerate deletion polynomial. It also avoids the unjustified perturbation $p+\varepsilon(\sum x_i)^n$, since arbitrary sums of stable polynomials need not be stable.
+
+## 7. Equality in a future all-order proof
+
+The uniform power $(\sum_i x_i/n)^n$ attains equality in the target norm inequality. But an all-order uniqueness statement does not follow from the induction alone: it would require equality information for the missing deletion lemma, together with equality in the lower-dimensional step.
+
+The order-three product certificate does have the equality characterization established in Section 4. No analogous all-order equality characterization has been proved by the present investigation.
+

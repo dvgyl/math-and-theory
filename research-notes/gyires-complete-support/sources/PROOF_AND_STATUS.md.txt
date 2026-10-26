@@ -1,0 +1,604 @@
+# Gyires’ conjecture: proof manuscript and research status
+
+Prepared for Dev D. Goyal, 26 October 2026.
+
+## Status
+
+**The unrestricted Gyires conjecture remains unproved in this package.** The new completed result is a computer-assisted proof for every doubly stochastic matrix of rank at most two in orders 2 through 15. The computation is exact and covers whole real parameter intervals. The package also contains complete proofs of several results valid in every order, the original repository, all five earlier research archives, and the sixth-round source code, certificates, audits, and obstructions.
+
+The finite theorem combines an analytic reduction with exhaustive integer coefficient verification. It has been checked by multiple AI mathematical derivations and independent exact-arithmetic implementations. It has not been formalized in Lean or reviewed by a human specialist. The original repository’s Lean development is included unchanged and concerns its original circulant result; it does not certify the new rank-two theorem or the unrestricted conjecture. No novelty or priority claim is made.
+
+## 1. The general statement and the proved finite theorem
+
+Let \(\Omega_n\) be the nonnegative doubly stochastic matrices of order \(n\), let \(J_n\) have every entry \(1/n\), and put
+
+\[
+c_n=\frac{n!}{n^n}.
+\]
+
+The original conjecture asks for
+
+\[
+4\operatorname{per}(A)^2\ge
+c_n\left[\operatorname{per}(AA^T)+\operatorname{per}(A^TA)
++2\operatorname{per}(A^2)\right],\qquad A\in\Omega_n,
+\tag{G}
+\]
+
+with equality only at \(J_n\). A sufficient stronger inequality is
+
+\[
+\operatorname{per}(A)^2\ge c_n\operatorname{per}(AA^T).
+\tag{S}
+\]
+
+Here \(A^2\) denotes matrix multiplication; \(\operatorname{per}(A)^2\) is the square of a scalar.
+
+### Theorem 1: the completed finite-order result
+
+For every integer \(2\le n\le15\) and every \(A\in\Omega_n\) with \(\operatorname{rank}(A)\le2\),
+
+\[
+\boxed{\operatorname{per}(AA^T)\le\operatorname{per}(A).}
+\tag{C}
+\]
+
+Consequently both (S) and (G) hold for all these matrices, with equality in (S) or (G) exactly when \(A=J_n\). Order one is immediate.
+
+The contraction (C) itself has additional equality cases, such as block diagonal matrices whose blocks are uniform stochastic matrices. Its equality cases must not be confused with those of (S) and (G).
+
+### The permanent inner-product identity
+
+For an \(n\times n\) matrix \(M\), define
+
+\[
+p_M(z)=\prod_{i=1}^n\left(\sum_jm_{ij}z_j\right),
+\qquad
+\langle p,q\rangle_F=\sum_{|\alpha|=n}\alpha!p_\alpha q_\alpha.
+\]
+
+Expanding both sides by the column multiplicities gives
+
+\[
+\langle p_M,p_N\rangle_F=\operatorname{per}(MN^T),
+\qquad
+[z_1\cdots z_n]p_M=\operatorname{per}(M).
+\tag{1}
+\]
+
+The factor \(\alpha!\) counts the bijections between occurrences of each repeated column index. In particular the Fock norm
+
+\[
+N(p):=\langle p,p\rangle_F
+\]
+
+satisfies \(N(p_A)=\operatorname{per}(AA^T)\). Ordinary Cauchy–Schwarz in this coefficient inner product gives
+
+\[
+\operatorname{per}(A^2)
+\le\sqrt{\operatorname{per}(AA^T)\operatorname{per}(A^TA)}.
+\tag{2}
+\]
+
+This explains why (S) for \(A\) and \(A^T\) implies (G).
+
+## 2. Complete proof of Theorem 1
+
+### 2.1. A representation of every rank-two matrix
+
+Suppose \(A\in\Omega_n\) is nonuniform and has rank at most two. Its rows lie on an affine line in the probability simplex. Take the two endpoints \(u,v\) of their convex hull and write row \(i\) as \(x_i u+(1-x_i)v\), where \(0\le x_i\le1\). Put \(t=\sum_i x_i\). The two endpoints occur among the rows, so \(0<t<n\). The column sums give
+
+\[
+tu_j+(n-t)v_j=1.
+\]
+
+Set \(y_j=tu_j\). Then \(0\le y_j\le1\), \(\sum_jy_j=t\), and
+
+\[
+\boxed{
+A_{ij}=\frac{x_i y_j}{t}
++\frac{(1-x_i)(1-y_j)}{n-t},
+\quad x,y\in[0,1]^n,\quad\sum x_i=\sum y_i=t.
+}
+\tag{3}
+\]
+
+Conversely (3) always defines a doubly stochastic matrix of rank at most two. A rank-one doubly stochastic matrix is \(J_n\).
+
+Write \(\theta=t/n\), \(\sigma=\theta(1-\theta)>0\), \(u=x-\theta\mathbf1\), and \(v=y-\theta\mathbf1\). Then
+
+\[
+A=J_n+\frac{uv^T}{n\sigma}.
+\]
+
+Let \(e_k\) denote the elementary symmetric polynomial of degree \(k\), with \(e_0=1\), and put
+
+\[
+w_k=\frac{k!(n-k)!}{n!\sigma^k},\qquad
+\kappa_y=\frac{\|v\|_2^2}{n\sigma}.
+\]
+
+Since \(\sum y_j^2\le\sum y_j=t\), we have \(0\le\kappa_y\le1\).
+
+Expanding the permanent by the rows and columns that use the rank-one term gives
+
+\[
+S(x,y):=\frac{\operatorname{per}(A)}{c_n}
+=\sum_{k=0}^n w_k e_k(u)e_k(v).
+\tag{4}
+\]
+
+For a fixed choice of \(k\) rows and columns there are \(k!\) matchings using the rank-one term and \((n-k)!\) matchings on the remaining uniform block. This gives precisely the displayed factor.
+
+The zero sums of \(u,v\) make the cross terms with \(J_n\) vanish, so
+
+\[
+AA^T=J_n+\frac{\kappa_y}{n\sigma}uu^T.
+\]
+
+Applying the same expansion gives
+
+\[
+Q(x,y):=\frac{\operatorname{per}(AA^T)}{c_n}
+=\sum_{k=0}^n w_k e_k(u)^2\kappa_y^k.
+\tag{5}
+\]
+
+In (4) and (5) the zeroth term is one and the first term is zero. All terms of (5) are nonnegative.
+
+### 2.2. Separate convexity in probability laws
+
+Let \(P_x\) be the probability law of a sum of independent Bernoulli variables with parameters \(x_1,\ldots,x_n\). Its generating polynomial is
+
+\[
+F_{P_x}(z)=\prod_i(1-x_i+x_i z).
+\]
+
+At fixed \(n,t\), the identity
+
+\[
+\prod_i(1+(x_i-\theta)z)
+=(1-\theta z)^n
+F_{P_x}\!\left(1+\frac{z}{1-\theta z}\right)
+\tag{6}
+\]
+
+shows that every \(e_k(u)\) is a linear functional of the law \(P_x\). The right side simplifies to a polynomial, so there is no singularity issue in taking its coefficients. Moreover,
+
+\[
+\kappa_y=-\frac{2e_2(v)}{n\sigma}
+\tag{7}
+\]
+
+is affine in the second law, since \(\sum v_i=0\).
+
+Consider the contraction deficit \(E(P_x,P_y)=Q-S\). For fixed \(P_y\), (5) is a nonnegative weighted sum of squares of linear functionals of \(P_x\), whereas (4) is linear in \(P_x\). Thus \(E\) is convex in its first law. For fixed \(P_x\), (5) is one plus a sum of nonnegative multiples of \(\kappa_y^k\), \(k\ge2\). These powers are convex for \(\kappa_y\ge0\), and \(\kappa_y\) is affine in the second law. The term (4) is linear in that law. Thus \(E\) is also convex in its second law.
+
+No joint convexity assertion is needed.
+
+### 2.3. A convex extremal lemma
+
+**Lemma.** A continuous convex functional of a Poisson-binomial law of fixed mean \(t\) has a maximizer whose Bernoulli parameters take values in \(\{0,p,1\}\) for one interior value \(p\).
+
+**Proof.** The parameter set \(\{x\in[0,1]^n:\sum x_i=t\}\) is compact. Among its maximizers choose one maximizing \(\sum_i x_i^2\). Suppose two distinct parameters \(p,q\) lie strictly between zero and one. Keep \(s=p+q\) fixed and vary \(z=pq\). Their generating factor is
+
+\[
+(1-p+pw)(1-q+qw)=(1-s)+sw+z(1-w)^2.
+\]
+
+Consequently the whole probability law is affine in \(z\), and the functional is convex in \(z\). The current \(z\) is strictly inside its feasible interval: its upper endpoint makes \(p=q\), and its lower endpoint puts at least one parameter at zero or one. A convex function taking its global maximum at an interior point has the same maximum at both endpoints. Moving to the lower endpoint therefore preserves maximality and strictly increases \(p^2+q^2=s^2-2z\), a contradiction. All interior parameters coincide. ∎
+
+The corresponding linear extremal structure is classical in Hoeffding’s work; the argument here supplies the convex version used in this proof. See the sources below.
+
+For fixed \(n,t\), maximize \(E\) over the two parameter polytopes. Apply the lemma first to one law and then to the other. Each replacement preserves the global maximum, by separate convexity. It therefore suffices to check
+
+\[
+x=(1^a,q^m,0^{n-a-m}),\quad q=(t-a)/m,
+\qquad
+y=(1^c,r^\ell,0^{n-c-\ell}),\quad r=(t-c)/\ell,
+\tag{8}
+\]
+
+where
+
+\[
+a,c\ge0,\quad m,\ell\ge1,\quad a+m,c+\ell\le n,
+\quad L:=\max(a,c)\le t\le R:=\min(a+m,c+\ell).
+\tag{9}
+\]
+
+These are finite integer choices and one continuous parameter. Every ordered pair is retained; the contraction is not assumed invariant under exchanging its two laws.
+
+### 2.4. Coverage of endpoints and omitted profiles
+
+The enumeration omits the profile \((a,m)=(0,n)\), because it makes \(x_i=\theta\) for every \(i\), hence \(A=J_n\). The same applies in the second slot.
+
+A deterministic law at an integer \(0<h<n\) is represented by the endpoint \(t=h\) of \((a,m)=(h,1)\). Against a nondeterministic law of mean \(h\), the latter’s support interval extends to both sides of \(h\), so this choice gives a positive-length overlap. Two deterministic laws of the same mean can use the same profile. More generally, an interval with \(L=R\) can only evaluate both profiles at a common endpoint, making both laws deterministic at the same integer. That case has \(S=Q\) and is immediate.
+
+Thus it suffices to enumerate \(L<R\). The actual representation of a nonuniform matrix has \(0<t<n\); endpoint values at an interior integer follow by continuity. Means zero and \(n\) produce the uniform limiting matrix and do not omit a nonuniform matrix.
+
+Permuting entries of \(x\) or \(y\) is an independent row or column permutation of \(A\). Both permanent expressions in (C) are invariant under those operations. The profile representation therefore covers all arrangements of the parameters.
+
+### 2.5. Clearing denominators with homogeneous integer polynomials
+
+For a fixed admissible profile pair with \(L<R\), take \(U,V\ge0\) and set
+
+\[
+t=\frac{LU+RV}{U+V},\qquad
+\mathscr D=(LU+RV)((n-L)U+(n-R)V),
+\]
+
+\[
+\mathscr K=\ell\mathscr D
+-n((L-c)U+(R-c)V)((\ell+c-L)U+(\ell+c-R)V).
+\tag{10}
+\]
+
+The parameter \(\kappa_y\) is \(\mathscr K/(\ell\mathscr D)\) whenever \(U+V>0\) and \(0<t<n\).
+
+Let \(X_k\) be the degree-\(k\) elementary symmetric polynomial of the following \(n\) linear forms:
+
+\[
+\begin{array}{ll}
+m((n-L)U+(n-R)V),&a\text{ copies},\\
+(n(L-a)-mL)U+(n(R-a)-mR)V,&m\text{ copies},\\
+-m(LU+RV),&n-a-m\text{ copies}.
+\end{array}
+\tag{11}
+\]
+
+These forms are \(nm(U+V)(x_i-\theta)\). Define \(Y_k\) by replacing \((a,m)\) with \((c,\ell)\). Now define
+
+\[
+\mathscr C=\sum_{k=0}^n k!(n-k)!(m\ell)^{n-k}
+X_kY_k\mathscr D^{n-k},
+\tag{12}
+\]
+
+\[
+\mathscr G=\sum_{k=0}^n k!(n-k)!m^{2(n-k)}\ell^{n-k}
+X_k^2\mathscr K^k\mathscr D^{2(n-k)}.
+\tag{13}
+\]
+
+All coefficients are integers. Equations (4) and (5) give exactly
+
+\[
+S=\frac{\mathscr C}{n!m^n\ell^n\mathscr D^n},
+\qquad
+Q=\frac{\mathscr G}{n!m^{2n}\ell^n\mathscr D^{2n}}.
+\tag{14}
+\]
+
+The denominator of \(S-Q\) is strictly positive on the relevant interval interior. Therefore (C) is equivalent there to
+
+\[
+\boxed{\mathscr H:=m^n\mathscr C\mathscr D^n-\mathscr G\ge0.}
+\tag{15}
+\]
+
+The squared strong inequality can also be checked directly through
+
+\[
+\boxed{\mathscr S:=\mathscr C^2-n!\ell^n\mathscr G\ge0.}
+\tag{16}
+\]
+
+Both polynomials are homogeneous of degree \(4n\). If all their ordinary coefficients of \(U^{4n-j}V^j\) are nonnegative, their values are nonnegative for all \(U,V\ge0\). Equivalently, these are Bernstein coefficient signs on the entire interval \([L,R]\); the conversion only divides coefficients by positive binomial factors.
+
+### 2.6. The exhaustive finite certificate
+
+The source file `research/round_6/round6_rank2_bernstein.py` implements (10)–(16) using arbitrary-precision Python integers. It constructs the elementary symmetric polynomials by their defining recurrence, multiplies ordinary coefficient arrays, and checks every coefficient. There is no floating-point sign decision.
+
+For each \(n\), the profile list is exactly
+
+```python
+[(a, m)
+ for a in range(n)
+ for m in range(1, n-a+1)
+ if (a, m) != (0, n)]
+```
+
+Every ordered pair with \(\max(a,c)<\min(a+m,c+\ell)\) is checked. The completed exhaustive run has the following counts:
+
+| Order | Ordered profile intervals | Coefficients checked, both deficits |
+|---:|---:|---:|
+| 2 | 2 | 36 |
+| 3 | 15 | 390 |
+| 4 | 51 | 1,734 |
+| 5 | 126 | 5,292 |
+| 6 | 260 | 13,000 |
+| 7 | 477 | 27,666 |
+| 8 | 805 | 53,130 |
+| 9 | 1,276 | 94,424 |
+| 10 | 1,926 | 157,932 |
+| 11 | 2,795 | 251,550 |
+| 12 | 3,927 | 384,846 |
+| 13 | 5,370 | 569,220 |
+| 14 | 7,176 | 818,064 |
+| 15 | 9,401 | 1,146,922 |
+| **Total** | **33,607** | **3,524,206** |
+
+Every coefficient is nonnegative. The JSON certificate records the order range, exhaustive-enumeration flag, zero counts, and a SHA-256 digest of each order’s coefficient stream. The run took approximately 105 seconds in the working environment; this timing is not a mathematical assumption.
+
+A separately implemented rational power-basis calculation, followed by conversion to Bernstein coefficients, agrees coefficient by coefficient for all 454 profile intervals in orders 2–6, comprising 20,452 coefficients. A separate exact subset-DP permanent implementation checks the identities directly for 378 profile pairs in orders 2–7: 1,390 identity comparisons, 21 singleton cases, and 251 uniform-profile instances. A second audit supplies 209 additional direct identity comparisons.
+
+These independent checks guard the formula and implementation. The all-matrix conclusion comes from the analytic extremal reduction and exhaustive whole-interval certificate, rather than from sampling individual matrices.
+
+### 2.7. Conclusion and strict equality
+
+Coefficient nonnegativity proves (15) for each enumerated interval. Sections 2.3–2.4 extend the result to every rank-two doubly stochastic matrix at that order. This proves (C) for \(2\le n\le15\).
+
+If \(A\ne J_n\), both centered vectors in (3) are nonzero. Thus \(\kappa_y>0\), and
+
+\[
+e_2(u)=-\frac12\sum_i u_i^2\ne0.
+\]
+
+The degree-two term of (5) is strictly positive, and all its other terms are nonnegative. Hence \(Q>1\), so (C) implies
+
+\[
+d:=\operatorname{per}(A)\ge\operatorname{per}(AA^T)>c_n.
+\tag{17}
+\]
+
+Applying (C) to \(A^T\), and then using (2), yields
+
+\[
+\operatorname{per}(AA^T),\quad\operatorname{per}(A^TA),\quad
+\operatorname{per}(A^2)\le d.
+\]
+
+Therefore the deficit in (G) is at least \(4d(d-c_n)>0\). Also \(d^2\ge d\operatorname{per}(AA^T)>c_n\operatorname{per}(AA^T)\), proving strict (S). At \(J_n\), every relevant permanent equals \(c_n\), so equality holds in both. This completes the finite theorem and its equality classification. ∎
+
+## 3. An all-order theorem for matrices with two column types
+
+The following result is independent of the finite cutoff above.
+
+### Theorem 2: integer-mean Poisson-binomial likelihood peak
+
+Let \(P\) be the law of a sum of \(n\) independent Bernoulli variables with integer mean \(h\), where \(0<h<n\). Let \(B=\operatorname{Bin}(n,h/n)\). Then
+
+\[
+\frac{P(k)}{B(k)}\le\frac{P(h)}{B(h)}\quad(0\le k\le n),
+\tag{18}
+\]
+
+and consequently
+
+\[
+\sum_k\frac{P(k)^2}{B(k)}
+\le\frac{P(h)}{B(h)}
+\le\left(\frac{P(h)}{B(h)}\right)^2.
+\tag{19}
+\]
+
+**Proof.** For each fixed \(k\), maximize the linear functional \(P(k)/B(k)-P(h)/B(h)\). The extremal lemma from Section 2.3 reduces it to \(P=a+\operatorname{Bin}(\ell,q)\), with \(q=(h-a)/\ell\), or a deterministic law. The deterministic case is immediate.
+
+In the other case put \(r=h-a>0\), \(s=\ell-r>0\). The likelihood sequence is a geometric factor times
+
+\[
+\frac{\binom\ell{j-a}}{\binom nj}
+=\frac{(j)_a(n-j)_{n-a-\ell}}{(n)_{n-\ell}},
+\]
+
+where \((z)_b=z(z-1)\cdots(z-b+1)\). These positive falling-factorial sequences are log-concave on their support, so the likelihood sequence is log-concave. At \(h\), its neighbor ratios are
+
+\[
+\frac{P(h+1)/B(h+1)}{P(h)/B(h)}
+=\frac{r(h+1)}{h(r+1)}\le1,
+\]
+
+\[
+\frac{P(h-1)/B(h-1)}{P(h)/B(h)}
+=\frac{s(n-h+1)}{(n-h)(s+1)}\le1.
+\]
+
+The inequalities use \(r\le h\) and \(s\le n-h\). A log-concave sequence with both neighbors below a given term attains its maximum there. This proves (18) for each extremizer and therefore for every law. Writing \(r_k=P(k)/B(k)\), we obtain
+
+\[
+\sum_kP(k)r_k\le r_h,\qquad
+1=\sum_kB(k)r_k\le r_h.
+\]
+
+These give (19). ∎
+
+### Matrix consequence
+
+Suppose \(A\in\Omega_n\) has \(h\) identical columns of one type and \(n-h\) identical columns of the other. Write
+
+\[
+A_{ij}=x_i/h\quad\text{in the first group},\qquad
+A_{ij}=(1-x_i)/(n-h)\quad\text{in the second},
+\]
+
+where \(0\le x_i\le1\) and \(\sum_i x_i=h\). Put \(Y=\sum_{j\text{ in first group}}z_j\), \(Z=\sum_{j\text{ in second group}}z_j\). Then
+
+\[
+p_A(z)=\sum_{k=0}^nP(k)(Y/h)^k(Z/(n-h))^{n-k}.
+\]
+
+Central coefficient extraction and the Fock norm of powers of sums give
+
+\[
+\frac{\operatorname{per}(A)}{c_n}=\frac{P(h)}{B(h)},
+\qquad
+\frac{\operatorname{per}(AA^T)}{c_n}=\sum_k\frac{P(k)^2}{B(k)}.
+\]
+
+Thus (19) proves (C), and hence (S), for every two-column-type matrix in every order. If the matrix also has at most two row types, the transpose has two column types. Applying the result twice and (2) proves (G).
+
+Strictness in (G) away from \(J_n\) follows from the same degree-two argument as in Section 2.7, since these matrices have rank at most two. The detailed equality analysis and four-block parameterization are in `research/round_5/round5_scalar.md`, Sections 6 and 8.
+
+A general rank-two matrix may have many distinct rows and columns. This theorem does not remove the order cutoff from Theorem 1.
+
+## 4. A boundary reduction valid in every order and every rank
+
+### Theorem 3
+
+For fixed \(n\ge2\), the strong inequality (S) holds throughout \(\Omega_n\) if and only if it holds on its boundary, that is, for matrices having a zero entry. If it holds on the boundary, every strictly positive nonuniform matrix satisfies it strictly.
+
+**Proof.** Define
+
+\[
+F(A)=\sqrt{c_n}\,\sqrt{N(p_A)}-\operatorname{per}(A).
+\]
+
+Suppose two distinct rows \(r,s\) have the same support. Put \(\mu=(r+s)/2\), \(d=(r-s)/2\), and
+
+\[
+T=\min_{j:d_j\ne0}\frac{\mu_j}{|d_j|}>1.
+\]
+
+Replace the two rows by \(\mu+td,\mu-td\), for \(0\le t\le T\). The resulting \(A(t)\) remains doubly stochastic. If \(R(z)\) is the product of the unchanged row forms, then
+
+\[
+p_{A(t)}=((\mu\cdot z)^2-t^2(d\cdot z)^2)R(z).
+\]
+
+It is affine in \(t^2\). The endpoint polynomials at \(0,T\) are distinct, and both take value one at \(\mathbf1\); they are not scalar multiples. The Hilbert norm is strictly convex on the segment between them. Subtracting the linear central-coefficient functional gives
+
+\[
+F(A)<(1-T^{-2})F(A(0))+T^{-2}F(A(T)).
+\tag{20}
+\]
+
+Hence a global maximizer of \(F\) cannot have distinct rows with the same support. Compactness supplies a maximizer. If it is strictly positive, all its row supports coincide, so all its rows are identical; column stochasticity forces \(J_n\). Since \(F(J_n)=0\),
+
+\[
+\max_{A\in\Omega_n}F(A)
+=\max\{0,\max_{A\in\partial\Omega_n}F(A)\}.
+\]
+
+This proves the equivalence. If boundary validity is known, apply (20) to a positive nonuniform matrix to obtain strictness. ∎
+
+The boundary remains a large family of matrices of the same order. This proof supplies neither a reduction to permutation matrices nor an induction to order \(n-1\). Its full statement and exact obstructions to more ambitious averaging claims are in `research/round_5/round5_matrix_boundary.md`.
+
+## 5. Earlier all-order circulant result retained in the package
+
+The second-round manuscript proves
+
+\[
+c_n\operatorname{per}(CC^T)\le\operatorname{per}(C)^2,
+\qquad C=aR^{-1}+bI+cR,
+\tag{21}
+\]
+
+for every permutation matrix \(R\), every dimension, and \(a,b,c\ge0\). It obtains a finite-state transfer representation, proves an analytic transfer bound with constant \(1+\sqrt2\), and supplies exact coefficient checks covering the finite range below the analytic tail. Disjoint cycle decomposition extends the cyclic result to arbitrary permutation matrices \(R\).
+
+The complete proof and its exact finite bridge are in `research/round_2/round2_circulant.md`, `round2_sharp_spectral_lemma.md`, and their supporting programs. This covers three shifts in an arithmetic progression within one permutation group. It does not cover arbitrary triples of permutation matrices or arbitrary circulants.
+
+Additional earlier results, including mean-one and symmetric-reference scalar inequalities, local estimates near \(J_n\), and rank-two capacity closure, are preserved with their original proofs and stated scopes in the historical round folders.
+
+## 6. Exact remaining questions
+
+### 6.1. Rank two in arbitrary order
+
+The analytic reduction in Section 2 works for every \(n\). The missing assertion is nonnegativity of (15) for every admissible integer profile pair and every point in its interval, without an upper bound on \(n\).
+
+An even stronger sufficient statement is:
+
+> Every coefficient of \(\mathscr H\) in (15) is nonnegative for all admissible \(n,a,m,c,\ell\).
+
+This statement has been checked exhaustively only through order 15. No proof of a uniform coefficient formula, a sign-preserving recurrence, or a complete induction in the integer multiplicities has been obtained. The finite checks cannot establish the unbounded statement.
+
+Even a proof of that assertion would settle only rank two. The unrestricted conjecture also requires higher-rank matrices.
+
+### 6.2. An induction within doubly stochastic matrices
+
+For a pivot \(a_{ij}<1\), define the stochastic complement
+
+\[
+B^{ij}_{kl}=a_{kl}+\frac{a_{kj}a_{il}}{1-a_{ij}},
+\qquad k\ne i,\ l\ne j.
+\]
+
+Direct summation shows that it is doubly stochastic. Put
+
+\[
+R(A)=\frac{\operatorname{per}(A)^2}{\operatorname{per}(AA^T)},
+\qquad g_n=\left(\frac{n-1}{n}\right)^{n-1}.
+\]
+
+If one could prove that some pivot satisfies
+
+\[
+R(A)\ge g_nR(B^{ij}),
+\tag{22}
+\]
+
+then induction would prove (S), because \(g_nc_{n-1}=c_n\). Equation (22) is unproved here.
+
+Natural weighted-average versions of (22) are false. The symmetric order-six star matrix with center-to-leaf entries \(1/5\), leaf diagonal entries \(4/5\), and all other entries zero has
+
+\[
+\frac{g_6R(B^{ij})}{R(A)}=\frac{10069975}{9928008}>1
+\]
+
+for every positive pivot. Its matching marginals equal its entries, refuting both corresponding averaged comparisons. Other pivots do work, so this does not refute (22). The exact derivation and checker are in `research/round_6/round6_boundary_induction.md` and `round6_boundary_exact.py`.
+
+### 6.3. Capacity-balanced deletion
+
+Let \(q_j=[z_j]p_A\) denote extraction of the coefficient of the first power of \(z_j\), leaving the other variables. Let \(H(q_j)\) be the Fock norm at its determinant-one capacity-balanced polynomial limit, as defined and proved well-defined in the fifth-round closure note. A maximum-column inequality
+
+\[
+\max_j H(q_j)\ge g_nN(p_A)
+\tag{23}
+\]
+
+on an appropriate class closed under extraction would also supply the required induction. The extension to balanced real-stable polynomials is sufficient and remains unproved.
+
+Replacing \(H\) by the minimum Fock norm over all determinant-normalized diagonal scalings makes an averaged version false. The sixth-round exact order-700 certificate gives an explicit trial upper ratio below \(99996/100000\). This obstruction concerns the stronger replacement; it does not refute (23), (S), or (G).
+
+### 6.4. A useful limitation of contraction
+
+The contraction (C) cannot hold for all ranks. For the order-four cyclic permutation matrix \(P_4\), the matrix \(A=(I+P_4)/2\) has rank three and
+
+\[
+\operatorname{per}(A)=\frac18,
+\qquad
+\operatorname{per}(AA^T)=\frac9{64}>\frac18.
+\]
+
+This is an obstruction to a stronger route, not a counterexample to Gyires. A full proof must accommodate this distinction.
+
+## 7. Reproducibility and package map
+
+The archive’s `README.md` gives the complete file map. The principal locations are:
+
+| Location | Contents |
+|---|---|
+| `PROOF_AND_STATUS.md` | This consolidated manuscript |
+| `research/round_6/` | New finite theorem, integer and rational checkers, certificates, direct-permanent audits, and induction obstructions |
+| `research/round_1/` through `research/round_5/` | Extracted contents of all earlier deliverables |
+| `prior_archives/` | The five earlier ZIP files, preserved byte for byte |
+| `original_repository/` | Complete 203-file source-repository snapshot, including Lean and both PDFs |
+| `original_repository_provenance.json` | Commit, tree, per-file source hashes, sizes, and modes |
+| `MANIFEST_SHA256.json` | Integrity hashes for the assembled package |
+| `verify_package.py` | Manifest validation and optional regeneration of the full finite certificate |
+
+The original repository snapshot is commit `72cf49a51be42cf15592f91d991f0b0c76f58448`, tree `d0346e1a5d822d0e5bec296b66bf5108e3fb9315`. All tracked files were retrieved unchanged and checked against their Git blob hashes. No new Lean build was run for this package.
+
+To regenerate the new theorem’s complete finite arithmetic certificate, run from `research/round_6/`:
+
+```bash
+python3 round6_rank2_bernstein.py --first 2 --last 15
+python3 round6_rank2_bernstein_fraction_check.py --first 2 --last 6
+python3 round6_rank2_identity_audit.py
+python3 round6_rank2_boundary_audit.py
+python3 round6_boundary_exact.py
+python3 round6_average_fock_capacity_obstruction.py
+```
+
+These six exact checkers use only the Python standard library. Some historical exploratory programs have additional dependencies or compile C++ helpers; their source and original instructions are retained. Running a script may regenerate its JSON report and change timing fields; use a working copy when preserving the original manifest hashes matters.
+
+The complete computational part is the exhaustive run with no sampling flag. Reports or random tests beyond a proved range are explicitly exploratory and supply no additional theorem.
+
+## 8. Sources and attribution
+
+1. **Starting project:** Dev D. Goyal, [gyires-circulant-5](https://github.com/dvgyl/gyires-circulant-5). Its complete source snapshot, license, authorship disclosures, mathematical write-up, and recorded verification logs are included. Its theorem concerns the stated circulant family of order five.
+2. **Related existing order-four formalization:** Chris Ozols, [gyires-permanent-4x4](https://github.com/cozuya/gyires-permanent-4x4). This is an external reference; the current package does not claim that all order-four matrices were first handled here.
+3. **Fixed-mean Bernoulli extremizers:** W. Hoeffding, “On the Distribution of the Number of Successes in Independent Trials,” *Annals of Mathematical Statistics* 27 (1956), 713–721, [DOI 10.1214/aoms/1177728178](https://doi.org/10.1214/aoms/1177728178). The classical linear case motivates the convex extremal argument proved explicitly above.
+4. **Background on real-rooted probability generating polynomials:** J. Pitman, “Probabilistic bounds on the coefficients of polynomials with only real zeros,” [author technical-report PDF](https://statistics.berkeley.edu/sites/default/files/tech-reports/453.pdf).
+
+Further primary references are cited in the individual research notes where they are used. The new finite theorem and auxiliary arguments above are derived in full in this manuscript and accompanying code. The central unresolved statements are displayed in Section 6; none is silently assumed in a claimed theorem.

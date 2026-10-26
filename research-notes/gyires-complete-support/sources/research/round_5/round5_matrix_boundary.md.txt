@@ -1,0 +1,138 @@
+# A direct boundary reduction for the strong Gram inequality
+
+## Status and definitions
+
+This note proves a reduction in every order. It does not prove the inequality on the remaining boundary. No claim of novelty or formal verification is made.
+
+For a doubly stochastic matrix A of order n, put
+
+\[
+c_n=n!/n^n,\qquad p_A(x)=\prod_{i=1}^n(Ax)_i,
+\qquad \|p\|_F^2=\sum_{|\alpha|=n}\alpha!p_\alpha^2.
+\]
+
+The permanent Gram identity is
+
+\[
+\|p_A\|_F^2=\operatorname{per}(AA^T),\qquad
+[x_1\cdots x_n]p_A=\operatorname{per}(A).
+\]
+
+Define the continuous deficit
+
+\[
+F(A)=\sqrt{c_n}\|p_A\|_F-\operatorname{per}(A).
+\]
+
+The strong Gram inequality is exactly F(A) <= 0. It implies original Gyires after applying it to A and its transpose and using permanent Cauchy--Schwarz.
+
+## Theorem
+
+For every fixed n >= 2, the strong Gram inequality holds for all doubly stochastic matrices of order n if and only if it holds for all such matrices with at least one zero entry.
+
+If it holds on the boundary, every strictly positive matrix other than J_n satisfies it strictly. In particular, strict validity on the boundary implies that J_n is the only equality case in the whole polytope.
+
+More precisely, any global maximizer of F has the following property: two rows with the same support must be identical.
+
+## Proof
+
+Suppose rows r and s have identical support and are distinct. Write
+
+\[
+\mu=(r+s)/2,\qquad d=(r-s)/2.
+\]
+
+They both have row sum one, so sum(d)=0. Let T be the largest number such that mu+t*d and mu-t*d are both nonnegative for 0 <= t <= T. Explicitly,
+
+\[
+T=\min_{j:d_j\ne0}\frac{\mu_j}{|d_j|}.
+\]
+
+Identical supports and r != s give T > 1. Replacing the two rows by mu+t*d and mu-t*d preserves all row and column sums. Denote the resulting matrix by A(t). Its row-product polynomial is
+
+\[
+p_{A(t)}(x)=\bigl((\mu\cdot x)^2-t^2(d\cdot x)^2\bigr)
+\prod_{\ell\ne r,s}(A x)_\ell.
+\]
+
+Consequently it is affine in tau=t^2. For 0 <= tau <= T^2,
+
+\[
+p_{A(\sqrt\tau)}
+=\left(1-\frac{\tau}{T^2}\right)p_{A(0)}
++\frac{\tau}{T^2}p_{A(T)}.
+\tag{1}
+\]
+
+Both endpoint polynomials have value one at x=(1,...,1), because the corresponding matrices are row stochastic. They are different: their difference is the nonzero polynomial
+
+\[
+-T^2(d\cdot x)^2\prod_{\ell\ne r,s}(A x)_\ell.
+\]
+
+Thus they cannot be positive scalar multiples. The Hilbert norm is strictly convex on the segment joining them. Subtracting the linear central-coefficient functional preserves strict convexity. At the original matrix (tau=1), (1) therefore yields
+
+\[
+F(A)<\left(1-\frac1{T^2}\right)F(A(0))
++\frac1{T^2}F(A(T)).
+\tag{2}
+\]
+
+In particular, such a matrix cannot globally maximize F.
+
+The Birkhoff polytope is compact, so F has a global maximum. If a maximizing matrix is strictly positive, all its row supports coincide. The preceding argument forces all its rows to coincide. Column stochasticity then forces this matrix to be J_n, at which F(J_n)=0. Hence
+
+\[
+\max_{A\in\Omega_n}F(A)
+=\max\left\{0,\max_{A\in\partial\Omega_n}F(A)\right\}.
+\tag{3}
+\]
+
+This proves the equivalence. If the boundary bound is known, (3) says F <= 0 everywhere; applying the strict inequality (2) to any positive nonuniform A then gives F(A)<0. The equality statement follows as stated.
+
+## What this does and does not change
+
+This argument stays inside the class of doubly stochastic matrices and their products of linear forms. It needs no Lorentzian subtraction or closure assertion.
+
+The boundary still has dimension (n-1)^2-1 on each facet. The theorem gives no induction from n to n-1, and it does not say that it is enough to test permutation matrices or face centers. Rows with different supports need not admit T>1; that is exactly where this argument stops.
+
+The current source repository and Chris Ozols's project already report the strong inequality in the whole order-four polytope. Accordingly, the theorem is not presented as a new proof of an otherwise open order-four case.
+
+## An exact obstruction to a stronger averaging shortcut
+
+Even for rank-two doubly stochastic matrices, averaging two columns can increase the permanent. Take
+
+\[
+A=\frac1{30}
+\begin{pmatrix}4&15&11\\4&15&11\\22&0&8\end{pmatrix},
+\qquad
+\widetilde A=\frac1{30}
+\begin{pmatrix}4&13&13\\4&13&13\\22&4&4\end{pmatrix}.
+\]
+
+The second matrix averages columns two and three. Both have rank two, and
+
+\[
+\operatorname{per}(A)=137/450,
+\quad \operatorname{per}(\widetilde A)=689/2250,
+\quad \operatorname{per}(\widetilde A)-\operatorname{per}(A)=2/1125>0.
+\]
+
+This refutes Schur-convexity of the permanent in the rank-two column parameter, and rules out proving general rank-two Gram contraction by claiming that every doubly stochastic column mixing decreases the permanent. It does not refute the conjectured comparison with the specific product AA^T.
+
+The same example also prevents a direct multivariate extension of the scalar Poisson-binomial likelihood-ratio peak theorem. Repeating its second column and omitting its third gives
+
+\[
+\operatorname{per}(A_{[1,2,2]})=11/30>137/450=\operatorname{per}(A).
+\]
+
+Thus the occupancy likelihood ratio can be larger away from the all-ones occupancy even for a rank-two doubly stochastic matrix. The one-dimensional peak theorem remains valid as proved in the scalar note.
+
+## Sources and attribution
+
+The permanent Gram identity and the reduction from the strong inequality to original Gyires are used in the source project:
+
+- https://github.com/dvgyl/gyires-circulant-5
+- https://github.com/cozuya/gyires-permanent-4x4
+
+The row-pair argument and the rational averaging example in this note were derived during this AI-assisted continuation. Multiple AI agents checked the mathematical reduction. It has not been independently reviewed by a human specialist or checked in Lean. No novelty or priority claim is made.

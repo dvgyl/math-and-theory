@@ -1,0 +1,142 @@
+# Circulant extension research — 26 October 2026
+
+This is AI-generated research scratch work for Dev D. Goyal's Gyires project. It is not a claim of a general proof, novelty, peer review, or Lean verification. The computations below use exact Python integers. The root agent independently reconstructed and checked the complete order-six and order-seven certificates by a different method; both checks passed.
+
+## 1. Precise defect and exact computation
+
+For the nonnegative circulant `C(w)_{ij}=w_{j-i mod n}`, write
+
+\[
+D_n(w)=n^n\operatorname{per}(C(w))^2-n!\operatorname{per}(C(w)C(w)^T).
+\]
+
+`circ_gap_test.py` computes both permanent polynomials from their defining subset dynamic program. The Gram entries are the exact autocorrelations `g_j=sum_i w_i w_(i+j)`. Exponent vectors are encoded in base `2n+1`; every exponent throughout is at most `2n`, so multiplication by addition of encoded exponents cannot produce carries. No floating-point arithmetic is involved.
+
+For a sorting permutation pi, it substitutes `w_pi(k)=x_0+...+x_k` by a variable permutation followed by elementary substitutions from the largest index downward. Affine relabellings `j -> a*j+b (mod n)`, with a a unit, preserve both permanents. Setting pi(0)=0 and taking the lexicographically least unit multiple gives exactly `n!/(n phi(n))` chamber representatives.
+
+### Complete results
+
+| n | Affine chambers checked | Degree | Possible monomials per chamber | Positive coefficients per chamber | Zero coefficients per chamber | Least positive coefficient, all chambers |
+|---|---:|---:|---:|---:|---:|---:|
+| 6 | 60 | 12 | 6,188 | 6,182 | 6 | 42,624 |
+| 7 | 120 | 14 | 38,760 | 38,753 | 7 | 818,503 |
+
+All coefficients in every representative are nonnegative. The zero coefficients are precisely the constant-weight ray monomial `x_0^(2n)` and the `n-1` monomials `x_0^(2n-1)*x_j`. Indeed D_n and all its first partial derivatives vanish at constant weights: at w_i=t, `per(C)=n!t^n`, each derivative of `per(C)` is `n!t^(n-1)`, `per(CC^T)=n! n^n t^(2n)`, and each derivative of this Gram permanent is `2n! n^n t^(2n-1)`. These supply n guaranteed zero coefficients; the computed positive-term count leaves no other zero coefficients. In particular all pure gap powers have coefficient at least the stated constant.
+
+The numerical results were saved in `circ_gap_n6_all_results.json` and `circ_gap_n7_all_results.json`. These JSON files summarize coefficient statistics rather than storing full certificates; the reproducible script is required.
+
+### Mathematical consequences of the completed exact coefficient checks
+
+For every nonnegative order-six circulant and its five consecutive sorted gaps z_j,
+
+\[
+324\operatorname{per}(C)^2-5\operatorname{per}(CC^T)
+\ge296\sum_{j=1}^{5}z_j^{12}.
+\]
+
+Here `gcd(6^6,6!)=144`. The coefficient 296 is sharp: at `w=(1,1,0,0,0,0)`, `per(C)=2`, `per(CC^T)=200`, and the sum of gap powers is 1. Thus the left side is `324*4-5*200=296`.
+
+For every nonnegative order-seven circulant and its six consecutive sorted gaps,
+
+\[
+117649\operatorname{per}(C)^2-720\operatorname{per}(CC^T)
+\ge116929\sum_{j=1}^{6}z_j^{14}.
+\]
+
+Here `gcd(7^7,7!)=7`. The constant 116929 is sharp at `w=(1,0,0,0,0,0,0)`, for which both permanents and the sum of gap powers are 1.
+
+In both sizes the un-margined strong inequality is equality exactly when every weight is equal, by the positive gap margin and direct evaluation of a constant matrix. These strong inequalities imply the original Gyires inequality, using normality of circulants and the permanent Cauchy–Schwarz inequality, as in the existing order-five manuscript.
+
+These conclusions are finite exact algebraic certificates. They have not been formalized in Lean in this subtask. A full all-order circulant or arbitrary doubly stochastic theorem has not been obtained.
+
+## 2. Higher-order evidence, explicitly incomplete
+
+`circ_strategic.py` checks selected sorting chambers including natural cyclic order, parity blocks, distance from zero, divisibility order, and seeded random representatives.
+
+- n=8: all 16 selected affine chambers passed. Each has 245,149 positive coefficients, eight zero coefficients, and minimum positive coefficient `16,736,896=8^8-8!`. There are 1,260 affine chambers, so this does **not** settle n=8.
+- n=9: all five selected affine chambers passed. Each has 1,562,266 positive coefficients, nine zero coefficients, and minimum `387,057,609=9^9-9!`. Results are in `circ_strategic_n9.json` and `circ_strategic_n9_log.txt`. There are 6,720 affine chambers, so this does **not** settle n=9.
+- n=12: eight selected three-variable restrictions, retaining the baseline and two nested gap directions, passed exact coefficient checks. This is evidence only, much weaker than checking a full chamber. See `circ_selected_gaps_n12_log.txt` and `circ_selected_gaps.py`.
+
+These observations motivate, but do not prove, the conjecture that every sorted-gap polynomial D_n has nonnegative coefficients in every order n. Pure-gap coefficients already contain the strong inequality for every binary circulant, so the proposed lemma is a substantive mathematical conjecture rather than a routine remaining identity.
+
+## 3. A concrete obstruction to a tempting fully general proof
+
+One might try replacing the n disjoint cyclic permutation matrices by an arbitrary Birkhoff decomposition and asserting that sorting all permutation weights always makes the defect coefficientwise nonnegative. That assertion is false, already at n=4.
+
+Let E be the 4 by 4 all-ones matrix and I the identity. Among the 24 permutation matrices:
+
+- their sum is `6E`;
+- the identity plus the nine derangements sum to `3E-2I` (each off-diagonal position occurs in three derangements).
+
+These are nested subsets of permutation matrices. Accordingly,
+
+\[
+A(t,u,v)=6tE+u(3E-2I)+vI,\qquad t,u,v\ge0,
+\]
+
+is a restriction to three gap variables of an actual sorting chamber for the 24 permutation coefficients: baseline all 24, a tail of ten consisting of I and all derangements, and the singleton tail I.
+
+For
+
+\[
+D_4(A)=4^4\operatorname{per}(A)^2-4!\operatorname{per}(AA^T),
+\]
+
+the exact coefficient is
+
+\[
+[t^6uv]D_4(A)=-6,879,707,136.
+\]
+
+For the reduced defect `32 per(A)^2-3 per(AA^T)`, it is `-859,963,392`. There are twelve negative coefficients in this restricted polynomial. This is **not** a counterexample to Gyires's inequality or to the strong inequality; it disproves the proposed coefficientwise proof strategy for arbitrary permutation lists.
+
+### Independent analytical derivation of the negative coefficient
+
+Put `H=I-E/4`, so `||H||_F^2=3`. The centered parts of the u and v directions are `-2H` and `H`, respectively. For a matrix with zero row and column sums X,
+
+\[
+\operatorname{per}(aE+X)
+=4!a^4+\tfrac12(4-2)!a^2\|X\|_F^2+O(X^3).
+\]
+
+The Gram permanent has no quadratic term in X: `(aE+X)(aE+X)^T=4a^2E+XX^T`, and the sum of the entries of `XX^T` is zero. The quadratic part of D_4 is therefore
+
+\[
+4^4\,4!\,(4-2)!\,a^6\|X\|_F^2.
+\]
+
+At `a=6t` and `X=(-2u+v)H`, the coefficient is
+
+\[
+256\cdot24\cdot2\cdot6^6\cdot(-12)
+=-6,879,707,136.
+\]
+
+The changing constant component of the u and v directions cannot affect this mixed term of total degree two in u,v.
+
+For *disjoint* Latin-square permutation layers, this quadratic obstruction disappears: if nested supports contain a and b disjoint layers with a<=b, the Frobenius inner product of their centered indicator matrices equals `a(n-b)>=0`. This explains why the Birkhoff counterexample does not refute the narrower circulant or Latin-square possibility. It does not control higher coefficients.
+
+## 4. Dimension-unbounded subgroup-support consequence
+
+Suppose n=km and the support of the circulant weights lies in a coset of a subgroup of the cyclic group of size m. A shift of weights removes the coset translation; after row and column permutations C is a direct sum of k identical m by m circulant blocks B. Thus
+
+\[
+\frac{\operatorname{per}(C)^2}{\operatorname{per}(CC^T)}
+=\left(\frac{\operatorname{per}(B)^2}{\operatorname{per}(BB^T)}\right)^k
+\ge c_m^k\ge c_{km},\quad c_r=r!/r^r.
+\]
+
+The last inequality follows from the elementary multinomial bound
+
+\[
+\frac{(km)!}{(m!)^k}\le k^{km}.
+\]
+
+Consequently any validated order-m strong theorem gives a family in arbitrarily large dimensions. In particular the existing order-five result, and the independently checked finite computations in orders six and seven, cover circulants with support in such subgroup cosets. This is a closure consequence, not a solution for unrestricted circulants. For a nonzero matrix and k>1, the multinomial inequality is strict.
+
+## 5. Other probes and limitations
+
+- A non-cyclic Latin-square pattern of order six passed 50 sampled sorting orders. Its rows are recorded in `circ_latin_n6_log.txt`. This is only a probe of whether disjoint regular layers could explain the cyclic result.
+- Thirty random lists of four permutation matrices in size five, thirty such lists in size eight, and all orders of all six permutation matrices in size three passed sampled/complete sorting checks. Such positive examples cannot rescue the false universal Birkhoff lemma: the exact n=4 counterexample above is decisive.
+- No conclusion of novelty is justified by these computations. No literature search sufficient to establish priority was done in this subtask.
+- No GitHub mutations were made.

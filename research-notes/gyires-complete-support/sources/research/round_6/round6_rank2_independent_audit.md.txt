@@ -1,0 +1,230 @@
+# Independent audit of the finite rank-two Bernstein certificate
+
+## Conclusion and scope
+
+The separate-convexity reduction, the homogeneous coefficient formulas, and the coverage of the omitted cases are mathematically valid. An exact nonnegative-coefficient certificate for all the enumerated profiles in a fixed order therefore proves Gram contraction for **every** doubly stochastic matrix of rank at most two in that order, not only for a sampled collection of matrices.
+
+This is an independent AI mathematical derivation and a direct-permanent arithmetic cross-check. It is not a human peer review or proof-assistant verification. The complete exhaustive coefficient run is performed by `round6_rank2_bernstein.py`; this audit does not claim an independently rewritten implementation of that whole enumeration.
+
+The conclusion is restricted to the orders exhaustively checked in `round6_rank2_bernstein_certificate.json`. The reported round-6 range is 2 through 15. No assertion about all orders, or all ranks in those orders, follows from that finite range.
+
+## 1. Direct permanent identities, without a noise-operator assumption
+
+Fix $n$ and $0<t<n$. Put $\theta=t/n$, $\sigma=\theta(1-\theta)$, and let $x,y\in[0,1]^n$ have coordinate sum $t$. The latent rank-two matrix is
+
+\[
+A_{ij}=\frac{x_i y_j}{t}+
+\frac{(1-x_i)(1-y_j)}{n-t}
+=\frac1n+\frac{u_i v_j}{n\sigma},
+\quad u=x-\theta\mathbf1,\quad v=y-\theta\mathbf1.
+\tag{1}
+\]
+
+Both $u$ and $v$ have coordinate sum zero. Expanding the permanent by choosing the $k$ rows and $k$ columns that use the rank-one term gives
+
+\[
+\frac{\operatorname{per}(A)}{c_n}
+=\sum_{k=0}^n
+\frac{k!(n-k)!}{n!\sigma^k}e_k(u)e_k(v),
+\qquad c_n=n!/n^n.
+\tag{2}
+\]
+
+To check the combinatorial factor, once the selected row and column sets are fixed, the rank-one block contributes $k!\prod u_i\prod v_j$, while the remaining uniform block contributes $(n-k)!/n^{n-k}$. The factor $(n\sigma)^{-k}$ supplies exactly the normalization in (2).
+
+Since the cross terms with $J_n$ vanish,
+
+\[
+AA^T=J_n+\frac{\|v\|^2}{n^2\sigma^2}uu^T
+=J_n+\frac{\kappa_y}{n\sigma}uu^T,
+\quad \kappa_y=\frac{\|v\|^2}{n\sigma}\in[0,1].
+\]
+
+The same expansion yields
+
+\[
+\frac{\operatorname{per}(AA^T)}{c_n}
+=\sum_{k=0}^n
+\frac{k!(n-k)!}{n!\sigma^k}e_k(u)^2\kappa_y^k.
+\tag{3}
+\]
+
+The bound $\kappa_y\le1$ follows from $\sum y_i^2\le\sum y_i=t$; its nonnegativity is immediate. Thus all weights multiplying the squares in (3) are nonnegative. The terms of degree one vanish because $e_1(u)=e_1(v)=0$.
+
+Every nonconstant rank-two doubly stochastic matrix has representation (1): its rows lie on an affine line in the probability simplex, and the two endpoint rows give the two mixture components. Rank-one doubly stochastic matrices are exactly $J_n$.
+
+## 2. Why the required coordinates are linear in a probability law
+
+Let $P_x$ be the Poisson-binomial law with Bernoulli parameters $x_i$, and let
+
+\[
+F_{P_x}(w)=\sum_jP_x(j)w^j
+=\prod_i(1-x_i+x_iw).
+\]
+
+The elementary identity
+
+\[
+\prod_i(1+(x_i-\theta)z)
+=(1-\theta z)^n
+F_{P_x}\!\left(1+\frac{z}{1-\theta z}\right)
+\tag{4}
+\]
+
+shows that every $e_k(x-\theta\mathbf1)$ is a linear functional of the law $P_x$ when $n,t$ are fixed. Although written rationally, the right side simplifies to the polynomial on the left.
+
+Also,
+
+\[
+\kappa_y=-\frac{2e_2(y-\theta\mathbf1)}{n\sigma},
+\tag{5}
+\]
+
+because $e_1(v)=0$ and $2e_2(v)=-\sum_i v_i^2$. Hence $\kappa_y$ is affine (indeed linear in these transformed coordinates) in the second probability law.
+
+Let $S$ and $Q$ denote the right sides of (2) and (3). For fixed $P_y$, the contraction deficit $Q-S$ is a nonnegative quadratic form minus a linear functional of $P_x$, so it is convex. For fixed $P_x$, it is a sum of nonnegative multiples of the convex powers $\kappa_y^k$, $k\ge2$, minus a linear functional of $P_y$. It is therefore convex in the second law as well.
+
+For the strong deficit $\sqrt Q-S$, the first-law argument is a Hilbert norm minus a linear functional. In the second law, write
+
+\[
+\sqrt Q=
+\left\|(1,\sqrt{w_2}|e_2(u)|\kappa_y,
+\sqrt{w_3}|e_3(u)|\kappa_y^{3/2},\ldots,
+\sqrt{w_n}|e_n(u)|\kappa_y^{n/2})\right\|_2,
+\quad w_k=\frac{k!(n-k)!}{n!\sigma^k}.
+\]
+
+Each component is nonnegative and convex for $\kappa_y\ge0$, and the Euclidean norm is coordinatewise increasing on the nonnegative orthant. This proves the required second-law convexity. The absence of the degree-one term is essential for this last argument.
+
+This derivation independently verifies separate convexity without relying on a Krawtchouk or noise-operator normalization.
+
+## 3. Why checking shifted-binomial pairs is exhaustive
+
+The Bernoulli parameter polytope $\{x\in[0,1]^n:\sum x_i=t\}$ is compact. For a continuous convex functional of the induced law, choose a maximizer with largest $\sum x_i^2$.
+
+If two interior coordinates $x_i,x_j$ are distinct, fixing their sum makes the full probability law affine in their product, because
+
+\[
+(1-x_i+x_iw)(1-x_j+x_jw)
+=(1-x_i-x_j)+(x_i+x_j)w+x_ix_j(1-w)^2.
+\]
+
+The product lies strictly between its feasible endpoints. Convexity and maximality imply that moving it to the lower endpoint preserves the maximum. That move increases $x_i^2+x_j^2$, contradicting the tie-break. Thus all strictly interior coordinates are equal at a suitable maximizer.
+
+Apply this argument to a global maximizing pair of laws, one law at a time. Separate convexity ensures that both replacements preserve global maximality. The resulting vectors are
+
+\[
+x=(1^a,q^m,0^{n-a-m}),\qquad q=(t-a)/m,
+\]
+
+and similarly $y=(1^c,r^\ell,0^{n-c-\ell})$. Therefore nonpositivity of the deficit for every such pair proves nonpositivity for every pair of laws and hence every rank-two doubly stochastic matrix.
+
+### Omitted uniform profile
+
+The enumeration omits $(a,m)=(0,n)$. In that case $x_i=\theta$ for every $i$, so (1) gives $A=J_n$ regardless of $y$. The same conclusion holds if the second profile is uniform. Consequently $S=Q=1$, and both inequalities hold with equality.
+
+### Deterministic laws
+
+If $t=h$ is an integer and a law is $\delta_h$, it has a binary parameter vector with $h$ ones. It can be represented as either endpoint of an $m=1$ profile: $(a,m)=(h,1)$ at the left endpoint, or $(h-1,1)$ at the right endpoint, whenever the respective indices are available. For $0<h<n$, one can always choose the side giving positive overlap with a nondeterministic partner's interval. Thus no deterministic-versus-nondeterministic pair is lost by enumerating $m,\ell\ge1$.
+
+### A singleton feasible mean interval
+
+If $L=\max(a,c)=\min(a+m,c+\ell)=R$, both profiles are evaluated at endpoints and both laws equal $\delta_L$. Then $\kappa_y=1$ and $S=Q=1/B_L$. Contraction holds with equality. Thus skipping $L\ge R$ skips either an infeasible pair or this directly settled deterministic case.
+
+The means $t=0,n$ produce only deterministic all-zero/all-one parameters; the latent formula has the unique continuous limit $J_n$. The actual nonconstant matrix representation uses only $0<t<n$, so these endpoint degeneracies do not leave a matrix uncovered.
+
+## 4. Audit of the homogeneous polynomial normalization
+
+For $L<R$, set
+
+\[
+h=u+v,\quad T=Lu+Rv,\quad W=(n-L)u+(n-R)v,
+\quad D=TW,\quad t=T/h.
+\]
+
+For the first profile, the linear factors used by `ep` are precisely the numerators of $x_i-\theta$ over the common denominator $mnh$:
+
+\[
+mW\ (a\text{ copies}),\qquad
+n(T-ah)-mT\ (m\text{ copies}),\qquad
+-mT\ (n-a-m\text{ copies}).
+\]
+
+If $X_k$ is their $k$th elementary symmetric polynomial, then
+
+\[
+e_k(x-\theta\mathbf1)=\frac{X_k}{(mnh)^k}.
+\]
+
+Similarly $e_k(y-\theta\mathbf1)=Y_k/(\ell nh)^k$, while $\sigma=D/(n^2h^2)$. Put
+
+\[
+K=\ell D-n(T-ch)((\ell+c)h-T),
+\quad \kappa_y=\frac{K}{\ell D}.
+\]
+
+Define
+
+\[
+C=\sum_{k=0}^n k!(n-k)!(m\ell)^{n-k}X_kY_kD^{n-k},
+\]
+
+\[
+G=\sum_{k=0}^n k!(n-k)!
+m^{2(n-k)}\ell^{n-k}X_k^2K^kD^{2(n-k)}.
+\]
+
+Substitution into (2)–(3) gives exactly
+
+\[
+S=\frac{C}{n!m^n\ell^nD^n},\qquad
+Q=\frac{G}{n!m^{2n}\ell^nD^{2n}}.
+\]
+
+Consequently the two numerator polynomials computed by the script are
+
+\[
+S^2-Q=
+\frac{C^2-n!\ell^nG}
+{(n!)^2m^{2n}\ell^{2n}D^{2n}},
+\]
+
+\[
+S-Q=
+\frac{m^nCD^n-G}
+{n!m^{2n}\ell^nD^{2n}}.
+\tag{6}
+\]
+
+All denominators are positive for $u,v\ge0$ with $0<t<n$ and $u+v>0$. Both numerators are homogeneous of degree $4n$. Nonnegative ordinary coefficients in $u,v$ therefore prove the corresponding inequality on the entire interval, including its finite nonsingular endpoints.
+
+The coefficient lists store the coefficient of $u^{d-k}v^k$ at position $k$. The script retains full lengths, including zeros, and uses descending elementary-symmetric updates. Its ordinary convolution multiplication and integer arithmetic agree with the displayed homogeneous formulas.
+
+## 5. Independent direct-permanent arithmetic checks
+
+`round6_rank2_identity_audit.py` constructs the rational matrices (1), computes their permanents by subset dynamic programming, computes $AA^T$ directly, and compares the normalized deficits with the homogeneous numerator evaluations in (6).
+
+The run passed:
+
+- 378 profile pairs in orders 2–7;
+- 1,390 exact direct-permanent identity checks at rational interior means and valid endpoints;
+- 21 deterministic singleton-interval checks;
+- 251 uniform-profile instances within the identity checks.
+
+The calculations use `fractions.Fraction` throughout. The test is independent of the elementary-symmetric permanent expansion for its target values. Its JSON record is `round6_rank2_identity_audit.json`.
+
+These finite identity tests detect implementation or normalization errors on the stated cases. The all-parameter reduction and coverage are the mathematical arguments in Sections 1–4, and the finite-order nonnegative-coefficient enumeration is the separate certificate.
+
+## 6. Consequence for the original Gyires inequality in a certified order
+
+Once the certificate proves $\operatorname{per}(AA^T)\le\operatorname{per}(A)$ for every rank-two doubly stochastic matrix of order $n$, transposition gives the other Gram comparison. Permanent Cauchy–Schwarz then gives $\operatorname{per}(A^2)\le\operatorname{per}(A)$.
+
+Writing $d=\operatorname{per}(A)$, the original Gyires deficit is at least
+
+\[
+4d(d-c_n)\ge0.
+\]
+
+The van der Waerden theorem supplies $d\ge c_n$, with equality only at $J_n$. Thus original Gyires and the strong one-sided inequality are strict away from $J_n$ in each certified order. This does **not** mean that Gram contraction itself has equality only at $J_n$; block projection examples have contraction equality as well.
+
+The finite coefficient check therefore supports a complete computer-assisted result for all rank-two matrices in the checked orders. A proof of the coefficient signs uniformly in $n$ is still required for the all-order rank-two theorem, and an additional argument would be required for unrestricted rank.

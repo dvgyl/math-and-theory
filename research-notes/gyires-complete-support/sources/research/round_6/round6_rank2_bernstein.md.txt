@@ -1,0 +1,241 @@
+# An exact finite certificate for rank-two matrices in orders 2–15
+
+## Status and scope
+
+This note proves a finite-dimensional result using exact integer coefficient certificates and an analytic reduction:
+
+> For every doubly stochastic matrix A of rank at most two and order 2 <= n <= 15,
+> per(AA^T) <= per(A).
+
+Applying the same result to A^T gives both Gram contractions. Consequently the original Gyires inequality holds in these orders for every matrix of rank at most two, with equality only at the uniform matrix.
+
+This is **not a proof for every order**, and it does not address unrestricted higher-rank matrices. The analytic reduction is valid in all orders; the coefficient verification has a finite upper order. No novelty claim, human peer review, or proof-assistant verification is asserted.
+
+The finite verification uses exact integer arithmetic and checks a polynomial on its entire feasible interval through coefficient nonnegativity. It is not a finite sample of real parameter values. The program and mathematical reduction must both be correct for the computational theorem to hold.
+
+## 1. Exact rank-two formula
+
+Put c_n=n!/n^n. Every nonuniform rank-two doubly stochastic matrix can be written
+
+\[
+A_{ij}=\frac{x_i y_j}{t}+\frac{(1-x_i)(1-y_j)}{n-t},
+\quad x,y\in[0,1]^n,\quad \sum x_i=\sum y_j=t\in(0,n).
+\tag{1}
+\]
+
+Indeed its rows lie on a line in the probability simplex. Express them as convex combinations of the endpoint rows, with coefficients x_i, and use the column sums to obtain y_j. Row and column permutations may be made independently: per(A) and per(AA^T) are invariant under those operations.
+
+Set theta=t/n, sigma=theta(1-theta), D=t(n-t), and
+
+\[
+u_k=e_k(x-\theta\mathbf1),\quad v_k=e_k(y-\theta\mathbf1),\quad
+\kappa_y=\frac{\sum_j(y_j-\theta)^2}{n\sigma}.
+\]
+
+Expanding the permanent of A=J_n+n(x-theta)(y-theta)^T/D by the selected rank-one factors gives
+
+\[
+\frac{\operatorname{per}(A)}{c_n}
+=\sum_{k=0}^n\frac{n^{2k}u_kv_k}{\binom nk D^k}.
+\tag{2}
+\]
+
+There are k! ways to match the k selected rows and columns and (n-k)! ways to match the rest, which supplies the coefficient. Since
+
+\[
+AA^T=J_n+\frac{n\kappa_y}{D}
+(x-\theta\mathbf1)(x-\theta\mathbf1)^T,
+\]
+
+the same expansion yields
+
+\[
+\frac{\operatorname{per}(AA^T)}{c_n}
+=\sum_{k=0}^n\frac{n^{2k}u_k^2\kappa_y^k}{\binom nk D^k}.
+\tag{3}
+\]
+
+The k=0 terms are one and k=1 terms are zero.
+
+## 2. Why it suffices to check shifted-binomial profiles
+
+The preceding round gave this reduction using the binomial noise operator. An elementary derivation using only (2)–(3) makes the present note independent of that operator.
+
+Let P_x,P_y be the Poisson-binomial laws from x,y. If F_P(z)=sum_j P(j)z^j is the generating polynomial of P, then
+
+\[
+\prod_i(1+(x_i-\theta)z)
+=(1-\theta z)^n F_{P_x}\!\left(1+\frac{z}{1-\theta z}\right)
+=\sum_{j=0}^nP_x(j)(1-\theta z)^{n-j}(1+(1-\theta)z)^j.
+\]
+
+Thus u_k and v_k are linear functions of their probability laws when n,t are fixed. Also
+
+\[
+\kappa_y=1-\frac{\operatorname{Var}(P_y)}{n\sigma}
+=-\frac{2v_2}{n\sigma}
+\]
+
+is affine in P_y and lies in [0,1]. Write w_k=1/(binomial(n,k) sigma^k)>0. The contraction deficit from (2)–(3) is
+
+\[
+E(P_x,P_y)=\sum_{k=0}^n w_k u_k^2\kappa_y^k
+-\sum_{k=0}^n w_k u_kv_k.
+\tag{4}
+\]
+
+It is separately convex. For fixed P_y, the first sum is a positive semidefinite quadratic form in the linear coordinates u_k. For fixed P_x, it is a sum of nonnegative multiples of convex functions kappa_y^k on [0,1]; k=0 is constant and the k=1 term vanishes. The second sum is linear in either law separately. This proves the needed convexity directly.
+
+Fix n and t. A continuous convex functional of a Poisson-binomial law at mean t has a maximizing parameter vector with all interior parameters equal. To see this, choose a maximizer with maximal sum of squared parameters. For two distinct parameters p,q in (0,1), fix p+q and vary z=pq. The generating polynomial for this pair is affine in z, so the functional is convex in z. The current point is strictly inside the feasible z-interval; since it is a global maximum, both endpoints have the same maximum value. Moving to the smaller z endpoint puts one parameter at zero or one and raises p^2+q^2, a contradiction.
+
+Thus each law can be replaced at a maximum by a shifted binomial. Apply the argument successively to the two laws in (4), preserving a global maximum at both steps. It suffices to consider
+
+\[
+x=(1^a,q^m,0^{n-a-m}),\quad q=(t-a)/m,
+\]
+\[
+y=(1^c,r^\ell,0^{n-c-\ell}),\quad r=(t-c)/\ell,
+\tag{5}
+\]
+
+where a,c>=0, m,ell>=1, a+m<=n, c+ell<=n, and
+
+\[
+L:=\max(a,c)\le t\le R:=\min(a+m,c+\ell).
+\tag{6}
+\]
+
+This is the same classical fixed-mean extremal structure used for linear functionals by Hoeffding; the argument above establishes the convex version needed here. No assertion that E is jointly convex is needed.
+
+### Coverage of degenerate cases and orientations
+
+- Every nondegenerate shifted-binomial law has its mean strictly inside its support interval. A pair with a common mean therefore has L<R unless both laws are deterministic or a deterministic representation has been chosen unnecessarily narrowly.
+- If L=R, both displayed profile laws are deterministic at their common mean. In that case kappa_y=1 and the two laws coincide, so the contraction is equality directly. Discarding intervals of zero length therefore omits no unproved case.
+- A deterministic law delta_h with 0<h<n is the endpoint t=h of the valid profile (a,m)=(h,1). If the other law is nondegenerate at mean h, its upper support endpoint exceeds h, so this choice gives L<R. Two deterministic laws at the common mean can use the same profile and are covered by its endpoint.
+- The cases t=0,n give the uniform matrix in the limiting parametrization and are immediate separately.
+- The full-binomial profile (a,m)=(0,n) yields x_i=theta and hence A=J_n, regardless of y. These profiles are omitted from the finite enumeration because the contraction is equality.
+- Every ordered pair of remaining profiles with L<R is checked. No transposition or orientation is discarded. Permuting entries within the parameter vectors corresponds to independent row and column permutations and preserves both quantities in the contraction.
+
+Endpoint values follow by continuity from the polynomial certificate on the interval interior. Thus the enumeration covers every rank-two matrix at the stated order.
+
+## 3. Homogeneous integer polynomials
+
+Let U,V>=0 and homogenize t=(LU+RV)/(U+V). All expressions below are homogeneous polynomials in U,V. Define
+
+\[
+\mathscr D=(LU+RV)((n-L)U+(n-R)V),
+\]
+
+\[
+\mathscr K=\ell\mathscr D
+-n((L-c)U+(R-c)V)((\ell+c-L)U+(\ell+c-R)V).
+\tag{7}
+\]
+
+Then kappa_y=mathscrK/(ell mathscrD) when U+V>0 and 0<t<n.
+
+Let X_k be the kth elementary symmetric polynomial of these n linear forms:
+
+\[
+\begin{array}{ll}
+m((n-L)U+(n-R)V),& a\text{ copies},\\
+(n(L-a)-mL)U+(n(R-a)-mR)V,&m\text{ copies},\\
+-m(LU+RV),& n-a-m\text{ copies}.
+\end{array}
+\tag{8}
+\]
+
+These are n m (U+V)(x_i-theta). Define Y_k by replacing a,m with c,ell. Put
+
+\[
+\mathscr C=\sum_{k=0}^n
+k!(n-k)!(m\ell)^{n-k}X_kY_k\mathscr D^{n-k},
+\tag{9}
+\]
+
+\[
+\mathscr G=\sum_{k=0}^n
+k!(n-k)!m^{2(n-k)}\ell^{n-k}
+X_k^2\mathscr K^k\mathscr D^{2(n-k)}.
+\tag{10}
+\]
+
+Their degrees are 2n and 4n. Equations (2)–(3) give exactly
+
+\[
+\frac{\operatorname{per}(A)}{c_n}
+=\frac{\mathscr C}{n!m^n\ell^n\mathscr D^n},
+\qquad
+\frac{\operatorname{per}(AA^T)}{c_n}
+=\frac{\mathscr G}{n!m^{2n}\ell^n\mathscr D^{2n}}.
+\tag{11}
+\]
+
+Thus contraction is equivalent, in the interval interior, to nonnegativity of the homogeneous integer polynomial
+
+\[
+\boxed{\mathscr H=m^n\mathscr C\mathscr D^n-\mathscr G.}
+\tag{12}
+\]
+
+The strong squared inequality is equivalent to nonnegativity of
+
+\[
+\boxed{\mathscr S=\mathscr C^2-n!\ell^n\mathscr G.}
+\tag{13}
+\]
+
+Every denominator cleared in (11) is strictly positive for 0<t<n. The arrays in the code are the ordinary monomial coefficients of U^(4n-j)V^j. These have the same signs as the Bernstein coefficients on [L,R], since the conversion only divides by positive binomial factors.
+
+## 4. Exact finite coefficient verification
+
+The program `round6_rank2_bernstein.py` constructs (7)–(13) with Python integers. It checks every coefficient of both mathscrH and mathscrS for every ordered profile pair in (5)–(6), in orders 2 through 15. All checked coefficients are nonnegative.
+
+The numbers of oriented profile intervals checked at orders 2 through 15 are
+
+\[
+2,15,51,126,260,477,805,1276,1926,2795,3927,5370,7176,9401.
+\]
+
+In total, 33,607 ordered profile intervals and 3,524,206 integer coefficients were checked, split equally between the two deficits. The complete report is `round6_rank2_bernstein_certificate.json`; the recorded run took approximately 105 seconds in the working environment. Coefficient digests are recorded per order for reproducibility.
+
+The independent `round6_rank2_bernstein_fraction_check.py` instead builds (2)–(3) in the ordinary power basis in t over rational numbers, substitutes t=L+(R-L)z, and converts to Bernstein degree 4n. The saved comparison checks every resulting coefficient against the homogeneous integer implementation, including its exact normalization, for all 454 profile intervals in orders 2–6: 20,452 coefficients agree exactly. The report is `round6_rank2_fraction_comparison.json`. This implementation is substantially slower at larger orders.
+
+To reproduce the saved checks, run from the directory containing the scripts:
+
+```bash
+python3 round6_rank2_bernstein.py --first 2 --last 15
+python3 round6_rank2_bernstein_fraction_check.py --first 2 --last 6
+```
+
+The primary script's optional sampling mode is for exploration only; the saved certificate uses exhaustive enumeration, with no `--samples` argument. The scripts use only the Python standard library.
+
+The finite arithmetic verification proves nonnegativity on each entire real interval, not only at finitely many t-values. Combined with Section 2, it proves the contraction for all rank-two doubly stochastic matrices in the stated finite order range. It does not prove coefficient positivity when n>15.
+
+## 5. Original Gyires and equality in these orders
+
+Apply contraction to A and A^T, and permanent Cauchy–Schwarz to A^2. If d=per(A),
+
+\[
+\operatorname{per}(AA^T),\operatorname{per}(A^TA),\operatorname{per}(A^2)\le d.
+\]
+
+The original Gyires deficit is therefore at least 4d(d-c_n).
+
+For nonuniform rank-two A, both centered parameter vectors in (1) are nonzero, so kappa_x,kappa_y>0. In (3) the k=2 term is strictly positive because
+
+\[
+u_2=-\tfrac12\sum_i(x_i-\theta)^2\ne0.
+\]
+
+All terms in (3) are nonnegative. Hence per(AA^T)>c_n; contraction gives d>c_n. This proves strict original Gyires away from J_n without needing to invoke a separate equality theorem for the van der Waerden bound. A rank-one doubly stochastic matrix is J_n, and J_n attains equality.
+
+## 6. The unproved all-order statement
+
+The following would complete the strong rank-two case in every dimension:
+
+> For every admissible n,a,m,c,ell, every monomial coefficient of mathscrH in (12) is nonnegative.
+
+This coefficient assertion is stronger than the needed pointwise inequality. Its observed validity through order 15 does not prove it in arbitrary order. No uniform coefficient formula with a proved sign, induction in the multiplicities, or analytic proof of the corresponding one-parameter inequality has been obtained here.
+
+The all-order rank-two conjecture and the unrestricted Gyires conjecture therefore remain unresolved by this note.

@@ -1,0 +1,264 @@
+# A full-rank proof attempt and an exact obstruction to averaged Fock-capacity deletion
+
+## Status
+
+This note does **not** complete Gyires's conjecture. It records a precise attempted global induction and proves that one stronger, apparently simpler version of its missing inequality is false. The original strong Gram inequality and the capacity-balanced deletion inequality are not refuted. No numerical statement is used as a proof of the finite obstruction below.
+
+Write
+
+\[
+c_n=n!/n^n,\qquad g_n=((n-1)/n)^{n-1},\qquad
+N(p)=\sum_\alpha\alpha!p_\alpha^2.
+\]
+
+For a doubly stochastic matrix $A$, its product polynomial $p_A=\prod_i(Ax)_i$ satisfies $p_A(\mathbf1)=1$, $\partial_jp_A(\mathbf1)=1$, and $N(p_A)=\operatorname{per}(AA^T)$. The desired strong inequality is
+
+\[
+\bigl([x_1\cdots x_n]p_A\bigr)^2\ge c_nN(p_A).
+\]
+
+Equivalently, $\operatorname{per}(A)^2\ge c_n\operatorname{per}(AA^T)$.
+
+## 1. The still-unproved induction statement
+
+For a nonnegative polynomial $q$ of degree $m$ in $m$ variables, with positive central coefficient, determinant-one capacity scaling has a unique balanced polynomial limit $\bar q$. The proof of this general fact is in `round5_rank2_closure_audit.md`, Section 4, and does not need rank two. Put
+
+\[
+H(q)=N(\bar q).
+\]
+
+If, for every balanced real-stable degree-$n$ polynomial $p$ in $n$ variables, one could prove
+
+\[
+\max_j H([x_j]p)\ge g_nN(p),
+\tag{1}
+\]
+
+then the strong stable-polynomial inequality would follow by induction: real stability is preserved by singleton extraction and positive scaling, the central coefficient is unchanged, and $c_{n-1}g_n=c_n$. The average version
+
+\[
+\sum_jH([x_j]p)\ge n g_nN(p)
+\tag{2}
+\]
+
+would be sufficient as well. Neither (1) nor (2) is proved in this investigation.
+
+The previously constructed examples refute prescribing an arbitrary column, and even restricting the choice to zero-containing columns in general rank. They do not refute (1), which allows any column.
+
+## 2. A stronger variational replacement
+
+Define the minimum Fock norm under diagonal scaling by
+
+\[
+\mathcal C_F(q)=\inf_{D>0}
+\frac{N(q(Dx))}{(\det D)^2}.
+\tag{3}
+\]
+
+Because degree and number of variables agree, this infimum can equivalently be restricted to determinant-one scales. It is a log-sum-exp convex minimization in logarithmic scale coordinates. In particular,
+
+\[
+\mathcal C_F(q)\le H(q).
+\]
+
+Thus a sufficient, stronger version of (2) would be
+
+\[
+\sum_j\mathcal C_F([x_j]p)\ge n g_nN(p).
+\tag{4}
+\]
+
+Unlike $H$, each term in (4) minimizes exactly the norm that occurs in the target. This makes (4) a natural possible route to a variational argument. **It is false.**
+
+## 3. A rank-two family exposing the failure
+
+Let $n\ge3$, choose $0<a<1$, and write $b=1-a$. Define
+
+\[
+u=(0,a,\underbrace{b/(n-2),\ldots,b/(n-2)}_{n-2}),
+\]
+
+and let
+
+\[
+A_{i1}=u_i,\qquad A_{ij}=(1-u_i)/(n-1)\quad(j\ge2).
+\tag{5}
+\]
+
+The matrix is doubly stochastic of rank two, with exactly one zero entry. Put $Y=x_2+\cdots+x_n$. Its product polynomial is
+
+\[
+p(x)=\sum_{k=0}^{n-1}P_kx_1^k
+\left(\frac{Y}{n-1}\right)^{n-k},
+\tag{6}
+\]
+
+where
+
+\[
+P=\operatorname{Bern}(a)+\operatorname{Bin}(n-2,b/(n-2)).
+\]
+
+Let $B=\operatorname{Bin}(n,1/n)$ and
+
+\[
+C_n(z)=\sum_{k=0}^{n-1}\frac{P_k^2}{B_k}z^k.
+\]
+
+The full norm is $N(p)=c_n C_n(1)$.
+
+### The special-column deletion
+
+For $q_1=[x_1]p$,
+
+\[
+q_1=P_1\left(\frac{Y}{n-1}\right)^{n-1}.
+\]
+
+Using the identity scale already gives
+
+\[
+\frac{\mathcal C_F(q_1)}{g_nN(p)}
+\le\frac{P_1^2}{g_n^2C_n(1)}.
+\tag{7}
+\]
+
+In fact the symmetric identity scale minimizes this norm, but only the upper bound is needed.
+
+### Any ordinary-column deletion
+
+The other $n-1$ deletions are equivalent. Fix $j\ge2$ and set $Z=\sum_{i\ge2,i\ne j}x_i$. Then
+
+\[
+q_j=[x_j]p
+=\sum_{k=0}^{n-1}
+\frac{(n-k)P_k}{(n-1)^{n-k}}
+x_1^kZ^{n-1-k}.
+\]
+
+In (3), use the explicit scale $x_1\mapsto\sqrt z,x_1$, leaving the other variables fixed. Its squared determinant is $z$. Expanding the Fock norm therefore gives
+
+\[
+\frac{\mathcal C_F(q_j)}{g_nN(p)}
+\le
+\frac{1}{g_nC_n(1)}
+\sum_{k=0}^{n-1}\frac{P_k^2}{B_k}
+\frac{n-k}{n-1}
+\left(\frac{n-2}{n-1}\right)^{n-1-k}
+z^{k-1}.
+\tag{8}
+\]
+
+This is an explicit trial upper bound, with no numerical optimizer required.
+
+## 4. Exact finite counterexample at order 700
+
+Take
+
+\[
+n=700,\qquad a=7/10,\qquad b=3/10,\qquad z=9/10.
+\]
+
+Let $R$ be the average of the upper bounds (7) and the $n-1$ copies of (8). The accompanying standard-library integer and rational certificate proves
+
+\[
+\boxed{\quad
+\frac{\sum_j\mathcal C_F([x_j]p)}{n g_nN(p)}
+\le R<\frac{99996}{100000}<1.
+\quad}
+\tag{9}
+\]
+
+For orientation only, the exact rational trial ratio is approximately
+
+\[
+R=0.9999594712323396\ldots.
+\]
+
+The special deletion contributes a normalized ratio about $2.0650742$, while each of the other 699 trial ratios is about $0.9984357$. In high dimension, the many ordinary columns outweigh the single favorable column.
+
+### How the certificate avoids numerical arithmetic
+
+Set $M=10(n-2)$, $L=M-3$, and
+
+\[
+C_k=\binom{n-2}{k}3^kL^{n-2-k},\qquad
+I_k=3C_k+7C_{k-1},\qquad D=10M^{n-2},
+\]
+
+where coefficients outside their range are zero. Then $P_k=I_k/D$, and the checker verifies exactly
+
+\[
+\sum_k I_k=D,\qquad\sum_k kI_k=D.
+\]
+
+Put
+
+\[
+T_k=I_k^2k!(n-k)!,\qquad
+W=\sum_kT_k(n-1)^k.
+\]
+
+The identity $N(p)=W/[D^2(n-1)^n]$ follows directly from (6). The special-column norm divided by $N(p)$ is
+
+\[
+S=\frac{I_1^2(n-1)!(n-1)}{W}.
+\]
+
+The trial ordinary-column norm divided by $N(p)$ is the rational number
+
+\[
+O=\frac{
+\sum_{k=0}^{n-1}T_k(n-k)(n-2)^{n-1-k}
+(n-1)^{2k}9^k10^{n-1-k}}
+{(n-1)^n\,9\,10^{n-2}\,W}.
+\]
+
+Finally $R=[S+(n-1)O]/(n g_n)$. Every operation in the checker uses Python integers or `fractions.Fraction`. It asserts $R<99996/100000$ by exact comparison. The exact fraction is large, so its hexadecimal numerator/denominator representation is hashed in the JSON output instead of printing many thousands of digits.
+
+Run:
+
+```bash
+python3 round6_average_fock_capacity_obstruction.py
+```
+
+## 5. The asymptotic mechanism
+
+For fixed $a,b$, the law $P$ in (6) tends to $\operatorname{Bern}(a)+\operatorname{Pois}(b)$ and $B$ tends to $\operatorname{Pois}(1)$. The collision generating function tends to
+
+\[
+C_\infty(z)=e^{1-2b+b^2z}\bigl[b^2(1+az)^2+a^2z\bigr].
+\]
+
+For each fixed $k$, the factor in (8) divided by $g_n$ tends to one. Consequently the ordinary-column trial ratio tends to
+
+\[
+\frac{C_\infty(z)}{zC_\infty(1)}.
+\]
+
+The special-column ratio stays bounded, so its contribution to the average vanishes. With $a=7/10$ and $z=9/10$, the limiting average is exactly
+
+\[
+e^{-9/1000}\frac{75569}{75010}<1.
+\]
+
+The strict inequality is elementary: $75569/75010=1+559/75010<1+9/1000<e^{9/1000}$.
+
+Passage to the collision sums is justified by dominated convergence. For $k\ge1$,
+
+\[
+P_{n,k}\le\frac{b^{k-1}(b^2+ak)}{k!},
+\qquad B_{n,k}^{-1}\le e^{k+2}k!,
+\]
+
+and the $k=0$ terms are bounded separately. The remaining factor in (8) divided by $g_n$ is bounded by $3e/2$ for $n\ge3$. These give a summable majorant at the fixed positive trial scale. The special ratio is at most $e^2$, since $P_1\le1$, $C_n(1)\ge1$, and $g_n>e^{-1}$.
+
+Thus failure of (4) is not an isolated arithmetic accident; it persists in all sufficiently large orders in this simple rank-two family.
+
+## 6. What this excludes, and what remains
+
+The capacity-balanced polynomial $\bar q$ minimizes its value at $\mathbf1$, not its Fock norm. Replacing $H(q)$ by the smaller $\mathcal C_F(q)$ discards information that the induction can need. This note shows that the loss cannot be repaired merely by averaging over all columns.
+
+It does not refute the maximum-column comparison with $\mathcal C_F$: in this example the special column has ratio greater than one. It does not refute the maximum or average comparisons with $H$, and it does not refute the strong Gram inequality or original Gyires. The matrices (5) are already in a proved family from the previous rounds.
+
+No global proof was obtained from this attempt. The still-open step is an inequality such as (1) or (2) with the correct capacity-balanced norm, or a different global argument that avoids this obstruction.

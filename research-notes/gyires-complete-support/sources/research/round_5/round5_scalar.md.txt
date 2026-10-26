@@ -1,0 +1,611 @@
+# Scalar norm inequalities: a fresh audit and a symmetric-reference theorem
+
+## Status
+
+The mean-one theorem in `round4_scalar_ulc.md` survives a fresh, line-by-line mathematical check. For arbitrary ultra-log-concave input laws, the general integer-mean binomial theorem remains unproved here. This note proves its exact reduction to tilted intervals and proves the whole claim whenever the reference law is symmetric about its integer mean. The symmetric-reference result does not require log-concavity of the reference law.
+
+For the smaller class of Poisson-binomial laws, Section 6 proves a stronger inequality at every integer mean and classifies equality. Section 7 also proves the duplication-to-Gram bridge for the entire mean-one Lorentzian family. Section 8 proves the original Gyires inequality, with an explicit positive margin, for all doubly stochastic matrices with at most two row types and at most two column types.
+
+No numerical experiment is used in the proofs below. These arguments have not been formalized in a proof assistant, and no claim of novelty is made.
+
+## 1. Fresh audit of the mean-one proof
+
+I rechecked the original argument from its definitions, rather than assuming its conclusion.
+
+* The normalization $u=r/r_1$ preserves exactly the relevant mean constraint. The case $u_0=0$ indeed forces support $\{1\}$.
+* The bound $u_0\le1$ follows from log-concavity and the weighted-average identity. All other coordinates are bounded by the mean equation. Closedness follows from the continuous multi-step log-concavity inequalities, which exclude internal zeros in a limit.
+* At an active log-concavity equality, the two-sided multiplicative perturbation has exact gap $\varepsilon^2(h_k-h_{k-1})^2$. The dimension count leaves a nonzero perturbation whenever an interior inequality is strict. The strictly convex objective therefore forces a geometric likelihood ratio on its support.
+* The balancing root is unique and lies above one for a proper initial truncation. The estimate $t_L-1\le1/L!$ follows from the stated factorial coefficient bound and derivative bound with exactly the constants used in the file.
+* Eliminating $B_0$ gives the stated expression for $f(t^2)-f(1)$; its $k=2$ term cancels. The hyperbolic-sine identity is exact. The Taylor estimate follows from the integral remainder for $\sinh x-x$.
+* The tail domination follows term by term from $b_{i+r}\le\rho^r b_i$. Its resulting bound on $T/M$, together with the excess estimate, is strict for every proper truncation.
+* The degenerate case, $n=2$, full-support equality, and the polynomial lift identities all check.
+
+I found no hidden mathematical flaw. This is an additional audit of the existing mean-one theorem, not a new proof claimed as a new result.
+
+## 2. A general localization lemma
+
+Let $B=(B_0,\ldots,B_n)$ be any strictly positive probability mass function. Fix an integer $m\in\{1,\ldots,n-1\}$. Consider a nonnegative log-concave sequence $u$ with interval support such that
+
+\[
+u_m=1,\qquad
+\sum_{k=0}^n(k-m)B_ku_k=0.
+\tag{1}
+\]
+
+We wish to maximize
+
+\[
+\Phi_B(u)=\sum_{k=0}^nB_ku_k^2.
+\tag{2}
+\]
+
+### 2.1 Compactness without a special binomial estimate
+
+Put $Z=\sum_kB_ku_k$ and $P_k=B_ku_k/Z$. Then $P$ has mean $m$. Concavity of the piecewise-linear interpolation of $\log u$ on its support gives
+
+\[
+\sum_kP_k\log u_k\le\log u_m=0.
+\]
+
+But
+
+\[
+\sum_kP_k\log u_k
+=D(P\Vert B)+\log Z,
+\]
+
+where relative entropy is nonnegative. Hence $Z\le1$, and in particular
+
+\[
+0\le u_k\le B_k^{-1}.
+\tag{3}
+\]
+
+The feasible set is closed: besides the local log-concavity inequalities, its equivalent multi-step inequalities are
+
+\[
+u_j^{k-i}\ge u_i^{k-j}u_k^{j-i}
+\qquad(i<j<k).
+\]
+
+They are continuous polynomial inequalities and prevent an internal zero between positive limiting endpoints. Together with (3), this gives compactness.
+
+### 2.2 Extremizers
+
+If the support has an endpoint at $m$, the mean condition forces the singleton support $\{m\}$. Otherwise it is an interval $[a,b]$ with $a<m<b$.
+
+On that interval, impose $2h_k=h_{k-1}+h_{k+1}$ at every active log-concavity equality. If any interior inequality is strict, the solution space has dimension at least three. The two extra equations
+
+\[
+h_m=0,\qquad
+\sum_{k=a}^b(k-m)B_ku_kh_k=0
+\]
+
+leave a nonzero solution. Both $u_k(1\pm\varepsilon h_k)$ are feasible for sufficiently small $\varepsilon>0$, and their average objective exceeds (2) by
+
+\[
+\varepsilon^2\sum_{k=a}^bB_ku_k^2h_k^2>0.
+\]
+
+Therefore every nondegenerate maximizer is of the form
+
+\[
+u_k=t^{k-m}\mathbf1_{\{a\le k\le b\}},
+\qquad a<m<b.
+\tag{4}
+\]
+
+The mean equation determines $t>0$ uniquely: the mean of the corresponding tilted probability law is strictly increasing in $\log t$, with limits $a$ and $b$.
+
+In particular, for $B=\operatorname{Bin}(n,m/n)$, the desired integer-mean theorem is exactly equivalent to proving
+
+\[
+\sum_{k=a}^b B_k t^{2(k-m)}\le1
+\tag{5}
+\]
+
+at the unique root of
+
+\[
+\sum_{k=a}^b(k-m)B_kt^{k-m}=0
+\tag{6}
+\]
+
+for every $a<m<b$, together with the automatic singleton case. Localization itself does not prove (5).
+
+## 3. The symmetric-reference theorem
+
+### Theorem
+
+Let $N\ge1$ and let $B$ be a strictly positive probability mass function on $\{-N,\ldots,N\}$ such that $B_{-j}=B_j$. Let $P$ be a mean-zero probability mass function on the same set such that $r_j=P_j/B_j$ is log-concave with interval support. Then
+
+\[
+\boxed{\quad\sum_{j=-N}^N B_jr_j^2\le r_0^2.\quad}
+\tag{7}
+\]
+
+Equality holds exactly when $P=B$.
+
+Notice that $B$ itself need not be log-concave. The only shape assumption is log-concavity of the likelihood ratio $P/B$.
+
+### Proof
+
+Set $u=r/r_0$, which is legitimate because interval support and mean zero imply $P_0>0$. By the localization lemma, a maximizer is either supported at zero or has the form
+
+\[
+u_j=e^{sj}\mathbf1_{\{-a\le j\le b\}}
+\]
+
+for integers $a,b\ge1$. A singleton has objective $B_0<1$.
+
+If $s=0$, balance and strict positivity of the symmetric reference force $a=b$. The objective is the reference probability of this interval, at most one, with equality only for the full interval.
+
+Suppose $s>0$. If $a\le b$, every symmetric pair in the interval contributes a strictly positive amount to the mean, as do any unpaired positive terms. Therefore balance forces $a>b$. The mean equation becomes
+
+\[
+\sum_{j=1}^b 2jB_j\sinh(sj)
+=\sum_{j=b+1}^a jB_j e^{-sj}.
+\tag{8}
+\]
+
+Subtract the reference mass of the interval from the squared-norm objective. Pairing $j$ and $-j$ gives the exact identity
+
+\[
+\Phi_B(u)-B([-a,b])
+=\sum_{j=1}^b4B_j\sinh^2(sj)
+-\sum_{j=b+1}^aB_j(1-e^{-2sj}).
+\tag{9}
+\]
+
+The function $x\mapsto\sinh(sx)/x$ is strictly increasing on $x>0$: its derivative has numerator $sx\cosh(sx)-\sinh(sx)$, whose derivative in $sx$ is positive. Thus
+
+\[
+\begin{aligned}
+\sum_{j=1}^b4B_j\sinh^2(sj)
+&\le\frac{2\sinh(sb)}b
+\sum_{j=1}^b2jB_j\sinh(sj)\\
+&=\frac{2\sinh(sb)}b
+\sum_{j=b+1}^a jB_j e^{-sj}\\
+&<\sum_{j=b+1}^a2B_j\sinh(sj)e^{-sj}\\
+&=\sum_{j=b+1}^aB_j(1-e^{-2sj}).
+\end{aligned}
+\tag{10}
+\]
+
+The strict inequality follows from $j>b$ and the presence of at least one unpaired term. Equations (9) and (10) imply
+
+\[
+\Phi_B(u)<B([-a,b])\le1.
+\]
+
+For $s<0$, reflect the indices and apply the same argument. Consequently, the only geometric candidate with objective one is $u\equiv1$ on the full interval. A nongeometric equality case would admit the strictly improving two-sided perturbation from the localization lemma, contradicting the bound. Therefore equality forces $u\equiv1$, and probability normalization gives $r\equiv1$, or $P=B$. This proves (7).
+
+## 4. Consequence for the central integer-mean binomial problem
+
+Take $n=2m$ and $B=\operatorname{Bin}(2m,1/2)$. It is symmetric about its integer mean $m$. Thus every mean-$m$ probability mass function $P$ with log-concave likelihood ratio $r=P/B$ satisfies
+
+\[
+\sum_{k=0}^{2m}B_kr_k^2\le r_m^2,
+\]
+
+with equality only for $P=B$. This proves the arbitrary-order central-mean case, in addition to the mean-one and reflected mean-$(n-1)$ cases proved earlier.
+
+### Exact examples
+
+For $B=\operatorname{Bin}(4,1/2)$, consider support $\{1,2,3\}$. Symmetry gives $t=1$ and
+
+\[
+\Phi_B(u)=B_1+B_2+B_3=\frac78.
+\]
+
+After probability normalization, the likelihood ratio is constant $8/7$ on this interval; the scalar target ratio is exactly $8/7>1$.
+
+For a reference law which is not log-concave, take
+
+\[
+(B_{-2},B_{-1},B_0,B_1,B_2)
+=\frac1{20}(6,1,6,1,6).
+\]
+
+It is symmetric and strictly positive, but $B_{-1}^2<B_{-2}B_0$. The theorem still applies to every mean-zero $P$ with log-concave ratio $P/B$. For example, restriction to $\{-1,0,1\}$ has $t=1$, objective $2/5$, and scalar target ratio $5/2$.
+
+## 5. Exact two-group polynomial interpretation
+
+Let $m+\ell=n$, and set
+
+\[
+X=x_1+\cdots+x_m,\qquad
+Y=x_{m+1}+\cdots+x_n,\qquad
+p(x)=\sum_{k=0}^n a_kX^kY^{n-k}.
+\]
+
+For a normalized polynomial, define
+
+\[
+P_k=a_km^k\ell^{n-k},\qquad
+B_k=\binom nk\left(\frac mn\right)^k
+\left(\frac\ell n\right)^{n-k}.
+\]
+
+Balance of all $n$ variables is equivalent to $\mathbb E_PK=m$. The Lorentzian condition is log-concavity with interval support of $a_k/\binom nk$, equivalently of $r=P/B$. The identities are
+
+\[
+\frac{[x_1\cdots x_n]p}{c_n}=r_m,
+\qquad
+\frac{N(p)}{c_n}=\sum_{k=0}^nB_kr_k^2.
+\tag{11}
+\]
+
+Indeed the central coefficient is $a_m m!\ell!$, and the contribution to the Fischer norm from total degree $k$ in the first group is
+
+\[
+k!(n-k)!a_k^2m^k\ell^{n-k}.
+\]
+
+Consequently the symmetric-reference theorem proves the target Fischer-norm inequality for every balanced Lorentzian polynomial with two groups of the same size. It does not require a product of linear forms.
+
+For unequal group sizes, (11) is still exact, but the corresponding integer-mean scalar inequality remains the missing step in this note. The proof for symmetric reference laws cannot be applied directly to an asymmetric binomial law by an exponential tilt, because that changes the mean about which the balance condition is imposed.
+
+## 6. A stronger theorem for Poisson-binomial laws at every integer mean
+
+The previous unresolved statement concerns arbitrary ultra-log-concave probability laws. For the smaller class of sums of independent Bernoulli variables, a stronger inequality has an elementary proof.
+
+### Theorem
+
+Let $P$ be the probability mass function of a sum of $n$ independent Bernoulli variables with parameters $p_1,\ldots,p_n\in[0,1]$. Suppose $\sum_i p_i=m$ is an integer with $1\le m\le n-1$, and let $B=\operatorname{Bin}(n,m/n)$. Then
+
+\[
+\boxed{\quad\frac{P_k}{B_k}\le\frac{P_m}{B_m}
+\quad(0\le k\le n).\quad}
+\tag{12}
+\]
+
+Consequently,
+
+\[
+\boxed{\quad\sum_k\frac{P_k^2}{B_k}
+\le\frac{P_m}{B_m}
+\le\left(\frac{P_m}{B_m}\right)^2.\quad}
+\tag{13}
+\]
+
+The last inequality uses $P_m/B_m\ge1$, which follows from (12) and $\sum_kB_k(P_k/B_k)=1$.
+
+### Extremizing a linear function of the Poisson-binomial law
+
+This fixed-mean extremal reduction is classical: see W. Hoeffding, *On the Distribution of the Number of Successes in Independent Trials*, Annals of Mathematical Statistics 27 (1956), 713–721, Corollary 2.1, [primary publication](https://projecteuclid.org/journals/annals-of-mathematical-statistics/volume-27/issue-3/On-the-Distribution-of-the-Number-of-Successes-in-Independent/10.1214/aoms/1177728178.full). It is also discussed in Section 2 of Jim Pitman's *Probabilistic Bounds on the Coefficients of Polynomials with Only Real Zeros*, [author PDF](https://statistics.berkeley.edu/sites/default/files/tech-reports/453.pdf). The elementary proof below is included for completeness; the reduction is not claimed as new.
+
+For any real function $f$ on $\{0,\ldots,n\}$, maximize $\mathbb E f(K)$ over Bernoulli parameter vectors with $\sum_i p_i=m$. Among the maximizers choose one with maximal $\sum_i p_i^2$; existence follows from compactness.
+
+Suppose two parameters $p_i,p_j$ are distinct and lie strictly between zero and one. At fixed sum $s=p_i+p_j$, the generating polynomial for their sum is
+
+\[
+(1-s+z)+(s-2z)x+zx^2,
+\qquad z=p_ip_j.
+\]
+
+Thus $\mathbb E f(K)$ is affine in $z$. The current $z$ lies strictly between its feasible endpoints $\max(0,s-1)$ and $s^2/4$. Since the current vector is a global maximizer, this affine function must be constant. Move $z$ to its lower endpoint. The objective is unchanged, one parameter reaches zero or one, and
+
+\[
+p_i^2+p_j^2=s^2-2z
+\]
+
+strictly increases. This contradicts the tie-break. Hence all parameters strictly between zero and one are equal at a suitable maximizer.
+
+Its law is therefore
+
+\[
+K=a+\operatorname{Bin}(b,q),\qquad
+q=\frac{m-a}{b},
+\tag{14}
+\]
+
+with $a$ deterministic ones, $n-a-b$ zeros, and $b$ equal fractional parameters. The deterministic case $b=0$ is allowed separately.
+
+### Two adjacent coefficient inequalities
+
+Apply this extremizer principle first to the linear objective
+
+\[
+(m+1)P_{m+1}-mP_m.
+\]
+
+At a nondegenerate law (14), write $r=m-a$, so $0<r<b$. The adjacent ratio is
+
+\[
+\frac{P_{m+1}}{P_m}=\frac{r}{r+1}
+\le\frac{m}{m+1}.
+\]
+
+The deterministic law also has a nonpositive objective. Thus every feasible Poisson-binomial law satisfies
+
+\[
+(m+1)P_{m+1}\le mP_m.
+\tag{15}
+\]
+
+Likewise, maximize $(n-m+1)P_{m-1}-(n-m)P_m$. At (14),
+
+\[
+\frac{P_{m-1}}{P_m}=\frac{b-r}{b-r+1}
+\le\frac{n-m}{n-m+1},
+\]
+
+because $b-r=b-m+a\le n-m$. Therefore
+
+\[
+(n-m+1)P_{m-1}\le(n-m)P_m.
+\tag{16}
+\]
+
+### Finish by Newton log-concavity
+
+The Bernoulli product polynomial has only real nonpositive zeros, so Newton's inequalities imply that $P_k/\binom nk$, and hence $r_k=P_k/B_k$, is log-concave with interval support. Since
+
+\[
+\frac{B_{m+1}}{B_m}=\frac{m}{m+1},\qquad
+\frac{B_{m-1}}{B_m}=\frac{n-m}{n-m+1},
+\]
+
+(15) and (16) say that $r_{m-1}\le r_m$ and $r_{m+1}\le r_m$. Log-concavity makes the entire sequence nondecreasing up to its mode interval and nonincreasing afterwards. Thus $r_k\le r_m$ for all $k$, proving (12). Multiplying by $P_k$ and summing proves (13).
+
+The pointwise and norm inequalities include degenerate Bernoulli parameters by the argument above, or by continuity.
+
+### Equality in the stronger norm inequality
+
+Equality in $\sum P_k^2/B_k\le P_m/B_m$ occurs exactly for $P=B$ or $P=\delta_m$.
+
+Indeed, equality forces $r_k=r_m$ at every point of the support, because it is obtained by averaging the pointwise inequality with strictly positive weights $P_k$ on that support. Thus $P$ is a binomial law restricted to some interval $[a,b]$ and renormalized.
+
+Let $d=b-a$. If $d\ge2$, remove the factor $z^a$ from its probability generating polynomial. The resulting polynomial has degree $d$ and still has only real nonpositive zeros. At an interior coefficient index $1\le j\le d-1$, the adjacent coefficient ratio inherited from the restricted binomial is
+
+\[
+\frac{P_{a+j}^2}{P_{a+j-1}P_{a+j+1}}
+=\frac{a+j+1}{a+j}\,
+\frac{n-a-j+1}{n-a-j}.
+\]
+
+Newton's inequality for its actual degree $d$ requires this to be at least
+
+\[
+\frac{j+1}{j}\,
+\frac{d-j+1}{d-j}.
+\]
+
+Since $a+j\ge j$ and $n-a-j\ge d-j$, each factor in the first display is at most the corresponding required factor. At least one is strictly smaller unless $a=0$ and $d=n$. Hence a proper interval of width at least two is impossible. An interval of width one with positive mass at both endpoints cannot have integer mean. Width zero gives $P=\delta_m$, while the full interval gives $P=B$. Both stated cases do attain equality.
+
+It follows that equality in the weaker squared-central bound $\sum P_k^2/B_k\le(P_m/B_m)^2$ occurs only at $P=B$: in the deterministic case $P_m/B_m=1/B_m>1$.
+
+### Consequence and limitation
+
+Equation (13), together with (11), proves the desired Fischer-norm inequality for every balanced two-group polynomial whose binary coefficient generating polynomial is real-rooted, with arbitrary group sizes. It is stronger than the corresponding squared-central-coefficient bound. It does not prove the arbitrary Lorentzian two-group case, because a Lorentzian binary polynomial need not be real-rooted. Nor does it prove the general two-law rank-two permanent inequality.
+
+This proof was independently obtained by the analytic agent during the same round. The symmetric-reference theorem and its polynomial lift were separately audited by the combinatorial agent, which found no gap.
+
+## 7. The duplication-to-Gram bridge in the mean-one Lorentzian family
+
+There is a second consequence of the mean-one localization argument, beyond the norm inequality itself.
+
+### Scalar bridge theorem
+
+Let $n\ge2$, let $B=\operatorname{Bin}(n,1/n)$, and let $P$ be a mean-one probability law whose ratio $P/B$ is log-concave with interval support. Write
+
+\[
+q=\frac{n-1}{n},\qquad g=B_1=q^{n-1}.
+\]
+
+Then
+
+\[
+\boxed{\quad
+P_1^2+2P_0P_2
+\ge (1+q)g^2\sum_{k=0}^n\frac{P_k^2}{B_k}.
+\quad}
+\tag{17}
+\]
+
+Equality holds exactly for $P=B$.
+
+### Proof
+
+Set $u_k=(P_k/B_k)/(P_1/B_1)$ as in the mean-one proof. Since $B_0=qg$ and $B_2=g/2$, (17) is equivalent to
+
+\[
+\Psi(u):=(1+q)\sum_kB_ku_k^2-q u_0u_2\le1.
+\tag{18}
+\]
+
+The same compact feasible set and two-sided multiplicative perturbations from Section 2 apply. We need to check strict convexity of the new quadratic objective. All coordinates except 0 and 2 are diagonal positive terms. The remaining $2\times2$ block is positive definite exactly when
+
+\[
+(1+q)^2B_0B_2>\frac{q^2}{4},
+\quad\text{or equivalently}\quad
+2(1+q)^2g^2>q.
+\tag{19}
+\]
+
+The elementary bound $(1-1/n)^{n-1}>e^{-1}$ follows from
+$\log(1-x)>-x/(1-x)$ for $0<x<1$. Also $(1+q)^2/q\ge4$. Therefore
+
+\[
+\frac{2(1+q)^2g^2}{q}>\frac8{e^2}>1,
+\]
+
+which proves (19). Thus $\Psi$ is strictly convex.
+
+The localization proof now forces a maximizer to be a geometric likelihood ratio on an initial interval $\{0,\ldots,L\}$, $L\ge2$, or the singleton at 1. In the geometric case, $u_0u_2=1$, so
+
+\[
+\Psi(u)=(1+q)\Phi_B(u)-q\le1
+\]
+
+by the already proved mean-one theorem. Its strictness on every proper geometric truncation gives strictness here as well.
+
+For the singleton, $\Psi(u)=(1+q)g<1$. Indeed Bernoulli's inequality gives
+
+\[
+g^{-1}=\left(1+\frac1{n-1}\right)^{n-1}\ge2,
+\]
+
+while $q<1$. Strict convexity and the same perturbation argument rule out any further equality case. Hence equality forces $P=B$.
+
+### Polynomial form
+
+For a balanced normalized one-special-variable Lorentzian polynomial
+
+\[
+p(x)=\sum_{k=0}^n a_k x_1^k(x_2+\cdots+x_n)^{n-k},
+\]
+
+(17) is exactly the coefficient inequality
+
+\[
+\boxed{\quad
+2^n[x_1^2\cdots x_n^2]p(x)^2
+\ge\frac{(2n)!}{n!\,n^n}\,N(p).
+\quad}
+\tag{20}
+\]
+
+To verify the constants directly, put $m=n-1$ and $P_k=a_km^{n-k}$. The left side of (20) is
+
+\[
+2(2n-2)!(a_1^2+2a_0a_2),
+\]
+
+while $N(p)=c_n\sum_kP_k^2/B_k$. Substitution gives exactly (17). Equality in (20) is the uniform power $((x_1+\cdots+x_n)/n)^n$.
+
+For a matrix product polynomial, the left side of (20) is $\operatorname{per}(A\otimes E_2)$, where $E_2$ is the all-ones $2\times2$ matrix. Thus (20) is the proposed duplication-to-Gram bridge on this entire Lorentzian family. No extension to arbitrary two-group or multivariate Lorentzian polynomials is asserted here.
+
+The combinatorial agent independently checked the quadratic block, constants, localization, endpoint cases, and equality in this bridge proof, and found no gap.
+
+## 8. Full Gyires for matrices with two row types and two column types
+
+### Theorem
+
+Let $A$ be a nonnegative doubly stochastic matrix of order $n\ge2$ with at most two distinct row vectors and at most two distinct column vectors. Write
+
+\[
+d=\operatorname{per}(A),\qquad c_n=\frac{n!}{n^n}.
+\]
+
+Then
+
+\[
+\operatorname{per}(AA^T)\le d,\qquad
+\operatorname{per}(A^TA)\le d,\qquad
+\operatorname{per}(A^2)\le d,
+\tag{21}
+\]
+
+and the original Gyires deficit satisfies the stronger margin
+
+\[
+\boxed{\quad
+4d^2-c_n\left[
+\operatorname{per}(AA^T)+\operatorname{per}(A^TA)
++2\operatorname{per}(A^2)\right]
+\ge4d(d-c_n)\ge0.
+\quad}
+\tag{22}
+\]
+
+Equality in the original Gyires inequality occurs exactly at $A=J_n$, where every entry of $J_n$ is $1/n$.
+
+### Parametrization
+
+The case of only one row type or only one column type is already $J_n$. Otherwise let the two row classes have sizes $r,n-r$ and the two column classes sizes $s,n-s$, with $1\le r,s\le n-1$. The four constant block values are
+
+\[
+\begin{pmatrix}
+\displaystyle\frac{h}{rs}
+&\displaystyle\frac{r-h}{r(n-s)}\\[6pt]
+\displaystyle\frac{s-h}{(n-r)s}
+&\displaystyle\frac{n-r-s+h}{(n-r)(n-s)}
+\end{pmatrix},
+\tag{23}
+\]
+
+where each displayed entry fills its corresponding block, and
+
+\[
+\max(0,r+s-n)\le h\le\min(r,s).
+\tag{24}
+\]
+
+Here $h$ is the total mass in the $r\times s$ block, not an individual entry. The four block masses are $h,r-h,s-h,n-r-s+h$. The range (24) is exactly their nonnegativity condition; the formulas make every row and column sum one. Conversely, row and column stochasticity force these formulas for any matrix with these two row and column classes. The uniform matrix corresponds to $h=rs/n$.
+
+Row and column classes need not be consecutive in the original indexing. Independent row and column relabelings preserve the permanent and both Gram permanents. The square term in (22) is handled directly for the original matrix by Cauchy–Schwarz below, so no invariance of $\operatorname{per}(A^2)$ under independent relabelings is assumed.
+
+### Proof of the contraction bounds
+
+In fact, the first bound in (21) holds for every doubly stochastic matrix with just two column types, regardless of the number of row types.
+
+Let the two column classes have sizes $s,n-s$, and let $u_i$ be the sum of row $i$ over the first class. Then $0\le u_i\le1$ and $\sum_i u_i=s$. Its row product polynomial is
+
+\[
+p_A(x)=\prod_{i=1}^n
+\left(\frac{u_i}{s}X+
+\frac{1-u_i}{n-s}Y\right),
+\]
+
+where $X$ and $Y$ are the sums of variables in the two column classes. Its group-degree law $P$ is the Poisson-binomial law with Bernoulli parameters $u_i$, of integer mean $s$. With $B=\operatorname{Bin}(n,s/n)$, the identities (11) give
+
+\[
+\frac{\operatorname{per}(A)}{c_n}=\frac{P_s}{B_s},
+\qquad
+\frac{\operatorname{per}(AA^T)}{c_n}
+=\sum_k\frac{P_k^2}{B_k}.
+\]
+
+The stronger norm bound (13) therefore proves $\operatorname{per}(AA^T)\le\operatorname{per}(A)$. If $A$ also has two row types, the same argument for $A^T$ proves $\operatorname{per}(A^TA)\le\operatorname{per}(A)$.
+
+Permanent Cauchy–Schwarz, applied to the original matrix, now gives
+
+\[
+\operatorname{per}(A^2)
+\le\sqrt{\operatorname{per}(AA^T)\operatorname{per}(A^TA)}
+\le d.
+\]
+
+Adding these three inequalities yields (22).
+
+For completeness, $d\ge c_n$ and its equality case follow here directly from the Poisson-binomial peak theorem, so no separate permanent lower-bound theorem is needed for this family. That theorem gives $P_s/B_s\ge1$. If $P_s/B_s=1$, its pointwise bound and probability normalization force $P=B$. The Bernoulli generating polynomial then equals $(1-s/n+(s/n)z)^n$; uniqueness of its linear factors implies $u_i=s/n$ for every row. Thus every entry of $A$ is $1/n$. Conversely, $J_n$ attains equality. This proves strict positivity of (22) whenever $A\ne J_n$.
+
+The theorem includes arbitrary row and column multiplicities, all feasible values of $h$, and zero block entries at the endpoints. It does not assert the result for every matrix of rank two.
+
+## 9. What remains for asymmetric integer means
+
+For $B=\operatorname{Bin}(n,m/n)$ with general $m$, the remaining Lorentzian problem is (5)–(6). The following precise reformulation may be useful, but is not proved here.
+
+For a likelihood ratio $r=P/B$, write
+
+\[
+D(P\Vert B)=\sum_kP_k\log r_k,
+\qquad
+D_2(P\Vert B)=\log\sum_kB_kr_k^2.
+\]
+
+Concavity of $\log r$ and $\mathbb E_PK=m$ give
+
+\[
+D(P\Vert B)\le\log r_m.
+\]
+
+Thus the bound
+
+\[
+D_2(P\Vert B)\le2D(P\Vert B)
+\tag{25}
+\]
+
+would imply the scalar norm theorem. On each localized interval-tilt law, $D(P\Vert B)=\log r_m$ exactly, so (25) on that subclass is equivalent to the still-unproved interval estimate.
+
+There is a proved Gaussian analogue: Fernández-Unzueta, Melbourne, and Palafox-Castillo, *On Convex Functions of Gaussian Variables*, [arXiv:2510.06676](https://arxiv.org/abs/2510.06676), Theorem 5.1, proves $D_\beta\le(\beta/\alpha)D_\alpha$ for a log-concave density relative to a Gaussian. Their argument uses concavity of a normalized log moment generating function. That result is an analogy and supplies no discrete-binomial proof of (25). In the binomial setting, the matching-mean condition cannot be discarded: exponential tilts with different means can violate (25).
+
+Two tempting reductions do not close this gap:
+
+* Multiplying a binary form by a monomial and scaling its variables can move an asymmetric integer mean to a central one in a larger degree. The resulting symmetric binomial reference is more spread out, and its central probability is smaller. The required norm-weight comparison already goes in the wrong direction at the center.
+* Dividing a common variable from a Lorentzian polynomial need not preserve Lorentzianity. For example, $p=Y^3+3XY^2+3X^2Y$ is Lorentzian because its coefficients normalized by $\binom3k$ are $(1,1,1,0)$. But $p/Y=Y^2+3XY+3X^2$ has discriminant $-3$ and is not Lorentzian. Consequently, a zero pure coefficient does not give an immediate induction in degree. Division is valid in the real-stable subclass, which is consistent with the stronger result in Section 6.
+
+These observations identify unproved steps; none is used as an assumption in Sections 1–8.

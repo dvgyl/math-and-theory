@@ -1,0 +1,259 @@
+# Both Gram inequalities for a doubly stochastic matrix with one special column
+
+## Theorem
+
+Let $A$ be a nonnegative doubly stochastic matrix of order $n\ge2$ with $n-1$ identical columns. Then
+
+\[
+\operatorname{per}(A)^2\ge c_n\operatorname{per}(AA^T),
+\qquad
+\operatorname{per}(A)^2\ge c_n\operatorname{per}(A^TA),
+\qquad c_n=\frac{n!}{n^n}.
+\tag{1}
+\]
+
+Consequently the original Gyires inequality holds for this family:
+
+\[
+4\operatorname{per}(A)^2
+\ge c_n\left(\operatorname{per}(AA^T)+\operatorname{per}(A^TA)
++2\operatorname{per}(A^2)\right).
+\tag{2}
+\]
+
+Equality occurs exactly at $A=J_n$, where every entry of $J_n$ is $1/n$. The same conclusions hold for matrices with $n-1$ identical rows.
+
+The first Gram inequality follows from the scalar ultra-log-concave theorem proved in round4_scalar_ulc.md. The second has the elementary proof below; it does not assume a conjectured bound for the one-success probability.
+
+## 1. Parametrization and the first Gram inequality
+
+Move the special column to the first position. The permanent and both Gram permanents are unchanged by this column relabeling; the final Cauchy–Schwarz step can be applied to the original matrix as well. Every such matrix has columns
+
+\[
+u,\ v,\ldots,v,\qquad
+u_i\ge0,\quad \sum_i u_i=1,\quad
+v_i=\frac{1-u_i}{m},\quad m=n-1.
+\]
+
+Its product polynomial is
+
+\[
+p_A(x)=\prod_i\left(u_i x_1+v_i(x_2+\cdots+x_n)\right).
+\]
+
+It has the one-special-variable form covered by the scalar theorem. It is normalized, balanced, and real stable. Therefore
+
+\[
+\operatorname{per}(A)^2\ge c_n\operatorname{per}(AA^T).
+\]
+
+## 2. An exact formula for the other Gram permanent
+
+Put
+
+\[
+a=\sum_i u_i^2,\qquad
+b=u\cdot v=\frac{1-a}{m},\qquad
+c=\|v\|^2=\frac{n-2+a}{m^2}.
+\]
+
+Then
+
+\[
+A^TA=
+\begin{pmatrix}
+a&b\mathbf1^T\\
+b\mathbf1&cE_m
+\end{pmatrix}.
+\]
+
+In its permanent, either the first row uses the first column, or it uses one of the other $m$ columns. Counting the two cases gives
+
+\[
+\operatorname{per}(A^TA)
+=m!\,c^{m-1}(ac+mb^2).
+\tag{3}
+\]
+
+Let
+
+\[
+Q(u)=\sum_i u_i\prod_{j\ne i}(1-u_j)
+\]
+
+be the probability of exactly one success among independent Bernoulli variables with parameters $u_1,\ldots,u_n$. The permanent is
+
+\[
+\operatorname{per}(A)=\frac{m!}{m^m}Q(u).
+\tag{4}
+\]
+
+After substituting (3) and (4), the second inequality in (1) is equivalent to
+
+\[
+Q(u)^2\ge R_n(a),
+\tag{5}
+\]
+
+where
+
+\[
+R_n(a)=
+n^{1-n}(n-2+a)^{n-2}\bigl(n-1-na+na^2\bigr),
+\qquad \frac1n\le a\le1.
+\tag{6}
+\]
+
+At $a_0=1/n$,
+
+\[
+R_n(a_0)=g_n^2,\qquad
+g_n=\left(\frac{n-1}{n}\right)^{n-1}.
+\]
+
+## 3. Two elementary lower bounds for the one-success probability
+
+First, the product inequality
+
+\[
+\prod_{j\ne i}(1-u_j)\ge1-\sum_{j\ne i}u_j=u_i
+\]
+
+gives
+
+\[
+\boxed{Q(u)\ge a.}
+\tag{7}
+\]
+
+For the second bound, initially suppose every $u_i<1$. Weighted AM–GM, with weights $u_i$, gives
+
+\[
+\log\left(\sum_i\frac{u_i}{1-u_i}\right)
+\ge-\sum_i u_i\log(1-u_i).
+\]
+
+Using $Q=\prod_i(1-u_i)\sum_i u_i/(1-u_i)$,
+
+\[
+\log Q\ge\sum_i(1-u_i)\log(1-u_i).
+\tag{8}
+\]
+
+Let $f(x)=(1-x)\log(1-x)$, continuously extended by $f(1)=0$. Since $f''(x)=1/(1-x)\ge1$, strong convexity at $1/n$ gives
+
+\[
+\sum_i f(u_i)\ge nf(1/n)+\frac12\sum_i(u_i-1/n)^2
+=\log g_n+\frac12(a-1/n).
+\]
+
+Therefore
+
+\[
+\boxed{Q(u)^2\ge g_n^2e^{a-1/n}.}
+\tag{9}
+\]
+
+Both bounds extend to boundary points by continuity.
+
+## 4. The range $1/n\le a\le1/2$
+
+Write
+
+\[
+d=n-2+a,\qquad K=n-1-na+na^2.
+\]
+
+Differentiating (6),
+
+\[
+\frac{d}{da}\log R_n(a)
+=\frac{n-2}{d}+\frac{n(2a-1)}K\le1
+\]
+
+throughout this range. Integrating from $1/n$ gives
+
+\[
+R_n(a)\le g_n^2e^{a-1/n}\le Q(u)^2.
+\tag{10}
+\]
+
+For $n>2$ and $a>1/n$, the first inequality is strict. For $n=2$, this range consists only of the uniform endpoint.
+
+## 5. The range $1/2\le a\le1$
+
+A direct algebraic simplification gives
+
+\[
+\frac d{da}\log\frac{R_n(a)}{a^2}
+=
+\frac{(a-1)\left(n(n-2)a^2+na+2(n-1)(n-2)\right)}
+{a(n-2+a)(n-1-na+na^2)}
+\le0.
+\tag{11}
+\]
+
+Thus it is enough to show $R_n(1/2)\le1/4$. At the endpoint,
+
+\[
+R_n(1/2)
+=\left(1-\frac3{2n}\right)^{n-2}
+\left(\frac34-\frac1n\right).
+\]
+
+For completeness, set $x=3/(2n)$ and $k=n-2$. The nonnegative binomial series gives
+
+\[
+(1-x)^{-k}\ge1+kx+\frac{k(k+1)}2x^2
+\ge1+\frac{2k}{n}=3-\frac4n.
+\]
+
+The second inequality follows from
+
+\[
+\frac{(k+1)x}{2}=\frac{3(n-1)}{4n}\ge\frac13
+\]
+
+for $n\ge2$; the case $k=0$ is equality directly. Hence $R_n(1/2)\le1/4$, with strict inequality for $n>2$.
+
+Combining this with (11) and (7),
+
+\[
+R_n(a)\le a^2\le Q(u)^2.
+\tag{12}
+\]
+
+This proves the second Gram inequality in every order.
+
+## 6. Equality and the original Gyires inequality
+
+The preceding bounds are strict unless $a=1/n$. By $\sum_i u_i=1$, that condition forces $u_i=1/n$ for all $i$, so $A=J_n$.
+
+Permanent Cauchy–Schwarz gives
+
+\[
+\operatorname{per}(A^2)
+\le\sqrt{\operatorname{per}(AA^T)\operatorname{per}(A^TA)}
+\le\frac12\left(\operatorname{per}(AA^T)+\operatorname{per}(A^TA)\right).
+\]
+
+One direct justification is to expand the row product polynomials of $A$ and $A^T$ as $p_A(x)=\sum_\alpha a_\alpha x^\alpha$ and $p_{A^T}(x)=\sum_\alpha b_\alpha x^\alpha$. The permanent version of Cauchy–Binet gives
+
+\[
+\operatorname{per}(A^2)=\sum_\alpha\alpha!a_\alpha b_\alpha,
+\quad
+\operatorname{per}(AA^T)=\sum_\alpha\alpha!a_\alpha^2,
+\quad
+\operatorname{per}(A^TA)=\sum_\alpha\alpha!b_\alpha^2.
+\]
+
+The displayed bound is therefore ordinary weighted Cauchy–Schwarz.
+
+Applying both inequalities in (1) now proves (2), with equality only at $J_n$. Transposition proves the corresponding statement when $n-1$ rows are identical.
+
+The result is an all-order family theorem. No conclusion about arbitrary rank-two matrices, arbitrary circulants, or arbitrary doubly stochastic matrices is drawn from it.
+
+## 7. Verification status
+
+The scalar theorem used in Section 1 has a separate independent mathematical audit in `round4_scalar_ulc_independent_audit.md`. A second agent also independently checked every step of Sections 2–6: the Gram permanent counting, the exact reduction to $R_n$, both bounds on $Q$, the derivative factorization, the endpoint estimate, all $n=2$ cases, equality, and the column relabeling issue. The audit found no gap. These are mathematical proofs with independent AI review, not proof-assistant certificates or a claim of novelty. No numerical search is used in either proof.
+

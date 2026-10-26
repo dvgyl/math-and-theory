@@ -22,7 +22,7 @@
 
 \begin{abstract}
 
-The catalogue contains seven result families and seven preprints in mathematics and theoretical computer science. Six preprints have complete Lean proofs of their principal claims. The Gyires preprint combines verified order-five results with two all-order ordinary-proof arguments. Lean verification, novelty assessment, and independent human expert review of those two arguments remain incomplete. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. Machine checking and AI review do not constitute independent human expert peer review.
+The catalogue contains seven result families and seven preprints in mathematics and theoretical computer science. Six preprints have complete Lean proofs of their principal claims. The Gyires preprint combines verified order-five results with completed broader ordinary-proof arguments. Lean verification, novelty assessment, and independent human expert review of those additions remain incomplete. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. Machine checking and AI review do not constitute independent human expert peer review.
 
 \end{abstract}
 
@@ -52,23 +52,19 @@ Every nonnegative real circulant matrix $A$ of order five satisfies $24\operator
 
 \par\smallskip
 
-\noindent\textbf{Scope:} Verified order-five results and two all-order ordinary-proof arguments in one continuous preprint.
+\noindent\textbf{Scope:} Verified order-five claims and the completed broader matrix and polynomial arguments in one continuous preprint.
 
 \par\smallskip
 
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/gyires-circulant-five/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/gyires-circulant-five.md}{Formal statement and prior work}.
 
-\subsubsection*{All-order arguments in the same preprint}
+\subsubsection*{Broader arguments in the same preprint}
 
-The \href{https://github.com/dvgyl/math-and-theory/blob/main/research-notes/gyires-extensions/README.md}{later Gyires research record} preserves the sources and exact programs for the two all-order arguments in the same preprint. One proves the stronger Gram-permanent bound for $A=aI+bQ+cQ^2$, where $Q$ is any permutation matrix and $a,b,c\geq0$, in every dimension. It combines exact polynomial certificates with an analytic bound from order 48.
+The continuous manuscript also includes circulants of orders six and seven, with sharp sorted-gap margins; the all-order family $aI+bQ+cQ^2$ for any permutation matrix $Q$ and nonnegative coefficients; four-block doubly stochastic matrices with unequal block sizes and boundary entries; matrices with one exceptional column or row; and every rank-at-most-two doubly stochastic matrix through order fifteen.
 
-The other argument covers doubly stochastic matrices with at most two row types and two column types. It includes unequal block sizes and zero block entries. Writing $d=\operatorname{per}(A)$ and $c_n=n!/n^n$, it claims
-\[
-\operatorname{per}(AA^T),\ \operatorname{per}(A^TA),\ \operatorname{per}(A^2)\leq d
-\]
-and a Gyires deficit of at least $4d(d-c_n)$, with equality in Gyires's inequality only at the uniform matrix.
+The supporting sections give completed structural, scalar, deletion, balancing, local polynomial, and configuration-model arguments. Exact counterexamples state the limits of failed auxiliary claims. The \href{https://github.com/dvgyl/math-and-theory/blob/main/research-notes/gyires-complete-support/README.md}{complete support record} gives the source map and exact reproduction commands.
 
-These two claims have no completed Lean verification. Their novelty assessment and independent human expert review remain incomplete. They are included in the Gyires manuscript but are outside the 21 selected formal statements. The earlier order-five verification does not certify these extensions.
+The broader claims have incomplete Lean verification. They are outside the 21 selected formal statements. The earlier order-five verification does not certify these additions. The all-order rank-two problem and the unrestricted Gyires conjecture remain unproved here.
 
 \subsection{An entropy increase for a structurally disassortative DomiRank graph}
 
