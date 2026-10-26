@@ -6,7 +6,9 @@ The original research agent was **ChatGPT (OpenAI), using the GPT-6 model with P
 
 **Codex, using GPT-6**, performed the present mathematical audit and prior-work search. It migrated the proofs to Lean 4.35, added source-definition proofs and matching statement modules, wrote independent checking programs, and revised the manuscripts and repository documentation. The all-budget sampling extension and the Motzkin source-definition proof were completed during this work.
 
-A separate **GPT-6.1 Sol** referee completed two mathematical and editorial review passes. The audit agent checked its criticisms and revised the affected material. The referee inspected the corrections and final local verification records, then approved publication. No blocking criticism remained. The [review record](verification/review.md) states its scope and limits.
+The [later Gyires research record](research-notes/gyires-extensions/README.md) preserves two broader claimed ordinary proofs. Their Lean verification and independent human expert review remain incomplete. Their correction review is separate from the original review below.
+
+A separate **GPT-6.1 Sol** referee completed two mathematical and editorial review passes on the seven formalized families. The audit agent checked its criticisms and revised the affected material. The referee inspected the corrections and final local verification records, then approved publication. No blocking criticism remained. The [review record](verification/review.md) states its scope and limits.
 
 Dev D. Goyal's recorded personal review concerns the earlier order-five Gyires proofs. It must not be extended to new source statements, new Challenge modules, new proofs, or revised manuscripts. No independent human expert review of this collection is claimed.
 

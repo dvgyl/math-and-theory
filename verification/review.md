@@ -2,6 +2,8 @@
 
 Reviewer: GPT-6.1 Sol. Date: 26 October 2026.
 
+This record concerns the seven-family collection at commit `568a20f7e29db12a7890f695a296734780ce71c5`. The [later Gyires claims](../research-notes/gyires-extensions/README.md) have a separate review and are outside this approval.
+
 This was a separate AI review in two passes. It was not human expert validation or peer review. The review covered seven result families, seven manuscripts, their principal formal statements, and the collection documentation.
 
 ## Scope and findings
@@ -20,7 +22,7 @@ The added Hofstadter calculation correctly derives both inverse-orbit increments
 
 The best-of-n proof retains the complete every-budget and arbitrarily-small-atom statement. Its interval bounds use positive endpoints. The first atom is handled separately. Telescoping, the curve's convex tangent inequality, and the parameter bounds give the claimed strict gap. The formal theorem assumes none of those estimates.
 
-The Gyires statements retain the complete nonnegative order-five circulant scope, including zero and repeated weights. The equality cases, positive denominator, and attained sharp constant remain consistent with the formal statements. No theorem for arbitrary order-five matrices or higher orders is claimed.
+The Gyires statements retain the complete nonnegative order-five circulant scope, including zero and repeated weights. The equality cases, positive denominator, and attained sharp constant remain consistent with the formal statements. The reviewed Gyires formalization makes no claim for arbitrary order-five matrices or higher orders.
 
 The Motzkin source proof establishes existence and uniqueness for the source recurrence. It proves equality between the finite alternating sum and the recursive implementation. The root inequalities use actual real powers. The tail index, center index, and sharpness statement agree.
 

@@ -2,7 +2,7 @@
 
 I am Dev D. Goyal. I direct an AI research effort in mathematics, theoretical computer science, and mathematical physics. I choose problems and request proofs, formal verification, and revisions. I do not supply the proof ideas or intermediate arguments. The AI systems construct the proofs from my instructions.
 
-This collection contains precise mathematical results and their reproducibility materials. Each admitted result has a complete Lean proof of its principal claims. The collection does not claim a general solution when a proof covers only a special case.
+This collection contains formally verified results and separately labeled research notes. Each admitted result in the formal catalogue has a complete Lean proof of its principal claims. The later Gyires notes contain claimed complete ordinary proofs whose Lean verification remains incomplete. The collection does not claim a general solution when a proof covers only a special case.
 
 Start with the [manuscript catalogue](CONTENTS.md) or the [overview](overview.pdf). The [Lean guide](lean/README.md) explains the formal statements. The [verification guide](verification/README.md) gives the commands and recorded results. [AUTHORSHIP.md](AUTHORSHIP.md) identifies the human and AI contributions.
 
@@ -20,13 +20,17 @@ The catalogue groups papers into stable result families. Mathematics contains ma
 | [Hofstadter iteration](preprints/hofstadter-iteration/README.md) | Late-iterate ordering fails for every parameter at least four. |
 | [Best-of-n sampling](preprints/best-of-n/README.md) | The proposed bound fails at every budget at least two, with arbitrarily small atom caps. |
 
+## Later Gyires research
+
+The [later Gyires record](research-notes/gyires-extensions/README.md) contains two broader claimed results. One covers A=aI+bQ+cQ² for any permutation matrix Q and nonnegative a,b,c in every dimension. The other covers doubly stochastic matrices with at most two row types and two column types, including unequal block sizes and boundary cases. The full arguments and exact certificate programs are included. Their Lean verification, novelty assessment, and independent human expert review remain incomplete. These two claims are separate from the seven formally verified families above.
+
 ## Verification and review
 
 The project pins Lean 4.35.0 and Mathlib commit `56a005855ea17e0b0958f73ec801ae140b0a1679`. The proof audit permits only `propext`, `Classical.choice`, and `Quot.sound`. Separate Challenge and Solution modules make each submitted statement auditable. The Challenge proof holes are specifications. They are excluded from the proved library and its axiom audit.
 
 [Verification records](verification/README.md) distinguish compilation, statement comparison, independent proof checking, exact computation, and finite numerical checks. A successful computation over finitely many inputs does not prove a universal theorem.
 
-GPT-6.1 Sol completed two independent AI review passes and approved the corrected collection. The [review record](verification/review.md) gives the findings and limits. This is not human expert validation or peer review. These papers have NOT been peer reviewed. No claim of first priority is made. The prior-work records describe the sources inspected and the limits of the search.
+GPT-6.1 Sol completed two independent AI review passes and approved the seven formally verified families. The later Gyires notes have a [separate correction review](research-notes/gyires-extensions/review.md). The [review record](verification/review.md) gives the findings and limits. This is not human expert validation or peer review. These papers have NOT been peer reviewed. No claim of first priority is made. The prior-work records describe the sources inspected and the limits of the search.
 
 My earlier personal review applies only to the proofs in the [original order-five Gyires repository](https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448). It does not cover the new proofs, changed formal statements, or revised manuscripts in this collection. For that earlier work, the following statement applies:
 

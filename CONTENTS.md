@@ -1,8 +1,8 @@
 # Manuscript catalogue
 
-The catalogue contains seven result families and seven manuscripts. The 21 selected Comparator declarations include equality, positivity, sharpness, and generalization statements. Supporting lemmas are not separate research contributions.
+The formal catalogue contains seven result families and seven manuscripts. A separate Gyires research record contains two later claimed results with incomplete Lean verification. The 21 selected Comparator declarations include equality, positivity, sharpness, and generalization statements. Supporting lemmas are not separate research contributions.
 
-Each paper has a complete formal proof of its principal claims. The verification record gives the checks actually completed. The papers have not been peer reviewed. The prior-work assessment is bounded and makes no first-priority claim.
+Each paper in the formal catalogue has a complete formal proof of its principal claims. The verification record gives the checks actually completed. The papers have not been peer reviewed. The prior-work assessment is bounded and makes no first-priority claim.
 
 ## Mathematics
 
@@ -27,6 +27,15 @@ Each paper has a complete formal proof of its principal claims. The verification
 **Original problem.** [Gyires, 1978; Cheon and Wanless, 2005, Conjecture 20. Earlier formalization at the pinned Gyires repository.](https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448)
 
 [Paper PDF](preprints/gyires-circulant-five/paper.pdf) · [LaTeX](preprints/gyires-circulant-five/paper.tex) · [Bibliography](preprints/gyires-circulant-five/references.bib) · [Citation](preprints/gyires-circulant-five/citation.bib) · [Formal statement and prior work](lean/docs/gyires-circulant-five.md) · [Reproduction](verification/gyires-circulant-five/README.md)
+
+#### Later Gyires claims in arbitrary dimensions
+
+This [research record](research-notes/gyires-extensions/README.md) belongs to the Gyires development. It contains complete written arguments for two broader claims. Their Lean verification, novelty assessment, and independent human expert review remain incomplete.
+
+- [Permutation-polynomial claim](research-notes/gyires-extensions/permutation-polynomial.md). For every dimension, A=aI+bQ+cQ² with Q a permutation matrix and a,b,c nonnegative satisfies the stronger Gram-permanent bound. The argument combines exact polynomial certificates with an analytic tail.
+- [Four-block claim](research-notes/gyires-extensions/four-block.md). At most two row types and two column types suffice for three permanent contraction bounds and a strict Gyires margin away from the uniform matrix. Unequal block sizes and zero block entries are included.
+
+[Certificate reproduction](research-notes/gyires-extensions/verification.md) · [Source hashes](research-notes/gyires-extensions/provenance.json) · [Correction review](research-notes/gyires-extensions/review.md)
 
 ### Graph theory and matrix analysis
 

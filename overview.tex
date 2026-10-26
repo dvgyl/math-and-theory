@@ -22,7 +22,7 @@
 
 \begin{abstract}
 
-This collection contains seven result families in mathematics and theoretical computer science. Each paper has a complete Lean formalization of its principal claims. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. Machine checking and AI review do not constitute independent human expert peer review.
+The formal catalogue contains seven result families in mathematics and theoretical computer science. Each of its seven papers has a complete Lean formalization of its principal claims. A separate Gyires research record contains two broader claimed results. Their Lean verification, novelty assessment, and independent human expert review remain incomplete. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. Machine checking and AI review do not constitute independent human expert peer review.
 
 \end{abstract}
 
@@ -57,6 +57,18 @@ Every nonnegative real circulant matrix $A$ of order five satisfies $24\operator
 \par\smallskip
 
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/gyires-circulant-five/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/gyires-circulant-five.md}{Formal statement and prior work}.
+
+\subsection{Later Gyires claims in arbitrary dimensions}
+
+The \href{https://github.com/dvgyl/math-and-theory/blob/main/research-notes/gyires-extensions/README.md}{later Gyires research record} contains two claimed complete ordinary arguments. One proves the stronger Gram-permanent bound for $A=aI+bQ+cQ^2$, where $Q$ is any permutation matrix and $a,b,c\geq0$, in every dimension. It combines exact polynomial certificates with an analytic bound from order 48.
+
+The other argument covers doubly stochastic matrices with at most two row types and two column types. It includes unequal block sizes and zero block entries. Writing $d=\operatorname{per}(A)$ and $c_n=n!/n^n$, it claims
+\[
+\operatorname{per}(AA^T),\ \operatorname{per}(A^TA),\ \operatorname{per}(A^2)\leq d
+\]
+and a Gyires deficit of at least $4d(d-c_n)$, with equality in Gyires's inequality only at the uniform matrix.
+
+These two claims have no completed Lean verification. Their novelty assessment and independent human expert review remain incomplete. They are separate from the seven formally verified papers and their 21 selected statements. The earlier order-five verification does not certify these extensions.
 
 \subsection{An entropy increase for a structurally disassortative DomiRank graph}
 

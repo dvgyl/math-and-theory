@@ -1,6 +1,6 @@
 # Verification summary
 
-The collection has seven result families, seven papers, and 21 selected statement comparisons. This record is dated 26 October 2026. Public logs replace local absolute paths with neutral labels and remove trailing whitespace. Their outcomes are unchanged. The checks concern mathematical statements and proof dependencies. They do not establish historical priority or human expert approval.
+The formal catalogue has seven result families, seven papers, and 21 selected statement comparisons. The [later Gyires research notes](../research-notes/gyires-extensions/README.md) have a separate certificate and review record. The formal checks below do not certify those two extensions. This record is dated 26 October 2026. Public logs replace local absolute paths with neutral labels and remove trailing whitespace. Their outcomes are unchanged. The checks concern mathematical statements and proof dependencies. They do not establish historical priority or human expert approval.
 
 ## Formal verification
 
@@ -16,7 +16,7 @@ The [Gyires family record](gyires-circulant-five/formal-checks.json) also gives 
 
 All seven independent computation programs and the separate best-of-n extension program passed. Each family guide gives its inputs, exact tested ranges, versions, output, and limits. The Gyires program reconstructed all 120 orderings and 120,120 coefficient positions. These finite checks supplement the general proofs.
 
-All seven manuscripts and the overview compiled with Tectonic 0.17.0. The final compiler outputs contain no warnings, unresolved citations, or undefined references. Every final PDF page was rendered and inspected. No clipped text, overlap, or missing glyph was found. The [PDF record](records/pdfs.json) gives page counts and final PDF hashes. Compiler records are in [records](records/).
+All seven manuscripts and the overview compiled with Tectonic 0.17.0. The final compiler outputs contain no warnings, unresolved citations, or undefined references. Every final PDF page was rendered and inspected. The overview was rebuilt and all four pages were inspected again for the Gyires inclusion correction. No clipped text, overlap, or missing glyph was found. The [PDF record](records/pdfs.json) gives page counts and final PDF hashes. Compiler records are in [records](records/).
 
 The official source checker, template metadata validator, pinned full v0.4 schema validator, and repository integrity checker passed. The repository checker covers module separation, prohibited proof mechanisms, artifact presence, catalogue membership, author spelling, and local links. The guide gives exact commands.
 

@@ -2,6 +2,8 @@
 
 This paper proves Gyires's permanent inequality for all nonnegative circulant matrices of order five. It proves the stronger bound `24 per(CCᵀ) ≤ 625 per(C)²`, with equality exactly for constant weights. It also proves a sharp sorted-gap bound with constant 484. The full conjecture for arbitrary order-five matrices remains open in the sources consulted.
 
+The [later Gyires research record](../../research-notes/gyires-extensions/README.md) contains the all-order permutation-polynomial and four-block claimed extensions. Their Lean verification remains incomplete. This paper proves the separate order-five result.
+
 The result is a revision of the existing [order-five development](https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448). It is not a new result discovered in the collection audit. The prior-work and review limits are stated in the manuscript.
 
 - [Manuscript source](paper.tex) and [references](references.bib).
