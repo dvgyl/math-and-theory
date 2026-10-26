@@ -2,7 +2,7 @@
 
 I am Dev D. Goyal. I direct an AI research effort in mathematics, theoretical computer science, and mathematical physics. I choose problems and request proofs, formal verification, and revisions. I do not supply the proof ideas or intermediate arguments. The AI systems construct the proofs from my instructions.
 
-This collection contains seven preprints. Six have complete Lean proofs of their principal claims. The Gyires preprint combines verified order-five results with the completed broader matrix and polynomial arguments. Lean verification of those additions remains incomplete. The collection does not claim a general solution when a proof covers only a special case.
+This collection contains seven preprints. Six have complete Lean proofs of their principal claims. The Gyires preprint proves inequalities for several structured matrix classes and develops related polynomial bounds. Its principal order-five claims have Lean proofs. Lean formalization of its other results is incomplete. The collection does not claim a general solution when a proof covers only a special case.
 
 Start with the [manuscript catalogue](CONTENTS.md) or the [overview](overview.pdf). The [Lean guide](lean/README.md) explains the formal statements. The [verification guide](verification/README.md) gives the commands and recorded results. [AUTHORSHIP.md](AUTHORSHIP.md) identifies the human and AI contributions.
 
@@ -22,7 +22,7 @@ The catalogue groups papers into stable result families. Mathematics contains ma
 
 ## The continuous Gyires preprint
 
-The [Gyires preprint](preprints/gyires-circulant-five/paper.pdf) contains the full earlier order-five proof and all completed arguments from the supplied Gyires research materials. It includes circulants of orders six and seven, all-order permutation polynomials, all-order four-block matrices, one exceptional column or row, and rank-two matrices through order fifteen. It also includes the completed structural, scalar, deletion, balancing, local polynomial, and counting proofs. Exact counterexamples identify the limits of proposed extensions. The [complete supporting record](research-notes/gyires-complete-support/README.md) gives the source map, certificate files, and reproduction commands. The broader arguments have incomplete Lean verification. The manuscript does not establish the unrestricted conjecture.
+The [Gyires preprint](preprints/gyires-circulant-five/paper.pdf) proves the order-five circulant inequality and extends the analysis to other structured matrix classes. It includes circulants of orders six and seven, all-order permutation polynomials, all-order four-block matrices, one exceptional column or row, and rank-two matrices through order fifteen. It also proves structural, scalar, deletion, balancing, local polynomial, and counting results. Exact counterexamples identify the limits of proposed extensions. The [complete supporting record](research-notes/gyires-complete-support/README.md) gives the source map, certificate files, and reproduction commands. The broader arguments have incomplete Lean verification. The manuscript does not establish the unrestricted conjecture.
 
 ## Verification and review
 

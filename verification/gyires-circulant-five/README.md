@@ -1,4 +1,4 @@
-The [expanded continuous preprint](../../preprints/gyires-circulant-five/paper.pdf) contains broader ordinary proofs. Their [supporting record](../../research-notes/gyires-complete-support/README.md) is separate from the order-five Lean evidence below. No additional Lean verification is claimed.
+The [preprint](../../preprints/gyires-circulant-five/paper.pdf) also contains broader analytic and computational proofs. Their [supporting record](../../research-notes/gyires-complete-support/README.md) is separate from the order-five Lean evidence below. The [editorial check record](editorial-checks.json) covers the revised prose and PDF. No additional Lean verification is claimed.
 
 # Verification of the order-five Gyires result
 

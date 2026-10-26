@@ -1,6 +1,6 @@
 # Gyires's permanent inequality for structured matrices
 
-This is one continuous preprint. It includes the earlier order-five result and all completed positive arguments from the supplied Gyires research materials. Shared definitions and permanent identities connect the proof sections.
+This preprint proves Gyires's permanent inequality for several structured matrix classes. It also develops scalar and polynomial inequalities that support further extensions.
 
 | Result | Scope | Verification status |
 |---|---|---|
@@ -12,7 +12,7 @@ This is one continuous preprint. It includes the earlier order-five result and a
 | Rank at most two | Every doubly stochastic matrix of rank at most two through order fifteen | Complete ordinary proof with exhaustive interval certificates. |
 | Structural and polynomial results | Sparse perturbations, closure, boundary reduction, scalar inequalities, deletion, balanced limits, local stable and Lorentzian results, and configuration identities | Complete ordinary arguments within their stated hypotheses. |
 
-Lean verification of all broader additions remains incomplete. Completed reductions retain their unproved final targets. Exact counterexamples identify failed auxiliary assertions. The [source map](../../research-notes/gyires-complete-support/source-map.md) records inclusion and subsumption.
+Lean formalization of the broader results is incomplete. The paper states which inequalities remain unproved after each reduction. Exact counterexamples identify failed auxiliary assertions. The [source map](../../research-notes/gyires-complete-support/source-map.md) records inclusion and subsumption.
 
 The manuscript includes the full arguments, boundary cases, equality statements where proved, exact certificate recurrences, and the order-five Lean correspondence. It does not prove the unrestricted Gyires conjecture. It makes no novelty or first-priority claim.
 
@@ -28,6 +28,6 @@ The manuscript includes the full arguments, boundary cases, equality statements 
 
 The directory name remains stable to preserve existing links and formal identifiers. The [earlier order-five-only manuscript](https://github.com/dvgyl/math-and-theory/blob/b7e67bf67df0e2476a499f2de5df3cb274672484/preprints/gyires-circulant-five/paper.pdf) remains available in Git history. Its result revises the [original order-five development](https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448).
 
-Dev D. Goyal directed the AI-assisted research and accepts responsibility for publication. The manuscript records the original GPT-6 and Claude Opus 5.5 contributions, the later supplied proofs, and the Codex audit and integration. It has not received independent human expert or journal peer review. The earlier personal review applies only to the original order-five proofs.
+Dev D. Goyal directed the AI-assisted research and accepts responsibility for publication. The manuscript discloses the use of GPT-6, Claude Opus 5.5, and Codex. It has not received independent human expert review or peer review. The author's recorded personal review covers the earlier order-five proofs only.
 
 Rebuild the preprint with `tectonic paper.tex`. The bibliography is a separate BibTeX file.
