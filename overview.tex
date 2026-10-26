@@ -22,7 +22,7 @@
 
 \begin{abstract}
 
-The formal catalogue contains seven result families in mathematics and theoretical computer science. Each of its seven papers has a complete Lean formalization of its principal claims. A separate Gyires research record contains two broader claimed results. Their Lean verification, novelty assessment, and independent human expert review remain incomplete. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. Machine checking and AI review do not constitute independent human expert peer review.
+The catalogue contains seven result families and seven preprints in mathematics and theoretical computer science. Six preprints have complete Lean proofs of their principal claims. The Gyires preprint combines verified order-five results with two all-order ordinary-proof arguments. Lean verification, novelty assessment, and independent human expert review of those two arguments remain incomplete. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. Machine checking and AI review do not constitute independent human expert peer review.
 
 \end{abstract}
 
@@ -46,21 +46,21 @@ For every real parameter $q>1$, some real symmetric positive-definite matrix has
 
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/q-permanent/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/q-permanent.md}{Formal statement and prior work}.
 
-\subsection{Gyires's permanent inequality for nonnegative circulants of order five}
+\subsection{Gyires's permanent inequality for structured matrices}
 
 Every nonnegative real circulant matrix $A$ of order five satisfies $24\operatorname{per}(AA^T)\leq625\operatorname{per}(A)^2$. Equality holds exactly for constant matrices. This proves the order-five circulant case of Gyires\textquotesingle s ratio inequality. A bound in sorted-gap coordinates has sharp coefficient $484$. The conjecture for arbitrary doubly stochastic matrices remains open.
 
 \par\smallskip
 
-\noindent\textbf{Scope:} Complete special case with equality and sharp margin.
+\noindent\textbf{Scope:} Verified order-five results and two all-order ordinary-proof arguments in one continuous preprint.
 
 \par\smallskip
 
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/gyires-circulant-five/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/gyires-circulant-five.md}{Formal statement and prior work}.
 
-\subsection{Later Gyires claims in arbitrary dimensions}
+\subsubsection*{All-order arguments in the same preprint}
 
-The \href{https://github.com/dvgyl/math-and-theory/blob/main/research-notes/gyires-extensions/README.md}{later Gyires research record} contains two claimed complete ordinary arguments. One proves the stronger Gram-permanent bound for $A=aI+bQ+cQ^2$, where $Q$ is any permutation matrix and $a,b,c\geq0$, in every dimension. It combines exact polynomial certificates with an analytic bound from order 48.
+The \href{https://github.com/dvgyl/math-and-theory/blob/main/research-notes/gyires-extensions/README.md}{later Gyires research record} preserves the sources and exact programs for the two all-order arguments in the same preprint. One proves the stronger Gram-permanent bound for $A=aI+bQ+cQ^2$, where $Q$ is any permutation matrix and $a,b,c\geq0$, in every dimension. It combines exact polynomial certificates with an analytic bound from order 48.
 
 The other argument covers doubly stochastic matrices with at most two row types and two column types. It includes unequal block sizes and zero block entries. Writing $d=\operatorname{per}(A)$ and $c_n=n!/n^n$, it claims
 \[
@@ -68,7 +68,7 @@ The other argument covers doubly stochastic matrices with at most two row types 
 \]
 and a Gyires deficit of at least $4d(d-c_n)$, with equality in Gyires's inequality only at the uniform matrix.
 
-These two claims have no completed Lean verification. Their novelty assessment and independent human expert review remain incomplete. They are separate from the seven formally verified papers and their 21 selected statements. The earlier order-five verification does not certify these extensions.
+These two claims have no completed Lean verification. Their novelty assessment and independent human expert review remain incomplete. They are included in the Gyires manuscript but are outside the 21 selected formal statements. The earlier order-five verification does not certify these extensions.
 
 \subsection{An entropy increase for a structurally disassortative DomiRank graph}
 
@@ -120,7 +120,7 @@ For every $k\geq4$, some input $n$ satisfies $F_k^{\circ(2k+1)}(n)>F_{k+1}^{\cir
 
 \section{Theoretical computer science}
 
-\subsection{Counterexamples to a best-of-$n$ win-rate bound at every budget}
+\subsection{Counterexamples to a best-of-\texorpdfstring{$n$}{n} win-rate bound at every budget}
 
 For every $n\geq2$ and $\delta>0$, a finite positive reference distribution with largest atom at most $\delta$ violates the proposed best-of-$n$ divergence--win-rate curve. A four-response best-of-two example gives exact probabilities and a strict logarithmic certificate. The all-budget proof uses finite interval bounds and gives a quantitative positive gap. It does not determine the sharp replacement curve.
 

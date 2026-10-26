@@ -1,18 +1,26 @@
-# Gyires's inequality for circulants of order five
+# Gyires's permanent inequality for structured matrices
 
-This paper proves Gyires's permanent inequality for all nonnegative circulant matrices of order five. It proves the stronger bound `24 per(CCᵀ) ≤ 625 per(C)²`, with equality exactly for constant weights. It also proves a sharp sorted-gap bound with constant 484. The full conjecture for arbitrary order-five matrices remains open in the sources consulted.
+This is one continuous preprint. It combines the earlier order-five result with the two later all-order arguments. Shared definitions and permanent identities connect the three proof sections.
 
-The [later Gyires research record](../../research-notes/gyires-extensions/README.md) contains the all-order permutation-polynomial and four-block claimed extensions. Their Lean verification remains incomplete. This paper proves the separate order-five result.
+| Result | Scope | Verification status |
+|---|---|---|
+| Order-five circulants | All nonnegative weights, equality, and a sharp sorted-gap margin with coefficient 484 | Principal claims have complete Lean proofs. |
+| Permutation polynomials | A=aI+bQ+cQ² for any permutation matrix Q and nonnegative a,b,c in every dimension | Complete ordinary argument with exact polynomial certificates. Lean verification is incomplete. |
+| Four-block matrices | Doubly stochastic matrices with at most two row types and two column types, including unequal block sizes and zero entries | Complete ordinary probability argument. Lean verification is incomplete. |
 
-The result is a revision of the existing [order-five development](https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448). It is not a new result discovered in the collection audit. The prior-work and review limits are stated in the manuscript.
+The manuscript includes the full arguments, boundary cases, equality statements where proved, exact certificate recurrences, and the order-five Lean correspondence. It does not prove the unrestricted Gyires conjecture. It makes no novelty or first-priority claim.
 
+- [Compiled preprint](paper.pdf).
 - [Manuscript source](paper.tex) and [references](references.bib).
-- [Compiled manuscript](paper.pdf).
 - [Suggested citation](citation.bib).
-- [Formal proof guide](../../lean/docs/gyires-circulant-five.md).
-- [Verification record](../../verification/gyires-circulant-five/README.md).
+- [Integrated preprint review](review.md).
+- [Order-five formal proof guide](../../lean/docs/gyires-circulant-five.md).
+- [Order-five verification](../../verification/gyires-circulant-five/README.md).
+- [All-order source notes and certificates](../../research-notes/gyires-extensions/README.md).
 - [Attribution notice](NOTICE).
 
-Dev D. Goyal directed the AI-assisted research and accepts responsibility for this paper. The original source records that GPT-6 with Pro reasoning found the proof and wrote the initial Lean development. It records that Claude Opus 5.5 ported the proof and revised the manuscript. The current audit preserves this historical account without claiming to have verified those model identities. The manuscript has not received independent human expert or journal peer review.
+The directory name remains stable to preserve existing links and formal identifiers. The [earlier order-five-only manuscript](https://github.com/dvgyl/math-and-theory/blob/b7e67bf67df0e2476a499f2de5df3cb274672484/preprints/gyires-circulant-five/paper.pdf) remains available in Git history. Its result revises the [original order-five development](https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448).
 
-Rebuild the manuscript with `tectonic paper.tex`. The bibliography is a separate BibTeX file.
+Dev D. Goyal directed the AI-assisted research and accepts responsibility for publication. The manuscript records the original GPT-6 and Claude Opus 5.5 contributions, the later supplied proofs, and the Codex audit and integration. It has not received independent human expert or journal peer review. The earlier personal review applies only to the original order-five proofs.
+
+Rebuild the preprint with `tectonic paper.tex`. The bibliography is a separate BibTeX file.

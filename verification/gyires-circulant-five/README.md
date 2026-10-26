@@ -1,6 +1,6 @@
 # Verification of the order-five Gyires result
 
-The library proves the order-five circulant theorem only. It has ten principal declarations. The manuscript also maps its supporting statements to Lean declarations.
+The library proves the order-five circulant theorem only. It has ten principal declarations. The continuous manuscript also maps its order-five supporting statements to Lean declarations. Its two all-order arguments have incomplete Lean verification. The [integrated preprint review](../../preprints/gyires-circulant-five/review.md) gives the current manuscript checks.
 
 ## Current checks
 
@@ -8,7 +8,7 @@ The library proves the order-five circulant theorem only. It has ten principal d
 - The original source axiom audit passed for all 94 listed statements and all 8035 library/Solution declarations. Only `propext`, `Classical.choice`, and `Quot.sound` occurred. See `original-axiom-check.log`.
 - The earlier Gyires migration snapshot source scan passed for its 172 Lean files. This is a family count, not the file count of the complete collection. It found ten Challenge placeholders and no other proof bypass token. See `source-scan.log`.
 - The exact integer checker passed all 120 orderings. It checked 120,120 coefficient positions: 119,520 positive and 600 zero. It verified the sharp constant 484 and the witness `(1,1,0,0,0)`. See `coefficient-check.log` and `coefficient-results.json`.
-- The manuscript compiled with the desktop LaTeX compiler and Tectonic. All 12 rendered pages were inspected. No clipping or missing mathematical glyphs was found. The final source must be recompiled after any later review edit.
+- The earlier order-five-only manuscript compiled with the desktop LaTeX compiler and Tectonic. All 12 rendered pages of that edition were inspected. No clipping or missing mathematical glyphs was found. The final source must be recompiled after any later review edit.
 
 The migrated collection build passed with 2686 jobs. The family axiom audit passed for all 94 listed statements and all 8035 declarations. It found only `propext`, `Classical.choice`, and `Quot.sound`. See `build.log`, `axiom-audit.log`, and `axiom-check.log`. The current collection Comparator passed all ten selected statements with Lean, NanoDa, and con-ron. See the [current Comparator log](../records/comparator-gyires-circulant-five.log). The original repository's old reports do not substitute for these checks.
 

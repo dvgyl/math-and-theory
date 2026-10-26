@@ -31,141 +31,221 @@
 \newcommand{\T}{\mathsf{T}}
 \newcommand{\para}[1]{\par\medskip\noindent\textbf{#1}\enspace}
 \newcommand{\lean}[1]{\texttt{#1}}
-\hypersetup{pdftitle={Gyires's permanent inequality for nonnegative circulant matrices of order five},pdfauthor={Dev D. Goyal},pdfsubject={Permanents of doubly stochastic matrices}}
-\title{Gyires's permanent inequality for nonnegative circulant matrices of order five}
+
+\hypersetup{pdftitle={Gyires's permanent inequality for structured matrices},pdfauthor={Dev D. Goyal},pdfsubject={Circulants, permutation polynomials, and four-block matrices}}
+\title{Gyires's permanent inequality for structured matrices}
 \author{Dev D. Goyal}
 \date{October 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
-Gyires's conjecture gives a lower bound for a ratio of permanents of doubly stochastic matrices.
-The result holds for every nonnegative circulant matrix of order five, including matrices with zero entries.
-Every nonnegative circulant $C$ of order five satisfies the stronger inequality
+Gyires's conjecture compares the square of a permanent with three permanents of matrix products.
+This preprint develops three results for structured nonnegative matrices in one argument.
+For every nonnegative circulant matrix $C$ of order five,
 $24\per(CC^\T)\le625\per(C)^2$.
-Equality holds exactly when all entries of $C$ are equal.
-A sharp bound for the difference also holds.
-Let $z_1,\ldots,z_4$ be the gaps between successive sorted weights of $C$.
-Then
-$625\per(C)^2-24\per(CC^\T)\ge484\sum_{j=1}^4z_j^{10}$,
-and the constant $484$ cannot be increased.
-An affine change of indices reduces the proof to six orderings of the weights.
-In each ordering, the difference is a polynomial with nonnegative integer coefficients.
-The principal inequalities, equality cases, and sharp constant have complete Lean~4 proofs.
-The result concerns this restricted matrix family. It does not settle the full conjecture.
+Equality holds exactly for constant weights.
+The associated sorted-gap bound has sharp coefficient $484$.
+These statements have complete Lean~4 proofs.
+The preprint also gives two broader ordinary proofs whose Lean verification remains incomplete.
+For every permutation matrix $Q$ and $a,b,c\ge0$, the matrix $A=aI+bQ+cQ^2$ satisfies
+$(n!/n^n)\per(AA^\T)\le\per(A)^2$ in every dimension.
+An analytic transfer bound and exact polynomial certificates prove this claim.
+For every doubly stochastic matrix with at most two row types and two column types,
+each of $\per(AA^\T)$, $\per(A^\T A)$, and $\per(A^2)$ is at most $\per(A)$.
+A probability argument gives a strict Gyires margin away from the uniform matrix.
+This result permits unequal block sizes and zero block entries.
+The general conjecture remains outside these results.
+The preprint makes no novelty claim and has not received independent human expert review or peer review.
 \end{abstract}
-\begin{center}\begin{minipage}{0.88\linewidth}\small
-\textbf{Authorship and review.}
-Dev~D.~Goyal directed the research and accepts responsibility for the paper.
-The original project records that ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning,
-found the proof and wrote the first formalization and draft.
-It records that Claude Opus~5.5, used with Claude Code, revised the paper, ported the proof, and performed additional checks.
-Those checks were not independent of the files that Claude itself wrote.
-This revision preserves that historical disclosure and separates it from the current audit.
-The paper has not received independent expert or journal peer review.
-The final section gives the contribution record and review limits.
-\end{minipage}\end{center}
 
-\section{Introduction}
+\tableofcontents
 
-\subsection{The conjecture}\label{sec:conjecture}
-A real square matrix is \emph{doubly stochastic} if its entries are nonnegative and all its row sums and column sums
-equal $1$. Write $\Omega_n$ for the set of doubly stochastic $n\times n$ matrices, $J_n\in\Omega_n$ for the matrix
-all of whose entries equal $1/n$, and
+\section{The problem and the results}\label{sec:introduction}
+
+For a real $n\times n$ matrix $A=(a_{ij})$, its permanent is
 \[
-\per A=\sum_{\sigma\in S_n}\prod_{i=1}^n a_{i\sigma(i)}
+\per(A)=\sum_{\sigma\in S_n}\prod_{i=1}^n a_{i,\sigma(i)}.
 \]
-for the permanent of $A=(a_{ij})$. By van der Waerden's conjecture, proved independently by Gyires~\cite{gyires80},
-Egorychev~\cite{egorychev} and Falikman~\cite{falikman}, $\per A\ge n!/n^n$ for every $A\in\Omega_n$, with equality
-only at $J_n$. B.~Gyires~\cite{gyires} proposed a related lower bound for the square of the permanent. It is
-Conjecture~20 in the survey of open problems on permanents by Cheon and Wanless~\cite{cw}, in the following form, where
-$A^*$ denotes the conjugate transpose.
-
-\begin{conjecture}[Gyires; Cheon and Wanless~{\cite[Conjecture~20]{cw}}]\label{conj:gyires}
-For every $A\in\Omega_n$,
+Unlike the determinant, this sum has no permutation signs.
+A matrix is \emph{doubly stochastic} if its entries are nonnegative and every row sum and column sum is one.
+Write $\Omega_n$ for this set, $J_n$ for the matrix with every entry $1/n$, and
 \[
-\frac{4\per(A)^2}{\per(AA^*)+\per(A^*A)+2\per(A^2)}\ \ge\ \frac{n!}{n^n},
+c_n=\frac{n!}{n^n},\qquad n\ge1.
 \]
-with equality if and only if $A=J_n$.
-\end{conjecture}
+The transpose is denoted by $A^\T$.
+The expression $A^2$ denotes matrix multiplication, whereas $\per(A)^2$ is a scalar square.
 
-For real matrices $A^*=A^\T$, the transpose, and this is the form used below. For $A\in\Omega_n$ the matrices
-$AA^\T$, $A^\T A$ and $A^2$ are doubly stochastic, so by van der Waerden's theorem each of their permanents is at
-least $n!/n^n$, and the denominator is positive. The conjecture is therefore equivalent to the polynomial inequality
+\subsection{Gyires's inequality}
+
+Gyires's conjecture~\cite{gyires} appears as Conjecture~20 in Cheon and Wanless~\cite{cw}.
+For real doubly stochastic matrices, it asks for
 \begin{equation}\label{eq:gyires-poly}
-\frac{n!}{n^n}\bigl(\per(AA^\T)+\per(A^\T A)+2\per(A^2)\bigr)\ \le\ 4\per(A)^2\qquad(A\in\Omega_n),
+\Delta_n(A):=4\per(A)^2-c_n\bigl[\per(AA^\T)+\per(A^\T A)+2\per(A^2)\bigr]\ge0,
 \end{equation}
-with equality only at $J_n$. Call~\eqref{eq:gyires-poly} the \emph{homogeneous form} of Gyires's inequality: both
-sides are homogeneous of degree $2n$ in the entries of $A$, so it makes sense for every square matrix.
+with equality exactly at $A=J_n$.
+The corresponding ratio form is
+\[
+\frac{4\per(A)^2}{\per(AA^\T)+\per(A^\T A)+2\per(A^2)}\ge c_n.
+\]
+Its denominator is positive.
+Indeed, each diagonal entry of $AA^\T$ is the positive squared norm of a row of $A$.
+The identity permutation contributes the product of these entries to $\per(AA^\T)$.
+All remaining contributions are nonnegative.
 
-\subsection{What this paper proves}
-A matrix $C$ of order five is \emph{circulant} if its entries depend only on the difference of the indices modulo five:
-$c_{ij}=w_{j-i}$ for a vector $w=(w_0,\dots,w_4)\in\R^5$, the indices being read in $\Z/5\Z$. Call $w$, the first
-row of $C$, its vector of \emph{weights}, and write $C=C(w)$. A circulant is doubly stochastic exactly when $w\ge0$ and
-$w_0+\dots+w_4=1$, so the doubly stochastic circulants of order five are the convex combinations $\sum_k w_kQ^k$ of
-the powers of the cyclic permutation matrix $Q=C(0,1,0,0,0)$. They form a four-dimensional simplex inside the
-sixteen-dimensional polytope $\Omega_5$; this simplex contains matrices with zero entries, among them its vertices
-$Q^k$. For $n=5$ the constant of the conjecture is $5!/5^5=24/625$.
+Both sides of~\eqref{eq:gyires-poly} have degree $2n$ in the entries.
+The homogeneous inequality therefore also makes sense without stochastic normalization.
+A sufficient stronger pair of bounds is
+\begin{equation}\label{eq:strong-pair}
+c_n\per(AA^\T)\le\per(A)^2,
+\qquad c_n\per(A^\T A)\le\per(A)^2.
+\end{equation}
+Section~\ref{sec:general} proves the permanent comparison that makes this implication precise.
 
-\para{Main results.} \emph{Let $C=C(w)$ be a circulant of order five with nonnegative weights.}
-\begin{enumerate}[label=(\alph*)]
-\item (Theorem~\ref{thm:strong}, the strong inequality.) $24\per(CC^\T)\le625\per(C)^2$, with equality if and only if
-all five weights are equal.
-\item (Theorem~\ref{thm:margin}, the margin.) If $w_{\pi(0)}\le w_{\pi(1)}\le\dots\le w_{\pi(4)}$ for a permutation
-$\pi$ and $z_j=w_{\pi(j)}-w_{\pi(j-1)}$ for $1\le j\le4$, then
-$625\per(C)^2-24\per(CC^\T)\ge484\,(z_1^{10}+z_2^{10}+z_3^{10}+z_4^{10})$, and no constant larger than $484$ is
-possible.
-\item (Corollary~\ref{cor:gyires}.) The homogeneous form~\eqref{eq:gyires-poly} of Gyires's inequality holds for $C$,
-with equality if and only if all five weights are equal. In particular Conjecture~\ref{conj:gyires} holds for every
-doubly stochastic circulant of order five, including its equality case.
-\end{enumerate}
-The strong inequality~(a) implies Gyires's inequality for $C$: for every real circulant $C$ one has $CC^\T=C^\T C$
-and $\per(C^2)\le\per(CC^\T)$ (Corollary~\ref{cor:gram}), so the left-hand side of~\eqref{eq:gyires-poly} is at most
-$\frac{24}{625}\cdot4\per(CC^\T)$, which by~(a) is at most $4\per(C)^2$.
+\subsection{Three matrix families}
 
-\subsection{Prior work and scope}
-For $n=2$, write
-$A=\bigl(\begin{smallmatrix}a&1-a\\1-a&a\end{smallmatrix}\bigr)$ with $0\le a\le1$.
-Put $s=a^2+(1-a)^2$ and $t=2a(1-a)$.
-Then $\per A=s$ and each permanent in the denominator is $s^2+t^2$.
-The conjecture reduces to $s\ge t$, or $(2a-1)^2\ge0$.
-Equality holds only at $J_2$.
-Chang~\cite{chang} proved the order-three inequality.
+The first result concerns all five weights of a circulant matrix of order five.
+It includes the sharp margin and equality characterization from the earlier development~\cite{repo}.
+Section~\ref{sec:order-five} gives the full argument, including the affine reduction to six sorted-weight regions.
+
+The second result permits arbitrary dimension but restricts the matrix to three powers of one permutation.
+Section~\ref{sec:permutation} proves Theorem~\ref{thm:permutation-polynomial} for $aI+bQ+cQ^2$.
+The proof treats one permutation cycle, then combines cycles.
+For one cycle, a finite-state transfer formula reduces the problem to two small matrices.
+An analytic estimate proves every order at least $48$.
+Exact polynomial coefficient checks cover the remaining finite range.
+
+The third result also permits arbitrary dimension.
+Its row vectors have at most two distinct values, and its column vectors have at most two distinct values.
+These conditions produce four constant blocks after grouping row and column classes.
+Section~\ref{sec:four-block} proves Theorem~\ref{thm:four-block}, including unequal class sizes and all feasible boundary values.
+The proof first establishes a likelihood-ratio inequality for a sum of independent Bernoulli variables.
+Permanent identities then give three contraction bounds and the Gyires margin.
+
+These are different restrictions on a matrix.
+The permutation-polynomial result does not cover all circulants or arbitrary triples of permutation matrices.
+The four-block result does not cover every matrix of rank two.
+None of the results proves Gyires's conjecture for all doubly stochastic matrices.
+
+\subsection{Verification status}
+
+The mathematical arguments and their verification status must be read separately.
+The principal order-five inequalities, equality cases, and sharp margin have complete Lean proofs.
+The two all-order arguments are complete written ordinary proofs with the exact computations specified below.
+Their Lean verification remains incomplete.
+Their inclusion in this preprint does not extend the earlier order-five kernel checks to them.
+Section~\ref{sec:checks} gives the theorem correspondence and reproduction records.
+
+Separate GPT-6.1 Sol reviews inspected the earlier formalized collection and the later ordinary-proof notes.
+Those records have different scopes.
+The verification record for this integrated preprint identifies its own final review.
+AI review and proof-assistant checks do not constitute independent human expert review or peer review.
+Neither form of review establishes novelty.
+
+\subsection{Prior work}
+
+The van der Waerden lower bound gives $\per(A)\ge c_n$ on $\Omega_n$, with equality only at $J_n$.
+The classical proofs are recorded in~\cite{gyires80,egorychev,falikman}.
+The four-block argument below derives the needed lower bound directly for its own class.
+
+Chang~\cite{chang} proved the order-three Gyires inequality.
 His sufficient condition in every order requires each entry to be at least $(n-2)/(n-1)^2$.
-For order-five circulants, this condition covers weights in $[3/16,1/4]$.
-It excludes every zero weight.
+It does not include zero entries.
+Ozols's public development~\cite{ozols} proves the full order-four result and a stronger Gram-permanent bound.
+Its use of \texttt{native\_decide} differs from the proof rules of the order-five development preserved here.
+The result remains relevant prior work.
 
-Ozols's public development~\cite{ozols} gives the full order-four inequality and equality case.
-It also gives $3\per(AA^\T)\le32\per(A)^2$.
-Its certificate uses \texttt{native\_decide}, which is outside the proof rule used for the present development.
-It remains relevant prior work.
+Minc~\cite[Theorem~2]{minc72} gave the classical permanent formula for three-term circulants.
+The permutation-polynomial section uses that formula and supplies its transfer derivation, including the small orders.
+The probability argument uses the classical fixed-mean extremal reduction of Hoeffding~\cite{hoeffding56} and Newton's inequalities.
+These ingredients are credited supporting results.
+They are not claimed as new contributions.
 
-Lavi's current catalogue~\cite{lavi} lists the general conjecture as open.
-It announces boundary and neighborhood results, certain symmetric families, all-order mixtures of two permutations,
-and mixtures of three permutations in order five.
-These statements have narrower or different hypotheses from the theorem below.
-Their omission of a result is not evidence of novelty.
+The order-five theorem revises an existing public result~\cite{repo}.
+The later arguments come from subsequent supplied research materials and their exact programs.
+The comparison with earlier work remains incomplete for the broader claims.
+No claim of first priority is made.
+The source-access limits are stated in Section~\ref{sec:about}.
 
-Minc~\cite{minc72} already gave exact permanent formulas for three-term circulants.
-The present contribution is the order-five Gram inequality, its equality case, and the sharp sorted-gap constant.
-This is a revision of the existing result in~\cite{repo}, not a new theorem from the current audit.
-The prior-work comparison remains qualified by the source-access limits stated at the end.
+\section{Permanent identities used by all three arguments}\label{sec:general}
 
-\subsection{Motivation}
-The general conjecture remains open in order five and above.
-Circulants reduce the four matrix permanents to polynomials in five weights.
-They also satisfy $CC^\T=C^\T C$.
-These properties make them a useful restricted family.
-Their permanents have a long history; Minc~\cite{minc72} treated three-term circulants.
-The present family has four independent parameters after normalization.
-A finite sample of matrices therefore cannot prove the theorem.
-The sorted-gap coordinates give an exact certificate over the whole family, including its boundary.
+The three matrix families use the same comparison between a matrix square and two Gram matrices.
+This section proves the comparison before applying any structural restriction.
 
-\subsection{How to read this paper}
-Section~\ref{sec:background} collects the identities for circulants and a comparison lemma for permanents. Section~\ref{sec:results}
-states the results, and Section~\ref{sec:proofs} proves them. Section~\ref{sec:checks} describes the computer checks
-and the formal proof, and Section~\ref{sec:discussion} discusses the scope of the results.
+For a real matrix $M$, define
+\[
+p_M(z)=\prod_{i=1}^n\left(\sum_{j=1}^n M_{ij}z_j\right).
+\]
+For a multi-index $\alpha=(\alpha_1,\ldots,\alpha_n)$, write
+$|\alpha|=\sum_j\alpha_j$, $\alpha!=\prod_j\alpha_j!$, and $z^\alpha=\prod_jz_j^{\alpha_j}$.
+If $p=\sum_{|\alpha|=n}p_\alpha z^\alpha$ and $q=\sum_{|\alpha|=n}q_\alpha z^\alpha$, set
+\[
+\langle p,q\rangle_F=\sum_{|\alpha|=n}\alpha!p_\alpha q_\alpha.
+\]
+All weights $\alpha!$ are positive, so this is an inner product on the degree-$n$ coefficient vectors.
 
-\section{Background}\label{sec:background}
+\begin{lemma}[Permanent coefficient identity]\label{lem:coefficient-inner-product}
+For real $n\times n$ matrices $M,N$,
+\begin{equation}\label{eq:occupancy}
+\langle p_M,p_N\rangle_F=\per(MN^\T),
+\qquad [z_1\cdots z_n]p_M=\per(M).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The second identity selects each column exactly once in the product of row forms.
+For the first identity, expand
+\[
+\per(MN^\T)=\sum_{\sigma\in S_n}\sum_{\varphi:[n]\to[n]}
+\prod_i M_{i,\varphi(i)}\prod_jN_{j,\varphi(\sigma^{-1}(j))}.
+\]
+Fix a map $\varphi$ whose column multiplicities are $\alpha$.
+As $\sigma$ varies, each map with the same multiplicities occurs exactly $\alpha!$ times in $\varphi\circ\sigma^{-1}$.
+For each column, its occurrences can be matched in $\alpha_j!$ ways.
+Multiplication over columns gives $\alpha!$.
+Summing first over maps with multiplicity $\alpha$, then over $\alpha$, proves the identity.
+\end{proof}
+
+\begin{lemma}[Permanent Cauchy--Schwarz]\label{lem:permanent-cs}
+For real $n\times n$ matrices $M,N$,
+\[
+|\per(MN^\T)|\le\sqrt{\per(MM^\T)\per(NN^\T)}.
+\]
+In particular, for a nonnegative matrix $A$,
+\[
+\per(A^2)\le\sqrt{\per(AA^\T)\per(A^\T A)}.
+\]
+\end{lemma}
+
+\begin{proof}
+Apply Cauchy--Schwarz to the inner product in Lemma~\ref{lem:coefficient-inner-product}.
+For the second statement, take $M=A$ and $N=A^\T$.
+\end{proof}
+
+\begin{lemma}\label{lem:gram}
+For real $n\times n$ matrices $M,N$,
+\[
+2\per(MN^\T)\le\per(MM^\T)+\per(NN^\T).
+\]
+For a nonnegative matrix $A$, the two bounds~\eqref{eq:strong-pair} imply $\Delta_n(A)\ge0$.
+\end{lemma}
+
+\begin{proof}
+The coefficient identity and $2uv\le u^2+v^2$ give the first statement term by term.
+For the second, put $x=\per(AA^\T)$ and $y=\per(A^\T A)$.
+The first statement gives $2\per(A^2)\le x+y$.
+Hence the bracket in~\eqref{eq:gyires-poly} is at most $2(x+y)$.
+The two strong bounds give $c_n(x+y)\le2\per(A)^2$, as required.
+\end{proof}
+
+The proof applies to the original matrix indexing.
+No invariance of $\per(A^2)$ under independent row and column permutations is needed.
+
+\section{Nonnegative circulants of order five}\label{sec:order-five}
+
+This section gives the earlier order-five theorem, its equality case, and the sharp quantitative margin.
+Its principal statements have complete Lean proofs.
+The proof covers all nonnegative weights, including zero and repeated weights.
+The certificate is finite, but it applies to every real point of the matrix family.
 
 \subsection{Notation}
 Indices of rows, columns and weights are taken in $\Z/5\Z=\{0,1,2,3,4\}$. For $w\in\R^5$, write $C(w)$ for the
@@ -209,34 +289,6 @@ $abcde$ arises from the $15$ permutations $\sigma$ for which $i\mapsto\sigma(i)-
 coefficients add up to $120=5!$.
 \end{proof}
 
-The following comparison is used to pass from the stronger inequality to Gyires's inequality.
-
-\begin{lemma}\label{lem:gram}
-For real $n\times n$ matrices $M$ and $N$, $\ 2\per(MN^\T)\le\per(MM^\T)+\per(NN^\T)$.
-\end{lemma}
-
-\begin{proof}
-Let $x_1,\dots,x_n$ be indeterminates and define coefficients $\mu_\alpha$ and $\nu_\alpha$, indexed by
-$\alpha\in\N^n$ with $\alpha_1+\dots+\alpha_n=n$, by
-\[
-\prod_{i=1}^n\Bigl(\sum_{k=1}^nM_{ik}x_k\Bigr)=\sum_\alpha \mu_\alpha x^\alpha,\qquad
-\prod_{i=1}^n\Bigl(\sum_{k=1}^nN_{ik}x_k\Bigr)=\sum_\alpha \nu_\alpha x^\alpha .
-\]
-Thus $\mu_\alpha=\sum_\varphi\prod_iM_{i\varphi(i)}$, the sum over the maps $\varphi\colon\{1,\dots,n\}\to\{1,\dots,n\}$
-with occupancy $\alpha$, that is, with $|\varphi^{-1}(k)|=\alpha_k$ for every $k$; similarly for $\nu_\alpha$. Expanding,
-\[
-\per(MN^\T)=\sum_{\sigma\in S_n}\prod_i\sum_kM_{ik}N_{\sigma(i)k}
-=\sum_{\sigma\in S_n}\sum_\varphi\prod_iM_{i\varphi(i)}\prod_jN_{j,\varphi(\sigma^{-1}(j))}.
-\]
-For fixed $\varphi$ with occupancy $\alpha$, the map $\sigma\mapsto\varphi\circ\sigma^{-1}$ takes every map of
-occupancy $\alpha$ exactly $\alpha!=\prod_k\alpha_k!$ times, and no other map. Hence
-\begin{equation}\label{eq:occupancy}
-\per(MN^\T)=\sum_\alpha\alpha!\,\mu_\alpha \nu_\alpha .
-\end{equation}
-Applying~\eqref{eq:occupancy} also to $(M,M)$ and $(N,N)$, the claim follows from $2\mu_\alpha\nu_\alpha\le
-\mu_\alpha^2+\nu_\alpha^2$ and $\alpha!>0$.
-\end{proof}
-
 \begin{corollary}\label{cor:gram}
 For every $w\in\R^5$, $P(h(w))\le P(g(w))$. Consequently $D_G(w)\ge D_s(w)$.
 \end{corollary}
@@ -246,7 +298,7 @@ Take $M=C(w)$ and $N=C(w)^\T$ in Lemma~\ref{lem:gram}. By Lemma~\ref{lem:product
 $MM^\T=NN^\T=C(g(w))$, so $2P(h(w))\le2P(g(w))$. Finally $D_G-D_s=12\bigl(P(g)-P(h)\bigr)$.
 \end{proof}
 
-\section{Results}\label{sec:results}
+\subsection{The inequalities and sharp margin}\label{sec:results}
 
 \begin{theorem}\label{thm:strong}
 Let $w\in\R^5$ with $w_i\ge0$ for all $i$, and let $C=C(w)$. Then
@@ -276,11 +328,11 @@ denominator below is positive, and
 \[
 \frac{4\per(C)^2}{\per(CC^\T)+\per(C^\T C)+2\per(C^2)}\ \ge\ \frac{24}{625}=\frac{5!}{5^5},
 \]
-with equality if and only if $C=J_5$. Thus Conjecture~\ref{conj:gyires} holds for every doubly stochastic circulant
+with equality if and only if $C=J_5$. Thus Gyires's inequality~\eqref{eq:gyires-poly} holds for every doubly stochastic circulant
 matrix of order five.
 \end{corollary}
 
-\section{Proofs}\label{sec:proofs}
+\subsection{Certificate method}\label{sec:proofs}
 
 \para{The idea in brief.} By Corollary~\ref{cor:gram} it suffices to bound $D_s$. The defect is invariant under the
 affine changes of indices $i\mapsto ai+b$ of $\Z/5\Z$, and these reduce the $120$ possible orderings of the weights to
@@ -409,41 +461,1051 @@ the ratio inequality. Equality holds if and only if all weights are equal, that 
 $C=J_5$.
 \end{proof}
 
-\section{Checking the results}\label{sec:checks}
 
-The verification has two parts: exact polynomial computation and formal proof.
-The text distinguishes the original project records from checks performed for this revision.
+\section{Permutation polynomials in arbitrary dimensions}\label{sec:permutation}
 
-\para{Exact computations.}
-The original project reports $72$ checks with a PARI/GP script in exact integer and rational arithmetic.
-The present audit did not rerun that full PARI/GP script. It was
-written separately from the Lean files and does not use them, or the program that generated the certificate files; it is the file \texttt{independent\_checks.gp} in the directory
-\texttt{verification} of the accompanying repository~\cite{repo}. It computes every permanent from the definition, as a
-sum over all permutations, and compares it with PARI's implementation of Ryser's formula. It verifies
-Lemmas~\ref{lem:products}, \ref{lem:P} and~\ref{lem:affine} symbolically, and that each of the $120$ orderings is the image of exactly one canonical ordering
-under exactly one affine map (Lemma~\ref{lem:chambers}). It recomputes the chamber polynomials of
-Lemma~\ref{lem:certificate}, not only for the six canonical orderings but for all $120$ orderings, which gives
-$120\cdot1001=120\,120$ coefficients, of which $119\,520$ are positive and $600$ zero, with the zero coefficients, the
-least positive coefficient and the four pure-power coefficients as stated. It tests Lemma~\ref{lem:gram} on $200$ random
-rational matrices of orders one to five and identity~\eqref{eq:occupancy} on $24$ random integer pairs; it tests
-Theorems~\ref{thm:strong} and~\ref{thm:margin} and Corollary~\ref{cor:gyires}, with their equality cases, on
-$2000$ nonnegative weight vectors, many of them with zero or repeated weights; and it checks the example of
-Theorem~\ref{thm:margin}, the case $n=2$ of the introduction and the remarks of Section~\ref{sec:discussion}. The
-random tests are evidence, not proofs; the chamber computation, by contrast, is exact and exhaustive.
+This section gives an analytic proof with an exact finite computation.
+Lean verification of this extension is incomplete.
+The result permits every permutation cycle structure and all nonnegative weights.
 
-\para{Checks in this revision.}
-A separate exact Python checker recomputed the order-five defect from the permutation definition of the permanent.
-It checked all $120$ orderings and the unique reduction to six affine representatives.
-It verified the polynomial identities by inverse binomial transforms.
-Every chamber has $1001$ coefficient positions, with $996$ positive coefficients and five zeros.
-The checker uses the normalization $625P(w)^2-24P(g(w))$.
-Its least positive coefficient is $484$.
+\begin{theorem}\label{thm:permutation-polynomial}
+Let $n\ge1$, let $Q$ be an $n\times n$ permutation matrix, and let
+$a,b,c\ge0$. Put
+\[
+A=aI+bQ+cQ^2.
+\]
+Then
+\begin{equation}\label{eq:pp-gram-bounds}
+c_n\per(AA^\T)\le\per(A)^2,
+\qquad
+c_n\per(A^\T A)\le\per(A)^2,
+\qquad
+c_n\per(A^2)\le\per(A)^2.
+\end{equation}
+If $a+b+c=1$, then $A$ is doubly stochastic and satisfies
+\begin{equation}\label{eq:pp-gyires}
+c_n\bigl[\per(AA^\T)+\per(A^\T A)+2\per(A^2)\bigr]
+\le4\per(A)^2.
+\end{equation}
+\end{theorem}
+
+Set
+\begin{equation}\label{eq:pp-column-shift}
+C=AQ^{-1}=aQ^{-1}+bI+cQ.
+\end{equation}
+A column permutation preserves the permanent, and $CC^\T=AA^\T$.
+It therefore suffices to prove the first bound for $C$.
+We first treat one cycle.
+We then combine the cycle bounds with the correct dimension constants.
+
+\subsection{The cyclic permanent and its transfer matrix}
+
+Let $P_n$ be the cyclic permutation matrix, and put
+$C_n=aP_n^{-1}+bI+cP_n$.
+Define
+\begin{equation}\label{eq:pp-roots}
+\lambda=\frac{b+\sqrt{b^2+4ac}}2,
+\qquad
+\nu=\frac{b-\sqrt{b^2+4ac}}2,
+\qquad
+L=\max\{a,c,\lambda\}.
+\end{equation}
+The following formula is classical for three-term circulants.
+It appears in Minc's Theorem~2~\cite{minc72}.
+The transfer argument also treats the coincident diagonals in orders one and two.
+
+\begin{lemma}\label{lem:pp-cyclic-permanent}
+For every $n\ge1$,
+\begin{equation}\label{eq:pp-cyclic-permanent}
+\per(C_n)=a^n+c^n+\lambda^n+\nu^n\ge L^n.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+We describe the transfer construction that will also compute the Gram permanent.
+For offsets $-r,\ldots,r$, let $w_0,\ldots,w_{2r}$ be the corresponding weights.
+Before processing row $i$, record the occupied columns
+$i-r,\ldots,i+r-1$ in a mask $m$ with $2r$ bits.
+A bit is one precisely when an earlier row has already selected that column.
+The new column $i+r$ has bit $2r$, initially zero.
+
+Choose an unset bit $j\in\{0,\ldots,2r\}$ with weight $w_j$.
+Set that bit, and require the resulting bit zero to be one.
+The latter condition ensures that column $i-r$ is occupied before it leaves the window.
+The next mask is
+\begin{equation}\label{eq:pp-mask-transition}
+m'=\left\lfloor\frac{m\mathbin{\mathrm{OR}}2^j}{2}\right\rfloor.
+\end{equation}
+Here $\mathrm{OR}$ denotes bitwise union.
+The transfer matrix $T$ sums the weights of these transitions.
+
+To justify a cyclic boundary, lift the row and column indices to $\mathbb Z$.
+A cyclic matching with a chosen offset for each row lifts to a periodic matching.
+Its occupancy masks give a closed walk of length $n$ in the transfer matrix.
+Conversely, each closed walk selects one column per row.
+The unset-bit rule prevents two selections of the same column.
+The outgoing-bit rule ensures that every column is selected.
+Periodicity then gives a matching of the cyclic indices.
+The states are determined by these choices, since each recorded bit leaves the window after finitely many steps.
+The two constructions preserve the product of the weights.
+Consequently,
+\begin{equation}\label{eq:pp-general-trace}
+\per\left(\sum_{j=0}^{2r}w_jP_n^{j-r}\right)
+=\operatorname{tr}(T^n).
+\end{equation}
+If offsets coincide modulo $n$, the different offset choices contribute the corresponding entry multiplicity.
+Thus the identity remains valid for $n\le2r$.
+
+For $C_n$, use $r=1$ and weights $(a,b,c)$.
+Each transition adds one occupied bit and removes one occupied bit.
+The number of occupied bits is therefore constant.
+The four states split into scalar blocks $a,c$ and the block
+\[
+\begin{pmatrix}b&c\\a&0\end{pmatrix}.
+\]
+The latter block has eigenvalues $\lambda,\nu$.
+The trace identity proves the equality in~\eqref{eq:pp-cyclic-permanent}.
+
+The all-forward and all-backward permutations give
+$\per(C_n)\ge a^n$ and $\per(C_n)\ge c^n$.
+To obtain the remaining lower bound, note that $\nu\le0$ and
+$|\nu|\le\sqrt{ac}$.
+For even $n$, all four terms in the formula are nonnegative.
+For odd $n$,
+\[
+a^n+c^n\ge2(ac)^{n/2}\ge|\nu|^n.
+\]
+Hence $\per(C_n)\ge\lambda^n$ in both cases.
+\end{proof}
+
+Set
+\begin{equation}\label{eq:pp-def}
+d=a^2+b^2+c^2,\qquad e=b(a+c),\qquad f=ac.
+\end{equation}
+The Gram matrix has the cyclic form
+\[
+C_nC_n^\T=fP_n^{-2}+eP_n^{-1}+dI+eP_n+fP_n^2.
+\]
+Its transfer matrix has sixteen states.
+The five population sizes give blocks of dimensions $1,4,6,4,1$.
+Both scalar blocks are $f$.
+In the mask orders $(1,2,4,8)$ and $(7,11,13,14)$, the two four-dimensional blocks are transposes.
+Their representative is
+\begin{equation}\label{eq:pp-T1}
+T_1(d,e,f)=
+\begin{pmatrix}
+e&d&e&f\\
+f&0&0&0\\
+0&f&0&0\\
+0&0&f&0
+\end{pmatrix}.
+\end{equation}
+The six-dimensional block uses the mask order $(3,5,6,9,10,12)$ and is
+\begin{equation}\label{eq:pp-T2}
+T_2(d,e,f)=
+\begin{pmatrix}
+d&e&0&f&0&0\\
+e&0&e&0&f&0\\
+f&0&0&0&0&0\\
+0&e&d&0&0&f\\
+0&f&0&0&0&0\\
+0&0&f&0&0&0
+\end{pmatrix}.
+\end{equation}
+Equation~\eqref{eq:pp-general-trace} gives
+\begin{equation}\label{eq:pp-gram-trace}
+\per(C_nC_n^\T)
+=\operatorname{tr}(T_2^n)+2\operatorname{tr}(T_1^n)+2f^n.
+\end{equation}
+The entries in these two matrices have degree two in $a,b,c$.
+They increase when any of $d,e,f$ increases.
+
+\subsection{A uniform spectral bound}
+
+Write $\rho(M)$ for the spectral radius of a square matrix $M$.
+Set
+\begin{equation}\label{eq:pp-kappa}
+\kappa=1+\sqrt2,\qquad \kappa^2=2\kappa+1.
+\end{equation}
+
+\begin{lemma}\label{lem:pp-spectral}
+With the quantities in~\eqref{eq:pp-roots} and~\eqref{eq:pp-def},
+\[
+\rho(T_1(d,e,f))\le\kappa L^2,
+\qquad
+\rho(T_2(d,e,f))\le\kappa L^2.
+\]
+The constant $\kappa$ in the second bound is sharp.
+\end{lemma}
+
+\begin{proof}
+If $L=0$, all three weights are zero and both matrices vanish.
+Suppose $L>0$ and divide the weights by $L$.
+It suffices to prove the result for $L=1$.
+Then $0\le a,c\le1$ and $\lambda\le1$.
+Since $\lambda$ is the nonnegative root of $t^2-bt-ac$,
+\[
+0\le b\le1-ac.
+\]
+Increasing $b$ to $1-ac$ increases $d$ and $e$ and leaves $f$ fixed.
+The spectral radius is monotone for nonnegative matrices under entrywise comparison.
+It is therefore enough to use $b=1-ac$.
+
+Put $u=ac\in[0,1]$.
+The inequality $(1-a)(1-c)\ge0$ gives $a+c\le1+u$.
+Thus
+\begin{equation}\label{eq:pp-one-variable}
+\begin{aligned}
+d&=(a+c)^2-2u+(1-u)^2\le2-2u+2u^2=:D(u),\\
+e&=(1-u)(a+c)\le1-u^2=:E(u),\\
+f&=u.
+\end{aligned}
+\end{equation}
+It remains to bound $T_j(D(u),E(u),u)$ for $0\le u\le1$.
+In this interval, $D(u)\le2$ and $E(u)\le1$.
+
+For $T_1$, use the positive column vector
+\[
+w=(1,\kappa^{-1},\kappa^{-2},\kappa^{-3})^\T.
+\]
+The last three coordinates of $T_1w$ are at most those of $\kappa w$.
+The first coordinate is at most
+\[
+1+\frac2\kappa+\frac1{\kappa^2}+\frac1{\kappa^3}
+=\frac5\kappa<\kappa.
+\]
+Here the equality uses $\kappa^2=2\kappa+1$, and the inequality uses $\kappa^2>5$.
+Thus $T_1w\le\kappa w$.
+For a nonnegative matrix $M$ and a positive vector $w$, $Mw\le\kappa w$ implies $\rho(M)\le\kappa$.
+Indeed, conjugation by the diagonal matrix with diagonal $w$ gives row sums at most $\kappa$.
+This proves the four-dimensional bound.
+
+For the six-dimensional bound, first take $0<u<1$.
+Abbreviate $D=D(u)$ and $E=E(u)$, and define
+\begin{equation}\label{eq:pp-positive-vector}
+\begin{aligned}
+v_1&=1,&
+v_2&=\frac{E}{\kappa-u},&
+v_3&=\frac{u}{\kappa},\\
+v_4&=\frac{E^2}{\kappa(\kappa-u)}
+       +\frac{Du}{\kappa^2}+\frac{u^3}{\kappa^3},&
+v_5&=\frac{uE}{\kappa(\kappa-u)},&
+v_6&=\frac{u^2}{\kappa^2}.
+\end{aligned}
+\end{equation}
+Every coordinate is positive.
+Substitution into~\eqref{eq:pp-T2} gives
+\[
+(T_2v)_i=\kappa v_i\qquad(2\le i\le6).
+\]
+For example, the second coordinate follows from
+\[
+E\left(1+\frac u\kappa\right)
++\frac{u^2E}{\kappa(\kappa-u)}
+=\frac{\kappa E}{\kappa-u}.
+\]
+The first coordinate has residual
+\begin{equation}\label{eq:pp-residual}
+\begin{aligned}
+\kappa v_1-(T_2v)_1
+&=\kappa-D\left(1+\frac{u^2}{\kappa^2}\right)
+ -\frac{E^2(\kappa+u)}{\kappa(\kappa-u)}-\frac{u^4}{\kappa^3}\\
+&=\frac{P(u)}{\kappa^3(\kappa-u)},
+\end{aligned}
+\end{equation}
+where
+\[
+\begin{aligned}
+P(u)={}&\kappa^4(\kappa-u)
+-D\kappa(\kappa-u)(\kappa^2+u^2)\\
+&-E^2\kappa^2(\kappa+u)-u^4(\kappa-u).
+\end{aligned}
+\]
+Expansion with $\kappa^2=2\kappa+1$ gives the exact factorization
+\begin{equation}\label{eq:pp-residual-factorization}
+P(u)=u(1-u)
+\bigl[(20\kappa+8)-(8\kappa+4)u+(12\kappa+4)u^2\bigr].
+\end{equation}
+The bracket equals
+\[
+(12\kappa+4)+(8\kappa+4)(1-u)+(12\kappa+4)u^2,
+\]
+which is positive on $[0,1]$.
+The denominator in~\eqref{eq:pp-residual} is positive.
+Hence $T_2v\le\kappa v$, and the positive-vector comparison gives $\rho(T_2)\le\kappa$.
+Continuity of the spectral radius extends this bound to $u=0$ and $u=1$.
+The displayed vector need not remain positive at those endpoints.
+
+At $u=0$, $D=2$ and $E=1$.
+The first two coordinates of $T_2(D,E,0)$ give the block
+\[
+\begin{pmatrix}2&1\\1&0\end{pmatrix},
+\]
+with eigenvalues $1\pm\sqrt2$.
+The other four eigenvalues are zero.
+Thus the spectral radius is $\kappa$.
+This endpoint is attained by $(a,b,c)=(1,1,0)$, for which $L=1$.
+Finally, restoring the original weights multiplies every transfer entry by $L^2$.
+\end{proof}
+
+\subsection{The analytic bound from order 48}
+
+For any square matrix $M$ of dimension $m$,
+\[
+|\operatorname{tr}(M^n)|\le m\rho(M)^n.
+\]
+This follows by summing powers of the eigenvalues with their algebraic multiplicities.
+It does not require diagonalizability.
+Since $f=ac\le L^2$, Lemma~\ref{lem:pp-spectral} and~\eqref{eq:pp-gram-trace} give
+\begin{equation}\label{eq:pp-tail-transfer}
+\per(C_nC_n^\T)
+\le(2+14\kappa^n)L^{2n}
+\le16\kappa^nL^{2n}.
+\end{equation}
+For nonzero weights, Lemma~\ref{lem:pp-cyclic-permanent} therefore gives
+\begin{equation}\label{eq:pp-tail-ratio}
+\frac{c_n\per(C_nC_n^\T)}{\per(C_n)^2}
+\le16c_n\kappa^n.
+\end{equation}
+
+The bound is strictly less than one at $n=48$.
+This uses the exact integer comparison
+\begin{equation}\label{eq:pp-threshold-integer}
+16\cdot48!\cdot169^{48}<3360^{48}.
+\end{equation}
+Indeed, $\sqrt2<99/70$ because $99^2>2\cdot70^2$.
+Thus $\kappa<169/70$, and $3360=48\cdot70$.
+Equation~\eqref{eq:pp-threshold-integer} implies $16c_{48}\kappa^{48}<1$ without a floating-point estimate.
+
+To extend this bound to all larger orders, put $t_n=16c_n\kappa^n$.
+Then
+\[
+\frac{t_{n+1}}{t_n}=\frac{\kappa}{(1+1/n)^n}.
+\]
+The denominator increases with $n$.
+For completeness, the derivative of $x\log(1+1/x)$ is
+$\log(1+1/x)-1/(x+1)>0$ for $x>0$.
+The last inequality follows from $\log(1+t)>t/(1+t)$ for $t>0$.
+Moreover, $\kappa<5/2$ and the integer comparison
+$5\cdot6^6<2\cdot7^6$ gives $(7/6)^6>5/2$.
+Consequently, $t_{n+1}<t_n$ for every $n\ge6$.
+The first Gram bound is therefore strict for a nonzero cyclic matrix in every order $n\ge48$.
+
+\subsection{Exact polynomial certificates for orders 3 through 47}
+
+The remaining finite range uses the homogeneous integer polynomial
+\begin{equation}\label{eq:pp-finite-deficit}
+\mathcal D_n(a,b,c)
+=n^n\per(C_n)^2-n!\per(C_nC_n^\T).
+\end{equation}
+Its degree is $2n$.
+For each ordering of the weights, write the ordered values as
+\[
+x,\qquad x+y,\qquad x+y+z,
+\qquad x,y,z\ge0.
+\]
+These are gap coordinates.
+Every nonnegative triple belongs to at least one such closed region.
+Reflection of the cyclic indices exchanges $a$ and $c$ and preserves both permanents in~\eqref{eq:pp-finite-deficit}.
+It is therefore enough to check the three substitutions
+\begin{equation}\label{eq:pp-chambers}
+\begin{aligned}
+(a,b,c)&=(x,x+y,x+y+z),\\
+(a,b,c)&=(x+y,x,x+y+z),\\
+(a,b,c)&=(x,x+y+z,x+y).
+\end{aligned}
+\end{equation}
+Their reflections give the other three orderings.
+Equal weights and zero weights are included in the boundaries.
+
+The certificate computes every coefficient of each substituted $\mathcal D_n$.
+We give the recurrences so that the connection to the matrix inequality is explicit.
+Direct determinant expansion of~\eqref{eq:pp-T1} and~\eqref{eq:pp-T2} gives
+\begin{equation}\label{eq:pp-characteristic-polynomials}
+\begin{aligned}
+\det(tI-T_1)
+={}&t^4-et^3-dft^2-ef^2t-f^4,\\
+\det(tI-T_2)
+={}&t^6-dt^5-(e^2+f^2)t^4-2e^2ft^3\\
+&-(e^2f^2+f^4)t^2+df^4t+f^6.
+\end{aligned}
+\end{equation}
+For a characteristic polynomial $t^m+h_1t^{m-1}+\cdots+h_m$, let $s_n$ be the trace of the $n$th power.
+Newton's identities give $s_0=m$ and
+\begin{equation}\label{eq:pp-newton}
+\begin{aligned}
+s_n+\sum_{j=1}^{n-1}h_js_{n-j}+nh_n&=0
+&& (1\le n\le m),\\
+s_n+\sum_{j=1}^{m}h_js_{n-j}&=0
+&& (n>m).
+\end{aligned}
+\end{equation}
+These identities compute $\operatorname{tr}(T_1^n)$ and $\operatorname{tr}(T_2^n)$ with integer polynomial arithmetic.
+Equation~\eqref{eq:pp-gram-trace} then computes the Gram permanent.
+
+The square of the cyclic permanent also has integer recurrences.
+Use $f=ac$ and define
+\[
+U_n=\lambda^{2n}+\nu^{2n},\qquad
+V_n=(a\lambda)^n+(a\nu)^n,\qquad
+W_n=(c\lambda)^n+(c\nu)^n.
+\]
+Their initial values and recurrences are
+\begin{equation}\label{eq:pp-root-recurrences}
+\begin{aligned}
+U_0&=2,& U_1&=b^2+2f,&
+U_n&=(b^2+2f)U_{n-1}-f^2U_{n-2},\\
+V_0&=2,& V_1&=ab,&
+V_n&=abV_{n-1}+a^2fV_{n-2},\\
+W_0&=2,& W_1&=cb,&
+W_n&=cbW_{n-1}+c^2fW_{n-2}
+\qquad(n\ge2).
+\end{aligned}
+\end{equation}
+These follow from $\lambda+\nu=b$ and $\lambda\nu=-f$.
+Expansion of~\eqref{eq:pp-cyclic-permanent} yields
+\begin{equation}\label{eq:pp-permanent-square}
+\per(C_n)^2
+=a^{2n}+c^{2n}+U_n+2V_n+2W_n+
+\begin{cases}
+4f^n,&n\text{ even},\\
+0,&n\text{ odd}.
+\end{cases}
+\end{equation}
+The parity term is $2f^n+2(-f)^n$.
+Thus the calculation does not use a numerical square root.
+
+The program \nolinkurl{round2_independent_finite.mjs} implements these recurrences with native JavaScript \texttt{BigInt} integers.
+It constructs the weight polynomials directly in the three gap regions~\eqref{eq:pp-chambers}.
+For a homogeneous polynomial of degree $d$, it stores the coefficient of
+$x^{d-i-j}y^iz^j$ at each pair $i,j\ge0$ with $i+j\le d$.
+The array therefore contains every one of the $\binom{d+2}{2}$ coefficient positions, including zeros.
+Addition is entrywise, and multiplication is exact coefficient convolution.
+The program applies~\eqref{eq:pp-newton} and~\eqref{eq:pp-root-recurrences}, then forms~\eqref{eq:pp-finite-deficit}.
+It checks the sign of every coefficient and stops with an error if any coefficient is negative.
+
+The archived run with upper order $47$ records
+\[
+3\cdot45=135\text{ regions},\qquad
+3\sum_{n=3}^{47}\binom{2n+2}{2}=224\,550\text{ coefficient positions}.
+\]
+Every coefficient is nonnegative.
+For $4\le n\le47$, every coefficient is positive.
+These records prove $\mathcal D_n\ge0$ throughout each gap region, subject to the exact program computation.
+Indeed, each monomial is nonnegative when $x,y,z\ge0$.
+The three regions and their reflections cover all nonnegative real triples.
+This polynomial certificate covers all nonnegative real weights in the stated finite range.
+
+The program and its recorded output are included in
+\nolinkurl{research-notes/gyires-extensions/} in the accompanying repository.
+The program is in \nolinkurl{certificates/round2_independent_finite.mjs}.
+The record is in \nolinkurl{results/round2_independent_finite.json}.
+From a new working directory below \nolinkurl{gyires-extensions/}, the certificate command is
+\begin{verbatim}
+node ../certificates/round2_independent_finite.mjs 47
+\end{verbatim}
+It writes the coefficient-count record to the working directory.
+The associated \nolinkurl{verification.md} file gives the record checks and hashes.
+
+Two further programs check the supporting identities.
+The program \nolinkurl{round2_sharp_bound_check.py} verifies the residual factorization in $\mathbb Q(\sqrt2)$ and the integer comparison~\eqref{eq:pp-threshold-integer}.
+The program \nolinkurl{round2_circ_small_check.py} computes permanents by subsets.
+Its recorded outputs agree with both transfer formulas for $1\le n\le7$.
+It also checks all six gap orderings in orders three and four.
+These checks support the transfer implementation.
+The proof for unbounded orders uses the analytic bound and its monotone continuation established above.
+
+\subsection{Small orders, boundary cases, and permutation cycles}
+
+For $n=1$, $C_1$ is the scalar $a+b+c$, and the Gram inequality is equality.
+For $n=2$, put $x=b$ and $y=a+c$.
+Then
+\[
+C_2=\begin{pmatrix}x&y\\y&x\end{pmatrix},\qquad
+\per(C_2)=x^2+y^2,
+\qquad
+\per(C_2C_2^\T)=(x^2+y^2)^2+4x^2y^2.
+\]
+Since $c_2=1/2$,
+\[
+\per(C_2)^2-\tfrac12\per(C_2C_2^\T)
+=\tfrac12(x^2-y^2)^2\ge0.
+\]
+For orders three through 47, the closed gap regions include all zero-weight boundaries.
+For larger orders, the spectral argument includes its endpoints by continuity.
+If $a=b=c=0$, both permanents vanish in every order.
+Thus every cyclic case is covered.
+
+\begin{proof}[Proof of Theorem~\ref{thm:permutation-polynomial}]
+Suppose the cycles of $Q$ have lengths $m_1,\ldots,m_s$, where $\sum_i m_i=n$.
+A simultaneous row and column permutation writes the matrix $C$ in~\eqref{eq:pp-column-shift} as a direct sum of cyclic matrices $C_i$.
+Permanents multiply over direct sums, as do the permanents of their Gram matrices.
+The cyclic inequalities give
+\begin{equation}\label{eq:pp-cycle-product}
+\per(C)^2
+\ge\left(\prod_{i=1}^s c_{m_i}\right)\per(CC^\T).
+\end{equation}
+The multinomial theorem gives
+\[
+1=\left(\sum_{i=1}^s\frac{m_i}{n}\right)^n
+\ge\frac{n!}{\prod_i m_i!}
+\prod_{i=1}^s\left(\frac{m_i}{n}\right)^{m_i}.
+\]
+Rearrangement yields $\prod_i c_{m_i}\ge c_n$.
+Together with~\eqref{eq:pp-cycle-product}, this proves
+$c_n\per(CC^\T)\le\per(C)^2$.
+Equation~\eqref{eq:pp-column-shift} proves the first bound for $A$.
+
+The transpose $A^\T=aI+bQ^\T+c(Q^\T)^2$ has the same form.
+The first bound applied to $A^\T$ proves the second bound in~\eqref{eq:pp-gram-bounds}.
+Lemma~\ref{lem:permanent-cs}, applied to $A$ and $A^\T$, gives
+\[
+\per(A^2)
+\le\sqrt{\per(AA^\T)\per(A^\T A)}
+\le\frac{\per(A)^2}{c_n}.
+\]
+This proves the third bound in the original indexing of $A$.
+Finally, if $a+b+c=1$, each row sum and each column sum of $A$ is one.
+Adding the three bounds with weights $1,1,2$ proves~\eqref{eq:pp-gyires}.
+\end{proof}
+
+The theorem concerns a quadratic polynomial in one permutation matrix.
+It does not assert the same result for arbitrary triples of permutation matrices or arbitrary circulants.
+
+\section{Four-block matrices in arbitrary dimensions}\label{sec:four-block}
+
+The second extension concerns matrices with at most two row types and at
+most two column types. Two rows have the same type if their entries agree
+in every column. Column types have the corresponding meaning. The block
+sizes can be unequal, and the entries can be zero. This section gives an
+ordinary analytic proof. Its Lean verification is not complete.
+
+\begin{theorem}[Four-block theorem]\label{thm:four-block}
+Let $n\geq 2$. Let $A$ be a nonnegative doubly stochastic $n\times n$
+matrix with at most two distinct rows and at most two distinct columns.
+Set $d=\per(A)$. Then
+\begin{equation}\label{eq:fb-three-contractions}
+ \per(AA^\T)\leq d,\qquad
+ \per(A^\T A)\leq d,\qquad
+ \per(A^2)\leq d.
+\end{equation}
+Moreover,
+\begin{equation}\label{eq:fb-margin}
+\begin{split}
+ 4d^2-c_n\bigl[\per(AA^\T)+\per(A^\T A)+2\per(A^2)\bigr]
+ &\geq 4d(d-c_n)\\
+ &\geq 0.
+\end{split}
+\end{equation}
+Equality in Gyires's inequality holds if and only if $A=J_n$.
+\end{theorem}
+
+Here $A^2$ denotes the matrix product. The expression $d^2$ denotes
+the square of the number $\per(A)$. The equality statement concerns
+Gyires's inequality. It does not assert that equality in any one of
+\eqref{eq:fb-three-contractions} forces $A=J_n$.
+
+\subsection{The four blocks and their full parameter interval}
+
+If $A$ has one row type, each column sum forces every entry in that
+column to be $1/n$. Thus $A=J_n$. One column type gives the same
+conclusion from the row sums.
+
+Suppose that both types occur. Let the row classes have sizes $r$ and
+$n-r$. Let the column classes have sizes $s$ and $n-s$, where
+$1\leq r,s\leq n-1$. Every entry in a given block is equal. Let $h$
+be the total mass in the block with $r$ rows and $s$ columns.
+The four block masses are
+\[
+ h,\qquad r-h,\qquad s-h,\qquad n-r-s+h.
+\]
+After the row classes and the column classes are placed together, the
+four block entries are therefore
+\begin{equation}\label{eq:fb-block-entries}
+ \begin{pmatrix}
+ \dfrac{h}{rs} & \dfrac{r-h}{r(n-s)}\\[6pt]
+ \dfrac{s-h}{(n-r)s} &
+ \dfrac{n-r-s+h}{(n-r)(n-s)}
+ \end{pmatrix}.
+\end{equation}
+Each displayed entry fills the corresponding block. Nonnegativity is
+equivalent to the closed interval
+\begin{equation}\label{eq:fb-h-interval}
+ \max(0,r+s-n)\leq h\leq\min(r,s).
+\end{equation}
+Conversely, each $h$ in this interval gives a doubly stochastic matrix.
+For example, a row in the first class has sum
+$h/r+(r-h)/r=1$. The other row sums and both column sums follow in the
+same way. The uniform matrix occurs exactly when $h=rs/n$.
+
+The grouping in \eqref{eq:fb-block-entries} describes the matrix.
+It does not replace the original indexing when $A^2$ is formed.
+Independent row and column permutations need not preserve
+$\per(A^2)$. The proof below treats this term through
+Lemma~\ref{lem:permanent-cs}, in the original indexing.
+
+The main estimate first uses only the condition on column types.
+It follows from a probability inequality, which we prove next.
+
+\subsection{A probability inequality at an integer mean}
+
+A Bernoulli variable with parameter $p\in[0,1]$ has value $1$ with
+probability $p$ and value $0$ with probability $1-p$. A sum of independent
+Bernoulli variables can have different parameters. Its distribution is
+often called a Poisson-binomial distribution.
+
+We first prove the fixed-mean maximizer principle used in the argument.
+This is the classical reduction of Hoeffding~\cite{hoeffding56}.
+We include the proof to cover all boundary parameters.
+
+\begin{lemma}[Fixed-mean maximizer]\label{lem:fb-maximizer}
+Let $\mu\in[0,n]$, and let $f:\{0,\ldots,n\}\to\R$ be any function.
+Among all independent Bernoulli sums $K$ with parameters
+$p_1,\ldots,p_n\in[0,1]$ and $\sum_i p_i=\mu$, the maximum of
+$\mathbb{E}f(K)$ occurs at parameters whose values in $(0,1)$ are all
+equal. Thus a maximizing distribution is either deterministic or has
+the form
+\[
+ K=a+\operatorname{Bin}(b,q),\qquad
+ a\geq0,\quad b\geq1,\quad a+b\leq n,\quad
+ 0<q<1,\quad q=\frac{\mu-a}{b},
+\]
+where $a$ and $b$ are integers.
+\end{lemma}
+
+\begin{proof}
+The parameter set
+\[
+ \mathcal P_\mu=
+ \{(p_1,\ldots,p_n)\in[0,1]^n:\textstyle\sum_i p_i=\mu\}
+\]
+is nonempty and compact. The objective $\mathbb{E}f(K)$ is a
+polynomial in the parameters, so it attains a maximum. Among its
+maximizers, choose one that also maximizes $\sum_i p_i^2$.
+The set of maximizers is compact, so this second maximum exists.
+
+Suppose that two distinct parameters $p,q$ lie in $(0,1)$.
+Keep their sum $t=p+q$ fixed, and write $z=pq$. Their contribution
+to the probability generating polynomial is
+\[
+ ((1-p)+px)((1-q)+qx)
+ =(1-t+z)+(t-2z)x+zx^2.
+\]
+The other factors are fixed. Hence $\mathbb{E}f(K)$ is an affine
+function of $z$. The feasible interval for $z$ is
+\[
+ \max(0,t-1)\leq z\leq t^2/4.
+\]
+The upper endpoint corresponds to $p=q$. The lower endpoint has
+one parameter equal to $0$ or $1$. Since $p$ and $q$ are distinct
+and interior, the present $z$ is strictly between the endpoints.
+An affine function with a maximum at an interior point is constant.
+We can therefore move $z$ to the lower endpoint without changing
+the objective. This move strictly increases
+$p^2+q^2=t^2-2z$. That contradicts the second maximization.
+
+All interior parameters at the chosen maximizer are consequently
+equal. Let $a$ parameters equal $1$, let $b$ parameters lie in
+$(0,1)$, and let the remaining parameters equal $0$.
+If $b=0$, the sum is deterministic. If $b>0$, its distribution is
+$a+\operatorname{Bin}(b,q)$, and its mean gives $a+bq=\mu$.
+\end{proof}
+
+\begin{lemma}[Adjacent probabilities]\label{lem:fb-adjacent}
+Let $P_k=\mathbb{P}(K=k)$ for a sum of $n$ independent Bernoulli
+variables. Suppose that its mean is an integer $m$ with
+$1\leq m\leq n-1$. Then
+\begin{equation}\label{eq:fb-adjacent}
+ (m+1)P_{m+1}\leq mP_m,
+ \qquad
+ (n-m+1)P_{m-1}\leq(n-m)P_m.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+First maximize the linear functional
+$(m+1)P_{m+1}-mP_m$ over the parameters with sum $m$.
+Lemma~\ref{lem:fb-maximizer} gives a maximizing distribution of the
+stated form. A deterministic distribution with mean $m$ has
+$P_m=1$ and $P_{m+1}=0$, so this functional is negative.
+
+For a nondeterministic maximizer, write
+$K=a+\operatorname{Bin}(b,q)$ and $u=m-a$.
+The mean condition gives $q=u/b$. Since $m$ and $a$ are integers,
+\[
+ 1\leq u\leq b-1,\qquad u\leq m.
+\]
+In particular, $P_m>0$. The adjacent binomial ratio gives
+\[
+ \frac{P_{m+1}}{P_m}
+ =\frac{b-u}{u+1}\frac{q}{1-q}
+ =\frac{u}{u+1}
+ \leq\frac{m}{m+1}.
+\]
+The maximum of the functional is therefore nonpositive. This proves
+the first inequality for every parameter vector.
+
+Next maximize
+$(n-m+1)P_{m-1}-(n-m)P_m$ in the same parameter set.
+The deterministic case again gives a negative value.
+For a nondeterministic maximizer, use the same notation.
+Since $a+b\leq n$, we have $b-u=b-m+a\leq n-m$.
+It follows that
+\[
+ \frac{P_{m-1}}{P_m}
+ =\frac{u}{b-u+1}\frac{1-q}{q}
+ =\frac{b-u}{b-u+1}
+ \leq\frac{n-m}{n-m+1}.
+\]
+This proves the second inequality.
+\end{proof}
+
+\begin{proposition}[Central likelihood-ratio bound]\label{prop:fb-central}
+Under the assumptions of Lemma~\ref{lem:fb-adjacent}, put
+\[
+ \theta=\frac mn,\qquad
+ B_k=\binom nk\theta^k(1-\theta)^{n-k},\qquad
+ R_k=\frac{P_k}{B_k}\quad(0\leq k\leq n).
+\]
+Then $B_k>0$, $P_m>0$, and
+\begin{equation}\label{eq:fb-central}
+ R_k\leq R_m\quad(0\leq k\leq n).
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:fb-quadratic}
+ \sum_{k=0}^n\frac{P_k^2}{B_k}\leq\frac{P_m}{B_m},
+ \qquad
+ \frac{P_m}{B_m}\geq1.
+\end{equation}
+Equality $P_m/B_m=1$ holds if and only if every Bernoulli parameter
+equals $m/n$.
+\end{proposition}
+
+\begin{proof}
+Since $0<\theta<1$, every $B_k$ is positive. The probability
+generating polynomial is
+\[
+ G(x)=\prod_{i=1}^n(1-p_i+p_ix)=\sum_{k=0}^nP_kx^k.
+\]
+When all $p_i$ lie in $(0,1)$, this polynomial has degree $n$ and
+all its roots are real and negative. The classical Newton inequalities
+give
+\begin{equation}\label{eq:fb-newton}
+ \left(\frac{P_k}{\binom nk}\right)^2
+ \geq
+ \frac{P_{k-1}}{\binom n{k-1}}
+ \frac{P_{k+1}}{\binom n{k+1}}
+ \qquad(1\leq k\leq n-1).
+\end{equation}
+Each coefficient depends continuously on the parameters.
+Approximation by vectors in $(0,1)^n$ therefore proves
+\eqref{eq:fb-newton} also when parameters equal $0$ or $1$.
+The approximating vectors need not have mean $m$, since Newton's
+inequalities hold without a mean constraint.
+
+An inequality of the form $v_k^2\geq v_{k-1}v_{k+1}$ is called
+log-concavity. Multiplication by a positive geometric sequence
+preserves this property. Thus \eqref{eq:fb-newton} implies that
+$(R_k)_{k=0}^n$ is log-concave, because
+\[
+ R_k=\frac{P_k}{\binom nk}
+       (1-\theta)^{-n}
+       \left(\frac{1-\theta}{\theta}\right)^k.
+\]
+
+To locate its positive terms, let $a$ parameters equal $1$ and let
+$b$ parameters lie in $(0,1)$. The remaining parameters equal $0$.
+If $b=0$, then $K=m$ deterministically. If $b>0$, every integer
+in $\{a,\ldots,a+b\}$ has positive probability. No other integer
+does. Also,
+\[
+ a<m=a+\sum_{0<p_i<1}p_i<a+b.
+\]
+In both cases $P_m>0$, and the support is an interval of integers.
+
+The binomial probabilities at the mean satisfy
+\[
+ \frac{B_{m+1}}{B_m}=\frac{m}{m+1},
+ \qquad
+ \frac{B_{m-1}}{B_m}=\frac{n-m}{n-m+1}.
+\]
+Lemma~\ref{lem:fb-adjacent} therefore gives
+$R_{m-1}\leq R_m$ and $R_{m+1}\leq R_m$.
+On the positive support of a log-concave sequence, the successive
+ratios $R_{k+1}/R_k$ are nonincreasing.
+The first adjacent inequality implies that all ratios to its left
+are at least $1$. The second implies that all ratios to its right
+are at most $1$. Hence $R_m$ is a maximum on the positive support.
+Outside the support, $R_k=0$. The deterministic case has only the
+single positive term $R_m$. This proves \eqref{eq:fb-central} in
+all cases.
+
+The first inequality in \eqref{eq:fb-quadratic} now follows from
+\[
+ \sum_{k=0}^n\frac{P_k^2}{B_k}
+ =\sum_{k=0}^nP_kR_k
+ \leq R_m\sum_{k=0}^nP_k
+ =R_m.
+\]
+The second follows from
+\[
+ 1=\sum_{k=0}^nB_kR_k
+ \leq R_m\sum_{k=0}^nB_k=R_m.
+\]
+
+If $R_m=1$, then $R_k\leq1$ for all $k$.
+Since every $B_k>0$ and their weighted average is $1$, every
+$R_k$ must equal $1$. Thus $P_k=B_k$ for all $k$, and
+\begin{equation}\label{eq:fb-factor-equality}
+ \prod_{i=1}^n(1-p_i+p_ix)=(1-\theta+\theta x)^n.
+\end{equation}
+The right side has nonzero constant term and degree $n$.
+The left side therefore has no parameter equal to $1$ or $0$.
+Its linear factors have roots $-(1-p_i)/p_i$.
+The only root on the right side is $-(1-\theta)/\theta$.
+Uniqueness of polynomial factorization gives
+$p_i=\theta$ for every $i$.
+Conversely, these parameters give $P=B$ and $R_m=1$.
+\end{proof}
+
+\subsection{From two column types to a permanent contraction}
+
+\begin{proposition}[Two-column contraction]\label{prop:fb-two-column}
+Let $A$ be a nonnegative doubly stochastic $n\times n$ matrix with
+at most two column types. Then
+\begin{equation}\label{eq:fb-one-contraction}
+ \per(AA^\T)\leq\per(A),\qquad \per(A)\geq c_n.
+\end{equation}
+Equality $\per(A)=c_n$ holds if and only if $A=J_n$.
+\end{proposition}
+
+\begin{proof}
+One column type forces $A=J_n$, for which the assertions hold.
+Otherwise let $I$ be a column class of size $s$, where
+$1\leq s\leq n-1$. Let $u_i$ be the total mass in row $i$ over
+the columns in $I$. Because columns within a class agree, row $i$
+has entry $u_i/s$ on $I$ and entry $(1-u_i)/(n-s)$ off $I$.
+Nonnegativity and the row sums give $0\leq u_i\leq1$.
+The column sums give
+\[
+ \sum_{i=1}^n u_i=s.
+\]
+Let $P_k$ be the probability that a sum of independent Bernoulli
+variables with parameters $u_1,\ldots,u_n$ equals $k$.
+Let $B_k$ be the probabilities of $\operatorname{Bin}(n,s/n)$.
+
+For variables $z_1,\ldots,z_n$, set
+\[
+ X=\sum_{j\in I}z_j,\qquad
+ Y=\sum_{j\notin I}z_j,
+ \qquad
+ p_A(z)=\prod_{i=1}^n\left(\sum_{j=1}^na_{ij}z_j\right).
+\]
+The Bernoulli generating function gives the exact expansion
+\begin{equation}\label{eq:fb-row-polynomial}
+ p_A(z)=\prod_{i=1}^n
+ \left(\frac{u_i}{s}X+\frac{1-u_i}{n-s}Y\right)
+ =\sum_{k=0}^n
+ \frac{P_k}{s^k(n-s)^{n-k}}X^kY^{n-k}.
+\end{equation}
+The coefficient of $z_1\cdots z_n$ is $\per(A)$.
+In \eqref{eq:fb-row-polynomial}, only the term $k=s$ can
+contribute to this coefficient. The coefficient of
+$\prod_{j\in I}z_j$ in $X^s$ is $s!$.
+The coefficient from $Y^{n-s}$ is $(n-s)!$.
+Consequently,
+\begin{equation}\label{eq:fb-permanent-probability}
+ \per(A)=\frac{s!(n-s)!}{s^s(n-s)^{n-s}}P_s
+        =c_n\frac{P_s}{B_s}.
+\end{equation}
+The last equality uses
+\[
+ B_s=\frac{n!}{s!(n-s)!}
+       \frac{s^s(n-s)^{n-s}}{n^n}.
+\]
+
+We next compute the factorial coefficient inner product from
+Lemma~\ref{lem:coefficient-inner-product}. For a multi-index
+$\alpha=(\alpha_1,\ldots,\alpha_s)$, write
+$|\alpha|=\sum_j\alpha_j$ and $\alpha!=\prod_j\alpha_j!$.
+The coefficient of a monomial with multi-index $\alpha$ in $X^k$
+is $k!/\alpha!$ when $|\alpha|=k$.
+Thus its squared factorial norm is
+\begin{equation}\label{eq:fb-factorial-norm}
+ \sum_{|\alpha|=k}\alpha!
+          \left(\frac{k!}{\alpha!}\right)^2
+ =(k!)^2\sum_{|\alpha|=k}\frac1{\alpha!}
+ =k!s^k.
+\end{equation}
+The last equality is the multinomial theorem at $s$ variables equal
+to $1$. It includes $k=0$. In the second column class the same
+calculation gives $(n-k)!(n-s)^{n-k}$.
+The two classes use disjoint variables, so these squared norms
+multiply. Terms with different $k$ have different total degrees
+in the first class. They therefore have disjoint monomial supports
+and are orthogonal in the factorial inner product.
+
+Lemma~\ref{lem:coefficient-inner-product} and
+\eqref{eq:fb-row-polynomial} now give
+\begin{align}
+ \per(AA^\T)
+ &=\langle p_A,p_A\rangle_F\notag\\
+ &=\sum_{k=0}^n
+ \left(\frac{P_k}{s^k(n-s)^{n-k}}\right)^2
+       k!s^k(n-k)!(n-s)^{n-k}\notag\\
+ &=\sum_{k=0}^n
+       \frac{P_k^2k!(n-k)!}{s^k(n-s)^{n-k}}
+ =c_n\sum_{k=0}^n\frac{P_k^2}{B_k}.
+ \label{eq:fb-gram-probability}
+\end{align}
+Here the last step uses, for each $k$,
+\[
+ B_k=\frac{n!}{k!(n-k)!}
+           \frac{s^k(n-s)^{n-k}}{n^n}.
+\]
+
+The Bernoulli sum has integer mean $s$. Proposition~\ref{prop:fb-central},
+\eqref{eq:fb-permanent-probability}, and
+\eqref{eq:fb-gram-probability} imply
+\[
+ \per(AA^\T)
+ =c_n\sum_{k=0}^n\frac{P_k^2}{B_k}
+ \leq c_n\frac{P_s}{B_s}
+ =\per(A),
+ \qquad
+ \per(A)\geq c_n.
+\]
+If $\per(A)=c_n$, the equality statement in
+Proposition~\ref{prop:fb-central} gives $u_i=s/n$ for every $i$.
+Both entries in each row are then $1/n$, so $A=J_n$.
+The converse follows from $\per(J_n)=c_n$.
+\end{proof}
+
+\subsection{Proof of the four-block theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:four-block}]
+Proposition~\ref{prop:fb-two-column} gives
+$\per(AA^\T)\leq d$ and $d\geq c_n$.
+The transpose $A^\T$ also has at most two column types, because
+$A$ has at most two row types. Since $\per(A^\T)=\per(A)$,
+the same proposition gives $\per(A^\T A)\leq d$.
+Lemma~\ref{lem:permanent-cs} gives
+\[
+ \per(A^2)
+ \leq\sqrt{\per(AA^\T)\per(A^\T A)}
+ \leq d.
+\]
+This proves \eqref{eq:fb-three-contractions} without any change
+to the indexing of $A^2$.
+
+Adding these estimates with weights $1,1,2$ gives
+\[
+ \per(AA^\T)+\per(A^\T A)+2\per(A^2)\leq4d.
+\]
+Multiplication by $c_n>0$ and subtraction from $4d^2$ give
+\eqref{eq:fb-margin}. If $A\ne J_n$,
+Proposition~\ref{prop:fb-two-column} gives $d>c_n$.
+Thus $4d(d-c_n)>0$, and Gyires's inequality is strict.
+If $A=J_n$, then $A^2=AA^\T=A^\T A=J_n$ and $d=c_n$.
+Both sides of Gyires's inequality are then $4c_n^2$.
+\end{proof}
+
+All endpoints in \eqref{eq:fb-h-interval} are included.
+The probability proof allowed $u_i=0$ and $u_i=1$, so it requires
+no positive-entry assumption. The one-type case was included
+separately. For $n=1$, the only doubly stochastic matrix is
+$J_1=(1)$, and the same conclusions hold directly.
+
+The individual contraction inequalities can have other equality
+cases. For $1\leq r\leq n-1$, take
+$A=\operatorname{diag}(J_r,J_{n-r})$.
+This matrix has at most two row types and at most two column types,
+and $AA^\T=A^\T A=A^2=A$. Thus all three contraction inequalities
+are equalities. However, $A\ne J_n$, so Gyires's inequality is strict.
+The theorem applies to the specified row and column types.
+It does not assert the result for every matrix of rank at most two.
+
+\section{Verification and reproduction}\label{sec:checks}
+
+The manuscript has three different proof records.
+The table states the completed checks without transferring one result's verification to another.
+
+\begin{center}\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.25\linewidth}>{\raggedright\arraybackslash}p{0.42\linewidth}>{\raggedright\arraybackslash}p{0.24\linewidth}}
+\toprule
+Result & Ordinary argument and computation & Lean status\\
+\midrule
+Order-five circulants & Complete polynomial certificate, equality, and sharp margin & Principal claims verified\\
+Permutation polynomials & Complete transfer argument, exact finite bridge, and analytic tail & Incomplete\\
+Four-block matrices & Complete probability and permanent argument, including boundaries and equality & Incomplete\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Order-five coefficient checks}
+
+The order-five exact checker reconstructs the permanent from its permutation definition.
+It checks all $120$ weight orderings and the unique reduction to six affine representatives.
+It verifies the polynomial identities by inverse binomial transforms.
+Each ordering has $1001$ coefficient positions, with $996$ positive coefficients and five zeros.
+The least positive coefficient is $484$.
 The four pure-gap coefficients agree with Lemma~\ref{lem:certificate}.
-This finite check supports the coefficient statistics. It does not replace the Lean proof.
+The current check therefore covers $120{,}120$ positions.
+The checking program is
+\path{verification/gyires-circulant-five/check_coefficients.py}.
 
-\para{Formal proof in Lean.}
+The historical source also records a separate PARI/GP program with exact symbolic checks and finite random diagnostics.
+That full historical program was not rerun in the present collection audit.
+It is retained for provenance.
+The new Python reconstruction and the Lean proofs provide separate records.
+Random examples are not used to prove the universal statement.
+
+\subsection{The all-order finite bridge and analytic tail}
+
+The current permutation certificate has $135$ reflection-reduced chamber records.
+It covers orders $3$ through $47$ and $224{,}550$ coefficient positions.
+There are no negative coefficients.
+Every position is positive in orders $4$ through $47$.
+The independent integer program constructs the polynomials directly in gap coordinates and uses Newton trace identities.
+The small-order program computes permanents directly by subsets and checks both transfer identities in orders one through seven.
+It also checks all six gap orderings in orders three and four.
+
+The sharp-bound program verifies the algebraic residual factorization and the exact threshold at order $48$.
+The written proof then supplies every larger order through the monotone ratio estimate.
+Thus the argument does not infer an infinite result from finitely many sampled matrices.
+Its finite computation is a polynomial certificate on whole nonnegative parameter regions.
+
+The source directory
+\path{research-notes/gyires-extensions/certificates}
+contains all five required program files.
+The three entry points are
+\path{round2_sharp_bound_check.py},
+\path{round2_circ_small_check.py}, and
+\path{round2_independent_finite.mjs}.
+The last program takes the argument \texttt{47} for the current finite bridge.
+The programs use the Python and Node.js standard libraries.
+The recorded run used Python~3.14.6 and Node.js~22.23.2.
+
+All three outputs were regenerated in the correction audit.
+A separate GPT-6.1 Sol reviewer reran all three programs and obtained identical output bytes.
+A fresh clone of public commit
+\path{b7e67bf67df0e2476a499f2de5df3cb274672484}
+also reproduced those bytes.
+The source, program, and output hashes are recorded beside the certificates.
+These are exact computational components of an ordinary proof, not Lean proof terms.
+
+\subsection{The four-block argument}
+
+Theorem~\ref{thm:four-block} uses no finite numerical certificate.
+Its proof derives the likelihood bound for all admissible Bernoulli parameters.
+The subsequent coefficient identities hold for arbitrary dimension.
+The equality argument and the closed parameter interval include every boundary case in the stated family.
+Finite examples can test an implementation, but they do not replace this argument.
+
+\subsection{Order-five Lean correspondence}
 Lean~\cite{lean} is a \emph{proof assistant}. It checks a formal proof against
-its statement using basic logical rules. The results of
+its statement using basic logical rules. The principal order-five results in
 Section~\ref{sec:results} are proved with Lean 4.35.0 and
 Mathlib~\cite{mathlib}, its library of formalized mathematics.
 
@@ -467,8 +1529,7 @@ Mathlib's \texttt{Matrix.permanent}, $5!/5^5$ is the real quotient \texttt{(Nat.
 and $J_5$ is the constant matrix with entries $5^{-1}$. The \emph{Solution} file
 \texttt{lean/\allowbreak{}Solutions/\allowbreak{}GyiresCirculant5.lean} proves the same theorems from the library. Lean's
 Comparator records from the original project report exact agreement with the Challenge statements and acceptance by Lean, NanoDa, and con-ron.
-Those records are historical evidence. The accompanying verification record gives the current check outcomes separately. The table lists where each statement of the paper is
-proved; all listed names are in the namespace \texttt{MathAndTheory.GyiresCirculant5}.
+Those records are historical evidence. The accompanying verification record gives the current check outcomes separately. The table lists the formalized order-five statements and their supporting declarations; all listed names are in the namespace \texttt{MathAndTheory.GyiresCirculant5}.
 \begin{center}\small\renewcommand{\arraystretch}{1.25}
 \begin{tabular}{>{\raggedright\arraybackslash}p{0.30\linewidth}>{\raggedright\arraybackslash}p{0.64\linewidth}}
 \toprule
@@ -502,92 +1563,115 @@ coefficients were produced by a computer program, but Lean does not rely on that
 every inequality itself. The formal proof of Lemma~\ref{lem:gram} is not the occupancy argument given here but a
 sum-of-squares argument over permutations, adapted from the formalization of Ozols~\cite{ozols}.
 
-Several remarks are also formalized: the case $n=2$ of the introduction (\lean{gyires\_two}); the characterization of
+Several supporting results are also formalized: the case $n=2$ discussed in Section~\ref{sec:discussion} (\lean{gyires\_two}); the characterization of
 the doubly stochastic circulants of order five and their description as the combinations $\sum_kw_kQ^k$
 (\lean{circulant\_mem\_doublyStochastic\_iff}, \lean{circulant\_eq\_sum\_pow}); and, for real square matrices of
-every order, the reduction of Gyires's inequality to the strong form described in Section~\ref{sec:discussion}
+every order, the reduction of Gyires's inequality to the strong form in Section~\ref{sec:general}
 (\lean{gyires\_of\_strong}).
 
-\para{What is not formalized.}
+\subsection{Limits of the formal verification}
 The formal proof establishes $R_\kappa(z)\ge0$ for all $z\ge0$, which is the part of Lemma~\ref{lem:certificate} that
 the theorems need. The finer statements of that lemma (the numbers $996$ and $5$ of positive and zero coefficients,
 the positions of the zeros, the four pure-power coefficients, and the least positive coefficient $484$) are not stated
-in Lean; they are verified by the exact computation described above. The remaining remarks of
-Section~\ref{sec:discussion}, which rest on random tests or on the literature, are not formalized.
+in Lean; they are verified by the exact computation described above. The all-order results in Sections~\ref{sec:permutation} and~\ref{sec:four-block} have no completed Lean formalization. The common Cauchy--Schwarz exposition is an ordinary proof. No separate formal declaration is claimed for every supporting statement in this integrated manuscript. Literature assessments and historical computational records are not formal proof terms.
 
-\section{Discussion}\label{sec:discussion}
 
-\para{Scope.} The results concern circulant matrices of order five only. They do not prove Gyires's conjecture for all of
-$\Omega_5$, or for any order $n\ge6$. Within the circulants of order five they cover every matrix in the
-four-dimensional simplex of doubly stochastic circulants, including all of its faces, and every nonnegative circulant
-without normalization.
+\section{Comparison of the results and remaining questions}\label{sec:discussion}
 
-\para{The coordinates.} Written in the original weights, $D_s$ has negative coefficients, so its nonnegativity is not
-visible without the change to sorted gaps. In the chamber coordinates all coefficients are nonnegative, and the
-zero coefficients are exactly those of the monomials $z_0^{10}$ and $z_0^9z_j$, which reflects the fact that $D_s$
-vanishes to second order along the constant vectors.
+The common reduction in Section~\ref{sec:general} explains why the three arguments address the same conjecture.
+The order-five and permutation-polynomial proofs establish a strong Gram-permanent bound.
+The four-block proof establishes the sharper contractions $\per(AA^\T)\le\per(A)$ and $\per(A^\T A)\le\per(A)$ on its own class.
+Those contractions are not valid for all matrices covered by the other two results.
 
-\para{The two-point example.} For $w=(t,t,0,0,0)$ one has $g(w)=(2t^2,t^2,0,0,t^2)$, $h(w)=(t^2,2t^2,t^2,0,0)$,
-$P(w)=2t^5$, $P(g(w))=P(h(w))=84t^{10}$, and $D_s(w)=D_G(w)=484t^{10}$; this is the example showing that $484$
-cannot be improved. For $t=\frac12$ the matrix is doubly stochastic, $\per C=\frac1{16}$ and $\per(CC^\T)=\per(C^2)=\frac{21}{256}$,
-and Gyires's ratio equals $\frac1{21}\approx0.048$, above $\frac{24}{625}=0.0384$. The example also shows that the
-inequality $\per(AA^\T)\le\per(A)$ fails for some doubly stochastic circulants. If it held, the strong form
-$\frac{n!}{n^n}\per(AA^\T)\le\per(A)^2$ would follow at once from van der Waerden's bound $\per(A)\ge n!/n^n$.
-According to Ryser's account, in the translation of Best and Wanless~\cite{bw}, an inequality of this form was once
-conjectured and was disproved by M.~Newman with the order-four analogue $\frac12(I+Q)$ of this example, for which
-$\per A=\frac18<\frac9{64}=\per(AA^\T)$.
+\subsection{A two-point example and a distinction between the bounds}
 
-\para{A stronger question.} For every real square matrix $A$, Lemma~\ref{lem:gram} with $M=A$ and $N=A^\T$ gives
-$2\per(A^2)\le\per(AA^\T)+\per(A^\T A)$. Hence the strong form, applied to $A$ and to $A^\T$, implies Gyires's
-inequality for $A$; this is the reduction used by Ozols~\cite{ozols} for $n=4$. It is therefore natural to ask whether
+For the order-five weight vector $w=(t,t,0,0,0)$,
 \[
-\frac{n!}{n^n}\per(AA^\T)\le\per(A)^2\qquad\text{for every }A\in\Omega_n .
+g(w)=(2t^2,t^2,0,0,t^2),\qquad h(w)=(t^2,2t^2,t^2,0,0),
 \]
-This holds for $n=2$ by the computation in the introduction, for $n=4$ by Ozols's theorem, and for the circulants of
-order five by Theorem~\ref{thm:strong}. The broader statement is not proved here.
+and
+\[
+P(w)=2t^5,\qquad P(g(w))=P(h(w))=84t^{10},\qquad D_s(w)=D_G(w)=484t^{10}.
+\]
+This is the sharpness example in Theorem~\ref{thm:margin}.
+At $t=1/2$, the matrix is doubly stochastic and
+\[
+\per(C)=\frac1{16},\qquad \per(CC^\T)=\per(C^2)=\frac{21}{256}.
+\]
+Thus $\per(CC^\T)>\per(C)$, although the strong bound and Gyires's inequality both hold.
+The Gyires ratio is $1/21>24/625$.
+The two-point example also belongs to the permutation-polynomial family.
+It shows why the four-block contraction theorem must retain its row-type and column-type hypotheses.
+An earlier order-four contraction counterexample is attributed to Newman in the account of Best and Wanless~\cite{bw}.
 
-\para{Other orders.} Every real circulant of order $n$ is normal, and Lemma~\ref{lem:gram} gives
-$\per(C^2)\le\per(CC^\T)$ in every order, so Gyires's conjecture for circulants of order $n$ follows from the strong
-form $\frac{n!}{n^n}\per(CC^\T)\le\per(C)^2$. This paper makes no claim for higher orders. The method of this paper depends essentially on the value of $n$: the
-affine group of $\Z/n\Z$ reduces the $n!$ orderings of the weights to $(n-2)!$ chambers when $n$ is prime, and the
-degree of the defect grows with $n$.
+\subsection{The elementary order-two case}
 
-\section*{About this paper}\label{sec:about}
-\para{Contributions and review.}
+For
+$A=\bigl(\begin{smallmatrix}a&1-a\\1-a&a\end{smallmatrix}\bigr)$ with $0\le a\le1$, put
+$s=a^2+(1-a)^2$ and $t=2a(1-a)$.
+Then $\per(A)=s$, and each permanent of a product in Gyires's denominator is $s^2+t^2$.
+The ratio inequality reduces to $s\ge t$, which is $(2a-1)^2\ge0$.
+Equality holds only at $a=1/2$.
+This known small case is compatible with both all-order arguments.
+It is not a separate novelty claim.
+
+\subsection{What remains outside the proofs}
+
+For a general nonnegative circulant, normality gives $CC^\T=C^\T C$.
+The permanent comparison still gives $\per(C^2)\le\per(CC^\T)$.
+The missing step is the strong Gram bound for unrestricted circulant weights in arbitrary order.
+The three-term transfer construction does not supply that step.
+
+A general matrix of rank two can have more than two row types and more than two column types.
+The four-block theorem therefore does not establish an arbitrary-rank-two all-order result.
+The unrestricted Gyires conjecture and the general strong Gram inequality remain outside this manuscript.
+
+Completing the Lean proofs of the two all-order arguments would require formal versions of their reductions and certificates.
+For the permutation family, the transfer identity, spectral estimate, finite coefficient interpretation, and cycle decomposition must be connected in Lean.
+For the four-block family, the probability extremal argument and the permanent coefficient identities must be connected to the full matrix statement.
+The existing order-five proof does not complete either task.
+
+\section{Authorship, provenance, and review}\label{sec:about}
+
 Dev~D.~Goyal selected the problem, requested proofs and checks, and accepts responsibility for publication.
-He did not supply proof ideas or intermediate arguments.
-The source repository~\cite{repo} records that ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning,
-constructed the proof and original Lean development.
-It records that Claude Opus~5.5, used with Claude Code, revised the formalization and manuscript and performed additional checks.
+He did not supply the proof ideas or intermediate arguments.
+The original project records that ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, constructed the order-five proof and initial Lean development.
+It records that Claude Opus~5.5, used with Claude Code, revised that development and performed further checks.
+The present preprint preserves that historical disclosure.
 
-Codex, using GPT-6, audited the mathematical arguments and source declarations,
-reconstructed the exact coefficient certificate independently, and prepared the present revision.
-The collection records the separate AI referee review and the completed verification checks.
-The recorded personal review by Dev~D.~Goyal applies to the earlier proof, not to the new formal statements or this revised manuscript.
-Machine verification and AI review do not constitute independent human expert review.
-The paper has not been peer reviewed.
+The subsequent supplied research materials contain the permutation-polynomial and four-block arguments.
+Codex, using GPT-6, audited those sources, regenerated the exact certificates, and edited the combined exposition.
+The integrated manuscript uses one notation system and one proof of the shared permanent identity.
+Its source records identify the earlier material and the changes made in this edition.
 
-\para{Prior-work limits.}
-The audit consulted the sources listed here and used exact-name and equivalent-term web searches.
-It inspected the existing order-four and order-five repositories and the current Lavi catalogue.
-The original project also records earlier searches of several Lean collections.
-Those earlier searches are historical evidence, not fresh searches by this revision.
-Gyires's original 1978 article and the full Chang article were not retrieved.
-The author-hosted Cheon--Wanless PDF returned an access error, although its bibliographic record and relevant indexed text were available.
-The live Lavi catalogue was retrieved on 26~October~2026.
-MathSciNet, zbMATH, and complete Google Scholar citation chaining were not completed.
-These limits prevent an unconditional claim of priority.
+The previous formal-collection review and the later two-pass ordinary-proof review were separate GPT-6.1 Sol reviews.
+They did not constitute independent human expert validation or peer review.
+The repository records the additional mathematical and editorial review of this integrated preprint.
+Dev~D.~Goyal's recorded personal review applies only to the earlier order-five proofs.
+It does not extend to the later all-order arguments or this revised presentation.
 
-\para{Source record.}
-The existing order-five repository is cited at an immutable commit~\cite{repo}.
-This revision preserves the old repository and its contribution notices.
-The collection is at \url{https://github.com/dvgyl/math-and-theory}.
-Its verification report identifies the files and checks used for the current revision.
+The original order-five source remains available at the immutable commit cited in~\cite{repo}.
+The collection's order-five-only manuscript is preserved by its Git history.
+The later source notes, exact programs, output hashes, and review records are in the same collection.
+The directory name \texttt{gyires-circulant-five} is retained to preserve existing links and formalization identifiers.
+The title and theorem statements define the broader scope of this preprint.
+
+\subsection{Prior-work limits}
+
+The earlier audit consulted exact-name and equivalent-term searches, public formalizations, and the current Minc catalogue~\cite{lavi}.
+The original Gyires article and Chang's full article were not retrieved.
+The author-hosted Cheon--Wanless PDF was unavailable, although its bibliographic record and relevant indexed text were available.
+MathSciNet, zbMATH, and complete Google Scholar citation searches were not completed.
+The broader results still require a full comparison with earlier literature.
+Neither an unsuccessful search nor the absence of a theorem from a catalogue establishes novelty.
+This preprint makes no unconditional novelty or priority claim.
 
 \section*{Acknowledgements}
-The conjecture is due to B.~Gyires. The formal proof of Lemma~\ref{lem:gram} is adapted from the Lean formalization of
-the case $n=4$ by C.~Ozols~\cite{ozols}, which is licensed under the Apache License~2.0. Thanks to the developers of
-Lean and Mathlib.
+
+The conjecture is due to B.~Gyires.
+The order-five Lean proof of the permanent comparison adapts a proof by Chris Ozols from the order-four development~\cite{ozols}.
+The original Apache License~2.0 notices remain in the source files.
+The project uses Lean and Mathlib.
 
 \begingroup
 \small\raggedright

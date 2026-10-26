@@ -1,6 +1,6 @@
 # Verification guide
 
-The formal catalogue contains seven result families, seven manuscripts, and 21 selected Comparator statements. The [two later Gyires claims](../research-notes/gyires-extensions/README.md) have a separate ordinary-proof and certificate record. They have no completed Lean verification or selected Comparator statement. Each family guide gives its mathematical scope and test limits. The central record gives the completed checks and their scope.
+The catalogue contains seven result families, seven manuscripts, and 21 selected Comparator statements. The [continuous Gyires preprint](../preprints/gyires-circulant-five/paper.pdf) combines the verified order-five result with two later all-order arguments. Those two arguments have a [separate ordinary-proof and certificate record](../research-notes/gyires-extensions/README.md). They have no completed Lean verification or selected Comparator statement. Each family guide gives its mathematical scope and test limits. The central record gives the completed checks and their scope.
 
 ## Reproduce the formal checks
 

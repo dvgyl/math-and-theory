@@ -28,15 +28,15 @@
       "id": "gyires-circulant-five",
       "discipline": "Mathematics",
       "area": "Matrix theory",
-      "title": "Gyires’s permanent inequality for nonnegative circulants of order five",
-      "kind": "Complete special case with equality and sharp margin",
-      "summary": "Every nonnegative real circulant matrix of order five satisfies the stronger inequality 24 per(AAᵀ)≤625 per(A)². Equality holds exactly for constant matrices. This proves the order-five circulant case of Gyires’s ratio inequality. A quantitative bound in sorted-gap coordinates has sharp coefficient 484. The general conjecture for arbitrary doubly stochastic matrices remains open.",
+      "title": "Gyires's permanent inequality for structured matrices",
+      "kind": "Verified order-five results and two all-order ordinary-proof arguments",
+      "summary": "This continuous preprint combines three structured cases of Gyires's permanent inequality. The order-five circulant theorem includes equality and a sharp sorted-gap bound with coefficient 484. Its principal claims have complete Lean proofs. The all-order permutation-polynomial argument covers A=aI+bQ+cQ² for any permutation matrix Q and nonnegative a,b,c. The all-order four-block argument covers doubly stochastic matrices with at most two row types and two column types, including unequal block sizes and zero entries. The two all-order arguments have incomplete Lean verification. The unrestricted conjecture remains outside these results.",
       "source": "Gyires, 1978; Cheon and Wanless, 2005, Conjecture 20. Earlier formalization at the pinned Gyires repository.",
       "source_url": "https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448",
       "module": "MathAndTheory.Mathematics.GyiresCirculant5.Main",
       "namespace": "MathAndTheory.GyiresCirculant5",
       "zenodo": "B",
-      "reason": "This is a substantial exact special case, but it already has a dedicated public repository. Prefer one archival version, not a duplicate deposit.",
+      "reason": "The unified preprint extends the earlier order-five presentation. Use one archival version for this development. The all-order arguments still require completed Lean verification and a full prior-work assessment.",
       "comparator": "lean/comparator/gyires-circulant-five.json",
       "theorems": [
         "MathAndTheory.GyiresCirculant5.gyires_ratio",
@@ -50,7 +50,8 @@
         "MathAndTheory.GyiresCirculant5.strong_margin_attained",
         "MathAndTheory.GyiresCirculant5.strong_margin_sharp"
       ],
-      "paper": "preprints/gyires-circulant-five/paper.pdf"
+      "paper": "preprints/gyires-circulant-five/paper.pdf",
+      "formal_scope": "The selected statements cover order-five circulants only. The two all-order arguments have incomplete Lean verification."
     },
     {
       "id": "domirank-entropy",
@@ -153,7 +154,7 @@
     {
       "id": "gyires-extensions",
       "related_formal_family": "gyires-circulant-five",
-      "title": "Later Gyires results in arbitrary dimensions",
+      "title": "Supporting records for the all-order Gyires arguments",
       "path": "research-notes/gyires-extensions/README.md",
       "status": "Claimed complete ordinary proofs. Lean verification, novelty assessment, and independent human expert review remain incomplete.",
       "claims": [
@@ -167,7 +168,8 @@
         }
       ],
       "comparator": null,
-      "zenodo": "Deferred pending further verification and novelty assessment"
+      "zenodo": "Deferred pending further verification and novelty assessment",
+      "paper": "preprints/gyires-circulant-five/paper.pdf"
     }
   ]
 }
