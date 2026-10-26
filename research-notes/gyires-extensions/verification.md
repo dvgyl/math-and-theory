@@ -1,6 +1,6 @@
-# Reproduce the later Gyires certificates
+# Reproduce the all-order Gyires certificates
 
-The correction run on 26 October 2026 used Python 3.14.6 and Node.js 22.23.2. All programs use their standard libraries. The five program files are unchanged copies from the supplied research archive. Their hashes are in [provenance.json](provenance.json).
+The recorded run on 26 October 2026 used Python 3.14.6 and Node.js 22.23.2. All programs use their standard libraries. The five program files are unchanged copies from the research archive identified below. Their hashes are in [provenance.json](provenance.json).
 
 ## Commands
 
@@ -45,7 +45,7 @@ PY
 
 ## Completed checks
 
-The correction run checked 135 reflection-reduced chambers in orders 3 through 47. It checked 224,550 coefficient positions with exact integers. No coefficient was negative. Every coefficient was positive in orders 4 through 47. The small-order program matched direct permanents to both transfer formulas in orders one through seven. Its six gap orderings passed in orders three and four.
+The recorded run checked 135 reflection-reduced chambers in orders 3 through 47. It checked 224,550 coefficient positions with exact integers. No coefficient was negative. Every coefficient was positive in orders 4 through 47. The small-order program matched direct permanents to both transfer formulas in orders one through seven. Its six gap orderings passed in orders three and four.
 
 The sharp-bound program checked the residual factorization in Q(sqrt(2)), its positive decomposition, and the exact threshold at order 48. The written argument proves the monotone tail after that threshold. The finite coefficient check alone does not prove an all-order theorem.
 

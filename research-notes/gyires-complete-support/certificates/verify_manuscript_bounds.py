@@ -1,4 +1,4 @@
-"""Check the rational bounds stated in the integrated limitations section."""
+"""Check the rational bounds in the manuscript's limitations section."""
 from fractions import Fraction as F
 from pathlib import Path
 import json

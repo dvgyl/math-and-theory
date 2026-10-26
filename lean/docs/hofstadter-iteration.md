@@ -24,7 +24,7 @@ The recurrence in [Letouzey, Li, and Steiner, section 7](https://arxiv.org/html/
 
 The definition `iter` is repeated composition. `boundedF` defines the infinite function by well-founded recursion. It carries the bound `F_k(n)≤n` needed for recursive calls. `F_succ` proves the source recurrence for this function. The infinite function is not defined by a finite table.
 
-`ValidTable` states the recurrence at every index of a finite table. `validTable_correct` proves that any such table agrees with the infinite function on its range. The two supplied tables pass kernel-reduced `decide`. This connects each finite computed value to the actual recursively defined function.
+`ValidTable` states the recurrence at every index of a finite table. `validTable_correct` proves that any such table agrees with the infinite function on its range. Kernel-reduced `decide` checks both tables. This connects each finite computed value to the actual recursively defined function.
 
 ## Theorem map
 
@@ -55,7 +55,7 @@ For `k≥4`, the positive gap supplies the desired input at `j=2k+1`. No inverse
 
 ## Formal scope and prior results
 
-The inverse relations and earlier order comparisons are known ingredients. The new claim is the late-iterate failure and its parameter family. The inspected same-day HAL preprint and Rocq source concern distinct index ranges; the [paper guide](../../preprints/hofstadter-iteration/README.md) records the comparison and its limits.
+The inverse relations and earlier order comparisons are known ingredients. The principal result is the late-iterate failure and its parameter family. The inspected same-day HAL preprint and Rocq source concern distinct index ranges; the [paper guide](../../preprints/hofstadter-iteration/README.md) records the comparison and its limits.
 
 The modules and Solution compile under Lean 4.35.0. The uniform theorem uses only `propext`, `Classical.choice`, and `Quot.sound`. Comparator replay has passed through Lean, NanoDa, and con-ron for the selected Challenge/Solution statement. This is a statement and kernel check, not a claim of expert review or novelty. See the [central verification record](../../verification/README.md) for the recorded run and review status.
 

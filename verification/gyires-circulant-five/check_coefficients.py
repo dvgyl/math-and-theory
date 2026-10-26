@@ -3,7 +3,7 @@
 
 The program uses the permutation definition of the permanent. It does not read
 Lean source files or generated coefficient tables. The packed monomial and
-binomial-transform methods follow the supplied research checkers.
+binomial-transform methods follow the source research checkers.
 
 Run: python3 check_coefficients.py --output coefficient-results.json
 This computation supplements the Lean proof. It is not a Lean kernel check.

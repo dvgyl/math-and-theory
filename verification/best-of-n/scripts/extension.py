@@ -1,4 +1,4 @@
-"""Check the new atom construction by exact product-sampling sums.
+"""Check the atom construction by exact product-sampling sums.
 
 For each selected response, group one draw into lower, equal, and higher
 reward. Enumerate every ordered tuple of those three groups. Their masses

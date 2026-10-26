@@ -1,8 +1,8 @@
 # Source map for the complete Gyires preprint
 
-The [continuous manuscript](../../preprints/gyires-circulant-five/paper.pdf) contains the completed positive arguments listed below. This map records the actual scope of each result. A completed reduction does not establish its remaining target inequality.
+The [manuscript](../../preprints/gyires-circulant-five/paper.pdf) contains the proofs listed below. This map records the actual scope of each result. A completed reduction does not establish its remaining target inequality.
 
-Source paths refer to the supplied Gyires bundle. Each historical text is preserved under `sources/`, with `.txt` added to its original filename. The [provenance manifest](provenance.json) gives exact paths and hashes. Repeated notes and weaker arguments are identified below. The original order-five sources retain their separate formal record.
+Source paths refer to the archived Gyires research bundle. Each historical text is preserved under `sources/`, with `.txt` added to its original filename. The [provenance manifest](provenance.json) gives exact paths and hashes. Repeated notes and weaker arguments are identified below. The order-five sources have a separate formal verification record.
 
 Only the principal order-five claims have completed Lean verification. The other entries are ordinary proofs or exact computational proofs. This source map does not claim novelty, human expert review, or peer review.
 
@@ -62,7 +62,7 @@ The source notes contain further exact failures of auxiliary approaches. These a
 
 ## Subsumed arguments and open steps
 
-The repeated scalar and localization notes are integrated once. The earlier transfer constant 51/20 is superseded by the sharper 1+sqrt(2) proof. Repeated occupancy, tensor, and coefficient-pairing identities use the common permanent identity. Repeated cubic deletion derivations use one proof and three independent certificate constructions.
+The manuscript gives one proof for each scalar and localization result. The earlier transfer constant 51/20 is superseded by the sharper 1+sqrt(2) proof. Repeated occupancy, tensor, and coefficient-pairing identities use the common permanent identity. Repeated cubic deletion derivations use one proof and three independent certificate constructions.
 
 Nonexhaustive checks in circulant orders eight, nine, and twelve do not establish a theorem in those orders. Sampled matrix searches and candidate sum-of-squares searches are exploratory. They are not used as proofs.
 

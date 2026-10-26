@@ -2,7 +2,7 @@
 
 Dev D. Goyal directed the AI-generated research.
 
-This is a claimed complete ordinary proof. It has no completed Lean formalization or independent human expert review. The [status record](README.md) states the review and prior-work limits. The proof permits unequal block sizes and boundary values with zero entries.
+This note gives an analytic proof for unequal block sizes and boundary values with zero entries. Lean formalization and independent human expert review remain incomplete. The [status record](README.md) states the review and prior-work limits.
 
 ## Statement
 
@@ -12,7 +12,7 @@ $$
 d=\operatorname{per}(A),\qquad c_n=\frac{n!}{n^n}.
 $$
 
-The claimed contraction bounds are
+The contraction bounds are
 
 $$
 \operatorname{per}(AA^T)\le d,\qquad
@@ -20,7 +20,7 @@ $$
 \operatorname{per}(A^2)\le d.
 $$
 
-The claimed Gyires bound includes the margin
+The Gyires bound includes the margin
 
 $$
 4d^2-c_n\left[\operatorname{per}(AA^T)+\operatorname{per}(A^TA)
@@ -29,7 +29,7 @@ $$
 
 Equality in Gyires's inequality holds exactly at J_n, whose entries are all 1/n. The individual contraction bounds can have other equality cases. Here A^2 is a matrix product. The expression per(A)^2 is the square of a real number.
 
-Order one is immediate. The claim does not cover every matrix of rank two.
+Order one is immediate. The theorem does not cover every matrix of rank two.
 
 ## Four-block parameterization
 
@@ -208,6 +208,6 @@ The argument includes h at either endpoint of its feasible interval. The Bernoul
 
 ## Sources and limits
 
-This note edits the argument in `research/round_5/round5_scalar.md`, Sections 6 and 8. It expands the permanent identities used there. The consolidated source `PROOF_AND_STATUS.md` retains the result in its all-order two-column section. The [provenance record](provenance.json) identifies these sources by hash.
+The source argument is in `research/round_5/round5_scalar.md`, Sections 6 and 8. The permanent identities are proved above. The consolidated source `PROOF_AND_STATUS.md` records the result in its all-order two-column section. The [provenance record](provenance.json) identifies these sources by hash.
 
 The ordinary proof is analytic. Finite numerical checks are not its justification. No complete Lean proof of this statement is included. No human expert review, peer review, or novelty determination is claimed.

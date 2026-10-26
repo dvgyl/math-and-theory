@@ -19,7 +19,7 @@ Both programs use only the Python standard library. They write JSON to standard 
 
 The stronger finite bound `1/500` passes this independent rational check. The main Lean theorem uses the separately proved bound `1/2445`.
 
-`extension.py` checks the new construction `a=min(δ,1/(8(n+1)))`, `T=a^n/(48(n+1))`, `m=floor((1−a)/T)+1`, and `h=(1−a)/m`. It verifies the exact probability cap and normalization of the reference law.
+`extension.py` checks the construction `a=min(δ,1/(8(n+1)))`, `T=a^n/(48(n+1))`, `m=floor((1−a)/T)+1`, and `h=(1−a)/m`. It verifies the exact probability cap and normalization of the reference law.
 
 For a specified response, each draw belongs to one of three groups: lower reward, equal reward, or higher reward. The script enumerates the `3^n` ordered group tuples. It sums their exact product masses when the specified response is the maximum. It then compares this independent sum with the cumulative-probability formula.
 
@@ -56,4 +56,4 @@ The [Comparator configuration](../../lean/comparator/best-of-n.json) selects bot
 
 ## Limits
 
-The finite programs test the cases stated above. The Lean theorem proves the universal claim for every `n≥2` and `δ>0`. Neither a finite computation nor a successful kernel check establishes historical priority, a sharp replacement curve, or expert peer review. This paper has NOT been peer reviewed.
+The finite programs test the cases stated above. The Lean theorem proves the universal claim for every `n≥2` and `δ>0`. Neither a finite computation nor a successful kernel check establishes historical priority, a sharp replacement curve, or expert peer review. This paper has not been peer reviewed.

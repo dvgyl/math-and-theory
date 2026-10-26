@@ -1,6 +1,6 @@
 # Supporting records for the complete Gyires preprint
 
-The [continuous preprint](../../preprints/gyires-circulant-five/paper.pdf) contains the completed arguments from the supplied Gyires research materials. Its principal order-five claims have complete Lean proofs. The broader claims have ordinary proofs and specified exact certificates. Their Lean verification remains incomplete. No novelty, independent human expert review, or peer review is claimed.
+The [Gyires preprint](../../preprints/gyires-circulant-five/paper.pdf) proves inequalities for structured matrices and related polynomial bounds. Its principal order-five claims have complete Lean proofs. The broader claims have ordinary proofs and specified exact certificates. Their Lean verification remains incomplete. No novelty, independent human expert review, or peer review is claimed.
 
 The [source map](source-map.md) lists the completed results, subsumed arguments, exact limitations, and open claims. The [provenance manifest](provenance.json) records source and output hashes. The `sources/` directory preserves 41 historical text files byte for byte. Their `.txt` suffix identifies them as source records. Historical claims do not override the current manuscript. In particular, reductions and exploratory checks do not establish the unrestricted conjecture.
 
@@ -42,7 +42,7 @@ python3 round3_deletion_n3_review.py
 python3 round3_deletion_n3_independent_audit.py
 ```
 
-Confirm that the primary report contains all 120 chambers and no negative coefficients. The full independent report covers all 720 sorting orders. All three regenerated reports match the supplied mathematical records.
+Confirm that the primary report contains all 120 chambers and no negative coefficients. The full independent report covers all 720 sorting orders. The three recorded reproduction reports agree with the historical reports in every mathematical field.
 
 The following commands check exact identities and limitations.
 
@@ -68,4 +68,4 @@ python3 check_cubic_symbolic.py
 
 The historical `round4_local_check.py` uses NumPy and SciPy. It is a numerical diagnostic. It is not part of any exact certificate and does not prove a neighborhood theorem.
 
-The order-five formal and exact records remain in [verification](../../verification/gyires-circulant-five/README.md). The all-order permutation certificate remains in the [earlier extension record](../gyires-extensions/README.md). The [preprint review](../../preprints/gyires-circulant-five/review.md) states the scope of the independent AI reviews.
+The order-five formal and exact records remain in [verification](../../verification/gyires-circulant-five/README.md). The all-order permutation certificate remains in the [all-order extension record](../gyires-extensions/README.md). The [preprint review](../../preprints/gyires-circulant-five/review.md) states the scope of the independent AI reviews.

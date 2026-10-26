@@ -13,7 +13,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-A proposed bound relates the win rate of best-of-$n$ sampling to its Kullback--Leibler divergence from the reference distribution. A distribution on four responses with two independent draws disproves this bound. The reference probabilities are $(2/5,1/5,1/5,1/5)$. The selected law has win rate $163/250$ and lies strictly above the proposed curve. An exact rational certificate proves a positive gap between two expressions involving real logarithms. For every integer budget at least two, finite counterexamples also exist with an arbitrarily small largest reference probability. The accompanying Lean development proves the finite counterexample, its inverse-curve consequence, and the theorem for every budget.
+A proposed bound relates the win rate of best-of-$n$ sampling to its Kullback--Leibler divergence from the reference distribution. A reference distribution on four responses disproves the bound with two independent draws. The reference probabilities are $(2/5,1/5,1/5,1/5)$. The selected distribution has win rate $163/250$, which lies strictly above the proposed curve. An exact rational certificate proves a positive gap between two expressions involving real logarithms. Finite counterexamples also exist for every integer sampling budget at least two. Their largest reference probability can be arbitrarily small. The Lean formalization proves the finite counterexample, its inverse-curve consequence, and the theorem for every budget.
 \end{abstract}
 
 \section{The proposed bound}
@@ -21,7 +21,7 @@ Fix a prompt and responses $1,\ldots,k$ with strictly increasing rewards. Let $p
 \[
  F_0=0,\qquad F_i=\sum_{j=1}^i p_j.
 \]
-Best-of-$n$ sampling returns the highest-reward response among $n$ independent draws. Its selected probabilities are
+Best-of-$n$ sampling returns the response with the highest reward among $n$ independent draws. The number of draws is the sampling budget. The selected probabilities are
 \begin{equation}\label{eq:q}
  q_i=F_i^n-F_{i-1}^n.
 \end{equation}
@@ -31,7 +31,7 @@ A comparison with an independent reference draw gives one point for a strict win
  W=\sum_i q_i\left(F_{i-1}+\frac{p_i}{2}\right),
  \qquad D=\sum_i q_i\log\frac{q_i}{p_i}.
 \end{equation}
-All logarithms are natural. Thus $D$ is the Kullback--Leibler divergence of the selected law from the reference law.
+All logarithms are natural. Thus $D$ is the Kullback--Leibler divergence of the selected distribution from the reference distribution.
 
 Beirami et al.\ \cite{beirami}, Conjecture 7.2, propose
 \begin{equation}\label{eq:conjecture}
@@ -88,7 +88,7 @@ The exact integer comparison
  120^{1400}87^{25}2^4 7^7 9^9
  <119^{1400}163^{25}5^{20}
 \end{equation}
-gives $(120/119)^{1400}<R$. This is a finite arithmetic certificate. It can be checked by repeated integer multiplication; no numerical logarithm is needed.
+gives $(120/119)^{1400}<R$. Repeated integer multiplication verifies this arithmetic certificate. The check does not require numerical evaluation of a logarithm.
 For $x>0$, the elementary inequality $\log x\geq1-x^{-1}$ gives
 \[
  \log R>1400\log(120/119)\geq\frac{1400}{120}=\frac{35}{3}.
@@ -97,7 +97,7 @@ Combining this with \eqref{eq:logR} yields
 \[
  \ell(W)-D>\frac7{15}-\frac{76}{163}=\frac1{2445}.
 \]
-Finally, $D\geq0$. For completeness, applying $\log x\geq1-x^{-1}$ to each $q_i/p_i$ gives $q_i\log(q_i/p_i)\geq q_i-p_i$; summation proves the claim. Thus $u=\ell^{-1}(D)$ exists. Since $D<\ell(W)$, strict monotonicity gives $u<W$, as required.
+To show that the inverse is defined at $D$, first prove $D\geq0$. Apply $\log x\geq1-x^{-1}$ to each $q_i/p_i$. This gives $q_i\log(q_i/p_i)\geq q_i-p_i$. Summation proves the claim. Thus $u=\ell^{-1}(D)$ exists. Since $D<\ell(W)$, strict monotonicity gives $u<W$, as required.
 \end{proof}
 
 The certificate \eqref{eq:integer} is checked by the following integer expression in Python:
@@ -105,9 +105,9 @@ The certificate \eqref{eq:integer} is checked by the following integer expressio
 assert 120**1400 * 87**25 * 2**4 * 7**7 * 9**9 < \
        119**1400 * 163**25 * 5**20
 \end{verbatim}
-The actual gap is approximately $0.002375504922$. This approximation is not used in the proof.
+The gap is approximately $0.002375504922$. This approximation is not used in the proof.
 
-\section{Every budget and arbitrarily small atoms}
+\section{Every budget and arbitrarily small reference probabilities}
 \begin{theorem}\label{thm:every}
 For every integer $n\geq2$ and every $\delta>0$, there is a finite positive reference distribution with $\max_i p_i\leq\delta$ such that best-of-$n$ has
 \[
@@ -124,9 +124,9 @@ Choose an integer $m>(1-a)/T$, and put $h=(1-a)/m$. Use the ordered probabilitie
 \[
  p_0=a,\qquad p_j=h\quad(1\leq j\leq m).
 \]
-All probabilities are positive and sum to one. Also $h<T\leq a\leq\delta$, since $0<a<1$ and $n\geq2$. Thus the atom cap holds.
+All probabilities are positive and sum to one. Also $h<T\leq a\leq\delta$, since $0<a<1$ and $n\geq2$. Thus each reference probability satisfies the prescribed cap.
 
-The first step bounds the finite sums. For $x>0$, define
+We first bound the sums that define the divergence and win rate. For $x>0$, define
 \[
  f(x)=nx^{n-1},\qquad
  K(x)=x^n\left(\log n+(n-1)\log x-\frac{n-1}{n}\right),
@@ -147,9 +147,9 @@ Also $vx^n-J(x)$ has derivative $f(x)(v-x)\geq0$ on $[u,v]$. Hence
  J(v)-J(u)\leq vq
  =q\frac{u+v}{2}+\frac{v-u}{2}q.
 \end{equation}
-These arguments use finite interval calculus. No limit of discrete distributions is needed.
+Both bounds follow from calculus on a finite interval.
 
-Apply \eqref{eq:intervalKL} and \eqref{eq:intervalW} to the $m$ intervals with endpoints $a+jh$. The primitive differences telescope. The first atom has selected mass $a^n$ and score $a/2$. Put
+Apply \eqref{eq:intervalKL} and \eqref{eq:intervalW} to the $m$ intervals with endpoints $a+jh$. The differences of the primitives telescope. The first response has selected probability $a^n$ and comparison score $a/2$. Put
 \[
  D_0=\log n-\frac{n-1}{n},\qquad w_0=\frac{n}{n+1},
  \qquad c=\frac{n-1}{2(n+1)}.
@@ -159,10 +159,10 @@ The resulting bounds are
  D\leq D_0(1-a^n),\qquad
  W\geq w_0-ca^{n+1}-\frac h2.
 \end{equation}
-For the second bound, the sum of the high-interval selected masses is $1-a^n\leq1$.
-The strict bound $W<1$ follows because every score is less than one and the selected masses are positive and sum to one.
+For the second bound, the sum of the selected probabilities after the first response is $1-a^n\leq1$.
+Every comparison score is less than one. The selected probabilities are positive and sum to one. Therefore $W<1$.
 
-The required domain and strict gap follow from the next estimates. For $n\geq2$,
+It remains to check the win-rate domain and prove a strict gap. For $n\geq2$,
 \[
  w_0\geq\frac23,\quad 0<c<\frac12,\quad
  a\leq\frac1{24},\quad a^{n+1}\leq a,\quad h\leq\frac1{144}.
@@ -197,17 +197,18 @@ The parameter choices give $Lca\leq1/16$ and $Lh/2\leq a^n/96$. Consequently
 This proves the theorem.
 \end{proof}
 
-\section{Scope and formal correspondence}
-The result refutes the universal conjecture. It does not determine the sharp replacement curve. It does not contradict the proved bounds $D\leq\log n-(n-1)/n$ and $W\leq n/(n+1)$ in \cite{beirami}. The example has distinct rewards, so reward ties between different responses are not needed. Repeated sampling of the same response accounts for equality in a comparison.
+\section{Scope and formal verification}
+The result refutes the universal conjecture but does not determine the sharp replacement curve. The proved bounds $D\leq\log n-(n-1)/n$ and $W\leq n/(n+1)$ in \cite{beirami} remain valid. The example uses distinct rewards. Equality in a comparison occurs when the selected response and the independent reference draw are the same response.
 
-The Lean namespace \texttt{MathAndTheory.BestOfN} defines the cumulative probabilities and both quantities in \eqref{eq:metrics}. The theorem \path{selected_equals_independent_sampling} connects \eqref{eq:q} to all 16 independent sample pairs. Theorems \path{gap_positive} and \path{explicit_counterexample} prove \eqref{eq:gap}. The theorem \path{inverse_curve_exists} proves the inverse-point conclusion without an existence assumption. The theorem \path{universal_curve_false} states the resulting disproof.
+The Lean namespace \texttt{MathAndTheory.BestOfN} defines the cumulative probabilities and both quantities in \eqref{eq:metrics}. The theorem \path{selected_equals_independent_sampling} proves that \eqref{eq:q} agrees with direct enumeration of all 16 independent sample pairs. Theorems \path{gap_positive} and \path{explicit_counterexample} prove \eqref{eq:gap}. The theorem \path{inverse_curve_exists} proves the inverse-point conclusion without an existence assumption. The theorem \path{universal_curve_false} states the resulting disproof.
 
-The namespace \texttt{MathAndTheory.BestOfNExtension} proves Theorem~\ref{thm:every}. Its theorem \path{every_budget_small_atoms} states all quantifiers, positivity, normalization, the atom cap, the win-rate domain, and the strict gap. Its intermediate lemmas prove the finite cumulative probabilities, the two interval bounds, the telescoping estimates, and each parameter bound. The witness uses the atom choice and integer condition stated above. These constants are conservative and are not claimed to be optimal.
+The namespace \texttt{MathAndTheory.BestOfNExtension} proves Theorem~\ref{thm:every}. The theorem \path{every_budget_small_atoms} includes every quantifier and conclusion in the paper's statement. It proves positivity, normalization, the probability cap, the win-rate domain, and the strict gap. The proof establishes the cumulative probabilities, the two interval bounds, the telescoping estimates, and each parameter bound. It uses the same distribution and integer condition as the proof above. The constants are not claimed to be optimal.
 
-\section{Prior work and research disclosure}
-The primary source still states the proposed curve as a conjecture. Related work on soft best-of-$n$ sampling \cite{aminian} studies different divergence and regret bounds. The inspected statement does not supply this counterexample. Searches by the conjecture, its formula, and the explicit witness found no earlier resolution. This is a bounded literature assessment, not a claim of first priority.
+\section{Prior work}
+The cited source states the proposed curve as a conjecture. Related work on soft best-of-$n$ sampling \cite{aminian} studies different divergence and regret bounds. The inspected statement does not give this counterexample. Searches for the conjecture, its formula, and the explicit counterexample found no earlier resolution. The search was limited and does not establish priority.
 
-The original proof and Lean development were generated by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, under the direction of Dev D. Goyal. This revision includes further AI-assisted mathematical checks and editing. Machine verification and AI review are distinct from independent expert peer review. This work has not been peer reviewed.
+\section{Authorship and review}
+Dev D. Goyal directed the research. ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, generated the proof and Lean formalization. Further mathematical checks and editing used AI assistance. Machine verification and AI review do not constitute independent human expert peer review. This work has not been peer reviewed.
 
 \bibliographystyle{plainnat}
 \bibliography{references}

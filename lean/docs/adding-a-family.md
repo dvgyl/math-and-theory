@@ -1,4 +1,6 @@
-# Add a result family
+# Add a formally verified result family
+
+This procedure applies to the selected formal statements. A manuscript must state the verification status of any broader results separately.
 
 1. Choose a stable identifier for one coherent group of results.
 2. Read the original source. State its hypotheses and conclusions exactly.
@@ -11,4 +13,4 @@
 9. Run the source, build, axiom, Comparator, independent-kernel, computation, manuscript, and link checks.
 10. Obtain independent mathematical and editorial review. Resolve each blocking issue and repeat the affected checks before publication.
 
-A known theorem can support a new result if it receives correct attribution. An incomplete, false, or insufficiently assessed candidate must stay outside the public collection.
+A known theorem can support a new result if it receives correct attribution. Do not present an incomplete mathematical argument as a proved result. Correct or withdraw false claims. State the scope and limits of the prior-work assessment.

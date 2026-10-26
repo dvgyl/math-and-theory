@@ -1,8 +1,8 @@
 # Manuscript catalogue
 
-The catalogue contains seven result families and seven manuscripts. The Gyires preprint combines the earlier order-five result with two later all-order arguments. The 21 selected Comparator declarations include equality, positivity, sharpness, and generalization statements. Supporting lemmas are not separate research contributions.
+The catalogue contains seven result families and seven manuscripts. The Gyires preprint covers structured matrix inequalities and related polynomial bounds. The 21 selected Comparator declarations include equality, positivity, sharpness, and generalization statements. Supporting lemmas are not separate research contributions.
 
-Six papers have complete formal proofs of their principal claims. The Gyires preprint has complete Lean proofs for its principal order-five claims. Its two all-order arguments have incomplete Lean verification. The verification record gives the checks actually completed. The papers have not been peer reviewed. The prior-work assessment is bounded and makes no first-priority claim.
+Six papers have complete formal proofs of their principal claims. The Gyires preprint has complete Lean proofs for its principal order-five claims. Its broader results have incomplete Lean verification. The verification record gives the checks actually completed. The papers have not been peer reviewed. The prior-work assessment is bounded and makes no first-priority claim.
 
 ## Mathematics
 
@@ -20,9 +20,9 @@ Six papers have complete formal proofs of their principal claims. The Gyires pre
 
 #### Gyires's permanent inequality for structured matrices
 
-**Family:** `gyires-circulant-five`. **Result:** Verified order-five results and two all-order ordinary-proof arguments.
+**Family:** `gyires-circulant-five`. **Result:** Structured matrix inequalities and related polynomial bounds. The principal order-five claims have Lean proofs.
 
-**Abstract.** This continuous preprint combines three structured cases of Gyires's permanent inequality. The order-five circulant theorem includes equality and a sharp sorted-gap bound with coefficient 484. Its principal claims have complete Lean proofs. The all-order permutation-polynomial argument covers A=aI+bQ+cQ² for any permutation matrix Q and nonnegative a,b,c. The all-order four-block argument covers doubly stochastic matrices with at most two row types and two column types, including unequal block sizes and zero entries. The two all-order arguments have incomplete Lean verification. The unrestricted conjecture remains outside these results.
+**Abstract.** The preprint proves Gyires's permanent inequality for several structured matrix classes. These include nonnegative circulants of orders five through seven, all-order permutation polynomials A=aI+bQ+cQ², and all-order four-block doubly stochastic matrices. Here Q is any permutation matrix and a,b,c are nonnegative. The four-block result permits unequal block sizes and zero entries. Further results cover one exceptional column or row and every rank-at-most-two doubly stochastic matrix through order fifteen. The supporting sections prove structural, scalar, deletion, balancing, local polynomial, and counting results. Exact counterexamples identify the limits of auxiliary assertions. The principal order-five claims include equality and a sharp sorted-gap bound with coefficient 484. Only those principal order-five claims have complete Lean proofs. The unrestricted conjecture remains outside these results.
 
 **Original problem.** [Gyires, 1978; Cheon and Wanless, 2005, Conjecture 20. Earlier formalization at the pinned Gyires repository.](https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448)
 
@@ -30,7 +30,7 @@ Six papers have complete formal proofs of their principal claims. The Gyires pre
 
 #### Supporting records for the all-order Gyires arguments
 
-The continuous preprint includes both broader arguments. This [supporting record](research-notes/gyires-extensions/README.md) retains their source notes, programs, and outputs. Their Lean verification, novelty assessment, and independent human expert review remain incomplete.
+The preprint includes both all-order arguments. This [supporting record](research-notes/gyires-extensions/README.md) retains their source notes, programs, and outputs. Their Lean verification, novelty assessment, and independent human expert review remain incomplete.
 
 - [Permutation-polynomial claim](research-notes/gyires-extensions/permutation-polynomial.md). For every dimension, A=aI+bQ+cQ² with Q a permutation matrix and a,b,c nonnegative satisfies the stronger Gram-permanent bound. The argument combines exact polynomial certificates with an analytic tail.
 - [Four-block claim](research-notes/gyires-extensions/four-block.md). At most two row types and two column types suffice for three permanent contraction bounds and a strict Gyires margin away from the uniform matrix. Unequal block sizes and zero block entries are included.
@@ -99,4 +99,4 @@ The continuous preprint includes both broader arguments. This [supporting record
 
 ## Mathematical physics
 
-No result in this discipline is included in this edition.
+The collection contains no mathematical physics paper.

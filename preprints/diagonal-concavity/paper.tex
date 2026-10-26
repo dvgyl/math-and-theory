@@ -14,10 +14,10 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-An explicit family disproves Lachaume's diagonal concavity conjecture in four variables with strictly positive coefficients. For the family $f_M=1+M\sigma_1+\sigma_2+M\sigma_3+\sigma_4$, where $M>0$, the fourth root is concave on the positive diagonal exactly when $M\geq1$. It is concave on the full positive orthant exactly when $M=1$. Two polynomial identities prove the failure of concavity. The remaining positive case follows from the arithmetic--geometric mean inequality. The accompanying Lean development proves both classifications with the usual concavity predicate and canonical elementary symmetric functions.
+An explicit family disproves Lachaume's diagonal concavity conjecture in four variables with strictly positive coefficients. For the family $f_M=1+M\sigma_1+\sigma_2+M\sigma_3+\sigma_4$, where $M>0$, the fourth root is concave on the positive diagonal exactly when $M\geq1$. It is concave on the full positive orthant exactly when $M=1$. Two polynomial identities prove the failure of concavity. Concavity at $M=1$ follows from the arithmetic--geometric mean inequality. The Lean formalization proves both classifications with Mathlib's concavity predicate and elementary symmetric functions.
 \end{abstract}
 
-\section{Statement}
+\section{The diagonal concavity conjecture}
 For $x=(x_1,x_2,x_3,x_4)$, define the elementary symmetric polynomials by
 \[
  \sigma_j(x)=\sum_{1\leq i_1<\cdots<i_j\leq4}x_{i_1}\cdots x_{i_j},
@@ -50,7 +50,7 @@ Then
 \end{align*}
 Thus each $M>1$ disproves Conjecture 1. In particular, $(a_0,a_1,a_2,a_3,a_4)=(1,2,1,2,1)$ is a counterexample with all coefficients positive.
 \end{theorem}
-All terms in $f_M$ are positive or nonnegative on $\Gamma$, and its constant term is one. Thus its fourth root is defined and smooth throughout the domain. The polynomial has degree four. No zero coefficient or boundary point is needed.
+Each term in $f_M$ is nonnegative on $\Gamma$, and the constant term is one. Thus the fourth root is defined and smooth throughout the domain. The polynomial has degree four, every coefficient is positive, and the counterexample lies in the interior of the domain.
 
 \section{Two curvature identities}
 For a positive twice differentiable function $q$,
@@ -68,7 +68,7 @@ Expansion gives
  3(P_M'(t))^2-4P_M(t)P_M''(t)
  =48(M^2-1)(t^2-1)^2.
 \end{equation}
-If $M\geq1$, equations \eqref{eq:root} and \eqref{eq:diagonal} give concavity on the diagonal. If $0<M<1$, the second derivative is positive for every $t>0$ except $t=1$. This proves the first classification. It also excludes full concavity when $0<M<1$, because restriction to an affine line preserves concavity.
+If $M\geq1$, equations \eqref{eq:root} and \eqref{eq:diagonal} give concavity on the diagonal. If $0<M<1$, the second derivative is positive for every $t>0$ except $t=1$. This proves the first classification. It also excludes concavity on the full positive orthant when $0<M<1$. A concave function remains concave when restricted to an affine line.
 
 To treat $M>1$, let
 \[
@@ -89,19 +89,19 @@ It follows that
 \begin{equation}\label{eq:direction}
  4Q_M(0)Q_M''(0)-3(Q_M'(0))^2=(M-1)(53M+55)>0.
 \end{equation}
-Equation \eqref{eq:root} gives a positive second derivative of $H_M$ along this interior line. Hence $H_M$ is not concave when $M>1$.
+By \eqref{eq:root}, the second derivative of $H_M$ along this line is positive at the interior point. Hence $H_M$ is not concave when $M>1$.
 
-\section{The positive case}
+\section{Concavity when the parameter is one}
 It remains to prove concavity when $M=1$. The subset expansion gives
 \[
  f_1(x)=\prod_{i=1}^4(1+x_i).
 \]
-The required geometric-mean concavity has the following elementary proof.
+To prove concavity, use the following geometric-mean inequality.
 For $u\in(0,\infty)^4$, put $G(u)=(u_1u_2u_3u_4)^{1/4}$. The arithmetic--geometric mean inequality implies, for positive $u,z$,
 \begin{equation}\label{eq:amgm}
  G(u)\leq\frac{G(z)}4\sum_{i=1}^4\frac{u_i}{z_i}.
 \end{equation}
-For positive $u,w$, take $z=\theta u+(1-\theta)w$, where $0\leq\theta\leq1$. Apply \eqref{eq:amgm} to $u$ and $w$, multiply by their weights, and add. This yields
+For positive $u,w$, take $z=\theta u+(1-\theta)w$, where $0\leq\theta\leq1$. Apply \eqref{eq:amgm} to $u$ and $w$. Multiply each inequality by its corresponding weight and add. This gives
 \[
  \theta G(u)+(1-\theta)G(w)
  \leq\frac{G(z)}4\sum_{i=1}^4
@@ -110,7 +110,7 @@ For positive $u,w$, take $z=\theta u+(1-\theta)w$, where $0\leq\theta\leq1$. App
 Thus $G$ is concave. Composition with the affine map $x\mapsto(1+x_1,\ldots,1+x_4)$ proves concavity of $H_1$. Together with the preceding section, this proves Theorem~\ref{thm:classification}.
 
 \section{A finite midpoint witness}
-An independent certificate shows the failure at $M=2$ directly from the defining concavity inequality. Let
+A separate rational certificate proves the failure at $M=2$ directly from the concavity inequality. Let
 \[
  x_-=(3/2,3/2,1/4,1/4),\qquad
  x_+=(5/2,5/2,3/4,3/4).
@@ -131,16 +131,17 @@ give
 \]
 This is the strict reverse of the required midpoint inequality.
 
-\section{Formal correspondence and scope}
-The Lean namespace \texttt{MathAndTheory.DiagonalConcavity} proves the polynomial identities, derivatives, and analytic implications. The declaration \path{complete_classification} gives Theorem~\ref{thm:classification}. The definition \texttt{elementary} uses Mathlib's \texttt{Multiset.esymm}; the theorem \path{family_eq_elementary} connects it to the coordinate formulas. The declaration \path{elementary_symmetric_counterexample} states the result using those canonical symmetric functions. The declaration \path{midpoint_strict_violation} gives the separate midpoint certificate.
+\section{Formal verification and scope}
+The Lean namespace \texttt{MathAndTheory.DiagonalConcavity} proves the polynomial identities, derivative formulas, and concavity statements. The declaration \path{complete_classification} proves Theorem~\ref{thm:classification}. The definition \texttt{elementary} uses Mathlib's \texttt{Multiset.esymm}. The theorem \path{family_eq_elementary} proves that this definition equals the coordinate formulas. The declaration \path{elementary_symmetric_counterexample} states the counterexample with these elementary symmetric functions. The declaration \path{midpoint_strict_violation} proves the midpoint certificate.
 
-The result addresses Conjecture 1. It does not classify arbitrary coefficient vectors.
+The result disproves Conjecture 1. It does not classify arbitrary coefficient vectors.
 
-Lachaume's separate sufficient condition requires a real-rooted diagonal polynomial. The present result does not contradict that condition.
+Lachaume's separate sufficient condition requires a real-rooted diagonal polynomial. The counterexample does not contradict that condition.
 
-The Walsh-convolution note \cite{walsh} concerns Conjectures 4 and 5. It makes no claim for Conjectures 1 and 3. The inspected sources supplied no earlier disproof of Conjecture 1. This bounded search does not establish first priority.
+The Walsh-convolution note \cite{walsh} concerns Conjectures 4 and 5. It makes no claim for Conjectures 1 and 3. No earlier disproof of Conjecture 1 was found in the inspected sources. The search was limited and does not establish priority.
 
-The original research and Lean development were generated by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, under the direction of Dev D. Goyal. This revision includes further AI-assisted checking and editing. Machine verification and AI review do not constitute independent expert peer review. This work has not been peer reviewed.
+\section{Authorship and review}
+Dev D. Goyal directed the research. ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, generated the research and Lean formalization. Further checks and editing used AI assistance. Machine verification and AI review do not constitute independent human expert peer review. This work has not been peer reviewed.
 
 \bibliographystyle{plainnat}
 \bibliography{references}

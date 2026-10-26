@@ -50,4 +50,4 @@ See the [central verification record](../README.md) for the recorded Comparator 
 
 The exact program checks the algebraic identities and finite midpoint certificate. It does not, by itself, prove a statement about every point of an open domain. The Lean development supplies the derivative, positivity, and concavity arguments for that universal conclusion.
 
-The result concerns the stated one-parameter family in four variables. It does not classify arbitrary coefficients or higher dimensions. Verification does not establish historical priority or expert peer review. This paper has NOT been peer reviewed.
+The result concerns the stated one-parameter family in four variables. It does not classify arbitrary coefficients or higher dimensions. Verification does not establish historical priority or expert peer review. This paper has not been peer reviewed.

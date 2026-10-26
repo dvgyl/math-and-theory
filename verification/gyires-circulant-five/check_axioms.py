@@ -1,9 +1,9 @@
-"""Check the output of `lake env lean ../verification/AxiomAudit.lean`.
+"""Check the output of `lake env lean -j1 ../verification/gyires-circulant-five/AxiomAudit.lean`.
 
 Usage (from the lean/ folder):
 
-    lake env lean ../verification/AxiomAudit.lean > ../verification/results/axiom_audit.txt
-    python3 ../verification/check_axioms.py ../verification/results/axiom_audit.txt
+    lake env lean -j1 ../verification/gyires-circulant-five/AxiomAudit.lean > ../verification/gyires-circulant-five/axiom-audit.log
+    python3 ../verification/gyires-circulant-five/check_axioms.py ../verification/gyires-circulant-five/axiom-audit.log
 
 Every theorem listed in AxiomAudit.lean must appear in the output and may depend only on
 Lean's three standard axioms; the scan of all declarations must report no declaration with

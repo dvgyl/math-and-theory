@@ -1,18 +1,18 @@
-The [preprint](../../preprints/gyires-circulant-five/paper.pdf) also contains broader analytic and computational proofs. Their [supporting record](../../research-notes/gyires-complete-support/README.md) is separate from the order-five Lean evidence below. The [editorial check record](editorial-checks.json) covers the revised prose and PDF. No additional Lean verification is claimed.
-
 # Verification of the order-five Gyires result
 
-The library proves the order-five circulant theorem only. It has ten principal declarations. The continuous manuscript also maps its order-five supporting statements to Lean declarations. Its broader arguments have incomplete Lean verification. The [integrated preprint review](../../preprints/gyires-circulant-five/review.md) gives the current manuscript checks.
+The Lean library proves the order-five circulant theorem. It has ten principal declarations. The [preprint](../../preprints/gyires-circulant-five/paper.pdf) also maps its order-five supporting statements to Lean declarations. Its broader analytic and computational proofs have a [separate supporting record](../../research-notes/gyires-complete-support/README.md). Their Lean verification remains incomplete.
 
-## Current checks
+The [editorial check record](editorial-checks.json) identifies the prose and PDF checks for its recorded revision. The [manuscript review](../../preprints/gyires-circulant-five/review.md) states the review scope.
 
-- The unmodified original source built on Lean 4.35.0 with Mathlib commit `56a005855ea17e0b0958f73ec801ae140b0a1679`. The build completed with 2689 jobs. Only the ten intended Challenge declarations produced placeholder warnings.
-- The original source axiom audit passed for all 94 listed statements and all 8035 library/Solution declarations. Only `propext`, `Classical.choice`, and `Quot.sound` occurred. See `original-axiom-check.log`.
+## Recorded checks
+
+- The unmodified source repository built on Lean 4.35.0 with Mathlib commit `56a005855ea17e0b0958f73ec801ae140b0a1679`. The build completed with 2689 jobs. Only the ten intended Challenge declarations produced placeholder warnings.
+- The source-repository axiom audit passed for all 94 listed statements and all 8035 library/Solution declarations. Only `propext`, `Classical.choice`, and `Quot.sound` occurred. See `original-axiom-check.log`.
 - The earlier Gyires migration snapshot source scan passed for its 172 Lean files. This is a family count, not the file count of the complete collection. It found ten Challenge placeholders and no other proof bypass token. See `source-scan.log`.
 - The exact integer checker passed all 120 orderings. It checked 120,120 coefficient positions: 119,520 positive and 600 zero. It verified the sharp constant 484 and the witness `(1,1,0,0,0)`. See `coefficient-check.log` and `coefficient-results.json`.
-- The earlier order-five-only manuscript compiled with the desktop LaTeX compiler and Tectonic. All 12 rendered pages of that edition were inspected. No clipping or missing mathematical glyphs was found. The final source must be recompiled after any later review edit.
+- The earlier order-five-only manuscript compiled with the desktop LaTeX compiler and Tectonic. All 12 rendered pages of that edition were inspected. No clipping or missing mathematical glyphs was found. Later manuscript revisions require separate compilation and page inspection.
 
-The migrated collection build passed with 2686 jobs. The family axiom audit passed for all 94 listed statements and all 8035 declarations. It found only `propext`, `Classical.choice`, and `Quot.sound`. See `build.log`, `axiom-audit.log`, and `axiom-check.log`. The current collection Comparator passed all ten selected statements with Lean, NanoDa, and con-ron. See the [current Comparator log](../records/comparator-gyires-circulant-five.log). The original repository's old reports do not substitute for these checks.
+The migrated collection build passed with 2686 jobs. The family axiom audit passed for all 94 listed statements and all 8035 declarations. It found only `propext`, `Classical.choice`, and `Quot.sound`. See `build.log`, `axiom-audit.log`, and `axiom-check.log`. The recorded collection Comparator run passed all ten selected statements with Lean, NanoDa, and con-ron. See the [Comparator log](../records/comparator-gyires-circulant-five.log). The source repository's historical reports are separate evidence.
 
 ## Reproduction
 
@@ -33,7 +33,7 @@ python3 verification/gyires-circulant-five/check_coefficients.py --output verifi
 
 The Python checker uses only the standard library. It reconstructs permanents from their permutation definition. It does not read Lean files or coefficient tables. Forward and inverse binomial transforms check the change to sorted gaps. Its finite coefficient calculation supplements the formal proof. It does not assert a Lean kernel result.
 
-The original `historical_independent_checks.gp` is preserved for reproduction of the earlier PARI/GP checks. The current audit did not rerun that entire historical program.
+The program `historical_independent_checks.gp` is preserved for reproduction of the earlier PARI/GP checks. The recorded collection checks did not rerun that entire historical program.
 
 `source-map.json` records the original and migrated source hashes. The migration changes only module paths, namespaces, and source notices. The original mathematical proof scripts are retained.
 
@@ -43,4 +43,4 @@ The Challenge uses Mathlib's matrix, permanent, circulant, and doubly stochastic
 
 The coefficient counts and minimum-coefficient statistics are exact computational results. The principal inequalities, equality cases, and sharp margin are Lean theorems. The formal proof uses `ring` and `positivity`; it does not use `native_decide`.
 
-The manuscript preserves the historical AI contribution record. The original reviewer wrote some files that it checked. No independent human expert or journal review is claimed. The collection's separate [GPT-6.1 Sol review](../review.md) passed after two review passes and inspection of the completed local checks.
+The manuscript preserves the historical AI contribution record. The source repository's AI reviewer wrote some of the files it checked. No independent human expert or journal review is claimed. The collection's separate [GPT-6.1 Sol review](../review.md) passed after two review passes and inspection of the completed local checks.

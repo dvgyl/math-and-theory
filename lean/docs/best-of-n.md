@@ -76,4 +76,4 @@ Within `finite_construction`, the local proof `hgap` establishes `ell(W)−D>3a^
 
 ## Formal scope
 
-The modules compile with the pinned Lean 4.35.0 project. The selected Solution statements depend only on `propext`, `Classical.choice`, and `Quot.sound`. Compilation and axiom inspection do not establish novelty or expert validation. See the [central verification record](../../verification/README.md) for Comparator and review status. This guide does not claim that final review has occurred.
+The modules compile with the pinned Lean 4.35.0 project. The selected Solution statements depend only on `propext`, `Classical.choice`, and `Quot.sound`. Compilation and axiom inspection do not establish novelty or expert validation. See the [central verification record](../../verification/README.md) for Comparator and review status. The linked records identify the checked sources and review scope.

@@ -1,6 +1,8 @@
 # Verification guide
 
-The catalogue contains seven result families, seven manuscripts, and 21 selected Comparator statements. The [continuous Gyires preprint](../preprints/gyires-circulant-five/paper.pdf) combines the verified order-five result with the completed broader arguments. Those additions have a [separate ordinary-proof and certificate record](../research-notes/gyires-complete-support/README.md). They have no completed Lean verification or selected Comparator statement. Each family guide gives its mathematical scope and test limits. The central record gives the completed checks and their scope.
+The [current manuscript revision](collection-editorial.md) records the editorial checks for all seven papers and the overview. Earlier build and review records retain their stated revisions and scope.
+
+The catalogue contains seven result families, seven manuscripts, and 21 selected Comparator statements. The [Gyires preprint](../preprints/gyires-circulant-five/paper.pdf) contains the verified order-five result and broader matrix and polynomial arguments. The broader arguments have a [separate ordinary-proof and certificate record](../research-notes/gyires-complete-support/README.md). They have no completed Lean verification or selected Comparator statement. Each family guide gives its mathematical scope and test limits. The central record gives the completed checks and their scope.
 
 ## Reproduce the formal checks
 
@@ -62,6 +64,6 @@ Run `python3 verification/check_repository.py` to check local navigation, requir
 
 ## Records and limits
 
-The [verification summary](summary.md) records the commands, software versions, source hashes, and results. The [two-pass GPT-6.1 Sol review](review.md) passed after correction of the identified issues and inspection of the final local records. AI review is not human expert peer review. No test result establishes historical priority. The family guides record the bounded prior-work evidence.
+The [verification summary](summary.md) records the commands, software versions, source hashes, and results. The [two-pass GPT-6.1 Sol review](review.md) reports approval of the collection at its stated commit after corrections and inspection of the local records. AI review is not human expert peer review. No test result establishes historical priority. The family guides record the bounded prior-work evidence.
 
 [Return to the catalogue](../CONTENTS.md).

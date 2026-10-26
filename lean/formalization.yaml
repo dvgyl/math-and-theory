@@ -6,7 +6,8 @@ project:
     q-permanent monotonicity, order-five circulant Gyires inequalities, a DomiRank
     entropy counterexample, a diagonal concavity classification, sharp alternating-Motzkin
     root bounds, a uniform Hofstadter iterate disproof, and best-of-n counterexamples
-    for all budgets.'
+    for all budgets. The broader Gyires manuscript results are outside the selected
+    formal statements.'
   authors:
   - Dev D. Goyal
   license: Apache-2.0
@@ -33,9 +34,9 @@ sources:
   type: other
   id: sha256:9a0d21d73d8667257ebdd56bb2b7fba183002afb3b09970de8c5415baed19f59
   relationship: adapts
-  note: Provided source package. Only this named family is used. Original proof generation
-    was by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning. The collection
-    records later proof and statement changes.
+  note: Source proofs for this family. ChatGPT (OpenAI), using GPT-6 with Pro
+    reasoning, constructed the proofs. The family guide identifies adaptations
+    and the formal statement correspondence.
   author_endorsement: participated
 - title: Da Fonseca, 2010, Conjecture 1; 2018, Conjecture 2.
   type: paper
@@ -51,8 +52,9 @@ sources:
   id: https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448
   relationship: adapts
   license: Apache-2.0
-  note: The order-five theorem is integrated with preserved attribution. No new arbitrary-order
-    Gyires theorem is claimed.
+  note: The selected Lean statements cover order-five circulants, with attribution
+    preserved. The accompanying paper also proves broader structured matrix results,
+    whose Lean formalization is incomplete.
   author_endorsement: participated
 - title: Gyires, 1978; Cheon and Wanless, 2005, Conjecture 20. Earlier formalization
     at the pinned Gyires repository.
@@ -69,9 +71,9 @@ sources:
   type: other
   id: sha256:4a1d7905ad298b175e31554d0da049facd1476ae21e8338134b9e95fe266bc15
   relationship: adapts
-  note: Provided source package. Only this named family is used. Original proof generation
-    was by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning. The collection
-    records later proof and statement changes.
+  note: Source proofs for this family. ChatGPT (OpenAI), using GPT-6 with Pro
+    reasoning, constructed the proofs. The family guide identifies adaptations
+    and the formal statement correspondence.
   author_endorsement: participated
 - title: Zhang and Zhao, arXiv:2610.00107v4, Conjecture 4.9.
   type: paper
@@ -87,9 +89,9 @@ sources:
   type: other
   id: sha256:e8508af48cf3f2fe6b535dfbf813bcf85bb19152e49526efaa74fe61d69f76fe
   relationship: adapts
-  note: Provided source package. Only this named family is used. Original proof generation
-    was by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning. The collection
-    records later proof and statement changes.
+  note: Source proofs for this family. ChatGPT (OpenAI), using GPT-6 with Pro
+    reasoning, constructed the proofs. The family guide identifies adaptations
+    and the formal statement correspondence.
   author_endorsement: participated
 - title: Lachaume, arXiv:1712.10327v1, Conjecture 1.
   type: paper
@@ -104,9 +106,9 @@ sources:
   type: other
   id: sha256:db2fc98cb0e0c8870196c3990940b49288b4ba9fbfe188a8fff2f9dc55779304
   relationship: adapts
-  note: Provided source package. Only this named family is used. Original proof generation
-    was by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning. The collection
-    records later proof and statement changes.
+  note: Source proofs for this family. ChatGPT (OpenAI), using GPT-6 with Pro
+    reasoning, constructed the proofs. The family guide identifies adaptations
+    and the formal statement correspondence.
   author_endorsement: participated
 - title: Zhao, INTEGERS 26 (2026), A55, Conjecture 1; OEIS A187306.
   type: paper
@@ -122,9 +124,9 @@ sources:
   type: other
   id: sha256:0a21feaf60f15a360b5670e6ba571795b83a7d8c77171b600076c2c262ae64bd
   relationship: adapts
-  note: Provided source package. Only this named family is used. Original proof generation
-    was by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning. The collection
-    records later proof and statement changes.
+  note: Source proofs for this family. ChatGPT (OpenAI), using GPT-6 with Pro
+    reasoning, constructed the proofs. The family guide identifies adaptations
+    and the formal statement correspondence.
   author_endorsement: participated
 - title: Letouzey, Li, and Steiner, Journal of Integer Sequences 29 (2026), 26.3.3,
     conjecture before Lemma 7.6.
@@ -141,9 +143,9 @@ sources:
   type: other
   id: sha256:e8508af48cf3f2fe6b535dfbf813bcf85bb19152e49526efaa74fe61d69f76fe
   relationship: adapts
-  note: Provided source package. Only this named family is used. Original proof generation
-    was by ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning. The collection
-    records later proof and statement changes.
+  note: Source proofs for this family. ChatGPT (OpenAI), using GPT-6 with Pro
+    reasoning, constructed the proofs. The family guide identifies adaptations
+    and the formal statement correspondence.
   author_endorsement: participated
 - title: Beirami et al., ICML 2025, Conjecture 7.2 and equation (28).
   type: paper
@@ -179,10 +181,10 @@ automation:
     models:
     - ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning
     framework: ChatGPT
-    tool_setup: Original mathematical exploration, proof construction, and Lean formalization
-      under human project direction.
+    tool_setup: Mathematical exploration, proof construction, and Lean formalization
+      under the direction of Dev D. Goyal.
     cost:
-      wall_time: Not tracked for the original source work.
+      wall_time: not tracked
       spend_usd: not tracked
       hardware: not tracked
     prompting_notes: Dev D. Goyal selected problems and requested proofs, verification,
@@ -203,14 +205,12 @@ automation:
     models:
     - Claude Opus 5.5, used with Claude Code
     framework: Claude Code
-    tool_setup: Earlier Gyires development and review, as recorded by its pinned source
-      repository.
+    tool_setup: Revision and checking of the order-five Gyires formalization.
     cost:
       wall_time: not tracked
       spend_usd: not tracked
       hardware: not tracked
-    prompting_notes: Earlier source work; no new Claude review is claimed for this
-      collection.
+    prompting_notes: The cited source repository records the scope of this work.
   - method: agent
     models:
     - GPT-6.1 Sol
@@ -224,15 +224,17 @@ automation:
     prompting_notes: Check the arguments and source fidelity independently. Inspect
       corrections and completed evidence before the final publication decision.
   spend_usd: not tracked
-  notes: Only the human project director is listed as author and responsible maintainer.
+  notes: Dev D. Goyal is the author and responsible maintainer.
     AI contribution is disclosed separately. The completed two-pass review is recorded
-    in verification/review.md. It is not human expert peer review.
+    in verification/review.md. The later manuscript and guide revision is recorded
+    in verification/collection-editorial.md. Neither is human expert peer review.
 fidelity:
   divergences: DomiRank uses natural logarithms in its quantified gap; the formal
     development proves the base-two entropy implication. Motzkin uses the source recurrence
     and proves equality with the source finite alternating sum. Best-of-n uses the
     source finite cumulative-probability law; the all-budget construction uses explicitly
-    stated sufficient constants. Gyires uses only the order-five circulant scope.
+    stated sufficient constants. The selected Gyires formal statements cover only
+    order-five circulants. The broader manuscript results are not fully formalized.
     Q-permanent retains the full coordinate order when counting inversions. Hofstadter
     uses the original recurrence and proves the inverse correspondence. Concavity
     uses unnormalized elementary symmetric polynomials and actual real fourth roots.

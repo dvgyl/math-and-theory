@@ -8,7 +8,7 @@ Start with the [manuscript catalogue](CONTENTS.md) or the [overview](overview.pd
 
 ## Results
 
-The catalogue groups papers into stable result families. Mathematics contains matrix inequalities, concavity, and integer sequences. Theoretical computer science contains a sampling-policy inequality. No mathematical-physics result has been admitted in this edition. The same structure supports later additions in all three disciplines.
+The catalogue groups related results by subject. The mathematics papers concern matrix inequalities, concavity, and integer sequences. The theoretical computer science paper concerns a sampling-policy inequality.
 
 | Result family | Established result |
 |---|---|
@@ -20,17 +20,19 @@ The catalogue groups papers into stable result families. Mathematics contains ma
 | [Hofstadter iteration](preprints/hofstadter-iteration/README.md) | Late-iterate ordering fails for every parameter at least four. |
 | [Best-of-n sampling](preprints/best-of-n/README.md) | The proposed bound fails at every budget at least two, with arbitrarily small atom caps. |
 
-## The continuous Gyires preprint
+## The Gyires preprint
 
 The [Gyires preprint](preprints/gyires-circulant-five/paper.pdf) proves the order-five circulant inequality and extends the analysis to other structured matrix classes. It includes circulants of orders six and seven, all-order permutation polynomials, all-order four-block matrices, one exceptional column or row, and rank-two matrices through order fifteen. It also proves structural, scalar, deletion, balancing, local polynomial, and counting results. Exact counterexamples identify the limits of proposed extensions. The [complete supporting record](research-notes/gyires-complete-support/README.md) gives the source map, certificate files, and reproduction commands. The broader arguments have incomplete Lean verification. The manuscript does not establish the unrestricted conjecture.
 
 ## Verification and review
 
-The project pins Lean 4.35.0 and Mathlib commit `56a005855ea17e0b0958f73ec801ae140b0a1679`. The proof audit permits only `propext`, `Classical.choice`, and `Quot.sound`. Separate Challenge and Solution modules make each submitted statement auditable. The Challenge proof holes are specifications. They are excluded from the proved library and its axiom audit.
+The formal library uses Lean 4.35.0 and Mathlib commit `56a005855ea17e0b0958f73ec801ae140b0a1679`. The proof audit permits only `propext`, `Classical.choice`, and `Quot.sound`. Separate Challenge and Solution modules make each submitted statement auditable. The Challenge proof holes are specifications. They are excluded from the proved library and its axiom audit.
+
+The [current manuscript revision](verification/collection-editorial.md) records the latest document checks.
 
 [Verification records](verification/README.md) distinguish compilation, statement comparison, independent proof checking, exact computation, and finite numerical checks. A successful computation over finitely many inputs does not prove a universal theorem.
 
-GPT-6.1 Sol completed two independent AI review passes and approved the seven formally verified families. The later Gyires notes have a [separate correction review](research-notes/gyires-extensions/review.md). The continuous preprint has its own [review record](preprints/gyires-circulant-five/review.md). The [review record](verification/review.md) gives the findings and limits. This is not human expert validation or peer review. These papers have NOT been peer reviewed. No claim of first priority is made. The prior-work records describe the sources inspected and the limits of the search.
+The [seven-family review record](verification/review.md) reports two independent GPT-6.1 Sol review passes on the collection at its stated commit. The broader Gyires arguments have a [separate review record](research-notes/gyires-extensions/review.md). The Gyires manuscript also has its own [review record](preprints/gyires-circulant-five/review.md). Each record states the material reviewed and the checks completed. These papers have not been peer reviewed by human experts. No claim of first priority is made. The prior-work records identify the sources inspected and the limits of the search.
 
 My earlier personal review applies only to the proofs in the [original order-five Gyires repository](https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448). It does not cover the new proofs, changed formal statements, or revised manuscripts in this collection. For that earlier work, the following statement applies:
 
@@ -38,7 +40,7 @@ My earlier personal review applies only to the proofs in the [original order-fiv
 
 ## Authorship and use
 
-The original research agent was ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning. The Gyires development also records work by Claude Opus 5.5, used with Claude Code. Codex, using GPT-6, conducted this audit, completed proofs, ran computations, and revised the collection. The final review record identifies the separate reviewer and the checks actually completed.
+ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, developed the proofs and Lean formalizations. The Gyires records also identify contributions from Claude Opus 5.5, used with Claude Code. Codex, using GPT-6, checked and completed proofs, ran computations, and revised the manuscripts. The [authorship record](AUTHORSHIP.md) gives the contributions and review scope.
 
 Cite an individual paper with its `citation.bib` file. Each paper directory contains its source, bibliography, PDF, and links to its formal proof. The root [Apache-2.0 license](LICENSE) applies except where [NOTICE](NOTICE) identifies third-party material.
 

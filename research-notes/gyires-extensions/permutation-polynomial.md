@@ -2,7 +2,7 @@
 
 Dev D. Goyal directed the AI-generated research.
 
-This is a claimed complete ordinary proof with exact finite certificates. It has no completed Lean formalization or independent human expert review. The [status record](README.md) states the review and prior-work limits.
+This note gives an analytic proof with exact finite certificates. Lean formalization and independent human expert review remain incomplete. The [status record](README.md) states the review and prior-work limits.
 
 ## Statement
 
@@ -12,7 +12,7 @@ $$
 A=aI+bQ+cQ^2,\qquad c_n=\frac{n!}{n^n}.
 $$
 
-The claimed inequality is
+The inequality is
 
 $$
 c_n\operatorname{per}(AA^T)\le\operatorname{per}(A)^2.
@@ -22,7 +22,7 @@ The same bound holds with A^T A in place of AA^T. If a+b+c=1, the matrix is doub
 
 Set C=AQ^{-1}=aQ^{-1}+bI+cQ. Right multiplication by a permutation matrix preserves the permanent, and CC^T=AA^T. It is therefore sufficient to prove the bound for C. Decomposition into the cycles of Q reduces the proof to cyclic permutation matrices. The constant comparison at the end completes this reduction.
 
-The claim permits cycles of length one and two, zero coefficients, and any number of cycles. It does not cover arbitrary triples of permutation matrices, arbitrary circulants, or all matrices of rank two.
+The theorem permits cycles of length one and two, zero coefficients, and any number of cycles. It does not cover arbitrary triples of permutation matrices, arbitrary circulants, or all matrices of rank two.
 
 ## The cyclic case
 
@@ -136,7 +136,7 @@ All transfer entries are nonnegative and nondecreasing in b. In the normalized r
 
 ## Sharp analytic bound
 
-In this part, m is the same normalization quantity as L above.
+For the spectral estimate, write m=L.
 
 Let
 
@@ -318,9 +318,9 @@ whose positive eigenvalue is $\kappa$; all remaining eigenvalues of $T_2(D,E,0)$
 
 Rescaling by $m$ multiplies every transfer-matrix entry by $m^2$, proving the lemma. $\square$
 
-### How the lemma supplies the all-order tail
+### The bound for large orders
 
-For $C_n=aP_n^{-1}+bI_n+cP_n$, the Gram transfer matrix has two scalar blocks $f$, two four-dimensional blocks with the same spectral radius as $T_1$, and the six-dimensional block $T_2$. Consequently, once the transfer trace identity is established,
+For $C_n=aP_n^{-1}+bI_n+cP_n$, the Gram transfer matrix has two scalar blocks $f$, two four-dimensional blocks with the same spectral radius as $T_1$, and the six-dimensional block $T_2$. The transfer trace identity therefore gives
 
 $$
 \operatorname{per}(C_nC_n^T)
@@ -345,9 +345,9 @@ $$
 \le16c_n\kappa^n.
 $$
 
-Any exact threshold beyond which $16c_n\kappa^n<1$, combined with exact certificates for the finitely many smaller orders, closes this family in every order. The threshold check and finite certificates are separate parts of the full proof and must both be included.
+The next section proves $16c_n\kappa^n<1$ for every $n\ge48$. Exact certificates cover the smaller orders.
 
-## The exact threshold and finite bridge
+## The exact threshold and the smaller orders
 
 The program [round2_sharp_bound_check.py](certificates/round2_sharp_bound_check.py) checks the residual factorization above in Q(sqrt(2)). It also checks
 
@@ -371,7 +371,7 @@ $$
 
 In each ordering of a,b,c, write the ordered values as x, x+y, x+y+z. Here x,y,z are nonnegative. The checker constructs D_n in these coordinates and checks every coefficient. Reflection exchanges a and c, so three orderings cover all six.
 
-The program [round2_independent_finite.mjs](certificates/round2_independent_finite.mjs) uses exact JavaScript BigInt arithmetic. It uses the characteristic polynomials of the transfer blocks and Newton trace identities. It constructs the polynomials directly in gap coordinates. Its input 47 covers the full finite bridge. All checked coefficients are nonnegative. For 4<=n<=47, every coefficient is positive. These finite checks cover whole parameter regions, not sampled matrices. Their use as a proof certificate also depends on the transfer identity and the correctness of the checking program.
+The program [round2_independent_finite.mjs](certificates/round2_independent_finite.mjs) uses exact JavaScript BigInt arithmetic. It uses the characteristic polynomials of the transfer blocks and Newton trace identities. It constructs the polynomials directly in gap coordinates. Its input 47 covers all required orders below the analytic threshold. All checked coefficients are nonnegative. For 4<=n<=47, every coefficient is positive. These finite checks cover whole parameter regions, not sampled matrices. Their use as a proof certificate also depends on the transfer identity and the correctness of the checking program.
 
 The program [round2_circ_small_check.py](certificates/round2_circ_small_check.py) computes permanents directly by subsets. It checks both transfer identities for 1<=n<=7 and all six gap orderings for n=3,4. Its two local dependencies are included.
 
@@ -407,7 +407,7 @@ $$
 \ge\frac{n!}{\prod_i m_i!}\prod_i\left(\frac{m_i}{n}\right)^{m_i}.
 $$
 
-Therefore the product of the block constants is at least n!/n^n. This proves the claimed bound for every permutation Q and hence for A.
+Therefore the product of the block constants is at least n!/n^n. This proves the bound for every permutation Q and hence for A.
 
 Apply the same argument to A^T, which is a polynomial in Q^T. This proves the other Gram bound. The permanent Cauchy–Schwarz inequality, derived in the [four-block note](four-block.md#the-permanent-inner-product-identity), gives
 
@@ -420,6 +420,6 @@ For a doubly stochastic A, the two Gram bounds therefore imply Gyires's inequali
 
 ## Reproduction and limits
 
-The [reproduction record](verification.md) gives the commands and completed runs. The source files are identified by hash in [provenance.json](provenance.json). This edited argument uses the sharper analytic tail from the later source note. It omits the superseded tail thresholds 70 and 94.
+The [reproduction record](verification.md) gives the commands and completed runs. The source files are identified by hash in [provenance.json](provenance.json). The analytic bound starts at order 48. The historical thresholds 70 and 94 are not used.
 
 These programs are not a Lean formalization. The arbitrary-permutation statement has no selected Comparator declaration. Its novelty and independent human expert review remain unresolved.

@@ -16,29 +16,30 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-An explicit real symmetric positive-definite matrix of order five has an inversion-weighted $q$-permanent that decreases between $q=14$ and $q=15$. Its polynomial has nine nonzero permutation contributions. This refutes the real positive-definite monotonicity conjecture in da Fonseca's 2010 paper. A sparse parametric construction gives a stronger statement: for every prescribed real $q_0>1$, some real symmetric positive-definite matrix has a strictly negative $q$-permanent derivative at $q_0$. The dimension may depend on $q_0$. Lean 4 formalizations establish the finite example, the theorem for every prescribed parameter, and the correlation and integer-entry consequences. The result does not address real-symmetric monotonicity on $[-1,1]$.
+An explicit real symmetric positive-definite matrix of order five has an inversion-weighted $q$-permanent that decreases between $q=14$ and $q=15$. Exactly nine permutations contribute nonzero terms. This refutes the real positive-definite monotonicity conjecture in da Fonseca's 2010 paper. A sparse family gives a counterexample at every prescribed real $q_0>1$. For each such parameter, a real symmetric positive-definite matrix has a strictly negative $q$-permanent derivative at $q_0$. The dimension may depend on $q_0$. Lean 4 formalizations establish the finite example, the theorem for every prescribed parameter, and the correlation and integer-entry consequences. The result does not address real-symmetric monotonicity on $[-1,1]$.
 \end{abstract}
 
-\section{The statement and its scope}
+\section{The monotonicity conjecture}
 The ordinary permanent sums one entry product for each permutation. The $q$-permanent assigns an additional weight to each product. For an $n\times n$ matrix $A=(a_{ij})$, define
 \[
  P_q(A)=\sum_{\sigma\in S_n}q^{\inv(\sigma)}\prod_{i=1}^n a_{i,\sigma(i)},\qquad
  \inv(\sigma)=\#\{(i,j):i<j,\ \sigma(i)>\sigma(j)\}.
 \]
-The row and column order is fixed. In particular, simultaneous permutation of rows and columns need not preserve this polynomial. The convention is $0^0=1$.
+The row and column order is fixed. A simultaneous permutation of rows and columns can change this polynomial. The convention is $0^0=1$.
 
-Da Fonseca's 2010 paper explicitly adopts the convention that $A>0$ denotes a real symmetric positive-definite matrix, before stating Conjecture~1 in Section~2 \cite{fonseca2010}. That conjecture asks for strict monotonicity on an interval extending from a left endpoint at or below $-1$ to $+\infty$. Its later restatement uses a left endpoint strictly below $-1$ \cite[Conjecture~2]{fonseca2018}. Either formulation implies
+Da Fonseca's 2010 paper uses $A>0$ for a real symmetric positive-definite matrix. Under this convention, Conjecture~1 in Section~2 asserts strict monotonicity on an interval with left endpoint at or below $-1$ and right endpoint $+\infty$ \cite{fonseca2010}. Its later restatement uses a left endpoint strictly below $-1$ \cite[Conjecture~2]{fonseca2018}. Either formulation implies
 \begin{equation}\label{eq:implied}
  P_{q_1}(A)<P_{q_2}(A)\qquad(-1<q_1<q_2)
 \end{equation}
-for every admissible non-diagonal real symmetric positive-definite $A$. The counterexample contradicts \eqref{eq:implied} at two positive integer parameters, so the distinction between the two left-endpoint formulations is immaterial.
+for every admissible non-diagonal real symmetric positive-definite $A$. The counterexample contradicts \eqref{eq:implied} at two positive integer parameters. It therefore refutes both formulations.
 
 The Bapat--Lal monotonicity assertion is restricted to $[-1,1]$. The October 2026 record of Kitamura's order-144 complex Hermitian counterexample explicitly leaves its real-symmetric case unsettled \cite{kitamura}. The present results concern $q>1$.
 
-The mechanism is the last square in the family formula below. At a chosen
-parameter, its derivative is negative. Intervening identity coordinates
-increase its power of $q$ faster than the positive terms. This permits a
-strict decrease at any fixed $q>1$ when the dimension is large enough.
+The last term in \eqref{eq:family} explains the construction. Its derivative
+is negative at the chosen parameter. Each additional identity coordinate
+increases its power of $q$ more than the powers in the positive derivative
+terms. With enough such coordinates, the total derivative is negative at
+any fixed $q>1$.
 
 Mitchell discusses a failure of the extended conjecture for positive
 semidefinite rank-one matrices at negative parameters \cite{mitchell}.
@@ -73,14 +74,14 @@ It satisfies
 with exact difference $1\,526\,862\,249$. Consequently the real monotonicity conjecture described above is false.
 \end{theorem}
 \begin{proof}
-For positivity alone, order the coordinates as $(1,2,4,5,3)$. The resulting matrix is the direct sum of $[1]$ and
+To prove positive definiteness, order the coordinates as $(1,2,4,5,3)$. The resulting matrix is the direct sum of $[1]$ and
 \[
  \begin{pmatrix}5I_2&R\\R^T&5I_2\end{pmatrix},\qquad
  R=\begin{pmatrix}4&1\\-1&4\end{pmatrix},\qquad RR^T=17I_2.
 \]
-Its eigenvalues are $1$ and $5\pm\sqrt{17}$, with each of the latter occurring twice. All are positive. This coordinate permutation is used only to establish positive definiteness; the $q$-permanent is calculated in the original displayed order.
+Its eigenvalues are $1$ and $5\pm\sqrt{17}$, with each of the latter occurring twice. All are positive. For the $q$-permanent calculation, retain the displayed order of the matrix in the theorem.
 
-Every nonzero term fixes coordinate $3$. The only possible nontrivial cycles among the remaining four coordinates are the four transpositions corresponding to nonzero off-diagonal entries, the two disjoint pairs of those transpositions, and the two oriented four-cycles. Together with the identity, these give exactly the nine terms in Table~\ref{tab:terms}. Summing the table proves \eqref{eq:five-poly}. Substitution of $14$ and $15$ yields the stated integer values, which contradict strict monotonicity.
+Every nonzero term fixes coordinate $3$. Among the remaining coordinates, four transpositions correspond to nonzero off-diagonal entries. There are also two disjoint pairs of these transpositions and two oriented four-cycles. Together with the identity, these give exactly the nine terms in Table~\ref{tab:terms}. Summing the table proves \eqref{eq:five-poly}. Substitution of $14$ and $15$ yields the stated integer values, which contradict strict monotonicity.
 \end{proof}
 
 \begin{table}[htbp]
@@ -104,12 +105,12 @@ $(5,4,3,2,1)$ &10&1\\
 \label{tab:terms}
 \end{table}
 
-\section{A sparse family and its complete polynomial}
+\section{A sparse family}
 Let $m\ge0$ be an integer and $n=m+4$. The active coordinates are
 \[
  i=1,\qquad j=2,\qquad k=m+3,\qquad \ell=m+4.
 \]
-For real $a\ge0$ and $d>\sqrt{a^2+1}$, define $A_m(a,d)$ to be the identity on the $m$ remaining coordinates, with zero couplings to them, and with the following principal submatrix on the active coordinates in their increasing order:
+For real $a\ge0$ and $d>\sqrt{a^2+1}$, define $A_m(a,d)$ as follows. It equals the identity on the $m$ remaining coordinates. All entries between these coordinates and the active coordinates are zero. On the active coordinates, in increasing order, its principal submatrix is
 \begin{equation}\label{eq:core}
  \begin{pmatrix}
  d&0&a&1\\
@@ -129,7 +130,7 @@ For every $m\ge0$,
 \end{equation}
 \end{lemma}
 \begin{proof}
-The isolated coordinates are fixed in every nonzero term. The nine possible active permutations are listed below using cycle notation; their inversion counts are computed in the full order $1,\ldots,m+4$.
+The isolated coordinates are fixed in every nonzero term. The following table uses cycle notation for the nine possible active permutations. Inversion counts use the full order $1,\ldots,m+4$.
 \[
 \begin{array}{c|c|c}
 \text{Active permutation}&\text{Inversions}&\text{Entry product}\\\hline
@@ -165,7 +166,7 @@ Fix $r>1$. Choose an integer $m\ge1$ sufficiently large that
  (4m+4)(2m+5)\left(\frac{5r}{4}+2\right)
  \left(1+\frac52r^3+r^4\right).
 \end{equation}
-Such an integer exists: the left side grows exponentially in $m$, whereas the right side is a quadratic polynomial in $m$ times a constant depending only on $r$.
+Such an integer exists. The left side grows exponentially in $m$. The right side is a quadratic polynomial in $m$ times a constant that depends only on $r$.
 
 Set
 \[
@@ -173,7 +174,7 @@ Set
  t=r\left(1+\frac1K\right),\qquad
  a=\sqrt{t},\qquad d=\sqrt{t+2}.
 \]
-These parameters are fixed after this choice; differentiation below is with respect to $q$ only. Then $d>\sqrt{a^2+1}$, so $A=A_m(a,d)$ is positive definite. By Lemma~\ref{lem:family},
+Keep these parameters fixed when differentiating with respect to $q$. Then $d>\sqrt{a^2+1}$, so $A=A_m(a,d)$ is positive definite. By Lemma~\ref{lem:family},
 \[
  P_q(A)=d^4+d^2q^H(1+2tq^2+q^4)+q^K(t-q)^2.
 \]
@@ -192,7 +193,7 @@ Since $K\ge4$, the bound $t\le5r/4$ holds. Also $H,H+2\le H+4=2m+5$. Consequentl
  \left(\frac{5r}{4}+2\right)r^{H-1}(2m+5)
  \left(1+\frac52r^3+r^4\right).
 \]
-Inequality \eqref{eq:m-bound}, multiplied by $r^{H-1}/K$, says that this upper bound is strictly smaller than $r^{K+1}/K$, because $K-H+2=2m+5$. The total derivative is therefore negative.
+Multiply \eqref{eq:m-bound} by $r^{H-1}/K$. The result shows that this upper bound is strictly smaller than $r^{K+1}/K$, since $K-H+2=2m+5$. The total derivative is therefore negative.
 
 Finally, given $\delta>0$, apply the theorem with $r=1+\delta/2$. A negative derivative of a polynomial gives a strictly decreasing pair of sufficiently nearby parameters contained in $[1,1+\delta]$.
 \end{proof}
@@ -207,7 +208,7 @@ If $D=\operatorname{diag}(s_1,\ldots,s_n)$ with all $s_i>0$, then term by term
 \]
 Choose $s_i=a_{ii}^{-1/2}$ to normalize the diagonal. Positive definiteness is preserved, and the multiplicative factor is positive and independent of $q$.
 
-For the final assertion, first replace a matrix from Theorem~\ref{thm:allq} by $A+\varepsilon\mathbf1\mathbf1^T$. This remains positive definite for every $\varepsilon>0$. For sufficiently small positive $\varepsilon$, all entries are nonzero and the strict negative derivative persists by continuity of the finite polynomial in the entries. Then normalize the diagonal as above.
+For the final assertion, first replace a matrix from Theorem~\ref{thm:allq} by $A+\varepsilon\mathbf1\mathbf1^T$. This remains positive definite for every $\varepsilon>0$. For sufficiently small positive $\varepsilon$, all entries are nonzero. The derivative remains negative because it is a polynomial in the entries and is therefore continuous. Then normalize the diagonal as above.
 \end{proof}
 
 \begin{corollary}\label{cor:integer}
@@ -218,10 +219,10 @@ Positive definiteness and the strict inequality $P'_r(A)<0$ are open conditions 
 \end{proof}
 
 \section{Formal verification and independent checks}
-The Lean development is in
+The Lean formalization is in
 \path{lean/MathAndTheory/Mathematics/QPermanent/}.
 Its namespace is \texttt{MathAndTheory.QPermanent}.
-The following declarations give the main correspondence.
+The table maps the paper's results to Lean declarations.
 \begin{center}\small
 \begin{tabular}{@{}p{0.30\linewidth}p{0.65\linewidth}@{}}\toprule
 Paper statement & Lean declaration\\\midrule
@@ -244,7 +245,7 @@ clearing. This gives the same existence conclusion as
 Corollary~\ref{cor:integer}.
 
 The independent program reconstructs the five-dimensional polynomial by
-all $120$ permutations. It checks the positive rational $LDL^T$ pivots
+enumerating all $120$ permutations. It checks the positive rational $LDL^T$ pivots
 $5,5,1,8/5,8/5$, both endpoint values, and
 $P'_{15}(A)=-1\,563\,030\,000$.
 For $m=0,1,2,3,4$, it independently enumerates all permutations of the
@@ -252,37 +253,37 @@ corresponding family matrix. It also checks the growth condition and
 negative derivative with exact rational arithmetic at
 $r=101/100,11/10,3/2,2,15$.
 The respective choices of $m$ are $925,69,12,6,1$.
-These finite checks do not prove the theorem for every $r$.
-Theorem~\ref{thm:allq} and its formalization supply that proof.
+These computations check finitely many examples. Theorem~\ref{thm:allq}
+and its formalization prove the result for every $r$.
 
 The repository pins Lean 4.35.0 and Mathlib commit
 \path{56a005855ea17e0b0958f73ec801ae140b0a1679}.
 See \path{lean/docs/q-permanent.md} for statement alignment and
 \path{verification/q-permanent/} for commands, software versions, and
-recorded results. The Challenge states the permutation definition directly.
-It has no imports from this proof development. Comparator checks the
-corresponding Solution against those statements.
+recorded results. The Challenge file states the permutation definition
+directly and does not import the proof modules. Comparator checks that the
+Solution file proves the same statements.
 
-\section{Scope and provenance}
-The construction gives an upper bound on a witness dimension, not a
-minimal dimension. The integer and correlation conclusions are separate;
-no integer correlation matrix is asserted. The results do not settle the
+\section{Scope and prior work}
+The construction bounds the dimension of a counterexample. It does not
+determine the smallest possible dimension. The integer-entry and correlation
+conclusions are separate. They do not assert an integer correlation matrix. The results do not settle the
 real Bapat--Lal assertion on $[-1,1]$.
 
-The literature audit compared the original conjecture, its 2018
-restatement, Mitchell's discussion, de S\'a's correction, and the current
-public record of the complex counterexample. It found no earlier proof
-of the specific real positive-definite results stated here. This bounded
-search does not establish priority.
+The literature search covered the 2010 conjecture, its 2018 restatement,
+Mitchell's discussion, de S\'a's correction, and the public record of the
+complex counterexample. No earlier proof of the stated real
+positive-definite results was found in these sources. The search was
+limited and does not establish priority.
 
+\section{Authorship and review}
 Dev D. Goyal directed the AI research and is responsible for publication.
 ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, produced the
-supplied construction, proofs, and Lean development. Codex audited the
-source statements, checked the mathematics, adapted the formalization,
-performed independent computations, and edited this manuscript.
-The repository records the later AI referee review. Machine verification
-and AI review do not constitute human expert peer review. This manuscript
-has not been peer reviewed.
+construction, proofs, and Lean formalization. Codex audited the source
+statements, checked the mathematics, adapted the formalization, performed
+independent computations, and edited the manuscript. The repository records
+the AI referee review. Machine verification and AI review do not constitute
+human expert peer review. This manuscript has not been peer reviewed.
 
 \bibliographystyle{plainnat}
 \bibliography{references}

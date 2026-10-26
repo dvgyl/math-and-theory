@@ -58,7 +58,7 @@ The repository's Comparator command uses the independent Challenge and Solution.
 ./scripts/verify-comparator.sh comparator/alternating-motzkin.json
 ```
 
-A successful native Lean build is not a substitute for this command. Final Comparator, final referee, and fresh-clone passes are not asserted here. The earlier native source-module build and source-theorem axiom audit passed. Independent finite checks also passed during the audit.
+A successful native Lean build does not replace this command. The [central verification record](../summary.md) gives the recorded build, axiom, Comparator, and finite-computation results. The [review record](../review.md) identifies the reviewed commit and the scope of the AI review.
 
 For the paper, run Tectonic from the repository root:
 

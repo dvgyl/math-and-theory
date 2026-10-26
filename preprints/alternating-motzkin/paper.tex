@@ -23,22 +23,15 @@
 Let $M_n$ be the Motzkin numbers and let
 $T_n=\sum_{j=0}^n(-1)^{n-j}M_j$.
 The sequence $T_n^{1/n}$ is strictly log-concave on its tail
-starting at $n=5$. The inequality fails at center $n=5$, so no earlier tail
-is log-concave. This proves Conjecture~1 of Zhao, which asks for
+starting at $n=5$. The inequality is reversed at center $n=5$, so no earlier
+tail is log-concave. This proves Conjecture~1 of Zhao, which asks for
 log-concavity from index nine. The argument combines established ratio
-bounds with a size estimate. These estimates prove the infinite range;
-exact integer comparisons cover the remaining 25 centers. A Lean
-development proves the real-root inequality and its sharpness. An added
-source-definition module identifies the recursive implementation with
-the finite sum used in the conjecture.
+bounds with a size estimate. These estimates prove the infinite range.
+Exact integer comparisons cover the remaining 25 centers. The Lean
+formalization proves the real-root inequality and its sharp threshold.
+It also proves that the recursive sequence in the analytic proof equals
+the finite sum in the conjecture.
 \end{abstract}
-
-\noindent\textbf{Verification.}
-The source theorem uses only \texttt{propext}, \texttt{Classical.choice},
-and \texttt{Quot.sound}. The repository's
-\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/summary.md}{verification record}
-gives the exact builds, statement comparisons, independent kernel checks,
-and AI review status.
 
 \section{The problem and the result}
 
@@ -46,9 +39,9 @@ A positive sequence $(a_n)$ is log-concave if
 $a_n^2\ge a_{n-1}a_{n+1}$ at each interior index.
 Strict log-concavity means that every such inequality is strict.
 For a tail starting at $s$, the interior indices are $n\ge s+1$.
-This distinction between a tail index and a center index is needed below.
+Thus the first inequality on a tail has its center one index after the start.
 
-The Motzkin numbers satisfy the source recurrence and initial values:
+The Motzkin numbers satisfy the recurrence
 \begin{equation}\label{eq:motzkin}
 M_0=M_1=1,\qquad
 (n+3)M_{n+1}=(2n+3)M_n+3nM_{n-1}\quad(n\ge1).
@@ -84,19 +77,18 @@ At center five the inequality is strictly reversed:
 Consequently, five is the smallest starting index of a log-concave tail.
 \end{theorem}
 
-The ratio bounds used in the proof are established ingredients.
-The Motzkin bounds come from the interlacing method of Do\v{s}li\'c and
+The proof uses known ratio bounds.
+The Motzkin bounds follow from the interlacing method of Do\v{s}li\'c and
 Veljan \cite{DV}. Zhao proves an interlacing estimate for the alternating
 sums \cite[eqs.~(7)--(8)]{Zhao}. Proofs of the needed estimates are included.
 General methods for root log-concavity also appear in
 Chen, Guo, and Wang \cite{CGW} and in Hou and Li \cite{HL}.
-The contribution here is the stated alternating-sum result and its sharp
-threshold. No claim is made that the general method is new.
+The contribution is the alternating-sum inequality with its sharp
+threshold. The general method is due to the cited authors.
 
-The proof has two parts. First, the proof bounds the logarithm of the ratio
-between the two sides of \eqref{eq:main}. The bound is positive for
-$n\ge31$. Second, the proof compares exact integers for $6\le n\le30$.
-This covers every required center.
+The proof first bounds the logarithm of the ratio between the two sides
+of \eqref{eq:main}. The bound is positive for $n\ge31$.
+Exact integer comparisons then establish the inequality for $6\le n\le30$.
 
 \section{Ratio and size estimates}
 
@@ -163,8 +155,8 @@ At $n=9$, the values are
 x_9=\frac{2188}{835},\quad y_9=\frac{793}{301},\quad
 x_{10}=\frac{2899}{1094}.
 \]
-The two differences are $3567/251335$ and $5057/329294$, respectively.
-Both are positive.
+The lower and upper bounds in \eqref{eq:interlace} have positive gaps
+$3567/251335$ and $5057/329294$, respectively.
 
 Suppose \eqref{eq:interlace} holds at $n\ge9$.
 Its upper bound and \eqref{eq:yrec} imply $y_{n+1}\ge x_{n+1}$.
@@ -220,7 +212,7 @@ D_n=n(n^2-1)
 All values in the logarithms are positive by Lemma~\ref{lem:ratios}.
 The factor $n(n^2-1)$ is positive. Hence $D_n>0$ is equivalent both to
 strict root log-concavity at center $n$ and to \eqref{eq:main}.
-Substitution gives the useful identity
+Substitution gives
 \begin{equation}\label{eq:gap}
 D_n=2n\log q_n
 -n(n-1)\log\frac{q_{n+1}}{q_n}-2\log T_n.
@@ -300,8 +292,8 @@ $n$&$T_n$&$n$&$T_n$\\\midrule
 \caption{Exact alternating Motzkin sums.}\label{tab:values}
 \end{table}
 
-The following complete arithmetic procedure reproduces the finite
-comparisons. The division in the recurrence is checked to be exact.
+The following program reproduces the finite comparisons. It checks that
+each division in the recurrence is exact.
 \begin{verbatim}
 M = [1, 1]
 for n in range(1, 31):
@@ -328,21 +320,22 @@ Every tail starting at an index at most four contains center five.
 The infinite argument and the finite comparisons prove
 Theorem~\ref{thm:main}.
 
-\section{Formal statements and reproducibility}
+\section{Formal verification and reproducibility}
 
-The analytic Lean development defines rational Motzkin numbers through
-adjacent pairs. It defines the alternating sequence recursively through
-\eqref{eq:Trec}. A separate source-definition module proves uniqueness
-for \eqref{eq:motzkin} and identifies that recursion with
-\eqref{eq:alternating}. Thus its concluding theorem concerns the original
-finite sum. The recurrence assumptions in the general statement specify
-only the source sequence. They do not assume any estimate or part of the
-conclusion. The separate Challenge module imports only Mathlib. Its
-problem also requires existence of a sequence with the source recurrence.
-The Solution module proves this problem, including existence and the
+The Lean formalization defines rational Motzkin numbers through adjacent
+pairs. It defines the alternating sequence by \eqref{eq:Trec}.
+The source-definition module proves uniqueness for \eqref{eq:motzkin}
+and identifies the recursive sequence with \eqref{eq:alternating}.
+The resulting theorem therefore applies to the finite sum in Zhao's
+conjecture. Its assumptions specify only the recurrence and initial values.
+They do not include any estimate used in the proof.
+
+The Challenge module states the problem and imports only Mathlib.
+It includes the existence of a sequence that satisfies the recurrence.
+The Solution module proves this statement, including existence and the
 sharp threshold.
 
-Table~\ref{tab:lean} gives the principal correspondence. Names are written
+Table~\ref{tab:lean} lists the principal declarations. Names are written
 relative to the namespace \texttt{MathAndTheory.Motzkin}.
 
 \begin{table}[ht]
@@ -357,46 +350,45 @@ Source finite-sum correspondence &
 \path{Source.alternatingSum_eq_alternating}\\
 Strict real-root inequality &
 \path{Source.finite_sum_roots_strict_log_concave}\\
-Original tail-nine conjecture &
+Zhao's tail-nine conjecture &
 \path{Source.zhao_conjecture_one}\\
 Center-five failure &
 \path{Source.finite_sum_roots_sharp_failure}\\
 Optimal tail start &
 \path{Source.finite_sum_tail_start_optimal}\\
-Complete challenge &\texttt{Source.solution}\\\bottomrule
+Complete problem statement &\texttt{Source.solution}\\\bottomrule
 \end{tabular}
-\caption{Principal formal statements. The source-definition module
-passed its native Lean build and axiom audit.}\label{tab:lean}
+\caption{Principal formal statements.}\label{tab:lean}
 \end{table}
 
-The underlying modules prove the ratio estimates, positivity, size
-bound, and infinite range. They then use proof-producing exact arithmetic
-for the remaining indices. The root function is the actual real power
-$T_n^{1/n}$. The formal proof does not replace that function with an
-uninterpreted symbol or an assumed inequality.
+The proof modules establish the ratio estimates, positivity, the size
+bound, and the infinite range. Exact arithmetic produces proof terms for
+the remaining indices. The root function is the real power $T_n^{1/n}$.
+
+The source-definition module passed its native Lean build and axiom audit.
+The source theorem uses only \texttt{propext}, \texttt{Classical.choice},
+and \texttt{Quot.sound}. The repository's
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/summary.md}{verification record}
+gives the builds, statement comparisons, independent kernel checks,
+and AI review status.
 
 An independent Python program also counts Motzkin paths and applies the
 finite alternating sum directly. It agrees with the published OEIS table
 through index 300 \cite{OEIS}. It checks the exact inequality at centers
 6 through 100 and the reverse comparison at center five. These finite
 checks support the result. They do not prove the infinite range.
-The Lean statement uses the recurrence characterization. It does not
-claim a formal proof of the lattice-path interpretation.
-
-The proof and reproducibility files form one result family.
-The supporting ratio lemmas are not separate publication claims.
+The Lean statement uses the recurrence characterization. A formal proof
+of the lattice-path interpretation is outside its scope.
 
 \section*{Authorship and AI use}
 
-Dev D. Goyal directed the project and is responsible for publication.
-The research proofs and original formalizations were produced with
-ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, under his
-direction. AI assistance was also used for the subsequent mathematical
-audit, the source-definition proof, the independent computation, and this
-manuscript. These contributions do not constitute independent human
-expert review. The result has not been peer reviewed. No claim of first
-priority is made. The repository records the completed review and
-verification checks.
+Dev D. Goyal directed the research and is responsible for publication.
+ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, produced the
+research proofs and initial formalizations under his direction.
+AI assistance also contributed to the mathematical audit, the
+source-definition proof, the independent computation, and this manuscript.
+These contributions do not constitute independent human expert review.
+This paper has not been peer reviewed. No claim of first priority is made.
 
 \bibliographystyle{plainnat}
 \bibliography{references}

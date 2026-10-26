@@ -49,10 +49,10 @@ All declarations in this table are in `MathAndTheory.DiagonalConcavity`.
 
 The diagonal curvature numerator factors as `48(M²−1)(t²−1)²`. On the test line through `(2,2,1/2,1/2)` in direction `(2,2,1,1)`, the fourth-root curvature numerator at zero is `(M−1)(53M+55)`. These identities prove the negative cases. The positive case at `M=1` uses the product `∏(1+x_i)` and a proved geometric-mean inequality.
 
-The prior geometric-mean result is supporting material. The new claim is the degree-four failure of diagonal testing and its complete one-parameter classification. It is not the degree-two square-root criterion in Lachaume's Theorem 3.3.
+The geometric-mean result supports the proof. The principal result is the degree-four failure of diagonal testing and its complete one-parameter classification. It is not the degree-two square-root criterion in Lachaume's Theorem 3.3.
 
 ## Formal scope
 
 The proof and Solution compile with the pinned Lean 4.35.0 project. The selected theorem depends only on `propext`, `Classical.choice`, and `Quot.sound`. The proof does not need a separate formal statement for the full displayed Hessian matrix; it proves the required directional derivative directly.
 
-This result does not classify arbitrary coefficients or higher dimensions. See the [central verification record](../../verification/README.md) for Comparator and review status. This guide does not claim that final review has occurred.
+This result does not classify arbitrary coefficients or higher dimensions. See the [central verification record](../../verification/README.md) for Comparator and review status. The linked records identify the checked sources and review scope.

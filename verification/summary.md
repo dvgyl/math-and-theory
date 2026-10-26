@@ -1,6 +1,6 @@
-# Verification summary
+# Historical verification summary
 
-The formal catalogue has seven result families, seven papers, and 21 selected statement comparisons. The [later Gyires research notes](../research-notes/gyires-extensions/README.md) have a separate certificate and review record. The formal checks below do not certify those two extensions. This record is dated 26 October 2026. Public logs replace local absolute paths with neutral labels and remove trailing whitespace. Their outcomes are unchanged. The checks concern mathematical statements and proof dependencies. They do not establish historical priority or human expert approval.
+This record summarizes the seven-family verification completed on 26 October 2026. It covers seven papers and 21 selected statement comparisons. The [review record](review.md) identifies the reviewed collection commit. The broader Gyires arguments have a [separate certificate and review record](../research-notes/gyires-extensions/README.md). The formal checks below cover only the order-five Gyires claims. The recorded document checks concern the PDF versions identified by hash below. They do not certify later manuscript revisions. Public logs replace local absolute paths with neutral labels and remove trailing whitespace. Their outcomes are unchanged. The checks concern mathematical statements and proof dependencies. They do not establish historical priority or human expert approval.
 
 ## Formal verification
 
@@ -10,7 +10,7 @@ The command `lake env lean Audit.lean` passed for 8878 declarations, including 8
 
 The [Comparator record](records/comparators.json) lists all 21 selected statements and completed kernel outcomes. All seven configurations passed Lean, NanoDa, and con-ron. The runner and Linux requirements are in the [guide](README.md).
 
-The [Gyires family record](gyires-circulant-five/formal-checks.json) also gives the fresh original-source build and its separate axiom audit. These historical-source checks do not substitute for the collection checks.
+The [Gyires family record](gyires-circulant-five/formal-checks.json) also gives the recorded source-repository build and its separate axiom audit. These historical-source checks do not substitute for the collection checks.
 
 ## Computation and documents
 
@@ -26,6 +26,6 @@ The [source hash record](records/source-hashes.json) identifies the checked math
 
 [Software versions and immutable dependency references](records/versions.json) identify the verification environment. The Lean toolchain supplies all three proof checkers. The Python packages are pinned in [requirements.txt](requirements.txt).
 
-GPT-6.1 Sol completed two mathematical and editorial review passes. The identified source, exposition, disclosure, and verification-record corrections were checked and applied. The referee inspected the final local records and approved publication with no blocking criticism. The [review report](review.md) gives the actual scope and limits. The official full-profile workflow and final public-clone audit are separate post-publication checks. Their commit-specific outcomes belong in the private delivery report.
+GPT-6.1 Sol completed two mathematical and editorial review passes. The identified source, exposition, disclosure, and verification-record corrections were checked and applied. The referee inspected the final local records and approved publication with no blocking criticism. The [review report](review.md) gives the actual scope and limits. The official full-profile workflow and public-clone audit are separate checks. Their commit-specific outcomes belong in the private delivery report.
 
 No Zenodo deposit, Palomar submission, GitHub release, or tag is part of these checks.

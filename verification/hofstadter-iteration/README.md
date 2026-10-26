@@ -51,4 +51,4 @@ Comparator replay for this selected statement has passed through Lean, NanoDa, a
 
 The infinite family varies `k`. The theorem does not claim infinitely many violating inputs for each fixed `k`. The finite incomparability result concerns the particular functions `F_4^9` and `F_5^10`. No classification of all iteration indices is claimed.
 
-The [prior-work record](../../preprints/hofstadter-iteration/README.md) explains the source comparison and the limits of the search. This paper has NOT been peer reviewed. This guide does not claim that final independent review has occurred.
+The [prior-work record](../../preprints/hofstadter-iteration/README.md) explains the source comparison and the limits of the search. This paper has not been peer reviewed. The [AI review record](../review.md) identifies the reviewed commit and its scope.
