@@ -206,4 +206,15 @@ example (hP : ∀ σ : Equiv.Perm (Fin 7),
   norm_num [dimensionConstant] at h
   linarith
 
+#print axioms MathAndTheory.GyiresFourBlock.contractions
+#print axioms MathAndTheory.GyiresFourBlock.margin
+#print axioms MathAndTheory.GyiresFourBlock.gyires
+#print axioms MathAndTheory.GyiresFourBlock.gyires_eq_iff
+#print axioms MathAndTheory.Gyires.Bernoulli.probability_central_likelihood
+#print axioms MathAndTheory.Gyires.Bernoulli.one_le_central_likelihood
+#print axioms MathAndTheory.Gyires.Bernoulli.likelihood_norm_le_central
+#print axioms MathAndTheory.Gyires.Bernoulli.central_likelihood_eq_one_iff
+#print axioms MathAndTheory.Gyires.Bernoulli.likelihood_norm_eq_of_deterministic
+#print axioms MathAndTheory.Gyires.Bernoulli.column_class_bounds
+
 audit_math_and_theory

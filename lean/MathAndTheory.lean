@@ -15,3 +15,4 @@ public import MathAndTheory.Mathematics.Gyires.PermanentPermutation
 public import MathAndTheory.Mathematics.Gyires.DimensionConstant
 public import MathAndTheory.Mathematics.Gyires.BlockPermanent
 public import MathAndTheory.Mathematics.Gyires.CirculantCertificate
+public import MathAndTheory.Mathematics.Gyires.FourBlock

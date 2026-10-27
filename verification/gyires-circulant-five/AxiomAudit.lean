@@ -1,5 +1,5 @@
 /-
-Check the transitive axioms of the order-five Gyires development.
+Check the transitive axioms of the order-five and four-block Gyires developments.
 Run from lean/ after the library build:
   lake env lean -j1 ../verification/gyires-circulant-five/AxiomAudit.lean
 The audit checks the listed statements and every declaration in this family.
@@ -20,6 +20,17 @@ import Solutions.GyiresCirculant5
 #print axioms MathAndTheory.GyiresCirculant5.strong_margin
 #print axioms MathAndTheory.GyiresCirculant5.strong_margin_attained
 #print axioms MathAndTheory.GyiresCirculant5.strong_margin_sharp
+
+#print axioms MathAndTheory.GyiresFourBlock.contractions
+#print axioms MathAndTheory.GyiresFourBlock.margin
+#print axioms MathAndTheory.GyiresFourBlock.gyires
+#print axioms MathAndTheory.GyiresFourBlock.gyires_eq_iff
+#print axioms MathAndTheory.Gyires.Bernoulli.probability_central_likelihood
+#print axioms MathAndTheory.Gyires.Bernoulli.one_le_central_likelihood
+#print axioms MathAndTheory.Gyires.Bernoulli.likelihood_norm_le_central
+#print axioms MathAndTheory.Gyires.Bernoulli.central_likelihood_eq_one_iff
+#print axioms MathAndTheory.Gyires.Bernoulli.likelihood_norm_eq_of_deterministic
+#print axioms MathAndTheory.Gyires.Bernoulli.column_class_bounds
 
 -- Section 2 of the paper: products, the permanent polynomial, the Gram comparison
 #print axioms MathAndTheory.GyiresCirculant5.circ_mul_transpose
@@ -133,7 +144,9 @@ open Lean Elab Command in
   for (name, _) in env.constants.map₁.toList do
     let some idx := env.getModuleIdxFor? name | continue
     let module := env.header.moduleNames[idx.toNat]!
-    unless (`MathAndTheory.Mathematics.GyiresCirculant5).isPrefixOf module || module == `Solutions.GyiresCirculant5 do continue
+    unless (`MathAndTheory.Mathematics.GyiresCirculant5).isPrefixOf module ||
+      (`MathAndTheory.Mathematics.Gyires).isPrefixOf module ||
+      module == `Solutions.GyiresCirculant5 || module == `Solutions.GyiresFourBlock do continue
     declarations := declarations + 1
     let axioms ← liftCoreM <| collectAxioms name
     for a in axioms do used := used.insert a
@@ -144,3 +157,7 @@ open Lean Elab Command in
   logInfo m!"declaration scan: declarations with non-standard axioms: {bad.size}"
   for (n, axioms) in bad do
     logInfo m!"NON-STANDARD AXIOMS: {n} {axioms}"
+  if declarations == 0 then
+    throwError "No Gyires declaration was loaded for the audit"
+  unless bad.isEmpty do
+    throwError "The Gyires audit found non-standard axioms"

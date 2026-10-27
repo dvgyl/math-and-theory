@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Scan this family's Lean source for proof bypasses.
 
-Only the ten Challenge placeholders are permitted.
+Only the fourteen listed Challenge placeholders are permitted.
 """
 from pathlib import Path
 import re
@@ -38,17 +38,33 @@ def strip_comments_and_strings(text: str) -> str:
     return "".join(out)
 
 
-files = sorted((root / "MathAndTheory/Mathematics/GyiresCirculant5").rglob("*.lean"))
-files += [root / "Challenges/GyiresCirculant5.lean", root / "Solutions/GyiresCirculant5.lean"]
+proof_directories = [
+    "MathAndTheory/Mathematics/GyiresCirculant5",
+    "MathAndTheory/Mathematics/Gyires",
+]
+proof_groups = {name: sorted((root / name).rglob("*.lean")) for name in proof_directories}
+proof_files = [path for group in proof_groups.values() for path in group]
+expected_placeholders = {
+    "Challenges/GyiresCirculant5.lean": 10,
+    "Challenges/GyiresFourBlock.lean": 4,
+}
+interfaces = list(expected_placeholders) + [
+    "Solutions/GyiresCirculant5.lean", "Solutions/GyiresFourBlock.lean"
+]
+missing = [name for name in interfaces if not (root / name).is_file()]
+missing += [name for name, group in proof_groups.items() if not group]
+files = proof_files + [root / name for name in interfaces if (root / name).is_file()]
 problems, permitted = [], []
+placeholder_counts = dict.fromkeys(expected_placeholders, 0)
 for path in files:
     code = strip_comments_and_strings(path.read_text())
     for lineno, line in enumerate(code.splitlines(), 1):
         for match in pattern.finditer(line):
             rel = path.relative_to(root).as_posix()
             entry = f"{rel}:{lineno}: {match.group(1)}"
-            if match.group(1) == "sorry" and rel == "Challenges/GyiresCirculant5.lean":
+            if match.group(1) == "sorry" and rel in expected_placeholders:
                 permitted.append(entry)
+                placeholder_counts[rel] += 1
             else:
                 problems.append(entry)
         if "skipKernelTC" in line or "skipCheck" in line:
@@ -58,6 +74,8 @@ print(f"Permitted Challenge placeholders: {len(permitted)}")
 print(f"Other bypass tokens: {len(problems)}")
 for item in problems:
     print(item)
-ok = len(files) > 2 and not problems and len(permitted) == 10
+for name in missing:
+    print("MISSING:", name)
+ok = bool(proof_files) and not problems and not missing and placeholder_counts == expected_placeholders
 print("RESULT:", "PASS" if ok else "FAIL")
 sys.exit(0 if ok else 1)

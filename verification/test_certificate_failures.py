@@ -89,10 +89,41 @@ class CertificateFailureTests(unittest.TestCase):
         target = self.folder / relative
         target.parent.mkdir(parents=True)
         shutil.copy2(ORDER_FIVE / 'scan_sources.py', target)
-        for directory in ('Challenges', 'Solutions'):
-            path = self.folder / 'lean' / directory / 'GyiresCirculant5.lean'
+        for family, count in [('GyiresCirculant5', 10), ('GyiresFourBlock', 4)]:
+            for directory in ('Challenges', 'Solutions'):
+                path = self.folder / 'lean' / directory / (family + '.lean')
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text('example : True := by sorry\n' * count if directory == 'Challenges' else '')
+        self.failed(self.run_script(relative), 'RESULT: FAIL')
+
+    def test_source_checker_requires_both_libraries_and_exact_placeholders(self):
+        relative = 'verification/gyires-circulant-five/scan_sources.py'
+        target = self.folder / relative
+        target.parent.mkdir(parents=True)
+        shutil.copy2(ORDER_FIVE / 'scan_sources.py', target)
+        for family, count in [('GyiresCirculant5', 10), ('GyiresFourBlock', 4)]:
+            for directory in ('Challenges', 'Solutions'):
+                path = self.folder / 'lean' / directory / (family + '.lean')
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text('example : True := by sorry\n' * count if directory == 'Challenges' else '')
+        for family in ('GyiresCirculant5', 'Gyires'):
+            path = self.folder / 'lean/MathAndTheory/Mathematics' / family / 'Proof.lean'
             path.parent.mkdir(parents=True)
-            path.write_text('example : True := by sorry\n' * 10 if directory == 'Challenges' else '')
+            path.write_text('example : True := by trivial\n')
+        self.passed(self.run_script(relative))
+        for family in ('GyiresCirculant5', 'Gyires'):
+            path = self.folder / 'lean/MathAndTheory/Mathematics' / family / 'Proof.lean'
+            source = path.read_text()
+            path.unlink()
+            self.failed(self.run_script(relative), 'RESULT: FAIL')
+            path.write_text(source)
+        path = self.folder / 'lean/Challenges/GyiresFourBlock.lean'
+        source = path.read_text()
+        for count in (3, 5):
+            path.write_text('example : True := by sorry\n' * count)
+            self.failed(self.run_script(relative), 'RESULT: FAIL')
+        path.write_text(source)
+        path.unlink()
         self.failed(self.run_script(relative), 'RESULT: FAIL')
 
     def test_circulant_copies_match(self):

@@ -2,7 +2,7 @@
 
 The [manuscript](../../preprints/gyires-circulant-five/paper.pdf) contains the arguments listed below. A reduction proves a relationship between statements. It does not prove an unresolved target inequality.
 
-The principal order-five claims have complete Lean proofs. The broader matrix classes have ordinary proofs and the stated exact certificates. Their principal theorems remain incomplete in Lean. The [formal guide](../../lean/docs/gyires-circulant-five.md) lists the supporting results that have Lean proofs.
+The principal order-five claims and the all-order four-block theorem have complete Lean proofs. The other matrix classes have ordinary proofs and the stated exact certificates. Their principal theorems remain incomplete in Lean. The [formal guide](../../lean/docs/gyires-circulant-five.md) lists the supporting results that have Lean proofs.
 
 | Result | Manuscript section |
 |---|---|

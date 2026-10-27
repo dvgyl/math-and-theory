@@ -1,6 +1,6 @@
 # Supporting records for the complete Gyires preprint
 
-The [Gyires preprint](../../preprints/gyires-circulant-five/paper.pdf) proves inequalities for structured matrices and related polynomial bounds. Its principal order-five claims have complete Lean proofs. The broader claims have ordinary proofs and specified exact certificates. Their Lean verification remains incomplete. No novelty, independent human expert review, or peer review is claimed.
+The [Gyires preprint](../../preprints/gyires-circulant-five/paper.pdf) proves inequalities for structured matrices and related polynomial bounds. Its principal order-five claims and the all-order four-block theorem have complete Lean proofs. The other principal matrix claims have ordinary proofs and specified exact certificates. Their Lean verification remains incomplete. No novelty, independent human expert review, or peer review is claimed.
 
 The [result map](source-map.md) lists the completed results, exact limitations, and unresolved claims. The [file record](provenance.json) lists the programs and mathematical reports. The collection integrity manifest gives their SHA-256 hashes. A completed reduction does not establish an unresolved target inequality.
 

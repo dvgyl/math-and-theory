@@ -41,4 +41,4 @@ The [four-block argument](four-block.md) is analytic. It uses the Bernoulli like
 
 ## Verification limits
 
-Neither extension has a complete Lean proof in this repository. Neither has a Comparator configuration or a Palomar submission claim. The seven existing formal configurations apply only to their stated results.
+The four-block theorem has a complete Lean proof. The Gyires Comparator configuration selects its four principal statements. The permutation-polynomial theorem remains incomplete in Lean. No Palomar registry approval is claimed.

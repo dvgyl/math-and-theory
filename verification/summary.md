@@ -1,16 +1,16 @@
 # Verification results
 
-The Lean build and axiom audit below passed on 27 October 2026. The collection has seven result families and 21 selected Comparator statements. The principal order-five Gyires claims have Lean proofs. General Cauchy–Schwarz, permutation, dimension-constant, and direct-sum results also have Lean proofs. A further Lean theorem derives the circulant matrix inequality from explicit polynomial coefficient hypotheses. Those hypotheses remain to be proved for the higher-order families. The [formal guide](../lean/docs/gyires-circulant-five.md) gives their exact scope. The principal expanded matrix-class theorems remain incomplete in Lean.
+The Lean build and axiom audit below passed on 27 October 2026. The collection has seven result families and 25 selected Comparator statements. The principal order-five Gyires claims and the all-order four-block theorem have Lean proofs. General Cauchy–Schwarz, permutation, dimension-constant, and direct-sum results also have Lean proofs. A further Lean theorem derives the circulant matrix inequality from explicit polynomial coefficient hypotheses. Those hypotheses remain to be proved for the higher-order families. The [formal guide](../lean/docs/gyires-circulant-five.md) gives their exact scope. The other principal expanded matrix-class theorems remain incomplete in Lean.
 
 ## Lean proofs
 
-The command `lake build MathAndTheory Solutions Challenges` passed with 2903 jobs. See the [build log](records/native-final-build.log).
+The command `lake build MathAndTheory Solutions Challenges` passed with 2912 jobs. See the [build log](records/native-final-build.log).
 
-The command `lake env lean Audit.lean` passed for 8937 declarations, including 8150 proposition-valued declarations. See the [axiom and type log](records/native-final-axiom-audit.log). These counts include generated supporting proofs. They do not count independent research results.
+The command `lake env lean Audit.lean` passed for 9094 declarations, including 8285 proposition-valued declarations. See the [axiom and type log](records/native-final-axiom-audit.log). These counts include generated supporting proofs. They do not count independent research results.
 
 Every audited declaration uses only the permitted transitive axioms: `propext`, `Classical.choice`, and `Quot.sound`. The audit imports the substantive library and all Solution modules. It excludes the independent Challenge proof placeholders.
 
-The [Comparator record](records/comparators.json) gives the 21 selected statement comparisons run on 26 October 2026. All seven configurations passed Lean, NanoDa, and con-ron. Those selected statements remain unchanged. The new general supporting results are checked by the Lean audit above; the Comparator record does not cover them.
+The [Comparator record](records/comparators.json) gives the 21 selected statement comparisons run on 26 October 2026. All seven configurations passed Lean, NanoDa, and con-ron. Those 21 statements remain unchanged. Four new selected statements specify the four-block theorem. The Lean build and axiom audit above check their proofs. The stored Comparator record does not yet cover these four statements.
 
 ## Exact certificates
 

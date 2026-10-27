@@ -3,6 +3,7 @@ module
 /- Source attribution: MathAndTheory/Mathematics/GyiresCirculant5/PROVENANCE.md. -/
 
 public import MathAndTheory.Mathematics.GyiresCirculant5.MathlibStatements
+public import Solutions.GyiresFourBlock
 
 /-!
 # Solution for Gyires's inequality for circulant matrices of order five

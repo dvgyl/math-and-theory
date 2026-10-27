@@ -1,6 +1,6 @@
 # Gyires's inequality for matrices with two row types and two column types
 
-This note gives an analytic proof for unequal block sizes and boundary values with zero entries. Lean formalization is incomplete. The [reproduction guide](verification.md) gives the certificate commands and their scope.
+This note gives an analytic proof for unequal block sizes and boundary values with zero entries. The complete Lean matrix theorem proves the same contractions, margin, inequality, and equality case. The [reproduction guide](verification.md) gives the certificate commands and their scope.
 
 ## Statement
 
@@ -208,4 +208,4 @@ The argument includes h at either endpoint of its feasible interval. The Bernoul
 
 The [manuscript](../../preprints/gyires-circulant-five/paper.pdf) contains this proof and its bibliography. The permanent identities are proved above.
 
-The ordinary proof is analytic. Finite numerical checks are not its justification. No complete Lean proof of this statement is included. No human expert review, peer review, or novelty determination is claimed.
+The ordinary proof is analytic. Finite numerical checks are not its justification. A complete Lean proof of the matrix theorem is included in the [formal library](../../lean/MathAndTheory/Mathematics/Gyires/FourBlock.lean). It uses actual row and column vector counts and Mathlib matrix definitions. No human expert review, peer review, or novelty determination is claimed.

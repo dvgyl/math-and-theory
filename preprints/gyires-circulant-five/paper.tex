@@ -51,9 +51,9 @@ Further results treat sparse perturbations, direct sums, positive-semidefinite m
 The supporting arguments include scalar norm inequalities, polynomial deletion, balanced limits,
 local stable and Lorentzian inequalities, and exact configuration-model identities.
 Exact counterexamples identify the limits of proposed extensions.
-The principal order-five claims have complete Lean~4 proofs.
+The principal order-five claims and the all-order four-block theorem have complete Lean~4 proofs.
 General permanent comparisons and direct-sum closure also have Lean proofs.
-The principal expanded matrix-class theorems use analytic proofs or exact computational certificates. Their Lean formalization is incomplete.
+The principal higher-order circulant, permutation-polynomial, exceptional-vector, and finite rank-two theorems remain incomplete in Lean.
 The unrestricted conjecture is not resolved.
 \end{abstract}
 
@@ -104,7 +104,7 @@ Section~\ref{sec:general} proves the permanent comparison that makes this implic
 
 Sections~\ref{sec:order-five} and~\ref{sec:circulant-six-seven} treat unrestricted nonnegative circulant weights in orders five, six, and seven.
 They give equality cases and sharp sorted-gap margins.
-The order-five proof is formalized in Lean.
+The order-five and four-block theorems have formal proofs in Lean.
 The order-six and order-seven proofs use exhaustive exact coefficient certificates.
 
 Section~\ref{sec:permutation} treats $aI+bQ+cQ^2$ in every dimension, where $Q$ is any permutation matrix and $a,b,c\ge0$.
@@ -135,9 +135,9 @@ Exact counterexamples rule out several stronger auxiliary statements. None contr
 \subsection{Verification status}
 
 The principal order-five inequalities, equality cases, and sharp margin have complete Lean proofs.
+The all-order four-block theorem also has a complete Lean proof.
 General permanent comparisons and direct-sum closure also have Lean proofs.
-The principal expanded matrix-class theorems use analytic proofs or exact computational certificates.
-Their Lean formalization is incomplete.
+The principal higher-order circulant, permutation-polynomial, exceptional-vector, and finite rank-two theorems remain incomplete in Lean.
 Section~\ref{sec:checks} maps the formalized theorems to their Lean declarations and explains how to reproduce the computations.
 
 \subsection{Prior work}
@@ -6289,7 +6289,7 @@ Extending the support inequality~\eqref{eq:lp-mconvex-norm} to arbitrary matrix-
 
 \section{Verification and reproduction}\label{sec:checks}
 
-The principal order-five theorems have Lean proofs. The other results use analytic proofs or exact computational certificates.
+The principal order-five theorems and the all-order four-block theorem have Lean proofs. The other results use analytic proofs or exact computational certificates.
 The accompanying repository contains the programs, outputs, and reproduction commands in
 \path{research-notes/gyires-complete-support}.
 The table below identifies the formalized statements.
@@ -6361,6 +6361,30 @@ Its proof derives the likelihood bound for all admissible Bernoulli parameters.
 The subsequent coefficient identities hold for arbitrary dimension.
 The equality argument and the closed parameter interval include every boundary case in the stated family.
 Finite examples can test an implementation, but they do not replace this argument.
+
+\subsection{Four-block Lean correspondence}
+
+Theorem~\ref{thm:four-block} has a complete Lean proof.
+The formal statement uses Mathlib's matrix product, transpose, permanent, and doubly stochastic predicate.
+Its hypotheses count the distinct row vectors and column vectors.
+The proof permits unequal class sizes and zero entries.
+It also covers one row type, one column type, and finite orders zero and one.
+The four principal statements are in the namespace
+\path{MathAndTheory.GyiresFourBlock}:
+\path{contractions}, \path{margin}, \path{gyires}, and \path{gyires_eq_iff}.
+The independent specifications are in
+\path{lean/Challenges/GyiresFourBlock.lean}.
+The matching proofs are in
+\path{lean/Solutions/GyiresFourBlock.lean}.
+
+The supporting library is
+\path{lean/MathAndTheory/Mathematics/Gyires/FourBlock.lean}.
+The probability proof establishes Lemmas~\ref{lem:fb-maximizer} and~\ref{lem:fb-adjacent}
+and the bounds and equality case in Proposition~\ref{prop:fb-central}.
+It maximizes a linear likelihood difference at a fixed mean.
+A shifted-binomial coefficient recurrence gives the central bound.
+The matrix proof then uses a permutation average to prove the contractions.
+This route proves the full matrix statement without formalizing each intermediate coefficient identity in the ordinary proof.
 
 \subsection{Order-five Lean correspondence}
 Lean~\cite{lean} is a \emph{proof assistant}. It checks a formal proof against
@@ -6511,7 +6535,6 @@ The unrestricted Gyires conjecture and the general strong Gram inequality remain
 
 Completing Lean verification of the broader results would require formal versions of their reductions and certificates.
 For the permutation family, the transfer identity, spectral estimate, finite coefficient interpretation, and cycle decomposition must be connected in Lean.
-For the four-block family, the probability extremal argument and the permanent coefficient identities must be connected to the full matrix statement.
 Each formalization must connect these intermediate statements to the full matrix theorem.
 
 \section{Authorship and disclosure}\label{sec:about}

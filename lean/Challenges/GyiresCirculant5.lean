@@ -6,6 +6,7 @@ public import Mathlib.Analysis.Convex.DoublyStochasticMatrix
 public import Mathlib.LinearAlgebra.Matrix.Circulant
 public import Mathlib.LinearAlgebra.Matrix.Permanent
 public import Mathlib.Basic.Real.Basic
+public import Challenges.GyiresFourBlock
 
 /-!
 # Gyires's permanent inequality for circulant matrices of order five
