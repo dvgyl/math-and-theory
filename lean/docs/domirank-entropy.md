@@ -29,8 +29,8 @@ All substantive declarations below use namespace `MathAndTheory.DomiRank`.
 
 The [Comparator configuration](../comparator/domirank-entropy.json) selects `DomiRankProblem.counterexample`. Natural logarithms change entropy and covariance by the positive factor `log 2`. The formal development proves the source's base-two entropy comparison as well.
 
-## Prior work and limits
+## Scope
 
-The source's current version, its initial derivative calculation, unconditional example, refined conjecture, and exact normalization were inspected. Searches used the source identifier, entropy, covariance, positive-score intervals, and alternative centrality terminology. No earlier counterexample to the refined interval statement was identified. The pinned Mathlib and formal-conjectures trees had no matching target. Public database queries did not provide an exhaustive citation search. No priority claim follows from these searches.
+No claim of first priority is made.
 
-This is a theorem about the stated mathematical centrality model. It does not establish empirical performance on networks. It does not refute a narrower assertion restricted to an initial positive component. No human expert peer review is claimed.
+This is a theorem about the stated mathematical centrality model. It does not establish empirical performance on networks. It does not refute a narrower assertion restricted to an initial positive component. This preprint has not been peer reviewed.

@@ -52,7 +52,8 @@ The supporting arguments include scalar norm inequalities, polynomial deletion, 
 local stable and Lorentzian inequalities, and exact configuration-model identities.
 Exact counterexamples identify the limits of proposed extensions.
 The principal order-five claims have complete Lean~4 proofs.
-The other results use analytic proofs or exact computational certificates. Their Lean formalization is incomplete.
+General permanent comparisons and direct-sum closure also have Lean proofs.
+The principal expanded matrix-class theorems use analytic proofs or exact computational certificates. Their Lean formalization is incomplete.
 The unrestricted conjecture is not resolved.
 \end{abstract}
 
@@ -134,7 +135,8 @@ Exact counterexamples rule out several stronger auxiliary statements. None contr
 \subsection{Verification status}
 
 The principal order-five inequalities, equality cases, and sharp margin have complete Lean proofs.
-The other results use analytic proofs or exact computational certificates.
+General permanent comparisons and direct-sum closure also have Lean proofs.
+The principal expanded matrix-class theorems use analytic proofs or exact computational certificates.
 Their Lean formalization is incomplete.
 Section~\ref{sec:checks} maps the formalized theorems to their Lean declarations and explains how to reproduce the computations.
 
@@ -156,7 +158,7 @@ Both results provide the basis for the four-block proof.
 
 The order-five theorem and its formalization are also available in~\cite{repo}.
 The literature comparison for the broader results is incomplete, so we make no claim of priority.
-Section~\ref{sec:about} states the limits of that comparison.
+
 
 \section{Common permanent identities}\label{sec:general}
 
@@ -1191,7 +1193,7 @@ Expansion of~\eqref{eq:pp-cyclic-permanent} yields
 The parity term is $2f^n+2(-f)^n$.
 Thus the calculation does not use a numerical square root.
 
-The program \nolinkurl{round2_independent_finite.mjs} implements these recurrences with native JavaScript \texttt{BigInt} integers.
+The program \nolinkurl{independent_finite.mjs} implements these recurrences with native JavaScript \texttt{BigInt} integers.
 It constructs the weight polynomials directly in the three gap regions~\eqref{eq:pp-chambers}.
 For a homogeneous polynomial of degree $d$, it stores the coefficient of
 $x^{d-i-j}y^iz^j$ at each pair $i,j\ge0$ with $i+j\le d$.
@@ -1214,18 +1216,18 @@ This polynomial certificate covers all nonnegative real weights in the stated fi
 
 The program and its recorded output are included in
 \nolinkurl{research-notes/gyires-extensions/} in the accompanying repository.
-The program is in \nolinkurl{certificates/round2_independent_finite.mjs}.
-The record is in \nolinkurl{results/round2_independent_finite.json}.
+The program is in \nolinkurl{certificates/independent_finite.mjs}.
+The record is in \nolinkurl{results/independent_finite.json}.
 From a new working directory below \nolinkurl{gyires-extensions/}, the certificate command is
 \begin{verbatim}
-node ../certificates/round2_independent_finite.mjs 47
+node ../certificates/independent_finite.mjs 47
 \end{verbatim}
 It writes the coefficient-count record to the working directory.
 The associated \nolinkurl{verification.md} file gives the record checks and hashes.
 
 Two further programs check the supporting identities.
-The program \nolinkurl{round2_sharp_bound_check.py} verifies the residual factorization in $\mathbb Q(\sqrt2)$ and the integer comparison~\eqref{eq:pp-threshold-integer}.
-The program \nolinkurl{round2_circ_small_check.py} computes permanents by subsets.
+The program \nolinkurl{sharp_bound_check.py} verifies the residual factorization in $\mathbb Q(\sqrt2)$ and the integer comparison~\eqref{eq:pp-threshold-integer}.
+The program \nolinkurl{circ_small_check.py} computes permanents by subsets.
 Its recorded outputs agree with both transfer formulas for $1\le n\le7$.
 It also checks all six gap orderings in orders three and four.
 These checks support the transfer implementation.
@@ -2302,7 +2304,7 @@ The same signs are the Bernstein coefficient signs on $[L,R]$, because the basis
 
 \subsection{The exhaustive finite calculation}
 
-The program \nolinkurl{round6_rank2_bernstein.py} implements
+The program \nolinkurl{rank2_bernstein.py} implements
 \eqref{eq:r2-linear-forms}--\eqref{eq:r2-strong-numerator} with arbitrary-precision Python integers.
 For a homogeneous polynomial of degree $d$, array position $j$ stores the coefficient of $U^{d-j}V^j$.
 All $d+1$ positions are retained, including zeros.
@@ -2367,10 +2369,10 @@ The universal parameter coverage comes from the preceding analytic proof and the
 
 The four entry points use the Python standard library:
 \begin{verbatim}
-python3 round6_rank2_bernstein.py --first 2 --last 15
-python3 round6_rank2_bernstein_fraction_check.py --first 2 --last 6
-python3 round6_rank2_identity_audit.py
-python3 round6_rank2_boundary_audit.py
+python3 rank2_bernstein.py --first 2 --last 15
+python3 rank2_bernstein_fraction_check.py --first 2 --last 6
+python3 rank2_identity_audit.py
+python3 rank2_boundary_audit.py
 \end{verbatim}
 They are included with the accompanying source and verification records.
 The first two JSON reports contain timing fields, which can change on a repeated run.
@@ -2420,7 +2422,7 @@ It does not prove the required boundary inequality.
 \subsection{Direct sums and independent permutations}
 
 \begin{lemma}[Closure of the strong bounds]\label{lem:struct-direct-sum}
-Let $B_i\in\Omega_{m_i}$ for $1\le i\le r$, with $\sum_i m_i=n$.
+Let $B_i\in\Omega_{m_i}$ for $1\le i\le r$, with $m_i\ge1$ and $\sum_i m_i=n$.
 Suppose each $B_i$ satisfies both strong bounds~\eqref{eq:strong-pair} in its own dimension.
 Then their direct sum $B=\bigoplus_i B_i$ satisfies both strong bounds in dimension $n$.
 The same holds for $A=UBV$, where $U,V$ are arbitrary permutation matrices.
@@ -3920,10 +3922,10 @@ The independent checker uses a different construction:
   without relying on the symmetry reduction.
 \end{itemize}
 
-The program is \texttt{round3\_deletion\_n3\_independent\_audit.py}. Its
+The program is \nolinkurl{deletion_n3_independent_audit.py}. Its
 recorded output has the corresponding \texttt{.json} name. The primary
-program is \texttt{round3\_deletion\_n3\_certificate.py};
-\texttt{round3\_deletion\_n3\_review.py} gives a second independent
+program is \nolinkurl{deletion_n3_certificate.py}.
+The program \nolinkurl{deletion_n3_crosscheck.py} gives a second independent
 construction with exponent tuples. The three implementations agree exactly.
 
 The exact integer computations give the following results:
@@ -6341,9 +6343,9 @@ The source directory
 \path{research-notes/gyires-extensions/certificates}
 contains all five required program files.
 The three entry points are
-\path{round2_sharp_bound_check.py},
-\path{round2_circ_small_check.py}, and
-\path{round2_independent_finite.mjs}.
+\path{sharp_bound_check.py},
+\path{circ_small_check.py}, and
+\path{independent_finite.mjs}.
 The last program takes the argument \texttt{47} to cover the finite range.
 The programs use the Python and Node.js standard libraries.
 The recorded run used Python~3.14.6 and Node.js~22.23.2.
@@ -6427,13 +6429,34 @@ the doubly stochastic circulants of order five and their description as the comb
 every order, the reduction of Gyires's inequality to the strong form in Section~\ref{sec:general}
 (\lean{gyires\_of\_strong}).
 
+\subsection{General supporting Lean results}
+
+The modules in \path{lean/MathAndTheory/Mathematics/Gyires} prove several comparisons used beyond order five.
+The module \path{PermanentCauchySchwarz.lean} proves Lemma~\ref{lem:permanent-cs} for real square matrices of every finite size.
+Its proof uses the nonnegative permutation bilinear form and a quadratic discriminant.
+
+The module \path{PermanentPermutation.lean} proves that independent row and column permutations preserve both strong Gram bounds.
+It then applies those bounds to the square of the permuted matrix.
+It does not assert invariance of $\per(A^2)$ under independent row and column permutations.
+
+The module \path{DimensionConstant.lean} proves the comparison of the constants $c_n$ for positive block sizes.
+The comparison is strict for at least two blocks.
+This supplies the constant comparison in the cycle and direct-sum arguments.
+The module \path{BlockPermanent.lean} proves Lemma~\ref{lem:struct-direct-sum}.
+It proves the permanent product identity and both strong bounds for finite block sums.
+The block sizes can differ, and independent row and column permutations are permitted.
+The bounds are strict for at least two positive-dimensional doubly stochastic blocks.
+The proof also gives Gyires's inequality for the square of the resulting matrix.
+These closure results do not prove the required block hypotheses for either all-order structured class.
+
 \subsection{Limits of the formal verification}
 The formal proof establishes $R_\kappa(z)\ge0$ for all $z\ge0$, which is the part of Lemma~\ref{lem:certificate} that
 the theorems need. The finer statements of that lemma (the numbers $996$ and $5$ of positive and zero coefficients,
 the positions of the zeros, the four pure-power coefficients, and the least positive coefficient $484$) are not stated
 in Lean; the exact computation above verifies them.
 The broader matrix and polynomial results are not fully formalized.
-The Cauchy--Schwarz proof in Section~\ref{sec:general} also differs from the permutation sum-of-squares proof used in Lean.
+The Cauchy--Schwarz proof in Section~\ref{sec:general} uses the coefficient inner product.
+The Lean proof uses the permutation bilinear form and a quadratic discriminant.
 The formal verification therefore applies to the listed declarations, rather than to every argument in this paper.
 
 
@@ -6493,27 +6516,11 @@ Each formalization must connect these intermediate statements to the full matrix
 
 \section{Authorship and disclosure}\label{sec:about}
 
-Dev~D.~Goyal selected the problem, directed the research, and accepts responsibility for publication.
-He did not supply the proof ideas or intermediate arguments.
-ChatGPT (OpenAI), using GPT-6 with Pro reasoning, constructed the order-five proof and initial Lean formalization.
-Claude Opus~5.5, used with Claude Code, revised that formalization and performed further checks.
-The broader arguments were developed with AI assistance.
-Codex, using GPT-6, checked the arguments and exact certificates and edited the manuscript.
-
-Separate GPT-6.1 Sol agents performed mathematical and editorial reviews.
-These reviews do not constitute independent human expert review or peer review.
-The author's recorded personal review covers the earlier order-five proofs only.
-The repository provides the source history, exact programs, verification outputs, and review reports.
-
-\subsection{Prior-work limits}
-
-The literature search used the conjecture name, equivalent formulations, public formalizations, and the Minc catalogue~\cite{lavi}.
-The full articles by Gyires and Chang were not available for inspection.
-The author-hosted Cheon--Wanless PDF was unavailable, although its bibliographic record and relevant indexed text were available.
-MathSciNet, zbMATH, and complete Google Scholar citation searches were not completed.
-The broader results still require a full comparison with earlier literature.
-Neither an unsuccessful search nor the absence of a theorem from a catalogue establishes novelty.
-This preprint makes no unconditional novelty or priority claim.
+Dev~D.~Goyal directed the research and is responsible for publication.
+ChatGPT (OpenAI), using GPT-6 with Pro reasoning, generated mathematical arguments and Lean formalizations.
+Claude Opus~5.5, used with Claude Code, also contributed to the order-five formalization.
+Codex assisted with formalization, computations, and editing.
+This preprint has not been peer reviewed. No priority claim is made for the broader results.
 
 \section*{Acknowledgements}
 
@@ -6521,6 +6528,10 @@ The conjecture is due to B.~Gyires.
 The order-five formalization of the permanent comparison adapts Chris Ozols's proof~\cite{ozols}.
 Its Apache License~2.0 notices are preserved in the source files.
 The formal proofs use Lean and Mathlib.
+
+\appendix
+\input{additional-results-appendix.tex}
+\input{exploratory-observations-appendix.tex}
 
 \begingroup
 \small\raggedright

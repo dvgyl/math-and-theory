@@ -26,8 +26,8 @@ The reference distribution is `(a,h,…,h)`. It has one response of probability 
 
 The result refutes Conjecture 7.2 in [Beirami et al., ICML 2025](https://proceedings.mlr.press/v267/beirami25a.html), also available in [arXiv v3](https://arxiv.org/html/2401.01879v3). Equation (28) uses the same half-credit convention. Lemma 5.2 gives the cumulative-probability formula used here. The source's proved upper bounds on divergence and win rate remain valid.
 
-The follow-up by [Aminian et al., arXiv:2507.05913v1](https://arxiv.org/html/2507.05913v1) studies smoothing, divergence, and regret bounds. Its inspected statements do not resolve this conjecture. Searches on 26 October 2026 used the conjecture number, formula, and finite counterexample. No earlier disproof was found. The search did not cover the full citation graph and does not establish priority.
+The follow-up by [Aminian et al., arXiv:2507.05913v1](https://arxiv.org/html/2507.05913v1) studies soft best-of-n sampling and gives divergence and regret bounds. No claim of first priority is made.
 
-## Authorship and review
+## AI assistance
 
-Dev D. Goyal directed the research. ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, generated the proof and Lean formalization. Further mathematical checks and editing used AI assistance. See [AUTHORSHIP.md](../../AUTHORSHIP.md) for the full disclosure. Machine verification and AI review do not constitute independent human expert peer review. This paper has not been peer reviewed. The [verification records](../../verification/README.md) describe the checks for this version.
+Dev D. Goyal directed the research and is responsible for publication. ChatGPT (OpenAI), using GPT-6 with Pro reasoning, generated the mathematical arguments and Lean formalizations. Codex assisted with formalization, computations, and editing. [AUTHORSHIP.md](../../AUTHORSHIP.md) gives the collection disclosure. This preprint has not been peer reviewed.

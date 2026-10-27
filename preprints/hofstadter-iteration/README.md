@@ -31,8 +31,8 @@ The conjecture appears immediately before Lemma 7.6 in [Letouzey, Li, and Steine
 
 [Letouzey's preprint of 26 October 2026](https://inria.hal.science/hal-05839193v1), Section 7.2, concerns the earlier index `j=k+1`. The associated [Rocq source](https://github.com/letouzey/hofstadter_g/tree/de2bc29a0b3a7dc1f57baf1131353856ee74ddf7) proves known comparisons and gives witnesses. Its witness in the direction needed here has the restriction `j≤2k`. That restriction excludes the index `j=2k+1` in the present theorem.
 
-The inverse relations and earlier comparisons are due to this prior work. The Lean formalization proves the inverse relations again from the recurrence. The contribution is the explicit late-iterate failure and the family for every `k≥4`. The bounded search of 26 October 2026 found no earlier proof of that family. It does not establish first priority.
+The inverse relations and earlier comparisons are due to this prior work. The Lean formalization proves the inverse relations again from the recurrence. The contribution is the explicit late-iterate failure and the family for every `k≥4`. No claim of first priority is made.
 
-## Authorship and AI use
+## AI assistance
 
-Dev D. Goyal directed the research. AI systems produced the proofs and formalizations under his direction. [AUTHORSHIP.md](../../AUTHORSHIP.md) gives the full disclosure. The [verification records](../../verification/README.md) give the scope of proof compilation, statement comparison, independent kernel checks, computations, and AI review. These checks do not constitute independent human expert review. This paper has not been peer reviewed.
+Dev D. Goyal directed the research and is responsible for publication. ChatGPT (OpenAI), using GPT-6 with Pro reasoning, generated the mathematical arguments and Lean formalizations. Codex assisted with formalization, computations, and editing. [AUTHORSHIP.md](../../AUTHORSHIP.md) gives the collection disclosure. This preprint has not been peer reviewed.

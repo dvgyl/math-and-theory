@@ -1,3 +1,7 @@
+
+if not __debug__:
+    raise RuntimeError("Certificate checks require assertions. Run Python without -O or PYTHONOPTIMIZE.")
+
 from collections import Counter
 from fractions import Fraction
 from itertools import permutations

@@ -369,8 +369,7 @@ The source-definition module passed its native Lean build and axiom audit.
 The source theorem uses only \texttt{propext}, \texttt{Classical.choice},
 and \texttt{Quot.sound}. The repository's
 \href{https://github.com/dvgyl/math-and-theory/blob/main/verification/summary.md}{verification record}
-gives the builds, statement comparisons, independent kernel checks,
-and AI review status.
+gives the builds, statement comparisons, and independent kernel checks.
 
 An independent Python program also counts Motzkin paths and applies the
 finite alternating sum directly. It agrees with the published OEIS table
@@ -380,15 +379,11 @@ checks support the result. They do not prove the infinite range.
 The Lean statement uses the recurrence characterization. A formal proof
 of the lattice-path interpretation is outside its scope.
 
-\section*{Authorship and AI use}
-
+\section*{AI assistance}
 Dev D. Goyal directed the research and is responsible for publication.
-ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, produced the
-research proofs and initial formalizations under his direction.
-AI assistance also contributed to the mathematical audit, the
-source-definition proof, the independent computation, and this manuscript.
-These contributions do not constitute independent human expert review.
-This paper has not been peer reviewed. No claim of first priority is made.
+ChatGPT (OpenAI), using GPT-6 with Pro reasoning, generated the mathematical
+arguments and Lean formalizations. Codex assisted with formalization,
+computations, and editing. This preprint has not been peer reviewed. No claim of first priority is made.
 
 \bibliographystyle{plainnat}
 \bibliography{references}

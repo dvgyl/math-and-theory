@@ -10,7 +10,7 @@
 
 \usepackage{xurl}
 
-\title{Math and Theory: Collection Overview}
+\title{Math and Theory: collection overview}
 
 \author{Dev D. Goyal}
 
@@ -22,7 +22,7 @@
 
 \begin{abstract}
 
-The catalogue contains seven result families and seven preprints in mathematics and theoretical computer science. Six preprints have complete Lean proofs of their principal claims. The Gyires preprint proves inequalities for structured matrices and develops related polynomial bounds. Only its principal order-five claims have complete Lean proofs. The literature comparison and independent human expert review of its broader results remain incomplete. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. Machine checking and AI review do not constitute independent human expert peer review.
+The catalogue contains seven result families and seven preprints in mathematics and theoretical computer science. Six preprints have complete Lean proofs of their principal claims. The Gyires preprint proves inequalities for structured matrices and develops related polynomial bounds. Only its principal order-five claims have complete Lean proofs. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. The papers have not been peer reviewed.
 
 \end{abstract}
 
@@ -30,7 +30,7 @@ The catalogue contains seven result families and seven preprints in mathematics 
 
 \section{How to use the collection}
 
-The \href{https://github.com/dvgyl/math-and-theory/blob/main/CONTENTS.md}{manuscript catalogue} links each paper to its formal statements and independent computations. The \href{https://github.com/dvgyl/math-and-theory/blob/main/verification/README.md}{verification guide} records the commands and their results. The formal library uses one Lake project, pinned to Lean 4.35.0 and an exact Mathlib revision. The 21 selected submission statements include equality, sharpness, and auxiliary positivity claims. They are grouped into seven papers, not presented as 21 independent discoveries.
+The \href{https://github.com/dvgyl/math-and-theory/blob/main/CONTENTS.md}{manuscript catalogue} links each paper to its formal statements and independent computations. The \href{https://github.com/dvgyl/math-and-theory/blob/main/verification/README.md}{verification guide} records the commands and their results. The formal library uses one Lake project, pinned to Lean 4.35.0 and an exact Mathlib revision. The 21 selected formal statements include equality, sharpness, and auxiliary positivity claims within these seven papers.
 
 \section{Mathematics}
 
@@ -60,7 +60,7 @@ Every nonnegative real circulant matrix $A$ of order five satisfies $24\operator
 
 \subsubsection*{Broader arguments in the same preprint}
 
-The manuscript also proves results for circulants of orders six and seven, with sharp sorted-gap margins; the all-order family $aI+bQ+cQ^2$ for any permutation matrix $Q$ and nonnegative coefficients; four-block doubly stochastic matrices with unequal block sizes and boundary entries; matrices with one exceptional column or row; and every rank-at-most-two doubly stochastic matrix through order fifteen.
+The manuscript also proves results for circulants of orders six and seven, with sharp sorted-gap margins. It treats $aI+bQ+cQ^2$ in every dimension, where $Q$ is any permutation matrix and the coefficients are nonnegative. Further results cover four-block doubly stochastic matrices with unequal block sizes and boundary entries, matrices with one exceptional column or row, and every rank-at-most-two doubly stochastic matrix through order fifteen.
 
 The supporting sections prove structural, scalar, deletion, balancing, local polynomial, and configuration-model results. Exact counterexamples identify the limits of auxiliary assertions. The \href{https://github.com/dvgyl/math-and-theory/blob/main/research-notes/gyires-complete-support/README.md}{complete support record} gives the source map and exact reproduction commands.
 
@@ -134,10 +134,11 @@ Lean checks the proofs against their formal statements. Separate Challenge modul
 
 \par
 
-Dev D. Goyal directed the research and is responsible for publication. ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, developed the proofs and Lean formalizations. The Gyires records also identify contributions from Claude Opus 5.5, used with Claude Code. Codex, using GPT-6, checked and revised the collection. The \href{https://github.com/dvgyl/math-and-theory/blob/main/AUTHORSHIP.md}{authorship record} states the precise review scope and identifies the separate AI reviewer.
-
-\par
-
-These papers have not been peer reviewed. The author's recorded personal review covers the earlier order-five Gyires proofs only.
+Dev D. Goyal directed the research and is responsible for publication.
+ChatGPT (OpenAI), using GPT-6 with Pro reasoning, generated mathematical arguments and Lean formalizations.
+Codex assisted with formalization, computations, and editing.
+Claude Opus 5.5, used with Claude Code, also contributed to the order-five Gyires formalization.
+The \href{https://github.com/dvgyl/math-and-theory/blob/main/AUTHORSHIP.md}{authorship disclosure} gives this information for the collection.
+These preprints have not been peer reviewed.
 
 \end{document}

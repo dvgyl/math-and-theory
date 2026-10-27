@@ -1,3 +1,7 @@
+
+if not __debug__:
+    raise RuntimeError("Run this checker without Python optimization so that all mathematical checks execute.")
+
 from itertools import combinations
 from fractions import Fraction
 import json

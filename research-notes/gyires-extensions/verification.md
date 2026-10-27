@@ -1,58 +1,44 @@
 # Reproduce the all-order Gyires certificates
 
-The recorded run on 26 October 2026 used Python 3.14.6 and Node.js 22.23.2. All programs use their standard libraries. The five program files are unchanged copies from the research archive identified below. Their hashes are in [provenance.json](provenance.json).
+The programs use the Python and Node.js standard libraries. The reproduction environment uses Python 3.14.6 and Node.js 22.23.2. The [source manifest](../../verification/records/source-hashes.json) identifies the program and output files.
 
 ## Commands
 
-From this directory, create a separate output directory and run:
+From the repository root, create an output directory outside the source tree:
 
 ```sh
-mkdir -p run
-cd run
-python3 ../certificates/round2_sharp_bound_check.py
-python3 ../certificates/round2_circ_small_check.py
-node ../certificates/round2_independent_finite.mjs 47
+certificate_dir="$PWD/research-notes/gyires-extensions/certificates"
+mkdir -p ../gyires-certificate-run
+cd ../gyires-certificate-run
+python3 "$certificate_dir/sharp_bound_check.py"
+python3 "$certificate_dir/circ_small_check.py"
+node "$certificate_dir/independent_finite.mjs" 93
+mv independent_finite.json permutation-alternative-finite.json
+node "$certificate_dir/independent_finite.mjs" 47
 ```
 
-The three programs write JSON reports in `run/`. Compare those files with the [recorded outputs](results/summary.json). The summary identifies each output by hash.
+The programs write JSON reports in the output directory. Compare their mathematical fields with the [recorded outputs](results/summary.json). Timing fields can change.
 
-Check the output coverage and signs with:
+From the repository root, check the regenerated report coverage with:
 
 ```sh
-python3 - <<'PY'
-import json
-from pathlib import Path
-
-finite = json.loads(Path('round2_independent_finite.json').read_text())
-rows = finite['results']
-assert finite['max_n'] == 47
-assert len(rows) == 135
-assert {(r['n'], r['chamber']) for r in rows} == {
-    (n, c) for n in range(3, 48) for c in range(3)
-}
-assert all(r['negative'] == 0 for r in rows)
-assert all(r['zero'] == 0 for r in rows if r['n'] >= 4)
-assert sum(r['positive'] + r['zero'] + r['negative'] for r in rows) == 224550
-small = json.loads(Path('round2_circ_small_check.json').read_text())
-assert [r['n'] for r in small] == list(range(1, 8))
-assert all(r['permanent_transfer_matches'] and r['gram_transfer_matches'] for r in small)
-assert all(c['negative_count'] == 0 for r in small for c in r.get('chambers', []))
-sharp = json.loads(Path('round2_sharp_bound_check.json').read_text())
-assert sharp['all_passed']
-print('PASS: finite coverage, coefficient signs, small-order identities, and sharp threshold')
-PY
+python3 verification/check_gyires_certificates.py --extensions ../gyires-certificate-run
 ```
+
+The checker requires the two stated finite ranges, each with all three chambers in every order. It also checks the other stored Gyires publication reports. It rejects incomplete ranges, duplicate chambers, and failed or sampled results. This report check does not rerun the coefficient arithmetic.
 
 ## Completed checks
 
 The recorded run checked 135 reflection-reduced chambers in orders 3 through 47. It checked 224,550 coefficient positions with exact integers. No coefficient was negative. Every coefficient was positive in orders 4 through 47. The small-order program matched direct permanents to both transfer formulas in orders one through seven. Its six gap orderings passed in orders three and four.
 
+The appendix also gives two alternative spectral bounds. Their finite checks extend through orders 69 and 93. The report `permutation-alternative-finite.json` covers orders 3–93, with 273 chambers and 1,674,309 coefficient positions. All decisive coefficients are nonnegative. This single report covers both alternative ranges.
+
 The sharp-bound program checked the residual factorization in Q(sqrt(2)), its positive decomposition, and the exact threshold at order 48. The written argument proves the monotone tail after that threshold. The finite coefficient check alone does not prove an all-order theorem.
 
-The file `round2_circ_transfer.py` supplies transfer routines to the small-order checker. Its standalone historical search is not part of the commands above. That historical search can exit with status zero after reporting a negative coefficient. Its exit status alone must not be treated as a passing certificate.
+The file `circ_transfer.py` supplies transfer routines to the small-order checker. Its standalone mode checks the requested finite range. Every negative coefficient or incomplete requested range causes a nonzero exit code. Python programs that use assertions reject optimization with `-O` or `PYTHONOPTIMIZE`.
 
 The [four-block argument](four-block.md) is analytic. It uses the Bernoulli likelihood bound and exact permanent identities. No finite computation is presented as proof of that all-order statement.
 
 ## Verification limits
 
-Neither extension has a complete Lean proof in this repository. Neither has a Comparator configuration or a Palomar submission claim. The seven existing formal configurations apply only to their stated results. The [correction review](review.md) is an AI mathematical and editorial review. It is not human expert validation, peer review, or a novelty determination.
+Neither extension has a complete Lean proof in this repository. Neither has a Comparator configuration or a Palomar submission claim. The seven existing formal configurations apply only to their stated results.

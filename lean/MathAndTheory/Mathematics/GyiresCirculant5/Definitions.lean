@@ -1,7 +1,6 @@
 module
 
-/- This file comes from the order-five Gyires development.
-The collection changes module paths and namespaces. See PROVENANCE.md for attribution. -/
+/- See PROVENANCE.md for source attribution and modifications. -/
 
 public import Mathlib.Basic.Real.Basic
 public import Mathlib.Data.Matrix.Basic

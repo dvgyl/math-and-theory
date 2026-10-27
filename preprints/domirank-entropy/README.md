@@ -8,8 +8,8 @@ A connected graph with 14 vertices and 32 edges has negative degree-log-degree e
 
 This counterexample refutes [Zhang and Zhao, arXiv:2610.00107v4, Conjecture 4.9](https://arxiv.org/html/2610.00107v4). The conjecture asserts that entropy decreases on every interval of positive scores for a structurally disassortative graph. It does not restrict the interval to the first component of the positive-score set. The theorem does not settle that narrower question or assess empirical performance on networks.
 
-The proof uses exact rational score formulas and rational bounds for logarithms. Lean proves the graph properties, the covariance sign, stability and positivity on the whole interval, and the entropy increase. The independent program reconstructs the graph and checks the formulas and bounds. The bounded literature search does not establish first priority.
+The proof uses exact rational score formulas and rational bounds for logarithms. Lean proves the graph properties, the covariance sign, stability and positivity on the whole interval, and the entropy increase. The independent program reconstructs the graph and checks the formulas and bounds. No claim of first priority is made.
 
 Compile from this directory with `tectonic paper.tex`.
 
-Dev D. Goyal directed the research. ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, produced the construction and proof development. Codex audited the sources, adapted the formalization, performed independent computations, and prepared the manuscript. [AUTHORSHIP.md](../../AUTHORSHIP.md) gives the full disclosure. Machine verification and AI review do not constitute independent human expert review. This paper has not been peer reviewed.
+Dev D. Goyal directed the research and is responsible for publication. ChatGPT (OpenAI), using GPT-6 with Pro reasoning, generated the graph construction and mathematical arguments. Codex assisted with formalization, computations, and editing. [AUTHORSHIP.md](../../AUTHORSHIP.md) gives the collection disclosure. This preprint has not been peer reviewed.

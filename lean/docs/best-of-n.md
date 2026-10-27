@@ -2,7 +2,7 @@
 
 This family proves a finite disproof of Beirami et al., Conjecture 7.2, and a counterexample for every integer budget at least two with arbitrarily small reference probabilities.
 
-The [paper](../../preprints/best-of-n/paper.pdf) gives the mathematical proof. The [paper guide](../../preprints/best-of-n/README.md) records prior-work evidence and search limits. The [verification guide](../../verification/best-of-n/README.md) gives commands and computational limits.
+The [paper](../../preprints/best-of-n/paper.pdf) gives the mathematical proof. The [paper guide](../../preprints/best-of-n/README.md) describes prior work. The [verification guide](../../verification/best-of-n/README.md) gives commands and computational limits.
 
 ## Modules and principal statements
 
@@ -48,7 +48,7 @@ The following declarations are in `MathAndTheory.BestOfN`.
 
 ## Every-budget theorem map
 
-The following declarations are in `MathAndTheory.BestOfNExtension`. The internal parameter is `r=n−2`. Thus `r+2` is the sampling budget.
+The following declarations are in `MathAndTheory.BestOfNExtension`. The formal parameter is `r=n−2`. Thus `r+2` is the sampling budget.
 
 | Claim | Declaration |
 | --- | --- |
@@ -76,4 +76,4 @@ Within `finite_construction`, the local proof `hgap` establishes `ell(W)−D>3a^
 
 ## Formal scope
 
-The modules compile with the pinned Lean 4.35.0 project. The selected Solution statements depend only on `propext`, `Classical.choice`, and `Quot.sound`. Compilation and axiom inspection do not establish novelty or expert validation. See the [central verification record](../../verification/README.md) for Comparator and review status. The linked records identify the checked sources and review scope.
+The modules compile with the pinned Lean 4.35.0 project. The selected Solution statements depend only on `propext`, `Classical.choice`, and `Quot.sound`. Compilation and axiom inspection do not establish novelty or expert validation. The [central verification record](../../verification/README.md) gives statement comparison and proof-check results. The linked records identify the checked sources and mathematical scope.

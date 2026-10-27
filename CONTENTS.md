@@ -30,12 +30,12 @@ Six papers have complete formal proofs of their principal claims. The Gyires pre
 
 #### Supporting records for the all-order Gyires arguments
 
-The preprint includes both all-order arguments. This [supporting record](research-notes/gyires-extensions/README.md) retains their source notes, programs, and outputs. Their Lean verification, novelty assessment, and independent human expert review remain incomplete.
+The preprint includes both all-order arguments. This [supporting record](research-notes/gyires-extensions/README.md) gives their proofs, programs, and outputs. Their Lean verification, novelty assessment, and independent human expert review remain incomplete.
 
 - [Permutation-polynomial claim](research-notes/gyires-extensions/permutation-polynomial.md). For every dimension, A=aI+bQ+cQ² with Q a permutation matrix and a,b,c nonnegative satisfies the stronger Gram-permanent bound. The argument combines exact polynomial certificates with an analytic tail.
 - [Four-block claim](research-notes/gyires-extensions/four-block.md). At most two row types and two column types suffice for three permanent contraction bounds and a strict Gyires margin away from the uniform matrix. Unequal block sizes and zero block entries are included.
 
-[Certificate reproduction](research-notes/gyires-extensions/verification.md) · [Source hashes](research-notes/gyires-extensions/provenance.json) · [Correction review](research-notes/gyires-extensions/review.md)
+[Certificate reproduction](research-notes/gyires-extensions/verification.md) · [Source hashes](research-notes/gyires-extensions/provenance.json)
 
 ### Graph theory and matrix analysis
 

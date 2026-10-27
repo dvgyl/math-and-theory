@@ -35,12 +35,6 @@ for every admissible non-diagonal real symmetric positive-definite $A$. The coun
 
 The Bapat--Lal monotonicity assertion is restricted to $[-1,1]$. The October 2026 record of Kitamura's order-144 complex Hermitian counterexample explicitly leaves its real-symmetric case unsettled \cite{kitamura}. The present results concern $q>1$.
 
-The last term in \eqref{eq:family} explains the construction. Its derivative
-is negative at the chosen parameter. Each additional identity coordinate
-increases its power of $q$ more than the powers in the positive derivative
-terms. With enough such coordinates, the total derivative is negative at
-any fixed $q>1$.
-
 Mitchell discusses a failure of the extended conjecture for positive
 semidefinite rank-one matrices at negative parameters \cite{mitchell}.
 That result does not supply the real positive-definite examples above one
@@ -152,6 +146,10 @@ which is \eqref{eq:family}.
 \end{proof}
 
 \section{Failure at every prescribed parameter above one}
+The last term in \eqref{eq:family} can have a negative derivative.
+The proof below chooses $a$ and $d$ in terms of $m$ and a fixed $r>1$.
+At $q=r$, this negative contribution grows faster in magnitude with $m$
+than the positive derivative of the middle term.
 \begin{theorem}\label{thm:allq}
 For every real $r>1$, there are an integer $n\ge5$ and a real symmetric positive-definite matrix $A$ of order $n$ such that
 \[
@@ -270,20 +268,13 @@ determine the smallest possible dimension. The integer-entry and correlation
 conclusions are separate. They do not assert an integer correlation matrix. The results do not settle the
 real Bapat--Lal assertion on $[-1,1]$.
 
-The literature search covered the 2010 conjecture, its 2018 restatement,
-Mitchell's discussion, de S\'a's correction, and the public record of the
-complex counterexample. No earlier proof of the stated real
-positive-definite results was found in these sources. The search was
-limited and does not establish priority.
+No claim of first priority is made.
 
-\section{Authorship and review}
-Dev D. Goyal directed the AI research and is responsible for publication.
-ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, produced the
-construction, proofs, and Lean formalization. Codex audited the source
-statements, checked the mathematics, adapted the formalization, performed
-independent computations, and edited the manuscript. The repository records
-the AI referee review. Machine verification and AI review do not constitute
-human expert peer review. This manuscript has not been peer reviewed.
+\section*{AI assistance}
+Dev D. Goyal directed the research and is responsible for publication.
+ChatGPT (OpenAI), using GPT-6 with Pro reasoning, generated the mathematical
+arguments and Lean formalizations. Codex assisted with formalization,
+computations, and editing. This preprint has not been peer reviewed.
 
 \bibliographystyle{plainnat}
 \bibliography{references}

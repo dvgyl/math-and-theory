@@ -1,7 +1,6 @@
 module
 
-/- This file comes from the order-five Gyires development.
-The collection changes module paths and namespaces. See PROVENANCE.md for attribution. -/
+/- Source attribution: MathAndTheory/Mathematics/GyiresCirculant5/PROVENANCE.md. -/
 
 public import MathAndTheory.Mathematics.GyiresCirculant5.MathlibStatements
 

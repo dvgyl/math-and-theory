@@ -1,4 +1,8 @@
 """Check the rational bounds in the manuscript's limitations section."""
+
+if not __debug__:
+    raise RuntimeError("Certificate checks require assertions. Run Python without -O or PYTHONOPTIMIZE.")
+
 from fractions import Fraction as F
 from pathlib import Path
 import json
@@ -6,7 +10,7 @@ import sys
 
 root = Path(__file__).parent
 sys.path.insert(0, str(root / 'run'))
-import round4_zero_pure_certificate as zero
+import zero_pure_certificate as zero
 
 base = zero.base_certificate()
 unique = zero.unique_zero_certificate()

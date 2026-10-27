@@ -26,3 +26,16 @@ lake env lean -j1 ../verification/gyires-circulant-five/AxiomAudit.lean
 See [the verification record](../../verification/gyires-circulant-five/README.md) for the exact check results. The coefficient counts in the manuscript are checked separately by integer computation. The principal inequalities, equality cases, and sharp margin have Lean proofs.
 
 The library's `PROVENANCE.md` and `LICENSE` preserve the original source and license. `PermanentGram.lean` retains the Chris Ozols attribution.
+
+## General supporting results
+
+The modules in `MathAndTheory.Mathematics.Gyires` contain additional results for arbitrary finite dimensions. They are included in the whole-library axiom audit.
+
+- `PermanentCauchySchwarz` proves the squared and absolute-value permanent Cauchy–Schwarz inequalities. It also gives strict and non-strict matrix-square bounds from two Gram bounds.
+- `PermanentPermutation` proves preservation of the permanent and both strong Gram bounds under independent row and column permutations. The resulting Gyires bound uses the square of the permuted matrix.
+- `DimensionConstant` proves the comparison of `n! / n^n` with the product of the constants for positive block sizes. The comparison is strict for at least two blocks.
+- `BlockPermanent` proves the permanent product identity, both strong bounds, and Gyires closure for finite block sums. It permits unequal sizes and independent row and column permutations. The bounds are strict for at least two positive-dimensional doubly stochastic blocks.
+
+- `CirculantCertificate` proves an exact reduction from nonnegative integer polynomial coefficients to the strong and combined Gyires bounds for circulants. It proves complete sorted-gap representation, matrix evaluation, normality, and affine invariance. Its coefficient-sign hypotheses remain unproved for the higher-order families.
+
+These results support the broader manuscript arguments. The principal higher-order circulant, permutation-polynomial, four-block, exceptional-vector, and finite rank-two theorems remain incomplete in Lean.

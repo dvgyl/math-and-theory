@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Check the two closure examples with exact rational arithmetic."""
 
+if not __debug__:
+    raise RuntimeError("Certificate checks require assertions. Run Python without -O or PYTHONOPTIMIZE.")
+
+
 from fractions import Fraction as F
 from itertools import permutations
 from math import factorial, prod

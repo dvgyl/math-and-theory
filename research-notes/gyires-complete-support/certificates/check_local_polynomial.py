@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Check finite polynomial identities with exact rational arithmetic."""
+
+if not __debug__:
+    raise RuntimeError("Certificate checks require assertions. Run Python without -O or PYTHONOPTIMIZE.")
+
 from collections import defaultdict
 from fractions import Fraction as F
 from itertools import product

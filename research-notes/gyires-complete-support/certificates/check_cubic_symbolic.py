@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Verify the cubic identities with symbolic arithmetic."""
+
+if not __debug__:
+    raise RuntimeError("Certificate checks require assertions. Run Python without -O or PYTHONOPTIMIZE.")
+
 import json
 from math import factorial
 from pathlib import Path

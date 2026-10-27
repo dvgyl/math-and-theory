@@ -5,6 +5,10 @@ reward. Enumerate every ordered tuple of those three groups. Their masses
 are exact integers over one common denominator. This checks the sampling
 law without assuming the CDF-power formula.
 """
+
+if not __debug__:
+    raise RuntimeError("Run this checker without Python optimization so that all mathematical checks execute.")
+
 from fractions import Fraction as F
 from itertools import product
 from math import fsum, log

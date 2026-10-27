@@ -3,6 +3,10 @@
 Generator: subset DP and forward shears. Checker: permutation enumeration,
 autocorrelation grouping, dense inverse binomial transforms, direct coverage.
 """
+
+if not __debug__:
+    raise RuntimeError("Certificate checks require assertions. Run Python without -O or PYTHONOPTIMIZE.")
+
 import collections,itertools,json,math,sys,time
 from pathlib import Path
 
@@ -66,6 +70,8 @@ def evaluate(poly,w,u,bits):
     return sum(c*math.prod(w[j]**(key//u[j]&((1<<bits)-1)) for j in range(len(w))) for key,c in poly.items())
 
 def main(n):
+    if n < 3:
+        raise ValueError('Order must be at least three.')
     start=time.time();exact,u,bits=independent_defect(n)
     import circ_gap_test as primary
     d,pu,base=primary.defect(n)
@@ -73,7 +79,8 @@ def main(n):
     print('independent original polynomial matches',n,len(exact),flush=True)
     reps=list(primary.affine_reps(n));units=[a for a in range(n) if math.gcd(a,n)==1]
     covered={tuple((a*x+b)%n for x in pi) for pi in reps for a in units for b in range(n)}
-    assert len(covered)==math.factorial(n)
+    assert len(reps)==math.factorial(n)//(n*len(units)) and len(set(reps))==len(reps)
+    assert covered==set(itertools.permutations(range(n)))
     reports=[];global_min=None
     for idx,pi in enumerate(reps):
         candidate=primary.gap_transform(d,pu,base,pi)
@@ -88,6 +95,7 @@ def main(n):
         m=min(g.values());global_min=m if global_min is None else min(global_min,m)
         reports.append({'permutation':pi,'positive':len(g),'zeros':n,'minimum':m,'pure_gap_coefficients':pure})
         if idx%10==0:print('verified',n,idx+1,'/',len(reps),flush=True)
+    assert len(reports)==len(reps) and {tuple(r['permutation']) for r in reports}==set(reps)
     examples=[]
     for w in [[1]*n,[1]+[0]*(n-1),[1,1]+[0]*(n-2),list(range(n))]:
         C=[[w[(j-i)%n] for j in range(n)] for i in range(n)]

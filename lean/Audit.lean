@@ -104,4 +104,106 @@ example (r : ℝ) (hr : 1 < r) :
 #print axioms QPermanentProblem.dense_correlation_counterexamples
 #print axioms QPermanentProblem.integer_counterexamples
 
+example {n : Type*} [Fintype n] [DecidableEq n] (M N : Matrix n n ℝ) :
+    |(M * N.transpose).permanent| ≤
+      Real.sqrt ((M * M.transpose).permanent * (N * N.transpose).permanent) :=
+  MathAndTheory.GyiresCirculant5.PermanentGram.permanent_mul_transpose_abs_le M N
+
+example {n : Type*} [Fintype n] [DecidableEq n] (A : Matrix n n ℝ)
+    (σ τ : Equiv.Perm n) :
+    (A.submatrix σ τ).permanent = A.permanent :=
+  MathAndTheory.Gyires.permanent_submatrix_perm A σ τ
+
+example (dims : List ℕ) (hpos : ∀ n ∈ dims, 0 < n) :
+    (dims.sum.factorial : ℝ) / (dims.sum : ℝ) ^ dims.sum ≤
+      (dims.map (fun (n : ℕ) => (n.factorial : ℝ) / (n : ℝ) ^ n)).prod :=
+  MathAndTheory.Gyires.dimensionConstant_sum_le dims hpos
+
+
+namespace MathAndTheory.Gyires
+open scoped BigOperators
+
+example {r : ℕ} (m : Fin r → ℕ)
+    (B : ∀ i, Matrix (Fin (m i)) (Fin (m i)) ℝ)
+    (σ τ : Equiv.Perm (Sigma (fun i => Fin (m i))))
+    (hm : ∀ i, 0 < m i)
+    (hB : ∀ i, B i ∈ doublyStochastic ℝ (Fin (m i)))
+    (hs : ∀ i,
+      dimensionConstant (m i) * (B i * (B i).transpose).permanent ≤ (B i).permanent ^ 2 ∧
+      dimensionConstant (m i) * ((B i).transpose * B i).permanent ≤ (B i).permanent ^ 2) :
+    let A := (Matrix.blockDiagonal' B).submatrix σ τ
+    A ∈ doublyStochastic ℝ (Sigma (fun i => Fin (m i))) ∧
+      dimensionConstant (∑ i, m i) * (A * A.transpose).permanent ≤ A.permanent ^ 2 ∧
+      dimensionConstant (∑ i, m i) * (A.transpose * A).permanent ≤ A.permanent ^ 2 ∧
+      dimensionConstant (∑ i, m i) * ((A * A.transpose).permanent +
+        (A.transpose * A).permanent + 2 * (A * A).permanent) ≤ 4 * A.permanent ^ 2 := by
+  have h := strong_bounds_blockDiagonal_submatrix_perm B σ τ
+    (by simpa only [Fintype.card_fin] using hm)
+    (by simpa only [Fintype.card_fin] using hs)
+  have hg := gyires_blockDiagonal_submatrix_perm B σ τ
+    (by simpa only [Fintype.card_fin] using hm)
+    (by simpa only [Fintype.card_fin] using hs)
+  refine ⟨blockDiagonal_submatrix_mem_doublyStochastic B σ τ hB, ?_, ?_, ?_⟩
+  · simpa only [Fintype.card_sigma, Fintype.card_fin] using h.1
+  · simpa only [Fintype.card_sigma, Fintype.card_fin] using h.2
+  · simpa only [Fintype.card_sigma, Fintype.card_fin] using hg
+
+example {r : ℕ} (m : Fin r → ℕ)
+    (B : ∀ i, Matrix (Fin (m i)) (Fin (m i)) ℝ)
+    (σ τ : Equiv.Perm (Sigma (fun i => Fin (m i))))
+    (hm : ∀ i, 0 < m i) (hr : 2 ≤ r)
+    (hB : ∀ i, B i ∈ doublyStochastic ℝ (Fin (m i)))
+    (hs : ∀ i,
+      dimensionConstant (m i) * (B i * (B i).transpose).permanent ≤ (B i).permanent ^ 2 ∧
+      dimensionConstant (m i) * ((B i).transpose * B i).permanent ≤ (B i).permanent ^ 2) :
+    let A := (Matrix.blockDiagonal' B).submatrix σ τ
+    dimensionConstant (∑ i, m i) * (A * A.transpose).permanent < A.permanent ^ 2 ∧
+      dimensionConstant (∑ i, m i) * (A.transpose * A).permanent < A.permanent ^ 2 ∧
+      dimensionConstant (∑ i, m i) * ((A * A.transpose).permanent +
+        (A.transpose * A).permanent + 2 * (A * A).permanent) < 4 * A.permanent ^ 2 := by
+  have h := strong_bounds_blockDiagonal_submatrix_perm_lt B σ τ
+    (by simpa only [Fintype.card_fin] using hm)
+    (by simpa only [Fintype.card_fin] using hr) hB
+    (by simpa only [Fintype.card_fin] using hs)
+  have hg := gyires_blockDiagonal_submatrix_perm_lt B σ τ
+    (by simpa only [Fintype.card_fin] using hm)
+    (by simpa only [Fintype.card_fin] using hr) hB
+    (by simpa only [Fintype.card_fin] using hs)
+  refine ⟨?_, ?_, ?_⟩
+  · simpa only [Fintype.card_sigma, Fintype.card_fin] using h.1
+  · simpa only [Fintype.card_sigma, Fintype.card_fin] using h.2
+  · simpa only [Fintype.card_sigma, Fintype.card_fin] using hg
+
+end MathAndTheory.Gyires
+
+open MathAndTheory.Gyires MathAndTheory.Gyires.CirculantCertificate
+example (hP : ∀ σ : Equiv.Perm (Fin 6),
+    ∀ d ∈ (strongPolynomial σ).support, 0 ≤ (strongPolynomial σ).coeff d)
+    (w : Fin 6 → ℝ) (hw : ∀ i, 0 ≤ w i) :
+    5 * (circulant w * (circulant w).transpose).permanent ≤
+      324 * (circulant w).permanent ^ 2 := by
+  have h := strong_circulant_of_coeff_nonneg hP w hw
+  norm_num [dimensionConstant] at h
+  linarith
+
+example (hP : ∀ σ : Equiv.Perm (Fin 7),
+    ∀ d ∈ (strongPolynomial σ).support, 0 ≤ (strongPolynomial σ).coeff d)
+    (w : Fin 7 → ℝ) (hw : ∀ i, 0 ≤ w i) :
+    720 * (circulant w * (circulant w).transpose).permanent ≤
+      117649 * (circulant w).permanent ^ 2 := by
+  have h := strong_circulant_of_coeff_nonneg hP w hw
+  norm_num [dimensionConstant] at h
+  linarith
+
+example (hP : ∀ σ : Equiv.Perm (Fin 7),
+    ∀ d ∈ (strongPolynomial σ).support, 0 ≤ (strongPolynomial σ).coeff d)
+    (w : Fin 7 → ℝ) (hw : ∀ i, 0 ≤ w i) :
+    720 * ((circulant w * (circulant w).transpose).permanent +
+      ((circulant w).transpose * circulant w).permanent +
+      2 * (circulant w * circulant w).permanent) ≤
+        470596 * (circulant w).permanent ^ 2 := by
+  have h := gyires_circulant_of_coeff_nonneg hP w hw
+  norm_num [dimensionConstant] at h
+  linarith
+
 audit_math_and_theory

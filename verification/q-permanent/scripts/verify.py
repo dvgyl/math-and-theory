@@ -1,3 +1,7 @@
+
+if not __debug__:
+    raise RuntimeError("Run this checker without Python optimization so that all mathematical checks execute.")
+
 from itertools import permutations
 from math import comb, prod
 from fractions import Fraction as F

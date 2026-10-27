@@ -8,8 +8,6 @@ The inspected [policy](https://github.com/PalomarRegistry/PalomarPolicy/tree/28b
 
 The policy and template differ on some details. The metadata uses the conservative source categories `paper` and `other`, which satisfy both. The current verifier uses the submitted Lean toolchain for Comparator and NanoDa. For Lean 4.35 it selects con-ron from Lean 4.36.0-rc1, commit `c9afcddf514a6772bd4d649f7cfc04eff0b9f15e`, with authenticated archive and executable hashes. The local template script uses the bundled 4.35 con-ron instead. No submitted configuration has an external-kernel exemption.
 
-The [local contract record](records/current-contract.json) reports the selected current-verifier functions that ran. It does not claim the full protected-build procedure.
-
 ## Full workflow
 
 The [manual workflow](../.github/workflows/palomar-preflight.yml) calls the exact official reusable workflow at revision `c02bbeaed888df45c4e28c4e99dba540ad21552a`. It uses `mode: full` and `palomar-standard-v1`. It has read-only repository permissions and inherits no secrets. Each family has a separate job. It creates ordinary Actions report artifacts. It does not call the Palomar intake API, register a result, create a tag, or create a release.
@@ -22,4 +20,4 @@ Use the [Actions run list](https://github.com/dvgyl/math-and-theory/actions/work
 
 Each future submission uses repository `https://github.com/dvgyl/math-and-theory`, a full published 40-character commit, project path `lean`, metadata path `lean/formalization.yaml`, and one repository-relative configuration path `lean/comparator/<family>.json`. The human submitter relationship is `I am a responsible author or maintainer`.
 
-The [catalogue](../CONTENTS.md) gives the family identifiers. The private delivery report provides exact commit-specific fields and the recorded full-workflow outcomes. No Palomar submission has been made. Research interest, attribution, statement review, and registration remain separate from mechanical verification.
+The [catalogue](../CONTENTS.md) gives the family identifiers. No Palomar submission has been made. Research interest, attribution, statement review, and registration remain separate from mechanical verification.

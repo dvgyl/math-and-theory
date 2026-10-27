@@ -33,6 +33,6 @@ All substantive declarations below use namespace `MathAndTheory.QPermanent`.
 
 [Kenta Kitamura's public formalization](https://github.com/KitaKen1/bapat-lal-q-permanent-lean/tree/4200da4fc1a132d69c23fb877795b5b72089544b) gives an order-144 complex Hermitian disproof on the Bapat–Lal parameter interval. Its real-symmetric case remains separate. The public MI-19 examples concern a subset-preserving permutation inequality on `[0,1]`; they do not establish the present monotonicity failure above one.
 
-The source statements, full accessible papers, current problem records, exact witness terms, alternative monotonicity formulations, and public formalizations were searched on 26 October 2026. No earlier proof of the stated all-parameter positive-definite result was identified. Direct Google Scholar, zbMATH, and MathSciNet pages were unavailable through the available tools. The pinned Mathlib and formal-conjectures trees contained no matching target under the searched names. These are bounded findings, not a priority certificate.
+No claim of first priority is made.
 
-The witness dimension is not claimed to be minimal. The integer-entry and correlation conclusions are separate. No integer correlation matrix is asserted. Machine checking and AI review are not peer review.
+The witness dimension is not claimed to be minimal. The integer-entry and correlation conclusions are separate. No integer correlation matrix is asserted. This preprint has not been peer reviewed.

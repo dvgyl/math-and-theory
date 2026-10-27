@@ -46,10 +46,10 @@ for n, a in bad.items():
     print("NON-STANDARD AXIOMS:", n, a)
 for l in errors:
     print("ERROR LINE:", l)
-scan_ok = (scan is not None and scan_bad is not None and scan_bad.group(1) == "0"
+scan_ok = (scan is not None and int(scan.group(1)) > 0 and scan_bad is not None and scan_bad.group(1) == "0"
            and scan_axioms is not None and scan_axioms <= ALLOWED)
 if not scan_ok:
     print("DECLARATION SCAN: missing or failed")
-ok = not missing and not bad and not errors and scan_ok
+ok = bool(expected) and len(expected) == len(set(expected)) and not missing and not bad and not errors and scan_ok
 print("RESULT:", "PASS" if ok else "FAIL")
 sys.exit(0 if ok else 1)

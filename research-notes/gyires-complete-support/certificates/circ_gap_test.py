@@ -2,7 +2,7 @@
 """Exact circulant Gyires strong-defect coefficient investigations."""
 from collections import defaultdict
 from itertools import permutations
-from math import comb, factorial
+from math import comb, factorial, gcd
 import json, sys, time
 
 def polyaddprod(dst, p, q, scale=1):
@@ -63,15 +63,28 @@ def affine_reps(n):
         yield p
 
 if __name__=='__main__':
+    if not 2 <= len(sys.argv) <= 3:
+        raise ValueError('Usage: circ_gap_test.py ORDER [all|one]')
     n=int(sys.argv[1])
     mode=sys.argv[2] if len(sys.argv)>2 else 'one'
+    if n < 3 or mode not in {'all', 'one'}:
+        raise ValueError('Require order >= 3 and mode all or one.')
     t=time.time()
     d,u,base=defect(n)
     print('DEFECT',n,len(d),'seconds',time.time()-t,flush=True)
-    reps=affine_reps(n) if mode=='all' else [tuple(range(n))]
+    reps=list(affine_reps(n)) if mode=='all' else [tuple(range(n))]
+    if mode == 'all':
+        units=[a for a in range(1,n) if gcd(a,n)==1]
+        covered={tuple((a*x+b)%n for x in p) for p in reps for a in units for b in range(n)}
+        if len(reps) != factorial(n)//(n*len(units)) or len(set(reps)) != len(reps) or covered != set(permutations(range(n))):
+            raise ArithmeticError('Incomplete affine chamber coverage.')
+    if not reps:
+        raise ArithmeticError('No chambers were selected.')
     reports=[]
     for r,p in enumerate(reps):
         g=gap_transform(d,u,base,p)
+        if not g:
+            raise ArithmeticError('Empty transformed polynomial.')
         negative=[(k,v) for k,v in g.items() if v<0]
         minimal=min(g.values())
         report={'permutation':p,'nonzero_terms':len(g),'negative_terms':len(negative),'min_coefficient':minimal}
@@ -79,6 +92,11 @@ if __name__=='__main__':
             report['negative_examples']=[{'exponents':[k//x%base for x in u],'coefficient':v} for k,v in negative[:10]]
         reports.append(report)
         print(json.dumps({'i':r,**report}),flush=True)
-        if negative: break
+        if negative:
+            with open(f'circ_gap_n{n}_{mode}_results.json','w') as f:
+                json.dump({'status':'failed','n':n,'chambers':reports},f,indent=2)
+            raise ArithmeticError('A negative exact coefficient was found.')
+    if {tuple(r['permutation']) for r in reports} != set(reps) or len(reports) != len(reps):
+        raise ArithmeticError('Incomplete chamber results.')
     with open(f'circ_gap_n{n}_{mode}_results.json','w') as f:
-        json.dump({'n':n,'defect':'n^n per(C)^2 - n! per(CC^T)','original_nonzero_terms':len(d),'elapsed_seconds':time.time()-t,'chambers':reports},f,indent=2)
+        json.dump({'status':'passed' if mode=='all' else 'sampled','n':n,'defect':'n^n per(C)^2 - n! per(CC^T)','original_nonzero_terms':len(d),'elapsed_seconds':time.time()-t,'chambers':reports},f,indent=2)

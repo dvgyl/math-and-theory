@@ -1,8 +1,6 @@
 # Gyires's inequality for matrices with two row types and two column types
 
-Dev D. Goyal directed the AI-generated research.
-
-This note gives an analytic proof for unequal block sizes and boundary values with zero entries. Lean formalization and independent human expert review remain incomplete. The [status record](README.md) states the review and prior-work limits.
+This note gives an analytic proof for unequal block sizes and boundary values with zero entries. Lean formalization is incomplete. The [reproduction guide](verification.md) gives the certificate commands and their scope.
 
 ## Statement
 
@@ -206,8 +204,8 @@ Subtract c_n times this bound from 4d^2. The result is the stated margin 4d(d-c_
 
 The argument includes h at either endpoint of its feasible interval. The Bernoulli parameters can equal zero or one. No positive-entry approximation is required for the theorem statement.
 
-## Sources and limits
+## References and verification scope
 
-The source argument is in `research/round_5/round5_scalar.md`, Sections 6 and 8. The permanent identities are proved above. The consolidated source `PROOF_AND_STATUS.md` records the result in its all-order two-column section. The [provenance record](provenance.json) identifies these sources by hash.
+The [manuscript](../../preprints/gyires-circulant-five/paper.pdf) contains this proof and its bibliography. The permanent identities are proved above.
 
 The ordinary proof is analytic. Finite numerical checks are not its justification. No complete Lean proof of this statement is included. No human expert review, peer review, or novelty determination is claimed.

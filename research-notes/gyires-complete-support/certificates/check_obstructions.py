@@ -1,4 +1,8 @@
 """Exact checks of failed-proof examples. These do not refute Gyires."""
+
+if not __debug__:
+    raise RuntimeError("Certificate checks require assertions. Run Python without -O or PYTHONOPTIMIZE.")
+
 from collections import defaultdict
 from fractions import Fraction as F
 from itertools import permutations

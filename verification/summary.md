@@ -1,31 +1,31 @@
-# Historical verification summary
+# Verification results
 
-This record summarizes the seven-family verification completed on 26 October 2026. It covers seven papers and 21 selected statement comparisons. The [review record](review.md) identifies the reviewed collection commit. The broader Gyires arguments have a [separate certificate and review record](../research-notes/gyires-extensions/README.md). The formal checks below cover only the order-five Gyires claims. The recorded document checks concern the PDF versions identified by hash below. They do not certify later manuscript revisions. Public logs replace local absolute paths with neutral labels and remove trailing whitespace. Their outcomes are unchanged. The checks concern mathematical statements and proof dependencies. They do not establish historical priority or human expert approval.
+The Lean build and axiom audit below passed on 27 October 2026. The collection has seven result families and 21 selected Comparator statements. The principal order-five Gyires claims have Lean proofs. General Cauchy–Schwarz, permutation, dimension-constant, and direct-sum results also have Lean proofs. A further Lean theorem derives the circulant matrix inequality from explicit polynomial coefficient hypotheses. Those hypotheses remain to be proved for the higher-order families. The [formal guide](../lean/docs/gyires-circulant-five.md) gives their exact scope. The principal expanded matrix-class theorems remain incomplete in Lean.
 
-## Formal verification
+## Lean proofs
 
-The complete command `lake build MathAndTheory Solutions` passed with 2883 jobs. [Build log](records/native-final-build.log).
+The command `lake build MathAndTheory Solutions Challenges` passed with 2903 jobs. See the [build log](records/native-final-build.log).
 
-The command `lake env lean Audit.lean` passed for 8878 declarations, including 8096 proposition-valued declarations. [Axiom and type log](records/native-final-axiom-audit.log). These counts include generated supporting proofs. They are not counts of independent research results. Every audited declaration has only permitted transitive axioms: `propext`, `Classical.choice`, and `Quot.sound`. The audit imports the substantive library and all Solution modules. It excludes the independent Challenge holes.
+The command `lake env lean Audit.lean` passed for 8937 declarations, including 8150 proposition-valued declarations. See the [axiom and type log](records/native-final-axiom-audit.log). These counts include generated supporting proofs. They do not count independent research results.
 
-The [Comparator record](records/comparators.json) lists all 21 selected statements and completed kernel outcomes. All seven configurations passed Lean, NanoDa, and con-ron. The runner and Linux requirements are in the [guide](README.md).
+Every audited declaration uses only the permitted transitive axioms: `propext`, `Classical.choice`, and `Quot.sound`. The audit imports the substantive library and all Solution modules. It excludes the independent Challenge proof placeholders.
 
-The [Gyires family record](gyires-circulant-five/formal-checks.json) also gives the recorded source-repository build and its separate axiom audit. These historical-source checks do not substitute for the collection checks.
+The [Comparator record](records/comparators.json) gives the 21 selected statement comparisons run on 26 October 2026. All seven configurations passed Lean, NanoDa, and con-ron. Those selected statements remain unchanged. The new general supporting results are checked by the Lean audit above; the Comparator record does not cover them.
 
-## Computation and documents
+## Exact certificates
 
-All seven independent computation programs and the separate best-of-n extension program passed. Each family guide gives its inputs, exact tested ranges, versions, output, and limits. The Gyires program reconstructed all 120 orderings and 120,120 coefficient positions. These finite checks supplement the general proofs.
+The full Gyires certificate run passed all 25 tasks. The orders-six and seven checks cover 180 chambers and 5,022,480 coefficient positions. The permutation-polynomial finite range covers orders 3–47, with 135 chambers and 224,550 coefficient positions. The rank-two certificate covers orders 2–15, with 33,607 profile intervals and 3,524,206 coefficient positions. The independent rational rank-two construction covers orders 2–6. An additional exact transfer run covers orders 3–93, with 273 chambers and 1,674,309 coefficient positions. It supplies the finite ranges for both alternative spectral bounds in the appendix.
 
-All seven manuscripts and the overview compiled with Tectonic 0.17.0. The final compiler outputs contain no warnings, unresolved citations, or undefined references. Every final PDF page was rendered and inspected. The overview was rebuilt and all four pages were inspected again for the Gyires inclusion correction. No clipped text, overlap, or missing glyph was found. The [PDF record](records/pdfs.json) gives page counts and final PDF hashes. Compiler records are in [records](records/).
+The cubic deletion programs check all 120 primary chambers and all 720 sorting orders in the full independent construction. The order-five program checks all 120 weight orderings and 120,120 coefficient positions. The [certificate guide](../research-notes/gyires-complete-support/README.md) gives commands, mathematical roles, and coverage limits.
 
-The official source checker, template metadata validator, pinned full v0.4 schema validator, and repository integrity checker passed. The repository checker covers module separation, prohibited proof mechanisms, artifact presence, catalogue membership, author spelling, and local links. The guide gives exact commands.
+The programs return a nonzero exit code when a mathematical check fails or expected coverage is incomplete. Sampled reports cannot serve as exhaustive certificates. Programs that use assertions reject optimized Python execution. The failure tests also cover corrupt reports and invalid ranges.
 
-## Versions and review
+These computations supplement the ordinary proofs. They do not provide Lean proofs of the matrix reductions or arbitrary-order statements.
 
-The [source hash record](records/source-hashes.json) identifies the checked mathematical sources and proof inputs. Run `python3 verification/verify_hashes.py` to compare them.
+## Files and documents
 
-[Software versions and immutable dependency references](records/versions.json) identify the verification environment. The Lean toolchain supplies all three proof checkers. The Python packages are pinned in [requirements.txt](requirements.txt).
+The [publication manifest](../publication-files.json) lists the public files. The [source hash record](records/source-hashes.json) identifies their exact contents. Run `python3 verification/verify_hashes.py` to compare them.
 
-GPT-6.1 Sol completed two mathematical and editorial review passes. The identified source, exposition, disclosure, and verification-record corrections were checked and applied. The referee inspected the final local records and approved publication with no blocking criticism. The [review report](review.md) gives the actual scope and limits. The official full-profile workflow and public-clone audit are separate checks. Their commit-specific outcomes belong in the private delivery report.
+The [PDF record](records/pdfs.json) gives manuscript page counts and hashes. The [verification guide](README.md) gives commands for manuscript builds, source checks, metadata checks, and archive construction. Automatic checks run on pushes and pull requests. The full Palomar mechanical preflight remains manual.
 
-No Zenodo deposit, Palomar submission, GitHub release, or tag is part of these checks.
+The [software record](records/versions.json) identifies the Lean, Mathlib, and checking tools. The Python packages are pinned in [requirements.txt](requirements.txt). A check establishes only its stated scope. It does not establish novelty or peer review.

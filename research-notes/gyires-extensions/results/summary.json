@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-26",
+  "date": "2026-10-27",
   "status": "PASS",
   "scope": "Exact finite certificate and analytic threshold checks. No Lean verification. No human expert review.",
   "node_version": "v22.23.2",
@@ -19,16 +19,26 @@
   "analytic_tail_starts_at": 48,
   "outputs": [
     {
-      "path": "results/round2_independent_finite.json",
-      "sha256": "1e1c14bee2e2193a6ce79effb5ee54b9b8c4b36daa08135c67a796472a7a1c5b"
+      "path": "results/independent_finite.json",
+      "sha256": "9e09ded5e310fc27407c9d269310efae5e183e2587a4fd8a1548f29cb447ec64"
     },
     {
-      "path": "results/round2_circ_small_check.json",
+      "path": "results/circ_small_check.json",
       "sha256": "1240fd0fafaf7690b261e2058f9c6a5fab883796cbd150ffc4fe1297e5c19f5d"
     },
     {
-      "path": "results/round2_sharp_bound_check.json",
+      "path": "results/sharp_bound_check.json",
       "sha256": "31b6b6b1bd20773ed1dc618aa5fd052d4d31ab8a867dbbd32f4a6164bbdd6f19"
+    },
+    {
+      "path": "results/permutation-alternative-finite.json",
+      "sha256": "119735bdead62c98f7832521ebb08e04e82b97f5bf4051e581130eda3cb04f6d"
     }
-  ]
+  ],
+  "alternative_finite_orders": [
+    3,
+    93
+  ],
+  "alternative_chambers": 273,
+  "alternative_coefficient_positions": 1674309
 }

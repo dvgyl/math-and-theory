@@ -58,6 +58,6 @@ print(f"Permitted Challenge placeholders: {len(permitted)}")
 print(f"Other bypass tokens: {len(problems)}")
 for item in problems:
     print(item)
-ok = not problems and len(permitted) == 10
+ok = len(files) > 2 and not problems and len(permitted) == 10
 print("RESULT:", "PASS" if ok else "FAIL")
 sys.exit(0 if ok else 1)

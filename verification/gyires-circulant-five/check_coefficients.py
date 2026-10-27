@@ -8,6 +8,10 @@ binomial-transform methods follow the source research checkers.
 Run: python3 check_coefficients.py --output coefficient-results.json
 This computation supplements the Lean proof. It is not a Lean kernel check.
 """
+
+if not __debug__:
+    raise RuntimeError("Certificate checks require assertions. Run Python without -O or PYTHONOPTIMIZE.")
+
 import argparse
 from collections import defaultdict
 from hashlib import sha256

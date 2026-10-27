@@ -8,7 +8,7 @@ Run the independent check from the repository root with Python 3:
 python3 verification/alternating-motzkin/scripts/verify.py
 ```
 
-The program uses only the Python standard library. Run it without `-O`, because its checks use `assert`. It prints a JSON report with the Python version and `status: PASS` when every comparison succeeds. A failed assertion exits with an error.
+The program uses only the Python standard library. The program rejects Python optimization because its mathematical checks use `assert`. It prints a JSON report with the Python version and `status: PASS` when every comparison succeeds. A failed assertion exits with an error.
 
 The program first counts paths with height changes −1, 0, and 1. The paths start and end at height zero and never have negative height. It then computes each alternating sum directly from its finite-sum definition. It does not generate the sums from the recursive alternating-sequence implementation in Lean.
 
@@ -58,7 +58,7 @@ The repository's Comparator command uses the independent Challenge and Solution.
 ./scripts/verify-comparator.sh comparator/alternating-motzkin.json
 ```
 
-A successful native Lean build does not replace this command. The [central verification record](../summary.md) gives the recorded build, axiom, Comparator, and finite-computation results. The [review record](../review.md) identifies the reviewed commit and the scope of the AI review.
+A successful native Lean build does not replace this command. The [central verification record](../summary.md) gives the recorded build, axiom, Comparator, and finite-computation results.
 
 For the paper, run Tectonic from the repository root:
 
@@ -68,8 +68,4 @@ tectonic preprints/alternating-motzkin/paper.tex
 
 Inspect the resulting PDF after compilation. Compilation alone does not check page layout, mathematical correctness, or bibliographic accuracy.
 
-The prior-work audit inspected Zhao's source, related ratio and root criteria, the OEIS entry and recent history, and available arXiv manuscripts. Searches used the alternating-sum description, root inequalities, and `A187306`. No earlier proof of the exact tail-five result was identified in the inspected material. The [preprint guide](../../preprints/alternating-motzkin/README.md) links the principal sources. The Hou–Li journal record was accessible, but its full journal text required a subscription. The accessible arXiv manuscript supplied its full-text evidence.
-
-Direct Google Scholar, zbMATH, and MathSciNet queries were inaccessible. Searches restricted to their public web indexes found no additional target result. These attempts were not complete database searches and cannot certify novelty.
-
-The public-formalization check searched Mathlib at the pinned commit and [formal-conjectures at commit `0921599`](https://github.com/google-deepmind/formal-conjectures/tree/09215996126bf40899be6cbe826d6f53a6b2ae35). Searches for `motzkin` and `a187306` found unrelated uses of Motzkin's name and no target theorem. Public web searches also used the topic with Lean, Isabelle, Coq, Rocq, and “formalization”. No relevant additional development was identified. These checks do not cover all repositories or equivalent statements that use different terminology. No author was contacted.
+The [preprint guide](../../preprints/alternating-motzkin/README.md) gives the related results and source comparisons. No priority claim is made.

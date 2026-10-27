@@ -1,8 +1,6 @@
 # An all-order permutation-polynomial inequality
 
-Dev D. Goyal directed the AI-generated research.
-
-This note gives an analytic proof with exact finite certificates. Lean formalization and independent human expert review remain incomplete. The [status record](README.md) states the review and prior-work limits.
+This note gives an analytic proof with exact finite certificates. Lean formalization is incomplete. The [reproduction guide](verification.md) gives the certificate commands and their scope.
 
 ## Statement
 
@@ -349,7 +347,7 @@ The next section proves $16c_n\kappa^n<1$ for every $n\ge48$. Exact certificates
 
 ## The exact threshold and the smaller orders
 
-The program [round2_sharp_bound_check.py](certificates/round2_sharp_bound_check.py) checks the residual factorization above in Q(sqrt(2)). It also checks
+The program [sharp_bound_check.py](certificates/sharp_bound_check.py) checks the residual factorization above in Q(sqrt(2)). It also checks
 
 $$
 16\cdot48!\cdot169^{48}<3360^{48}.
@@ -371,9 +369,9 @@ $$
 
 In each ordering of a,b,c, write the ordered values as x, x+y, x+y+z. Here x,y,z are nonnegative. The checker constructs D_n in these coordinates and checks every coefficient. Reflection exchanges a and c, so three orderings cover all six.
 
-The program [round2_independent_finite.mjs](certificates/round2_independent_finite.mjs) uses exact JavaScript BigInt arithmetic. It uses the characteristic polynomials of the transfer blocks and Newton trace identities. It constructs the polynomials directly in gap coordinates. Its input 47 covers all required orders below the analytic threshold. All checked coefficients are nonnegative. For 4<=n<=47, every coefficient is positive. These finite checks cover whole parameter regions, not sampled matrices. Their use as a proof certificate also depends on the transfer identity and the correctness of the checking program.
+The program [independent_finite.mjs](certificates/independent_finite.mjs) uses exact JavaScript BigInt arithmetic. It uses the characteristic polynomials of the transfer blocks and Newton trace identities. It constructs the polynomials directly in gap coordinates. Its input 47 covers all required orders below the analytic threshold. All checked coefficients are nonnegative. For 4<=n<=47, every coefficient is positive. These finite checks cover whole parameter regions, not sampled matrices. Their use as a proof certificate also depends on the transfer identity and the correctness of the checking program.
 
-The program [round2_circ_small_check.py](certificates/round2_circ_small_check.py) computes permanents directly by subsets. It checks both transfer identities for 1<=n<=7 and all six gap orderings for n=3,4. Its two local dependencies are included.
+The program [circ_small_check.py](certificates/circ_small_check.py) computes permanents directly by subsets. It checks both transfer identities for 1<=n<=7 and all six gap orderings for n=3,4. Its two local dependencies are included.
 
 For n=2, set x=b and y=a+c. Direct calculation gives
 
@@ -420,6 +418,6 @@ For a doubly stochastic A, the two Gram bounds therefore imply Gyires's inequali
 
 ## Reproduction and limits
 
-The [reproduction record](verification.md) gives the commands and completed runs. The source files are identified by hash in [provenance.json](provenance.json). The analytic bound starts at order 48. The historical thresholds 70 and 94 are not used.
+The [reproduction record](verification.md) gives the commands and completed runs. The [file record](provenance.json) lists the programs. Their hashes are in the collection integrity manifest. The analytic bound starts at order 48.
 
 These programs are not a Lean formalization. The arbitrary-permutation statement has no selected Comparator declaration. Its novelty and independent human expert review remain unresolved.

@@ -1,19 +1,34 @@
 #!/usr/bin/env python3
-"""Check the recorded hashes of the mathematical sources and proof inputs."""
+"""Check every file in the explicit publication manifest."""
 import hashlib
 import json
 from pathlib import Path
 import sys
 
-root = Path(__file__).resolve().parents[1]
-record = json.loads((root / "verification/records/source-hashes.json").read_text())
-errors = []
-for name, expected in record["files"].items():
-    path = root / name
-    if not path.is_file():
-        errors.append(f"Missing file: {name}")
-    elif hashlib.sha256(path.read_bytes()).hexdigest() != expected:
-        errors.append(f"Changed file: {name}")
-print(json.dumps({"status": "FAIL" if errors else "PASS",
-                  "checked_files": len(record["files"]), "errors": errors}, indent=2))
-sys.exit(bool(errors))
+from publication_files import HASHES, load_publication_files
+
+
+def verify(root):
+    names = load_publication_files(root)
+    record = json.loads((root / HASHES).read_text())
+    files = record.get('files')
+    expected = set(names) - {HASHES}
+    if not isinstance(files, dict) or set(files) != expected:
+        raise ValueError('The hash record must cover every publication file except itself.')
+    errors = []
+    for name, digest in files.items():
+        if hashlib.sha256((root / name).read_bytes()).hexdigest() != digest:
+            errors.append(f'Changed file: {name}')
+    if errors:
+        raise ValueError('\n'.join(errors))
+    return len(files)
+
+
+if __name__ == '__main__':
+    root = Path(__file__).resolve().parents[1]
+    try:
+        count = verify(root)
+    except (ValueError, OSError) as error:
+        print(json.dumps({'status': 'FAIL', 'error': str(error)}, indent=2))
+        sys.exit(1)
+    print(json.dumps({'status': 'PASS', 'checked_files': count}, indent=2))

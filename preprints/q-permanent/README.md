@@ -8,15 +8,15 @@ Read the [paper](paper.pdf), [LaTeX source](paper.tex), or [bibliography](refere
 
 ## Scope
 
-The q-permanent weights each permutation by its inversion count in the fixed coordinate order. All matrices in the main theorems are real, symmetric, and positive definite.
+The q-permanent weights each permutation product by `q` raised to its inversion count in the fixed coordinate order. All matrices in the main theorems are real, symmetric, and positive definite.
 
 The construction also gives correlation matrices with no zero entries and examples with integer entries. These are separate conclusions. The theorem does not assert that a correlation matrix can also have integer entries. The real-symmetric monotonicity question on `[−1,1]` remains outside the result.
 
-The results refute da Fonseca's 2010 Conjecture 1 and its [2018 restatement as Conjecture 2](https://arxiv.org/abs/1804.02231). The literature search was limited and does not establish priority.
+The results refute da Fonseca's 2010 Conjecture 1 and its [2018 restatement as Conjecture 2](https://arxiv.org/abs/1804.02231). No claim of first priority is made.
 
-## Authorship and review
+## AI assistance
 
-Dev D. Goyal directed the AI research and is responsible for publication. ChatGPT (OpenAI), using the GPT-6 model with Pro reasoning, produced the construction, proofs, and Lean formalization. Codex audited the source statements, checked the mathematics, adapted the formalization, performed independent computations, and edited the manuscript. The repository records the AI referee review. Machine verification and AI review do not constitute human expert peer review. This paper has not been peer reviewed.
+Dev D. Goyal directed the research and is responsible for publication. ChatGPT (OpenAI), using GPT-6 with Pro reasoning, generated the mathematical arguments and Lean formalizations. Codex assisted with formalization, computations, and editing. [AUTHORSHIP.md](../../AUTHORSHIP.md) gives the collection disclosure. This preprint has not been peer reviewed.
 
 ## Build
 

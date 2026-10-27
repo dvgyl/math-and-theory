@@ -55,4 +55,4 @@ The geometric-mean result supports the proof. The principal result is the degree
 
 The proof and Solution compile with the pinned Lean 4.35.0 project. The selected theorem depends only on `propext`, `Classical.choice`, and `Quot.sound`. The proof does not need a separate formal statement for the full displayed Hessian matrix; it proves the required directional derivative directly.
 
-This result does not classify arbitrary coefficients or higher dimensions. See the [central verification record](../../verification/README.md) for Comparator and review status. The linked records identify the checked sources and review scope.
+This result does not classify arbitrary coefficients or higher dimensions. The [central verification record](../../verification/README.md) gives statement comparison and proof-check results. The linked records identify the checked sources and mathematical scope.
