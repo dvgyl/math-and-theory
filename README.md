@@ -1,8 +1,8 @@
 # Math and Theory
 
-Seven preprints by Dev D. Goyal present results in mathematics and theoretical computer science.
+Nine preprints by Dev D. Goyal present results in mathematics, theoretical computer science, and mathematical physics.
 
-This collection contains seven preprints. Six have complete Lean proofs of their principal claims. The Gyires preprint proves inequalities for several structured matrix classes and develops related polynomial bounds. Its principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have Lean proofs. Lean formalization of the other principal Gyires results is incomplete. The collection does not claim a general solution when a proof covers only a special case.
+Eight papers have complete Lean proofs within their stated formal scopes. The thermal proof covers finite spectral statements. It does not formalize the theorem that identifies them with long-time stochastic cumulants. The Gyires preprint proves inequalities for several structured matrix classes and develops related polynomial bounds. Its principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have Lean proofs. Lean formalization of the other principal Gyires results is incomplete. The collection does not claim a general solution when a proof covers only a special case.
 
 Start with the [manuscript catalogue](CONTENTS.md) or the [overview](overview.pdf). The [Lean guide](lean/README.md) explains the formal statements. The [verification guide](verification/README.md) gives the commands and recorded results. [AUTHORSHIP.md](AUTHORSHIP.md) identifies the human and AI contributions.
 
@@ -22,7 +22,7 @@ Each revised archival package contains an explicit publication file list and a S
 
 ## Results
 
-The catalogue groups related results by subject. The mathematics papers concern matrix inequalities, concavity, and integer sequences. The theoretical computer science paper concerns a sampling-policy inequality.
+The catalogue groups related results by subject. The mathematics papers concern matrix inequalities, concavity, and integer sequences. The theoretical computer science papers concern sampling and Boolean decision trees. The mathematical physics paper gives a thermal spectral counterexample.
 
 | Result family | Established result |
 |---|---|
@@ -33,6 +33,8 @@ The catalogue groups related results by subject. The mathematics papers concern 
 | [Alternating Motzkin sums](preprints/alternating-motzkin/README.md) | Strict root log-concavity with the optimal tail start. |
 | [Hofstadter iteration](preprints/hofstadter-iteration/README.md) | Late-iterate ordering fails for every parameter at least four. |
 | [Best-of-n sampling](preprints/best-of-n/README.md) | The proposed bound fails at every budget at least two, with arbitrarily small atom caps. |
+| [Decision-tree covariance](verification/additional-proofs/readk-covariance/docs/manuscript.pdf) | A sharp logarithmic influence bound and two counterexamples to the proposed logarithmic variance bound. No Fourier-entropy theorem is formalized. |
+| [Thermal current kurtosis](verification/additional-proofs/thermal-kurtosis-counterexample/report.pdf) | A three-state, two-temperature model has a negative fourth-to-second spectral heat-cumulant ratio. The long-time stochastic identification is outside the formal proof. |
 
 ## The Gyires preprint
 
@@ -40,16 +42,18 @@ The [Gyires preprint](preprints/gyires-circulant-five/paper.pdf) proves the orde
 
 ## Verification
 
-The formal library uses Lean 4.35.0 and Mathlib commit `56a005855ea17e0b0958f73ec801ae140b0a1679`. The proof audit permits only `propext`, `Classical.choice`, and `Quot.sound`. Separate Challenge and Solution modules make each submitted statement auditable. The Challenge proof holes are specifications. They are excluded from the proved library and its axiom audit.
+The shared formal library covers seven families and 29 selected Comparator statements. It uses Lean 4.35.0 and Mathlib commit `56a005855ea17e0b0958f73ec801ae140b0a1679`. The proof audit permits only `propext`, `Classical.choice`, and `Quot.sound`. Separate Challenge and Solution modules make each submitted statement auditable. The Challenge proof holes are specifications. They are excluded from the proved library and its axiom audit.
+
+The [decision-tree package](verification/additional-proofs/readk-covariance/README.md) and [thermal package](verification/additional-proofs/thermal-kurtosis-counterexample/README.md) use separate Lean 4.19.0 environments with Mathlib revision `c44e0c8ee63ca166450922a373c7409c5d26b00b`. They are not part of the shared Comparator selection. The decision-tree package has its own 29 axiom reports; this is a separate count.
 
 The [verification guide](verification/README.md) gives commands for compilation, statement comparison, proof checking, and exact computation. A successful computation over finitely many inputs does not prove a universal theorem.
 
-The automatic workflow checks source integrity, manuscript builds, and Lean proofs on pushes and pull requests. The full Palomar mechanical preflight remains available by manual dispatch.
+The automatic workflow checks source integrity and all nine manuscripts on pushes and pull requests. It has separate Lean jobs for the shared library and the two standalone packages. The full Palomar mechanical preflight remains available by manual dispatch.
 
 ## Authorship and use
 
 The [authorship disclosure](AUTHORSHIP.md) states the use of AI assistance. These preprints have not been peer reviewed.
 
-Cite an individual paper with its `citation.bib` file. Each paper directory contains its source, bibliography, PDF, and links to its formal proof. The root [Apache-2.0 license](LICENSE) applies except where [NOTICE](NOTICE) identifies third-party material.
+Cite an individual paper with its `citation.bib` file, or `CITATION.bib` for a standalone package. The catalogue links each manuscript to its source, citation metadata, and verification instructions. The root [Apache-2.0 license](LICENSE) applies except where [NOTICE](NOTICE) identifies third-party material.
 
 For a later result family, follow [the contribution procedure](lean/docs/adding-a-family.md). Each addition must satisfy the same mathematical, source-fidelity, prior-work, formalization, and reproducibility requirements.

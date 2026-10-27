@@ -8,6 +8,9 @@ on:
 permissions:
   contents: read
 
+env:
+  PYTHONDONTWRITEBYTECODE: '1'
+
 concurrency:
   group: checks-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -33,12 +36,16 @@ jobs:
       - name: Check source, hashes, and metadata
         run: |
           python verification/check_repository.py
+          python verification/check_embedded_packages.py --arithmetic
           python verification/verify_hashes.py
           python verification/validate_metadata.py
           python lean/scripts/check-lean-sources.py
           python verification/check_gyires_certificates.py
       - name: Check certificate failures and publication boundaries
-        run: python -m unittest discover -s verification -p 'test_*.py'
+        run: |
+          python -m unittest discover -s verification -p 'test_*.py'
+          python verification/additional-proofs/readk-covariance/scripts/test_verifiers.py
+          python verification/additional-proofs/thermal-kurtosis-counterexample/test_verifiers.py
 
   manuscripts:
     name: Manuscript builds
@@ -53,27 +60,7 @@ jobs:
           tectonic-version: '0.17.0'
       - run: sudo apt-get update && sudo apt-get install --yes poppler-utils
       - name: Build each manuscript and compare its text with the committed PDF
-        shell: bash
-        run: |
-          set -euo pipefail
-          build_root=$(mktemp -d)
-          count=0
-          for source in overview.tex preprints/*/paper.tex; do
-            count=$((count + 1))
-            output="$build_root/$count"
-            mkdir -p "$output"
-            tectonic -X compile "$source" --outdir "$output" --keep-logs
-            if grep -Ei 'undefined references|undefined citations|Citation .* undefined|Reference .* undefined|Overfull|Missing character' "$output"/*.log; then
-              echo "Manuscript check failed for $source" >&2
-              exit 1
-            fi
-            pdf=$(basename "${source%.tex}.pdf")
-            pdftotext -layout "$output/$pdf" "$output/rebuilt.txt"
-            pdftotext -layout "${source%.tex}.pdf" "$output/committed.txt"
-            test -s "$output/rebuilt.txt"
-            diff -u "$output/committed.txt" "$output/rebuilt.txt"
-          done
-          test "$count" -eq 8
+        run: python3 verification/check_manuscripts.py
 
   lean:
     name: Lean build and axiom audit
@@ -97,3 +84,86 @@ jobs:
       - name: Check the stated types and permitted axioms
         working-directory: lean
         run: lake env lean Audit.lean
+
+  readk-lean-419:
+    name: Read-k Lean 4.19 build and axiom audit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      LEAN_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Copy the unchanged release package
+        run: |
+          mkdir -p .ci-work
+          cp -R verification/additional-proofs/readk-covariance .ci-work/readk-covariance
+      - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          lake-package-directory: .ci-work/readk-covariance
+          auto-config: 'false'
+          build: 'false'
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'true'
+          use-github-cache: 'false'
+      - name: Check dependencies, compile proofs, and check axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 verification/check_ci_workcopy.py readk verification/additional-proofs/readk-covariance .ci-work/readk-covariance
+          (cd .ci-work/readk-covariance && bash verify.sh)
+          python3 .ci-work/readk-covariance/scripts/test_verifiers.py
+          python3 verification/check_ci_workcopy.py readk verification/additional-proofs/readk-covariance .ci-work/readk-covariance
+
+  thermal-lean-419:
+    name: Thermal Lean 4.19 build and axiom audit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      LEAN_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          repository: leanprover-community/mathlib4
+          ref: c44e0c8ee63ca166450922a373c7409c5d26b00b
+          path: .ci-work/mathlib4
+          persist-credentials: false
+      - name: Copy the unchanged release package
+        run: cp -R verification/additional-proofs/thermal-kurtosis-counterexample .ci-work/thermal-kurtosis-counterexample
+      - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          lake-package-directory: .ci-work/mathlib4
+          auto-config: 'false'
+          build: 'false'
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'false'
+          use-github-cache: 'false'
+      - name: Get the cache for the proof imports
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t imports < <(python3 - <<'PY'
+          from pathlib import Path
+          source = Path('.ci-work/thermal-kurtosis-counterexample/ThermalKurtosis.lean').read_text()
+          for line in source.splitlines():
+              if line.startswith('import Mathlib.'):
+                  print(line.removeprefix('import ').replace('.', '/') + '.lean')
+          PY
+          )
+          test "${#imports[@]}" -eq 20
+          (cd .ci-work/mathlib4 && lake exe cache get "${imports[@]}")
+      - name: Compile, check exact arithmetic, and check axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 verification/check_ci_workcopy.py thermal verification/additional-proofs/thermal-kurtosis-counterexample .ci-work/thermal-kurtosis-counterexample
+          bash .ci-work/thermal-kurtosis-counterexample/verify.sh "$PWD/.ci-work/mathlib4" 2>&1 | tee "$RUNNER_TEMP/thermal-verify.log"
+          python3 verification/check_embedded_packages.py --thermal-log "$RUNNER_TEMP/thermal-verify.log"
+          python3 .ci-work/thermal-kurtosis-counterexample/test_verifiers.py
+          python3 verification/check_ci_workcopy.py thermal verification/additional-proofs/thermal-kurtosis-counterexample .ci-work/thermal-kurtosis-counterexample

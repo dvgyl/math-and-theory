@@ -4,12 +4,13 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-import re
 import tempfile
 import zipfile
 
 from publication_files import HASHES, load_publication_files
 from verify_hashes import verify
+from catalogue_paths import validate_families
+from check_embedded_packages import check_packages, EXPECTED_MANIFESTS
 
 
 def check_output(path):
@@ -43,29 +44,47 @@ def build(root, output):
     for name, digest in hashes.items():
         if hashlib.sha256(contents[name]).hexdigest() != digest:
             raise ValueError(f"Source changed during archive preparation: {name}")
-    catalogue = json.loads(contents["catalogue.json"])
+    families = validate_families(root, json.loads(contents["catalogue.json"]), set(names))
+    standalone_roots = [family["formalization"]["root"] + "/" for family in families
+                        if family["formalization"]["kind"] == "standalone"]
+    manifests = {}
+    if standalone_roots:
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot = Path(folder)
+            for name, content in contents.items():
+                if any(name.startswith(prefix) for prefix in standalone_roots):
+                    target = snapshot / name
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_bytes(content)
+            manifests = check_packages(snapshot, families)
     manifest_digest = hashlib.sha256(contents[HASHES]).hexdigest()
-    families = [family["id"] for family in catalogue["families"]]
-    if not families or len(families) != len(set(families)) or any(
-        not isinstance(name, str) or re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name) is None
-        for name in families
-    ):
-        raise ValueError("The catalogue must contain unique valid family identifiers.")
-    for name in families:
+    for family in families:
+        name = family["id"]
         check_output(output / f"{name}.pdf")
         check_output(output / f"{name}-archival-package.zip")
     check_output(output / "packages.json")
     results = []
-    for name in families:
+    for family in families:
+        name = family["id"]
         pdf = output / f"{name}.pdf"
         archive = output / f"{name}-archival-package.zip"
-        atomic_write(pdf, contents[f"preprints/{name}/paper.pdf"])
+        atomic_write(pdf, contents[family["paper"]])
         metadata = {
             "family": name,
-            "manuscript": f"math-and-theory/preprints/{name}/paper.pdf",
+            "manuscript": f"math-and-theory/{family['paper']}",
             "source_manifest_sha256": manifest_digest,
             "scope": "See the manuscript and formal guide for the exact theorem and verification scope.",
         }
+        if family["formalization"]["kind"] == "standalone":
+            package = manifests[name]
+            metadata["scope"] = package["formal_scope"]
+            metadata["formalization"] = {
+                "kind": "standalone",
+                "root": f"math-and-theory/{family['formalization']['root']}",
+                "manifest_sha256": EXPECTED_MANIFESTS[name],
+                "lean_version": package["lean_version"],
+                "mathlib_revision": package["mathlib_revision"],
+            }
         members = {f"math-and-theory/{path}": content for path, content in contents.items()}
         members["PACKAGE.json"] = (json.dumps(metadata, indent=2) + "\n").encode()
         with tempfile.NamedTemporaryFile(dir=output, delete=False) as stream:

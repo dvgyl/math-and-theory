@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 import zipfile
 
 from build_archives import build
@@ -19,8 +20,13 @@ class PublicationTests(unittest.TestCase):
         (self.root / "verification/records").mkdir(parents=True)
         (self.root / "preprints/example").mkdir(parents=True)
         (self.root / "preprints/example/paper.pdf").write_bytes(b"PDF fixture")
-        (self.root / "catalogue.json").write_text(json.dumps({"families": [{"id": "example"}]}))
-        self.names = sorted([MANIFEST, HASHES, "catalogue.json", "preprints/example/paper.pdf"])
+        (self.root / "preprints/example/paper.tex").write_text("TeX fixture")
+        (self.root / "catalogue.json").write_text(json.dumps({"schema_version": 1, "families": [
+            {"id": "example", "paper": "preprints/example/paper.pdf",
+             "formalization": {"kind": "comparator"}, "module": "Example", "namespace": "Example",
+             "comparator": "lean/comparator/example.json", "theorems": []}]}))
+        self.names = sorted([MANIFEST, HASHES, "catalogue.json", "preprints/example/paper.pdf",
+                             "preprints/example/paper.tex"])
         self.record()
 
     def record(self):
@@ -30,7 +36,7 @@ class PublicationTests(unittest.TestCase):
         (self.root / HASHES).write_text(json.dumps({"files": hashes}))
 
     def test_complete_package_matches_sources(self):
-        self.assertEqual(verify(self.root), 3)
+        self.assertEqual(verify(self.root), 4)
         output = Path(self.temp.name) / "packages"
         first = build(self.root, output)
         second = build(self.root, output)
@@ -40,6 +46,39 @@ class PublicationTests(unittest.TestCase):
                              {"PACKAGE.json", *(f"math-and-theory/{name}" for name in self.names)})
             for name in self.names:
                 self.assertEqual(bundle.read(f"math-and-theory/{name}"), (self.root / name).read_bytes())
+
+    def test_archive_families_use_the_saved_catalogue(self):
+        catalogue_path = self.root / "catalogue.json"
+        catalogue = json.loads(catalogue_path.read_text())
+        second = dict(catalogue["families"][0], id="second", paper="preprints/second/paper.pdf",
+                      comparator="lean/comparator/second.json")
+        catalogue["families"].append(second)
+        (self.root / "preprints/second").mkdir()
+        for suffix in ("pdf", "tex"):
+            name = f"preprints/second/paper.{suffix}"
+            (self.root / name).write_bytes(b"Second manuscript")
+            self.names.append(name)
+        self.names.sort()
+        catalogue_path.write_text(json.dumps(catalogue))
+        self.record()
+        saved_catalogue = catalogue_path.read_bytes()
+        read_bytes = Path.read_bytes
+
+        def change_catalogue_after_snapshot(path):
+            data = read_bytes(path)
+            if path == (self.root / HASHES).resolve():
+                changed = dict(catalogue, families=catalogue["families"][:1])
+                catalogue_path.write_text(json.dumps(changed))
+            return data
+
+        output = Path(self.temp.name) / "packages"
+        with patch.object(Path, "read_bytes", change_catalogue_after_snapshot):
+            result = build(self.root, output)
+        self.assertEqual({item["family"] for item in result}, {"example", "second"})
+        self.assertNotEqual(catalogue_path.read_bytes(), saved_catalogue)
+        for item in result:
+            with zipfile.ZipFile(output / item["archive"]) as bundle:
+                self.assertEqual(bundle.read("math-and-theory/catalogue.json"), saved_catalogue)
 
     def test_unlisted_file_fails(self):
         (self.root / "unlisted.txt").write_text("unlisted")
@@ -108,6 +147,40 @@ class PublicationTests(unittest.TestCase):
                 self.record()
                 with self.assertRaises(ValueError):
                     build(self.root, output)
+
+    def test_standalone_manuscript_outside_preprints(self):
+        package = self.root / "verification/additional-proofs/example-standalone"
+        package.mkdir(parents=True)
+        (package / "report.pdf").write_bytes(b"Standalone PDF")
+        (package / "report.tex").write_text("Standalone TeX")
+        catalogue = json.loads((self.root / "catalogue.json").read_text())
+        catalogue["families"].append({
+            "id": "example-standalone",
+            "paper": "verification/additional-proofs/example-standalone/report.pdf",
+            "formalization": {"kind": "standalone", "root": "verification/additional-proofs/example-standalone"},
+        })
+        (self.root / "catalogue.json").write_text(json.dumps(catalogue))
+        self.names.extend(["verification/additional-proofs/example-standalone/report.pdf",
+                           "verification/additional-proofs/example-standalone/report.tex"])
+        self.names.sort()
+        self.record()
+        output = Path(self.temp.name) / "packages"
+        evidence = {"example-standalone": {"formal_scope": "Finite example.",
+                                           "lean_version": "4.19.0", "mathlib_revision": "a" * 40}}
+        with patch("build_archives.check_packages", return_value=evidence), \
+             patch.dict("build_archives.EXPECTED_MANIFESTS", {"example-standalone": "b" * 64}):
+            first = build(self.root, output)
+            second = build(self.root, output)
+        self.assertEqual(first, second)
+        self.assertEqual(len(first), 2)
+        self.assertEqual((output / "example-standalone.pdf").read_bytes(), b"Standalone PDF")
+        with zipfile.ZipFile(output / "example-standalone-archival-package.zip") as bundle:
+            metadata = json.loads(bundle.read("PACKAGE.json"))
+            self.assertEqual(metadata["manuscript"],
+                             "math-and-theory/verification/additional-proofs/example-standalone/report.pdf")
+            self.assertEqual(metadata["formalization"]["kind"], "standalone")
+            for name in self.names:
+                self.assertEqual(bundle.read(f"math-and-theory/{name}"), (self.root / name).read_bytes())
 
 
 if __name__ == "__main__":

@@ -1,0 +1,145 @@
+{
+  "date": "2026-10-27",
+  "lean": "4.19.0",
+  "lean_commit": "6caaee842e94",
+  "platform": "macOS ARM64",
+  "mathlib_commit": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+  "method": "Fresh compilation in dependency order. Only the pinned Mathlib dependency objects were reused.",
+  "commands_note": "Output paths are shown relative to a reproduction directory.",
+  "sources": [
+    {
+      "source": "Research/Cube.lean",
+      "source_sha256": "4561488076a0308270d3c59be919878046da738dc5106b07c7e3798e8b253384",
+      "compiler_exit_code": 0,
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "build/Research/Cube.olean",
+        "Research/Cube.lean"
+      ]
+    },
+    {
+      "source": "Research/LogPotential.lean",
+      "source_sha256": "7d82a35d0246f84851fcb21ca319b3ff1121c67335393c803ac87a83edadadb7",
+      "compiler_exit_code": 0,
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "build/Research/LogPotential.olean",
+        "Research/LogPotential.lean"
+      ]
+    },
+    {
+      "source": "Research/DecisionTree.lean",
+      "source_sha256": "d6e624bcbb04aa6caf3b7aa3711a5c49294319f506c8e4af22899487894fe4e6",
+      "compiler_exit_code": 0,
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "build/Research/DecisionTree.olean",
+        "Research/DecisionTree.lean"
+      ]
+    },
+    {
+      "source": "Research/Absolute.lean",
+      "source_sha256": "5b5e265a4f2475f9afe665bae9477bbc73fab48cf037e41267788b4429504918",
+      "compiler_exit_code": 0,
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "build/Research/Absolute.olean",
+        "Research/Absolute.lean"
+      ]
+    },
+    {
+      "source": "Research/Sharpness.lean",
+      "source_sha256": "2017877a746d90c1b505f3c599d9006f1a009e5d503c37b0a51022d0f18e1448",
+      "compiler_exit_code": 0,
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "build/Research/Sharpness.olean",
+        "Research/Sharpness.lean"
+      ]
+    },
+    {
+      "source": "Research/Counterexample.lean",
+      "source_sha256": "af0a3e447a02abd9bd37230d46f31689ee3a0684c2721858f87e39343ee327ff",
+      "compiler_exit_code": 0,
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "build/Research/Counterexample.olean",
+        "Research/Counterexample.lean"
+      ]
+    },
+    {
+      "source": "Research/Nonredundant.lean",
+      "source_sha256": "1c3c27e05ac969dbd380a0627030214252989711a9a27abf41c1b48a641efa16",
+      "compiler_exit_code": 0,
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "build/Research/Nonredundant.olean",
+        "Research/Nonredundant.lean"
+      ]
+    },
+    {
+      "source": "Research/AbsoluteCounterexample.lean",
+      "source_sha256": "822942fea796d377165451c545a8772c1622ab866e59cc299ef50ce78bccb187",
+      "compiler_exit_code": 0,
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "build/Research/AbsoluteCounterexample.olean",
+        "Research/AbsoluteCounterexample.lean"
+      ]
+    },
+    {
+      "source": "Research.lean",
+      "source_sha256": "178d55db730283d5aff76cdf3e3f83a03d659b52132c746cc247ce53e9f48478",
+      "compiler_exit_code": 0,
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "build/Research.olean",
+        "Research.lean"
+      ]
+    },
+    {
+      "source": "Audit.lean",
+      "source_sha256": "c03bec771705fee9dc47a82828480431c0a0f3c44fc89dd72052a4a5d7fae093",
+      "compiler_exit_code": 0,
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "build/Audit.olean",
+        "Audit.lean"
+      ]
+    }
+  ],
+  "selected_axiom_reports": 29,
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "wrapper": {
+    "script": "verify.sh",
+    "script_sha256": "5fa721bf0125f24919479bde9a4346064ad15f6f013e3ef75ddbf20d8435c62e",
+    "exit_code": 0,
+    "command": "bash verify.sh",
+    "platform": "macOS ARM64",
+    "dependency_check": "All nine manifest revisions matched."
+  }
+}

@@ -9,12 +9,13 @@
 \usepackage[hidelinks]{hyperref}
 
 \usepackage{xurl}
+\hypersetup{pdftitle={Math and Theory: collection overview},pdfauthor={Dev D. Goyal}}
 
 \title{Math and Theory: collection overview}
 
 \author{Dev D. Goyal}
 
-\date{26 October 2026}
+\date{27 October 2026}
 
 \begin{document}
 
@@ -22,7 +23,7 @@
 
 \begin{abstract}
 
-The catalogue contains seven result families and seven preprints in mathematics and theoretical computer science. Six preprints have complete Lean proofs of their principal claims. The Gyires preprint proves inequalities for structured matrices and develops related polynomial bounds. Its principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have complete Lean proofs. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. The papers have not been peer reviewed.
+The catalogue contains nine result families and nine preprints in mathematics, theoretical computer science, and mathematical physics. Eight papers have complete Lean proofs within their stated formal scopes. The thermal proof covers finite spectral statements, without a formal stochastic long-time identification theorem. The Gyires preprint proves inequalities for structured matrices and develops related polynomial bounds. Its principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have complete Lean proofs. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. The papers have not been peer reviewed.
 
 \end{abstract}
 
@@ -30,7 +31,7 @@ The catalogue contains seven result families and seven preprints in mathematics 
 
 \section{How to use the collection}
 
-The \href{https://github.com/dvgyl/math-and-theory/blob/main/CONTENTS.md}{manuscript catalogue} links each paper to its formal statements and independent computations. The \href{https://github.com/dvgyl/math-and-theory/blob/main/verification/README.md}{verification guide} records the commands and their results. The formal library uses one Lake project, pinned to Lean 4.35.0 and an exact Mathlib revision. The 29 selected formal statements include equality, sharpness, and auxiliary positivity claims within these seven papers.
+The \href{https://github.com/dvgyl/math-and-theory/blob/main/CONTENTS.md}{manuscript catalogue} links each paper to its formal statements and independent computations. The \href{https://github.com/dvgyl/math-and-theory/blob/main/verification/README.md}{verification guide} records the commands and their results. Seven families share a Lake project pinned to Lean 4.35.0. Its 29 selected Comparator statements include equality, sharpness, and auxiliary positivity claims. The decision-tree and thermal packages use separate Lean 4.19.0 environments and a pinned Mathlib revision. The decision-tree package has 29 axiom reports of its own. This is a separate count from the shared Comparator selection.
 
 \section{Mathematics}
 
@@ -128,9 +129,42 @@ For every $n\geq2$ and $\delta>0$, a finite positive reference distribution with
 
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/best-of-n/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/best-of-n.md}{Formal statement and prior work}.
 
+\subsection[Decision-tree covariance: logarithmic bounds and variance counterexamples]{Logarithmic influence bounds and variance counterexamples for Boolean decision-tree covariance}
+
+Let $T$ be a finite Boolean decision tree under uniform independent bits. No coordinate repeats on a root-to-leaf path. Let $k_i(T)$ count all query nodes labelled $i$, and let $I_i(f)$ be the probability that flipping coordinate $i$ changes the output. The weighted sum of absolute child covariances satisfies
+\[
+\sum_v 2^{-d(v)}\left|\operatorname{Cov}(f_{v,+},f_{v,-})\right|
+\leq \sum_i I_i(f)\log_2\max\{1,k_i(T)\}.
+\]
+Here $d(v)$ is the node depth, and the two child functions use the same input cube. The read number counts nodes in the entire tree, not queries along one path.
+
+For a read-$k$ tree, the bound is $I(f)\log_2 k$. The dummy-prefix construction of Wan, Wright, and Wu attains equality when $k$ is a power of two. The logarithmic potential is due to Shalev. A four-variable counterexample has covariance $5/4$ and variance $3/4$. A nine-variable counterexample has covariance $4863/4096$ and variance $3007/4096$, with every query relevant. Both refute the coefficient-one logarithmic variance proposal for a given tree.
+
+\par\smallskip
+\noindent\textbf{Scope:} Covariance inequalities, an equality family, and exact finite witnesses. No Fourier-entropy theorem is formalized.
+
+\par\smallskip
+\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/readk-covariance/docs/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/readk-covariance/docs/related-work.md}{Prior work}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/readk-covariance/README.md}{Formal proof and reproduction}.
+
+\section{Mathematical physics}
+
+\subsection{A three-state thermal counterexample to a heat-current kurtosis conjecture}
+
+A three-state rate model with two positive-temperature baths satisfies local detailed balance. Every total off-diagonal rate is positive. The tilted generator records heat transferred to the cold bath. Its dominant eigenvalue branch is four times continuously differentiable near zero and has a larger real part than every distinct complex eigenvalue. The exact derivative ratio is
+\[
+\frac{C_4}{C_2}=-\frac{3470947982622836}{176627429595846691}<0,
+\]
+where $C_n$ is the $n$th derivative at zero. This refutes Eq.~(19) of Ptaszy\'nski, \emph{Physical Review E} \textbf{106}, 024119 (2022), in the paper's finite thermal spectral formulation. The third derivative is positive, so the witness does not refute the separate skewness conjecture.
+
+\par\smallskip
+\noindent\textbf{Scope:} Finite rate matrices, local detailed balance, complex eigenvalues, and derivatives of a local dominant branch. The stochastic long-time theorem that identifies the branch with a cumulant generating function is not formalized. No minimal-state or empirical validation claim is made.
+
+\par\smallskip
+\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/thermal-kurtosis-counterexample/report.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/thermal-kurtosis-counterexample/RELATED_WORK.md}{Prior work}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/thermal-kurtosis-counterexample/README.md}{Formal proof and reproduction}.
+
 \section{Verification and authorship}
 
-Lean checks the proofs against their formal statements. Separate Challenge modules state the intended claims. Comparator checks these against their proved Solutions. The verification record identifies the runs of Lean, NanoDa, and con-ron. Independent exact and numerical programs test finite certificates and examples. These finite computations do not replace the general proofs.
+Lean checks the proofs against their formal statements. In the shared Lean 4.35.0 library, separate Challenge modules state the intended claims. Comparator checks these against their proved Solutions. The verification record identifies the completed runs of Lean, NanoDa, and con-ron for those seven families. The two standalone Lean 4.19.0 packages have their own source compilation, axiom, and arithmetic records. The shared Comparator results do not cover those packages. Independent exact and numerical programs test finite certificates and examples. These finite computations do not replace the general proofs.
 
 \par
 

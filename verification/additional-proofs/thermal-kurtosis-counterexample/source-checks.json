@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-27",
+  "lean": "4.19.0",
+  "lean_commit": "6caaee842e94",
+  "platform": "macOS ARM64",
+  "mathlib_commit": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+  "source": "ThermalKurtosis.lean",
+  "source_sha256": "e0327c7d3cb15cdd86fcf836644fe168d9914ba17507c0df149b51b92d738460",
+  "compiler_exit_code": 0,
+  "command": [
+    "lean",
+    "-j1",
+    "-o",
+    "build/ThermalKurtosis.olean",
+    "ThermalKurtosis.lean"
+  ],
+  "commands_note": "The source and output paths are shown relative to a reproduction directory.",
+  "axiom_reports_in_source": 2,
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "wrapper": {
+    "script": "verify.sh",
+    "script_sha256": "42fc6f27deefa85943a12343f0a8c20fd11b0dae4a0713445e57537b3b5a3b49",
+    "exit_code": 0,
+    "command": "bash verify.sh /path/to/pinned/mathlib4",
+    "platform": "macOS ARM64",
+    "dependency_check": "The Mathlib revision, tracked source state and Lean version passed the wrapper checks."
+  }
+}

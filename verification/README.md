@@ -1,8 +1,8 @@
 # Verification guide
 
-The catalogue contains seven result families, seven manuscripts, and 29 selected Comparator statements. The [Gyires preprint](../preprints/gyires-circulant-five/paper.pdf) contains the verified order-five, four-block, and exceptional-vector results. Its other principal matrix and polynomial arguments have a [separate ordinary-proof and certificate record](../research-notes/gyires-complete-support/README.md). Those principal results remain incomplete in Lean. Each family guide gives its mathematical scope and test limits. The central record gives the completed checks and their scope.
+The catalogue contains nine result families and nine manuscripts. Seven families use the shared Lean 4.35.0 library, which has 29 selected Comparator statements. Two families use standalone Lean 4.19.0 packages. The [Gyires preprint](../preprints/gyires-circulant-five/paper.pdf) contains the verified order-five, four-block, and exceptional-vector results. Its other principal matrix and polynomial arguments have a [separate ordinary-proof and certificate record](../research-notes/gyires-complete-support/README.md). Those principal results remain incomplete in Lean. Each family guide gives its mathematical scope and test limits. The central record gives the completed checks and their scope.
 
-## Reproduce the formal checks
+## Reproduce the shared-library checks
 
 Install the toolchain named in `lean/lean-toolchain`. The project uses Lean 4.35.0 and Mathlib commit `56a005855ea17e0b0958f73ec801ae140b0a1679`. From the repository root, run:
 
@@ -35,6 +35,25 @@ The file limit must permit Mathlib and the proof modules to load. A limit of 65,
 
 The Linux environment must permit Bubblewrap to create namespaces. The local checkers come from the pinned Lean toolchain. The [full Palomar workflow](palomar.md) also checks protected Challenge provenance and uses an authenticated con-ron update.
 
+## Standalone Lean 4.19.0 packages
+
+The two standalone packages use Mathlib revision `c44e0c8ee63ca166450922a373c7409c5d26b00b`. Follow each package's instructions in a separate working copy. Build output must not modify the committed package or its recorded evidence.
+
+| Package | Proof and reproduction | Recorded verification | Formal limit |
+|---|---|---|---|
+| Decision-tree covariance | [README](additional-proofs/readk-covariance/README.md) | [Source checks](additional-proofs/readk-covariance/verification/source-checks.json) and [scope](additional-proofs/readk-covariance/verification/report.md) | No Fourier-entropy theorem. |
+| Thermal current kurtosis | [README](additional-proofs/thermal-kurtosis-counterexample/README.md) | [Source checks](additional-proofs/thermal-kurtosis-counterexample/source-checks.json) and [scope](additional-proofs/thermal-kurtosis-counterexample/VERIFICATION.md) | No stochastic long-time identification theorem. |
+
+The decision-tree package has ten Lean source files and 29 axiom reports. These are separate from the shared library's 29 Comparator declarations. The thermal package has one Lean proof file and two source-declared axiom reports. Both packages permit only `propext`, `Classical.choice`, and `Quot.sound`. Their stored source compilation and wrapper checks passed on macOS ARM64. These records do not assert a Linux result or external registry approval.
+
+Run the standalone package and evidence checks from the repository root:
+
+```sh
+python3 verification/check_embedded_packages.py --arithmetic
+```
+
+This command checks package hashes, stored source evidence, axiom-report coverage, and exact arithmetic. It does not run Lean.
+
 ## Independent computations
 
 Use Python 3 with the exact package versions in [requirements.txt](requirements.txt):
@@ -56,15 +75,17 @@ These programs reconstruct finite examples or certificates. The family guides st
 
 ## Manuscripts and navigation
 
-Each manuscript can be compiled from its directory with `tectonic paper.tex`. Compile the overview at the repository root with `tectonic overview.tex`. Tectonic runs the required bibliography passes. The recorded checks also inspect warnings, extract text, and render every PDF page for visual review.
+For the seven manuscripts under `preprints/`, run `tectonic paper.tex` from the paper directory. The standalone sources are `additional-proofs/readk-covariance/docs/manuscript.tex` and `additional-proofs/thermal-kurtosis-counterexample/report.tex`, relative to this guide. Compile them in working copies with Tectonic. Compile the overview at the repository root with `tectonic overview.tex`. Tectonic runs the required bibliography passes. The recorded checks also inspect warnings, extract text, and render every PDF page for visual review.
 
-Run `python3 verification/check_repository.py` to check local navigation, required artifacts, author spelling, prohibited proof mechanisms, and the correspondence between the catalogue and Comparator configurations.
+Run `python3 verification/check_manuscripts.py` to rebuild the overview and all nine catalogue manuscripts in temporary directories. It checks TeX warnings and compares extracted text with the committed PDFs.
+
+Run `python3 verification/check_repository.py` to check local navigation, required artifacts, author spelling, prohibited proof mechanisms, and the catalogue entries, shared-library Comparator configurations, and standalone package paths.
 
 ## Automatic checks
 
-The [automatic workflow](../.github/workflows/checks.yml) runs on pushes and pull requests. It checks source requirements, file hashes, metadata, certificate report coverage, checker failure handling, all seven manuscript builds, the overview, and the Lean libraries. It compares text from rebuilt PDFs with the committed PDFs. This comparison can detect stale text. It does not replace visual inspection.
+The [automatic workflow](../.github/workflows/checks.yml) runs on pushes and pull requests. It checks source requirements, file hashes, metadata, certificate report coverage, checker failure handling, all nine manuscript builds, the overview, and the formal proof packages. It compares text from rebuilt PDFs with the committed PDFs. This comparison can detect stale text. It does not replace visual inspection.
 
-The Lean job builds `MathAndTheory`, `Solutions`, and the separate `Challenges` specifications. It then runs `Audit.lean` on the proved library. The Challenge proof placeholders are excluded from that audit. The full [Palomar mechanical preflight](../.github/workflows/palomar-preflight.yml) remains manual.
+The shared-library job builds `MathAndTheory`, `Solutions`, and the separate `Challenges` specifications. It then runs `Audit.lean` on the proved library. The Challenge proof placeholders are excluded from that audit. Two separate Linux jobs check the standalone packages with their pinned Lean 4.19.0 dependencies. They use temporary working copies and preserve the committed macOS evidence. The full [Palomar mechanical preflight](../.github/workflows/palomar-preflight.yml) remains manual and covers the shared library. The workflow configuration states which checks run; a successful result requires a completed workflow run.
 
 ## Records and limits
 
@@ -87,6 +108,6 @@ Run the following command after all verification checks pass. Use an output dire
 python3 verification/build_archives.py --output ../archival-packages
 ```
 
-The builder includes only files in the explicit publication manifest. It rejects missing files, unlisted files, changed hashes, and symbolic links. It checks every ZIP member against its source bytes. The packages include the manuscripts, formal library, exact checking programs, licenses, and verification scope.
+The builder includes only files in the explicit publication manifest. It rejects missing files, unlisted files, changed hashes, and symbolic links. It checks every ZIP member against its source bytes. The builder produces nine manuscript PDFs, nine full-collection ZIP files, and `packages.json`. Each ZIP includes both standalone packages as well as the manuscripts, shared formal library, exact checking programs, licenses, and verification scope.
 
 [Return to the catalogue](../CONTENTS.md).

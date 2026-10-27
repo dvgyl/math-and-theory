@@ -3,6 +3,8 @@
 from pathlib import Path
 import json,re,sys,hashlib
 from urllib.parse import unquote
+from catalogue_paths import load_families
+from check_embedded_packages import check_packages
 root=Path(__file__).resolve().parents[1]
 errors=[]
 def require(ok,message):
@@ -43,16 +45,19 @@ for p in configs:
         require((root/'lean'/(c[key].replace('.','/')+'.lean')).is_file(),f'Missing module: {c[key]}')
     names+=c['theorem_names']
 require(len(names)==len(set(names)),'Repeated selected theorem name')
-cat=json.loads((root/'catalogue.json').read_text());families=cat['families']
-require(len(families)==len(configs),'Catalogue/configuration count mismatch')
-require({f['id'] for f in families}=={p.stem for p in configs},'Catalogue/configuration identifiers differ')
-for f in families:
+families=load_families(root)
+comparator_families=[f for f in families if f['formalization']['kind']=='comparator']
+standalone_families=[f for f in families if f['formalization']['kind']=='standalone']
+require(len(comparator_families)==len(configs),'Comparator catalogue/configuration count mismatch')
+require({f['id'] for f in comparator_families}=={p.stem for p in configs},'Comparator catalogue/configuration identifiers differ')
+for f in comparator_families:
     config_path = root / 'lean/comparator' / (f['id'] + '.json')
     selected = json.loads(config_path.read_text())['theorem_names'] if config_path.is_file() else []
     require(f.get('theorems') == selected, f'Catalogue theorem coverage differs: {f["id"]}')
     d=root/'preprints'/f['id']
     for name in ['paper.tex','paper.pdf','references.bib','citation.bib','README.md']:require((d/name).is_file(),f'Missing paper artifact: {f["id"]}/{name}')
     require((root/'lean/docs'/(f['id']+'.md')).is_file(),f'Missing formal guide: {f["id"]}')
+check_packages(root,families)
 links=0
 for p in files:
     if p.suffix!='.md':continue
@@ -69,5 +74,5 @@ for p in files:
         text=p.read_text(errors='replace')
         require(not re.search(r'/Users/[A-Za-z0-9_.-]+/|/home/[A-Za-z0-9_.-]+/|gh[pousr]_[A-Za-z0-9]{20}',text),f'Private path or credential-like text: {p.relative_to(root)}')
         require(('Dev' + ' Goyal') not in text,f'Incorrect author name: {p.relative_to(root)}')
-print(json.dumps({'status':'FAIL' if errors else 'PASS','families':len(families),'papers':len(families),'selected_statements':len(names),'lean_files':len(lean),'local_links':links,'errors':errors},indent=2))
+print(json.dumps({'status':'FAIL' if errors else 'PASS','families':len(families),'papers':len(families),'comparator_families':len(comparator_families),'standalone_families':len(standalone_families),'selected_comparator_statements':len(names),'lean_files':len(lean),'local_links':links,'errors':errors},indent=2))
 sys.exit(bool(errors))

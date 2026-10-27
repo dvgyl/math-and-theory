@@ -1,8 +1,8 @@
 # Manuscript catalogue
 
-The catalogue contains seven result families and seven manuscripts. The Gyires preprint covers structured matrix inequalities and related polynomial bounds. The 29 selected Comparator declarations include equality, positivity, sharpness, and generalization statements. Supporting lemmas are not separate research contributions.
+The catalogue contains nine result families and nine manuscripts. Seven families use the shared Lean 4.35.0 library. Its 29 selected Comparator declarations include equality, positivity, sharpness, and generalization statements. The decision-tree and thermal packages use separate Lean 4.19.0 environments. Supporting lemmas are not separate research contributions.
 
-Six papers have complete formal proofs of their principal claims. The Gyires preprint has complete Lean proofs for its principal order-five claims, its all-order four-block theorem, and its exceptional-vector theorem. Its other principal results have incomplete Lean verification. The verification record gives the checks actually completed. The papers have not been peer reviewed. The prior-work assessment is bounded and makes no first-priority claim.
+Eight papers have complete Lean proofs within their stated formal scopes. The thermal formalization covers finite spectral statements, with no formal stochastic long-time identification theorem. The Gyires preprint has complete Lean proofs for its principal order-five claims, its all-order four-block theorem, and its exceptional-vector theorem. Its other principal results have incomplete Lean verification. The verification record gives the checks actually completed. The papers have not been peer reviewed. The prior-work assessment is bounded and makes no first-priority claim.
 
 ## Mathematics
 
@@ -97,6 +97,32 @@ The preprint includes both all-order arguments. This [supporting record](researc
 
 [Zenodo record](https://zenodo.org/records/23679329) · [DOI: 10.5281/zenodo.23679329](https://doi.org/10.5281/zenodo.23679329) · [Paper PDF](preprints/best-of-n/paper.pdf) · [LaTeX](preprints/best-of-n/paper.tex) · [Bibliography](preprints/best-of-n/references.bib) · [Citation](preprints/best-of-n/citation.bib) · [Formal statement and prior work](lean/docs/best-of-n.md) · [Reproduction](verification/best-of-n/README.md)
 
+### Boolean decision trees
+
+#### Logarithmic influence bounds and variance counterexamples for Boolean decision-tree covariance
+
+**Family:** `readk-covariance`. **Result:** A sharp logarithmic influence bound and two variance counterexamples.
+
+**Abstract.** For a finite Boolean decision tree under uniform independent bits, the sum of absolute child covariances, weighted by node reach probabilities, is at most the sum of each coordinate influence times the base-two logarithm of its global query-node count. Counts zero and one receive weight zero. No coordinate repeats on a root-to-leaf path. A read-k tree therefore has absolute covariance at most I(f) log₂ k. The known dummy-prefix construction attains equality for powers of two. A four-variable witness and a nine-variable witness refute the coefficient-one logarithmic variance proposal. Every query in the latter witness is relevant. The formalization contains no Fourier-entropy theorem.
+
+**Prior results.** [Wan, Wright, and Wu, ITCS 2014](https://doi.org/10.1145/2554797.2554806), introduced the covariance and the dummy-prefix construction. [Shalev, Section 6.2, Theorem 31](https://arxiv.org/abs/1806.03646v2), proved the square-root influence bound and proposed the logarithmic potential.
+
+**Formal scope.** The standalone package uses Lean 4.19.0. Its 29 axiom reports are separate from the shared library's 29 Comparator declarations.
+
+[Paper PDF](verification/additional-proofs/readk-covariance/docs/manuscript.pdf) · [LaTeX](verification/additional-proofs/readk-covariance/docs/manuscript.tex) · [Citation](verification/additional-proofs/readk-covariance/CITATION.bib) · [Related work](verification/additional-proofs/readk-covariance/docs/related-work.md) · [Reproduction](verification/additional-proofs/readk-covariance/README.md)
+
 ## Mathematical physics
 
-The collection contains no mathematical physics paper.
+### Stochastic thermal models
+
+#### A three-state thermal counterexample to a heat-current kurtosis conjecture
+
+**Family:** `thermal-kurtosis-counterexample`. **Result:** An exact negative spectral heat-cumulant ratio.
+
+**Abstract.** A three-state model with two positive-temperature baths satisfies local detailed balance and has positive total off-diagonal transition rates. Its dominant tilted-generator eigenvalue has fourth-to-second derivative ratio −3470947982622836/176627429595846691. This refutes the thermal nonnegativity proposal in its finite spectral formulation. The proof constructs a smooth local eigenvalue branch, proves strict dominance over distinct complex eigenvalues, and calculates the exact derivatives.
+
+**Original problem.** [Ptaszyński, Physical Review E 106, 024119 (2022), Eq. (19)](https://doi.org/10.1103/PhysRevE.106.024119). The finite thermal spectral model is specified in Eqs. (63)–(70).
+
+**Formal scope.** The standalone package uses Lean 4.19.0. It does not formalize the stochastic long-time theorem that identifies the eigenvalue branch with a cumulant generating function. The witness does not refute the separate skewness conjecture or establish a minimal number of states.
+
+[Paper PDF](verification/additional-proofs/thermal-kurtosis-counterexample/report.pdf) · [LaTeX](verification/additional-proofs/thermal-kurtosis-counterexample/report.tex) · [Citation](verification/additional-proofs/thermal-kurtosis-counterexample/CITATION.bib) · [Related work](verification/additional-proofs/thermal-kurtosis-counterexample/RELATED_WORK.md) · [Reproduction](verification/additional-proofs/thermal-kurtosis-counterexample/README.md)
