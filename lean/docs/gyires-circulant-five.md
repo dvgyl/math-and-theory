@@ -40,7 +40,7 @@ The theorem proves `per(AAᵀ) ≤ per(A)`, `per(AᵀA) ≤ per(A)`, and `per(A�
 | Gyires's inequality | `gyires` |
 | Equality exactly at the uniform matrix | `gyires_eq_iff` |
 
-The standalone specifications are in `Challenges/GyiresFourBlock.lean`. The matching proofs are in `Solutions/GyiresFourBlock.lean`. The existing family Comparator configuration selects these four declarations and the ten order-five declarations. Only the Challenge specifications contain proof placeholders.
+The independent specifications are in `Challenges/GyiresCirculant5.lean`. The matching proofs are in `Solutions/GyiresFourBlock.lean`. The existing family Comparator configuration selects these four declarations and the ten order-five declarations. Only the Challenge specifications contain proof placeholders.
 
 The supporting declarations use the namespace `MathAndTheory.Gyires.Bernoulli`. `BernoulliMaximizer` proves the fixed-mean maximizer and adjacent probability bounds. `BernoulliLikelihood` proves the central likelihood bound, the squared likelihood norm bound, and the equality case of the central lower bound. `TwoColumnContraction` connects the probabilities to actual matrix permanents by a permutation average. This proof route does not require a formal proof of each intermediate coefficient identity in the manuscript.
 

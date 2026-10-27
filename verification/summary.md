@@ -4,7 +4,7 @@ The Lean build and axiom audit below passed on 27 October 2026. The collection h
 
 ## Lean proofs
 
-The command `lake build MathAndTheory Solutions Challenges` passed with 2912 jobs. See the [build log](records/native-final-build.log).
+The command `lake build MathAndTheory Solutions Challenges` passed with 2911 jobs. See the [build log](records/native-final-build.log).
 
 The command `lake env lean Audit.lean` passed for 9094 declarations, including 8285 proposition-valued declarations. See the [axiom and type log](records/native-final-axiom-audit.log). These counts include generated supporting proofs. They do not count independent research results.
 

@@ -19,9 +19,11 @@ def strip_comments_and_strings(text: str) -> str:
             j = text.find("\n", i)
             i = n if j < 0 else j
         elif text.startswith("/-", i):
+            out.append(" ")
             depth += 1
             i += 2
         elif depth > 0 and text.startswith("-/", i):
+            out.append(" ")
             depth -= 1
             i += 2
         elif depth > 0:
@@ -45,8 +47,7 @@ proof_directories = [
 proof_groups = {name: sorted((root / name).rglob("*.lean")) for name in proof_directories}
 proof_files = [path for group in proof_groups.values() for path in group]
 expected_placeholders = {
-    "Challenges/GyiresCirculant5.lean": 10,
-    "Challenges/GyiresFourBlock.lean": 4,
+    "Challenges/GyiresCirculant5.lean": 14,
 }
 interfaces = list(expected_placeholders) + [
     "Solutions/GyiresCirculant5.lean", "Solutions/GyiresFourBlock.lean"
@@ -58,6 +59,11 @@ problems, permitted = [], []
 placeholder_counts = dict.fromkeys(expected_placeholders, 0)
 for path in files:
     code = strip_comments_and_strings(path.read_text())
+    rel = path.relative_to(root).as_posix()
+    if rel in expected_placeholders:
+        for module in re.findall(r"(?<![\w.'])import\s+(?:all\s+)?([^\s]+)", code):
+            if module.split(".")[0] not in {"Init", "Lean", "Std", "Mathlib"}:
+                problems.append(f"{rel}: local Challenge import: {module}")
     for lineno, line in enumerate(code.splitlines(), 1):
         for match in pattern.finditer(line):
             rel = path.relative_to(root).as_posix()

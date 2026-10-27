@@ -89,11 +89,12 @@ class CertificateFailureTests(unittest.TestCase):
         target = self.folder / relative
         target.parent.mkdir(parents=True)
         shutil.copy2(ORDER_FIVE / 'scan_sources.py', target)
-        for family, count in [('GyiresCirculant5', 10), ('GyiresFourBlock', 4)]:
-            for directory in ('Challenges', 'Solutions'):
-                path = self.folder / 'lean' / directory / (family + '.lean')
-                path.parent.mkdir(parents=True, exist_ok=True)
-                path.write_text('example : True := by sorry\n' * count if directory == 'Challenges' else '')
+        for name, count in [('Challenges/GyiresCirculant5.lean', 14),
+                            ('Solutions/GyiresCirculant5.lean', 0),
+                            ('Solutions/GyiresFourBlock.lean', 0)]:
+            path = self.folder / 'lean' / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text('example : True := by sorry\n' * count)
         self.failed(self.run_script(relative), 'RESULT: FAIL')
 
     def test_source_checker_requires_both_libraries_and_exact_placeholders(self):
@@ -101,11 +102,12 @@ class CertificateFailureTests(unittest.TestCase):
         target = self.folder / relative
         target.parent.mkdir(parents=True)
         shutil.copy2(ORDER_FIVE / 'scan_sources.py', target)
-        for family, count in [('GyiresCirculant5', 10), ('GyiresFourBlock', 4)]:
-            for directory in ('Challenges', 'Solutions'):
-                path = self.folder / 'lean' / directory / (family + '.lean')
-                path.parent.mkdir(parents=True, exist_ok=True)
-                path.write_text('example : True := by sorry\n' * count if directory == 'Challenges' else '')
+        for name, count in [('Challenges/GyiresCirculant5.lean', 14),
+                            ('Solutions/GyiresCirculant5.lean', 0),
+                            ('Solutions/GyiresFourBlock.lean', 0)]:
+            path = self.folder / 'lean' / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text('example : True := by sorry\n' * count)
         for family in ('GyiresCirculant5', 'Gyires'):
             path = self.folder / 'lean/MathAndTheory/Mathematics' / family / 'Proof.lean'
             path.parent.mkdir(parents=True)
@@ -117,12 +119,27 @@ class CertificateFailureTests(unittest.TestCase):
             path.unlink()
             self.failed(self.run_script(relative), 'RESULT: FAIL')
             path.write_text(source)
-        path = self.folder / 'lean/Challenges/GyiresFourBlock.lean'
+        path = self.folder / 'lean/Challenges/GyiresCirculant5.lean'
         source = path.read_text()
-        for count in (3, 5):
+        for count in (13, 15):
             path.write_text('example : True := by sorry\n' * count)
             self.failed(self.run_script(relative), 'RESULT: FAIL')
-        path.write_text(source)
+        for modifiers in ('', 'public ', 'meta ', 'public meta '):
+            for scope in ('', 'all '):
+                prefix = f'{modifiers}import {scope}'
+                with self.subTest(import_prefix=prefix):
+                    path.write_text(prefix + 'Mathlib.Data.Matrix.Basic\n' + source)
+                    self.passed(self.run_script(relative))
+                    path.write_text(prefix + 'Challenges.Local\n' + source)
+                    self.failed(self.run_script(relative), 'local Challenge import')
+        for header in ('import Mathlib import Challenges.Local',
+                       'import/--/Challenges.Local',
+                       'import\nChallenges.Local'):
+            with self.subTest(import_header=header):
+                path.write_text(header + '\n' + source)
+                self.failed(self.run_script(relative), 'local Challenge import')
+        path.write_text('-- import Challenges.Local\n/- import Challenges.Local -/\n' + source)
+        self.passed(self.run_script(relative))
         path.unlink()
         self.failed(self.run_script(relative), 'RESULT: FAIL')
 
