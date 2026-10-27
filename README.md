@@ -6,6 +6,20 @@ This collection contains seven preprints. Six have complete Lean proofs of their
 
 Start with the [manuscript catalogue](CONTENTS.md) or the [overview](overview.pdf). The [Lean guide](lean/README.md) explains the formal statements. The [verification guide](verification/README.md) gives the commands and recorded results. [AUTHORSHIP.md](AUTHORSHIP.md) identifies the human and AI contributions.
 
+## Zenodo preprints
+
+Five preprints are available on Zenodo. Each record contains the final manuscript PDF and its archival package. The links below identify version 1.0.0, published on 26 October 2026.
+
+| Preprint | Zenodo record | DOI |
+|---|---|---|
+| [q-permanent](preprints/q-permanent/README.md) | [Record](https://zenodo.org/records/23679243) | [10.5281/zenodo.23679243](https://doi.org/10.5281/zenodo.23679243) |
+| [Gyires](preprints/gyires-circulant-five/README.md) | [Record](https://zenodo.org/records/23679286) | [10.5281/zenodo.23679286](https://doi.org/10.5281/zenodo.23679286) |
+| [Diagonal concavity](preprints/diagonal-concavity/README.md) | [Record](https://zenodo.org/records/23679302) | [10.5281/zenodo.23679302](https://doi.org/10.5281/zenodo.23679302) |
+| [Hofstadter iteration](preprints/hofstadter-iteration/README.md) | [Record](https://zenodo.org/records/23679312) | [10.5281/zenodo.23679312](https://doi.org/10.5281/zenodo.23679312) |
+| [Best-of-n](preprints/best-of-n/README.md) | [Record](https://zenodo.org/records/23679329) | [10.5281/zenodo.23679329](https://doi.org/10.5281/zenodo.23679329) |
+
+The archival packages preserve repository commit [`806066f`](https://github.com/dvgyl/math-and-theory/tree/806066f00d92dba5c307f3cf9d51a2a82373d065). Use each paper's `citation.bib` file to cite its published version.
+
 ## Results
 
 The catalogue groups related results by subject. The mathematics papers concern matrix inequalities, concavity, and integer sequences. The theoretical computer science paper concerns a sampling-policy inequality.

@@ -16,7 +16,7 @@ Six papers have complete formal proofs of their principal claims. The Gyires pre
 
 **Original problem.** [Da Fonseca, 2010, Conjecture 1; 2018, Conjecture 2.](https://arxiv.org/abs/1804.02231)
 
-[Paper PDF](preprints/q-permanent/paper.pdf) · [LaTeX](preprints/q-permanent/paper.tex) · [Bibliography](preprints/q-permanent/references.bib) · [Citation](preprints/q-permanent/citation.bib) · [Formal statement and prior work](lean/docs/q-permanent.md) · [Reproduction](verification/q-permanent/README.md)
+[Zenodo record](https://zenodo.org/records/23679243) · [DOI: 10.5281/zenodo.23679243](https://doi.org/10.5281/zenodo.23679243) · [Paper PDF](preprints/q-permanent/paper.pdf) · [LaTeX](preprints/q-permanent/paper.tex) · [Bibliography](preprints/q-permanent/references.bib) · [Citation](preprints/q-permanent/citation.bib) · [Formal statement and prior work](lean/docs/q-permanent.md) · [Reproduction](verification/q-permanent/README.md)
 
 #### Gyires's permanent inequality for structured matrices
 
@@ -26,7 +26,7 @@ Six papers have complete formal proofs of their principal claims. The Gyires pre
 
 **Original problem.** [Gyires, 1978; Cheon and Wanless, 2005, Conjecture 20. Earlier formalization at the pinned Gyires repository.](https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448)
 
-[Paper PDF](preprints/gyires-circulant-five/paper.pdf) · [LaTeX](preprints/gyires-circulant-five/paper.tex) · [Bibliography](preprints/gyires-circulant-five/references.bib) · [Citation](preprints/gyires-circulant-five/citation.bib) · [Formal statement and prior work](lean/docs/gyires-circulant-five.md) · [Reproduction](verification/gyires-circulant-five/README.md)
+[Zenodo record](https://zenodo.org/records/23679286) · [DOI: 10.5281/zenodo.23679286](https://doi.org/10.5281/zenodo.23679286) · [Paper PDF](preprints/gyires-circulant-five/paper.pdf) · [LaTeX](preprints/gyires-circulant-five/paper.tex) · [Bibliography](preprints/gyires-circulant-five/references.bib) · [Citation](preprints/gyires-circulant-five/citation.bib) · [Formal statement and prior work](lean/docs/gyires-circulant-five.md) · [Reproduction](verification/gyires-circulant-five/README.md)
 
 #### Supporting records for the all-order Gyires arguments
 
@@ -59,7 +59,7 @@ The preprint includes both all-order arguments. This [supporting record](researc
 
 **Original problem.** [Lachaume, arXiv:1712.10327v1, Conjecture 1.](https://arxiv.org/abs/1712.10327v1)
 
-[Paper PDF](preprints/diagonal-concavity/paper.pdf) · [LaTeX](preprints/diagonal-concavity/paper.tex) · [Bibliography](preprints/diagonal-concavity/references.bib) · [Citation](preprints/diagonal-concavity/citation.bib) · [Formal statement and prior work](lean/docs/diagonal-concavity.md) · [Reproduction](verification/diagonal-concavity/README.md)
+[Zenodo record](https://zenodo.org/records/23679302) · [DOI: 10.5281/zenodo.23679302](https://doi.org/10.5281/zenodo.23679302) · [Paper PDF](preprints/diagonal-concavity/paper.pdf) · [LaTeX](preprints/diagonal-concavity/paper.tex) · [Bibliography](preprints/diagonal-concavity/references.bib) · [Citation](preprints/diagonal-concavity/citation.bib) · [Formal statement and prior work](lean/docs/diagonal-concavity.md) · [Reproduction](verification/diagonal-concavity/README.md)
 
 ### Integer sequences and combinatorics
 
@@ -81,7 +81,7 @@ The preprint includes both all-order arguments. This [supporting record](researc
 
 **Original problem.** [Letouzey, Li, and Steiner, Journal of Integer Sequences 29 (2026), 26.3.3, conjecture before Lemma 7.6.](https://cs.uwaterloo.ca/journals/JIS/VOL29/Letouzey/letouzey3.pdf)
 
-[Paper PDF](preprints/hofstadter-iteration/paper.pdf) · [LaTeX](preprints/hofstadter-iteration/paper.tex) · [Bibliography](preprints/hofstadter-iteration/references.bib) · [Citation](preprints/hofstadter-iteration/citation.bib) · [Formal statement and prior work](lean/docs/hofstadter-iteration.md) · [Reproduction](verification/hofstadter-iteration/README.md)
+[Zenodo record](https://zenodo.org/records/23679312) · [DOI: 10.5281/zenodo.23679312](https://doi.org/10.5281/zenodo.23679312) · [Paper PDF](preprints/hofstadter-iteration/paper.pdf) · [LaTeX](preprints/hofstadter-iteration/paper.tex) · [Bibliography](preprints/hofstadter-iteration/references.bib) · [Citation](preprints/hofstadter-iteration/citation.bib) · [Formal statement and prior work](lean/docs/hofstadter-iteration.md) · [Reproduction](verification/hofstadter-iteration/README.md)
 
 ## Theoretical computer science
 
@@ -95,7 +95,7 @@ The preprint includes both all-order arguments. This [supporting record](researc
 
 **Original problem.** [Beirami et al., ICML 2025, Conjecture 7.2 and equation (28).](https://proceedings.mlr.press/v267/beirami25a.html)
 
-[Paper PDF](preprints/best-of-n/paper.pdf) · [LaTeX](preprints/best-of-n/paper.tex) · [Bibliography](preprints/best-of-n/references.bib) · [Citation](preprints/best-of-n/citation.bib) · [Formal statement and prior work](lean/docs/best-of-n.md) · [Reproduction](verification/best-of-n/README.md)
+[Zenodo record](https://zenodo.org/records/23679329) · [DOI: 10.5281/zenodo.23679329](https://doi.org/10.5281/zenodo.23679329) · [Paper PDF](preprints/best-of-n/paper.pdf) · [LaTeX](preprints/best-of-n/paper.tex) · [Bibliography](preprints/best-of-n/references.bib) · [Citation](preprints/best-of-n/citation.bib) · [Formal statement and prior work](lean/docs/best-of-n.md) · [Reproduction](verification/best-of-n/README.md)
 
 ## Mathematical physics
 

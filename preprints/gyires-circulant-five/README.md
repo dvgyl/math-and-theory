@@ -1,5 +1,7 @@
 # Gyires's permanent inequality for structured matrices
 
+[Zenodo record](https://zenodo.org/records/23679286) · [DOI: 10.5281/zenodo.23679286](https://doi.org/10.5281/zenodo.23679286) · Version 1.0.0. Published 26 October 2026.
+
 This preprint proves Gyires's permanent inequality for several structured matrix classes. It also develops scalar and polynomial inequalities that support further extensions.
 
 | Result | Scope | Verification status |

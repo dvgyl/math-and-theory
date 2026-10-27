@@ -1,5 +1,7 @@
 # Counterexamples to a late-iterate ordering conjecture for generalized Hofstadter functions
 
+[Zenodo record](https://zenodo.org/records/23679312) · [DOI: 10.5281/zenodo.23679312](https://doi.org/10.5281/zenodo.23679312) · Version 1.0.0. Published 26 October 2026.
+
 This paper disproves a conjectured order between iterates of generalized Hofstadter functions. It gives exact finite witnesses and a counterexample for every parameter `k≥4` at iteration index `2k+1`.
 
 Read the [paper](paper.pdf), [LaTeX source](paper.tex), or [references](references.bib). Use [citation.bib](citation.bib) to cite this paper. The [Lean guide](../../lean/docs/hofstadter-iteration.md) gives the theorem map. The [verification guide](../../verification/hofstadter-iteration/README.md) gives reproduction commands and test limits.
