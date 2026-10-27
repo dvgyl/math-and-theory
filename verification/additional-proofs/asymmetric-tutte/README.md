@@ -15,7 +15,7 @@ Use the pinned Lean 4.32.1 toolchain and Mathlib revision `520045ab14e26149ee970
 ```sh
 lake exe cache get
 lake build
-lake env lean --error=warning Audit.lean
+lake env lean -DwarningAsError=true Audit.lean
 ```
 
 The audit prints the transitive axioms of the selected statements. The permitted axioms are `propext`, `Classical.choice`, and `Quot.sound`. A successful check must contain every requested report and no additional axiom. Compiler errors and warnings require a failed check.

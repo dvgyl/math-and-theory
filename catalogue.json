@@ -31,7 +31,7 @@
       "area": "Matrix theory",
       "title": "Gyires's permanent inequality for structured matrices",
       "kind": "Structured matrix inequalities and related polynomial bounds",
-      "summary": "The preprint includes nonnegative circulants of orders five, six, and seven; all-order permutation polynomials aI+bQ+cQ²; all-order four-block matrices; one exceptional column or row; and all rank-at-most-two doubly stochastic matrices through order fifteen. It also proves structural, scalar, polynomial, deletion, balancing, local, and counting results. Exact counterexamples identify failed auxiliary assertions. The principal order-five and order-six claims, the all-order permutation-polynomial theorem, the all-order four-block theorem, and the exceptional-vector theorem have complete Lean proofs. General permanent comparisons and direct-sum closure also have Lean proofs. The principal order-seven and finite rank-two results remain incomplete in Lean. The unrestricted conjecture remains outside these results.",
+      "summary": "The preprint includes nonnegative circulants of orders five, six, and seven; all-order permutation polynomials aI+bQ+cQ²; all-order four-block matrices; one exceptional column or row; and all rank-at-most-two doubly stochastic matrices through order fifteen. It also proves structural, scalar, polynomial, deletion, balancing, local, and counting results. Exact counterexamples identify failed auxiliary assertions. The principal order-five and order-six claims, the all-order permutation-polynomial theorem, the all-order four-block theorem, and the exceptional-vector theorem have complete Lean proofs. General permanent comparisons and direct-sum closure also have Lean proofs. The rank-two result has a complete Lean proof for orders 2 through 5. The principal order-seven result and rank-two orders 6 through 15 remain incomplete in Lean. The unrestricted conjecture remains outside these results.",
       "source": "Gyires, 1978; Cheon and Wanless, 2005, Conjecture 20. Earlier formalization at the pinned Gyires repository.",
       "source_url": "https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448",
       "module": "MathAndTheory.Mathematics.GyiresCirculant5.Main",
@@ -58,7 +58,7 @@
         "MathAndTheory.GyiresExceptional.gyires_eq_iff"
       ],
       "paper": "preprints/gyires-circulant-five/paper.pdf",
-      "formal_scope": "The selected Comparator statements cover order-five circulants, the all-order four-block theorem, and the exceptional-vector theorem for n ≥ 2. Separate Lean packages prove the general order-six and all-order permutation-polynomial theorems. General permanent comparisons and direct-sum closure are also proved in Lean. The principal order-seven and finite rank-two theorems remain incomplete in Lean.",
+      "formal_scope": "The selected Comparator statements cover order-five circulants, the all-order four-block theorem, and the exceptional-vector theorem for n ≥ 2. Separate Lean packages prove the general order-six and all-order permutation-polynomial theorems. General permanent comparisons and direct-sum closure are also proved in Lean. The rank-two theorem has a complete Lean proof for orders 2 through 5. The principal order-seven theorem and rank-two orders 6 through 15 remain incomplete in Lean.",
       "formalization": {
         "kind": "comparator"
       }
@@ -256,6 +256,38 @@
       "formalization": {
         "kind": "standalone",
         "root": "verification/additional-proofs/asymmetric-tutte"
+      }
+    },
+    {
+      "id": "higuchi-sudbery",
+      "discipline": "Mathematical physics",
+      "area": "Quantum information",
+      "title": "A sum-of-squares proof of the four-qubit Higuchi–Sudbery entropy bound",
+      "kind": "Four-qubit entropy bound with attainment",
+      "summary": "The average von Neumann entropy of the three two-qubit marginals of a pure four-qubit state is at most log(2) + log(3)/2. The Higuchi–Sudbery state attains this bound.",
+      "source": "Higuchi and Sudbery, 2000.",
+      "source_url": "https://arxiv.org/abs/quant-ph/0005013",
+      "paper": "verification/additional-proofs/higuchi-sudbery/manuscript.pdf",
+      "formal_scope": "The proof uses all sixteen complex amplitudes, actual reduced-matrix eigenvalues, an exact sum-of-squares identity, and an explicit maximizing state.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/higuchi-sudbery"
+      }
+    },
+    {
+      "id": "quartic-rankings",
+      "discipline": "Mathematics",
+      "area": "Probability and combinatorics",
+      "title": "A quartic entropy deficit for random rankings",
+      "kind": "Entropy deficit from pairwise comparison bias",
+      "summary": "A distribution on rankings of n labels has entropy at most (1 − ε⁴/144) log(n!) if every pairwise comparison has probability at distance at least ε > 0 from 1/2.",
+      "source": "Acan, Devlin, and Kahn, 2019; the manuscript identifies the established entropy arguments.",
+      "source_url": "https://doi.org/10.1016/j.jcta.2018.08.004",
+      "paper": "verification/additional-proofs/quartic-rankings/manuscript.pdf",
+      "formal_scope": "The proof includes all finite sizes and actual position-valued permutations. It assumes neither independent comparisons nor transitive preferred directions.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/quartic-rankings"
       }
     }
   ],

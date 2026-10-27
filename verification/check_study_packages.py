@@ -10,6 +10,8 @@ ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
 PIN419 = "c44e0c8ee63ca166450922a373c7409c5d26b00b"
 PIN435 = "56a005855ea17e0b0958f73ec801ae140b0a1679"
 PROFILES = {
+    "higuchi-sudbery": ("4.35.0", PIN435, 50, 11, "HS/Audit.lean"),
+    "quartic-rankings": ("4.19.0", PIN419, 20, 5, "PermEntropy/Verification.lean"),
     "sharp-eighth": ("4.19.0", PIN419, 2, 12, "Audit.lean"),
     "universal-embezzlement": ("4.19.0", PIN419, 2, 15, "Audit.lean"),
     "galvin-zhang": ("4.19.0", PIN419, 18, 8, "Audit.lean"),
@@ -52,6 +54,11 @@ def check_audit(package, name, output):
     reports = parse_reports(output)
     require(bool(requested) and Counter(requested) == Counter(r["declaration"] for r in reports),
             "The audit report coverage differs.")
+    if name == "quartic-rankings":
+        endpoints = re.findall(r"^Endpoint checked as theorem: (\S+)$", output, re.M)
+        require(Counter(endpoints) == Counter(requested), "The kernel endpoint coverage differs.")
+        summary = re.findall(r"^Verified transitive axiom whitelist for (\d+) project theorem declarations, including (\d+) private helper declarations\.$", output, re.M)
+        require(summary == [("238", "17")], "The project theorem coverage differs.")
     return len(reports)
 
 

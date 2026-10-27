@@ -21,8 +21,8 @@ def main():
     output = args.output.resolve()
     if root == output or root in output.parents or args.output.is_symlink():
         raise ValueError("The audit output must be outside the repository.")
-    version, _, _, _, audit = PROFILES[args.study]
-    flag = "-DwarningAsError=true" if version == "4.19.0" else "--error=warning"
+    _, _, _, _, audit = PROFILES[args.study]
+    flag = "-DwarningAsError=true"
     env = {k: v for k, v in os.environ.items() if not k.startswith(("LEAN_PATH", "LEAN_SRC_PATH"))}
     env["LEAN_NUM_THREADS"] = "1"
     process = None

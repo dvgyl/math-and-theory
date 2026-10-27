@@ -17,8 +17,10 @@ from check_study_packages import PROFILES, check as check_study
 
 
 EXPECTED_MANIFESTS = {
-    "asymmetric-tutte": "5c545b1371de638003548420fb79a9666089574bf60f41a9377c89f55ccb41c0",
+    "asymmetric-tutte": "4246a4a42efd02c89542f60a5e229d2d586934c135da8d0069c53c3cf61ca092",
     "galvin-zhang": "1e8e5c56f9ea7d8bbd14c4dadeeb93a9a346c351ebcb5a35e17b552b6a886276",
+    "higuchi-sudbery": "4819876d7f5960435eb9311c8818793a2360ef591876e1f1259ab1e345059b87",
+    "quartic-rankings": "e0333c6dedf134e7e98c6bfd8587353ab2951bc495791bd1205db784edf84b26",
     "readk-covariance": "bb6884906ec8d419883f0f733b284d4be52d68cc21cec7975c380d87ca5ac3da",
     "sharp-eighth": "6c07072d22663bc2c1af2897e9f1623b6a3df42c9b4b9149d7f6021243354398",
     "thermal-kurtosis-counterexample": "5501fe4e6dc9fb19912d804f389b7982ff0847ae6634914c23affa30b38f91b6",

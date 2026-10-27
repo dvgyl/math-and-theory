@@ -60,5 +60,28 @@ class StudyPackageTests(unittest.TestCase):
                     check_audit(self.package, "sharp-eighth", value)
 
 
+class QuarticAuditTests(unittest.TestCase):
+    def setUp(self):
+        self.package = ROOT / "additional-proofs/quartic-rankings"
+        self.output = (self.package / "verification/compile/PermEntropy.Verification.txt").read_text()
+
+    def test_complete_kernel_audit_passes(self):
+        self.assertEqual(check_audit(self.package, "quartic-rankings", self.output), 5)
+
+    def test_incomplete_kernel_audits_fail(self):
+        endpoint = next(line for line in self.output.splitlines() if line.startswith("Endpoint checked as theorem: "))
+        summary = next(line for line in self.output.splitlines() if line.startswith("Verified transitive axiom whitelist for "))
+        failures = {
+            "missing endpoint": self.output.replace(endpoint, "", 1),
+            "repeated endpoint": self.output + "\n" + endpoint + "\n",
+            "missing summary": self.output.replace(summary, "", 1),
+            "repeated summary": self.output + "\n" + summary + "\n",
+            "wrong theorem count": self.output.replace("238 project theorem", "237 project theorem", 1),
+            "wrong helper count": self.output.replace("17 private helper", "16 private helper", 1),
+        }
+        for label, output in failures.items():
+            with self.subTest(label=label), self.assertRaises(ValueError):
+                check_audit(self.package, "quartic-rankings", output)
+
 if __name__ == "__main__":
     unittest.main()

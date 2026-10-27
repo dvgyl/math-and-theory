@@ -1,6 +1,6 @@
 # Verification guide
 
-I provide the verification commands and records for thirteen result families and thirteen manuscripts here. Seven families use the shared Lean 4.35.0 library, which has 29 selected Comparator statements. Six families use standalone packages pinned to Lean 4.19.0 or 4.32.1. The [Gyires preprint](../preprints/gyires-circulant-five/paper.pdf) contains the verified order-five, order-six, permutation-polynomial, four-block, and exceptional-vector results. Its other principal matrix and polynomial arguments have a [separate ordinary-proof and certificate record](../research-notes/gyires-complete-support/README.md). The principal order-seven and finite rank-two results remain incomplete in Lean. Each family guide gives its mathematical scope and test limits. The central record gives the completed checks and their scope.
+I provide the verification commands and records for fifteen result families and fifteen manuscripts here. Seven families use the shared Lean 4.35.0 library, which has 29 selected Comparator statements. Eight families use standalone packages pinned to Lean 4.19.0, 4.32.1, or 4.35.0. The [Gyires preprint](../preprints/gyires-circulant-five/paper.pdf) contains the verified order-five, order-six, permutation-polynomial, four-block, and exceptional-vector results. Its other principal matrix and polynomial arguments have a [separate ordinary-proof and certificate record](../research-notes/gyires-complete-support/README.md). The rank-two theorem has a complete Lean proof for orders 2 through 5. The principal order-seven theorem and rank-two orders 6 through 15 remain incomplete in Lean. Each family guide gives its mathematical scope and test limits. The central record gives the completed checks and their scope.
 
 ## Reproduce the shared-library checks
 
@@ -75,17 +75,17 @@ These programs reconstruct finite examples or certificates. The family guides st
 
 ## Manuscripts and navigation
 
-For the seven manuscripts under `preprints/`, run `tectonic paper.tex` from the paper directory. The read-k source is `additional-proofs/readk-covariance/docs/manuscript.tex`. The thermal source is `additional-proofs/thermal-kurtosis-counterexample/report.tex`. The four other standalone packages each use `manuscript.tex` in their package directory. These paths are relative to this guide. Compile them in working copies with Tectonic. Compile the overview at the repository root with `tectonic overview.tex`. Tectonic runs the required bibliography passes. The recorded checks also inspect warnings, extract text, and render every PDF page for visual review.
+For the seven manuscripts under `preprints/`, run `tectonic paper.tex` from the paper directory. The read-k source is `additional-proofs/readk-covariance/docs/manuscript.tex`. The thermal source is `additional-proofs/thermal-kurtosis-counterexample/report.tex`. The six other standalone packages each use `manuscript.tex` in their package directory. These paths are relative to this guide. Compile them in working copies with Tectonic. Compile the overview at the repository root with `tectonic overview.tex`. Tectonic runs the required bibliography passes. The recorded checks also inspect warnings, extract text, and render every PDF page for visual review.
 
-Run `python3 verification/check_manuscripts.py` to rebuild the overview and all thirteen catalogue manuscripts in temporary directories. It checks TeX warnings and compares extracted text with the committed PDFs.
+Run `python3 verification/check_manuscripts.py` to rebuild the overview and all fifteen catalogue manuscripts in temporary directories. It checks TeX warnings and compares extracted text with the committed PDFs.
 
 Run `python3 verification/check_repository.py` to check local navigation, required artifacts, author spelling, prohibited proof mechanisms, and the catalogue entries, shared-library Comparator configurations, and standalone package paths.
 
 ## Automatic checks
 
-The [automatic workflow](../.github/workflows/checks.yml) runs on pushes and pull requests. It checks source requirements, file hashes, metadata, certificate report coverage, checker failure handling, all thirteen manuscript builds, the overview, and the formal proof packages. It compares text from rebuilt PDFs with the committed PDFs. This comparison can detect stale text. It does not replace visual inspection.
+The [automatic workflow](../.github/workflows/checks.yml) runs on pushes and pull requests. It checks source requirements, file hashes, metadata, certificate report coverage, checker failure handling, all fifteen manuscript builds, the overview, and the formal proof packages. It compares text from rebuilt PDFs with the committed PDFs. This comparison can detect stale text. It does not replace visual inspection.
 
-The shared-library job builds `MathAndTheory`, `Solutions`, and the separate `Challenges` specifications. It then runs `Audit.lean` on the proved library. The Challenge proof placeholders are excluded from that audit. Six separate Linux jobs check the standalone packages with their pinned dependencies. The read-k and thermal jobs use temporary working copies. The other four study jobs build in the checked-out package directories. All jobs preserve the committed source verification records. The full [Palomar mechanical preflight](../.github/workflows/palomar-preflight.yml) remains manual and covers the shared library. The workflow configuration states which checks run; a successful result requires a completed workflow run.
+The shared-library job builds `MathAndTheory`, `Solutions`, and the separate `Challenges` specifications. It then runs `Audit.lean` on the proved library. The Challenge proof placeholders are excluded from that audit. Eight separate Linux jobs check the standalone packages with their pinned dependencies. The read-k and thermal jobs use temporary working copies. The other six study jobs build in the checked-out package directories. All jobs preserve the committed source verification records. The full [Palomar mechanical preflight](../.github/workflows/palomar-preflight.yml) remains manual and covers the shared library. The workflow configuration states which checks run; a successful result requires a completed workflow run.
 
 ## Records and limits
 
@@ -108,13 +108,15 @@ Run the following command after all verification checks pass. Use an output dire
 python3 verification/build_archives.py --output ../archival-packages
 ```
 
-The builder includes only files in the explicit publication manifest. It rejects missing files, unlisted files, changed hashes, and symbolic links. It checks every ZIP member against its source bytes. The builder produces thirteen manuscript PDFs, thirteen full-collection ZIP files, and `packages.json`. Each ZIP includes all six standalone packages as well as the manuscripts, shared formal library, exact checking programs, licenses, and verification scope.
+The builder includes only files in the explicit publication manifest. It rejects missing files, unlisted files, changed hashes, and symbolic links. It checks every ZIP member against its source bytes. The builder produces fifteen manuscript PDFs, fifteen full-collection ZIP files, and `packages.json`. Each ZIP includes all eight standalone packages as well as the manuscripts, shared formal library, exact checking programs, licenses, and verification scope.
 
 [Return to the catalogue](../CONTENTS.md).
 
 ## Standalone study proofs
 
-Six study packages use their own pinned Lean environments. Four packages cover the sharp Fourier bound, Galvin–Zhang domination counts, universal embezzlement, and asymmetric Tutte inequalities. Each package includes the manuscript, source files, license, citation, and source verification record. The source integrity checks compare published bytes and report coverage. Compiled objects are not included. Rebuild the package to reconstruct them.
+Eight study packages use their own pinned Lean environments. Six packages cover the sharp Fourier bound, Galvin–Zhang domination counts, universal embezzlement, asymmetric Tutte inequalities, the Higuchi–Sudbery entropy bound, and quartic ranking entropy. Each package includes the manuscript, source files, license, citation, and source verification record. The source integrity checks compare published bytes and report coverage. Compiled objects are not included. Rebuild the package to reconstruct them.
+
+The [Higuchi–Sudbery package](additional-proofs/higuchi-sudbery/VERIFICATION.md) has 50 source modules and eleven selected axiom reports. Its theorem covers every normalized pure four-qubit state and proves attainment of the bound. The [quartic ranking package](additional-proofs/quartic-rankings/VERIFICATION.md) has 20 source modules and five endpoint checks. Its kernel audit checks all 238 project theorem declarations, including 17 private helpers. Both packages include source hashes and compiler logs.
 
 Automatic jobs build each study and check every requested audit report. These jobs are separate from the shared Comparator selection. The order-six and permutation-polynomial Gyires packages have automatic source checks; their full source builds can be run with the manual workflow.
 

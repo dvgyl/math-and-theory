@@ -1,0 +1,773 @@
+{
+  "format_version": 1,
+  "entry_module": "RangeAudit",
+  "source_count": 70,
+  "source_bytes": 232784,
+  "lean_toolchain": "leanprover/lean4:v4.35.0",
+  "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+  "verified_orders": {
+    "minimum": 2,
+    "maximum": 5
+  },
+  "modules": [
+    {
+      "module": "AffineRows",
+      "path": "src/AffineRows.lean",
+      "bytes": 4580,
+      "sha256": "dc4099cadbf7f41bf88849ae023b40ac0bdc1cfebb494c6a8360257f752e1399",
+      "imports": [
+        "Mathlib.Basic.Real.Basic",
+        "Mathlib.LinearAlgebra.Matrix.Rank",
+        "Mathlib.LinearAlgebra.LinearIndependent.Lemmas",
+        "Mathlib.LinearAlgebra.Dimension.Constructions",
+        "Mathlib.LinearAlgebra.FiniteDimensional.Basic",
+        "Mathlib.Data.Finset.Max",
+        "Mathlib.Tactic.Ring",
+        "Mathlib.Tactic.NormNum",
+        "Mathlib.Tactic.FieldSimp",
+        "Mathlib.Tactic.Linarith",
+        "Mathlib.Tactic.Push"
+      ]
+    },
+    {
+      "module": "AllProfileContraction",
+      "path": "src/AllProfileContraction.lean",
+      "bytes": 4331,
+      "sha256": "33c2799fd6a706dd0a513cc1a4e7bb703694211b4235f62910e2fc658d4b83a0",
+      "imports": [
+        "IntervalEvaluation",
+        "CertificateCoverage",
+        "ProfileCoverage",
+        "ProfileReduction"
+      ]
+    },
+    {
+      "module": "CenteredGram",
+      "path": "src/CenteredGram.lean",
+      "bytes": 4238,
+      "sha256": "5c84bba95458ef792dfe09dc891c66b68e4bead568aceab17e2dc1cd1a4a2eb7",
+      "imports": [
+        "PermanentExpansion"
+      ]
+    },
+    {
+      "module": "CenteredParameters",
+      "path": "src/CenteredParameters.lean",
+      "bytes": 3317,
+      "sha256": "bd53dc29e5095276c0eeecbe0a070767215c6244d399595429a53fc719731658",
+      "imports": [
+        "CenteredGram"
+      ]
+    },
+    {
+      "module": "CertificateCoverage",
+      "path": "src/CertificateCoverage.lean",
+      "bytes": 1612,
+      "sha256": "286cd3a318c70b0f52d0eecd7f4bee14e2255d6146b875deed1d35b8e29df44e",
+      "imports": [
+        "CertificatePolynomials"
+      ]
+    },
+    {
+      "module": "CertificatePolynomials",
+      "path": "src/CertificatePolynomials.lean",
+      "bytes": 7686,
+      "sha256": "c2739fd27f82faa5e2fae744d211d3eb542090d1b65b8789878e51a6e80c92fe",
+      "imports": [
+        "SparsePolynomial",
+        "Mathlib.Algebra.Polynomial.Coeff",
+        "Mathlib.Algebra.Polynomial.BigOperators"
+      ]
+    },
+    {
+      "module": "ConvexLawMaximizer",
+      "path": "src/ConvexLawMaximizer.lean",
+      "bytes": 4923,
+      "sha256": "ce7e0709b8f9a41b7b9f647a18bd894be649eb4135221ece3ee101a9c58fa08b",
+      "imports": [
+        "PairInterpolation"
+      ]
+    },
+    {
+      "module": "DeficitConvexity",
+      "path": "src/DeficitConvexity.lean",
+      "bytes": 4608,
+      "sha256": "7eacc91c45ed6812426c4a56901e904c5879ddec02e8d3fc66eaec9d7b7c01b2",
+      "imports": [
+        "SecondCoefficient",
+        "Mathlib.Analysis.Convex.Mul",
+        "Mathlib.Tactic.FunProp"
+      ]
+    },
+    {
+      "module": "DenominatorAlgebra",
+      "path": "src/DenominatorAlgebra.lean",
+      "bytes": 2410,
+      "sha256": "99917e692ab5cb40798d5054d69ea801e933567e3f64ecd835dacc7e9e0ee1f6",
+      "imports": [
+        "Mathlib.Basic.Real.Basic",
+        "Mathlib.Tactic.FieldSimp",
+        "Mathlib.Tactic.Ring"
+      ]
+    },
+    {
+      "module": "IntervalEvaluation",
+      "path": "src/IntervalEvaluation.lean",
+      "bytes": 2121,
+      "sha256": "264d0b0e132114b4ae50a04f70cf56db6a0d0f40e0984ade0c91a1743b6fbe08",
+      "imports": [
+        "ProfileCertificateBound",
+        "Mathlib.Tactic.FinCases"
+      ]
+    },
+    {
+      "module": "LawDeficitConnection",
+      "path": "src/LawDeficitConnection.lean",
+      "bytes": 3600,
+      "sha256": "704063479ddfc5c4b2f552cc32e486c3f3dd44d7a1ed34f4509a38bfc1bc16b7",
+      "imports": [
+        "DeficitConvexity",
+        "PairInterpolation",
+        "NormalizedPermanent"
+      ]
+    },
+    {
+      "module": "LawTransform",
+      "path": "src/LawTransform.lean",
+      "bytes": 4122,
+      "sha256": "38549178b11f030ae9e41bc52641d9efb5b578a262718a8e05adcfbb01271a4d",
+      "imports": [
+        "SubsetOrbit",
+        "MathAndTheory.Mathematics.Gyires.BernoulliMaximizer",
+        "Mathlib.Algebra.Polynomial.BigOperators",
+        "Mathlib.Algebra.Polynomial.Coeff"
+      ]
+    },
+    {
+      "module": "MathAndTheory.Mathematics.Gyires.BernoulliLikelihood",
+      "path": "src/MathAndTheory/Mathematics/Gyires/BernoulliLikelihood.lean",
+      "bytes": 18875,
+      "sha256": "8364f349be4dbec6362671b9c719b5d556dae033a462fd1a38422cf407736294",
+      "imports": [
+        "MathAndTheory.Mathematics.Gyires.BernoulliMaximizer",
+        "Mathlib.Tactic.FieldSimp"
+      ]
+    },
+    {
+      "module": "MathAndTheory.Mathematics.Gyires.BernoulliMaximizer",
+      "path": "src/MathAndTheory/Mathematics/Gyires/BernoulliMaximizer.lean",
+      "bytes": 29178,
+      "sha256": "e827b03cd9a767b75feaee0fa5e3f3ede417cd8d0989dcbc74e2bfcc5b67a295",
+      "imports": [
+        "Mathlib.Topology.Order.Compact",
+        "Mathlib.Topology.Instances.Real.Lemmas",
+        "Mathlib.Topology.Algebra.Order.Field",
+        "Mathlib.Algebra.BigOperators.Ring.Finset",
+        "Mathlib.Algebra.Order.BigOperators.GroupWithZero.Finset",
+        "Mathlib.Data.Fintype.Pi",
+        "Mathlib.Tactic.FunProp",
+        "Mathlib.Tactic.Linarith",
+        "Mathlib.Tactic.Ring",
+        "Mathlib.Tactic.Positivity",
+        "Mathlib.Algebra.Polynomial.BigOperators",
+        "Mathlib.Algebra.Polynomial.Coeff",
+        "Mathlib.Algebra.Polynomial.Derivative"
+      ]
+    },
+    {
+      "module": "MathAndTheory.Mathematics.Gyires.DimensionConstant",
+      "path": "src/MathAndTheory/Mathematics/Gyires/DimensionConstant.lean",
+      "bytes": 5844,
+      "sha256": "e201cb28c277f4115858017edd875508df5101760b7ee77a215e42b2b72f265f",
+      "imports": [
+        "Mathlib.Data.Nat.Choose.Sum",
+        "Mathlib.Data.Nat.Choose.Basic",
+        "Mathlib.Basic.Real.Basic",
+        "Mathlib.Tactic.Positivity",
+        "Mathlib.Tactic.NormNum"
+      ]
+    },
+    {
+      "module": "MathAndTheory.Mathematics.Gyires.PermanentCauchySchwarz",
+      "path": "src/MathAndTheory/Mathematics/Gyires/PermanentCauchySchwarz.lean",
+      "bytes": 3928,
+      "sha256": "e62c7c928378e3cd6b04d083bf2d26b9cb7dbe87f7792c977b764bbafe319a95",
+      "imports": [
+        "MathAndTheory.Mathematics.GyiresCirculant5.PermanentGram",
+        "Mathlib.Algebra.QuadraticDiscriminant",
+        "Mathlib.Analysis.Real.Sqrt"
+      ]
+    },
+    {
+      "module": "MathAndTheory.Mathematics.Gyires.TwoColumnContraction",
+      "path": "src/MathAndTheory/Mathematics/Gyires/TwoColumnContraction.lean",
+      "bytes": 21139,
+      "sha256": "42671424493368a7130e616027ea7940830425c090b7dd557004b474df62c0d2",
+      "imports": [
+        "MathAndTheory.Mathematics.Gyires.BernoulliLikelihood",
+        "MathAndTheory.Mathematics.Gyires.PermanentCauchySchwarz",
+        "MathAndTheory.Mathematics.Gyires.DimensionConstant",
+        "Mathlib.Logic.Equiv.Basic",
+        "Mathlib.Analysis.Convex.DoublyStochasticMatrix"
+      ]
+    },
+    {
+      "module": "MathAndTheory.Mathematics.GyiresCirculant5.Definitions",
+      "path": "src/MathAndTheory/Mathematics/GyiresCirculant5/Definitions.lean",
+      "bytes": 1984,
+      "sha256": "0a93728182cb91cad483c74f9efc3e2e0f212fc3bea10890115da541b3b970c1",
+      "imports": [
+        "Mathlib.Basic.Real.Basic",
+        "Mathlib.Data.Matrix.Basic",
+        "Mathlib.LinearAlgebra.Matrix.Notation"
+      ]
+    },
+    {
+      "module": "MathAndTheory.Mathematics.GyiresCirculant5.FiniteIndices",
+      "path": "src/MathAndTheory/Mathematics/GyiresCirculant5/FiniteIndices.lean",
+      "bytes": 983,
+      "sha256": "3d2cfafcc18997ffee00f061eda630fbb8876e9e35dd3c614e8213b2fe21dc4e",
+      "imports": [
+        "Mathlib.Data.Fin.Basic"
+      ]
+    },
+    {
+      "module": "MathAndTheory.Mathematics.GyiresCirculant5.MatrixBridge",
+      "path": "src/MathAndTheory/Mathematics/GyiresCirculant5/MatrixBridge.lean",
+      "bytes": 1817,
+      "sha256": "d9ee7ed7d381e7b3f660bb3de4888302972f18cb3b5a619b6fbcf7892d3bff6a",
+      "imports": [
+        "MathAndTheory.Mathematics.GyiresCirculant5.MatrixProducts",
+        "MathAndTheory.Mathematics.GyiresCirculant5.FiniteIndices",
+        "Mathlib.LinearAlgebra.Matrix.Permanent",
+        "Mathlib.GroupTheory.Perm.Fin",
+        "Mathlib.Tactic.FinCases",
+        "Mathlib.Tactic.NormNum",
+        "Mathlib.Tactic.Ring"
+      ]
+    },
+    {
+      "module": "MathAndTheory.Mathematics.GyiresCirculant5.MatrixProducts",
+      "path": "src/MathAndTheory/Mathematics/GyiresCirculant5/MatrixProducts.lean",
+      "bytes": 1952,
+      "sha256": "c1adf294367aa3816cc1e3a8164bd1e88230078f024f1ea5c4a744a827fcff46",
+      "imports": [
+        "MathAndTheory.Mathematics.GyiresCirculant5.Definitions",
+        "MathAndTheory.Mathematics.GyiresCirculant5.FiniteIndices",
+        "Mathlib.LinearAlgebra.Matrix.Permanent",
+        "Mathlib.GroupTheory.Perm.Fin",
+        "Mathlib.Tactic.FinCases",
+        "Mathlib.Tactic.NormNum",
+        "Mathlib.Tactic.Ring"
+      ]
+    },
+    {
+      "module": "MathAndTheory.Mathematics.GyiresCirculant5.PermanentGram",
+      "path": "src/MathAndTheory/Mathematics/GyiresCirculant5/PermanentGram.lean",
+      "bytes": 4972,
+      "sha256": "3c13d43fccedd8399b472f029e8d48a4f619da2062eea83ec925c19a35a4cccb",
+      "imports": [
+        "MathAndTheory.Mathematics.GyiresCirculant5.MatrixBridge",
+        "Mathlib.Algebra.BigOperators.Ring.Finset",
+        "Mathlib.Data.Fintype.Pi",
+        "Mathlib.Tactic.Linarith",
+        "Mathlib.Tactic.NormNum"
+      ]
+    },
+    {
+      "module": "NormalizedPermanent",
+      "path": "src/NormalizedPermanent.lean",
+      "bytes": 4493,
+      "sha256": "99c0ff4a28ec1412fdd86c43c703ddd2cf8d552893bd74d87e10b2054f84b9e7",
+      "imports": [
+        "CenteredParameters",
+        "Mathlib.Algebra.BigOperators.Field"
+      ]
+    },
+    {
+      "module": "OrderFiveCertificates",
+      "path": "src/OrderFiveCertificates.lean",
+      "bytes": 1703,
+      "sha256": "4be921d0fc3009a0faa9d4295dd86fba3b5c0108d579bcc4cdd6dd0d4c0db255",
+      "imports": [
+        "OrderFiveRow00",
+        "OrderFiveRow01",
+        "OrderFiveRow02",
+        "OrderFiveRow03",
+        "OrderFiveRow04",
+        "OrderFiveRow05",
+        "OrderFiveRow06",
+        "OrderFiveRow07",
+        "OrderFiveRow08",
+        "OrderFiveRow09",
+        "OrderFiveRow10",
+        "OrderFiveRow11",
+        "OrderFiveRow12",
+        "OrderFiveRow13",
+        "OrderFiveRow14"
+      ]
+    },
+    {
+      "module": "OrderFiveRow00",
+      "path": "src/OrderFiveRow00.lean",
+      "bytes": 363,
+      "sha256": "94fcb14d5df475591877359866140bd0a84e89322db2a77ba22a5512ec8b3e7e",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFiveRow01",
+      "path": "src/OrderFiveRow01.lean",
+      "bytes": 363,
+      "sha256": "46fa70e9979f371c2ab8c8545d362197680c3b73cb2bff18af43b4b60b4745f9",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFiveRow02",
+      "path": "src/OrderFiveRow02.lean",
+      "bytes": 363,
+      "sha256": "8670dca2528fa3a09b470514dbfbfd6cd7150068aa1410287be4fd0dccc1a8a9",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFiveRow03",
+      "path": "src/OrderFiveRow03.lean",
+      "bytes": 363,
+      "sha256": "7ab3659550e8ce2fba371e7c55ef7d47121cc84ba29d371fd19b708c61ab3bc0",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFiveRow04",
+      "path": "src/OrderFiveRow04.lean",
+      "bytes": 363,
+      "sha256": "8b72367d5607e9618f6d0f3fd28d584b95bab0433b5595957be7c68e6b1077c1",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFiveRow05",
+      "path": "src/OrderFiveRow05.lean",
+      "bytes": 363,
+      "sha256": "4c0a1d7d36cbdc23ca25fbde76c1b9884302589290405d6cfb9f5e0b2903df44",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFiveRow06",
+      "path": "src/OrderFiveRow06.lean",
+      "bytes": 363,
+      "sha256": "a27d57e25265838082f1f252c631ea99330df96acd3afd12741507de013d4784",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFiveRow07",
+      "path": "src/OrderFiveRow07.lean",
+      "bytes": 363,
+      "sha256": "5dfbfcf1bfbf2b44b478fad8f853e5012257b23c664b27b9d04156ec3b6645da",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFiveRow08",
+      "path": "src/OrderFiveRow08.lean",
+      "bytes": 363,
+      "sha256": "cb5b18dc2786a715ba964b79ae941dcc1aa26c79eb77f74473208f3614c454a2",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFiveRow09",
+      "path": "src/OrderFiveRow09.lean",
+      "bytes": 363,
+      "sha256": "6bf81331eabb82ff4c695755a255eae361dbcc0fbee3938ef6cf09b15d1cae2a",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFiveRow10",
+      "path": "src/OrderFiveRow10.lean",
+      "bytes": 363,
+      "sha256": "1883918176c435f217b9927c4038829c96cfecc59165ecf5ad0a82d7811e5b19",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFiveRow11",
+      "path": "src/OrderFiveRow11.lean",
+      "bytes": 363,
+      "sha256": "f70bd0ee9e12cfae4ae4adb3170aef140c6761c31a5cfbb33c5c9eae2d2fc9f0",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFiveRow12",
+      "path": "src/OrderFiveRow12.lean",
+      "bytes": 363,
+      "sha256": "d89373b10459a34b6e589f75d07c98a18bbdb785cacefa7dc6d25b1d0bcecd86",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFiveRow13",
+      "path": "src/OrderFiveRow13.lean",
+      "bytes": 363,
+      "sha256": "201ce6deeff58f68afae318c2bbecba76c10731536ae189ee4a26c3e564a0d79",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFiveRow14",
+      "path": "src/OrderFiveRow14.lean",
+      "bytes": 363,
+      "sha256": "ed8534ded4baedea8c4b43d97c92b6136c5485fdc16575e8616b263bbc630191",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFourCertificates",
+      "path": "src/OrderFourCertificates.lean",
+      "bytes": 1288,
+      "sha256": "1bd65aae1320c96e5c17583fcea50b4715a645467f89d7b24b9bc663986c13e1",
+      "imports": [
+        "OrderFourRow00",
+        "OrderFourRow01",
+        "OrderFourRow02",
+        "OrderFourRow03",
+        "OrderFourRow04",
+        "OrderFourRow05",
+        "OrderFourRow06",
+        "OrderFourRow07",
+        "OrderFourRow08",
+        "OrderFourRow09"
+      ]
+    },
+    {
+      "module": "OrderFourRow00",
+      "path": "src/OrderFourRow00.lean",
+      "bytes": 363,
+      "sha256": "ee30a20a77184730110c208c5c91a2b70d791d06da11143586f0e5ce03ae2611",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFourRow01",
+      "path": "src/OrderFourRow01.lean",
+      "bytes": 363,
+      "sha256": "9d1a4dfd72a81733ac0ca87fd421d52f0aa5705d6ecc7ec972a4e8c3d939dcf2",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFourRow02",
+      "path": "src/OrderFourRow02.lean",
+      "bytes": 363,
+      "sha256": "477e55307eab7f6154ce9520c67525c02ff8e31a1a761b93f0435b954245872a",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFourRow03",
+      "path": "src/OrderFourRow03.lean",
+      "bytes": 363,
+      "sha256": "107699d201c4b1da204f60a4a94eb7449fa818a839279dd78ed3cf2d14a1e749",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFourRow04",
+      "path": "src/OrderFourRow04.lean",
+      "bytes": 363,
+      "sha256": "1aaba08c6e6fc5d48010c61167772703a89b08b9bf1991e236240f9cf2c2297e",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFourRow05",
+      "path": "src/OrderFourRow05.lean",
+      "bytes": 363,
+      "sha256": "06b353e55ec9f3b6a89ca87da134e22a37ea880e4e2d79e50fda02f003387de6",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFourRow06",
+      "path": "src/OrderFourRow06.lean",
+      "bytes": 363,
+      "sha256": "3d1149b6acafe4e65292efcf09967ffaa38608fd6ba277c4a563056ef587a1f3",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFourRow07",
+      "path": "src/OrderFourRow07.lean",
+      "bytes": 363,
+      "sha256": "2cdd34701d01bdae7522a9bbe974cfec63a77f687b584242b00b6f9c382556d0",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFourRow08",
+      "path": "src/OrderFourRow08.lean",
+      "bytes": 363,
+      "sha256": "9844a303a71fb40f0d1ce41e10c81d6102a3f3d775827530b9012113e22dd46e",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderFourRow09",
+      "path": "src/OrderFourRow09.lean",
+      "bytes": 363,
+      "sha256": "3304c41a4f3a2ade372574b2765a2898451fe939f1b43aad65401ddbaf31bff7",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderThreeCertificates",
+      "path": "src/OrderThreeCertificates.lean",
+      "bytes": 359,
+      "sha256": "4c4edf714c145b4c50329a36a7cf5a21fbecc6a16b70d4eda3b3b56aa6e46bf7",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "OrderTwoPrototype",
+      "path": "src/OrderTwoPrototype.lean",
+      "bytes": 361,
+      "sha256": "687d0e63fb34c6e20b15c129567baa7e02d855daacb1c6438175117d61cc1294",
+      "imports": [
+        "CertificateCoverage"
+      ]
+    },
+    {
+      "module": "PairInterpolation",
+      "path": "src/PairInterpolation.lean",
+      "bytes": 3732,
+      "sha256": "e3032303b9ac1b5e5138c20a8ede9b843dee044ad72ee1d8e5348b8d1e588535",
+      "imports": [
+        "MathAndTheory.Mathematics.Gyires.BernoulliMaximizer",
+        "Mathlib.Analysis.Convex.Function",
+        "Mathlib.Analysis.Convex.Hull",
+        "Mathlib.Tactic.Ring",
+        "Mathlib.Tactic.NormNum",
+        "Mathlib.Tactic.FieldSimp",
+        "Mathlib.Tactic.Linarith"
+      ]
+    },
+    {
+      "module": "PermanentExpansion",
+      "path": "src/PermanentExpansion.lean",
+      "bytes": 2535,
+      "sha256": "8345f642a6222674856b3d18ccbcf33ed572e66f60965186eb217447438dbadb",
+      "imports": [
+        "SubsetOrbit",
+        "Mathlib.LinearAlgebra.Matrix.Permanent"
+      ]
+    },
+    {
+      "module": "ProfileCertificateBound",
+      "path": "src/ProfileCertificateBound.lean",
+      "bytes": 2722,
+      "sha256": "fa5e6c663546cad8b8cce12e6339bfb1981951b260ce72a4617e0cc61555ffde",
+      "imports": [
+        "ProfileRatios"
+      ]
+    },
+    {
+      "module": "ProfileCoverage",
+      "path": "src/ProfileCoverage.lean",
+      "bytes": 4067,
+      "sha256": "da770002561d42603d4091228e5b6be19095f3ca300fdcb15a5ea4d8495269cf",
+      "imports": [
+        "ProfilePolynomial"
+      ]
+    },
+    {
+      "module": "ProfilePolynomial",
+      "path": "src/ProfilePolynomial.lean",
+      "bytes": 5180,
+      "sha256": "f1a8ab806d75aa3eddd01ceb5c7965bc70adb0505b9a860d7f106d120bf8a54d",
+      "imports": [
+        "ConvexLawMaximizer",
+        "LawTransform"
+      ]
+    },
+    {
+      "module": "ProfileRatios",
+      "path": "src/ProfileRatios.lean",
+      "bytes": 4979,
+      "sha256": "31a99175a60dd44e2332e7e50de7a1e3c3161570bc71715fc45a102c99fd18c1",
+      "imports": [
+        "ProfileScaling",
+        "VarianceScaling",
+        "DenominatorAlgebra",
+        "NormalizedPermanent"
+      ]
+    },
+    {
+      "module": "ProfileReduction",
+      "path": "src/ProfileReduction.lean",
+      "bytes": 1899,
+      "sha256": "7a882c612c40abe10c2234fbcad2df3aeb5524c8f03877d76cc6f8bd4d24344f",
+      "imports": [
+        "LawDeficitConnection",
+        "ConvexLawMaximizer"
+      ]
+    },
+    {
+      "module": "ProfileScaling",
+      "path": "src/ProfileScaling.lean",
+      "bytes": 4092,
+      "sha256": "bac73e837efc7a584fdfb516185c2448d4e0d2b35b2a27cd55ff36d8adf18d04",
+      "imports": [
+        "CertificatePolynomials",
+        "ProfilePolynomial"
+      ]
+    },
+    {
+      "module": "RangeAudit",
+      "path": "src/RangeAudit.lean",
+      "bytes": 1418,
+      "sha256": "8751003d27785bc5b37c1cc0b54b9ee6f099da87732ade459ba4c53bf50aa190",
+      "imports": [
+        "RangeComplete"
+      ]
+    },
+    {
+      "module": "RangeComplete",
+      "path": "src/RangeComplete.lean",
+      "bytes": 2235,
+      "sha256": "83930d047d1c8da8a65f085e6ffffc037de555194d4e2c06dc5874bfe545ddb3",
+      "imports": [
+        "RankTwoConsequences",
+        "OrderTwoPrototype",
+        "OrderThreeCertificates",
+        "OrderFourCertificates",
+        "OrderFiveCertificates"
+      ]
+    },
+    {
+      "module": "RankTwoConsequences",
+      "path": "src/RankTwoConsequences.lean",
+      "bytes": 5881,
+      "sha256": "2f285d67daae471838adea3f93d40ddf4dcc798289fed6bbc6a5df2d8aee4764",
+      "imports": [
+        "RankTwoContraction",
+        "MathAndTheory.Mathematics.Gyires.PermanentCauchySchwarz"
+      ]
+    },
+    {
+      "module": "RankTwoContraction",
+      "path": "src/RankTwoContraction.lean",
+      "bytes": 3427,
+      "sha256": "336cdb36a73bf90d65c54e3dcf4d01b75f46cb890adb515c560186d46d7f7fd9",
+      "imports": [
+        "AllProfileContraction",
+        "StochasticRepresentation",
+        "StrictGram",
+        "MathAndTheory.Mathematics.Gyires.TwoColumnContraction"
+      ]
+    },
+    {
+      "module": "SecondCoefficient",
+      "path": "src/SecondCoefficient.lean",
+      "bytes": 2298,
+      "sha256": "d7394ebc8875d7495bffc3d6fc8cfa5c746b2780565ccd3bc90f8d9476c86122",
+      "imports": [
+        "LawTransform",
+        "Mathlib.RingTheory.MvPolynomial.Symmetric.Defs"
+      ]
+    },
+    {
+      "module": "SparsePolynomial",
+      "path": "src/SparsePolynomial.lean",
+      "bytes": 16540,
+      "sha256": "a608071e6be8d7ab9c44ecaaa932b28e2d7bdd428e60594ac80e97eb1574c4d7",
+      "imports": [
+        "Mathlib.Basic.Real.Basic",
+        "Mathlib.Data.Nat.Factorization.Defs",
+        "Mathlib.Algebra.Order.BigOperators.GroupWithZero.Finset",
+        "Mathlib.Algebra.BigOperators.Group.List.Basic",
+        "Mathlib.Tactic.Ring",
+        "Mathlib.Tactic.Positivity",
+        "Mathlib.Tactic.Linarith"
+      ]
+    },
+    {
+      "module": "StochasticRepresentation",
+      "path": "src/StochasticRepresentation.lean",
+      "bytes": 4062,
+      "sha256": "0ed21610208a445a006299a1f0918fbd0fac6d375c886322469effc74b5251ce",
+      "imports": [
+        "AffineRows"
+      ]
+    },
+    {
+      "module": "StrictGram",
+      "path": "src/StrictGram.lean",
+      "bytes": 4333,
+      "sha256": "c8ec397282fd6b2f860c834a8c92e0ed153ee37ebc746ffd33a3794d8980d4f0",
+      "imports": [
+        "NormalizedPermanent",
+        "SecondCoefficient"
+      ]
+    },
+    {
+      "module": "SubsetOrbit",
+      "path": "src/SubsetOrbit.lean",
+      "bytes": 4959,
+      "sha256": "723a08337afd3d3d3a17ccae7731624c1bb78a0da83ab3a5eeb096feee7a0616",
+      "imports": [
+        "Mathlib.Basic.Real.Basic",
+        "Mathlib.Algebra.BigOperators.Group.Finset.Powerset",
+        "Mathlib.Algebra.BigOperators.Ring.Finset",
+        "Mathlib.Data.Fintype.Perm",
+        "Mathlib.Logic.Equiv.Basic",
+        "Mathlib.Tactic.Ring",
+        "Mathlib.Tactic.Positivity",
+        "Mathlib.Tactic.NormNum",
+        "Mathlib.Tactic.FieldSimp",
+        "Mathlib.Tactic.Linarith"
+      ]
+    },
+    {
+      "module": "VarianceScaling",
+      "path": "src/VarianceScaling.lean",
+      "bytes": 2926,
+      "sha256": "b387e2d3a8ea285c8f4dd8de5526e75188ee73ab844633775e40136360428796",
+      "imports": [
+        "CertificatePolynomials",
+        "CenteredParameters"
+      ]
+    }
+  ]
+}

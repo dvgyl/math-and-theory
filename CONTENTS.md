@@ -1,8 +1,8 @@
 # Manuscript catalogue
 
-The catalogue contains thirteen result families and thirteen manuscripts. Seven families use the shared Lean 4.35.0 library. Its 29 selected Comparator declarations include equality, positivity, sharpness, and generalization statements. The decision-tree and thermal packages use separate Lean 4.19.0 environments. Supporting lemmas are not separate research contributions.
+The catalogue contains fifteen result families and fifteen manuscripts. Seven families use the shared Lean 4.35.0 library. Its 29 selected Comparator declarations include equality, positivity, sharpness, and generalization statements. The decision-tree and thermal packages use separate Lean 4.19.0 environments. Supporting lemmas are not separate research contributions.
 
-Twelve papers have complete Lean proofs within their stated formal scopes. The thermal formalization covers finite spectral statements, with no formal stochastic long-time identification theorem. The Gyires preprint has complete Lean proofs for its principal order-five and order-six claims, its all-order permutation-polynomial and four-block theorems, and its exceptional-vector theorem. The principal order-seven and finite rank-two results remain incomplete in Lean. The verification record gives the checks actually completed. The papers have not been peer reviewed. The prior-work assessment is bounded and makes no first-priority claim.
+Each paper states its formal verification scope. The thermal formalization covers finite spectral statements, with no formal stochastic long-time identification theorem. The Gyires preprint has complete Lean proofs for its principal order-five and order-six claims, its all-order permutation-polynomial and four-block theorems, and its exceptional-vector theorem. The rank-two result has a complete Lean proof for orders 2 through 5. The principal order-seven result and rank-two orders 6 through 15 remain incomplete in Lean. The verification record gives the checks actually completed. The papers have not been peer reviewed. The prior-work assessment is bounded and makes no first-priority claim.
 
 ## Mathematics
 
@@ -20,9 +20,9 @@ Twelve papers have complete Lean proofs within their stated formal scopes. The t
 
 #### Gyires's permanent inequality for structured matrices
 
-**Family:** `gyires-circulant-five`. **Result:** Structured matrix inequalities and related polynomial bounds. The principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have Lean proofs.
+**Family:** `gyires-circulant-five`. **Result:** Structured matrix inequalities and related polynomial bounds. The principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, the exceptional-vector theorem, and rank-two orders 2–5 have Lean proofs.
 
-**Abstract.** The preprint proves Gyires's permanent inequality for several structured matrix classes. These include nonnegative circulants of orders five through seven, all-order permutation polynomials A=aI+bQ+cQ², and all-order four-block doubly stochastic matrices. Here Q is any permutation matrix and a,b,c are nonnegative. The four-block result permits unequal block sizes and zero entries. Further results cover one exceptional column or row and every rank-at-most-two doubly stochastic matrix through order fifteen. The supporting sections prove structural, scalar, deletion, balancing, local polynomial, and counting results. Exact counterexamples identify the limits of auxiliary assertions. The principal order-five claims include equality and a sharp sorted-gap bound with coefficient 484. The principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean proofs. The principal order-seven and finite rank-two results remain incomplete in Lean. The unrestricted conjecture remains outside these results.
+**Abstract.** The preprint proves Gyires's permanent inequality for several structured matrix classes. These include nonnegative circulants of orders five through seven, all-order permutation polynomials A=aI+bQ+cQ², and all-order four-block doubly stochastic matrices. Here Q is any permutation matrix and a,b,c are nonnegative. The four-block result permits unequal block sizes and zero entries. Further results cover one exceptional column or row and every rank-at-most-two doubly stochastic matrix through order fifteen. The supporting sections prove structural, scalar, deletion, balancing, local polynomial, and counting results. Exact counterexamples identify the limits of auxiliary assertions. The principal order-five claims include equality and a sharp sorted-gap bound with coefficient 484. The principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean proofs. The rank-two result has a complete Lean proof for orders 2 through 5. The principal order-seven result and rank-two orders 6 through 15 remain incomplete in Lean. The unrestricted conjecture remains outside these results.
 
 **Original problem.** [Gyires, 1978; Cheon and Wanless, 2005, Conjecture 20. Earlier formalization at the pinned Gyires repository.](https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448)
 
@@ -174,6 +174,22 @@ The theorem characterizes all nonnegative pairs (x,y) for which T_M(x,0) T_M(0,y
 **Prior work.** [Liu, 2026; Chen and Xie, 2026. The manuscript states the relation to the diagonal theorem.](https://github.com/michaeliu4/tutte-threshold)
 
 [Paper PDF](verification/additional-proofs/asymmetric-tutte/manuscript.pdf) · [LaTeX](verification/additional-proofs/asymmetric-tutte/manuscript.tex) · [Citation](verification/additional-proofs/asymmetric-tutte/CITATION.bib) · [Reproduction](verification/additional-proofs/asymmetric-tutte/README.md)
+
+## A sum-of-squares proof of the four-qubit Higuchi–Sudbery entropy bound
+
+The average von Neumann entropy of the three two-qubit marginals of a pure four-qubit state is at most log(2) + log(3)/2. The Higuchi–Sudbery state attains this bound.
+
+The proof uses all sixteen complex amplitudes, actual reduced-matrix eigenvalues, an exact sum-of-squares identity, and an explicit maximizing state.
+
+[Paper](verification/additional-proofs/higuchi-sudbery/manuscript.pdf) · [Source](verification/additional-proofs/higuchi-sudbery/manuscript.tex) · [Citation](verification/additional-proofs/higuchi-sudbery/CITATION.bib) · [Proof and verification](verification/additional-proofs/higuchi-sudbery/README.md)
+
+## A quartic entropy deficit for random rankings
+
+A distribution on rankings of n labels has entropy at most (1 − ε⁴/144) log(n!) if every pairwise comparison has probability at distance at least ε > 0 from 1/2.
+
+The proof includes all finite sizes and actual position-valued permutations. It assumes neither independent comparisons nor transitive preferred directions.
+
+[Paper](verification/additional-proofs/quartic-rankings/manuscript.pdf) · [Source](verification/additional-proofs/quartic-rankings/manuscript.tex) · [Citation](verification/additional-proofs/quartic-rankings/CITATION.bib) · [Proof and verification](verification/additional-proofs/quartic-rankings/README.md)
 
 ## Research process and review
 

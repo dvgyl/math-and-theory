@@ -173,7 +173,7 @@ jobs:
   study-proofs:
     name: Study proof — ${{ matrix.study }}
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: ${{ matrix.study == 'higuchi-sudbery' && 120 || 60 }}
     strategy:
       fail-fast: false
       matrix:
@@ -182,6 +182,8 @@ jobs:
           - universal-embezzlement
           - galvin-zhang
           - asymmetric-tutte
+          - higuchi-sudbery
+          - quartic-rankings
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
         with:
@@ -202,4 +204,7 @@ jobs:
           LEAN_NUM_THREADS: '1'
         run: |
           python3 verification/run_study_audit.py "$STUDY_NAME" "$RUNNER_TEMP/study-audit.txt"
+          if [ "$STUDY_NAME" = "higuchi-sudbery" ]; then
+            python3 verification/additional-proofs/higuchi-sudbery/tools/audit_sos.py
+          fi
           git diff --exit-code

@@ -23,7 +23,7 @@
 
 \begin{abstract}
 
-The catalogue contains thirteen result families and thirteen preprints in mathematics, theoretical computer science, and mathematical physics. Twelve papers have complete Lean proofs within their stated formal scopes. The thermal proof covers finite spectral statements, without a formal stochastic long-time identification theorem. The Gyires preprint proves inequalities for structured matrices and develops related polynomial bounds. Its principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean proofs. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. The papers have not been peer reviewed.
+The catalogue contains fifteen result families and fifteen preprints in mathematics, theoretical computer science, and mathematical physics. Each paper states its formal verification scope. The thermal proof covers finite spectral statements, without a formal stochastic long-time identification theorem. The Gyires preprint proves inequalities for structured matrices and develops related polynomial bounds. Its principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean proofs. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. The papers have not been peer reviewed.
 
 \end{abstract}
 
@@ -65,7 +65,7 @@ The manuscript also proves results for circulants of orders six and seven, with 
 
 The supporting sections prove structural, scalar, deletion, balancing, local polynomial, and configuration-model results. Exact counterexamples identify the limits of auxiliary assertions. The \href{https://github.com/dvgyl/math-and-theory/blob/main/research-notes/gyires-complete-support/README.md}{complete support record} gives the source map and exact reproduction commands.
 
-The all-order four-block and exceptional-vector theorems have complete Lean proofs. Their inequalities and equality cases are among the 29 selected formal statements. The principal order-seven and finite rank-two theorems remain incomplete in Lean. Separate Lean packages prove the principal order-six and all-order permutation-polynomial theorems. The all-order rank-two problem and the unrestricted Gyires conjecture remain unproved here.
+The all-order four-block and exceptional-vector theorems have complete Lean proofs. Their inequalities and equality cases are among the 29 selected formal statements. The rank-two theorem has a complete Lean proof for orders 2 through 5. The principal order-seven theorem and rank-two orders 6 through 15 remain incomplete in Lean. Separate Lean packages prove the principal order-six and all-order permutation-polynomial theorems. The all-order rank-two problem and the unrestricted Gyires conjecture remain unproved here.
 
 \subsection{An entropy increase for a structurally disassortative DomiRank graph}
 
@@ -188,13 +188,29 @@ holds for all finite matroids without loops or coloops. The criterion uses two e
 
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/asymmetric-tutte/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/asymmetric-tutte/README.md}{Formal proof and reproduction}.
 
+\subsection{The four-qubit Higuchi--Sudbery entropy bound}
+
+For every normalized pure state of four qubits, the average von Neumann entropy of the three balanced two-qubit cuts is at most $\log 2+\tfrac12\log 3$. The Higuchi--Sudbery state attains this value. The formal proof uses all sixteen complex amplitudes, the actual reduced matrices and their eigenvalues, an exact sum-of-squares identity, and an explicit attaining state. It does not classify all maximizers or cover mixed states.
+
+\href{https://github.com/dvgyl/math-and-theory/tree/main/verification/additional-proofs/higuchi-sudbery}{Manuscript, Lean proof, and reproduction commands.}
+
+\subsection{A quartic entropy deficit for random rankings}
+
+Let $P$ be a probability distribution on the complete rankings of $n$ labels. If every pairwise comparison has probability at distance at least $\varepsilon>0$ from $1/2$, then
+\[
+H(P)\le (1-\varepsilon^4/144)\log(n!).
+\]
+The formal theorem includes every finite size, including zero and one. It assumes neither independent comparisons nor transitive preferred directions. It covers both ranking lists and position-valued permutations.
+
+\href{https://github.com/dvgyl/math-and-theory/tree/main/verification/additional-proofs/quartic-rankings}{Manuscript, Lean proof, and reproduction commands.}
+
 \section{Verification and authorship}
 
-Lean checks the proofs against their formal statements. In the shared Lean 4.35.0 library, separate Challenge modules state the intended claims. Comparator checks these against their proved Solutions. The verification record identifies the completed runs of Lean, NanoDa, and con-ron for those seven families. The six standalone study packages have their own pinned Lean environments and source compilation records. Their audit logs state the permitted axioms. Exact arithmetic programs check the accompanying finite certificates. The shared Comparator results do not cover those packages. Independent exact and numerical programs test finite certificates and examples. These finite computations do not replace the general proofs.
+Lean checks the proofs against their formal statements. In the shared Lean 4.35.0 library, separate Challenge modules state the intended claims. Comparator checks these against their proved Solutions. The verification record identifies the completed runs of Lean, NanoDa, and con-ron for those seven families. The eight standalone study packages have their own pinned Lean environments and source compilation records. Their audit logs state the permitted axioms. Exact arithmetic programs check the accompanying finite certificates. The shared Comparator results do not cover those packages. Independent exact and numerical programs test finite certificates and examples. These finite computations do not replace the general proofs.
 
 \par
 
-This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication.
+This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.
 The \href{https://github.com/dvgyl/math-and-theory/blob/main/AUTHORSHIP.md}{authorship disclosure} identifies these tools and their roles.
 These preprints have not been peer reviewed.
 

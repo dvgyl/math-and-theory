@@ -54,7 +54,7 @@ local stable and Lorentzian inequalities, and exact configuration-model identiti
 Exact counterexamples identify the limits of proposed extensions.
 The principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean~4 proofs.
 General permanent comparisons and direct-sum closure also have Lean proofs.
-The order-seven circulant and finite rank-two theorems remain incomplete in Lean.
+The rank-two theorem has a complete Lean proof for orders 2 through 5. The order-seven circulant theorem and rank-two orders 6 through 15 remain incomplete in Lean.
 The unrestricted conjecture is not resolved.
 \end{abstract}
 
@@ -139,7 +139,7 @@ Exact counterexamples rule out several stronger auxiliary statements. None contr
 The principal order-five and order-six inequalities, equality cases, and sharp margins have complete Lean proofs.
 The all-order permutation-polynomial, four-block, and exceptional-vector theorems also have complete Lean proofs.
 General permanent comparisons and direct-sum closure also have Lean proofs.
-The order-seven circulant and finite rank-two theorems remain incomplete in Lean.
+The rank-two theorem has a complete Lean proof for orders 2 through 5. The order-seven circulant theorem and rank-two orders 6 through 15 remain incomplete in Lean.
 Section~\ref{sec:checks} maps the formalized theorems to their Lean declarations and explains how to reproduce the computations.
 
 \subsection{Prior work}
@@ -1136,7 +1136,8 @@ At $d=D(f)$ and $e=E(f)$, the first residual is
 =8(1-f)+6f^2+8f^2(1-f)+f^4\ge0.
 \]
 Smaller nonnegative $d,e$ preserve this inequality.
-At $f=0$, the positive vector $(1,1/4,1/4,1/4)^\T$ also satisfies $T_1w\le2w$.
+At $f=0$, take the positive vector $w=(1,1/4,1/4,1/4)^\T$.
+It satisfies $T_1w\le2w$.
 Conjugation by the diagonal matrix with diagonal $w$ gives a nonnegative matrix with row sums at most two.
 Its $n$th power has row sums at most $2^n$.
 Each diagonal entry is at most this row sum, so
@@ -6517,7 +6518,7 @@ Extending the support inequality~\eqref{eq:lp-mconvex-norm} to arbitrary matrix-
 
 \section{Verification and reproduction}\label{sec:checks}
 
-The principal order-five, order-six, all-order permutation-polynomial, all-order four-block, and exceptional-vector theorems have Lean proofs. The other results use analytic proofs or exact computational certificates.
+The principal order-five, order-six, all-order permutation-polynomial, all-order four-block, and exceptional-vector theorems, and rank-two orders two through five, have Lean proofs. The other results use analytic proofs or exact computational certificates.
 The accompanying repository contains the programs, outputs, and reproduction commands in
 \path{research-notes/gyires-complete-support}.
 The table below identifies the formalized statements.
@@ -6535,6 +6536,22 @@ The analytic, scalar, closure, and local polynomial arguments are proved in the 
 Their computations are identified at the claims that use them.
 An exact counterexample only refutes its stated auxiliary assertion.
 It does not establish the unrestricted target inequality.
+
+\subsection{Formal rank-two theorem in orders two through five}
+
+The separate package \path{verification/gyires-rank-two} proves the conclusions of Theorem~\ref{thm:rank-two-finite} for every order $2\le n\le5$.
+Its final declaration is \path{MathAndTheory.Gyires.RankTwo.rank_two_complete} in \path{src/RangeComplete.lean}.
+The hypotheses use actual matrix rank and doubly stochastic membership.
+No parameter factorization or coefficient-sign hypothesis remains in the final theorem.
+Zero entries are permitted.
+
+The proof derives the parameter representation, applies separate convexity, and checks every resulting profile interval in Lean's kernel.
+It proves both Gram contractions, the square contraction, the nonnegative Gyires margin, the normalized left Gram bound, the combined inequality, and equality exactly at the uniform matrix.
+The package contains 70 source modules.
+Its source manifest records their hashes and import graph.
+The command \texttt{python3 verify.py}, run inside the package after the pinned dependency cache is available, checks every source and the final axiom report.
+The permitted axioms are \path{propext}, \path{Classical.choice}, and \path{Quot.sound}.
+The formal range ends at order five; the written result in orders six through fifteen still requires complete Lean certificates.
 
 \subsection{Order-five coefficient checks}
 
@@ -6861,13 +6878,13 @@ A general matrix of rank two can have more than two row types and more than two 
 The four-block theorem does not cover that full class. The finite rank-two theorem covers orders through fifteen. The all-order rank-two assertion remains unproved here.
 The unrestricted Gyires conjecture and the general strong Gram inequality remain outside this manuscript.
 
-The order-seven and finite rank-two results still require complete Lean proofs.
+The order-seven result and rank-two orders 6 through 15 still require complete Lean proofs.
 Each proof must connect its polynomial identities and coefficient bounds to the actual matrix theorem.
 The permutation-polynomial proof includes this connection in every dimension.
 
 \section{Authorship and disclosure}\label{sec:about}
 
-This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication.
+This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.
 This preprint has not been peer reviewed. No priority claim is made for the broader results.
 
 \section*{Acknowledgements}

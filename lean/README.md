@@ -1,6 +1,6 @@
 # Lean formalizations
 
-I keep the shared formal library for seven of the thirteen result families in this Lake project. It has 29 selected Comparator statements. Lean is pinned to version 4.35.0. Mathlib and every transitive package are pinned in `lake-manifest.json`.
+I keep the shared formal library for seven of the fifteen result families in this Lake project. It has 29 selected Comparator statements. Lean is pinned to version 4.35.0. Mathlib and every transitive package are pinned in `lake-manifest.json`.
 
 The `MathAndTheory` library contains the substantive proofs. `Challenges` contains independent source statements with deliberate proof holes. `Solutions` proves the same statement types. The proved library does not import `Challenges`.
 
@@ -18,14 +18,14 @@ The [verification guide](../verification/README.md) gives build, axiom-audit, Co
 
 ## Standalone packages
 
-I keep the other six families in separate proof environments. Five use Lean 4.19.0 and Mathlib revision `c44e0c8ee63ca166450922a373c7409c5d26b00b`. Asymmetric Tutte uses Lean 4.32.1 and its own pinned Mathlib revision. They are not imported by this Lake project and are not included in its Comparator selection.
+I keep the other eight families in separate proof environments. Six use Lean 4.19.0 and Mathlib revision `c44e0c8ee63ca166450922a373c7409c5d26b00b`. Asymmetric Tutte uses Lean 4.32.1 and its own pinned Mathlib revision. Higuchi–Sudbery uses Lean 4.35.0 and the same Mathlib revision as the shared library. They are not imported by this Lake project and are not included in its Comparator selection.
 
 | Family | Manuscript | Proof environment and scope |
 |---|---|---|
 | Decision-tree covariance | [PDF](../verification/additional-proofs/readk-covariance/docs/manuscript.pdf) | [Package guide](../verification/additional-proofs/readk-covariance/README.md). Covariance inequalities and finite witnesses; no Fourier-entropy theorem. |
 | Thermal current kurtosis | [PDF](../verification/additional-proofs/thermal-kurtosis-counterexample/report.pdf) | [Package guide](../verification/additional-proofs/thermal-kurtosis-counterexample/README.md). Finite spectral statements; no stochastic long-time identification theorem. |
 
-I also include standalone packages for [Sharp Eighth](../verification/additional-proofs/sharp-eighth/README.md), [Galvin–Zhang](../verification/additional-proofs/galvin-zhang/README.md), [universal embezzlement](../verification/additional-proofs/universal-embezzlement/README.md), and [asymmetric Tutte](../verification/additional-proofs/asymmetric-tutte/README.md). Each guide gives the exact theorem scope and build commands.
+I also include standalone packages for [Sharp Eighth](../verification/additional-proofs/sharp-eighth/README.md), [Galvin–Zhang](../verification/additional-proofs/galvin-zhang/README.md), [universal embezzlement](../verification/additional-proofs/universal-embezzlement/README.md), and [asymmetric Tutte](../verification/additional-proofs/asymmetric-tutte/README.md). I also include [Higuchi–Sudbery](../verification/additional-proofs/higuchi-sudbery/README.md) and [quartic rankings](../verification/additional-proofs/quartic-rankings/README.md). Each guide gives the exact theorem scope and build commands.
 
 I keep the additional Gyires [order-six](../verification/gyires-circulant-six/README.md) and [permutation-polynomial](../verification/gyires-permutation-polynomial/README.md) proofs in separate packages. [UNFINISHED.md](../UNFINISHED.md) lists the remaining formal-proof gaps.
 
