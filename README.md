@@ -8,12 +8,12 @@ Start with the [manuscript catalogue](CONTENTS.md) or the [overview](overview.pd
 
 ## Zenodo preprints
 
-Five preprints are available on Zenodo. Each record contains a manuscript PDF and its archival package. The links below identify version 1.0.0, published on 26 October 2026.
+Five preprints are available on Zenodo. Each record contains a manuscript PDF and its archival package. The Gyires link identifies version 1.1.0, published on 27 October 2026. The other links identify version 1.0.0, published on 26 October 2026.
 
 | Preprint | Zenodo record | DOI |
 |---|---|---|
 | [q-permanent](preprints/q-permanent/README.md) | [Record](https://zenodo.org/records/23679243) | [10.5281/zenodo.23679243](https://doi.org/10.5281/zenodo.23679243) |
-| [Gyires](preprints/gyires-circulant-five/README.md) | [Record](https://zenodo.org/records/23679286) | [10.5281/zenodo.23679286](https://doi.org/10.5281/zenodo.23679286) |
+| [Gyires](preprints/gyires-circulant-five/README.md) | [Record](https://zenodo.org/records/23681833) | [10.5281/zenodo.23681833](https://doi.org/10.5281/zenodo.23681833) |
 | [Diagonal concavity](preprints/diagonal-concavity/README.md) | [Record](https://zenodo.org/records/23679302) | [10.5281/zenodo.23679302](https://doi.org/10.5281/zenodo.23679302) |
 | [Hofstadter iteration](preprints/hofstadter-iteration/README.md) | [Record](https://zenodo.org/records/23679312) | [10.5281/zenodo.23679312](https://doi.org/10.5281/zenodo.23679312) |
 | [Best-of-n](preprints/best-of-n/README.md) | [Record](https://zenodo.org/records/23679329) | [10.5281/zenodo.23679329](https://doi.org/10.5281/zenodo.23679329) |

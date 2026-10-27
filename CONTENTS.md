@@ -26,7 +26,7 @@ Six papers have complete formal proofs of their principal claims. The Gyires pre
 
 **Original problem.** [Gyires, 1978; Cheon and Wanless, 2005, Conjecture 20. Earlier formalization at the pinned Gyires repository.](https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448)
 
-[Zenodo record](https://zenodo.org/records/23679286) · [DOI: 10.5281/zenodo.23679286](https://doi.org/10.5281/zenodo.23679286) · [Paper PDF](preprints/gyires-circulant-five/paper.pdf) · [LaTeX](preprints/gyires-circulant-five/paper.tex) · [Bibliography](preprints/gyires-circulant-five/references.bib) · [Citation](preprints/gyires-circulant-five/citation.bib) · [Formal statement and prior work](lean/docs/gyires-circulant-five.md) · [Reproduction](verification/gyires-circulant-five/README.md)
+[Zenodo record](https://zenodo.org/records/23681833) · [DOI: 10.5281/zenodo.23681833](https://doi.org/10.5281/zenodo.23681833) · [Paper PDF](preprints/gyires-circulant-five/paper.pdf) · [LaTeX](preprints/gyires-circulant-five/paper.tex) · [Bibliography](preprints/gyires-circulant-five/references.bib) · [Citation](preprints/gyires-circulant-five/citation.bib) · [Formal statement and prior work](lean/docs/gyires-circulant-five.md) · [Reproduction](verification/gyires-circulant-five/README.md)
 
 #### Supporting records for the all-order Gyires arguments
 

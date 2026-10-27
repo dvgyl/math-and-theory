@@ -10,7 +10,7 @@ The command `lake env lean Audit.lean` passed for 9196 declarations, including 8
 
 Every audited declaration uses only the permitted transitive axioms: `propext`, `Classical.choice`, and `Quot.sound`. The audit imports the substantive library and all Solution modules. It excludes the independent Challenge proof placeholders.
 
-The [Comparator record](records/comparators.json) gives the 21 selected statement comparisons run on 26 October 2026. All seven configurations passed Lean, NanoDa, and con-ron. Those 21 statements remain unchanged. Eight new selected statements specify the four-block and exceptional-vector theorems. The Lean build and axiom audit above check their proofs. The stored Comparator record does not yet cover these eight statements.
+The [Comparator record](records/comparators.json) gives all 29 selected statement comparisons checked on 27 October 2026. All seven configurations passed Lean, NanoDa, and con-ron in [workflow 40452059102](https://github.com/dvgyl/math-and-theory/actions/runs/40452059102). The checked source commit is `34d14a9486ca951d6f4df5e736499fb4d5cf7687`. The record includes source hashes, artifact hashes, and checker hashes. It covers the four-block and exceptional-vector statements. This is a mechanical verification run, not a registry approval or peer review.
 
 ## Exact certificates
 
