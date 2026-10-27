@@ -20,7 +20,9 @@ The decision-tree record covers ten Lean source files and 29 exact axiom reports
 
 The thermal record covers its complete Lean source file and the two axiom reports printed by that source. See its [source-check record](additional-proofs/thermal-kurtosis-counterexample/source-checks.json), [compiler output](additional-proofs/thermal-kurtosis-counterexample/verification.log), and [verification scope](additional-proofs/thermal-kurtosis-counterexample/VERIFICATION.md). Both packages use only the permitted foundational axioms.
 
-The decision-tree package proves covariance bounds and finite witnesses. It contains no Fourier-entropy theorem. The thermal package proves finite spectral statements. It does not formalize the stochastic long-time identification theorem. Neither package is covered by the shared-library Comparator run above. The committed package records report macOS checks; the configured Linux jobs require their own completed workflow results.
+Both standalone packages passed fresh Linux checks in [workflow 40457472586](https://github.com/dvgyl/math-and-theory/actions/runs/40457472586). The checked source commit is `eac07aa986dbe577b7dc7a02661626a20bbda7ba`. The [Linux record](records/standalone-linux.json) gives all eleven proof-source hashes, the 31 requested axiom reports, wrapper hashes, and job links. Each package passed exact arithmetic and three verifier test methods. Source checks passed before and after each wrapper. Read-k dependency checks also passed before and after its wrapper. The thermal wrapper checked its Mathlib revision, tracked file state, and Lean version before compilation. All five workflow jobs passed, including the shared library, source integrity, and ten manuscript builds.
+
+The decision-tree package proves covariance bounds and finite witnesses. It contains no Fourier-entropy theorem. The thermal package proves finite spectral statements. It does not formalize the stochastic long-time identification theorem. Neither package is covered by the shared-library Comparator run above. The package records retain the macOS checks; the separate Linux record gives the later run.
 
 ## Exact certificates
 

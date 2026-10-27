@@ -8,7 +8,7 @@ Start with the [manuscript catalogue](CONTENTS.md) or the [overview](overview.pd
 
 ## Zenodo preprints
 
-Five preprints are available on Zenodo. Each record contains a manuscript PDF and its archival package. The Gyires link identifies version 1.1.0, published on 27 October 2026. The other links identify version 1.0.0, published on 26 October 2026.
+The table lists Zenodo identifiers for seven preprints. Each archival package accompanies a manuscript PDF. The Gyires link identifies version 1.1.0. The decision-tree and thermal links identify version 1.0.0. These three versions are dated 27 October 2026. The other links identify version 1.0.0, dated 26 October 2026.
 
 | Preprint | Zenodo record | DOI |
 |---|---|---|
@@ -17,8 +17,10 @@ Five preprints are available on Zenodo. Each record contains a manuscript PDF an
 | [Diagonal concavity](preprints/diagonal-concavity/README.md) | [Record](https://zenodo.org/records/23679302) | [10.5281/zenodo.23679302](https://doi.org/10.5281/zenodo.23679302) |
 | [Hofstadter iteration](preprints/hofstadter-iteration/README.md) | [Record](https://zenodo.org/records/23679312) | [10.5281/zenodo.23679312](https://doi.org/10.5281/zenodo.23679312) |
 | [Best-of-n](preprints/best-of-n/README.md) | [Record](https://zenodo.org/records/23679329) | [10.5281/zenodo.23679329](https://doi.org/10.5281/zenodo.23679329) |
+| [Decision-tree covariance](verification/additional-proofs/readk-covariance/README.md) | [Record](https://zenodo.org/records/23682990) | [10.5281/zenodo.23682990](https://doi.org/10.5281/zenodo.23682990) |
+| [Thermal current kurtosis](verification/additional-proofs/thermal-kurtosis-counterexample/README.md) | [Record](https://zenodo.org/records/23683013) | [10.5281/zenodo.23683013](https://doi.org/10.5281/zenodo.23683013) |
 
-Each revised archival package contains an explicit publication file list and a SHA-256 integrity record. Use each paper's `citation.bib` file to cite its published version.
+Each revised archival package contains an explicit publication file list and a SHA-256 integrity record. Use each paper's `citation.bib` file, or a standalone package's `CITATION.bib`, to cite its version.
 
 ## Results
 

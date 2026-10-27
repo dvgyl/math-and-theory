@@ -16,8 +16,8 @@ from catalogue_paths import load_families
 
 
 EXPECTED_MANIFESTS = {
-    "readk-covariance": "f13b4e5c4c522ac60e61a0e3aaad29db51815b13e64bc9f38ebdffa9f0fbaf11",
-    "thermal-kurtosis-counterexample": "8f156843cb0e16cb25ab10bbc5ade74be5c0899d434d857bb194456d71b86efb",
+    "readk-covariance": "2246d348b1569297c193dccb9fa79e0cc40d0265f528407c1b1b21c23c4d1be5",
+    "thermal-kurtosis-counterexample": "b316ad24a8acc6a8936d17590634104e2d6b40fb8bd2051d78675cc8ed77f53c",
 }
 MATHLIB = "c44e0c8ee63ca166450922a373c7409c5d26b00b"
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}

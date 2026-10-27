@@ -1,0 +1,106 @@
+{
+  "format_version": 1,
+  "status": "PASS",
+  "checked_date": "2026-10-27",
+  "source_commit": "eac07aa986dbe577b7dc7a02661626a20bbda7ba",
+  "workflow_id": 40457472586,
+  "workflow_url": "https://github.com/dvgyl/math-and-theory/actions/runs/40457472586",
+  "platform": "Ubuntu 24.04, x86_64",
+  "packages": [
+    {
+      "family": "readk-covariance",
+      "job_id": 122034055328,
+      "job_url": "https://github.com/dvgyl/math-and-theory/actions/runs/40457472586/job/122034055328",
+      "status": "PASS",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "checked_package_manifest_sha256": "f13b4e5c4c522ac60e61a0e3aaad29db51815b13e64bc9f38ebdffa9f0fbaf11",
+      "lean_sources": {
+        "Audit.lean": "c03bec771705fee9dc47a82828480431c0a0f3c44fc89dd72052a4a5d7fae093",
+        "Research.lean": "178d55db730283d5aff76cdf3e3f83a03d659b52132c746cc247ce53e9f48478",
+        "Research/Absolute.lean": "5b5e265a4f2475f9afe665bae9477bbc73fab48cf037e41267788b4429504918",
+        "Research/AbsoluteCounterexample.lean": "822942fea796d377165451c545a8772c1622ab866e59cc299ef50ce78bccb187",
+        "Research/Counterexample.lean": "af0a3e447a02abd9bd37230d46f31689ee3a0684c2721858f87e39343ee327ff",
+        "Research/Cube.lean": "4561488076a0308270d3c59be919878046da738dc5106b07c7e3798e8b253384",
+        "Research/DecisionTree.lean": "d6e624bcbb04aa6caf3b7aa3711a5c49294319f506c8e4af22899487894fe4e6",
+        "Research/LogPotential.lean": "7d82a35d0246f84851fcb21ca319b3ff1121c67335393c803ac87a83edadadb7",
+        "Research/Nonredundant.lean": "1c3c27e05ac969dbd380a0627030214252989711a9a27abf41c1b48a641efa16",
+        "Research/Sharpness.lean": "2017877a746d90c1b505f3c599d9006f1a009e5d503c37b0a51022d0f18e1448"
+      },
+      "wrapper_sha256": "5fa721bf0125f24919479bde9a4346064ad15f6f013e3ef75ddbf20d8435c62e",
+      "requested_axiom_reports": 29,
+      "checked_declarations": [
+        "ReadK.cov_le_sum_min",
+        "ReadK.abs_cov_le_sum_min",
+        "ReadK.logCount_merge_gap",
+        "ReadK.logCount_potential",
+        "ReadK.Tree.covariance_le_potential",
+        "ReadK.Tree.covariance_le_log_read_mul_influence",
+        "ReadK.Tree.covariance_le_absoluteCovariance",
+        "ReadK.Tree.absoluteCovariance_le_potential",
+        "ReadK.Tree.absoluteCovariance_le_log_read_mul_influence",
+        "ReadK.Sharpness.full_equality_family",
+        "ReadK.Counterexample.witness_regular",
+        "ReadK.Counterexample.witness_counts",
+        "ReadK.Counterexample.witness_read_three",
+        "ReadK.Counterexample.witness_evaluates_and",
+        "ReadK.Counterexample.witness_mean",
+        "ReadK.Counterexample.witness_variance",
+        "ReadK.Counterexample.witness_covariance",
+        "ReadK.Counterexample.witness_absoluteCovariance",
+        "ReadK.Counterexample.logCount_three_lt",
+        "ReadK.Counterexample.variance_refinement_false",
+        "ReadK.Nonredundant.witness_regular",
+        "ReadK.Nonredundant.witness_counts",
+        "ReadK.Nonredundant.witness_read_three",
+        "ReadK.Nonredundant.witness_relevant",
+        "ReadK.Nonredundant.witness_mean",
+        "ReadK.Nonredundant.witness_variance",
+        "ReadK.Nonredundant.witness_covariance",
+        "ReadK.Nonredundant.logCount_three_lt_eight_fifths",
+        "ReadK.Nonredundant.violates_log_variance"
+      ],
+      "permitted_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "verifier_test_methods": 3,
+      "exact_arithmetic": "PASS",
+      "raw_job_log_sha256": "92f9f925df00888622e0e6c2f30e0db99f6b0a11baefc14c17e9fad28909e766",
+      "source_checks": "PASS before and after the wrapper",
+      "dependency_checks": "All nine pinned Git revisions and tracked file states passed before and after the wrapper."
+    },
+    {
+      "family": "thermal-kurtosis-counterexample",
+      "job_id": 122034055437,
+      "job_url": "https://github.com/dvgyl/math-and-theory/actions/runs/40457472586/job/122034055437",
+      "status": "PASS",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "checked_package_manifest_sha256": "8f156843cb0e16cb25ab10bbc5ade74be5c0899d434d857bb194456d71b86efb",
+      "lean_sources": {
+        "ThermalKurtosis.lean": "e0327c7d3cb15cdd86fcf836644fe168d9914ba17507c0df149b51b92d738460"
+      },
+      "wrapper_sha256": "42fc6f27deefa85943a12343f0a8c20fd11b0dae4a0713445e57537b3b5a3b49",
+      "requested_axiom_reports": 2,
+      "checked_declarations": [
+        "ThermalCounterexample.thermal_kurtosis_counterexample",
+        "ThermalCounterexample.kurtosis_neg"
+      ],
+      "permitted_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "verifier_test_methods": 3,
+      "exact_arithmetic": "PASS",
+      "raw_job_log_sha256": "04a720e4f0ed411d94e0a79054c377e7ca816a5e6b5beffeeb8c9ad18afe8227",
+      "source_checks": "PASS before and after the wrapper",
+      "dependency_checks": "The wrapper checked the pinned Mathlib revision, tracked file state, and Lean version before compilation."
+    }
+  ],
+  "scope": "Fresh compilation, axiom reports, exact arithmetic, verifier tests, and pinned dependency checks for the two standalone packages.",
+  "comparator_run": false,
+  "registry_submission": false
+}

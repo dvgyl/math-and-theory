@@ -2,6 +2,8 @@
 
 Dev D. Goyal · [ORCID 0009-0009-9132-744X](https://orcid.org/0009-0009-9132-744X)
 
+[Zenodo preprint](https://zenodo.org/records/23683013) · [DOI: 10.5281/zenodo.23683013](https://doi.org/10.5281/zenodo.23683013)
+
 The complete result, proof, assumptions, and formal scope are in [the manuscript](report.pdf). The machine-checkable source is the single file `ThermalKurtosis.lean`.
 
 ## Result

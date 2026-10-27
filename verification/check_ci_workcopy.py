@@ -71,4 +71,5 @@ if __name__ == "__main__":
     count = check_copy(args.original, args.workcopy, source_only=args.kind == "readk")
     if args.kind == "readk":
         check_dependencies(args.workcopy)
-    print(f"PASS: {count} unchanged package files; {args.kind} dependency checks passed.")
+        print("PASS: read-k dependency checks.")
+    print(f"PASS: {count} unchanged package files.")
