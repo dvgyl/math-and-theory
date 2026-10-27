@@ -1,0 +1,27 @@
+'SharpEighth.majorant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SharpEighth.certificate_coefficient_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SharpEighth.moment_coordinate_coefficient_identity' depends on axioms: [propext]
+'SharpEighth.get_eraseIndexEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SharpEighth.orbit_coordinateParts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SharpEighth.normalized_rademacher_polynomial_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SharpEighth.sharp_rademacher_hinge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SharpEighth.hinge_bound_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SharpEighth.sharp_eighth_fourier_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SharpEighth.average_distance_eighth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SharpEighth.exact_eighth_fourier_optimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SharpEighth.exact_eighth_distance_optimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+@SharpEighth.normalized_rademacher_polynomial_bound : ∀ {n : ℕ} (c : Fin n → ℝ),
+  ∑ i, c i ^ 2 = 1 → (SharpEighth.avg fun x => SharpEighth.P (√3 * SharpEighth.linearForm c x)) ≤ 3 / 16
+@SharpEighth.sharp_rademacher_hinge : ∀ {n : ℕ} (c : Fin n → ℝ),
+  ∑ i, c i ^ 2 = 1 → (SharpEighth.avg fun x => max 0 (|√3 * SharpEighth.linearForm c x| - 9 / 4)) ≤ 3 / 16
+SharpEighth.hinge_bound_attained : ∃ c,
+  ∑ i, c i ^ 2 = 1 ∧ (SharpEighth.avg fun x => max 0 (|√3 * SharpEighth.linearForm c x| - 9 / 4)) = 3 / 16
+@SharpEighth.sharp_eighth_fourier_bound : ∀ {n : ℕ} (f : (Fin n → Bool) → ℝ),
+  (∀ (x : Fin n → Bool), f x = 0 ∨ f x = 1) → SharpEighth.avg f = 1 / 8 → SharpEighth.firstWeight f ≤ 3 / 64
+@SharpEighth.average_distance_eighth : ∀ {n : ℕ} (f : (Fin n → Bool) → ℝ),
+  (∀ (x : Fin n → Bool), f x = 0 ∨ f x = 1) →
+    SharpEighth.avg f = 1 / 8 → (↑n - 3) / 2 ≤ SharpEighth.weightedHammingAverage f
+SharpEighth.exact_eighth_fourier_optimum : ∀ (n : ℕ),
+  3 ≤ n → IsGreatest (SharpEighth.attainableEighthWeights n) (3 / 64)
+SharpEighth.exact_eighth_distance_optimum : ∀ (n : ℕ),
+  3 ≤ n → IsLeast (SharpEighth.attainableEighthDistances n) ((↑n - 3) / 2)

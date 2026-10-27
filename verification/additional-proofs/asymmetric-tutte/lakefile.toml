@@ -1,0 +1,12 @@
+name = "asymmetric-tutte"
+version = "0.1.0"
+defaultTargets = ["AsymmetricTutte"]
+moreLeanArgs = ["-j1", "--error=warning"]
+
+[[lean_lib]]
+name = "AsymmetricTutte"
+
+[[require]]
+name = "tutte-threshold"
+git = "https://github.com/michaeliu4/tutte-threshold.git"
+rev = "636352f0fef47b19d7d5de364858ccee2317fd66"

@@ -1,4 +1,4 @@
-# Formal proofs of the order-five, four-block, and exceptional-vector Gyires results
+# Formal proofs of structured Gyires inequalities
 
 The order-five library root is `MathAndTheory.Mathematics.GyiresCirculant5.Main`. Its mathematical declarations use the namespace `MathAndTheory.GyiresCirculant5`. The development uses Lean 4.35.0 and Mathlib commit `56a005855ea17e0b0958f73ec801ae140b0a1679`.
 
@@ -74,4 +74,10 @@ The modules in `MathAndTheory.Mathematics.Gyires` contain additional results for
 
 - `CirculantCertificate` proves an exact reduction from nonnegative integer polynomial coefficients to the strong and combined Gyires bounds for circulants. It proves complete sorted-gap representation, matrix evaluation, normality, and affine invariance. Its coefficient-sign hypotheses remain unproved for the higher-order families.
 
-These results support the broader manuscript arguments. The principal higher-order circulant, permutation-polynomial, and finite rank-two theorems remain incomplete in Lean.
+These results support the broader manuscript arguments. The principal order-seven and finite rank-two theorems remain incomplete in Lean. Separate Lean packages prove the principal order-six and all-order permutation-polynomial theorems.
+
+## Separate formal packages
+
+The [order-six package](../../verification/gyires-circulant-six/README.md) proves the actual circulant matrix inequality, sharp margins 296 and 1184, equality cases, and sharpness witnesses. Its proof covers all 60 affine sorting regions.
+
+The [permutation-polynomial package](../../verification/gyires-permutation-polynomial/README.md) proves both Gram bounds, the matrix-square bound, and Gyires’s inequality for `A = aI + bQ + cQ²`. Here `Q` is any finite permutation matrix and all three coefficients are nonnegative. Orders zero, one, and two and zero coefficients are included. No row-sum normalization is required.

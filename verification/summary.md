@@ -1,6 +1,6 @@
 # Verification results
 
-The collection has nine result families. The shared Lean 4.35.0 library covers seven families and 29 selected Comparator statements. Its build and axiom audit below passed on 27 October 2026. The two standalone Lean 4.19.0 packages have separate verification records. The principal order-five Gyires claims, the all-order four-block theorem, and the exceptional-vector theorem have Lean proofs. General Cauchy–Schwarz, permutation, dimension-constant, and direct-sum results also have Lean proofs. A further Lean theorem derives the circulant matrix inequality from explicit polynomial coefficient hypotheses. Those hypotheses remain to be proved for the higher-order families. The [formal guide](../lean/docs/gyires-circulant-five.md) gives their exact scope. The other principal expanded matrix-class theorems remain incomplete in Lean.
+The collection has thirteen result families. The shared Lean 4.35.0 library covers seven families and 29 selected Comparator statements. Its build and axiom audit below passed on 27 October 2026. The six standalone study packages have separate verification records. The principal order-five and order-six Gyires claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have Lean proofs. General Cauchy–Schwarz, permutation, dimension-constant, and direct-sum results also have Lean proofs. A further Lean theorem derives the circulant matrix inequality from explicit polynomial coefficient hypotheses. The separate order-six package proves all required coefficient hypotheses in that order. The [formal guide](../lean/docs/gyires-circulant-five.md) gives their exact scope. The principal order-seven and finite rank-two theorems remain incomplete in Lean.
 
 ## Shared Lean 4.35.0 library
 
@@ -41,3 +41,9 @@ The [publication manifest](../publication-files.json) lists the public files. Th
 The [PDF record](records/pdfs.json) gives manuscript page counts and hashes. The [verification guide](README.md) gives commands for manuscript builds, source checks, metadata checks, and archive construction. Automatic checks run on pushes and pull requests. The full Palomar mechanical preflight remains manual.
 
 The [software record](records/versions.json) identifies the Lean, Mathlib, and checking tools. The Python packages are pinned in [requirements.txt](requirements.txt). A check establishes only its stated scope. It does not establish novelty or peer review.
+
+## Standalone study proofs
+
+Six study packages use their own pinned Lean environments. Four packages cover the sharp Fourier bound, Galvin–Zhang domination counts, universal embezzlement, and asymmetric Tutte inequalities. Each package includes the manuscript, source files, license, citation, and source verification record. The source integrity checks compare published bytes and report coverage. Compiled objects are not included. Rebuild the package to reconstruct them.
+
+Automatic jobs build each study and check every requested audit report. These jobs are separate from the shared Comparator selection. The order-six and permutation-polynomial Gyires packages have automatic source checks; their full source builds can be run with the manual workflow.

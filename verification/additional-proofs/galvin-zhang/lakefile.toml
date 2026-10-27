@@ -1,0 +1,15 @@
+name = "domination_ulc"
+version = "1.0.0"
+defaultTargets = ["DominationULC", "Audit"]
+moreLeanArgs = ["-j1", "-DwarningAsError=true"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "c44e0c8ee63ca166450922a373c7409c5d26b00b"
+
+[[lean_lib]]
+name = "DominationULC"
+
+[[lean_lib]]
+name = "Audit"

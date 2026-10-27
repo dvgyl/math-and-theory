@@ -1,6 +1,6 @@
 # Supporting records for the all-order Gyires results
 
-This directory contains the proofs and certificates for two results in arbitrary dimensions. Both appear in the [Gyires preprint](../../preprints/gyires-circulant-five/paper.pdf). The four-block theorem has a complete Lean proof and four selected Comparator statements. The permutation-polynomial theorem remains incomplete in Lean. No novelty or independent human expert review is claimed.
+This directory contains the proofs and certificates for two results in arbitrary dimensions. Both appear in the [Gyires preprint](../../preprints/gyires-circulant-five/paper.pdf). The four-block theorem has a complete Lean proof and four selected Comparator statements. The permutation-polynomial theorem has a complete Lean proof in the separate `verification/gyires-permutation-polynomial` package. No novelty or independent human expert review is claimed.
 
 | Result | Scope and proof record |
 |---|---|
@@ -13,6 +13,6 @@ The [reproduction guide](verification.md) gives the programs and recorded result
 
 ## Authorship
 
-The [authorship disclosure](../../AUTHORSHIP.md) states the use of AI assistance. These results have not been peer reviewed. The proofs cite the classical results that they use.
+The [authorship disclosure](../../AUTHORSHIP.md) states autonomous AI research. These results have not been peer reviewed. The proofs cite the classical results that they use.
 
 [Return to the catalogue](../../CONTENTS.md).

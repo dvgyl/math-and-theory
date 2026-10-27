@@ -1,0 +1,489 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,tabularx}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\usepackage{microtype}
+\usepackage{enumitem}
+\setlist{nosep}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\TP}{\operatorname{TP}_2}
+\newcommand{\coef}[2]{[z^{#1}]\,#2}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\ind}{\mathbf{1}}
+
+\title{Ultra-log-concavity of domination sequences\newline of powers of paths and cycles}
+\author{Dev D. Goyal}
+\date{27 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A dominating set of a graph covers every vertex through membership or adjacency. Let $d_k(G)$ count the dominating sets of size $k$ in an $n$-vertex graph. The proof shows that the normalized sequence $d_k(G)/\binom nk$ is log-concave for every power of a path or cycle. The result holds for all $n\geq0$ and all powers $\ell\geq1$. It establishes Conjecture~1.8 of Galvin and Zhang. The proof encodes dominating sets by positive gaps with upper bounds. A finite Toeplitz-matrix argument shows how these gaps change when the number of selected vertices increases. It follows that the probability of deleting a selected vertex while retaining domination is nondecreasing. A separate coefficient comparison accounts for the endpoints of a path. A companion Lean formalization includes the correspondence between the gap counts and actual graph-theoretic dominating sets.
+\end{abstract}
+
+\section{Statement and context}
+
+All graphs are finite and simple. A set $D\subseteq V(G)$ is
+\emph{dominating} if every vertex belongs to $D$ or has a neighbor in $D$.
+Write
+\[
+ d_k(G)=\#\{D\subseteq V(G): |D|=k,\ D\text{ is dominating}\}.
+\]
+The $\ell$th power $G^\ell$ joins distinct vertices whose graph distance in
+$G$ is at most $\ell$. The path and cycle with $n$ vertices are denoted by
+$P_n$ and $C_n$. The conventions are that $P_0,C_0$ are empty graphs,
+$C_1$ is an isolated vertex, and $C_2$ is the complete graph on two vertices.
+
+A nonnegative sequence $(d_0,\ldots,d_n)$ is \emph{ultra-log-concave}, with
+ambient parameter $n$, when $p_k=d_k/\binom nk$ satisfies
+$p_{k-1}p_{k+1}\leq p_k^2$ for $1\leq k<n$. In the present setting the
+positive support is an interval: every superset of a dominating set is
+dominating. Thus there is no issue concerning internal zeros.
+
+\begin{theorem}\label{thm:main}
+For every $n\geq0$ and $\ell\geq1$, the domination sequences of
+$P_n^\ell$ and $C_n^\ell$ are ultra-log-concave. Explicitly, for either
+graph $G$ and every integer $1\leq k<n$,
+\begin{equation}\label{eq:main}
+ (k+1)(n-k+1)d_{k-1}(G)d_{k+1}(G)
+ \ \leq\ k(n-k)d_k(G)^2.
+\end{equation}
+\end{theorem}
+
+The equivalence of \eqref{eq:main} with the normalized inequality follows
+from
+\[
+ \frac{\binom nk^2}{\binom n{k-1}\binom n{k+1}}
+ =\frac{(k+1)(n-k+1)}{k(n-k)}.
+\]
+Both formulations are proved in the accompanying Lean development.
+
+Galvin and Zhang proved unimodality for both families and formulated the
+stronger statement above as Conjecture~1.8 \cite{GZ}. Zhang's dissertation
+repeats it as Conjecture~4.1.8 on printed page~57 \cite{Zhang}. The result here strengthens their unimodality theorem. Its proof uses deletion probabilities to obtain the normalized adjacent inequalities \eqref{eq:main}.
+
+The closure of log-concavity under convolution, and its Toeplitz-matrix
+interpretation, are classical. In particular, the convolution closure
+associated with Hoggar's theorem is discussed in \cite{Hoggar,JG}. No new general convolution theorem is claimed. Section~\ref{sec:tp} supplies the finite
+matrix argument required here, so that all ingredients of the proof can
+be checked directly.
+
+\section{Finite Toeplitz positivity and conditioning}\label{sec:tp}
+
+A sequence in this section is a finitely supported function
+$q:\Z\to\R_{\geq0}$. Extend all coefficient sequences by zero outside their
+support, and write
+\[
+ (q*r)(v)=\sum_{h\in\Z}q(v-h)r(h).
+\]
+All sums below are finite. Say that $q$ has property $\TP$ if
+\begin{equation}\label{eq:tp}
+ q(i_1-j_1)q(i_2-j_2)
+ \ \geq\ q(i_1-j_2)q(i_2-j_1)
+ \quad(i_1\leq i_2,\ j_1\leq j_2).
+\end{equation}
+This says that the minors of order two of its Toeplitz matrix
+$T_q(i,j)=q(i-j)$ are nonnegative.
+
+\begin{lemma}\label{lem:closure}
+Indicators of integer intervals have property $\TP$, and convolution
+preserves this property. Consequently the coefficient sequence of any
+finite product of polynomials
+\begin{equation}\label{eq:parts}
+ B_b(z)=z+z^2+\cdots+z^b\qquad(b\geq1)
+\end{equation}
+has property $\TP$. The empty product, whose sequence is $\ind_{\{0\}}$,
+also has property $\TP$.
+\end{lemma}
+
+\begin{proof}
+For an interval indicator, the right side of \eqref{eq:tp} is either zero
+or one. If it is one, both $i_1-j_2$ and $i_2-j_1$ belong to the interval.
+Each of $i_1-j_1,i_2-j_2$ lies between those two integers, so the left side
+is also one.
+
+Suppose $q$ and $r$ have property $\TP$. For the two fixed row indices
+$i_1,i_2$ and column indices $j_1,j_2$, choose a finite integer interval
+$S$ containing every $u$ for which $q(i_a-u)\neq0$ for some $a\in\{1,2\}$.
+Let $A$ be the $2\times |S|$ matrix with entries $A_{a,u}=q(i_a-u)$ and
+let $B$ be the $|S|\times2$ matrix with entries $B_{u,b}=r(u-j_b)$.
+Then $(AB)_{a,b}=(q*r)(i_a-j_b)$. Expanding the determinant and grouping
+the terms indexed by $(u,v)$ and $(v,u)$ gives the finite identity
+\begin{equation}\label{eq:cb}
+ \det(AB)=\sum_{\substack{u,v\in S\\u<v}}
+ \det\begin{pmatrix}A_{1,u}&A_{1,v}\\A_{2,u}&A_{2,v}\end{pmatrix}
+ \det\begin{pmatrix}B_{u,1}&B_{u,2}\\B_{v,1}&B_{v,2}\end{pmatrix}.
+\end{equation}
+Every term is nonnegative by \eqref{eq:tp}, proving the claim. Applying
+this repeatedly to the interval indicators in \eqref{eq:parts} gives the
+last assertion. This is the order-two Cauchy--Binet argument; no infinite
+matrix product or limiting argument is needed.
+\end{proof}
+
+\begin{lemma}[Positive-shift comparison]\label{lem:shift}
+Suppose $q$ has property $\TP$, and $p$ is nonnegative and supported on
+positive integers. Put $q^+=q*p$. For $u\leq v$,
+\begin{equation}\label{eq:mlr}
+ q(u)q^+(v)\geq q^+(u)q(v).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For every $h$ in the support of $p$, use rows $u,v$ and columns $0,h$ in
+\eqref{eq:tp}. This gives
+$q(u)q(v-h)\geq q(u-h)q(v)$. Multiplication by $p(h)$ and summation over
+$h$ give \eqref{eq:mlr}. No individual coefficient is divided by.
+\end{proof}
+
+\begin{lemma}[Conditional lower tails]\label{lem:conditional}
+Under the hypotheses of Lemma~\ref{lem:shift}, fix a nonnegative finitely
+supported sequence $w$, an integer total $N$, and a threshold $L$.
+Define
+\[
+ f(s)=w(s)q(N-s),\qquad f^+(s)=w(s)q^+(N-s),
+\]
+and let $Z=\sum_s f(s)$ and $Z^+=\sum_s f^+(s)$. Then
+\begin{equation}\label{eq:cdf-cross}
+ \left(\sum_{s\leq L}f(s)\right)Z^+
+ \ \leq\ \left(\sum_{s\leq L}f^+(s)\right)Z.
+\end{equation}
+When $Z,Z^+>0$, the conditional probability of $s\leq L$ therefore
+increases after replacing $q$ by $q*p$.
+\end{lemma}
+
+\begin{proof}
+If $s<t$, then $N-t<N-s$. Lemma~\ref{lem:shift}, multiplied by
+$w(s)w(t)$, gives
+\[
+ f^+(s)f(t)\geq f(s)f^+(t).
+\]
+The difference between the right and left sides of \eqref{eq:cdf-cross}
+is exactly
+\begin{equation}\label{eq:cross-difference}
+ \sum_{s\leq L<t}\bigl(f^+(s)f(t)-f(s)f^+(t)\bigr).
+\end{equation}
+Indeed, the terms with both indices at most $L$ cancel after exchanging
+the two indices. Every remaining term is nonnegative. This proves the
+cross-product inequality, including cases with zero total weight.
+Division by $ZZ^+>0$ gives the final assertion.
+\end{proof}
+
+For later use, interpret $w(s)$ as the number of choices of a specified
+group of positive parts having sum $s$, and $q(N-s)$ as the number of
+choices of all remaining parts. Replacing $q$ by $q*B_b$ adds one more
+positive bounded part to the remaining group. Lemma~\ref{lem:conditional}
+says that the sum of the specified group becomes stochastically smaller
+under the fixed-total condition. Lemma~\ref{lem:closure} verifies its
+hypothesis for every residual sequence used below.
+
+\section{Deletion and binomial normalization}\label{sec:deletion}
+
+Let $\mathcal F\subseteq2^V$ be upward closed, where $|V|=n$, and let
+$d_k=\#\{D\in\mathcal F:|D|=k\}$. For $k\geq1$ with $d_k>0$, choose
+$D$ uniformly from the $k$-element members of $\mathcal F$, then choose
+$v$ uniformly from $D$. Write
+\[
+ R_k=\Prob(D\setminus\{v\}\in\mathcal F).
+\]
+
+\begin{lemma}\label{lem:deletion}
+For $1\leq k\leq n$ with $d_k>0$,
+\begin{equation}\label{eq:deletion}
+ k d_k R_k=(n-k+1)d_{k-1},\qquad
+ R_k=\frac{d_{k-1}/\binom n{k-1}}{d_k/\binom nk}.
+\end{equation}
+If $R_k\leq R_{k+1}$ whenever both are defined, then $(d_k)_{k=0}^n$ is
+ultra-log-concave.
+\end{lemma}
+
+\begin{proof}
+Count pairs $(A,D)$ with $A\in\mathcal F$, $|A|=k-1$, $|D|=k$, and
+$A\subset D$. Each $A$ has exactly $n-k+1$ extensions, all in
+$\mathcal F$. Counting instead by $(D,v)$ gives $k d_k R_k$, proving the
+first identity. The elementary ratio
+$\binom nk/\binom n{k-1}=(n-k+1)/k$ proves the second.
+
+Fix $1\leq k<n$. If $d_{k-1}=0$, the ultra-log-concavity inequality is
+automatic. Otherwise upward closure gives $d_k,d_{k+1}>0$, and
+$R_k\leq R_{k+1}$ is exactly
+$p_{k-1}/p_k\leq p_k/p_{k+1}$, where $p_j=d_j/\binom nj$.
+Multiplying by the positive denominator proves the desired inequality.
+This also explains why the probabilistic proof never conditions on an
+empty family.
+\end{proof}
+
+For a nonempty graph, the empty set does not dominate. Hence $R_1=0$
+whenever a dominating singleton exists. This will handle every transition
+involving a singleton without applying a two-gap deletion rule to it.
+
+\section{Cycle powers}\label{sec:cycle}
+
+Fix $n\geq1$ and $\ell\geq1$, and put
+\[
+ m=2\ell+1,\qquad P(z)=B_m(z).
+\]
+A nonempty dominating set of $C_n^\ell$, with a distinguished selected
+vertex, is encoded by its clockwise positive gaps $g_1,\ldots,g_k$.
+They satisfy
+\begin{equation}\label{eq:cyclic-gaps}
+ 1\leq g_i\leq m,\qquad \sum_{i=1}^k g_i=n.
+\end{equation}
+To justify the bound, consider the vertices strictly between consecutive
+selected vertices. They are covered by the two endpoints precisely when
+the clockwise distance is at most $2\ell+1$. If that distance is larger,
+the vertex $\ell+1$ steps after the left endpoint is too far from every
+selected vertex. The same argument applies to the final gap wrapping
+around the cycle. For a singleton, its one gap is $n$, and the condition
+$n\leq2\ell+1$ is exactly the condition that it dominates.
+
+Let $T_k=\coef{n}{P(z)^k}$. Each gap tuple satisfying
+\eqref{eq:cyclic-gaps} and each choice of its starting vertex determine
+one distinguished dominating set. Conversely, a dominating $k$-set has
+$k$ choices of distinguished vertex. Therefore
+\begin{equation}\label{eq:cycle-count}
+ k d_k(C_n^\ell)=nT_k.
+\end{equation}
+This is a bijective pointing identity, not a count of rotation orbits;
+periodic gap tuples cause no exception. It also proves that a uniform
+dominating $k$-set followed by a uniform choice of a selected vertex gives
+a uniform tuple in \eqref{eq:cyclic-gaps}.
+
+For $k\geq2$, deleting the distinguished selected vertex merges its two
+adjacent gaps. The remaining set dominates if and only if their sum is
+at most $m$. Thus, whenever $T_k>0$,
+\begin{equation}\label{eq:cycle-R}
+ R_k=\Prob(g_1+g_2\leq m\mid 1\leq g_i\leq m,\ \textstyle\sum_i g_i=n).
+\end{equation}
+Exchangeability of the gaps permits the adjacent pair to be denoted by
+$g_1,g_2$. When $k=2$, the merged gap has size $n$; the same condition
+correctly tests whether the remaining singleton dominates.
+
+Apply Lemma~\ref{lem:conditional} with coefficient sequences
+\[
+ w=[z^\bullet]P^2,\quad q=[z^\bullet]P^{k-2},\quad
+ p=[z^\bullet]P,\quad N=n,\quad L=m.
+\]
+It gives $R_k\leq R_{k+1}$ whenever the relevant counts are positive.
+The case $k=2$ uses $q=\ind_{\{0\}}$, already covered by
+Lemma~\ref{lem:closure}. The case involving $R_1$ follows from $R_1=0$.
+Lemma~\ref{lem:deletion} proves Theorem~\ref{thm:main} for cycles.
+
+These arguments also cover the small complete powers: if $n\leq m$, the
+upper bound in \eqref{eq:cyclic-gaps} is automatic for every nonempty
+subset. The conventions for $C_1$ and $C_2$ give the same description.
+For $n=0$ there is no index $1\leq k<n$ and the assertion is vacuous.
+
+\section{Path powers}\label{sec:path}
+
+Fix $n\geq1$, $\ell\geq1$, and put
+\[
+ a=\ell+1,\qquad m=2\ell+1,\qquad
+ A(z)=B_a(z),\qquad P(z)=B_m(z),\qquad N=n+1.
+\]
+In particular $a\leq m$. Give the vertices of the path the labels
+$1,\ldots,n$. For a nonempty selected set
+$1\leq v_1<\cdots<v_k\leq n$, define
+\[
+ g_0=v_1,\qquad g_i=v_{i+1}-v_i\ (1\leq i<k),\qquad
+ g_k=n+1-v_k.
+\]
+The set dominates $P_n^\ell$ if and only if
+\begin{equation}\label{eq:path-gaps}
+ 1\leq g_0,g_k\leq a,\quad
+ 1\leq g_i\leq m\ (1\leq i<k),\quad
+ \sum_{i=0}^{k}g_i=N.
+\end{equation}
+The endpoint conditions are exactly that vertices $1$ and $n$ are
+covered. Between two selected vertices, the same two-endpoint argument
+as for a cycle gives the interior bound. Conversely, these bounds cover
+every vertex, interval by interval. Taking cumulative sums reconstructs
+the selected set uniquely. In particular,
+\begin{equation}\label{eq:path-count}
+ d_k(P_n^\ell)=\coef{N}{A(z)^2P(z)^{k-1}}\qquad(k\geq1).
+\end{equation}
+For $k=1$ there are two endpoint gaps and no interior gaps; the formula
+retains both endpoint conditions and is still valid.
+
+\subsection{Two kinds of deletion}
+
+For $k\geq2$ with $d_k>0$, let $E_k$ be the probability of
+$g_0+g_1\leq a$ in the uniform gap model \eqref{eq:path-gaps}. This is the
+probability that the first selected vertex can be deleted. Reflection
+gives the same probability at the last selected vertex. For $k\geq3$,
+let $I_k$ be the probability of $g_1+g_2\leq m$. All $k-2$ interior
+selected vertices have this deletion probability, because the interior
+gaps are exchangeable. Hence
+\begin{equation}\label{eq:path-R}
+ R_2=E_2,\qquad
+ R_k=\frac{2E_k+(k-2)I_k}{k}\quad(k\geq3).
+\end{equation}
+
+\begin{lemma}\label{lem:EI-monotone}
+Whenever the required ranks are nonempty,
+$E_k\leq E_{k+1}$ for $k\geq2$ and
+$I_k\leq I_{k+1}$ for $k\geq3$.
+\end{lemma}
+
+\begin{proof}
+For the endpoint comparison use Lemma~\ref{lem:conditional} with
+\[
+ w=[z^\bullet](AP),\quad q=[z^\bullet](AP^{k-2}),\quad
+ p=[z^\bullet]P,\quad L=a.
+\]
+The specified pair consists of one endpoint gap and one interior gap.
+The remaining group consists of the other endpoint and $k-2$ interior
+gaps. For the interior comparison use
+\[
+ w=[z^\bullet]P^2,\quad q=[z^\bullet](A^2P^{k-3}),\quad
+ p=[z^\bullet]P,\quad L=m.
+\]
+Here the remaining group contains both endpoint gaps. The total is $N$
+in both applications. All residual sequences have property $\TP$ by
+Lemma~\ref{lem:closure}, including the smallest allowed values of $k$.
+\end{proof}
+
+\subsection{Comparing an endpoint with the interior}
+
+\begin{lemma}\label{lem:EI-order}
+For $k\geq3$ with $d_k>0$, one has $E_k\leq I_k$.
+\end{lemma}
+
+\begin{proof}
+For $b\geq1$ define
+\[
+ t_b(z)=\sum_{s=1}^{b}(s-1)z^s.
+\]
+There are $s-1$ ordered pairs of positive integers with sum $s$. Since
+$a\leq m$, restricting an endpoint--interior pair to sum at most $a$
+therefore gives the polynomial $t_a$. Restricting two interior gaps to
+sum at most $m$ gives $t_m$. Thus
+\begin{align}
+ d_kE_k&=\coef{N}{t_a A P^{k-2}},\label{eq:E-count}\\
+ d_kI_k&=\coef{N}{t_m A^2P^{k-3}}.\label{eq:I-count}
+\end{align}
+The difference of their generating polynomials is
+$AP^{k-3}(At_m-Pt_a)$. Its second factor has nonnegative coefficients:
+\begin{align}
+ At_m-Pt_a
+ &=\sum_{u=1}^{a}\sum_{v=1}^{m}(v-u)z^{u+v}\notag\\
+ &=\sum_{u=1}^{a}\sum_{v=a+1}^{m}(v-u)z^{u+v}.
+ \label{eq:endpoint}
+\end{align}
+The terms with $u,v\leq a$ cancel in pairs under $(u,v)\leftrightarrow
+(v,u)$, and every term remaining in \eqref{eq:endpoint} is nonnegative.
+The first factor $AP^{k-3}$ also has nonnegative coefficients. Taking the
+coefficient of $z^N$ and dividing by $d_k>0$ proves the claim.
+\end{proof}
+
+\subsection{Completion of the path proof}
+
+For the transition from two to three selected vertices, whenever those
+ranks exist, Lemmas~\ref{lem:EI-monotone} and \ref{lem:EI-order} give
+\[
+ R_3=\frac{2E_3+I_3}{3}\geq E_3\geq E_2=R_2.
+\]
+For $k\geq3$ with both ranks nonempty, first increase the two deletion
+probabilities and then change their mixture weights:
+\begin{align*}
+ R_{k+1}
+ &\geq\frac{2E_k+(k-1)I_k}{k+1}\\
+ &=\frac{2E_k+(k-2)I_k}{k}
+   +\frac{2(I_k-E_k)}{k(k+1)}
+ \geq R_k.
+\end{align*}
+The transition from a singleton is covered by $R_1=0$. When $n=1$ or
+$n=2$, no nonexistent three-element rank is used: the required
+inequalities either are absent or involve $d_0=0$.
+Lemma~\ref{lem:deletion} now proves Theorem~\ref{thm:main} for paths.
+
+No restriction on the size of $\ell$ relative to $n$ has been imposed.
+When $\ell\geq n-1$, the graph is complete and the gap bounds are
+automatic for all nonempty subsets. The argument therefore includes
+complete path powers without changing \eqref{eq:path-count}. As before,
+the empty graph has no nontrivial inequality to verify.
+
+\section{Formalization}\label{sec:formal}
+
+The companion project uses Lean~4.19.0 and a pinned mathlib revision. Its principal theorem is \path{DominationULC.galvin_zhang_conjecture}. The theorem \path{DominationULC.galvin_zhang_normalized} gives the two normalized inequalities. The declarations \path{DominationULC.path_domination_weighted} and \path{DominationULC.cycle_domination_weighted} give \eqref{eq:main}. The formal parameters also allow $\ell=0$, when the graphs have no edges.
+
+The formal graph definitions use the vertex set \texttt{Fin n}. Path adjacency requires distinct vertices $u,v$ with $u\leq v+\ell$ and $v\leq u+\ell$. Cycle adjacency uses clockwise or anticlockwise distance at most $\ell$. A dominating set contains a vertex equal or adjacent to each graph vertex. The count is the cardinality of a filtered finite set of vertex subsets.
+
+The proof connects these graph definitions to the gap model. It uses the equivalence between compositions and their boundary sets. The path correspondence retains the two boundary gaps. For cycles, translation of subsets gives the pointing identity \eqref{eq:cycle-count}. Finite list enumeration then proves that the polynomial products count the required compositions.
+
+The formal argument uses finite cross-products instead of probability spaces. In particular, \eqref{eq:cdf-cross} remains valid when a coefficient is zero. Euler's coefficient identity supplies the deletion algebra. For $r\geq1$, write $\mathcal E Q=zQ'$ and $\mathcal TQ=\mathcal E Q-Q$. Then
+\[
+ (N-r)\coef{N}{P^r}
+ =r\coef{N}{(\mathcal TP)P^{r-1}},
+\]
+and $\mathcal TB_b=t_b$. The product rule gives the version with two endpoint factors. These identities avoid division by a potentially zero counting coefficient. The reproduction package gives the dependency versions, build commands, and axiom checks.
+
+\section{Relation to previous results}
+
+Theorem~\ref{thm:main} proves the two-family statement in \cite[Conjecture~1.8]{GZ}. The same statement appears in \cite[Conjecture~4.1.8, p.~57]{Zhang}. The proof combines bounded gaps with conditional deletion probabilities. The path case also needs the endpoint comparison \eqref{eq:endpoint}. The gap encoding, convolution closure, and Toeplitz-matrix methods are established tools.
+
+Consecutive-$k$-out-of-$n$:F reliability systems also use configurations with bounded runs. Dr\u{a}goi and Beiu study their Bernstein coefficients through alternating sums of positive terms \cite{DB}. They prove log-concavity properties of those positive terms. Such a property alone does not imply log-concavity of the resulting binomial-normalized sequence. Jianu, D\u{a}u\c{s}, Dr\u{a}goi, and Beiu study zeros of circular reliability polynomials \cite{JDDB}. Their special real-rootedness results for consecutive-2 systems concern a different scope from the all-power inequalities proved here.
+
+The theorem applies to every order and power of the two stated graph families. It makes no real-rootedness assertion and gives no corresponding conclusion for arbitrary graphs or all trees.
+
+\section*{Research and publication}
+This work is fully autonomous agentic research generated by AI systems. AI agents produced the mathematical arguments, formal proofs, computations, and manuscript. Dev D. Goyal is responsible for publication.
+
+\begin{thebibliography}{9}
+
+\bibitem{GZ}
+D.~Galvin and Y.~Zhang,
+\emph{The domination polynomial of powers of paths and cycles},
+arXiv:2408.12731v1, 2024.
+\url{https://arxiv.org/abs/2408.12731}.
+
+\bibitem{Zhang}
+Y.~Zhang,
+\emph{Some Combinatorial Problems Involving Total Non-negativity and
+Unimodality}, Ph.D. dissertation, University of Notre Dame, April 2025.
+\url{https://doi.org/10.7274/28786115}.
+
+\bibitem{Hoggar}
+S.~G.~Hoggar,
+Chromatic polynomials and logarithmic concavity,
+\emph{J. Combin. Theory Ser. B} \textbf{16} (1974), 248--254.
+\url{https://doi.org/10.1016/0095-8956(74)90071-9}.
+
+\bibitem{JG}
+O.~Johnson and C.~Goldschmidt,
+Preservation of log-concavity on summation,
+\emph{ESAIM Probab. Stat.} \textbf{10} (2006), 206--215.
+\url{https://doi.org/10.1051/ps:2006008};
+\url{https://arxiv.org/abs/math/0502548}.
+
+\bibitem{DB}
+V.-F.~Dr\u{a}goi and V.~Beiu,
+\emph{Which Coefficients Matter Most---Consecutive
+$k$-out-of-$n$:F Systems Revisited}, TechRxiv preprint, 23 May 2023.
+\url{https://doi.org/10.36227/techrxiv.23042528.v1}.
+
+\bibitem{JDDB}
+M.~Jianu, L.~D\u{a}u\c{s}, V.-F.~Dr\u{a}goi, and V.~Beiu,
+The roots of the reliability polynomials of circular
+consecutive-$k$-out-of-$n$:F systems,
+\emph{Mathematics} \textbf{11} (2023), article 4252.
+\url{https://doi.org/10.3390/math11204252}.
+
+\end{thebibliography}
+\end{document}

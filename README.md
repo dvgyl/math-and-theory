@@ -1,10 +1,10 @@
 # Math and Theory
 
-Nine preprints by Dev D. Goyal present results in mathematics, theoretical computer science, and mathematical physics.
+This collection contains thirteen preprints from fully autonomous agentic research in mathematics, theoretical computer science, and mathematical physics. Dev D. Goyal is responsible for publication.
 
-Eight papers have complete Lean proofs within their stated formal scopes. The thermal proof covers finite spectral statements. It does not formalize the theorem that identifies them with long-time stochastic cumulants. The Gyires preprint proves inequalities for several structured matrix classes and develops related polynomial bounds. Its principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have Lean proofs. Lean formalization of the other principal Gyires results is incomplete. The collection does not claim a general solution when a proof covers only a special case.
+Twelve papers have complete Lean proofs within their stated formal scopes. The thermal proof covers finite spectral statements. It does not formalize the theorem that identifies them with long-time stochastic cumulants. The Gyires preprint proves inequalities for several structured matrix classes and develops related polynomial bounds. Its order-five and order-six results, all-order permutation-polynomial theorem, all-order four-block theorem, and exceptional-vector theorem have Lean proofs. Lean formalization of the order-seven and finite rank-two results is incomplete. The collection does not claim a general solution when a proof covers only a special case.
 
-Start with the [manuscript catalogue](CONTENTS.md) or the [overview](overview.pdf). The [Lean guide](lean/README.md) explains the formal statements. The [verification guide](verification/README.md) gives the commands and recorded results. [AUTHORSHIP.md](AUTHORSHIP.md) identifies the human and AI contributions.
+Start with the [manuscript catalogue](CONTENTS.md) or the [overview](overview.pdf). The [Lean guide](lean/README.md) explains the formal statements. The [verification guide](verification/README.md) gives the commands and recorded results. [AUTHORSHIP.md](AUTHORSHIP.md) identifies the autonomous research process.
 
 ## Files and citations
 
@@ -17,7 +17,7 @@ The catalogue groups related results by subject. The mathematics papers concern 
 | Result family | Established result |
 |---|---|
 | [q-permanent](preprints/q-permanent/README.md) | Counterexamples at every real parameter greater than one. |
-| [Gyires](preprints/gyires-circulant-five/README.md) | Circulants of orders five through seven, all-order structured matrix results, rank two through order fifteen, and supporting polynomial results. Order-five, four-block, and exceptional-vector claims have Lean proofs. The other principal Gyires results remain incomplete in Lean. |
+| [Gyires](preprints/gyires-circulant-five/README.md) | Circulants of orders five through seven, all-order structured matrix results, rank two through order fifteen, and supporting polynomial results. Order-five, order-six, permutation-polynomial, four-block, and exceptional-vector claims have Lean proofs. Order-seven and finite rank-two claims remain incomplete in Lean. |
 | [DomiRank entropy](preprints/domirank-entropy/README.md) | A 14-vertex counterexample with positive scores on the whole comparison interval. |
 | [Diagonal concavity](preprints/diagonal-concavity/README.md) | A counterexample and complete classification of a positive one-parameter family. |
 | [Alternating Motzkin sums](preprints/alternating-motzkin/README.md) | Strict root log-concavity with the optimal tail start. |
@@ -25,10 +25,20 @@ The catalogue groups related results by subject. The mathematics papers concern 
 | [Best-of-n sampling](preprints/best-of-n/README.md) | The proposed bound fails at every budget at least two, with arbitrarily small atom caps. |
 | [Decision-tree covariance](verification/additional-proofs/readk-covariance/docs/manuscript.pdf) | A sharp logarithmic influence bound and two counterexamples to the proposed logarithmic variance bound. No Fourier-entropy theorem is formalized. |
 | [Thermal current kurtosis](verification/additional-proofs/thermal-kurtosis-counterexample/report.pdf) | A three-state, two-temperature model has a negative fourth-to-second spectral heat-cumulant ratio. The long-time stochastic identification is outside the formal proof. |
+| [The sharp level-one Fourier weight at density one eighth](verification/additional-proofs/sharp-eighth/manuscript.pdf) | For every Boolean indicator of mean 1/8 on a finite uniform cube, the level-one Fourier weight is at most 3/64. A codimension-three subcube attains the bound in every dimension at least three. |
+| [Ultra-log-concavity of domination sequences of powers of paths and cycles](verification/additional-proofs/galvin-zhang/manuscript.pdf) | The domination counts of every natural power of a path or cycle form an ultra-log-concave sequence. The proof includes all natural graph orders and powers, the binomial normalization, and the boundary graph cases. |
+| [Universal entanglement embezzlement with inverse-quadratic logarithmic infidelity](verification/additional-proofs/universal-embezzlement/manuscript.pdf) | A target-independent catalyst with local dimension 2^(4L) gives root infidelity at most 125m/L² for every Schmidt probability vector on m entries. |
+| [The exact asymmetric Merino–Welsh region for finite matroids](verification/additional-proofs/asymmetric-tutte/manuscript.pdf) | The theorem characterizes all nonnegative pairs (x,y) for which T_M(x,0) T_M(0,y) ≥ T_M(1,1)² holds for every finite matroid without loops or coloops. |
 
 ## The Gyires preprint
 
-The [Gyires preprint](preprints/gyires-circulant-five/paper.pdf) proves the order-five circulant inequality and extends the analysis to other structured matrix classes. It includes circulants of orders six and seven, all-order permutation polynomials, all-order four-block matrices, one exceptional column or row, and rank-two matrices through order fifteen. It also proves structural, scalar, deletion, balancing, local polynomial, and counting results. Exact counterexamples identify the limits of proposed extensions. The [complete supporting record](research-notes/gyires-complete-support/README.md) gives the source map, certificate files, and reproduction commands. The all-order four-block and exceptional-vector theorems have complete Lean proofs. The principal higher-order circulant, permutation-polynomial, and finite rank-two theorems remain incomplete in Lean. The manuscript does not establish the unrestricted conjecture.
+The [Gyires preprint](preprints/gyires-circulant-five/paper.pdf) proves the order-five circulant inequality and extends the analysis to other structured matrix classes. It includes circulants of orders six and seven, all-order permutation polynomials, all-order four-block matrices, one exceptional column or row, and rank-two matrices through order fifteen. It also proves structural, scalar, deletion, balancing, local polynomial, and counting results. Exact counterexamples identify the limits of proposed extensions. The [complete supporting record](research-notes/gyires-complete-support/README.md) gives the source map, certificate files, and reproduction commands. The all-order four-block and exceptional-vector theorems have complete Lean proofs. The general order-six and all-order permutation-polynomial theorems have separate Lean source packages. The principal order-seven and finite rank-two theorems remain incomplete in Lean. The manuscript does not establish the unrestricted conjecture.
+
+The Gyires [order-six package](verification/gyires-circulant-six/README.md) and [permutation-polynomial package](verification/gyires-permutation-polynomial/README.md) contain the additional formal proofs. Each package has its own pinned build and theorem map.
+
+## Unfinished formal proofs
+
+[UNFINISHED.md](UNFINISHED.md) lists the remaining verification gaps. Higuchi–Sudbery and quartic rankings are not included as checked releases. The Gyires order-seven and finite rank-two Lean proofs remain unfinished.
 
 ## Verification
 
@@ -38,12 +48,12 @@ The [decision-tree package](verification/additional-proofs/readk-covariance/READ
 
 The [verification guide](verification/README.md) gives commands for compilation, statement comparison, proof checking, and exact computation. A successful computation over finitely many inputs does not prove a universal theorem.
 
-The automatic workflow checks source integrity and all nine manuscripts on pushes and pull requests. It has separate Lean jobs for the shared library and the two standalone packages. The full Palomar mechanical preflight remains available by manual dispatch.
+The automatic workflow checks source integrity and all thirteen manuscripts on pushes and pull requests. It has separate Lean jobs for the shared library and all six standalone study packages. The large separate Gyires packages have automatic source checks and a manual full-build workflow. The full Palomar mechanical preflight remains available by manual dispatch.
 
 ## Authorship and use
 
-The [authorship disclosure](AUTHORSHIP.md) states the use of AI assistance. These preprints have not been peer reviewed.
+The [authorship disclosure](AUTHORSHIP.md) states autonomous AI research. These preprints have not been peer reviewed.
 
-Cite an individual paper with its `citation.bib` file, or `CITATION.bib` for a standalone package. The catalogue links each manuscript to its source, citation metadata, and verification instructions. The root [Apache-2.0 license](LICENSE) applies except where [NOTICE](NOTICE) identifies third-party material.
+Cite an individual paper with its `citation.bib` file, or `CITATION.bib` for a standalone package. For the repository, use [CITATION.cff](CITATION.cff) or [CITATION.bib](CITATION.bib). The catalogue links each manuscript to its source, citation metadata, and verification instructions. The root [Apache-2.0 license](LICENSE) applies except where [NOTICE](NOTICE) identifies third-party material.
 
 For a later result family, follow [the contribution procedure](lean/docs/adding-a-family.md). Each addition must satisfy the same mathematical, source-fidelity, prior-work, formalization, and reproducibility requirements.

@@ -1,8 +1,8 @@
 # Manuscript catalogue
 
-The catalogue contains nine result families and nine manuscripts. Seven families use the shared Lean 4.35.0 library. Its 29 selected Comparator declarations include equality, positivity, sharpness, and generalization statements. The decision-tree and thermal packages use separate Lean 4.19.0 environments. Supporting lemmas are not separate research contributions.
+The catalogue contains thirteen result families and thirteen manuscripts. Seven families use the shared Lean 4.35.0 library. Its 29 selected Comparator declarations include equality, positivity, sharpness, and generalization statements. The decision-tree and thermal packages use separate Lean 4.19.0 environments. Supporting lemmas are not separate research contributions.
 
-Eight papers have complete Lean proofs within their stated formal scopes. The thermal formalization covers finite spectral statements, with no formal stochastic long-time identification theorem. The Gyires preprint has complete Lean proofs for its principal order-five claims, its all-order four-block theorem, and its exceptional-vector theorem. Its other principal results have incomplete Lean verification. The verification record gives the checks actually completed. The papers have not been peer reviewed. The prior-work assessment is bounded and makes no first-priority claim.
+Twelve papers have complete Lean proofs within their stated formal scopes. The thermal formalization covers finite spectral statements, with no formal stochastic long-time identification theorem. The Gyires preprint has complete Lean proofs for its principal order-five and order-six claims, its all-order permutation-polynomial and four-block theorems, and its exceptional-vector theorem. The principal order-seven and finite rank-two results remain incomplete in Lean. The verification record gives the checks actually completed. The papers have not been peer reviewed. The prior-work assessment is bounded and makes no first-priority claim.
 
 ## Mathematics
 
@@ -22,7 +22,7 @@ Eight papers have complete Lean proofs within their stated formal scopes. The th
 
 **Family:** `gyires-circulant-five`. **Result:** Structured matrix inequalities and related polynomial bounds. The principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have Lean proofs.
 
-**Abstract.** The preprint proves Gyires's permanent inequality for several structured matrix classes. These include nonnegative circulants of orders five through seven, all-order permutation polynomials A=aI+bQ+cQ², and all-order four-block doubly stochastic matrices. Here Q is any permutation matrix and a,b,c are nonnegative. The four-block result permits unequal block sizes and zero entries. Further results cover one exceptional column or row and every rank-at-most-two doubly stochastic matrix through order fifteen. The supporting sections prove structural, scalar, deletion, balancing, local polynomial, and counting results. Exact counterexamples identify the limits of auxiliary assertions. The principal order-five claims include equality and a sharp sorted-gap bound with coefficient 484. The principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have complete Lean proofs. The other principal Gyires results remain incomplete in Lean. The unrestricted conjecture remains outside these results.
+**Abstract.** The preprint proves Gyires's permanent inequality for several structured matrix classes. These include nonnegative circulants of orders five through seven, all-order permutation polynomials A=aI+bQ+cQ², and all-order four-block doubly stochastic matrices. Here Q is any permutation matrix and a,b,c are nonnegative. The four-block result permits unequal block sizes and zero entries. Further results cover one exceptional column or row and every rank-at-most-two doubly stochastic matrix through order fifteen. The supporting sections prove structural, scalar, deletion, balancing, local polynomial, and counting results. Exact counterexamples identify the limits of auxiliary assertions. The principal order-five claims include equality and a sharp sorted-gap bound with coefficient 484. The principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean proofs. The principal order-seven and finite rank-two results remain incomplete in Lean. The unrestricted conjecture remains outside these results.
 
 **Original problem.** [Gyires, 1978; Cheon and Wanless, 2005, Conjecture 20. Earlier formalization at the pinned Gyires repository.](https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448)
 
@@ -30,7 +30,7 @@ Eight papers have complete Lean proofs within their stated formal scopes. The th
 
 #### Supporting records for the all-order Gyires arguments
 
-The preprint includes both all-order arguments. This [supporting record](research-notes/gyires-extensions/README.md) gives their proofs, programs, and outputs. The four-block theorem has a complete Lean proof. The permutation-polynomial theorem remains incomplete in Lean. No novelty or independent human expert review is claimed.
+The preprint includes both all-order arguments. This [supporting record](research-notes/gyires-extensions/README.md) gives their proofs, programs, and outputs. The four-block theorem has a complete Lean proof. The permutation-polynomial theorem has a complete Lean proof in the separate `verification/gyires-permutation-polynomial` package. No novelty or independent human expert review is claimed.
 
 - [Permutation-polynomial claim](research-notes/gyires-extensions/permutation-polynomial.md). For every dimension, A=aI+bQ+cQ² with Q a permutation matrix and a,b,c nonnegative satisfies the stronger Gram-permanent bound. The argument combines exact polynomial certificates with an analytic tail.
 - [Four-block claim](research-notes/gyires-extensions/four-block.md). At most two row types and two column types suffice for three permanent contraction bounds and a strict Gyires margin away from the uniform matrix. Unequal block sizes and zero block entries are included.
@@ -126,3 +126,51 @@ The preprint includes both all-order arguments. This [supporting record](researc
 **Formal scope.** The standalone package uses Lean 4.19.0. It does not formalize the stochastic long-time theorem that identifies the eigenvalue branch with a cumulant generating function. The witness does not refute the separate skewness conjecture or establish a minimal number of states.
 
 [Paper PDF](verification/additional-proofs/thermal-kurtosis-counterexample/report.pdf) · [LaTeX](verification/additional-proofs/thermal-kurtosis-counterexample/report.tex) · [Citation](verification/additional-proofs/thermal-kurtosis-counterexample/CITATION.bib) · [Related work](verification/additional-proofs/thermal-kurtosis-counterexample/RELATED_WORK.md) · [Reproduction](verification/additional-proofs/thermal-kurtosis-counterexample/README.md)
+
+## Discrete analysis
+
+### The sharp level-one Fourier weight at density one eighth
+
+For every Boolean indicator of mean 1/8 on a finite uniform cube, the level-one Fourier weight is at most 3/64. A codimension-three subcube attains the bound in every dimension at least three.
+
+**Formal scope.** The formal proof includes arbitrary dimensions, the exact moment identities, the Hamming-distance bound, and sharpness witnesses.
+
+**Prior work.** [Yu, On Average Distance, Level-1 Fourier Weight, and Chang’s Lemma, 2026 revision.](https://arxiv.org/abs/2504.02593v2)
+
+[Paper PDF](verification/additional-proofs/sharp-eighth/manuscript.pdf) · [LaTeX](verification/additional-proofs/sharp-eighth/manuscript.tex) · [Citation](verification/additional-proofs/sharp-eighth/CITATION.bib) · [Reproduction](verification/additional-proofs/sharp-eighth/README.md)
+
+## Graph theory
+
+### Ultra-log-concavity of domination sequences of powers of paths and cycles
+
+The domination counts of every natural power of a path or cycle form an ultra-log-concave sequence. The proof includes all natural graph orders and powers, the binomial normalization, and the boundary graph cases.
+
+**Formal scope.** Actual finite graph domination counts for powers of paths and cycles. No theorem for arbitrary graphs or real-rootedness is asserted.
+
+**Prior work.** [Galvin and Zhang, Conjecture 1.8.](https://arxiv.org/abs/2408.12731)
+
+[Paper PDF](verification/additional-proofs/galvin-zhang/manuscript.pdf) · [LaTeX](verification/additional-proofs/galvin-zhang/manuscript.tex) · [Citation](verification/additional-proofs/galvin-zhang/CITATION.bib) · [Reproduction](verification/additional-proofs/galvin-zhang/README.md)
+
+## Quantum information
+
+### Universal entanglement embezzlement with inverse-quadratic logarithmic infidelity
+
+A target-independent catalyst with local dimension 2^(4L) gives root infidelity at most 125m/L² for every Schmidt probability vector on m entries.
+
+**Formal scope.** The proof constructs local basis permutations and establishes their finite complex Hilbert-space interpretation. Arbitrary changes to an external Schmidt basis are not separately formalized.
+
+**Prior work.** [Van Dam and Hayden, 2003; Leung and Wang, 2014.](https://arxiv.org/abs/1311.6842)
+
+[Paper PDF](verification/additional-proofs/universal-embezzlement/manuscript.pdf) · [LaTeX](verification/additional-proofs/universal-embezzlement/manuscript.tex) · [Citation](verification/additional-proofs/universal-embezzlement/CITATION.bib) · [Reproduction](verification/additional-proofs/universal-embezzlement/README.md)
+
+## Matroid theory
+
+### The exact asymmetric Merino–Welsh region for finite matroids
+
+The theorem characterizes all nonnegative pairs (x,y) for which T_M(x,0) T_M(0,y) ≥ T_M(1,1)² holds for every finite matroid without loops or coloops.
+
+**Formal scope.** The statement uses actual Mathlib matroids and the literal subset rank sum. It includes empty ground sets and finite ground sets in arbitrary ambient types.
+
+**Prior work.** [Liu, 2026; Chen and Xie, 2026. The manuscript states the relation to the diagonal theorem.](https://github.com/michaeliu4/tutte-threshold)
+
+[Paper PDF](verification/additional-proofs/asymmetric-tutte/manuscript.pdf) · [LaTeX](verification/additional-proofs/asymmetric-tutte/manuscript.tex) · [Citation](verification/additional-proofs/asymmetric-tutte/CITATION.bib) · [Reproduction](verification/additional-proofs/asymmetric-tutte/README.md)

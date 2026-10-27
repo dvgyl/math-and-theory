@@ -8,6 +8,7 @@
 \usepackage{enumitem}
 \usepackage[numbers]{natbib}
 \usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
 \setlength{\parskip}{5pt plus 1pt}
 \setlength{\parindent}{0pt}
 \setlength{\emergencystretch}{3em}
@@ -41,7 +42,7 @@
 \maketitle
 \begin{abstract}
 Gyires's conjecture compares the square of a permanent with three permanents of matrix products.
-We prove the inequality for several structured classes of matrices.
+This paper proves the inequality for several structured classes of matrices.
 These classes include nonnegative circulants of orders five, six, and seven;
 all-order permutation polynomials $aI+bQ+cQ^2$ with nonnegative coefficients;
 all-order doubly stochastic matrices with at most two row types and two column types;
@@ -51,9 +52,9 @@ Further results treat sparse perturbations, direct sums, positive-semidefinite m
 The supporting arguments include scalar norm inequalities, polynomial deletion, balanced limits,
 local stable and Lorentzian inequalities, and exact configuration-model identities.
 Exact counterexamples identify the limits of proposed extensions.
-The principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have complete Lean~4 proofs.
+The principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean~4 proofs.
 General permanent comparisons and direct-sum closure also have Lean proofs.
-The principal higher-order circulant, permutation-polynomial, and finite rank-two theorems remain incomplete in Lean.
+The order-seven circulant and finite rank-two theorems remain incomplete in Lean.
 The unrestricted conjecture is not resolved.
 \end{abstract}
 
@@ -104,11 +105,12 @@ Section~\ref{sec:general} proves the permanent comparison that makes this implic
 
 Sections~\ref{sec:order-five} and~\ref{sec:circulant-six-seven} treat unrestricted nonnegative circulant weights in orders five, six, and seven.
 They give equality cases and sharp sorted-gap margins.
-The order-five, four-block, and exceptional-vector theorems have formal proofs in Lean.
+The order-five, order-six, permutation-polynomial, four-block, and exceptional-vector theorems have formal proofs in Lean.
 The order-six and order-seven proofs use exhaustive exact coefficient certificates.
 
 Section~\ref{sec:permutation} treats $aI+bQ+cQ^2$ in every dimension, where $Q$ is any permutation matrix and $a,b,c\ge0$.
-The proof combines a transfer identity, an analytic estimate from order $48$, exact certificates below that threshold, and a cycle decomposition.
+The proof combines actual transfer identities, a weighted trace estimate from order $23$, exact polynomial identities below that threshold, and a cycle decomposition.
+Lean checks the coefficient identities and the final matrix theorem.
 The common permutation matrix is essential to the cycle decomposition.
 
 Section~\ref{sec:four-block} treats doubly stochastic matrices with at most two distinct row vectors and two distinct column vectors.
@@ -129,15 +131,15 @@ The polynomial approach leads to scalar localization, mean-one and symmetric-ref
 rank-two scalar reductions, deletion and balancing results, local polynomial inequalities,
 and exact expectations in a regular bipartite configuration model.
 These results isolate scalar and polynomial inequalities that would imply further matrix bounds.
-We state the remaining inequalities explicitly and distinguish them from the reductions already proved.
+The remaining inequalities are stated explicitly, separate from the proved reductions.
 Exact counterexamples rule out several stronger auxiliary statements. None contradicts Gyires's conjecture.
 
 \subsection{Verification status}
 
-The principal order-five inequalities, equality cases, and sharp margin have complete Lean proofs.
-The all-order four-block and exceptional-vector theorems also have complete Lean proofs.
+The principal order-five and order-six inequalities, equality cases, and sharp margins have complete Lean proofs.
+The all-order permutation-polynomial, four-block, and exceptional-vector theorems also have complete Lean proofs.
 General permanent comparisons and direct-sum closure also have Lean proofs.
-The principal higher-order circulant, permutation-polynomial, and finite rank-two theorems remain incomplete in Lean.
+The order-seven circulant and finite rank-two theorems remain incomplete in Lean.
 Section~\ref{sec:checks} maps the formalized theorems to their Lean declarations and explains how to reproduce the computations.
 
 \subsection{Prior work}
@@ -157,7 +159,7 @@ The probability argument uses the classical fixed-mean extremal reduction of Hoe
 Both results provide the basis for the four-block proof.
 
 The order-five theorem and its formalization are also available in~\cite{repo}.
-The literature comparison for the broader results is incomplete, so we make no claim of priority.
+The literature comparison for the broader results is incomplete, so no priority claim is made.
 
 
 \section{Common permanent identities}\label{sec:general}
@@ -533,7 +535,7 @@ The affine group acts freely on the ordered lists of all $n$ indices.
 Indeed, an affine map that fixes such a list fixes every residue.
 It therefore has $a=1$ and $b=0$.
 Each orbit has $n\varphi(n)$ elements, where $\varphi(n)$ counts the units
-modulo $n$. We use one sorting representative from each orbit.
+modulo $n$. Each orbit has one selected sorting representative.
 To construct it, first translate the first index to zero.
 Then take the lexicographically least list among all its unit multiples.
 This gives
@@ -766,25 +768,24 @@ python3 circ_gap_test.py 7 all
 python3 independent_certificate_check.py 6
 python3 independent_certificate_check.py 7
 \end{verbatim}
-Do not use Python's \texttt{-O} option, which disables the checker's
-assertions. The primary program reports a negative coefficient and
-stops its region loop if one is found; its process exit alone is not a
-certificate. The independent checker must complete all assertions and
-report all $60$ or $120$ regions, as appropriate.
+Run the independent checker without Python's \texttt{-O} option.
+It rejects optimized execution because that option disables assertions.
+Both programs return a nonzero exit code if a mathematical check fails or the required region coverage is incomplete.
+A complete check must report all $60$ or $120$ regions, as appropriate.
 The supporting source record gives the file hashes and regenerated
 outputs. Timing fields can differ between runs.
 
 The exact programs use only the Python standard library.
-These are finite computer-assisted algebraic proofs with complete
-parameter coverage in the two stated orders. They are not Lean proof
-terms. Selected-region experiments in orders eight and nine do not
-complete those orders and are not used in this theorem.
+These programs give finite algebraic checks with complete parameter coverage in the two stated orders.
+The separate order-six Lean proof checks the actual matrix theorem, all sorting regions, both sharp margins, and their equality cases.
+The order-seven coefficient proof is not yet formalized in Lean.
+Selected-region experiments in orders eight and nine do not complete those orders and are not used in this theorem.
 
 
 \section{Permutation polynomials in arbitrary dimensions}\label{sec:permutation}
 
 The next theorem holds for every permutation cycle structure and all nonnegative weights.
-Its proof combines a spectral estimate with exact polynomial certificates.
+Its proof combines a weighted trace estimate with exact polynomial certificates.
 
 \begin{theorem}\label{thm:permutation-polynomial}
 Let $n\ge1$, let $Q$ be an $n\times n$ permutation matrix, and let
@@ -800,11 +801,12 @@ c_n\per(A^\T A)\le\per(A)^2,
 \qquad
 c_n\per(A^2)\le\per(A)^2.
 \end{equation}
-If $a+b+c=1$, then $A$ is doubly stochastic and satisfies
+The same hypotheses give
 \begin{equation}\label{eq:pp-gyires}
 c_n\bigl[\per(AA^\T)+\per(A^\T A)+2\per(A^2)\bigr]
 \le4\per(A)^2.
 \end{equation}
+If $a+b+c=1$, then $A$ is doubly stochastic.
 \end{theorem}
 
 Set
@@ -813,8 +815,8 @@ C=AQ^{-1}=aQ^{-1}+bI+cQ.
 \end{equation}
 A column permutation preserves the permanent, and $CC^\T=AA^\T$.
 It therefore suffices to prove the first bound for $C$.
-We first treat one cycle.
-We then combine the cycle bounds with the correct dimension constants.
+The proof first treats one cycle.
+It then combines the cycle bounds with the required dimension constants.
 
 \subsection{The cyclic permanent and its transfer matrix}
 
@@ -840,7 +842,7 @@ For every $n\ge1$,
 \end{lemma}
 
 \begin{proof}
-We describe the transfer construction that will also compute the Gram permanent.
+The following transfer construction also computes the Gram permanent.
 For offsets $-r,\ldots,r$, let $w_0,\ldots,w_{2r}$ be the corresponding weights.
 Before processing row $i$, record the occupied columns
 $i-r,\ldots,i+r-1$ in a mask $m$ with $2r$ bits.
@@ -1066,7 +1068,218 @@ This endpoint is attained by $(a,b,c)=(1,1,0)$, for which $L=1$.
 Finally, restoring the original weights multiplies every transfer entry by $L^2$.
 \end{proof}
 
-\subsection{The analytic bound from order 48}
+\subsection{A weighted trace bound}
+
+The next estimate uses two comparison vectors to control a trace.
+It gives a smaller finite range for the coefficient proof.
+For a positive vector $\rho$, define
+\[
+F_\rho(B)=\sum_{i,j}\frac{\rho_i}{\rho_j}B_{ij}^2.
+\]
+
+\begin{lemma}\label{lem:pp-weighted-trace}
+Let $M$ be a finite square matrix with nonnegative entries.
+Suppose $K\ge0$ and $u,v$ have strictly positive coordinates, with
+$Mv\le Kv$ and $M^\T u\le Ku$ coordinatewise.
+Put $\rho_i=u_i/v_i$.
+For every integer $n\ge4$,
+\[
+\operatorname{tr}(M^n)\le K^{n-4}F_\rho(M^2).
+\]
+\end{lemma}
+
+\begin{proof}
+Write $\|x\|_\rho^2=\sum_i\rho_i x_i^2$.
+Weighted Cauchy--Schwarz gives
+\[
+\left(\sum_jM_{ij}x_j\right)^2
+\le\left(\sum_jM_{ij}v_j\right)
+   \left(\sum_jM_{ij}\frac{x_j^2}{v_j}\right).
+\]
+Multiply by $u_i/v_i$, sum over $i$, and use the two comparison bounds.
+Then
+\[
+\|Mx\|_\rho^2
+\le K\sum_j\frac{x_j^2}{v_j}\sum_i u_iM_{ij}
+\le K^2\|x\|_\rho^2.
+\]
+Applying this estimate to each column gives
+$F_\rho(MB)\le K^2F_\rho(B)$.
+Thus, for $n\ge4$,
+\[
+F_\rho(M^{n-2})\le K^{2(n-4)}F_\rho(M^2).
+\]
+A second Cauchy--Schwarz inequality, applied to the paired entries
+$X_{ij}$ and $Y_{ji}$, gives
+\[
+|\operatorname{tr}(XY)|^2\le F_\rho(X)F_\rho(Y).
+\]
+Take $X=M^{n-2}$ and $Y=M^2$.
+All quantities needed to take the square root are nonnegative.
+This proves the result, including $K=0$.
+\end{proof}
+
+Apply the lemma to the normalized transfer matrices.
+The bounds in~\eqref{eq:pp-one-variable} give
+$0\le f\le1$, $d\le D(f)=2-2f+2f^2$, and $e\le E(f)=1-f^2$.
+Set
+\[
+K=\frac{169}{70}.
+\]
+
+For the four-state matrix, take
+$w=(8,4f,2f^2,f^3)^\T$ when $f>0$.
+The last three coordinates of $T_1w$ equal those of $2w$.
+At $d=D(f)$ and $e=E(f)$, the first residual is
+\[
+2w_1-(T_1w)_1
+=8(1-f)+6f^2+8f^2(1-f)+f^4\ge0.
+\]
+Smaller nonnegative $d,e$ preserve this inequality.
+At $f=0$, the positive vector $(1,1/4,1/4,1/4)^\T$ also satisfies $T_1w\le2w$.
+Conjugation by the diagonal matrix with diagonal $w$ gives a nonnegative matrix with row sums at most two.
+Its $n$th power has row sums at most $2^n$.
+Each diagonal entry is at most this row sum, so
+\begin{equation}\label{eq:pp-four-trace}
+\operatorname{tr}(T_1^n)\le4\cdot2^n.
+\end{equation}
+
+For $0<f<1$, put $D=D(f)$ and $E=E(f)$ and take
+\[
+v=\left(1,\frac{E}{K-f},\frac fK,
+\frac{E^2}{K(K-f)}+\frac{Df}{K^2}+\frac{f^3}{K^3},
+\frac{fE}{K(K-f)},\frac{f^2}{K^2}\right)^\T.
+\]
+All six coordinates are positive.
+Rows two through six satisfy $(T_2v)_i=Kv_i$ at $(D,E,f)$.
+The first residual is $R(f)/(K^3(K-f))$, where
+\[
+R(f)=\frac1{1680700000}
+\sum_{j=0}^5\binom5j\gamma_j f^j(1-f)^{5-j}
+\]
+and
+\[
+(\gamma_0,\ldots,\gamma_5)=
+(4826809,18926317943,24468294383,26091136149,22171767241,3312639).
+\]
+Every coefficient is positive, so $T_2v\le Kv$.
+Entrywise comparison gives the same result for $d\le D$ and $e\le E$.
+Let $u$ be $v$ with coordinates three and four exchanged.
+The literal matrix~\eqref{eq:pp-T2} satisfies
+$T_2^\T u\le Ku$ by the same coordinate exchange.
+
+It remains to bound $F_\rho(T_2^2)$, where $\rho_i=u_i/v_i$.
+Put $r=v_3/v_4$, so
+$\rho=(1,1,r^{-1},r,1,1)$.
+Direct multiplication gives
+\begin{equation}\label{eq:pp-weighted-energy}
+\begin{aligned}
+F_\rho(T_2^2)={}&E_0(d,e,f)+E_1(d,e,f)r+(e^2+f^2)^2r^2\\
+&+\frac{2f^2(d^2+e^2)}r+\frac{f^4}{r^2},\\
+E_0(d,e,f)={}&d^4+4d^2e^2+2e^4+4de^2f+6e^2f^2+4f^4,\\
+E_1(d,e,f)={}&2d^2f^2+4de^2f+2e^4+2e^2f^2.
+\end{aligned}
+\end{equation}
+For fixed positive $r$ and nonnegative $f$, this expression increases with $d,e\ge0$.
+It is enough to use $D,E$.
+Define
+\[
+\begin{aligned}
+N(f)&=28561f(169-70f),\\
+H(f)&=70\bigl[28561E(f)^2+169D(f)f(169-70f)
+                    +70f^3(169-70f)\bigr].
+\end{aligned}
+\]
+The displayed vector gives $r=N(f)/H(f)$.
+Both $N(f)$ and $H(f)$ are positive for $0<f<1$.
+Let $G(d,e,f,r)$ denote the right side of~\eqref{eq:pp-weighted-energy}.
+The exact polynomial identity
+\begin{equation}\label{eq:pp-energy-certificate}
+\bigl[39-G(D(f),E(f),f,N(f)/H(f))\bigr]N(f)^2H(f)^2
+=f^2\sum_{j=0}^{18}\beta_jf^j(1-f)^{18-j}
+\end{equation}
+has the following coefficients.
+\begin{center}\small
+\begin{longtable}{r r}
+\toprule
+$j$ & $\beta_j$\\
+\midrule
+0 & 465621612484579586250624500\\
+1 & 17217514319785244183937758540\\
+2 & 223657730623166409432158624159\\
+3 & 1522295928041841329866655941164\\
+4 & 6442101740897891602997950685822\\
+5 & 18750207471127803372365770643628\\
+6 & 39927856862499630218557168321919\\
+7 & 64748235102644890096432222301224\\
+8 & 82112200779796853177563019333638\\
+9 & 82873919498476120791804987635104\\
+10 & 67279400669547001480535238777620\\
+11 & 44117805232440322189064060340720\\
+12 & 23297875076186045893202605884378\\
+13 & 9792313455462260499418107993748\\
+14 & 3196080479778073438594186490087\\
+15 & 772849048230088452339008904612\\
+16 & 125909069765717307589072656246\\
+17 & 10768695141523513153718037708\\
+18 & 63915177105473811509108079\\
+\bottomrule
+\end{longtable}
+\end{center}
+All coefficients are positive.
+Thus~\eqref{eq:pp-energy-certificate} proves $F_\rho(T_2^2)\le39$ in the open interval.
+
+At the endpoints, use the positive vectors
+\[
+\begin{aligned}
+v^{(0)}&=(1,K-2,1/9800,1,1/9800,1/9800)^\T,\\
+v^{(1)}&=(1,1,1/K,2/K^2+1/K^3,1/K,1/K^2)^\T.
+\end{aligned}
+\]
+Direct multiplication verifies $T_2v^{(i)}\le Kv^{(i)}$ at $(D(i),E(i),i)$.
+The reflected left vectors satisfy the corresponding transpose bounds.
+At zero, $r=1/9800$, and~\eqref{eq:pp-weighted-energy} is
+$34+2/9800+1/9800^2<39$.
+At one, $r=28561/28560$, and the expression is
+$20+8(r+r^{-1})+r^2+r^{-2}<39$.
+For the latter inequality, use $1\le r\le101/100$ and $r^{-1}\le1$.
+This proves the energy bound at both endpoints without continuity.
+Lemma~\ref{lem:pp-weighted-trace} now gives
+\begin{equation}\label{eq:pp-six-trace}
+\operatorname{tr}(T_2^n)\le39K^{n-4},\qquad n\ge4.
+\end{equation}
+
+\subsection{The analytic bound from order 23}
+
+Combining~\eqref{eq:pp-gram-trace}, \eqref{eq:pp-four-trace}, and~\eqref{eq:pp-six-trace}, then restoring the scale $L$, gives
+\begin{equation}\label{eq:pp-weighted-tail}
+\per(C_nC_n^\T)\le B_nL^{2n},\qquad
+B_n=2+8\cdot2^n+39K^{n-4},\qquad n\ge4.
+\end{equation}
+The exact integer inequality
+\[
+23!\bigl[(2+8\cdot2^{23})70^{19}+39\cdot169^{19}\bigr]
+<23^{23}70^{19}
+\]
+proves $c_{23}B_{23}<1$.
+Since $K>2$, $B_{n+1}\le KB_n$ for $n\ge4$.
+The binomial theorem gives, for $n\ge23$,
+\[
+\left(1+\frac1n\right)^n
+\ge2+\frac{n-1}{2n}
+\ge\frac{57}{23}>\frac{169}{70}=K.
+\]
+Also, $c_{n+1}/c_n=(n/(n+1))^n$.
+Therefore $c_{n+1}B_{n+1}<c_nB_n$, and induction yields
+\begin{equation}\label{eq:pp-weighted-threshold}
+c_nB_n<1\qquad(n\ge23).
+\end{equation}
+If at least one weight is positive, then $L>0$.
+Equations~\eqref{eq:pp-cyclic-permanent}, \eqref{eq:pp-weighted-tail}, and~\eqref{eq:pp-weighted-threshold} give
+$c_n\per(C_nC_n^\T)<\per(C_n)^2$.
+If all weights are zero, the weak inequality holds directly.
+
+\subsection{An additional analytic bound from order 48}
 
 For any square matrix $M$ of dimension $m$,
 \[
@@ -1109,7 +1322,7 @@ $5\cdot6^6<2\cdot7^6$ gives $(7/6)^6>5/2$.
 Consequently, $t_{n+1}<t_n$ for every $n\ge6$.
 The first Gram bound is therefore strict for a nonzero cyclic matrix in every order $n\ge48$.
 
-\subsection{Exact polynomial certificates for orders 3 through 47}
+\subsection{Exact polynomial certificates for orders 3 through 22}
 
 The remaining finite range uses the homogeneous integer polynomial
 \begin{equation}\label{eq:pp-finite-deficit}
@@ -1137,7 +1350,7 @@ Their reflections give the other three orderings.
 Equal weights and zero weights are included in the boundaries.
 
 The certificate computes every coefficient of each substituted $\mathcal D_n$.
-We give the recurrences so that the connection to the matrix inequality is explicit.
+The following recurrences give the explicit connection to the matrix inequality.
 Direct determinant expansion of~\eqref{eq:pp-T1} and~\eqref{eq:pp-T2} gives
 \begin{equation}\label{eq:pp-characteristic-polynomials}
 \begin{aligned}
@@ -1202,7 +1415,14 @@ Addition is entrywise, and multiplication is exact coefficient convolution.
 The program applies~\eqref{eq:pp-newton} and~\eqref{eq:pp-root-recurrences}, then forms~\eqref{eq:pp-finite-deficit}.
 It checks the sign of every coefficient and stops with an error if any coefficient is negative.
 
-The computation through order $47$ gives
+The formal proof uses orders $3$ through $22$.
+The three substitutions give $3\cdot20=60$ closed regions and
+\[
+3\sum_{n=3}^{22}\binom{2n+2}{2}=25\,050
+\]
+possible coefficient positions.
+Lean proves the exact polynomial identities and the nonnegativity of their coefficients.
+A separate integer computation extends through order $47$ and gives
 \[
 3\cdot45=135\text{ regions},\qquad
 3\sum_{n=3}^{47}\binom{2n+2}{2}=224\,550\text{ coefficient positions}.
@@ -1249,8 +1469,8 @@ Since $c_2=1/2$,
 \per(C_2)^2-\tfrac12\per(C_2C_2^\T)
 =\tfrac12(x^2-y^2)^2\ge0.
 \]
-For orders three through 47, the closed gap regions include all zero-weight boundaries.
-For larger orders, the spectral argument includes its endpoints by continuity.
+For orders three through 22, the closed gap regions include all zero-weight boundaries.
+For every order at least 23, the weighted trace argument includes both normalized endpoints through explicit positive vectors.
 If $a=b=c=0$, both permanents vanish in every order.
 Thus every cyclic case is covered.
 
@@ -1276,15 +1496,25 @@ Equation~\eqref{eq:pp-column-shift} proves the first bound for $A$.
 
 The transpose $A^\T=aI+bQ^\T+c(Q^\T)^2$ has the same form.
 The first bound applied to $A^\T$ proves the second bound in~\eqref{eq:pp-gram-bounds}.
-Lemma~\ref{lem:permanent-cs}, applied to $A$ and $A^\T$, gives
+The permanent Gram comparison, applied to $A$ and $A^\T$, gives
 \[
-\per(A^2)
-\le\sqrt{\per(AA^\T)\per(A^\T A)}
-\le\frac{\per(A)^2}{c_n}.
+2\per(A^2)\le\per(AA^\T)+\per(A^\T A).
 \]
-This proves the third bound in the original indexing of $A$.
-Finally, if $a+b+c=1$, each row sum and each column sum of $A$ is one.
-Adding the three bounds with weights $1,1,2$ proves~\eqref{eq:pp-gyires}.
+The two Gram bounds therefore prove the third bound in the original indexing of $A$.
+Adding the three bounds with weights $1,1,2$ proves~\eqref{eq:pp-gyires} for all nonnegative weights.
+If $a+b+c=1$, each row sum and each column sum of $A$ is one.
+\end{proof}
+
+\begin{corollary}\label{cor:pp-strict-cycle}
+Suppose $Q=P_n$, $n\ge23$, and at least one of $a,b,c$ is positive.
+Then all three inequalities in~\eqref{eq:pp-gram-bounds} and the combined inequality~\eqref{eq:pp-gyires} are strict.
+\end{corollary}
+
+\begin{proof}
+The strict weighted trace estimate proves the first Gram bound.
+Since $A$ is a polynomial in $Q$ and $Q^\T=Q^{-1}$, the two Gram matrices are equal.
+Thus the second Gram bound is also strict.
+The permanent Gram comparison and addition give the strict square and combined bounds.
 \end{proof}
 
 The theorem concerns a quadratic polynomial in one permutation matrix.
@@ -1292,7 +1522,7 @@ It does not assert the same result for arbitrary triples of permutation matrices
 
 \section{Four-block matrices in arbitrary dimensions}\label{sec:four-block}
 
-We next consider matrices with at most two row types and at most two column types. Two rows have the same type if their entries agree
+The next result concerns matrices with at most two row types and at most two column types. Two rows have the same type if their entries agree
 in every column. Column types have the corresponding meaning. The block
 sizes can be unequal, and the entries can be zero.
 
@@ -1361,7 +1591,7 @@ $\per(A^2)$. The proof below treats this term through
 Lemma~\ref{lem:permanent-cs}, in the original indexing.
 
 The main estimate first uses only the condition on column types.
-It follows from a probability inequality, which we prove next.
+It follows from a probability inequality, proved next.
 
 \subsection{A probability inequality at an integer mean}
 
@@ -1370,9 +1600,9 @@ probability $p$ and value $0$ with probability $1-p$. A sum of independent
 Bernoulli variables can have different parameters. Its distribution is
 often called a Poisson-binomial distribution.
 
-We first prove the fixed-mean maximizer principle used in the argument.
+The proof starts with the required fixed-mean maximizer principle.
 This is the classical reduction of Hoeffding~\cite{hoeffding56}.
-We include the proof to cover all boundary parameters.
+The proof includes all boundary parameters.
 
 \begin{lemma}[Fixed-mean maximizer]\label{lem:fb-maximizer}
 Let $\mu\in[0,n]$, and let $f:\{0,\ldots,n\}\to\R$ be any function.
@@ -1416,7 +1646,7 @@ The upper endpoint corresponds to $p=q$. The lower endpoint has
 one parameter equal to $0$ or $1$. Since $p$ and $q$ are distinct
 and interior, the present $z$ is strictly between the endpoints.
 An affine function with a maximum at an interior point is constant.
-We can therefore move $z$ to the lower endpoint without changing
+Moving $z$ to the lower endpoint therefore does not change
 the objective. This move strictly increases
 $p^2+q^2=t^2-2z$. That contradicts the second maximization.
 
@@ -1465,7 +1695,7 @@ Next maximize
 $(n-m+1)P_{m-1}-(n-m)P_m$ in the same parameter set.
 The deterministic case again gives a negative value.
 For a nondeterministic maximizer, use the same notation.
-Since $a+b\leq n$, we have $b-u=b-m+a\leq n-m$.
+Since $a+b\leq n$, $b-u=b-m+a\leq n-m$.
 It follows that
 \[
  \frac{P_{m-1}}{P_m}
@@ -1676,7 +1906,7 @@ The last equality uses
        \frac{s^s(n-s)^{n-s}}{n^n}.
 \]
 
-We next compute the factorial coefficient inner product from
+The factorial coefficient inner product follows from
 Lemma~\ref{lem:coefficient-inner-product}. For a multi-index
 $\alpha=(\alpha_1,\ldots,\alpha_s)$, write
 $|\alpha|=\sum_j\alpha_j$ and $\alpha!=\prod_j\alpha_j!$.
@@ -2073,7 +2303,7 @@ t b^{(1)}_j+(n-t)b^{(0)}_j=1.
 \]
 Set $y_j=t b^{(1)}_j$.
 Then $0\le y_j\le1$ and $\sum_jy_j=t$.
-We obtain
+This gives
 \begin{equation}\label{eq:r2-representation}
 A_{ij}=\frac{x_i y_j}{t}+\frac{(1-x_i)(1-y_j)}{n-t},
 \qquad x,y\in[0,1]^n,\quad \sum_i x_i=\sum_j y_j=t.
@@ -2097,7 +2327,7 @@ Put
 w_k=\frac{k!(n-k)!}{n!\sigma^k},
 \qquad \kappa_y=\frac{\sum_jv_j^2}{n\sigma}.
 \]
-Since $\sum_j y_j^2\le\sum_jy_j=t$, we have $0\le\kappa_y\le1$.
+Since $\sum_j y_j^2\le\sum_jy_j=t$, $0\le\kappa_y\le1$.
 
 Expanding the permanent by the rows and columns that use the rank-one term gives
 \begin{equation}\label{eq:r2-cross-expansion}
@@ -2246,7 +2476,7 @@ and define
 K=\ell D-n\bigl((L-c)U+(R-c)V\bigr)
                  \bigl((\ell+c-L)U+(\ell+c-R)V\bigr).
 \end{equation}
-For $0<t<n$, we have $D>0$ and
+For $0<t<n$, $D>0$ and
 \[
 \sigma=\frac{D}{n^2(U+V)^2},\qquad \kappa_y=\frac{K}{\ell D}.
 \]
@@ -2584,7 +2814,7 @@ It is positive semidefinite, has zero row sums, and is supported on three rows a
 Its trace is $s$, and $AA^\T=J_n+D$.
 Write $E=\sum d_{ij}^2$ and $U=\sum d_{ij}^3$.
 The nonnegative eigenvalues give $E\le s^2$.
-We also have
+Also,
 \begin{equation}\label{eq:struct-cubic-psd}
  0\le U\le s^3/6.
 \end{equation}
@@ -2919,11 +3149,11 @@ inequalities}\label{sec:scalar}
 
 Products of nonnegative linear forms connect the matrix inequalities to coefficient norm bounds.
 The scalar inequalities in this section also apply to a larger class of polynomials.
-We first prove the scalar bounds, then give their polynomial interpretations.
+The scalar bounds precede their polynomial interpretations.
 
 For a homogeneous polynomial \(p\) of degree \(n\) in \(n\) variables,
 write \(N(p)=\langle p,p\rangle_F\) for the squared Fischer norm
-from Section \ref{sec:general}. We call \(p\) normalized when
+from Section \ref{sec:general}. Call \(p\) normalized when
 \(p(\mathbf1)=1\). It is balanced when \(\partial_i p(\mathbf1)=1\) for
 every variable. Its nonnegative coefficients then define a probability
 law on exponent vectors, with mean one in each coordinate.
@@ -2940,8 +3170,7 @@ in this section. For a homogeneous binary polynomial
 criterion is interval support and log-concavity of \(a_k/\binom nk\).
 Replacement of \(X,Y\) by sums of disjoint groups of variables gives the
 corresponding two-group class. These are standard Lorentzian closure and
-coefficient properties \cite{brandenhuh2020}. We state the coefficient
-assumptions explicitly in each theorem.
+coefficient properties \cite{brandenhuh2020}. Each theorem states its coefficient assumptions explicitly.
 
 \subsection{Localization of likelihood
 ratios}\label{scalar-localization-of-likelihood-ratios}
@@ -3126,7 +3355,7 @@ Also \(e^{(r+1)s}-1\ge(r+1)s\). Hence
 \]
 
 By \eqref{eq:m-10}, \(s\le1/L!\) and \(r\le L-1\), so \(2rs\le2/3\) and
-\(e^{2rs}<2\). We obtain
+\(e^{2rs}<2\). This gives
 
 \begin{equation}\label{eq:m-13}
 \frac{\psi_k(t)}{(k-1)(t^k-1)}
@@ -3458,7 +3687,7 @@ Set \(u_k=(P_k/B_k)/(P_1/B_1)\) as in the mean-one proof. Since
 \end{equation}
 
 The same compact feasible set and two-sided multiplicative perturbations
-from the localization argument apply. We need to check strict convexity
+from the localization argument apply. It remains to check strict convexity
 of the new quadratic objective. All coordinates except 0 and 2 are
 diagonal positive terms. The remaining \(2\times2\) block is positive
 definite exactly when
@@ -3798,7 +4027,7 @@ Those checks support the implementation of the identities; the proofs above esta
 certificates}\label{sec:deletion}
 
 Coordinate deletion extracts the coefficient of one variable.
-We prove a deletion inequality for matrix-product polynomials of degree three and for two-shift cycles of every order.
+A deletion inequality holds for matrix-product polynomials of degree three and for two-shift cycles of every order, as proved below.
 The unrestricted deletion inequality remains unproved.
 
 For a homogeneous nonnegative polynomial \(q\) of degree \(d\) in \(d\)
@@ -3821,8 +4050,7 @@ No general minimum-norm interpretation of \(H_j\) is assumed.
 
 The cubic deletion inequality is \[
  \frac13\sum_{j=1}^3H_j\ge\frac49 N(p_A)
-\] for every \(A\in\Omega_3\), with equality exactly at \(J_3\). We now
-prove it.
+\] for every \(A\in\Omega_3\), with equality exactly at \(J_3\). Its proof follows.
 
 \subsection{The cubic deletion
 theorem}\label{deletion-the-cubic-deletion-theorem}
@@ -4311,7 +4539,7 @@ Second, a column with a zero entry gives a real-rooted collision polynomial.
 Neither result proves the deletion norm inequality needed for that induction.
 
 Write $N(p)=\langle p,p\rangle_F$ for the squared Fischer norm.
-We use the same coefficient formula for any degree and any number of variables.
+The same coefficient formula applies to any degree and any number of variables.
 The proof of Lemma~\ref{lem:coefficient-inner-product} also permits rectangular factor matrices:
 the number of linear factors determines the order of the Gram permanent.
 
@@ -4363,7 +4591,7 @@ If $A\in\Omega_n$, this polynomial is nonzero, and its central coefficient is $\
 A zero row makes $p_A=0$, so suppose all rows are nonzero.
 Positive row normalization changes $p_A$ only by a positive scalar.
 It also preserves rank.
-Thus we can first assume that $A$ is row stochastic.
+Thus it suffices first to assume that $A$ is row stochastic.
 Its rows belong to a linear space of dimension at most two.
 The coordinate-sum functional equals one on every row.
 Consequently their affine span has dimension at most one.
@@ -4687,7 +4915,7 @@ This follows from the hyperbolicity-cone theorem and the stability characterizat
 
 For a set $S$ of nonnegative integer vectors with a common coordinate sum, \emph{M-convexity} means the following exchange property.
 If $\alpha,\beta\in S$ and $\alpha_i>\beta_i$, there is a $j$ with $\alpha_j<\beta_j$ such that both $\alpha-e_i+e_j$ and $\beta+e_i-e_j$ belong to $S$.
-We use the following characterization of a \emph{Lorentzian} polynomial.
+The following conditions characterize a \emph{Lorentzian} polynomial.
 A homogeneous polynomial with nonnegative coefficients is Lorentzian if its support is M-convex and every derivative of order two less than its degree has a Hessian with at most one positive eigenvalue.
 Degrees zero and one have the usual nonnegative-coefficient convention.
 This characterization agrees with the closed class defined by Br\"and\'en and Huh.
@@ -4704,7 +4932,7 @@ Unless stated otherwise, $p$ has degree $n$ in $n$ variables and satisfies
 \begin{equation}\label{eq:lp-balance}
  p(\mathbf1)=1,\qquad \partial_i p(\mathbf1)=1\quad(1\le i\le n).
 \end{equation}
-We call these conditions normalization and balance.
+These conditions are called normalization and balance.
 For an unnormalized polynomial, balance means $\partial_i p(\mathbf1)=p(\mathbf1)$.
 Write
 \[
@@ -5141,10 +5369,10 @@ Its trace is zero, so it vanishes, and every summand vanishes.
 All second contrast derivatives of $h$ are therefore zero polynomials.
 Hence $h=aR^n+R^{n-1}L$, where $L$ is a contrast linear form.
 Normalization and balance give $a=L=0$.
-We have proved $\sum_j a_j>0$ for every nonzero tangent.
+The preceding argument proves $\sum_j a_j>0$ for every nonzero tangent.
 Compactness on the coefficient unit sphere, followed by Lemma~\ref{lem:lp-variation}, gives the strict average-deletion neighborhood.
 
-We prove the norm statement by induction on $n$.
+The norm statement follows by induction on $n$.
 For $n=2$, a normalized balanced binary quadratic is
 $p=a(x^2+y^2)+bxy$ with $2a+b=1$.
 The Lorentzian condition gives $b\ge2a$, and
@@ -5707,8 +5935,8 @@ The preceding proofs use specific matrix or polynomial structure.
 This section gives exact counterexamples to several stronger statements.
 Each counterexample concerns an auxiliary statement.
 None is a counterexample to Gyires's inequality.
-We continue to use the squared Fischer norm
-$N(p)=\sum_\alpha\alpha!p_\alpha^2$ and put
+The squared Fischer norm remains
+$N(p)=\sum_\alpha\alpha!p_\alpha^2$. Put
 $g_n=((n-1)/n)^{n-1}=c_n/c_{n-1}$.
 For a singleton deletion $q_j=[x_j]p$, let $H(q_j)$ be its squared Fischer norm after
 capacity balancing with determinant one.
@@ -6289,7 +6517,7 @@ Extending the support inequality~\eqref{eq:lp-mconvex-norm} to arbitrary matrix-
 
 \section{Verification and reproduction}\label{sec:checks}
 
-The principal order-five theorems, the all-order four-block theorem, and the exceptional-vector theorem have Lean proofs. The other results use analytic proofs or exact computational certificates.
+The principal order-five, order-six, all-order permutation-polynomial, all-order four-block, and exceptional-vector theorems have Lean proofs. The other results use analytic proofs or exact computational certificates.
 The accompanying repository contains the programs, outputs, and reproduction commands in
 \path{research-notes/gyires-complete-support}.
 The table below identifies the formalized statements.
@@ -6324,35 +6552,117 @@ The Python computation and the Lean proof give separate checks of the coefficien
 Neither proof depends on random tests.
 The repository also preserves a PARI/GP program from~\cite{repo}; its full set of checks was not rerun.
 
-\subsection{The all-order finite bridge and analytic tail}
+\subsection{Formal certificate for the order-six theorem}
 
-The permutation certificate has $135$ reflection-reduced chamber records.
-It covers orders $3$ through $47$ and $224{,}550$ coefficient positions.
-There are no negative coefficients.
-Every position is positive in orders $4$ through $47$.
-The independent integer program constructs the polynomials directly in gap coordinates and uses Newton trace identities.
-The small-order program computes permanents directly by subsets and checks both transfer identities in orders one through seven.
-It also checks all six gap orderings in orders three and four.
+The Lean certificate applies to every nonnegative real vector
+$w\colon\operatorname{Fin}(6)\to\mathbb{R}$ and the matrix
+$C_{ij}=w(j-i)$, with indices modulo six. It includes zero weights and
+repeated weights. The declarations use the namespace
+\path{MathAndTheory.Gyires.CirculantSix}.
 
-The sharp-bound program verifies the algebraic residual factorization and the exact threshold at order $48$.
-The written proof then supplies every larger order through the monotone ratio estimate.
-Thus the argument does not infer an infinite result from finitely many sampled matrices.
-Its finite computation is a polynomial certificate on whole nonnegative parameter regions.
+In \texttt{SixPrincipal.lean}, \texttt{sorted\_margin} proves
+\[
+  324\operatorname{per}(C)^2-5\operatorname{per}(CC^{\mathsf T})
+  \geq 296\sum_{j=1}^{5}(w_{(j+1)}-w_{(j)})^{12},
+\]
+where $w_{(1)}\leq\cdots\leq w_{(6)}$ is any sorted ordering of the
+weights. The declaration \texttt{sorted\_gyires\_margin} proves the
+corresponding combined deficit bound
+\[
+  1296\operatorname{per}(C)^2
+  -5\bigl[\operatorname{per}(CC^{\mathsf T})
+       +\operatorname{per}(C^{\mathsf T}C)
+       +2\operatorname{per}(C^2)\bigr]
+  \geq 1184\sum_{j=1}^{5}(w_{(j+1)}-w_{(j)})^{12}.
+\]
+The declarations \texttt{strong\_inequality} and \texttt{gyires} give
+the two inequalities without the gap terms. The declarations
+\texttt{strong\_equality} and \texttt{gyires\_equality} prove that
+either of those inequalities has equality exactly when all six weights
+are equal. The declaration \path{gyires_doubly_stochastic} gives
+the normalized inequality and identifies its equality matrix as the
+constant matrix with entries $1/6$.
 
-The source directory
-\path{research-notes/gyires-extensions/certificates}
-contains all five required program files.
-The three entry points are
-\path{sharp_bound_check.py},
-\path{circ_small_check.py}, and
-\path{independent_finite.mjs}.
-The last program takes the argument \texttt{47} to cover the finite range.
-The programs use the Python and Node.js standard libraries.
-The recorded run used Python~3.14.6 and Node.js~22.23.2.
+The coefficient $296$ is sharp. In \texttt{SixSharpness.lean},
+\texttt{margin\_coefficient\_le} uses the weights $(0,0,0,0,1,1)$
+to prove that this coefficient cannot increase. In
+\path{SixNormalizedSharpness.lean},
+\path{normalized_margin_coefficient_le} proves the same statement
+within the doubly stochastic class, using $(0,0,0,0,1/2,1/2)$.
 
-Independent reruns reproduced all three outputs exactly.
-The repository records the program and output hashes, together with the source revision used for each check.
-These certificates use exact integer arithmetic; they have not been translated into Lean proof terms.
+The source package is \path{verification/gyires-circulant-six}.
+This directory contains 3,091 Lean
+source modules, a relative-path source manifest, and the pinned Lean
+4.35.0 and package configuration. From that directory, run
+\texttt{lake exe cache get}, then \texttt{python3 verify.py}.
+The verifier rebuilds the local source set and checks its file hashes.
+Success requires a zero exit code and \texttt{complete: true} in
+\path{.verification/result.json}. The root source,
+\texttt{SixTheoremChecks.lean}, restates five matrix conclusions and
+reports the axioms of ten named theorems. The reported axioms are
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+The package's \texttt{THEOREMS.md} maps the results to their source files.
+
+
+\subsection{Permutation-polynomial Lean correspondence}
+
+Theorem~\ref{thm:permutation-polynomial} has a complete Lean proof in every dimension.
+The proof includes the actual cyclic permanent, both Gram products, the transfer identities, and the positive-root lower bound.
+Explicit formulas cover orders zero through two.
+Polynomial identities cover orders three through twenty-two, and the weighted trace bound covers every order at least twenty-three.
+Cycle decomposition then proves the result for every finite permutation.
+The final theorem has no assumed cycle inequality.
+
+The source package is
+\path{verification/gyires-permutation-polynomial}.
+It contains 405 Lean modules and pins Lean~4.35.0 and Mathlib revision
+\path{56a005855ea17e0b0958f73ec801ae140b0a1679}.
+It is separate from the shared Comparator selection.
+Its README gives the dependency, source-integrity, build, and axiom-check commands.
+
+The following declarations use the namespace
+\path{MathAndTheory.Gyires.PermutationComplete}.
+Their source is \path{src/PermutationComplete.lean} within that package.
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.37\linewidth}>{\raggedright\arraybackslash}p{0.57\linewidth}}
+\toprule
+Statement & Lean declaration\\
+\midrule
+Both Gram bounds for every cycle order & \path{cycle_all_gram_bounds}\\
+Both Gram bounds for every permutation & \path{permutation_polynomial_gram_bounds}\\
+The bound for the original square $A^2$ & \path{permutation_polynomial_square_bound}\\
+The combined Gyires inequality & \path{permutation_polynomial_gyires_bound}\\
+Strict square bound for a cycle, $n\ge23$ & \path{cycle_strict_square_bound}\\
+Strict combined bound for a cycle, $n\ge23$ & \path{cycle_strict_gyires_bound}\\
+\bottomrule
+\end{tabular}
+\end{center}
+The last two statements require at least one positive weight.
+The four expanded statements in \path{src/CompleteAudit.lean} write
+$A=aI+bQ+cQ^2$, the Mathlib matrix products and permanent, and $n!/n^n$ directly.
+The formal statements include zero weights, fixed points, and the empty dimension.
+
+The finite proof uses three reflection-reduced gap regions for each order from three through twenty-two.
+This gives 60 closed regions and 25,050 possible homogeneous coefficient positions.
+The exact polynomial identities connect their nonnegative coefficients to the actual matrix permanents.
+Lean checks these identities in its kernel.
+No coefficient sign is an assumption, and numerical samples are not used as a proof.
+
+The weighted trace argument proves the exact bound at order 23 and every later order by induction.
+It includes both endpoints of the normalized parameter interval and the zero-weight matrix.
+The permanent comparison for $A^2$ uses the original matrix indexing.
+The ten final axiom reports contain only
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+The proof uses no \texttt{native\_decide}.
+
+The accompanying ordinary certificate record extends through order 47.
+It contains 135 reflection-reduced regions and 224,550 coefficient positions.
+Every coefficient is nonnegative, and every position is positive in orders four through forty-seven.
+The program \path{independent_finite.mjs} in
+\path{research-notes/gyires-extensions/certificates} reproduces that record with argument \texttt{47}.
+The smaller formal certificate range and this wider ordinary computation are separate checks of the same deficit polynomials.
+The programs \path{circ_small_check.py} and \path{sharp_bound_check.py} check the small-order transfer identities and the additional spectral estimate from order 48.
+Those computational records remain supporting material for the stated ordinary arguments.
 
 \subsection{The four-block argument}
 
@@ -6423,7 +6733,7 @@ five, represents $\mathbb Z/5\mathbb Z$.
 
 The principal statements are restated, using only Mathlib's definitions, in a \emph{Challenge} file, which states the
 theorems with their proofs omitted, the file
-\texttt{lean/\allowbreak{}Challenges/\allowbreak{}GyiresCirculant5.lean} (namespace \texttt{MathAndTheory.GyiresCirculant5}). There a circulant is a matrix of
+\texttt{lean/\allowbreak{}Challenges/\allowbreak{}GyiresCirculant5.lean} (namespace \path{MathAndTheory.GyiresCirculant5}). There a circulant is a matrix of
 the form \texttt{Matrix.circulant v}, whose entries are \texttt{v (i - j)}; this is the transpose of $C(v)$, which
 describes the same set of matrices. Doubly stochastic matrices are Mathlib's \texttt{doublyStochastic}, the permanent is
 Mathlib's \texttt{Matrix.permanent}, $5!/5^5$ is the real quotient \texttt{(Nat.factorial 5 :\ $\R$) / 5 \textasciicircum{} 5},
@@ -6431,7 +6741,7 @@ and $J_5$ is the constant matrix with entries $5^{-1}$. The \emph{Solution} file
 \texttt{lean/\allowbreak{}Solutions/\allowbreak{}GyiresCirculant5.lean} proves the same theorems from the library. Lean's
 Comparator checks that the Solution theorems match the Challenge statements.
 The verification directory records the statement comparison and the kernel checks by Lean, NanoDa, and con-ron, each with its source revision.
-The table lists the formalized order-five statements and their supporting declarations. All names use the namespace \texttt{MathAndTheory.GyiresCirculant5}.
+The table lists the formalized order-five statements and their supporting declarations. All names use the namespace \path{MathAndTheory.GyiresCirculant5}.
 \begin{center}\small\renewcommand{\arraystretch}{1.25}
 \begin{tabular}{>{\raggedright\arraybackslash}p{0.30\linewidth}>{\raggedright\arraybackslash}p{0.64\linewidth}}
 \toprule
@@ -6551,16 +6861,15 @@ A general matrix of rank two can have more than two row types and more than two 
 The four-block theorem does not cover that full class. The finite rank-two theorem covers orders through fifteen. The all-order rank-two assertion remains unproved here.
 The unrestricted Gyires conjecture and the general strong Gram inequality remain outside this manuscript.
 
-Completing Lean verification of the broader results would require formal versions of their reductions and certificates.
-For the permutation family, the transfer identity, spectral estimate, finite coefficient interpretation, and cycle decomposition must be connected in Lean.
-Each formalization must connect these intermediate statements to the full matrix theorem.
+The order-seven and finite rank-two results still require complete Lean proofs.
+Each proof must connect its polynomial identities and coefficient bounds to the actual matrix theorem.
+The permutation-polynomial proof includes this connection in every dimension.
 
 \section{Authorship and disclosure}\label{sec:about}
 
-Dev~D.~Goyal directed the research and is responsible for publication.
-ChatGPT (OpenAI), using GPT-6 with Pro reasoning, generated mathematical arguments and Lean formalizations.
-Claude Opus~5.5, used with Claude Code, also contributed to the order-five formalization.
-Codex assisted with formalization, computations, and editing.
+This work is fully autonomous agentic research generated by AI systems.
+AI agents produced the mathematical arguments, formal proofs, computations, and manuscript.
+Dev D. Goyal is responsible for publication.
 This preprint has not been peer reviewed. No priority claim is made for the broader results.
 
 \section*{Acknowledgements}

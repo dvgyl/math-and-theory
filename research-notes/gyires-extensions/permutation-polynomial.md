@@ -1,6 +1,6 @@
 # An all-order permutation-polynomial inequality
 
-This note gives an analytic proof with exact finite certificates. Lean formalization is incomplete. The [reproduction guide](verification.md) gives the certificate commands and their scope.
+This note gives an analytic proof with exact finite certificates. The [formal package](../../verification/gyires-permutation-polynomial/README.md) proves the actual matrix theorem in every dimension. The [reproduction guide](verification.md) gives the certificate commands and their scope.
 
 ## Statement
 
@@ -206,7 +206,7 @@ $$
 \qquad a+c\le1+u,
 $$
 
-we have
+the following bound holds
 
 $$
 \begin{aligned}
@@ -304,7 +304,7 @@ $$
 (12\kappa+4)+(8\kappa+4)(1-u)+(12\kappa+4)u^2.
 $$
 
-Thus $P(u)>0$ on $0<u<1$. We have $T_2v\le\kappa v$, so $\rho(T_2)\le\kappa$. Continuity of the spectral radius extends this bound to $u=0,1$. This use of continuity avoids requiring the displayed vector to remain strictly positive at the endpoints.
+Thus $P(u)>0$ on $0<u<1$. The bound is $T_2v\le\kappa v$, so $\rho(T_2)\le\kappa$. Continuity of the spectral radius extends this bound to $u=0,1$. This use of continuity avoids requiring the displayed vector to remain strictly positive at the endpoints.
 
 At $u=0$, $D=2$, $E=1$, and the first two coordinates contain the block
 

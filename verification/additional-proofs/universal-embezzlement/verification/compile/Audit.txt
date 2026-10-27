@@ -1,0 +1,77 @@
+'Embezzlement.tent_abs_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Embezzlement.tent_tail_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Embezzlement.tent_norm_lower_fin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Embezzlement.harmonic_four_mul_le_fin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Embezzlement.exists_bounded_dyadic_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Embezzlement.exists_perm_padded_cost_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Embezzlement.tent_cost_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Embezzlement.catalyst_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Embezzlement.catalyst_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Embezzlement.bipartiteBasisPermutation_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Embezzlement.exists_perm_raw_cost_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Embezzlement.universal_tent_overlap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Embezzlement.universal_tent_local_unitary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Embezzlement.universal_tent_logarithmic_fidelity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Embezzlement.universal_tent_epsilon_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Embezzlement.universal_tent_local_unitary : ∀ {J : Type u_1} [inst : Fintype J] [inst_1 : DecidableEq J] {L : ℕ},
+  1 ≤ L →
+    ∀ (j₀ : J) (p : J → ℝ),
+      (∀ (j : J), 0 ≤ p j) →
+        ∑ j, p j = 1 →
+          ∃ σ,
+            ‖Embezzlement.diagonalState (Embezzlement.padded j₀ (Embezzlement.rawAmplitude L))
+                    (Embezzlement.rawNorm L)‖ =
+                1 ∧
+              ‖Embezzlement.diagonalState (fun c => √(p c.1) * Embezzlement.rawAmplitude L c.2)
+                      (Embezzlement.rawNorm L)‖ =
+                  1 ∧
+                1 - 125 * ↑(Fintype.card J) / ↑L ^ 2 ≤
+                  ‖inner
+                      ((Embezzlement.bipartiteBasisPermutation σ σ)
+                        (Embezzlement.diagonalState (Embezzlement.padded j₀ (Embezzlement.rawAmplitude L))
+                          (Embezzlement.rawNorm L)))
+                      (Embezzlement.diagonalState (fun c => √(p c.1) * Embezzlement.rawAmplitude L c.2)
+                        (Embezzlement.rawNorm L))‖
+@Embezzlement.universal_tent_logarithmic_fidelity : ∀ {J : Type u_1} [inst : Fintype J] [inst_1 : DecidableEq J]
+  {L : ℕ},
+  1 ≤ L →
+    ∀ (j₀ : J) (p : J → ℝ),
+      (∀ (j : J), 0 ≤ p j) →
+        ∑ j, p j = 1 →
+          ∃ σ,
+            ‖Embezzlement.diagonalState (Embezzlement.padded j₀ (Embezzlement.rawAmplitude L))
+                    (Embezzlement.rawNorm L)‖ =
+                1 ∧
+              ‖Embezzlement.diagonalState (fun c => √(p c.1) * Embezzlement.rawAmplitude L c.2)
+                      (Embezzlement.rawNorm L)‖ =
+                  1 ∧
+                1 - 2000 * ↑(Fintype.card J) / Real.logb 2 ↑(2 ^ (4 * L)) ^ 2 ≤
+                  ‖inner
+                      ((Embezzlement.bipartiteBasisPermutation σ σ)
+                        (Embezzlement.diagonalState (Embezzlement.padded j₀ (Embezzlement.rawAmplitude L))
+                          (Embezzlement.rawNorm L)))
+                      (Embezzlement.diagonalState (fun c => √(p c.1) * Embezzlement.rawAmplitude L c.2)
+                        (Embezzlement.rawNorm L))‖
+@Embezzlement.universal_tent_epsilon_threshold : ∀ {J : Type u_1} [inst : Fintype J] [inst_1 : DecidableEq J] {ε : ℝ},
+  0 < ε →
+    ∃ L₀,
+      1 ≤ L₀ ∧
+        ∀ (L : ℕ),
+          L₀ ≤ L →
+            ∀ (j₀ : J) (p : J → ℝ),
+              (∀ (j : J), 0 ≤ p j) →
+                ∑ j, p j = 1 →
+                  ∃ σ,
+                    ‖Embezzlement.diagonalState (Embezzlement.padded j₀ (Embezzlement.rawAmplitude L))
+                            (Embezzlement.rawNorm L)‖ =
+                        1 ∧
+                      ‖Embezzlement.diagonalState (fun c => √(p c.1) * Embezzlement.rawAmplitude L c.2)
+                              (Embezzlement.rawNorm L)‖ =
+                          1 ∧
+                        1 - ε ≤
+                          ‖inner
+                              ((Embezzlement.bipartiteBasisPermutation σ σ)
+                                (Embezzlement.diagonalState (Embezzlement.padded j₀ (Embezzlement.rawAmplitude L))
+                                  (Embezzlement.rawNorm L)))
+                              (Embezzlement.diagonalState (fun c => √(p c.1) * Embezzlement.rawAmplitude L c.2)
+                                (Embezzlement.rawNorm L))‖

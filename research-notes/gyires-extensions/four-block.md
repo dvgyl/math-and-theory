@@ -49,7 +49,7 @@ The row classes and column classes can occur in any order. The proof treats per(
 
 A Bernoulli variable has value one with probability p and value zero with probability 1-p. A Poisson-binomial law is the distribution of a sum of independent Bernoulli variables.
 
-Let P be such a law for n parameters p_i in [0,1]. Suppose their sum is an integer m with 1<=m<=n-1. Let B be the binomial law with n trials and parameter m/n. All its probabilities B_k are positive. We first prove
+Let P be such a law for n parameters p_i in [0,1]. Suppose their sum is an integer m with 1<=m<=n-1. Let B be the binomial law with n trials and parameter m/n. All its probabilities B_k are positive. The first required bound is
 
 $$
 \frac{P_k}{B_k}\le\frac{P_m}{B_m}\quad(0\le k\le n).
@@ -200,7 +200,7 @@ $$
 \operatorname{per}(AA^T)+\operatorname{per}(A^TA)+2\operatorname{per}(A^2)\le4d.
 $$
 
-Subtract c_n times this bound from 4d^2. The result is the stated margin 4d(d-c_n). We proved d>=c_n>0, with equality only at J_n. Hence Gyires's deficit is strictly positive for A!=J_n. The uniform matrix attains equality directly.
+Subtract c_n times this bound from 4d^2. The result is the stated margin 4d(d-c_n). The proved bound is d>=c_n>0, with equality only at J_n. Hence Gyires's deficit is strictly positive for A!=J_n. The uniform matrix attains equality directly.
 
 The argument includes h at either endpoint of its feasible interval. The Bernoulli parameters can equal zero or one. No positive-entry approximation is required for the theorem statement.
 

@@ -1,0 +1,21 @@
+import UniversalEmbezzlement
+
+#print axioms Embezzlement.tent_abs_sub_le
+#print axioms Embezzlement.tent_tail_le
+#print axioms Embezzlement.tent_norm_lower_fin
+#print axioms Embezzlement.harmonic_four_mul_le_fin
+#print axioms Embezzlement.exists_bounded_dyadic_shift
+#print axioms Embezzlement.exists_perm_padded_cost_le
+#print axioms Embezzlement.tent_cost_bound
+#print axioms Embezzlement.catalyst_nonneg
+#print axioms Embezzlement.catalyst_normalized
+#print axioms Embezzlement.bipartiteBasisPermutation_product
+#print axioms Embezzlement.exists_perm_raw_cost_le
+#print axioms Embezzlement.universal_tent_overlap
+#print axioms Embezzlement.universal_tent_local_unitary
+#print axioms Embezzlement.universal_tent_logarithmic_fidelity
+#print axioms Embezzlement.universal_tent_epsilon_threshold
+
+#check @Embezzlement.universal_tent_local_unitary
+#check @Embezzlement.universal_tent_logarithmic_fidelity
+#check @Embezzlement.universal_tent_epsilon_threshold

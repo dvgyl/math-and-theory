@@ -41,4 +41,4 @@ The [four-block argument](four-block.md) is analytic. It uses the Bernoulli like
 
 ## Verification limits
 
-The four-block theorem has a complete Lean proof. The Gyires Comparator configuration selects its four principal statements. The permutation-polynomial theorem remains incomplete in Lean. No Palomar registry approval is claimed.
+The four-block theorem has a complete Lean proof. The Gyires Comparator configuration selects its four principal statements. The separate permutation-polynomial package proves the actual matrix theorem in every dimension. No Palomar registry approval is claimed.

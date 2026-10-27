@@ -1,0 +1,28 @@
+def AsymmetricTutte.Region : ℝ → ℝ → Prop :=
+fun x y =>
+  1 < x ∧
+    1 < y ∧
+      (∀ (k : ℕ), 2 ≤ k → (√(x - 1) + ↑k * √(y - 1)) ^ 2 ≤ x * y ^ k) ∧
+        ∀ (k : ℕ), 2 ≤ k → (√(y - 1) + ↑k * √(x - 1)) ^ 2 ≤ y * x ^ k
+def AsymmetricMerinoWelsh.Universal : ℝ → ℝ → Prop :=
+fun x y =>
+  ∀ (α : Type) (M : Matroid α) [inst : M.Finite],
+    Results.TutteThreshold.IsAdmissible M →
+      Results.TutteThreshold.tutte M 1 1 ^ 2 ≤ Results.TutteThreshold.tutte M x 0 * Results.TutteThreshold.tutte M 0 y
+def Results.TutteThreshold.IsAdmissible.{u_1} : {α : Type u_1} → Matroid α → Prop :=
+fun {α} M => (∀ (e : α), ¬M.IsLoop e) ∧ ∀ (e : α), ¬M.IsColoop e
+def Results.TutteThreshold.tutte.{u_1} : {α : Type u_1} → (M : Matroid α) → [M.Finite] → ℝ → ℝ → ℝ :=
+fun {α} M [M.Finite] x y =>
+  ∑ S ∈ ⋯.toFinset.powerset,
+    (x - 1) ^ (M.eRank.toNat - Results.TutteThreshold.rk M ↑S) * (y - 1) ^ (S.card - Results.TutteThreshold.rk M ↑S)
+AsymmetricTutte.universal_iff_region {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) :
+  AsymmetricMerinoWelsh.Universal x y ↔ AsymmetricTutte.Region x y
+AsymmetricTutte.region_sufficiency.{u_1} {α : Type u_1} (M : Matroid α) [M.Finite]
+  (hM : Results.TutteThreshold.IsAdmissible M) {x y : ℝ} (hR : AsymmetricTutte.Region x y) :
+  Results.TutteThreshold.tutte M 1 1 ^ 2 ≤ Results.TutteThreshold.tutte M x 0 * Results.TutteThreshold.tutte M 0 y
+'AsymmetricTutte.universal_iff_region' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymmetricTutte.region_sufficiency' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymmetricMerinoWelsh.necessary_conditions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymmetricTutte.two_curve_conditions_not_sufficient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymmetricTutte.region_three_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymmetricTutte.region_three_halves_eight' depends on axioms: [propext, Classical.choice, Quot.sound]

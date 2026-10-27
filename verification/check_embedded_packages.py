@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the two unchanged Lean 4.19 release packages and their evidence."""
+"""Check pinned standalone Lean packages and their verification records."""
 
 import argparse
 import hashlib
@@ -13,11 +13,16 @@ import sys
 import tomllib
 
 from catalogue_paths import load_families
+from check_study_packages import PROFILES, check as check_study
 
 
 EXPECTED_MANIFESTS = {
-    "readk-covariance": "0a29a19d634553c60c7bf56ba8d9a69a7b6b5b8380cd59edd09b364b6c619f2e",
-    "thermal-kurtosis-counterexample": "a8b2c1376cb5716788392097c1d1a403518793b9ade3770c05808bde3a9b1de2",
+    "asymmetric-tutte": "09a6c9ed6fa2f2493a3a2e1cf2aa934161eca7304c52876b3c6e93edbd83df0b",
+    "galvin-zhang": "c2407910aa4f0ffc0bc30ceea866cda9e1dac868b8164f8e867c6c7a43a8626b",
+    "readk-covariance": "8019466af1988aaf2ae156c1508f5f322112f64dc582238f3a39b59219329fac",
+    "sharp-eighth": "3d935dc862701a7ca8e5ffee80850c5549fac4d2fa8dcd199cb6e65af08b5e90",
+    "thermal-kurtosis-counterexample": "daf9933eb92af39273ed404602c46e4e1cdc98660ce35490d3432cde11823a82",
+    "universal-embezzlement": "18f6c5cc2b36baad23c62c4d79767fa1c33c17e13de076448c995082a148a3a3"
 }
 MATHLIB = "c44e0c8ee63ca166450922a373c7409c5d26b00b"
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
@@ -51,7 +56,7 @@ def check_manifest(package, expected_digest):
     require(digest(raw) == expected_digest, f"Changed package manifest: {package.name}")
     record = json.loads(raw)
     files = record.get("files")
-    require(record.get("format_version") == 1 and isinstance(files, dict) and files,
+    require(type(record.get("format_version")) is int and record["format_version"] == 1 and isinstance(files, dict) and files,
             f"Invalid package manifest: {package.name}")
     require(all(valid_member(name) for name in files), f"Invalid package member: {package.name}")
     actual = set()
@@ -65,13 +70,14 @@ def check_manifest(package, expected_digest):
     for name, entry in files.items():
         require(isinstance(entry, dict) and set(entry) == {"bytes", "sha256"},
                 f"Invalid package file record: {package.name}/{name}")
-        require(isinstance(entry["bytes"], int) and entry["bytes"] >= 0
+        require(type(entry["bytes"]) is int and entry["bytes"] >= 0
                 and isinstance(entry["sha256"], str) and HEX.fullmatch(entry["sha256"]),
                 f"Invalid package size or hash: {package.name}/{name}")
         data = (package / name).read_bytes()
         require(len(data) == entry["bytes"] and digest(data) == entry["sha256"],
                 f"Changed package file: {package.name}/{name}")
-    require(record.get("lean_version") == "4.19.0" and record.get("mathlib_revision") == MATHLIB,
+    version, revision = PROFILES.get(package.name, ("4.19.0", MATHLIB))[:2]
+    require(record.get("lean_version") == version and record.get("mathlib_revision") == revision,
             f"Wrong package toolchain: {package.name}")
     require(isinstance(record.get("formal_scope"), str) and record["formal_scope"].strip(),
             f"Missing package formal scope: {package.name}")
@@ -183,7 +189,7 @@ def check_thermal(package, manifest):
 
 
 def check_packages(root, families):
-    """Check both standalone packages and return their release manifests."""
+    """Check all standalone packages and return their release manifests."""
     standalone = {family["id"]: family for family in families
                   if family["formalization"]["kind"] == "standalone"}
     require(set(standalone) == set(EXPECTED_MANIFESTS), "Standalone family set differs")
@@ -196,8 +202,10 @@ def check_packages(root, families):
                 f"Missing package manuscript: {name}")
         if name == "readk-covariance":
             check_readk(package, manifest)
-        else:
+        elif name == "thermal-kurtosis-counterexample":
             check_thermal(package, manifest)
+        else:
+            check_study(package, name, manifest)
         manifests[name] = manifest
     return manifests
 
@@ -206,7 +214,7 @@ def check_arithmetic(root, families):
     """Compare fresh exact arithmetic with the two stored JSON records."""
     for family in families:
         name = family["id"]
-        if name not in EXPECTED_MANIFESTS:
+        if name not in {"readk-covariance", "thermal-kurtosis-counterexample"}:
             continue
         package = Path(root) / family["formalization"]["root"]
         script, record = ({

@@ -30,8 +30,8 @@
       "discipline": "Mathematics",
       "area": "Matrix theory",
       "title": "Gyires's permanent inequality for structured matrices",
-      "kind": "Structured matrix inequalities and related polynomial bounds; order-five, four-block, and exceptional-vector claims verified in Lean",
-      "summary": "The preprint includes nonnegative circulants of orders five, six, and seven; all-order permutation polynomials aI+bQ+cQ²; all-order four-block matrices; one exceptional column or row; and all rank-at-most-two doubly stochastic matrices through order fifteen. It also proves structural, scalar, polynomial, deletion, balancing, local, and counting results. Exact counterexamples identify failed auxiliary assertions. The principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have complete Lean proofs. General permanent comparisons and direct-sum closure also have Lean proofs. The principal higher-order circulant, permutation-polynomial, and finite rank-two results remain incomplete in Lean. The unrestricted conjecture remains outside these results.",
+      "kind": "Structured matrix inequalities and related polynomial bounds",
+      "summary": "The preprint includes nonnegative circulants of orders five, six, and seven; all-order permutation polynomials aI+bQ+cQ²; all-order four-block matrices; one exceptional column or row; and all rank-at-most-two doubly stochastic matrices through order fifteen. It also proves structural, scalar, polynomial, deletion, balancing, local, and counting results. Exact counterexamples identify failed auxiliary assertions. The principal order-five and order-six claims, the all-order permutation-polynomial theorem, the all-order four-block theorem, and the exceptional-vector theorem have complete Lean proofs. General permanent comparisons and direct-sum closure also have Lean proofs. The principal order-seven and finite rank-two results remain incomplete in Lean. The unrestricted conjecture remains outside these results.",
       "source": "Gyires, 1978; Cheon and Wanless, 2005, Conjecture 20. Earlier formalization at the pinned Gyires repository.",
       "source_url": "https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448",
       "module": "MathAndTheory.Mathematics.GyiresCirculant5.Main",
@@ -58,7 +58,7 @@
         "MathAndTheory.GyiresExceptional.gyires_eq_iff"
       ],
       "paper": "preprints/gyires-circulant-five/paper.pdf",
-      "formal_scope": "The selected Comparator statements cover order-five circulants, the all-order four-block theorem, and the exceptional-vector theorem for n ≥ 2. General permanent comparisons and direct-sum closure are also proved in Lean. The principal higher-order circulant, permutation-polynomial, and finite rank-two theorems remain incomplete in Lean.",
+      "formal_scope": "The selected Comparator statements cover order-five circulants, the all-order four-block theorem, and the exceptional-vector theorem for n ≥ 2. Separate Lean packages prove the general order-six and all-order permutation-polynomial theorems. General permanent comparisons and direct-sum closure are also proved in Lean. The principal order-seven and finite rank-two theorems remain incomplete in Lean.",
       "formalization": {
         "kind": "comparator"
       }
@@ -193,6 +193,70 @@
         "kind": "standalone",
         "root": "verification/additional-proofs/thermal-kurtosis-counterexample"
       }
+    },
+    {
+      "id": "sharp-eighth",
+      "discipline": "Mathematics",
+      "area": "Discrete analysis",
+      "title": "The sharp level-one Fourier weight at density one eighth",
+      "kind": "Sharp finite-cube Fourier bound",
+      "summary": "For every Boolean indicator of mean 1/8 on a finite uniform cube, the level-one Fourier weight is at most 3/64. A codimension-three subcube attains the bound in every dimension at least three.",
+      "source": "Yu, On Average Distance, Level-1 Fourier Weight, and Chang’s Lemma, 2026 revision.",
+      "source_url": "https://arxiv.org/abs/2504.02593v2",
+      "paper": "verification/additional-proofs/sharp-eighth/manuscript.pdf",
+      "formal_scope": "The formal proof includes arbitrary dimensions, the exact moment identities, the Hamming-distance bound, and sharpness witnesses.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/sharp-eighth"
+      }
+    },
+    {
+      "id": "galvin-zhang",
+      "discipline": "Mathematics",
+      "area": "Graph theory",
+      "title": "Ultra-log-concavity of domination sequences of powers of paths and cycles",
+      "kind": "Ultra-log-concavity of domination sequences",
+      "summary": "The domination counts of every natural power of a path or cycle form an ultra-log-concave sequence. The proof includes all natural graph orders and powers, the binomial normalization, and the boundary graph cases.",
+      "source": "Galvin and Zhang, Conjecture 1.8.",
+      "source_url": "https://arxiv.org/abs/2408.12731",
+      "paper": "verification/additional-proofs/galvin-zhang/manuscript.pdf",
+      "formal_scope": "Actual finite graph domination counts for powers of paths and cycles. No theorem for arbitrary graphs or real-rootedness is asserted.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/galvin-zhang"
+      }
+    },
+    {
+      "id": "universal-embezzlement",
+      "discipline": "Mathematical physics",
+      "area": "Quantum information",
+      "title": "Universal entanglement embezzlement with inverse-quadratic logarithmic infidelity",
+      "kind": "Universal catalyst with a quantitative error bound",
+      "summary": "A target-independent catalyst with local dimension 2^(4L) gives root infidelity at most 125m/L² for every Schmidt probability vector on m entries.",
+      "source": "Van Dam and Hayden, 2003; Leung and Wang, 2014.",
+      "source_url": "https://arxiv.org/abs/1311.6842",
+      "paper": "verification/additional-proofs/universal-embezzlement/manuscript.pdf",
+      "formal_scope": "The proof constructs local basis permutations and establishes their finite complex Hilbert-space interpretation. Arbitrary changes to an external Schmidt basis are not separately formalized.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/universal-embezzlement"
+      }
+    },
+    {
+      "id": "asymmetric-tutte",
+      "discipline": "Mathematics",
+      "area": "Matroid theory",
+      "title": "The exact asymmetric Merino–Welsh region for finite matroids",
+      "kind": "Exact asymmetric parameter region",
+      "summary": "The theorem characterizes all nonnegative pairs (x,y) for which T_M(x,0) T_M(0,y) ≥ T_M(1,1)² holds for every finite matroid without loops or coloops.",
+      "source": "Liu, 2026; Chen and Xie, 2026. The manuscript states the relation to the diagonal theorem.",
+      "source_url": "https://github.com/michaeliu4/tutte-threshold",
+      "paper": "verification/additional-proofs/asymmetric-tutte/manuscript.pdf",
+      "formal_scope": "The statement uses actual Mathlib matroids and the literal subset rank sum. It includes empty ground sets and finite ground sets in arbitrary ambient types.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/asymmetric-tutte"
+      }
     }
   ],
   "research_notes": [
@@ -201,7 +265,7 @@
       "related_formal_family": "gyires-circulant-five",
       "title": "Supporting records for the all-order Gyires arguments",
       "path": "research-notes/gyires-extensions/README.md",
-      "status": "Written proofs and exact certificates. Lean verification, novelty assessment, and independent human expert review remain incomplete.",
+      "status": "The four-block and permutation-polynomial theorems have complete Lean proofs. The written proofs and exact certificates remain available. No first-priority or independent human expert review claim is made.",
       "claims": [
         {
           "id": "permutation-polynomial",

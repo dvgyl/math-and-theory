@@ -1,0 +1,415 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm}
+\usepackage[margin=23mm]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\setlength{\emergencystretch}{3em}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\hypersetup{pdftitle={The sharp level-one Fourier weight at density one eighth},pdfauthor={Dev D. Goyal}}
+\title{The sharp level-one Fourier weight at density one eighth}
+\author{Dev D. Goyal}
+\date{27 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The level-one Fourier weight measures the total squared correlation of a Boolean function with the individual coordinates. The proof shows that its maximum at mean $1/8$ is $3/64$ in every dimension at least three. A codimension-three subcube attains this value. Equivalently, a subset of the Boolean cube with density $1/8$ has average Hamming distance at least $(n-3)/2$. The proof establishes a sharp positive-part inequality for Rademacher sums. An even polynomial of degree eighteen bounds the positive part. An exact symmetric moment certificate then bounds the expectation of that polynomial in every dimension. The certificate uses rational coefficients and nonnegative terms. A companion Lean formalization includes the moment identities, the Fourier and distance bounds, and their sharpness witnesses.
+\end{abstract}
+
+\hypertarget{result-and-scope}{%
+\section{Result and scope}\label{result-and-scope}}
+
+Let \(X=(X_1,\ldots,X_n)\) be uniform on \(\{-1,1\}^n\), and let
+\(f:\{-1,1\}^n\to\{0,1\}\). Write
+
+\[a=\mathbb E f(X),\qquad b_i=\mathbb E[X_i f(X)],\qquad W_1(f)=\sum_{i=1}^n b_i^2.\]
+
+The following bound holds:
+
+\[\boxed{a=\frac18\quad\Longrightarrow\quad W_1(f)\le\frac3{64}.} \tag{1}\]
+
+For every \(n\ge3\), equality is attained by the indicator of the
+subcube \(X_1=X_2=X_3=1\). Consequently the maximum is exactly \(3/64\)
+in every admissible dimension, and the dimension-free supremum
+\(W(1/8)\) is \(3/64\).
+
+In the average-distance formulation, if \(A\subseteq\{-1,1\}^n\) and
+\(|A|=2^{n-3}\), then
+
+\[\boxed{\frac1{|A|^2}\sum_{x,y\in A}d_H(x,y)\ge\frac{n-3}{2}.} \tag{2}\]
+
+Equality holds for a codimension-three subcube. Pairs in this formula
+are ordered, sampled independently, and may coincide.
+
+The result concerns exactly the density \(1/8\). It does not determine
+the optimum at every density or the full noise stability of a subcube.
+No classification of all equality cases is claimed in this note.
+
+\section{Relation to previous bounds}
+
+The minimum-average-distance problem in Hamming space goes back to Ahlswede and Katona \cite{AK77}. Fu, Wei, and Yeung obtained linear-programming bounds and solved several cases, including quarter-cube size \cite{FWY01}. Yu and Tan later characterized the asymptotically best bounds from that linear program \cite{YT19}.
+
+Yu explicitly asks for $W(1/8)$ in Section VII, Problem 2, of \cite{Y26}. Section III-C gives an upper bound of approximately $0.0495142$. The codimension-three subcube gives the lower bound $3/64=0.046875$. The result here closes this gap by proving the subcube value is an upper bound in every dimension.
+
+The proof combines a polynomial majorant with a dimension-independent moment identity. Its coefficients are rational. Nonnegative Bernstein coefficients establish the one-variable inequalities. A sum of nonnegative symmetric terms establishes the moment inequality. These are established methods. The specific certificate and its sharp bound are the contribution here.
+
+\hypertarget{the-auxiliary-sharp-rademacher-inequality}{%
+\section{The auxiliary sharp Rademacher
+inequality}\label{the-auxiliary-sharp-rademacher-inequality}}
+
+For any real coefficients \(c_1,\ldots,c_n\) with \(\sum_i c_i^2=1\),
+put
+
+\[S=\sum_i c_iX_i.\]
+
+The stronger auxiliary estimate is
+
+\[\mathbb E\bigl(|\sqrt3 S|-9/4\bigr)_+\le3/16,\qquad t_+=\max(0,t). \tag{3}\]
+
+This constant is attained when \(c_1=c_2=c_3=1/\sqrt3\) and all other
+coefficients vanish: \(|\sqrt3S|\) is \(3\) with probability \(1/4\) and
+\(1\) with probability \(3/4\).
+
+The proof uses a degree-eighteen even polynomial
+
+\[P(t)=\sum_{j=0}^9p_jt^{2j} \tag{4}\]
+
+with rational coefficients, given in Appendix A. The two properties
+required are
+
+\[P(t)\ge\max(0,|t|-9/4)\quad\text{for all }t\in\mathbb R, \tag{5}\]
+
+and
+
+\[\mathbb E P(\sqrt3S)\le3/16\quad\text{whenever }\sum_i c_i^2=1. \tag{6}\]
+
+The exact contacts \(P(1)=0\) and \(P(3)=3/4\)
+explain why equality can occur at the three-coordinate Rademacher sum.
+Contacts alone do not prove either global inequality; Sections 4--5
+provide their certificates.
+
+\hypertarget{global-verification-of-the-one-variable-majorant}{%
+\section{Global verification of the one-variable
+majorant}\label{global-verification-of-the-one-variable-majorant}}
+
+Set \(p(u)=\sum_{j=0}^9p_ju^j\). Exact polynomial division gives
+
+\[p(u)=(u-1)^2R(u),\qquad \deg R=7, \tag{7}\]
+
+and
+
+\[P(t)-t+9/4=(t-3)^2T(t),\qquad \deg T=16. \tag{8}\]
+
+Both \(R\) and \(T\) are nonnegative on \([0,\infty)\). Here is a finite
+rational certificate of that assertion, including how it is checked.
+
+For a degree-\(d\) polynomial \(Q\) on a rational interval \([L,H]\),
+use the Bernstein representation
+
+\[Q(x)=\sum_{i=0}^d\beta_i\binom di
+ \left(\frac{x-L}{H-L}\right)^i
+ \left(\frac{H-x}{H-L}\right)^{d-i}. \tag{9}\]
+
+Every basis term is nonnegative on the interval. Thus nonnegative
+rational \(\beta_i\) prove \(Q\ge0\) there. For the remaining ray, a
+shifted expansion \(Q(B+s)=\sum_i\gamma_i s^i\) with \(\gamma_i\ge0\)
+proves nonnegativity for \(s\ge0\).
+
+The complete exact \(R,T\), all Bernstein coefficient arrays, and both
+shifted-tail arrays are in \texttt{univariate\_certificate.json}. The
+intervals are:
+
+\begin{itemize}
+\item
+  R: {[}0,32{]}, {[}32,64{]}, {[}64,80{]}, {[}80,96{]}, {[}96,128{]};
+  tail begins at 128.
+\item
+  T: {[}0,4{]}, {[}4,5{]}, {[}5,11/2{]}, {[}11/2,6{]}, {[}6,7{]},
+  {[}7,8{]}, {[}8,9{]}, {[}9,19/2{]}, {[}19/2,10{]}, {[}10,12{]},
+  {[}12,16{]}; tail begins at 16.
+\end{itemize}
+
+These are contiguous covers of \([0,128]\) and \([0,16]\), respectively.
+All their Bernstein coefficients and all shifted-tail coefficients are
+nonnegative rational numbers. Every identity (7)--(9) and every tail
+identity is explicitly written in the Univariate section of
+\texttt{SharpEighth.lean}, checked by Lean's \texttt{ring} tactic, and
+combined with elementary order reasoning. This proves \(R(u)\ge0\) for
+\(u\ge0\) and \(T(t)\ge0\) for \(t\ge0\) without approximation.
+
+Equation (7), applied to \(u=t^2\), proves \(P(t)\ge0\) for every real
+\(t\). Equation (8) proves \(P(t)\ge t-9/4\) for \(t\ge0\). Since \(P\)
+is even, apply the latter inequality to \(|t|\) to obtain (5).
+
+\hypertarget{the-dimension-independent-moment-certificate}{%
+\section{The dimension-independent moment
+certificate}\label{the-dimension-independent-moment-certificate}}
+
+\hypertarget{ordered-orbit-sums}{%
+\subsection{Ordered orbit sums}\label{ordered-orbit-sums}}
+
+Let \(z_i=c_i^2\) and \(V=\sum_i z_i\). For a finite list of nonnegative
+integers \(\lambda=(\lambda_1,\ldots,\lambda_\ell)\), define
+
+\[O_\lambda(z)=\sum_{\iota:\{1,\ldots,\ell\}\hookrightarrow\{1,\ldots,n\}}
+       \prod_{r=1}^{\ell}z_{\iota(r)}^{\lambda_r}. \tag{10}\]
+
+The sum is over \textbf{ordered injections}. Define \(O_{()}=1\). If
+\(\ell>n\), the sum is empty and equals zero. Permuting the list
+\(\lambda\) leaves \(O_\lambda\) unchanged. If \(\lambda\) is a
+partition and \(\operatorname{aut}(\lambda)\) is the product of the
+factorials of its part multiplicities, then the ordinary monomial
+symmetric polynomial is
+\(m_\lambda=O_\lambda/\operatorname{aut}(\lambda)\).
+
+Two identities control the algebra:
+
+\[V O_\lambda=O_{(\lambda,1)}+\sum_{r=1}^{\ell}O_{\lambda+e_r}, \tag{11}\]
+
+and, when a new coordinate \(a\) is adjoined,
+
+\[O_\lambda(a,z)=O_\lambda(z)+
+  \sum_{r=1}^{\ell}a^{\lambda_r}O_{\lambda\setminus r}(z). \tag{12}\]
+
+To prove (11), expand \(V O_\lambda\). The coordinate chosen from \(V\)
+either occurs at the unique marked position \(r\) in the injection or is
+new. The first case gives \(O_{\lambda+e_r}\), and the second gives
+\(O_{(\lambda,1)}\). To prove (12), classify an injection according to
+whether it avoids the new coordinate or uses it at its unique position
+\(r\). Deleting that position is a bijection with injections defining
+\(O_{\lambda\setminus r}(z)\). No division by \(z_i\) is used, so zero
+coordinates and every dimension are covered.
+
+\hypertarget{rademacher-moments}{%
+\subsection{Rademacher moments}\label{rademacher-moments}}
+
+For integers \(0\le j\le9\), define
+
+\[M_j(z)=\sum_{\lambda\vdash j}
+ \frac{(2j)!}{\operatorname{aut}(\lambda)\prod_r(2\lambda_r)!}\,O_\lambda(z). \tag{13}\]
+
+Then
+
+\[M_j(c_1^2,\ldots,c_n^2)=\mathbb E S^{2j}. \tag{14}\]
+
+Indeed, expand \(S^{2j}\). Independence and symmetry kill every monomial
+containing an odd exponent. The surviving even exponent pattern
+\(2\lambda\) has multinomial coefficient \((2j)!/\prod_r(2\lambda_r)!\).
+Passing from distinct monomials to the ordered-orbit convention divides
+by \(\operatorname{aut}(\lambda)\).
+
+The Lean proof uses a finite recurrence instead of assuming a general
+multinomial theorem. Averaging the two signs of a new coefficient gives
+
+\[\mathbb E(aX_0+S)^{2j}
+ =\sum_{k=0}^j\binom{2j}{2k}a^{2k}\mathbb ES^{2(j-k)}. \tag{15}\]
+
+The ten explicit tables \(M_0,\ldots,M_9\) in the CertificateData
+section satisfy the identical recurrence under (12); the ten finite
+coefficient equalities are kernel-checked in the MomentRecurrenceData
+section. In dimension zero both sides of (14) equal \(1\) for \(j=0\)
+and \(0\) otherwise. Induction on dimension, using (12) and (15), proves
+(14) for every needed \(0\le j\le9\). Thus this step is not a check only
+in a fixed number of variables.
+
+\hypertarget{weighted-squares}{%
+\subsection{Weighted squares}\label{weighted-squares}}
+
+For a list \(\lambda\), real vector \(a=(a_1,\ldots,a_\ell)\), and
+scalar \(b\), define
+
+\[G_{\lambda;a,b}(z)=\sum_{\iota\text{ injective}}
+ \left(\prod_rz_{\iota(r)}^{\lambda_r}\right)
+ \left(\sum_ra_rz_{\iota(r)}+bV\right)^2. \tag{16}\]
+
+Both \(O_\lambda(z)\) and \(G_{\lambda;a,b}(z)\) are nonnegative when
+all \(z_i\ge0\). Expanding the square and using (11) expresses (16) in
+the ordered-orbit basis. The coefficients \(a_r\) attach to the original
+positions of \(\lambda\): the two marked exponents are incremented
+before sorting the resulting list. This convention matters when equal
+exponents occur.
+
+The decisive exact identity is
+
+\[\frac3{16}V^9-\sum_{j=0}^9p_j3^jM_j(z)V^{9-j}
+   =\sum_{r=1}^{28}w_rH_r(z), \qquad w_r>0, \tag{17}\]
+
+where the \(H_r\) and weights are given in Appendix B. The first five
+terms are ordered-orbit monomials of degree nine; the other twenty-three
+are weighted squares with \(|\lambda|=7\). Thus every term is
+homogeneous of degree nine.
+
+For clarity, (17) is a finite rational polynomial identity, independent
+of the numerical values of \(z\) or the dimension. Expand (16),
+repeatedly use (11), collect equal sorted exponent lists, and compare
+rational coefficients. There are exactly thirty partitions of nine. One
+coefficient is zero on both sides; the other twenty-nine normalized
+coefficients agree. \texttt{certificate\_coefficient\_identity} in the
+CertificateData section checks this equality by kernel reduction of
+exact rational arithmetic. The SymmetricCertificate section proves that
+collection, scaling, multiplication by \(V\), and canonical sorting
+preserve evaluation. The OrbitBridge and SquareSemantics sections
+connect those operations to (10) and (16). Consequently the finite
+coefficient check proves (17) for every dimension.
+
+Now take \(z_i=c_i^2\), so \(z_i\ge0\) and \(V=1\). The right side of
+(17) is nonnegative. By (14), the left side is
+\(3/16-\mathbb EP(\sqrt3S)\). This proves (6). Combining (5) with (6)
+proves (3).
+
+\hypertarget{proof-of-the-sharp-fourier-bound}{%
+\section{Proof of the sharp Fourier
+bound}\label{proof-of-the-sharp-fourier-bound}}
+
+Let \(W=W_1(f)\). If \(W=0\), inequality (1) is immediate. Otherwise put
+\(c_i=b_i/\sqrt W\) and \(S=\sum_i c_iX_i\). Then
+
+\[\sum_i c_i^2=1,\qquad \mathbb E[f(X)S]=\frac{\sum_i b_i^2}{\sqrt W}=\sqrt W.\]
+
+Set \(Z=\sqrt3S\). Its distribution is symmetric, because complementing
+every sign replaces \(Z\) by \(-Z\). Since \(9/4\ge0\), pointwise
+
+\[(Z-9/4)_++(-Z-9/4)_+=(|Z|-9/4)_+.\]
+
+Therefore (3) implies
+
+\[\mathbb E(Z-9/4)_+=\frac12\mathbb E(|Z|-9/4)_+\le3/32. \tag{18}\]
+
+For a Boolean-valued \(f\), the elementary pointwise inequality
+
+\[fZ\le\frac94 f+(Z-9/4)_+ \tag{19}\]
+
+holds in both cases \(f=0\) and \(f=1\). Taking expectations, using
+\(\mathbb Ef=1/8\) and (18), gives
+
+\[\sqrt3\sqrt W=\mathbb E[fZ]\le\frac9{32}+\frac3{32}=\frac38.\]
+
+Both sides are nonnegative, so squaring yields \(3W\le9/64\), which is
+(1).
+
+For the subcube indicator \(f=\mathbf1\{X_1=X_2=X_3=1\}\), the first
+three coefficients \(b_i\) are \(1/8\), and all remaining coefficients
+vanish by independence and zero mean of the unused sign. Hence
+\(W_1(f)=3/64\), proving attainment in every \(n\ge3\).
+
+\hypertarget{average-distance}{%
+\section{Average distance}\label{average-distance}}
+
+Let \(A\) have density \(a>0\) and \(f=\mathbf1_A\). For a uniform point
+of \(A\), its \(i\)th coordinate mean is \(b_i/a\). If \(U,V\) are
+independent uniform points of \(A\), then
+
+\[\mathbb E d_H(U,V)
+ =\frac12\sum_i\bigl(1-\mathbb E[U_iV_i]\bigr)
+ =\frac n2-\frac{W_1(f)}{2a^2}. \tag{20}\]
+
+At \(a=1/8\), substitute (1) to get (2). For a codimension-three
+subcube, (20) and its exact Fourier weight give equality. The Lean
+development defines the weighted average as the double uniform-cube
+average of \(f(x)f(y)d_H(x,y)\), divided by \((\mathbb Ef)^2\); for an
+indicator this is exactly the ordered-pair average over \(A\).
+
+\section{Formalization and exact certificates}
+
+The companion formalization uses Lean~4.19.0 and a pinned mathlib revision. It includes the finite rational identities and their interpretation for every cube dimension. Polynomial identities use \texttt{ring}. Finite rational table equalities use \texttt{decide +kernel}. The moment recurrence then connects these identities to the uniform probability measure on the Boolean cube.
+
+A separate Python checker uses exact rational arithmetic. It checks all thirty symmetric coefficients, all twenty-eight positive weights, sixteen Bernstein intervals, both polynomial factorizations, both tail expansions, interval coverage, and the contact values. The reproduction package gives the commands and dependency versions. These checks use the stated certificate. They do not depend on a numerical optimization solver.
+
+\appendix
+
+\hypertarget{appendix-a.-exact-polynomial}{%
+\section{Exact polynomial}\label{appendix-a.-exact-polynomial}}
+
+In \(P(t)=\sum_{j=0}^9p_jt^{2j}\), use:
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.7}
+\begin{longtable}{@{}r@{\qquad}l@{}}
+\toprule
+$j$ & $p_j$ \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+0 & \(\dfrac{206520445606307043664847109}{36250000000000000000000000000}\) \\[6pt]
+1 & \(\dfrac{-1953972563767499921566123351}{217500000000000000000000000000}\) \\[6pt]
+2 & \(\dfrac{281404475232491589380339347}{489375000000000000000000000000}\) \\[6pt]
+3 & \(\dfrac{740901741568680334633155809}{244687500000000000000000000000}\) \\[6pt]
+4 & \(\dfrac{-324786196901061211549628347}{978750000000000000000000000000}\) \\[6pt]
+5 & \(\dfrac{796521088493109}{50000000000000000000}\) \\[6pt]
+6 & \(\dfrac{-41161541352553493}{100000000000000000000000}\) \\[6pt]
+7 & \(\dfrac{29617055737416117}{5000000000000000000000000}\) \\[6pt]
+8 & \(\dfrac{-5574570362723033}{125000000000000000000000000}\) \\[6pt]
+9 & \(\dfrac{341703734117989}{2500000000000000000000000000}\) \\[6pt]
+\end{longtable}
+\endgroup
+
+\clearpage
+
+\hypertarget{appendix-b.-exact-nonnegative-symmetric-identity}{%
+\section{Exact nonnegative symmetric identity}\label{appendix-b.-exact-nonnegative-symmetric-identity}}
+
+Use (17) with the following terms. The monomial weights below are in the
+\textbf{ordered-orbit} convention of (10), matching the CertificateData
+section. In \texttt{exact\_certificate.json}, monomial entries use the
+conventional \(m_\lambda\) normalization; dividing those five weights by
+\(\operatorname{aut}(\lambda)\) gives the weights printed here. The
+square terms use the same ordered-injection convention in both
+representations.
+
+Every numerator and denominator in the final column is positive. This
+table and Appendix A completely determine identity (17).
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.5}
+\begin{longtable}{@{}rllrl@{}}
+\toprule
+$r$ & $H_r$ & $a$ & $b$ & $w_r$ \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+1 & \(O_{(3,1,1,1,1,1,1)}\) & -- & -- & \(\dfrac{1664613736174404701898764587}{6796875000000000000000000000}\) \\[6pt]
+2 & \(O_{(2,2,2,2,1)}\) & -- & -- & \(\dfrac{108989344820371538388330031}{453125000000000000000000000}\) \\[6pt]
+3 & \(O_{(2,2,2,1,1,1)}\) & -- & -- & \(\dfrac{363684300416795776733564179}{113281250000000000000000000}\) \\[6pt]
+4 & \(O_{(2,2,1,1,1,1,1)}\) & -- & -- & \(\dfrac{2336944380198391076759655527}{4531250000000000000000000000}\) \\[6pt]
+5 & \(O_{(2,1,1,1,1,1,1,1)}\) & -- & -- & \(\dfrac{216789029015454276313036273}{6796875000000000000000000000}\) \\[6pt]
+6 & \(G_{(7);a,b}\) & \((3)\) & \(-1\) & \(\dfrac{493179443887342163427833603}{13593750000000000000000000000}\) \\[6pt]
+7 & \(G_{(6,1);a,b}\) & \((4,-1)\) & \(-1\) & \(\dfrac{812765822952113500072745389}{7646484375000000000000000000}\) \\[6pt]
+8 & \(G_{(5,2);a,b}\) & \((0,3)\) & \(-1\) & \(\dfrac{62167895823868919398383790542583}{70837031250000000000000000000000}\) \\[6pt]
+9 & \(G_{(5,2);a,b}\) & \((1,2)\) & \(-1\) & \(\dfrac{163497426726949101247569983295373}{23612343750000000000000000000000}\) \\[6pt]
+10 & \(G_{(5,2);a,b}\) & \((3,0)\) & \(-1\) & \(\dfrac{40898714423911742716816466080817}{70837031250000000000000000000000}\) \\[6pt]
+11 & \(G_{(5,1,1);a,b}\) & \((0,1,-4)\) & \(1\) & \(\dfrac{316314290160339665000599013407}{244687500000000000000000000000}\) \\[6pt]
+12 & \(G_{(5,1,1);a,b}\) & \((1,-4,0)\) & \(1\) & \(\dfrac{5616588740169136634279762243}{30585937500000000000000000000}\) \\[6pt]
+13 & \(G_{(5,1,1);a,b}\) & \((2,-2,3)\) & \(-1\) & \(\dfrac{114618313877765137564740921259}{244687500000000000000000000000}\) \\[6pt]
+14 & \(G_{(4,3);a,b}\) & \((1,-1)\) & \(0\) & \(\dfrac{5339167732278402092228998206713}{655898437500000000000000000000}\) \\[6pt]
+15 & \(G_{(4,2,1);a,b}\) & \((1,-4,-3)\) & \(2\) & \(\dfrac{310739092555566277658560548518749}{708370312500000000000000000000000}\) \\[6pt]
+16 & \(G_{(4,2,1);a,b}\) & \((1,-3,-1)\) & \(1\) & \(\dfrac{392034570279110895520185390303}{349812500000000000000000000000}\) \\[6pt]
+17 & \(G_{(4,2,1);a,b}\) & \((1,2,0)\) & \(-1\) & \(\dfrac{122998561194378624518449413573949}{141674062500000000000000000000000}\) \\[6pt]
+18 & \(G_{(4,2,1);a,b}\) & \((3,-1,4)\) & \(-2\) & \(\dfrac{30884554274001200121651411444769}{47224687500000000000000000000000}\) \\[6pt]
+19 & \(G_{(4,2,1);a,b}\) & \((4,-1,3)\) & \(-2\) & \(\dfrac{15321637693779276596484703530539}{29515429687500000000000000000000}\) \\[6pt]
+20 & \(G_{(3,3,1);a,b}\) & \((0,3,0)\) & \(-1\) & \(\dfrac{1916317734043019380935103552589}{983847656250000000000000000000}\) \\[6pt]
+21 & \(G_{(3,3,1);a,b}\) & \((1,-3,-1)\) & \(1\) & \(\dfrac{2356243716118467132440203511597}{1967695312500000000000000000000}\) \\[6pt]
+22 & \(G_{(3,2,2);a,b}\) & \((1,-3,-1)\) & \(1\) & \(\dfrac{42477332960852370135610213284689}{20988750000000000000000000000000}\) \\[6pt]
+23 & \(G_{(3,2,2);a,b}\) & \((1,1,4)\) & \(-2\) & \(\dfrac{123346068448463558503725606137}{67851562500000000000000000000}\) \\[6pt]
+24 & \(G_{(3,2,2);a,b}\) & \((3,-1,1)\) & \(-1\) & \(\dfrac{34657463038753289354159290580269}{62966250000000000000000000000000}\) \\[6pt]
+25 & \(G_{(3,2,1,1);a,b}\) & \((0,1,-3,0)\) & \(0\) & \(\dfrac{111868341854332796257367494399}{13593750000000000000000000000}\) \\[6pt]
+26 & \(G_{(2,2,2,1);a,b}\) & \((1,0,0,-3)\) & \(0\) & \(\dfrac{129021577255464953947629819}{45312500000000000000000000}\) \\[6pt]
+27 & \(G_{(2,1,1,1,1,1);a,b}\) & \((1,-4,0,0,0,0)\) & \(0\) & \(\dfrac{22348383362905355092020478147}{67968750000000000000000000000}\) \\[6pt]
+28 & \(G_{(2,1,1,1,1,1);a,b}\) & \((1,-3,0,0,0,0)\) & \(0\) & \(\dfrac{20937950969712400953131202529}{33984375000000000000000000000}\) \\[6pt]
+\end{longtable}
+\endgroup
+
+\section*{Research and publication}
+This work is fully autonomous agentic research generated by AI systems. AI agents produced the mathematical arguments, formal proofs, computations, and manuscript. Dev D. Goyal is responsible for publication.
+
+\begin{thebibliography}{9}
+\bibitem{AK77} R. Ahlswede and G. O. H. Katona. Contributions to the geometry of Hamming spaces. \emph{Discrete Mathematics} \textbf{17} (1977), 1--22. \href{https://doi.org/10.1016/0012-365X(77)90017-6}{doi:10.1016/0012-365X(77)90017-6}.
+\bibitem{FWY01} F.-W. Fu, V. K. Wei, and R. W. Yeung. On the minimum average distance of binary codes: Linear programming approach. \emph{Discrete Applied Mathematics} \textbf{111} (2001), 263--281. \href{https://doi.org/10.1016/S0166-218X(00)00284-5}{doi:10.1016/S0166-218X(00)00284-5}.
+\bibitem{YT19} L. Yu and V. Y. F. Tan. An Improved Linear Programming Bound on the Average Distance of a Binary Code. \href{https://arxiv.org/abs/1910.09416}{arXiv:1910.09416} (2019).
+\bibitem{Y26} L. Yu. On Average Distance, Level-1 Fourier Weight, and Chang's Lemma. \href{https://arxiv.org/abs/2504.02593v2}{arXiv:2504.02593v2} (2026 revision).
+\end{thebibliography}
+\end{document}

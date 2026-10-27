@@ -39,8 +39,10 @@ jobs:
           python verification/check_embedded_packages.py --arithmetic
           python verification/verify_hashes.py
           python verification/validate_metadata.py
+          python verification/validate_citations.py
           python lean/scripts/check-lean-sources.py
           python verification/check_gyires_certificates.py
+          python verification/check_gyires_packages.py
       - name: Check certificate failures and publication boundaries
         run: |
           python -m unittest discover -s verification -p 'test_*.py'
@@ -167,3 +169,37 @@ jobs:
           python3 verification/check_embedded_packages.py --thermal-log "$RUNNER_TEMP/thermal-verify.log"
           python3 .ci-work/thermal-kurtosis-counterexample/test_verifiers.py
           python3 verification/check_ci_workcopy.py thermal verification/additional-proofs/thermal-kurtosis-counterexample .ci-work/thermal-kurtosis-counterexample
+
+  study-proofs:
+    name: Study proof — ${{ matrix.study }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        study:
+          - sharp-eighth
+          - universal-embezzlement
+          - galvin-zhang
+          - asymmetric-tutte
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        env:
+          LEAN_NUM_THREADS: '1'
+        with:
+          lake-package-directory: verification/additional-proofs/${{ matrix.study }}
+          auto-config: 'false'
+          build: 'true'
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'true'
+      - name: Check all requested theorem reports
+        env:
+          STUDY_NAME: ${{ matrix.study }}
+          LEAN_NUM_THREADS: '1'
+        run: |
+          python3 verification/run_study_audit.py "$STUDY_NAME" "$RUNNER_TEMP/study-audit.txt"
+          git diff --exit-code

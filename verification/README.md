@@ -1,6 +1,6 @@
 # Verification guide
 
-The catalogue contains nine result families and nine manuscripts. Seven families use the shared Lean 4.35.0 library, which has 29 selected Comparator statements. Two families use standalone Lean 4.19.0 packages. The [Gyires preprint](../preprints/gyires-circulant-five/paper.pdf) contains the verified order-five, four-block, and exceptional-vector results. Its other principal matrix and polynomial arguments have a [separate ordinary-proof and certificate record](../research-notes/gyires-complete-support/README.md). Those principal results remain incomplete in Lean. Each family guide gives its mathematical scope and test limits. The central record gives the completed checks and their scope.
+The catalogue contains thirteen result families and thirteen manuscripts. Seven families use the shared Lean 4.35.0 library, which has 29 selected Comparator statements. Six families use standalone packages pinned to Lean 4.19.0 or 4.32.1. The [Gyires preprint](../preprints/gyires-circulant-five/paper.pdf) contains the verified order-five, order-six, permutation-polynomial, four-block, and exceptional-vector results. Its other principal matrix and polynomial arguments have a [separate ordinary-proof and certificate record](../research-notes/gyires-complete-support/README.md). The principal order-seven and finite rank-two results remain incomplete in Lean. Each family guide gives its mathematical scope and test limits. The central record gives the completed checks and their scope.
 
 ## Reproduce the shared-library checks
 
@@ -111,3 +111,9 @@ python3 verification/build_archives.py --output ../archival-packages
 The builder includes only files in the explicit publication manifest. It rejects missing files, unlisted files, changed hashes, and symbolic links. It checks every ZIP member against its source bytes. The builder produces nine manuscript PDFs, nine full-collection ZIP files, and `packages.json`. Each ZIP includes both standalone packages as well as the manuscripts, shared formal library, exact checking programs, licenses, and verification scope.
 
 [Return to the catalogue](../CONTENTS.md).
+
+## Standalone study proofs
+
+Six study packages use their own pinned Lean environments. Four packages cover the sharp Fourier bound, Galvin–Zhang domination counts, universal embezzlement, and asymmetric Tutte inequalities. Each package includes the manuscript, source files, license, citation, and source verification record. The source integrity checks compare published bytes and report coverage. Compiled objects are not included. Rebuild the package to reconstruct them.
+
+Automatic jobs build each study and check every requested audit report. These jobs are separate from the shared Comparator selection. The order-six and permutation-polynomial Gyires packages have automatic source checks; their full source builds can be run with the manual workflow.

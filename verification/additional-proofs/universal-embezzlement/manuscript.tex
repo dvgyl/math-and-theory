@@ -1,0 +1,263 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=23mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,longtable,enumitem,xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{Universal entanglement embezzlement}\fancyhead[R]{27 October 2026}\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\R}{\mathbb R}\newcommand{\N}{\mathbb N}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\title{Universal entanglement embezzlement with\newline inverse-quadratic logarithmic infidelity}
+\author{Dev D. Goyal}
+\date{27 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Entanglement embezzlement extracts an approximate target state while returning a shared catalyst approximately unchanged. The construction gives one family of catalysts that works for every finite target Schmidt probability vector. For each integer $L\geq1$, the catalyst has local dimension $n_L=2^{4L}$. A basis permutation on each party gives global root fidelity at least $1-125m/L^2$ for every target vector on $m$ entries. Thus the root infidelity is at most $2000m/(\log_2 n_L)^2$. The catalyst depends on neither the target nor $m$. Its Schmidt amplitudes combine the harmonic profile with a tent function of the dyadic rank. A finite interval coupling bounds the squared amplitude error. A doubly stochastic completion then gives a local permutation with the required error. This construction addresses the general-family rate question of Leung and Wang. The dependence on $m$ and the leading constant are not claimed to be optimal. A companion Lean formalization includes the coefficient bound and its finite complex Hilbert-space interpretation.
+\end{abstract}
+
+\section{Problem, conventions, and statement}
+
+An embezzling catalyst is an entangled resource from which two parties can approximately extract a desired entangled state while returning the resource approximately unchanged. The approximation here is global: it compares the entire output with the tensor product of the original catalyst and the target. The operations use no communication.
+
+The quantity used is \emph{root fidelity}, $F(\psi,\phi)=|\langle\psi,\phi\rangle|$ for unit pure states. This convention is essential. It differs from the squared fidelity $|\langle\psi,\phi\rangle|^2$ and from trace distance between reduced states. The harmonic family of van Dam and Hayden gives a universal root-fidelity estimate of order $1-O(1/\log n)$ for a fixed target \cite{vdh}. A target-dependent construction with the faster rate $1-O(1/(\log n)^2)$ was already known; Leung and Wang explicitly distinguish it from a universal family and leave the universal rate question open in their Section 6 \cite{lw,ltw}.
+
+For $1\leq i\leq n_L=2^{4L}$, define
+\begin{align}
+ r(i)&=\lfloor\log_2 i\rfloor, &
+ b_L(i)&=\min\{r(i),\,4L-r(i)\},\\
+ a_L(i)&=\frac{b_L(i)}{\sqrt i}, &
+ Z_L&=\sum_{i=1}^{n_L}\frac{b_L(i)^2}{i}, &
+ c_L(i)&=\frac{a_L(i)}{\sqrt{Z_L}}.\label{eq:construction}
+\end{align}
+The catalyst is
+\[
+ \ket{C_L}=\sum_{i=1}^{n_L}c_L(i)\ket{i}_A\ket{i}_B.
+\]
+The number $n_L$ denotes the local dimension, or a Schmidt-rank upper bound. The coefficients at the two endpoints vanish. The coefficients are not assumed to be in decreasing order; the argument allows arbitrary basis permutations. This is a nonregular family in the terminology of \cite{lw}, because the unnormalized envelope depends on $L$.
+
+\begin{theorem}[Universal quantitative embezzlement]\label{thm:main}
+Let $L\geq1$, let $J$ be a nonempty finite set with $|J|=m$, choose $j_0\in J$, and let $p_j\geq0$ satisfy $\sum_{j\in J}p_j=1$. Put
+\[
+ \ket{\phi_p}=\sum_{j\in J}\sqrt{p_j}\ket{j}_A\ket{j}_B.
+\]
+There is a permutation $\sigma$ of $J\times\{1,\ldots,n_L\}$ such that the corresponding separate local basis permutations satisfy
+\begin{equation}
+ \left|\left\langle
+ (P_\sigma\otimes P_\sigma)
+ (\ket{j_0j_0}\otimes\ket{C_L}),\,
+ \ket{\phi_p}\otimes\ket{C_L}
+ \right\rangle\right|
+ \geq 1-\frac{125m}{L^2}
+ =1-\frac{2000m}{(\log_2 n_L)^2}.
+ \label{eq:main}
+\end{equation}
+Both states in the comparison have norm one. The family $\ket{C_L}$ depends on neither $J$ nor $p$.
+\end{theorem}
+
+The register ordering in \eqref{eq:main} places the target index before the catalyst index on each party. The theorem is stated for arbitrary Schmidt probability vectors, including zeros. This is the finite coefficient formulation used in the embezzlement literature. The formal operational theorem uses complex-linear isometric equivalences on these finite Hilbert spaces. It proves that the bipartite map is the product of the two local basis permutations.
+
+For each fixed $m$ and every $\varepsilon>0$, the bound holds with $F\geq1-\varepsilon$ for all sufficiently large $L$, uniformly over $p$. The finite bound and this quantified consequence are formalized. No efficiency claim is made for preparing the state or implementing a permutation in a local gate model.
+
+\section{Dyadic estimates}
+
+The envelope has three required properties. Write $T_K(i)=\min\{\lfloor\log_2 i\rfloor,(K-\lfloor\log_2 i\rfloor)_+\}$ for every positive integer $i$, where $x_+=\max\{x,0\}$. On $1\leq i\leq2^K$, the positive-part operation is redundant. Lean uses natural-number subtraction, which implements this truncation.
+
+\begin{lemma}[Envelope bounds]\label{lem:tent}
+For positive integers $k\leq i\leq2^K$, if $i\leq2^Dk$, then
+\[
+ |T_K(i)-T_K(k)|\leq D.
+\]
+If $k\geq1$ and $2^K\leq2^Dk$, then $T_K(k)\leq D$. Also $0\leq T_K(k)\leq k$.
+\end{lemma}
+\begin{proof}
+Put $r_k=\lfloor\log_2 k\rfloor$. Since $k<2^{r_k+1}$, the first scaling inequality gives $i<2^{D+r_k+1}$, hence $\lfloor\log_2 i\rfloor\leq D+r_k$. Monotonicity gives the reverse ordering of the two logarithms. The map $r\mapsto\min\{r,K-r\}$ is $1$-Lipschitz on $[0,K]$, which proves the first assertion. Applying the same logarithmic inequality to $2^K\leq2^Dk$ gives $K\leq D+r_k$, so $(K-r_k)_+\leq D$, proving the tail assertion. Finally $T_K(k)\leq\lfloor\log_2 k\rfloor\leq k$.
+\end{proof}
+
+\begin{lemma}[Normalization and harmonic mass]\label{lem:norm}
+For $L\geq1$,
+\[
+ Z_L\geq L^3>0,
+ \qquad H_{n_L}:=\sum_{i=1}^{n_L}\frac1i\leq4L+1\leq5L.
+\]
+\end{lemma}
+\begin{proof}
+Each dyadic shell $2^r\leq i<2^{r+1}$ has $2^r$ terms. Its harmonic mass is between $1/2$ and $1$. The $2L$ shells with $L\leq r<3L$ have $b_L(i)\geq L$. Their contribution to $Z_L$ is therefore at least $2L\cdot L^2/2=L^3$. The $4L$ shells between $1$ and $n_L-1$, together with the last term $1/n_L$, give $H_{n_L}\leq4L+1$.
+\end{proof}
+
+\section{A finite coupling and its local error}
+
+Fix $L$ and abbreviate $n=n_L$, $a_i=a_L(i)$, $b_i=b_L(i)$, and $Z=Z_L$. For $1\leq i,k\leq n$ and $j\in J$, define the nonnegative weight
+\begin{equation}
+ W_{i,(j,k)}=
+ \operatorname{length}\bigl([p_j(i-1),p_ji]\cap[k-1,k]\bigr).
+ \label{eq:coupling}
+\end{equation}
+Only lengths of intervals are involved. The Lean definition uses the algebraic clipping function
+\[
+ s(x,y)=\max\{0,\min\{1,x-y\}\},\qquad
+ W_{i,(j,k)}=s(p_ji,k-1)-s(p_j(i-1),k-1).
+\]
+Thus neither integration nor an approximation by a continuum is used in the proof.
+
+\begin{lemma}[Mass and support]\label{lem:coupling}
+The weights satisfy
+\[
+ \sum_{j,k}W_{i,(j,k)}=1,
+ \qquad q_{jk}:=\sum_iW_{i,(j,k)}=s(p_jn,k-1)\in[0,1].
+\]
+If $W_{i,(j,k)}>0$, then $p_j>0$, $k\leq i$, $|k-p_ji|\leq1$, and
+\[
+ i\leq(1+1/p_j)k.
+\]
+If $q_{jk}<1$, then $p_jn<k$.
+\end{lemma}
+\begin{proof}
+Since $0\leq p_j\leq1$, the interval $[p_j(i-1),p_ji]$ lies in $[0,n]$. Summing its intersections with the unit intervals gives $p_j$; summing over $j$ gives the row mass one. Summing over $i$ instead joins the intervals into $[0,p_jn]$, giving the stated column mass.
+
+A positive intersection implies $k-1<p_ji$ and $p_j(i-1)<k$. These imply $k\leq i$ by integrality, and $-p_j<k-p_ji<1$, giving the distance bound. They also give $i<k/p_j+1\leq(1+1/p_j)k$. A zero probability has zero interval length and cannot occur in this case. Finally, a column is full whenever $p_jn\geq k$, which proves the last statement.
+\end{proof}
+
+\begin{lemma}[Square-root scaling error]\label{lem:scalar}
+Let $I,K>0$, $p\geq0$, $0\leq w\leq K$, and $|K-pI|\leq1$. Then
+\[
+ \left|\frac{w}{\sqrt I}-\frac{\sqrt p\,w}{\sqrt K}\right|
+ \leq\frac1{\sqrt I}.
+\]
+Consequently, if $|u-w|\leq D$, then
+\begin{equation}
+ \left(\frac{u}{\sqrt I}-\frac{\sqrt p\,w}{\sqrt K}\right)^2
+ \leq\frac{(D+1)^2}{I}.
+ \label{eq:scalar}
+\end{equation}
+\end{lemma}
+\begin{proof}
+The difference-of-squares identity gives
+\[
+ |\sqrt K-\sqrt p\sqrt I|\,\sqrt K
+ \leq |\sqrt K-\sqrt p\sqrt I|\,(\sqrt K+\sqrt p\sqrt I)
+ =|K-pI|\leq1.
+\]
+Since $w\leq K$, division by $\sqrt I\sqrt K$ gives the first inequality. For the second, insert $w/\sqrt I$ between the two terms and use the triangle inequality, obtaining an absolute-value bound $(D+1)/\sqrt I$. The hypothesis itself implies $D\geq0$, so squaring is legitimate.
+\end{proof}
+
+For every $j$ with $p_j>0$, choose an integer $D_j\geq0$ such that
+\begin{equation}
+ 1+1/p_j\leq2^{D_j}.\label{eq:shift}
+\end{equation}
+For $p_j=0$, set $D_j=0$. Lemmas \ref{lem:tent}--\ref{lem:scalar} show that a positive coupling entry satisfies
+\begin{equation}
+ (a_i-\sqrt{p_j}a_k)^2\leq\frac{(D_j+1)^2}{i}.\label{eq:active}
+\end{equation}
+Indeed, the two tent values differ by at most $D_j$, and the smaller-rank tent value is at most $k$. The probability-zero case contributes no active weight. If $q_{jk}<1$ and $p_j>0$, then $n<k/p_j\leq2^{D_j}k$, so the tail part of Lemma \ref{lem:tent} gives $b_k\leq D_j$. Therefore
+\begin{equation}
+ (\sqrt{p_j}a_k)^2\leq\frac{p_jD_j^2}{k}\quad(q_{jk}<1).\label{eq:tail}
+\end{equation}
+For $p_j=0$, both sides vanish.
+
+\section{From the coupling to a permutation}
+
+Assume first that $m\geq2$. Index both full vectors by $J\times\{1,\ldots,n\}$ and put
+\[
+ A_{(j,i)}=\begin{cases}a_i&j=j_0,\\0&j\ne j_0,\end{cases}
+ \qquad B_{(j,k)}=\sqrt{p_j}a_k.
+\]
+They have the same squared norm $Z$. The $n$ designated input rows of a square matrix are filled with $W$. Fill each of the remaining $n(m-1)$ rows at column $(j,k)$ with
+\[
+ \frac{1-q_{jk}}{n(m-1)}.
+\]
+The result is a doubly stochastic matrix $M$: the total column deficit is $nm-n$, and each column deficit is filled exactly. Its averaged squared error is
+\begin{align}
+ E_M&=\sum_{i,j,k}W_{i,(j,k)}(a_i-\sqrt{p_j}a_k)^2
+       +\sum_{j,k}(1-q_{jk})p_ja_k^2\\
+ &\leq H_n\sum_jp_j(D_j+1)^2+H_n\sum_jp_jD_j^2\\
+ &\leq2H_n\sum_jp_j(D_j+1)^2.\label{eq:cost}
+\end{align}
+In the first sum, the sum over $k$ of a branch's row weights is $p_j$. In the second, full columns contribute zero and every deficit is at most one, so \eqref{eq:tail} applies.
+
+Birkhoff's theorem writes $M$ as a convex combination of permutation matrices. Since squared-error cost is linear in $M$, some permutation $\sigma$ satisfies
+\begin{equation}
+ \sum_r(A_r-B_{\sigma(r)})^2\leq E_M.\label{eq:permutation}
+\end{equation}
+This rounding principle is known; in the embezzlement setting, the doubly stochastic fidelity optimization is explicit in Lasecki's thesis \cite{lasecki}. The companion formalization uses mathlib's proved Birkhoff theorem and proves the required cost consequence.
+
+For any two real vectors of squared norm $Z$,
+\[
+ \sum_r(A_r-B_{\sigma(r)})^2=2Z-2\sum_rA_rB_{\sigma(r)}.
+\]
+Combining this identity with \eqref{eq:cost}--\eqref{eq:permutation} gives the normalized overlap bound
+\begin{equation}
+ \sum_r\frac{A_rB_{\sigma(r)}}Z
+ \geq1-\frac{H_n}{Z}\sum_jp_j(D_j+1)^2.
+ \label{eq:overlap}
+\end{equation}
+The same permutation on both local indices maps the input diagonal bipartite state to a diagonal state whose inner product with the target equals this overlap. Taking its absolute value can only increase the lower bound. When $m=1$, the target coefficient is one and the identity permutation gives exact overlap one, so no completion with a zero denominator is needed.
+
+\section{A uniform bound over all target probabilities}
+
+\begin{lemma}[Uniform dyadic shifts]\label{lem:shift}
+For every $0<p\leq1$, there is a natural number $D$ such that
+\[
+ 1+1/p\leq2^D,\qquad p(D+1)^2\leq25.
+\]
+\end{lemma}
+\begin{proof}
+Set $K=\lceil1/\sqrt p\rceil$ and $D=K+2$. Then $1/p\leq K^2$. For every natural number $K$, $K^2+1\leq2^{K+2}$: check $K=0,1,2$, and for $K\geq2$ use $(K+1)^2+1\leq2(K^2+1)$ to propagate the inequality. Thus the first assertion holds. Also $K<1/\sqrt p+1$ and $\sqrt p\leq1$, so
+\[
+ \sqrt p(D+1)=\sqrt p(K+3)\leq1+4\sqrt p\leq5.
+\]
+Squaring proves the second assertion.
+\end{proof}
+
+Apply this lemma to positive probabilities and use $D_j=0$ for zero probabilities. Then
+\[
+ \sum_jp_j(D_j+1)^2\leq25m.
+\]
+Lemma \ref{lem:norm} gives $H_n/Z\leq5/L^2$. Substituting these two bounds into \eqref{eq:overlap} proves Theorem \ref{thm:main}. Since $\log_2(2^{4L})=4L$, its logarithmic form follows exactly, not merely asymptotically.
+
+\section{Formal verification and reproduction}
+
+The companion project pins Lean \texttt{v4.19.0} and mathlib \texttt{v4.19.0}. Its main exported declarations are:
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+\item {\small\texttt{Embezzlement.catalyst\_normalized}}: the stated coefficients have squared norm one.
+\item {\small\texttt{Embezzlement.universal\_tent\_overlap}}: the finite universal overlap bound, including a one-element target index set and zero target probabilities.
+\item {\small\texttt{Embezzlement.universal\_tent\_local\_unitary}}: the same result for explicit unit vectors in complex Euclidean space and separate local basis permutations.
+\item {\small\texttt{Embezzlement.universal\_tent\_logarithmic\_fidelity}}: the exact logarithmic-dimension bound.
+\item {\small\texttt{Embezzlement.universal\_tent\_epsilon\_threshold}}: a threshold uniform over all target probability vectors on a fixed finite index set.
+\end{itemize}
+
+The formalization uses the proved Birkhoff theorem from mathlib. The reproduction package identifies the pinned sources and gives commands to rebuild the results and check their axiom dependencies.
+
+The operational model uses a finite complex Hilbert space in the displayed Schmidt basis. It includes norm preservation and the two separate local maps. A change from an arbitrary bipartite basis to Schmidt form is not part of this formalization.
+
+\section{Relation to previous results and limits}
+
+The construction gives a target-independent catalyst with global root infidelity $O((\log n)^{-2})$. The bound is uniform over target probability vectors of a fixed finite dimension. Leung and Wang ask whether a regular or general universal family can achieve this rate \cite{lw}. Here the coefficient envelope depends on $L$, so the result concerns the general-family question.
+
+The harmonic family of van Dam and Hayden gives the inverse-logarithmic root-fidelity guarantee \cite{vdh}. Their statement about reduced-state trace distance uses a different error measure. It does not exclude an improved global root-infidelity bound. The earlier sine-weight construction achieves the quadratic rate for a chosen target \cite{ltw}. Leung and Wang show that this construction need not embezzle other two-qubit targets with vanishing error \cite{lw}. In the present construction, the catalyst is independent of the target. The amplitudes also retain the factor $1/\sqrt i$ within each dyadic block.
+
+Zanoni, Theurer, and Gour characterize universal embezzling families under local operations and classical communication \cite{ztg}. Their results include regular families and concern qualitative convergence. The present theorem gives an explicit finite bound using local basis permutations. George and Chitambar study finite conversion fidelities and target-dependent optimization \cite{gc}. Multipartite, Gaussian, and hydrodynamic constructions address further settings \cite{multipartite,gaussian,hydro}. Logarithmic-scale smoothing also occurs in correlated state preparation. Song uses raised-cosine labels for a resource that depends on a finite family of targets \cite{song}. The theorem here requires one catalyst family and compares the output with the returned catalyst tensored with the target.
+
+The constant $125m$ is a sufficient bound. The argument does not optimize that constant or its dependence on $m$. The proved dimension sequence is $n_L=16^L$. The formal statement does not separately cover each intervening integer dimension. The guarantee concerns one approximate extraction and the entire output state. It does not give exact catalyst return or an unlimited sequence of extractions. The local permutation depends on the target, although the catalyst does not. State preparation and the number of local gates are separate questions.
+
+\section*{Research and publication}
+This work is fully autonomous agentic research generated by AI systems. AI agents produced the mathematical arguments, formal proofs, computations, and manuscript. Dev D. Goyal is responsible for publication.
+
+\begin{thebibliography}{99}\small
+\bibitem{vdh} W. van Dam and P. Hayden, \emph{Universal entanglement transformations without communication}, Physical Review A \textbf{67}, 060302(R) (2003). \href{https://arxiv.org/abs/quant-ph/0201041}{arXiv:quant-ph/0201041}.
+\bibitem{lw} D. Leung and B. Wang, \emph{Characteristics of universal embezzling families}, Physical Review A \textbf{90}, 042331 (2014). \href{https://arxiv.org/abs/1311.6842}{arXiv:1311.6842v2}. Especially Sections 5--6.
+\bibitem{ltw} D. Leung, B. Toner, and J. Watrous, \emph{Coherent state exchange in multi-prover quantum interactive proof systems}, Chicago Journal of Theoretical Computer Science, Article 11 (2013). \href{https://doi.org/10.4086/cjtcs.2013.011}{doi:10.4086/cjtcs.2013.011}.
+\bibitem{ztg} E. Zanoni, T. Theurer, and G. Gour, \emph{Complete characterization of entanglement embezzlement}, Quantum \textbf{8}, 1368 (2024). \href{https://arxiv.org/abs/2303.17749}{arXiv:2303.17749v3}.
+\bibitem{lasecki} D. Lasecki, \emph{Noisy Embezzlement of Entanglement and Applications to Entanglement Dilution}, Master of Mathematics thesis, University of Waterloo (2019), Section 2.7. \href{https://uwspace.uwaterloo.ca/bitstreams/fad1b354-e7b6-49be-9cfd-0f97c0055d4f/download}{Institutional repository}.
+\bibitem{gc} I. George and E. Chitambar, \emph{Reexamination of quantum state transformations with zero communication}, Physical Review A \textbf{109}, 062418 (2024). Preprint: \emph{Revisiting Pure State Transformations with Zero Communication}, \href{https://arxiv.org/abs/2301.04735}{arXiv:2301.04735}.
+\bibitem{multipartite} L. van Luijk, A. Stottmeister, and H. Wilming, \emph{Multipartite embezzlement of entanglement}, Quantum \textbf{9}, 1818 (2025). \href{https://arxiv.org/abs/2409.07646}{arXiv:2409.07646v3}.
+\bibitem{gaussian} A. Kera, L. van Luijk, A. Stottmeister, and H. Wilming, \emph{Gaussian fermionic embezzlement of entanglement}, \href{https://arxiv.org/abs/2509.15749}{arXiv:2509.15749v2} (2026 revision).
+\bibitem{hydro} S.-X. Zhang, S. Liu, and Y.-Q. Chen, \emph{Entanglement Embezzlement from Diffusive Hydrodynamics}, \href{https://arxiv.org/abs/2609.26362}{arXiv:2609.26362v1} (2026).
+\bibitem{song} Z. Song, \emph{Parallel Repetition for Entangled Games with Gap Exponent Three}, ECCC TR26-199 (2026), Section 4.1. \href{https://eccc.weizmann.ac.il/report/2026/199/download}{ECCC report}.
+\bibitem{review} P. Lipka-Bartosik, H. Wilming, and N. H. Y. Ng, \emph{Catalysis in quantum information theory}, Reviews of Modern Physics \textbf{96}, 025005 (2024). \href{https://arxiv.org/abs/2306.00798}{arXiv:2306.00798v2}.
+\end{thebibliography}
+\end{document}
