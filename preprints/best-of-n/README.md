@@ -1,7 +1,5 @@
 # Counterexamples to a best-of-n win-rate bound at every budget
 
-[Zenodo record](https://zenodo.org/records/23679329) · [DOI: 10.5281/zenodo.23679329](https://doi.org/10.5281/zenodo.23679329) · Version 1.0.0. Published 26 October 2026.
-
 The paper disproves a proposed relation between the win rate and Kullback–Leibler divergence of best-of-n sampling. The sampling budget is the number of independent draws. A distribution on four responses disproves the bound at budget two. A second theorem gives a finite counterexample for every integer budget `n≥2`. Each reference probability can be at most any prescribed positive cap.
 
 Read the [paper](paper.pdf), [LaTeX source](paper.tex), or [references](references.bib). Use [citation.bib](citation.bib) to cite the paper. The [Lean guide](../../lean/docs/best-of-n.md) maps the claims to formal declarations. The [verification guide](../../verification/best-of-n/README.md) gives commands to reproduce the checks and states their limits.

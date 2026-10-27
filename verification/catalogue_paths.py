@@ -1,7 +1,6 @@
 """Read manuscript paths and formalization kinds from one catalogue."""
 
 import json
-from datetime import date
 from pathlib import Path
 import re
 
@@ -9,29 +8,6 @@ from publication_files import is_public_path
 
 
 IDENTIFIER = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
-ZENODO_DOI = re.compile(r"10\.5281/zenodo\.([1-9][0-9]*)\Z")
-VERSION = re.compile(r"(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\Z")
-DATE = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}\Z")
-
-
-def check_zenodo_record(record, name):
-    """Check the shape and internal links of optional Zenodo metadata."""
-    if not isinstance(record, dict) or set(record) != {"doi", "url", "version", "publication_date"}:
-        raise ValueError(f"Invalid Zenodo record fields: {name}")
-    doi = record["doi"]
-    match = ZENODO_DOI.fullmatch(doi) if isinstance(doi, str) else None
-    if match is None or record["url"] != f"https://zenodo.org/records/{match.group(1)}":
-        raise ValueError(f"Invalid Zenodo DOI or URL: {name}")
-    version = record["version"]
-    if not isinstance(version, str) or VERSION.fullmatch(version) is None:
-        raise ValueError(f"Invalid Zenodo version: {name}")
-    published = record["publication_date"]
-    if not isinstance(published, str) or DATE.fullmatch(published) is None:
-        raise ValueError(f"Invalid Zenodo publication date: {name}")
-    try:
-        date.fromisoformat(published)
-    except ValueError as error:
-        raise ValueError(f"Invalid Zenodo publication date: {name}") from error
 
 
 def manuscript_source(paper):
@@ -63,8 +39,6 @@ def validate_families(root, record, public_names=None):
         if not isinstance(name, str) or not IDENTIFIER.fullmatch(name) or name in seen_ids:
             raise ValueError(f"Invalid or repeated family identifier: {name}")
         seen_ids.add(name)
-        if "zenodo_record" in family:
-            check_zenodo_record(family["zenodo_record"], name)
         paper = family.get("paper")
         source = manuscript_source(paper)
         if paper in seen_papers:

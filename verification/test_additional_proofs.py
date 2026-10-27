@@ -97,45 +97,6 @@ class AdditionalProofTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Invalid standalone route"):
             load_families(root)
 
-    def test_optional_zenodo_record_has_same_rules_for_both_kinds(self):
-        root = Path(self.temp.name) / "catalogue-root"
-        comparator = root / "preprints/legacy"
-        standalone = root / "verification/additional-proofs/example"
-        comparator.mkdir(parents=True)
-        standalone.mkdir(parents=True)
-        for directory, stem in ((comparator, "paper"), (standalone, "report")):
-            (directory / f"{stem}.pdf").write_bytes(b"PDF")
-            (directory / f"{stem}.tex").write_text("TeX")
-        record = {"doi": "10.5281/zenodo.1", "url": "https://zenodo.org/records/1",
-                  "version": "1.0.0", "publication_date": "2026-10-27"}
-        families = [
-            {"id": "legacy", "paper": "preprints/legacy/paper.pdf",
-             "formalization": {"kind": "comparator"}, "module": "Legacy", "namespace": "Legacy",
-             "comparator": "lean/comparator/legacy.json", "theorems": [],
-             "zenodo_record": record},
-            {"id": "example", "paper": "verification/additional-proofs/example/report.pdf",
-             "formalization": {"kind": "standalone", "root": "verification/additional-proofs/example"},
-             "zenodo_record": record},
-        ]
-        catalogue = {"schema_version": 1, "families": families}
-        path = root / "catalogue.json"
-        path.write_text(json.dumps(catalogue))
-        self.assertEqual(len(load_families(root)), 2)
-        bad_records = [
-            {key: value for key, value in record.items() if key != "version"},
-            {**record, "doi": "10.5281/zenodo.invalid"},
-            {**record, "url": "https://zenodo.org/records/2"},
-            {**record, "version": "v1"},
-            {**record, "publication_date": "2026-02-30"},
-        ]
-        for index in range(2):
-            for bad in bad_records:
-                with self.subTest(kind=families[index]["formalization"]["kind"], bad=bad):
-                    changed = json.loads(json.dumps(catalogue))
-                    changed["families"][index]["zenodo_record"] = bad
-                    path.write_text(json.dumps(changed))
-                    with self.assertRaisesRegex(ValueError, "Zenodo"):
-                        load_families(root)
 
 
 if __name__ == "__main__":

@@ -1,7 +1,5 @@
 # Diagonal concavity does not imply concavity for sums of elementary symmetric polynomials
 
-[Zenodo record](https://zenodo.org/records/23679302) · [DOI: 10.5281/zenodo.23679302](https://doi.org/10.5281/zenodo.23679302) · Version 1.0.0. Published 26 October 2026.
-
 The paper disproves Lachaume's Conjecture 1. It classifies concavity for a family in four variables. Concavity on the positive diagonal holds for more parameter values than concavity on the whole positive orthant. The positive orthant is the set of vectors with all coordinates positive. Its positive diagonal consists of vectors whose coordinates are equal.
 
 Read the [paper](paper.pdf), [LaTeX source](paper.tex), or [references](references.bib). Use [citation.bib](citation.bib) to cite the paper. The [Lean guide](../../lean/docs/diagonal-concavity.md) maps the results to formal declarations. The [verification guide](../../verification/diagonal-concavity/README.md) gives commands to reproduce the checks and states their limits.

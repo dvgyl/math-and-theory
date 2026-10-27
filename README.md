@@ -6,21 +6,9 @@ Eight papers have complete Lean proofs within their stated formal scopes. The th
 
 Start with the [manuscript catalogue](CONTENTS.md) or the [overview](overview.pdf). The [Lean guide](lean/README.md) explains the formal statements. The [verification guide](verification/README.md) gives the commands and recorded results. [AUTHORSHIP.md](AUTHORSHIP.md) identifies the human and AI contributions.
 
-## Zenodo preprints
+## Files and citations
 
-The table lists Zenodo identifiers for seven preprints. Each archival package accompanies a manuscript PDF. The Gyires link identifies version 1.1.0. The decision-tree and thermal links identify version 1.0.0. These three versions are dated 27 October 2026. The other links identify version 1.0.0, dated 26 October 2026.
-
-| Preprint | Zenodo record | DOI |
-|---|---|---|
-| [q-permanent](preprints/q-permanent/README.md) | [Record](https://zenodo.org/records/23679243) | [10.5281/zenodo.23679243](https://doi.org/10.5281/zenodo.23679243) |
-| [Gyires](preprints/gyires-circulant-five/README.md) | [Record](https://zenodo.org/records/23681833) | [10.5281/zenodo.23681833](https://doi.org/10.5281/zenodo.23681833) |
-| [Diagonal concavity](preprints/diagonal-concavity/README.md) | [Record](https://zenodo.org/records/23679302) | [10.5281/zenodo.23679302](https://doi.org/10.5281/zenodo.23679302) |
-| [Hofstadter iteration](preprints/hofstadter-iteration/README.md) | [Record](https://zenodo.org/records/23679312) | [10.5281/zenodo.23679312](https://doi.org/10.5281/zenodo.23679312) |
-| [Best-of-n](preprints/best-of-n/README.md) | [Record](https://zenodo.org/records/23679329) | [10.5281/zenodo.23679329](https://doi.org/10.5281/zenodo.23679329) |
-| [Decision-tree covariance](verification/additional-proofs/readk-covariance/README.md) | [Record](https://zenodo.org/records/23682990) | [10.5281/zenodo.23682990](https://doi.org/10.5281/zenodo.23682990) |
-| [Thermal current kurtosis](verification/additional-proofs/thermal-kurtosis-counterexample/README.md) | [Record](https://zenodo.org/records/23683013) | [10.5281/zenodo.23683013](https://doi.org/10.5281/zenodo.23683013) |
-
-Each revised archival package contains an explicit publication file list and a SHA-256 integrity record. Use each paper's `citation.bib` file, or a standalone package's `CITATION.bib`, to cite its version.
+Each preprint directory contains its manuscript, source files, and citation metadata. The [catalogue](CONTENTS.md) links to each result. The repository includes an explicit publication file list and a SHA-256 integrity record.
 
 ## Results
 

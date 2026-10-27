@@ -2,8 +2,6 @@
 
 Dev D. Goyal · [ORCID 0009-0009-9132-744X](https://orcid.org/0009-0009-9132-744X)
 
-[Zenodo preprint](https://zenodo.org/records/23682990) · [DOI: 10.5281/zenodo.23682990](https://doi.org/10.5281/zenodo.23682990)
-
 Manuscript and Lean 4 formalization, 27 October 2026. Read the complete proof in [the manuscript](docs/manuscript.pdf).
 
 ## Mathematical results
