@@ -17,12 +17,12 @@ from check_study_packages import PROFILES, check as check_study
 
 
 EXPECTED_MANIFESTS = {
-    "asymmetric-tutte": "09a6c9ed6fa2f2493a3a2e1cf2aa934161eca7304c52876b3c6e93edbd83df0b",
-    "galvin-zhang": "c2407910aa4f0ffc0bc30ceea866cda9e1dac868b8164f8e867c6c7a43a8626b",
-    "readk-covariance": "8019466af1988aaf2ae156c1508f5f322112f64dc582238f3a39b59219329fac",
-    "sharp-eighth": "3d935dc862701a7ca8e5ffee80850c5549fac4d2fa8dcd199cb6e65af08b5e90",
-    "thermal-kurtosis-counterexample": "daf9933eb92af39273ed404602c46e4e1cdc98660ce35490d3432cde11823a82",
-    "universal-embezzlement": "18f6c5cc2b36baad23c62c4d79767fa1c33c17e13de076448c995082a148a3a3"
+    "asymmetric-tutte": "5c545b1371de638003548420fb79a9666089574bf60f41a9377c89f55ccb41c0",
+    "galvin-zhang": "1e8e5c56f9ea7d8bbd14c4dadeeb93a9a346c351ebcb5a35e17b552b6a886276",
+    "readk-covariance": "bb6884906ec8d419883f0f733b284d4be52d68cc21cec7975c380d87ca5ac3da",
+    "sharp-eighth": "6c07072d22663bc2c1af2897e9f1623b6a3df42c9b4b9149d7f6021243354398",
+    "thermal-kurtosis-counterexample": "5501fe4e6dc9fb19912d804f389b7982ff0847ae6634914c23affa30b38f91b6",
+    "universal-embezzlement": "0ce4c3f693b2d98194802512dd0cac8715923bee6c24631ce6ea5e2d07302f66"
 }
 MATHLIB = "c44e0c8ee63ca166450922a373c7409c5d26b00b"
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}

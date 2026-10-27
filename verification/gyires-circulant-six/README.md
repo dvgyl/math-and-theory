@@ -1,5 +1,7 @@
 # Order-six circulant certificates
 
+I provide the formal sources and build instructions for the order-six circulant theorem here.
+
 These sources prove the stated permanent inequalities for every nonnegative real weight vector of length six. The matrix entry in row `i` and column `j` is `w (j - i)`, with indices modulo six.
 
 Install Lean through elan and use Python 3.11 or later. The verification script supports Linux and macOS. It uses the pinned Lean version in `lean-toolchain`.
@@ -29,3 +31,7 @@ To continue an interrupted run, use `python3 verify.py --resume`. The script che
 The final result is `.verification/result.json`. Success requires `complete: true` and a zero exit code. Per-module records and compiler output are in `.verification/logs/`.
 
 The source manifest has only relative paths. Its root is `SixTheoremChecks`. That module checks the matrix statements and reports the axioms of the main theorems. The expected axioms are `propext`, `Classical.choice`, and `Quot.sound`.
+
+## Research process and review
+
+The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.

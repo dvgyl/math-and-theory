@@ -114,20 +114,20 @@ automation:
   methods:
   - method: autonomous
     models:
-    - ChatGPT (OpenAI), using GPT-6 with Pro reasoning
+    - ChatGPT (OpenAI), using GPT 6 with Pro Reasoning
     framework: ChatGPT
-    tool_setup: Mathematical arguments and Lean formalization.
+    tool_setup: Autonomous initial research and proofs.
   - method: agent
     models:
-    - Codex, using GPT-6
+    - Codex, using GPT 6 Astra
     framework: Codex
-    tool_setup: Formalization, computation, and editing.
+    tool_setup: Autonomous formalization and corrections.
   - method: agent
     models:
     - Claude Opus 5.5
     framework: Claude Code
     tool_setup: Order-five Gyires formalization.
-  notes: Dev D. Goyal directed the research and is responsible for publication.
+  notes: The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication.
 fidelity:
   divergences: DomiRank uses natural logarithms in its quantified gap; the formal development
     proves the base-two entropy implication. Motzkin uses the source recurrence and proves

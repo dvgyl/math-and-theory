@@ -1,6 +1,6 @@
 # Verify the diagonal-concavity family
 
-The principal result is a complete analytic classification for the parameter `M>0`. The independent program checks the exact algebra and one strict midpoint violation. The [Lean guide](../../lean/docs/diagonal-concavity.md) maps the analytic claims to their proofs.
+I provide checks for the complete analytic classification with parameter `M>0`. The independent program checks the exact algebra and one strict midpoint violation. The [Lean guide](../../lean/docs/diagonal-concavity.md) maps the analytic claims to their proofs.
 
 ## Reproduce the computation
 
@@ -51,3 +51,7 @@ See the [central verification record](../README.md) for the recorded Comparator 
 The exact program checks the algebraic identities and finite midpoint certificate. It does not, by itself, prove a statement about every point of an open domain. The Lean development supplies the derivative, positivity, and concavity arguments for that universal conclusion.
 
 The result concerns the stated one-parameter family in four variables. It does not classify arbitrary coefficients or higher dimensions. Verification does not establish historical priority or expert peer review. This paper has not been peer reviewed.
+
+## Research process and review
+
+The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.

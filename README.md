@@ -1,18 +1,18 @@
 # Math and Theory
 
-This collection contains thirteen preprints from fully autonomous agentic research in mathematics, theoretical computer science, and mathematical physics. Dev D. Goyal is responsible for publication.
+I publish thirteen preprints from fully autonomous agentic research in mathematics, theoretical computer science, and mathematical physics. AI agents generated the research, proofs, computations, and manuscripts. I am responsible for publication.
 
-Twelve papers have complete Lean proofs within their stated formal scopes. The thermal proof covers finite spectral statements. It does not formalize the theorem that identifies them with long-time stochastic cumulants. The Gyires preprint proves inequalities for several structured matrix classes and develops related polynomial bounds. Its order-five and order-six results, all-order permutation-polynomial theorem, all-order four-block theorem, and exceptional-vector theorem have Lean proofs. Lean formalization of the order-seven and finite rank-two results is incomplete. The collection does not claim a general solution when a proof covers only a special case.
+Twelve papers have complete Lean proofs within their stated formal scopes. The thermal proof covers finite spectral statements. It does not formalize the theorem that identifies them with long-time stochastic cumulants. The Gyires preprint proves inequalities for several structured matrix classes and develops related polynomial bounds. Its order-five and order-six results, all-order permutation-polynomial theorem, all-order four-block theorem, and exceptional-vector theorem have Lean proofs. Lean formalization of the order-seven and finite rank-two results is incomplete. I do not claim a general solution when a proof covers only a special case.
 
 Start with the [manuscript catalogue](CONTENTS.md) or the [overview](overview.pdf). The [Lean guide](lean/README.md) explains the formal statements. The [verification guide](verification/README.md) gives the commands and recorded results. [AUTHORSHIP.md](AUTHORSHIP.md) identifies the autonomous research process.
 
 ## Files and citations
 
-Each preprint directory contains its manuscript, source files, and citation metadata. The [catalogue](CONTENTS.md) links to each result. The repository includes an explicit publication file list and a SHA-256 integrity record.
+I include the manuscript, source files, and citation metadata for each preprint. The [catalogue](CONTENTS.md) links to each result. I include an explicit publication file list and a SHA-256 integrity record.
 
 ## Results
 
-The catalogue groups related results by subject. The mathematics papers concern matrix inequalities, concavity, and integer sequences. The theoretical computer science papers concern sampling and Boolean decision trees. The mathematical physics paper gives a thermal spectral counterexample.
+I group related results by subject in the catalogue. The mathematics papers concern matrix inequalities, concavity, and integer sequences. The theoretical computer science papers concern sampling and Boolean decision trees. The mathematical physics papers cover a thermal spectral counterexample and universal entanglement embezzlement.
 
 | Result family | Established result |
 |---|---|
@@ -52,8 +52,12 @@ The automatic workflow checks source integrity and all thirteen manuscripts on p
 
 ## Authorship and use
 
-The [authorship disclosure](AUTHORSHIP.md) states autonomous AI research. These preprints have not been peer reviewed.
+I describe the fully autonomous agentic research process in [AUTHORSHIP.md](AUTHORSHIP.md). These preprints have not been peer reviewed.
 
 Cite an individual paper with its `citation.bib` file, or `CITATION.bib` for a standalone package. For the repository, use [CITATION.cff](CITATION.cff) or [CITATION.bib](CITATION.bib). The catalogue links each manuscript to its source, citation metadata, and verification instructions. The root [Apache-2.0 license](LICENSE) applies except where [NOTICE](NOTICE) identifies third-party material.
 
 For a later result family, follow [the contribution procedure](lean/docs/adding-a-family.md). Each addition must satisfy the same mathematical, source-fidelity, prior-work, formalization, and reproducibility requirements.
+
+## Research process and review
+
+The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.

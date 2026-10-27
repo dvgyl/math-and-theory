@@ -1,6 +1,6 @@
 # Data for finite computational observations
 
-These 70 JSON files accompany the manuscript appendix “Finite computational observations.” That appendix defines the quantities, methods, finite ranges, values, and limits.
+I include these 70 JSON files with the manuscript appendix “Finite computational observations.” That appendix defines the quantities, methods, finite ranges, values, and limits.
 
 Sixty-nine files contain computational output. One file contains numerical profile values extracted from a text record. These are stored finite observations. They do not establish the unrestricted Gyires inequality.
 
@@ -99,3 +99,7 @@ c++ -std=c++17 -O2 sparse_regular_sampler.cpp -o sampler
 The arguments are order, degree, and sample count. The permitted order is 1–22. The degree must be between one and the order. The sample count must be positive. Invalid arguments, incomplete sampling, invalid numerical results, and output failures return a nonzero exit code. A rejection limit prevents an unlimited search for the next disjoint permutation.
 
 Each output line gives the order, degree, sample index, two permanents, and ratio. A ratio below one also prints its matrix and returns exit code 1 after all requested samples. This is a numerical candidate for exact checking. It is not a certified counterexample. Exit code 2 indicates invalid input or an incomplete calculation. Exit code 0 means only that the requested finite samples completed without a ratio below one. The program writes its completion count to standard error. Different standard-library implementations can produce different permutations from the same seed.
+
+## Research process and review
+
+The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.

@@ -1,6 +1,6 @@
 # Verification of alternating Motzkin sums
 
-This family combines an infinite Lean proof with independent finite arithmetic checks. See the [paper](../../preprints/alternating-motzkin/paper.pdf) and [declaration map](../../lean/docs/alternating-motzkin.md). A finite check cannot establish the infinite theorem.
+I include an infinite Lean proof and separate finite arithmetic checks for this family. See the [paper](../../preprints/alternating-motzkin/paper.pdf) and [declaration map](../../lean/docs/alternating-motzkin.md). A finite check cannot establish the infinite theorem.
 
 Run the independent check from the repository root with Python 3:
 
@@ -68,4 +68,8 @@ tectonic preprints/alternating-motzkin/paper.tex
 
 Inspect the resulting PDF after compilation. Compilation alone does not check page layout, mathematical correctness, or bibliographic accuracy.
 
-The [preprint guide](../../preprints/alternating-motzkin/README.md) gives the related results and source comparisons. No priority claim is made.
+The [preprint guide](../../preprints/alternating-motzkin/README.md) gives the related results and source comparisons. I make no priority claim.
+
+## Research process and review
+
+The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.

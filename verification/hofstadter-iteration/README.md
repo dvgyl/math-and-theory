@@ -1,5 +1,7 @@
 # Verify the Hofstadter iteration family
 
+I provide exact finite checks and the universal Lean proof here.
+
 The independent program uses exact integers to compute the recursive functions. The Lean proof establishes the uniform result for every `k≥4`. Read the [paper](../../preprints/hofstadter-iteration/paper.pdf) and [theorem map](../../lean/docs/hofstadter-iteration.md) for the precise statements.
 
 ## Reproduce the computation
@@ -52,3 +54,7 @@ Comparator replay for this selected statement has passed through Lean, NanoDa, a
 The infinite family varies `k`. The theorem does not claim infinitely many violating inputs for each fixed `k`. The finite incomparability result concerns the particular functions `F_4^9` and `F_5^10`. No classification of all iteration indices is claimed.
 
 The [prior-work record](../../preprints/hofstadter-iteration/README.md) explains the source comparison and the limits of the search. This paper has not been peer reviewed.
+
+## Research process and review
+
+The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.

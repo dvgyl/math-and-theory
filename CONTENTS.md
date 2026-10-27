@@ -174,3 +174,7 @@ The theorem characterizes all nonnegative pairs (x,y) for which T_M(x,0) T_M(0,y
 **Prior work.** [Liu, 2026; Chen and Xie, 2026. The manuscript states the relation to the diagonal theorem.](https://github.com/michaeliu4/tutte-threshold)
 
 [Paper PDF](verification/additional-proofs/asymmetric-tutte/manuscript.pdf) · [LaTeX](verification/additional-proofs/asymmetric-tutte/manuscript.tex) · [Citation](verification/additional-proofs/asymmetric-tutte/CITATION.bib) · [Reproduction](verification/additional-proofs/asymmetric-tutte/README.md)
+
+## Research process and review
+
+The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. See [AUTHORSHIP.md](AUTHORSHIP.md).

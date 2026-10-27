@@ -1,6 +1,6 @@
 # Verify the best-of-n family
 
-This guide separates exact finite computations from the universal Lean proof. Read the [paper](../../preprints/best-of-n/paper.pdf) and [theorem map](../../lean/docs/best-of-n.md) for the claims and their formal statements.
+I explain the exact finite computations and the universal Lean proof separately in this guide. Read the [paper](../../preprints/best-of-n/paper.pdf) and [theorem map](../../lean/docs/best-of-n.md) for the claims and their formal statements.
 
 ## Reproduce the computations
 
@@ -57,3 +57,7 @@ The [Comparator configuration](../../lean/comparator/best-of-n.json) selects bot
 ## Limits
 
 The finite programs test the cases stated above. The Lean theorem proves the universal claim for every `n≥2` and `δ>0`. Neither a finite computation nor a successful kernel check establishes historical priority, a sharp replacement curve, or expert peer review. This paper has not been peer reviewed.
+
+## Research process and review
+
+The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.

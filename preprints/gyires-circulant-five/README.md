@@ -1,6 +1,6 @@
 # Gyires's permanent inequality for structured matrices
 
-This preprint proves Gyires's permanent inequality for several structured matrix classes. It also develops scalar and polynomial inequalities that support further extensions.
+I present proofs of Gyires's permanent inequality for several structured matrix classes. I also include scalar and polynomial inequalities that support further extensions.
 
 | Result | Scope | Verification status |
 |---|---|---|
@@ -15,7 +15,7 @@ This preprint proves Gyires's permanent inequality for several structured matrix
 
 The principal order-seven and finite rank-two theorems remain incomplete in Lean. Separate Lean packages prove the principal order-six and all-order permutation-polynomial theorems. The paper states which inequalities remain unproved after each reduction. Exact counterexamples identify failed auxiliary assertions. The [source map](../../research-notes/gyires-complete-support/source-map.md) records inclusion and subsumption.
 
-The manuscript includes the full arguments, boundary cases, equality statements where proved, exact certificate recurrences, and the order-five, order-six, permutation-polynomial, four-block, and exceptional-vector Lean correspondences. It does not prove the unrestricted Gyires conjecture. It makes no novelty or first-priority claim.
+The manuscript includes the full arguments, boundary cases, equality statements where proved, exact certificate recurrences, and the order-five, order-six, permutation-polynomial, four-block, and exceptional-vector Lean correspondences. It does not prove the unrestricted Gyires conjecture. I make no novelty or first-priority claim.
 
 - [Compiled preprint](paper.pdf).
 - [Manuscript source](paper.tex) and [references](references.bib).
@@ -29,3 +29,7 @@ The manuscript includes the full arguments, boundary cases, equality statements 
 The [authorship disclosure](../../AUTHORSHIP.md) states autonomous AI research. This preprint has not been peer reviewed.
 
 Rebuild the preprint with `tectonic paper.tex`. The bibliography is a separate BibTeX file.
+
+## Research process and review
+
+The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.

@@ -12,3 +12,7 @@ These items are not claimed as completed Lean results in this release.
 The Gyires manuscript includes the written arguments and identifies their formal verification limits. Complete Lean proofs are available for its principal order-five and order-six claims, all-order permutation polynomials, all-order four-block matrices, and the exceptional-vector theorem.
 
 The unrestricted Gyires conjecture and the all-order rank-two problem remain outside these results. The thermal package proves finite spectral statements. It does not formalize the stochastic long-time identification theorem.
+
+## Research process and review
+
+The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. See [AUTHORSHIP.md](AUTHORSHIP.md).

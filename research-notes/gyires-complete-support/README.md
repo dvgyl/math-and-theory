@@ -1,6 +1,6 @@
 # Supporting records for the complete Gyires preprint
 
-The [Gyires preprint](../../preprints/gyires-circulant-five/paper.pdf) proves inequalities for structured matrices and related polynomial bounds. Its principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean proofs. The other principal matrix claims have ordinary proofs and specified exact certificates. The principal order-seven and finite rank-two results remain incomplete in Lean. No novelty, independent human expert review, or peer review is claimed.
+I collect the supporting arguments and certificates for the [Gyires preprint](../../preprints/gyires-circulant-five/paper.pdf) here. They cover structured matrix inequalities and related polynomial bounds. Its principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean proofs. The other principal matrix claims have ordinary proofs and specified exact certificates. The principal order-seven and finite rank-two results remain incomplete in Lean. I make no claim of novelty, independent human expert review, or peer review.
 
 The [result map](source-map.md) lists the completed results, exact limitations, and unresolved claims. The [file record](provenance.json) lists the programs and mathematical reports. The collection integrity manifest gives their SHA-256 hashes. A completed reduction does not establish an unresolved target inequality.
 
@@ -82,3 +82,7 @@ python3 -m unittest discover -s verification -p 'test_certificate*.py'
 ```
 
 The first command checks the exact finite ranges used in the paper. The tests check failure handling with invalid inputs, corrupt coefficients, missing chambers, and partial reports. A `running` or `sampled` rank-two report is not a completed certificate. These checks do not provide Lean proofs of the matrix reductions.
+
+## Research process and review
+
+The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.
