@@ -22,7 +22,7 @@
 
 \begin{abstract}
 
-The catalogue contains seven result families and seven preprints in mathematics and theoretical computer science. Six preprints have complete Lean proofs of their principal claims. The Gyires preprint proves inequalities for structured matrices and develops related polynomial bounds. Its principal order-five claims and the all-order four-block theorem have complete Lean proofs. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. The papers have not been peer reviewed.
+The catalogue contains seven result families and seven preprints in mathematics and theoretical computer science. Six preprints have complete Lean proofs of their principal claims. The Gyires preprint proves inequalities for structured matrices and develops related polynomial bounds. Its principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have complete Lean proofs. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. The papers have not been peer reviewed.
 
 \end{abstract}
 
@@ -30,7 +30,7 @@ The catalogue contains seven result families and seven preprints in mathematics 
 
 \section{How to use the collection}
 
-The \href{https://github.com/dvgyl/math-and-theory/blob/main/CONTENTS.md}{manuscript catalogue} links each paper to its formal statements and independent computations. The \href{https://github.com/dvgyl/math-and-theory/blob/main/verification/README.md}{verification guide} records the commands and their results. The formal library uses one Lake project, pinned to Lean 4.35.0 and an exact Mathlib revision. The 25 selected formal statements include equality, sharpness, and auxiliary positivity claims within these seven papers.
+The \href{https://github.com/dvgyl/math-and-theory/blob/main/CONTENTS.md}{manuscript catalogue} links each paper to its formal statements and independent computations. The \href{https://github.com/dvgyl/math-and-theory/blob/main/verification/README.md}{verification guide} records the commands and their results. The formal library uses one Lake project, pinned to Lean 4.35.0 and an exact Mathlib revision. The 29 selected formal statements include equality, sharpness, and auxiliary positivity claims within these seven papers.
 
 \section{Mathematics}
 
@@ -52,7 +52,7 @@ Every nonnegative real circulant matrix $A$ of order five satisfies $24\operator
 
 \par\smallskip
 
-\noindent\textbf{Scope:} Structured matrix inequalities and related polynomial bounds. The principal order-five claims and the all-order four-block theorem have Lean proofs.
+\noindent\textbf{Scope:} Structured matrix inequalities and related polynomial bounds. The principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have Lean proofs.
 
 \par\smallskip
 
@@ -64,7 +64,7 @@ The manuscript also proves results for circulants of orders six and seven, with 
 
 The supporting sections prove structural, scalar, deletion, balancing, local polynomial, and configuration-model results. Exact counterexamples identify the limits of auxiliary assertions. The \href{https://github.com/dvgyl/math-and-theory/blob/main/research-notes/gyires-complete-support/README.md}{complete support record} gives the source map and exact reproduction commands.
 
-The all-order four-block theorem has a complete Lean proof. Its contractions, margin, inequality, and equality case are among the 25 selected formal statements. The principal higher-order circulant, permutation-polynomial, exceptional-vector, and finite rank-two theorems remain incomplete in Lean. The all-order rank-two problem and the unrestricted Gyires conjecture remain unproved here.
+The all-order four-block and exceptional-vector theorems have complete Lean proofs. Their inequalities and equality cases are among the 29 selected formal statements. The principal higher-order circulant, permutation-polynomial, and finite rank-two theorems remain incomplete in Lean. The all-order rank-two problem and the unrestricted Gyires conjecture remain unproved here.
 
 \subsection{An entropy increase for a structurally disassortative DomiRank graph}
 

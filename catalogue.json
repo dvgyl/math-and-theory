@@ -33,8 +33,8 @@
       "discipline": "Mathematics",
       "area": "Matrix theory",
       "title": "Gyires's permanent inequality for structured matrices",
-      "kind": "Structured matrix inequalities and related polynomial bounds; order-five and four-block claims verified in Lean",
-      "summary": "The preprint includes nonnegative circulants of orders five, six, and seven; all-order permutation polynomials aI+bQ+cQ²; all-order four-block matrices; one exceptional column or row; and all rank-at-most-two doubly stochastic matrices through order fifteen. It also proves structural, scalar, polynomial, deletion, balancing, local, and counting results. Exact counterexamples identify failed auxiliary assertions. The principal order-five claims and the all-order four-block theorem have complete Lean proofs. General permanent comparisons and direct-sum closure also have Lean proofs. The principal higher-order circulant, permutation-polynomial, exceptional-vector, and finite rank-two results remain incomplete in Lean. The unrestricted conjecture remains outside these results.",
+      "kind": "Structured matrix inequalities and related polynomial bounds; order-five, four-block, and exceptional-vector claims verified in Lean",
+      "summary": "The preprint includes nonnegative circulants of orders five, six, and seven; all-order permutation polynomials aI+bQ+cQ²; all-order four-block matrices; one exceptional column or row; and all rank-at-most-two doubly stochastic matrices through order fifteen. It also proves structural, scalar, polynomial, deletion, balancing, local, and counting results. Exact counterexamples identify failed auxiliary assertions. The principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have complete Lean proofs. General permanent comparisons and direct-sum closure also have Lean proofs. The principal higher-order circulant, permutation-polynomial, and finite rank-two results remain incomplete in Lean. The unrestricted conjecture remains outside these results.",
       "source": "Gyires, 1978; Cheon and Wanless, 2005, Conjecture 20. Earlier formalization at the pinned Gyires repository.",
       "source_url": "https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448",
       "module": "MathAndTheory.Mathematics.GyiresCirculant5.Main",
@@ -54,10 +54,14 @@
         "MathAndTheory.GyiresFourBlock.contractions",
         "MathAndTheory.GyiresFourBlock.margin",
         "MathAndTheory.GyiresFourBlock.gyires",
-        "MathAndTheory.GyiresFourBlock.gyires_eq_iff"
+        "MathAndTheory.GyiresFourBlock.gyires_eq_iff",
+        "MathAndTheory.GyiresExceptional.strong",
+        "MathAndTheory.GyiresExceptional.gram_eq_iff",
+        "MathAndTheory.GyiresExceptional.gyires",
+        "MathAndTheory.GyiresExceptional.gyires_eq_iff"
       ],
       "paper": "preprints/gyires-circulant-five/paper.pdf",
-      "formal_scope": "The selected Comparator statements cover order-five circulants and the all-order four-block theorem. General permanent comparisons and direct-sum closure are also proved in Lean. The principal higher-order circulant, permutation-polynomial, exceptional-vector, and finite rank-two theorems remain incomplete in Lean.",
+      "formal_scope": "The selected Comparator statements cover order-five circulants, the all-order four-block theorem, and the exceptional-vector theorem for n ≥ 2. General permanent comparisons and direct-sum closure are also proved in Lean. The principal higher-order circulant, permutation-polynomial, and finite rank-two theorems remain incomplete in Lean.",
       "zenodo_record": {
         "doi": "10.5281/zenodo.23679286",
         "url": "https://zenodo.org/records/23679286",

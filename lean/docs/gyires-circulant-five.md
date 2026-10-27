@@ -1,4 +1,4 @@
-# Formal proofs of the order-five and four-block Gyires results
+# Formal proofs of the order-five, four-block, and exceptional-vector Gyires results
 
 The order-five library root is `MathAndTheory.Mathematics.GyiresCirculant5.Main`. Its mathematical declarations use the namespace `MathAndTheory.GyiresCirculant5`. The development uses Lean 4.35.0 and Mathlib commit `56a005855ea17e0b0958f73ec801ae140b0a1679`.
 
@@ -40,11 +40,28 @@ The theorem proves `per(AAᵀ) ≤ per(A)`, `per(AᵀA) ≤ per(A)`, and `per(A�
 | Gyires's inequality | `gyires` |
 | Equality exactly at the uniform matrix | `gyires_eq_iff` |
 
-The independent specifications are in `Challenges/GyiresCirculant5.lean`. The matching proofs are in `Solutions/GyiresFourBlock.lean`. The existing family Comparator configuration selects these four declarations and the ten order-five declarations. Only the Challenge specifications contain proof placeholders.
+The independent specifications are in `Challenges/GyiresCirculant5.lean`. The matching proofs are in `Solutions/GyiresFourBlock.lean`. The family Comparator configuration selects these four declarations, ten order-five declarations, and four exceptional-vector declarations. Only the Challenge specifications contain proof placeholders.
 
 The supporting declarations use the namespace `MathAndTheory.Gyires.Bernoulli`. `BernoulliMaximizer` proves the fixed-mean maximizer and adjacent probability bounds. `BernoulliLikelihood` proves the central likelihood bound, the squared likelihood norm bound, and the equality case of the central lower bound. `TwoColumnContraction` connects the probabilities to actual matrix permanents by a permutation average. This proof route does not require a formal proof of each intermediate coefficient identity in the manuscript.
 
 The four-block theorem does not prove the general rank-two theorem. Equality in one contraction does not force a uniform matrix. Deterministic probability laws can attain the scalar norm bound.
+
+## One exceptional column or row
+
+The library root is `MathAndTheory.Mathematics.Gyires.ExceptionalVector`. The matrix has order n ≥ 2 and is doubly stochastic. All columns except one are identical, or all rows except one are identical. The exceptional vector can have any number of distinct entries. Zero entries are permitted.
+
+The theorem proves both bounds `(n! / n^n) per(AAᵀ) ≤ per(A)²` and `(n! / n^n) per(AᵀA) ≤ per(A)²`. Equality in either bound holds exactly at the uniform matrix. It also proves Gyires's inequality for the original matrix product `A²`, with equality exactly at the uniform matrix.
+
+| Statement | Declaration in `MathAndTheory.GyiresExceptional` |
+|---|---|
+| Both strong Gram bounds | `strong` |
+| Equality in each Gram bound | `gram_eq_iff` |
+| Gyires's inequality | `gyires` |
+| Equality exactly at the uniform matrix | `gyires_eq_iff` |
+
+The independent specifications are in `Challenges/GyiresCirculant5.lean`. The proofs are in `Solutions/GyiresExceptional.lean`. The scalar proof separates two ranges of the second moment of the Bernoulli parameters. It proves the lower bound for the one-success probability in both ranges, including deterministic parameters. Exact coefficient identities connect that probability to the actual matrix permanents.
+
+`ExceptionalBoundaryChecks` includes a matrix with three distinct rows, zero entries, both variance ranges, a deterministic parameter vector, transposition, and arbitrary order-two matrices. Orders zero and one are covered separately by the four-block theorem. This result does not prove the general rank-two theorem.
 
 ## General supporting results
 
@@ -57,4 +74,4 @@ The modules in `MathAndTheory.Mathematics.Gyires` contain additional results for
 
 - `CirculantCertificate` proves an exact reduction from nonnegative integer polynomial coefficients to the strong and combined Gyires bounds for circulants. It proves complete sorted-gap representation, matrix evaluation, normality, and affine invariance. Its coefficient-sign hypotheses remain unproved for the higher-order families.
 
-These results support the broader manuscript arguments. The principal higher-order circulant, permutation-polynomial, exceptional-vector, and finite rank-two theorems remain incomplete in Lean.
+These results support the broader manuscript arguments. The principal higher-order circulant, permutation-polynomial, and finite rank-two theorems remain incomplete in Lean.

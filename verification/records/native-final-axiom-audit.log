@@ -73,6 +73,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_3_3._proof_1","type":"(498672999 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.QPermanent.exists_posDef_counterexample","type":"∃ A, A.PosDef ∧ qPermanent A 15 < qPermanent A 14"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_0_2._proof_8","type":"(75333959 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.inverse_power_quadratic","type":"∀ (k : ℕ) (x : ℝ), 0 ≤ x → x < 1 → 1 + ↑k * x + ↑k * (↑k + 1) / 2 * x ^ 2 ≤ 1 / (1 - x) ^ k"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift1_0._proof_22","type":"(199 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Motzkin.H_b_identity","type":"∀ {z : ℝ},\n  0 ≤ z →\n    MathAndTheory.Motzkin.H z (MathAndTheory.Motzkin.b z) =\n      -(3 * (4 * z ^ 2 - 13 * z - 53)) / (4 * (z + 1) * (z + 4) * (z + 5) * (2 * z + 5))"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.polyPow.eq_def","type":"∀ (p : List ℝ) (x : ℕ),\n  MathAndTheory.GyiresCirculant5.polyPow p x =\n    match x with\n    | 0 => [1]\n    | n.succ => MathAndTheory.GyiresCirculant5.polyMul p (MathAndTheory.GyiresCirculant5.polyPow p n)"}
@@ -99,8 +100,10 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_8_2_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly3 c d e 8) 2 =\n    MathAndTheory.GyiresCirculant5.strong3_part_8_2 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_6_1._proof_6","type":"(79469999 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.QPermanent.corePerm16_inversions","type":"inversionCount corePerm16 = 4"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Bernoulli.rowMass.eq_1","type":"∀ {ι : Type u_1} [inst : Fintype ι] (A : Matrix ι ι ℝ) (c : ι → Bool) (i : ι),\n  Bernoulli.rowMass A c i = ∑ j with c j = true, A i j"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_3._proof_2","type":"(292945899 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_3_0._proof_20","type":"(8579679 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.scalar_probability_bounds","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι],\n  ∀ u ∈ Set.Icc 0 1,\n    ∑ i, u i = 1 →\n      ∀ (k : ℕ),\n        Fintype.card ι = k + 2 →\n          Exceptional.scalarR k (Exceptional.secondMoment u) ≤ Exceptional.oneSuccess u ^ 2 ∧\n            (1 / (↑k + 2) < Exceptional.secondMoment u →\n              Exceptional.scalarR k (Exceptional.secondMoment u) < Exceptional.oneSuccess u ^ 2)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_0._proof_21","type":"(2997389 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_2_2._proof_4","type":"(880378874 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_2_0._proof_15","type":"(11043949 + 1).AtLeastTwo"}
@@ -222,6 +225,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_4_3._proof_7","type":"(260008399 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_0_1._proof_51","type":"(820899 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_6_0._proof_8","type":"(82859999 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.probe_permanent_zero","type":"(ExceptionalExamples.probe 0).permanent = 5 / 18"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.basePoly2.eq_1","type":"∀ (c d e : ℝ), MathAndTheory.GyiresCirculant5.basePoly2 c d e = ![[0], [0, 1], [c + d, 1], [c, 1], [c + d + e, 1]]"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.DomiRank.rightProbability._proof_4","type":"(107123382 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_4_0._proof_16","type":"(39300219 + 1).AtLeastTwo"}
@@ -524,6 +528,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_2_5._proof_3","type":"(319755269 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_0_1._proof_16","type":"(14156549 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_2._proof_24","type":"(59071814 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.probe.eq_1","type":"∀ (t : ℝ), ExceptionalExamples.probe t = Exceptional.exceptionalMatrix (ExceptionalExamples.parameter t) 0"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_4_3._proof_4","type":"(879475899 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_1_2._proof_2","type":"(130753279 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_6_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly2 c d e 0) 6 =\n    MathAndTheory.GyiresCirculant5.strong2_part_0_6 c d e"}
@@ -644,6 +649,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_5_0._proof_7","type":"(204235199 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong2_coeff_8_length","type":"∀ (c d e : ℝ), (MathAndTheory.GyiresCirculant5.chamberPoly2 c d e 8).length ≤ 3"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift0_0._proof_31","type":"(169 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_has_column_classes","type":"∀ {ι : Type u_1} [inst : DecidableEq ι] (A : Matrix ι ι ℝ) (e : ι),\n  Exceptional.HasExceptionalColumn A e → Bernoulli.HasColumnClasses A fun j => decide (j = e)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_2_0._proof_5","type":"(41523149 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_3_2._proof_5","type":"(1349955839 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.circ_column_sum","type":"∀ (w : Fin 5 → ℝ), ∑ i, w i = 1 → ∀ (j : Fin 5), ∑ i, MathAndTheory.GyiresCirculant5.circ w i j = 1"}
@@ -711,6 +717,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.strong_gram_blockDiagonal","type":"∀ {ι : Type u_1} {κ : ι → Type u_2} [inst : Fintype ι] [inst_1 : DecidableEq ι] [inst_2 : (i : ι) → Fintype (κ i)]\n  [inst_3 : (i : ι) → DecidableEq (κ i)] (A : (i : ι) → Matrix (κ i) (κ i) ℝ),\n  (∀ (i : ι), 0 < Fintype.card (κ i)) →\n    (∀ (i : ι), dimensionConstant (Fintype.card (κ i)) * (A i * (A i).transpose).permanent ≤ (A i).permanent ^ 2) →\n      dimensionConstant (Fintype.card (Sigma κ)) *\n          (Matrix.blockDiagonal' A * (Matrix.blockDiagonal' A).transpose).permanent ≤\n        (Matrix.blockDiagonal' A).permanent ^ 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.listInterpret.eq_def","type":"∀ {n : ℕ} (x : MathAndTheory.GyiresCirculant5.PolyExpr n) (x_1 : Fin n → List ℝ),\n  MathAndTheory.GyiresCirculant5.listInterpret x x_1 =\n    match x, x_1 with\n    | MathAndTheory.GyiresCirculant5.PolyExpr.const c, x => [c]\n    | MathAndTheory.GyiresCirculant5.PolyExpr.var i, w => w i\n    | p.add q, w =>\n      MathAndTheory.GyiresCirculant5.polyAdd (MathAndTheory.GyiresCirculant5.listInterpret p w)\n        (MathAndTheory.GyiresCirculant5.listInterpret q w)\n    | p.mul q, w =>\n      MathAndTheory.GyiresCirculant5.polyMul (MathAndTheory.GyiresCirculant5.listInterpret p w)\n        (MathAndTheory.GyiresCirculant5.listInterpret q w)\n    | MathAndTheory.GyiresCirculant5.PolyExpr.scale c p, w =>\n      MathAndTheory.GyiresCirculant5.polyScale c (MathAndTheory.GyiresCirculant5.listInterpret p w)\n    | p.pow k, w => MathAndTheory.GyiresCirculant5.polyPow (MathAndTheory.GyiresCirculant5.listInterpret p w) k"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_4_0._proof_21","type":"(5969159 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.oneSuccess.eq_1","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (u : ι → ℝ),\n  Exceptional.oneSuccess u = ∑ i, u i * ∏ j ∈ Finset.univ.erase i, (1 - u j)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_2_4._proof_11","type":"(123804889 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_3_4._proof_7","type":"(244844399 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_0_2._proof_7","type":"(60623609 + 1).AtLeastTwo"}
@@ -883,8 +890,10 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift1_2._proof_5","type":"(1109 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.QPermanent.corePerm02_crossings","type":"leftToRightCount corePerm02 + rightToLeftCount corePerm02 = 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.DomiRank.A.eq_1","type":"∀ (i j : Fin 14), MathAndTheory.DomiRank.A i j = ↑(MathAndTheory.DomiRank.adjData i j)"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.deterministic_doublyStochastic","type":"ExceptionalExamples.deterministic ∈ doublyStochastic ℝ (Fin 3)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_2_2._proof_5","type":"(956391529 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_5._proof_7","type":"(215922159 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.probe_doublyStochastic","type":"∀ t ∈ Set.Icc 0 (2 / 3), ExceptionalExamples.probe t ∈ doublyStochastic ℝ (Fin 3)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_2_1._proof_8","type":"(677471549 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_3_4_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly4 c d e 3) 4 =\n    MathAndTheory.GyiresCirculant5.strong4_part_3_4 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift5_0._proof_8","type":"(9 + 1).AtLeastTwo"}
@@ -1024,6 +1033,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_4_0._proof_19","type":"(102139999 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.normalized_equality_weights","type":"∀ (w : Fin 5 → ℝ), ∑ i, w i = 1 → ((∃ c, ∀ (i : Fin 5), w i = c) ↔ ∀ (i : Fin 5), w i = 1 / 5)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_1_1._proof_41","type":"(8529919 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.probe_exceptional","type":"∀ (t : ℝ), Exceptional.HasExceptionalColumn (ExceptionalExamples.probe t) 0"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_2_2._proof_12","type":"(1214458229 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_3_3._proof_10","type":"(234290959 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift5_3._proof_6","type":"(389 + 1).AtLeastTwo"}
@@ -1084,6 +1094,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Bernoulli.column_class_bounds","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (A : Matrix ι ι ℝ) (c : ι → Bool),\n  A ∈ doublyStochastic ℝ ι →\n    Bernoulli.HasColumnClasses A c →\n      (A * A.transpose).permanent ≤ A.permanent ∧\n        dimensionConstant (Fintype.card ι) ≤ A.permanent ∧\n          (A.permanent = dimensionConstant (Fintype.card ι) ↔ A = Bernoulli.uniformMatrix)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_3_0._proof_14","type":"(109543039 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_0_1._proof_40","type":"(4779059 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.convex_entropy_remainder","type":"ConvexOn ℝ (Set.Ioc 0 1) fun x => x * Real.log x - x ^ 2 / 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.BestOfNExtension.every_budget_small_atoms","type":"∀ (n : ℕ),\n  2 ≤ n →\n    ∀ (δ : ℝ),\n      0 < δ →\n        ∃ k p,\n          (∀ (i : Fin k), 0 < p i ∧ p i ≤ δ) ∧\n            ∑ i, p i = 1 ∧\n              MathAndTheory.BestOfN.winRate (MathAndTheory.BestOfN.bestOfN n p) p ∈ Set.Ico (1 / 2) 1 ∧\n                MathAndTheory.BestOfN.kl (MathAndTheory.BestOfN.bestOfN n p) p <\n                  MathAndTheory.BestOfN.ell (MathAndTheory.BestOfN.winRate (MathAndTheory.BestOfN.bestOfN n p) p)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_3_0._proof_9","type":"(33388719 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_5._proof_2","type":"(69464619 + 1).AtLeastTwo"}
@@ -1155,6 +1166,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_4_3._proof_7","type":"(260008399 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.PermanentGram.bform.eq_1","type":"∀ {n : Type u_1} [inst : Fintype n] [inst_1 : DecidableEq n] (a b : (n → n) → ℝ),\n  MathAndTheory.GyiresCirculant5.PermanentGram.bform a b = ∑ σ, ∑ φ, a (φ ∘ ⇑(Equiv.symm σ)) * b φ"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_1._proof_3","type":"(18676859 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.scalarKernel_pos","type":"∀ (k : ℕ) (a : ℝ), 0 < Exceptional.scalarKernel k a"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_0._proof_23","type":"(18436599 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_5_0._proof_15","type":"(12897599 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_0._proof_25","type":"(3347479 + 1).AtLeastTwo"}
@@ -1249,6 +1261,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_5._proof_3","type":"(33051889 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_5._proof_12","type":"(88794879 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_6_0._proof_11","type":"(25604999 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.uniform_equality","type":"dimensionConstant 3 *\n    ((ExceptionalExamples.probe (1 / 3) * (ExceptionalExamples.probe (1 / 3)).transpose).permanent +\n        ((ExceptionalExamples.probe (1 / 3)).transpose * ExceptionalExamples.probe (1 / 3)).permanent +\n      2 * (ExceptionalExamples.probe (1 / 3) * ExceptionalExamples.probe (1 / 3)).permanent) =\n  4 * (ExceptionalExamples.probe (1 / 3)).permanent ^ 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.P5._proof_3","type":"(14 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_4._proof_7","type":"(488245099 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Bernoulli.rowMass_mem_parameters","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (A : Matrix ι ι ℝ) (c : ι → Bool),\n  A ∈ doublyStochastic ℝ ι → Bernoulli.rowMass A c ∈ Bernoulli.parameters ↑(Bernoulli.count c)"}
@@ -1301,6 +1314,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_3._proof_23","type":"(23409719 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.polyCoeff.eq_2","type":"∀ (c : ℝ) (tail : List ℝ), MathAndTheory.GyiresCirculant5.polyCoeff (c :: tail) 0 = c"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_4_2._proof_9","type":"(755997399 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.oneSuccess_eq_probability","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (u : ι → ℝ),\n  Exceptional.oneSuccess u = Bernoulli.probability u 1"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_1_0._proof_55","type":"(6009 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_1._proof_45","type":"(65149 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_3_4._proof_7","type":"(244844399 + 1).AtLeastTwo"}
@@ -1350,6 +1364,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_1._proof_27","type":"(9518759 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_2._proof_35","type":"(2669089 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Quot.sound"],"name":"MathAndTheory.Hofstadter.Family.F_initial","type":"∀ (k n : ℕ), n ≤ k + 2 → MathAndTheory.Hofstadter.F k n = MathAndTheory.Hofstadter.Family.decrement n"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Bernoulli.referenceProbability.eq_1","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (m k : ℕ),\n  Bernoulli.referenceProbability m k = Bernoulli.probability (fun x => ↑m / ↑(Fintype.card ι)) k"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_4_2._proof_10","type":"(201047699 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_2_0._proof_13","type":"(111361949 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift4_0._proof_2","type":"(44 + 1).AtLeastTwo"}
@@ -1374,6 +1389,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_5_3._proof_1","type":"(314360399 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_3_1._proof_4","type":"(649498519 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_1._proof_36","type":"(353649 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.oneSuccess_eq_derivative_eval_zero","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (u : ι → ℝ),\n  Exceptional.oneSuccess u = Polynomial.eval 0 (Polynomial.derivative (Bernoulli.generating u))"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_0._proof_26","type":"(31299959 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_5_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly5 c d e 1) 5 =\n    MathAndTheory.GyiresCirculant5.strong5_part_1_5 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.polyCoeff.eq_3","type":"∀ (head : ℝ) (p : List ℝ) (n : ℕ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (head :: p) n.succ = MathAndTheory.GyiresCirculant5.polyCoeff p n"}
@@ -1449,6 +1465,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_2._proof_16","type":"(33978789 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_2._proof_1","type":"(2609119 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_3_6._proof_2","type":"(98114799 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_gyires","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (A : Matrix ι ι ℝ) (e : ι),\n  A ∈ doublyStochastic ℝ ι →\n    Exceptional.HasExceptionalColumn A e →\n      2 ≤ Fintype.card ι →\n        dimensionConstant (Fintype.card ι) *\n            ((A * A.transpose).permanent + (A.transpose * A).permanent + 2 * (A * A).permanent) ≤\n          4 * A.permanent ^ 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_2_1._proof_31","type":"(31751129 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.PolyExpr.var.sizeOf_spec","type":"∀ {n : ℕ} (a : Fin n), sizeOf (MathAndTheory.GyiresCirculant5.PolyExpr.var a) = 1 + sizeOf a"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.DiagonalConcavity.linePolynomial_hasDerivAt","type":"∀ (M s : ℝ),\n  HasDerivAt (MathAndTheory.DiagonalConcavity.linePolynomial M) (MathAndTheory.DiagonalConcavity.lineD1 M s) s"}
@@ -1516,6 +1533,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_2_1._proof_24","type":"(213003889 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_1_1._proof_3","type":"(14477739 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_1._proof_52","type":"(644569 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.scalarLog_base","type":"∀ (k : ℕ), Exceptional.scalarLog k (1 / (↑k + 2)) = 2 * (↑k + 1) * Real.log ((↑k + 1) / (↑k + 2))"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift0_3._proof_6","type":"(779 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.gyiresDenominator_twoSupport","type":"∀ (t : ℝ), MathAndTheory.GyiresCirculant5.gyiresDenominator (MathAndTheory.GyiresCirculant5.twoSupport t) = 336 * t ^ 10"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_3._proof_7","type":"(574859099 + 1).AtLeastTwo"}
@@ -1725,6 +1743,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_2_0._proof_24","type":"(72386169 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_3._proof_36","type":"(124539 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactGram2_0._proof_3","type":"(5 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.Gyires.ExceptionalExamples.parameter._proof_2","type":"(2 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_0_5._proof_17","type":"(12111139 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_1_0._proof_35","type":"(3132759 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_6_0._proof_12","type":"(25604999 + 1).AtLeastTwo"}
@@ -1966,6 +1985,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_3_1._proof_26","type":"(55311519 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.shiftCoeff0._proof_2","type":"(4 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_2_0._proof_23","type":"(53014869 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_vector_strong","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι],\n  ∀ A ∈ doublyStochastic ℝ ι,\n    Exceptional.HasExceptionalVector A →\n      2 ≤ Fintype.card ι →\n        dimensionConstant (Fintype.card ι) * (A * A.transpose).permanent ≤ A.permanent ^ 2 ∧\n          dimensionConstant (Fintype.card ι) * (A.transpose * A).permanent ≤ A.permanent ^ 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_2_3._proof_15","type":"(81103099 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_0._proof_33","type":"(2001139 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong5_coeff_5_nonneg","type":"∀ (b c d e : ℝ),\n  0 ≤ b →\n    0 ≤ c →\n      0 ≤ d →\n        0 ≤ e → 0 ≤ MathAndTheory.GyiresCirculant5.polyEval (MathAndTheory.GyiresCirculant5.chamberPoly5 c d e 5) b"}
@@ -1977,6 +1997,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_5_1._proof_5","type":"(502840799 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_1._proof_22","type":"(26995099 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.QPermanent.corePerm16_crossings","type":"leftToRightCount corePerm16 + rightToLeftCount corePerm16 = 4"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptionalMatrix.congr_simp","type":"∀ {ι : Type u_1} [inst : Fintype ι] {inst_1 : DecidableEq ι} [inst_2 : DecidableEq ι] (u u_1 : ι → ℝ),\n  u = u_1 →\n    ∀ (e e_1 : ι),\n      e = e_1 →\n        ∀ (a a_1 : ι),\n          a = a_1 →\n            ∀ (a_2 a_3 : ι),\n              a_2 = a_3 → Exceptional.exceptionalMatrix u e a a_2 = Exceptional.exceptionalMatrix u_1 e_1 a_1 a_3"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_4_1._proof_10","type":"(180389399 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_2_2._proof_17","type":"(440679909 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_0._proof_1","type":"(43724 + 1).AtLeastTwo"}
@@ -2116,6 +2137,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_2_7_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly2 c d e 2) 7 =\n    MathAndTheory.GyiresCirculant5.strong2_part_2_7 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_4_0._proof_18","type":"(128058299 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_2_2._proof_17","type":"(460428629 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.probe_not_uniform_zero","type":"ExceptionalExamples.probe 0 ≠ Bernoulli.uniformMatrix"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_1_0_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly0 c d e 1) 0 =\n    MathAndTheory.GyiresCirculant5.strong0_part_1_0 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.DomiRank.rightProbability._proof_5","type":"(1976938111 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_2_0_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly5 c d e 2) 0 =\n    MathAndTheory.GyiresCirculant5.strong5_part_2_0 c d e"}
@@ -2345,12 +2367,14 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_4._proof_7","type":"(116602929 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_1_0._proof_13","type":"(14781519 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift5_0._proof_14","type":"(214 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.specialParameters.congr_simp","type":"∀ {ι : Type u_1} {inst : DecidableEq ι} [inst_1 : DecidableEq ι] (a a_1 : ℝ),\n  a = a_1 →\n    ∀ (b b_1 : ℝ),\n      b = b_1 →\n        ∀ (e e_1 : ι),\n          e = e_1 →\n            ∀ (a_2 a_3 : ι),\n              a_2 = a_3 → Exceptional.specialParameters a b e a_2 = Exceptional.specialParameters a_1 b_1 e_1 a_3"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_9_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly4 c d e 0) 9 =\n    MathAndTheory.GyiresCirculant5.strong4_part_0_9 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.DiagonalConcavity.family_concave_iff","type":"∀ {M : ℝ},\n  0 < M →\n    (ConcaveOn ℝ MathAndTheory.DiagonalConcavity.positiveOrthant (MathAndTheory.DiagonalConcavity.rootedFamily M) ↔\n      M = 1)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_2_0._proof_24","type":"(72386169 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_3_7._proof_1","type":"(28032799 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_2_1._proof_7","type":"(349633799 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_4_0._proof_2","type":"(89210919 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.parameters_constant_of_secondMoment","type":"∀ {ι : Type u_1} [inst : Fintype ι] (u : ι → ℝ),\n  ∑ i, u i = 1 →\n    ∀ (k : ℕ), Fintype.card ι = k + 2 → Exceptional.secondMoment u = 1 / (↑k + 2) → ∀ (i : ι), u i = 1 / (↑k + 2)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong4_coeff_9_nonneg","type":"∀ (b c d e : ℝ),\n  0 ≤ b →\n    0 ≤ c →\n      0 ≤ d →\n        0 ≤ e → 0 ≤ MathAndTheory.GyiresCirculant5.polyEval (MathAndTheory.GyiresCirculant5.chamberPoly4 c d e 9) b"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_2._proof_5","type":"(27287549 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_1_4._proof_5","type":"(572987839 + 1).AtLeastTwo"}
@@ -2860,6 +2884,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_1._proof_41","type":"(10183819 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Bernoulli.two_column_bounds","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι],\n  ∀ A ∈ doublyStochastic ℝ ι,\n    (Bernoulli.columnTypes A).card ≤ 2 →\n      (A * A.transpose).permanent ≤ A.permanent ∧\n        dimensionConstant (Fintype.card ι) ≤ A.permanent ∧\n          (A.permanent = dimensionConstant (Fintype.card ι) ↔ A = Bernoulli.uniformMatrix)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_4_3._proof_3","type":"(532350699 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_parameters","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (A : Matrix ι ι ℝ) (e : ι),\n  A ∈ doublyStochastic ℝ ι → (fun i => A i e) ∈ Bernoulli.parameters 1"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_1_6_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly4 c d e 1) 6 =\n    MathAndTheory.GyiresCirculant5.strong4_part_1_6 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_3_3._proof_8","type":"(1292620959 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_5_0._proof_3","type":"(50902199 + 1).AtLeastTwo"}
@@ -2867,6 +2892,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_8._proof_1","type":"(6286424 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.compactGram4_2_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyGramPart2 (MathAndTheory.GyiresCirculant5.basePoly4 c d e) =\n    MathAndTheory.GyiresCirculant5.compactGram4_2 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_6_3._proof_2","type":"(59639999 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.oneSuccess.congr_simp","type":"∀ {ι : Type u_1} [inst : Fintype ι] {inst_1 : DecidableEq ι} [inst_2 : DecidableEq ι] (u u_1 : ι → ℝ),\n  u = u_1 → Exceptional.oneSuccess u = Exceptional.oneSuccess u_1"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_2_3._proof_18","type":"(211346129 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.conv_eq_vector","type":"∀ (a b c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.conv ![a, b, c, d, e] =\n    ![a * a + b * e + c * d + d * c + e * b, a * b + b * a + c * e + d * d + e * c,\n      a * c + b * b + c * a + d * e + e * d, a * d + b * c + c * b + d * a + e * e,\n      a * e + b * d + c * c + d * b + e * a]"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong3_coeff_3_length","type":"∀ (c d e : ℝ), (MathAndTheory.GyiresCirculant5.chamberPoly3 c d e 3).length ≤ 8"}
@@ -2957,6 +2983,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_4_0._proof_2","type":"(93315819 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift2_1._proof_3","type":"(124 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_3_1._proof_3","type":"(162960239 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.count_special","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (e : ι), (Bernoulli.count fun j => decide (j = e)) = 1"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_2_0._proof_5","type":"(11954044 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_7_0._proof_3","type":"(24959999 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_3._proof_8","type":"(179204679 + 1).AtLeastTwo"}
@@ -2996,6 +3023,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_1_0._proof_19","type":"(28912859 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_2._proof_35","type":"(2810429 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_8._proof_3","type":"(4220389 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.deterministic.eq_1","type":"ExceptionalExamples.deterministic = Exceptional.exceptionalMatrix (fun i => if i = 0 then 1 else 0) 0"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_3_0._proof_20","type":"(53856439 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Bernoulli.shiftedBinomial_central_upper_relation","type":"∀ (a b m : ℕ),\n  ∀ q < 1,\n    ↑m = ↑a + ↑b * q →\n      (↑m + 1 - ↑a) * (Bernoulli.shiftedBinomial a b q).coeff (m + 1) =\n        (↑m - ↑a) * (Bernoulli.shiftedBinomial a b q).coeff m"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_6_0._proof_9","type":"(63089999 + 1).AtLeastTwo"}
@@ -3003,6 +3031,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_8._proof_1","type":"(6286424 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_5_coeff_nonneg","type":"∀ (c d e : ℝ),\n  0 ≤ c →\n    0 ≤ d → 0 ≤ e → 0 ≤ MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly5 c d e 0) 5"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_3_3._proof_8","type":"(1340235759 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.scalarLog_large_strictAnti","type":"∀ (k : ℕ), StrictAntiOn (fun a => Exceptional.scalarLog k a - 2 * Real.log a) (Set.Icc (1 / 2) 1)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.DomiRank.rightEntropyNats._proof_5","type":"(1976938111 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.polyGramShiftCoeff5.eq_1","type":"∀ (A B C : List ℝ), MathAndTheory.GyiresCirculant5.polyGramShiftCoeff5 A B C = [120]"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.fin5_negative_four","type":"-4 = 1"}
@@ -3126,6 +3155,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresFourBlock.margin","type":"∀ {n : ℕ},\n  ∀ A ∈ doublyStochastic ℝ (Fin n),\n    MathAndTheory.GyiresFourBlock.rowVectorCount A ≤ 2 →\n      MathAndTheory.GyiresFourBlock.columnVectorCount A ≤ 2 →\n        4 * A.permanent * (A.permanent - ↑n.factorial / ↑n ^ n) ≤\n            4 * A.permanent ^ 2 -\n              ↑n.factorial / ↑n ^ n *\n                ((A * A.transpose).permanent + (A.transpose * A).permanent + 2 * (A * A).permanent) ∧\n          0 ≤ 4 * A.permanent * (A.permanent - ↑n.factorial / ↑n ^ n)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_8._proof_4","type":"(3103299 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_5._proof_1","type":"(21700743 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_gram_permanent","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (A : Matrix ι ι ℝ) (e : ι),\n  A ∈ doublyStochastic ℝ ι →\n    Exceptional.HasExceptionalColumn A e →\n      ∀ (k : ℕ),\n        Fintype.card ι = k + 2 →\n          (A.transpose * A).permanent =\n            dimensionConstant (Fintype.card ι) *\n              (Exceptional.oneSuccess\n                  (Exceptional.specialParameters (Exceptional.secondMoment fun i => A i e)\n                    ((1 - Exceptional.secondMoment fun i => A i e) / (↑k + 1)) e) /\n                ((↑k + 1) / (↑k + 2)) ^ (k + 1))"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_6_0._proof_8","type":"(62519999 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_3_1._proof_20","type":"(138591919 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong5_coeff_1_nonneg","type":"∀ (b c d e : ℝ),\n  0 ≤ b →\n    0 ≤ c →\n      0 ≤ d →\n        0 ≤ e → 0 ≤ MathAndTheory.GyiresCirculant5.polyEval (MathAndTheory.GyiresCirculant5.chamberPoly5 c d e 1) b"}
@@ -3158,6 +3188,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_7_3_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly3 c d e 7) 3 =\n    MathAndTheory.GyiresCirculant5.strong3_part_7_3 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.DomiRank.theoreticalEntropyBits.eq_1","type":"∀ (s : ℝ),\n  MathAndTheory.DomiRank.theoreticalEntropyBits s =\n    (-∑ i,\n          MathAndTheory.DomiRank.theoreticalDistribution s i *\n            Real.log (MathAndTheory.DomiRank.theoreticalDistribution s i)) /\n      Real.log 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_2_3._proof_18","type":"(238121099 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptionalMatrix_eq_twoColumn","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (u : ι → ℝ) (e : ι),\n  Exceptional.exceptionalMatrix u e = Bernoulli.twoColumn u fun j => decide (j = e)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_3._proof_4","type":"(524604719 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_5_0._proof_15","type":"(10523279 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_6._proof_14","type":"(5901019 + 1).AtLeastTwo"}
@@ -3284,6 +3315,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":[],"name":"MathAndTheory.Hofstadter.le_L","type":"∀ (k n : ℕ), n ≤ MathAndTheory.Hofstadter.L k n"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_4._proof_22","type":"(2897339 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift3_3._proof_4","type":"(1169 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.one_sub_sum_le_product","type":"∀ {ι : Type u_1} [DecidableEq ι], ∀ u ∈ Set.Icc 0 1, ∀ (s : Finset ι), 1 - ∑ i ∈ s, u i ≤ ∏ i ∈ s, (1 - u i)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_7_1._proof_3","type":"(19919999 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_7_1._proof_3","type":"(19919999 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_4_4._proof_4","type":"(245599099 + 1).AtLeastTwo"}
@@ -3309,6 +3341,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_9_1_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly1 c d e 9) 1 =\n    MathAndTheory.GyiresCirculant5.strong1_part_9_1 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_3_4._proof_6","type":"(323379119 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_2_coeff_nonneg","type":"∀ (c d e : ℝ),\n  0 ≤ c →\n    0 ≤ d → 0 ≤ e → 0 ≤ MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly5 c d e 0) 2"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.oneSuccess_specialParameters","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (a b : ℝ) (e : ι) (k : ℕ),\n  Fintype.card ι = k + 2 →\n    Exceptional.oneSuccess (Exceptional.specialParameters a b e) = (1 - b) ^ k * (a * (1 - b) + (↑k + 1) * b * (1 - a))"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_3_3._proof_4","type":"(1506511439 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_1._proof_11","type":"(17956709 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_0._proof_33","type":"(3283779 + 1).AtLeastTwo"}
@@ -3433,6 +3466,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_1._proof_55","type":"(6009 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_1._proof_14","type":"(25754839 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_3_0._proof_3","type":"(24292599 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.scalarLog_small_strictAnti","type":"∀ (k : ℕ), StrictAntiOn (fun a => Exceptional.scalarLog k a - a) (Set.Ioc 0 (1 / 2))"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.polyOuterPart10_eval","type":"∀ (p k : Fin 6 → List ℝ) (S : List ℝ) (x : ℝ),\n  MathAndTheory.GyiresCirculant5.polyEval (MathAndTheory.GyiresCirculant5.polyOuterPart10 p k S) x =\n    MathAndTheory.GyiresCirculant5.outerCoeff (fun i => MathAndTheory.GyiresCirculant5.polyEval (p i) x)\n      (fun i => MathAndTheory.GyiresCirculant5.polyEval (k i) x) (MathAndTheory.GyiresCirculant5.polyEval S x) 10"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_2_3._proof_20","type":"(69881659 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_3_1_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly5 c d e 3) 1 =\n    MathAndTheory.GyiresCirculant5.strong5_part_3_1 c d e"}
@@ -3594,6 +3628,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_0._proof_51","type":"(1148339 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.Motzkin.b._proof_2","type":"(1 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_2_3._proof_3","type":"(408538739 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.entropy_lower","type":"∀ {ι : Type u_1} [inst : Fintype ι],\n  ∀ u ∈ Set.Icc 0 1,\n    ∑ i, u i = 1 →\n      (∀ (i : ι), u i < 1) →\n        0 < Fintype.card ι →\n          ↑(Fintype.card ι) * (1 - 1 / ↑(Fintype.card ι)) * Real.log (1 - 1 / ↑(Fintype.card ι)) +\n              (Exceptional.secondMoment u - 1 / ↑(Fintype.card ι)) / 2 ≤\n            ∑ i, (1 - u i) * Real.log (1 - u i)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_3._proof_26","type":"(32798319 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.gramShiftCoeff1.eq_1","type":"∀ (A B C : ℝ),\n  MathAndTheory.GyiresCirculant5.gramShiftCoeff1 A B C =\n    5 * A ^ 4 + 10 * A ^ 3 * B + 10 * A ^ 3 * C + 25 * A ^ 2 * B ^ 2 + 40 * A ^ 2 * B * C + 25 * A ^ 2 * C ^ 2 +\n                      30 * A * B ^ 3 +\n                    80 * A * B ^ 2 * C +\n                  80 * A * B * C ^ 2 +\n                30 * A * C ^ 3 +\n              25 * B ^ 4 +\n            70 * B ^ 3 * C +\n          75 * B ^ 2 * C ^ 2 +\n        70 * B * C ^ 3 +\n      25 * C ^ 4"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_1_2._proof_19","type":"(315130709 + 1).AtLeastTwo"}
@@ -3714,6 +3749,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Motzkin.G_pos","type":"∀ (n : ℕ), 30 ≤ n → 0 < MathAndTheory.Motzkin.G ↑n"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_1._proof_21","type":"(13164139 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_4_1._proof_14","type":"(293760999 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.Gyires.ExceptionalExamples.parameter._proof_1","type":"NeZero (2 + 1)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_5._proof_1","type":"(21700743 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Motzkin.motzkin_zero","type":"MathAndTheory.Motzkin.motzkin 0 = 1"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_2._proof_9","type":"(70241189 + 1).AtLeastTwo"}
@@ -3726,6 +3762,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_4._proof_10","type":"(127302189 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.QPermanent.corePerm14.eq_1","type":"corePerm14 = Equiv.swap 0 2 * (Equiv.swap 1 2 * 1)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_1_3._proof_6","type":"(156973619 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.rowMass_special","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (A : Matrix ι ι ℝ) (e : ι),\n  (Bernoulli.rowMass A fun j => decide (j = e)) = fun i => A i e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_0._proof_40","type":"(2478634 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_6_0._proof_7","type":"(55049999 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift4_2._proof_12","type":"(639 + 1).AtLeastTwo"}
@@ -3978,6 +4015,7 @@ LEAN_THEOREM_AUDIT {"axioms":[],"name":"MathAndTheory.Hofstadter.boundedF._proof
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_0_4._proof_13","type":"(122187164 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_7._proof_7","type":"(5590959 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_3_0._proof_36","type":"(178879 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.scalarLog_eq_log","type":"∀ (k : ℕ) (a : ℝ), 0 < a → Exceptional.scalarLog k a = Real.log (Exceptional.scalarR k a)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong2_coeff_7_length","type":"∀ (c d e : ℝ), (MathAndTheory.GyiresCirculant5.chamberPoly2 c d e 7).length ≤ 4"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_0._proof_55","type":"(6009 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_3._proof_15","type":"(55679719 + 1).AtLeastTwo"}
@@ -4194,6 +4232,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_1._proof_12","type":"(201740659 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_5_3._proof_4","type":"(187190399 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_2_0._proof_19","type":"(37353169 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_left_strong_eq_iff","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (A : Matrix ι ι ℝ) (e : ι),\n  A ∈ doublyStochastic ℝ ι →\n    Exceptional.HasExceptionalColumn A e →\n      (dimensionConstant (Fintype.card ι) * (A * A.transpose).permanent = A.permanent ^ 2 ↔ A = Bernoulli.uniformMatrix)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.compactShift1_3_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyShiftCoeff3 (MathAndTheory.GyiresCirculant5.basePoly1 c d e) =\n    MathAndTheory.GyiresCirculant5.compactShift1_3 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_2._proof_29","type":"(2459219 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift5_0._proof_28","type":"(104 + 1).AtLeastTwo"}
@@ -4248,6 +4287,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_3_1._proof_20","type":"(132091119 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_1_1._proof_42","type":"(6625299 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_3_3._proof_15","type":"(37997239 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.generating_specialParameters","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (a b : ℝ) (e : ι) (k : ℕ),\n  Fintype.card ι = k + 2 →\n    Bernoulli.generating (Exceptional.specialParameters a b e) =\n      (Polynomial.C (1 - a) + Polynomial.C a * Polynomial.X) *\n        (Polynomial.C (1 - b) + Polynomial.C b * Polynomial.X) ^ (k + 1)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.DiagonalConcavity.linePolynomial._proof_2","type":"(25 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_0._proof_16","type":"(2276211 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_2_3._proof_19","type":"(160777209 + 1).AtLeastTwo"}
@@ -4438,6 +4478,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift0_1._proof_2","type":"(274 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_1._proof_55","type":"(6009 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_7_coeff_nonneg","type":"∀ (c d e : ℝ),\n  0 ≤ c →\n    0 ≤ d → 0 ≤ e → 0 ≤ MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly5 c d e 0) 7"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.permanent_exceptionalMatrix","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (u : ι → ℝ) (e : ι) (k : ℕ),\n  Fintype.card ι = k + 2 →\n    (Exceptional.exceptionalMatrix u e).permanent =\n      dimensionConstant (Fintype.card ι) * (Exceptional.oneSuccess u / ((↑k + 1) / (↑k + 2)) ^ (k + 1))"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_2_2._proof_15","type":"(101217029 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift5_0._proof_21","type":"(39 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift0_2._proof_4","type":"(1109 + 1).AtLeastTwo"}
@@ -4469,6 +4510,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_1_1_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly4 c d e 1) 1 =\n    MathAndTheory.GyiresCirculant5.strong4_part_1_1 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Quot.sound"],"name":"MathAndTheory.QPermanent.familyIndex._proof_2","type":"∀ (m : ℕ), 2 + (m + 2) = m + 4"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_5._proof_14","type":"(36637519 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.scalarR_large_bounds","type":"∀ (k : ℕ), ∀ a ∈ Set.Icc (1 / 2) 1, Exceptional.scalarR k a ≤ a ^ 2 ∧ (1 / 2 < a → Exceptional.scalarR k a < a ^ 2)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_0_0._proof_33","type":"(3283779 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_1_0._proof_30","type":"(6730149 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_2_1._proof_34","type":"(15816599 + 1).AtLeastTwo"}
@@ -4547,6 +4589,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_1._proof_5","type":"(11677199 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_10_0_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly1 c d e 10) 0 =\n    MathAndTheory.GyiresCirculant5.strong1_part_10_0 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_1_2._proof_23","type":"(103519719 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.scalarLog_hasDerivAt","type":"∀ (k : ℕ) (a : ℝ),\n  0 < a → HasDerivAt (Exceptional.scalarLog k) (↑k / (↑k + a) + (↑k + 2) * (2 * a - 1) / Exceptional.scalarKernel k a) a"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_2_0._proof_44","type":"(362789 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_4_4._proof_1","type":"(435607199 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_1._proof_10","type":"(2237489 + 1).AtLeastTwo"}
@@ -4618,6 +4661,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.outerCoeff._proof_20","type":"(47999 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_2._proof_22","type":"(33726669 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Motzkin.ratio_bounds","type":"∀ (n : ℕ),\n  MathAndTheory.Motzkin.b (↑n + 1) ≤ MathAndTheory.Motzkin.x (n + 1) ∧\n    MathAndTheory.Motzkin.x (n + 1) ≤ MathAndTheory.Motzkin.b (↑n + 2)"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_gyires_eq_iff","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (A : Matrix ι ι ℝ) (e : ι),\n  A ∈ doublyStochastic ℝ ι →\n    Exceptional.HasExceptionalColumn A e →\n      2 ≤ Fintype.card ι →\n        (dimensionConstant (Fintype.card ι) *\n              ((A * A.transpose).permanent + (A.transpose * A).permanent + 2 * (A * A).permanent) =\n            4 * A.permanent ^ 2 ↔\n          A = Bernoulli.uniformMatrix)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_2._proof_34","type":"(12228119 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_2_0._proof_15","type":"(37027919 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_1_7_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly0 c d e 1) 7 =\n    MathAndTheory.GyiresCirculant5.strong0_part_1_7 c d e"}
@@ -4704,6 +4748,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_2_1._proof_2","type":"(143470299 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.shiftCoeffs_apply_1","type":"∀ (w : Fin 5 → ℝ), MathAndTheory.GyiresCirculant5.shiftCoeffs w 1 = MathAndTheory.GyiresCirculant5.shiftCoeff1 w"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_9._proof_1","type":"(1749719 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.parameter.eq_1","type":"∀ (t : ℝ) (i : Fin 3), ExceptionalExamples.parameter t i = if i = 0 then t else if i = 1 then 1 / 3 else 2 / 3 - t"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_0_0._proof_20","type":"(1465849 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_2_1._proof_9","type":"(465896309 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_5_2._proof_6","type":"(219342599 + 1).AtLeastTwo"}
@@ -4751,6 +4796,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_3_1._proof_18","type":"(427962159 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_4_0._proof_1","type":"(22986879 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.realInterpret.eq_5","type":"∀ {n : ℕ} (x : Fin n → ℝ) (c : ℝ) (p : MathAndTheory.GyiresCirculant5.PolyExpr n),\n  MathAndTheory.GyiresCirculant5.realInterpret (MathAndTheory.GyiresCirculant5.PolyExpr.scale c p) x =\n    c * MathAndTheory.GyiresCirculant5.realInterpret p x"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.specialParameters.eq_1","type":"∀ {ι : Type u_1} [inst : DecidableEq ι] (a b : ℝ) (e i : ι),\n  Exceptional.specialParameters a b e i = if i = e then a else b"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_3_0._proof_6","type":"(43245439 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_6._proof_6","type":"(54878389 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift2_0._proof_12","type":"(79 + 1).AtLeastTwo"}
@@ -4799,6 +4845,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_3_3._proof_10","type":"(243870559 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift0_0._proof_20","type":"(94 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_4_0._proof_7","type":"(192582199 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.secondMoment_bounds","type":"∀ {ι : Type u_1} [inst : Fintype ι],\n  ∀ u ∈ Set.Icc 0 1,\n    ∑ i, u i = 1 →\n      0 < Fintype.card ι → 1 / ↑(Fintype.card ι) ≤ Exceptional.secondMoment u ∧ Exceptional.secondMoment u ≤ 1"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_5_1._proof_3","type":"(212618399 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_2._proof_26","type":"(36277379 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_4_0._proof_20","type":"(5969159 + 1).AtLeastTwo"}
@@ -4888,6 +4935,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_1_6._proof_7","type":"(42589259 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_3_6_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly0 c d e 3) 6 =\n    MathAndTheory.GyiresCirculant5.strong0_part_3_6 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_2_1._proof_17","type":"(351268549 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.secondMoment_le_oneSuccess","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι],\n  ∀ u ∈ Set.Icc 0 1, ∑ i, u i = 1 → Exceptional.secondMoment u ≤ Exceptional.oneSuccess u"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_5_4._proof_3","type":"(57811199 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_5_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly3 c d e 0) 5 =\n    MathAndTheory.GyiresCirculant5.strong3_part_0_5 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_4_coeff_nonneg","type":"∀ (c d e : ℝ),\n  0 ≤ c →\n    0 ≤ d → 0 ≤ e → 0 ≤ MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly4 c d e 0) 4"}
@@ -4925,6 +4973,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_5._proof_7","type":"(78607729 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_2_1._proof_33","type":"(30261539 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_4_1._proof_13","type":"(573354099 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.oneSuccess_nonneg","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι], ∀ u ∈ Set.Icc 0 1, 0 ≤ Exceptional.oneSuccess u"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_3._proof_18","type":"(95016379 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_6_1._proof_3","type":"(177044999 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_0_0._proof_38","type":"(303339 + 1).AtLeastTwo"}
@@ -4967,6 +5016,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_3_1._proof_12","type":"(880865679 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Bernoulli.expectation_probability_difference","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (p : ι → ℝ) (k l : ℕ) (s t : ℝ),\n  Bernoulli.expectation (fun j => (s * if j = k then 1 else 0) - t * if j = l then 1 else 0) p =\n    s * Bernoulli.probability p k - t * Bernoulli.probability p l"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_3_2._proof_17","type":"(190787279 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_gram_columns","type":"∀ {ι : Type u_1} [inst : Fintype ι] (A : Matrix ι ι ℝ) (e : ι),\n  Exceptional.HasExceptionalColumn A e → Exceptional.HasExceptionalColumn (A.transpose * A) e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_7._proof_7","type":"(5590959 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_1._proof_18","type":"(30766089 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_2_4._proof_12","type":"(258195869 + 1).AtLeastTwo"}
@@ -5116,6 +5166,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_6_0._proof_2","type":"(70169999 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_1_6._proof_1","type":"(103836249 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.polyGramShiftCoeffs_eval","type":"∀ (A B C : List ℝ) (x : ℝ),\n  (fun j => MathAndTheory.GyiresCirculant5.polyEval (MathAndTheory.GyiresCirculant5.polyGramShiftCoeffs A B C j) x) =\n    MathAndTheory.GyiresCirculant5.shiftCoeffs\n      ![MathAndTheory.GyiresCirculant5.polyEval A x, MathAndTheory.GyiresCirculant5.polyEval B x,\n        MathAndTheory.GyiresCirculant5.polyEval C x, MathAndTheory.GyiresCirculant5.polyEval C x,\n        MathAndTheory.GyiresCirculant5.polyEval B x]"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.probe_uniform","type":"ExceptionalExamples.probe (1 / 3) = Bernoulli.uniformMatrix"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_0._proof_31","type":"(2444649 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_2._proof_20","type":"(27479919 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_1_6._proof_5","type":"(160020139 + 1).AtLeastTwo"}
@@ -5283,6 +5334,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_2_1._proof_16","type":"(150349569 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.BestOfN.selected_positive","type":"∀ (i : Fin 4), 0 < MathAndTheory.BestOfN.bestOfN 2 MathAndTheory.BestOfN.reference i"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_5._proof_21","type":"(777367 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.scalarLog_large_derivative","type":"∀ (k : ℕ) (a : ℝ), 0 < a → a < 1 → ↑k / (↑k + a) + (↑k + 2) * (2 * a - 1) / Exceptional.scalarKernel k a - 2 / a < 0"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.polyPow_length","type":"∀ (p : List ℝ) (n : ℕ), p ≠ [] → (MathAndTheory.GyiresCirculant5.polyPow p n).length = n * (p.length - 1) + 1"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.polyGramShiftCoeff0._proof_4","type":"(1 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_3_3._proof_6","type":"(541155599 + 1).AtLeastTwo"}
@@ -5318,6 +5370,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_3_2._proof_4","type":"(1339192959 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong0_coeff_9_length","type":"∀ (c d e : ℝ), (MathAndTheory.GyiresCirculant5.chamberPoly0 c d e 9).length ≤ 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_0._proof_39","type":"(1741994 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_permanent","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (A : Matrix ι ι ℝ) (e : ι),\n  A ∈ doublyStochastic ℝ ι →\n    Exceptional.HasExceptionalColumn A e →\n      ∀ (k : ℕ),\n        Fintype.card ι = k + 2 →\n          A.permanent =\n            dimensionConstant (Fintype.card ι) *\n              ((Exceptional.oneSuccess fun i => A i e) / ((↑k + 1) / (↑k + 2)) ^ (k + 1))"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_9_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly3 c d e 0) 9 =\n    MathAndTheory.GyiresCirculant5.strong3_part_0_9 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_5_3._proof_5","type":"(83115599 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.gyires_homogeneous_eq_iff","type":"∀ (A : Matrix (Fin 5) (Fin 5) ℝ),\n  (∀ (i j : Fin 5), 0 ≤ A i j) →\n    (∃ v, A = Matrix.circulant v) →\n      (↑(Nat.factorial 5) / 5 ^ 5 *\n            ((A * A.transpose).permanent + (A.transpose * A).permanent + 2 * (A * A).permanent) =\n          4 * A.permanent ^ 2 ↔\n        ∃ c, A = Matrix.of fun x x_1 => c)"}
@@ -5450,6 +5503,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong4_coeff_1_length","type":"∀ (c d e : ℝ), (MathAndTheory.GyiresCirculant5.chamberPoly4 c d e 1).length ≤ 10"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_4._proof_15","type":"(11536569 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_2._proof_44","type":"(313499 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.scalarR_half_le","type":"∀ (k : ℕ), Exceptional.scalarR k (1 / 2) ≤ 1 / 4"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_2_2._proof_23","type":"(73901599 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_4._proof_2","type":"(409435339 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_1_5._proof_3","type":"(180138019 + 1).AtLeastTwo"}
@@ -5496,6 +5550,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.QPermanent.familyIndex_inl_lt_inr._simp_1","type":"∀ (m : ℕ) (i : Fin 4) (j : Fin m), ((familyIndex m) (Sum.inl i) < (familyIndex m) (Sum.inr j)) = (i < 2)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_4_0._proof_25","type":"(26962899 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.BestOfN.ratio._proof_1","type":"(162 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.transpose_eq_uniform_iff","type":"∀ {ι : Type u_1} [inst : Fintype ι] (A : Matrix ι ι ℝ),\n  A.transpose = Bernoulli.uniformMatrix ↔ A = Bernoulli.uniformMatrix"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_2_0._proof_21","type":"(7169359 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_3_1._proof_23","type":"(52989759 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_2_1._proof_34","type":"(15913469 + 1).AtLeastTwo"}
@@ -5521,6 +5576,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_2_1._proof_33","type":"(33498009 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_3_2._proof_7","type":"(1165068319 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.QPermanent.corePerm08.eq_1","type":"corePerm08 = Equiv.swap 0 1 * (Equiv.swap 1 2 * 1)"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.scalarKernel_hasDerivAt","type":"∀ (k : ℕ) (a : ℝ), HasDerivAt (Exceptional.scalarKernel k) ((↑k + 2) * (2 * a - 1)) a"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_5_4._proof_3","type":"(57811199 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift3_0._proof_29","type":"(169 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_9_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly1 c d e 0) 9 =\n    MathAndTheory.GyiresCirculant5.strong1_part_0_9 c d e"}
@@ -5770,6 +5826,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_4_2._proof_12","type":"(312133099 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.DomiRank.shifted_posSemidef","type":"(15 • 1 + 4 • MathAndTheory.DomiRank.A).PosSemidef"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_0._proof_27","type":"(1049979 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresExceptional.gyires_eq_iff","type":"∀ {n : ℕ},\n  ∀ A ∈ doublyStochastic ℝ (Fin n),\n    MathAndTheory.GyiresExceptional.HasExceptionalVector A →\n      2 ≤ n →\n        (↑n.factorial / ↑n ^ n * ((A * A.transpose).permanent + (A.transpose * A).permanent + 2 * (A * A).permanent) =\n            4 * A.permanent ^ 2 ↔\n          A = fun x x_1 => 1 / ↑n)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_1_2._proof_21","type":"(18666119 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_2_3._proof_5","type":"(1226065259 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_1_2._proof_17","type":"(305462909 + 1).AtLeastTwo"}
@@ -5959,6 +6016,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_1._proof_30","type":"(8358659 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_2_5._proof_5","type":"(492488099 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_3_3._proof_15","type":"(37997239 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_right_bounds","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (A : Matrix ι ι ℝ) (e : ι),\n  A ∈ doublyStochastic ℝ ι →\n    Exceptional.HasExceptionalColumn A e →\n      2 ≤ Fintype.card ι →\n        dimensionConstant (Fintype.card ι) * (A.transpose * A).permanent ≤ A.permanent ^ 2 ∧\n          (dimensionConstant (Fintype.card ι) * (A.transpose * A).permanent = A.permanent ^ 2 ↔\n            A = Bernoulli.uniformMatrix)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_5_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly4 c d e 0) 5 =\n    MathAndTheory.GyiresCirculant5.strong4_part_0_5 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_2_1._proof_19","type":"(431467259 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_4_3._proof_3","type":"(546398799 + 1).AtLeastTwo"}
@@ -6014,6 +6072,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift2_1._proof_16","type":"(794 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.gyires_matrix_equality_iff","type":"∀ (w : Fin 5 → ℝ),\n  (∀ (i : Fin 5), 0 ≤ w i) →\n    (24 *\n          ((MathAndTheory.GyiresCirculant5.circ w * (MathAndTheory.GyiresCirculant5.circ w).transpose).permanent +\n              ((MathAndTheory.GyiresCirculant5.circ w).transpose * MathAndTheory.GyiresCirculant5.circ w).permanent +\n            2 * (MathAndTheory.GyiresCirculant5.circ w * MathAndTheory.GyiresCirculant5.circ w).permanent) =\n        2500 * (MathAndTheory.GyiresCirculant5.circ w).permanent ^ 2 ↔\n      ∃ c, ∀ (i : Fin 5), w i = c)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift0_0._proof_12","type":"(1 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_vector_gram_eq_iff","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι],\n  ∀ A ∈ doublyStochastic ℝ ι,\n    Exceptional.HasExceptionalVector A →\n      2 ≤ Fintype.card ι →\n        (dimensionConstant (Fintype.card ι) * (A * A.transpose).permanent = A.permanent ^ 2 ↔\n            A = Bernoulli.uniformMatrix) ∧\n          (dimensionConstant (Fintype.card ι) * (A.transpose * A).permanent = A.permanent ^ 2 ↔\n            A = Bernoulli.uniformMatrix)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_0._proof_15","type":"(4982329 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_2_2._proof_20","type":"(161746779 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_4._proof_17","type":"(65269099 + 1).AtLeastTwo"}
@@ -6224,6 +6283,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_4_3._proof_8","type":"(385434299 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_1_2._proof_26","type":"(90257039 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactGram2_0._proof_2","type":"(3 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.scalar_probability_eq_implies_constant","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι],\n  ∀ u ∈ Set.Icc 0 1,\n    ∑ i, u i = 1 →\n      ∀ (k : ℕ),\n        Fintype.card ι = k + 2 →\n          Exceptional.scalarR k (Exceptional.secondMoment u) = Exceptional.oneSuccess u ^ 2 →\n            ∀ (i : ι), u i = 1 / (↑k + 2)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.QPermanent.corePerm05.eq_1","type":"corePerm05 = Equiv.swap 1 3 * (Equiv.swap 2 3 * 1)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_1_4._proof_1","type":"(118962399 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.outerCoeff._proof_19","type":"(23999 + 1).AtLeastTwo"}
@@ -6265,7 +6325,9 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_5_2._proof_7","type":"(165163199 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.compactGram2_2_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyGramPart2 (MathAndTheory.GyiresCirculant5.basePoly2 c d e) =\n    MathAndTheory.GyiresCirculant5.compactGram2_2 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_1._proof_47","type":"(91079 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.log_oneSuccess_refined","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι],\n  ∀ u ∈ Set.Icc 0 1,\n    ∑ i, u i = 1 →\n      (∀ (i : ι), u i < 1) →\n        ∀ (k : ℕ),\n          Fintype.card ι = k + 2 →\n            2 * (↑k + 1) * Real.log ((↑k + 1) / (↑k + 2)) + (Exceptional.secondMoment u - 1 / (↑k + 2)) ≤\n              2 * Real.log (Exceptional.oneSuccess u)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Motzkin.f_b_upper","type":"∀ {z : ℝ}, 2 ≤ z → MathAndTheory.Motzkin.f z (MathAndTheory.Motzkin.b (z - 1)) ≤ MathAndTheory.Motzkin.b (z + 1)"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_left_bounds","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (A : Matrix ι ι ℝ) (e : ι),\n  A ∈ doublyStochastic ℝ ι →\n    Exceptional.HasExceptionalColumn A e →\n      (A * A.transpose).permanent ≤ A.permanent ∧\n        dimensionConstant (Fintype.card ι) ≤ A.permanent ∧\n          (A.permanent = dimensionConstant (Fintype.card ι) ↔ A = Bernoulli.uniformMatrix)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_4_0._proof_23","type":"(16097339 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_1_4_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly4 c d e 1) 4 =\n    MathAndTheory.GyiresCirculant5.strong4_part_1_4 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.DomiRank.resolvent_isUnit","type":"∀ (s : ℝ), 0 ≤ s → s < 4 / 15 → IsUnit (MathAndTheory.DomiRank.resolvent s)"}
@@ -6425,6 +6487,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_3_4._proof_3","type":"(554159599 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.DiagonalConcavity.diagonalD1._proof_1","type":"(11 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.compactShift4_4_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyShiftCoeff4 (MathAndTheory.GyiresCirculant5.basePoly4 c d e) =\n    MathAndTheory.GyiresCirculant5.compactShift4_4 c d e"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresExceptional.strong","type":"∀ {n : ℕ},\n  ∀ A ∈ doublyStochastic ℝ (Fin n),\n    MathAndTheory.GyiresExceptional.HasExceptionalVector A →\n      2 ≤ n →\n        ↑n.factorial / ↑n ^ n * (A * A.transpose).permanent ≤ A.permanent ^ 2 ∧\n          ↑n.factorial / ↑n ^ n * (A.transpose * A).permanent ≤ A.permanent ^ 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_1_4._proof_21","type":"(4528889 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_1_6._proof_2","type":"(209404999 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_1._proof_19","type":"(149250239 + 1).AtLeastTwo"}
@@ -6446,6 +6509,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_5_0._proof_19","type":"(27054599 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_6_1._proof_2","type":"(193439999 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.compactGram4_0_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyGramPart0 (MathAndTheory.GyiresCirculant5.basePoly4 c d e) =\n    MathAndTheory.GyiresCirculant5.compactGram4_0 c d e"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.oneSuccess_reference","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (k : ℕ),\n  Fintype.card ι = k + 2 → (Exceptional.oneSuccess fun x => 1 / ↑(Fintype.card ι)) = ((↑k + 1) / (↑k + 2)) ^ (k + 1)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_5_2._proof_2","type":"(621795599 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Motzkin.G.eq_1","type":"∀ (z : ℝ), MathAndTheory.Motzkin.G z = 2 * Real.log (z + 2) - 3 - 9 * z / (2 * z + 11)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_3._proof_15","type":"(12088709 + 1).AtLeastTwo"}
@@ -6453,8 +6517,11 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift5_0._proof_25","type":"(284 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Quot.sound"],"name":"MathAndTheory.QPermanent.familyCore.eq_1","type":"∀ {R : Type u_1} [inst : CommRing R] (a d : R), familyCore a d = !![d, 0, a, 1; 0, d, -1, a; a, -1, d, 0; 1, a, 0, d]"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_1._proof_41","type":"(7021709 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresExceptional.gyires","type":"∀ {n : ℕ},\n  ∀ A ∈ doublyStochastic ℝ (Fin n),\n    MathAndTheory.GyiresExceptional.HasExceptionalVector A →\n      2 ≤ n →\n        ↑n.factorial / ↑n ^ n * ((A * A.transpose).permanent + (A.transpose * A).permanent + 2 * (A * A).permanent) ≤\n          4 * A.permanent ^ 2"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.oneSuccess_const","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (q : ℝ),\n  (Exceptional.oneSuccess fun x => q) = ↑(Fintype.card ι) * q * (1 - q) ^ (Fintype.card ι - 1)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_6_0._proof_1","type":"(26242499 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_5_3_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly0 c d e 5) 3 =\n    MathAndTheory.GyiresCirculant5.strong0_part_5_3 c d e"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_gram_parameter","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (A : Matrix ι ι ℝ) (e : ι),\n  A ∈ doublyStochastic ℝ ι →\n    Exceptional.HasExceptionalColumn A e →\n      ∀ (k : ℕ),\n        Fintype.card ι = k + 2 →\n          (fun i => (A.transpose * A) i e) =\n            Exceptional.specialParameters (Exceptional.secondMoment fun i => A i e)\n              ((1 - Exceptional.secondMoment fun i => A i e) / (↑k + 1)) e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong2_coeff_6_nonneg","type":"∀ (b c d e : ℝ),\n  0 ≤ b →\n    0 ≤ c →\n      0 ≤ d →\n        0 ≤ e → 0 ≤ MathAndTheory.GyiresCirculant5.polyEval (MathAndTheory.GyiresCirculant5.chamberPoly2 c d e 6) b"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.outerCoeff._proof_1","type":"(624 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_2_3._proof_1","type":"(257388469 + 1).AtLeastTwo"}
@@ -6466,6 +6533,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.QPermanent.familyIndex_inl_lt_inr","type":"∀ (m : ℕ) (i : Fin 4) (j : Fin m), (familyIndex m) (Sum.inl i) < (familyIndex m) (Sum.inr j) ↔ i < 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_1_1._proof_8","type":"(222547839 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_3_0._proof_27","type":"(14241039 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.probe_permanent_sixth","type":"(ExceptionalExamples.probe (1 / 6)).permanent = 17 / 72"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_2_0._proof_2","type":"(18285709 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_2._proof_3","type":"(5857949 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_4_0._proof_21","type":"(5365779 + 1).AtLeastTwo"}
@@ -6496,6 +6564,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_0._proof_27","type":"(9752759 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong3_coeff_3_nonneg","type":"∀ (b c d e : ℝ),\n  0 ≤ b →\n    0 ≤ c →\n      0 ≤ d →\n        0 ≤ e → 0 ≤ MathAndTheory.GyiresCirculant5.polyEval (MathAndTheory.GyiresCirculant5.chamberPoly3 c d e 3) b"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_0._proof_61","type":"(70199 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresExceptional.gram_eq_iff","type":"∀ {n : ℕ},\n  ∀ A ∈ doublyStochastic ℝ (Fin n),\n    MathAndTheory.GyiresExceptional.HasExceptionalVector A →\n      2 ≤ n →\n        (↑n.factorial / ↑n ^ n * (A * A.transpose).permanent = A.permanent ^ 2 ↔ A = fun x x_1 => 1 / ↑n) ∧\n          (↑n.factorial / ↑n ^ n * (A.transpose * A).permanent = A.permanent ^ 2 ↔ A = fun x x_1 => 1 / ↑n)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift1_3._proof_5","type":"(1169 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_3_2._proof_19","type":"(206829919 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_3_0._proof_33","type":"(12435959 + 1).AtLeastTwo"}
@@ -6543,6 +6612,8 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.circulant_eq_transpose_circ","type":"∀ (v : Fin 5 → ℝ), Matrix.circulant v = (MathAndTheory.GyiresCirculant5.circ v).transpose"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_4_3._proof_1","type":"(538663899 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_2._proof_35","type":"(3732579 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.probe_three_row_types","type":"(Bernoulli.columnTypes (ExceptionalExamples.probe 0).transpose).card = 3"}
+LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.Gyires.Exceptional.scalarKernel._proof_1","type":"(1 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_0._proof_24","type":"(5401509 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"QPermanentProblem.witness._proof_1","type":"(4 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_0._proof_4","type":"(689189 + 1).AtLeastTwo"}
@@ -6556,6 +6627,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_1._proof_43","type":"(2818279 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift2_1._proof_17","type":"(529 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_2._proof_6","type":"(9135914 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_strong","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (A : Matrix ι ι ℝ) (e : ι),\n  A ∈ doublyStochastic ℝ ι →\n    Exceptional.HasExceptionalColumn A e →\n      2 ≤ Fintype.card ι →\n        dimensionConstant (Fintype.card ι) * (A * A.transpose).permanent ≤ A.permanent ^ 2 ∧\n          dimensionConstant (Fintype.card ι) * (A.transpose * A).permanent ≤ A.permanent ^ 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_2_1._proof_16","type":"(150349569 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_3_1._proof_2","type":"(344904639 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.polyGramShiftCoeff2.eq_1","type":"∀ (A B C : List ℝ),\n  MathAndTheory.GyiresCirculant5.polyGramShiftCoeff2 A B C =\n    MathAndTheory.GyiresCirculant5.polyAdd\n      (MathAndTheory.GyiresCirculant5.polyAdd\n        (MathAndTheory.GyiresCirculant5.polyAdd\n          (MathAndTheory.GyiresCirculant5.polyAdd\n            (MathAndTheory.GyiresCirculant5.polyAdd\n              (MathAndTheory.GyiresCirculant5.polyAdd\n                (MathAndTheory.GyiresCirculant5.polyAdd\n                  (MathAndTheory.GyiresCirculant5.polyAdd\n                    (MathAndTheory.GyiresCirculant5.polyAdd\n                      (MathAndTheory.GyiresCirculant5.polyScale 20 (MathAndTheory.GyiresCirculant5.polyPow A 3))\n                      (MathAndTheory.GyiresCirculant5.polyScale 60\n                        (MathAndTheory.GyiresCirculant5.polyMul (MathAndTheory.GyiresCirculant5.polyPow A 2) B)))\n                    (MathAndTheory.GyiresCirculant5.polyScale 60\n                      (MathAndTheory.GyiresCirculant5.polyMul (MathAndTheory.GyiresCirculant5.polyPow A 2) C)))\n                  (MathAndTheory.GyiresCirculant5.polyScale 110\n                    (MathAndTheory.GyiresCirculant5.polyMul A (MathAndTheory.GyiresCirculant5.polyPow B 2))))\n                (MathAndTheory.GyiresCirculant5.polyScale 200\n                  (MathAndTheory.GyiresCirculant5.polyMul (MathAndTheory.GyiresCirculant5.polyMul A B) C)))\n              (MathAndTheory.GyiresCirculant5.polyScale 110\n                (MathAndTheory.GyiresCirculant5.polyMul A (MathAndTheory.GyiresCirculant5.polyPow C 2))))\n            (MathAndTheory.GyiresCirculant5.polyScale 100 (MathAndTheory.GyiresCirculant5.polyPow B 3)))\n          (MathAndTheory.GyiresCirculant5.polyScale 220\n            (MathAndTheory.GyiresCirculant5.polyMul (MathAndTheory.GyiresCirculant5.polyPow B 2) C)))\n        (MathAndTheory.GyiresCirculant5.polyScale 220\n          (MathAndTheory.GyiresCirculant5.polyMul B (MathAndTheory.GyiresCirculant5.polyPow C 2))))\n      (MathAndTheory.GyiresCirculant5.polyScale 100 (MathAndTheory.GyiresCirculant5.polyPow C 3))"}
@@ -6619,6 +6691,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_0_5._proof_4","type":"(114114059 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_6_2_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly3 c d e 6) 2 =\n    MathAndTheory.GyiresCirculant5.strong3_part_6_2 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_2_2._proof_2","type":"(440825189 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.scalarR_pos","type":"∀ (k : ℕ) (a : ℝ), 0 < a → 0 < Exceptional.scalarR k a"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_6._proof_9","type":"(42728139 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_1_2._proof_11","type":"(292844739 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_2_4._proof_6","type":"(370044909 + 1).AtLeastTwo"}
@@ -6635,6 +6708,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_0._proof_63","type":"(26804 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_2_2._proof_1","type":"(115745919 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_2._proof_38","type":"(969179 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.scalarLog_small_bounds","type":"∀ (k : ℕ) (a : ℝ),\n  1 / (↑k + 2) ≤ a →\n    a ≤ 1 / 2 →\n      Exceptional.scalarLog k a ≤ Exceptional.scalarLog k (1 / (↑k + 2)) + (a - 1 / (↑k + 2)) ∧\n        (1 / (↑k + 2) < a → Exceptional.scalarLog k a < Exceptional.scalarLog k (1 / (↑k + 2)) + (a - 1 / (↑k + 2)))"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.BestOfNExtension.sum_telescope","type":"∀ (f : ℕ → ℝ) (m : ℕ), ∑ i, (f (↑i + 1) - f ↑i) = f m - f 0"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactShift2_1._proof_13","type":"(1224 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_0._proof_62","type":"(70199 + 1).AtLeastTwo"}
@@ -6843,6 +6917,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.Hofstadter.F_zero
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_4_1._proof_16","type":"(45510859 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_1._proof_33","type":"(16044839 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_4_0._proof_2","type":"(93315819 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exp_two_log","type":"∀ {a : ℝ}, 0 < a → Real.exp (2 * Real.log a) = a ^ 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.DomiRank.scoreDenominator._proof_4","type":"(282 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_2_3._proof_10","type":"(286354249 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_2_3._proof_21","type":"(10520499 + 1).AtLeastTwo"}
@@ -6881,6 +6956,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_4._proof_18","type":"(102473919 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_1._proof_42","type":"(3992039 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_2_3._proof_20","type":"(69112269 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptionalMatrix.eq_1","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (u : ι → ℝ) (e i j : ι),\n  Exceptional.exceptionalMatrix u e i j = if j = e then u i else (1 - u i) / ↑(Fintype.card ι - 1)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_7_0._proof_5","type":"(8879999 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_0_2._proof_30","type":"(6966309 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_1_2._proof_32","type":"(29411709 + 1).AtLeastTwo"}
@@ -6903,6 +6979,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_4_0._proof_27","type":"(4876139 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_0._proof_26","type":"(19989069 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_5_coeff_nonneg","type":"∀ (c d e : ℝ),\n  0 ≤ c →\n    0 ≤ d → 0 ≤ e → 0 ≤ MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly1 c d e 0) 5"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.deterministic_strong","type":"dimensionConstant 3 * (ExceptionalExamples.deterministic.transpose * ExceptionalExamples.deterministic).permanent ≤\n  ExceptionalExamples.deterministic.permanent ^ 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.conv.eq_1","type":"∀ (w : Fin 5 → ℝ) (k : Fin 5), MathAndTheory.GyiresCirculant5.conv w k = ∑ i, w i * w (k - i)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_3_4_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly0 c d e 3) 4 =\n    MathAndTheory.GyiresCirculant5.strong0_part_3_4 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Bernoulli.umono_twoColumn","type":"∀ {ι : Type u_1} [inst : Fintype ι] (p : ι → ℝ) (c : ι → Bool) (φ : ι → ι),\n  MathAndTheory.GyiresCirculant5.PermanentGram.umono (Bernoulli.twoColumn p c) φ =\n    Bernoulli.weight p (c ∘ φ) * Bernoulli.columnScale c (c ∘ φ)"}
@@ -7005,6 +7082,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_0._proof_7","type":"(2118059 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_2_0._proof_18","type":"(168242929 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_1_1._proof_7","type":"(132353779 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.secondMoment.eq_1","type":"∀ {ι : Type u_1} [inst : Fintype ι] (u : ι → ℝ), Exceptional.secondMoment u = ∑ i, u i ^ 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_2._proof_9","type":"(277086719 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Bernoulli.count.eq_1","type":"∀ {ι : Type u_1} [inst : Fintype ι] (b : ι → Bool), Bernoulli.count b = ∑ i, if b i = true then 1 else 0"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_3._proof_26","type":"(27731679 + 1).AtLeastTwo"}
@@ -7038,6 +7116,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_4_5._proof_2","type":"(134925959 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.P5_gram_vector","type":"∀ (a b c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.P5 (MathAndTheory.GyiresCirculant5.gram ![a, b, c, d, e]) =\n    MathAndTheory.GyiresCirculant5.P5Scalar (a * a + b * b + c * c + d * d + e * e)\n      (a * b + b * c + c * d + d * e + e * a) (a * c + b * d + c * e + d * a + e * b)\n      (a * c + b * d + c * e + d * a + e * b) (a * b + b * c + c * d + d * e + e * a)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_5_2._proof_9","type":"(192758399 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_left_strong","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (A : Matrix ι ι ℝ) (e : ι),\n  A ∈ doublyStochastic ℝ ι →\n    Exceptional.HasExceptionalColumn A e →\n      dimensionConstant (Fintype.card ι) * (A * A.transpose).permanent ≤ A.permanent ^ 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_4_0._proof_8","type":"(276400199 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":[],"name":"MathAndTheory.Hofstadter.iter_fin_val","type":"∀ {b : ℕ} (f : ℕ → ℕ) (hf : ∀ (i : ℕ), f i ≤ i) (t : ℕ) (x : Fin b),\n  ↑(MathAndTheory.Hofstadter.iter (fun y => ⟨f ↑y, ⋯⟩) t x) = MathAndTheory.Hofstadter.iter f t ↑x"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_2_2._proof_27","type":"(22524239 + 1).AtLeastTwo"}
@@ -7045,6 +7124,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.compactGram1_1_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyGramPart1 (MathAndTheory.GyiresCirculant5.basePoly1 c d e) =\n    MathAndTheory.GyiresCirculant5.compactGram1_1 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_2._proof_18","type":"(130853199 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_0._proof_1","type":"(43724 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.probe_strict_zero","type":"dimensionConstant 3 *\n    ((ExceptionalExamples.probe 0 * (ExceptionalExamples.probe 0).transpose).permanent +\n        ((ExceptionalExamples.probe 0).transpose * ExceptionalExamples.probe 0).permanent +\n      2 * (ExceptionalExamples.probe 0 * ExceptionalExamples.probe 0).permanent) <\n  4 * (ExceptionalExamples.probe 0).permanent ^ 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_2_1._proof_16","type":"(137127359 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_1._proof_46","type":"(20239 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.outerCoeff._proof_2","type":"NeZero (5 + 1)"}
@@ -7160,6 +7240,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_4_1._proof_8","type":"(929198699 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_1_0._proof_8","type":"(12578059 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_4_0._proof_10","type":"(52703599 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_vector_gyires_eq_iff","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι],\n  ∀ A ∈ doublyStochastic ℝ ι,\n    Exceptional.HasExceptionalVector A →\n      2 ≤ Fintype.card ι →\n        (dimensionConstant (Fintype.card ι) *\n              ((A * A.transpose).permanent + (A.transpose * A).permanent + 2 * (A * A).permanent) =\n            4 * A.permanent ^ 2 ↔\n          A = Bernoulli.uniformMatrix)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_2_1._proof_18","type":"(577936179 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_0._proof_52","type":"(686159 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_0._proof_54","type":"(59619 + 1).AtLeastTwo"}
@@ -7191,6 +7272,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_1_4._proof_12","type":"(387909719 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_1_0._proof_16","type":"(30009049 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_3_2._proof_17","type":"(190787279 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.Gyires.ExceptionalExamples.parameter._proof_3","type":"(1 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_3_1._proof_14","type":"(457008639 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactGram1_0._proof_2","type":"(3 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_6_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly5 c d e 0) 6 =\n    MathAndTheory.GyiresCirculant5.strong5_part_0_6 c d e"}
@@ -7488,6 +7570,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_5_1._proof_9","type":"(342903599 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_1_1._proof_34","type":"(21077279 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.gramShiftCoeff0.eq_1","type":"∀ (A B C : ℝ),\n  MathAndTheory.GyiresCirculant5.gramShiftCoeff0 A B C =\n    A ^ 5 + 5 * A ^ 3 * B ^ 2 + 5 * A ^ 3 * C ^ 2 + 10 * A ^ 2 * B ^ 2 * C + 10 * A ^ 2 * B * C ^ 2 + 5 * A * B ^ 4 +\n                        10 * A * B ^ 3 * C +\n                      15 * A * B ^ 2 * C ^ 2 +\n                    10 * A * B * C ^ 3 +\n                  5 * A * C ^ 4 +\n                2 * B ^ 5 +\n              10 * B ^ 4 * C +\n            10 * B ^ 3 * C ^ 2 +\n          10 * B ^ 2 * C ^ 3 +\n        10 * B * C ^ 4 +\n      2 * C ^ 5"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.scalarLog_small_derivative","type":"∀ (k : ℕ) (a : ℝ), 0 < a → a ≤ 1 / 2 → ↑k / (↑k + a) + (↑k + 2) * (2 * a - 1) / Exceptional.scalarKernel k a < 1"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_6._proof_4","type":"(156768639 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_1._proof_44","type":"(486599 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_3_1._proof_13","type":"(918979999 + 1).AtLeastTwo"}
@@ -7682,6 +7765,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.BestOfN.reference_sum","type":"∑ i, MathAndTheory.BestOfN.reference i = 1"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_3_2._proof_15","type":"(98782279 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_0_2._proof_39","type":"(2209549 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.probe_high_variance","type":"Exceptional.secondMoment (ExceptionalExamples.parameter 0) = 5 / 9"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strongDefect._proof_1","type":"(624 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_2_0._proof_38","type":"(1290979 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_7_coeff_nonneg","type":"∀ (c d e : ℝ),\n  0 ≤ c →\n    0 ≤ d → 0 ≤ e → 0 ≤ MathAndTheory.GyiresCirculant5.polyCoeff (MathAndTheory.GyiresCirculant5.chamberPoly2 c d e 0) 7"}
@@ -7730,6 +7814,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_0._proof_47","type":"(132209 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_1_0._proof_43","type":"(581799 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_1._proof_20","type":"(10473699 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.eq_exceptionalMatrix","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (A : Matrix ι ι ℝ) (e : ι),\n  A ∈ doublyStochastic ℝ ι →\n    Exceptional.HasExceptionalColumn A e → 1 < Fintype.card ι → A = Exceptional.exceptionalMatrix (fun i => A i e) e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_5_2._proof_3","type":"(307585799 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_1_6._proof_3","type":"(102103749 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_3._proof_11","type":"(77319129 + 1).AtLeastTwo"}
@@ -7847,6 +7932,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_2_3._proof_1","type":"(257388469 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_1_4._proof_8","type":"(686999809 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.BestOfNExtension.density._proof_1","type":"(1 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.ExceptionalExamples.probe_low_variance","type":"Exceptional.secondMoment (ExceptionalExamples.parameter (1 / 6)) = 7 / 18"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_0_0._proof_55","type":"(6009 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.compactShift1_4_eq","type":"∀ (c d e : ℝ),\n  MathAndTheory.GyiresCirculant5.polyShiftCoeff4 (MathAndTheory.GyiresCirculant5.basePoly1 c d e) =\n    MathAndTheory.GyiresCirculant5.compactShift1_4 c d e"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.P5Scalar._proof_1","type":"(4 + 1).AtLeastTwo"}
@@ -8123,6 +8209,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong3_part_0_2._proof_26","type":"(29801324 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_0._proof_12","type":"(51179139 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_0_1._proof_40","type":"(6993279 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.log_oneSuccess_lower","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι],\n  ∀ u ∈ Set.Icc 0 1,\n    ∑ i, u i = 1 → (∀ (i : ι), u i < 1) → ∑ i, (1 - u i) * Real.log (1 - u i) ≤ Real.log (Exceptional.oneSuccess u)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_4_2._proof_13","type":"(310425399 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.DiagonalConcavity.fourthRoot.eq_1","type":"∀ (a : ℝ), MathAndTheory.DiagonalConcavity.fourthRoot a = a ^ (1 / 4)"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_2_3._proof_20","type":"(69112269 + 1).AtLeastTwo"}
@@ -8251,6 +8338,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.QPermanent.corePerm21_inversions","type":"inversionCount corePerm21 = 5"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_4_2._proof_15","type":"(32995799 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.DomiRank.scoreNumerators._proof_14","type":"(76 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.special_reference_eq_scalarR","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] (a : ℝ) (e : ι) (k : ℕ),\n  Fintype.card ι = k + 2 →\n    Exceptional.oneSuccess (Exceptional.specialParameters a ((1 - a) / (↑k + 1)) e) * ((↑k + 1) / (↑k + 2)) ^ (k + 1) =\n      Exceptional.scalarR k a"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_2_2._proof_9","type":"(831804419 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_0_7._proof_2","type":"(27744019 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_2_0._proof_20","type":"(47820949 + 1).AtLeastTwo"}
@@ -8258,6 +8346,7 @@ LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong5_part_5_2._proof_10","type":"(54179399 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.QPermanent.integerFamilyCore_cast","type":"∀ (a d : ℚ) (i j : Fin 4), ↑(integerFamilyCore a d i j) = ↑a.den * ↑d.den * familyCore (↑a) (↑d) i j"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong4_part_1_2._proof_28","type":"(4520189 + 1).AtLeastTwo"}
+LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.Gyires.Exceptional.exceptional_vector_gyires","type":"∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι],\n  ∀ A ∈ doublyStochastic ℝ ι,\n    Exceptional.HasExceptionalVector A →\n      2 ≤ Fintype.card ι →\n        dimensionConstant (Fintype.card ι) *\n            ((A * A.transpose).permanent + (A.transpose * A).permanent + 2 * (A * A).permanent) ≤\n          4 * A.permanent ^ 2"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong1_part_1_2._proof_6","type":"(108900189 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.compactGram3_0._proof_1","type":"(2 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong2_part_3_2._proof_16","type":"(79175719 + 1).AtLeastTwo"}
@@ -8333,5 +8422,5 @@ LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_3_6._proof_2","type":"(98114799 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext"],"name":"MathAndTheory.GyiresCirculant5.strong0_part_2_3._proof_14","type":"(404619779 + 1).AtLeastTwo"}
 LEAN_THEOREM_AUDIT {"axioms":["propext","Classical.choice","Quot.sound"],"name":"MathAndTheory.GyiresCirculant5.shiftCoeff5.eq_1","type":"∀ (_w : Fin 5 → ℝ), MathAndTheory.GyiresCirculant5.shiftCoeff5 _w = 120"}
-LEAN_DECLARATION_AUDIT_PASS 9094 declarations
-LEAN_AUDIT_PASS 8285 theorems
+LEAN_DECLARATION_AUDIT_PASS 9196 declarations
+LEAN_AUDIT_PASS 8374 theorems

@@ -1,5 +1,5 @@
 /-
-Check the transitive axioms of the order-five and four-block Gyires developments.
+Check the transitive axioms of the order-five, four-block, and exceptional-vector Gyires developments.
 Run from lean/ after the library build:
   lake env lean -j1 ../verification/gyires-circulant-five/AxiomAudit.lean
 The audit checks the listed statements and every declaration in this family.
@@ -8,6 +8,7 @@ module
 
 import MathAndTheory.Mathematics.GyiresCirculant5.Main
 import Solutions.GyiresCirculant5
+import MathAndTheory.Mathematics.Gyires.ExceptionalBoundaryChecks
 
 -- The theorems compared with `Challenges/GyiresCirculant5.lean`
 #print axioms MathAndTheory.GyiresCirculant5.gyires_ratio
@@ -21,6 +22,10 @@ import Solutions.GyiresCirculant5
 #print axioms MathAndTheory.GyiresCirculant5.strong_margin_attained
 #print axioms MathAndTheory.GyiresCirculant5.strong_margin_sharp
 
+#print axioms MathAndTheory.GyiresExceptional.strong
+#print axioms MathAndTheory.GyiresExceptional.gram_eq_iff
+#print axioms MathAndTheory.GyiresExceptional.gyires
+#print axioms MathAndTheory.GyiresExceptional.gyires_eq_iff
 #print axioms MathAndTheory.GyiresFourBlock.contractions
 #print axioms MathAndTheory.GyiresFourBlock.margin
 #print axioms MathAndTheory.GyiresFourBlock.gyires
@@ -146,7 +151,8 @@ open Lean Elab Command in
     let module := env.header.moduleNames[idx.toNat]!
     unless (`MathAndTheory.Mathematics.GyiresCirculant5).isPrefixOf module ||
       (`MathAndTheory.Mathematics.Gyires).isPrefixOf module ||
-      module == `Solutions.GyiresCirculant5 || module == `Solutions.GyiresFourBlock do continue
+      module == `Solutions.GyiresCirculant5 || module == `Solutions.GyiresFourBlock ||
+      module == `Solutions.GyiresExceptional do continue
     declarations := declarations + 1
     let axioms ← liftCoreM <| collectAxioms name
     for a in axioms do used := used.insert a

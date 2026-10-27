@@ -16,3 +16,5 @@ public import MathAndTheory.Mathematics.Gyires.DimensionConstant
 public import MathAndTheory.Mathematics.Gyires.BlockPermanent
 public import MathAndTheory.Mathematics.Gyires.CirculantCertificate
 public import MathAndTheory.Mathematics.Gyires.FourBlock
+public import MathAndTheory.Mathematics.Gyires.ExceptionalVector
+public import MathAndTheory.Mathematics.Gyires.ExceptionalBoundaryChecks

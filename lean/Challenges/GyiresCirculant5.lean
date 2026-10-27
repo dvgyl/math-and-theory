@@ -204,3 +204,43 @@ theorem gyires_eq_iff {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
   sorry
 
 end MathAndTheory.GyiresFourBlock
+
+namespace MathAndTheory.GyiresExceptional
+
+def HasExceptionalVector {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) : Prop :=
+  (∃ e, ∀ i j k, j ≠ e → k ≠ e → A i j = A i k) ∨
+    (∃ e, ∀ i j k, j ≠ e → k ≠ e → A j i = A k i)
+
+theorem strong {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
+    (hA : A ∈ doublyStochastic ℝ (Fin n)) (he : HasExceptionalVector A)
+    (hn : 2 ≤ n) :
+    ((Nat.factorial n : ℝ) / (n : ℝ)^n) * (A*A.transpose).permanent ≤ A.permanent^2 ∧
+      ((Nat.factorial n : ℝ) / (n : ℝ)^n) * (A.transpose*A).permanent ≤ A.permanent^2 := by
+  sorry
+
+theorem gram_eq_iff {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
+    (hA : A ∈ doublyStochastic ℝ (Fin n)) (he : HasExceptionalVector A)
+    (hn : 2 ≤ n) :
+    (((Nat.factorial n : ℝ) / (n : ℝ)^n) * (A*A.transpose).permanent = A.permanent^2 ↔
+      A = fun _ _ => 1 / (n : ℝ)) ∧
+    (((Nat.factorial n : ℝ) / (n : ℝ)^n) * (A.transpose*A).permanent = A.permanent^2 ↔
+      A = fun _ _ => 1 / (n : ℝ)) := by
+  sorry
+
+theorem gyires {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
+    (hA : A ∈ doublyStochastic ℝ (Fin n)) (he : HasExceptionalVector A)
+    (hn : 2 ≤ n) :
+    ((Nat.factorial n : ℝ) / (n : ℝ)^n) *
+      ((A*A.transpose).permanent + (A.transpose*A).permanent + 2*(A*A).permanent) ≤
+        4*A.permanent^2 := by
+  sorry
+
+theorem gyires_eq_iff {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
+    (hA : A ∈ doublyStochastic ℝ (Fin n)) (he : HasExceptionalVector A)
+    (hn : 2 ≤ n) :
+    ((Nat.factorial n : ℝ) / (n : ℝ)^n) *
+      ((A*A.transpose).permanent + (A.transpose*A).permanent + 2*(A*A).permanent) =
+        4*A.permanent^2 ↔ A = fun _ _ => 1 / (n : ℝ) := by
+  sorry
+
+end MathAndTheory.GyiresExceptional

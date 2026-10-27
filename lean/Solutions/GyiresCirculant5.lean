@@ -4,6 +4,7 @@ module
 
 public import MathAndTheory.Mathematics.GyiresCirculant5.MathlibStatements
 public import Solutions.GyiresFourBlock
+public import Solutions.GyiresExceptional
 
 /-!
 # Solution for Gyires's inequality for circulant matrices of order five

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Scan this family's Lean source for proof bypasses.
 
-Only the fourteen listed Challenge placeholders are permitted.
+Only the eighteen listed Challenge placeholders are permitted.
 """
 from pathlib import Path
 import re
@@ -47,10 +47,11 @@ proof_directories = [
 proof_groups = {name: sorted((root / name).rglob("*.lean")) for name in proof_directories}
 proof_files = [path for group in proof_groups.values() for path in group]
 expected_placeholders = {
-    "Challenges/GyiresCirculant5.lean": 14,
+    "Challenges/GyiresCirculant5.lean": 18,
 }
 interfaces = list(expected_placeholders) + [
-    "Solutions/GyiresCirculant5.lean", "Solutions/GyiresFourBlock.lean"
+    "Solutions/GyiresCirculant5.lean", "Solutions/GyiresFourBlock.lean",
+    "Solutions/GyiresExceptional.lean"
 ]
 missing = [name for name in interfaces if not (root / name).is_file()]
 missing += [name for name, group in proof_groups.items() if not group]

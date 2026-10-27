@@ -1,6 +1,6 @@
 # Verification guide
 
-The catalogue contains seven result families, seven manuscripts, and 25 selected Comparator statements. The [Gyires preprint](../preprints/gyires-circulant-five/paper.pdf) contains the verified order-five and four-block results. Its other principal matrix and polynomial arguments have a [separate ordinary-proof and certificate record](../research-notes/gyires-complete-support/README.md). Those principal results remain incomplete in Lean. Each family guide gives its mathematical scope and test limits. The central record gives the completed checks and their scope.
+The catalogue contains seven result families, seven manuscripts, and 29 selected Comparator statements. The [Gyires preprint](../preprints/gyires-circulant-five/paper.pdf) contains the verified order-five, four-block, and exceptional-vector results. Its other principal matrix and polynomial arguments have a [separate ordinary-proof and certificate record](../research-notes/gyires-complete-support/README.md). Those principal results remain incomplete in Lean. Each family guide gives its mathematical scope and test limits. The central record gives the completed checks and their scope.
 
 ## Reproduce the formal checks
 

@@ -1,8 +1,8 @@
 # Manuscript catalogue
 
-The catalogue contains seven result families and seven manuscripts. The Gyires preprint covers structured matrix inequalities and related polynomial bounds. The 25 selected Comparator declarations include equality, positivity, sharpness, and generalization statements. Supporting lemmas are not separate research contributions.
+The catalogue contains seven result families and seven manuscripts. The Gyires preprint covers structured matrix inequalities and related polynomial bounds. The 29 selected Comparator declarations include equality, positivity, sharpness, and generalization statements. Supporting lemmas are not separate research contributions.
 
-Six papers have complete formal proofs of their principal claims. The Gyires preprint has complete Lean proofs for its principal order-five claims and its all-order four-block theorem. Its other principal results have incomplete Lean verification. The verification record gives the checks actually completed. The papers have not been peer reviewed. The prior-work assessment is bounded and makes no first-priority claim.
+Six papers have complete formal proofs of their principal claims. The Gyires preprint has complete Lean proofs for its principal order-five claims, its all-order four-block theorem, and its exceptional-vector theorem. Its other principal results have incomplete Lean verification. The verification record gives the checks actually completed. The papers have not been peer reviewed. The prior-work assessment is bounded and makes no first-priority claim.
 
 ## Mathematics
 
@@ -20,9 +20,9 @@ Six papers have complete formal proofs of their principal claims. The Gyires pre
 
 #### Gyires's permanent inequality for structured matrices
 
-**Family:** `gyires-circulant-five`. **Result:** Structured matrix inequalities and related polynomial bounds. The principal order-five claims and the all-order four-block theorem have Lean proofs.
+**Family:** `gyires-circulant-five`. **Result:** Structured matrix inequalities and related polynomial bounds. The principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have Lean proofs.
 
-**Abstract.** The preprint proves Gyires's permanent inequality for several structured matrix classes. These include nonnegative circulants of orders five through seven, all-order permutation polynomials A=aI+bQ+cQ², and all-order four-block doubly stochastic matrices. Here Q is any permutation matrix and a,b,c are nonnegative. The four-block result permits unequal block sizes and zero entries. Further results cover one exceptional column or row and every rank-at-most-two doubly stochastic matrix through order fifteen. The supporting sections prove structural, scalar, deletion, balancing, local polynomial, and counting results. Exact counterexamples identify the limits of auxiliary assertions. The principal order-five claims include equality and a sharp sorted-gap bound with coefficient 484. The principal order-five claims and the all-order four-block theorem have complete Lean proofs. The other principal Gyires results remain incomplete in Lean. The unrestricted conjecture remains outside these results.
+**Abstract.** The preprint proves Gyires's permanent inequality for several structured matrix classes. These include nonnegative circulants of orders five through seven, all-order permutation polynomials A=aI+bQ+cQ², and all-order four-block doubly stochastic matrices. Here Q is any permutation matrix and a,b,c are nonnegative. The four-block result permits unequal block sizes and zero entries. Further results cover one exceptional column or row and every rank-at-most-two doubly stochastic matrix through order fifteen. The supporting sections prove structural, scalar, deletion, balancing, local polynomial, and counting results. Exact counterexamples identify the limits of auxiliary assertions. The principal order-five claims include equality and a sharp sorted-gap bound with coefficient 484. The principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have complete Lean proofs. The other principal Gyires results remain incomplete in Lean. The unrestricted conjecture remains outside these results.
 
 **Original problem.** [Gyires, 1978; Cheon and Wanless, 2005, Conjecture 20. Earlier formalization at the pinned Gyires repository.](https://github.com/dvgyl/gyires-circulant-5/tree/72cf49a51be42cf15592f91d991f0b0c76f58448)
 

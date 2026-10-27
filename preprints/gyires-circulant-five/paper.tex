@@ -51,9 +51,9 @@ Further results treat sparse perturbations, direct sums, positive-semidefinite m
 The supporting arguments include scalar norm inequalities, polynomial deletion, balanced limits,
 local stable and Lorentzian inequalities, and exact configuration-model identities.
 Exact counterexamples identify the limits of proposed extensions.
-The principal order-five claims and the all-order four-block theorem have complete Lean~4 proofs.
+The principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have complete Lean~4 proofs.
 General permanent comparisons and direct-sum closure also have Lean proofs.
-The principal higher-order circulant, permutation-polynomial, exceptional-vector, and finite rank-two theorems remain incomplete in Lean.
+The principal higher-order circulant, permutation-polynomial, and finite rank-two theorems remain incomplete in Lean.
 The unrestricted conjecture is not resolved.
 \end{abstract}
 
@@ -104,7 +104,7 @@ Section~\ref{sec:general} proves the permanent comparison that makes this implic
 
 Sections~\ref{sec:order-five} and~\ref{sec:circulant-six-seven} treat unrestricted nonnegative circulant weights in orders five, six, and seven.
 They give equality cases and sharp sorted-gap margins.
-The order-five and four-block theorems have formal proofs in Lean.
+The order-five, four-block, and exceptional-vector theorems have formal proofs in Lean.
 The order-six and order-seven proofs use exhaustive exact coefficient certificates.
 
 Section~\ref{sec:permutation} treats $aI+bQ+cQ^2$ in every dimension, where $Q$ is any permutation matrix and $a,b,c\ge0$.
@@ -135,9 +135,9 @@ Exact counterexamples rule out several stronger auxiliary statements. None contr
 \subsection{Verification status}
 
 The principal order-five inequalities, equality cases, and sharp margin have complete Lean proofs.
-The all-order four-block theorem also has a complete Lean proof.
+The all-order four-block and exceptional-vector theorems also have complete Lean proofs.
 General permanent comparisons and direct-sum closure also have Lean proofs.
-The principal higher-order circulant, permutation-polynomial, exceptional-vector, and finite rank-two theorems remain incomplete in Lean.
+The principal higher-order circulant, permutation-polynomial, and finite rank-two theorems remain incomplete in Lean.
 Section~\ref{sec:checks} maps the formalized theorems to their Lean declarations and explains how to reproduce the computations.
 
 \subsection{Prior work}
@@ -6289,7 +6289,7 @@ Extending the support inequality~\eqref{eq:lp-mconvex-norm} to arbitrary matrix-
 
 \section{Verification and reproduction}\label{sec:checks}
 
-The principal order-five theorems and the all-order four-block theorem have Lean proofs. The other results use analytic proofs or exact computational certificates.
+The principal order-five theorems, the all-order four-block theorem, and the exceptional-vector theorem have Lean proofs. The other results use analytic proofs or exact computational certificates.
 The accompanying repository contains the programs, outputs, and reproduction commands in
 \path{research-notes/gyires-complete-support}.
 The table below identifies the formalized statements.
@@ -6385,6 +6385,24 @@ It maximizes a linear likelihood difference at a fixed mean.
 A shifted-binomial coefficient recurrence gives the central bound.
 The matrix proof then uses a permutation average to prove the contractions.
 This route proves the full matrix statement without formalizing each intermediate coefficient identity in the ordinary proof.
+
+\subsection{Exceptional-vector Lean correspondence}
+
+The result for one exceptional column or row has a complete Lean proof for every $n\ge2$.
+The predicate states directly that all columns except one are identical, or that all rows except one are identical.
+The exceptional vector can have arbitrarily many distinct entries, and zero entries are permitted.
+The formal theorem proves both strong Gram bounds in~\eqref{eq:e-1} and Gyires's inequality in~\eqref{eq:e-2}.
+Equality in each Gram bound, and in Gyires's inequality, holds exactly at $J_n$.
+The matrix square is the original product $A^2$.
+
+The four statements use the namespace \path{MathAndTheory.GyiresExceptional}:
+\path{strong}, \path{gram_eq_iff}, \path{gyires}, and \path{gyires_eq_iff}.
+Their independent specifications are in \path{lean/Challenges/GyiresCirculant5.lean}.
+Their proofs are in \path{lean/Solutions/GyiresExceptional.lean}.
+The supporting library ends in \path{MathAndTheory.Mathematics.Gyires.ExceptionalVector}.
+It proves the one-success probability bounds in both second-moment ranges.
+It includes deterministic parameters and the exact coefficient identities for the matrix permanents.
+The four-block theorem covers orders zero and one separately.
 
 \subsection{Order-five Lean correspondence}
 Lean~\cite{lean} is a \emph{proof assistant}. It checks a formal proof against

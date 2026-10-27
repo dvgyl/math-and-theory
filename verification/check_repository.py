@@ -47,6 +47,9 @@ cat=json.loads((root/'catalogue.json').read_text());families=cat['families']
 require(len(families)==len(configs),'Catalogue/configuration count mismatch')
 require({f['id'] for f in families}=={p.stem for p in configs},'Catalogue/configuration identifiers differ')
 for f in families:
+    config_path = root / 'lean/comparator' / (f['id'] + '.json')
+    selected = json.loads(config_path.read_text())['theorem_names'] if config_path.is_file() else []
+    require(f.get('theorems') == selected, f'Catalogue theorem coverage differs: {f["id"]}')
     d=root/'preprints'/f['id']
     for name in ['paper.tex','paper.pdf','references.bib','citation.bib','README.md']:require((d/name).is_file(),f'Missing paper artifact: {f["id"]}/{name}')
     require((root/'lean/docs'/(f['id']+'.md')).is_file(),f'Missing formal guide: {f["id"]}')

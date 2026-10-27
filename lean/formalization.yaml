@@ -3,8 +3,8 @@ version: v0.4
 project:
   name: Math and Theory
   description: 'Seven result families with complete principal Lean proofs: extended q-permanent
-    monotonicity, order-five circulant and all-order four-block Gyires inequalities, a DomiRank
-    entropy counterexample, a diagonal concavity classification, sharp alternating-Motzkin
+    monotonicity, order-five circulant, all-order four-block, and exceptional-vector Gyires
+    inequalities, a DomiRank entropy counterexample, a diagonal concavity classification, sharp alternating-Motzkin
     root bounds, a uniform Hofstadter iterate disproof, and best-of-n counterexamples for
     all budgets. The other principal Gyires manuscript results remain outside the selected
     formal statements.'
@@ -42,7 +42,7 @@ sources:
   relationship: adapts
   license: Apache-2.0
   note: The order-five statements retain their source attribution. The collection also proves
-    the all-order four-block theorem. Its other principal Gyires results remain incomplete
+    the all-order four-block and exceptional-vector theorems. Its other principal Gyires results remain incomplete
     in Lean.
   author_endorsement: participated
 - title: An update on Minc’s survey of open problems involving permanents
@@ -100,7 +100,7 @@ related_formalizations:
   relationship: other
   note: Related definitions and iterate comparisons. No source code is imported.
 status:
-  scope: The 25 selected statements cover the seven catalogue families, including equality,
+  scope: The 29 selected statements cover the seven catalogue families, including equality,
     positivity, sharpness, and the stated generalizations. All essential source-definition
     links are proved. Challenge holes are excluded from the proved library. Finite computations
     support the proofs; they do not replace universal formal theorems.
@@ -133,7 +133,8 @@ fidelity:
     proves the base-two entropy implication. Motzkin uses the source recurrence and proves
     equality with the source finite alternating sum. Best-of-n uses the source finite cumulative-probability
     law; the all-budget construction uses explicitly stated sufficient constants. The selected
-    Gyires formal statements cover order-five circulants and all-order four-block matrices.
+    Gyires formal statements cover order-five circulants, all-order four-block matrices, and
+    the exceptional-vector family in orders n ≥ 2.
     The other principal Gyires manuscript results are not fully formalized. Q-permanent retains
     the full coordinate order when counting inversions. Hofstadter uses the original recurrence
     and proves the inverse correspondence. Concavity uses unnormalized elementary symmetric
@@ -383,6 +384,40 @@ alignment:
     note: Equality in Gyires's inequality holds exactly at the uniform matrix. The matrix
       is doubly stochastic and has at most two actual row vectors and at most two actual column
       vectors. All finite orders, unequal class sizes, and zero entries are permitted.
+  - source: Gyires's permanent inequality for structured matrices; exceptional-vector theorem,
+      strong
+    lean: MathAndTheory.GyiresExceptional.strong
+    module: Solutions.GyiresExceptional
+    status: proved
+    note: Both strong Gram bounds. The matrix is doubly stochastic of order n ≥ 2. All columns
+      except one are identical, or all rows except one are identical. Zero entries and arbitrarily
+      many distinct entries in the exceptional vector are permitted.
+  - source: Gyires's permanent inequality for structured matrices; exceptional-vector theorem,
+      gram_eq_iff
+    lean: MathAndTheory.GyiresExceptional.gram_eq_iff
+    module: Solutions.GyiresExceptional
+    status: proved
+    note: Equality in either strong Gram bound holds exactly at the uniform matrix. The matrix
+      is doubly stochastic of order n ≥ 2. All columns except one are identical, or all rows except
+      one are identical. Zero entries and arbitrarily many distinct entries in the exceptional
+      vector are permitted.
+  - source: Gyires's permanent inequality for structured matrices; exceptional-vector theorem,
+      gyires
+    lean: MathAndTheory.GyiresExceptional.gyires
+    module: Solutions.GyiresExceptional
+    status: proved
+    note: Gyires's inequality with the original matrix product A². The matrix is doubly stochastic
+      of order n ≥ 2. All columns except one are identical, or all rows except one are identical.
+      Zero entries and arbitrarily many distinct entries in the exceptional vector are permitted.
+  - source: Gyires's permanent inequality for structured matrices; exceptional-vector theorem,
+      gyires_eq_iff
+    lean: MathAndTheory.GyiresExceptional.gyires_eq_iff
+    module: Solutions.GyiresExceptional
+    status: proved
+    note: Equality in Gyires's inequality holds exactly at the uniform matrix. The matrix is doubly
+      stochastic of order n ≥ 2. All columns except one are identical, or all rows except one
+      are identical. Zero entries and arbitrarily many distinct entries in the exceptional vector
+      are permitted.
 acknowledgements: Lean, Mathlib, the bundled Comparator and independent kernels, Palomar’s
   public validators, and the researchers credited in each paper. Third-party source and data
   notices are preserved.

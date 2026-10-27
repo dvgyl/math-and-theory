@@ -89,9 +89,10 @@ class CertificateFailureTests(unittest.TestCase):
         target = self.folder / relative
         target.parent.mkdir(parents=True)
         shutil.copy2(ORDER_FIVE / 'scan_sources.py', target)
-        for name, count in [('Challenges/GyiresCirculant5.lean', 14),
+        for name, count in [('Challenges/GyiresCirculant5.lean', 18),
                             ('Solutions/GyiresCirculant5.lean', 0),
-                            ('Solutions/GyiresFourBlock.lean', 0)]:
+                            ('Solutions/GyiresFourBlock.lean', 0),
+                            ('Solutions/GyiresExceptional.lean', 0)]:
             path = self.folder / 'lean' / name
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text('example : True := by sorry\n' * count)
@@ -102,9 +103,10 @@ class CertificateFailureTests(unittest.TestCase):
         target = self.folder / relative
         target.parent.mkdir(parents=True)
         shutil.copy2(ORDER_FIVE / 'scan_sources.py', target)
-        for name, count in [('Challenges/GyiresCirculant5.lean', 14),
+        for name, count in [('Challenges/GyiresCirculant5.lean', 18),
                             ('Solutions/GyiresCirculant5.lean', 0),
-                            ('Solutions/GyiresFourBlock.lean', 0)]:
+                            ('Solutions/GyiresFourBlock.lean', 0),
+                            ('Solutions/GyiresExceptional.lean', 0)]:
             path = self.folder / 'lean' / name
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text('example : True := by sorry\n' * count)
@@ -121,7 +123,7 @@ class CertificateFailureTests(unittest.TestCase):
             path.write_text(source)
         path = self.folder / 'lean/Challenges/GyiresCirculant5.lean'
         source = path.read_text()
-        for count in (13, 15):
+        for count in (17, 19):
             path.write_text('example : True := by sorry\n' * count)
             self.failed(self.run_script(relative), 'RESULT: FAIL')
         for modifiers in ('', 'public ', 'meta ', 'public meta '):
