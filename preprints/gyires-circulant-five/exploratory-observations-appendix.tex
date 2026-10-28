@@ -22,7 +22,7 @@ The proposed lower bound for each ratio is one. A raw deletion ratio uses \(N([x
 
 Let \(C(w)_{ij}=w_{j-i\bmod n}\), and put \(F_n(w)=n^n\per(C(w))^2-n!\per(C(w)C(w)^{\T})\). For a sorting permutation \(\pi\), use \(w_{\pi(k)}=x_0+\cdots+x_k\). Each sorting region is called a chamber. The following selected chambers were checked by exact integer polynomial arithmetic.
 
-{\def\LTcaptype{none} % do not increment counter
+{\def\LTcaptype{}\stepcounter{LT@tables} % unnumbered, unique table instance
 \begin{longtable}[]{@{}
   >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
   >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
@@ -104,7 +104,7 @@ These tests found no counterexample. They were not exhaustive. Individual sample
 
 Full-simplex searches used analytic gradients and sequential least-squares programming, with \(w\ge0\), \(\sum w_i=1\), and at most 300 iterations. Starts included Dirichlet weights, sparse supports, uniform weights on random supports, and dense perturbations.
 
-{\def\LTcaptype{none} % do not increment counter
+{\def\LTcaptype{}\stepcounter{LT@tables} % unnumbered, unique table instance
 \begin{longtable}[]{@{}rrrr@{}}
 \toprule\noalign{}
 Order & Starts & Convergence reports & Smallest \(\mathcal R\) \\
@@ -124,7 +124,7 @@ The values slightly below one occur near uniform weights and are at floating-poi
 
 Fixed-Gram searches kept the Fourier magnitudes and the real Nyquist eigenvalue fixed. They varied conjugate Fourier phases subject to nonnegative inverse-transform weights.
 
-{\def\LTcaptype{none} % do not increment counter
+{\def\LTcaptype{}\stepcounter{LT@tables} % unnumbered, unique table instance
 \begin{longtable}[]{@{}
   >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
   >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
@@ -167,7 +167,7 @@ For the uniform bipartite regular configuration multigraph of degree \(d\), the 
 
 Integer arithmetic checked all \(1\le n\le100\) for \(d=2,3,4\), and all \(1\le n\le60\) for \(d=5,10,20\). All 480 ratios were at most one. Equality occurred at order one. Selected numerical displays of these exact ratios are
 
-{\def\LTcaptype{none} % do not increment counter
+{\def\LTcaptype{}\stepcounter{LT@tables} % unnumbered, unique table instance
 \begin{longtable}[]{@{}rrr@{}}
 \toprule\noalign{}
 \(d\) & \(n\) & Ratio \\
@@ -192,7 +192,7 @@ A separate stationary-point calculation used a Bethe approximation for the color
 
 One suite had 52 examples at each degree three through six. At each degree, 40 were products of elementary-symmetric polynomials after a common doubly stochastic substitution. Twelve were determinant polynomials from balanced positive-semidefinite tuples. The initial coefficients and balance were exact; deletion balancing was numerical.
 
-{\def\LTcaptype{none} % do not increment counter
+{\def\LTcaptype{}\stepcounter{LT@tables} % unnumbered, unique table instance
 \begin{longtable}[]{@{}
   >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
   >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
@@ -223,7 +223,7 @@ The largest balancing-gradient residual was below \(4.5\times10^{-8}\). All 208 
 
 A second suite had 90 examples per degree. Sixty used elementary-symmetric factors on different positive linear forms. Thirty used generic positive-semidefinite determinant pencils. Initial and deletion balancing used convex log-sum-exp minimization.
 
-{\def\LTcaptype{none} % do not increment counter
+{\def\LTcaptype{}\stepcounter{LT@tables} % unnumbered, unique table instance
 \begin{longtable}[]{@{}
   >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
   >{\raggedleft\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
@@ -254,7 +254,7 @@ The largest residual was below \(2.4\times10^{-10}\). The ratio of the scaled de
 
 A third suite substituted positive linear forms into matroid basis polynomials, then balanced the result. Its 750 examples had the following minima.
 
-{\def\LTcaptype{none} % do not increment counter
+{\def\LTcaptype{}\stepcounter{LT@tables} % unnumbered, unique table instance
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1579}}
   >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2105}}
@@ -305,7 +305,7 @@ Prescribed-coordinate tests forced \(r+1\) factors to omit one variable, so its 
 
 A compressed two-class calculation tested repeated-variable elementary-symmetric polynomials. Balance reduced to one noncentral-hypergeometric mean equation. Norms and deletions reduced to univariate coefficient products. Infinite multiplicity used a Poisson limit; multiplicity one used a balancing limit.
 
-{\def\LTcaptype{none} % do not increment counter
+{\def\LTcaptype{}\stepcounter{LT@tables} % unnumbered, unique table instance
 \begin{longtable}[]{@{}rrr@{}}
 \toprule\noalign{}
 Degree & Cases & Smallest \(D_{\rm av}\) \\

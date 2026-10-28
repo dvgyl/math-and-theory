@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Build the overview and every catalogue manuscript."""
+"""Build each manuscript and compare exact logical text and page coverage.
+
+Position-based PDF extraction can reorder a fraction when glyph coordinates
+change slightly between TeX engines. Raw extraction preserves content-stream
+order. This is a text-consistency check; visual layout review remains separate.
+"""
 
 from pathlib import Path
 import re
@@ -14,6 +19,27 @@ WARNINGS = re.compile(
     r"undefined references|undefined citations|Citation .* undefined|Reference .* undefined|Overfull|Missing character",
     re.I,
 )
+
+
+def pdf_content(path):
+    text = subprocess.run(["pdftotext", "-raw", str(path), "-"],
+                          check=True, capture_output=True).stdout
+    info = subprocess.run(["pdfinfo", str(path)], check=True,
+                          capture_output=True, text=True).stdout
+    match = re.search(r"^Pages:\s+([0-9]+)\s*$", info, re.M)
+    if match is None or int(match[1]) < 1:
+        raise ValueError(f"PDF has no valid page count: {path}")
+    pages = int(match[1])
+    if not text.strip() or text.count(b"\f") != pages:
+        raise ValueError(f"PDF text is empty or has incomplete page coverage: {path}")
+    return text, pages
+
+
+def check_pdf_text(rebuilt, committed):
+    text, pages = pdf_content(rebuilt)
+    original, original_pages = pdf_content(committed)
+    if pages != original_pages or text != original:
+        raise ValueError(f"Committed manuscript text or page count differs from its source: {committed}")
 
 
 def check(root):
@@ -34,12 +60,7 @@ def check(root):
             if len(logs) != 1 or WARNINGS.search(logs[0].read_text(errors="replace")):
                 raise ValueError(f"Manuscript has a warning or no unique log: {source}")
             rebuilt = output / Path(source).with_suffix(".pdf").name
-            text = subprocess.run(["pdftotext", "-layout", str(rebuilt), "-"],
-                                  check=True, capture_output=True).stdout
-            original = subprocess.run(["pdftotext", "-layout", str(root / committed), "-"],
-                                      check=True, capture_output=True).stdout
-            if not text or text != original:
-                raise ValueError(f"Committed manuscript text differs from its source: {committed}")
+            check_pdf_text(rebuilt, root / committed)
     return len(sources)
 
 

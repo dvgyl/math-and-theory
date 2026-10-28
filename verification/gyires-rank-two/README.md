@@ -1,6 +1,6 @@
 # Permanent contractions for rank-two doubly stochastic matrices
 
-This package proves the rank-two contractions for every real doubly stochastic matrix of order n with 2 ≤ n ≤ 5. A doubly stochastic matrix has nonnegative entries. Each row sum and each column sum is one. The rank is the dimension of the row space. The theorem assumes rank at most two.
+This package proves the rank-two contractions for every real doubly stochastic matrix of order n with 2 ≤ n ≤ 6. A doubly stochastic matrix has nonnegative entries. Each row sum and each column sum is one. The rank is the dimension of the row space. The theorem assumes rank at most two.
 
 Put d=per(A) and c=n!/n^n. The permanent is the sum, over all permutations, of the products that select one entry from each row and column. The package proves
 
@@ -10,7 +10,7 @@ Put d=per(A) and c=n!/n^n. The permanent is the sum, over all permutations, of t
 
 Equality in the combined Gyires inequality holds exactly when every entry is 1/n. Zero entries are allowed. The statement uses Mathlib's actual matrix rank, doubly stochastic set, permanent, matrix product, and transpose. It does not assume a matrix factorization or a coefficient certificate.
 
-The verified range in this package ends at order 5. The broader manuscript claim through order 15 is not certified by this package. Orders zero and one are outside this package's main statement.
+The verified range in this package ends at order 6. The broader manuscript claim through order 15 is not certified by this package. Orders zero and one are outside this package's main statement.
 
 ## Proof
 
@@ -18,7 +18,7 @@ The proof first derives a parameter representation from the rank condition. It t
 
 The permanent has an exact expansion in elementary symmetric polynomials. The normalized Gram-minus-permanent difference is a separately convex function of two Bernoulli-sum laws. Its maximum occurs at parameter vectors whose entries strictly between zero and one are equal. Exact integer polynomial checks cover every resulting profile pair in the stated dimension range. The checks use Lean's kernel. A permanent Cauchy–Schwarz comparison supplies the A² bound.
 
-[THEOREMS.md](THEOREMS.md) gives the source map. [sources.json](sources.json) lists the 70 source modules and their hashes.
+[THEOREMS.md](THEOREMS.md) gives the source map. [sources.json](sources.json) lists the 92 source modules and their hashes.
 
 ## Reproduce the checks
 
@@ -32,7 +32,7 @@ python3 verify.py
 
 The package pins Lean 4.35.0 and Mathlib revision `56a005855ea17e0b0958f73ec801ae140b0a1679`. The dependency revisions are fixed in `lake-manifest.json`. The cache command retrieves dependency build files. The verifier checks the dependency revisions and records the exact dependency object hashes.
 
-The verifier compiles all project modules in a fresh `.verification/build` directory. It clears inherited Lean search paths and permits only the new project build, the locked dependency libraries, and the selected toolchain. It uses one compiler, a 2 GiB memory limit, and a ten-minute limit per source. It rejects stale project outputs, changed files, symbolic links, incomplete coverage, warnings, and compiler errors.
+The verifier compiles all project modules in a fresh `.verification/build` directory. It clears inherited Lean search paths and permits only the new project build, the locked dependency libraries, and the selected toolchain. It uses one compiler, an 8 GiB memory limit, and a ten-minute limit per source. It rejects stale project outputs, changed files, symbolic links, incomplete coverage, warnings, and compiler errors.
 
 The same command checks the final theorem's axiom report. Only `propext`, `Classical.choice`, and `Quot.sound` are allowed. A failure or incomplete run returns a nonzero exit code. The result has `complete: true` only after every required check passes.
 

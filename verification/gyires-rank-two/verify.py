@@ -228,7 +228,7 @@ def compile_process(arguments, root, environment, log, timeout):
                 rss = sum(int(fields[1]) for row in rows if len(fields := row.split()) == 2
                           and int(fields[0]) == process.pid)
                 peak = max(peak, rss)
-                require(rss <= 2 * 1024 * 1024, 'The compiler process group exceeded 2 GiB.')
+                require(rss <= 8 * 1024 * 1024, 'The compiler process group exceeded 8 GiB.')
                 time.sleep(0.2)
             require(process.returncode == 0, 'A Lean compiler command failed.')
             return {'exit_code': 0, 'seconds': time.monotonic() - started, 'peak_rss_kib': peak}
@@ -302,7 +302,7 @@ def run(root=ROOT, resume=False, max_seconds=None, module_timeout=600):
             log = work / 'attempt.log'
             print('Checking ' + name, flush=True)
             try:
-                evidence = compile_process([str(lean), '-j1', '-M2048', '--error=warning', '-R', 'src',
+                evidence = compile_process([str(lean), '-j1', '-M8192', '-DwarningAsError=true', '-R', 'src',
                                             '-o', str(output), modules[name]['path']], root, environment, log, timeout)
                 require(digest(source) == modules[name]['sha256'], 'A source changed during compilation.')
                 check_log(log)

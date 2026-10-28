@@ -1,6 +1,6 @@
 # Theorem map
 
-The final statement is `MathAndTheory.Gyires.RankTwo.rank_two_complete` in [RangeComplete.lean](src/RangeComplete.lean). It assumes 2 ≤ n ≤ 5, doubly stochastic membership, and matrix rank at most two. It proves both Gram contractions, the A² contraction, the nonnegative Gyires margin, the normalized left Gram bound, the combined inequality, and its equality criterion. [RangeAudit.lean](src/RangeAudit.lean) expands the matrix statements and prints the final axiom report.
+The final statement is `MathAndTheory.Gyires.RankTwo.rank_two_complete` in [RangeComplete.lean](src/RangeComplete.lean). It assumes 2 ≤ n ≤ 6, doubly stochastic membership, and matrix rank at most two. It proves both Gram contractions, the A² contraction, the nonnegative Gyires margin, the normalized left Gram bound, the combined inequality, and its equality criterion. [RangeAudit.lean](src/RangeAudit.lean) expands the matrix statements and prints the final axiom report.
 
 | Step | Source | Statement |
 | --- | --- | --- |

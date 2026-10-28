@@ -4,7 +4,7 @@ I use the shared Lean library for the formal results listed below.
 
 The Lean library proves the order-five circulant theorem, its equality cases, and the sharp sorted-gap margin 484. The library also proves the all-order four-block theorem, its three contractions, margin, and equality case. It also proves both strong Gram bounds and Gyires's inequality for one exceptional column or row, with equality exactly at the uniform matrix. The Comparator configuration selects eighteen principal declarations. The [formal guide](../../lean/docs/gyires-circulant-five.md) maps these declarations to the [manuscript](../../preprints/gyires-circulant-five/paper.pdf).
 
-The broader matrix and polynomial arguments have [separate certificate documentation](../../research-notes/gyires-complete-support/README.md). Separate packages prove the principal order-six and all-order permutation-polynomial theorems. The rank-two theorem has a complete Lean proof for orders 2 through 5. The principal order-seven theorem and rank-two orders 6 through 15 remain incomplete in Lean. The general supporting modules are included in the [whole-library audit](../README.md).
+The broader matrix and polynomial arguments have [separate certificate documentation](../../research-notes/gyires-complete-support/README.md). Separate packages prove the principal order-six and all-order permutation-polynomial theorems. The rank-two theorem has a complete Lean proof for orders 2 through 6. The principal order-seven theorem and rank-two orders 7 through 15 remain incomplete in Lean. The general supporting modules are included in the [whole-library audit](../README.md).
 
 ## Reproduce the formal checks
 

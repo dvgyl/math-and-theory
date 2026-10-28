@@ -52,9 +52,9 @@ def check(root=ROOT):
     sources = json.loads((root / "sources.json").read_text())
     entries = sources["modules"]
     modules = {entry["module"]: entry for entry in entries}
-    require(len(entries) == len(modules) == sources["source_count"] == 70,
+    require(len(entries) == len(modules) == sources["source_count"] == 92,
             "The module coverage differs.")
-    require(sum(entry["bytes"] for entry in entries) == sources["source_bytes"] == 232784,
+    require(sum(entry["bytes"] for entry in entries) == sources["source_bytes"] == 266620,
             "The source byte count differs.")
     source_files = {name for name in files if name.startswith("src/")}
     require(source_files == {entry["path"] for entry in entries}, "The source file coverage differs.")
@@ -76,7 +76,7 @@ def check(root=ROOT):
     library = config["lean_lib"][0]
     require(library["srcDir"] == "src" and library["roots"] == ["RangeAudit"],
             "The library source root differs.")
-    require(set(library["globs"]) == set(modules) and len(library["globs"]) == 70,
+    require(set(library["globs"]) == set(modules) and len(library["globs"]) == 92,
             "The configured module coverage differs.")
     revision = sources["mathlib_revision"]
     require(revision == "56a005855ea17e0b0958f73ec801ae140b0a1679", "The Mathlib revision differs.")
@@ -111,7 +111,7 @@ def build_order(modules):
         complete.add(module)
         result.append(module)
     visit("RangeAudit")
-    require(len(result) == len(modules) == 70, "The entry module does not use the exact source set.")
+    require(len(result) == len(modules) == 92, "The entry module does not use the exact source set.")
     return result
 
 
@@ -143,6 +143,6 @@ if __name__ == "__main__":
             check_axioms(args.axiom_log, expected)
     except (OSError, ValueError, KeyError, TypeError) as error:
         parser.exit(1, str(error) + "\n")
-    print("Package integrity and all 70 module imports passed.")
+    print("Package integrity and all 92 module imports passed.")
     if args.axiom_log:
         print("The final axiom report passed.")

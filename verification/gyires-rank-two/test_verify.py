@@ -275,7 +275,7 @@ class VerificationTests(TestCase):
         process.poll.return_value = None
         process.pid = 123
         with mock.patch.object(verify.subprocess, 'Popen', return_value=process), \
-                mock.patch.object(verify.subprocess, 'check_output', return_value='123 2097153'), \
+                mock.patch.object(verify.subprocess, 'check_output', return_value='123 8388609'), \
                 mock.patch.object(verify, 'stop_group') as stop:
             with self.assertRaises(ValueError):
                 verify.compile_process(['simulated'], self.root, {}, self.root / 'log', 10)

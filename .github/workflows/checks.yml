@@ -208,3 +208,38 @@ jobs:
             python3 verification/additional-proofs/higuchi-sudbery/tools/audit_sos.py
           fi
           git diff --exit-code
+
+
+  gyires-rank-two:
+    name: Gyires rank-two Lean proof
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      LEAN_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          lake-package-directory: verification/gyires-rank-two
+          auto-config: 'false'
+          build: 'false'
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'true'
+          use-github-cache: 'false'
+      - name: Compile all sources and check the final theorem
+        working-directory: verification/gyires-rank-two
+        run: |
+          python3 check_package.py
+          python3 -B test_verify.py
+          python3 verify.py
+          rank_lean="$(elan which lean)"
+          rank_dependencies="$(lake env printenv LEAN_PATH)"
+          LEAN_PATH="$PWD/.verification/build:$rank_dependencies" "$rank_lean" \
+            --trust=0 -j1 -M8192 -DwarningAsError=true -R ../gyires-rank-two-audit \
+            ../gyires-rank-two-audit/RankTwoScopedAudit.lean \
+            > ../gyires-rank-two-audit/audit.log
+          python3 ../gyires-rank-two-audit/check_audit.py ../gyires-rank-two-audit/audit.log
+          git diff --exit-code
