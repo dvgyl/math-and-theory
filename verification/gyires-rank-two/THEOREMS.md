@@ -1,6 +1,6 @@
 # Theorem map
 
-The final statement is `MathAndTheory.Gyires.RankTwo.rank_two_complete_through_seven` in [RangeSevenComplete.lean](src/RangeSevenComplete.lean). It assumes 2 ≤ n ≤ 7, doubly stochastic membership, and matrix rank at most two. It proves both Gram contractions, the A² contraction, the nonnegative Gyires margin, the normalized left Gram bound, the combined inequality, and its equality criterion. [RangeAudit.lean](src/RangeAudit.lean) retains the lower-order matrix examples and prints the final axiom report. The original `rank_two_complete` theorem in [RangeComplete.lean](src/RangeComplete.lean) still proves orders 2 through 6.
+The final statement is `MathAndTheory.Gyires.RankTwo.rank_two_complete_through_eight` in [RangeEightComplete.lean](src/RangeEightComplete.lean). It assumes 2 ≤ n ≤ 8, doubly stochastic membership, and matrix rank at most two. It proves both Gram contractions, the A² contraction, the nonnegative Gyires margin, the normalized left Gram bound, the combined inequality, and its equality criterion. [RangeAudit.lean](src/RangeAudit.lean) retains the lower-order matrix examples and prints the final axiom report. The original `rank_two_complete` theorem in [RangeComplete.lean](src/RangeComplete.lean) still proves orders 2 through 6.
 
 | Step | Source | Statement |
 | --- | --- | --- |
@@ -17,4 +17,9 @@ The general-order join retains a finite-check hypothesis. The final theorem disc
 
 ## Extension through order seven
 
-`MathAndTheory.Gyires.RankTwo.rank_two_complete_through_seven` in `RangeSevenComplete.lean` extends the eight matrix conclusions through order seven, using `OrderSevenCertificates.lean` and the 28 `OrderSevenRow` modules. They cover all 784 valid profile pairs, including 532 strict-overlap pairs and 252 vacuous nonoverlap or touching pairs. The original `RangeComplete` theorem through order six is retained. `RangeAudit.lean` imports the extension and reports the new main theorem.
+`MathAndTheory.Gyires.RankTwo.rank_two_complete_through_seven` in `RangeSevenComplete.lean` extends the eight matrix conclusions through order seven, using `OrderSevenCertificates.lean` and the 28 `OrderSevenRow` modules. They cover all 784 valid profile pairs, including 532 strict-overlap pairs and 252 vacuous nonoverlap or touching pairs. The original `RangeComplete` theorem through order six is retained. The order-seven range theorem is retained as a dependency of the order-eight theorem.
+
+
+## Extension through order eight
+
+`MathAndTheory.Gyires.RankTwo.rank_two_complete_through_eight` in `RangeEightComplete.lean` extends the same eight actual-matrix conclusions through order eight. The 36 `OrderEightRow` modules and `OrderEightCertificates.lean` cover all 1,296 ordered profile pairs: 876 strict overlaps and 420 nonoverlap or touching cases. Earlier range theorems are retained. `RangeAudit.lean` imports the extension and reports its principal theorem.

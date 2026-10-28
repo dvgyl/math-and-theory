@@ -1,6 +1,6 @@
 # Research process and author review
 
-I publish fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections.
+I publish fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. GPT 6.1 Sol in Codex generated the order-eight rank-two certificate extension.
 
 I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication. The papers have not been peer reviewed.
 

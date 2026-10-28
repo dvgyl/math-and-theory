@@ -1,6 +1,6 @@
 # Permanent contractions for rank-two doubly stochastic matrices
 
-This package proves the rank-two contractions for every real doubly stochastic matrix of order n with 2 ≤ n ≤ 7. A doubly stochastic matrix has nonnegative entries. Each row sum and each column sum is one. The rank is the dimension of the row space. The theorem assumes rank at most two.
+This package proves the rank-two contractions for every real doubly stochastic matrix of order n with 2 ≤ n ≤ 8. A doubly stochastic matrix has nonnegative entries. Each row sum and each column sum is one. The rank is the dimension of the row space. The theorem assumes rank at most two.
 
 Put d=per(A) and c=n!/n^n. The permanent is the sum, over all permutations, of the products that select one entry from each row and column. The package proves
 
@@ -10,7 +10,7 @@ Put d=per(A) and c=n!/n^n. The permanent is the sum, over all permutations, of t
 
 Equality in the combined Gyires inequality holds exactly when every entry is 1/n. Zero entries are allowed. The statement uses Mathlib's actual matrix rank, doubly stochastic set, permanent, matrix product, and transpose. It does not assume a matrix factorization or a coefficient certificate.
 
-The verified range in this package ends at order 7. The broader manuscript claim through order 15 is not certified by this package. Orders zero and one are outside this package's main statement.
+The verified range in this package ends at order 8. The broader manuscript claim through order 15 is not certified by this package. Orders zero and one are outside this package's main statement.
 
 ## Proof
 
@@ -18,7 +18,7 @@ The proof first derives a parameter representation from the rank condition. It t
 
 The permanent has an exact expansion in elementary symmetric polynomials. The normalized Gram-minus-permanent difference is a separately convex function of two Bernoulli-sum laws. Its maximum occurs at parameter vectors whose entries strictly between zero and one are equal. Exact integer polynomial checks cover every resulting profile pair in the stated dimension range. The checks use Lean's kernel. A permanent Cauchy–Schwarz comparison supplies the A² bound.
 
-[THEOREMS.md](THEOREMS.md) gives the source map. [sources.json](sources.json) lists the 122 source modules and their hashes.
+[THEOREMS.md](THEOREMS.md) gives the source map. [sources.json](sources.json) lists the 160 source modules and their hashes.
 
 ## Reproduce the checks
 

@@ -2,7 +2,7 @@
 
 The [manuscript](../../preprints/gyires-circulant-five/paper.pdf) contains the arguments listed below. A reduction proves a relationship between statements. It does not prove an unresolved target inequality.
 
-The principal order-five claims, the all-order four-block theorem, and the exceptional-vector theorem have complete Lean proofs. The other matrix classes have ordinary proofs and the stated exact certificates. Their principal theorems remain incomplete in Lean. The [formal guide](../../lean/docs/gyires-circulant-five.md) lists the supporting results that have Lean proofs.
+The principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, the exceptional-vector theorem, and rank-two orders 2 through 8 have complete Lean proofs. The general order-seven circulant theorem and rank-two orders 9 through 15 remain incomplete in Lean. The other matrix classes have ordinary proofs and the stated exact certificates. The [formal guide](../../lean/docs/gyires-circulant-five.md) gives the exact formal scope.
 
 | Result | Manuscript section |
 |---|---|

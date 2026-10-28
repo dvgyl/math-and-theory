@@ -2,7 +2,7 @@
 
 I publish fifteen preprints from fully autonomous agentic research in mathematics, theoretical computer science, and mathematical physics. AI agents generated the research, proofs, computations, and manuscripts. I am responsible for publication.
 
-Each paper states its formal verification scope. The thermal proof covers finite spectral statements. It does not formalize the theorem that identifies them with long-time stochastic cumulants. The Gyires preprint proves inequalities for several structured matrix classes and develops related polynomial bounds. Its order-five and order-six results, all-order permutation-polynomial theorem, all-order four-block theorem, and exceptional-vector theorem have Lean proofs. The rank-two theorem also has a Lean proof for orders 2 through 7. Lean formalization of general order-seven circulants and rank-two orders 8 through 15 is incomplete. I do not claim a general solution when a proof covers only a special case.
+Each paper states its formal verification scope. The thermal proof covers finite spectral statements. It does not formalize the theorem that identifies them with long-time stochastic cumulants. The Gyires preprint proves inequalities for several structured matrix classes and develops related polynomial bounds. Its order-five and order-six results, all-order permutation-polynomial theorem, all-order four-block theorem, and exceptional-vector theorem have Lean proofs. The rank-two theorem also has a Lean proof for orders 2 through 8. Lean formalization of general order-seven circulants and rank-two orders 9 through 15 is incomplete. I do not claim a general solution when a proof covers only a special case.
 
 Start with the [manuscript catalogue](CONTENTS.md) or the [overview](overview.pdf). The [Lean guide](lean/README.md) explains the formal statements. The [verification guide](verification/README.md) gives the commands and recorded results. [AUTHORSHIP.md](AUTHORSHIP.md) identifies the autonomous research process.
 
@@ -42,7 +42,7 @@ I group related results by subject in the catalogue. The mathematics papers conc
 
 | Result family | Established result |
 |---|---|
-| [Gyires](preprints/gyires-circulant-five/README.md) | Circulants of orders five through seven, all-order structured matrix results, rank two through order fifteen, and supporting polynomial results. Order-five, order-six, permutation-polynomial, four-block, and exceptional-vector claims have Lean proofs. Rank-two orders 2–7 have Lean proofs. General order-seven circulants and rank-two orders 8–15 remain incomplete in Lean. |
+| [Gyires](preprints/gyires-circulant-five/README.md) | Circulants of orders five through seven, all-order structured matrix results, rank two through order fifteen, and supporting polynomial results. Order-five, order-six, permutation-polynomial, four-block, and exceptional-vector claims have Lean proofs. Rank-two orders 2–8 have Lean proofs. General order-seven circulants and rank-two orders 9–15 remain incomplete in Lean. |
 | [q-permanent](preprints/q-permanent/README.md) | Counterexamples at every real parameter greater than one. |
 | [Diagonal concavity](preprints/diagonal-concavity/README.md) | A counterexample and complete classification of a positive one-parameter family. |
 
@@ -56,13 +56,13 @@ I group related results by subject in the catalogue. The mathematics papers conc
 
 ## The Gyires preprint
 
-The [Gyires preprint](preprints/gyires-circulant-five/paper.pdf) proves the order-five circulant inequality and extends the analysis to other structured matrix classes. It includes circulants of orders six and seven, all-order permutation polynomials, all-order four-block matrices, one exceptional column or row, and rank-two matrices through order fifteen. It also proves structural, scalar, deletion, balancing, local polynomial, and counting results. Exact counterexamples identify the limits of proposed extensions. The [complete supporting record](research-notes/gyires-complete-support/README.md) gives the source map, certificate files, and reproduction commands. The all-order four-block and exceptional-vector theorems have complete Lean proofs. The general order-six and all-order permutation-polynomial theorems have separate Lean source packages. The rank-two theorem has a complete Lean proof for orders 2 through 7. The general order-seven circulant theorem and rank-two orders 8 through 15 remain incomplete in Lean. The manuscript does not establish the unrestricted conjecture.
+The [Gyires preprint](preprints/gyires-circulant-five/paper.pdf) proves the order-five circulant inequality and extends the analysis to other structured matrix classes. It includes circulants of orders six and seven, all-order permutation polynomials, all-order four-block matrices, one exceptional column or row, and rank-two matrices through order fifteen. It also proves structural, scalar, deletion, balancing, local polynomial, and counting results. Exact counterexamples identify the limits of proposed extensions. The [complete supporting record](research-notes/gyires-complete-support/README.md) gives the source map, certificate files, and reproduction commands. The all-order four-block and exceptional-vector theorems have complete Lean proofs. The general order-six and all-order permutation-polynomial theorems have separate Lean source packages. The rank-two theorem has a complete Lean proof for orders 2 through 8. The general order-seven circulant theorem and rank-two orders 9 through 15 remain incomplete in Lean. The manuscript does not establish the unrestricted conjecture.
 
-The Gyires [order-six package](verification/gyires-circulant-six/README.md) and [permutation-polynomial package](verification/gyires-permutation-polynomial/README.md) contain the additional formal proofs. Each package has its own pinned build and theorem map. The [rank-two package](verification/gyires-rank-two/README.md) proves the actual matrix theorem in orders 2 through 7.
+The Gyires [order-six package](verification/gyires-circulant-six/README.md) and [permutation-polynomial package](verification/gyires-permutation-polynomial/README.md) contain the additional formal proofs. Each package has its own pinned build and theorem map. The [rank-two package](verification/gyires-rank-two/README.md) proves the actual matrix theorem in orders 2 through 8.
 
 ## Unfinished formal proofs
 
-[UNFINISHED.md](UNFINISHED.md) lists the remaining verification gaps. The Gyires general order-seven circulant and rank-two orders 8–15 Lean proofs remain unfinished.
+[UNFINISHED.md](UNFINISHED.md) lists the remaining verification gaps. The Gyires general order-seven circulant and rank-two orders 9–15 Lean proofs remain unfinished.
 
 ## Verification
 
