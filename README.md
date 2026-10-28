@@ -14,23 +14,45 @@ I include the manuscript, source files, and citation metadata for each preprint.
 
 I group related results by subject in the catalogue. The mathematics papers concern matrix inequalities, concavity, and integer sequences. The theoretical computer science papers concern sampling and Boolean decision trees. The mathematical physics papers cover a thermal spectral counterexample, universal entanglement embezzlement, and the four-qubit Higuchi–Sudbery entropy bound.
 
+### Mathematical physics
+
 | Result family | Established result |
 |---|---|
-| [q-permanent](preprints/q-permanent/README.md) | Counterexamples at every real parameter greater than one. |
+| [A sum-of-squares proof of the four-qubit Higuchi–Sudbery entropy bound](verification/additional-proofs/higuchi-sudbery/manuscript.pdf) | The average von Neumann entropy of the three two-qubit marginals of a pure four-qubit state is at most log(2) + log(3)/2. The Higuchi–Sudbery state attains this bound. |
+| [Universal entanglement embezzlement with inverse-quadratic logarithmic infidelity](verification/additional-proofs/universal-embezzlement/manuscript.pdf) | A target-independent catalyst with local dimension 2^(4L) gives root infidelity at most 125m/L² for every Schmidt probability vector on m entries. |
+| [Thermal current kurtosis](verification/additional-proofs/thermal-kurtosis-counterexample/report.pdf) | A three-state, two-temperature model has a negative fourth-to-second spectral heat-cumulant ratio. The long-time stochastic identification is outside the formal proof. |
+
+### Theoretical computer science
+
+| Result family | Established result |
+|---|---|
+| [Decision-tree covariance](verification/additional-proofs/readk-covariance/docs/manuscript.pdf) | A sharp logarithmic influence bound and two counterexamples to the proposed logarithmic variance bound. No Fourier-entropy theorem is formalized. |
+| [Best-of-n sampling](preprints/best-of-n/README.md) | The proposed bound fails at every budget at least two, with arbitrarily small atom caps. |
+
+### Mathematics: extremal bounds and combinatorics
+
+| Result family | Established result |
+|---|---|
+| [The sharp level-one Fourier weight at density one eighth](verification/additional-proofs/sharp-eighth/manuscript.pdf) | For every Boolean indicator of mean 1/8 on a finite uniform cube, the level-one Fourier weight is at most 3/64. A codimension-three subcube attains the bound in every dimension at least three. |
+| [A quartic entropy deficit for random rankings](verification/additional-proofs/quartic-rankings/manuscript.pdf) | A distribution on rankings of n labels has entropy at most (1 − ε⁴/144) log(n!) if every pairwise comparison has probability at distance at least ε > 0 from 1/2. |
+| [The exact asymmetric Merino–Welsh region for finite matroids](verification/additional-proofs/asymmetric-tutte/manuscript.pdf) | The theorem characterizes all nonnegative pairs (x,y) for which T_M(x,0) T_M(0,y) ≥ T_M(1,1)² holds for every finite matroid without loops or coloops. |
+| [Ultra-log-concavity of domination sequences of powers of paths and cycles](verification/additional-proofs/galvin-zhang/manuscript.pdf) | The domination counts of every natural power of a path or cycle form an ultra-log-concave sequence. The proof includes all natural graph orders and powers, the binomial normalization, and the boundary graph cases. |
+
+### Mathematics: matrix inequalities and concavity
+
+| Result family | Established result |
+|---|---|
 | [Gyires](preprints/gyires-circulant-five/README.md) | Circulants of orders five through seven, all-order structured matrix results, rank two through order fifteen, and supporting polynomial results. Order-five, order-six, permutation-polynomial, four-block, and exceptional-vector claims have Lean proofs. Rank-two orders 2–5 have Lean proofs. Order seven and rank-two orders 6–15 remain incomplete in Lean. |
-| [DomiRank entropy](preprints/domirank-entropy/README.md) | A 14-vertex counterexample with positive scores on the whole comparison interval. |
+| [q-permanent](preprints/q-permanent/README.md) | Counterexamples at every real parameter greater than one. |
 | [Diagonal concavity](preprints/diagonal-concavity/README.md) | A counterexample and complete classification of a positive one-parameter family. |
+
+### Mathematics: graph entropy and integer sequences
+
+| Result family | Established result |
+|---|---|
+| [DomiRank entropy](preprints/domirank-entropy/README.md) | A 14-vertex counterexample with positive scores on the whole comparison interval. |
 | [Alternating Motzkin sums](preprints/alternating-motzkin/README.md) | Strict root log-concavity with the optimal tail start. |
 | [Hofstadter iteration](preprints/hofstadter-iteration/README.md) | Late-iterate ordering fails for every parameter at least four. |
-| [Best-of-n sampling](preprints/best-of-n/README.md) | The proposed bound fails at every budget at least two, with arbitrarily small atom caps. |
-| [Decision-tree covariance](verification/additional-proofs/readk-covariance/docs/manuscript.pdf) | A sharp logarithmic influence bound and two counterexamples to the proposed logarithmic variance bound. No Fourier-entropy theorem is formalized. |
-| [Thermal current kurtosis](verification/additional-proofs/thermal-kurtosis-counterexample/report.pdf) | A three-state, two-temperature model has a negative fourth-to-second spectral heat-cumulant ratio. The long-time stochastic identification is outside the formal proof. |
-| [The sharp level-one Fourier weight at density one eighth](verification/additional-proofs/sharp-eighth/manuscript.pdf) | For every Boolean indicator of mean 1/8 on a finite uniform cube, the level-one Fourier weight is at most 3/64. A codimension-three subcube attains the bound in every dimension at least three. |
-| [Ultra-log-concavity of domination sequences of powers of paths and cycles](verification/additional-proofs/galvin-zhang/manuscript.pdf) | The domination counts of every natural power of a path or cycle form an ultra-log-concave sequence. The proof includes all natural graph orders and powers, the binomial normalization, and the boundary graph cases. |
-| [Universal entanglement embezzlement with inverse-quadratic logarithmic infidelity](verification/additional-proofs/universal-embezzlement/manuscript.pdf) | A target-independent catalyst with local dimension 2^(4L) gives root infidelity at most 125m/L² for every Schmidt probability vector on m entries. |
-| [The exact asymmetric Merino–Welsh region for finite matroids](verification/additional-proofs/asymmetric-tutte/manuscript.pdf) | The theorem characterizes all nonnegative pairs (x,y) for which T_M(x,0) T_M(0,y) ≥ T_M(1,1)² holds for every finite matroid without loops or coloops. |
-| [A sum-of-squares proof of the four-qubit Higuchi–Sudbery entropy bound](verification/additional-proofs/higuchi-sudbery/manuscript.pdf) | The average von Neumann entropy of the three two-qubit marginals of a pure four-qubit state is at most log(2) + log(3)/2. The Higuchi–Sudbery state attains this bound. |
-| [A quartic entropy deficit for random rankings](verification/additional-proofs/quartic-rankings/manuscript.pdf) | A distribution on rankings of n labels has entropy at most (1 − ε⁴/144) log(n!) if every pairwise comparison has probability at distance at least ε > 0 from 1/2. |
 
 ## The Gyires preprint
 
