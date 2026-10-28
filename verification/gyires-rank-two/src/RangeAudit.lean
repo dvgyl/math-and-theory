@@ -1,5 +1,5 @@
 module
-public import RangeComplete
+public import RangeSevenComplete
 @[expose] public section
 open scoped BigOperators
 open MathAndTheory.Gyires MathAndTheory.Gyires.RankTwo MathAndTheory.Gyires.Bernoulli
@@ -34,4 +34,4 @@ example (A : Matrix (Fin 6) (Fin 6) ℝ)
   obtain ⟨_, _, _, _, _, _, hg, heq⟩ := rank_two_complete (by decide) (by decide) A hA hrank
   norm_num [dimensionConstant] at hg heq
   exact ⟨hg, heq⟩
-#print axioms MathAndTheory.Gyires.RankTwo.rank_two_complete
+#print axioms MathAndTheory.Gyires.RankTwo.rank_two_complete_through_seven

@@ -238,8 +238,8 @@ jobs:
           rank_lean="$(elan which lean)"
           rank_dependencies="$(lake env printenv LEAN_PATH)"
           LEAN_PATH="$PWD/.verification/build:$rank_dependencies" "$rank_lean" \
-            --trust=0 -j1 -M8192 -DwarningAsError=true -R ../gyires-rank-two-audit \
-            ../gyires-rank-two-audit/RankTwoScopedAudit.lean \
-            > ../gyires-rank-two-audit/audit.log
-          python3 ../gyires-rank-two-audit/check_audit.py ../gyires-rank-two-audit/audit.log
+            --trust=0 -j1 -M8192 -DwarningAsError=true -R ../gyires-rank-two-seven-audit \
+            ../gyires-rank-two-seven-audit/RankTwoSevenScopedAudit.lean \
+            > ../gyires-rank-two-seven-audit/audit.log
+          python3 ../gyires-rank-two-seven-audit/check_audit.py ../gyires-rank-two-seven-audit/audit.log
           git diff --exit-code

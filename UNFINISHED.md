@@ -5,9 +5,9 @@ These items are not claimed as completed Lean results in this release.
 | Result | Completed work | Remaining check |
 |---|---|---|
 | Gyires, general order-seven circulants | Written argument and exact computational certificates | Complete Lean proof of the actual matrix theorem, including all coefficient regions. |
-| Gyires, rank at most two in orders seven through fifteen | Written argument and exact finite certificates; orders two through six have complete Lean proofs | Complete kernel certificates for the remaining dimensions and their actual matrix consequences. |
+| Gyires, rank at most two in orders eight through fifteen | Written argument and exact finite certificates; orders two through seven have complete Lean proofs | Complete kernel certificates for the remaining dimensions and their actual matrix consequences. |
 
-The Gyires manuscript includes the written arguments and identifies their formal verification limits. Complete Lean proofs are available for its principal order-five and order-six claims, all-order permutation polynomials, all-order four-block matrices, the exceptional-vector theorem, and rank-two orders two through six.
+The Gyires manuscript includes the written arguments and identifies their formal verification limits. Complete Lean proofs are available for its principal order-five and order-six claims, all-order permutation polynomials, all-order four-block matrices, the exceptional-vector theorem, and rank-two orders two through seven.
 
 The unrestricted Gyires conjecture and the all-order rank-two problem remain outside these results. The thermal package proves finite spectral statements. It does not formalize the stochastic long-time identification theorem.
 

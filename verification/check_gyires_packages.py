@@ -74,5 +74,5 @@ if __name__ == "__main__":
     count = check_six(ROOT / "gyires-circulant-six")
     subprocess.run([sys.executable, "-B", str(ROOT / "gyires-permutation-polynomial/check_package.py")], check=True)
     subprocess.run([sys.executable, "-B", str(ROOT / "gyires-rank-two/check_package.py")], check=True)
-    print(json.dumps({"status": "PASS", "order_six_sources": count, "permutation_sources": 405, "rank_two_sources": 92,
+    print(json.dumps({"status": "PASS", "order_six_sources": count, "permutation_sources": 405, "rank_two_sources": 122,
                       "scope": "Source integrity and import coverage. No Lean compilation in this command."}))
