@@ -48,7 +48,7 @@ for i, match in enumerate(parts):
     subject = headings[-1] if headings else 'Research'
     slug = re.sub(r'[^a-z0-9]+', '-', unicodedata.normalize('NFKD', title).encode('ascii','ignore').decode().lower()).strip('-')
     assert slug and slug not in [x['slug'] for x in items]
-    description = next((plain(x).removeprefix('Abstract. ').strip() for x in content.split('\n\n') if x and not x.startswith(('**Family', '['))), title)
+    description = next((plain(x).removeprefix('Abstract. ').strip() for x in content.split('\n\n') if x and not x.startswith(('**Family', '**Result', '['))), title)
     url = BASE + 'papers/' + slug + '/'
     family = next(x for x in catalogue if x['paper'] == pdf)
     dest = OUT/'papers'/slug; dest.mkdir(parents=True,exist_ok=True)
@@ -105,7 +105,7 @@ function filter(){
   c.hidden=!words.every(w=>text.includes(w));if(!c.hidden)n++;
  });
  document.querySelectorAll('section').forEach(s=>s.hidden=![...s.querySelectorAll('.card')].some(c=>!c.hidden));
- document.querySelector('#count').textContent=n ? n+' papers shown' : 'No papers found. Try a shorter name or another subject.';
+ document.querySelector('#count').textContent=n ? n+(n===1?' paper shown':' papers shown') : 'No papers found. Try a shorter name or another subject.';
  const url=new URL(location.href);if(input.value)url.searchParams.set('q',input.value);else url.searchParams.delete('q');history.replaceState(null,'',url);
 }
 input.value=new URL(location.href).searchParams.get('q')||'';
