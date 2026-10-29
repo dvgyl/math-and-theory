@@ -17,6 +17,13 @@ set_option autoImplicit false
 noncomputable section
 namespace Milne
 
+/-- Fixed proofs keep numeral and finite-index instances identical across modules. -/
+instance instAtLeastTwo2 : Nat.AtLeastTwo 2 := ⟨Nat.le_refl 2⟩
+instance instAtLeastTwo3 : Nat.AtLeastTwo 3 := ⟨Nat.le_add_right 2 1⟩
+instance instAtLeastTwo4 : Nat.AtLeastTwo 4 := ⟨Nat.le_add_right 2 2⟩
+instance instNeZero2 : NeZero (2 : ℕ) := @Nat.instNeZeroSucc 1
+instance instNeZero3 : NeZero (3 : ℕ) := @Nat.instNeZeroSucc 2
+
 abbrev Q := Fin 2
 
 abbrev QQ := Q × Q

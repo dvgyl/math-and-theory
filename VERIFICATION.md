@@ -21,9 +21,12 @@ The selected theorem headers and domains are unchanged. No abstract scalar
 filter or assumed correlation inequality replaces the actual matrix model.
 
 Challenge compiled separately with specific Mathlib imports and its five
-deliberate theorem holes. Full pinned Palomar preflight and Comparator checks
-remain required before intake. This direct Lean replay does not establish the
-Lake build or registry acceptance. No repaired-version Palomar pass is claimed.
+deliberate theorem holes. The local bundled Comparator passed exact comparison
+of all five selected theorems, the permitted axiom check, and the default Lean
+kernel check. This local run had no sandbox. No external kernel was checked.
+Full pinned Palomar preflight remains required before intake. These local checks
+do not establish the Lake build or registry acceptance. No repaired-version
+Palomar pass is claimed.
 
 The threshold concerns the specified three-setting correlation expression.
 Measurement optimization and the steering-ellipsoid interpretation use cited

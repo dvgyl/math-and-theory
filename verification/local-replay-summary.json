@@ -1,5 +1,5 @@
 {
-  "status": "Local source replay passed. Full Palomar preflight and Comparator are pending.",
+  "status": "Local source replay, exact bundled Comparator, and endpoint audit passed. Full Palomar preflight is pending.",
   "compiler_version": "Lean (version 4.35.0, arm64-apple-darwin24.6.0, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
   "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
   "compiler_arguments": [
@@ -65,13 +65,13 @@
     ]
   },
   "lean_source_sha256": {
-    "Challenge.lean": "c1933ffa803be6df8ed7a9839c551f812ee8210b9f67603b99997fc042c5c29b",
+    "Challenge.lean": "3af233ac3cf147ebf70a38b7d8dd8498ea30ce9e4435b68302fe992940cfea4c",
     "Lean/MilneAllStates.lean": "b5a24fd270feb049c74fe6ca4d45f572ec7186ad463689f3281d52e8e8b38044",
     "Lean/MilneBlochDefs.lean": "6866ae1d29970a085f191eab1c6228dce8ee669a9b4359a0b3ff1672052941ea",
     "Lean/MilneCanonicalization.lean": "143ef7f097efcdb0bf4bfbc2bec5d3dd2e8743046992434f5974bc88ef2dc1ab",
     "Lean/MilneCore.lean": "decaedd4eed359c228c8fdbb33f0956a58573f19c060aff7b432a13db5b68acd",
     "Lean/MilneCorrelation.lean": "850b22ce460ec2af21d6dd5515a8bf6e3a580c671f3fa6c5851d38afcf56a20e",
-    "Lean/MilneDefs.lean": "269fe109e763b3488cbad6d2d7f2bd5d3e95442c73803264fb569faedc78a76c",
+    "Lean/MilneDefs.lean": "04272922fab0794c3730f1d03fe8c6b182d89af783d2c03d3215ab6c6808798c",
     "Lean/MilneFiltering.lean": "eca84e56bb70c33d4b7025edbfa7fc231da1716211a0afa87ebb71e858575c78",
     "Lean/MilneFractionOptimality.lean": "de54d1086c2d899a9f88e9c7bba099696d6c4dedd04ec9224b7f56c6d55d1fcd",
     "Lean/MilneFractionSharpness.lean": "9a6d22792d419eadd72fde05dc29870d5703762eff9161184345d10710c1ad22",
@@ -79,12 +79,13 @@
     "Lean/MilneOptimality.lean": "3d4cec3f430745666941efbe78ef64c3dbea7160b447e7a566ca3c1a621b5589",
     "Lean/MilnePurityCovariance.lean": "fe2ef22ce4b51f16a252bca629debaf1db873d155761bac5be5d0898a3367178",
     "Lean/MilneQubit.lean": "0a2e5445d1a3f84c2f69b24275e11e749a05d97fd18bdd0e0abb25e116ebee8d",
-    "Lean/MilneScalarBounds.lean": "3aa05baad7b155264c6c92f91118e6a284cc6521379fb8ba9736f75aeb08caef",
+    "Lean/MilneScalarBounds.lean": "d350313ef668de6be0a89c8e8370db70e3a3919a53b2193bb285ee9a6246829f",
     "Lean/MilneSharpness.lean": "b9ad697f8afe611d40e200961079caa15fa7d3f6cdcbe64083eef18c9885c299",
     "Lean/MilneSingular.lean": "b86dbfe54e06e0b6bffd95e7c190da089803892b133dfe1727f573bbc8a5aef2",
     "Lean/MilneSteering.lean": "1068ecf99899c48a087d24fc237f1327b4cd7ce21d641683224c9d1c48d234ca",
     "Lean/MilneVerification.lean": "5213728cc378823e086a02ae382c8d519da6b2bd2bd0d36312fc2343ba8464ba",
-    "Solution.lean": "fbf1c9f8de1494227c6214f180a6476a64951762a3ad7a6f35676efe878133be"
+    "Solution.lean": "fbf1c9f8de1494227c6214f180a6476a64951762a3ad7a6f35676efe878133be",
+    "lakefile.lean": "4b960e0f3a100d0e4c65207238a8828cc1f7a91c0c810be7cdab2f50befe8602"
   },
   "dependency_manifest_sha256": "e542a1f0572f045fb13a97dc38bf783c94c57a741048a5b469718a16716ed51a",
   "square_root_semantics": "bobFilter uses CFC.sqrt of partialB M + partialB M. The compiled proof establishes Hermitian form, the exact square identity, positive-filter uniqueness, weighted positivity, and actual state reconstruction. No state-domain or theorem-hypothesis weakening was made.",
@@ -111,7 +112,7 @@
     },
     {
       "module": "MilneCanonicalization",
-      "count": 1
+      "count": 2
     },
     {
       "module": "MilneSingular",
@@ -139,9 +140,19 @@
     }
   ],
   "limits": [
-    "Direct sequential Lean replay. This is not a Lake build or a full Palomar preflight.",
-    "No local Comparator run was performed.",
-    "Proof-module warnings were recorded without treating them as errors. The separate endpoint audit used warnings as errors.",
-    "The threshold concerns the specified three-setting expression. Its measurement optimization and steering-ellipsoid interpretation use cited external correspondences."
-  ]
+    "Direct sequential Lean replay and local unsandboxed bundled Comparator. This is not a Lake build or a full Palomar preflight.",
+    "No registry acceptance or external kernel check is claimed.",
+    "Proof-module warnings were recorded. The endpoint audit used warnings as errors.",
+    "The threshold concerns the specified three-setting expression. Measurement optimization and the steering-ellipsoid interpretation use cited external correspondences."
+  ],
+  "local_comparator": {
+    "exit_code": 0,
+    "selected_theorems": 5,
+    "exact_constant_comparison": true,
+    "permitted_axiom_check": true,
+    "default_lean_kernel": true,
+    "sandbox": false,
+    "external_kernels": false,
+    "output_sha256": "44185e931f2fc8b47a320483e3fea92b5edc0288cf80f976547fd712815368a4"
+  }
 }

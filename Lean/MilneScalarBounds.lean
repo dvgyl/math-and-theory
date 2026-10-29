@@ -1,4 +1,5 @@
 module
+public import MilneDefs
 public import Mathlib.Analysis.SpecialFunctions.Sqrt
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.Ring

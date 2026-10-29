@@ -3,8 +3,9 @@
 A local source replay compiled all 18 proof modules and Solution with Lean 4.35.0
 and Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`. Challenge also compiled
 with its five deliberate theorem holes. The selected declarations and the audited
-square-root support lemmas use only the permitted foundational axioms. Full
-Palomar preflight and Comparator checks remain required. See the
+square-root support lemmas use only the permitted foundational axioms. The local bundled Comparator also passed exact comparison of all five selected
+theorems, the permitted axiom check, and the default Lean kernel check. Full
+Palomar preflight remains required. This local Comparator run had no sandbox. See the
 [local replay summary](verification/local-replay-summary.json).
 
 The selected theorems give the exact least upper bound of the squared Pauli
