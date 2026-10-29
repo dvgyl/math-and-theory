@@ -1,0 +1,392 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black,
+  citecolor=blue!45!black,
+  pdftitle={Sharp universal Rényi threshold for iid sums on finite Sidon sets},
+  pdfauthor={Dev D. Goyal},pdfsubject={Universal uniform optimality on finite strong Sidon supports}}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\crit}{\alpha_{\mathrm c}}
+\newcommand{\code}[1]{\texttt{\small #1}}
+\title{Sharp universal R\'enyi threshold\\for iid sums on finite Sidon sets}
+\author{Dev D. Goyal}
+\date{28 October 2026}
+
+\begin{document}
+\maketitle
+
+\paragraph{Autonomous AI research disclosure.}
+This work is fully autonomous agentic research. Automated systems produced the research, proofs, formalization, and manuscript preparation. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed.
+
+
+\begin{abstract}
+Let $X,X'$ be independent random variables with the same probability law on a
+nonempty finite Sidon set, where sums are unique up to permutation, including
+repeated summands. The result determines exactly which R\'enyi orders $\alpha>1$ have
+the following universal property: uniform input maximizes the entropy of
+$X+X'$ on every such support. The necessary and sufficient condition is
+$2^{\alpha-1}\le 2\alpha-1$, equivalently $1<\alpha\le\crit$, where
+$\crit\in(3,4)$ is the unique nontrivial solution of
+$2^\alpha-4\alpha+2=0$ and is approximately $3.65986$.
+The sufficient direction follows from a sharp two-coordinate power inequality
+and a gradient comparison. A binary obstruction proves necessity. The proof includes zero input probabilities and the critical endpoint.
+A Lean formalization covers the classification and its convolution-law bridge.
+\end{abstract}
+
+\section{The model and source context}
+
+A finite set $A=\{v_1,\ldots,v_n\}$ in an abelian group is a \emph{Sidon set}
+in the strong $B_2$ sense if
+\[
+v_i+v_j=v_k+v_\ell
+\quad\Longrightarrow\quad
+(i=k\text{ and }j=\ell)\ \text{or}\ (i=\ell\text{ and }j=k).
+\]
+Indices may repeat. Thus diagonal sums $2v_i$ are included in the uniqueness
+requirement. This displayed condition defines the support convention in this note.
+The formal proof works more generally in a commutative additive semigroup
+under exactly the displayed condition.
+
+Let $p=(p_1,\ldots,p_n)$ be any probability vector:
+$p_i\ge0$ and $\sum_i p_i=1$. Let $X$ and $X'$ be independent with
+$\mathbb P(X=v_i)=\mathbb P(X'=v_i)=p_i$. All logarithms in this note are
+natural, so entropies are measured in nats. For $\alpha>1$,
+\[
+H_\alpha(X+X')=
+\frac{1}{1-\alpha}\log\!\left(\sum_z\mathbb P(X+X'=z)^\alpha\right).
+\]
+Zero probabilities are allowed, with $0^\alpha=0$.
+
+The question is universal in the support and its cardinality:
+\begin{quote}
+For which $\alpha>1$ does uniform input maximize $H_\alpha(X+X')$
+for every nonempty finite Sidon support?
+\end{quote}
+
+Gu~\cite{Gu} is credited in the supplied source context for an earlier
+sufficient bound, the threshold equation, and a binary obstruction.
+Hillion and Johnson~\cite{HJ} are credited for related binary Tsallis curvature
+and gradient-comparison methods. The primary pages and current versions were
+not verified for this note. Exact proposition numbers, support conventions,
+and the extent of earlier sufficient results therefore remain unverified.
+If those conventions and attributions agree, the theorem below gives the
+matching sufficient bound in this model. It is presented as a self-contained
+classification, without a claim to close a verified published gap or to have
+first priority. The theorem concerns identical iid input laws and orders
+strictly above one; it makes no Shannon-entropy or different-input-law claim.
+
+\section{Complete classification}
+
+\begin{theorem}[Sharp universal threshold]\label{thm:main}
+Fix a real number $\alpha>1$. The following are equivalent:
+\begin{enumerate}[label=(\roman*),nosep]
+\item For every nonempty finite Sidon support and every probability law
+on it, uniform input maximizes $H_\alpha(X+X')$ for two iid draws.
+\item $2^{\alpha-1}\le 2\alpha-1$.
+\item $\alpha\le\crit$, where $\crit$ is the unique real number greater
+than $1$ satisfying $2^{\crit-1}=2\crit-1$.
+\end{enumerate}
+The critical order satisfies $3<\crit<4$. In the valid range, the maximum
+on any Sidon support of cardinality $n$ is
+\begin{equation}\label{eq:max}
+\frac{1}{1-\alpha}\log\left(
+\frac{n+2^{\alpha-1}n(n-1)}{n^{2\alpha}}\right).
+\end{equation}
+For every $\alpha>\crit$, a strictly positive nonuniform law on the concrete
+Sidon set $\{0,1\}$ has strictly larger entropy than uniform input.
+\end{theorem}
+
+This theorem classifies \emph{universal uniform optimality}. For orders above
+the threshold, the required negative conclusion is existence of a support
+where uniform input fails. The theorem does not assert failure for every
+cardinality, or classify all maximizing laws for a fixed larger cardinality.
+No equality-case uniqueness statement about the optimizing law is required
+or claimed in the formal classification.
+
+\section{The exact output moment}
+
+The Sidon condition gives one sum atom of weight $p_i^2$ for each diagonal
+pair $(i,i)$ and one of weight $2p_ip_j$ for every unordered distinct pair
+\(\{i,j\}\). Consequently, if $c=2^{\alpha-1}$ and
+$S=\sum_i p_i^\alpha$, the output power moment is
+\begin{align}
+F_\alpha(p)
+&=\sum_i p_i^{2\alpha}+\sum_{i<j}(2p_ip_j)^\alpha\notag\\
+&=c\left(\sum_i p_i^\alpha\right)^2
+ -(c-1)\sum_i p_i^{2\alpha}.
+\label{eq:moment}
+\end{align}
+This is strictly positive for every probability vector: at least one $p_i$
+is positive, giving a positive diagonal term. Since $1-\alpha<0$ and the
+logarithm is increasing, maximizing entropy is equivalent to minimizing
+$F_\alpha$.
+
+At $u=(1/n,\ldots,1/n)$, direct substitution into the first line gives
+\[
+F_\alpha(u)=n\,n^{-2\alpha}
+ +\frac{n(n-1)}2\,(2n^{-2})^\alpha
+ =\bigl(n+c\,n(n-1)\bigr)n^{-2\alpha}.
+\]
+This proves the asserted value of the maximum once uniform optimality is
+established.
+
+\section{A sharp power-difference inequality}
+
+\begin{lemma}\label{lem:scalar}
+If $r>1$ and $x>y>0$, then
+\begin{equation}\label{eq:scalar}
+x^r-y^r>r(xy)^{(r-1)/2}(x-y).
+\end{equation}
+The corresponding non-strict inequality holds for $x\ge y>0$.
+\end{lemma}
+
+\begin{proof}
+Write $x=e^{m+t}$ and $y=e^{m-t}$ with $t>0$. The difference between the two
+sides of~\eqref{eq:scalar} is
+\[
+2e^{rm}\bigl(\sinh(rt)-r\sinh t\bigr).
+\]
+As a function of $t\ge0$, the expression in parentheses vanishes at zero
+and has derivative $r(\cosh(rt)-\cosh t)>0$ for $t>0$.
+It is therefore strictly positive. The case $x=y$ is equality.
+The Lean proof uses the equivalent exponential expressions rather than
+introducing hyperbolic functions.
+\end{proof}
+
+The choice $r=2\alpha-1>1$ gives
+\begin{equation}\label{eq:alpha-scalar}
+x^{2\alpha-1}-y^{2\alpha-1}
+\ge(2\alpha-1)(xy)^{\alpha-1}(x-y).
+\end{equation}
+The inequality is strict if $x>y>0$. This strictness persists even when the
+eventual threshold condition is an equality.
+
+\section{Ordering the gradient}
+
+For a strictly positive vector $p$, differentiating~\eqref{eq:moment} gives
+\begin{equation}\label{eq:gradient}
+g_i(p):=\frac{\partial F_\alpha}{\partial p_i}
+=2\alpha p_i^{\alpha-1}\bigl(cS-(c-1)p_i^\alpha\bigr).
+\end{equation}
+
+\begin{lemma}\label{lem:gradient}
+Suppose $\alpha>1$ and $c=2^{\alpha-1}\le2\alpha-1$.
+For every strictly positive finite vector $p$,
+$p_i\le p_j$ implies $g_i(p)\le g_j(p)$. The implication is strict when
+$p_i<p_j$.
+\end{lemma}
+
+\begin{proof}
+Equality of the two coordinates gives equality of their gradient components.
+For the strict case put $x=p_j>y=p_i>0$ and
+$D=x^{\alpha-1}-y^{\alpha-1}>0$.
+Since all summands of $S$ are nonnegative, $S\ge x^\alpha+y^\alpha$.
+Equation~\eqref{eq:gradient} yields
+\begin{align*}
+\frac{g_j-g_i}{2\alpha}
+&=cSD-(c-1)(x^{2\alpha-1}-y^{2\alpha-1})\\
+&\ge c(x^\alpha+y^\alpha)D
+  -(c-1)(x^{2\alpha-1}-y^{2\alpha-1})\\
+&=x^{2\alpha-1}-y^{2\alpha-1}
+  -c(xy)^{\alpha-1}(x-y)\\
+&>\bigl(2\alpha-1-c\bigr)(xy)^{\alpha-1}(x-y)\ge0.
+\end{align*}
+The exact identity in the third line follows by expanding
+$(x^\alpha+y^\alpha)(x^{\alpha-1}-y^{\alpha-1})$.
+The strict inequality is Lemma~\ref{lem:scalar}.
+Finally $2\alpha>0$, so $g_j>g_i$.
+\end{proof}
+
+The use of \emph{both} coordinates in $S\ge x^\alpha+y^\alpha$ is what
+retains the sharp coefficient. A bound using only one coordinate loses
+information needed to reach the binary threshold.
+
+\section{From the gradient to a global minimum}
+
+\begin{proposition}\label{prop:minimum}
+If $\alpha>1$ and $2^{\alpha-1}\le2\alpha-1$, then
+$F_\alpha(u)\le F_\alpha(p)$ for every nonnegative probability vector $p$
+of every finite length $n\ge1$.
+\end{proposition}
+
+\begin{proof}
+Let $u_i=1/n$ and interpolate from uniform to $p$ by
+\[
+q_i(t)=(1-t)/n+t p_i,\qquad 0\le t\le1.
+\]
+For $0<t<1$ every $q_i(t)$ is strictly positive, including when some $p_i=0$.
+The ordering of the coordinates of $q(t)$ agrees with that of $p$.
+Lemma~\ref{lem:gradient} therefore says that $p$ and $g(q(t))$ have the same
+coordinate order. Chebyshev's finite sum inequality gives
+\[
+\left(\sum_i p_i\right)\left(\sum_i g_i(q(t))\right)
+\le n\sum_i p_i g_i(q(t)).
+\]
+For completeness, the difference of the right and left sides equals
+\[
+\frac12\sum_{i,j}(p_i-p_j)\bigl(g_i(q(t))-g_j(q(t))\bigr),
+\]
+whose summands are nonnegative by the common ordering. Since $\sum_i p_i=1$,
+the chain rule implies
+\begin{align*}
+\frac{d}{dt}F_\alpha(q(t))
+&=\sum_i(p_i-1/n)g_i(q(t))\\
+&=\sum_i p_i g_i(q(t))-
+  \frac1n\sum_i g_i(q(t))\ge0.
+\end{align*}
+The function $F_\alpha(q(t))$ is continuous on $[0,1]$, because the real
+powers involved have positive exponents. The derivative is needed only on
+$(0,1)$. The mean-value theorem therefore makes it nondecreasing on the
+closed interval. Evaluating at the endpoints gives
+$F_\alpha(u)\le F_\alpha(p)$.
+\end{proof}
+
+Combining Proposition~\ref{prop:minimum} with positivity of the moment and
+the sign of $1-\alpha$ proves the entropy bound for every finite Sidon
+support. The argument covers $n=1$, arbitrary zero coordinates of $p$, and
+the critical equality $2^{\alpha-1}=2\alpha-1$.
+
+\section{The matching obstruction above the threshold}
+
+The supplied source context attributes this binary obstruction to Gu; that
+exact source comparison remains unverified. The argument is included and
+formalized here to make both directions of Theorem~\ref{thm:main}
+self-contained. Take $A=\{0,1\}\subset\mathbb Z$ and input weights
+$(t,1-t)$. The three output probabilities are $t^2$, $2t(1-t)$, and
+$(1-t)^2$. Thus
+\[
+b_\alpha(t)=t^{2\alpha}+(2t(1-t))^\alpha+(1-t)^{2\alpha}.
+\]
+Direct differentiation at $t=1/2$ gives
+\begin{align}
+b_\alpha'(1/2)&=0,\notag\\
+b_\alpha''(1/2)
+&=2^{4-2\alpha}\alpha\bigl(2\alpha-1-2^{\alpha-1}\bigr).
+\label{eq:curvature}
+\end{align}
+If $2^{\alpha-1}>2\alpha-1$, the second derivative is negative. All bases
+of the powers are positive in a neighborhood of $1/2$, so the function is
+twice differentiable there. Hence, for all sufficiently small nonzero
+$\varepsilon$,
+\[
+b_\alpha(1/2+\varepsilon)<b_\alpha(1/2).
+\]
+Choosing $|\varepsilon|<1/2$ gives a strictly positive normalized input law.
+Its output moment is smaller, so its R\'enyi entropy is strictly larger.
+The formal proof derives the existence of such a point directly from
+derivatives, a one-sided neighborhood, and the mean-value theorem.
+It does not rely on a floating-point search.
+
+Related Tsallis curvature arguments are attributed to Hillion and
+Johnson~\cite{HJ}; the literal lemma comparison remains unverified.
+Sections 4--6 prove the universal sufficient bound used here.
+
+\section{The critical order}
+
+Put $\phi(a)=2^{a-1}-(2a-1)$. It is continuous and strictly convex on
+$\R$. Its values at $1,3,4$ are respectively $0,-1,1$.
+The intermediate-value theorem gives a root $\crit\in(3,4)$.
+Strict convexity gives $\phi(a)<0$ for $1<a<\crit$.
+For $a>\crit$, the strict ordering of adjacent secant slopes gives
+\[
+0=\frac{\phi(\crit)-\phi(1)}{\crit-1}
+<\frac{\phi(a)-\phi(\crit)}{a-\crit},
+\]
+so $\phi(a)>0$. These observations also prove uniqueness of the root above
+one and the equivalence
+\[
+2^{a-1}\le2a-1\quad\Longleftrightarrow\quad a\le\crit
+\qquad(a>1).
+\]
+Together with the preceding sufficient and necessary directions, this
+completes Theorem~\ref{thm:main}. The familiar decimal $3.65986$ is only a
+readable approximation; the formal statement uses the exact root.
+
+\section{Lean verification and reproducibility}
+
+The accompanying formalization targets Lean 4.19.0~\cite{Lean} and the following
+pinned mathlib commit:
+\begin{center}
+\code{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+\end{center}
+The top-level theorem is
+\begin{verbatim}
+theorem universalUniformOptimal_iff_criticalOrder
+    {a : Real} (ha : 1 < a) :
+    UniversalUniformOptimal a <-> a <= criticalOrder
+\end{verbatim}
+Here \code{UniversalUniformOptimal} is explicitly quantified over every
+nonempty finite support, every strong Sidon enumeration into an abelian
+group, and every nonnegative normalized input probability
+vector. The separate forward theorem is universe-polymorphic.
+The entropy definition is the logarithm of the power sum of the actual
+finite convolution law, divided by $1-a$.
+
+\begin{center}
+\begin{tabular}{@{}p{0.31\linewidth}p{0.62\linewidth}@{}}
+\toprule
+Module & Verified content\\
+\midrule
+\code{SidonLaw} & Product law, pushforward by addition, normalization,
+zero outside the finite sum support, exact power-moment identity.\\
+\code{PowerDifference} & Sharp scalar power inequality and cross-term identity.\\
+\code{Core}, \code{Gradient} & Derivative formula, continuity, strict coordinate
+ordering of the gradient.\\
+\code{Optimization} & Global minimum at uniform input, including boundary laws.\\
+\code{AboveThreshold}, \code{Binary} & Analytic binary improvement and a genuine
+probability law on the concrete Sidon support $\{0,1\}$.\\
+\code{Entropy} & Moment positivity, entropy comparisons, uniform moment value.\\
+\code{Threshold} & Exact critical root, existence, uniqueness, and interval sign.\\
+\code{Main} & Both directions of the entropy classification and exact uniform value.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The complete source was freshly rebuilt with Lean 4.19.0 on 28 October
+2026. A separate audit with \code{-{}-trust=0} checked all twelve named
+declarations in \code{AxiomAudit.lean}. Both checks succeeded, and the
+audited declarations depend only on the standard Lean foundations
+\code{propext}, \code{Classical.choice}, and \code{Quot.sound}.
+All twelve Lean source files were unchanged during these checks. The Lean
+kernel and the stated foundational axioms remain the logical trust basis.
+
+The source package contains the pinned toolchain, package manifest, complete
+Lean sources, and \code{AxiomAudit.lean}. Reproduction commands and the
+map from informal results to formal declarations are in the accompanying
+README and formalization guide.
+
+The verified classification is for orders $a>1$. Lower orders are outside
+the stated formal classification. The expression
+$\log F_a/(1-a)$ is not used to claim a Shannon-entropy theorem at $a=1$.
+
+\section{Scope and attribution}
+
+The theorem identifies the exact universal threshold for orders above one.
+It applies to every finite cardinality and the whole probability simplex.
+Any comparison with earlier sufficient bounds is conditional on the
+unverified primary-source conventions and results described above. The threshold equation, its approximate value,
+the binary obstruction, and the gradient comparison method are not claimed
+as new. A formal proof establishes the stated mathematical implication;
+it does not establish historical priority.
+
+The problem of classifying maximizing laws for each fixed cardinality
+above the universal threshold is outside this theorem. So is the
+mixed-input Shannon-entropy question at order one.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

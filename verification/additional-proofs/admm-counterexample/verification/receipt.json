@@ -1,0 +1,213 @@
+{
+  "allowed_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "arithmetic_checks": {
+    "audits/audit_geometry.py": 0,
+    "audits/audit_independent_arithmetic.py": 0,
+    "verify_admm_five_cycle.py": 0
+  },
+  "axioms": {
+    "ADMMCounterexample.counterexample": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ADMMCounterexample.zero_fixed_trajectory": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ADMMData.residual_lower_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ADMMData.x_normal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ADMMData.z_normal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ADMMGeometry.projection_of_vertex_normals": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ADMMGeometry.zero_mem_polytope": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ADMMHinge.finite_cycle": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ADMMHinge.psi_support": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ADMMHinge.unique_optimizer": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ADMMHingeTrajectory.verified_orbit_and_optimizer": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "compiler_results": [
+    {
+      "duration_seconds": 0.033,
+      "exit_code": 0,
+      "label": "lean-version"
+    },
+    {
+      "duration_seconds": 0.005,
+      "exit_code": 0,
+      "label": "mathlib-revision"
+    },
+    {
+      "duration_seconds": 2.122,
+      "exit_code": 0,
+      "label": "Research.ADMMGeometry"
+    },
+    {
+      "duration_seconds": 20.636,
+      "exit_code": 0,
+      "label": "Research.ADMMData"
+    },
+    {
+      "duration_seconds": 2.129,
+      "exit_code": 0,
+      "label": "Research.ADMMCounterexample"
+    },
+    {
+      "duration_seconds": 1.62,
+      "exit_code": 0,
+      "label": "Research.ADMMHingeScalar"
+    },
+    {
+      "duration_seconds": 20.935,
+      "exit_code": 0,
+      "label": "Research.ADMMHinge"
+    },
+    {
+      "duration_seconds": 1.277,
+      "exit_code": 0,
+      "label": "Research.ADMMHingeTrajectory"
+    },
+    {
+      "duration_seconds": 1.02,
+      "exit_code": 0,
+      "label": "Research"
+    },
+    {
+      "duration_seconds": 2.777,
+      "exit_code": 0,
+      "label": "axiom-audit"
+    }
+  ],
+  "configuration_sha256": {
+    "lakefile.toml": "e9787a3a6e4a779a7f1bd61e60211fd4165a354b9eaf9fe51bbe39035fe72511",
+    "lean-toolchain": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+  },
+  "finished_utc": "2026-10-29T00:03:50.362748+00:00",
+  "mathlib_revision_check": "git_head_matches_pin",
+  "method": "Fresh local objects; explicit trust-zero imports and warnings as errors; cached pinned mathlib dependencies; one Lean process at a time.",
+  "module_order": [
+    "Research.ADMMGeometry",
+    "Research.ADMMData",
+    "Research.ADMMCounterexample",
+    "Research.ADMMHingeScalar",
+    "Research.ADMMHinge",
+    "Research.ADMMHingeTrajectory",
+    "Research"
+  ],
+  "per_command_address_space_limit_bytes": 6442450944,
+  "per_command_seconds_limit": 120,
+  "pinned_mathlib_commit": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+  "proof_compiler_options": [
+    "--trust=0",
+    "-j1",
+    "-DwarningAsError=true"
+  ],
+  "required_lean_version": "4.19.0",
+  "sources": {
+    "Research": {
+      "bytes": 71,
+      "local_imports": [
+        "Research.ADMMCounterexample",
+        "Research.ADMMHingeTrajectory"
+      ],
+      "object_sha256": "139f6d96dd00c909e051fb4c4958f3e4a938ecd16c047d71e8fee0cef1a07cfe",
+      "path": "Research.lean",
+      "sha256": "5d3750423caa651de85ee1126ec4e2d20eb462fc3483ff9804ff94d097cf3860"
+    },
+    "Research.ADMMCounterexample": {
+      "bytes": 5489,
+      "local_imports": [
+        "Research.ADMMGeometry",
+        "Research.ADMMData"
+      ],
+      "object_sha256": "9842d2649cd72650b693ffbf7b7dca74a1e80e358b2834ecefade8fbcb5d8a29",
+      "path": "Research/ADMMCounterexample.lean",
+      "sha256": "f9fcdebf843a970b8bd7c2df8ccb54ee2ede19fda6a36d18a62bb23f373d9c6b"
+    },
+    "Research.ADMMData": {
+      "bytes": 2509,
+      "local_imports": [],
+      "object_sha256": "23952a937f91983ef46354794dac14a96d06b3bd67c3fc2033c18f392665308d",
+      "path": "Research/ADMMData.lean",
+      "sha256": "611d611904290764cca5938159ab793881f0347e0490a8cee113cf3d43e03cb4"
+    },
+    "Research.ADMMGeometry": {
+      "bytes": 4831,
+      "local_imports": [],
+      "object_sha256": "685bd7dc32a755e42258984a8d69eebe30a7a4b49b106ab80811e910efed91e3",
+      "path": "Research/ADMMGeometry.lean",
+      "sha256": "b47ddebb19fdbe44ff7faa8be73a90a6f60d3fcbf5d37c042187a0810dd82c60"
+    },
+    "Research.ADMMHinge": {
+      "bytes": 6981,
+      "local_imports": [
+        "Research.ADMMHingeScalar",
+        "Research.ADMMGeometry",
+        "Research.ADMMData"
+      ],
+      "object_sha256": "cd35a4b2c88d19006958807f428c8ceebf76039a050f3e6f8829dc673a931f7f",
+      "path": "Research/ADMMHinge.lean",
+      "sha256": "d1ce3a623f5878e2a1932f91458d64002ee93a6861cbfbb61abc55f1693df81b"
+    },
+    "Research.ADMMHingeScalar": {
+      "bytes": 1414,
+      "local_imports": [],
+      "object_sha256": "0b1b6ccf1c515bd2a6c5fee6e7a0d5b4c9380b759132807aadbeae67cdd9e9b1",
+      "path": "Research/ADMMHingeScalar.lean",
+      "sha256": "acb2c2696024d9b0f4036e95ed851c99593570dfc491d28ac1eaed4d37c4ce75"
+    },
+    "Research.ADMMHingeTrajectory": {
+      "bytes": 2212,
+      "local_imports": [
+        "Research.ADMMHinge",
+        "Research.ADMMCounterexample"
+      ],
+      "object_sha256": "48bf77d5a00e1460246af16751d51ed5787d448d75140e26bd2a2c8cf5c2f0e6",
+      "path": "Research/ADMMHingeTrajectory.lean",
+      "sha256": "c44630c1140c1a95d34ddc4e80d5eccab7db454008e46c1c8c5222896b4a8c6c"
+    }
+  },
+  "started_utc": "2026-10-29T00:02:57.758645+00:00",
+  "status": "verified",
+  "verifier_sha256": "7a1d549a8cce04a1f962756ca634bbe44eb8309bdbdee91e88fb47ca65906544"
+}

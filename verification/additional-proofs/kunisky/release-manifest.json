@@ -1,0 +1,171 @@
+{
+  "format_version": 1,
+  "package_id": "kunisky",
+  "formal_scope": "The internally defined resolution-tree functional and proof class are formalized. No unconditional identification with an external conjecture or a regular proof class is claimed.",
+  "proof_roots": [
+    {
+      "path": "formalization",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.lean",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "formalization/Absorption.lean": "537536c12c286beeecdc7d803ad1084a10b66dd0cf964cac67c77fb80f0670a0",
+    "formalization/CertificateAnalysis.lean": "2f03be385f8a7f8245d0cc3a9682c0d2c0dc09bebd57f0af08c52be1ef966638",
+    "formalization/Completion.lean": "2155104cb5c008a9869987bb51892f9b6d1c0b576554b348137cb98305d77054",
+    "formalization/Concentration.lean": "2181b93fe565f9174ba358c79db20ce1cd223ddbe276b1452a89f8ddc8e5139a",
+    "formalization/Conjecture.lean": "a2fb3d02f3bc45d6c0a1275efb37110a52d1394dd0b861edb8a73adb37806c51",
+    "formalization/Counterexample.lean": "de4922593217eec9156aba54fcc148b0fe39f9e22fcca6fea47664dd47070f6c",
+    "formalization/Family.lean": "f47ef487e33bc09ca9a2041188ebc11e9ec6275c506a6d465f0c53ca583bf6f8",
+    "formalization/FinalAudit.lean": "894ee2fd3c1850dff5af657ff878fe6e36a168bdaf945e41ed24964a81230ecc",
+    "formalization/FiniteCertificate.lean": "d3088c0b7bcef0478776a3725c0eccbbae17a4e7cbb81985f95cf4a3c64d7533",
+    "formalization/FullFormulaProperties.lean": "902be993a4a0962e57c58696bd4068181de6849e957aba7391a593204fe5c70e",
+    "formalization/GeneralResult.lean": "a46638382e58108e3e8c3ac82d6c0d7658a239a9fcddbd1f250cae245cef9335",
+    "formalization/MinimalMass.lean": "817f6382f8ac8add28f0056e657c4d4aa3535a5262e6cb47ff7f4ac0a7639b96",
+    "formalization/NoTautologies.lean": "12cab5501d10e9de689d2893f9915f83f5110d3a1e3724db9236576586c0595c",
+    "formalization/Policy.lean": "4a2eeb63c9eaaaf0beed071a023a7ec6ebd8f21e9a6d9aaa8d2482d0b908a5c7",
+    "formalization/Resolution.lean": "a611e1356188fc62a146d606b2d34d3dd63a48f4984e33da2292e3bea20d799a",
+    "formalization/SourceMass.lean": "7a305b6d9d28f0b998c1171ac519d1c8c67e0c1c348f1298feb6ddd83dafdf6c"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 392,
+      "sha256": "533c7c57fb79460fccfe3768baa613e82f73ec13785b300141acc7e8c8585fbb"
+    },
+    "CITATION.bib": {
+      "bytes": 213,
+      "sha256": "e8af94f10f485edfd5647f4dbee2b8b117f9a5f1e8537b976a56da98d725bd79"
+    },
+    "CITATION.cff": {
+      "bytes": 757,
+      "sha256": "48c7d78b974986f1a1174161bd901d7c05700f0f2851b7d6b42499ee20649a52"
+    },
+    "FORMALIZATION.md": {
+      "bytes": 2164,
+      "sha256": "94730488261474415de9e4665953366260a31547c79fa6e22fc88ad0e7e42f3b"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 2764,
+      "sha256": "16edb6d76aa57c935929647123eb891a40239f57245a39c723d5d2a37d90b9e3"
+    },
+    "SOURCE_PROVENANCE.md": {
+      "bytes": 1725,
+      "sha256": "33a14e19cf32d7af3fdf706ab24aeb54d1e93e001ea4e6d68cf3a6356edcbe51"
+    },
+    "checks/exact_audit_output.json": {
+      "bytes": 388,
+      "sha256": "97c1af3297f6c95e6c465a3a387851162c44e8d51d89fc854dd46c640a9bb9da"
+    },
+    "checks/resolution_witness.json": {
+      "bytes": 27915,
+      "sha256": "700a9f130adefec519e267cb873a3c834344816febc0c1bb5daf73372e8e4ae0"
+    },
+    "checks/verify_exact.py": {
+      "bytes": 1691,
+      "sha256": "38b2d66b3d207c5e9a84a9ed86a0309d210845741cd6654edbfd19a9fb0d7e84"
+    },
+    "formalization/Absorption.lean": {
+      "bytes": 5908,
+      "sha256": "537536c12c286beeecdc7d803ad1084a10b66dd0cf964cac67c77fb80f0670a0"
+    },
+    "formalization/CertificateAnalysis.lean": {
+      "bytes": 4743,
+      "sha256": "2f03be385f8a7f8245d0cc3a9682c0d2c0dc09bebd57f0af08c52be1ef966638"
+    },
+    "formalization/Completion.lean": {
+      "bytes": 4464,
+      "sha256": "2155104cb5c008a9869987bb51892f9b6d1c0b576554b348137cb98305d77054"
+    },
+    "formalization/Concentration.lean": {
+      "bytes": 4128,
+      "sha256": "2181b93fe565f9174ba358c79db20ce1cd223ddbe276b1452a89f8ddc8e5139a"
+    },
+    "formalization/Conjecture.lean": {
+      "bytes": 2623,
+      "sha256": "a2fb3d02f3bc45d6c0a1275efb37110a52d1394dd0b861edb8a73adb37806c51"
+    },
+    "formalization/Counterexample.lean": {
+      "bytes": 2869,
+      "sha256": "de4922593217eec9156aba54fcc148b0fe39f9e22fcca6fea47664dd47070f6c"
+    },
+    "formalization/Family.lean": {
+      "bytes": 1601,
+      "sha256": "f47ef487e33bc09ca9a2041188ebc11e9ec6275c506a6d465f0c53ca583bf6f8"
+    },
+    "formalization/FinalAudit.lean": {
+      "bytes": 700,
+      "sha256": "894ee2fd3c1850dff5af657ff878fe6e36a168bdaf945e41ed24964a81230ecc"
+    },
+    "formalization/FiniteCertificate.lean": {
+      "bytes": 83374,
+      "sha256": "d3088c0b7bcef0478776a3725c0eccbbae17a4e7cbb81985f95cf4a3c64d7533"
+    },
+    "formalization/FullFormulaProperties.lean": {
+      "bytes": 2857,
+      "sha256": "902be993a4a0962e57c58696bd4068181de6849e957aba7391a593204fe5c70e"
+    },
+    "formalization/GeneralResult.lean": {
+      "bytes": 4106,
+      "sha256": "a46638382e58108e3e8c3ac82d6c0d7658a239a9fcddbd1f250cae245cef9335"
+    },
+    "formalization/MinimalMass.lean": {
+      "bytes": 1741,
+      "sha256": "817f6382f8ac8add28f0056e657c4d4aa3535a5262e6cb47ff7f4ac0a7639b96"
+    },
+    "formalization/NoTautologies.lean": {
+      "bytes": 52976,
+      "sha256": "12cab5501d10e9de689d2893f9915f83f5110d3a1e3724db9236576586c0595c"
+    },
+    "formalization/Policy.lean": {
+      "bytes": 8605,
+      "sha256": "4a2eeb63c9eaaaf0beed071a023a7ec6ebd8f21e9a6d9aaa8d2482d0b908a5c7"
+    },
+    "formalization/Resolution.lean": {
+      "bytes": 3417,
+      "sha256": "a611e1356188fc62a146d606b2d34d3dd63a48f4984e33da2292e3bea20d799a"
+    },
+    "formalization/SourceMass.lean": {
+      "bytes": 1048,
+      "sha256": "7a305b6d9d28f0b998c1171ac519d1c8c67e0c1c348f1298feb6ddd83dafdf6c"
+    },
+    "formalization/build.sh": {
+      "bytes": 584,
+      "sha256": "2652d8b51e10fa676aa962a9443eaa9e3683c1330da203723e6041ae471ca799"
+    },
+    "formalization/check_axioms.py": {
+      "bytes": 3144,
+      "sha256": "f1068e6c245719dade15878249eca456933d7716aaf59c274e8b684aa40deec3"
+    },
+    "formalization/lake-manifest.json": {
+      "bytes": 3529,
+      "sha256": "3b71d27922d882bacf0b2a045fb03af6cd98a9dc113f0c8f3198eb24989fb199"
+    },
+    "formalization/lakefile.lean": {
+      "bytes": 572,
+      "sha256": "684564115757df7bf5e21327490c86d4640a00dc9f2f7045bb12a1d4c3d0e7ea"
+    },
+    "formalization/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    "formalization/tests/test_verifier.py": {
+      "bytes": 4575,
+      "sha256": "0507761ebe19794cab8e3ba70b39b38ba4dbc2fea1aa8f1aa27e8eef1143970e"
+    },
+    "paper.pdf": {
+      "bytes": 273926,
+      "sha256": "7e31c95200678be4b1b630496f80ebc46c1c9ce5b312cb7e1795de65f5866323"
+    },
+    "paper.tex": {
+      "bytes": 14382,
+      "sha256": "dede0a3657898c9e07f53ee9635609c0d3bd62d16cbfb0d3e2235fa41339ceb4"
+    }
+  }
+}

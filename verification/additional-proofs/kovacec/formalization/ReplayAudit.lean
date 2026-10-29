@@ -1,0 +1,8 @@
+import KovacecResolution
+
+#print axioms KovacecResolution.completed_counterexample
+#print axioms KovacecResolution.conjecture7_false
+#print axioms KovacecResolution.ordinary_convex_combination
+#print axioms KovacecResolution.candidate_boundary_isJordan
+#print axioms KovacecResolution.candidate_has_bounded_component
+#print axioms KovacecResolution.candidate_outside_every_bounded_closure

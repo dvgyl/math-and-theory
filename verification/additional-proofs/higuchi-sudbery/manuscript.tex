@@ -36,6 +36,8 @@ Higuchi--Sudbery entropy bound}
 \begin{document}
 \maketitle
 
+\par\noindent{\normalsize\bfseries This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication.\par}
+
 \begin{abstract}
 For a pure state of four qubits, the Higuchi--Sudbery problem asks for the largest average von Neumann entropy across the three partitions into pairs. The proof shows that this average is at most $\log2+\tfrac12\log3$, with natural logarithms. The Higuchi--Sudbery state attains the bound. The proof gives an exact polynomial identity that bounds the sum of the third elementary symmetric functions of the three marginal spectra by $5/36$. Its right side is a sum of 272 squared mixed cubics with positive integer weights. The identity holds for all sixteen complex amplitudes. A purity lower bound and a cubic majorant for $-x\log x$ then give the entropy inequality. The argument places no restriction on the one-qubit marginals. A companion Lean formalization includes the polynomial identity, the actual reduced-matrix eigenvalues, and an explicit state that attains the bound.
 \end{abstract}
@@ -532,8 +534,6 @@ The coefficient data can also be checked with integer arithmetic. One program re
 
 The result applies to pure states of four distinguishable two-dimensional systems. It uses the equally weighted average of the three balanced cuts. Other local dimensions, mixed states, other entanglement measures, and different cut weights require separate results. The proof gives an attaining state but does not classify all maximizers.
 
-\section*{Research and publication}
-This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication.
 
 \begin{thebibliography}{9}
 

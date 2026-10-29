@@ -1,0 +1,211 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,enumitem,microtype}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,urlcolor=MidnightBlue,citecolor=MidnightBlue]{hyperref}
+\hypersetup{pdftitle={Unbounded coalesced-mass certificates for resolution trees},pdfauthor={Dev D. Goyal},pdfsubject={Resolution-tree certificates and a sharp supremum}}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}\lhead{Resolution-tree certificates}\rhead{28 October 2026}\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\newtheorem{theorem}{Theorem}\newtheorem{lemma}[theorem]{Lemma}\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Q}{\mathcal Q}\newcommand{\F}{\mathcal F}
+\title{Unbounded coalesced-mass certificates\\for resolution trees}
+\author{Dev D. Goyal}
+\date{28 October 2026}
+\begin{document}\maketitle
+
+\paragraph{Autonomous AI research disclosure.}
+This work is fully autonomous agentic research. Automated systems produced the research, proofs, formalization, and manuscript preparation. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed.
+
+\begin{abstract}
+For a finite ordinary resolution tree, coalesce the dyadic leaf masses
+by clause label before taking square roots. Define the certificate as one
+plus the sum of the square roots of the variable-incidence masses, divided
+by the sum of the square roots of the coalesced clause masses. For every
+$n\ge3$, the supremum of this explicitly defined certificate over finite
+unrestricted resolution refutations of the formula of all $2^n$ full signed
+clauses is exactly $n+1$. Thus the certificate is unbounded. The construction
+uses nonregular trees. The formulas are minimally unsatisfiable, and an exact
+three-variable witness has value greater than $61/25>1+\sqrt2$.
+A Lean formalization covers the sharp supremum and unboundedness.
+The comparison with a certificate attributed to Kunisky is conditional on
+unverified source definitions and proof-class restrictions. No claim about
+the optimal Koml\'os constant, existential proof selection, or first
+priority is made.
+\end{abstract}
+
+\section{The functional and proof class}
+Let $T$ be a finite binary resolution refutation of a conjunctive normal form (CNF) formula $F$. Every leaf is labelled by a clause of $F$, repeated occurrences are allowed, and the root is the empty clause. For each $C\in F$, define
+\[
+ p_C(T)=\sum_{\substack{\ell\text{ a leaf of }T\\\ell\text{ labelled }C}}2^{-\operatorname{depth}(\ell)}.
+\]
+Then $p_C\ge0$ and $\sum_{C\in F}p_C=1$. This is also the distribution of the clause reached by choosing either child independently with probability $1/2$ until reaching a leaf.
+
+Write $\partial z$ for the clauses containing either sign of variable $z$. The coalesced-mass certificate considered here is
+\begin{equation}\label{eq:objective}
+ \Q(F,T)=\frac{1+\displaystyle\sum_{z\in\operatorname{var}(F)}
+       \sqrt{\displaystyle\sum_{C\in\partial z}p_C(T)}}
+       {\displaystyle\sum_{C\in F}\sqrt{p_C(T)}}.
+\end{equation}
+Repeated occurrences with the same clause label are coalesced in $p_C(T)$
+\emph{before} square roots are taken. All finite ordinary resolution trees
+are permitted; no regularity condition is imposed. These choices are
+essential to the theorem.
+
+The supplied attribution points to Kunisky [1], Conjecture 4.4 and equation
+(41). The literal effective-depth definition, quantifiers, proof-class
+restrictions, and current version were not verified here. If that source
+uses exactly this functional on every tree in this proof class, the theorem
+below contradicts a universal bound $1+\sqrt2$ in those conventions.
+This is a conditional comparison, not an authenticated source refutation.
+
+\section{Main result}
+For $n\ge1$, let
+\[
+ \F_n=\left\{\ell_1\vee\cdots\vee\ell_n:
+       \ell_i\in\{x_i,\neg x_i\}\right\},\qquad
+ A_n=x_1\vee\cdots\vee x_n.
+\]
+Every Boolean assignment falsifies exactly one clause of $\F_n$. Consequently $\F_n$ is unsatisfiable, and removing any clause makes it satisfiable. Every refutation must use every clause, so all its clause masses are strictly positive and their negative base-two logarithms are finite. This fact is also formalized in Lean.
+
+\begin{theorem}\label{thm:main}
+For every integer $n\ge3$,
+\[
+ \sup\{\Q(\F_n,T):T\text{ is a finite resolution refutation of }\F_n\}=n+1.
+\]
+More explicitly, for every $\eta>0$ there is such a finite refutation with
+\[
+ \frac{n+1}{1+\eta}\le\Q(\F_n,T)\le n+1.
+\]
+\end{theorem}
+
+\begin{corollary}
+The functional in equation~\eqref{eq:objective} is unbounded over finite resolution refutations of minimally unsatisfiable formulas. No universal constant bounds it over all such proofs.
+\end{corollary}
+
+\section{An explicit resolution policy}
+A clause is \emph{proper} if it is non-tautological and omits at least one variable. The states are all proper clauses on $x_1,\ldots,x_n$ together with the distinguished full clause $A_n$. The latter is terminal. The following policy specifies a legal resolution step at every proper state $C$.
+
+Choose any missing variable $x_j$. If $C$ contains a negative literal $\neg x_i$, use the two children
+\begin{equation}\label{eq:negative}
+ L(C)=(C\setminus\{\neg x_i\})\vee x_j,
+ \qquad R(C)=\neg x_i\vee\neg x_j.
+\end{equation}
+Resolving on $x_j$ gives exactly $C$: the remaining literals are $C\setminus\{\neg x_i\}$ and $\neg x_i$. Both children are proper. The left child has the same width as $C$; the right child has width two, which is smaller than $n$ because $n\ge3$. Neither child is tautological.
+
+If $C$ has no negative literals, use
+\begin{equation}\label{eq:positive}
+ L(C)=C\vee x_j,\qquad R(C)=\neg x_j.
+\end{equation}
+Again their resolvent on $x_j$ is exactly $C$. The right child is proper. The left child is either proper or equal to $A_n$.
+
+Let $a(C)$ be the number of positive literals of $C$. In both cases,
+\[
+ a(L(C))=a(C)+1.
+\]
+Thus the integer rank $n-a(C)$ decreases by exactly one whenever the first child is followed. The only state with rank zero is $A_n$. Starting at any state, at most $n$ successive first-child choices reach $A_n$.
+
+\begin{lemma}\label{lem:concentration}
+For every $n\ge3$ and every $\delta>0$, there exists a finite resolution refutation $T$ of $\F_n$ with $p_{A_n}(T)>1-\delta$.
+\end{lemma}
+\begin{proof}
+Start the policy at the empty clause, and stop a branch when it reaches $A_n$. In any block of $n$ further fair child choices, the chance of absorption is at least $2^{-n}$: following the first child throughout that block suffices, regardless of the starting state. Equivalently, induction on the finite binary recurrence shows that the unabsorbed mass after $mn$ levels is at most
+\[
+ (1-2^{-n})^m.
+\]
+Choose a finite $m$ making this number less than $\delta$.
+
+Every unabsorbed proper clause $C$ can be completed using only leaves from $\F_n$. If $x_j$ is missing from $C$, recursively derive $C\vee x_j$ and $C\vee\neg x_j$, and resolve them on $x_j$. After at most $n$ such levels, the leaves are full signed clauses, hence members of $\F_n$. This is a finite ordinary resolution derivation of $C$ and requires no weakening rule.
+
+Attach these completions to the unfinished leaves of the policy tree. The resulting finite tree is a genuine refutation of $\F_n$. All leaves already labelled $A_n$ remain in place, so completing the other branches cannot decrease their total mass. Therefore
+$p_{A_n}(T)\ge1-(1-2^{-n})^m>1-\delta$.
+\end{proof}
+
+\section{The sharp certificate bound}
+Every clause of $\F_n$ contains every variable. Hence equation \eqref{eq:objective} simplifies to
+\begin{equation}\label{eq:complete}
+ \Q(\F_n,T)=\frac{n+1}{\sum_{C\in\F_n}\sqrt{p_C(T)}}.
+\end{equation}
+For any probability vector $p$, each coordinate lies in $[0,1]$, so $\sqrt{p_C}\ge p_C$. Thus the denominator is at least one and $\Q(\F_n,T)\le n+1$.
+
+Conversely, fix $\eta>0$, and set $\varepsilon=\eta/2^n$. By Lemma \ref{lem:concentration}, choose a finite refutation with $p_{A_n}>1-\varepsilon^2$. For every $C\ne A_n$,
+\[
+ 0\le p_C\le1-p_{A_n}<\varepsilon^2,
+ \qquad \sqrt{p_C}\le\varepsilon.
+\]
+Since $\sqrt{p_{A_n}}\le1$,
+\[
+ \sum_{C\in\F_n}\sqrt{p_C}\le1+2^n\varepsilon=1+\eta.
+\]
+Substitution into \eqref{eq:complete} proves Theorem \ref{thm:main}. Taking $\eta=1$ gives finite certificates at least $(n+1)/2$, which tend to infinity with $n$.
+
+The mechanism is specific: many occurrences of one leaf clause can acquire almost all the fair-branch mass in a nonregular resolution tree. Coalescing those occurrences and then taking square roots makes the denominator close to one, while every variable still contributes one to the numerator.
+
+\clearpage
+\section{A fully explicit three-variable witness}
+The finite certificate file specifies 224 distinct nodes with child references to earlier nodes. Unfolding shared references yields an ordinary binary tree of depth 25 and 2,492,606 leaves. The compressed representation is only a storage format; every repeated reference becomes a distinct subtree in the resolution refutation.
+
+Let $D=33\,554\,432=2^{25}$. In the order shown below, the exact coalesced leaf masses are $p_C=N_C/D$.
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+Clause $C$ & Numerator $N_C$ & Strict upper bound for $\sqrt{p_C}$\\
+\midrule
+$x\vee y\vee z$ & 30,820,930 & $959/1000$\\
+$x\vee y\vee\neg z$ & 3 & $1/1000$\\
+$x\vee\neg y\vee z$ & 286,893 & $93/1000$\\
+$x\vee\neg y\vee\neg z$ & 454,042 & $117/1000$\\
+$\neg x\vee y\vee z$ & 347,030 & $102/1000$\\
+$\neg x\vee y\vee\neg z$ & 313,669 & $97/1000$\\
+$\neg x\vee\neg y\vee z$ & 282,077 & $92/1000$\\
+$\neg x\vee\neg y\vee\neg z$ & 1,049,788 & $177/1000$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The eight numerators sum to $D$. Every square-root bound is verified by squaring two nonnegative rational quantities. Their sum is $819/500$. Consequently
+\[
+ \Q(\F_3,T)>\frac{2000}{819}>\frac{61}{25}>
+ \frac{121}{50}>1+\sqrt2.
+\]
+The last inequality follows from $(71/50)^2>2$. For orientation only, direct decimal evaluation gives $\Q(\F_3,T)\approx2.4473189092$; no floating-point comparison is used in the proof.
+
+\section{Meaning and limits of the result}
+A universal constant bound on the explicitly defined functional over \emph{every} finite ordinary resolution proof is false. The stronger theorem identifies the precise supremum on a natural formula family and proves that no larger universal constant can restore this particular certificate rule.
+
+The result does not establish a new lower bound for the Koml\'os constant. An implication for a discrepancy bound would require a separate proof of the relevant dual-feasibility correspondence. A large value of this functional alone gives no lower bound on the optimal discrepancy constant. In fact, $\F_n$ has a standard balanced read-once refutation with uniform masses $p_C=2^{-n}$. Its prescribed certificate is only $(n+1)/2^{n/2}$. The same formula can therefore have both a small certificate from one proof and arbitrarily near-maximal certificates from other proofs.
+
+Accordingly, a possibility of selecting \emph{some} suitable proof for each formula is not excluded here. The validity of the new theorem and the scope of its implication are separate from the historical priority of the observation.
+
+\clearpage
+\section{Formal verification and reproducibility}
+The accompanying Lean project fixes Lean 4.19.0 and the following mathlib commit:
+\begin{center}\small\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}\end{center}
+Its formal statement uses actual finite binary trees, finite clause sets, and the ordinary syntactic resolution rule. Leaf masses are defined recursively by averaging at internal nodes, with a proved mass-conservation theorem.
+
+The principal declarations in the supplied formalization, in the \texttt{Kunisky} namespace, are:
+\begin{itemize}[nosep]
+\item \texttt{not\_conjecture44}: the internal predicate \texttt{Conjecture44} defined in this package is false; this identifier does not authenticate an external conjecture.
+\item \texttt{exists\_certificate\_near}: the all-$n$ approximation assertion in Theorem 1.
+\item \texttt{full\_certificate\_isLUB}: the exact least upper bound $n+1$.
+\item \texttt{certificate\_unbounded}: for every real $B$, a finite valid refutation has certificate greater than $B$.
+\item \texttt{fullFormula\_minimallyUnsatisfiable}: deletion of any clause makes the explicit formula satisfiable.
+\end{itemize}
+A fresh Lean 4.19.0 build of the import-only variant and a separate \texttt{-{}-trust=0} audit of all twelve \texttt{FinalAudit.lean} declarations succeeded on 28 October 2026. All reports contain only \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}. Three umbrella imports were narrowed to \texttt{Mathlib.Tactic}. The publication copy also repairs source-context comments only; all non-comment code and pins match the previously checked source. No new compiler run is claimed for this comment-only delta. The exact occurrence-depth identity links recursive mass to the displayed dyadic weights, including repeated occurrences.
+
+The Python check is an additional independent audit of the finite witness. It reconstructs every resolvent, checks all child references, accumulates all masses using rational arithmetic, and proves the displayed rational gap by integer comparisons. It is not a replacement for Lean and is not the logical foundation of the general theorem.
+
+\paragraph{Relation to the source.}
+Kunisky receives credit for the attributed source context [1]. Agreement
+between the manuscript and formal definitions verifies the theorem stated
+here; it does not verify that the external source uses those definitions.
+Any Conjecture 4.4 comparison requires literal agreement on coalescing,
+effective depth, universal quantifiers, and unrestricted nonregular trees.
+The journal-version correspondence and later work remain unverified.
+No first-priority claim is made.
+
+\begin{thebibliography}{9}
+\bibitem{kunisky} D. Kunisky, \emph{The discrepancy of unsatisfiable matrices and a lower bound for the Koml\'os conjecture constant}, arXiv:2111.02974v1 (2021), Supplied source attribution; primary definitions, exact numbering, and current-version correspondence not verified here.\newline
+\url{https://arxiv.org/abs/2111.02974}
+\end{thebibliography}
+\end{document}

@@ -16,6 +16,8 @@
 \date{27 October 2026}
 \begin{document}
 \maketitle
+
+\par\noindent{\normalsize\bfseries This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication.\par}
 \begin{abstract}
 Entanglement embezzlement extracts an approximate target state while returning a shared catalyst approximately unchanged. The construction gives one family of catalysts that works for every finite target Schmidt probability vector. For each integer $L\geq1$, the catalyst has local dimension $n_L=2^{4L}$. A basis permutation on each party gives global root fidelity at least $1-125m/L^2$ for every target vector on $m$ entries. Thus the root infidelity is at most $2000m/(\log_2 n_L)^2$. The catalyst depends on neither the target nor $m$. Its Schmidt amplitudes combine the harmonic profile with a tent function of the dyadic rank. A finite interval coupling bounds the squared amplitude error. A doubly stochastic completion then gives a local permutation with the required error. This construction addresses the general-family rate question of Leung and Wang. The dependence on $m$ and the leading constant are not claimed to be optimal. A companion Lean formalization includes the coefficient bound and its finite complex Hilbert-space interpretation.
 \end{abstract}
@@ -244,8 +246,6 @@ Zanoni, Theurer, and Gour characterize universal embezzling families under local
 
 The constant $125m$ is a sufficient bound. The argument does not optimize that constant or its dependence on $m$. The proved dimension sequence is $n_L=16^L$. The formal statement does not separately cover each intervening integer dimension. The guarantee concerns one approximate extraction and the entire output state. It does not give exact catalyst return or an unlimited sequence of extractions. The local permutation depends on the target, although the catalyst does not. State preparation and the number of local gates are separate questions.
 
-\section*{Research and publication}
-This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication.
 
 \begin{thebibliography}{99}\small
 \bibitem{vdh} W. van Dam and P. Hayden, \emph{Universal entanglement transformations without communication}, Physical Review A \textbf{67}, 060302(R) (2003). \href{https://arxiv.org/abs/quant-ph/0201041}{arXiv:quant-ph/0201041}.

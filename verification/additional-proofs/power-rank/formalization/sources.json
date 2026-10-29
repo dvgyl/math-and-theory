@@ -1,0 +1,374 @@
+{
+  "format_version": 1,
+  "entry_module": "CompleteAudit",
+  "source_count": 35,
+  "source_bytes": 133589,
+  "lean_toolchain": "leanprover/lean4:v4.35.0",
+  "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+  "modules": [
+    {
+      "module": "RankEngine",
+      "path": "src/RankEngine.lean",
+      "bytes": 4108,
+      "sha256": "e8b72865046ab93244433056513aef213d39038407ac226471a3fa50cd26bba8",
+      "imports": [
+        "Mathlib.Analysis.Complex.Basic",
+        "Mathlib.Algebra.Polynomial.AlgebraMap",
+        "Mathlib.Algebra.Polynomial.Roots",
+        "Mathlib.Tactic.Ring"
+      ]
+    },
+    {
+      "module": "PolynomialDifference",
+      "path": "src/PolynomialDifference.lean",
+      "bytes": 5337,
+      "sha256": "ef4b99d17494a2a87e4a80ed9e130820bc49b015a9e3fdd4e2bebf1cddcb3c5c",
+      "imports": [
+        "RankEngine",
+        "Mathlib.Algebra.Polynomial.Coeff"
+      ]
+    },
+    {
+      "module": "SingleComponent",
+      "path": "src/SingleComponent.lean",
+      "bytes": 4876,
+      "sha256": "6b4c9670c729a0d301c1ae75221655ebb396ba076d2fd3666a77a1363f2455a2",
+      "imports": [
+        "PolynomialDifference"
+      ]
+    },
+    {
+      "module": "MixedComponents",
+      "path": "src/MixedComponents.lean",
+      "bytes": 3742,
+      "sha256": "e0c780c83e963bda0955315009ddfa4009cb42bbe3c72a69868941ef23279968",
+      "imports": [
+        "SingleComponent"
+      ]
+    },
+    {
+      "module": "RankPrinciple",
+      "path": "src/RankPrinciple.lean",
+      "bytes": 3715,
+      "sha256": "dc6812aaa6c17794b506f67d99f331acb8c7ad981db2d6fc3e3626b98a79faae",
+      "imports": [
+        "MixedComponents"
+      ]
+    },
+    {
+      "module": "MainSequence",
+      "path": "src/MainSequence.lean",
+      "bytes": 3483,
+      "sha256": "1ec39d4c4e2f122ea51ed54f522d46e6e6d6ac52993782606f289ef35ac2c455",
+      "imports": [
+        "RankPrinciple",
+        "Mathlib.Tactic.FinCases",
+        "Mathlib.Tactic.NormNum",
+        "Mathlib.Tactic.Positivity"
+      ]
+    },
+    {
+      "module": "SequenceSemantics",
+      "path": "src/SequenceSemantics.lean",
+      "bytes": 2555,
+      "sha256": "68e4998f31e06f524cd71994e12dded01a141d936116bb591d9d67dd906a02ba",
+      "imports": [
+        "RankPrinciple"
+      ]
+    },
+    {
+      "module": "MainProperties",
+      "path": "src/MainProperties.lean",
+      "bytes": 1968,
+      "sha256": "5881eab3d78a6b9e9f470667745235daa5cb4ccb816ace57b5659a14b97fad2c",
+      "imports": [
+        "MainSequence",
+        "SequenceSemantics"
+      ]
+    },
+    {
+      "module": "BivariateExpansion",
+      "path": "src/BivariateExpansion.lean",
+      "bytes": 1911,
+      "sha256": "353aa0e3b25d37539529edd77d8e2364de4f73d0c78b5ed548e37d97b5a50b49",
+      "imports": [
+        "Mathlib.Algebra.MvPolynomial.Basic",
+        "Mathlib.Algebra.Polynomial.Coeff",
+        "Mathlib.Tactic.FinCases",
+        "Mathlib.Tactic.Ring"
+      ]
+    },
+    {
+      "module": "KrawtchoukCoefficients",
+      "path": "src/KrawtchoukCoefficients.lean",
+      "bytes": 7772,
+      "sha256": "f9bae070b29030113e1650358fdc3e937f508400b0400775b611c80a87587498",
+      "imports": [
+        "Mathlib.Algebra.Polynomial.Derivative",
+        "Mathlib.Algebra.Polynomial.Coeff",
+        "Mathlib.Tactic.Ring",
+        "Mathlib.Tactic.NormNum",
+        "Mathlib.Tactic.FieldSimp",
+        "Mathlib.Tactic.LinearCombination",
+        "Mathlib.Tactic.Positivity"
+      ]
+    },
+    {
+      "module": "LayerDegrees",
+      "path": "src/LayerDegrees.lean",
+      "bytes": 7232,
+      "sha256": "24909177c20f01fa8d30cb97322c08b9a8db4222c41e54e5fcff904caa610108",
+      "imports": [
+        "KrawtchoukCoefficients",
+        "Mathlib.Algebra.Polynomial.BigOperators"
+      ]
+    },
+    {
+      "module": "BivariateCoefficients",
+      "path": "src/BivariateCoefficients.lean",
+      "bytes": 3426,
+      "sha256": "4aae4aa86f18d890bd2b1b058be653642c8d2ba3feb817c150d3f2eb386c91d6",
+      "imports": [
+        "BivariateExpansion",
+        "LayerDegrees"
+      ]
+    },
+    {
+      "module": "GeneratorReconstruction",
+      "path": "src/GeneratorReconstruction.lean",
+      "bytes": 3527,
+      "sha256": "cd17c10f0613dff0d3d189b68c9c3875a66f894414ae9ed9457fad9fea92767f",
+      "imports": [
+        "BivariateCoefficients"
+      ]
+    },
+    {
+      "module": "LayerIdentification",
+      "path": "src/LayerIdentification.lean",
+      "bytes": 1661,
+      "sha256": "306e5d346fbd1f89fb268cbae3469112290858ac8f0a57b411beca7eff419dcb",
+      "imports": [
+        "BivariateCoefficients"
+      ]
+    },
+    {
+      "module": "GeneratorEvaluation",
+      "path": "src/GeneratorEvaluation.lean",
+      "bytes": 4025,
+      "sha256": "edef8be1ac937aa6d57e11577c33d3cdff4588f56b000bb31cb9086e0c7371de",
+      "imports": [
+        "GeneratorReconstruction",
+        "LayerIdentification",
+        "MainSequence",
+        "Mathlib.Algebra.MvPolynomial.Eval"
+      ]
+    },
+    {
+      "module": "ZeroComponents",
+      "path": "src/ZeroComponents.lean",
+      "bytes": 2123,
+      "sha256": "7f5d6360c4cd8e6d8dfa8fc82e9a68407b155dcaa3ac6648632ec4c60715da11",
+      "imports": [
+        "SequenceSemantics"
+      ]
+    },
+    {
+      "module": "LayerSupport",
+      "path": "src/LayerSupport.lean",
+      "bytes": 2623,
+      "sha256": "4c8279bf7edb16875b05fb110af93fe356a3b283ffa61f1ba29fa401648ef660",
+      "imports": [
+        "LayerDegrees"
+      ]
+    },
+    {
+      "module": "LayerMultiplicity",
+      "path": "src/LayerMultiplicity.lean",
+      "bytes": 2308,
+      "sha256": "dea103bedb2841523c868c28ecfa857d887ed04b3f3e6966c6242de0c9d6d5b5",
+      "imports": [
+        "LayerSupport"
+      ]
+    },
+    {
+      "module": "PowerBases",
+      "path": "src/PowerBases.lean",
+      "bytes": 2166,
+      "sha256": "6a5b08568be58e479870907e9c5068a7d6683d20396f74d4a08cce0f4209af16",
+      "imports": [
+        "RankEngine",
+        "Mathlib.Data.Nat.Factorization.Basic",
+        "Mathlib.Tactic.NormNum"
+      ]
+    },
+    {
+      "module": "MainPowers",
+      "path": "src/MainPowers.lean",
+      "bytes": 4514,
+      "sha256": "97ee6194851c0e6cf6dd31c1ece2bfa261861c59735d394647f4d6d63bcb460f",
+      "imports": [
+        "GeneratorEvaluation",
+        "ZeroComponents",
+        "LayerMultiplicity",
+        "PowerBases"
+      ]
+    },
+    {
+      "module": "RankBaseline",
+      "path": "src/RankBaseline.lean",
+      "bytes": 2831,
+      "sha256": "6e3e2220efdb36d0532d80cbd44d38c604545643c5d593e01847c11adad16ea4",
+      "imports": [
+        "MainPowers"
+      ]
+    },
+    {
+      "module": "SquareSolutions",
+      "path": "src/SquareSolutions.lean",
+      "bytes": 3195,
+      "sha256": "fdf3708a88aa53e1235768505b6f21f4ba016b94825dfb29a7bd0ba50b7f0d18",
+      "imports": [
+        "LayerDegrees",
+        "Mathlib.Data.Nat.Sqrt"
+      ]
+    },
+    {
+      "module": "SquareCounting",
+      "path": "src/SquareCounting.lean",
+      "bytes": 4574,
+      "sha256": "8fe7782d20aebb3ac1c9c8037e208e6ca57d06aa76069f5dc76ddcd3ddcdb61e",
+      "imports": [
+        "RankBaseline",
+        "SquareSolutions"
+      ]
+    },
+    {
+      "module": "LatticeCount",
+      "path": "src/LatticeCount.lean",
+      "bytes": 3890,
+      "sha256": "bab4a07d5444ffcc0a08abe403cc77f44e8573a5172c69c45deb38d047e5408c",
+      "imports": [
+        "Mathlib.Analysis.Real.Sqrt",
+        "Mathlib.Algebra.Order.Floor.Ring",
+        "Mathlib.Data.Int.Interval",
+        "Mathlib.Tactic.NormNum",
+        "Mathlib.Tactic.Linarith"
+      ]
+    },
+    {
+      "module": "SquareEstimate",
+      "path": "src/SquareEstimate.lean",
+      "bytes": 3997,
+      "sha256": "a38dacd344cb28f1b3f2f213bf0e4aeb42cb448aa68a8f704b4a9c350716497c",
+      "imports": [
+        "SquareCounting",
+        "LatticeCount"
+      ]
+    },
+    {
+      "module": "Nonquasipolynomial",
+      "path": "src/Nonquasipolynomial.lean",
+      "bytes": 5017,
+      "sha256": "c94270a99229ee7c2d0f8b1dd48b5555c9b33a722f8f6a1d5f617038224d51a1",
+      "imports": [
+        "SquareEstimate",
+        "Mathlib.Analysis.Polynomial.Basic"
+      ]
+    },
+    {
+      "module": "SquareFloor",
+      "path": "src/SquareFloor.lean",
+      "bytes": 2588,
+      "sha256": "141c01e9453fcceb90e7c211455f3825db243b8842574efa3a824892f0831b20",
+      "imports": [
+        "SquareEstimate",
+        "Mathlib.Order.Interval.Finset.Nat"
+      ]
+    },
+    {
+      "module": "IntegralFields",
+      "path": "src/IntegralFields.lean",
+      "bytes": 3492,
+      "sha256": "cb6debcb5fde6c54e77e737f911dd9f108dfa72096a04a983ef83c180fdcdb9f",
+      "imports": [
+        "MainPowers"
+      ]
+    },
+    {
+      "module": "MainTheorem",
+      "path": "src/MainTheorem.lean",
+      "bytes": 3179,
+      "sha256": "ab76217ae88163f3d07443ca7db9ae3ed0293f5aac994b2ffda876ad62262d28",
+      "imports": [
+        "MainProperties",
+        "Nonquasipolynomial",
+        "SquareFloor",
+        "IntegralFields"
+      ]
+    },
+    {
+      "module": "CompanionCompositions",
+      "path": "src/CompanionCompositions.lean",
+      "bytes": 5295,
+      "sha256": "13e2053fa90777c0ef3587a37a7b0af3cdaca8199d45a22036e43ac4f0979710",
+      "imports": [
+        "Mathlib.Data.Sym.Card",
+        "Mathlib.Data.Finsupp.Multiset",
+        "Mathlib.Data.Nat.Choose.Multinomial",
+        "Mathlib.Tactic.FinCases",
+        "Mathlib.Tactic.Linarith"
+      ]
+    },
+    {
+      "module": "CompanionBases",
+      "path": "src/CompanionBases.lean",
+      "bytes": 5110,
+      "sha256": "38b4c850796de389ec76d521c8f632be630de00db7c7a15701a47d3372685990",
+      "imports": [
+        "CompanionCompositions",
+        "Mathlib.Data.Nat.Factorization.Basic",
+        "Mathlib.Analysis.Complex.Basic"
+      ]
+    },
+    {
+      "module": "CompanionExpansion",
+      "path": "src/CompanionExpansion.lean",
+      "bytes": 4708,
+      "sha256": "73276e573848b623439dc51f5e91d12a3ae8b2be0296f5f3e8761cd71cef91c7",
+      "imports": [
+        "CompanionBases",
+        "SequenceSemantics"
+      ]
+    },
+    {
+      "module": "CompanionFamily",
+      "path": "src/CompanionFamily.lean",
+      "bytes": 8495,
+      "sha256": "734a401d9160b8aeca9a2cf2f6ac0bec4210ec6f026f8c47f5f70ab32e74ba32",
+      "imports": [
+        "CompanionExpansion",
+        "MainTheorem"
+      ]
+    },
+    {
+      "module": "CompanionExistence",
+      "path": "src/CompanionExistence.lean",
+      "bytes": 2661,
+      "sha256": "affd24753b5d56fd7f233b273517dde343fb1501df0474862bb67b3c1ce83d82",
+      "imports": [
+        "CompanionFamily",
+        "Mathlib.Data.Nat.Prime.Infinite"
+      ]
+    },
+    {
+      "module": "CompleteAudit",
+      "path": "src/CompleteAudit.lean",
+      "bytes": 1485,
+      "sha256": "4693b21b3d4f7ace036b273a8c0c06aa8223fbbceda0f06e0db84476eee63dac",
+      "imports": [
+        "MainTheorem",
+        "CompanionExistence"
+      ]
+    }
+  ]
+}

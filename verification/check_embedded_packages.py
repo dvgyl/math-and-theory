@@ -14,17 +14,18 @@ import tomllib
 
 from catalogue_paths import load_families
 from check_study_packages import PROFILES, check as check_study
+from check_curated_packages import load_registry, check as check_curated
 
 
 EXPECTED_MANIFESTS = {
-    "asymmetric-tutte": "4246a4a42efd02c89542f60a5e229d2d586934c135da8d0069c53c3cf61ca092",
+    "asymmetric-tutte": "6dd17f1b7a2ab4b87f840fc073683326d1fcd542e3f4adbb093f2440e3cc55a3",
     "galvin-zhang": "1e8e5c56f9ea7d8bbd14c4dadeeb93a9a346c351ebcb5a35e17b552b6a886276",
-    "higuchi-sudbery": "4819876d7f5960435eb9311c8818793a2360ef591876e1f1259ab1e345059b87",
+    "higuchi-sudbery": "91a75f007d60bcdd3c1aeef938f66470aee291384b77f50764c54ccac93a93cb",
     "quartic-rankings": "e0333c6dedf134e7e98c6bfd8587353ab2951bc495791bd1205db784edf84b26",
     "readk-covariance": "bb6884906ec8d419883f0f733b284d4be52d68cc21cec7975c380d87ca5ac3da",
     "sharp-eighth": "6c07072d22663bc2c1af2897e9f1623b6a3df42c9b4b9149d7f6021243354398",
     "thermal-kurtosis-counterexample": "5501fe4e6dc9fb19912d804f389b7982ff0847ae6634914c23affa30b38f91b6",
-    "universal-embezzlement": "0ce4c3f693b2d98194802512dd0cac8715923bee6c24631ce6ea5e2d07302f66"
+    "universal-embezzlement": "5887b121bf67cd2c6fd4141049787a177c4a5c6b14ffae0c6bbfdc9c7d0cb076"
 }
 MATHLIB = "c44e0c8ee63ca166450922a373c7409c5d26b00b"
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
@@ -194,15 +195,26 @@ def check_packages(root, families):
     """Check all standalone packages and return their release manifests."""
     standalone = {family["id"]: family for family in families
                   if family["formalization"]["kind"] == "standalone"}
-    require(set(standalone) == set(EXPECTED_MANIFESTS), "Standalone family set differs")
+    curated = load_registry(root)
+    require(not set(curated) & set(EXPECTED_MANIFESTS), "Standalone package registries overlap")
+    require(set(standalone) == set(EXPECTED_MANIFESTS) | set(curated), "Standalone family set differs")
     manifests = {}
     for name, family in standalone.items():
         package = Path(root) / family["formalization"]["root"]
-        manifest = check_manifest(package, EXPECTED_MANIFESTS[name])
+        if name in curated:
+            require(family["formalization"]["root"] == curated[name]["root"],
+                    f"Wrong curated standalone route: {name}")
+            require(family.get("formal_scope") == curated[name]["formal_scope"],
+                    f"Curated catalogue formal scope differs: {name}")
+            manifest = check_curated(package, name, curated[name])
+        else:
+            manifest = check_manifest(package, EXPECTED_MANIFESTS[name])
         paper = Path(family["paper"]).relative_to(family["formalization"]["root"]).as_posix()
         require(paper in manifest["files"] and paper[:-4] + ".tex" in manifest["files"],
                 f"Missing package manuscript: {name}")
-        if name == "readk-covariance":
+        if name in curated:
+            pass
+        elif name == "readk-covariance":
             check_readk(package, manifest)
         elif name == "thermal-kurtosis-counterexample":
             check_thermal(package, manifest)

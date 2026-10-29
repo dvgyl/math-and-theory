@@ -11,6 +11,8 @@ The Gyires manuscript includes the written arguments and identifies their formal
 
 The unrestricted Gyires conjecture and the all-order rank-two problem remain outside these results. The thermal package proves finite spectral statements. It does not formalize the stochastic long-time identification theorem.
 
-## Research process and review
+## Additional formal boundaries
 
-The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. See [AUTHORSHIP.md](AUTHORSHIP.md).
+The power-rank main and companion theorems are formalized; its generating function and polynomial corollaries retain conventional proofs. The Motzkin bounded-forcing theorem and corrected scaled corollary are formalized; uniform-family applications, root transfer and sharp threshold classification remain conventional. The ADMM exact orbit and optimizer statements are formalized; analytic regularity is conventional. The ECQC all-prime companion is conventional, beyond its dimension-five formal theorem. These boundaries are stated in the corresponding papers and READMEs.
+
+General source-identity or novelty questions are distinct from missing formal proofs. See [research status](RESEARCH_STATUS.md) and [authorship](AUTHORSHIP.md).

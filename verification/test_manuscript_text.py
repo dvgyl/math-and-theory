@@ -7,6 +7,10 @@ import check_manuscripts
 
 
 class ManuscriptTextTests(unittest.TestCase):
+    def test_unknown_manuscript_engine_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "Unsupported manuscript engine"):
+            check_manuscripts.manuscript_engine({"manuscript_engine": "unchecked"})
+
     def compare(self, left, right, left_pages=2, right_pages=2):
         outputs = [
             subprocess.CompletedProcess([], 0, stdout=left),

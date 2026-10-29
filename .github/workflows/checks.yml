@@ -60,7 +60,7 @@ jobs:
       - uses: wtfjoke/setup-tectonic@5e1ba6e10229bd876c6594189bdab1a62b9d0b1c
         with:
           tectonic-version: '0.17.0'
-      - run: sudo apt-get update && sudo apt-get install --yes poppler-utils
+      - run: sudo apt-get update && sudo apt-get install --yes poppler-utils latexmk texlive-latex-extra texlive-fonts-recommended texlive-science
       - name: Build each manuscript and compare its text with the committed PDF
         run: python3 verification/check_manuscripts.py
 
@@ -243,3 +243,52 @@ jobs:
             > ../gyires-rank-two-eight-audit/audit.log
           python3 ../gyires-rank-two-eight-audit/check_audit.py ../gyires-rank-two-eight-audit/audit.log
           git diff --exit-code
+
+  completed-portable-proofs:
+    name: Completed proof package (${{ matrix.package }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - package: power-rank
+            project: formalization
+          - package: graph-roots
+            project: formalization
+          - package: motzkin-bounded-forcing
+            project: formalization
+          - package: admm-counterexample
+            project: .
+    env:
+      LEAN_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Copy the immutable public package
+        run: |
+          mkdir -p .ci-work
+          cp -R verification/additional-proofs/${{ matrix.package }} .ci-work/${{ matrix.package }}
+      - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+        with:
+          lake-package-directory: .ci-work/${{ matrix.package }}/${{ matrix.project }}
+          auto-config: 'false'
+          build: 'false'
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'true'
+          use-github-cache: 'false'
+      - name: Compile all package sources and audit theorem dependencies
+        working-directory: .ci-work/${{ matrix.package }}/${{ matrix.project }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ '${{ matrix.package }}' == 'admm-counterexample' ]]; then
+            python3 verify_lean.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib --output "${RUNNER_TEMP}/admm-source-verification"
+          else
+            python3 -B check_package.py
+            python3 -B test_verify.py
+            python3 verify.py
+          fi

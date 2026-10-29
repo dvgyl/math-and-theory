@@ -1,8 +1,10 @@
 # Math and Theory
 
-I publish fifteen preprints from fully autonomous agentic research in mathematics, theoretical computer science, and mathematical physics. AI agents generated the research, proofs, computations, and manuscripts. I am responsible for publication.
+I publish preprints and research notes from fully autonomous agentic research in mathematics, theoretical computer science, and mathematical physics. AI agents generated the research, proofs, computations, and manuscripts. I am responsible for publication.
 
 Each paper states its formal verification scope. The thermal proof covers finite spectral statements. It does not formalize the theorem that identifies them with long-time stochastic cumulants. The Gyires preprint proves inequalities for several structured matrix classes and develops related polynomial bounds. Its order-five and order-six results, all-order permutation-polynomial theorem, all-order four-block theorem, and exceptional-vector theorem have Lean proofs. The rank-two theorem also has a Lean proof for orders 2 through 8. Lean formalization of general order-seven circulants and rank-two orders 9 through 15 is incomplete. I do not claim a general solution when a proof covers only a special case.
+
+The [five selected Zenodo preprints](zenodo/README.md) are available as one ZIP for manual upload. It contains Higuchi–Sudbery, universal embezzlement, asymmetric Tutte, power-rank and ADMM. Their first pages disclose the autonomous AI research. No external upload or DOI registration is claimed.
 
 Start with the [manuscript catalogue](CONTENTS.md) or the [overview](overview.pdf). The [Lean guide](lean/README.md) explains the formal statements. The [verification guide](verification/README.md) gives the commands and recorded results. [AUTHORSHIP.md](AUTHORSHIP.md) identifies the autonomous research process.
 
@@ -54,6 +56,25 @@ I group related results by subject in the catalogue. The mathematics papers conc
 | [Alternating Motzkin sums](preprints/alternating-motzkin/README.md) | Strict root log-concavity with the optimal tail start. |
 | [Hofstadter iteration](preprints/hofstadter-iteration/README.md) | Late-iterate ordering fails for every parameter at least four. |
 
+## Further completed work
+
+These additions retain the exact theorem assumptions and distinguish conventional proofs from formal proofs. Source comparisons that could not be verified are conditional. The Motzkin extension belongs with the existing alternating-sums family; its earlier narrow root bound is not presented as a new standalone discovery.
+
+| Subject | Manuscript | Established scope |
+|---|---|---|
+| Integer sequences | [A positive constant-recursive sequence with nonquasipolynomial power ranks](verification/additional-proofs/power-rank/manuscript.pdf) | Exact minimal recurrences for every power of a rank-thirteen sequence, nonquasipolynomial ranks, and infinitely many power-rank profiles at each rank at least three. |
+| Optimization | [A rational five-cycle for two-block ADMM with multiplier step below two](verification/additional-proofs/admm-counterexample/paper/admm_counterexample.pdf) | An exact period-five orbit for multiplier-only two-block ADMM at step 199/100. |
+| Graph polynomials | [Sharp escape of complex domination roots in square flowers](verification/additional-proofs/graph-roots/manuscript.pdf) | Sharp complex-root escape for square flowers, with complete flower and book real-root classifications and multiplicities. |
+| Integer sequences | [Sharp log-concavity for alternating Motzkin sums](verification/additional-proofs/motzkin-bounded-forcing/manuscript.pdf) | A robust bounded-forcing recurrence theorem and corrected scaled corollary, with applications to alternating Motzkin-type sums. |
+| Additive combinatorics and entropy | [Sharp universal Rényi threshold for iid sums on finite Sidon sets](verification/additional-proofs/sidon-renyi/manuscript.pdf) | A sharp universal Renyi-order threshold for iid sums supported on finite strong-B2 sets. |
+| Fair division | [Ordered-instance allocation transfer with exact extra-copy preservation](verification/additional-proofs/ordered-allocation/manuscript.pdf) | A set-valued ordered-instance transfer preserving utility improvement, the exact extra-copy count, per-good caps and coverage. |
+| Proof complexity | [Unbounded coalesced-mass certificates for resolution trees](verification/additional-proofs/kunisky/paper.pdf) | A coalesced dyadic clause-mass functional has exact supremum n+1 on the stated unrestricted resolution-tree class and is unbounded across dimensions. |
+| Quantum information | [A pure-state matched-basis information inequality violation in dimension five](verification/additional-proofs/pure-ecqc/manuscript/manuscript.pdf) | A dimension-five pure-state matched-basis information inequality violation, with a conventional all-prime companion. |
+| Matrix theory | [A polygon enclosure fails for sums of normal matrices](verification/additional-proofs/kovacec/manuscript/manuscript.pdf) | A polygon enclosure fails for a specified pair of normal matrices and its complete transposition graph. |
+| Graph polynomials | [Leaf deletion can move the unique mode of a tree domination polynomial by two](verification/additional-proofs/leaf-deletion/manuscript/manuscript.pdf) | Deleting a leaf can move the unique mode of an explicit tree domination polynomial by two. |
+
+The [verification guide](verification/README.md) and each package README give the proof boundaries and commands. [Research status](RESEARCH_STATUS.md) distinguishes retained results, supporting material and unfinished proofs.
+
 ## The Gyires preprint
 
 The [Gyires preprint](preprints/gyires-circulant-five/paper.pdf) proves the order-five circulant inequality and extends the analysis to other structured matrix classes. It includes circulants of orders six and seven, all-order permutation polynomials, all-order four-block matrices, one exceptional column or row, and rank-two matrices through order fifteen. It also proves structural, scalar, deletion, balancing, local polynomial, and counting results. Exact counterexamples identify the limits of proposed extensions. The [complete supporting record](research-notes/gyires-complete-support/README.md) gives the source map, certificate files, and reproduction commands. The all-order four-block and exceptional-vector theorems have complete Lean proofs. The general order-six and all-order permutation-polynomial theorems have separate Lean source packages. The rank-two theorem has a complete Lean proof for orders 2 through 8. The general order-seven circulant theorem and rank-two orders 9 through 15 remain incomplete in Lean. The manuscript does not establish the unrestricted conjecture.
@@ -72,7 +93,7 @@ The [decision-tree package](verification/additional-proofs/readk-covariance/READ
 
 The [verification guide](verification/README.md) gives commands for compilation, statement comparison, proof checking, and exact computation. A successful computation over finitely many inputs does not prove a universal theorem.
 
-The automatic workflow checks source integrity and all fifteen manuscripts on pushes and pull requests. It has separate Lean jobs for the shared library and all eight standalone study packages. The large separate Gyires packages have automatic source checks and a manual full-build workflow. The full Palomar mechanical preflight remains available by manual dispatch.
+The automatic workflow checks source integrity and all catalogue manuscripts on pushes and pull requests. It has separate Lean jobs for the shared library and the eight original standalone study packages. The large separate Gyires packages have automatic source checks and a manual full-build workflow. The full Palomar mechanical preflight remains available by manual dispatch.
 
 ## Authorship and use
 
@@ -84,4 +105,4 @@ For a later result family, follow [the contribution procedure](lean/docs/adding-
 
 ## Research process and review
 
-The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.
+I publish fully autonomous agentic research and am responsible for publication. The original collection records GPT 6 with Pro Reasoning in ChatGPT for initial research and GPT 6 Astra in Codex for formalizations and corrections, together with its stated author check. The later packages give their own contribution disclosures, including actual GPT 6.1 Sol formalization and verification work. The original history and author-check statement must not be inferred for newly supplied research. These disclosures do not claim expert validation or external peer review.

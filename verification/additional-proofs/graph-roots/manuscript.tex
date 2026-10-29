@@ -1,0 +1,489 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[margin=25mm]{geometry}
+\usepackage[numbers]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Log}{\operatorname{Log}}
+\hypersetup{pdftitle={Sharp escape of complex domination roots in square flowers},pdfauthor={Dev D. Goyal}}
+\title{Sharp escape of complex domination roots in square flowers}
+\author{Dev D. Goyal}
+\date{29 October 2026}
+\begin{document}
+\maketitle
+\begin{center}
+\begin{minipage}{0.94\textwidth}
+\small This work is fully autonomous agentic research. GPT 6.1 Sol in Codex contributed formal proofs and verification software. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed.
+\end{minipage}
+\end{center}
+\begin{abstract}
+Let $F_{4,n}$ be the graph formed by $n$ squares sharing exactly one vertex,
+and let $R_n$ be the largest modulus of a zero of its domination polynomial.
+An explicit bound holds for every positive integer $n$:
+$R_n<2+\sqrt{4n/W(4n)}$, where $W$ is the positive real Lambert function.
+A matching construction of actual complex roots gives
+$4n/R_n^2=\log(4n)-\log\log(4n)+o(1)$.
+Thus $R_n\sim2\sqrt{n/\log n}$.
+The proof uses a contraction argument for a complex Lambert equation and
+Rouch\'e's theorem in a reciprocal coordinate.
+Companion results classify all real roots of square flowers and book graphs,
+and give the motion and first-order asymptotics of the nonzero real flower roots.
+The conclusions of all numbered results also have Lean formalizations.
+No claim of first priority is made.
+\end{abstract}
+
+\section{The graph family and the extremal root}
+A vertex set in a finite simple graph is \emph{dominating} if each vertex
+belongs to that set or has a neighbor in it. The domination polynomial is
+\[
+ D(G,x)=\sum_{S\text{ dominating}}x^{|S|}.
+\]
+Throughout, $n$ is a positive integer. The square flower $F_{4,n}$ consists
+of $n$ cycles of length four sharing exactly one vertex $c$. Their remaining
+vertices are distinct. Square $i$ has cyclic order $c,a_i,b_i,d_i,c$.
+This family is different from triangular friendship graphs and from book
+graphs, whose squares share an edge.
+
+Domination polynomials for generalized friendship and book graphs are studied
+in \cite{jahari2015,rather2026}. The graph model is fixed explicitly here;
+no identification of an ambiguously indexed source question is needed for
+the statements below. The counting formulas are supporting identities.
+The principal result is the sharp growth law for the largest complex root.
+The literature comparison remains incomplete, so no conjecture-resolution or
+priority claim is made.
+
+Put
+\[
+ A(x)=x^2+3x+3,\qquad B(x)=A(x)-2=x^2+3x+1.
+\]
+\begin{lemma}\label{lem:count}
+For every $n\ge1$,
+\begin{equation}\label{eq:flower}
+ D(F_{4,n},x)=x^nH_n(x),\qquad H_n(x)=xA(x)^n+B(x)^n-1.
+\end{equation}
+The zero at the origin has multiplicity exactly $n+1$. The polynomial has
+$2n$ nonzero complex roots counted with multiplicity.
+\end{lemma}
+\begin{proof}
+If $c$ is selected, at least one of $a_i,b_i,d_i$ must be selected to dominate
+$b_i$. This contributes $x(x^3+3x^2+3x)^n$.
+If $c$ is not selected, each path $a_i-b_i-d_i$ must be dominated internally.
+Its domination polynomial is $x+3x^2+x^3$. The choice consisting of all $b_i$
+leaves $c$ undominated and must be removed. Hence
+\[
+ D(F_{4,n},x)=x(x^3+3x^2+3x)^n+(x^3+3x^2+x)^n-x^n,
+\]
+which gives \eqref{eq:flower}. Now $H_n(0)=0$ and
+$H_n'(0)=3^n+3n>0$. Thus its zero at the origin is simple.
+The degree of $D(F_{4,n},x)$ is $3n+1$; the fundamental theorem of algebra
+then gives the stated number of nonzero roots.
+\end{proof}
+
+The finite root set is nonempty and contains nonzero roots. The extremal radius is therefore well-defined by
+\[
+ R_n=\max\{|z|:D(F_{4,n},z)=0\}>0.
+\]
+For $s>0$, let $W(s)>0$ be the unique solution of $W(s)e^{W(s)}=s$.
+This is the positive real Lambert function; see \cite{corless1996} for its standard notation.
+All logarithms of positive real numbers below are natural logarithms.
+
+\begin{theorem}\label{thm:escape}
+For every positive integer $n$,
+\begin{equation}\label{eq:upper}
+ R_n<2+\sqrt{\frac{4n}{W(4n)}}.
+\end{equation}
+As $n\to\infty$,
+\begin{equation}\label{eq:sharp}
+ \frac{4n}{R_n^2}=\log(4n)-\log\log(4n)+o(1).
+\end{equation}
+In particular, $R_n\sim2\sqrt{n/\log n}$.
+\end{theorem}
+The additive $o(1)$ in \eqref{eq:sharp} is stronger than the final equivalent.
+An upper estimate alone would not prove it. The next section constructs
+actual roots at the matching scale.
+
+\section{Proof of the sharp escape law}
+\subsection{A global upper bound}
+Let $z$ be any domination root and put $r=|z|$. First suppose $r\ge3$.
+Both roots of $A$ have modulus $\sqrt3$, so
+\[
+ |A(z)|\ge(r-\sqrt3)^2>(r-2)^2\ge1.
+\]
+In particular, division by $zA(z)^n$ is permitted. Equation \eqref{eq:flower} gives
+\[
+ z+\left(1-\frac2{A(z)}\right)^n-\frac1{A(z)^n}=0.
+\]
+Therefore
+\[
+ r\le\left(1+\frac2{|A(z)|}\right)^n+|A(z)|^{-n}
+ <\exp\left(\frac{2n}{(r-2)^2}\right)+1.
+\]
+Since $r-2<r-1<\exp(2n/(r-2)^2)$, it follows that
+$(r-2)^2\log(r-2)<2n$. Set $y=(r-2)^2\ge1$.
+Then $y\log y<4n$. The function $y\log y$ is increasing for $y\ge1$, and
+\[
+ y<e^{W(4n)}=\frac{4n}{W(4n)}.
+\]
+This proves the proposed bound for every root with $r\ge3$.
+Its right side exceeds $3$ for $n\ge1$, since
+$4n/W(4n)=e^{W(4n)}>1$. Thus it also covers every root with $r<3$,
+including the origin. Taking the maximum proves \eqref{eq:upper}.
+
+\subsection{A complex Lambert equation}
+Write $L=\log(4n)$. For all sufficiently large $n$, there is a complex number
+$\lambda_n$ such that
+\begin{equation}\label{eq:lambda}
+ \lambda_n+\Log\lambda_n=L+i\pi,\qquad
+ \lambda_n=L-\log L+i\pi+o(1).
+\end{equation}
+Here $\Log$ is the principal logarithm on the right half-plane.
+To prove this, consider
+\[
+ T(\lambda)=L+i\pi-\Log\lambda
+\]
+on the closed disk centered at $L+i\pi$ with radius $2\log L$.
+For large $L$, this disk lies in the right half-plane. On it,
+\[
+ |\Log\lambda|\le\log(L+\pi+2\log L)+\frac\pi2\le2\log L,
+ \qquad |T'(\lambda)|\le\frac1{L-2\log L}<1.
+\]
+The disk is convex, so the derivative estimate gives a contraction.
+The contraction theorem supplies a fixed point. It first gives
+$\lambda_n=L+O(\log L)$. Hence
+$\Log\lambda_n=\log L+O(\log L/L)$.
+Substitution proves \eqref{eq:lambda}. Exponentiation also gives
+\[
+ \lambda_ne^{\lambda_n}=-4n,\qquad
+ |\lambda_n|=L-\log L+o(1).
+\]
+Define $w_{0,n}=-e^{-\lambda_n/2}$. Then
+\begin{equation}\label{eq:wzero}
+ w_{0,n}^2=-\frac{\lambda_n}{4n},\qquad
+ w_{0,n}e^{-2nw_{0,n}^2}=-1.
+\end{equation}
+
+\subsection{Transfer to an actual domination root}
+Use the reciprocal coordinate $w=1/z$, and put
+\[
+ P(w)=1+3w+3w^2,\qquad Q(w)=1+3w+w^2.
+\]
+For nonzero $w$ near the origin, $P(w)\ne0$ and the equation $H_n(1/w)=0$
+is equivalent to
+\begin{equation}\label{eq:G}
+ G_n(w)=1+w\left(\frac{Q(w)}{P(w)}\right)^n
+       -\frac{w^{2n+1}}{P(w)^n}=0.
+\end{equation}
+Indeed, multiplication of $H_n(1/w)$ by $w^{2n+1}$ gives
+$P(w)^n+wQ(w)^n-w^{2n+1}$.
+Set
+\[
+ w=w_{0,n}\left(1+\frac v{\lambda_n}\right),\qquad |v|\le\tfrac12.
+\]
+Uniformly on this closed disk, $w=O(\sqrt{\log n/n})$, so $n|w|^3\to0$.
+The analytic logarithm near $1$ satisfies
+\[
+ \log\frac{Q(w)}{P(w)}=-2w^2+O(w^3).
+\]
+Both $P$ and $Q$ are nonzero in this neighborhood. Equation \eqref{eq:wzero}
+therefore yields, uniformly for $|v|\le1/2$,
+\begin{align*}
+ w\left(\frac{Q(w)}{P(w)}\right)^n
+ &=-\left(1+\frac v{\lambda_n}\right)
+   \exp\left(v+\frac{v^2}{2\lambda_n}+o(1)\right).
+\end{align*}
+For clarity, the exponent follows from
+$-2nw^2=\lambda_n/2+v+v^2/(2\lambda_n)$ and
+$w_{0,n}e^{\lambda_n/2}=-1$.
+If $\epsilon_n$ bounds $|w|$ on this disk, then $\epsilon_n\to0$ and,
+for all sufficiently large $n$, $|P(w)|\ge1/2$. The last term in \eqref{eq:G}
+has modulus at most $\epsilon_n(2\epsilon_n^2)^n$, which tends uniformly to zero.
+Consequently
+\begin{equation}\label{eq:limit}
+ G_n\left(w_{0,n}\left(1+\frac v{\lambda_n}\right)\right)
+ \longrightarrow1-e^v
+ \quad\text{uniformly for }|v|\le\tfrac12.
+\end{equation}
+The functions on the left are analytic in a neighborhood of that disk.
+The limiting function has exactly one zero there, namely the simple zero at
+$v=0$, and none on the boundary. Rouch\'e's theorem supplies a zero $v_n$
+inside the disk for all sufficiently large $n$.
+Moreover, $v_n\to0$: for each $0<\delta<1/2$, the limiting function has a positive
+minimum modulus on $\delta\le|v|\le1/2$, and uniform convergence excludes
+zeros there for large $n$.
+
+Since $w_{0,n}\ne0$ and $1+v_n/\lambda_n\ne0$, the number
+\[
+ z_n=\frac1{w_{0,n}(1+v_n/\lambda_n)}
+\]
+is an actual nonzero domination root. Its modulus satisfies
+\begin{equation}\label{eq:constructed}
+ \frac{4n}{|z_n|^2}
+ =|\lambda_n|\left|1+\frac{v_n}{\lambda_n}\right|^2
+ =L-\log L+o(1).
+\end{equation}
+The error is additive: the difference between the middle expression and
+$|\lambda_n|$ has modulus at most $2|v_n|+|v_n|^2/|\lambda_n|$, which tends to zero.
+
+\subsection{Matching both bounds}
+Let $\omega_n=W(4n)$. Then $\omega_n+\log\omega_n=L$.
+This implies $\omega_n=L-\log L+o(1)$: first $\omega_n/L\to1$, and then
+$\omega_n-(L-\log L)=\log(L/\omega_n)\to0$.
+The global upper bound gives
+\[
+ \frac{4n}{R_n^2}>
+ \frac{\omega_n}{(1+\sqrt{\omega_n/n})^2}
+ =\omega_n+o(1)=L-\log L+o(1).
+\]
+Here the adjustment is $O(\omega_n^{3/2}/\sqrt n)=o(1)$.
+Since $R_n\ge|z_n|$, equation \eqref{eq:constructed} supplies the reverse
+asymptotic inequality. This proves \eqref{eq:sharp}.
+Its leading term is $\log n$, giving the final equivalent in
+Theorem~\ref{thm:escape}.
+
+\section{Companion real-root results for square flowers}
+\begin{proposition}\label{prop:flowerreal}
+Zero is the only real root of $D(F_{4,n},x)$ when $n$ is odd or $n=2$.
+For even $n\ge4$, there are exactly two nonzero real roots. They are simple,
+with one in $(-2,-3/2)$ and one in $(-5/4,-1)$.
+The origin always has multiplicity $n+1$.
+\end{proposition}
+\begin{proof}
+Positive real numbers are not roots because the defining sum has positive
+coefficients and at least one term. Put $x=-t$ for $t>0$, and write
+\[
+ a(t)=t^2-3t+3=(t-\tfrac32)^2+\tfrac34>0.
+\]
+By \eqref{eq:flower},
+\[
+ H_n(-t)=(a-2)^n-ta^n-1.
+\]
+For $0<t\le1$ or $2\le t\le3$, $|a-2|\le1$, so this is strictly negative.
+For $t>3$, $0<a-2<a$ and $t>1$, so it is again negative.
+Thus every nonzero real root has $1<t<2$.
+For odd $n$, $a-2<-1$ on this interval and the expression is negative.
+For $n=2$, use the exact identity
+\[
+ (a-2)^2-ta^2-1=-(2t-3)^2-(t-1)a^2<0.
+\]
+For even $n\ge4$, set
+\[
+ F_n(t)=(2-a)^n-ta^n-1,\qquad 1\le t\le2.
+\]
+Its derivative is
+\[
+ F_n'(t)=n(3-2t)\big((2-a)^{n-1}+ta^{n-1}\big)-a^n.
+\]
+On $[1,5/4]$, $3-2t\ge1/2$, $2-a\ge1$, and $a\le1$.
+Hence $F_n'\ge n/2-1\ge1$, while $F_n(1)=-1$.
+On $[5/4,3/2]$, $a\le13/16$ and $2-a\ge19/16$. Thus
+\[
+ F_n(t)\ge(19/16)^4-\tfrac32(13/16)^4-1
+ =\frac{43887}{131072}>0.
+\]
+There is exactly one root in $(1,5/4)$ and none in $[5/4,3/2]$.
+On $[3/2,2]$ the derivative is strictly negative.
+Since $F_n(3/2)>0$ and $F_n(2)=-2$, there is exactly one root in $(3/2,2)$.
+Both derivatives are nonzero. The zero multiplicity follows from
+Lemma~\ref{lem:count}.
+\end{proof}
+
+\begin{proposition}\label{prop:motion}
+For even $n\ge4$, let $t_n^-\in(1,5/4)$ and $t_n^+\in(3/2,2)$ be the
+zeros in the $t$ coordinate. As $n$ increases through even integers,
+$t_n^-$ decreases strictly to $1$, and $t_n^+$ increases strictly to $2$.
+With $\phi=(1+\sqrt5)/2$,
+\[
+ t_n^-=1+\frac{\log\phi}{n}+O(n^{-2}),\qquad
+ t_n^+=2-\frac{\log2}{n}+O(n^{-2}).
+\]
+The actual negative roots are $-t_n^-$ and $-t_n^+$.
+\end{proposition}
+\begin{proof}
+For $1<t<2$, $0<a<1<2-a$, and
+\[
+ F_{n+2}(t)-F_n(t)
+ =(2-a)^n((2-a)^2-1)+ta^n(1-a^2)>0.
+\]
+The signs and root locations from Proposition~\ref{prop:flowerreal} give
+strict movement in the stated directions. At each fixed $t\in(1,2)$,
+$F_n(t)\to+\infty$. Hence the respective limits are $1$ and $2$.
+
+At either root put $s=(t-1)(2-t)$, so $a=1-s$ and
+\begin{equation}\label{eq:realroot}
+ (1+s)^n=1+t(1-s)^n.
+\end{equation}
+The right side is at most $3$, so $n\log(1+s)\le\log3$.
+Since $0<s\le1/4$ and $\log(1+s)\ge s/2$, it follows that $s=O(1/n)$.
+Near the limiting endpoint $\tau\in\{1,2\}$,
+$|t-\tau|=s+O(s^2)=O(1/n)$.
+Write $y=ns$, which stays bounded. Uniformly for these values,
+$(1\pm s)^n=e^{\pm y}(1+O(1/n))$.
+Equation \eqref{eq:realroot} therefore implies
+\[
+ e^y-1-\tau e^{-y}=O(1/n).
+\]
+The function on the left has positive derivative bounded away from zero
+for $y\ge0$. Its unique nonnegative zero is
+\[
+ c_\tau=\log\left(\frac{1+\sqrt{1+4\tau}}2\right).
+\]
+The mean value theorem gives $y=c_\tau+O(1/n)$.
+Converting $s$ back to $t$ proves the result, because
+$c_1=\log\phi$ and $c_2=\log2$.
+\end{proof}
+
+\section{The book-graph companion}
+The book graph $B_n$ has hubs $u,v$, the common edge $uv$, and distinct
+pairs $a_i,b_i$ with edges $ua_i,a_ib_i,b_iv$. Thus its $n$ squares share
+an edge rather than a vertex.
+Selecting both hubs gives $x^2(1+x)^{2n}$.
+Selecting exactly one hub requires at least one vertex from each pair and
+gives $2x(x^2+2x)^n$.
+When neither hub is selected, each pair must again be nonempty.
+The two forbidden choices, all $a_i$ and all $b_i$, each have weight $x^n$.
+Consequently
+\begin{equation}\label{eq:book}
+ D(B_n,x)=(2x+1)(x^2+2x)^n+x^2(1+x)^{2n}-2x^n.
+\end{equation}
+The hubs form a dominating set of size two, and no vertex dominates the
+whole graph alone. Thus zero has multiplicity exactly two for every $n\ge1$.
+
+\begin{proposition}\label{prop:book}
+For $n=1$, zero is the only real root of $D(B_n,x)$.
+For even $n\ge2$, there are exactly two nonzero real roots, one in $(-3,-2)$
+and one in $(-1/2,0)$. For odd $n\ge3$, there are exactly two nonzero real
+roots, both in $(-1/2,0)$. All nonzero real roots in these cases are simple.
+Thus for every $n\ge2$ there are four real roots counted with multiplicity.
+\end{proposition}
+\begin{proof}
+There are no positive roots. Set $x=-t$, $t>0$, and
+$u(t)=(1-t)^2/t$. Formula \eqref{eq:book} gives
+\begin{equation}\label{eq:booknegative}
+ \frac{D(B_n,-t)}{t^n}
+ =t^2u(t)^n+(-1)^n\big((1-2t)(2-t)^n-2\big).
+\end{equation}
+For $0<t<1/2$, put
+\[
+ q_n(t)=t^2\left(\frac{(1-t)^2}{t(2-t)}\right)^n,
+ \qquad e(t)=(1-t)(2-t).
+\]
+Direct differentiation gives
+\begin{equation}\label{eq:qprime}
+ \frac{q_n'}{q_n}=\frac{2(e-n)}{te}.
+\end{equation}
+For even $n\ge2$, divide \eqref{eq:booknegative} by $(2-t)^n>0$ and use
+\[
+ f_n(t)=q_n(t)+1-2t-\frac2{(2-t)^n}.
+\]
+Since $0<e<2$, equation \eqref{eq:qprime} gives $q_n'<0$ and
+$f_n'=q_n'-2-2n/(2-t)^{n+1}<0$.
+At zero the limit is $3/4$ for $n=2$ and $+\infty$ for $n>2$, while
+\[
+ f_n(1/2)=\frac1{4\cdot3^n}-2(2/3)^n<0.
+\]
+Thus there is exactly one simple root in this interval.
+For $1/2\le t\le2$, $0\le u\le1/2$, $t^2\le4$, and
+$(1-2t)(2-t)^n\le0$. Hence
+\[
+ D(B_n,-t)/t^n\le4\cdot2^{-n}-2\le-1,
+\]
+so there are no further roots there.
+
+For $t>2$, let $v=t-2>0$. Then $u=v+1/t>v$, and set
+\[
+ K_n(t)=t^2u^n-(2t-1)v^n.
+\]
+Its derivative is
+\[
+ K_n'(t)=2(tu^n-v^n)
+ +n\big((t^2-1)u^{n-1}-(2t-1)v^{n-1}\big)>0.
+\]
+Both brackets are positive because $t>2$, $u>v>0$, and $t^2-1>2t-1$.
+For even $n$, equation \eqref{eq:booknegative} becomes $K_n(t)-2$.
+Now $K_n(2)=2^{2-n}<2$ and $K_n(3)=9(4/3)^n-5>2$ for $n\ge2$.
+This gives exactly one simple root in $(2,3)$.
+
+For odd $n$, equation \eqref{eq:booknegative} on $[1/2,2]$ is
+$t^2u^n+(2t-1)(2-t)^n+2>0$.
+For $t>2$ it is $K_n(t)+2>0$, since
+\[
+ K_n(t)>(t^2-(2t-1))(t-2)^n=(t-1)^2(t-2)^n>0.
+\]
+For odd $n\ge3$, the roots in $(0,1/2)$ are therefore exactly the zeros of
+\[
+ g_n(t)=q_n(t)+\frac2{(2-t)^n}+2t-1.
+\]
+A second differentiation gives
+\[
+ \frac{q_n''}{q_n}=
+ \frac{2\big(e^2+nt(6-t)+2n(n-3)\big)}{t^2e^2}>0,
+\]
+so $g_n''=q_n''+2n(n+1)/(2-t)^{n+2}>0$.
+The limit at zero is $+\infty$, and $g_n(1/2)>0$.
+There is a negative interior value in every case:
+\[
+ g_3(1/5)=-\frac{589}{18225}<0,
+\]
+and, for $n\ge5$,
+\[
+ g_n(1/3)=\frac19(4/5)^n+2(3/5)^n-\frac13
+ \le g_5(1/3)=-\frac{3977}{28125}<0.
+\]
+Continuity gives two roots. Strict convexity excludes three distinct roots.
+The derivative is negative at the left root and positive at the right root,
+as comparison with the zero secant slope between them shows. Both are simple.
+Finally,
+\[
+ D(B_1,x)=x^2(x^2+4x+6)=x^2((x+2)^2+2),
+\]
+which has no nonzero real root. This also checks the exceptional endpoint $n=1$.
+\end{proof}
+
+\section{Verification scope and remaining questions}
+The preceding arguments prove the statements for all indicated integers.
+The accompanying finite checks enumerate dominating sets independently of
+the formulas for flowers with $1\le n\le6$ and books with $1\le n\le8$.
+The supplied record covers 948,704 vertex subsets, including the empty sets.
+It also records exact rational Sturm root counts through $n=20$ for both
+families, zero multiplicities, finite squarefreeness tests, and symbolic identities.
+High-precision diagnostics at six indices from $100$ to $10^{20}$ locate large
+roots with small normalized residual. They do not certify numerical maximality.
+These finite and numerical checks support the proofs; they do not replace them.
+The accompanying Lean development proves Theorem~\ref{thm:escape} for the
+actual finite square-flower graph. It includes the domination-subset counting
+identity, degree, origin multiplicity, and the positive maximum over the
+complete nonzero root set. It proves the strict bound for every $n\ge1$,
+the additive reciprocal-square law, and its leading equivalent.
+The formal root transfer uses explicit derivative bounds and a contraction
+on a complete closed disk to obtain the actual roots supplied here by
+Rouch\'e's theorem. The development also proves the exact nonzero complex-root
+count, all real-root classifications, nonzero real-root simplicity, strict
+even-order flower-root motion, and the stated endpoint expansions with
+$O(n^{-2})$ errors. It defines the actual book graph and proves its counting
+identity, origin multiplicity, and the $n=1$ exception. Thus it covers the
+conclusions of all numbered results. The portable package contains 70 source
+modules, 258 explicit statement-type checks, and their transitive axiom reports.
+Only \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}
+are permitted in accepted proof dependencies.
+
+The sharp law describes an extremal root modulus, not the full complex zero
+set. It does not establish a limiting curve for every root. The formulas and
+real-root classifications concern the precise graph models defined above.
+A complete current-literature comparison, including equivalent general root
+asymptotics, remains necessary before any novelty or conjecture-resolution claim.
+
+\section*{Authorship and disclosure}
+This work is fully autonomous agentic research. GPT 6.1 Sol in Codex
+contributed formal proofs and verification software.
+Dev D. Goyal is responsible for publication.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+\end{document}

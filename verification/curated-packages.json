@@ -1,0 +1,368 @@
+{
+  "format_version": 1,
+  "packages": {
+    "power-rank": {
+      "root": "verification/additional-proofs/power-rank",
+      "release_manifest_sha256": "27676d50177865a250bd68d28c38dade2e0c97f56eb280c74eada18e983d6da8",
+      "formal_scope": "The main and arbitrary-rank companion theorems are formalized. Generating-function and polynomial corollaries retain conventional proofs.",
+      "proof_roots": [
+        {
+          "path": "formalization",
+          "lean_version": "4.35.0",
+          "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "formalization/src/BivariateCoefficients.lean": "4aae4aa86f18d890bd2b1b058be653642c8d2ba3feb817c150d3f2eb386c91d6",
+        "formalization/src/BivariateExpansion.lean": "353aa0e3b25d37539529edd77d8e2364de4f73d0c78b5ed548e37d97b5a50b49",
+        "formalization/src/CompanionBases.lean": "38b4c850796de389ec76d521c8f632be630de00db7c7a15701a47d3372685990",
+        "formalization/src/CompanionCompositions.lean": "13e2053fa90777c0ef3587a37a7b0af3cdaca8199d45a22036e43ac4f0979710",
+        "formalization/src/CompanionExistence.lean": "affd24753b5d56fd7f233b273517dde343fb1501df0474862bb67b3c1ce83d82",
+        "formalization/src/CompanionExpansion.lean": "73276e573848b623439dc51f5e91d12a3ae8b2be0296f5f3e8761cd71cef91c7",
+        "formalization/src/CompanionFamily.lean": "734a401d9160b8aeca9a2cf2f6ac0bec4210ec6f026f8c47f5f70ab32e74ba32",
+        "formalization/src/CompleteAudit.lean": "4693b21b3d4f7ace036b273a8c0c06aa8223fbbceda0f06e0db84476eee63dac",
+        "formalization/src/GeneratorEvaluation.lean": "edef8be1ac937aa6d57e11577c33d3cdff4588f56b000bb31cb9086e0c7371de",
+        "formalization/src/GeneratorReconstruction.lean": "cd17c10f0613dff0d3d189b68c9c3875a66f894414ae9ed9457fad9fea92767f",
+        "formalization/src/IntegralFields.lean": "cb6debcb5fde6c54e77e737f911dd9f108dfa72096a04a983ef83c180fdcdb9f",
+        "formalization/src/KrawtchoukCoefficients.lean": "f9bae070b29030113e1650358fdc3e937f508400b0400775b611c80a87587498",
+        "formalization/src/LatticeCount.lean": "bab4a07d5444ffcc0a08abe403cc77f44e8573a5172c69c45deb38d047e5408c",
+        "formalization/src/LayerDegrees.lean": "24909177c20f01fa8d30cb97322c08b9a8db4222c41e54e5fcff904caa610108",
+        "formalization/src/LayerIdentification.lean": "306e5d346fbd1f89fb268cbae3469112290858ac8f0a57b411beca7eff419dcb",
+        "formalization/src/LayerMultiplicity.lean": "dea103bedb2841523c868c28ecfa857d887ed04b3f3e6966c6242de0c9d6d5b5",
+        "formalization/src/LayerSupport.lean": "4c8279bf7edb16875b05fb110af93fe356a3b283ffa61f1ba29fa401648ef660",
+        "formalization/src/MainPowers.lean": "97ee6194851c0e6cf6dd31c1ece2bfa261861c59735d394647f4d6d63bcb460f",
+        "formalization/src/MainProperties.lean": "5881eab3d78a6b9e9f470667745235daa5cb4ccb816ace57b5659a14b97fad2c",
+        "formalization/src/MainSequence.lean": "1ec39d4c4e2f122ea51ed54f522d46e6e6d6ac52993782606f289ef35ac2c455",
+        "formalization/src/MainTheorem.lean": "ab76217ae88163f3d07443ca7db9ae3ed0293f5aac994b2ffda876ad62262d28",
+        "formalization/src/MixedComponents.lean": "e0c780c83e963bda0955315009ddfa4009cb42bbe3c72a69868941ef23279968",
+        "formalization/src/Nonquasipolynomial.lean": "c94270a99229ee7c2d0f8b1dd48b5555c9b33a722f8f6a1d5f617038224d51a1",
+        "formalization/src/PolynomialDifference.lean": "ef4b99d17494a2a87e4a80ed9e130820bc49b015a9e3fdd4e2bebf1cddcb3c5c",
+        "formalization/src/PowerBases.lean": "6a5b08568be58e479870907e9c5068a7d6683d20396f74d4a08cce0f4209af16",
+        "formalization/src/RankBaseline.lean": "6e3e2220efdb36d0532d80cbd44d38c604545643c5d593e01847c11adad16ea4",
+        "formalization/src/RankEngine.lean": "e8b72865046ab93244433056513aef213d39038407ac226471a3fa50cd26bba8",
+        "formalization/src/RankPrinciple.lean": "dc6812aaa6c17794b506f67d99f331acb8c7ad981db2d6fc3e3626b98a79faae",
+        "formalization/src/SequenceSemantics.lean": "68e4998f31e06f524cd71994e12dded01a141d936116bb591d9d67dd906a02ba",
+        "formalization/src/SingleComponent.lean": "6b4c9670c729a0d301c1ae75221655ebb396ba076d2fd3666a77a1363f2455a2",
+        "formalization/src/SquareCounting.lean": "8fe7782d20aebb3ac1c9c8037e208e6ca57d06aa76069f5dc76ddcd3ddcdb61e",
+        "formalization/src/SquareEstimate.lean": "a38dacd344cb28f1b3f2f213bf0e4aeb42cb448aa68a8f704b4a9c350716497c",
+        "formalization/src/SquareFloor.lean": "141c01e9453fcceb90e7c211455f3825db243b8842574efa3a824892f0831b20",
+        "formalization/src/SquareSolutions.lean": "fdf3708a88aa53e1235768505b6f21f4ba016b94825dfb29a7bd0ba50b7f0d18",
+        "formalization/src/ZeroComponents.lean": "7f5d6360c4cd8e6d8dfa8fc82e9a68407b155dcaa3ac6648632ec4c60715da11"
+      },
+      "integrity_manifests": [
+        "formalization/manifest.json"
+      ]
+    },
+    "admm-counterexample": {
+      "root": "verification/additional-proofs/admm-counterexample",
+      "release_manifest_sha256": "01c3faf9eaac997a0cc0a56d26db226f4e8ce4a4962ac5df80feda0d38146e4b",
+      "formal_scope": "Seven modules and eleven endpoint audits cover the orbit, minimizers and optimizer. Analytic regularity of the finite strongly convex extension retains a conventional proof.",
+      "proof_roots": [
+        {
+          "path": ".",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.toml",
+          "lockfile": null
+        }
+      ],
+      "proof_sources": {
+        "Research.lean": "5d3750423caa651de85ee1126ec4e2d20eb462fc3483ff9804ff94d097cf3860",
+        "Research/ADMMCounterexample.lean": "f9fcdebf843a970b8bd7c2df8ccb54ee2ede19fda6a36d18a62bb23f373d9c6b",
+        "Research/ADMMData.lean": "611d611904290764cca5938159ab793881f0347e0490a8cee113cf3d43e03cb4",
+        "Research/ADMMGeometry.lean": "b47ddebb19fdbe44ff7faa8be73a90a6f60d3fcbf5d37c042187a0810dd82c60",
+        "Research/ADMMHinge.lean": "d1ce3a623f5878e2a1932f91458d64002ee93a6861cbfbb61abc55f1693df81b",
+        "Research/ADMMHingeScalar.lean": "acb2c2696024d9b0f4036e95ed851c99593570dfc491d28ac1eaed4d37c4ce75",
+        "Research/ADMMHingeTrajectory.lean": "c44630c1140c1a95d34ddc4e80d5eccab7db454008e46c1c8c5222896b4a8c6c"
+      },
+      "integrity_manifests": []
+    },
+    "graph-roots": {
+      "root": "verification/additional-proofs/graph-roots",
+      "release_manifest_sha256": "3abb32c26a34927ad13da72c108f3a2737cda366cd186729d3c2b32b51c00db1",
+      "formal_scope": "All numbered manuscript conclusions are formalized in seventy modules with 258 endpoint audits. Historical novelty and exact external-source correspondence remain provisional.",
+      "proof_roots": [
+        {
+          "path": "formalization",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "formalization/src/BookBasicRoots.lean": "26069e87a0903787d6bb5bce2d0df9c580150a1dfae740ca9cf980e43b37fff9",
+        "formalization/src/BookCounting.lean": "f505c4457672b71e07429bcdc307cfcf41265a56f12e926cffdadaac05ca6750",
+        "formalization/src/BookDomination.lean": "927bb94105758656a254c0e0aa50f24a040a83d051ffc7f86f9a9db64e9aff91",
+        "formalization/src/BookGraph.lean": "caa51201db9df0197f991936a918a8400f08ba58a97a908ffc66290230e8394d",
+        "formalization/src/BookInnerCalculus.lean": "1ceafbf7b04d27f8afe68373a77dec927d0277cdfe43b4850654b758196d9a14",
+        "formalization/src/BookInnerExistence.lean": "90de35976f5f04db1fe3068e913a10b38cb7231050fb2c24591f259bdb587b79",
+        "formalization/src/BookInnerShape.lean": "3e0ec8f02e7fee51c79ceb9b4cfa84ba37de1e58ac768f7e65bebbbd325b00b3",
+        "formalization/src/BookInnerSimplicity.lean": "a52fbd093483d1ea98b2b024a327c447f0070ad1d549699fb63a1878f3ba2392",
+        "formalization/src/BookInnerWitnesses.lean": "c41b02708bf4e2135d8bd67ba7b3898fc2914d784471b1d124d75a60b0a36204",
+        "formalization/src/BookInnerZeros.lean": "15527f17c2c33dd431638fe67e8fa925ac22772540d4b028c9f7c41aed1d0d4f",
+        "formalization/src/BookNegative.lean": "6a6a6cb0f54f248f8b5595cd1bf2370adb64be8c20fef4dbad0b472fe43e8230",
+        "formalization/src/BookOrigin.lean": "0abaabb146179a835d16461326a2c3213c6d00e46e15a5abe943aced3be30c26",
+        "formalization/src/BookOuterCalculus.lean": "ed407902111e7db85edb1e14c540afe5ecbefbb4d4891c2565aa50478fa44ac4",
+        "formalization/src/BookOuterRoots.lean": "7045bbf6d89c3d4bddbc329ccc2502ac2515b4ff1a24e8d331b835449aff762d",
+        "formalization/src/BookOuterSimplicity.lean": "e74b14fa3199618f82b6b42dff394e680aa730c876bbc75cd4534b7f3a721a01",
+        "formalization/src/BookPolynomial.lean": "9ec9125fbc596b17e30c665ff17e9e51913778097516d2e2a039f0ea2dd2fc51",
+        "formalization/src/BookRealRootCount.lean": "575bcf3f128565afa8f1cfd6dd3b5a933af5acf9469a74077deca41d2fe4b4a5",
+        "formalization/src/BookRootClassification.lean": "59cc75b122ff2d9eba0733331587fa3973837adec5caf1aa41d6ce67f0f2241c",
+        "formalization/src/CompleteAudit.lean": "7c29385a6bdc04050465ea4205275db179cf1c060421c8ebd473e635dec9338a",
+        "formalization/src/DerivativeA.lean": "c156d77a294ff24283a3d77865854341f5af60e22fd1fd7d59c8bdef9fb7bde4",
+        "formalization/src/DerivativeB.lean": "c662acd624ae30ab75d3b2ba323c67d70cb2944e747ea44e078ff921da05bbee",
+        "formalization/src/DerivativeLimitA.lean": "c9f3a6b0a40eaa4337c13a02bd76300913db837fc7bb917dbd62356f751bc762",
+        "formalization/src/DerivativeLimitB.lean": "7dd9487c39a3d9e3d23b76696e9af8bb8ce9ff64e02b75a1b17d5768b113fabe",
+        "formalization/src/EvenRoots.lean": "0e528e27e73b74d7e624fae04847dfff641b480fff3704b989e151b25fd981ac",
+        "formalization/src/EvenShape.lean": "cfd315051ff850aaa3355987f97d2814c1eaca559524c0e116cf6e1e113147e0",
+        "formalization/src/EvenSimplicity.lean": "d2c34e37e4fbd72725db6cdd7bc75f751e1a232a3d20cf756e31014a50040bb5",
+        "formalization/src/ExtremalRadius.lean": "f748cbdaafd25a8726eef81833ebd064e62d12cd1d0a1047ca4b4044fd56b062",
+        "formalization/src/ExtremalSqueeze.lean": "f218ca3f2dade6f179d9a6c727c54294d42d4d17b08641eeb8838091410fb808",
+        "formalization/src/FlowerCounting.lean": "98c6c66bb857069b5edf87ec8dd6ca0913da1504a3624e2b147a3acb785b2cd7",
+        "formalization/src/FlowerDomination.lean": "4fb483601a5cfd6e4d62a3cbcfeaabffb0be8bd70153a2dfeb28456b7afc32c0",
+        "formalization/src/FlowerGraph.lean": "0a10b4a1d4f0f5266d521ea7a795f7eca2d2a8e032a4d330bf81d46688d35182",
+        "formalization/src/FlowerPolynomial.lean": "b9fdd6594a8152f6d297a215c1eda8f59f87917c49bfa5dd5552536aa3cba2a3",
+        "formalization/src/GraphDegree.lean": "49d2fdcf24626404acd262f42d5ef94f2281d76dada7fbcc48f8a632b0c6db4e",
+        "formalization/src/GraphReturn.lean": "466044bab02482dc07c23c1df2720d2705342193f82b45308d8126ddac0a8db2",
+        "formalization/src/LambertCenter.lean": "4b4b051b68135d607e2c8b993ebc0bffea1cd78107b228bb66b476e47bcb95f3",
+        "formalization/src/LambertGrowth.lean": "bfeaf8777955ab66b5d14ac454ccf0393011495334f201bfe17753dc844ac14c",
+        "formalization/src/LambertScale.lean": "4c9b969d54fc38b4be296ba0dcc837de4745d2a757a9998534df4fd8e579dc4f",
+        "formalization/src/LambertSequence.lean": "f1d107a496f086d82f68192171ba75796a238d858be7233b2b887f3731b678ba",
+        "formalization/src/MainTheorem.lean": "34e2fc560fc7e8c00c39f5328547dce525f751e9a491c64f2da2c3c4693e5e89",
+        "formalization/src/NonzeroRootCount.lean": "b6839df2f4dbb749f02297c996c18ad83363ed64dc77595d9e6b4afb3e94cd09",
+        "formalization/src/NonzeroRoots.lean": "6bb6cb403714c97c54bbce8f8ff50b8363c5abe58f27bd2b97f4ffb8d249ef4e",
+        "formalization/src/PositiveLambert.lean": "1a39a39426f0af7b1a21407076884670ff2a9d673d861d59149b47c97f71735f",
+        "formalization/src/PositiveLambertAsymptotic.lean": "fe8bc584af0c7a69cd75d9dd14b6e620b4c9573cee5fb5d328e3fccef52d76f8",
+        "formalization/src/RadiusActual.lean": "cdc370f8b669a90a4f8bb2bf0e912cc3feadf12d0b0aaef0480e92cb81af9c35",
+        "formalization/src/RadiusAlgebra.lean": "d0c2440f0d8b53ae08aa8ac9b9654722e2b74864b5b9ded0a5856b45bd72a417",
+        "formalization/src/RadiusEquivalent.lean": "0c8201761f9bf9325ec5e022321e02b07d220d7cfb64b6cf91691ce9d7412eef",
+        "formalization/src/RadiusExact.lean": "4679aaea7e2fa36396e194c1913b5778028dbe887104b639641950ba87519145",
+        "formalization/src/RadiusExactAlgebra.lean": "a1008848a481f84ebfea1525b1eef0e10347db3edbb387e49bc109c2eb18d209",
+        "formalization/src/RadiusLog.lean": "84f12f93190e107752f68d0f1dfa3061862cb70e46debb88a7697d62fa33332c",
+        "formalization/src/RealExclusions.lean": "564db0352497ed4fb1ff040959bbc10d1b9f0705b56d03c99e8a3c86cad36f91",
+        "formalization/src/ReciprocalLog.lean": "de220bd18836a263c31b64f63574d535f7085acc91505031fc89624098ed824c",
+        "formalization/src/ReciprocalModel.lean": "45c1b41ad71acd84e7808401d8051fce0e4941bcb7eda27b08fa8806570657e1",
+        "formalization/src/ReciprocalPrefactor.lean": "612a9a7fffe04b6f09647b398ab8a813da29ebaff376ce56b69e9a3207ad8673",
+        "formalization/src/RootEndpointExpansion.lean": "b6be98532f03fb7d619e5051d0a6503f5a6d3b313afb39bab45d3c069cdc3745",
+        "formalization/src/RootEndpointScale.lean": "5c65cc9e9faca7c273daf38b99375da4cabe357daa8a1fc526835d76c4893764",
+        "formalization/src/RootLogErrors.lean": "7f51d5193af9b20594699ba836a4954ad4ac7a49b78a506b37d6865089b6bc29",
+        "formalization/src/RootMotion.lean": "be65f63665364370ca93558cbe65106d448d4ba662db29f51d21144624f84bcd",
+        "formalization/src/RootPowerErrors.lean": "b0b1b563b097ebc1c31ac9120ffe4aac3e79045e02d55e592b1124e7a6e473f3",
+        "formalization/src/RootScale.lean": "9fa169faaedeebfab6982626fc1a7daaf1781ecf6d28ad9d7cdd92b9cc7df215",
+        "formalization/src/SharpRadius.lean": "aed8e35c3177eed990834e656ce94e3e09c907d99929336a92bd294eb80e62b0",
+        "formalization/src/SmallZero.lean": "792367e676df2b67224c1db4943de49ea805147d5614ba39f77ca18a4b03cf2e",
+        "formalization/src/SquareFlowerLambert.lean": "ef61d85f9c8f6d0111cb064e42e5ae86502e6a0d82d4805e288761043c4acf42",
+        "formalization/src/StatementAudit.lean": "c9f97de91dca9162ee769f186242a85cfbccd458afeb7447a67860e2b080e007",
+        "formalization/src/TransferLimitA.lean": "fe8017dd9c64fa5641688095de283ae1120e8567104d6ccc6a0f0136c5f50364",
+        "formalization/src/TransferLimitB.lean": "8604da82b10e35eb56beb03e0b7352590a805bf6c0fc70b53587dea24a120756",
+        "formalization/src/TransferRoots.lean": "da46b0b7e677dcab233a1746405f244907a7573bf5f494a2b5cc7b17c48d1b7b",
+        "formalization/src/UniformExp.lean": "c63930be50e2f8ba644d40ff16aa070ae74267ea7e7b835e9019198e83ad699a",
+        "formalization/src/UniformInverse.lean": "389d8e65ab0408b82abe5ac89a378fdf626807b3c46173345b8df93ac8ca67e2",
+        "formalization/src/UniformLog.lean": "5d67ee3851c7af642cb487345a7fbb9e5c56b6c2d45f8422956918fab02a2e99",
+        "formalization/src/UniformSmallZero.lean": "d75dba00f66420bf54b0ae28ebe1a51873a094f553999d0d31162128d64da005"
+      },
+      "integrity_manifests": [
+        "formalization/manifest.json"
+      ]
+    },
+    "motzkin-bounded-forcing": {
+      "root": "verification/additional-proofs/motzkin-bounded-forcing",
+      "release_manifest_sha256": "4a4bc8ac3db744eb1cfa4467a288d699981d37ce2b2e8ce1826c0cff7dd1ccb8",
+      "formal_scope": "The arbitrary-real recurrence theorem and scaled corollary, including zero forcing, are formalized. Concrete sequences, uniform-family applications, root transfer and threshold classification retain conventional proofs.",
+      "proof_roots": [
+        {
+          "path": "formalization",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "formalization/src/Algebra.lean": "51102bb2e26e7e8be8f814e2830bf83cd87918a55ce0e96a35044bd7c480660d",
+        "formalization/src/Certificates.lean": "1c69628bb6105a49acba84d3dc992d1dc9915024936be2af824ef81ed620a16d",
+        "formalization/src/CompleteAudit.lean": "e0054521fc7ab5e9a06280fd60ec21c0cdb8461d6e135f726de30b3340c2976f",
+        "formalization/src/Corner.lean": "39de0ebc7ae15f749c3c5a666fe5f6a21513855fc536c9f08004d841ac74e6fa",
+        "formalization/src/Forcing.lean": "d8a44c7b3380a8d6d61b7940178cab3f4502fc2b3688886633bd3c8b657c6687",
+        "formalization/src/Growth.lean": "8eacf01ec6cccf34922ad1605f2886804d2bff243a3da805326ddca091dd906b",
+        "formalization/src/Invariant.lean": "3ac685d6eff4dca4239cf213ef907d2d816f7e68f379767808896e04bd21afb3",
+        "formalization/src/Rectangle.lean": "3579692f4aa4d3ef3c8faceed8fd6f52c9bab1404d28f16e694067c5d6b0c0fa",
+        "formalization/src/Scaling.lean": "5176b10634a3b62fb139c5f6d195228d2b3297a979c2e8990776d1869b168260",
+        "formalization/src/StatementAudit.lean": "fe6536dc0f658ce64e528fd600fc075adcdd26ed03f02a9b0d8b2bd36be6b6f1"
+      },
+      "integrity_manifests": [
+        "formalization/manifest.json"
+      ]
+    },
+    "sidon-renyi": {
+      "root": "verification/additional-proofs/sidon-renyi",
+      "release_manifest_sha256": "e87c2c059ff6cba676e45e74353b95e07a799ab6744ea1ec823cde1d8fd8a0ef",
+      "formal_scope": "The finite-support iid theorem, zero probabilities and critical endpoint are formalized. Comparison with unverified source definitions is conditional.",
+      "proof_roots": [
+        {
+          "path": "formalization",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "formalization/AxiomAudit.lean": "87df3b56b75543a80e465012bb24b2392b8472db3bd0d2e2177802f63426fe8d",
+        "formalization/SidonRenyi.lean": "e16722335a62113454df883edee9a963f1b2ccc4f2b9cb8fc7e2598053fb3be2",
+        "formalization/SidonRenyi/AboveThreshold.lean": "73e3b6a4bdb93beefda1b8f1eb7c7d16e546026d96fabcf52eb95ec39aeea7de",
+        "formalization/SidonRenyi/Binary.lean": "5e8ce7c673082f88f490ef0fbd40f8c4569dab3cce03bf879ae34a74341a4640",
+        "formalization/SidonRenyi/Core.lean": "134d3bdcdc892501e502bb7458d11291101266ffb5beb18e71a75ba9fad5ab93",
+        "formalization/SidonRenyi/Entropy.lean": "c9a5b8f1ce4f9b5d838482d9d3031944392e5119afc61d5de807abb001bfb5eb",
+        "formalization/SidonRenyi/Gradient.lean": "7581ed21fc937b48c88d78c603dbc937dd3227d40d2944de25e63d4a9a33db7a",
+        "formalization/SidonRenyi/Main.lean": "b011e4746b5367508b8b7b37c2a5030a2c9e760ee43afd1ad452ba9f5ae9f9a1",
+        "formalization/SidonRenyi/Optimization.lean": "12894112aed332c8bb512ea07a780bea4744b3ceff132073bbf3b1df66ed8c38",
+        "formalization/SidonRenyi/PowerDifference.lean": "ae425339ffdb042ab44a88cf7311c8e8a9e0d37cfe5f4b4a662c711b8f377f9b",
+        "formalization/SidonRenyi/SidonLaw.lean": "f872506508c6cd1bd50fbb1c55854fba50f04a0b315f404bfd725c1b84c69fa3",
+        "formalization/SidonRenyi/Threshold.lean": "24d11dffddc1de6a0383a324cd08f4bf63bb4175bb8a144c724e1d2139922d8a"
+      },
+      "integrity_manifests": []
+    },
+    "ordered-allocation": {
+      "root": "verification/additional-proofs/ordered-allocation",
+      "release_manifest_sha256": "292fc4aa08d874a15024ab2facac0441505d733dec57fe33e7135b142a20ac64",
+      "formal_scope": "The transfer theorem is formalized. Existence of a fair allocation before transfer is outside the result; external source comparison is provisional.",
+      "proof_roots": [
+        {
+          "path": "formalization",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "formalization/OrderedAllocationReduction.lean": "16e400f22d5157d16118f42da413e4d30bd17fdaf50c94d61701bab2a800f665",
+        "formalization/StatementAudit.lean": "228129d486b5fbf8d4a9495985b15ffb0470afa9c6728b997c40266d4765072a"
+      },
+      "integrity_manifests": []
+    },
+    "kunisky": {
+      "root": "verification/additional-proofs/kunisky",
+      "release_manifest_sha256": "40fc5ecf9c95fa4fd809ba37fdbd28ed24ff829f539bfc6b0828cc214d30ed95",
+      "formal_scope": "The internally defined resolution-tree functional and proof class are formalized. No unconditional identification with an external conjecture or a regular proof class is claimed.",
+      "proof_roots": [
+        {
+          "path": "formalization",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.lean",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "formalization/Absorption.lean": "537536c12c286beeecdc7d803ad1084a10b66dd0cf964cac67c77fb80f0670a0",
+        "formalization/CertificateAnalysis.lean": "2f03be385f8a7f8245d0cc3a9682c0d2c0dc09bebd57f0af08c52be1ef966638",
+        "formalization/Completion.lean": "2155104cb5c008a9869987bb51892f9b6d1c0b576554b348137cb98305d77054",
+        "formalization/Concentration.lean": "2181b93fe565f9174ba358c79db20ce1cd223ddbe276b1452a89f8ddc8e5139a",
+        "formalization/Conjecture.lean": "a2fb3d02f3bc45d6c0a1275efb37110a52d1394dd0b861edb8a73adb37806c51",
+        "formalization/Counterexample.lean": "de4922593217eec9156aba54fcc148b0fe39f9e22fcca6fea47664dd47070f6c",
+        "formalization/Family.lean": "f47ef487e33bc09ca9a2041188ebc11e9ec6275c506a6d465f0c53ca583bf6f8",
+        "formalization/FinalAudit.lean": "894ee2fd3c1850dff5af657ff878fe6e36a168bdaf945e41ed24964a81230ecc",
+        "formalization/FiniteCertificate.lean": "d3088c0b7bcef0478776a3725c0eccbbae17a4e7cbb81985f95cf4a3c64d7533",
+        "formalization/FullFormulaProperties.lean": "902be993a4a0962e57c58696bd4068181de6849e957aba7391a593204fe5c70e",
+        "formalization/GeneralResult.lean": "a46638382e58108e3e8c3ac82d6c0d7658a239a9fcddbd1f250cae245cef9335",
+        "formalization/MinimalMass.lean": "817f6382f8ac8add28f0056e657c4d4aa3535a5262e6cb47ff7f4ac0a7639b96",
+        "formalization/NoTautologies.lean": "12cab5501d10e9de689d2893f9915f83f5110d3a1e3724db9236576586c0595c",
+        "formalization/Policy.lean": "4a2eeb63c9eaaaf0beed071a023a7ec6ebd8f21e9a6d9aaa8d2482d0b908a5c7",
+        "formalization/Resolution.lean": "a611e1356188fc62a146d606b2d34d3dd63a48f4984e33da2292e3bea20d799a",
+        "formalization/SourceMass.lean": "7a305b6d9d28f0b998c1171ac519d1c8c67e0c1c348f1298feb6ddd83dafdf6c"
+      },
+      "integrity_manifests": []
+    },
+    "pure-ecqc": {
+      "root": "verification/additional-proofs/pure-ecqc",
+      "release_manifest_sha256": "26495c01103650ccc81fcd9cdfac8c79001db85fc01ba61584d604fa6216181f",
+      "formal_scope": "The dimension-five identical-local-basis theorem is formalized. The prime-family extension is conventional; arbitrary or independently optimized basis choices are outside the result.",
+      "proof_roots": [
+        {
+          "path": "formalization",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "formalization/PureECQC.lean": "5fff8d4e2d6cf031e4e4abd4812c1bbe6caa8e2c024bd81efa94158d045d6538",
+        "formalization/PureECQC/Entropy.lean": "bd98b0b9f6a85ab4742be168c60f4f7a2e88eeef8ccce4b5be31e2dd5d2c5e49",
+        "formalization/PureECQC/Foundation.lean": "ef443fe8269f0e4d1a2c8d1fbb0f6ce3834b018ab21fd5b3e615d333468cd284",
+        "formalization/PureECQC/Main.lean": "b8ec3816cab5e51e469153129533a11ab74958c500925fc88860d20775ddfb10",
+        "formalization/PureECQC/Raw.lean": "03b869f7dbf2d92cda2c8d1a41bdc6aa650e8d16c11fc4a8b7338e5cd6bea04e",
+        "formalization/ReplayAudit.lean": "25b8a5af92c43d6acdf407e81fbf50184355b43636b7d6fc2bdfdac37675b8b9"
+      },
+      "integrity_manifests": []
+    },
+    "kovacec": {
+      "root": "verification/additional-proofs/kovacec",
+      "release_manifest_sha256": "8eff05d9c6866ec5b4b03f483560297b9b73173ee9b3ca30cc45df7832c0c44b",
+      "formal_scope": "Actual normal matrices, determinants, straight-segment exterior and component exclusion are formalized. Correspondence with an external source conjecture is conditional.",
+      "proof_roots": [
+        {
+          "path": "formalization",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "formalization/Kovacec.lean": "bff54530ca185b0d983faf15f8d1751bea652dc9de5697e617da4f668a734caa",
+        "formalization/KovacecBoundary.lean": "3c324c1dda254b2b53b0183f8f031cfa1c21dcb2929b92eb1bbfdc9de439de2c",
+        "formalization/KovacecCertificate.lean": "930f43cfea9f60c6df4a119f86eb5998e14ecd892d4b293bb9bceca158b2fecc",
+        "formalization/KovacecGraph.lean": "c36017aed5c8ead8b74da76234f16b7b4d2c0c488c574efc7e1f3e6513260d69",
+        "formalization/KovacecJordan.lean": "84c38392be4232b88b1076e525c4361bfe40938f6ffdbe256cc8367c15e9ec8b",
+        "formalization/KovacecLoop.lean": "3c43402ce96e9db950d6cf4e0d00e683356a09fe87253e573ec0e7faac7623f7",
+        "formalization/KovacecResolution.lean": "a4e2a215ca1937fc198920a78118408c49df456588cee89cb0c7618cc84ef34b",
+        "formalization/RayComponent.lean": "3a7db9a3e425722f10c4ad676ff3126a2b836dc6ec65e1f9e8d5970808e682ee",
+        "formalization/RayExterior.lean": "ecc7046260f774f75c5cc017a33087d5120de15cec2026f75743f3f69ac179eb",
+        "formalization/ReplayAudit.lean": "e8883783451075aec663b5ae95f2ae58c978c43272be2799988fa4e07f2765c3"
+      },
+      "integrity_manifests": []
+    },
+    "leaf-deletion": {
+      "root": "verification/additional-proofs/leaf-deletion",
+      "release_manifest_sha256": "8af934be6509e7390b8962318ca99a58cd53b714833ab2a5ec3ac13c564d48b7",
+      "formal_scope": "The fixed tree, deletion, actual domination counts and unique-mode movement are formalized. External question identity and historical priority remain provisional.",
+      "proof_roots": [
+        {
+          "path": "formalization",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.lean",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "formalization/Audit.lean": "ea214a1d2904937a1a923b3379b56dd877b435c32fdcc60ccd659ec1a3dc80d6",
+        "formalization/LeafMode.lean": "07b97d0f0e45ec1f81594aa12e02eb5342e6dccd5925ce057673941e8cd23e6d",
+        "formalization/LeafMode/AlgebraCertificate.lean": "d3a26a56cd8e9035d7c5589ba3f5884394f6aa1022ab98a0bb533b973234652f",
+        "formalization/LeafMode/CertificateSupport.lean": "f82138258ce5ea8d21957bcc66c4b10e30ca178c756c0690cb63a2239fe00332",
+        "formalization/LeafMode/Certificates.lean": "f161b554bab862b4b678ef46a0762cb8d8ad1690ab335f06d75e4367c7add575",
+        "formalization/LeafMode/Counting.lean": "7f92adc666e78c992c873f11c37c8db2c2b64784505e709acb32ec2963703798",
+        "formalization/LeafMode/FCertificate.lean": "84a63cfb6be763911ba197466370b0d87464af58e4c8334584a3801217a80ab7",
+        "formalization/LeafMode/FData.lean": "237dc76515e04a3cd175513521c20a8a7fcf4ca6aeab68fe55b2ad0d989a98d5",
+        "formalization/LeafMode/GCertificate.lean": "6cc7855c0785cca4d473fb0101cc9adc2b05ed7a76b10ff52025541a9bd6ff4b",
+        "formalization/LeafMode/GData.lean": "3710d561e36a51b6b41941f76fd7a7361258b7affdf6dde46cdccaf1a2acc19d",
+        "formalization/LeafMode/Graph.lean": "e0de602cc83d7fd09fc9aec205af475aaeef74a7cec84065967d23c1ff1762eb",
+        "formalization/LeafMode/HCertificate.lean": "f0d5fd19db68cc99f130f716a3d8a66db7428a3c22c2d45ed018838fd6848106",
+        "formalization/LeafMode/HData.lean": "44122d501cebb49ea54a48a13e157446fdded28de592d7251bda32886a39f137",
+        "formalization/LeafMode/IsoInvariance.lean": "70a5bb6437b5cc94c04a59cdc089d0ad7c157941ea7233b1af7b1a42b63073df",
+        "formalization/LeafMode/Modes.lean": "dd747cbb9c7e57e2098174e610d810735566b1199f4c066111f56fd54901575b",
+        "formalization/LeafMode/Result.lean": "96800ec6d2f1f9d2a4199cf0235dc4a64d25fa510cabccf86c0e02122a5e2a9e",
+        "formalization/LeafMode/ResultCore.lean": "d52fce53a00daa337b5b5d83363a1494c9f476f89868a9a198fe629abc4085fd",
+        "formalization/LeafMode/Semantics.lean": "6dd5f39eb2727f8e10f23f142670e9d3fab7e1fd044f08fa00b970425ab6a6b5",
+        "formalization/LeafMode/ShapeCertificate.lean": "726a54e5a93089ae1c69fe5c5c5b93da39dd37761c0ee5711b8178215362c18f"
+      },
+      "integrity_manifests": []
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # Manuscript catalogue
 
-The catalogue contains fifteen result families and fifteen manuscripts. Seven families use the shared Lean 4.35.0 library. Its 29 selected Comparator declarations include equality, positivity, sharpness, and generalization statements. The decision-tree and thermal packages use separate Lean 4.19.0 environments. Supporting lemmas are not separate research contributions.
+The catalogue contains the original result families and the original manuscripts. Seven families use the shared Lean 4.35.0 library. Its 29 selected Comparator declarations include equality, positivity, sharpness, and generalization statements. The decision-tree and thermal packages use separate Lean 4.19.0 environments. Supporting lemmas are not separate research contributions.
 
 Each paper states its formal verification scope. The thermal formalization covers finite spectral statements, with no formal stochastic long-time identification theorem. The Gyires preprint has complete Lean proofs for its principal order-five and order-six claims, its all-order permutation-polynomial and four-block theorems, and its exceptional-vector theorem. The rank-two result has a complete Lean proof for orders 2 through 8. The general order-seven circulant result and rank-two orders 9 through 15 remain incomplete in Lean. The verification record gives the checks actually completed. The papers have not been peer reviewed. The prior-work assessment is bounded and makes no first-priority claim.
 
@@ -193,4 +193,94 @@ The proof includes all finite sizes and actual position-valued permutations. It 
 
 ## Research process and review
 
-The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. See [AUTHORSHIP.md](AUTHORSHIP.md).
+For the original collection, the recorded disclosure states that the initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. See [AUTHORSHIP.md](AUTHORSHIP.md).
+
+## Further completed manuscripts
+
+The entries below extend the same subject families. Source comparisons and formal limits are explicit; no first-priority claim follows from formal verification.
+
+### Mathematics
+
+#### A positive constant-recursive sequence with nonquasipolynomial power ranks
+
+Exact minimal recurrences for every power of a rank-thirteen sequence, nonquasipolynomial ranks, and infinitely many power-rank profiles at each rank at least three.
+
+**Formal scope.** The main and arbitrary-rank companion theorems are formalized. Generating-function and polynomial corollaries retain conventional proofs.
+
+[Paper PDF](verification/additional-proofs/power-rank/manuscript.pdf) · [LaTeX](verification/additional-proofs/power-rank/manuscript.tex) · [Reproduction and source context](verification/additional-proofs/power-rank/README.md) · [Citation](verification/additional-proofs/power-rank/CITATION.bib)
+
+#### A rational five-cycle for two-block ADMM with multiplier step below two
+
+An exact period-five orbit for multiplier-only two-block ADMM at step 199/100.
+
+**Formal scope.** Seven modules and eleven endpoint audits cover the orbit, minimizers and optimizer. Analytic regularity of the finite strongly convex extension retains a conventional proof.
+
+[Paper PDF](verification/additional-proofs/admm-counterexample/paper/admm_counterexample.pdf) · [LaTeX](verification/additional-proofs/admm-counterexample/paper/admm_counterexample.tex) · [Reproduction and source context](verification/additional-proofs/admm-counterexample/README.md) · [Citation](verification/additional-proofs/admm-counterexample/CITATION.bib)
+
+#### Sharp escape of complex domination roots in square flowers
+
+Sharp complex-root escape for square flowers, with complete flower and book real-root classifications and multiplicities.
+
+**Formal scope.** All numbered manuscript conclusions are formalized in seventy modules with 258 endpoint audits. Historical novelty and exact external-source correspondence remain provisional.
+
+[Paper PDF](verification/additional-proofs/graph-roots/manuscript.pdf) · [LaTeX](verification/additional-proofs/graph-roots/manuscript.tex) · [Reproduction and source context](verification/additional-proofs/graph-roots/README.md) · [Citation](verification/additional-proofs/graph-roots/CITATION.bib)
+
+#### Sharp log-concavity for alternating Motzkin sums
+
+A robust bounded-forcing recurrence theorem and corrected scaled corollary, with applications to alternating Motzkin-type sums.
+
+**Formal scope.** The arbitrary-real recurrence theorem and scaled corollary, including zero forcing, are formalized. Concrete sequences, uniform-family applications, root transfer and threshold classification retain conventional proofs.
+
+[Paper PDF](verification/additional-proofs/motzkin-bounded-forcing/manuscript.pdf) · [LaTeX](verification/additional-proofs/motzkin-bounded-forcing/manuscript.tex) · [Reproduction and source context](verification/additional-proofs/motzkin-bounded-forcing/README.md) · [Citation](verification/additional-proofs/motzkin-bounded-forcing/CITATION.bib)
+
+#### Sharp universal Rényi threshold for iid sums on finite Sidon sets
+
+A sharp universal Renyi-order threshold for iid sums supported on finite strong-B2 sets.
+
+**Formal scope.** The finite-support iid theorem, zero probabilities and critical endpoint are formalized. Comparison with unverified source definitions is conditional.
+
+[Paper PDF](verification/additional-proofs/sidon-renyi/manuscript.pdf) · [LaTeX](verification/additional-proofs/sidon-renyi/manuscript.tex) · [Reproduction and source context](verification/additional-proofs/sidon-renyi/README.md) · [Citation](verification/additional-proofs/sidon-renyi/CITATION.bib)
+
+#### A polygon enclosure fails for sums of normal matrices
+
+A polygon enclosure fails for a specified pair of normal matrices and its complete transposition graph.
+
+**Formal scope.** Actual normal matrices, determinants, straight-segment exterior and component exclusion are formalized. Correspondence with an external source conjecture is conditional.
+
+[Paper PDF](verification/additional-proofs/kovacec/manuscript/manuscript.pdf) · [LaTeX](verification/additional-proofs/kovacec/manuscript/manuscript.tex) · [Reproduction and source context](verification/additional-proofs/kovacec/README.md) · [Citation](verification/additional-proofs/kovacec/CITATION.bib)
+
+#### Leaf deletion can move the unique mode of a tree domination polynomial by two
+
+Deleting a leaf can move the unique mode of an explicit tree domination polynomial by two.
+
+**Formal scope.** The fixed tree, deletion, actual domination counts and unique-mode movement are formalized. External question identity and historical priority remain provisional.
+
+[Paper PDF](verification/additional-proofs/leaf-deletion/manuscript/manuscript.pdf) · [LaTeX](verification/additional-proofs/leaf-deletion/manuscript/manuscript.tex) · [Reproduction and source context](verification/additional-proofs/leaf-deletion/README.md) · [Citation](verification/additional-proofs/leaf-deletion/CITATION.bib)
+
+### Theoretical computer science
+
+#### Ordered-instance allocation transfer with exact extra-copy preservation
+
+A set-valued ordered-instance transfer preserving utility improvement, the exact extra-copy count, per-good caps and coverage.
+
+**Formal scope.** The transfer theorem is formalized. Existence of a fair allocation before transfer is outside the result; external source comparison is provisional.
+
+[Paper PDF](verification/additional-proofs/ordered-allocation/manuscript.pdf) · [LaTeX](verification/additional-proofs/ordered-allocation/manuscript.tex) · [Reproduction and source context](verification/additional-proofs/ordered-allocation/README.md) · [Citation](verification/additional-proofs/ordered-allocation/CITATION.bib)
+
+#### Unbounded coalesced-mass certificates for resolution trees
+
+A coalesced dyadic clause-mass functional has exact supremum n+1 on the stated unrestricted resolution-tree class and is unbounded across dimensions.
+
+**Formal scope.** The internally defined resolution-tree functional and proof class are formalized. No unconditional identification with an external conjecture or a regular proof class is claimed.
+
+[Paper PDF](verification/additional-proofs/kunisky/paper.pdf) · [LaTeX](verification/additional-proofs/kunisky/paper.tex) · [Reproduction and source context](verification/additional-proofs/kunisky/README.md) · [Citation](verification/additional-proofs/kunisky/CITATION.bib)
+
+### Mathematical physics
+
+#### A pure-state matched-basis information inequality violation in dimension five
+
+A dimension-five pure-state matched-basis information inequality violation, with a conventional all-prime companion.
+
+**Formal scope.** The dimension-five identical-local-basis theorem is formalized. The prime-family extension is conventional; arbitrary or independently optimized basis choices are outside the result.
+
+[Paper PDF](verification/additional-proofs/pure-ecqc/manuscript/manuscript.pdf) · [LaTeX](verification/additional-proofs/pure-ecqc/manuscript/manuscript.tex) · [Reproduction and source context](verification/additional-proofs/pure-ecqc/README.md) · [Citation](verification/additional-proofs/pure-ecqc/CITATION.bib)
