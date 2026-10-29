@@ -1,11 +1,17 @@
 module
-public import Mathlib
+public import Mathlib.Analysis.Matrix.Order
+public import Mathlib.Analysis.SpecialFunctions.ContinuousFunctionalCalculus.Rpow.Basic
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.Analysis.Real.Sqrt
+public import Mathlib.Tactic.Convert
+public import Mathlib.Tactic.Ext
 
 /-! The exact envelope uses actual two-qubit density matrices, their Pauli
 correlations, and their computed canonical steering centre. The threshold
 concerns only the specified three-setting correlation expression. -/
 @[expose] public section
-open scoped BigOperators Matrix ComplexOrder
+open scoped BigOperators Matrix MatrixOrder ComplexOrder
 open Matrix
 set_option autoImplicit false
 noncomputable section
@@ -39,7 +45,7 @@ theorem partialB_psd {M : CMatrix} (hM : M.PosSemidef) : (partialB M).PosSemidef
   simp [partialB, Fin.sum_univ_two]
 
 noncomputable def bobFilter (M : CMatrix) (hM : Density M) : Matrix Q Q ℂ :=
-  ((partialB_psd hM.1).add (partialB_psd hM.1)).sqrt
+  CFC.sqrt (partialB M + partialB M)
 
 noncomputable def canonicalize (M : CMatrix) (hM : Density M) : CMatrix :=
   onBob (bobFilter M hM)⁻¹ * M * onBob (bobFilter M hM)⁻¹

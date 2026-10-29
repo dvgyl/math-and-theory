@@ -6,7 +6,7 @@ public import MilneCanonicalization
 
 @[expose] public section
 
-open scoped BigOperators Matrix ComplexOrder
+open scoped BigOperators Matrix MatrixOrder ComplexOrder
 open Matrix
 
 set_option autoImplicit false
@@ -87,9 +87,10 @@ def bobWeighted (M : CMatrix) (K : Matrix Q Q ℂ) : Matrix Q Q ℂ :=
 
 theorem bobWeighted_psd {M : CMatrix} (hM : M.PosSemidef)
     {K : Matrix Q Q ℂ} (hK : K.PosSemidef) : (bobWeighted M K).PosSemidef := by
-  let S : Matrix Q Q ℂ := hK.sqrt
-  have hS : S.IsHermitian := hK.posSemidef_sqrt.1
-  have hSS : S*S = K := hK.sqrt_mul_self
+  let S : Matrix Q Q ℂ := CFC.sqrt K
+  have hS : S.IsHermitian :=
+    (Matrix.nonneg_iff_posSemidef.mp (CFC.sqrt_nonneg K)).isHermitian
+  have hSS : S*S = K := CFC.sqrt_mul_sqrt_self K hK.nonneg
   have hp := hM.mul_mul_conjTranspose_same (onBob S)
   rw [(onBob_hermitian hS).eq] at hp
   have h := partialA_psd hp

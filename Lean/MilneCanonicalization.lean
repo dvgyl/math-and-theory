@@ -1,9 +1,11 @@
 module
 public import MilneFiltering
+public import Mathlib.Analysis.Matrix.Order
+public import Mathlib.Analysis.SpecialFunctions.ContinuousFunctionalCalculus.Rpow.Basic
 
 @[expose] public section
 
-open scoped BigOperators Matrix ComplexOrder
+open scoped BigOperators Matrix MatrixOrder ComplexOrder
 open Matrix
 
 set_option autoImplicit false
@@ -14,7 +16,7 @@ namespace Milne
 
 /-- The positive square root of twice Bob's marginal. -/
 noncomputable def bobFilter (M : CMatrix) (hM : Density M) : Matrix Q Q ℂ :=
-  ((partialB_psd hM.1).add (partialB_psd hM.1)).sqrt
+  CFC.sqrt (partialB M + partialB M)
 
 /-- Standard canonical representative, when Bob's marginal is invertible. -/
 noncomputable def canonicalize (M : CMatrix) (hM : Density M) : CMatrix :=
@@ -22,11 +24,12 @@ noncomputable def canonicalize (M : CMatrix) (hM : Density M) : CMatrix :=
 
 theorem bobFilter_hermitian (M : CMatrix) (hM : Density M) :
     (bobFilter M hM).IsHermitian :=
-  ((partialB_psd hM.1).add (partialB_psd hM.1)).posSemidef_sqrt.1
+  (Matrix.nonneg_iff_posSemidef.mp (CFC.sqrt_nonneg _)).isHermitian
 
 theorem bobFilter_sq (M : CMatrix) (hM : Density M) :
     bobFilter M hM * bobFilter M hM = (2:ℂ) • partialB M := by
-  rw [bobFilter, Matrix.PosSemidef.sqrt_mul_self]
+  rw [bobFilter, CFC.sqrt_mul_sqrt_self _
+    ((partialB_psd hM.1).add (partialB_psd hM.1)).nonneg]
   ext i j
   simp
   ring

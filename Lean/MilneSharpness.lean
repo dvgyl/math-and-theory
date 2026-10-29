@@ -5,7 +5,7 @@ public import MilneScalarBounds
 
 @[expose] public section
 
-open scoped BigOperators Matrix ComplexOrder
+open scoped BigOperators Matrix MatrixOrder ComplexOrder
 open Matrix
 
 set_option autoImplicit false
@@ -17,21 +17,12 @@ noncomputable section
 namespace Milne
 
 theorem pure_psd (v : QQ → ℂ) : (pure v).PosSemidef := by
-  let W : Matrix Unit QQ ℂ := fun _ i => star (v i)
-  have h : pure v = Wᴴ * W := by
-    ext i j
-    simp [W, pure, Matrix.mul_apply, Matrix.conjTranspose_apply]
-  rw [h]
-  exact Matrix.posSemidef_conjTranspose_mul_self W
+  change (Matrix.vecMulVec v (star v)).PosSemidef
+  exact Matrix.posSemidef_vecMulVec_self_star v
 
 theorem psd_real_smul {n : Type*} [Fintype n] {A : Matrix n n ℂ}
     (hA : A.PosSemidef) (t : ℝ) (ht : 0 ≤ t) : ((t:ℂ) • A).PosSemidef := by
-  constructor
-  · change ((t:ℂ) • A)ᴴ = (t:ℂ) • A
-    simp [Matrix.conjTranspose_smul, hA.1.eq]
-  · intro v
-    simp only [Matrix.smul_mulVec_assoc, dotProduct_smul, smul_eq_mul]
-    exact mul_nonneg (RCLike.ofReal_nonneg.mpr ht) (hA.2 v)
+  exact hA.smul (RCLike.ofReal_nonneg.mpr ht)
 
 def obeseVector (c : ℝ) : QQ → ℂ := fun i =>
   if i = (0,1) then 1 else if i = (1,0) then (Real.sqrt (1-c):ℂ) else 0
@@ -52,9 +43,8 @@ theorem bobFilter_positive_filter (M : CMatrix) (F : Matrix Q Q ℂ)
     (hMF : Density (onBob F * M * onBob F)) :
     bobFilter (onBob F * M * onBob F) hMF = F := by
   unfold bobFilter
-  symm
-  apply hF.eq_sqrt_of_sq_eq
-  rw [pow_two, partialB_filter, hB]
+  apply CFC.sqrt_unique ?_ hF.nonneg
+  rw [partialB_filter, hB]
   simp only [Matrix.mul_smul, Matrix.mul_one, Matrix.smul_mul]
   ext i j
   simp

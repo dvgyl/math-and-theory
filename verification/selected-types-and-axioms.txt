@@ -1,0 +1,50 @@
+@[expose] def Milne.bobFilter : (M : Milne.CMatrix) → Milne.Density M → Matrix.{0, 0, 0} Milne.Q Milne.Q ℂ :=
+fun M hM => CFC.sqrt.{0} (HAdd.hAdd.{0, 0, 0} (Milne.partialB M) (Milne.partialB M))
+@[expose] def Milne.steeringCenter : (M : Milne.CMatrix) → Milne.Density M → ℝ :=
+fun M hM =>
+  ite.{1} (Eq.{1} (Matrix.det.{0, 0} (Milne.partialB M)) 0) (Milne.center M) (Milne.center (Milne.canonicalize M hM))
+@[expose] def Milne.Density : Milne.CMatrix → Prop :=
+fun M => Matrix.PosSemidef.{0, 0} M ∧ Eq.{1} (Matrix.trace.{0, 0} M) 1
+@Milne.steeringEnvelope_isLUB : ∀ {c : ℝ},
+  LE.le.{0} 0 c → LE.le.{0} c 1 → IsLUB.{0} (Milne.steeringSpectrum c) (Milne.steeringEnvelopeSq c)
+'Milne.steeringEnvelope_isLUB' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+@Milne.all_states_envelope_attained : ∀ {c : ℝ},
+  LE.le.{0} 0 c → LT.lt.{0} c (2 / 3) → Membership.mem.{0, 0} (Milne.steeringSpectrum c) (Milne.steeringEnvelopeSq c)
+'Milne.all_states_envelope_attained' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+Milne.no_maximizer_on_flat_branch : ∀ (M : Milne.CMatrix) (hM : Milne.Density M),
+  LE.le.{0} (2 / 3) (Milne.steeringCenter M hM) →
+    LT.lt.{0} (Milne.steeringCenter M hM) 1 → LT.lt.{0} (Milne.correlationSq M) 1
+'Milne.no_maximizer_on_flat_branch' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+Milne.steeringEndpoint_isGreatest : IsGreatest.{0} (Milne.steeringSpectrum 1) 1
+'Milne.steeringEndpoint_isGreatest' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+@Milne.three_setting_violation_possible_iff : ∀ {c : ℝ},
+  LE.le.{0} 0 c →
+    LE.le.{0} c 1 →
+      ((∃ M, ∃ (hM : Milne.Density M), Eq.{1} (Milne.steeringCenter M hM) c ∧ LT.lt.{0} 1 (Milne.steeringValue M)) ↔
+        LT.lt.{0} c (2 / 3))
+'Milne.three_setting_violation_possible_iff' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+Milne.bobFilter_hermitian : ∀ (M : Milne.CMatrix) (hM : Milne.Density M),
+  Matrix.IsHermitian.{0, 0} (Milne.bobFilter M hM)
+'Milne.bobFilter_hermitian' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+Milne.bobFilter_sq : ∀ (M : Milne.CMatrix) (hM : Milne.Density M),
+  Eq.{1} (HMul.hMul.{0, 0, 0} (Milne.bobFilter M hM) (Milne.bobFilter M hM))
+    (HSMul.hSMul.{0, 0, 0} 2 (Milne.partialB M))
+'Milne.bobFilter_sq' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+Milne.bobFilter_positive_filter : ∀ (M : Milne.CMatrix) (F : Matrix.{0, 0, 0} Milne.Q Milne.Q ℂ),
+  Matrix.PosSemidef.{0, 0} F →
+    Eq.{1} (Milne.partialB M) (HSMul.hSMul.{0, 0, 0} (1 / 2) 1) →
+      ∀ (hMF : Milne.Density (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (Milne.onBob F) M) (Milne.onBob F))),
+        Eq.{1} (Milne.bobFilter (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (Milne.onBob F) M) (Milne.onBob F)) hMF) F
+'Milne.bobFilter_positive_filter' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+@Milne.bobWeighted_psd : ∀ {M : Milne.CMatrix},
+  Matrix.PosSemidef.{0, 0} M →
+    ∀ {K : Matrix.{0, 0, 0} Milne.Q Milne.Q ℂ},
+      Matrix.PosSemidef.{0, 0} K → Matrix.PosSemidef.{0, 0} (Milne.bobWeighted M K)
+'Milne.bobWeighted_psd' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+Milne.canonicalize_reconstruction : ∀ (M : Milne.CMatrix) (hM : Milne.Density M),
+  Ne.{1} (Matrix.det.{0, 0} (Milne.partialB M)) 0 →
+    Eq.{1}
+      (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} (Milne.onBob (Milne.bobFilter M hM)) (Milne.canonicalize M hM))
+        (Milne.onBob (Milne.bobFilter M hM)))
+      M
+'Milne.canonicalize_reconstruction' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]

@@ -1,8 +1,11 @@
 # Exact three-setting correlation bounds at fixed steering centre
 
-This is an uncompiled submission candidate. It pins Lean 4.35.0 and Mathlib
-`56a005855ea17e0b0958f73ec801ae140b0a1679`. No successful compilation, Comparator check, or
-Palomar preflight is claimed for these bytes.
+A local source replay compiled all 18 proof modules and Solution with Lean 4.35.0
+and Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`. Challenge also compiled
+with its five deliberate theorem holes. The selected declarations and the audited
+square-root support lemmas use only the permitted foundational axioms. Full
+Palomar preflight and Comparator checks remain required. See the
+[local replay summary](verification/local-replay-summary.json).
 
 The selected theorems give the exact least upper bound of the squared Pauli
 correlation value for actual two-qubit density matrices at each computed steering
@@ -16,7 +19,7 @@ steering-ellipsoid interpretation use credited external physics correspondences.
 Lean does not optimize measurement settings or define local hidden-state models.
 
 [Challenge.lean](Challenge.lean) imports only Mathlib. It uses actual density
-matrices, partial traces, Pauli correlations, positive canonical filtering, the
+matrices, partial traces, Pauli correlations, positive canonical filtering through CFC.sqrt, the
 computed centre, and the explicit envelope. The short partial-trace positivity
 proof supports the positive square root. No correlation inequality is assumed.
 Its five deliberate theorem holes are separate from [Solution.lean](Solution.lean),

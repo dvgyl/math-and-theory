@@ -29,7 +29,7 @@ theorem psd_eq_zero_of_trace_zero {n : Type*} [Fintype n] [DecidableEq n]
       (0 : Matrix n n ℂ) := by
     ext i j
     simp [Matrix.diagonal_apply, Function.comp_def, he]
-  rw [hd, mul_zero, zero_mul]
+  rw [hd, map_zero]
 
 /-- A zero positive congruence forces its columns into the kernel. -/
 theorem psd_mul_eq_zero_of_congruence {n : Type*} [Fintype n] [DecidableEq n]
@@ -41,7 +41,7 @@ theorem psd_mul_eq_zero_of_congruence {n : Type*} [Fintype n] [DecidableEq n]
     have h := congrArg (fun X : Matrix n n ℂ => X j j) hz
     simpa only [Matrix.mul_apply, Matrix.conjTranspose_apply, Matrix.mulVec,
       dotProduct, Pi.star_apply, Matrix.zero_apply] using h
-  have hk := (hA.dotProduct_mulVec_zero_iff (fun k => D k j)).mp hquad
+  have hk := (hA.dotProduct_mulVec_zero_iff (x := fun k => D k j)).mp hquad
   have hi := congrFun hk i
   simpa only [Matrix.mul_apply, Matrix.mulVec, dotProduct, Pi.zero_apply,
     Matrix.zero_apply] using hi

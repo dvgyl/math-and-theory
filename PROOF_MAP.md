@@ -1,7 +1,8 @@
 # Formal statement map
 
-This map describes the mathematical source. The Lean 4.35.0 port is uncompiled.
-Earlier verification claims do not certify this candidate.
+This map describes the mathematical source. A local Lean 4.35.0 source replay
+compiled the complete proof. Full Palomar preflight remains required.
+Earlier verification claims do not certify the changed package.
 
 Every declaration below is in namespace `Milne`. The verification script checks the complete list in `audit_theorems.txt` and prints each transitive axiom set. The accepted foundations are exactly `propext`, `Classical.choice`, and `Quot.sound`.
 

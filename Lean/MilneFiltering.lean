@@ -92,7 +92,7 @@ theorem filtered_entangled_overlap_bound (M : CMatrix) (hM : Density M)
     intro i _
     simp [Complex.normSq_apply, Complex.mul_re, Complex.star_def]
   unfold overlap
-  simp only [Matrix.sub_mulVec, Matrix.smul_mulVec_assoc, Matrix.one_mulVec,
+  simp only [Matrix.sub_mulVec, Matrix.smul_mulVec, Matrix.one_mulVec,
     dotProduct_sub, dotProduct_smul, smul_eq_mul, Complex.sub_re, Complex.mul_re,
     Complex.ofReal_re, Complex.ofReal_im, zero_mul, sub_zero, hdot,
     mul_one] at h

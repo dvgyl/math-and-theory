@@ -200,7 +200,7 @@ theorem unitary_column_normSq {n : Type*} [Fintype n] [DecidableEq n]
     (U : Matrix.unitaryGroup n ℂ) (i : n) :
     normSq (fun j => U j i) = 1 := by
   have h := congrArg (fun A : Matrix n n ℂ => (A i i).re)
-    (unitary.coe_star_mul_self U)
+    (Unitary.coe_star_mul_self U)
   simpa [Matrix.mul_apply, Matrix.star_eq_conjTranspose, Matrix.conjTranspose_apply,
     Complex.mul_re, Complex.normSq_apply, normSq, pow_two] using h
 
@@ -282,8 +282,8 @@ theorem center_le_one (M : CMatrix) (hM : Density M) : center M ≤ 1 := by
 theorem trace_eq_eigenvalue_sum {n : Type*} [Fintype n] [DecidableEq n]
     {M : Matrix n n ℂ} (hM : M.IsHermitian) :
     (Matrix.trace M).re = ∑ i, hM.eigenvalues i := by
-  conv_lhs => rw [hM.spectral_theorem]
-  rw [Matrix.trace_mul_cycle, unitary.coe_star_mul_self, one_mul]
+  conv_lhs => rw [hM.spectral_theorem, Unitary.conjStarAlgAut_apply]
+  rw [Matrix.trace_mul_cycle, Unitary.coe_star_mul_self, one_mul]
   simp [Matrix.trace_diagonal]
 
 theorem trace_sq_eq_eigenvalue_sq_sum {n : Type*} [Fintype n] [DecidableEq n]
@@ -291,7 +291,7 @@ theorem trace_sq_eq_eigenvalue_sq_sum {n : Type*} [Fintype n] [DecidableEq n]
     (Matrix.trace (M*M)).re = ∑ i, (hM.eigenvalues i)^2 := by
   let U : Matrix n n ℂ := hM.eigenvectorUnitary
   let D : Matrix n n ℂ := Matrix.diagonal (RCLike.ofReal ∘ hM.eigenvalues)
-  have hu : star U * U = (1 : Matrix n n ℂ) := unitary.coe_star_mul_self hM.eigenvectorUnitary
+  have hu : star U * U = (1 : Matrix n n ℂ) := Unitary.coe_star_mul_self hM.eigenvectorUnitary
   have hs : M = U * D * star U := hM.spectral_theorem
   have hsq : M*M = U*(D*D)*star U := by
     rw [hs]

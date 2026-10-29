@@ -28,14 +28,16 @@ sources:
     license: Apache-2.0
     note: >-
       The complete manuscript and proof are included. This source predates the
-      uncompiled module-system and dependency port. The manuscript credits Milne
+      module-system and dependency port. The manuscript credits Milne
       and collaborators, Ducuara and collaborators, Bravyi, and Costa and Angelo.
       Canonical filtering, canonical spectral bounds, and the maximally obese
       witness family are credited prior ingredients. Priority is not certified.
 status:
   scope: >-
-    This is an uncompiled candidate for Lean 4.35.0 and the pinned Mathlib revision.
-    No successful port verification is claimed. Challenge imports only Mathlib.
+    A local Lean 4.35.0 source replay compiled all 18 proof modules and Solution
+    with trust level zero. The selected and square-root support declarations
+    passed a separate permitted-axiom audit. Full preflight and Comparator
+    checks remain required. Challenge imports only Mathlib.
     It copies the exact density, partial trace, Pauli correlation, positive
     canonical filter, computed centre, piecewise envelope, and spectrum definitions.
     A short partial-trace positivity lemma supplies the proof argument used by
@@ -68,29 +70,31 @@ fidelity:
     define local hidden-state models, or characterize all steerable states. The
     centre includes the singular marginal case. The related fully entangled
     fraction maximum remains in the proof package but is not a separate selected
-    Challenge target. No proof mathematics changed in this uncompiled port.
+    Challenge target. The square-root API now uses CFC.sqrt on the same Bob
+    marginal sum. Mechanical API repairs preserve the selected theorem headers
+    and domains. The local direct Lean replay passed. Full preflight is pending.
 review:
-  status: Not peer reviewed. The candidate is uncompiled.
+  status: Not peer reviewed. Locally compiled; full preflight is pending.
 alignment:
   namespace: Milne
   statements:
     - source: Exact least upper bound at the computed centre
       lean: Milne.steeringEnvelope_isLUB
       module: Solution
-      status: uncompiled
+      status: Locally compiled; full preflight is pending.
     - source: Attainment below the threshold
       lean: Milne.all_states_envelope_attained
       module: Solution
-      status: uncompiled
+      status: Locally compiled; full preflight is pending.
     - source: Nonattainment on the interior flat branch
       lean: Milne.no_maximizer_on_flat_branch
       module: Solution
-      status: uncompiled
+      status: Locally compiled; full preflight is pending.
     - source: Attained endpoint at centre one
       lean: Milne.steeringEndpoint_isGreatest
       module: Solution
-      status: uncompiled
+      status: Locally compiled; full preflight is pending.
     - source: Threshold for the specified three-setting expression
       lean: Milne.three_setting_violation_possible_iff
       module: Solution
-      status: uncompiled
+      status: Locally compiled; full preflight is pending.
