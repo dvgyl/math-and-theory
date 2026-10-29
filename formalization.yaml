@@ -1,0 +1,93 @@
+version: v0.4
+project:
+  name: The exact last-gradient bound for constant-step gradient descent in the strongly convex case
+  description: >-
+    The final actual gradient has the stated exact bound for every finite horizon
+    on a complete real inner-product space. The step and curvature parameters
+    include their closed boundaries. Actual one-dimensional functions attain
+    the normalized bound with L = R = 1.
+  authors:
+    - Dev D. Goyal
+  responsible_maintainers:
+    - Dev D. Goyal
+  license: Apache-2.0
+classification:
+  arxiv:
+    - math.OC
+  msc2020:
+    - 90C25
+    - 90C30
+sources:
+  - title: The exact last-gradient bound for constant-step gradient descent in the strongly convex case
+    type: original-proof
+    authors:
+      - Dev D. Goyal
+    id: https://github.com/dvgyl/math-and-theory/blob/a6574b1bf6a591d81c3314d5333fc5da26712d6b/papers/mathematics/strong-gradient/manuscript.pdf
+    relationship: other
+    license: Apache-2.0
+    note: >-
+      The manuscript and complete proof sources are included. The linked version
+      records the source before this uncompiled module-system and dependency port.
+      It does not certify the changed source bytes. Priority is not certified.
+  - title: thg-gradient-curve
+    type: other
+    authors:
+      - J. D. Jones
+    id: https://github.com/JD-Jones-ASES/thg-gradient-curve/tree/134788107eb28be0459555383a482a350bc953a4
+    relationship: background
+    license: MIT
+    author_endorsement: not-contacted
+    note: >-
+      Selected analytic, finite-sum, and clipped-gradient infrastructure is adapted
+      from this source. Original notices remain in the file headers and
+      lean/THIRD_PARTY_LICENSE. Taylor, Hendrickx, and Glineur supplied the rate
+      formula and sharp examples. Chikhi and Jones supplied certificate antecedents.
+      Jones established the complete smooth-convex curve.
+status:
+  scope: >-
+    This is an uncompiled candidate for Lean 4.35.0 and the pinned Mathlib revision.
+    No successful port verification is claimed. The selected upper-bound statement
+    assumes ordinary strong convexity, actual gradients, a Lipschitz gradient,
+    an actual global minimizer, and the stated gradient-descent recurrence.
+    It has no interpolation oracle or certificate hypothesis. The attainment
+    statement is normalized to L = R = 1. Challenge has two deliberate theorem
+    holes. Solution does not import Challenge.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+automation:
+  methods:
+    - method: autonomous
+      tool_setup: Autonomous research, proofs, formalization, and manuscript preparation.
+    - method: agent
+      framework: Codex
+      tool_setup: Prepared this uncompiled submission candidate from the recorded source.
+  notes: >-
+    This is fully autonomous agentic research. Automated systems produced the
+    research, proofs, formalization, and manuscript preparation. Dev D. Goyal
+    is responsible for publication. No expert validation or peer review is claimed.
+    This submission candidate was prepared autonomously in Codex. The original
+    disclosure does not identify the research models. No model history is inferred.
+fidelity:
+  divergences: >-
+    The general-L upper bound is selected without changing its mathematical
+    statement. Attainment is selected only at L = R = 1. The manuscript proves
+    arbitrary-scale attainment for L > 0 and R > 0 by conventional rescaling.
+    That rescaling is not a separate Lean theorem. The dependency and module
+    port has not been compiled. No mathematical proof repair was attempted.
+review:
+  status: Not peer reviewed. The port is uncompiled.
+alignment:
+  namespace: THGStrong
+  statements:
+    - source: Actual-function final-gradient upper bound
+      lean: THGStrong.taylor_hendrickx_glineur_conjecture3
+      module: Solution
+      status: uncompiled
+    - source: Actual one-dimensional attainment at L = R = 1
+      lean: THGStrong.Sharpness.attain_rate
+      module: Solution
+      status: uncompiled
