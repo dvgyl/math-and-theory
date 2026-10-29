@@ -1,7 +1,7 @@
 import Lake
 open Lake DSL
 
-package «universal-embezzlement» where
+package universalEmbezzlement where
   moreLeanArgs := #["-j1"]
 
 require mathlib from git
