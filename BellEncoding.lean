@@ -268,14 +268,16 @@ theorem amplify_encode (N : Matrix A A ℂ →ₗ[ℂ] Matrix A A ℂ)
     (Φ : I → Matrix (A × A) (A × A) ℂ) (X : I → Matrix S S ℂ) :
     amplify N (encode Φ X) = encode (fun i => amplify N (Φ i)) X := by
   ext p q
-  have hs : (fun a b => encode Φ X (p.1,a) (q.1,b)) =
-      ∑ i, X i p.1.1 q.1.1 • (fun a b => Φ i (p.1.2,a) (q.1.2,b)) := by
+  let inputBlock : Matrix A A ℂ := fun a b => encode Φ X (p.1,a) (q.1,b)
+  let bellBlock (i : I) : Matrix A A ℂ := fun a b => Φ i (p.1.2,a) (q.1.2,b)
+  have hs : inputBlock = ∑ i, X i p.1.1 q.1.1 • bellBlock i := by
     ext a b
-    simp only [encode_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
-  change N (fun a b => encode Φ X (p.1,a) (q.1,b)) p.2 q.2 = _
+    simp only [Matrix.sum_apply, Matrix.smul_apply]
+    simp only [inputBlock, bellBlock, encode_apply, smul_eq_mul]
+  change N inputBlock p.2 q.2 = _
   rw [hs, map_sum]
-  simp only [map_smul, Matrix.sum_apply, Matrix.smul_apply, smul_eq_mul,
-    encode_apply, amplify]
+  simp only [map_smul, Matrix.sum_apply, Matrix.smul_apply, smul_eq_mul]
+  simp only [encode_apply, amplify, bellBlock]
 
 theorem amplify_encode_affine (N : Matrix A A ℂ →ₗ[ℂ] Matrix A A ℂ)
     (Φ : I → Matrix (A × A) (A × A) ℂ) (X : I → Matrix S S ℂ)
@@ -296,10 +298,12 @@ theorem amplify_depolarizing [Fintype S] [DecidableEq S] (N : QuantumChannel A A
     amplify N.map X = ((1+s)/(Fintype.card A : ℝ)) •
       (partialTraceMatrix X ⊗ₖ (1 : Matrix A A ℂ)) - s • X := by
   ext p q
-  change N.map (fun a b => X (p.1,a) (q.1,b)) p.2 q.2 = _
+  let Xpq : Matrix A A ℂ := fun a b => X (p.1,a) (q.1,b)
+  change N.map Xpq p.2 q.2 = _
   rw [hN]
   simp only [Matrix.sub_apply, Matrix.smul_apply, Matrix.trace, Matrix.diag,
-    partialTraceMatrix, Matrix.kroneckerMap_apply, smul_eq_mul]
+    partialTraceMatrix, Matrix.kroneckerMap_apply, smul_eq_mul, Xpq]
+  rfl
 
 theorem amplify_depolarizing_bell (N : QuantumChannel A A) (s : ℝ)
     (hN : ∀ X, N.map X = ((1+s)/(Fintype.card A : ℝ)) •

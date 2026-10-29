@@ -37,18 +37,18 @@ theorem positiveTrace_congr {n : Type} [Fintype n] [DecidableEq n]
   cases h
   rfl
 
-def matrixUnit (i j : Q) : Matrix Q Q ℂ := Matrix.stdBasisMatrix i j 1
+def matrixUnit (i j : Q) : Matrix Q Q ℂ := Matrix.single i j 1
 
 theorem matrixUnit_diag_positive (i : Q) : (matrixUnit i i).PosSemidef := by
   have heq : matrixUnit i i = (basisDensity i).mat := by
     ext a b
     fin_cases i <;> fin_cases a <;> fin_cases b <;>
-      norm_num [matrixUnit, Matrix.stdBasisMatrix, basisDensity, Matrix.diagonal]
+      norm_num [matrixUnit, Matrix.single, basisDensity, Matrix.diagonal]
   rw [heq]
   exact (basisDensity i).positive
 
 theorem matrixUnit_diag_trace (i : Q) : (matrixUnit i i).trace = 1 := by
-  fin_cases i <;> norm_num [matrixUnit, Matrix.stdBasisMatrix, Matrix.trace, Fin.sum_univ_succ]
+  fin_cases i <;> norm_num [matrixUnit, Matrix.single, Matrix.trace, Fin.sum_univ_succ]
 
 def phaseVector (s t : ℝ) (i : Input) : ℂ :=
   if i = (false, 0) then (s : ℂ) else if i = (true, 1) then (t : ℂ) else 0
@@ -63,7 +63,12 @@ theorem phaseOuter_positive (s t : ℝ) : (phaseOuter s t).PosSemidef := by
     split_ifs <;> simp [Complex.star_def]
   have heq : phaseOuter s t = V * Vᴴ := by
     ext i j
-    simp [phaseOuter, V, Matrix.mul_apply, Matrix.conjTranspose_apply, hv]
+    change phaseVector s t i * phaseVector s t j = (V * Vᴴ) i j
+    rw [Matrix.mul_apply]
+    simp only [Fintype.sum_unique, Matrix.conjTranspose_apply]
+    change phaseVector s t i * phaseVector s t j =
+      phaseVector s t i * star (phaseVector s t j)
+    rw [hv]
   rw [heq]
   exact Matrix.posSemidef_self_mul_conjTranspose V
 
@@ -82,7 +87,7 @@ theorem phaseOuter_blocks (s t : ℝ) : phaseOuter s t =
   ext ⟨r,a⟩ ⟨w,b⟩
   cases r <;> cases w <;> fin_cases a <;> fin_cases b <;>
     simp [phaseOuter, phaseVector, pairBlocks, pairEquiv, Matrix.submatrix_apply,
-      Matrix.fromBlocks, matrixUnit, Matrix.stdBasisMatrix, Prod.ext_iff,
+      Matrix.fromBlocks, matrixUnit, Matrix.single, Prod.ext_iff,
       Matrix.smul_apply, Complex.real_smul] <;> ring
 
 variable {B : Type} [Fintype B] [DecidableEq B]
@@ -142,7 +147,7 @@ theorem phase_difference_blocks (γ u : ℝ) : difference γ (phaseRho u) (phase
   cases r <;> cases s <;> fin_cases a <;> fin_cases b <;>
     simp [difference, phaseRho, phaseSigma, phaseOuter, phaseVector, pairBlocks,
       pairEquiv, Matrix.submatrix_apply, Matrix.fromBlocks, matrixUnit,
-      Matrix.stdBasisMatrix, Prod.ext_iff, Matrix.smul_apply, Complex.real_smul] <;>
+      Matrix.single, Prod.ext_iff, Matrix.smul_apply, Complex.real_smul] <;>
     field_simp [hd] <;> ring
 
 theorem phase_output_blocks (N : QuantumChannel Q B) (γ u : ℝ) :

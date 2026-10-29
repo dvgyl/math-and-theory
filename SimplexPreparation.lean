@@ -90,9 +90,10 @@ theorem prepK_complete (a b : ℂ)
   · simp [column, Fintype.sum_option, flag, Matrix.one_apply]
   · simp [column, Fintype.sum_option, flag, Matrix.one_apply]
   · convert hb using 1
-    simp [column, Fintype.sum_option, simplex, Matrix.one_apply, apply_ite,
-      mul_assoc, ← Finset.mul_sum, ← Finset.sum_mul, two_mul]
-    ring
+    · simp [column, Fintype.sum_option, simplex, Matrix.one_apply, apply_ite,
+        mul_assoc, ← Finset.mul_sum, ← Finset.sum_mul, two_mul]
+      ring
+    · simp [Matrix.one_apply]
 
 /-- Constructor before choosing the positive normalization constants. -/
 def channelWith (a b : ℂ)
@@ -105,10 +106,10 @@ theorem cross_partialTrace (a b : ℂ)
     (ha : ((Fintype.card m : ℂ)+1) * (star a * a) = 1)
     (hb : (2 * Fintype.card m : ℂ) * (star b * b) = 1) :
     CMICounterexample.partialTraceMatrix
-      ((channelWith a b ha hb).map (Matrix.stdBasisMatrix (0 : Q) (1 : Q) (1 : ℂ))) = 0 := by
+      ((channelWith a b ha hb).map (Matrix.single (0 : Q) (1 : Q) (1 : ℂ))) = 0 := by
   ext r s
   change (∑ j : Label m, (∑ i : Label m,
-    prepK a b i * Matrix.stdBasisMatrix (0 : Q) (1 : Q) (1 : ℂ) * (prepK a b i)ᴴ)
+    prepK a b i * Matrix.single (0 : Q) (1 : Q) (1 : ℂ) * (prepK a b i)ᴴ)
       (r,j) (s,j)) = 0
   simp only [Matrix.sum_apply]
   simp_rw [KrausSaturation.matrixUnit_sandwich_entry]
@@ -149,7 +150,7 @@ def channel (m : Type) [Fintype m] [DecidableEq m] [Nonempty m] :
 
 theorem channel_cross_partialTrace [Nonempty m] :
     CMICounterexample.partialTraceMatrix
-      ((channel m).map (Matrix.stdBasisMatrix (0 : Q) (1 : Q) (1 : ℂ))) = 0 :=
+      ((channel m).map (Matrix.single (0 : Q) (1 : Q) (1 : ℂ))) = 0 :=
   cross_partialTrace (smallCoeff m) (largeCoeff m) smallCoeff_normalized largeCoeff_normalized
 
 section Decoder
@@ -296,8 +297,8 @@ theorem phaseK_sandwich_entry [Fintype m] [Fintype B] [DecidableEq B] [Fintype J
     (phaseK a b V (i,j) * X * (phaseK a b V (i,j))ᴴ) (r,x) (s,y) =
       (columnMatrix a b i * X * (columnMatrix a b i)ᴴ) r s *
         (V i x j * star (V i y j)) := by
-  simp only [Matrix.mul_apply, Matrix.conjTranspose_apply, phaseK,
-    columnMatrix, star_mul', Finset.sum_mul]
+  simp only [Matrix.mul_apply, Matrix.conjTranspose_apply]
+  simp only [phaseK, columnMatrix, star_mul', Finset.sum_mul]
   apply Finset.sum_congr rfl
   intro q _
   apply Finset.sum_congr rfl
@@ -357,7 +358,7 @@ theorem preparedChannel_natural [Nonempty m]
 
 theorem column_cross_sum (a b : ℂ) (r s : Ref m) :
     (∑ i : Label m, (columnMatrix a b i *
-      Matrix.stdBasisMatrix (0 : Q) (1 : Q) (1 : ℂ) * (columnMatrix a b i)ᴴ) r s) = 0 := by
+      Matrix.single (0 : Q) (1 : Q) (1 : ℂ) * (columnMatrix a b i)ᴴ) r s) = 0 := by
   simp_rw [KrausSaturation.matrixUnit_sandwich_entry]
   cases r <;> cases s <;>
     simp [columnMatrix, column, flag, simplex, Fintype.sum_option, apply_ite,
@@ -371,7 +372,7 @@ theorem prepared_cross_marginal [Nonempty m]
     (hT : ∀ i, CMICounterexample.partialTraceMatrix (V i * (V i)ᴴ) = T)
     (r s : Ref m) (x y : S) :
     (∑ z : A, ((preparedChannel V hV).map
-      (Matrix.stdBasisMatrix (0 : Q) (1 : Q) (1 : ℂ))) (r,(x,z)) (s,(y,z))) = 0 := by
+      (Matrix.single (0 : Q) (1 : Q) (1 : ℂ))) (r,(x,z)) (s,(y,z))) = 0 := by
   simp_rw [preparedChannel_map_entry]
   rw [Finset.sum_comm]
   simp_rw [← Finset.mul_sum]
@@ -450,16 +451,17 @@ theorem prepared_completeCoefficient_eq_one [Nonempty m]
 end Prepared
 
 section DensityPrepared
+open scoped MatrixOrder
 variable {B : Type} [Fintype B] [DecidableEq B]
 
 def densityFactors (ρ : Label m → Density B) (i : Label m) : Matrix B B ℂ :=
-  (ρ i).positive.sqrt
+  CFC.sqrt (ρ i).mat
 
 omit [Fintype m] [DecidableEq m] in
 @[simp] theorem densityFactors_product [Fintype m] [DecidableEq m] (ρ : Label m → Density B) (i : Label m) :
     densityFactors ρ i * (densityFactors ρ i)ᴴ = (ρ i).mat := by
-  rw [densityFactors, (ρ i).positive.posSemidef_sqrt.1.eq,
-    (ρ i).positive.sqrt_mul_self]
+  have hroot : (CFC.sqrt (ρ i).mat).PosSemidef := (CFC.sqrt_nonneg (ρ i).mat).posSemidef
+  rw [densityFactors, hroot.1.eq, CFC.sqrt_mul_sqrt_self _ (ρ i).positive.nonneg]
 
 theorem densityFactors_normalized (ρ : Label m → Density B) :
     FactorNormalized (densityFactors ρ) := by
@@ -504,7 +506,7 @@ theorem preparedDensity_cross_marginal [Nonempty m]
     (hT : ∀ i, CMICounterexample.partialTraceMatrix (ρ i).mat = T)
     (r s : Ref m) (x y : S) :
     (∑ z : A, ((preparedDensityChannel ρ).map
-      (Matrix.stdBasisMatrix (0 : Q) (1 : Q) (1 : ℂ))) (r,(x,z)) (s,(y,z))) = 0 := by
+      (Matrix.single (0 : Q) (1 : Q) (1 : ℂ))) (r,(x,z)) (s,(y,z))) = 0 := by
   apply prepared_cross_marginal (densityFactors ρ) (densityFactors_normalized ρ) T
   intro i
   simpa only [densityFactors_product] using hT i
@@ -513,10 +515,10 @@ theorem preparedDensity_intertwiner [Nonempty m]
     (ρ : Label m → Density B)
     (hzero : ∀ w : B → ℂ, (∀ i, w ∈ LinearMap.range (ρ i).mat.toLin') → w = 0) :
     ∃ D : Matrix (Ref m × B) (Ref m × B) ℂ,
-      D * (preparedDensityChannel ρ).map (Matrix.stdBasisMatrix (1 : Q) (1 : Q) 1) * Dᴴ =
-          (preparedDensityChannel ρ).map (Matrix.stdBasisMatrix (0 : Q) (0 : Q) 1) ∧
-      (preparedDensityChannel ρ).map (Matrix.stdBasisMatrix (0 : Q) (1 : Q) 1) =
-          D * (preparedDensityChannel ρ).map (Matrix.stdBasisMatrix (1 : Q) (1 : Q) 1) := by
+      D * (preparedDensityChannel ρ).map (Matrix.single (1 : Q) (1 : Q) 1) * Dᴴ =
+          (preparedDensityChannel ρ).map (Matrix.single (0 : Q) (0 : Q) 1) ∧
+      (preparedDensityChannel ρ).map (Matrix.single (0 : Q) (1 : Q) 1) =
+          D * (preparedDensityChannel ρ).map (Matrix.single (1 : Q) (1 : Q) 1) := by
   have hz : ∀ w : B → ℂ,
       (∀ i, w ∈ LinearMap.range (densityFactors ρ i).toLin') → w = 0 := by
     intro w hw

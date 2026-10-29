@@ -59,7 +59,7 @@ theorem choi_residual_pos_iff (N : QuantumChannel A B) (P : Matrix B B ℂ) :
     have heq : amplify (GeneralKraus.krausMap L) X =
         amplify N.map X - partialTraceMatrix X ⊗ₖ P := by
       ext r s
-      change (GeneralKraus.krausMap L (fun a b => X (r.1,a) (s.1,b))) r.2 s.2 = _
+      change (GeneralKraus.krausMap L (GeneralKraus.block X r.1 s.1)) r.2 s.2 = _
       rw [hmap]
       rfl
     rwa [heq] at hcp

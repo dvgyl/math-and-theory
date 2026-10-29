@@ -226,12 +226,14 @@ lemma adChannel_zero_trace (X : CMat Q Q) (h : X.trace = 0) :
 theorem adAmplified_mixture {m : Type*} [Fintype m] [DecidableEq m]
     (X : CMat (m×Q) (m×Q)) (h : partialTraceQ X = 0) :
     adAmplified X = (3/8:ℝ) • X - (1/8:ℝ) • conjugateQ pauliZ X := by
-  ext r c
-  have ht : (blockQ X r.1 c.1).trace = 0 := by
-    exact congrArg (fun M : CMat m m => M r.1 c.1) h
-  have hm := congrArg (fun M : CMat Q Q => M r.2 c.2)
-    (adChannel_zero_trace (blockQ X r.1 c.1) ht)
-  simpa only [adAmplified, Matrix.sub_apply, Matrix.smul_apply, conjugateQ_entry, blockQ] using hm
+  ext ⟨r, a⟩ ⟨c, b⟩
+  have ht : (blockQ X r c).trace = 0 := by
+    exact congrArg (fun M : CMat m m => M r c) h
+  have hm := congrArg (fun M : CMat Q Q => M a b)
+    (adChannel_zero_trace (blockQ X r c) ht)
+  change adChannel (blockQ X r c) a b = _
+  have hentry : blockQ X r c a b = X (r, a) (c, b) := rfl
+  simpa only [Matrix.sub_apply, Matrix.smul_apply, conjugateQ_entry, hentry] using hm
 
 end
 end ADSeparation

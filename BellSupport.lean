@@ -199,12 +199,8 @@ def outer (v : B → ℂ) : Matrix B B ℂ := fun r c => v r * star (v c)
 
 omit [DecidableEq B] in
 theorem outer_posSemidef [DecidableEq B] (v : B → ℂ) : (outer v).PosSemidef := by
-  let V : Matrix B Unit ℂ := fun r _ => v r
-  have h : outer v = V * Vᴴ := by
-    ext r c
-    simp [outer, V, Matrix.mul_apply, Matrix.conjTranspose_apply]
-  rw [h]
-  exact Matrix.posSemidef_self_mul_conjTranspose V
+  change (KrausSupport.rankOne v).PosSemidef
+  exact KrausSupport.rankOne_posSemidef v
 
 omit [DecidableEq A] in
 theorem partialTrace_outer_matrix [DecidableEq A] (U : Matrix A A ℂ) :
@@ -288,10 +284,13 @@ theorem amplified_bell_gram (L : K → Matrix B A ℂ) (U : Matrix A A ℂ) :
   rw [bellMatrix, amplify_real_smul]
   congr 1
   ext p q
+  let Xpq : Matrix A A ℂ := fun a b => U p.1 a * star (U q.1 b)
+  change GeneralKraus.krausMap L Xpq p.2 q.2 = _
+  rw [GeneralKraus.krausMap_apply]
   conv_rhs => rw [Matrix.mul_apply]
   simp only [Matrix.conjTranspose_apply, rotatedKraus_apply]
-  simp only [amplify, GeneralKraus.krausMap_apply, Matrix.sum_apply, Matrix.mul_apply,
-    outer, Matrix.conjTranspose_apply,
+  simp only [Matrix.sum_apply, Matrix.mul_apply, Matrix.conjTranspose_apply]
+  simp only [Xpq, outer,
     Complex.star_def, map_sum, map_mul, Finset.sum_mul, Finset.mul_sum]
   apply Finset.sum_congr rfl
   intro i _
@@ -309,7 +308,7 @@ theorem bell_output_range_le_rotated (L : K → Matrix B A ℂ) (U : Matrix A A 
   let V := liftReference (B := B) U * KrausSupport.krausVectors L
   refine ⟨(Fintype.card A : ℝ)⁻¹ • (Vᴴ *ᵥ x), ?_⟩
   change V *ᵥ ((Fintype.card A : ℝ)⁻¹ • (Vᴴ *ᵥ x)) = v
-  rw [Matrix.mulVec_smul, Matrix.mulVec_mulVec, ← Matrix.smul_mulVec_assoc]
+  rw [Matrix.mulVec_smul, Matrix.mulVec_mulVec, ← Matrix.smul_mulVec]
   change ((Fintype.card A : ℝ)⁻¹ • (V * Vᴴ)) *ᵥ x = v
   rw [← amplified_bell_gram L U]
   exact hx
@@ -326,7 +325,8 @@ theorem bell_output_common_range_zero [Nonempty A] (N : QuantumChannel A B)
       (∀ a, fiber a w ∈ LinearMap.range (KrausSupport.krausVectors L).mulVecLin) → w = 0 := by
     intro w hw
     apply KrausSupport.product_slice_zero_of_no_replacer N L hL hN w
-    simpa only [fiber, KrausSupport.fiber, Matrix.toLin'_apply'] using hw
+    change ∀ a, fiber a w ∈ (KrausSupport.krausVectors L).mulVecLin.range
+    exact hw
   apply common_rotated_range_zero (KrausSupport.krausVectors L) hproduct v
   intro a b e
   apply bell_output_range_le_rotated L (bellUnitary a b e)

@@ -1,6 +1,7 @@
 module
 public import KrausChannelSaturation
 public import Mathlib.LinearAlgebra.Matrix.Kronecker
+public import Mathlib.Analysis.Matrix.Order
 
 
 @[expose] public section
@@ -145,10 +146,7 @@ theorem kronecker_hermitian (X : Matrix n n ℂ) (Y : Matrix m m ℂ)
 
 theorem kronecker_positive (X : Matrix n n ℂ) (Y : Matrix m m ℂ)
     (hX : X.PosSemidef) (hY : Y.PosSemidef) : (X ⊗ₖ Y).PosSemidef := by
-  have h := Matrix.posSemidef_self_mul_conjTranspose (hX.sqrt ⊗ₖ hY.sqrt)
-  rw [kronecker_conjTranspose,hX.posSemidef_sqrt.1.eq,hY.posSemidef_sqrt.1.eq,
-    ← Matrix.mul_kronecker_mul,hX.sqrt_mul_self,hY.sqrt_mul_self] at h
-  exact h
+  exact hX.kronecker hY
 
 end
 end GeneralContraction

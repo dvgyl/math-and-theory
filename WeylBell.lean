@@ -134,7 +134,7 @@ theorem basis_left_inverse :
   · simp [hij,Matrix.one_apply]
 
 theorem projector_resolution : ∑ i : A d × A d, projector i = 1 := by
-  have h := Matrix.mul_eq_one_comm.mp (basis_left_inverse (d:=d))
+  have h := mul_eq_one_comm.mp (basis_left_inverse (d:=d))
   rw [← h]
   ext p q
   simp only [Matrix.sum_apply, projector, Matrix.smul_apply, Matrix.mul_apply,
@@ -153,7 +153,7 @@ theorem framePhase_unit (i : A d × A d) : star (framePhase i) * framePhase i = 
 theorem framePhase_sum (hd : 2 ≤ d) : ∑ i : A d × A d, framePhase i = 0 := by
   have h1 : (1 : A d) ≠ 0 := by
     intro h
-    have hh : d ∣ 1 := (ZMod.natCast_zmod_eq_zero_iff_dvd 1 d).mp (by simpa using h)
+    have hh : d ∣ 1 := (ZMod.natCast_eq_zero_iff 1 d).mp (by simpa using h)
     have he := Nat.eq_one_of_dvd_one hh
     omega
   have hs := phase_sum_mul (d:=d) 1

@@ -102,8 +102,11 @@ theorem harmonic_pair_bound (m s x : ℝ) (hm : 4 ≤ m) (hs : 0 < s)
       (s*(1+s)*(1-(m-1)*s)*(2*x-m)^2) /
         ((1-(m-3)*s)*denom m s x*denom m s (m-x)) := by
     unfold harmonic spread
-    field_simp
+    field_simp [hd.ne', he.ne', hc'.ne']
     unfold denom
+    ring_nf
+    have hcn : 1 - m * s + s * 3 ≠ 0 := by nlinarith [hc']
+    field_simp [hcn]
     ring
   have hn : 0 ≤ (s*(1+s)*(1-(m-1)*s)*(2*x-m)^2) /
       ((1-(m-3)*s)*denom m s x*denom m s (m-x)) :=

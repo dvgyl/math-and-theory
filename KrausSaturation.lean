@@ -32,7 +32,7 @@ theorem posSemidef_trace_domination (P : Matrix B B ℂ) (hP : P.PosSemidef) :
   let L : Matrix B B ℂ := Matrix.diagonal (Complex.ofReal ∘ hP.1.eigenvalues)
   let Q : Matrix B B ℂ := Matrix.diagonal
     (fun i => ((P.trace.re - hP.1.eigenvalues i : ℝ) : ℂ))
-  have hU : U * Uᴴ = 1 := unitary.coe_mul_star_self hP.1.eigenvectorUnitary
+  have hU : U * Uᴴ = 1 := Unitary.coe_mul_star_self hP.1.eigenvectorUnitary
   have hspec : P = U * L * Uᴴ := hP.1.spectral_theorem
   have htrace : ∑ i, hP.1.eigenvalues i = P.trace.re := by
     have h := congrArg Complex.re (trace_eq_sum_hermitian_eigenvalues P hP.1)
@@ -300,20 +300,20 @@ omit [Fintype B] [DecidableEq B] in
 /-- A matrix-unit sandwich is the outer product of the selected Kraus columns. -/
 theorem matrixUnit_sandwich_entry [Fintype B] [DecidableEq B] (L K : Matrix B (Fin 2) ℂ)
     (i j : Fin 2) (b c : B) :
-    (L * Matrix.stdBasisMatrix i j (1 : ℂ) * Kᴴ) b c = L b i * star (K c j) := by
+    (L * Matrix.single i j (1 : ℂ) * Kᴴ) b c = L b i * star (K c j) := by
   classical
   fin_cases i <;> fin_cases j <;>
-    simp [Matrix.mul_apply, Matrix.stdBasisMatrix, Matrix.conjTranspose_apply]
+    simp [Matrix.mul_apply, Matrix.single, Matrix.conjTranspose_apply]
 
 theorem kraus_single_cross (D : Matrix B B ℂ) (K : Matrix B (Fin 2) ℂ)
     (hD : D *ᵥ (fun b => K b 1) = fun b => K b 0) :
-    D * (K * Matrix.stdBasisMatrix (1 : Fin 2) (1 : Fin 2) (1 : ℂ) * Kᴴ) =
-      K * Matrix.stdBasisMatrix (0 : Fin 2) (1 : Fin 2) (1 : ℂ) * Kᴴ := by
+    D * (K * Matrix.single (1 : Fin 2) (1 : Fin 2) (1 : ℂ) * Kᴴ) =
+      K * Matrix.single (0 : Fin 2) (1 : Fin 2) (1 : ℂ) * Kᴴ := by
   have hcol : ∀ b, (D * K) b 1 = K b 0 := by
     intro b
     exact congrFun hD b
-  have heq : D * (K * Matrix.stdBasisMatrix (1 : Fin 2) (1 : Fin 2) (1 : ℂ) * Kᴴ) =
-      (D * K) * Matrix.stdBasisMatrix (1 : Fin 2) (1 : Fin 2) (1 : ℂ) * Kᴴ := by
+  have heq : D * (K * Matrix.single (1 : Fin 2) (1 : Fin 2) (1 : ℂ) * Kᴴ) =
+      (D * K) * Matrix.single (1 : Fin 2) (1 : Fin 2) (1 : ℂ) * Kᴴ := by
     simp only [Matrix.mul_assoc]
   rw [heq]
   ext b c
@@ -321,13 +321,13 @@ theorem kraus_single_cross (D : Matrix B B ℂ) (K : Matrix B (Fin 2) ℂ)
 
 theorem kraus_single_quadratic (D : Matrix B B ℂ) (K : Matrix B (Fin 2) ℂ)
     (hD : D *ᵥ (fun b => K b 1) = fun b => K b 0) :
-    D * (K * Matrix.stdBasisMatrix (1 : Fin 2) (1 : Fin 2) (1 : ℂ) * Kᴴ) * Dᴴ =
-      K * Matrix.stdBasisMatrix (0 : Fin 2) (0 : Fin 2) (1 : ℂ) * Kᴴ := by
+    D * (K * Matrix.single (1 : Fin 2) (1 : Fin 2) (1 : ℂ) * Kᴴ) * Dᴴ =
+      K * Matrix.single (0 : Fin 2) (0 : Fin 2) (1 : ℂ) * Kᴴ := by
   have hcol : ∀ b, (D * K) b 1 = K b 0 := by
     intro b
     exact congrFun hD b
-  have heq : D * (K * Matrix.stdBasisMatrix (1 : Fin 2) (1 : Fin 2) (1 : ℂ) * Kᴴ) * Dᴴ =
-      (D * K) * Matrix.stdBasisMatrix (1 : Fin 2) (1 : Fin 2) (1 : ℂ) * (D * K)ᴴ := by
+  have heq : D * (K * Matrix.single (1 : Fin 2) (1 : Fin 2) (1 : ℂ) * Kᴴ) * Dᴴ =
+      (D * K) * Matrix.single (1 : Fin 2) (1 : Fin 2) (1 : ℂ) * (D * K)ᴴ := by
     simp only [Matrix.conjTranspose_mul, Matrix.mul_assoc]
   rw [heq]
   ext b c
@@ -338,10 +338,10 @@ theorem kraus_channel_intertwining (N : QuantumChannel (Fin 2) B)
     (K : ι → Matrix B (Fin 2) ℂ) (D : Matrix B B ℂ)
     (hrep : ∀ X, N.map X = ∑ i, K i * X * (K i)ᴴ)
     (hD : ∀ i, D *ᵥ (fun b => K i b 1) = fun b => K i b 0) :
-    D * N.map (Matrix.stdBasisMatrix (1 : Fin 2) (1 : Fin 2) (1 : ℂ)) * Dᴴ =
-        N.map (Matrix.stdBasisMatrix (0 : Fin 2) (0 : Fin 2) (1 : ℂ)) ∧
-      N.map (Matrix.stdBasisMatrix (0 : Fin 2) (1 : Fin 2) (1 : ℂ)) =
-        D * N.map (Matrix.stdBasisMatrix (1 : Fin 2) (1 : Fin 2) (1 : ℂ)) := by
+    D * N.map (Matrix.single (1 : Fin 2) (1 : Fin 2) (1 : ℂ)) * Dᴴ =
+        N.map (Matrix.single (0 : Fin 2) (0 : Fin 2) (1 : ℂ)) ∧
+      N.map (Matrix.single (0 : Fin 2) (1 : Fin 2) (1 : ℂ)) =
+        D * N.map (Matrix.single (1 : Fin 2) (1 : Fin 2) (1 : ℂ)) := by
   constructor
   · rw [hrep, hrep]
     simp only [Matrix.mul_sum, Matrix.sum_mul]

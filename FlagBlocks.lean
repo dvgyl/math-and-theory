@@ -33,9 +33,10 @@ theorem blockSum_hermitian [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq 
 
 theorem blockSum_posSemidef (A : Matrix m m ℂ) (B : Matrix n n ℂ)
     (hA : A.PosSemidef) (hB : B.PosSemidef) : (blockSum A B).PosSemidef := by
-  refine ⟨blockSum_hermitian A B hA.1 hB.1, ?_⟩
+  apply Matrix.PosSemidef.of_dotProduct_mulVec_nonneg (blockSum_hermitian A B hA.1 hB.1)
   intro x
-  have h := add_nonneg (hA.2 (x ∘ Sum.inl)) (hB.2 (x ∘ Sum.inr))
+  have h := add_nonneg (hA.dotProduct_mulVec_nonneg (x ∘ Sum.inl))
+    (hB.dotProduct_mulVec_nonneg (x ∘ Sum.inr))
   simpa only [blockSum, Matrix.fromBlocks_mulVec, Matrix.zero_mulVec,
     add_zero, zero_add, dotProduct, Fintype.sum_sum_type,
     Pi.star_apply, Function.comp_apply, Sum.elim_inl, Sum.elim_inr] using h
@@ -117,14 +118,15 @@ theorem traceNorm_blockSum_posSemidef (A : Matrix m m ℂ) (B : Matrix n n ℂ)
     (hA : A.IsHermitian) (hB : B.PosSemidef) :
     traceNorm (blockSum A B) (blockSum_hermitian A B hA hB.1) =
       traceNorm A hA + B.trace.re := by
-  rw [traceNorm_blockSum, traceNorm_eq_trace_of_posSemidef B hB]
+  rw [traceNorm_blockSum A B hA hB.1, traceNorm_eq_trace_of_posSemidef B hB]
 
 /-- A negative positive-semidefinite flag contributes the same trace. -/
 theorem traceNorm_blockSum_neg_posSemidef (A : Matrix m m ℂ) (B : Matrix n n ℂ)
     (hA : A.IsHermitian) (hB : B.PosSemidef) :
     traceNorm (blockSum A (-B)) (blockSum_hermitian A (-B) hA hB.1.neg) =
       traceNorm A hA + B.trace.re := by
-  rw [traceNorm_blockSum, traceNorm_neg B hB.1, traceNorm_eq_trace_of_posSemidef B hB]
+  rw [traceNorm_blockSum A (-B) hA hB.1.neg, traceNorm_neg B hB.1,
+    traceNorm_eq_trace_of_posSemidef B hB]
 
 omit [DecidableEq m] [DecidableEq n] in
 /-- Relabelling a finite orthonormal basis preserves the trace. -/
@@ -305,12 +307,7 @@ theorem scalarFlag_posSemidef (z : ℂ) (hz : 0 ≤ z) : (scalarFlag z).PosSemid
 
 theorem trace_nonneg_of_posSemidef (W : Matrix A A ℂ) (hW : W.PosSemidef) :
     0 ≤ W.trace := by
-  unfold Matrix.trace
-  apply Finset.sum_nonneg
-  intro i _
-  have h := hW.2 (Pi.single i 1)
-  simpa only [← Pi.single_star, star_one, Matrix.mulVec_single_one,
-    single_one_dotProduct, Matrix.transpose_apply, Matrix.diag_apply] using h
+  exact hW.trace_nonneg
 
 omit [Fintype R] [DecidableEq R] [DecidableEq A] in
 theorem partialTrace_flagMatrix [Fintype R] [DecidableEq R] [DecidableEq A] (X : Matrix (R × A) (R × A) ℂ) (W : Matrix A A ℂ) :
@@ -324,7 +321,7 @@ theorem traceNorm_flagMatrix_posSemidef (X : Matrix (R × A) (R × A) ℂ)
     (W : Matrix A A ℂ) (hX : X.IsHermitian) (hW : W.PosSemidef) :
     traceNorm (flagMatrix X W) (flagMatrix_hermitian X W hX hW.1) =
       traceNorm X hX + W.trace.re := by
-  rw [traceNorm_flagMatrix, traceNorm_eq_trace_of_posSemidef W hW]
+  rw [traceNorm_flagMatrix X W hX hW.1, traceNorm_eq_trace_of_posSemidef W hW]
 
 theorem traceNorm_partialTrace_flagMatrix_posSemidef
     (X : Matrix (R × A) (R × A) ℂ) (W : Matrix A A ℂ)
@@ -353,7 +350,8 @@ theorem traceNorm_flagMatrix_neg_posSemidef (X : Matrix (R × A) (R × A) ℂ)
     (W : Matrix A A ℂ) (hX : X.IsHermitian) (hW : W.PosSemidef) :
     traceNorm (flagMatrix X (-W)) (flagMatrix_hermitian X (-W) hX hW.1.neg) =
       traceNorm X hX + W.trace.re := by
-  rw [traceNorm_flagMatrix, traceNorm_neg W hW.1, traceNorm_eq_trace_of_posSemidef W hW]
+  rw [traceNorm_flagMatrix X (-W) hX hW.1.neg, traceNorm_neg W hW.1,
+    traceNorm_eq_trace_of_posSemidef W hW]
 
 theorem traceNorm_partialTrace_flagMatrix_neg_posSemidef
     (X : Matrix (R × A) (R × A) ℂ) (W : Matrix A A ℂ)

@@ -173,7 +173,7 @@ theorem rawDifference_traceNorm (u : ℝ) :
   · have h := traceNorm_sub_le_of_posSemidef (plusRaw u) (minusRaw u)
       (plusRaw_posSemidef u) (minusRaw_posSemidef u)
     rw [plusRaw_trace, minusRaw_trace] at h
-    simpa only [Complex.ofReal_re, two_mul] using h
+    simpa only [rawDifference, Complex.ofReal_re, two_mul] using h
   · have h := trace_mul_le_traceNorm_of_square_defect (rawDifference u)
       (rawDifference_hermitian u) inputSign inputSign_hermitian
       (by rw [inputSign_sq, sub_self]; exact Matrix.PosSemidef.zero)
@@ -236,7 +236,7 @@ theorem amplify_rawDifference (N : QuantumChannel Q Q) (s : ℝ)
       (X.trace • (1 : Matrix Q Q ℂ)) - s • X) (u : ℝ) :
     amplify N.map (rawDifference u) = outputMatrix s u := by
   ext p q
-  change N.map (fun a b => rawDifference u (p.1,a) (q.1,b)) p.2 q.2 = _
+  change N.map (GeneralKraus.block (rawDifference u) p.1 q.1) p.2 q.2 = _
   rw [hN]
   change ((1+s)/2 : ℝ) •
       (((partialTraceMatrix (rawDifference u)) p.1 q.1) * (1 : Matrix Q Q ℂ) p.2 q.2) -

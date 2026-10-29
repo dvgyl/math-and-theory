@@ -33,14 +33,26 @@ These facts do not imply attainment of every supremum.
 
 The active pins are Lean 4.35.0 and Mathlib revision
 `56a005855ea17e0b0958f73ec801ae140b0a1679`. The local proof sources use `module`,
-`public import`, and exposed public sections. Two removed Mathlib import paths
-are updated to their matrix-library locations. The mathematical proof bodies
-are otherwise retained.
+`public import`, and exposed public sections. The port updates removed import
+paths and proof APIs for matrix positivity, eigenvectors, square roots,
+matrix blocks, and scalar algebra. The mathematical statements remain intact.
+The independent Challenge retains the source definitions and instance scopes.
 
-No build, comparator run, or new axiom audit was performed for these files.
+The complete package was checked locally on 2026-10-29. All 60 modules
+compiled with `--trust=0`. The original audit reported 42 theorem closures.
+The wrapper audit reported two more. Each closure used only `propext`,
+`Classical.choice`, and `Quot.sound`. Both audit imports also compiled with
+warnings treated as errors.
+
+The bundled `lake comparator` accepted both selected Challenge statements
+and their full dependency closure. It accepted the permitted axioms and
+replayed Solution with the default Lean kernel. The comparison used exports
+from the checked modules and ran without a sandbox. A full sandboxed Palomar
+preflight of the exact published commit remains required before intake.
+No verification certificate is supplied.
+
 The original manuscript records historical verification under Lean 4.19.0.
 That record does not certify the active pins or changed sources.
-No verification certificate is supplied. The required permitted axioms are
-`propext`, `Classical.choice`, and `Quot.sound`. `AuditExactContraction.lean`
-contains the original audit requests. `PalomarAudit.lean` adds the two wrappers.
-The two deliberate Challenge holes are excluded from Solution imports.
+`AuditExactContraction.lean` contains the original audit requests.
+`PalomarAudit.lean` adds the two wrappers. The two deliberate Challenge holes
+are excluded from Solution imports.

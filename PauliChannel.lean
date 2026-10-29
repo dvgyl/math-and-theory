@@ -44,11 +44,12 @@ theorem amplify_linear (w : Fin 4 → ℝ) (X : Matrix (R × Q) (R × Q) ℂ) :
     amplify (linear w) X = ∑ i, w i •
       (GeneralKraus.lift (pauli i) * X * (GeneralKraus.lift (pauli i))ᴴ) := by
   ext r t
-  simp only [amplify, linear_apply, Matrix.sum_apply, Matrix.smul_apply]
+  change linear w (GeneralKraus.block X r.1 t.1) r.2 t.2 = _
+  rw [linear_apply]
+  simp only [Matrix.sum_apply, Matrix.smul_apply]
   apply Finset.sum_congr rfl
   intro i _
   rw [GeneralKraus.lift_sandwich_entry]
-  rfl
 
 theorem linear_trace (w : Fin 4 → ℝ) (hsum : ∑ i, w i = 1)
     (X : Matrix Q Q ℂ) : (linear w X).trace = X.trace := by
@@ -86,7 +87,7 @@ theorem map_entries (w : Fin 4 → ℝ) (X : Matrix Q Q ℂ) :
 
 def single (i : Fin 4) : QuantumChannel Q Q :=
   channel (fun j => if j = i then 1 else 0)
-    (by intro j; dsimp; split_ifs <;> norm_num) (by simp)
+    (by intro j; split_ifs <;> norm_num) (by simp)
 
 @[simp] theorem single_map (i : Fin 4) (X : Matrix Q Q ℂ) :
     (single i).map X = pauli i * X * (pauli i)ᴴ := by

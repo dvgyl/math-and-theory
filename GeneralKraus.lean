@@ -50,7 +50,9 @@ theorem amplify_kraus (K : ι → Matrix B A ℂ)
     (X : Matrix (R × A) (R × A) ℂ) :
     amplify (krausMap K) X = ∑ i, lift (R:=R) (K i) * X * (lift (R:=R) (K i))ᴴ := by
   ext r s
-  simp only [amplify, krausMap_apply, Matrix.sum_apply]
+  change krausMap K (block X r.1 s.1) r.2 s.2 = _
+  rw [krausMap_apply]
+  simp only [Matrix.sum_apply]
   apply Finset.sum_congr rfl
   intro i _
   exact (lift_sandwich_entry (K i) X r s).symm

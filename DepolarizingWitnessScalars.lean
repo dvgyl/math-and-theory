@@ -60,6 +60,12 @@ theorem sharp_identity (n s : ℝ) (hn : n≠0) (ha : a n s≠0) :
   rw [a_formula n s hn]
   unfold DepolarizingEffects.sharpBound radius
   field_simp
+  ring_nf
+  have hcn : 1 + s * 3 - s * n ≠ 0 := by
+    intro h
+    apply ha'
+    nlinarith
+  field_simp [hcn]
   ring
 
 theorem rationalBound_den_pos (n s u : ℝ) (hn : 4≤n) :

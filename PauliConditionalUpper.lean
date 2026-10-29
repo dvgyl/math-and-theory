@@ -20,7 +20,8 @@ theorem core_bound_identity (a b : ℝ) (hm : a+3*b ≠ 0) (hab : a+b ≠ 0) :
     (a+3*b) * (((b-a)/(a+3*b)) * (1+3*((b-a)/(a+3*b))) /
       (1-(b-a)/(a+3*b))) = a+3*b-8*a*b/(a+b) := by
   have hd : 1-(b-a)/(a+3*b) = 2*(a+b)/(a+3*b) := by
-    field_simp [hm]
+    apply (eq_div_iff hm).2
+    rw [sub_mul, one_mul, div_mul_cancel₀ _ hm]
     ring
   rw [hd]
   field_simp [hm, hab]
@@ -67,7 +68,7 @@ theorem coefficient_le_pairBound (w : Fin 4 → ℝ) (hw : ∀ i, 0 ≤ w i)
     have hmap : ∀ X, (PauliChannel.channel w hw hsum).map X =
         ∑ i, p i • (Ns i).map X := by
       intro X
-      simp only [p,Ns,Fin.sum_univ_succ,Matrix.cons_val_zero,Matrix.cons_val_one,
+      simp only [p,Ns,Fin.sum_univ_succ,Matrix.cons_val_zero,Matrix.cons_val_one,Matrix.cons_val_two,Matrix.vecHead,Matrix.vecTail,Function.comp_apply,
         Fin.succ_zero_eq_one,Fin.succ_one_eq_two,Fin.sum_univ_zero,add_zero,
         PauliChannel.channel_map]
       have hc := PauliChannel.core_identity (w 0) (w 3) hm X
@@ -77,7 +78,7 @@ theorem coefficient_le_pairBound (w : Fin 4 → ℝ) (hw : ∀ i, 0 ≤ w i)
       simpa only [add_assoc] using PauliChannel.core_decomposition w X
     have hb := CoefficientConvexity.coefficient_mixture_le
       (PauliChannel.channel w hw hsum) Ns p hp hpsum hmap 1
-    simp only [p,Ns,Fin.sum_univ_succ,Matrix.cons_val_zero,Matrix.cons_val_one,
+    simp only [p,Ns,Fin.sum_univ_succ,Matrix.cons_val_zero,Matrix.cons_val_one,Matrix.cons_val_two,Matrix.vecHead,Matrix.vecTail,Function.comp_apply,
       Fin.succ_zero_eq_one,Fin.succ_one_eq_two,Fin.sum_univ_zero,add_zero,
       NegativeDepolarizingExact.conditional_trace_eq] at hb
     have h1 := mul_le_mul_of_nonneg_left

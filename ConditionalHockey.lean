@@ -248,9 +248,26 @@ theorem initialGap_eq (γ : ℝ) (ρ σ : Density (R × A)) :
   congr 1
   simp only [difference, partialTraceMatrix_sub, partialTraceMatrix_smul, marginalDensity]
 
+/-- Positivity of the amplified input states makes their difference Hermitian. -/
+theorem amplified_difference_hermitian (N : QuantumChannel A B) (γ : ℝ)
+    (ρ σ : Density (R × A)) : (amplify N.map (difference γ ρ σ)).IsHermitian := by
+  have heq : amplify N.map (difference γ ρ σ) =
+      amplify N.map ρ.mat - γ • amplify N.map σ.mat := by
+    ext r s
+    have hsub := N.map.map_sub (fun a b => ρ.mat (r.1, a) (s.1, b))
+      (γ • (fun a b => σ.mat (r.1, a) (s.1, b)))
+    have hsmul := N.map.map_smul_of_tower γ (fun a b => σ.mat (r.1, a) (s.1, b))
+    exact congrArg (fun M : Matrix B B ℂ => M r.2 s.2)
+      (hsub.trans (congrArg (fun M : Matrix B B ℂ =>
+        N.map (fun a b => ρ.mat (r.1, a) (s.1, b)) - M) hsmul))
+  rw [heq]
+  exact (N.completely_positive R ρ.mat ρ.positive).1.sub
+    (hermitian_real_smul _ (N.completely_positive R σ.mat σ.positive).1 γ)
+
+
 def finalGap (N : QuantumChannel A B) (γ : ℝ) (ρ σ : Density (R × A)) : ℝ :=
   positiveTraceGap (amplify N.map (difference γ ρ σ))
-    (N.amplify_hermitian _ (difference_hermitian γ ρ σ))
+    (amplified_difference_hermitian N γ ρ σ)
 
 theorem finalGap_eq_output (N : QuantumChannel A B) (γ : ℝ) (ρ σ : Density (R × A)) :
     finalGap N γ ρ σ = initialGap γ (N.outputDensity ρ) (N.outputDensity σ) := by
@@ -402,15 +419,19 @@ theorem conditionalRatioSet_parameter_independent_of_density (N : QuantumChannel
   · rintro ⟨R, ρ, σ, hpos, hr⟩
     obtain ⟨P, Q, hI, hF⟩ := forward_gaps N γ hγ ρ σ ω
     refine ⟨R.flag, P, Q, ?_, ?_⟩
-    · rw [hI]
+    · change 0 < initialGap 1 P Q
+      rw [hI]
       exact mul_pos (inv_pos.mpr (zero_lt_one.trans_le hγ)) hpos
-    · rw [hF, hI, mul_div_mul_left _ _ (inv_pos.mpr (zero_lt_one.trans_le hγ)).ne']
+    · change r = finalGap N 1 P Q / initialGap 1 P Q
+      rw [hF, hI, mul_div_mul_left _ _ (inv_pos.mpr (zero_lt_one.trans_le hγ)).ne']
       exact hr
   · rintro ⟨R, ρ, σ, hpos, hr⟩
     obtain ⟨P, Q, hI, hF⟩ := reverse_gaps N γ hγ ρ σ ω
     refine ⟨R.flag, P, Q, ?_, ?_⟩
-    · rwa [hI]
-    · rwa [hF, hI]
+    · change 0 < initialGap γ P Q
+      rwa [hI]
+    · change r = finalGap N γ P Q / initialGap γ P Q
+      rwa [hF, hI]
 
 theorem conditionalRatioSet_parameter_independent [Nonempty A] (N : QuantumChannel A B)
     (γ : ℝ) (hγ : 1 ≤ γ) : conditionalRatioSet N γ = conditionalRatioSet N 1 := by

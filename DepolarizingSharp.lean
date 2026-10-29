@@ -150,7 +150,6 @@ theorem initialGap_exact (F : Frame I) (hI : 4 ≤ Fintype.card I)
     (add_pos_of_pos_of_nonneg (radius_pos hI) (sq_nonneg u)).ne'
   unfold normalizer
   field_simp
-  ring
 
 theorem initialGap_positive (F : Frame I) (hI : 4 ≤ Fintype.card I)
     (B : BellFamily I A) (u : ℝ) (hu : 0<u) :
@@ -193,7 +192,7 @@ theorem raw_final_gap_lower (F : Frame I) (hI : 4 ≤ Fintype.card I)
       (outputMatrix_hermitian F b s u i) := by
     have hh := Finset.sum_le_sum (fun (i : I) (_ : i ∈ Finset.univ) =>
       output_traceNorm_lower F (by omega) b s u t i)
-    simpa only [Finset.sum_const,Finset.card_univ,nsmul_eq_mul] using hh
+    simpa only [size, L, Finset.sum_const,Finset.card_univ,nsmul_eq_mul] using hh
   have hnorm : traceNorm (amplify N.map (BellEncoding.encode B.mat (rawDifference F u)))
       (N.amplify_hermitian _ (BellEncoding.encode_hermitian B.mat _
         (fun i => (B.positive i).1) (rawDifference_hermitian F u))) =

@@ -1,5 +1,5 @@
 module
-public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.Analysis.Matrix.PosDef
 public import Mathlib.LinearAlgebra.Matrix.Trace
 public import Mathlib.Analysis.SpecialFunctions.Log.Basic
 public import Mathlib.Tactic.Linarith
@@ -38,7 +38,7 @@ theorem trace_eq_sum_hermitian_eigenvalues (M : Matrix n n ℂ) (hM : M.IsHermit
     _ = (star hM.eigenvectorUnitary.1 * hM.eigenvectorUnitary.1 *
         diagonal (Complex.ofReal ∘ hM.eigenvalues)).trace := Matrix.trace_mul_cycle _ _ _
     _ = ∑ i, (hM.eigenvalues i : ℂ) := by
-      rw [unitary.coe_star_mul_self, one_mul, Matrix.trace_diagonal]
+      rw [Unitary.coe_star_mul_self, one_mul, Matrix.trace_diagonal]
       rfl
 
 theorem sum_hermitian_eigenvalues_of_trace_one (M : Matrix n n ℂ)
@@ -50,7 +50,7 @@ theorem sum_hermitian_eigenvalues_of_trace_one (M : Matrix n n ℂ)
 theorem trace_pow_eq_sum_hermitian_eigenvalues (M : Matrix n n ℂ)
     (hM : M.IsHermitian) (k : ℕ) :
     (M ^ k).trace = ∑ i, (hM.eigenvalues i : ℂ) ^ k := by
-  let U : (Matrix n n ℂ)ˣ := unitary.toUnits hM.eigenvectorUnitary
+  let U : (Matrix n n ℂ)ˣ := Unitary.toUnits hM.eigenvectorUnitary
   let D : Matrix n n ℂ := diagonal (Complex.ofReal ∘ hM.eigenvalues)
   have hs : M = (U : Matrix n n ℂ) * D * (↑U⁻¹ : Matrix n n ℂ) := hM.spectral_theorem
   calc
@@ -80,12 +80,16 @@ theorem eigenvalue_zero_or_flat (M : Matrix n n ℂ) (hM : M.IsHermitian)
     (c : ℝ) (hflat : M * M = c • M) (i : n) :
     hM.eigenvalues i = 0 ∨ hM.eigenvalues i = c := by
   let v : n → ℂ := hM.eigenvectorBasis i
-  have hv : v ≠ 0 := hM.eigenvectorBasis.orthonormal.ne_zero i
+  have hv : v ≠ 0 := by
+    intro h
+    apply hM.eigenvectorBasis.orthonormal.ne_zero i
+    ext j
+    exact congrFun h j
   have hev : M *ᵥ v = (hM.eigenvalues i) • v := hM.mulVec_eigenvectorBasis i
   have heq : (hM.eigenvalues i * hM.eigenvalues i) • v =
       (c * hM.eigenvalues i) • v := by
     have h := congrArg (fun K : Matrix n n ℂ => K *ᵥ v) hflat
-    simpa only [← Matrix.mulVec_mulVec, Matrix.mulVec_smul, Matrix.smul_mulVec_assoc,
+    simpa only [← Matrix.mulVec_mulVec, Matrix.mulVec_smul, Matrix.smul_mulVec,
       hev, smul_smul] using h
   have hp : hM.eigenvalues i * (hM.eigenvalues i - c) = 0 := by
     have h := smul_left_injective ℝ hv heq
@@ -96,7 +100,7 @@ theorem eigenvalue_zero_or_flat (M : Matrix n n ℂ) (hM : M.IsHermitian)
 
 theorem flat_posSemidef (M : Matrix n n ℂ) (hM : M.IsHermitian)
     (c : ℝ) (hc : 0 ≤ c) (hflat : M * M = c • M) : M.PosSemidef := by
-  apply hM.posSemidef_of_eigenvalues_nonneg
+  apply (Matrix.IsHermitian.posSemidef_iff_eigenvalues_nonneg hM).mpr
   intro i
   rcases eigenvalue_zero_or_flat M hM c hflat i with h | h
   · simp [h]
@@ -119,11 +123,15 @@ theorem eigenvalue_sq_of_square_scalar (M : Matrix n n ℂ) (hM : M.IsHermitian)
     (c : ℝ) (hsq : M * M = c • (1 : Matrix n n ℂ)) (i : n) :
     (hM.eigenvalues i) ^ 2 = c := by
   let v : n → ℂ := hM.eigenvectorBasis i
-  have hv : v ≠ 0 := hM.eigenvectorBasis.orthonormal.ne_zero i
+  have hv : v ≠ 0 := by
+    intro h
+    apply hM.eigenvectorBasis.orthonormal.ne_zero i
+    ext j
+    exact congrFun h j
   have hev : M *ᵥ v = (hM.eigenvalues i) • v := hM.mulVec_eigenvectorBasis i
   have heq : (hM.eigenvalues i * hM.eigenvalues i) • v = c • v := by
     have h := congrArg (fun K : Matrix n n ℂ => K *ᵥ v) hsq
-    simpa only [← Matrix.mulVec_mulVec, Matrix.mulVec_smul, Matrix.smul_mulVec_assoc,
+    simpa only [← Matrix.mulVec_mulVec, Matrix.mulVec_smul, Matrix.smul_mulVec,
       Matrix.one_mulVec, hev, smul_smul] using h
   simpa only [pow_two] using smul_left_injective ℝ hv heq
 
@@ -140,12 +148,16 @@ theorem eigenvalue_cube_of_cube_scalar (M : Matrix n n ℂ) (hM : M.IsHermitian)
     (c : ℝ) (hcube : M * M * M = c • M) (i : n) :
     (hM.eigenvalues i) ^ 3 = c * hM.eigenvalues i := by
   let v : n → ℂ := hM.eigenvectorBasis i
-  have hv : v ≠ 0 := hM.eigenvectorBasis.orthonormal.ne_zero i
+  have hv : v ≠ 0 := by
+    intro h
+    apply hM.eigenvectorBasis.orthonormal.ne_zero i
+    ext j
+    exact congrFun h j
   have hev : M *ᵥ v = (hM.eigenvalues i) • v := hM.mulVec_eigenvectorBasis i
   have heq : (hM.eigenvalues i * (hM.eigenvalues i * hM.eigenvalues i)) • v =
       (c * hM.eigenvalues i) • v := by
     have h := congrArg (fun K : Matrix n n ℂ => K *ᵥ v) hcube
-    simpa only [← Matrix.mulVec_mulVec, Matrix.mulVec_smul, Matrix.smul_mulVec_assoc,
+    simpa only [← Matrix.mulVec_mulVec, Matrix.mulVec_smul, Matrix.smul_mulVec,
       hev, smul_smul] using h
   have h := smul_left_injective ℝ hv heq
   nlinarith

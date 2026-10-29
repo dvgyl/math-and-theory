@@ -37,11 +37,12 @@ An equality for a supremum does not assert that every coefficient is attained.
 The original endpoints remain `PauliConditionalExact.every_pauli_channel`
 and `DepolarizingExact.actual_full_channel`.
 
-The module port, wrapper proofs, and independent Challenge have not been
-compiled with the active pins. The exact commit requires a full Palomar
-preflight before intake. The check must build the complete Solution, compare
-the Challenge, and inspect the permitted axioms. No verification certificate
-is supplied.
+The complete package was checked locally with the active pins on 2026-10-29.
+All 60 modules compiled. The bundled Comparator accepted both Challenge
+statements, their dependencies, the permitted axioms, and the default Lean
+kernel check of Solution. This local check used exports and had no sandbox.
+The exact published commit still requires a full sandboxed Palomar preflight
+before intake. No verification certificate is supplied.
 
 The unital-qubit normal-form existence theorem is cited in the manuscript.
 It is not separately formalized. Erasure simulation and ensemble guessing

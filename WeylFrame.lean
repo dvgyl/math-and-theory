@@ -30,7 +30,8 @@ omit [Fintype I] [DecidableEq I] in
 theorem rows_balanced [Fintype I] [DecidableEq I] (ζ : I → ℂ) (hu : ∀ i,star (ζ i)*ζ i=1)
     (i : I) (j : Fin 2) : star (rows ζ j i)*rows ζ j i=(1/2:ℂ) := by
   fin_cases j
-  · simpa only [rows, if_pos rfl] using c_norm
+  · change star c * c = (1/2:ℂ)
+    exact c_norm
   · change star (c*ζ i)*(c*ζ i)=(1/2:ℂ)
     rw [StarMul.star_mul]
     calc

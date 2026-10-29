@@ -67,7 +67,6 @@ theorem mixture_formula [Nonempty A] (s : ℝ) (X : Matrix (R×A) (R×A) ℂ) :
       (1+s)/(Fintype.card A : ℝ) := by
     unfold reductionWeight
     field_simp
-    ring
   have ha : identityWeight A s = reductionWeight A s - s := by
     unfold identityWeight reductionWeight
     field_simp

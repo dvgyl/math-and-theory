@@ -38,12 +38,12 @@ theorem choi_formula (w : Fin 4 → ℝ) (hw : ∀ i, 0 ≤ w i)
     ChannelKraus.choiMatrix (PauliChannel.channel w hw hsum) =
       ∑ i, w i • bellRaw i := by
   ext ⟨a,b⟩ ⟨c,d⟩
-  change PauliChannel.linear w (Matrix.stdBasisMatrix a c 1) b d = _
+  change PauliChannel.linear w (Matrix.single a c 1) b d = _
   rw [PauliChannel.map_entries]
   simp only [Matrix.sum_apply, Matrix.smul_apply]
   fin_cases a <;> fin_cases b <;> fin_cases c <;> fin_cases d <;>
     norm_num [bellRaw, BellSupport.outer, bellKet, PauliChannel.pauli,
-      ADSeparation.pauliX, ADSeparation.pauliZ, Matrix.stdBasisMatrix,
+      ADSeparation.pauliX, ADSeparation.pauliZ, Matrix.single,
       Matrix.one_apply, Fin.sum_univ_succ, Complex.real_smul,
       Matrix.cons_val_two, Matrix.cons_val_three] <;>
     push_cast <;> ring
@@ -80,7 +80,7 @@ theorem bell_choi_quad (w : Fin 4 → ℝ) (hw : ∀ i, 0 ≤ w i)
       (PauliChannel.channel w hw hsum) *ᵥ bellKet i)).re = 4 * w i := by
   rw [choi_formula]
   simp only [Fin.sum_univ_succ, Matrix.add_mulVec, Matrix.zero_mulVec,
-    Matrix.smul_mulVec_assoc, dotProduct_add, dotProduct_zero, dotProduct_smul]
+    Matrix.smul_mulVec, dotProduct_add, dotProduct_zero, dotProduct_smul]
   fin_cases i <;>
     norm_num [bell_outer_quad, Complex.smul_re, smul_eq_mul, Fin.ext_iff] <;> ring
   all_goals rfl

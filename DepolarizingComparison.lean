@@ -26,26 +26,26 @@ theorem choi_formula [Nonempty A] (s : ℝ) (hs : 0≤s)
     ChannelKraus.choiMatrix (DepolarizingChannel.channel s hs hb) =
       ((1+s)/(Fintype.card A : ℝ)) • (1 : Matrix (A×A) (A×A) ℂ) -
         s • BellSupport.outer (ChannelKraus.omega (A:=A)) := by
-  have htr (a c : A) : (Matrix.stdBasisMatrix a c (1 : ℂ)).trace =
+  have htr (a c : A) : (Matrix.single a c (1 : ℂ)).trace =
       if a=c then 1 else 0 := by
     by_cases hac : a=c
     · subst c
-      simp [Matrix.trace, Matrix.stdBasisMatrix]
+      simp [Matrix.trace, Matrix.single]
     · simp only [if_neg hac, Matrix.trace]
       apply Finset.sum_eq_zero
       intro i _
       have hn : ¬(a=i ∧ c=i) := by
         rintro ⟨ha,hc⟩
         exact hac (ha.trans hc.symm)
-      simp [Matrix.diag, Matrix.stdBasisMatrix,hn]
+      simp [Matrix.diag, Matrix.single,hn]
   ext ⟨a,b⟩ ⟨c,d⟩
   change ((DepolarizingChannel.channel s hs hb).map
-    (Matrix.stdBasisMatrix a c 1)) b d = _
+    (Matrix.single a c 1)) b d = _
   rw [DepolarizingChannel.channel_map, htr]
   simp only [Matrix.sub_apply, Matrix.smul_apply, smul_eq_mul, Complex.real_smul]
   by_cases hac : a=c <;> by_cases hbd : b=d <;>
     by_cases hab : a=b <;> by_cases hcd : c=d <;>
-    simp only [Matrix.stdBasisMatrix, Matrix.of_apply, Matrix.one_apply,
+    simp only [Matrix.single, Matrix.of_apply, Matrix.one_apply,
       BellSupport.outer, ChannelKraus.omega, Prod.mk.injEq,
       hac,hbd,hab,hcd,ite_true,ite_false,and_self,true_and,false_and,
       and_true,and_false,star_one,star_zero,mul_one,one_mul,
@@ -76,7 +76,7 @@ theorem omega_choi_quad [Nonempty A] (s : ℝ) (hs : 0≤s)
         ChannelKraus.omega)).re = 1-((Fintype.card A : ℝ)^2-1)*s := by
   have hd := (DepolarizingChannel.cardReal_pos (A:=A)).ne'
   rw [choi_formula]
-  simp only [Matrix.sub_mulVec, Matrix.smul_mulVec_assoc, Matrix.one_mulVec,
+  simp only [Matrix.sub_mulVec, Matrix.smul_mulVec, Matrix.one_mulVec,
     dotProduct_sub, dotProduct_smul, omega_norm, omega_outer_quad,
     Complex.sub_re, Complex.smul_re, smul_eq_mul]
   norm_num [pow_two, Complex.mul_re]

@@ -20,19 +20,19 @@ abbrev Ω : Q × Q → ℂ := ChannelKraus.omega
 theorem choi_formula (s : ℝ) (hs : 0 ≤ s) (hs3 : s ≤ 1/3) :
     ChannelKraus.choiMatrix (NegativeDepolarizingChannel.channel s hs hs3) =
       ((1+s)/2 : ℝ) • (1 : Matrix (Q × Q) (Q × Q) ℂ) - s • BellSupport.outer Ω := by
-  have htr (a c : Q) : (Matrix.stdBasisMatrix a c (1 : ℂ)).trace =
+  have htr (a c : Q) : (Matrix.single a c (1 : ℂ)).trace =
       if a = c then 1 else 0 := by
     simp only [Matrix.trace, Matrix.diag, Fin.sum_univ_two]
     fin_cases a <;> fin_cases c <;>
-      norm_num [Matrix.stdBasisMatrix]
+      norm_num [Matrix.single]
   ext ⟨a,b⟩ ⟨c,d⟩
   change ((NegativeDepolarizingChannel.channel s hs hs3).map
-    (Matrix.stdBasisMatrix a c 1)) b d = _
+    (Matrix.single a c 1)) b d = _
   rw [NegativeDepolarizingChannel.channel_map, htr]
   simp only [Matrix.sub_apply, Matrix.smul_apply, smul_eq_mul, Complex.real_smul]
   by_cases hac : a = c <;> by_cases hbd : b = d <;>
     by_cases hab : a = b <;> by_cases hcd : c = d <;>
-    simp only [Matrix.stdBasisMatrix, Matrix.of_apply, Matrix.one_apply, BellSupport.outer, ChannelKraus.omega,
+    simp only [Matrix.single, Matrix.of_apply, Matrix.one_apply, BellSupport.outer, ChannelKraus.omega,
       Prod.mk.injEq, hac, hbd, hab, hcd, ite_true, ite_false, and_self, true_and,
       false_and, and_true, and_false, star_one, star_zero, mul_one, one_mul,
       mul_zero, zero_mul, sub_zero, zero_sub]
@@ -57,7 +57,7 @@ theorem omega_choi_quad (s : ℝ) (hs : 0 ≤ s) (hs3 : s ≤ 1/3) :
     (star Ω ⬝ᵥ (ChannelKraus.choiMatrix
       (NegativeDepolarizingChannel.channel s hs hs3) *ᵥ Ω)).re = 1-3*s := by
   rw [choi_formula]
-  simp only [Matrix.sub_mulVec, Matrix.smul_mulVec_assoc, Matrix.one_mulVec,
+  simp only [Matrix.sub_mulVec, Matrix.smul_mulVec, Matrix.one_mulVec,
     dotProduct_sub, dotProduct_smul, omega_norm, omega_outer_quad,
     Complex.sub_re, Complex.smul_re, smul_eq_mul]
   norm_num

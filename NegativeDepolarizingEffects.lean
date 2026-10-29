@@ -404,8 +404,8 @@ theorem reference_effect_split (D : Matrix R R ℂ) (hD : D.PosSemidef)
         (prefactor s • referenceLift D-s • M-referenceLift H)).PosSemidef := by
   let U := hD.1.eigenvectorUnitary.1
   let d := hD.1.eigenvalues
-  have hU : Uᴴ*U=1 := unitary.coe_star_mul_self hD.1.eigenvectorUnitary
-  have hU' : U*Uᴴ=1 := unitary.coe_mul_star_self hD.1.eigenvectorUnitary
+  have hU : Uᴴ*U=1 := Unitary.coe_star_mul_self hD.1.eigenvectorUnitary
+  have hU' : U*Uᴴ=1 := Unitary.coe_mul_star_self hD.1.eigenvectorUnitary
   have hspec : spectral U d = D := hD.1.spectral_theorem.symm
   have hd : ∀ i, 0 ≤ d i := hD.eigenvalues_nonneg
   have hd4 : ∀ i, d i ≤ 4 := by

@@ -81,7 +81,6 @@ theorem effect_split (hdim : 2 ≤ Fintype.card A)
   have hscale : prefactor (d^2) s * d = (1+s)/d := by
     unfold prefactor
     field_simp [hd.ne']
-    ring
   have hJ : prefactor (d^2) s • referenceLift (A:=A) D =
       ((1+s)/d) • referenceLift (partialTraceMatrix M) := by
     dsimp [referenceLift,D]

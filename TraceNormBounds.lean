@@ -24,16 +24,11 @@ theorem hermitian_real_smul [Fintype n] [DecidableEq n] (M : Matrix n n ℂ) (hM
 
 theorem posSemidef_real_smul (M : Matrix n n ℂ) (hM : M.PosSemidef)
     (c : ℝ) (hc : 0 ≤ c) : (c • M).PosSemidef := by
-  refine ⟨hermitian_real_smul M hM.1 c, ?_⟩
-  intro x
-  rw [Matrix.smul_mulVec_assoc, dotProduct_smul]
-  exact smul_nonneg hc (hM.2 x)
+  exact hM.smul hc
 
 theorem posSemidef_diagonal_re (M : Matrix n n ℂ) (hM : M.PosSemidef) (i : n) :
     0 ≤ (M i i).re := by
-  have h := hM.re_dotProduct_nonneg (Pi.single i 1)
-  simpa only [← Pi.single_star, star_one, Matrix.mulVec_single_one,
-    single_one_dotProduct, Matrix.transpose_apply] using h
+  exact (RCLike.nonneg_iff.mp (hM.diag_nonneg (i := i))).1
 
 theorem posSemidef_one_add_of_square_defect (T : Matrix n n ℂ) (hT : T.IsHermitian)
     (hdefect : (1 - T * T).PosSemidef) : (1 + T).PosSemidef := by
@@ -91,7 +86,7 @@ theorem trace_mul_le_traceNorm (M : Matrix n n ℂ) (hM : M.IsHermitian)
     (T : Matrix n n ℂ) (hminus : (1 - T).PosSemidef) (hplus : (1 + T).PosSemidef) :
     (T * M).trace.re ≤ traceNorm M hM := by
   let U := hM.eigenvectorUnitary.1
-  have hU : Uᴴ * U = 1 := unitary.coe_star_mul_self hM.eigenvectorUnitary
+  have hU : Uᴴ * U = 1 := Unitary.coe_star_mul_self hM.eigenvectorUnitary
   let Q := Uᴴ * T * U
   have hm : (1 - Q).PosSemidef := by
     simpa only [Matrix.mul_sub, Matrix.sub_mul, Matrix.mul_one, hU] using
@@ -127,8 +122,8 @@ theorem exists_traceNorm_dual (M : Matrix n n ℂ) (hM : M.IsHermitian) :
     ∃ T : Matrix n n ℂ, T.IsHermitian ∧ (1 - T).PosSemidef ∧
       (1 + T).PosSemidef ∧ (T * M).trace.re = traceNorm M hM := by
   let U := hM.eigenvectorUnitary.1
-  have hU : Uᴴ * U = 1 := unitary.coe_star_mul_self hM.eigenvectorUnitary
-  have hU' : U * Uᴴ = 1 := unitary.coe_mul_star_self hM.eigenvectorUnitary
+  have hU : Uᴴ * U = 1 := Unitary.coe_star_mul_self hM.eigenvectorUnitary
+  have hU' : U * Uᴴ = 1 := Unitary.coe_mul_star_self hM.eigenvectorUnitary
   let d : n → ℝ := fun i => if 0 ≤ hM.eigenvalues i then 1 else -1
   let D : Matrix n n ℂ := diagonal (Complex.ofReal ∘ d)
   let T := U * D * Uᴴ
@@ -273,7 +268,7 @@ theorem exists_posSemidef_decomposition (M : Matrix n n ℂ) (hM : M.IsHermitian
     ∃ P Q : Matrix n n ℂ, P.PosSemidef ∧ Q.PosSemidef ∧ M = P - Q ∧
       P.trace.re + Q.trace.re = traceNorm M hM := by
   let U := hM.eigenvectorUnitary.1
-  have hU : Uᴴ * U = 1 := unitary.coe_star_mul_self hM.eigenvectorUnitary
+  have hU : Uᴴ * U = 1 := Unitary.coe_star_mul_self hM.eigenvectorUnitary
   let p : n → ℝ := fun i => max (hM.eigenvalues i) 0
   let q : n → ℝ := fun i => max (-hM.eigenvalues i) 0
   let Dp : Matrix n n ℂ := diagonal (Complex.ofReal ∘ p)

@@ -53,9 +53,10 @@ theorem amplify_mixture [Fintype R] [DecidableEq R] (N : QuantumChannel A B) (Ns
     (X : Matrix (R × A) (R × A) ℂ) :
     amplify N.map X = ∑ i, p i • amplify (Ns i).map X := by
   ext r s
-  change N.map (fun a b => X (r.1,a) (s.1,b)) r.2 s.2 = _
+  let Xrs : Matrix A A ℂ := fun a b => X (r.1, a) (s.1, b)
+  change N.map Xrs r.2 s.2 = _
   rw [hmap]
-  simp only [Matrix.sum_apply, Matrix.smul_apply, amplify]
+  simp only [Matrix.sum_apply, Matrix.smul_apply] <;> rfl
 
 theorem norm_mixture_le (N : QuantumChannel A B) (Ns : ι → QuantumChannel A B)
     (p : ι → ℝ) (hp : ∀ i, 0 ≤ p i)

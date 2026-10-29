@@ -141,10 +141,9 @@ theorem encoded_output (N : QuantumChannel A B) (E : QuantumChannel Q (S × A))
       reindexDensity (M.outputDensity ρ) (Equiv.prodAssoc R S B) := by
   apply density_ext
   ext ⟨⟨r,s⟩,b⟩ ⟨⟨t,u⟩,c⟩
-  change N.map (fun a d => E.map (fun i j => ρ.mat (r,i) (t,j)) (s,a) (u,d)) b c =
-    M.map (fun i j => ρ.mat (r,i) (t,j)) (s,b) (u,c)
-  rw [hM]
-  rfl
+  let Xrt : Matrix Q Q ℂ := fun i j => ρ.mat (r,i) (t,j)
+  exact (congrArg (fun Y : Matrix (S × B) (S × B) ℂ => Y (s,b) (u,c))
+    (hM Xrt)).symm
 
 theorem encoded_output_hockey (N : QuantumChannel A B) (E : QuantumChannel Q (S × A))
     (M : QuantumChannel Q (S × B))

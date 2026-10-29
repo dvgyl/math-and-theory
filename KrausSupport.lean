@@ -110,7 +110,9 @@ theorem rankOne_posSemidef [DecidableEq B] (v : B → ℂ) : (rankOne v).PosSemi
   let V : Matrix B Unit ℂ := fun b _ => v b
   have h : V * Vᴴ = rankOne v := by
     ext b c
-    simp [V, rankOne, Matrix.mul_apply, Matrix.conjTranspose_apply]
+    change (V * Vᴴ) b c = v b * star (v c)
+    simp only [Matrix.mul_apply, Matrix.conjTranspose_apply, Fintype.sum_unique]
+    rfl
   rw [← h]
   exact Matrix.posSemidef_self_mul_conjTranspose V
 
@@ -197,15 +199,17 @@ theorem exists_positive_gram_remainder [DecidableEq B] (W : Matrix (A × B) I �
   exact hres.mul_mul_conjTranspose_same W
 
 
+open scoped MatrixOrder in
 /-- Every PSD Gram matrix here yields an actual finite Kraus family by taking its
 PSD square root and unvectorizing its columns. -/
 theorem exists_kraus_of_positive_gram (J : Matrix (A × B) (A × B) ℂ)
     (hJ : J.PosSemidef) :
     ∃ L : (A × B) → Matrix B A ℂ,
       ∀ X, GeneralKraus.krausMap L X = choiApply J X := by
-  refine ⟨unvector hJ.sqrt, ?_⟩
+  have hroot : (CFC.sqrt J).PosSemidef := (CFC.sqrt_nonneg J).posSemidef
+  refine ⟨unvector (CFC.sqrt J), ?_⟩
   intro X
-  rw [krausMap_eq_choiApply, hJ.posSemidef_sqrt.1.eq, hJ.sqrt_mul_self]
+  rw [krausMap_eq_choiApply, hroot.1.eq, CFC.sqrt_mul_sqrt_self J hJ.nonneg]
 
 /-- Product slices in the actual Kraus span force a nonzero positive replacer
 minorant. Complete positivity of the residual is proved using an explicit finite
@@ -235,7 +239,7 @@ theorem hasPositiveReplacer_of_product_range (N : QuantumChannel A B)
     have heq : amplify (GeneralKraus.krausMap L) X =
         amplify N.map X - Matrix.kronecker (partialTraceMatrix X) (t • rankOne v) := by
       ext r s
-      change (GeneralKraus.krausMap L (fun a b => X (r.1,a) (s.1,b))) r.2 s.2 = _
+      change (GeneralKraus.krausMap L (GeneralKraus.block X r.1 s.1)) r.2 s.2 = _
       rw [hmap]
       rfl
     rwa [heq] at hcp

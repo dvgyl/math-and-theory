@@ -22,19 +22,19 @@ variable {A B : Type} [Fintype A] [DecidableEq A]
   [Fintype B] [DecidableEq B]
 
 def choiMatrix (N : QuantumChannel A B) : Matrix (A × B) (A × B) ℂ :=
-  fun p q => N.map (Matrix.stdBasisMatrix p.1 q.1 1) p.2 q.2
+  fun p q => N.map (Matrix.single p.1 q.1 1) p.2 q.2
 
 def omega : A × A → ℂ := fun p => if p.1 = p.2 then 1 else 0
 
 theorem choiMatrix_eq_amplify (N : QuantumChannel A B) :
     choiMatrix N = amplify N.map (BellSupport.outer (omega (A := A))) := by
   ext p q
-  change N.map (Matrix.stdBasisMatrix p.1 q.1 1) p.2 q.2 =
+  change N.map (Matrix.single p.1 q.1 1) p.2 q.2 =
     N.map (fun a c => BellSupport.outer omega (p.1,a) (q.1,c)) p.2 q.2
   apply congrArg (fun X : Matrix A A ℂ => N.map X p.2 q.2)
   ext a c
   by_cases ha : p.1 = a <;> by_cases hc : q.1 = c <;>
-    simp [Matrix.stdBasisMatrix, BellSupport.outer, omega, ha, hc]
+    simp [Matrix.single, BellSupport.outer, omega, ha, hc]
 
 theorem choiMatrix_posSemidef (N : QuantumChannel A B) : (choiMatrix N).PosSemidef := by
   rw [choiMatrix_eq_amplify]
@@ -42,12 +42,12 @@ theorem choiMatrix_posSemidef (N : QuantumChannel A B) : (choiMatrix N).PosSemid
 
 theorem choiApply_eq (N : QuantumChannel A B) (X : Matrix A A ℂ) :
     KrausSupport.choiApply (choiMatrix N) X = N.map X := by
-  have hX : X = ∑ a, ∑ c, X a c • Matrix.stdBasisMatrix a c (1 : ℂ) := by
-    simpa only [Matrix.smul_stdBasisMatrix, smul_eq_mul, mul_one] using
-      Matrix.matrix_eq_sum_stdBasisMatrix X
-  have hmap : N.map X = ∑ a, ∑ c, X a c • N.map (Matrix.stdBasisMatrix a c 1) := by
+  have hX : X = ∑ a, ∑ c, X a c • Matrix.single a c (1 : ℂ) := by
+    simpa only [Matrix.smul_single, smul_eq_mul, mul_one] using
+      Matrix.matrix_eq_sum_single X
+  have hmap : N.map X = ∑ a, ∑ c, X a c • N.map (Matrix.single a c 1) := by
     calc
-      N.map X = N.map (∑ a, ∑ c, X a c • Matrix.stdBasisMatrix a c 1) :=
+      N.map X = N.map (∑ a, ∑ c, X a c • Matrix.single a c 1) :=
         congrArg N.map hX
       _ = _ := by simp only [map_sum, map_smul]
   rw [hmap]

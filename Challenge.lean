@@ -1,5 +1,6 @@
 module
-public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.Analysis.Matrix.PosDef
+public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.LinearAlgebra.Matrix.Trace
 public import Mathlib.LinearAlgebra.Matrix.Notation
 public import Mathlib.Data.ZMod.Basic
@@ -12,20 +13,26 @@ open Matrix
 open scoped BigOperators ComplexOrder
 noncomputable section
 
+attribute [-instance] instCommCStarAlgebraComplex
+
 namespace CMICounterexample
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-theorem hermitian_real_smul (M : Matrix n n ℂ) (hM : M.IsHermitian) (c : ℝ) :
+omit [Fintype n] [DecidableEq n] in
+theorem hermitian_real_smul [Fintype n] [DecidableEq n] (M : Matrix n n ℂ) (hM : M.IsHermitian) (c : ℝ) :
     (c • M).IsHermitian := by
   simp only [Matrix.IsHermitian, Matrix.conjTranspose_smul, star_trivial, hM.eq]
 
+variable {m : Type*}
 variable {R A : Type*} [Fintype R] [DecidableEq R] [Fintype A] [DecidableEq A]
 
 /-- Partial trace over the channel input factor. -/
 def partialTraceMatrix (X : Matrix (R × A) (R × A) ℂ) : Matrix R R ℂ :=
   fun r s => ∑ a, X (r, a) (s, a)
 
-theorem partialTraceMatrix_hermitian (X : Matrix (R × A) (R × A) ℂ)
+omit [Fintype R] [DecidableEq R] [DecidableEq A] in
+theorem partialTraceMatrix_hermitian [Fintype R] [DecidableEq R] [DecidableEq A]
+    (X : Matrix (R × A) (R × A) ℂ)
     (hX : X.IsHermitian) : (partialTraceMatrix X).IsHermitian := by
   apply Matrix.IsHermitian.ext
   intro r s
@@ -79,8 +86,12 @@ theorem amplified_difference_hermitian (N : QuantumChannel A B) (γ : ℝ)
   have heq : amplify N.map (difference γ ρ σ) =
       amplify N.map ρ.mat - γ • amplify N.map σ.mat := by
     ext r s
-    simp only [amplify, difference, Matrix.sub_apply, Matrix.smul_apply,
-      map_sub, map_smul_of_tower]
+    have hsub := N.map.map_sub (fun a b => ρ.mat (r.1, a) (s.1, b))
+      (γ • (fun a b => σ.mat (r.1, a) (s.1, b)))
+    have hsmul := N.map.map_smul_of_tower γ (fun a b => σ.mat (r.1, a) (s.1, b))
+    exact congrArg (fun M : Matrix B B ℂ => M r.2 s.2)
+      (hsub.trans (congrArg (fun M : Matrix B B ℂ =>
+        N.map (fun a b => ρ.mat (r.1, a) (s.1, b)) - M) hsmul))
   rw [heq]
   exact (N.completely_positive R ρ.mat ρ.positive).1.sub
     (hermitian_real_smul _ (N.completely_positive R σ.mat σ.positive).1 γ)
@@ -115,6 +126,8 @@ abbrev CMat (m n : Type*) := Matrix m n ℂ
 def pauliX : CMat Q Q := !![0, 1; 1, 0]
 def pauliZ : CMat Q Q := !![1, 0; 0, -1]
 end ADSeparation
+
+attribute [instance] instCommCStarAlgebraComplex
 
 namespace PauliChannel
 abbrev Q := Fin 2

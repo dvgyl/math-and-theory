@@ -61,7 +61,7 @@ theorem reduction_positive (X : Matrix (R×A) (R×A) ℂ) (hX : X.PosSemidef) :
   have heq : amplify (GeneralKraus.krausMap K) X =
       (Fintype.card A : ℝ) • (partialTraceMatrix X ⊗ₖ (1 : Matrix A A ℂ)) - X := by
     ext r t
-    change GeneralKraus.krausMap K (fun a b => X (r.1,a) (t.1,b)) r.2 t.2 = _
+    change GeneralKraus.krausMap K (GeneralKraus.block X r.1 t.1) r.2 t.2 = _
     rw [hK]
     rfl
   rwa [heq] at hcp

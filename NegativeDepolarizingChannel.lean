@@ -37,7 +37,7 @@ theorem amplify_reduction [Fintype R] [DecidableEq R] (X : Matrix (R × Q) (R ×
     amplify (GeneralKraus.krausMap pauliK) X =
       (2 : ℝ) • (partialTraceMatrix X ⊗ₖ (1 : Matrix Q Q ℂ)) - X := by
   ext r s
-  change GeneralKraus.krausMap pauliK (fun a b => X (r.1,a) (s.1,b)) r.2 s.2 = _
+  change GeneralKraus.krausMap pauliK (GeneralKraus.block X r.1 s.1) r.2 s.2 = _
   rw [pauli_reduction]
   rfl
 

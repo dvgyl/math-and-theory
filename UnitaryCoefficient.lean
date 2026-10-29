@@ -39,7 +39,8 @@ theorem amplify_inverse [Fintype R] [DecidableEq R] (N : QuantumChannel A B) (L 
     (X : Matrix (R × A) (R × A) ℂ) :
     amplify L.map (amplify N.map X) = X := by
   ext r t
-  change L.map (N.map (fun a b => X (r.1,a) (t.1,b))) r.2 t.2 = X r t
+  let Xrt : Matrix A A ℂ := fun a b => X (r.1,a) (t.1,b)
+  change L.map (N.map Xrt) r.2 t.2 = X r t
   rw [hLN]
 
 theorem reversible_traceNorm (N : QuantumChannel A B) (L : QuantumChannel B A)
@@ -104,9 +105,9 @@ theorem unitary_finalGap (M N : QuantumChannel A B)
       amplify M.map X = amplify (channel V hVL).map
         (amplify N.map (amplify (channel U hUL).map X)) := by
     ext r t
-    change M.map (fun a b => X (r.1,a) (t.1,b)) r.2 t.2 =
-      (channel V hVL).map (N.map ((channel U hUL).map
-        (fun a b => X (r.1,a) (t.1,b)))) r.2 t.2
+    let Xrt : Matrix A A ℂ := fun a b => X (r.1,a) (t.1,b)
+    change M.map Xrt r.2 t.2 =
+      (channel V hVL).map (N.map ((channel U hUL).map Xrt)) r.2 t.2
     rw [channel_map, channel_map, hmap]
   unfold finalGap
   simp only [difference_output, ha]
