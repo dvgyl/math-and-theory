@@ -39,7 +39,7 @@ matrix blocks, and scalar algebra. The mathematical statements remain intact.
 The independent Challenge retains the source definitions and instance scopes.
 
 The complete package was checked locally on 2026-10-29. All 60 modules
-compiled with `--trust=0`. The original audit reported 42 theorem closures.
+and the default library target passed actual Lake builds with `--trust=0`. The original audit reported 42 theorem closures.
 The wrapper audit reported two more. Each closure used only `propext`,
 `Classical.choice`, and `Quot.sound`. Both audit imports also compiled with
 warnings treated as errors.

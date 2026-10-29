@@ -38,7 +38,8 @@ The original endpoints remain `PauliConditionalExact.every_pauli_channel`
 and `DepolarizingExact.actual_full_channel`.
 
 The complete package was checked locally with the active pins on 2026-10-29.
-All 60 modules compiled. The bundled Comparator accepted both Challenge
+All 60 modules and the default library target passed actual Lake builds.
+The bundled Comparator accepted both Challenge
 statements, their dependencies, the permitted axioms, and the default Lean
 kernel check of Solution. This local check used exports and had no sandbox.
 The exact published commit still requires a full sandboxed Palomar preflight
