@@ -7,8 +7,8 @@ The candidate pins Lean 4.35.0 and Mathlib revision
 from the Higuchi–Sudbery candidate for the same pins.
 
 The foundation source is split at complete original-module boundaries.
-All original blocks and FullCandidate.lean are byte-identical to the recorded
-source. Public imports connect the parts in their original order. This static
+All original QICLean blocks are byte-identical to the recorded source.
+FullCandidate.lean retains its proof bodies and has an explicit Spectrum.Pi import. Public imports connect the parts in their original order. This static
 integrity check does not establish kernel acceptance or correct exported interfaces.
 
 The preserved manuscript describes historical Lean 4.35.0-rc3 verification.

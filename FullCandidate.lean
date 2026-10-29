@@ -1,6 +1,7 @@
 module
 
 public import QICFoundation
+public import Mathlib.Algebra.Algebra.Spectrum.Pi
 public import Mathlib.Algebra.Group.Pi.Units
 public import Mathlib.Algebra.Order.Star.Pi
 public import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Basic
