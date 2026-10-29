@@ -1,8 +1,10 @@
-# Math and Theory
+# Math and Theory: mathematical research and Lean 4 proofs
 
-I publish mathematical manuscripts and supporting proof artifacts from fully autonomous agentic research in mathematics, theoretical computer science, and mathematical physics. AI agents generated the research, proofs, computations and manuscripts. I am responsible for publication.
+I am Dev D. Goyal. I publish mathematical research papers, proofs, counterexamples, and Lean 4 formalizations from fully autonomous agentic research in mathematics, theoretical computer science, and mathematical physics. AI agents generated the research, proofs, computations and manuscripts. I am responsible for publication.
 
 The collection contains results with different formal verification scopes. Each paper states its checked claims, conventional proofs and remaining limits. The papers have not been externally peer reviewed. I make no claim of first priority.
+
+[Browse papers and abstracts](CONTENTS.md) · [Standout results](#standout-results) · [Find a result](#find-a-result) · [Check the proofs](verification/README.md) · [Cite the collection](CITATION.cff)
 
 ## Navigating the collection
 
@@ -64,6 +66,25 @@ The current catalogue contains 31 manuscripts and research notes across 30 resul
 
 - [Stochastic thermodynamics](CONTENTS.md#stochastic-thermodynamics): thermal current kurtosis, unicyclic current skewness.
 - [Quantum information](CONTENTS.md#quantum-information): universal entanglement embezzlement, the Higuchi–Sudbery entropy bound, a matched-basis information counterexample, exact steering correlation bounds, three-state root fidelity, exact conditional quantum contraction.
+
+## Find a result
+
+I use the names below to connect common search terms to each result and its files. Each result directory contains its manuscript and supporting material. The [full manuscript map](CONTENTS.md) includes the other families and their abstracts.
+
+| Search terms | Result and files |
+|---|---|
+| Higuchi–Sudbery, Higuchi-Sudbery, four-qubit entanglement, marginal entropy | [Four-qubit entropy bound](papers/physics/higuchi-sudbery/) |
+| Strong convexity, gradient descent, Taylor–Hendrickx–Glineur, last-gradient bound | [Exact gradient bound](papers/mathematics/strong-gradient/) |
+| Entanglement embezzlement, quantum catalysts, logarithmic infidelity | [Universal entanglement embezzlement](papers/physics/universal-embezzlement/) |
+| Root fidelity, three-state ensemble, Holevo quantity, quantum entropy | [Three-state root-fidelity bound](papers/physics/fidelity-three-state/) |
+| Merino–Welsh, Merino-Welsh, Tutte polynomial, finite matroids | [Asymmetric Merino–Welsh region](papers/mathematics/asymmetric-tutte/) |
+| Pauli channels, depolarizing channels, hockey-stick divergence, quantum contraction | [Exact conditional contraction](papers/physics/quantum-exact-contraction/) |
+| Alternating direction method of multipliers, ADMM, convergence counterexample | [Rational period-five ADMM orbit](papers/mathematics/admm-counterexample/) |
+| C-finite sequences, constant-recursive sequences, power ranks, nonquasipolynomial | [Power-rank sequence and companion results](papers/mathematics/power-rank/) |
+| Markov rings, stochastic currents, unicyclic networks, skewness | [Unicyclic current bound](papers/physics/unicyclic-skewness/) |
+| Quantum steering, steering ellipsoids, two-qubit correlations, three-setting bounds | [Fixed-centre steering bounds](papers/physics/steering-bounds/) |
+
+To search the source on GitHub, use `repo:dvgyl/math-and-theory` followed by a name or term. For example, use `repo:dvgyl/math-and-theory Higuchi`. To find a file by name, open the repository and press **t**. For proof scope and known gaps, read [UNFINISHED.md](UNFINISHED.md).
 
 ## Proof coverage
 
