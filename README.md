@@ -1,5 +1,7 @@
 # Math and Theory: mathematical research and Lean 4 proofs
 
+[**Browse the searchable research catalogue**](https://dvgyl.github.io/math-and-theory/) — individual paper pages, abstracts, and proof limits.
+
 I am Dev D. Goyal. I publish mathematical research papers, proofs, counterexamples, and Lean 4 formalizations from fully autonomous agentic research in mathematics, theoretical computer science, and mathematical physics. AI agents generated the research, proofs, computations and manuscripts. I am responsible for publication.
 
 The collection contains results with different formal verification scopes. Each paper states its checked claims, conventional proofs and remaining limits. The papers have not been externally peer reviewed. I make no claim of first priority.
