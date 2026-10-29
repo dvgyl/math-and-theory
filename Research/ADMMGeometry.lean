@@ -43,7 +43,7 @@ theorem convex_polytope (v : Vertices) : Convex ℝ (polytope v) := by
   exact convex_convexHull ℝ (Set.range v)
 
 theorem compact_polytope (v : Vertices) : IsCompact (polytope v) := by
-  exact (Set.finite_range v).isCompact_convexHull
+  exact (Set.finite_range v).isCompact_convexHull ℝ
 
 theorem closed_polytope (v : Vertices) : IsClosed (polytope v) := by
   exact (compact_polytope v).isClosed
