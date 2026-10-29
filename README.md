@@ -18,7 +18,7 @@ Root fidelity `F` is the norm of the complex inner product of the two unit state
 
 [Challenge.lean](Challenge.lean) states the local-permutation theorem and its logarithmic form. It includes the independent definitions and two deliberate theorem holes. [Solution.lean](Solution.lean) imports the complete proof source. [formalization.yaml](formalization.yaml) records the scope, source attribution, and preparation status.
 
-This package is an uncompiled submission preparation. It preserves the manuscript from the pinned source commit. The manuscript describes the original Lean 4.19.0 environment. The submission source uses the dependency pins below and requires a fresh full preflight.
+The proof, Solution, Audit, and Challenge compile locally with Lean 4.35.0. The proof, Solution, and Audit pass with warnings treated as errors. Challenge has two deliberate theorem placeholders. Full Palomar comparison and independent kernel checks are pending. It preserves the manuscript from the pinned source commit. The manuscript describes the original Lean 4.19.0 environment. The submission source uses the dependency pins below and requires a fresh full preflight.
 
 ## Reproduce the proof
 

@@ -51,7 +51,7 @@ sources:
     relationship: background
 status:
   scope: >-
-    Complete source proofs are supplied. The module-system port is uncompiled.
+    Complete source proofs are supplied. The proof, Solution, and Audit pass local compilation with warnings treated as errors and trust level zero. Challenge compiles with its two deliberate theorem placeholders. Full Palomar comparison and independent kernel checks are pending.
     The two selected statements quantify over every finite index type J with
     decidable equality, every chosen j_0 in J, every nonnegative p with sum one,
     and every L >= 1. Here m is the cardinality of J, including zero-probability
@@ -59,8 +59,8 @@ status:
     depend on the target. Each party's combined register has dimension mn.
     Both compared states have norm one. Root fidelity is the norm of their
     complex inner product; root infidelity is 1 minus root fidelity.
-    The listed axioms are the expected permitted axioms. Fresh preflight must
-    check their actual transitive use. The proof-status counts exclude the
+    The local audit reports only the listed permitted axioms. Full preflight must
+    independently check their actual transitive use. The proof-status counts exclude the
     two deliberate Challenge holes.
   sorry_count: 0
   sorry_in_definitions: 0
@@ -84,7 +84,8 @@ automation:
     The authors checked the proofs to the best of their mathematical abilities.
     This check is not expert validation or peer review. Dev D. Goyal is responsible
     for publication. The submission package was prepared autonomously in Codex.
-    Its current toolchain and module-system port have not been compiled.
+    The current proof, Solution, Audit, and Challenge pass local Lean compilation.
+    Full Palomar comparison and independent kernel checks remain pending.
 fidelity:
   divergences: >-
     The formal operational result uses the displayed diagonal states in finite
@@ -96,15 +97,15 @@ fidelity:
     not its square. Optimal constants, gate complexity, and exact catalyst return
     are not claimed.
 review:
-  status: Not peer reviewed. The current submission port is uncompiled.
+  status: Not peer reviewed. Local Lean checks pass. Full Palomar preflight is pending.
 alignment:
   namespace: Embezzlement
   statements:
     - source: Local basis permutations and root fidelity at least 1 - 125m/L^2
       lean: Embezzlement.universal_tent_local_unitary
       module: Solution
-      status: Source proof supplied; current port uncompiled.
+      status: Local Lean checks pass; full Palomar preflight pending.
     - source: Equivalent bound with error 2000m/(log_2 n)^2
       lean: Embezzlement.universal_tent_logarithmic_fidelity
       module: Solution
-      status: Source proof supplied; current port uncompiled.
+      status: Local Lean checks pass; full Palomar preflight pending.

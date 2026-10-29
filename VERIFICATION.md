@@ -2,7 +2,7 @@
 
 The package contains the complete proof source and an independent Comparator statement. The source came from commit `a6574b1bf6a591d81c3314d5333fc5da26712d6b` of `dvgyl/math-and-theory`.
 
-The current package pins Lean 4.35.0 and Mathlib revision `56a005855ea17e0b0958f73ec801ae140b0a1679`. Its module-system port has not been compiled. Earlier compiler records refer to different source bytes and a different toolchain. Those records are not included. A source hash inventory establishes file identity only. It does not establish proof acceptance.
+The current package pins Lean 4.35.0 and Mathlib revision `56a005855ea17e0b0958f73ec801ae140b0a1679`. The proof, Solution, and Audit compile locally with warnings treated as errors and trust level zero. Challenge compiles with its two deliberate theorem placeholders. All fifteen local axiom reports contain only `propext`, `Classical.choice`, and `Quot.sound`. The full Palomar comparison and independent kernel checks remain pending. Earlier compiler records refer to different source bytes and a different toolchain. Those records are not included. A source hash inventory establishes file identity only. It does not establish proof acceptance.
 
 For every integer `L ≥ 1`, define the catalyst local dimension as `n = 2^(4L)`. The same catalyst coefficients are used for every target dimension and target probability vector. Let `J` be a finite index type with decidable equality. Choose `j₀ : J`. Let `m = Fintype.card J`. For every `p : J → ℝ` with nonnegative values and sum one, the selected statements give a permutation of `J × Fin n`.
 

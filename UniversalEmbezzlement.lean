@@ -13,7 +13,7 @@ public import Mathlib.Analysis.SpecialFunctions.Log.Base
 The original source used Lean 4.19.0 and Mathlib revision
 c44e0c8ee63ca166450922a373c7409c5d26b00b.
 This submission pins Lean 4.35.0 and Mathlib revision
-56a005855ea17e0b0958f73ec801ae140b0a1679. The port is uncompiled.
+56a005855ea17e0b0958f73ec801ae140b0a1679. Full Palomar validation is pending.
 Main results are in namespace `Embezzlement`, near the end of this file.
 All auxiliary proofs are included. See the companion research note and README.
 -/
@@ -345,7 +345,6 @@ theorem sqrt_weight_transport_bound
         w * (Real.sqrt k - Real.sqrt p * Real.sqrt i) /
           (Real.sqrt i * Real.sqrt k) := by
     field_simp
-    ring
   rw [hrewrite, abs_div, abs_mul, abs_of_nonneg hw,
     abs_of_pos (mul_pos hsi hsk)]
   apply (div_le_iff₀ (mul_pos hsi hsk)).mpr
@@ -363,7 +362,7 @@ theorem tent_pointwise_abs_bound
         |(u - w) / Real.sqrt i +
           (w / Real.sqrt i - Real.sqrt p * w / Real.sqrt k)| := by congr 1; ring
     _ ≤ |(u - w) / Real.sqrt i| +
-          |w / Real.sqrt i - Real.sqrt p * w / Real.sqrt k| := abs_add _ _
+          |w / Real.sqrt i - Real.sqrt p * w / Real.sqrt k| := abs_add_le _ _
     _ ≤ D / Real.sqrt i + 1 / Real.sqrt i := by
       apply add_le_add
       · rw [abs_div, abs_of_pos hsi]
@@ -548,7 +547,7 @@ theorem dyadic_annulus_harmonic_bounds (a b : ℕ) :
         Nat.pow_le_pow_right (by norm_num) (by omega))
     have hshell := dyadic_shell_harmonic_bounds (a + b)
     have hcast : ((b + 1 : ℕ) : ℝ) = (b : ℝ) + 1 := by norm_cast
-    simp only [Nat.succ_eq_add_one, ← Nat.add_assoc] at *
+    simp only [← Nat.add_assoc] at *
     rw [← hsplit, hcast]
     constructor <;> linarith [ih.1, ih.2, hshell.1, hshell.2]
 
@@ -611,7 +610,7 @@ theorem harmonic_four_mul_le {L : ℕ} (hL : 1 ≤ L) :
 
 theorem sum_Icc_one_eq_sum_range_succ (n : ℕ) (f : ℕ → ℝ) :
     (∑ i ∈ Icc 1 n, f i) = ∑ i ∈ range n, f (i + 1) := by
-  rw [← Nat.Ico_succ_right, sum_Ico_eq_sum_range]
+  rw [← Finset.Ico_succ_right_eq_Icc, sum_Ico_eq_sum_range]
   simp [Nat.add_comm]
 
 theorem tent_norm_lower_range (L : ℕ) :
@@ -1046,7 +1045,7 @@ theorem normalized_overlap_of_sq_error
     rw [div_mul_div_comm, Real.mul_self_sqrt hZ.le]
   rw [hnorm]
   have h := div_le_div_of_nonneg_right hbound hZ.le
-  convert h using 1; field_simp; ring
+  convert h using 1; field_simp
 
 end Normalization
 
@@ -1099,11 +1098,11 @@ theorem diagonalState_norm (a : I → ℝ) {Z : ℝ} (hZ : 0 < Z)
         rw [div_mul_div_comm, Real.mul_self_sqrt hZ.le]
         ring
       _ = 1 := by rw [ha, div_self hZ.ne']
-  have h := congrArg Complex.re (diagonalState_inner a a Z)
-  rw [hsum, inner_self_eq_norm_sq_to_K] at h
-  norm_cast at h
   have hnorm : ‖diagonalState a Z‖ ^ 2 = 1 := by
-    simpa only [Complex.ofReal_re] using h
+    calc
+      ‖diagonalState a Z‖ ^ 2 = (⟪diagonalState a Z, diagonalState a Z⟫_ℂ).re :=
+        (inner_self_eq_norm_sq (𝕜 := ℂ) _).symm
+      _ = 1 := by rw [diagonalState_inner, hsum]; rfl
   nlinarith [norm_nonneg (diagonalState a Z)]
 
 theorem bipartiteBasisPermutation_diagonal (σ : Equiv.Perm I)
@@ -1183,7 +1182,7 @@ theorem exists_perm_raw_cost_le {L : ℕ} (hL : 1 ≤ L) (j₀ : J)
     have h2 := mul_le_mul_of_nonneg_left hHbound
       (show (0:ℝ) ≤ 25*(Fintype.card J:ℝ) by positivity)
     nlinarith
-  · haveI : Subsingleton J := ⟨Fintype.card_le_one_iff.mp
+  · have : Subsingleton J := ⟨Fintype.card_le_one_iff.mp
       (show Fintype.card J ≤ 1 by omega)⟩
     have hpone (j : J) : p j = 1 := by
       have hsingle : (∑ k, p k) = p j := by
