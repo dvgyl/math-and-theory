@@ -1,5 +1,30 @@
 module
-public import Mathlib
+public import Mathlib.Algebra.MvPolynomial.Basic
+public import Mathlib.Algebra.MvPolynomial.Eval
+public import Mathlib.Algebra.Order.Floor.Ring
+public import Mathlib.Algebra.Polynomial.AlgebraMap
+public import Mathlib.Algebra.Polynomial.BigOperators
+public import Mathlib.Algebra.Polynomial.Coeff
+public import Mathlib.Algebra.Polynomial.Derivative
+public import Mathlib.Algebra.Polynomial.Roots
+public import Mathlib.Analysis.Complex.Basic
+public import Mathlib.Analysis.Polynomial.Basic
+public import Mathlib.Analysis.Real.Sqrt
+public import Mathlib.Data.Finsupp.Multiset
+public import Mathlib.Data.Int.Interval
+public import Mathlib.Data.Nat.Choose.Multinomial
+public import Mathlib.Data.Nat.Factorization.Basic
+public import Mathlib.Data.Nat.Prime.Infinite
+public import Mathlib.Data.Nat.Sqrt
+public import Mathlib.Data.Sym.Card
+public import Mathlib.Order.Interval.Finset.Nat
+public import Mathlib.Tactic.FieldSimp
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.LinearCombination
+public import Mathlib.Tactic.NormNum
+public import Mathlib.Tactic.Positivity
+public import Mathlib.Tactic.Ring
 
 /-! The rank is defined by actual constant-coefficient recurrences on a tail.
 The main statement uses the literal positive integer sequence and every
@@ -17,6 +42,13 @@ open scoped BigOperators
 namespace PowerRank
 
 abbrev Seq := ℕ → ℂ
+
+/-- Fixed numeral proofs keep the definitions identical across modules. -/
+instance instAtLeastTwo2 : Nat.AtLeastTwo 2 := ⟨Nat.le_refl 2⟩
+instance instAtLeastTwo3 : Nat.AtLeastTwo 3 := ⟨Nat.le_add_right 2 1⟩
+instance instAtLeastTwo6 : Nat.AtLeastTwo 6 := ⟨Nat.le_add_right 2 4⟩
+instance instAtLeastTwo7 : Nat.AtLeastTwo 7 := ⟨Nat.le_add_right 2 5⟩
+instance instAtLeastTwo9 : Nat.AtLeastTwo 9 := ⟨Nat.le_add_right 2 7⟩
 
 def shift : Module.End ℂ Seq where
   toFun u n := u (n + 1)
@@ -90,6 +122,9 @@ abbrev Composition (k M : ℕ) := {b : Letter k → ℕ // ∑ i, b i = M}
 
 instance compositionFintype (k M : ℕ) : Fintype (Composition k M) :=
   Fintype.ofEquiv (Sym (Letter k) M) (Sym.equivNatSumOfFintype (Letter k) M)
+
+/-- A fixed proof for the literal indices in `Fin 3`. -/
+instance instNeZeroThree : NeZero (3 : ℕ) := @Nat.instNeZeroSucc 2
 
 abbrev NormalComposition (k d M : ℕ) := {b : Composition k M // b.1 (Sum.inl 1) < d}
 

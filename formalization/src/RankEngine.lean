@@ -12,6 +12,13 @@ namespace PowerRank
 
 abbrev Seq := ℕ → ℂ
 
+/-- Fixed numeral proofs keep the definitions identical across modules. -/
+instance instAtLeastTwo2 : Nat.AtLeastTwo 2 := ⟨Nat.le_refl 2⟩
+instance instAtLeastTwo3 : Nat.AtLeastTwo 3 := ⟨Nat.le_add_right 2 1⟩
+instance instAtLeastTwo6 : Nat.AtLeastTwo 6 := ⟨Nat.le_add_right 2 4⟩
+instance instAtLeastTwo7 : Nat.AtLeastTwo 7 := ⟨Nat.le_add_right 2 5⟩
+instance instAtLeastTwo9 : Nat.AtLeastTwo 9 := ⟨Nat.le_add_right 2 7⟩
+
 def shift : Module.End ℂ Seq where
   toFun u n := u (n + 1)
   map_add' _ _ := rfl

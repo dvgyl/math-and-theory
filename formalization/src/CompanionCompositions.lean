@@ -17,6 +17,9 @@ abbrev Composition (k M : ℕ) := {b : Letter k → ℕ // ∑ i, b i = M}
 instance compositionFintype (k M : ℕ) : Fintype (Composition k M) :=
   Fintype.ofEquiv (Sym (Letter k) M) (Sym.equivNatSumOfFintype (Letter k) M)
 
+/-- A fixed proof for the literal indices in `Fin 3`. -/
+instance instNeZeroThree : NeZero (3 : ℕ) := @Nat.instNeZeroSucc 2
+
 abbrev NormalComposition (k d M : ℕ) := {b : Composition k M // b.1 (Sum.inl 1) < d}
 
 theorem composition_card (k M : ℕ) :

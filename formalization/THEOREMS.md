@@ -1,6 +1,6 @@
 # Formal statement map
 
-This map describes source statements. The current module-system port is uncompiled. Earlier compiler records do not certify these bytes.
+This map describes source statements. The current revision requires the official full Palomar preflight. Earlier compiler records do not certify these bytes.
 
 Main declarations are in namespace `PowerRank`. Companion declarations are in `PowerRank.Companion`.
 

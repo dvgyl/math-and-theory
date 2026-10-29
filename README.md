@@ -1,6 +1,6 @@
 # A positive constant-recursive sequence with nonquasipolynomial power ranks
 
-This is an uncompiled submission package. It contains the complete proof source, the independent Challenge, and the original manuscript. The module-system port requires a fresh full Palomar preflight.
+This submission package requires the official full Palomar preflight. It contains the complete proof source, the independent Challenge, and the original manuscript. The module-system port requires a fresh full Palomar preflight.
 
 The main positive integer sequence is
 
@@ -22,7 +22,7 @@ lake build PowerRankComplete Solution
 lake env lean --trust=0 -DwarningAsError=true formalization/src/CompleteAudit.lean
 ```
 
-These commands have not been run for this package. The official full preflight must check the exact published submission commit before intake. The audit requests 25 axiom reports. The expected permitted axioms are `propext`, `Classical.choice`, and `Quot.sound`.
+Private local checks do not replace the official full preflight. The official full preflight must check the exact published submission commit before intake. The audit requests 25 axiom reports. The expected permitted axioms are `propext`, `Classical.choice`, and `Quot.sound`.
 
 Read [manuscript.pdf](manuscript.pdf), [manuscript.tex](manuscript.tex), [PROOF_MAP.md](PROOF_MAP.md), and [formalization/THEOREMS.md](formalization/THEOREMS.md) for the mathematical argument and source map. The companion generating function, eventual polynomial degree and leading coefficient, and simplified rank-three examples have conventional manuscript proofs. They are outside the selected formal claim.
 

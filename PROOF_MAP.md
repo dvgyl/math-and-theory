@@ -1,6 +1,6 @@
 # Mathematical claims and verification boundary
 
-This map describes the original mathematical source. The current module-system port is uncompiled. Earlier verification records do not certify this candidate. The active Lake project is at the package root.
+This map describes the original mathematical source. The current revision requires the official full Palomar preflight. Earlier verification records do not certify this candidate. The active Lake project is at the package root.
 
 The recurrence coefficient field is complex numbers. The index set is `n ≥ 0`, and recurrences may initially hold on a tail. Rank zero and characteristic polynomial one are assigned to an eventually zero sequence. The constructed sequences are everywhere positive. Their minimal characteristic polynomials are monic integer polynomials with nonzero constant terms, and their recurrences hold for every index. Their minimal orders over Q, R, and C therefore agree.
 

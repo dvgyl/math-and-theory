@@ -1,6 +1,6 @@
 # Proof source
 
-This directory contains all 35 original proof modules. They have been ported to Lean's module system. This port has not been compiled. The dependency pins remain Lean 4.35.0 and Mathlib revision `56a005855ea17e0b0958f73ec801ae140b0a1679`.
+This directory contains all 35 original proof modules. They have been ported to Lean's module system. The current revision requires the official full Palomar preflight. The dependency pins remain Lean 4.35.0 and Mathlib revision `56a005855ea17e0b0958f73ec801ae140b0a1679`.
 
 The active Lake project is now in the parent directory. Run its commands from that project root. [The root README](../README.md) gives the commands. [The verification scope](../VERIFICATION.md) distinguishes the selected formal statements from conventional manuscript corollaries.
 

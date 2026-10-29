@@ -1,6 +1,6 @@
 # Formal statement and verification scope
 
-This package is an uncompiled module-system port. It retains Lean 4.35.0 and Mathlib revision `56a005855ea17e0b0958f73ec801ae140b0a1679`. The complete source came from commit `a6574b1bf6a591d81c3314d5333fc5da26712d6b` of `dvgyl/math-and-theory`.
+This package is a module-system port that requires the official full Palomar preflight. It retains Lean 4.35.0 and Mathlib revision `56a005855ea17e0b0958f73ec801ae140b0a1679`. The complete source came from commit `a6574b1bf6a591d81c3314d5333fc5da26712d6b` of `dvgyl/math-and-theory`.
 
 The public recurrence definitions use the actual sequence shift `u(n) ↦ u(n+1)`. A polynomial acts through that shift. An admissible recurrence polynomial is monic, has nonzero constant coefficient, and annihilates the sequence after some index. The rank is the infimum of the possible natural degrees. For the constructed sequences, the supplied minimal characteristic polynomial makes this the least eventual recurrence order.
 
@@ -24,4 +24,4 @@ The companion generating function, eventual polynomial degree and leading coeffi
 
 The manuscript, authorship disclosure, and source notices are preserved. Their descriptions of the earlier source verification do not certify this port. The old hash manifests and original verifier scripts were removed. `source-sha256.json` is a current integrity inventory only. The retained supplement record describes an earlier bounded arithmetic run. It is not a current proof check and does not replace the universal statements.
 
-No build, dependency download, Comparator check, or full preflight was run during this preparation. Before intake, run the pinned official full Palomar preflight on the exact published commit. Check the complete Solution, the independent Challenge comparison, every required kernel outcome, and the actual transitive axioms. Formal verification does not certify historical priority or the meaning of the source's undefined term “pseudo-polynomial.”
+Private local compiler and bundled Comparator checks do not replace the official full preflight. Before intake, run the pinned official full Palomar preflight on the exact published commit. Check the complete Solution, the independent Challenge comparison, every required kernel outcome, and the actual transitive axioms. Formal verification does not certify historical priority or the meaning of the source's undefined term “pseudo-polynomial.”
