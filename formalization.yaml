@@ -1,0 +1,85 @@
+version: v0.4
+project:
+  name: The exact asymmetric Merino–Welsh region for finite matroids
+  description: >-
+    The universal Tutte product inequality for finite matroids without loops or
+    coloops holds exactly on an explicit region in the nonnegative quadrant.
+    The region includes two scalar families for every natural number at least two.
+  authors:
+    - Dev D. Goyal
+  responsible_maintainers:
+    - Dev D. Goyal
+  license: Apache-2.0
+classification:
+  arxiv:
+    - math.CO
+  msc2020:
+    - 05B35
+    - 05C31
+sources:
+  - title: The exact asymmetric Merino–Welsh region for finite matroids
+    type: original-proof
+    authors:
+      - Dev D. Goyal
+    id: https://github.com/dvgyl/math-and-theory/blob/a6574b1bf6a591d81c3314d5333fc5da26712d6b/papers/mathematics/asymmetric-tutte/manuscript.pdf
+    relationship: other
+    license: Apache-2.0
+    note: >-
+      The original proof development and manuscript are included. The linked
+      source precedes the module port and independent Challenge. Historical
+      priority is not certified.
+  - title: The sharp threshold for the multiplicative Merino–Welsh inequality on matroids
+    type: paper
+    authors:
+      - Mingchang Liu
+    id: https://github.com/michaeliu4/tutte-threshold/tree/636352f0fef47b19d7d5de364858ccee2317fd66
+    relationship: background
+    author_endorsement: not-contacted
+    note: >-
+      The pinned Solution dependency supplies substantive prior proofs and the
+      rank-sum API. Its source is not redistributed. No license is granted for
+      its Lean sources. The project license does not apply to that dependency.
+status:
+  scope: >-
+    The selected statement is the full equivalence for actual finite Mathlib
+    matroids. Both infinite region families and all nonnegative parameter
+    boundaries are retained. The Challenge imports only Mathlib. The module
+    port and changed dependency pins require a fresh full preflight.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+automation:
+  methods:
+    - method: autonomous
+      models:
+        - GPT 6 with Pro Reasoning
+      framework: ChatGPT
+      tool_setup: Autonomous initial research and proofs.
+    - method: agent
+      models:
+        - GPT 6 Astra
+      framework: Codex
+      tool_setup: Autonomous formalizations and corrections.
+  notes: >-
+    The author checked the proofs to the best of his mathematical abilities.
+    This check is not expert validation or peer review. Dev D. Goyal is
+    responsible for publication. Codex prepared the package autonomously.
+fidelity:
+  divergences: >-
+    No mathematical change is intended. The domain is every actual finite
+    Mathlib matroid without loops or coloops, including an empty ground set.
+    Universe scope follows the source Universal definition with alpha : Type.
+    The two infinite scalar families are retained. The original upstream proof
+    dependency remains explicit and pinned. Compatibility is not yet checked.
+review:
+  status: Not peer reviewed.
+alignment:
+  namespace: AsymmetricTutte
+  statements:
+    - source: Exact nonnegative universal asymmetric Merino–Welsh parameter region
+      lean: AsymmetricTutte.universal_iff_region
+      module: Solution
+      status: Proof source prepared; not compiled.
