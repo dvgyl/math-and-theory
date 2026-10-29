@@ -1,80 +1,35 @@
-# Math and Theory
+# A positive constant-recursive sequence with nonquasipolynomial power ranks
 
-I publish mathematical manuscripts and supporting proof artifacts from fully autonomous agentic research in mathematics, theoretical computer science, and mathematical physics. AI agents generated the research, proofs, computations and manuscripts. I am responsible for publication.
+This is an uncompiled submission package. It contains the complete proof source, the independent Challenge, and the original manuscript. The module-system port requires a fresh full Palomar preflight.
 
-The collection contains results with different formal verification scopes. Each paper states its checked claims, conventional proofs and remaining limits. The papers have not been externally peer reviewed. I make no claim of first priority.
+The main positive integer sequence is
 
-## Navigating the collection
+`s(n) = 1 + 2^n + 3^n(1 - 2^n)^2 + n9^n(1 + 2^n)^3`.
 
-The current catalogue contains 31 manuscripts and research notes across 30 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
+A constant-coefficient recurrence expresses each later term as a fixed linear combination of earlier terms. Here recurrence rank is the least order of an admissible complex recurrence that holds after some index. Its polynomial is monic and has nonzero constant coefficient. The sequence has rank 13.
 
-- Start with the [overview](overview.pdf) for descriptions of the result families.
-- Use the [manuscript map](CONTENTS.md) to find individual papers, abstracts and supporting materials.
-- The [papers directory](papers/) groups every manuscript and its supporting material by subject and result family.
-- The [Lean library](lean/README.md), [formalization catalogue](lean/formalization.yaml) and [verification guide](verification/README.md) identify formal proofs, associated papers and checking commands.
-- [Unfinished formal proofs](UNFINISHED.md) lists the remaining Lean gaps and conventional-proof boundaries.
-- [Adding a result](docs/ADDING_RESULTS.md) explains the family layout, metadata template and required checks.
+The power with exponent `M` means the sequence `s(n)^M`. The main theorem gives its complete minimal characteristic polynomial and exact rank for every natural `M`, including zero. The rank is a cubic expression minus twice a parity-restricted square count. The square-root correction has error at most two for `M ≥ 1`. The power ranks are not eventually quasipolynomial. This means that no finite list of real polynomials gives their values by residue class after a common threshold.
 
-## Standout results
+The companion family is `1 + 2^n + 2^(dn) + ∑ p_i^n`. It uses `r - 3` distinct odd primes and every integer `d ≥ 2`. The selected statements give the exact rank of every power and infinitely many different power-rank profiles at each fixed initial rank `r ≥ 3`.
 
-### Mathematics
+[Challenge.lean](Challenge.lean) contains the independent recurrence and sequence definitions. It has three deliberate theorem holes. [Solution.lean](Solution.lean) imports the complete main and companion proof package. [comparator/power-rank.json](comparator/power-rank.json) selects the three existing statements. [formalization.yaml](formalization.yaml) records their exact scope and attribution.
 
-**[The exact last-gradient bound for constant-step gradient descent in the strongly convex case](papers/mathematics/strong-gradient/manuscript.pdf).** The exact final-gradient guarantee for constant-step gradient descent holds on every real Hilbert space, for every natural horizon and all normalized steps in [0,2], including positive strong convexity. The actual-function bound and normalized attaining functions are formalized; sharpness at arbitrary scale follows by conventional rescaling.
+Use the pinned Lean 4.35.0 toolchain and Mathlib revision `56a005855ea17e0b0958f73ec801ae140b0a1679`. From this directory, the proof build commands are:
 
-**[The exact asymmetric Merino–Welsh region for finite matroids](papers/mathematics/asymmetric-tutte/manuscript.pdf).** The exact nonnegative parameter region for T_M(x,0) T_M(0,y) ≥ T_M(1,1)² is characterized uniformly over all finite matroids without loops or coloops. The formal statement uses actual matroids and their subset-rank Tutte sum, including the empty ground set.
+```sh
+lake exe cache get
+lake build PowerRankComplete Solution
+lake env lean --trust=0 -DwarningAsError=true formalization/src/CompleteAudit.lean
+```
 
-**[A positive constant-recursive sequence with nonquasipolynomial power ranks](papers/mathematics/power-rank/manuscript.pdf).** A positive constant-recursive sequence of rank thirteen has explicit minimal recurrences for all its powers and nonquasipolynomial power ranks. The main theorem and arbitrary-rank companions are formalized; generating-function and polynomial corollaries have conventional proofs.
+These commands have not been run for this package. The official full preflight must check the exact published submission commit before intake. The audit requests 25 axiom reports. The expected permitted axioms are `propext`, `Classical.choice`, and `Quot.sound`.
 
-**[A rational five-cycle for two-block ADMM with multiplier step below two](papers/mathematics/admm-counterexample/paper/admm_counterexample.pdf).** An exact rational period-five orbit occurs in multiplier-only two-block ADMM at multiplier step 199/100. The orbit, minimizers and optimizer are formalized; analytic regularity of the strongly convex extension has a conventional proof.
+Read [manuscript.pdf](manuscript.pdf), [manuscript.tex](manuscript.tex), [PROOF_MAP.md](PROOF_MAP.md), and [formalization/THEOREMS.md](formalization/THEOREMS.md) for the mathematical argument and source map. The companion generating function, eventual polynomial degree and leading coefficient, and simplified rank-three examples have conventional manuscript proofs. They are outside the selected formal claim.
 
-### Mathematical physics
+[VERIFICATION.md](VERIFICATION.md) gives the current verification boundary. The earlier release manifests, source hashes, and verifier scripts are excluded. [source-sha256.json](source-sha256.json) identifies current file bytes only. The retained supplement scripts and recorded bounded arithmetic results do not replace the universal proofs. They have not been run during this preparation.
 
-**[Exact conditional contraction for Pauli channels and depolarization in every dimension](papers/physics/quantum-exact-contraction/quantum_exact_contraction.pdf).** The conditional hockey-stick contraction coefficient is exact for every stochastic Pauli qubit channel and the full physical depolarizing family in every dimension d ≥ 2. The formal proof covers every γ ≥ 1, arbitrary finite quantum references, all boundary cases, and matching density-state witnesses.
+[AUTHORSHIP.md](AUTHORSHIP.md) preserves the contribution disclosure. [formalization/NOTICE](formalization/NOTICE) records source credit. The exponential-polynomial rank principle, coefficient duality and Krawtchouk recurrence, and principal-relation Hilbert-function mechanism are standard supporting mathematics. Rowland and Sistos Barrón receive credit for the related study of powers of constant-recursive sequences. Historical priority and precise source correspondence remain provisional. The nonquasipolynomial conclusion is not identified with the source's undefined term “pseudo-polynomial.”
 
-**[A sum-of-squares proof of the four-qubit Higuchi–Sudbery entropy bound](papers/physics/higuchi-sudbery/manuscript.pdf).** Every pure four-qubit state has average two-qubit marginal entropy at most log(2) + log(3)/2. The Higuchi–Sudbery state attains the bound, and the actual-state inequality and attainment are formalized.
+The original package uses [Apache-2.0](LICENSE). Use [CITATION.cff](CITATION.cff) or [CITATION.bib](CITATION.bib) to cite the manuscript.
 
-**[Universal entanglement embezzlement with inverse-quadratic logarithmic infidelity](papers/physics/universal-embezzlement/manuscript.pdf).** A target-independent catalyst of local dimension 2^(4L) gives root infidelity at most 125m/L² for every Schmidt probability vector with m entries. The formal proof constructs local basis permutations and their finite complex Hilbert-space interpretation.
-
-**[The three-state root-fidelity entropy bound](papers/physics/fidelity-three-state/manuscript.pdf).** The weighted three-by-three root-fidelity matrix has entropy at least the Holevo quantity of every three-state ensemble in arbitrary finite dimension. The formal theorem includes mixed and singular states and zero probabilities.
-
-**[A sharp universal skewness bound for unicyclic currents](papers/physics/unicyclic-skewness/manuscript.pdf).** The net marked-edge current on every finite bidirectional Markov ring with at least three states, positive rates and unequal forward and reverse rate products satisfies −1/16 ≤ C₃/C₁ ≤ 1. The matrix-derivative bound is formalized; stochastic identification and sharpness have conventional proofs.
-
-**[Exact three-setting correlation bounds at fixed steering centre](papers/physics/steering-bounds/paper/steering_bounds.pdf).** The exact upper envelope of the three-setting squared correlation value is determined at every two-qubit steering-centre length, including attainment and nonattainment. A value greater than one is possible exactly when c < 2/3; the formal proof uses actual density matrices and the stated canonical centre.
-
-## Result families
-
-### Mathematics
-
-- [Matrix theory](CONTENTS.md#matrix-theory): q-permanent counterexamples, Gyires structured permanent inequalities, a normal-matrix polygon counterexample, projection AM–GM obstruction.
-- [Graph theory and graph polynomials](CONTENTS.md#graph-theory-and-graph-polynomials): DomiRank entropy, domination-sequence ultra-log-concavity, domination-root escape, leaf-deletion mode movement.
-- [Inequalities and real analysis](CONTENTS.md#inequalities-and-real-analysis): diagonal concavity.
-- [Integer sequences and combinatorics](CONTENTS.md#integer-sequences-and-combinatorics): Motzkin root log-concavity, bounded-forcing Motzkin bounds, Hofstadter iteration, nonquasipolynomial power ranks.
-- [Discrete analysis, probability and entropy](CONTENTS.md#discrete-analysis-probability-and-entropy): the sharp one-eighth Fourier bound, ranking entropy, Sidon-set Rényi thresholds.
-- [Matroid theory](CONTENTS.md#matroid-theory): the asymmetric Merino–Welsh region.
-- [Optimization](CONTENTS.md#optimization): an ADMM five-cycle, the exact strong-convexity gradient bound.
-
-### Theoretical computer science
-
-- [Sampling algorithms and information theory](CONTENTS.md#sampling-algorithms-and-information-theory): best-of-n counterexamples.
-- [Boolean functions and decision trees](CONTENTS.md#boolean-functions-and-decision-trees): decision-tree covariance.
-- [Fair division](CONTENTS.md#fair-division): ordered-allocation transfer.
-- [Proof complexity](CONTENTS.md#proof-complexity): resolution-tree mass certificates.
-
-### Mathematical physics
-
-- [Stochastic thermodynamics](CONTENTS.md#stochastic-thermodynamics): thermal current kurtosis, unicyclic current skewness.
-- [Quantum information](CONTENTS.md#quantum-information): universal entanglement embezzlement, the Higuchi–Sudbery entropy bound, a matched-basis information counterexample, exact steering correlation bounds, three-state root fidelity, exact conditional quantum contraction.
-
-## Proof coverage
-
-The shared Lean library covers seven families and 29 selected Comparator statements. Standalone packages have separate pinned environments and audits. The permitted proof axioms are `propext`, `Classical.choice` and `Quot.sound`. Exact finite computations do not replace universal proofs.
-
-The Gyires family has complete Lean proofs for order-five and order-six circulants, all-order permutation-polynomial and four-block matrices, exceptional vectors, and rank-two matrices of orders 2 through 8. General order-seven circulants and rank-two orders 9 through 15 remain incomplete in Lean. The unrestricted conjecture remains outside these results. Each other paper states its own formal and conventional proof boundaries in the manuscript map.
-
-## Versions and citations
-
-I preserve corrections and revisions in the repository history. Cite an individual manuscript with the citation file linked from its catalogue entry. Use [CITATION.cff](CITATION.cff) or [CITATION.bib](CITATION.bib) for the collection. The [Apache-2.0 license](LICENSE) applies except where [NOTICE](NOTICE) identifies third-party material.
-
-## How the results were produced
-
-I publish fully autonomous agentic research and am responsible for publication. The original collection records GPT 6 with Pro Reasoning in ChatGPT for initial research and GPT 6 Astra in Codex for formalizations and corrections, together with its stated author check. The later packages give their own contribution disclosures, including actual GPT 6.1 Sol formalization and verification work. Each manuscript states its own contribution and review history. These disclosures do not claim expert validation or external peer review.
+This work is fully autonomous agentic research. GPT 6.1 Sol in Codex produced formal proofs and verification software for the accompanying package. I am responsible for publication.

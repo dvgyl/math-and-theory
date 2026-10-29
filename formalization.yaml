@@ -1,0 +1,112 @@
+version: v0.4
+project:
+  name: A positive constant-recursive sequence with nonquasipolynomial power ranks
+  description: >-
+    An explicit positive integer sequence has recurrence rank 13. The complete
+    minimal characteristic polynomial and exact rank are given for every
+    termwise power. The power ranks are not eventually quasipolynomial.
+    A positive companion family gives infinitely many different power-rank
+    profiles at each fixed initial rank at least three.
+  authors:
+    - Dev D. Goyal
+  responsible_maintainers:
+    - Dev D. Goyal
+  license: Apache-2.0
+repository:
+  role: substantive-development
+classification:
+  arxiv:
+    - math.CO
+    - math.NT
+  msc2020:
+    - 11B37
+    - 05A15
+sources:
+  - title: A positive constant-recursive sequence with nonquasipolynomial power ranks
+    type: original-proof
+    authors:
+      - Dev D. Goyal
+    id: https://github.com/dvgyl/math-and-theory/blob/a6574b1bf6a591d81c3314d5333fc5da26712d6b/papers/mathematics/power-rank/manuscript.pdf
+    relationship: other
+    license: Apache-2.0
+    note: >-
+      The complete proof source, companion-family extension, and manuscript are
+      included. The linked source records the development before the uncompiled
+      module-system port and independent Comparator statement. The original
+      toolchain pins are retained. Earlier verification records do not certify
+      the changed source bytes. Historical priority is not certified.
+  - title: Complexity of powers of a constant-recursive sequence
+    type: paper
+    authors:
+      - Eric Rowland
+      - Jesús Sistos Barrón
+    id: https://raw.githubusercontent.com/ericrowland/ericrowland.github.io/485458fa3e53570b2cf2320c8e92c5e6eaa6c1e7/papers/Complexity_of_powers_of_a_constant-recursive_sequence.pdf
+    relationship: background
+    note: >-
+      This is the pinned author-hosted source identified in the manuscript.
+      Historical priority and correspondence with a specific arXiv version
+      remain provisional. The formal nonquasipolynomial conclusion is not
+      identified with the source's undefined term pseudo-polynomial.
+status:
+  scope: >-
+    This module-system port is uncompiled. Complete source proofs are supplied.
+    Recurrence polynomials are monic complex polynomials with nonzero constant
+    coefficient. They act on the actual sequence shift and annihilate a tail.
+    The constructed sequences have minimal characteristic polynomials, so the
+    recurrence rank is their least admissible degree. The main rank formula
+    includes every natural power M, including zero. Its square-root error bound
+    applies for M >= 1. The companion statements include all initial ranks r >= 3,
+    all parameters d >= 2, every natural power, and existence of the required
+    distinct odd primes. The listed axioms are expected and require fresh
+    transitive-axiom checks. The proof-status counts exclude the three deliberate
+    Challenge theorem holes.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+automation:
+  methods:
+    - method: autonomous
+      models:
+        - GPT 6.1 Sol
+      framework: Codex
+      tool_setup: Formal proofs and verification software for the original package.
+    - method: agent
+      framework: Codex
+      tool_setup: Prepared the uncompiled submission package from the recorded source.
+  notes: >-
+    This work is fully autonomous agentic research. The original authorship
+    disclosure identifies GPT 6.1 Sol in Codex for the formal proofs and
+    verification software. Dev D. Goyal is responsible for publication.
+    No additional model history is inferred. No expert validation or peer
+    review is claimed by this submission.
+fidelity:
+  divergences: >-
+    The selected main theorem and two companion-family statements are unchanged.
+    The least eventual recurrence order uses actual complex recurrence
+    polynomials. The natural-number division and subtraction in the exact main
+    formula are preserved. The square count has strict endpoints. The companion
+    generating function, eventual polynomial degree and leading coefficient,
+    and simplified rank-three examples have conventional manuscript proofs.
+    They are outside the selected formal claim. No minimum possible initial
+    rank, simple-root property for the rank-13 example, or certified priority
+    is claimed. The current module-system port has not been compiled.
+review:
+  status: Not peer reviewed. The current submission port is uncompiled.
+alignment:
+  namespace: PowerRank
+  statements:
+    - source: Positive rank-13 sequence, every power's minimal polynomial and rank, and nonquasipolynomiality
+      lean: PowerRank.main_result
+      module: Solution
+      status: Source proof supplied; current port uncompiled.
+    - source: Literal positive companion family and its exact all-power rank formula
+      lean: PowerRank.Companion.family_result
+      module: Solution
+      status: Source proof supplied; current port uncompiled.
+    - source: Infinitely many power-rank profiles at every fixed initial rank at least three
+      lean: PowerRank.Companion.every_rank_has_infinitely_many_profiles
+      module: Solution
+      status: Source proof supplied; current port uncompiled.

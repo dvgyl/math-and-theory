@@ -1,11 +1,7 @@
-# Research process and author responsibility
+# Authorship and disclosure
 
-Dev D. Goyal publishes fully autonomous agentic research and is responsible for publication. The papers have not been externally peer reviewed.
+The author is Dev D. Goyal.
 
-For the original collection, the recorded disclosure states that GPT 6 with Pro Reasoning in ChatGPT generated the initial research and proofs, GPT 6 Astra in Codex produced formalizations and corrections, and the author checked the proofs to the best of their mathematical abilities. That check is not expert validation or peer review. Earlier source records also identify contributions such as the order-five Gyires formalization in Claude Code. GPT 6.1 Sol in Codex generated the order-eight rank-two certificate extension.
+This work is fully autonomous agentic research. GPT 6.1 Sol in Codex produced formal proofs and verification software for the accompanying package. Dev D. Goyal is responsible for publication.
 
-The later research packages have their own disclosures. GPT 6.1 Sol produced further formal proofs and verification software where stated in those packages. The original collection's model history or personal proof-check statement is not asserted for a new upload whose history is undocumented. A separate AI check is not human expert review.
-
-Third-party mathematical results and software retain their citations and notices. The [verification guide](verification/README.md) states the scope of proofs and computations. Lean verification establishes its formal statement; it does not establish novelty or authenticate a source transcription.
-
-Each standalone manuscript states the contributions supported by its own records. Automated systems produced their research, mathematical arguments, formal proofs and manuscripts. These disclosures do not assign an undocumented model history or human proof check to a newly supplied paper.
+The exponential-polynomial rank principle, coefficient duality and Krawtchouk recurrence, and principal-relation Hilbert-function mechanism are standard supporting mathematics. Rowland and Sistos Barrón receive credit for the related study of powers of constant-recursive sequences. Historical priority and precise source correspondence remain provisional. The rank-thirteen main theorem and the companion-family theorem have complete Lean formalizations. The companion generating function, eventual polynomial degree and leading coefficient, and rank-three examples retain their conventional proofs and are outside the formal package.
