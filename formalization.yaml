@@ -1,0 +1,92 @@
+version: v0.4
+project:
+  name: A sharp universal skewness bound for unicyclic currents
+  description: >-
+    Every local C3 zero-eigenvalue branch of the actual marked-edge tilted
+    matrix has nonzero first derivative and third-to-first derivative ratio
+    in [-1/16,1]. A branch exists from the positive rates alone. The finite
+    cycle has at least three states and unequal forward and reverse rate products.
+  authors:
+    - Dev D. Goyal
+  responsible_maintainers:
+    - Dev D. Goyal
+  license: Apache-2.0
+classification:
+  arxiv:
+    - cond-mat.stat-mech
+    - math-ph
+  msc2020:
+    - 60J27
+    - 82C31
+sources:
+  - title: A sharp universal skewness bound for unicyclic currents
+    type: original-proof
+    authors:
+      - Dev D. Goyal
+    id: https://github.com/dvgyl/math-and-theory/blob/a6574b1bf6a591d81c3314d5333fc5da26712d6b/papers/physics/unicyclic-skewness/manuscript.pdf
+    relationship: other
+    license: Apache-2.0
+    note: >-
+      The complete manuscript, exact scalar certificate, and proof are included.
+      This source predates the uncompiled module-system and dependency port.
+      The manuscript credits prior midpoint-spectrum and uncertainty results
+      and the known limiting family. Formal verification does not certify priority.
+  - title: Physical Review E 106, 024119 (2022)
+    type: paper
+    authors:
+      - K. Ptaszyński
+    id: https://doi.org/10.1103/PhysRevE.106.024119
+    relationship: background
+    author_endorsement: not-contacted
+    note: The proposed interval is credited to Equation 21 of this work.
+status:
+  scope: >-
+    This is an uncompiled candidate for Lean 4.35.0 and the pinned Mathlib revision.
+    No successful port verification is claimed. The selected statements concern
+    actual finite-matrix derivatives and local branch existence. Challenge imports
+    only Mathlib and copies the exact ring matrix, rate matrix, edge tilt, and
+    tilted characteristic definitions. No spectral, stationary, variance, or
+    uncertainty conclusion is a hypothesis. Its two deliberate theorem holes
+    are separate from Solution.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+automation:
+  methods:
+    - method: autonomous
+      tool_setup: Research, proofs, formalizations, corrections, and manuscript preparation.
+    - method: agent
+      framework: Codex
+      tool_setup: Prepared this uncompiled candidate from the recorded source.
+  notes: >-
+    This work is fully autonomous agentic research. AI systems generated and
+    developed the research, proofs, formalizations, corrections, and manuscript.
+    Dev D. Goyal is responsible for publication. No expert human validation or
+    peer review is claimed. The source does not identify the original model history.
+fidelity:
+  divergences: >-
+    The selected statements are finite-matrix theorems. The identification of
+    their derivative ratio with long-time stochastic cumulants uses a conventional
+    spectral-projection proof in the manuscript. Universal sharpness uses a
+    conventional limit through positive rates and increasing ring size. Lean
+    does not construct a stochastic sample-path probability space or a separate
+    optimizing-sequence theorem. The ratio is not standardized skewness. Equal
+    forward and reverse rate products are excluded because the mean is zero.
+    Separate one-state and two-state conventions remain in the proof package.
+    No mathematical proof body changed during this uncompiled port.
+review:
+  status: Not peer reviewed. The candidate is uncompiled.
+alignment:
+  namespace: UnicyclicWinding
+  statements:
+    - source: The actual-matrix local derivative interval
+      lean: UnicyclicWinding.winding_skewness_interval
+      module: Solution
+      status: uncompiled
+    - source: Local branch existence and interval from rates alone
+      lean: UnicyclicWinding.exists_winding_branch_and_interval
+      module: Solution
+      status: uncompiled
