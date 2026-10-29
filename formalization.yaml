@@ -1,0 +1,98 @@
+version: v0.4
+project:
+  name: Exact conditional contraction for Pauli channels and depolarization in every dimension
+  description: >-
+    Exact conditional hockey-stick contraction coefficients for every stochastic
+    Pauli qubit channel and the full signed physical depolarizing interval in
+    every dimension at least two. The coefficient includes arbitrary finite
+    quantum references and actual density-state ratios with positive denominator.
+  authors:
+    - Dev D. Goyal
+  responsible_maintainers:
+    - Dev D. Goyal
+  license: Apache-2.0
+classification:
+  arxiv:
+    - quant-ph
+    - math-ph
+  msc2020:
+    - 81P45
+    - 81P40
+    - 47A63
+sources:
+  - title: Exact conditional contraction for Pauli channels and depolarization in every dimension
+    type: original-proof
+    authors:
+      - Dev D. Goyal
+    id: https://github.com/dvgyl/math-and-theory/blob/a6574b1bf6a591d81c3314d5333fc5da26712d6b/papers/physics/quantum-exact-contraction/quantum_exact_contraction.pdf
+    relationship: other
+    license: Apache-2.0
+    note: >-
+      The complete original proof and manuscript are included. The manuscript
+      preserves the original research version and its historical verification
+      claims. The module port and wrapper proofs require a fresh preflight.
+  - title: Conditional contraction coefficients and their applications to quantum networks
+    type: paper
+    authors:
+      - C. Hirche
+      - I. George
+      - T. Nuradha
+      - M. M. Wilde
+    id: https://arxiv.org/abs/2608.27171v1
+    relationship: background
+    author_endorsement: not-contacted
+    note: The manuscript gives the other prior channel, entropy, and frame references.
+status:
+  scope: >-
+    Both result families are retained. The Challenge states existence of each
+    actual channel and the exact formula for every channel with that explicit
+    map. All finite quantum references, unequal reference marginals, gamma at
+    least one, zero weights, ties, and closed physical endpoints are included.
+    No current build or comparator result is claimed.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+automation:
+  methods:
+    - method: autonomous
+      models:
+        - Not recorded in the source package
+      framework: Autonomous agentic AI research
+      tool_setup: Research, proofs, manuscript, and formalization produced by AI systems.
+    - method: agent
+      models:
+        - Not recorded in the preparation record
+      framework: Codex
+      tool_setup: Module port, independent Challenge, and endpoint wrapper preparation.
+  notes: >-
+    This work is fully autonomous agentic research. AI systems produced the
+    research, manuscript, proofs, and formalization. Dev D. Goyal is responsible
+    for publication. No expert human validation or external peer review is claimed.
+fidelity:
+  divergences: >-
+    The wrapper statements replace references to channel constructors by explicit
+    channel existence and the exact law for every channel with the specified
+    map. They retain the actual coefficient definitions and full parameter
+    domains. The original endpoint theorems remain in the complete Solution.
+    The Challenge uses a direct complete-positivity proof that the amplified
+    density difference is Hermitian. This changes only a proof argument in
+    finalGap. Lean proof irrelevance should make the definitions agree, but
+    the comparator has not checked this. No general attainment claim is added.
+    Unital-qubit normal-form existence, erasure simulation, and ensemble-guessing
+    consequences use conventional manuscript arguments and are outside the Challenge.
+review:
+  status: Not peer reviewed. The changed package has not been compiled.
+alignment:
+  namespace: PalomarQuantum
+  statements:
+    - source: Every stochastic Pauli channel, including all weight boundaries
+      lean: PalomarQuantum.every_pauli_channel
+      module: Solution
+      status: Proof source prepared; not compiled.
+    - source: Actual depolarizing channels on the full signed physical interval in every dimension
+      lean: PalomarQuantum.actual_full_channel
+      module: Solution
+      status: Proof source prepared; not compiled.
