@@ -1,8 +1,9 @@
 module
-public import AsymmetricTutte.Matroid
+public import AsymmetricTutte.PublicDefs
+import all AsymmetricTutte.Matroid
 
 
-@[expose] public section
+section
 
 open Finset
 open Results.TutteThreshold

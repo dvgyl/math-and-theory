@@ -13,17 +13,27 @@ are included. The intermediate rank-model lemmas do not add hypotheses to the
 final theorem. The final theorem does not assume an abstract rank-axiom model.
 
 The active configuration pins Lean 4.35.0 and Mathlib revision
-`56a005855ea17e0b0958f73ec801ae140b0a1679`. The complete local proof is ported
-to `module`, `public import`, and `@[expose] public section`.
+`56a005855ea17e0b0958f73ec801ae140b0a1679`. The public Challenge
+definitions and selected theorem are exact. Local support interfaces use
+private imports and declarations.
 The substantive upstream dependency remains pinned at
 `636352f0fef47b19d7d5de364858ccee2317fd66`. Its sources are not redistributed.
-Its compatibility with the new Mathlib pin is not established.
+The local build reads the exact dependency files in place. A guarded build
+configuration assigns separate module identities through ModuleSetup.
+The source files are unchanged. Their declaration namespaces stay unchanged.
+No upstream proof source is included or ported in this package.
 
-These files require a fresh full Palomar preflight. No build, comparator run,
-or axiom audit was performed for this package. No verification certificate
-is supplied. The permitted axioms are `propext`, `Classical.choice`, and
-`Quot.sound`. `Audit.lean` contains the requested checks. The only intended
-proof placeholder is in Challenge. It is excluded from Solution imports.
+A local sequential Lake build passed for all 36 modules, including the ten
+guarded upstream modules, the complete local proof, Challenge, Solution, and
+Audit. Audit used warnings as errors. The selected theorem and five support
+results use only `propext`, `Classical.choice`, and `Quot.sound`.
+
+The actual Challenge and Solution exports passed the bundled exact Comparator,
+the permitted axiom check, and the default Lean kernel check. This local run
+had no sandbox. No external kernel or full Palomar preflight was run. Full
+pinned Palomar preflight remains required before intake. The local summary
+records the checked source hashes and limits. The only intended proof
+placeholder is in Challenge. It is excluded from Solution imports.
 
 The classification applies to the nonnegative quadrant. It does not classify
 negative parameters or all equality cases. No new check of mathematical

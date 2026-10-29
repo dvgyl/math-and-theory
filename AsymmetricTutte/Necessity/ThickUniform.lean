@@ -1,10 +1,11 @@
 module
-public import AsymmetricTutte.Necessity.Base
+public import AsymmetricTutte.PublicDefs
+import all AsymmetricTutte.Necessity.Base
 public import Mathlib.Data.Fintype.BigOperators
 public import Mathlib.Data.Fintype.Powerset
 
 
-@[expose] public section
+section
 
 namespace AsymmetricMerinoWelsh
 
@@ -49,11 +50,11 @@ theorem thickUniform_pair {r n k : ℕ} (hr : 0 < r) (a b : Fin n × Fin k)
   refine ⟨?_, ?_, hne, ?_, ?_, ?_⟩
   · simp [toRk_E, thickUniform_finset]
   · simp [toRk_E, thickUniform_finset]
-  · rw [toRk_r, thickUniform_rank]
+  · rw [AsymmetricTutte.public_toRk_r, thickUniform_rank]
     simp [min_eq_right (show 1 ≤ r by omega)]
-  · rw [toRk_r, thickUniform_rank]
+  · rw [AsymmetricTutte.public_toRk_r, thickUniform_rank]
     simp [min_eq_right (show 1 ≤ r by omega)]
-  · rw [toRk_r, thickUniform_rank]
+  · rw [AsymmetricTutte.public_toRk_r, thickUniform_rank]
     simp [hab, min_eq_right (show 1 ≤ r by omega)]
 
 theorem thickUniform_admissible {r n k : ℕ} (hr : 0 < r) (hk : 2 ≤ k) :
@@ -77,7 +78,7 @@ theorem thickUniform_axis_upper {r n k : ℕ} (hr : 0 < r) (hrn : r ≤ n)
   rw [Bridge.toRk_r_E, thickUniform_eRank hrn hk, toRk_E, thickUniform_finset,
     projection_univ n k hk, card_univ, Fintype.card_fin] at H
   unfold unitWeights at H
-  simpa only [tutte_eq_Z, zero_sub, sub_add_cancel] using H
+  simpa only [AsymmetricTutte.public_tutte_eq_Z, zero_sub, sub_add_cancel] using H
 
 theorem thickUniform_other_axis_upper {r n k : ℕ} (hrn : r ≤ n) (hk : 0 < k)
     {y : ℝ} (hy : 1 < y) :
@@ -96,7 +97,7 @@ theorem thickUniform_other_axis_upper {r n k : ℕ} (hrn : r ≤ n) (hk : 0 < k)
     simp only [RkMat.dual_r, sdiff_self, Finset.bot_eq_empty, N.r_empty,
       add_zero, hcard, hrank]
   rw [hdual, hcard, Nat.sub_sub_self hbound] at H
-  simpa only [N, tutte_eq_Z, zero_sub, sub_add_cancel, unitWeights] using H
+  simpa only [N, AsymmetricTutte.public_tutte_eq_Z, zero_sub, sub_add_cancel, unitWeights] using H
 
 /-- Choosing r class labels and one of k copies in each chosen class. -/
 abbrev Selections (n r k : ℕ) :=

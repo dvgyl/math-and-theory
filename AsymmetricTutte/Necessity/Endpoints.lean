@@ -1,10 +1,11 @@
 module
-public import AsymmetricTutte.Necessity.Curves
-public import AsymmetricTutte.Necessity.Monotone
-public import AsymmetricTutte.Basics
+public import AsymmetricTutte.PublicDefs
+import all AsymmetricTutte.Necessity.Curves
+import all AsymmetricTutte.Necessity.Monotone
+import all AsymmetricTutte.Basics
 
 
-@[expose] public section
+section
 
 namespace AsymmetricMerinoWelsh
 

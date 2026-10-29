@@ -1,9 +1,10 @@
 module
+public import AsymmetricTutte.PublicDefs
 public import Mathlib.Basic.Real.Basic
 public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
 
-@[expose] public section
+section
 
 open Finset
 

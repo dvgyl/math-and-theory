@@ -1,6 +1,8 @@
 module
-public import Results.TutteThreshold.Solution.Bridge
-public import Results.TutteThreshold.Solution.Doubling
+import all AsymmetricTutte.UpstreamBridge
+public import AsymmetricTutte.PublicDefs
+import all TutteSource.TutteThreshold.Solution.Bridge
+import all TutteSource.TutteThreshold.Solution.Doubling
 public import Mathlib.Data.Nat.Choose.Sum
 public import Mathlib.Analysis.SpecificLimits.Normed
 public import Mathlib.Tactic.NormNum
@@ -8,7 +10,7 @@ public import Mathlib.Tactic.Positivity
 public import Mathlib.Tactic.Push
 
 
-@[expose] public section
+section
 
 /-!
 Supporting lemmas for the necessity direction of the asymmetric universal

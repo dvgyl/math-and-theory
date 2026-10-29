@@ -1,8 +1,9 @@
 module
-public import AsymmetricTutte.Basics
+public import AsymmetricTutte.PublicDefs
+import all AsymmetricTutte.Basics
 
 
-@[expose] public section
+section
 
 open Finset
 open Results.TutteThreshold

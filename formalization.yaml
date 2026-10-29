@@ -73,7 +73,9 @@ fidelity:
     Mathlib matroid without loops or coloops, including an empty ground set.
     Universe scope follows the source Universal definition with alpha : Type.
     The two infinite scalar families are retained. The original upstream proof
-    dependency remains explicit and pinned. Compatibility is not yet checked.
+    dependency remains explicit and pinned. The source-preserving bridge passed the local complete Lake build, exact
+    comparison, permitted axiom check, and default Lean kernel check. Official
+    full preflight remains pending.
 review:
   status: Not peer reviewed.
 alignment:
@@ -82,4 +84,4 @@ alignment:
     - source: Exact nonnegative universal asymmetric Merino–Welsh parameter region
       lean: AsymmetricTutte.universal_iff_region
       module: Solution
-      status: Proof source prepared; not compiled.
+      status: Compiled and checked locally; official full preflight pending.

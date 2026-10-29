@@ -1,4 +1,5 @@
 module
+public import AsymmetricTutte.PublicDefs
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.Positivity
 public import Mathlib.Tactic.FieldSimp
@@ -8,7 +9,7 @@ public import Mathlib.Algebra.Ring.GeomSum
 public import Mathlib.Algebra.Order.Ring.GeomSum
 
 
-@[expose] public section
+section
 
 /-!
 The explicit asymmetric parameter region and the scalar inequalities used
@@ -16,13 +17,6 @@ in the matroid induction. The final equivalence is in AsymmetricTutte.Main.
 -/
 
 namespace AsymmetricTutte
-
-def Region (x y : ℝ) : Prop :=
-  1 < x ∧ 1 < y ∧
-    (∀ k : ℕ, 2 ≤ k → (Real.sqrt (x - 1) + (k : ℝ) * Real.sqrt (y - 1)) ^ 2 ≤
-      x * y ^ k) ∧
-    (∀ k : ℕ, 2 ≤ k → (Real.sqrt (y - 1) + (k : ℝ) * Real.sqrt (x - 1)) ^ 2 ≤
-      y * x ^ k)
 
 theorem cauchy_step (A B U V s t : ℝ)
     (hA : 0 ≤ A) (hB : 0 ≤ B) (hU : 0 ≤ U) (hV : 0 ≤ V)

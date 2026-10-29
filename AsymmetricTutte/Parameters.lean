@@ -1,10 +1,11 @@
 module
-public import AsymmetricTutte.Inputs
-public import AsymmetricTutte.Scalar
-public import AsymmetricTutte.XY
+public import AsymmetricTutte.PublicDefs
+import all AsymmetricTutte.Inputs
+import all AsymmetricTutte.Scalar
+import all AsymmetricTutte.XY
 
 
-@[expose] public section
+section
 
 namespace AsymmetricTutte
 

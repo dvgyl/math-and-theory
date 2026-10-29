@@ -1,11 +1,12 @@
 module
-public import AsymmetricTutte.Inputs
-public import AsymmetricTutte.Coloops
-public import AsymmetricTutte.Bases
-public import AsymmetricTutte.RankOne
+public import AsymmetricTutte.PublicDefs
+import all AsymmetricTutte.Inputs
+import all AsymmetricTutte.Coloops
+import all AsymmetricTutte.Bases
+import all AsymmetricTutte.RankOne
 
 
-@[expose] public section
+section
 
 open Finset
 open Results.TutteThreshold
@@ -202,7 +203,7 @@ theorem matroid_sufficiency {α : Type*} (M : Matroid α) [M.Finite] (hM : IsAdm
     {x y : ℝ} (hxy : ScalarInputs x y) (hyx : ScalarInputs y x) :
     tutte M 1 1 ^ 2 ≤ tutte M x 0 * tutte M 0 y := by
   classical
-  simpa only [tutte_eq_Z, eval, Claim] using
+  simpa only [AsymmetricTutte.public_tutte_eq_Z, eval, Claim] using
     rankMat_sufficiency (toRk M) (admissible_toRk M hM) hxy hyx
 
 end AsymmetricTutte

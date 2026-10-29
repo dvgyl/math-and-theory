@@ -1,8 +1,9 @@
 module
-public import AsymmetricTutte.ParallelSum
+public import AsymmetricTutte.PublicDefs
+import all AsymmetricTutte.ParallelSum
 
 
-@[expose] public section
+section
 
 open Finset
 open Results.TutteThreshold

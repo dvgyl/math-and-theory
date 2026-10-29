@@ -1,9 +1,11 @@
 module
-public import Results.TutteThreshold.Solution.Bridge
-public import Results.TutteThreshold.Solution.Posit
+import all AsymmetricTutte.UpstreamBridge
+public import AsymmetricTutte.PublicDefs
+import all TutteSource.TutteThreshold.Solution.Bridge
+import all TutteSource.TutteThreshold.Solution.Posit
 
 
-@[expose] public section
+section
 
 /-!
 Additional finite-matroid lemmas for the asymmetric universal Tutte inequality.
@@ -96,15 +98,15 @@ lemma toRk_dual_same {α : Type*} [DecidableEq α] (M : Matroid α) [M.Finite] :
     Set.encard_coe_eq_coe_finsetCard] at h
   have hn : rk M✶ (S : Set α) + rk M M.E =
       rk M (M.E \ (S : Set α)) + S.card := by exact_mod_cast h
-  simp only [toRk_r, RkMat.dual_r, toRk_E, Finset.coe_sdiff,
+  simp only [AsymmetricTutte.public_toRk_r, RkMat.dual_r, toRk_E, Finset.coe_sdiff,
     Set.Finite.coe_toFinset]
   omega
 
 lemma tutte_dual {α : Type*} (M : Matroid α) [M.Finite] (x y : ℝ) :
     tutte M✶ x y = tutte M y x := by
   classical
-  rw [tutte_eq_Z, RkMat.Z_congr (x - 1) (y - 1) (toRk_dual_same M) (fun _ _ => rfl),
-    RkMat.Z_dual, tutte_eq_Z]
+  rw [AsymmetricTutte.public_tutte_eq_Z, RkMat.Z_congr (x - 1) (y - 1) (toRk_dual_same M) (fun _ _ => rfl),
+    RkMat.Z_dual, AsymmetricTutte.public_tutte_eq_Z]
 
 lemma admissible_dual {α : Type*} (M : Matroid α) [M.Finite] (hM : IsAdmissible M) :
     IsAdmissible M✶ := by

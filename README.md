@@ -26,13 +26,14 @@ The proof imports Mingchang Liu's substantive Tutte-threshold library at commit
 rank-sum API, its bridge to Mathlib matroids, and supporting proofs. These are
 prior work. The source is not included. Its Lean sources have no redistribution
 license. See [NOTICE](NOTICE). The root Mathlib pin replaces the dependency's
-original Mathlib 4.32.1 pin. Compatibility requires a fresh full check.
+original Mathlib 4.32.1 pin. A local source-preserving bridge compiled the
+complete dependency closure. The upstream source files were unchanged.
 
-The module port and the new Challenge have not been compiled with these pins.
-Historical compiler records do not certify these files. The full Palomar
-preflight must check the exact commit, build the complete Solution, compare
-Challenge and Solution, and inspect their axiom dependencies before intake.
-No verification certificate is supplied.
+The local Lake closure, exact Comparator, permitted axiom check, and default
+Lean kernel check passed with these pins. The strict Audit also passed.
+The local Comparator run had no sandbox. Full pinned Palomar preflight remains
+required before intake. Historical compiler records do not certify this
+changed package. See [VERIFICATION.md](VERIFICATION.md) for the limits.
 
 The original code and manuscript use [Apache-2.0](LICENSE).
 Use [CITATION.cff](CITATION.cff) or [CITATION.bib](CITATION.bib) to cite the preprint.

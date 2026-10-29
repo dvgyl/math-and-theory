@@ -1,6 +1,7 @@
 module
-public import AsymmetricTutte.Region
-public import AsymmetricTutte.Necessity.Endpoints
+public import AsymmetricTutte.PublicDefs
+import all AsymmetricTutte.Region
+import all AsymmetricTutte.Necessity.Endpoints
 
 
 @[expose] public section

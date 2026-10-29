@@ -1,4 +1,5 @@
 module
+public import AsymmetricTutte.PublicDefs
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.Positivity.Basic
 public import Mathlib.Tactic.FieldSimp
@@ -10,7 +11,7 @@ public import Mathlib.Data.Nat.Choose.Cast
 public import Mathlib.Topology.Algebra.InfiniteSum.Order
 
 
-@[expose] public section
+section
 
 /-! The two families of boundary inequalities force (x - 1)(y - 1) > 1. -/
 namespace AsymmetricTutte

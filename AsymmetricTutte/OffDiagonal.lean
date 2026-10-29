@@ -1,5 +1,6 @@
 module
-public import AsymmetricTutte.Scalar
+public import AsymmetricTutte.PublicDefs
+import all AsymmetricTutte.Scalar
 
 
 @[expose] public section

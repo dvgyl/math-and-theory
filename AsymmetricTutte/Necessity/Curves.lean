@@ -1,8 +1,9 @@
 module
-public import AsymmetricTutte.Necessity.ThickUniform
+public import AsymmetricTutte.PublicDefs
+import all AsymmetricTutte.Necessity.ThickUniform
 
 
-@[expose] public section
+section
 
 namespace AsymmetricMerinoWelsh
 
@@ -11,17 +12,13 @@ open Results.TutteThreshold
 
 noncomputable section
 
-def Universal (x y : ℝ) : Prop :=
-  ∀ (α : Type) (M : Matroid α) [M.Finite], IsAdmissible M →
-    (tutte M 1 1) ^ 2 ≤ tutte M x 0 * tutte M 0 y
-
 theorem tutte_axis_nonnegative {α : Type*} (M : Matroid α) [M.Finite]
     {x : ℝ} (hx : 1 ≤ x) : 0 ≤ tutte M x 0 := by
   classical
   have H := (toRk M).Z_nonneg_alpha (x - 1) unitWeights (sub_nonneg.mpr hx)
     (by intro e he; norm_num [unitWeights])
   unfold unitWeights at H
-  simpa only [tutte_eq_Z, zero_sub] using H
+  simpa only [AsymmetricTutte.public_tutte_eq_Z, zero_sub] using H
 
 theorem tutte_other_axis_nonnegative {α : Type*} (M : Matroid α) [M.Finite]
     {y : ℝ} (hy : 1 ≤ y) : 0 ≤ tutte M 0 y := by
@@ -29,7 +26,7 @@ theorem tutte_other_axis_nonnegative {α : Type*} (M : Matroid α) [M.Finite]
   have H := (toRk M).Z_nonneg_beta (y - 1) unitWeights (sub_nonneg.mpr hy)
     (by intro e he; norm_num [unitWeights])
   unfold unitWeights at H
-  simpa only [tutte_eq_Z, zero_sub] using H
+  simpa only [AsymmetricTutte.public_tutte_eq_Z, zero_sub] using H
 
 /-- A geometric progression bounded by a linear factor has base at most one. -/
 theorem le_of_powers_le_linear {a s : ℝ} (hs : 0 < s)

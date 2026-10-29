@@ -1,5 +1,6 @@
 module
 public import AsymmetricTutte
+import all AsymmetricTutte
 
 
 @[expose] public section

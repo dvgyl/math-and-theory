@@ -1,9 +1,10 @@
 module
-public import AsymmetricTutte.Parameters
-public import AsymmetricTutte.Sufficiency
+public import AsymmetricTutte.PublicDefs
+import all AsymmetricTutte.Parameters
+import all AsymmetricTutte.Sufficiency
 
 
-@[expose] public section
+section
 
 namespace AsymmetricTutte
 

@@ -1,8 +1,9 @@
 module
-public import AsymmetricTutte.Necessity.Base
+public import AsymmetricTutte.PublicDefs
+import all AsymmetricTutte.Necessity.Base
 
 
-@[expose] public section
+section
 
 namespace AsymmetricMerinoWelsh
 
@@ -80,14 +81,14 @@ theorem rawEval_mono (M : RkMat ι) {x y x' y' : ℝ} (hx : 0 ≤ x) (hy : 0 ≤
 theorem tutte_nonneg {α : Type*} (M : Matroid α) [M.Finite]
     {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) : 0 ≤ tutte M x y := by
   classical
-  rw [tutte_eq_Z]
+  rw [AsymmetricTutte.public_tutte_eq_Z]
   exact rawEval_nonneg (toRk M) hx hy
 
 theorem tutte_mono {α : Type*} (M : Matroid α) [M.Finite]
     {x y x' y' : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) (hxx : x ≤ x') (hyy : y ≤ y') :
     tutte M x y ≤ tutte M x' y' := by
   classical
-  rw [tutte_eq_Z, tutte_eq_Z]
+  rw [AsymmetricTutte.public_tutte_eq_Z, AsymmetricTutte.public_tutte_eq_Z]
   exact rawEval_mono (toRk M) hx hy hxx hyy
 
 end
