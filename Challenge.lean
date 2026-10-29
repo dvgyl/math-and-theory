@@ -1,4 +1,5 @@
 module
+public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.InnerProductSpace.PiL2
 public import Mathlib.Analysis.Real.Sqrt
 public import Mathlib.Data.Nat.Log
