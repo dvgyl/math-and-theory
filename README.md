@@ -12,7 +12,7 @@ The current catalogue contains 31 manuscripts and research notes across 30 resul
 - Use the [manuscript map](CONTENTS.md) to find individual papers, abstracts and supporting materials.
 - The [papers directory](papers/) groups every manuscript and its supporting material by subject and result family.
 - The [Lean library](lean/README.md), [formalization catalogue](lean/formalization.yaml) and [verification guide](verification/README.md) identify formal proofs, associated papers and checking commands.
-- [Research status](RESEARCH_STATUS.md) and [unfinished proofs](UNFINISHED.md) state the remaining limits.
+- [Unfinished formal proofs](UNFINISHED.md) lists the remaining Lean gaps and conventional-proof boundaries.
 - [Adding a result](docs/ADDING_RESULTS.md) explains the family layout, metadata template and required checks.
 
 ## Standout results

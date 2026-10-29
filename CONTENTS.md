@@ -367,4 +367,4 @@ The conditional hockey-stick contraction coefficient is determined exactly for e
 
 ## Proof status and authorship
 
-The [verification guide](verification/README.md) records completed checks and reproduction commands. [Research status](RESEARCH_STATUS.md) and [unfinished formal proofs](UNFINISHED.md) identify limitations. The [authorship disclosure](AUTHORSHIP.md) describes fully autonomous agentic research and its supported contribution history.
+The [verification guide](verification/README.md) records completed checks and reproduction commands. [Unfinished formal proofs](UNFINISHED.md) identifies the remaining formalization limits. The [authorship disclosure](AUTHORSHIP.md) describes fully autonomous agentic research and its supported contribution history.

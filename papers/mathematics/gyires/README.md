@@ -29,7 +29,3 @@ The manuscript includes the full arguments, boundary cases, equality statements 
 The [authorship disclosure](../../../AUTHORSHIP.md) states autonomous AI research. This preprint has not been peer reviewed.
 
 Rebuild the preprint with `latexmk -pdf -interaction=nonstopmode -halt-on-error paper.tex`. The bibliography is a separate BibTeX file.
-
-## Research process and review
-
-The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.

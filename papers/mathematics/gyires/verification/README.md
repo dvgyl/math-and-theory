@@ -39,7 +39,3 @@ The Challenge uses Mathlib's matrix, permanent, circulant, and doubly stochastic
 The coefficient counts and minimum-coefficient statistics are exact computational results. The principal inequalities, equality cases, and sharp margin are Lean theorems. The formal proof uses `ring` and `positivity`; it does not use `native_decide`.
 
 The source attribution and license are in [PROVENANCE.md](../../../../lean/MathAndTheory/Mathematics/Gyires/CirculantFive/PROVENANCE.md). See [AUTHORSHIP.md](../../../../AUTHORSHIP.md) for the autonomous AI research disclosure. This preprint has not been peer reviewed.
-
-## Research process and review
-
-The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.

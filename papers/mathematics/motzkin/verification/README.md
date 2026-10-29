@@ -58,7 +58,7 @@ The repository's Comparator command uses the independent Challenge and Solution.
 ./scripts/verify-comparator.sh comparator/mathematics/motzkin.json
 ```
 
-A successful native Lean build does not replace this command. The [central verification record](../../../../verification/records/historical-summary.md) gives the recorded build, axiom, Comparator, and finite-computation results.
+A successful native Lean build does not replace this command. The [verification guide](../../../../verification/README.md) gives the build, axiom-audit, Comparator, and finite-computation commands.
 
 For the paper, run Tectonic from the repository root:
 
@@ -70,6 +70,4 @@ Inspect the resulting PDF after compilation. Compilation alone does not check pa
 
 The [preprint guide](../README.md) gives the related results and source comparisons. I make no priority claim.
 
-## Research process and review
-
-The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.
+See the [authorship and autonomous AI disclosure](../../../../AUTHORSHIP.md).

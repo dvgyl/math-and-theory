@@ -14,6 +14,4 @@ The program independently inverts the full 14 by 14 matrices at both endpoints. 
 
 [Logs](logs) record the run. The [central guide](../../../../verification/README.md) records formal and independent-kernel checks. [Statement fidelity](../../../../lean/docs/mathematics/domirank-entropy.md) explains the source normalization and spectral condition. These checks concern the exact graph and mathematical model, not empirical network performance.
 
-## Research process and review
-
-The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.
+See the [authorship and autonomous AI disclosure](../../../../AUTHORSHIP.md).

@@ -100,6 +100,4 @@ The arguments are order, degree, and sample count. The permitted order is 1–22
 
 Each output line gives the order, degree, sample index, two permanents, and ratio. A ratio below one also prints its matrix and returns exit code 1 after all requested samples. This is a numerical candidate for exact checking. It is not a certified counterexample. Exit code 2 indicates invalid input or an incomplete calculation. Exit code 0 means only that the requested finite samples completed without a ratio below one. The program writes its completion count to standard error. Different standard-library implementations can produce different permutations from the same seed.
 
-## Research process and review
-
-The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.
+See the [authorship and autonomous AI disclosure](../../../../../../AUTHORSHIP.md).

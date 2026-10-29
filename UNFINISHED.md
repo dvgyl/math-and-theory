@@ -15,4 +15,4 @@ The unrestricted Gyires conjecture and the all-order rank-two problem remain out
 
 The power-rank main and companion theorems are formalized; its generating function and polynomial corollaries retain conventional proofs. The Motzkin bounded-forcing theorem and corrected scaled corollary are formalized; uniform-family applications, root transfer and sharp threshold classification remain conventional. The ADMM exact orbit and optimizer statements are formalized; analytic regularity is conventional. The ECQC all-prime companion is conventional, beyond its dimension-five formal theorem. These boundaries are stated in the corresponding papers and READMEs.
 
-General source-identity or novelty questions are distinct from missing formal proofs. See [research status](RESEARCH_STATUS.md) and [authorship](AUTHORSHIP.md).
+General source-identity or novelty questions are distinct from missing formal proofs. Each entry in the [catalogue](CONTENTS.md) states its scope; [authorship](AUTHORSHIP.md) explains the review limits.

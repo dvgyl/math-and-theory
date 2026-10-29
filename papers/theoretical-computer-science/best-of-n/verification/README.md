@@ -58,6 +58,4 @@ The [Comparator configuration](../../../../lean/comparator/theoretical-computer-
 
 The finite programs test the cases stated above. The Lean theorem proves the universal claim for every `n≥2` and `δ>0`. Neither a finite computation nor a successful kernel check establishes historical priority, a sharp replacement curve, or expert peer review. This paper has not been peer reviewed.
 
-## Research process and review
-
-The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.
+See the [authorship and autonomous AI disclosure](../../../../AUTHORSHIP.md).

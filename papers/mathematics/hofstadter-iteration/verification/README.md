@@ -55,6 +55,4 @@ The infinite family varies `k`. The theorem does not claim infinitely many viola
 
 The [prior-work record](../README.md) explains the source comparison and the limits of the search. This paper has not been peer reviewed.
 
-## Research process and review
-
-The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.
+See the [authorship and autonomous AI disclosure](../../../../AUTHORSHIP.md).

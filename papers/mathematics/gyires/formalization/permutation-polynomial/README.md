@@ -46,7 +46,3 @@ This package is separate from the shared Math and Theory Lean library. Build it 
 The package is part of [Math and Theory](https://github.com/dvgyl/math-and-theory). The associated preprint is *Gyires's permanent inequality for structured matrices*. Its main manuscript and citation record are in the public collection.
 
 [NOTICE](NOTICE) gives the source credit, including the permanent Gram comparison adapted from Chris Ozols. [LICENSE](LICENSE) contains the Apache License 2.0. The collection's [authorship disclosure](https://github.com/dvgyl/math-and-theory/blob/main/AUTHORSHIP.md) describes the fully autonomous agentic research. Formal verification checks the stated theorem. It does not establish novelty or peer review.
-
-## Research process and review
-
-The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.

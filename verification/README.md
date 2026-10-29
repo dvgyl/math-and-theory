@@ -97,7 +97,7 @@ These programs reconstruct finite examples or certificates. The family guides st
 
 ## Manuscripts and navigation
 
-The [complete preprint index](../papers/README.md) links every PDF to its LaTeX source and package guide. Build each manuscript with the engine recorded in `catalogue.json`: Tectonic by default, or pdfLaTeX via latexmk when `manuscript_engine` is `pdflatex`. Compile the overview at the repository root with `latexmk -pdf overview.tex`. Use a working copy for manuscript builds. The recorded checks inspect warnings, extract text and render every PDF page for visual review.
+The [complete preprint index](../papers/README.md) links every PDF to its LaTeX source and package guide. Build each manuscript with the engine recorded in `catalogue.json`: Tectonic by default, or pdfLaTeX via latexmk when `manuscript_engine` is `pdflatex`. Compile the overview at the repository root with `latexmk -pdf overview.tex`. Use a working copy for manuscript builds.
 
 Run `python3 verification/check_manuscripts.py` to rebuild the overview and all catalogue manuscripts in temporary directories. It checks TeX warnings and compares raw PDF text byte for byte, including page breaks, with the committed PDFs. It also checks the page counts reported by `pdfinfo`. No whitespace or Unicode normalization is applied. Raw extraction avoids changes in reading order caused by small differences in glyph coordinates. Review page layout separately, including fractions, superscripts, clipping, and line placement.
 
@@ -111,7 +111,7 @@ The shared-library job builds `MathAndTheory`, `Solutions`, and the separate `Ch
 
 ## Records and limits
 
-The [publication manifest](../publication-files.json) lists every public file. The [source manifest](records/source-hashes.json) records the SHA-256 hash of each file except itself. Run `python3 verification/verify_hashes.py` to compare them. The [software versions](records/versions.json) identify the recorded environment. A check establishes only its stated scope. It does not establish novelty or human peer review.
+The [publication manifest](../publication-files.json) lists every public file. The [source manifest](records/source-hashes.json) records the SHA-256 hash of each file except itself. Run `python3 verification/verify_hashes.py` to compare them. The [Lean proof map](../lean/README.md) identifies each pinned toolchain; its package lock records the dependency revisions. A check establishes only its stated scope. It does not establish novelty or human peer review.
 
 ## Build archival packages
 
@@ -132,24 +132,14 @@ python3 verification/build_archives.py --output ../archival-packages
 
 The builder includes only files in the explicit publication manifest. It rejects missing files, unlisted files, changed hashes, and symbolic links. It checks every ZIP member against its source bytes. The builder produces one `math-and-theory-source.zip`, a PDF for each catalogue manuscript, and `packages.json` linking each PDF to that shared archive. The archive includes all manuscript sources, standalone proof packages, the shared formal library, exact checking programs, licenses, and verification scope. Its embedded `PACKAGE.json` records each manuscript and its proof environments. The full source collection is stored once.
 
-[Return to the catalogue](../CONTENTS.md).
-
-## Proof artifacts and audit records
-
-The standalone packages use their own pinned Lean environments. Each package includes the manuscript, source files, license, citation, and source verification record. The source integrity checks compare published bytes and report coverage. Compiled objects are not included. Rebuild the package to reconstruct them.
-
-The [Higuchi–Sudbery package](../papers/physics/higuchi-sudbery/VERIFICATION.md) has 50 source modules and eleven selected axiom reports. Its theorem covers every normalized pure four-qubit state and proves attainment of the bound. The [quartic ranking package](../papers/mathematics/quartic-rankings/VERIFICATION.md) has 20 source modules and five endpoint checks. Its kernel audit checks all 238 project theorem declarations, including 17 private helpers. Both packages include source hashes and compiler logs.
-
-Automatic jobs build each study and check every requested audit report. These jobs are separate from the shared Comparator selection. The order-six and permutation-polynomial Gyires packages have automatic source checks; their full source builds can be run with the manual workflow.
-
-## Research process and review
-
-For the original collection, the recorded disclosure states that the initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.
 
 ## Source integrity and proof drivers
 
 The curated standalone packages are listed in `curated-packages.json`. Their strict outer release manifests bind every scientific file, the Lean source inventory, dependency pins and any nested formal package manifests. `python3 verification/check_embedded_packages.py` checks all standalone packages. Hash checks are source-integrity checks, not new Lean runs. Each package README gives its actual compilation and endpoint-audit commands and its conventional-proof boundaries.
 
-The power-rank, graph-root and Motzkin packages use a fresh-directory `formalization/verify.py` driver. ADMM uses `verify_lean.py`. Their completed source replays are retained separately from unchanged inherited proof records. The other retained notes provide their own pinned build commands. Only `propext`, `Classical.choice` and `Quot.sound` are allowed in accepted proof dependencies.
+The power-rank, graph-root and Motzkin packages use a fresh-directory `formalization/verify.py` driver. ADMM uses `verify_lean.py`. Each package contains verification evidence and its reproduction command. Only `propext`, `Classical.choice` and `Quot.sound` are allowed in accepted proof dependencies.
 
-Manuscript and overview engine selection is explicit in the catalogue: papers use Tectonic unless marked `pdflatex`; the overview uses pdfLaTeX via latexmk. The default manuscript check still builds every catalogue entry and the overview and compares exact extracted text and page counts. `--engine pdflatex` is a local targeted check, not the full CI command.
+
+See the [authorship and autonomous AI disclosure](../AUTHORSHIP.md).
+
+[Return to the catalogue](../CONTENTS.md).
