@@ -1,0 +1,88 @@
+version: v0.4
+project:
+  name: The unrestricted four-qubit Higuchi–Sudbery entropy bound
+  description: >-
+    Every normalized vector of sixteen complex amplitudes has average entropy
+    of its three balanced two-qubit marginals at most log(2) + log(3)/2.
+    The bound is attained. No condition on one-qubit marginals is imposed.
+  authors:
+    - Dev D. Goyal
+  responsible_maintainers:
+    - Dev D. Goyal
+  license: Apache-2.0
+classification:
+  arxiv:
+    - quant-ph
+    - math-ph
+  msc2020:
+    - 81P45
+    - 81P40
+    - 15A18
+sources:
+  - title: A sum-of-squares proof of the four-qubit Higuchi–Sudbery entropy bound
+    type: original-proof
+    authors:
+      - Dev D. Goyal
+    id: https://github.com/dvgyl/math-and-theory/blob/a6574b1bf6a591d81c3314d5333fc5da26712d6b/papers/physics/higuchi-sudbery/manuscript.pdf
+    relationship: other
+    license: Apache-2.0
+    note: >-
+      The complete proof development and manuscript are included in this submission.
+      The linked version records the source before the module-system port and
+      independent Comparator statement were added. Historical priority is not certified.
+  - title: How entangled can two couples get?
+    type: paper
+    authors:
+      - A. Higuchi
+      - A. Sudbery
+    id: https://doi.org/10.1016/S0375-9601(00)00480-1
+    relationship: background
+    author_endorsement: not-contacted
+status:
+  scope: >-
+    The selected statements are the unrestricted upper bound and its exact global
+    maximum. The definitions use the actual balanced reduced matrices and their
+    Hermitian eigenvalues. Entropy uses natural logarithms and the zero-eigenvalue
+    convention supplied by Real.log 0 = 0. The complete proof and sum-of-squares
+    certificate are included. Deliberate Challenge holes are not part of the Solution.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+automation:
+  methods:
+    - method: autonomous
+      models:
+        - GPT 6 with Pro Reasoning
+      framework: ChatGPT
+      tool_setup: Autonomous initial research and proofs.
+    - method: agent
+      models:
+        - GPT 6 Astra
+      framework: Codex
+      tool_setup: Autonomous formalizations and corrections.
+  notes: >-
+    The authors checked the proofs to the best of their mathematical abilities.
+    This check is not expert validation or peer review. Dev D. Goyal is responsible
+    for publication. The submission package was prepared autonomously in Codex.
+fidelity:
+  divergences: >-
+    None is intended for the two selected statements. The quantified domain is all
+    normalized pure four-qubit states. The average is over the three balanced cuts.
+    The maximum statement includes attainment. No expert validation or priority
+    assessment is claimed by this submission.
+review:
+  status: Not peer reviewed.
+alignment:
+  namespace: HS
+  statements:
+    - source: Unrestricted four-qubit average-entropy upper bound
+      lean: HS.higuchi_sudbery_bound
+      module: Solution
+      status: proved
+    - source: Attainment and exact global entropy maximum
+      lean: HS.higuchi_sudbery_maximum
+      module: Solution
+      status: proved

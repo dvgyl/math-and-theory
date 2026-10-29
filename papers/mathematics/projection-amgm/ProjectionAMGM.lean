@@ -1,2 +1,0 @@
-import ProjectionAMGM.Counterexample
-import ProjectionAMGM.Family
