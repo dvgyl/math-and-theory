@@ -1,0 +1,39 @@
+@Fidelity.holevo_le_entropy_rootFidelityMatrix : ∀ {n : Type u_1} [inst : Fintype n] [inst_1 : DecidableEq n]
+  (p : Fin 3 → ℝ) (ρ : Fin 3 → Matrix n n ℂ) (hp : ∀ (i : Fin 3), 0 ≤ p i),
+  ∑ i, p i = 1 →
+    ∀ (hρ : ∀ (i : Fin 3), (ρ i).PosSemidef),
+      (∀ (i : Fin 3), (ρ i).trace = 1) →
+        vonNeumannEntropy (Fidelity.ensembleAverage p ρ) ⋯ - ∑ i, p i * vonNeumannEntropy (ρ i) ⋯ ≤
+          vonNeumannEntropy (Fidelity.rootFidelityMatrix p ρ) ⋯
+'Fidelity.holevo_le_entropy_rootFidelityMatrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Fidelity.rootFidelityMatrix_posSemidef : ∀ {n : Type u_1} [inst : Fintype n] [inst_1 : DecidableEq n] (p : Fin 3 → ℝ)
+  (ρ : Fin 3 → Matrix n n ℂ), (Fidelity.rootFidelityMatrix p ρ).PosSemidef
+'Fidelity.rootFidelityMatrix_posSemidef' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Fidelity.rootFidelityMatrix_trace_one : ∀ {n : Type u_1} [inst : Fintype n] [inst_1 : DecidableEq n] (p : Fin 3 → ℝ)
+  (ρ : Fin 3 → Matrix n n ℂ),
+  (∀ (i : Fin 3), 0 ≤ p i) →
+    ∑ i, p i = 1 →
+      (∀ (i : Fin 3), (ρ i).PosSemidef) → (∀ (i : Fin 3), (ρ i).trace = 1) → (Fidelity.rootFidelityMatrix p ρ).trace = 1
+'Fidelity.rootFidelityMatrix_trace_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Fidelity.blockCoherence_normCompression3 : ∀ {n : Type u_1} [inst : Fintype n] [inst_1 : DecidableEq n] [Nonempty n]
+  {G : Matrix (n × Fin 3) (n × Fin 3) ℂ} (hG : G.PosSemidef),
+  vonNeumannEntropy (Fidelity.diagPinch (Fidelity.normCompression3 G)) ⋯ -
+      vonNeumannEntropy (Fidelity.normCompression3 G) ⋯ ≤
+    vonNeumannEntropy (Fidelity.blockPinch G) ⋯ - vonNeumannEntropy G ⋯
+'Fidelity.blockCoherence_normCompression3' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Fidelity.relativeEntropy_normCompression3_posDef : ∀ {n : Type u_1} [inst : Fintype n] [inst_1 : DecidableEq n]
+  [Nonempty n] {G : Matrix (n × Fin 3) (n × Fin 3) ℂ},
+  G.PosDef →
+    quantumRelativeEntropy (Fidelity.normCompression3 G) (Fidelity.diagPinch (Fidelity.normCompression3 G)) ≤
+      quantumRelativeEntropy G (Fidelity.blockPinch G)
+'Fidelity.relativeEntropy_normCompression3_posDef' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Fidelity.entropy_entryAbs_three_posDef : ∀ {A : Matrix (Fin 3) (Fin 3) ℂ} (hA : A.PosDef),
+  vonNeumannEntropy A ⋯ ≤ vonNeumannEntropy (Fidelity.entryAbs A) ⋯
+'Fidelity.entropy_entryAbs_three_posDef' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Fidelity.relativeEntropy_internalPinch_le : ∀ {S : Type u_1} [inst : Fintype S] [inst_1 : DecidableEq S] {d : ℕ}
+  [inst_2 : NeZero d] {A B : Matrix (S × ZMod d) (S × ZMod d) ℂ},
+  A.PosDef →
+    B.PosDef → quantumRelativeEntropy (Fidelity.internalPinch A) (Fidelity.internalPinch B) ≤ quantumRelativeEntropy A B
+'Fidelity.relativeEntropy_internalPinch_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Fidelity.nuclear_eq_traceNorm : ∀ {d : ℕ} (A : Matrix (Fin d) (Fin d) ℂ), Fidelity.nuclear A = A.traceNorm
+'Fidelity.nuclear_eq_traceNorm' depends on axioms: [propext, Classical.choice, Quot.sound]

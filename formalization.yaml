@@ -27,7 +27,7 @@ sources:
     license: Apache-2.0
     note: >-
       The manuscript and complete proof are included. This source predates the
-      uncompiled dependency port and source-file split. The original inequality
+      dependency port and source-file split. The original inequality
       is credited to Fannes, de Melo, Roga, and Życzkowski. The proof credits
       the Li–Zhang construction and prior quantum relative entropy results.
       Priority is not certified.
@@ -47,8 +47,9 @@ sources:
       This bundled source is not claimed as a new research contribution.
 status:
   scope: >-
-    This is an uncompiled candidate for Lean 4.35.0 and the pinned Mathlib revision.
-    No successful port verification is claimed. The selected statements are
+    Local Lean 4.35.0 compilation, exact Comparator comparison, permitted-axiom
+    checking, and default Lean kernel replay pass. The local Comparator ran without
+    a sandbox. Full pinned Palomar preflight is still required. The selected statements are
     structural positivity of the actual root-fidelity matrix and the fully
     quantified ensemble entropy inequality. Challenge imports only Mathlib.
     It copies the exact entropy, nuclear norm, ensemble average, and root-fidelity
@@ -67,7 +68,7 @@ automation:
       tool_setup: Mathematical argument, formal proofs, and manuscript preparation.
     - method: agent
       framework: Codex
-      tool_setup: Prepared this uncompiled candidate from the recorded source.
+      tool_setup: Prepared and locally checked this candidate from the recorded source.
   notes: >-
     This is fully autonomous agentic AI research. AI systems developed the
     mathematical argument, formal proofs, and manuscript. Dev D. Goyal is
@@ -79,17 +80,18 @@ fidelity:
     definitions are retained. The positivity theorem is also a Challenge target
     because entropy takes a Hermitian proof. The foundation split preserves
     every original module block byte-for-byte. The dependency port and split
-    have not been compiled. No mathematical proof repair was attempted.
+    compile locally. Three named, proved matrix instances make exported instance
+    constants stable. Existing formulas and mathematical proof bodies are unchanged.
 review:
-  status: Not peer reviewed. The candidate is uncompiled.
+  status: Not peer reviewed. Local checks do not establish novelty.
 alignment:
   namespace: Fidelity
   statements:
     - source: Positive semidefiniteness of the weighted root-fidelity matrix
       lean: Fidelity.rootFidelityMatrix_posSemidef
       module: Solution
-      status: uncompiled
+      status: locally-checked
     - source: The three-state root-fidelity entropy inequality
       lean: Fidelity.holevo_le_entropy_rootFidelityMatrix
       module: Solution
-      status: uncompiled
+      status: locally-checked

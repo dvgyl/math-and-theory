@@ -1,5 +1,9 @@
 module
-public import Mathlib
+public import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Basic
+public import Mathlib.Analysis.Matrix.Order
+public import Mathlib.Analysis.Matrix.Normed
+public import Mathlib.Analysis.SpecialFunctions.ContinuousFunctionalCalculus.Rpow.Basic
+public import Mathlib.Analysis.SpecialFunctions.Log.NegMulLog
 
 /-! Three finite-dimensional density matrices give the weighted root-fidelity
 matrix. Entropy is the spectral sum with natural logarithms. The structural
@@ -23,13 +27,36 @@ noncomputable def vonNeumannEntropy
   ∑ i, negMulLog (hρ.eigenvalues i)
 end
 
+section
+open scoped Matrix MatrixOrder ComplexOrder
+open Matrix
 namespace Fidelity
 variable {n : Type*} [Fintype n] [DecidableEq n]
-
 noncomputable def nuclear (A : Matrix n n ℂ) : ℝ := (CFC.abs A).trace.re
+end Fidelity
+end
 
 section
-variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+open scoped Matrix Matrix.Norms.L2Operator ComplexOrder MatrixOrder
+open Matrix
+namespace Fidelity
+noncomputable section
+variable {n ι : Type*} [Fintype n] [DecidableEq n] [Fintype ι] [DecidableEq ι]
+
+instance matrixRealScalarTower : IsScalarTower ℝ (Matrix n n ℂ) (Matrix n n ℂ) :=
+  inferInstance
+
+instance matrixRealSmulCommClass : SMulCommClass ℝ (Matrix n n ℂ) (Matrix n n ℂ) :=
+  inferInstance
+
+instance matrixRealFunctionalCalculus :
+    NonUnitalContinuousFunctionalCalculus ℝ (Matrix n n ℂ) IsSelfAdjoint :=
+  inferInstance
+
+
+def weightedRoot (p : ι → ℝ) (ρ : ι → Matrix n n ℂ) (i : ι) : Matrix n n ℂ :=
+  Real.sqrt (p i) • CFC.sqrt (ρ i)
+
 def ensembleAverage (p : ι → ℝ) (ρ : ι → Matrix n n ℂ) : Matrix n n ℂ :=
   ∑ i, p i • ρ i
 
@@ -38,7 +65,6 @@ theorem ensembleAverage_posSemidef [Fintype n] [DecidableEq n] [DecidableEq ι] 
     (hp : ∀ i, 0 ≤ p i) (hρ : ∀ i, (ρ i).PosSemidef) :
     (ensembleAverage p ρ).PosSemidef :=
   Matrix.posSemidef_sum _ fun i _ => (hρ i).smul (hp i)
-end
 
 def rootFidelityMatrix (p : Fin 3 → ℝ) (ρ : Fin 3 → Matrix n n ℂ) :
     Matrix (Fin 3) (Fin 3) ℂ :=
@@ -60,4 +86,7 @@ theorem holevo_le_entropy_rootFidelityMatrix (p : Fin 3 → ℝ)
       (rootFidelityMatrix_posSemidef p ρ).isHermitian := by
   sorry
 
+end
 end Fidelity
+end
+end

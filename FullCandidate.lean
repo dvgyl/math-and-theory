@@ -2602,6 +2602,17 @@ noncomputable section
 
 variable {n ι : Type*} [Fintype n] [DecidableEq n] [Fintype ι] [DecidableEq ι]
 
+instance matrixRealScalarTower : IsScalarTower ℝ (Matrix n n ℂ) (Matrix n n ℂ) :=
+  inferInstance
+
+instance matrixRealSmulCommClass : SMulCommClass ℝ (Matrix n n ℂ) (Matrix n n ℂ) :=
+  inferInstance
+
+instance matrixRealFunctionalCalculus :
+    NonUnitalContinuousFunctionalCalculus ℝ (Matrix n n ℂ) IsSelfAdjoint :=
+  inferInstance
+
+
 def horizontalStack (R : ι → Matrix n n ℂ) : Matrix n (n × ι) ℂ :=
   fun r si => R si.2 r si.1
 
