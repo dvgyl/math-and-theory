@@ -102,7 +102,7 @@ lemma geomSum_strictAntiOn_pos {N : ℕ} (hN : 0 < N) :
 
 lemma geomSum_continuousOn_Icc {b c : ℝ} (hb : 0 < b) (N : ℕ) :
     ContinuousOn (fun a : ℝ => geomSum a N) (Icc b c) := by
-  apply continuousOn_finset_sum
+  apply continuousOn_finsetSum
   intro j hj
   apply ContinuousOn.pow
   apply continuousOn_id.inv₀
@@ -190,14 +190,12 @@ lemma scaling_parameters {h H μ : ℝ} (hh : 0 < h) (hH : 1 < H) (hhH : h ≤ H
     lt_of_le_of_lt (mul_le_of_le_one_left hμ0 hs1) hμ1
   refine ⟨hs0, hs1, hsmu0, hsmu1, ?_, ?_⟩
   · field_simp [ne_of_gt hH0]
-    ring
   · field_simp [ne_of_gt hh, ne_of_gt hH0]
 
 lemma scaled_progressSum {h H a : ℝ} {N : ℕ} (hh : h ≠ 0) (_hH : H ≠ 0) :
     progressSum H a N = progressSum h a N / (h/H) := by
   unfold progressSum
   field_simp [hh]
-  ring
 
 lemma weaker_curvature_parameters {h μ b : ℝ} (hh : 0 < h)
     (hμ : μ < 1) (hb : 1-μ*h ≤ b) :
@@ -205,6 +203,7 @@ lemma weaker_curvature_parameters {h μ b : ℝ} (hh : 0 < h)
   have hν : (1-b)/h ≤ μ := (div_le_iff₀ hh).mpr (by nlinarith)
   refine ⟨hν, lt_of_le_of_lt hν hμ, ?_⟩
   field_simp [ne_of_gt hh]
+  ring
 
 lemma branch_comparison {r S : ℝ} (hr : 0 < r) (N : ℕ) :
     (r^N * (1+S) ≤ 1 ↔ 1+S ≤ invPower r N) ∧

@@ -1,5 +1,6 @@
 module
-public import Mathlib
+public import Mathlib.Analysis.Calculus.Gradient.Basic
+public import Mathlib.Analysis.Convex.Strong
 
 /-! The exact final-gradient bound uses actual functions on complete real
 inner-product spaces. The attainment statement has L = R = 1. -/

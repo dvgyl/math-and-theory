@@ -1,7 +1,7 @@
 import Lake
 open Lake DSL
 
-package «thg-strong-gradient» where
+package thgStrongGradient where
   moreLeanArgs := #["-j1", "--trust=0"]
 
 require mathlib from git

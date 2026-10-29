@@ -152,7 +152,7 @@ lemma lower_branch_joint (cert : BalancedHistoryBound E)
     ring
   change invPower a N*sq (x N)+2*(1-μ)*S*f N+S*(S+1)*sq (g N) ≤ _
   rw [← he]
-  exact le_trans (add_le_add_left hstars _) hb
+  linarith only [hstars, hb]
 
 lemma upper_balanced_parameter {h μ : ℝ} {N : ℕ}
     (hh : 1 < h) (hh2 : h < 2) (hN : 0 < N)
@@ -219,7 +219,7 @@ lemma progress_rate_formula {μ h : ℝ} (hμ0 : 0 ≤ μ) (hh : 0 < h)
         μ*(1-μ*h)^N/(1-(1-μ)*(1-μ*h)^N) := by
   by_cases hμ : μ = 0
   · simp [hμ, progressSum, geomSum, mul_comm]
-  · rw [if_neg hμ]
+  · rw [ite_eq_right hμ]
     have hμpos : 0 < μ := lt_of_le_of_ne hμ0 (Ne.symm hμ)
     let a := 1-μ*h
     let S := progressSum h a N

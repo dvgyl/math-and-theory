@@ -1,8 +1,11 @@
 # The exact last-gradient bound for constant-step gradient descent in the strongly convex case
 
-This is an uncompiled submission candidate. The proof sources were prepared for
-Lean 4.35.0 and Mathlib revision `56a005855ea17e0b0958f73ec801ae140b0a1679`.
-No successful compilation or Palomar preflight is claimed for these bytes.
+A local source replay compiled all 20 proof modules and Solution with Lean 4.35.0
+and Mathlib revision `56a005855ea17e0b0958f73ec801ae140b0a1679`. The independent
+Challenge also compiled with its two deliberate theorem holes. The three public
+declarations use only `propext`, `Classical.choice`, and `Quot.sound`.
+The full Palomar preflight and Comparator check are still required. See
+[the local replay summary](verification/local-replay-summary.json).
 
 The selected upper bound uses actual functions and gradients on every complete
 real inner-product space. It includes every natural horizon, curvature parameter

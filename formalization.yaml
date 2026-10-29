@@ -27,7 +27,7 @@ sources:
     license: Apache-2.0
     note: >-
       The manuscript and complete proof sources are included. The linked version
-      records the source before this uncompiled module-system and dependency port.
+      records the source before this module-system and dependency port.
       It does not certify the changed source bytes. Priority is not certified.
   - title: thg-gradient-curve
     type: other
@@ -45,8 +45,9 @@ sources:
       Jones established the complete smooth-convex curve.
 status:
   scope: >-
-    This is an uncompiled candidate for Lean 4.35.0 and the pinned Mathlib revision.
-    No successful port verification is claimed. The selected upper-bound statement
+    A local Lean 4.35.0 source replay compiled all 20 proof modules and Solution
+    with trust level zero. A separate audit checked the three public axiom sets.
+    The full Palomar preflight and Comparator check remain required. The selected upper-bound statement
     assumes ordinary strong convexity, actual gradients, a Lipschitz gradient,
     an actual global minimizer, and the stated gradient-descent recurrence.
     It has no interpolation oracle or certificate hypothesis. The attainment
@@ -64,7 +65,7 @@ automation:
       tool_setup: Autonomous research, proofs, formalization, and manuscript preparation.
     - method: agent
       framework: Codex
-      tool_setup: Prepared this uncompiled submission candidate from the recorded source.
+      tool_setup: Prepared and locally checked this submission candidate from the recorded source.
   notes: >-
     This is fully autonomous agentic research. Automated systems produced the
     research, proofs, formalization, and manuscript preparation. Dev D. Goyal
@@ -76,18 +77,19 @@ fidelity:
     The general-L upper bound is selected without changing its mathematical
     statement. Attainment is selected only at L = R = 1. The manuscript proves
     arbitrary-scale attainment for L > 0 and R > 0 by conventional rescaling.
-    That rescaling is not a separate Lean theorem. The dependency and module
-    port has not been compiled. No mathematical proof repair was attempted.
+    That rescaling is not a separate Lean theorem. The local source replay
+    checked the dependency port and mechanical tactic/API repairs. The selected
+    theorem statements and definitions are unchanged. Full preflight is pending.
 review:
-  status: Not peer reviewed. The port is uncompiled.
+  status: Not peer reviewed. Locally compiled; full preflight is pending.
 alignment:
   namespace: THGStrong
   statements:
     - source: Actual-function final-gradient upper bound
       lean: THGStrong.taylor_hendrickx_glineur_conjecture3
       module: Solution
-      status: uncompiled
+      status: Locally compiled; full preflight is pending.
     - source: Actual one-dimensional attainment at L = R = 1
       lean: THGStrong.Sharpness.attain_rate
       module: Solution
-      status: uncompiled
+      status: Locally compiled; full preflight is pending.

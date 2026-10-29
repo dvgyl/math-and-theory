@@ -28,7 +28,7 @@ lemma gradientRate_zero_step (μ : ℝ) (N : ℕ) : gradientRate μ 0 N = 1 := b
   by_cases hμ : μ = 0
   · simp [hμ]
   · simp only [hμ, ite_false, mul_zero, sub_zero, one_pow, mul_one,
-      zero_mul, add_zero, abs_one]
+      add_zero, abs_one]
     have hd : 1-(1-μ) = μ := by ring
     rw [hd, div_self hμ]
     norm_num
@@ -41,7 +41,7 @@ theorem attain_rate {μ h : ℝ} (hμ0 : 0 ≤ μ) (hμ1 : μ ≤ 1)
   by_cases hh0 : h = 0
   · subst h
     rw [gradientRate_zero_step]
-    simpa only [sub_zero, abs_one, one_pow] using
+    simpa only [NormalizedAttainment, sub_zero, abs_one, one_pow] using
       quadratic_oscillation_attainment hμ1 0 N
   have hhp : 0 < h := lt_of_le_of_ne hh (Ne.symm hh0)
   by_cases ha : 0 < 1-μ*h
@@ -70,7 +70,7 @@ theorem attain_rate {μ h : ℝ} (hμ0 : 0 ≤ μ) (hμ1 : μ ≤ 1)
     have hd := nonpositive_affine_rate_dominated hμp hμ1 hh hh2 ha0 N
     have hr : gradientRate μ h N = |1-h|^N := by
       unfold gradientRate
-      rw [if_neg hμne]
+      rw [ite_eq_right hμne]
       apply max_eq_right
       simpa only [habs] using hd
     rw [hr]

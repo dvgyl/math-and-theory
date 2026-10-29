@@ -17,9 +17,8 @@ lemma norm_sq_gradient (μ : ℝ) (x : E) :
   rw [hasGradientAt_iff_hasFDerivAt]
   convert (hasStrictFDerivAt_norm_sq x).hasFDerivAt.const_mul (μ / 2) using 1
   ext y
-  simp only [ContinuousLinearMap.smul_apply,
-    InnerProductSpace.toDual_apply, real_inner_smul_left,
-    ContinuousLinearMap.coe_smul', Pi.smul_apply, smul_eq_mul, innerSL_apply]
+  simp only [smul_apply, InnerProductSpace.toDual_apply_apply,
+    real_inner_smul_left, smul_eq_mul, innerSL_apply_apply]
   ring
 
 lemma strong_first_order {f : E → ℝ} {g : E → E} {μ : ℝ}

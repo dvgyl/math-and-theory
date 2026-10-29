@@ -1,0 +1,89 @@
+{
+  "status": "Local source replay passed. Full Palomar preflight is pending.",
+  "compiler_version": "Lean (version 4.35.0, arm64-apple-darwin24.6.0, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+  "compiler_arguments": [
+    "--trust=0",
+    "-j1",
+    "-M4096"
+  ],
+  "proof_module_count": 20,
+  "solution_exit_code": 0,
+  "challenge_exit_code": 0,
+  "deliberate_challenge_holes": 2,
+  "selected_statement_surface_matches_recorded_commit": true,
+  "theorem_axioms": {
+    "THGStrong.taylor_hendrickx_glineur_conjecture3": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "THGStrong.taylor_hendrickx_glineur_conjecture3_with_radius": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "THGStrong.Sharpness.attain_rate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "lean_source_sha256": {
+    "Challenge.lean": "b7da80b7c9b76ce4f107f0d91f02bb6b70c008918728007bc0e70b90980eabf3",
+    "Solution.lean": "ce2252ef40db1a19640e1e52f3a7cc7bfb05eae42a1250a2482eed280b1f4de7",
+    "lean/THGStrong/Analytic.lean": "b55ddaeff477a93a67731d4816a12c2e6ccbd538007d5fd8a6293244ace3c8c6",
+    "lean/THGStrong/AnalyticBase.lean": "6c0baeb0a51d082c30d766544dbd4a63034815c4c3ed969b285b0bac1af7f0b6",
+    "lean/THGStrong/AnalyticFinal.lean": "78f6464dab7a75a639fd93139f826e029f40e14b464ec93999e3fc82e9a769a8",
+    "lean/THGStrong/Attainment.lean": "7ed66861f74bbbd953ec8da711d79c9f013acb4939d63d42855673bbe36dfa19",
+    "lean/THGStrong/Balance.lean": "74d6620e88ac04882dc2aafd4bed57585435c4df903eeeb27e48d6141dbfbd60",
+    "lean/THGStrong/Balanced.lean": "6ce8da036f6b70e1f905ab6b5b91603706996fdb487bff29c21e175eb89af73e",
+    "lean/THGStrong/CertificateAPI.lean": "e57d269817569edcb4f53f209f2b79d3050f84b6744432b0a737901f0af1c888",
+    "lean/THGStrong/Coefficients.lean": "e9cdb2cae5c2df3e3c01f1ed0e8582240d452cb1aca30ca74026d62c117c9b8f",
+    "lean/THGStrong/Core.lean": "900e51c8c237a4b63c115bb7d67b69da2a4a2bbf144671a205bef383b2b12738",
+    "lean/THGStrong/Cuts.lean": "e6f9226ed8cb0e50d0a2961f55afe7df64c92e4159296dff50194571848dfa38",
+    "lean/THGStrong/CutsFin.lean": "5e25c542314c2b9457f2688cdcc1c45513df23adbbde65f7c1d35f61fcb2af1a",
+    "lean/THGStrong/History.lean": "d9b764246ddf6cbabc3747371955835da8621509d84341babdbc86d4dfb6c89a",
+    "lean/THGStrong/Huber.lean": "2d5c4a69d504e79bec10c288c419d2cd2fc94c25286ae8cf953bfafa05c6ff1c",
+    "lean/THGStrong/Main.lean": "0da9770c3e4e6a3a3a15818f32a74e2d69f6f3c18d754a31d4accf5423fda325",
+    "lean/THGStrong/Reduction.lean": "7ae67ed2ab0438dfed2e231041ff2cd73494cd6084969012415f2422af12af5f",
+    "lean/THGStrong/ScalarBase.lean": "c853156d9b6fac8f5b46155bbcbe6c411320d8a94eface0a9b67f6a8e6c419a9",
+    "lean/THGStrong/Scalars.lean": "9ac7dca6d6755939de055bbc9ecf953a25d9799b05b7e2dcfc4d7c36b3b3b9d2",
+    "lean/THGStrong/Scaling.lean": "378288d68a1a99c000797eeaa0bd159d4d6fdf612cfc40c8afaf721c6cd02802",
+    "lean/THGStrong/Sharpness.lean": "839fbb82bec3437947bf6a67b1420dfb0c68d22bd7b8dd1e3650043b6505bb7d",
+    "lean/THGStrong.lean": "eb8fd8ef6eafd59a5663ca88add973fbe723f072ece655f47ccb127eba44f56f"
+  },
+  "dependency_manifest_sha256": "ae832cee39ba46e0a0907707f73b245c44abfbcf7450c4bd44193207f2476b59",
+  "limits": [
+    "Direct sequential Lean compilation. This is not a Lake build or Palomar preflight.",
+    "No Comparator run was performed.",
+    "Proof-source warnings were recorded. They were not treated as errors. The separate endpoint audit used warnings as errors.",
+    "Attainment is formalized only at L = R = 1. The manuscript gives conventional arbitrary-scale rescaling."
+  ],
+  "warnings": [
+    {
+      "module": "THGStrong.Core",
+      "warning_count": 6
+    },
+    {
+      "module": "THGStrong.History",
+      "warning_count": 4
+    },
+    {
+      "module": "THGStrong.Coefficients",
+      "warning_count": 3
+    },
+    {
+      "module": "THGStrong.Balanced",
+      "warning_count": 5
+    },
+    {
+      "module": "THGStrong.Reduction",
+      "warning_count": 2
+    },
+    {
+      "module": "THGStrong.Huber",
+      "warning_count": 2
+    }
+  ]
+}

@@ -283,7 +283,7 @@ lemma upperFactor_lt_succ {h a r : ℝ} (hh : h = r+1) (hr : 0 < r)
   have hc := factor_cross_pos hr hr1 hra hh (Nat.zero_lt_succ n)
   have hmul := mul_lt_mul_of_pos_left hps hd
   have hrat : a*forwardRatio h a r (n+2)-r < 1+forwardRatio h a r (n+1) :=
-    (mul_lt_mul_right hp).mp (lt_trans hmul hc)
+    lt_of_mul_lt_mul_right (lt_trans hmul hc) hp.le
   change upperFactor h a r (n+1) <
     upperFactor h a r (n+1) * (1+forwardRatio h a r (n+1)) /
     (a*forwardRatio h a r (n+2)-r)
@@ -295,7 +295,7 @@ lemma tailFactor_pos {h a r : ℝ} (hh : h = r+1) (hr : 0 < r)
     (hbal : invPower r N = 1 + progressSum h a N) (hj : 0 < j) (hjN : j ≤ N) :
     0 < tailFactor h a r N j := by
   obtain ⟨n, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (Nat.ne_of_gt hj)
-  rw [tailFactor, if_pos hjN]
+  rw [tailFactor, ite_eq_left hjN]
   exact div_pos (halfPower_pos hr hr1 (Nat.zero_lt_succ n))
     (upperFactor_pos hh hr hr1 hra hbal (by omega))
 
@@ -314,7 +314,7 @@ lemma tailFactor_succ_lt {h a r : ℝ} (hh : h = r+1) (hr : 0 < r)
   have hu' := upperFactor_pos hh hr hr1 hra hbal hjlt
   have hd := factor_denominator_pos hh hr hr1 hra (Nat.zero_lt_succ n) hjlt hbal
   have hc := factor_cross_pos hr hr1 hra hh (Nat.zero_lt_succ n)
-  rw [tailFactor, if_pos hjN', tailFactor, if_pos hjN]
+  rw [tailFactor, ite_eq_left hjN', tailFactor, ite_eq_left hjN]
   apply (div_lt_div_iff₀ hu' hu).mpr
   change halfPower r (n+2) * upperFactor h a r (n+1) <
     halfPower r (n+1) * (upperFactor h a r (n+1) *
@@ -369,17 +369,17 @@ lemma lowerFactor_lt_succ {h a r : ℝ} (hh : h = r+1) (hr : 0 < r)
     have hbl : (a-1)*lowerFactor h a r (n+1) < h*upperFactor h a r (n+1) := by
       simpa only [lowerFactor, mul_assoc] using hm
     have he := forwardFactor_recurrence hh hr hr1 hra hbal hi
-    apply (mul_lt_mul_left ha).mp
+    apply (mul_lt_mul_iff_right₀ ha).mp
     calc
       a*lowerFactor h a r (n+1) = lowerFactor h a r (n+1) +
         (a-1)*lowerFactor h a r (n+1) := by ring
       _ < lowerFactor h a r (n+1) + h*upperFactor h a r (n+1) :=
-        add_lt_add_left hbl _
+        by linarith only [hbl]
       _ = lowerFactor h a r (n+1) + upperFactor h a r (n+1) +
         r*upperFactor h a r (n+1) := by rw [hh]; ring
       _ < lowerFactor h a r (n+1) + upperFactor h a r (n+1) +
         r*upperFactor h a r (n+2) :=
-        add_lt_add_left (mul_lt_mul_of_pos_left hU hr) _
+        by linarith only [mul_lt_mul_of_pos_left hU hr]
       _ = a*lowerFactor h a r (n+1+1) := by linarith only [he]
 
 lemma reverseRatio_pos {h a r : ℝ} (hh : 0 < h) (ha : 0 < a)
@@ -419,7 +419,7 @@ lemma upper_tail_product {h a r : ℝ} (hh : h = r+1) (hr : 0 < r)
     upperFactor h a r j * tailFactor h a r N j = halfPower r j := by
   obtain ⟨n, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (Nat.ne_of_gt hj)
   have hu := upperFactor_pos hh hr hr1 hra hbal (by omega : n < N)
-  rw [tailFactor, if_pos hjN]
+  rw [tailFactor, ite_eq_left hjN]
   exact mul_div_cancel₀ _ (ne_of_gt hu)
 
 lemma half_ratio_gap {h a r : ℝ} (hr : 0 < r) (hr1 : r < 1)
@@ -465,7 +465,6 @@ lemma half_mul_ratios {h a r : ℝ} (hr : 0 < r) (hr1 : r < 1)
   rw [half_mul_forward h a j (by linarith)]
   unfold reverseRatio
   field_simp [hm]
-  ring
 
 lemma ratio_recurrence_identity {h a r : ℝ} (ha : 0 < a) (hr : 0 < r)
     (hr1 : r < 1) (hh : h = r+1) {j : ℕ} (hj : 0 < j) :
@@ -478,7 +477,6 @@ lemma ratio_recurrence_identity {h a r : ℝ} (ha : 0 < a) (hr : 0 < r)
   have hsr := congrArg (fun t : ℝ => r*t) hs
   have hh2 := congrArg (fun t : ℝ => (progressSum h a j+t)^2) hh
   have hhr := congrArg (fun t : ℝ => r*(progressSum h a j+t)) hh
-  dsimp only at hs2 hsr hh2 hhr
   have hp := halfPower_recurrence (ne_of_gt hr) j
   calc
     _ = halfPower r j * forwardRatio h a r j * reverseRatio h a r j +
@@ -517,7 +515,7 @@ lemma tailFactor_recurrence {h a r : ℝ} (hh : h = r+1) (hr : 0 < r)
   have hb := forwardRatio_pos hh0 ha hr (Nat.zero_lt_succ n)
   have hb1 : 1+forwardRatio h a r (n+1) ≠ 0 := by linarith
   unfold reverseFactor
-  rw [tailFactor, if_pos hjN, tailFactor, if_pos hjN']
+  rw [tailFactor, ite_eq_left hjN, tailFactor, ite_eq_left hjN']
   change reverseRatio h a r (n+1)*(halfPower r (n+1)/upperFactor h a r (n+1)) -
       a*(reverseRatio h a r (n+2)*(halfPower r (n+2)/
         (upperFactor h a r (n+1)*(1+forwardRatio h a r (n+1))/
@@ -526,10 +524,8 @@ lemma tailFactor_recurrence {h a r : ℝ} (hh : h = r+1) (hr : 0 < r)
       r*(halfPower r (n+2)/(upperFactor h a r (n+1)*(1+forwardRatio h a r (n+1))/
         (a*forwardRatio h a r (n+2)-r)))
   field_simp [ne_of_gt hu, ne_of_gt hd, hb1]
-  have hm := congrArg (fun t : ℝ => upperFactor h a r (n+1)*t) hrel
-  dsimp only at hm
-  simp only [Nat.succ_eq_add_one, Nat.add_assoc] at hm ⊢
-  nlinarith only [hm]
+  norm_num only [Nat.succ_eq_add_one, Nat.add_assoc] at hrel ⊢
+  nlinarith only [hrel]
 
 lemma progressSum_increment (h a : ℝ) (n : ℕ) :
     progressSum h a (n+1)-progressSum h a n = h*invPower a (n+1) := by

@@ -79,8 +79,9 @@ lemma quadraticFunction_hasDerivAt (L x : ℝ) :
     HasDerivAt (quadraticFunction L) (L*x) x := by
   have hd := (((hasDerivAt_id x).pow 2).const_mul L).div_const 2
   convert hd using 1
-  norm_num
-  ring
+  · funext y
+    rfl
+  · norm_num only [id_eq, Nat.reduceSub, pow_one, one_mul, mul_one] <;> ring
 
 lemma quadraticFunction_hasGradientAt (L x : ℝ) :
     HasGradientAt (quadraticFunction L) (L*x) x :=
@@ -136,7 +137,7 @@ lemma huberGradient_lipschitz {μ : ℝ} (hμ0 : 0 ≤ μ) (hμ1 : μ ≤ 1)
       rw [norm_mul, norm_mul, Real.norm_of_nonneg hμ0,
         Real.norm_of_nonneg (sub_nonneg.mpr hμ1)]
     _ ≤ μ*‖x-y‖+(1-μ)*‖x-y‖ :=
-      add_le_add_left (mul_le_mul_of_nonneg_left hc (sub_nonneg.mpr hμ1)) _
+      by linarith only [mul_le_mul_of_nonneg_left hc (sub_nonneg.mpr hμ1)]
     _ = _ := by ring
 
 lemma stronglyConvexHuber_minimum {μ τ : ℝ} (hμ0 : 0 ≤ μ) (hμ1 : μ ≤ 1)
@@ -205,7 +206,7 @@ theorem quadratic_oscillation_attainment {μ : ℝ} (hμ1 : μ ≤ 1) (h : ℝ) 
   refine ⟨quadraticFunction 1, id, (fun i => (1-h)^i), unitQuadratic_strong hμ1,
     ?_, ?_, quadraticFunction_minimum (by norm_num), by simp, ?_, ?_⟩
   · intro z
-    simpa only [one_mul] using quadraticFunction_hasGradientAt 1 z
+    simpa only [one_mul, id_eq] using quadraticFunction_hasGradientAt 1 z
   · intro y z; exact le_rfl
   · intro i _
     simp only [id_eq, pow_succ]

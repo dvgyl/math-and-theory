@@ -1,7 +1,8 @@
 # Statement and proof map
 
-This map describes the mathematical source. The Lean 4.35.0 candidate is uncompiled.
-Earlier verification claims do not certify this candidate.
+This map describes the mathematical source. The Lean 4.35.0 local source replay
+compiled the complete proof. Full Palomar preflight remains required.
+Earlier verification claims do not certify the changed package.
 
 The manuscript gives the complete written argument. The Lean proof uses ordinary functions and gradients, not a finite interpolation oracle as a public hypothesis.
 

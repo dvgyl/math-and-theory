@@ -2,6 +2,7 @@ module
 /- Adapted from JD-Jones-ASES/thg-gradient-curve, commit 134788107eb28be0459555383a482a350bc953a4. MIT License; original copyright and license are retained in THIRD_PARTY_LICENSE. This file supplies established analytic facts, not a new research claim. -/
 public import Mathlib.Analysis.Calculus.Gradient.Basic
 public import Mathlib.Analysis.Calculus.Deriv.Pow
+public import Mathlib.Analysis.Calculus.Deriv.Comp
 public import Mathlib.Analysis.Calculus.Deriv.AffineMap
 public import Mathlib.Analysis.Calculus.Deriv.MeanValue
 public import Mathlib.Analysis.Calculus.LocalExtr.Basic
@@ -25,8 +26,8 @@ theorem hasDerivAt_line (hg : ∀ x, HasGradientAt f (g x) x) (x v : E) (t : ℝ
     HasDerivAt (fun s : ℝ => f (x + s • v)) ⟪g (x + t • v), v⟫_ℝ t := by
   have hline : HasDerivAt (fun s : ℝ => x + s • v) v t := by
     simpa only [one_smul, id_eq] using ((hasDerivAt_id t).smul_const v).const_add x
-  simpa only [InnerProductSpace.toDual_apply, Function.comp_def] using
-    (hg (x + t • v)).hasFDerivAt.comp_hasDerivAt t hline
+  simpa only [InnerProductSpace.toDual_apply_apply, Function.comp_def] using
+    HasFDerivAt.comp_hasDerivAt t (hg (x + t • v)).hasFDerivAt hline
 
 /-- First-order support for an actual differentiable convex function. -/
 theorem firstOrderSupport (hf : ConvexOn ℝ Set.univ f)
@@ -35,7 +36,8 @@ theorem firstOrderSupport (hf : ConvexOn ℝ Set.univ f)
   have hc : ConvexOn ℝ Set.univ (f ∘ AffineMap.lineMap (k := ℝ) x y) := by
     simpa using hf.comp_affineMap (AffineMap.lineMap (k := ℝ) x y)
   have hd : HasDerivAt (f ∘ AffineMap.lineMap (k := ℝ) x y) ⟪g x, y - x⟫_ℝ 0 := by
-    simpa using (hg ((AffineMap.lineMap (k := ℝ) x y) 0)).hasFDerivAt.comp_hasDerivAt 0
+    simpa using HasFDerivAt.comp_hasDerivAt 0
+      (hg ((AffineMap.lineMap (k := ℝ) x y) 0)).hasFDerivAt
       (AffineMap.hasDerivAt_lineMap (a := x) (b := y) (x := (0 : ℝ)))
   have hs := hc.le_slope_of_hasDerivAt (Set.mem_univ 0) (Set.mem_univ 1)
     (by norm_num : (0 : ℝ) < 1) hd
@@ -54,8 +56,10 @@ theorem smoothDescent (hg : ∀ x, HasGradientAt f (g x) x) (_hL : 0 < L)
     convert (((hasDerivAt_line hg x v t).sub_const (f x)).sub
       ((hasDerivAt_id t).mul_const ⟪g x, v⟫_ℝ)).sub
       ((((hasDerivAt_id t).pow 2).const_mul (L / 2)).mul_const (‖v‖ ^ 2)) using 1
-    simp only [P, inner_sub_left, id_eq, Pi.pow_apply]
-    first | rfl | ring
+    · funext s
+      rfl
+    · simp only [inner_sub_left, id_eq]
+      ring
   have hnonpos (t : ℝ) (ht : t ∈ interior (Set.Icc (0 : ℝ) 1)) :
       deriv P t ≤ 0 := by
     rw [(hd t).deriv]
@@ -92,7 +96,6 @@ theorem smoothConvexInterpolation (hf : ConvexOn ℝ Set.univ f)
     Real.norm_eq_abs, abs_of_pos (inv_pos.mpr hL), mul_pow] at hd
   have hcoef : L / 2 * (L⁻¹ ^ 2 * ‖d‖ ^ 2) = (L⁻¹ / 2) * ‖d‖ ^ 2 := by
     field_simp
-    ring
   rw [hcoef] at hd
   have hi : ⟪g x, d⟫_ℝ - ⟪g y, d⟫_ℝ = ‖d‖ ^ 2 := by
     rw [← inner_sub_left, ← real_inner_self_eq_norm_sq]
@@ -109,10 +112,8 @@ theorem gradient_eq_zero_of_minimizer (hg : ∀ x, HasGradientAt f (g x) x)
     {xstar : E} (hmin : ∀ x, f xstar ≤ f x) : g xstar = 0 := by
   have hm : IsLocalMin f xstar := Filter.Eventually.of_forall hmin
   have hz := hm.hasFDerivAt_eq_zero (hg xstar).hasFDerivAt
-  have he := congrArg (fun A : E →L[ℝ] ℝ => A (g xstar)) hz
-  simp only [InnerProductSpace.toDual_apply, ContinuousLinearMap.zero_apply,
-    real_inner_self_eq_norm_sq] at he
-  exact norm_eq_zero.mp (by nlinarith [norm_nonneg (g xstar)])
+  apply (InnerProductSpace.toDual ℝ E).injective
+  simpa only [map_zero] using hz
 
 /-- Cocoercivity with the prescribed Lipschitz constant, derived by adding interpolation. -/
 theorem gradientCocoercive (hf : ConvexOn ℝ Set.univ f)
