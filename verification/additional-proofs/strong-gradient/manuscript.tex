@@ -1,0 +1,1137 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,array,microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\hypersetup{pdftitle={The exact last-gradient bound for constant-step gradient descent in the strongly convex case},pdfauthor={Dev D. Goyal},pdfsubject={Fully autonomous agentic research},pdfkeywords={gradient descent, strong convexity, exact worst-case bound, Lean}}
+\allowdisplaybreaks[2]
+\setlength{\emergencystretch}{2em}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\grad}{\nabla}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\status}{Complete upper bound and normalized sharpness checked in Lean}
+\title{The exact last-gradient bound for constant-step gradient descent\\ in the strongly convex case}
+\author{Dev D. Goyal}
+\date{29 October 2026}
+\begin{document}
+\maketitle
+\begin{center}
+\fbox{\parbox{0.9\textwidth}{\textbf{Fully autonomous agentic research.}
+Automated systems produced the research, proofs, formalization, and manuscript
+preparation. Dev D. Goyal is responsible for publication. No expert validation
+or peer review is claimed.}}
+\end{center}
+
+\begin{abstract}
+Taylor, Hendrickx, and Glineur conjectured the exact final-gradient norm
+of constant-step gradient descent on smooth strongly convex functions,
+under a bound on the initial distance to a minimizer. An explicit
+finite interpolation certificate for the balanced step, together with two reductions,
+covers every normalized step in $[0,2]$, every finite horizon, and every
+condition ratio in $[0,1]$. The certificate retains a joint terminal
+potential. On the progress branch, scaling the objective preserves a
+weighted interpolation surplus. On the oscillation branch, decreasing
+an auxiliary curvature parameter, sometimes below zero, brings the
+given step to balance. The scalar factors remain nonnegative throughout
+this auxiliary extension. The familiar one-dimensional strongly convex
+Huber spline and quadratic attain the two branches. The previously
+established smooth-convex curve is prior work; the contribution is the
+complete positive strong-curvature case. The actual-function upper bound
+and normalized attainment, including every closed parameter boundary,
+have been checked in Lean~4.19.0. The literature review is bounded by
+the sources and versions cited here.
+\end{abstract}
+\tableofcontents
+
+\section{Problem, statement, and prior work}
+
+Let $E$ be a real Hilbert space, $L>0$, and $0\leq\mu\leq L$.
+Let $f:E\to\R$ be differentiable with an $L$-Lipschitz gradient and
+$\mu$-strongly convex:
+\begin{align}
+\norm{\grad f(x)-\grad f(y)}&\leq L\norm{x-y},\label{eq:smooth}\\
+f(y)&\geq f(x)+\ip{\grad f(x)}{y-x}+\frac\mu2\norm{y-x}^2.
+\label{eq:strong}
+\end{align}
+For differentiable functions, \eqref{eq:strong} is equivalent to
+convexity of $x\mapsto f(x)-\mu\norm{x}^2/2$. Suppose $x_*$ is a
+global minimizer and consider
+\begin{equation}
+x_{i+1}=x_i-\frac hL\grad f(x_i),\qquad 0\leq i<N,\qquad 0\leq h\leq2.
+\label{eq:gd}
+\end{equation}
+Write $\kappa=\mu/L$ and $R=\norm{x_0-x_*}$. Define
+\begin{equation}
+p_N(\kappa,h)=
+\begin{cases}
+\displaystyle\frac1{1+Nh},&\kappa=0,\\[6pt]
+\displaystyle\frac{\kappa(1-\kappa h)^N}
+ {1-(1-\kappa)(1-\kappa h)^N},&0<\kappa\leq1,
+\end{cases}
+\quad
+\rho_N(\kappa,h)=\max\{p_N(\kappa,h),\,|1-h|^N\}.
+\label{eq:rate}
+\end{equation}
+For $\kappa>0$ the denominator is at least $\kappa$, since
+$|1-\kappa h|\leq1$. Thus the formula includes $1-\kappa h=0$,
+$h=0$, and $N=0$. Every zeroth power is one. The progress expression
+may be negative when $1-\kappa h<0$ and $N$ is odd; the maximum is
+nevertheless nonnegative.
+
+\begin{theorem}[Exact last-gradient bound]
+\label{thm:main}
+Under \eqref{eq:smooth}--\eqref{eq:gd}, for every integer $N\geq0$,
+\begin{equation}
+\norm{\grad f(x_N)}\leq LR\,\rho_N(\mu/L,h).
+\label{eq:main}
+\end{equation}
+For every admissible $\mu,L,h,N$ and $R>0$, equality is attained by
+a one-dimensional function in the same class with initial distance $R$.
+\end{theorem}
+
+When $\kappa>0$ and $1-\kappa h\neq0$, the original conjectured
+progress expression is
+\[
+\frac{\kappa}{(\kappa-1)+(1-\kappa h)^{-N}},
+\]
+which equals \eqref{eq:rate}. The rational form also specifies its
+continuous extension through a zero base. Its limit at $\kappa=0$
+is $1/(1+Nh)$: with $a=1-\kappa h$, the finite geometric identity gives
+\begin{equation}
+\frac{\kappa a^N}{1-(1-\kappa)a^N}
+=\frac{a^N}{1+(1-\kappa)h\sum_{j=0}^{N-1}a^j}.
+\label{eq:continuous-rate}
+\end{equation}
+
+\subsection{Which conjecture is being addressed}
+
+Theorem~\ref{thm:main} is the final-gradient, initial-distance problem
+in Conjecture~3, Section~4.1.3, of Taylor--Hendrickx--Glineur
+\cite{THG17}. That paper supplies the two types of sharp examples
+used below. The normalization matters: a sharp result for
+$\norm{\grad f(x_N)}^2/(f(x_0)-f_*)$ does not itself establish the
+sharp value of $\norm{\grad f(x_N)}/\norm{x_0-x_*}$.
+
+The relevant prior results have distinct scopes.
+\begin{itemize}[leftmargin=*,itemsep=4pt]
+\item Taylor--Hendrickx--Glineur \cite{THG18} prove exact same-measure
+linear contraction results for proximal gradient. Their Section~4
+and Table~1 explicitly leave the mixed final-residual/initial-distance
+criterion unknown. The mixed measures proved there run in different
+directions.
+\item Kim \cite{Kim25} proves the exact final-function-gap rate under
+initial-distance normalization and relates it to final-gradient
+rates under initial-function-gap normalization.
+\item Rotaru--Glineur--Patrinos \cite{RGP26} give exact gradient-norm
+rates for all constant steps with initial objective-gap normalization.
+This is not a sharp initial-distance result.
+\item Chikhi \cite{Chikhi26} proves the optimal constant step, value,
+and uniqueness in the smooth-convex final-gradient problem, using a
+factorized interpolation certificate. The full curve away from
+that optimum is expressly left open there.
+\item Jones \cite{Jones26} subsequently establishes the complete
+$\kappa=0$ curve, equality trajectories, and related proximal results.
+The current repository expressly excludes positive strong convexity
+from its established claim. The factorized-certificate approach and
+the retained interpolation surplus under scaling are prior ingredients
+and are credited accordingly.
+\end{itemize}
+
+The close prior exact results in \cite{RGP26,Kim25}, combined with
+$f(x_0)-f_*\leq LR^2/2$, give, when $0<\kappa<1$,
+$a=1-\kappa h>0$, and $t=a^N$,
+the progress factor
+\begin{equation}
+\frac{\sqrt{\kappa}\,t}{\sqrt{1-(1-\kappa)t^2}},
+\quad\hbox{whereas the target factor is}\quad
+\frac{\kappa t}{1-(1-\kappa)t}.
+\label{eq:prior-comparison}
+\end{equation}
+The second does not follow from that conversion: the difference of
+the relevant squared denominators is
+\[
+[1-(1-\kappa)t]^2-\kappa[1-(1-\kappa)t^2]
+=(1-\kappa)(1-t)^2.
+\]
+For fixed $0<\kappa<1$ as $t\to0$, the ratio of the target progress
+factor to the converted factor tends to $\sqrt{\kappa}$.
+The oscillation factor $|1-h|^N$ is the same.
+
+The intended contribution is the full positive-curvature curve.
+The established $\kappa=0$ theorem is credited to prior work. The proof below does not use
+the convex full-curve theorem as a black box. Basic analytic and
+finite-sum infrastructure in the accompanying Lean development is
+adapted from the MIT-licensed Jones project; its license and provenance
+accompany the source distribution.
+
+A 2023 Glineur lecture presentation \cite{Glineur23} displays the target formula as an
+equality under \emph{mixed performance criteria}. This is not treated as
+a prior analytic proof: the same presentation distinguishes numerical
+PEP output from rigorous proofs, and displays analogous exact-max
+formulas whose full proof is expressly unavailable there. The cited
+2018 paper's unknown entry and the later primary-source scope statements
+are the relevant distinctions. The review is bounded by sources consulted
+through 29 October 2026 and is not a worldwide priority claim.
+
+\subsection{Normalization}
+
+Replacing $f$ by $F(z)=(f(x_*+z)-f(x_*))/L$ reduces the proof to
+$L=1$, $x_*=0$, $f_*=0$, and curvature $\kappa\in[0,1]$.
+Retain notation $f,x_i,g_i$ for normalized data:
+\begin{equation}
+g_i=\grad f(x_i),\qquad x_{i+1}=x_i-hg_i.
+\label{eq:normalized-gd}
+\end{equation}
+The balanced certificate uses a parameter $\theta$ that may be negative.
+The actual function has $\kappa\geq0$; the negative parameter is an
+algebraic device.
+
+\section{Interpolation from actual smooth functions}
+
+For data $(x_i,g_i,f_i)$ and $\theta<1$, put
+\begin{equation}
+\begin{split}
+\Q_\theta(i,j)={}&2(1-\theta)(f_i-f_j)
+ -2\ip{g_j-\theta g_i}{x_i-x_j}\\
+&-\norm{g_i-g_j}^2-\theta\norm{x_i-x_j}^2.
+\end{split}
+\label{eq:Q}
+\end{equation}
+Starred data mean $x_*=g_*=f_*=0$.
+The gradient at the actual minimizer is zero because every directional
+derivative there vanishes. The smooth descent inequality used below
+also follows directly from the Lipschitz hypothesis: for $d=z-x$,
+\[
+f(z)-f(x)-\ip{\grad f(x)}d
+=\int_0^1\ip{\grad f(x+td)-\grad f(x)}d\,dt
+\leq\int_0^1t\norm d^2\,dt=\tfrac12\norm d^2.
+\]
+
+\begin{lemma}[Necessary interpolation inequality]
+\label{lem:interpolation}
+If $f$ has a $1$-Lipschitz gradient and satisfies the strong first-order
+inequality with parameter $\theta<1$, then
+$\Q_\theta(i,j)\geq0$ for its actual values and gradients.
+\end{lemma}
+\begin{proof}
+Let $x=x_i$, $y=x_j$, $v=x-y$, $w=\grad f(x)-\grad f(y)$, and set
+\[
+u=\frac{w-\theta v}{1-\theta},\qquad z=x-u.
+\]
+Strong first-order support at $y$ and smooth descent at $x$ give
+\begin{align*}
+f(y)+\ip{\grad f(y)}{z-y}+\frac\theta2\norm{z-y}^2
+&\leq f(z),\\
+f(z)&\leq f(x)+\ip{\grad f(x)}{z-x}+\frac12\norm{z-x}^2.
+\end{align*}
+Their difference is nonnegative. Substituting $z-x=-u$ and $z-y=v-u$
+shows that it equals
+\begin{align*}
+&f(x)-f(y)-\ip{\grad f(y)}v-\frac\theta2\norm v^2
+ -\ip{w-\theta v}{u}+\frac{1-\theta}{2}\norm u^2\\
+&\qquad=
+f(x)-f(y)-\ip{\grad f(y)}v-\frac\theta2\norm v^2
+ -\frac{\norm{w-\theta v}^2}{2(1-\theta)}.
+\end{align*}
+Multiplication by $2(1-\theta)>0$ and expansion gives \eqref{eq:Q}.
+\end{proof}
+
+Write $\Delta x=x_i-x_j$ and $\Delta g=g_i-g_j$.
+\begin{lemma}[Changing curvature and scaling]
+\label{lem:changes}
+For $\kappa<1$ and arbitrary real $\nu,s$,
+\begin{align}
+\Q_\nu(i,j)
+&=\frac{1-\nu}{1-\kappa}\Q_\kappa(i,j)
+ +\frac{\kappa-\nu}{1-\kappa}\norm{\Delta x-\Delta g}^2,
+\label{eq:curvature-change}\\
+\Q^{(s)}_{s\kappa}(i,j)
+&=\frac{s(1-s\kappa)}{1-\kappa}\Q_\kappa(i,j)
+ +\frac{s(1-s)}{1-\kappa}\norm{\Delta g-\kappa\Delta x}^2.
+\label{eq:scale-change}
+\end{align}
+Here $\Q^{(s)}$ uses $(x_i,sg_i,sf_i)$.
+Thus nonnegative $\Q_\kappa$ imply nonnegative $\Q_\nu$ for
+$\nu\leq\kappa<1$, and nonnegative $\Q^{(s)}_{s\kappa}$ for
+$0\leq s\leq1$, $0\leq\kappa<1$.
+\end{lemma}
+\begin{proof}
+After multiplication by $1-\kappa$, the function-value terms cancel
+on subtracting the indicated multiple of $\Q_\kappa$. The remainder
+in the first identity is
+\[
+(\kappa-\nu)(\norm{\Delta x}^2
+ -2\ip{\Delta g}{\Delta x}+\norm{\Delta g}^2),
+\]
+and in the second it is
+\[
+s(1-s)(\norm{\Delta g}^2
+ -2\kappa\ip{\Delta g}{\Delta x}+\kappa^2\norm{\Delta x}^2).
+\]
+These expansions prove the identities and their sign conclusions.
+\end{proof}
+
+For actual normalized convex data, $\Q_0(i,*)\geq0$ gives
+$\norm{g_i}^2\leq2f_i$, and
+\begin{equation}
+\norm{x_i}^2-\norm{g_i}^2
+=\Q_0(*,i)+\Q_0(i,*)+\norm{x_i-g_i}^2\geq0.
+\label{eq:terminal-bounds}
+\end{equation}
+These terminal estimates apply even with negative auxiliary curvature.
+
+\section{The balanced scalar construction}
+
+Assume
+\begin{equation}
+N\geq1,\quad 1<h<2,\quad r=h-1,\quad a>r,\quad
+\theta=\frac{1-a}{h}.
+\label{eq:balanced-parameters}
+\end{equation}
+Thus $0<r<1$, $a>0$, and $\theta<1$. No assumption $a\leq1$ is made.
+Define
+\begin{equation}
+S_m=h\sum_{j=1}^{m}a^{-j},\qquad
+Y_m=r^{-m},\qquad P_m=\frac{Y_m^2-1}{2}\quad(m\geq0),
+\label{eq:scalar-sequences}
+\end{equation}
+and impose balance:
+\begin{equation}
+Y_N=1+S_N.
+\label{eq:balance}
+\end{equation}
+Empty sums are zero. Geometric sums give
+\begin{align}
+aS_{m+1}&=S_m+h,& S_{m+1}-S_m&=ha^{-m-1},\label{eq:S-rec}\\
+rY_{m+1}&=Y_m,& r^2P_{m+1}-P_m&=\frac{1-r^2}{2},\label{eq:P-rec}\\
+a^{-m}&=1+\theta S_m.&&\label{eq:A-identity}
+\end{align}
+The last identity follows from
+$(a-1)S_m=h(1-a^{-m})$ and $a-1=-\theta h$, including $a=1$.
+
+\subsection{Ratios and their signs}
+
+For $1\leq m\leq N$, put
+\begin{equation}
+b_m=\frac{S_m}{Y_m+1},\qquad c_m=\frac{S_m}{Y_m-1}.
+\label{eq:bc}
+\end{equation}
+Both are positive. Since
+$Y_m-1=(1-r)\sum_{j=1}^{m}r^{-j}$,
+\begin{equation}
+c_m=\frac{h}{1-r}
+ \frac{\sum_{j=1}^{m}a^{-j}}{\sum_{j=1}^{m}r^{-j}}.
+\label{eq:c-average}
+\end{equation}
+The fraction is a weighted average of $(r/a)^j$ with positive
+weights $r^{-j}$. Each added value is smaller than every previous one,
+so $c_m$ strictly decreases. Balance gives $c_N=1$ and hence
+\begin{equation}
+S_m>Y_m-1\qquad(1\leq m<N).
+\label{eq:prefix-gap}
+\end{equation}
+For an explicit strict comparison, if $0<p<q$ and
+$G_m(t)=\sum_{j=1}^{m}t^j$, then
+\[
+G_m(p)q^{m+1}-p^{m+1}G_m(q)
+=\sum_{j=1}^{m}p^jq^j(q^{m+1-j}-p^{m+1-j})>0.
+\]
+Using $G_{m+1}(t)=G_m(t)+t^{m+1}$ proves strict decrease of the
+ratio; apply $p=a^{-1}$ and $q=r^{-1}$.
+
+\subsection{Four explicit factors}
+
+Use natural boundary indexing:
+\begin{equation}
+U_0=B_0=0,\quad U_1=1,\quad
+U_{m+1}=U_m\frac{1+b_m}{ab_{m+1}-r}\quad(1\leq m<N).
+\label{eq:U}
+\end{equation}
+Define
+\begin{equation}
+B_m=b_mU_m,\quad D_m=P_m/U_m,\quad V_m=c_mD_m
+\quad(1\leq m\leq N),\qquad D_{N+1}=V_{N+1}=0.
+\label{eq:BDV}
+\end{equation}
+Set $D_0=V_0=0$ for terms multiplied by $U_0$ or $B_0$.
+Every denominator used in \eqref{eq:U} is positive:
+\begin{equation}
+ab_{m+1}-r
+=\frac{1+S_m-Y_m}{Y_{m+1}+1}>0
+\quad(1\leq m<N).
+\label{eq:denominator}
+\end{equation}
+This follows from \eqref{eq:S-rec}, $h=1+r$, and
+\eqref{eq:prefix-gap}. The zero denominator $ab_1-r$ is never used.
+
+\begin{lemma}[Factor monotonicity]
+\label{lem:factor-signs}
+$U_m$ and $B_m$ strictly increase on indices $0,\ldots,N$.
+The sequences $D_m,V_m$ are positive on indices $1,\ldots,N$ and
+strictly decrease through their terminal value zero at index $N+1$.
+\end{lemma}
+\begin{proof}
+Positivity of $U_m$ follows from its recursion. The exact difference
+\begin{equation}
+\begin{split}
+&(1+b_m)P_m-(ab_{m+1}-r)P_{m+1}\\
+&\quad=\frac{h(1-r)Y_m}{2r}
+\left(\sum_{j=1}^{m}r^{-j}-\sum_{j=1}^{m}a^{-j}\right)>0
+\qquad(1\leq m<N)
+\end{split}
+\label{eq:cross-gap}
+\end{equation}
+compares the growth of $U_m$ to that of $P_m$.
+To verify it, use $P_mb_m=S_m(Y_m-1)/2$,
+$aS_{m+1}=S_m+h$, and $Y_{m+1}=Y_m/r$.
+Twice the left side becomes
+\[
+(Y_m^2-1)+S_m(Y_m-1)
+ -(S_m+h)(Y_m/r-1)+r(Y_m^2/r^2-1).
+\]
+With $h=1+r$ this is $Y_m[h(Y_m-1)-(1-r)S_m]/r$.
+Insert the geometric formulas for $Y_m-1$ and $S_m$.
+The parenthesis in \eqref{eq:cross-gap} is positive since $r<a$.
+Since $P_{m+1}>P_m>0$,
+\[
+\frac{U_{m+1}}{U_m}
+=\frac{1+b_m}{ab_{m+1}-r}
+>\frac{P_{m+1}}{P_m}>1.
+\]
+Thus $U$ increases and $D$ decreases, including the stated boundaries.
+
+The recursion for $U$ gives
+\begin{equation}
+aB_{m+1}-B_m=rU_{m+1}+U_m\qquad(0\leq m<N).
+\label{eq:forward-recurrence}
+\end{equation}
+At $m=0$ this uses $ab_1=r$. To show that $B$ increases even if
+$a>1$, note
+\begin{equation}
+(a-1)b_m<h:
+\label{eq:b-bound}
+\end{equation}
+indeed $(a-1)S_m=h(1-a^{-m})<h<h(Y_m+1)$.
+Multiplying by $U_m>0$ gives
+\begin{align*}
+aB_m&=B_m+(a-1)B_m<B_m+hU_m\\
+&=B_m+U_m+rU_m
+ <B_m+U_m+rU_{m+1}=aB_{m+1}.
+\end{align*}
+Since $a>0$, this proves the claim; $B_1>B_0$ follows from $b_1>0$.
+Finally both positive factors in $V_m=c_mD_m$ decrease, so $V$ does
+also, including its terminal zero.
+\end{proof}
+
+\subsection{Reverse recurrence and product identities}
+
+The second recurrence is
+\begin{equation}
+V_m-aV_{m+1}=D_m+rD_{m+1}\qquad(1\leq m\leq N).
+\label{eq:reverse-recurrence}
+\end{equation}
+First record
+\begin{align}
+P_mb_m&=\frac{S_m(Y_m-1)}2,&
+P_mc_m&=\frac{S_m(Y_m+1)}2,\label{eq:PbPc}\\
+P_m(c_m-b_m)&=S_m,& P_mb_mc_m&=\frac{S_m^2}2.
+\label{eq:ratio-products}
+\end{align}
+For $m<N$ these give
+\begin{align}
+P_m(c_m-1)(1+b_m)
+&=\frac{S_m^2}2+S_m-P_m,\label{eq:tail-left}\\
+P_{m+1}(ac_{m+1}+r)(ab_{m+1}-r)
+&=\frac{a^2S_{m+1}^2}2-arS_{m+1}-r^2P_{m+1}.
+\label{eq:tail-right}
+\end{align}
+By \eqref{eq:S-rec} and \eqref{eq:P-rec}, the second right side is
+\[
+\frac{(S_m+h)^2}{2}-r(S_m+h)-P_m-\frac{1-r^2}{2}
+=\frac{S_m^2}{2}+S_m-P_m,
+\]
+because $h-r=1$ and $h^2-2rh-(1-r^2)=0$. Thus
+\[
+P_m(c_m-1)(1+b_m)
+=P_{m+1}(ac_{m+1}+r)(ab_{m+1}-r).
+\]
+Divide by $U_m(1+b_m)$ and use \eqref{eq:U}:
+$(c_m-1)D_m=(ac_{m+1}+r)D_{m+1}$, the desired recurrence.
+At $m=N$, use $c_N=1$ and the terminal zero tails.
+The needed product identities are
+\begin{align}
+U_mD_m&=P_m,\label{eq:UD}\\
+C_m:=U_mV_m-B_mD_m&=P_m(c_m-b_m)=S_m,\label{eq:C}\\
+B_ND_N&=P_Nb_N=S_N^2/2.\label{eq:terminal-BD}
+\end{align}
+The zero-index cases of the first two identities follow from the
+boundary conventions; the last uses $Y_N-1=S_N$.
+
+
+
+\section{The exact balanced history identity}
+
+Let data obey \eqref{eq:normalized-gd}. No terminal estimate or sign
+assumption on function values is needed for the identity in this section.
+Define positive differences
+\begin{equation}
+\begin{gathered}
+u_i=U_{i+1}-U_i,\quad s_i=B_{i+1}-B_i\quad(0\leq i<N),\\
+v_j=V_j-V_{j+1},\quad t_j=D_j-D_{j+1}\quad(1\leq j\leq N).
+\end{gathered}
+\label{eq:factor-differences}
+\end{equation}
+For $0\leq i<j\leq N$, set
+\begin{equation}
+\lambda_{ij}=u_iv_j,\qquad \lambda_{ji}=s_it_j,\qquad\lambda_{ii}=0.
+\label{eq:multipliers}
+\end{equation}
+Lemma~\ref{lem:factor-signs} gives $\lambda_{ij}\geq0$. Write
+\begin{equation}
+d_i=\sum_{j=0}^N(\lambda_{ij}-\lambda_{ji}),\qquad
+W=\sum_{i,j=0}^N\lambda_{ij}\Q_\theta(i,j),\qquad S=S_N.
+\label{eq:W}
+\end{equation}
+
+\subsection{Divergence and cuts}
+
+For each cut $0\leq p<N$, telescoping gives
+\begin{align*}
+\sum_{i\leq p<j}\lambda_{ij}
+&=\left(\sum_{i=0}^pu_i\right)
+  \left(\sum_{j=p+1}^Nv_j\right)=U_{p+1}V_{p+1},\\
+\sum_{i\leq p<j}\lambda_{ji}
+&=\left(\sum_{i=0}^ps_i\right)
+  \left(\sum_{j=p+1}^Nt_j\right)=B_{p+1}D_{p+1}.
+\end{align*}
+Internal edges cancel in the divergence sum, so
+$\sum_{i=0}^{p}d_i=C_{p+1}=S_{p+1}$.
+Together with $\sum_i d_i=0$, this proves
+\begin{equation}
+d_i=ha^{-i-1}\quad(i<N),\qquad d_N=-S.
+\label{eq:divergence}
+\end{equation}
+
+For coefficient bookkeeping let $T_{ij}=\one_{\{j<i\}}$, so
+$x_i=x_0-h\sum_kT_{ik}g_k$. Bilinear expansion for arbitrary weights gives
+\begin{equation}
+W=2(1-\theta)\sum_i d_if_i
+ +2\sum_{p,q}M_{pq}\ip{g_p}{g_q}
+ -\sum_i I_i\norm{g_i}^2,
+\label{eq:general-expansion}
+\end{equation}
+where
+\begin{align}
+I_i&=\sum_j(\lambda_{ij}+\lambda_{ji}),\label{eq:incident}\\
+M_{pq}&=\lambda_{pq}
+ +h\sum_k(\lambda_{kp}+\theta\lambda_{pk})(T_{kq}-T_{pq})\notag\\
+&\quad-\frac{\theta h^2}{2}
+ \sum_{k,l}\lambda_{kl}(T_{kp}-T_{lp})(T_{kq}-T_{lq}).
+\label{eq:M}
+\end{align}
+The squared gradient difference in \eqref{eq:Q} contributes
+$2\lambda_{pq}$ to the ordered inner-product coefficient and $-I_i$
+to each diagonal. The linear gradient--position term contributes
+the middle sum in \eqref{eq:M}; the position square contributes its
+last sum. The common $x_0$ cancels from every $x_i-x_j$.
+This accounts for every term of \eqref{eq:Q}.
+
+\subsection{Cancellation of every off-diagonal term}
+
+For $p<q$, the product
+$(T_{kp}-T_{lp})(T_{kq}-T_{lq})$ is one exactly when an edge joins an
+index at most $p$ to an index greater than $q$, and zero otherwise.
+Consequently
+\begin{equation}
+\sum_{k,l}\lambda_{kl}(T_{kp}-T_{lp})(T_{kq}-T_{lq})
+=U_{p+1}V_{q+1}+B_{p+1}D_{q+1}.
+\label{eq:double-cut}
+\end{equation}
+The two linear sums in $M_{pq}+M_{qp}$ are
+\begin{align*}
+\sum_k(\lambda_{kp}+\theta\lambda_{pk})(T_{kq}-T_{pq})
+ &=s_pD_{q+1}+\theta u_pV_{q+1},\\
+\sum_k(\lambda_{kq}+\theta\lambda_{qk})(T_{kp}-T_{qp})
+ &=-U_{p+1}v_q-\theta B_{p+1}t_q.
+\end{align*}
+Indeed $T_{pq}=0$, so the first sum only uses $k>q$; $T_{qp}=1$,
+so the second only uses $k\leq p$, with a minus sign. Insert the
+factorized weights and telescope.
+
+The coefficient of $\ip{g_p}{g_q}$ in $W$, divided by two, is therefore
+\begin{align}
+M_{pq}+M_{qp}
+={}&u_pv_q+s_pt_q
++h(s_pD_{q+1}+\theta u_pV_{q+1}
+       -U_{p+1}v_q-\theta B_{p+1}t_q)\notag\\
+&-\theta h^2(U_{p+1}V_{q+1}+B_{p+1}D_{q+1})\notag\\
+={}&(u_p-hU_{p+1})(v_q+\theta hV_{q+1})
+ +(s_p-\theta hB_{p+1})(t_q+hD_{q+1}).
+\label{eq:mixed-factorization}
+\end{align}
+The recurrences, $1-a=\theta h$, and $h=1+r$ give
+\begin{align*}
+s_p-\theta hB_{p+1}
+&=aB_{p+1}-B_p=rU_{p+1}+U_p=hU_{p+1}-u_p,\\
+v_q+\theta hV_{q+1}
+&=V_q-aV_{q+1}=D_q+rD_{q+1}=t_q+hD_{q+1}.
+\end{align*}
+Thus the two terms in \eqref{eq:mixed-factorization} cancel.
+
+\subsection{Every diagonal coefficient}
+
+Let $e_i$ be the coefficient of $\norm{g_i}^2$ in $W$.
+For $i<N$ abbreviate $U=U_{i+1}$, $B=B_{i+1}$, $D=D_{i+1}$,
+$V=V_{i+1}$, and retain $U_i,B_i$ for the preceding prefixes.
+The incident sum, divergence, and diagonal expansion are
+\begin{align}
+I_i&=u_iV+s_iD+B_it_i+U_iv_i,\label{eq:diag-I}\\
+d_i&=u_iV-s_iD+B_it_i-U_iv_i,\label{eq:diag-d}\\
+e_i&=-I_i+2\theta h u_iV+2h s_iD
+       -\theta h^2(UV+BD).\label{eq:diag-e}
+\end{align}
+Terms $B_0t_0,U_0v_0$ at $i=0$ mean zero. No reverse recurrence
+at index zero is assumed. Adding the last two identities yields
+\begin{equation}
+e_i+d_i
+=2r s_iD-2U_iv_i
+ +\theta h[(2u_i-hU)V-hBD].
+\label{eq:diag-first}
+\end{equation}
+The forward recurrence gives $s_i=\theta hB+rU+U_i$.
+For $i\geq1$, the reverse recurrence gives
+$v_i=D_i+rD-\theta hV$; at $i=0$ the substitution is valid after
+multiplication by $U_0=0$. Hence
+\[
+2rs_iD-2U_iv_i
+=2r^2UD-2U_iD_i+2r\theta hBD+2\theta hU_iV.
+\]
+Use $u_i=U-U_i$, \eqref{eq:UD}, and \eqref{eq:C} in
+\eqref{eq:diag-first} to obtain
+\begin{align}
+e_i+d_i
+&=2(r^2P_{i+1}-P_i)+\theta h(1-r)(UV-BD)\notag\\
+&=(1-r)[h+\theta hS_{i+1}]=(1-r)d_i.
+\label{eq:diag-final}
+\end{align}
+The last step uses $d_i-\theta hS_{i+1}=h$, which follows from
+$d_i=S_{i+1}-S_i$ and $aS_{i+1}=S_i+h$.
+Thus $e_i=-rd_i$ for every $i<N$. At $i=N$ all interval tails vanish:
+\begin{equation}
+e_N=-(U_NV_N+B_ND_N)
+=-S-2B_ND_N=-S(S+1).
+\label{eq:diag-terminal}
+\end{equation}
+This establishes the full history formula
+\begin{equation}
+\begin{split}
+W={}&2(1-\theta)
+ \left(\sum_{i=0}^{N-1}ha^{-i-1}f_i-Sf_N\right)\\
+&-r\sum_{i=0}^{N-1}ha^{-i-1}\norm{g_i}^2
+ -S(S+1)\norm{g_N}^2.
+\end{split}
+\label{eq:history-formula}
+\end{equation}
+
+\subsection{The joint potential with surplus retained}
+
+The star quantity is
+\begin{equation}
+\Q_\theta(*,i)
+=-2(1-\theta)f_i+2\ip{g_i}{x_i}
+ -\norm{g_i}^2-\theta\norm{x_i}^2.
+\label{eq:starQ}
+\end{equation}
+Its weighted sum, added to \eqref{eq:history-formula}, cancels all
+nonterminal function values. The remaining history term is
+\[
+\sum_{i=0}^{N-1}ha^{-i-1}
+ \left(2\ip{g_i}{x_i}-h\norm{g_i}^2-\theta\norm{x_i}^2\right).
+\]
+The GD recurrence and $a=1-\theta h$ give exactly
+\begin{equation}
+ha^{-i-1}
+ \left(2\ip{g_i}{x_i}-h\norm{g_i}^2-\theta\norm{x_i}^2\right)
+=a^{-i}\norm{x_i}^2-a^{-i-1}\norm{x_{i+1}}^2.
+\label{eq:weighted-telescope}
+\end{equation}
+Summing telescopically proves the central identity.
+
+\begin{proposition}[Balanced joint identity]
+\label{prop:balanced}
+Under \eqref{eq:balanced-parameters}--\eqref{eq:balance} and the GD
+recurrence, the explicitly constructed nonnegative weights satisfy
+\begin{equation}
+\begin{split}
+\norm{x_0}^2={}&a^{-N}\norm{x_N}^2
+ +2(1-\theta)Sf_N+S(S+1)\norm{g_N}^2\\
+&+W+\sum_{i=0}^{N-1}ha^{-i-1}\Q_\theta(*,i).
+\end{split}
+\label{eq:balanced-joint}
+\end{equation}
+Nonnegative history quantities imply $W\geq0$. If the star quantities
+are also nonnegative, their displayed weighted sum is nonnegative.
+\end{proposition}
+
+This proof makes no sign assertion about a terminal squared-norm
+coefficient in an alternative completion. Such a coefficient can be
+negative when $\theta<0$. The joint identity \eqref{eq:balanced-joint}
+is the form needed here.
+
+\section{Recovering both branches at every step}
+
+Return to normalized actual functions with $0\leq\kappa<1$,
+$N\geq1$, and $0<h<2$. Put $a_0=1-\kappa h$.
+All $\Q_\kappa$ are nonnegative by Lemma~\ref{lem:interpolation}.
+Whenever $a_0>0$, write
+\begin{equation}
+S=h\sum_{j=1}^N a_0^{-j},\qquad A=a_0^{-N}=1+\kappa S.
+\label{eq:target-SA}
+\end{equation}
+
+\subsection{The progress branch}
+
+Assume $a_0>0$ and either $h\leq1$ or
+\begin{equation}
+(h-1)^N(1+S)\leq1.
+\label{eq:progress-condition}
+\end{equation}
+Let $G=\sum_{j=1}^Na_0^{-j}>0$ and
+\[
+F(H)=(H-1)^N(1+HG),\qquad H\geq1.
+\]
+This is continuous, strictly increasing on $(1,\infty)$, and $F(1)=0$.
+Moreover
+\begin{equation}
+F(1+a_0)=a_0^N(1+(1+a_0)G)
+\geq a_0^N+1+a_0>1,
+\label{eq:F-upper}
+\end{equation}
+since $G\geq a_0^{-N}$. There is a unique $H\in(1,1+a_0)$ with
+$F(H)=1$. The branch condition implies $h\leq H$: this is immediate
+for $h\leq1$, and otherwise follows from $F(h)\leq1$.
+Since $a_0\leq1$, also $H<2$.
+
+Set $s=h/H\in(0,1]$. The scaled data $(x_i,sg_i,sf_i)$ follow a step
+$H$ with parameter $s\kappa$, and
+\[
+1-(s\kappa)H=a_0,\qquad
+S'=H\sum_{j=1}^Na_0^{-j}=S/s,\qquad
+(H-1)^{-N}=1+S'.
+\]
+Their history interpolation quantities are nonnegative by
+\eqref{eq:scale-change}. Apply Proposition~\ref{prop:balanced},
+retaining its star sum.
+
+Define
+\begin{equation}
+E_i=\norm{g_i}^2-2\kappa f_i.
+\label{eq:E}
+\end{equation}
+The adjacent identity
+\begin{equation}
+\begin{split}
+h(1-\kappa)(E_i-E_{i+1})
+={}&a_0\Q_\kappa(i,i+1)+\Q_\kappa(i+1,i)\\
+&+(2-h)\norm{g_{i+1}-a_0g_i}^2
+\end{split}
+\label{eq:E-monotone}
+\end{equation}
+shows $E_i\geq E_{i+1}$. To verify it, write $g=g_i$, $k=g_{i+1}$
+and substitute $x_i-x_{i+1}=hg$ in \eqref{eq:Q}:
+\begin{align*}
+\Q_\kappa(i,i+1)
+={}&2(1-\kappa)(f_i-f_{i+1})
+ -2h\ip{k}{g}+2\kappa h\norm g^2
+ -\norm{g-k}^2-\kappa h^2\norm g^2,\\
+\Q_\kappa(i+1,i)
+={}&-2(1-\kappa)(f_i-f_{i+1})
+ +2h\norm g^2-2\kappa h\ip{k}{g}
+ -\norm{g-k}^2-\kappa h^2\norm g^2.
+\end{align*}
+In $a_0$ times the first plus the second plus
+$(2-h)\norm{k-a_0g}^2$, the coefficients of $f_i-f_{i+1}$,
+$\norm g^2$, $\norm k^2$, and $\ip gk$ are respectively
+$-2\kappa h(1-\kappa)$, $h(1-\kappa)$, $-h(1-\kappa)$, and zero.
+This is \eqref{eq:E-monotone}. Every term on its right is nonnegative,
+so in particular $E_i\geq E_N$.
+
+Substitution of star data gives the exact identity
+\begin{equation}
+\Q^{(s)}_{s\kappa}(*,i)
+=s\Q_\kappa(*,i)+s(1-s)E_i.
+\label{eq:scaled-star}
+\end{equation}
+Since $Hs=h$, the retained star remainder satisfies
+\begin{align}
+\sum_{i<N}Ha_0^{-i-1}\Q^{(s)}_{s\kappa}(*,i)
+&=\sum_{i<N}ha_0^{-i-1}\Q_\kappa(*,i)
+ +(1-s)\sum_{i<N}ha_0^{-i-1}E_i\notag\\
+&\geq(1-s)SE_N.
+\label{eq:star-surplus}
+\end{align}
+The scaled certificate's terminal part is
+\[
+A\norm{x_N}^2+2(1-s\kappa)Sf_N+S(S+s)\norm{g_N}^2.
+\]
+Add \eqref{eq:star-surplus} and expand $E_N$. The result is exactly
+\begin{equation}
+A\norm{x_N}^2+2(1-\kappa)Sf_N
+ +S(S+1)\norm{g_N}^2\leq\norm{x_0}^2.
+\label{eq:progress-joint}
+\end{equation}
+There is no limit argument, including at $\kappa=0$.
+
+Using \eqref{eq:terminal-bounds}, $A>0$, $S>0$, and $A=1+\kappa S$,
+the left side is at least
+\[
+\bigl(A+(1-\kappa)S+S(S+1)\bigr)\norm{g_N}^2
+=(1+S)^2\norm{g_N}^2.
+\]
+Hence
+\begin{equation}
+\norm{g_N}\leq\frac{\norm{x_0}}{1+S}.
+\label{eq:progress-bound}
+\end{equation}
+For $\kappa=0$, $S=Nh$. For $\kappa>0$, $A=1+\kappa S$ gives
+\[
+\frac1{1+S}
+=\frac{\kappa a_0^N}{1-(1-\kappa)a_0^N}=p_N(\kappa,h).
+\]
+Thus this is the claimed progress estimate.
+
+\subsection{The oscillation branch and negative auxiliary curvature}
+
+Assume $1<h<2$, let $r=h-1$, and put $T=r^{-N}-1>0$.
+The function
+\[
+\mathcal S(b)=h\sum_{j=1}^Nb^{-j},\qquad b>0,
+\]
+is continuous, strictly decreasing, and tends to zero as $b\to\infty$.
+At $b=r$,
+\begin{equation}
+\mathcal S(r)=\frac{h}{1-r}(r^{-N}-1)>T.
+\label{eq:upper-IVT}
+\end{equation}
+There is therefore a unique $b>r$ with $\mathcal S(b)=T$.
+
+Suppose either $a_0\leq0$, or
+\begin{equation}
+a_0>0,\qquad \mathcal S(a_0)\geq r^{-N}-1.
+\label{eq:upper-condition}
+\end{equation}
+Then $b\geq a_0$: the first case is immediate and the second follows
+from strict decrease of $\mathcal S$. Set
+\[
+\nu=\frac{1-b}{h}\leq\kappa.
+\]
+Also $\nu<1$ because $b>0$ and $h>1$. By
+\eqref{eq:curvature-change}, all history and star quantities
+$\Q_\nu$ are nonnegative. The balanced identity with $a=b$, $S=T$
+therefore gives
+\begin{equation}
+b^{-N}\norm{x_N}^2+2(1-\nu)Sf_N
+ +S(S+1)\norm{g_N}^2\leq\norm{x_0}^2.
+\label{eq:upper-joint}
+\end{equation}
+Here $b^{-N}=1+\nu S>0$ even if $\nu<0$.
+The terminal bounds belong to the actual convex function, and all
+coefficients multiplying them are nonnegative. The left side of
+\eqref{eq:upper-joint} is thus at least
+\[
+\bigl(b^{-N}+(1-\nu)S+S(S+1)\bigr)\norm{g_N}^2
+=(1+S)^2\norm{g_N}^2=r^{-2N}\norm{g_N}^2.
+\]
+It follows that
+\begin{equation}
+\norm{g_N}\leq(h-1)^N\norm{x_0}.
+\label{eq:upper-bound}
+\end{equation}
+
+The reductions cover every $0<h<2$. For $h\leq1$, $a_0>0$ and the
+progress condition applies. For $h>1$, $a_0>0$, compare
+$(h-1)^N(1+\mathcal S(a_0))$ with one: values at most one give the
+progress branch and values at least one give
+\eqref{eq:upper-condition}. If $a_0\leq0$, the oscillation branch
+applies directly. At equality either proof is valid.
+
+\section{Endpoints and equal curvature}
+
+For $N=0$ or $h=0$, Lipschitz continuity and $\grad f(x_*)=0$ give
+$\norm{\grad f(x_N)}\leq LR$. The factor \eqref{eq:rate} equals one.
+
+For $h=2$, normalized convex interpolation gives
+$\norm{g_i}^2\leq\ip{g_i}{x_i}$ by adding the two star inequalities.
+More generally, when $0\leq h\leq2$,
+\begin{align*}
+\norm{x_i-hg_i}^2
+&=\norm{x_i}^2-2h\ip{g_i}{x_i}+h^2\norm{g_i}^2\\
+&\leq\norm{x_i}^2-h(2-h)\norm{g_i}^2
+\leq\norm{x_i}^2.
+\end{align*}
+Thus $\norm{g_N}\leq\norm{x_N}\leq\norm{x_0}$ at $h=2$.
+Here $|1-h|^N=1$ and $p_N(\kappa,h)\leq1$, so the exact maximum
+factor is one.
+
+When $\mu=L$, adding the two strong first-order inequalities yields
+\[
+L\norm{x-x_*}^2\leq\ip{\grad f(x)}{x-x_*},
+\qquad \norm{\grad f(x)}\leq L\norm{x-x_*}.
+\]
+Consequently
+\begin{align*}
+\norm{\grad f(x)-L(x-x_*)}^2
+&=\norm{\grad f(x)}^2-2L\ip{\grad f(x)}{x-x_*}
+  +L^2\norm{x-x_*}^2\leq0.
+\end{align*}
+The centered gradient is exactly $L(x-x_*)$. Therefore
+\[
+x_i-x_*=(1-h)^i(x_0-x_*),\qquad
+\norm{\grad f(x_N)}=L|1-h|^N R.
+\]
+Since $p_N(1,h)=(1-h)^N$, this is exactly \eqref{eq:rate}.
+Together with the two reductions and normalization, this proves the
+bound in Theorem~\ref{thm:main}.
+
+
+
+\section{Sharpness of both branches}
+
+The two types of examples below already appear in the original
+conjecture \cite{THG17}. Their trajectories are checked below to make the
+exactness of the bound explicit.
+
+The normalized quadratic
+\begin{equation}
+f_{\rm quad}(x)=x^2/2,\qquad x_0=1,
+\label{eq:quadratic-example}
+\end{equation}
+belongs to every class $0\leq\kappa\leq1$ and has
+$x_i=(1-h)^i$. Its final gradient norm is $|1-h|^N$, attaining the
+maximum whenever the oscillation branch dominates.
+
+Suppose $N\geq1$, $h>0$, $0\leq\kappa<1$, and the progress branch
+dominates. Then $a=1-\kappa h>0$. Indeed, if $a\leq0$, then $h>1$,
+$|a|=\kappa h-1<h-1$, and
+$p_N(\kappa,h)\leq|a|^N<(h-1)^N$. The first inequality is immediate
+for $a^N\leq0$; otherwise
+$\kappa/[1-(1-\kappa)a^N]\leq1$.
+
+Define $S_m=h\sum_{j=1}^m a^{-j}$ and $\tau=1/(1+S_N)$.
+The strongly convex Huber spline is
+\begin{equation}
+f_\tau(x)=
+\begin{cases}
+\frac12x^2,&|x|\leq\tau,\\[3pt]
+\frac\kappa2x^2+(1-\kappa)\tau|x|
+ -\frac{1-\kappa}{2}\tau^2,&|x|\geq\tau.
+\end{cases}
+\label{eq:huber-example}
+\end{equation}
+Its derivative is continuous at the joining points and satisfies
+\begin{equation}
+f_\tau'(x)=\kappa x+
+ (1-\kappa)\operatorname{clip}_{[-\tau,\tau]}(x).
+\label{eq:clipped-gradient}
+\end{equation}
+The clipped function is nondecreasing and $1$-Lipschitz. Thus the
+derivative is $1$-Lipschitz and
+$f_\tau(x)-\kappa x^2/2$ is convex. The function is nonnegative and
+zero is a minimizer.
+
+For $0\leq i\leq N$, set
+\begin{equation}
+x_i=\tau(1+S_{N-i}).
+\label{eq:sharp-trajectory}
+\end{equation}
+Then $x_0=1$, $x_N=\tau$, and $x_i>\tau$ for $i<N$.
+Using $1+\kappa S_m=a^{-m}$,
+\[
+f_\tau'(x_i)=\kappa x_i+(1-\kappa)\tau
+=\tau a^{-(N-i)}\qquad(0\leq i\leq N).
+\]
+The increment formula for $S_m$ gives
+\[
+x_i-x_{i+1}
+=\tau(S_{N-i}-S_{N-i-1})
+=h\tau a^{-(N-i)}=h f_\tau'(x_i).
+\]
+Thus \eqref{eq:sharp-trajectory} is the actual GD trajectory and
+$f_\tau'(x_N)=\tau=p_N(\kappa,h)$, including $\kappa=0$.
+
+The cases $N=0$, $h=0$, or $\kappa=1$ are attained by the quadratic.
+For general $L$ and $R>0$, rescale a normalized witness by
+\[
+\widetilde f(x)=LR^2 f(x/R),\qquad \widetilde x_0=R.
+\]
+Its smoothness constant is $L$, its strong-convexity parameter is
+$\mu=L\kappa$, and its final gradient is $LR$ times the normalized one.
+This proves the sharpness assertion of Theorem~\ref{thm:main}.
+
+\section{Formal verification scope}
+\label{sec:formal}
+
+\textbf{\status.} The checked upper bound is an actual-function
+theorem. Its hypotheses are ordinary strong convexity, actual
+gradients, gradient Lipschitz continuity, a global minimizer, and the
+update \eqref{eq:gd}. The explicit weights are constructed within the
+proof. There is no horizon or dimension cutoff, and no interpolation
+or certificate condition remains as a hypothesis of the public theorem.
+
+The development uses Lean~4.19.0 and the following Mathlib revision:
+\begin{center}
+\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+\end{center}
+The checked modular decomposition is:
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.30\textwidth}>{\raggedright\arraybackslash}p{0.61\textwidth}}
+\toprule
+Modules & Mathematical role\\
+\midrule
+\texttt{AnalyticBase}, \texttt{Analytic} &
+Actual smooth descent, strong first-order support, and interpolation.\\[3pt]
+\texttt{Core}, \texttt{Scaling} &
+Curvature change, scaling, and adjacent potential monotonicity.\\[3pt]
+\texttt{ScalarBase}, \texttt{Scalars} &
+Geometric sums, explicit factors, every factor sign, and both recurrences.\\[3pt]
+\texttt{Cuts}, \texttt{CutsFin}, \texttt{History}, \texttt{Coefficients} &
+Finite cut identities and all mixed and diagonal coefficients.\\[3pt]
+\texttt{Balanced} &
+The actual balanced joint certificate with constructed nonnegative weights.\\[3pt]
+\texttt{Balance}, \texttt{Reduction}, \texttt{AnalyticFinal} &
+Intermediate-value reductions, the full parameter range, and transfer
+to the original analytic theorem.\\[3pt]
+\texttt{Sharpness}, \texttt{Huber}, \texttt{Attainment} &
+Algebra of attaining trajectories, actual one-dimensional functions,
+and selection of the larger rate branch.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The public upper-bound declarations are
+\begin{quote}\small\ttfamily
+THGStrong.taylor\_hendrickx\_glineur\_conjecture3\\
+THGStrong.taylor\_hendrickx\_glineur\_conjecture3\_with\_radius.
+\end{quote}
+They include arbitrary $L>0$ and all $0\leq\mu\leq L$, $0\leq h\leq2$,
+and $N\geq0$. The second allows an initial-distance upper bound $R$.
+The declaration
+\begin{quote}\small\ttfamily
+THGStrong.Sharpness.attain\_rate
+\end{quote}
+constructs actual one-dimensional strongly convex functions, their
+gradients, minimizers, and GD trajectories attaining the rate for every
+normalized $0\leq\kappa\leq1$, $0\leq h\leq2$, and $N\geq0$.
+Sharpness is formalized at $L=R=1$; the rescaling for general $L,R$
+is given explicitly in the preceding section. The upper bound is
+already formalized without that normalization.
+
+The axiom reports of the three public declarations contain only
+\[
+\texttt{propext},\qquad \texttt{Classical.choice},\qquad \texttt{Quot.sound}.
+\]
+These are the standard foundational principles used by Lean and Mathlib.
+There is no \texttt{sorryAx} or added mathematical postulate.
+The distribution includes all proof sources, dependency pins,
+and a portable verifier that rebuilds a source-only snapshot, excludes
+earlier project objects from its search path, and records source hashes,
+compiler exits, and a separate final theorem-type and axiom audit.
+The reproduction package rebuilds all 20 local modules and runs a separate
+theorem-type and axiom audit. Compiler warnings cause failure. Every compiler
+process uses \texttt{--trust=0}. The accompanying verification record identifies
+the checked source hashes, dependency revision, compiler results, and the
+three axiom reports.
+
+\paragraph{Contribution assessment.}
+The upper bound and attaining examples establish the exact finite-horizon
+formula over the full stated parameter range. The intended contribution
+is positive strong convexity; the zero-curvature curve and the sharp examples
+are credited to prior work.
+The reusable part is the balanced joint
+certificate with an unrestricted lower curvature parameter and its
+use in both reductions. The theorem gives a sharp worst-case guarantee for a standard first-order
+method. The bibliographic comparison is bounded by the cited sources and
+does not establish worldwide priority.
+
+\begin{thebibliography}{9}
+
+\bibitem{THG17}
+A.~B. Taylor, J.~M. Hendrickx, and F. Glineur.
+\newblock Smooth strongly convex interpolation and exact worst-case
+performance of first-order methods.
+\newblock \emph{Mathematical Programming} \textbf{161} (2017), 307--345.
+\newblock \href{https://doi.org/10.1007/s10107-016-1009-3}{doi:10.1007/s10107-016-1009-3}.
+\newblock Conjecture~3 and Section~4.1.3.
+\newblock Primary manuscript:
+\url{https://optimization-online.org/wp-content/uploads/2015/03/4814.pdf}.
+
+\bibitem{THG18}
+A.~B. Taylor, J.~M. Hendrickx, and F. Glineur.
+\newblock Exact worst-case convergence rates of the proximal gradient
+method for composite convex minimization.
+\newblock \emph{Journal of Optimization Theory and Applications}
+\textbf{178} (2018), 455--476.
+\newblock \href{https://doi.org/10.1007/s10957-018-1298-1}{doi:10.1007/s10957-018-1298-1}.
+\newblock Section~4 and Tables~1--2; latest arXiv revision consulted:
+\url{https://arxiv.org/abs/1705.04398}, v4, 29 February 2020.
+
+\bibitem{Kim25}
+J. Kim.
+\newblock A proof of the exact convergence rate of gradient descent.
+\newblock \url{https://arxiv.org/abs/2412.04427}, v2, 26 March 2025.
+\newblock Theorems~1.3 and~1.5 concern different initial/final measures.
+
+\bibitem{RGP26}
+T. Rotaru, F. Glineur, and P. Patrinos.
+\newblock Exact worst-case convergence rates of gradient descent:
+a complete analysis for all constant stepsizes over nonconvex and
+convex functions.
+\newblock \emph{Mathematical Programming}, published online
+26 May 2026.
+\newblock \href{https://doi.org/10.1007/s10107-025-02313-1}{doi:10.1007/s10107-025-02313-1}.
+\newblock Preprint: \url{https://arxiv.org/abs/2406.17506}.
+
+\bibitem{Chikhi26}
+S.~R. Chikhi.
+\newblock Last-iterate performance of gradient descent and relaxed
+proximal point via $s$-composability.
+\newblock \url{https://arxiv.org/abs/2609.13765}, v2,
+20 September 2026; first version 12 September 2026.
+
+\bibitem{Jones26}
+J.~D. Jones.
+\newblock Sharp last-iterate bounds and extremal trajectories for
+constant-step gradient descent.
+\newblock \emph{thg-gradient-curve}, 2026.
+\newblock \url{https://github.com/JD-Jones-ASES/thg-gradient-curve}.
+\newblock Convex full-curve result dated 18 October 2026; mathematical
+proof, verification scope, and MIT-licensed Lean sources consulted
+28--29 October 2026. Sources pinned at revision
+\texttt{134788107eb28be0459555383a482a350bc953a4}.
+Positive strong convexity is explicitly outside the
+repository's established claim.
+
+\bibitem{Glineur23}
+F. Glineur.
+\newblock Performance estimation of first-order methods: extensions
+and recent results.
+\newblock LNMB Conference on the Mathematics of Operations Research,
+17 January 2023, lecture slides.
+\newblock \url{https://www.lnmb.nl/conferences/2023/invitedspeakers/Glineur-LNMB2023-part2-final.pdf}.
+
+\end{thebibliography}
+\end{document}
+

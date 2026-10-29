@@ -1,0 +1,193 @@
+{
+  "format_version": 1,
+  "package_id": "steering-bounds",
+  "formal_scope": "Actual two-qubit density matrices, canonical filters, Pauli correlations, the exact least upper bound, attainment and nonattainment, and fully entangled fraction are formalized. The steering-ellipsoid and optimized CJWR measurement interpretations use cited external correspondences; general steerability is outside the result.",
+  "proof_roots": [
+    {
+      "path": ".",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.lean",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "Lean/MilneAllStates.lean": "1af2f132aeff89d775a00e7ca13447156637ac3b4b673d87d4bef5ed17e88370",
+    "Lean/MilneBlochDefs.lean": "56324a6f0b5edc2fbdd8c452b2c194c61d6cbd61d93e0c8b8763d1c2c5d3dac5",
+    "Lean/MilneCanonicalization.lean": "ace418303e1c19cc437c52012cb5f6a3cfcf2b08b84c6604cd4a2821d98ef040",
+    "Lean/MilneCore.lean": "bbc6a39aa80bd86b084472a25f8acea8ff3106ec2ce37ff19c6ecd26295ffb3d",
+    "Lean/MilneCorrelation.lean": "502a21928eac4d84c8cd07c0e3ea8b78282076d9d9645b8738b22deaca8db93d",
+    "Lean/MilneDefs.lean": "7f1d3ec37eeac51c8e29a148fa5dcf628676c093dfe76d574fff8e0d310aeb0c",
+    "Lean/MilneFiltering.lean": "3a5197d27c866e3bd3024dbfc0704a6fd4336129cf60118a3582811ac8e410a9",
+    "Lean/MilneFractionOptimality.lean": "54ac5c12cf8848ee34dd3b6097f2c27692bf201ac599e622c5bb602e0f91236b",
+    "Lean/MilneFractionSharpness.lean": "823304c63a54d8e5b4f3db2416420389be803041bb42377f37ebb0f68e186ade",
+    "Lean/MilneNonattainment.lean": "a36f22874d9ca7c92adf1460f51ce71e5cf9aea3a2ed2175436a96f4a9a2ade6",
+    "Lean/MilneOptimality.lean": "30bc767d11efecaad89544b4c2e02efa68f2a5eb211bfebdcf0718a8fad8313c",
+    "Lean/MilnePurityCovariance.lean": "b6d68d753e8aab9e39268829fce5ed98cfb01eba207ddc251b600d33c8d9d16e",
+    "Lean/MilneQubit.lean": "937c88d426d8e710323c10e88993dbb514954062287d81905b1c2fd95416b44e",
+    "Lean/MilneScalarBounds.lean": "39c653ad30be9668a1133612c2b25c428b7ecf8d95484b00337f24675c28678c",
+    "Lean/MilneSharpness.lean": "bfa7111951012cafe677797bdba7ea0ce0d3298486cfc4eb40b97e48d87967c0",
+    "Lean/MilneSingular.lean": "3c5c40e90d8bf060df9d41459c23105b9d52c94c20f1ca905a9cc7eefe8b1cb1",
+    "Lean/MilneSteering.lean": "366541af83bcb8ed86440b2fc558144c0d273f75ace9c0cb44123af7b0a7ba89",
+    "Lean/MilneVerification.lean": "53d1344e37a200bb766622235cd7d6c4d55621a3977b560b5175da43bc3e674b"
+  },
+  "integrity_manifests": [],
+  "files": {
+    ".gitignore": {
+      "bytes": 110,
+      "sha256": "c7872224e738c22163c467ff120592f33be1552d1d549b72235aa41a6c7c7103"
+    },
+    "AUTHORSHIP.md": {
+      "bytes": 336,
+      "sha256": "3a5bf30593a44180bb5966280da868b8b6baf54b443edc1938559819f0152de2"
+    },
+    "CITATION.bib": {
+      "bytes": 399,
+      "sha256": "d347ec689006da88999612c60b560bcb296964387f496e2c3eecebcaa3a9d0e0"
+    },
+    "CITATION.cff": {
+      "bytes": 1349,
+      "sha256": "7adaf006404fb101523833815c6bf63c960b2798566b2b4afba2b239ce9e4173"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "Lean/MilneAllStates.lean": {
+      "bytes": 3760,
+      "sha256": "1af2f132aeff89d775a00e7ca13447156637ac3b4b673d87d4bef5ed17e88370"
+    },
+    "Lean/MilneBlochDefs.lean": {
+      "bytes": 1583,
+      "sha256": "56324a6f0b5edc2fbdd8c452b2c194c61d6cbd61d93e0c8b8763d1c2c5d3dac5"
+    },
+    "Lean/MilneCanonicalization.lean": {
+      "bytes": 3998,
+      "sha256": "ace418303e1c19cc437c52012cb5f6a3cfcf2b08b84c6604cd4a2821d98ef040"
+    },
+    "Lean/MilneCore.lean": {
+      "bytes": 15230,
+      "sha256": "bbc6a39aa80bd86b084472a25f8acea8ff3106ec2ce37ff19c6ecd26295ffb3d"
+    },
+    "Lean/MilneCorrelation.lean": {
+      "bytes": 4609,
+      "sha256": "502a21928eac4d84c8cd07c0e3ea8b78282076d9d9645b8738b22deaca8db93d"
+    },
+    "Lean/MilneDefs.lean": {
+      "bytes": 2056,
+      "sha256": "7f1d3ec37eeac51c8e29a148fa5dcf628676c093dfe76d574fff8e0d310aeb0c"
+    },
+    "Lean/MilneFiltering.lean": {
+      "bytes": 3773,
+      "sha256": "3a5197d27c866e3bd3024dbfc0704a6fd4336129cf60118a3582811ac8e410a9"
+    },
+    "Lean/MilneFractionOptimality.lean": {
+      "bytes": 4680,
+      "sha256": "54ac5c12cf8848ee34dd3b6097f2c27692bf201ac599e622c5bb602e0f91236b"
+    },
+    "Lean/MilneFractionSharpness.lean": {
+      "bytes": 4699,
+      "sha256": "823304c63a54d8e5b4f3db2416420389be803041bb42377f37ebb0f68e186ade"
+    },
+    "Lean/MilneNonattainment.lean": {
+      "bytes": 2540,
+      "sha256": "a36f22874d9ca7c92adf1460f51ce71e5cf9aea3a2ed2175436a96f4a9a2ade6"
+    },
+    "Lean/MilneOptimality.lean": {
+      "bytes": 2794,
+      "sha256": "30bc767d11efecaad89544b4c2e02efa68f2a5eb211bfebdcf0718a8fad8313c"
+    },
+    "Lean/MilnePurityCovariance.lean": {
+      "bytes": 2040,
+      "sha256": "b6d68d753e8aab9e39268829fce5ed98cfb01eba207ddc251b600d33c8d9d16e"
+    },
+    "Lean/MilneQubit.lean": {
+      "bytes": 4723,
+      "sha256": "937c88d426d8e710323c10e88993dbb514954062287d81905b1c2fd95416b44e"
+    },
+    "Lean/MilneScalarBounds.lean": {
+      "bytes": 4995,
+      "sha256": "39c653ad30be9668a1133612c2b25c428b7ecf8d95484b00337f24675c28678c"
+    },
+    "Lean/MilneSharpness.lean": {
+      "bytes": 12420,
+      "sha256": "bfa7111951012cafe677797bdba7ea0ce0d3298486cfc4eb40b97e48d87967c0"
+    },
+    "Lean/MilneSingular.lean": {
+      "bytes": 8862,
+      "sha256": "3c5c40e90d8bf060df9d41459c23105b9d52c94c20f1ca905a9cc7eefe8b1cb1"
+    },
+    "Lean/MilneSteering.lean": {
+      "bytes": 13348,
+      "sha256": "366541af83bcb8ed86440b2fc558144c0d273f75ace9c0cb44123af7b0a7ba89"
+    },
+    "Lean/MilneVerification.lean": {
+      "bytes": 2470,
+      "sha256": "53d1344e37a200bb766622235cd7d6c4d55621a3977b560b5175da43bc3e674b"
+    },
+    "Lean/README.md": {
+      "bytes": 263,
+      "sha256": "f4ca744597247c184e909b3caae8f5a408ae2e01284bc721817f721438ec8508"
+    },
+    "PROOF_MAP.md": {
+      "bytes": 4932,
+      "sha256": "b77a391336f4a9509d1d818708abd140c421113159313e4ac0cd0f7789210ab5"
+    },
+    "README.md": {
+      "bytes": 3375,
+      "sha256": "9497bdce9704bda3239283ee6adb00fa3a3521de246b7ece2abf89fca2f10233"
+    },
+    "audit_theorems.txt": {
+      "bytes": 868,
+      "sha256": "03ade5ee5baef4d17245ab761d5c2245cdeed4d3bf569450fe3055c5fa9accc2"
+    },
+    "dependency-pins.json": {
+      "bytes": 527,
+      "sha256": "09bdf4148a266f8fbbca0ce23f080cdffd57a1b66a8a81e832d3664fd85ca4a5"
+    },
+    "lake-manifest.json": {
+      "bytes": 3539,
+      "sha256": "ddc264c85dd38cf609e40f817f82a905ead0f18a51ff0bee310d6b098aa388db"
+    },
+    "lakefile.lean": {
+      "bytes": 737,
+      "sha256": "738b5ae5fa81154b8de9014154025b7dc25a1c56c4548fe842462e5bc4f490bf"
+    },
+    "lean-toolchain": {
+      "bytes": 25,
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    "modules.txt": {
+      "bytes": 354,
+      "sha256": "b097b721493d600b145c9f1002a43d1e4fc36c48a29d9e6b1bb9176164b726b4"
+    },
+    "paper/plot_steering_envelope.py": {
+      "bytes": 1802,
+      "sha256": "91bb54d230ffad6cff757ab7c6794106c9dc48c582ff43ef08eb3a7132e460f3"
+    },
+    "paper/steering_bounds.pdf": {
+      "bytes": 322439,
+      "sha256": "8ff4a0397a3d790433e492caa234e577971a8ac7b51cd0838413cfed19d44e06"
+    },
+    "paper/steering_bounds.tex": {
+      "bytes": 19386,
+      "sha256": "1855075e11f6755954af54927f6378e9114dcde2816b6649eec804d159e5525b"
+    },
+    "paper/steering_envelope_figure.pdf": {
+      "bytes": 16865,
+      "sha256": "dc40be7a56ee52e57ea46e9bfa68dbb1d54d1afe359c0330948b22cd1cac07c4"
+    },
+    "scripts/verify.py": {
+      "bytes": 13253,
+      "sha256": "3060b0c1b594f094781c7c30053dd9c5d66994badaad66a08e7951417d3936a1"
+    },
+    "verification/principal-types-and-axioms.txt": {
+      "bytes": 6643,
+      "sha256": "e261b5465cc6576dea841f4ef8ce853a9cc0599cca65ec789aeab436ede0e4b5"
+    },
+    "verification/result.json": {
+      "bytes": 7992,
+      "sha256": "3b558df7086a0937b856f8a24616b7a7daeade469cab383021238bb2744916c9"
+    }
+  }
+}

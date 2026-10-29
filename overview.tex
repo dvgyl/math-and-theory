@@ -27,10 +27,11 @@
 
 \begin{abstract}
 
-The catalogue contains twenty-five manuscripts and research notes in mathematics, theoretical computer science, and mathematical physics. Each paper states its formal verification scope. The thermal proof covers finite spectral statements, without a formal stochastic long-time identification theorem. The Gyires preprint proves inequalities for structured matrices and develops related polynomial bounds. Its principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean proofs. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. The papers have not been peer reviewed.
+The catalogue contains thirty manuscripts and research notes across 29 result families in mathematics, theoretical computer science, and mathematical physics. Each paper states its formal verification scope. The thermal proof covers finite spectral statements, without a formal stochastic long-time identification theorem. The Gyires preprint proves inequalities for structured matrices and develops related polynomial bounds. Its principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean proofs. The results comprise counterexamples, exact special cases, and sharp sequence bounds. The collection makes no claim of first priority. The papers have not been peer reviewed.
 
 \end{abstract}
 
+\setcounter{tocdepth}{2}
 \tableofcontents
 
 \section{How to use the collection}
@@ -39,7 +40,9 @@ The \href{https://github.com/dvgyl/math-and-theory/blob/main/CONTENTS.md}{manusc
 
 \section{Mathematics}
 
-\subsection{Real positive-definite counterexamples to extended q-permanent monotonicity}
+\subsection{Matrix theory}
+
+\subsubsection{Real positive-definite counterexamples to extended q-permanent monotonicity}
 
 For every real parameter $q>1$, some real symmetric positive-definite matrix has a negative $q$-permanent derivative at $q$. An explicit matrix of order five decreases from $q=14$ to $q=15$. The construction also gives correlation matrices with no zero entries and integer-entry examples. The dimension can depend on $q$. The real-symmetric question on $[-1,1]$ remains outside the result.
 
@@ -51,7 +54,7 @@ For every real parameter $q>1$, some real symmetric positive-definite matrix has
 
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/q-permanent/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/q-permanent.md}{Formal statement and prior work}.
 
-\subsection{Gyires's permanent inequality for structured matrices}
+\subsubsection{Gyires's permanent inequality for structured matrices}
 
 Every nonnegative real circulant matrix $A$ of order five satisfies $24\operatorname{per}(AA^T)\leq625\operatorname{per}(A)^2$. Equality holds exactly for constant matrices. This proves the order-five circulant case of Gyires\textquotesingle s ratio inequality. A bound in sorted-gap coordinates has sharp coefficient $484$. The conjecture for arbitrary doubly stochastic matrices remains open.
 
@@ -71,7 +74,23 @@ The supporting sections prove structural, scalar, deletion, balancing, local pol
 
 The all-order four-block and exceptional-vector theorems have complete Lean proofs. Their inequalities and equality cases are among the 29 selected formal statements. The rank-two theorem has a complete Lean proof for orders 2 through 8. The general order-seven circulant theorem and rank-two orders 9 through 15 remain incomplete in Lean. Separate Lean packages prove the principal order-six and all-order permutation-polynomial theorems. The all-order rank-two problem and the unrestricted Gyires conjecture remain unproved here.
 
-\subsection{An entropy increase for a structurally disassortative DomiRank graph}
+\subsubsection{A polygon enclosure fails for sums of normal matrices}
+
+A polygon enclosure fails for a specified pair of normal matrices and its complete transposition graph. Actual normal matrices, determinants, straight-segment exterior and component exclusion are formalized. Correspondence with an external source conjecture is conditional.
+
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/kovacec/manuscript/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/kovacec/README.md}{Reproduction and source context}.
+
+\subsubsection{An unbounded obstruction to projection AM--GM in Loewner order}
+
+Three rank-one orthogonal projections in dimension three violate the symmetrized-product Loewner AM--GM bound. No finite real multiplier repairs it, even with a positive-definite mean. The examples do not satisfy the additional nonsingular block structure of the motivating coordinate-descent application.
+
+\noindent\textbf{Formal scope:} Lean verifies a rational three-projection matrix obstruction and a parameterized obstruction for every real multiplier in dimension three; rank-one, positive-definite mean, rational all-multiplier choices, and the standard minimal-factor observation have complete conventional proofs.
+
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/projection-amgm/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/projection-amgm/README.md}{Proof and reproduction}.
+
+\subsection{Graph theory and graph polynomials}
+
+\subsubsection{An entropy increase for a structurally disassortative DomiRank graph}
 
 A connected graph with $14$ vertices and $32$ edges has negative degree--log-degree edge covariance. All resolvent scores are positive on $[251/1000,63/250]$ inside the stable domain. Its entropy nevertheless increases by more than $1/10000$ in natural-logarithm units. This refutes the source\textquotesingle s assertion for every positive-score interval.
 
@@ -83,7 +102,27 @@ A connected graph with $14$ vertices and $32$ edges has negative degree--log-deg
 
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/domirank-entropy/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/domirank-entropy.md}{Formal statement and prior work}.
 
-\subsection{Diagonal concavity does not imply concavity for sums of elementary symmetric polynomials}
+\subsubsection{Domination sequences of powers of paths and cycles}
+
+The domination counts of every natural power of a path or cycle form an ultra-log-concave sequence. Dividing each count by its binomial coefficient gives the normalized log-concavity inequality. The proof includes all natural graph orders and powers. It does not assert the same property for arbitrary graphs or real-rootedness of their domination polynomials.
+
+\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/galvin-zhang/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/galvin-zhang/README.md}{Formal proof and reproduction}.
+
+\subsubsection{Sharp escape of complex domination roots in square flowers}
+
+Sharp complex-root escape for square flowers, with complete flower and book real-root classifications and multiplicities. All numbered manuscript conclusions are formalized in seventy modules with 258 endpoint audits. Historical novelty and exact external-source correspondence remain provisional.
+
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/graph-roots/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/graph-roots/README.md}{Reproduction and source context}.
+
+\subsubsection{Leaf deletion can move the unique mode of a tree domination polynomial by two}
+
+Deleting a leaf can move the unique mode of an explicit tree domination polynomial by two. The fixed tree, deletion, actual domination counts and unique-mode movement are formalized. External question identity and historical priority remain provisional.
+
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/leaf-deletion/manuscript/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/leaf-deletion/README.md}{Reproduction and source context}.
+
+\subsection{Inequalities and real analysis}
+
+\subsubsection{Diagonal concavity does not imply concavity for sums of elementary symmetric polynomials}
 
 For $M>0$, let $f_M=1+M\sigma_1+\sigma_2+M\sigma_3+\sigma_4$ in four variables, where $\sigma_j$ is the elementary symmetric polynomial of degree $j$. The fourth root $f_M^{1/4}$ is concave on the positive diagonal exactly when $M\geq1$. It is concave on the full positive orthant exactly when $M=1$. Thus every $M>1$ disproves Lachaume\textquotesingle s criterion with strictly positive coefficients.
 
@@ -95,9 +134,13 @@ For $M>0$, let $f_M=1+M\sigma_1+\sigma_2+M\sigma_3+\sigma_4$ in four variables, 
 
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/diagonal-concavity/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/diagonal-concavity.md}{Formal statement and prior work}.
 
-\subsection{Sharp root log-concavity of alternating Motzkin sums}
+\subsection{Integer sequences and combinatorics}
 
-Let $T_n=\sum_{j=0}^n(-1)^{n-j}M_j$, where $M_j$ is the Motzkin number. The sequence $T_n^{1/n}$ is strictly log-concave on its tail starting at five. The inequality reverses at center five, so no earlier tail is log-concave. This strengthens Zhao\textquotesingle s proposed tail starting at nine. The source recurrence and finite sum are linked in Lean.
+\subsubsection{Alternating Motzkin sums}
+
+The principal root bound and bounded-forcing companion form one sequence family.
+
+\paragraph{Sharp root log-concavity of alternating Motzkin sums} Let $T_n=\sum_{j=0}^n(-1)^{n-j}M_j$, where $M_j$ is the Motzkin number. The sequence $T_n^{1/n}$ is strictly log-concave on its tail starting at five. The inequality reverses at center five, so no earlier tail is log-concave. This strengthens Zhao\textquotesingle s proposed tail starting at nine. The source recurrence and finite sum are linked in Lean.
 
 \par\smallskip
 
@@ -107,7 +150,11 @@ Let $T_n=\sum_{j=0}^n(-1)^{n-j}M_j$, where $M_j$ is the Motzkin number. The sequ
 
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/alternating-motzkin/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/alternating-motzkin.md}{Formal statement and prior work}.
 
-\subsection{Counterexamples to a late-iterate ordering conjecture for generalized Hofstadter functions}
+\paragraph{Sharp log-concavity for alternating Motzkin sums} A robust bounded-forcing recurrence theorem and corrected scaled corollary, with applications to alternating Motzkin-type sums. The arbitrary-real recurrence theorem and scaled corollary, including zero forcing, are formalized. Concrete sequences, uniform-family applications, root transfer and threshold classification retain conventional proofs.
+
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/motzkin-bounded-forcing/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/motzkin-bounded-forcing/README.md}{Reproduction and source context}.
+
+\subsubsection{Counterexamples to a late-iterate ordering conjecture for generalized Hofstadter functions}
 
 For every $k\geq4$, some input $n$ satisfies $F_k^{\circ(2k+1)}(n)>F_{k+1}^{\circ(2k+2)}(n)$. Here the superscript denotes repeated composition. The proof constructs inverse iterates with exact gap $k-3$. The witness $F_4^{\circ9}(132)=8>7=F_5^{\circ10}(132)$ gives the first instance. The result concerns infinitely many parameters. It does not assert infinitely many violating inputs for each fixed parameter.
 
@@ -119,9 +166,69 @@ For every $k\geq4$, some input $n$ satisfies $F_k^{\circ(2k+1)}(n)>F_{k+1}^{\cir
 
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/hofstadter-iteration/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/hofstadter-iteration.md}{Formal statement and prior work}.
 
+\subsubsection{A positive constant-recursive sequence with nonquasipolynomial power ranks}
+
+Exact minimal recurrences for every power of a rank-thirteen sequence, nonquasipolynomial ranks, and infinitely many power-rank profiles at each rank at least three. The main and arbitrary-rank companion theorems are formalized. Generating-function and polynomial corollaries retain conventional proofs.
+
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/power-rank/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/power-rank/README.md}{Reproduction and source context}.
+
+\subsection{Discrete analysis, probability and entropy}
+
+\subsubsection{The sharp Fourier bound at density one eighth}
+
+For every indicator of mean $1/8$ on a finite uniform Boolean cube, the level-one Fourier weight is at most $3/64$. A codimension-three subcube attains this bound in every dimension at least three. The proof also gives the equivalent sharp average Hamming-distance bound. It uses exact rational polynomial certificates and a dimension-independent moment identity.
+
+\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/sharp-eighth/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/sharp-eighth/README.md}{Formal proof and reproduction}.
+
+\subsubsection{A quartic entropy deficit for random rankings}
+
+Let $P$ be a probability distribution on the complete rankings of $n$ labels. If every pairwise comparison has probability at distance at least $\varepsilon>0$ from $1/2$, then
+\[
+H(P)\le (1-\varepsilon^4/144)\log(n!).
+\]
+The formal theorem includes every finite size, including zero and one. It assumes neither independent comparisons nor transitive preferred directions. It covers both ranking lists and position-valued permutations.
+
+\href{https://github.com/dvgyl/math-and-theory/tree/main/verification/additional-proofs/quartic-rankings}{Manuscript, Lean proof, and reproduction commands.}
+
+\subsubsection{Sharp universal Rényi threshold for iid sums on finite Sidon sets}
+
+A sharp universal Renyi-order threshold for iid sums supported on finite strong-B2 sets. The finite-support iid theorem, zero probabilities and critical endpoint are formalized. Comparison with unverified source definitions is conditional.
+
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/sidon-renyi/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/sidon-renyi/README.md}{Reproduction and source context}.
+
+\subsection{Matroid theory}
+
+\subsubsection{The asymmetric Merino--Welsh region}
+
+The theorem characterizes every nonnegative pair $(x,y)$ for which
+\[
+ T_M(x,0)T_M(0,y)\geq T_M(1,1)^2
+\]
+holds for all finite matroids without loops or coloops. The criterion uses two explicit scalar inequalities for every integer $k\geq2$. The proof includes empty ground sets and finite ground sets in arbitrary ambient types. The package fetches Liu's pinned proof library from its public repository.
+
+\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/asymmetric-tutte/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/asymmetric-tutte/README.md}{Formal proof and reproduction}.
+
+\subsection{Optimization}
+
+\subsubsection{A rational five-cycle for two-block ADMM with multiplier step below two}
+
+An exact period-five orbit for multiplier-only two-block ADMM at step 199/100. Seven modules and eleven endpoint audits cover the orbit, minimizers and optimizer. Analytic regularity of the finite strongly convex extension retains a conventional proof.
+
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/admm-counterexample/paper/admm_counterexample.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/admm-counterexample/README.md}{Reproduction and source context}.
+
+\subsubsection{The exact last-gradient bound for constant-step gradient descent in the strongly convex case}
+
+The exact final-gradient guarantee holds on every real Hilbert space for L $>$ 0, 0 $\leq$ $\mu$ $\leq$ L, normalized step 0 $\leq$ h $\leq$ 2 and every natural horizon. Actual one-dimensional Huber and quadratic functions attain its two branches.
+
+\noindent\textbf{Formal scope:} The actual-function upper bound and normalized actual-function attainment are formalized, including every horizon and closed parameter boundary. Sharpness for arbitrary L $>$ 0 and radius R $>$ 0 is proved by rescaling in the manuscript, without a separate Lean wrapper.
+
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/strong-gradient/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/strong-gradient/README.md}{Proof and reproduction}.
+
 \section{Theoretical computer science}
 
-\subsection{Counterexamples to a best-of-\texorpdfstring{$n$}{n} win-rate bound at every budget}
+\subsection{Sampling algorithms and information theory}
+
+\subsubsection{Counterexamples to a best-of-\texorpdfstring{$n$}{n} win-rate bound at every budget}
 
 For every $n\geq2$ and $\delta>0$, a finite positive reference distribution with largest atom at most $\delta$ violates the proposed best-of-$n$ divergence--win-rate curve. A four-response best-of-two example gives exact probabilities and a strict logarithmic certificate. The all-budget proof uses finite interval bounds and gives a quantitative positive gap. It does not determine the sharp replacement curve.
 
@@ -133,7 +240,9 @@ For every $n\geq2$ and $\delta>0$, a finite positive reference distribution with
 
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/preprints/best-of-n/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/lean/docs/best-of-n.md}{Formal statement and prior work}.
 
-\subsection[Decision-tree covariance: logarithmic bounds and variance counterexamples]{Logarithmic influence bounds and variance counterexamples for Boolean decision-tree covariance}
+\subsection{Boolean functions and decision trees}
+
+\subsubsection{Logarithmic influence bounds and variance counterexamples for Boolean decision-tree covariance}
 
 Let $T$ be a finite Boolean decision tree under uniform independent bits. No coordinate repeats on a root-to-leaf path. Let $k_i(T)$ count all query nodes labelled $i$, and let $I_i(f)$ be the probability that flipping coordinate $i$ changes the output. The weighted sum of absolute child covariances satisfies
 \[
@@ -150,9 +259,27 @@ For a read-$k$ tree, the bound is $I(f)\log_2 k$. The dummy-prefix construction 
 \par\smallskip
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/readk-covariance/docs/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/readk-covariance/docs/related-work.md}{Prior work}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/readk-covariance/README.md}{Formal proof and reproduction}.
 
+\subsection{Fair division}
+
+\subsubsection{Ordered-instance allocation transfer with exact extra-copy preservation}
+
+A set-valued ordered-instance transfer preserving utility improvement, the exact extra-copy count, per-good caps and coverage. The transfer theorem is formalized. Existence of a fair allocation before transfer is outside the result; external source comparison is provisional.
+
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/ordered-allocation/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/ordered-allocation/README.md}{Reproduction and source context}.
+
+\subsection{Proof complexity}
+
+\subsubsection{Unbounded coalesced-mass certificates for resolution trees}
+
+A coalesced dyadic clause-mass functional has exact supremum n+1 on the stated unrestricted resolution-tree class and is unbounded across dimensions. The internally defined resolution-tree functional and proof class are formalized. No unconditional identification with an external conjecture or a regular proof class is claimed.
+
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/kunisky/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/kunisky/README.md}{Reproduction and source context}.
+
 \section{Mathematical physics}
 
-\subsection{A three-state thermal counterexample to a heat-current kurtosis conjecture}
+\subsection{Stochastic thermodynamics}
+
+\subsubsection{A three-state thermal counterexample to a heat-current kurtosis conjecture}
 
 A three-state rate model with two positive-temperature baths satisfies local detailed balance. Every total off-diagonal rate is positive. The tilted generator records heat transferred to the cold bath. Its dominant eigenvalue branch is four times continuously differentiable near zero and has a larger real part than every distinct complex eigenvalue. The exact derivative ratio is
 \[
@@ -166,108 +293,57 @@ where $C_n$ is the $n$th derivative at zero. This refutes Eq.~(19) of Ptaszy\'ns
 \par\smallskip
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/thermal-kurtosis-counterexample/report.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/thermal-kurtosis-counterexample/RELATED_WORK.md}{Prior work}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/thermal-kurtosis-counterexample/README.md}{Formal proof and reproduction}.
 
-\section{Discrete and quantum bounds}
+\subsubsection{A sharp universal skewness bound for unicyclic currents}
 
-\subsection{The sharp Fourier bound at density one eighth}
-For every indicator of mean $1/8$ on a finite uniform Boolean cube, the level-one Fourier weight is at most $3/64$. A codimension-three subcube attains this bound in every dimension at least three. The proof also gives the equivalent sharp average Hamming-distance bound. It uses exact rational polynomial certificates and a dimension-independent moment identity.
+The net marked-edge current on every finite bidirectional Markov ring with at least three states, positive rates and unequal forward and reverse rate products satisfies $-$1/16 $\leq$ C$_3$/C$_1$ $\leq$ 1. The two-channel two-state case has the stronger interval [1/4,1]. This ratio is not standardized skewness.
 
-\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/sharp-eighth/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/sharp-eighth/README.md}{Formal proof and reproduction}.
+\noindent\textbf{Formal scope:} The interval for actual tilted-matrix derivatives and a local branch is formalized. Identification with long-time stochastic cumulants and sharpness have conventional proofs. Lean does not construct a continuous-time sample-path probability space or a separate optimizing-sequence theorem.
 
-\subsection{Domination sequences of powers of paths and cycles}
-The domination counts of every natural power of a path or cycle form an ultra-log-concave sequence. Dividing each count by its binomial coefficient gives the normalized log-concavity inequality. The proof includes all natural graph orders and powers. It does not assert the same property for arbitrary graphs or real-rootedness of their domination polynomials.
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/unicyclic-skewness/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/unicyclic-skewness/README.md}{Proof and reproduction}.
 
-\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/galvin-zhang/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/galvin-zhang/README.md}{Formal proof and reproduction}.
+\subsection{Quantum information}
 
-\subsection{Universal entanglement embezzlement}
+\subsubsection{Universal entanglement embezzlement}
+
 A target-independent catalyst of local dimension $2^{4L}$ gives root infidelity at most $125m/L^2$ for every Schmidt probability vector on $m$ entries and $L\geq1$. Zero entries are permitted. The proof constructs local basis permutations and gives their finite complex Hilbert-space interpretation. It does not separately formalize arbitrary changes to an external Schmidt basis, gate efficiency, or catalyst reuse.
 
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/universal-embezzlement/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/universal-embezzlement/README.md}{Formal proof and reproduction}.
 
-\subsection{The asymmetric Merino--Welsh region}
-The theorem characterizes every nonnegative pair $(x,y)$ for which
-\[
- T_M(x,0)T_M(0,y)\geq T_M(1,1)^2
-\]
-holds for all finite matroids without loops or coloops. The criterion uses two explicit scalar inequalities for every integer $k\geq2$. The proof includes empty ground sets and finite ground sets in arbitrary ambient types. The package fetches Liu's pinned proof library from its public repository.
-
-\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/asymmetric-tutte/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/asymmetric-tutte/README.md}{Formal proof and reproduction}.
-
-\subsection{The four-qubit Higuchi--Sudbery entropy bound}
+\subsubsection{The four-qubit Higuchi--Sudbery entropy bound}
 
 For every normalized pure state of four qubits, the average von Neumann entropy of the three balanced two-qubit cuts is at most $\log 2+\tfrac12\log 3$. The Higuchi--Sudbery state attains this value. The formal proof uses all sixteen complex amplitudes, the actual reduced matrices and their eigenvalues, an exact sum-of-squares identity, and an explicit attaining state. It does not classify all maximizers or cover mixed states.
 
 \href{https://github.com/dvgyl/math-and-theory/tree/main/verification/additional-proofs/higuchi-sudbery}{Manuscript, Lean proof, and reproduction commands.}
 
-\subsection{A quartic entropy deficit for random rankings}
+\subsubsection{A pure-state matched-basis information inequality violation in dimension five}
 
-Let $P$ be a probability distribution on the complete rankings of $n$ labels. If every pairwise comparison has probability at distance at least $\varepsilon>0$ from $1/2$, then
-\[
-H(P)\le (1-\varepsilon^4/144)\log(n!).
-\]
-The formal theorem includes every finite size, including zero and one. It assumes neither independent comparisons nor transitive preferred directions. It covers both ranking lists and position-valued permutations.
-
-\href{https://github.com/dvgyl/math-and-theory/tree/main/verification/additional-proofs/quartic-rankings}{Manuscript, Lean proof, and reproduction commands.}
-
-\section{Further completed work}
-
-The later manuscripts state their exact scientific models and source-comparison limits. They do not infer historical priority from formal verification. The bounded-forcing Motzkin extension belongs with the existing alternating-sums family.
-
-\subsection{A positive constant-recursive sequence with nonquasipolynomial power ranks}
-Exact minimal recurrences for every power of a rank-thirteen sequence, nonquasipolynomial ranks, and infinitely many power-rank profiles at each rank at least three. The main and arbitrary-rank companion theorems are formalized. Generating-function and polynomial corollaries retain conventional proofs.
-
-\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/power-rank/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/power-rank/README.md}{Reproduction and source context}.
-
-\subsection{A rational five-cycle for two-block ADMM with multiplier step below two}
-An exact period-five orbit for multiplier-only two-block ADMM at step 199/100. Seven modules and eleven endpoint audits cover the orbit, minimizers and optimizer. Analytic regularity of the finite strongly convex extension retains a conventional proof.
-
-\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/admm-counterexample/paper/admm_counterexample.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/admm-counterexample/README.md}{Reproduction and source context}.
-
-\subsection{Sharp escape of complex domination roots in square flowers}
-Sharp complex-root escape for square flowers, with complete flower and book real-root classifications and multiplicities. All numbered manuscript conclusions are formalized in seventy modules with 258 endpoint audits. Historical novelty and exact external-source correspondence remain provisional.
-
-\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/graph-roots/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/graph-roots/README.md}{Reproduction and source context}.
-
-\subsection{Sharp log-concavity for alternating Motzkin sums}
-A robust bounded-forcing recurrence theorem and corrected scaled corollary, with applications to alternating Motzkin-type sums. The arbitrary-real recurrence theorem and scaled corollary, including zero forcing, are formalized. Concrete sequences, uniform-family applications, root transfer and threshold classification retain conventional proofs.
-
-\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/motzkin-bounded-forcing/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/motzkin-bounded-forcing/README.md}{Reproduction and source context}.
-
-\subsection{Sharp universal Rényi threshold for iid sums on finite Sidon sets}
-A sharp universal Renyi-order threshold for iid sums supported on finite strong-B2 sets. The finite-support iid theorem, zero probabilities and critical endpoint are formalized. Comparison with unverified source definitions is conditional.
-
-\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/sidon-renyi/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/sidon-renyi/README.md}{Reproduction and source context}.
-
-\subsection{Ordered-instance allocation transfer with exact extra-copy preservation}
-A set-valued ordered-instance transfer preserving utility improvement, the exact extra-copy count, per-good caps and coverage. The transfer theorem is formalized. Existence of a fair allocation before transfer is outside the result; external source comparison is provisional.
-
-\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/ordered-allocation/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/ordered-allocation/README.md}{Reproduction and source context}.
-
-\subsection{Unbounded coalesced-mass certificates for resolution trees}
-A coalesced dyadic clause-mass functional has exact supremum n+1 on the stated unrestricted resolution-tree class and is unbounded across dimensions. The internally defined resolution-tree functional and proof class are formalized. No unconditional identification with an external conjecture or a regular proof class is claimed.
-
-\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/kunisky/paper.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/kunisky/README.md}{Reproduction and source context}.
-
-\subsection{A pure-state matched-basis information inequality violation in dimension five}
 A dimension-five pure-state matched-basis information inequality violation, with a conventional all-prime companion. The dimension-five identical-local-basis theorem is formalized. The prime-family extension is conventional; arbitrary or independently optimized basis choices are outside the result.
 
 \href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/pure-ecqc/manuscript/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/pure-ecqc/README.md}{Reproduction and source context}.
 
-\subsection{A polygon enclosure fails for sums of normal matrices}
-A polygon enclosure fails for a specified pair of normal matrices and its complete transposition graph. Actual normal matrices, determinants, straight-segment exterior and component exclusion are formalized. Correspondence with an external source conjecture is conditional.
+\subsubsection{Exact three-setting correlation bounds at fixed steering centre}
 
-\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/kovacec/manuscript/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/kovacec/README.md}{Reproduction and source context}.
+The exact least upper bound of the optimized three-setting squared correlation value is determined for every two-qubit steering-centre length. The threshold for a value greater than one is c $<$ 2/3. Attainment, nonattainment and the singular marginal boundary are included.
 
-\subsection{Leaf deletion can move the unique mode of a tree domination polynomial by two}
-Deleting a leaf can move the unique mode of an explicit tree domination polynomial by two. The fixed tree, deletion, actual domination counts and unique-mode movement are formalized. External question identity and historical priority remain provisional.
+\noindent\textbf{Formal scope:} Actual two-qubit density matrices, canonical filters, Pauli correlations, the exact least upper bound, attainment and nonattainment, and fully entangled fraction are formalized. The steering-ellipsoid and optimized CJWR measurement interpretations use cited external correspondences; general steerability is outside the result.
 
-\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/leaf-deletion/manuscript/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/leaf-deletion/README.md}{Reproduction and source context}.
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/steering-bounds/paper/steering_bounds.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/steering-bounds/README.md}{Proof and reproduction}.
 
-\subsection{Manual Zenodo upload files}
-The repository includes a ZIP containing five selected preprints: Higuchi--Sudbery, universal embezzlement, asymmetric Tutte, power-rank and multiplier-only ADMM. Each has a first-page autonomous AI disclosure, source archive, metadata and upload instructions. No external upload or DOI registration is claimed.
+\subsubsection{The three-state root-fidelity entropy bound}
+
+The entropy of the weighted three-by-three root-fidelity matrix bounds the Holevo quantity of every three-state ensemble in arbitrary finite dimension. The result includes mixed and singular states and zero probabilities.
+
+\noindent\textbf{Formal scope:} The unrestricted three-state ensemble theorem is formalized for actual positive semidefinite complex matrices of trace one, nonnegative weights summing to one, spectral entropy and nuclear-norm root fidelity. Credited QICLean foundations and prior-work adapters retain their attribution.
+
+\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/fidelity-three-state/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/fidelity-three-state/README.md}{Proof and reproduction}.
+
+\section{Selected preprint packages}
+
+The repository includes a ZIP containing nine selected preprints: Higuchi--Sudbery, universal embezzlement, asymmetric Tutte, power-rank, ADMM, steering bounds, the strong-convexity gradient bound, unicyclic skewness and three-state root fidelity. Each has a first-page autonomous AI disclosure, source archive, metadata and upload instructions. No external upload or DOI registration is claimed.
 
 \section{Verification and authorship}
 
-Lean checks the proofs against their formal statements. In the shared Lean 4.35.0 library, separate Challenge modules state the intended claims. Comparator checks these against their proved Solutions. The verification record identifies the completed runs of Lean, NanoDa, and con-ron for those seven families. The original eight standalone study packages and the ten later curated packages have their own pinned Lean environments and stated proof boundaries. Source-integrity checks are distinguished from completed compilation records. Their audit logs state the permitted axioms. Exact arithmetic programs check the accompanying finite certificates. The shared Comparator results do not cover those packages. Independent exact and numerical programs test finite certificates and examples. These finite computations do not replace the general proofs.
+Lean checks the proofs against their formal statements. In the shared Lean 4.35.0 library, separate Challenge modules state the intended claims. Comparator checks these against their proved Solutions. The verification record identifies the completed runs of Lean, NanoDa, and con-ron for those seven families. The standalone study packages have their own pinned Lean environments and stated proof boundaries. Source-integrity checks are distinguished from completed compilation records. Their audit logs state the permitted axioms. Exact arithmetic programs check the accompanying finite certificates. The shared Comparator results do not cover those packages. Independent exact and numerical programs test finite certificates and examples. These finite computations do not replace the general proofs.
 
 \par
 

@@ -1,0 +1,4209 @@
+import Lean.Elab.Tactic.NormCast
+import Lean.Elab.Tactic.Omega
+import Mathlib.Algebra.BigOperators.Field
+import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+import Mathlib.Algebra.Polynomial.Coeff
+import Mathlib.Algebra.Polynomial.Roots
+import Mathlib.Analysis.Calculus.ContDiff.Basic
+import Mathlib.Analysis.Calculus.ContDiff.Operations
+import Mathlib.Analysis.Calculus.Deriv.Add
+import Mathlib.Analysis.Calculus.Deriv.Inverse
+import Mathlib.Analysis.Calculus.Deriv.MeanValue
+import Mathlib.Analysis.Calculus.Deriv.Mul
+import Mathlib.Analysis.Calculus.Deriv.Polynomial
+import Mathlib.Analysis.Calculus.InverseFunctionTheorem.ContDiff
+import Mathlib.Analysis.SpecialFunctions.Exp
+import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+import Mathlib.Analysis.SpecialFunctions.Log.Deriv
+import Mathlib.Analysis.SpecialFunctions.Pow.Real
+import Mathlib.Data.Matrix.Notation
+import Mathlib.Data.Real.Basic
+import Mathlib.Data.Real.Sqrt
+import Mathlib.Data.Real.StarOrdered
+import Mathlib.GroupTheory.Perm.Cycle.Basic
+import Mathlib.GroupTheory.Perm.Fin
+import Mathlib.LinearAlgebra.Matrix.Adjugate
+import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
+import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+import Mathlib.LinearAlgebra.Matrix.Nondegenerate
+import Mathlib.LinearAlgebra.Matrix.PosDef
+import Mathlib.LinearAlgebra.Matrix.Spectrum
+import Mathlib.Tactic.FieldSimp
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Positivity
+import Mathlib.Tactic.Push
+import Mathlib.Tactic.Ring
+import Mathlib.Tactic.SplitIfs
+
+/- proof/ScalarCertificate.lean; SHA256 73e145308ed0a4fe4688e6b5fb04af11d82df8cf5c7923411eb97d75031c683a -/
+section CheckedModule0
+
+/-!
+Auxiliary scalar certificate only.  This file does NOT formalize the claimed
+application to Markov-current cumulants or the thermodynamic uncertainty bound.
+It must not be described as verification of the original conjecture.
+-/
+namespace UnicyclicScalar
+noncomputable section
+set_option maxHeartbeats 4000000
+
+def D (z : ℝ) : ℝ := 105 - 70*z - 14*z^2 - 6*z^3
+def R (t z : ℝ) : ℝ := 2 * D z * t^2 - (1-z)*(D z+105)
+def F (t z : ℝ) : ℝ :=
+  48*t^4 - 32*t^3 - 24*t^2 + 8 + z*(24*t^2-7)
+def P (t : ℝ) : ℝ :=
+  10616832*t^14 - 15261696*t^13 - 20127744*t^12 +
+  20336640*t^11 + 53514240*t^10 - 47832576*t^9 -
+  29349376*t^8 + 30811392*t^7 + 5745408*t^6 -
+  7539040*t^5 - 671776*t^4 + 645104*t^3 +
+  179568*t^2 - 17623*t - 17623
+
+theorem D_pos {z : ℝ} (hz0 : 0 ≤ z) (hz1 : z ≤ 1) : 0 < D z := by
+  have h2 : z^2 ≤ 1 := pow_le_one₀ hz0 hz1
+  have h3 : z^3 ≤ 1 := pow_le_one₀ hz0 hz1
+  dsimp [D]
+  nlinarith
+
+theorem P_nonneg_0 {t : ℝ}
+    (ha : (27 / 50 : ℝ) ≤ t) (hb : t ≤ (541 / 1000 : ℝ)) :
+    0 ≤ P t := by
+  have hx : 0 ≤ 1000*t-540 := by linarith
+  have hy : 0 ≤ 541-1000*t := by linarith
+  have hid : (15258789062500000000000000000000000000 : ℝ) * P t =
+    (411473622932365107200000000000000 : ℝ) * (1000*t-540)^0 * (541-1000*t)^14 +
+    (4332700144463022520320000000000000 : ℝ) * (1000*t-540)^1 * (541-1000*t)^13 +
+    (21266610769537346424832000000000000 : ℝ) * (1000*t-540)^2 * (541-1000*t)^12 +
+    (67964008530644141722931200000000000 : ℝ) * (1000*t-540)^3 * (541-1000*t)^11 +
+    (171255907504596702255544320000000000 : ℝ) * (1000*t-540)^4 * (541-1000*t)^10 +
+    (379082689837953457542931456000000000 : ℝ) * (1000*t-540)^5 * (541-1000*t)^9 +
+    (732847244576579907131200473600000000 : ℝ) * (1000*t-540)^6 * (541-1000*t)^8 +
+    (1158806963365638558229577919360000000 : ℝ) * (1000*t-540)^7 * (541-1000*t)^7 +
+    (1419413014175755231424054007776000000 : ℝ) * (1000*t-540)^8 * (541-1000*t)^6 +
+    (1304416217743499635244179600673600000 : ℝ) * (1000*t-540)^9 * (541-1000*t)^5 +
+    (877646808062097838453444451154720000 : ℝ) * (1000*t-540)^10 * (541-1000*t)^4 +
+    (418867390156028015612811702187232000 : ℝ) * (1000*t-540)^11 * (541-1000*t)^3 +
+    (134303335865043552944379353846235700 : ℝ) * (1000*t-540)^12 * (541-1000*t)^2 +
+    (25963573645379296181526698318647245 : ℝ) * (1000*t-540)^13 * (541-1000*t)^1 +
+    (2289148847063183313623970162523707 : ℝ) * (1000*t-540)^14 * (541-1000*t)^0 := by
+    dsimp [P]
+    ring
+  have hnon : 0 ≤
+    (411473622932365107200000000000000 : ℝ) * (1000*t-540)^0 * (541-1000*t)^14 +
+    (4332700144463022520320000000000000 : ℝ) * (1000*t-540)^1 * (541-1000*t)^13 +
+    (21266610769537346424832000000000000 : ℝ) * (1000*t-540)^2 * (541-1000*t)^12 +
+    (67964008530644141722931200000000000 : ℝ) * (1000*t-540)^3 * (541-1000*t)^11 +
+    (171255907504596702255544320000000000 : ℝ) * (1000*t-540)^4 * (541-1000*t)^10 +
+    (379082689837953457542931456000000000 : ℝ) * (1000*t-540)^5 * (541-1000*t)^9 +
+    (732847244576579907131200473600000000 : ℝ) * (1000*t-540)^6 * (541-1000*t)^8 +
+    (1158806963365638558229577919360000000 : ℝ) * (1000*t-540)^7 * (541-1000*t)^7 +
+    (1419413014175755231424054007776000000 : ℝ) * (1000*t-540)^8 * (541-1000*t)^6 +
+    (1304416217743499635244179600673600000 : ℝ) * (1000*t-540)^9 * (541-1000*t)^5 +
+    (877646808062097838453444451154720000 : ℝ) * (1000*t-540)^10 * (541-1000*t)^4 +
+    (418867390156028015612811702187232000 : ℝ) * (1000*t-540)^11 * (541-1000*t)^3 +
+    (134303335865043552944379353846235700 : ℝ) * (1000*t-540)^12 * (541-1000*t)^2 +
+    (25963573645379296181526698318647245 : ℝ) * (1000*t-540)^13 * (541-1000*t)^1 +
+    (2289148847063183313623970162523707 : ℝ) * (1000*t-540)^14 * (541-1000*t)^0 := by positivity
+  nlinarith only [hid, hnon]
+
+theorem P_nonneg_1 {t : ℝ}
+    (ha : (541 / 1000 : ℝ) ≤ t) (hb : t ≤ (3 / 5 : ℝ)) :
+    0 ≤ P t := by
+  have hx : 0 ≤ 1000*t-541 := by linarith
+  have hy : 0 ≤ 600-1000*t := by linarith
+  have hid : (94503573805111898612407852172851562500000000000000000000000000 : ℝ) * P t =
+    (2289148847063183313623970162523707 : ℝ) * (1000*t-541)^0 * (600-1000*t)^14 +
+    (391034186455695508734059735719726425 : ℝ) * (1000*t-541)^1 * (600-1000*t)^13 +
+    (22591415283760251068738499357366670000 : ℝ) * (1000*t-541)^2 * (600-1000*t)^12 +
+    (418892676188928948795121221957240500000 : ℝ) * (1000*t-541)^3 * (600-1000*t)^11 +
+    (3003574139658525376634941478336700000000 : ℝ) * (1000*t-541)^4 * (600-1000*t)^10 +
+    (11784674729965521354917640212202500000000 : ℝ) * (1000*t-541)^5 * (600-1000*t)^9 +
+    (29368362578202102011715085016000000000000 : ℝ) * (1000*t-541)^6 * (600-1000*t)^8 +
+    (50125597675331650769422654650000000000000 : ℝ) * (1000*t-541)^7 * (600-1000*t)^7 +
+    (61045249830794579030073810000000000000000 : ℝ) * (1000*t-541)^8 * (600-1000*t)^6 +
+    (54159214966414302966165250000000000000000 : ℝ) * (1000*t-541)^9 * (600-1000*t)^5 +
+    (35175442800944655785700000000000000000000 : ℝ) * (1000*t-541)^10 * (600-1000*t)^4 +
+    (16505040674742998455000000000000000000000 : ℝ) * (1000*t-541)^11 * (600-1000*t)^3 +
+    (5365076547094004500000000000000000000000 : ℝ) * (1000*t-541)^12 * (600-1000*t)^2 +
+    (1091838300715612500000000000000000000000 : ℝ) * (1000*t-541)^13 * (600-1000*t)^1 +
+    (105350456420000000000000000000000000000 : ℝ) * (1000*t-541)^14 * (600-1000*t)^0 := by
+    dsimp [P]
+    ring
+  have hnon : 0 ≤
+    (2289148847063183313623970162523707 : ℝ) * (1000*t-541)^0 * (600-1000*t)^14 +
+    (391034186455695508734059735719726425 : ℝ) * (1000*t-541)^1 * (600-1000*t)^13 +
+    (22591415283760251068738499357366670000 : ℝ) * (1000*t-541)^2 * (600-1000*t)^12 +
+    (418892676188928948795121221957240500000 : ℝ) * (1000*t-541)^3 * (600-1000*t)^11 +
+    (3003574139658525376634941478336700000000 : ℝ) * (1000*t-541)^4 * (600-1000*t)^10 +
+    (11784674729965521354917640212202500000000 : ℝ) * (1000*t-541)^5 * (600-1000*t)^9 +
+    (29368362578202102011715085016000000000000 : ℝ) * (1000*t-541)^6 * (600-1000*t)^8 +
+    (50125597675331650769422654650000000000000 : ℝ) * (1000*t-541)^7 * (600-1000*t)^7 +
+    (61045249830794579030073810000000000000000 : ℝ) * (1000*t-541)^8 * (600-1000*t)^6 +
+    (54159214966414302966165250000000000000000 : ℝ) * (1000*t-541)^9 * (600-1000*t)^5 +
+    (35175442800944655785700000000000000000000 : ℝ) * (1000*t-541)^10 * (600-1000*t)^4 +
+    (16505040674742998455000000000000000000000 : ℝ) * (1000*t-541)^11 * (600-1000*t)^3 +
+    (5365076547094004500000000000000000000000 : ℝ) * (1000*t-541)^12 * (600-1000*t)^2 +
+    (1091838300715612500000000000000000000000 : ℝ) * (1000*t-541)^13 * (600-1000*t)^1 +
+    (105350456420000000000000000000000000000 : ℝ) * (1000*t-541)^14 * (600-1000*t)^0 := by positivity
+  nlinarith only [hid, hnon]
+
+theorem P_nonneg_2 {t : ℝ}
+    (ha : (3 / 5 : ℝ) ≤ t) (hb : t ≤ 1) :
+    0 ≤ P t := by
+  have hx : 0 ≤ 5*t-3 := by linarith
+  have hy : 0 ≤ 5-5*t := by linarith
+  have hid : (50000000000000 : ℝ) * P t =
+    (21070091284 : ℝ) * (5*t-3)^0 * (5-5*t)^14 +
+    (814395636165 : ℝ) * (5*t-3)^1 * (5-5*t)^13 +
+    (15638522649125 : ℝ) * (5*t-3)^2 * (5-5*t)^12 +
+    (197875680587750 : ℝ) * (5*t-3)^3 * (5-5*t)^11 +
+    (1738751880296250 : ℝ) * (5*t-3)^4 * (5-5*t)^10 +
+    (10499141885084375 : ℝ) * (5*t-3)^5 * (5-5*t)^9 +
+    (43305986699484375 : ℝ) * (5*t-3)^6 * (5-5*t)^8 +
+    (123317604936562500 : ℝ) * (5*t-3)^7 * (5-5*t)^7 +
+    (245694438175000000 : ℝ) * (5*t-3)^8 * (5-5*t)^6 +
+    (344833392701171875 : ℝ) * (5*t-3)^9 * (5-5*t)^5 +
+    (339366668701171875 : ℝ) * (5*t-3)^10 * (5-5*t)^4 +
+    (229364686621093750 : ℝ) * (5*t-3)^11 * (5-5*t)^3 +
+    (101562059082031250 : ℝ) * (5*t-3)^12 * (5-5*t)^2 +
+    (26618551025390625 : ℝ) * (5*t-3)^13 * (5-5*t)^1 +
+    (3148590087890625 : ℝ) * (5*t-3)^14 * (5-5*t)^0 := by
+    dsimp [P]
+    ring
+  have hnon : 0 ≤
+    (21070091284 : ℝ) * (5*t-3)^0 * (5-5*t)^14 +
+    (814395636165 : ℝ) * (5*t-3)^1 * (5-5*t)^13 +
+    (15638522649125 : ℝ) * (5*t-3)^2 * (5-5*t)^12 +
+    (197875680587750 : ℝ) * (5*t-3)^3 * (5-5*t)^11 +
+    (1738751880296250 : ℝ) * (5*t-3)^4 * (5-5*t)^10 +
+    (10499141885084375 : ℝ) * (5*t-3)^5 * (5-5*t)^9 +
+    (43305986699484375 : ℝ) * (5*t-3)^6 * (5-5*t)^8 +
+    (123317604936562500 : ℝ) * (5*t-3)^7 * (5-5*t)^7 +
+    (245694438175000000 : ℝ) * (5*t-3)^8 * (5-5*t)^6 +
+    (344833392701171875 : ℝ) * (5*t-3)^9 * (5-5*t)^5 +
+    (339366668701171875 : ℝ) * (5*t-3)^10 * (5-5*t)^4 +
+    (229364686621093750 : ℝ) * (5*t-3)^11 * (5-5*t)^3 +
+    (101562059082031250 : ℝ) * (5*t-3)^12 * (5-5*t)^2 +
+    (26618551025390625 : ℝ) * (5*t-3)^13 * (5-5*t)^1 +
+    (3148590087890625 : ℝ) * (5*t-3)^14 * (5-5*t)^0 := by positivity
+  nlinarith only [hid, hnon]
+
+theorem P_nonneg {t : ℝ} (ha : (27/50 : ℝ) ≤ t) (hb : t ≤ 1) :
+    0 ≤ P t := by
+  by_cases h1 : t ≤ (541/1000 : ℝ)
+  · exact P_nonneg_0 ha h1
+  · have h1' : (541/1000 : ℝ) ≤ t := le_of_lt (lt_of_not_ge h1)
+    by_cases h2 : t ≤ (3/5 : ℝ)
+    · exact P_nonneg_1 h1' h2
+    · exact P_nonneg_2 (le_of_lt (lt_of_not_ge h2)) hb
+
+theorem R_order {t z q : ℝ} (hz0 : 0 ≤ z) (hq0 : 0 ≤ q)
+    (hz1 : z ≤ 1) (hq1 : q ≤ 1) (hzq : z < q)
+    (hr : 0 ≤ R t z) : 0 < R t q := by
+  have hd := D_pos hz0 hz1
+  have hq := D_pos hq0 hq1
+  have hz' : 0 ≤ 1-z := sub_nonneg.mpr hz1
+  have hq' : 0 ≤ 1-q := sub_nonneg.mpr hq1
+  have hE : 0 < 15 + (1-z)*(1-q)*(20+6*(z+q)) := by positivity
+  have hid : D z * R t q - D q * R t z =
+      (q-z)*(D z * D q + 105*(15+(1-z)*(1-q)*(20+6*(z+q)))) := by
+    dsimp [R,D]
+    ring
+  have hprod : 0 <
+      (q-z)*(D z * D q + 105*(15+(1-z)*(1-q)*(20+6*(z+q)))) := by
+    exact mul_pos (sub_pos.mpr hzq) (add_pos (mul_pos hd hq) (mul_pos (by norm_num) hE))
+  have hqr : 0 ≤ D q * R t z := mul_nonneg (le_of_lt hq) hr
+  have : 0 < D z * R t q := by linarith
+  exact pos_of_mul_pos_right this (le_of_lt hd)
+
+theorem scalar_lower {t z : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1)
+    (hz0 : 0 ≤ z) (hz1 : z ≤ 1) (hr : 0 ≤ R t z) :
+    0 ≤ F t z := by
+  by_contra hf
+  have hfn : F t z < 0 := lt_of_not_ge hf
+  have hone : 0 ≤ F t 1 := by
+    have hid : F t 1 = (2*t-1)^2*(12*t^2+4*t+1) := by
+      dsimp [F]
+      ring
+    rw [hid]
+    positivity
+  have hb : 0 < 24*t^2-7 := by
+    by_contra hbn
+    have hbn' : 24*t^2-7 ≤ 0 := le_of_not_gt hbn
+    have hm : 0 ≤ (z-1)*(24*t^2-7) :=
+      mul_nonneg_of_nonpos_of_nonpos (sub_nonpos.mpr hz1) hbn'
+    have hid : F t z = F t 1 + (z-1)*(24*t^2-7) := by
+      dsimp [F]
+      ring
+    linarith
+  let q : ℝ := -(48*t^4-32*t^3-24*t^2+8)/(24*t^2-7)
+  have hroot : F t q = 0 := by
+    dsimp [F,q]
+    field_simp [ne_of_gt hb]
+    ring
+  have hdiff : F t z = (z-q)*(24*t^2-7) := by
+    dsimp [F] at hroot ⊢
+    nlinarith only [hroot]
+  have hzq : z < q := by
+    nlinarith only [hdiff, hfn, hb]
+  have hq0 : 0 ≤ q := le_trans hz0 (le_of_lt hzq)
+  have hdiff1 : F t 1 = (1-q)*(24*t^2-7) := by
+    dsimp [F] at hroot ⊢
+    nlinarith only [hroot]
+  have hq1 : q ≤ 1 := by
+    nlinarith only [hdiff1, hone, hb]
+  have htl : (27/50 : ℝ) ≤ t := by
+    by_contra hn
+    have hn' : t < (27/50 : ℝ) := lt_of_not_ge hn
+    have hh : 0 < ((27/50 : ℝ)-t)*((27/50 : ℝ)+t) :=
+      mul_pos (sub_pos.mpr hn') (by linarith)
+    nlinarith only [hh,hb]
+  have hp : 0 ≤ P t := P_nonneg htl ht1
+  have hid : (24*t^2-7)^4 * R t q = 2*(t-1)*P t := by
+    dsimp [q,R,D,P]
+    field_simp [ne_of_gt hb]
+    ring
+  have hrq : 0 < R t q := R_order hz0 hq0 hz1 hq1 hzq hr
+  have hleft : 0 < (24*t^2-7)^4 * R t q := mul_pos (pow_pos hb 4) hrq
+  have hright : 2*(t-1)*P t ≤ 0 :=
+    mul_nonpos_of_nonpos_of_nonneg (by linarith) hp
+  linarith only [hid,hleft,hright]
+
+theorem skewness_scalar_bound {t z p3 : ℝ}
+    (ht0 : 0 ≤ t) (ht1 : t ≤ 1) (hz0 : 0 < z) (hz1 : z ≤ 1)
+    (hr : 0 ≤ R t z) (hp3 : p3 ≤ t^3) :
+    -(1/16 : ℝ) ≤
+      (3*t^4-2*p3+(1-z)*((1/2 : ℝ)-(3/2 : ℝ)*t^2))/z := by
+  apply (le_div_iff₀ hz0).mpr
+  have hh := scalar_lower ht0 ht1 (le_of_lt hz0) hz1 hr
+  dsimp [F] at hh
+  nlinarith only [hh,hp3]
+
+#print axioms UnicyclicScalar.scalar_lower
+#print axioms UnicyclicScalar.skewness_scalar_bound
+
+end
+end UnicyclicScalar
+
+end CheckedModule0
+
+/- proof/LogRelaxation.lean; SHA256 828a4fd8eeb3e2e3ef3ced7b1e1c1f20976862ee8bea7bc7b64d6c24eac5bc4a -/
+section CheckedModule1
+
+/-! An analytic auxiliary lemma, not a formalization of the Markov theorem. -/
+namespace UnicyclicLog
+noncomputable section
+set_option maxHeartbeats 1000000
+
+def gap (r : ℝ) : ℝ :=
+  2*r + (2/3 : ℝ)*r^3 + (2/5 : ℝ)*r^5 +
+    2*r^7/(7*(1-r^2)) - Real.log (1+r) + Real.log (1-r)
+
+theorem gap_deriv {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
+    HasDerivAt gap (4*r^8/(7*(1-r^2)^2)) r := by
+  have hp : 0 < 1+r := by linarith
+  have hm : 0 < 1-r := by linarith
+  have hsq : 0 < 1-r^2 := by nlinarith
+  have hd : 7*(1-r^2) ≠ 0 := ne_of_gt (mul_pos (by norm_num) hsq)
+  have hi := hasDerivAt_id r
+  have hd' : HasDerivAt (fun x : ℝ => 7*(1-x^2)) (-14*r) r := by
+    convert (((hasDerivAt_const r (1 : ℝ)).sub (hi.pow 2)).const_mul 7) using 1 ;
+      simp only [id_eq] ; ring
+  have hq := ((hi.pow 7).const_mul 2).div hd' hd
+  have hlp := (hi.const_add 1).log (ne_of_gt hp)
+  have hlm := ((hasDerivAt_const r (1 : ℝ)).sub hi).log (ne_of_gt hm)
+  have ht := (((((hi.const_mul 2).add ((hi.pow 3).const_mul (2/3 : ℝ))).add
+    ((hi.pow 5).const_mul (2/5 : ℝ))).add hq).sub hlp).add hlm
+  convert ht using 1 ; simp only [id_eq] ;
+    field_simp [ne_of_gt hp, ne_of_gt hm, ne_of_gt hsq] ; ring
+
+theorem gap_nonneg {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) : 0 ≤ gap r := by
+  have hh : ∀ x ∈ Set.Icc (0 : ℝ) r,
+      HasDerivAt gap (4*x^8/(7*(1-x^2)^2)) x := by
+    intro x hx
+    exact gap_deriv hx.1 (lt_of_le_of_lt hx.2 hr1)
+  have hc : ContinuousOn gap (Set.Icc (0 : ℝ) r) := by
+    intro x hx
+    exact (hh x hx).continuousAt.continuousWithinAt
+  have hm : MonotoneOn gap (Set.Icc (0 : ℝ) r) :=
+    monotoneOn_of_hasDerivWithinAt_nonneg (convex_Icc 0 r) hc
+      (fun x hx => (hh x (interior_subset hx)).hasDerivWithinAt)
+      (fun x _ => by positivity)
+  have h := hm ⟨le_rfl, hr0⟩ ⟨hr0, le_rfl⟩ hr0
+  simpa [gap] using h
+
+theorem log_ratio_upper {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
+    Real.log ((1+r)/(1-r)) ≤
+      2*r+(2/3 : ℝ)*r^3+(2/5 : ℝ)*r^5+2*r^7/(7*(1-r^2)) := by
+  have hp : 1+r ≠ 0 := by linarith
+  have hm : 1-r ≠ 0 := by linarith
+  rw [Real.log_div hp hm]
+  have h := gap_nonneg hr0 hr1
+  dsimp [gap] at h
+  linarith
+
+#print axioms UnicyclicLog.log_ratio_upper
+end
+end UnicyclicLog
+
+end CheckedModule1
+
+/- proof/RationalReduction.lean; SHA256 a9f417adc31c569ca4b2a1bab2df6c73e1d75dd4d029ddab46ec686a2e259554 -/
+section CheckedModule2
+
+/-!
+The logarithmic uncertainty premise is explicit. This file does not assert
+that arbitrary Markov rates supply that premise or the spectral moments.
+-/
+namespace UnicyclicReduction
+noncomputable section
+set_option maxHeartbeats 1000000
+
+theorem rational_constraint {r t : ℝ} (hr0 : 0 < r) (hr1 : r < 1)
+    (htur : (1-r^2)/2 + r/Real.log ((1+r)/(1-r)) ≤ t^2) :
+    0 ≤ UnicyclicScalar.R t (r^2) := by
+  have hm : 0 < 1-r := by linarith
+  have hs : 0 < 1-r^2 := by nlinarith
+  have hz0 : 0 ≤ r^2 := sq_nonneg r
+  have hz1 : r^2 ≤ 1 := by nlinarith
+  have hd : 0 < UnicyclicScalar.D (r^2) := UnicyclicScalar.D_pos hz0 hz1
+  let L := Real.log ((1+r)/(1-r))
+  have hL : 0 < L := by
+    apply Real.log_pos
+    apply (one_lt_div hm).mpr
+    linarith
+  have hu := UnicyclicLog.log_ratio_upper (le_of_lt hr0) hr1
+  have heq :
+      2*r+(2/3 : ℝ)*r^3+(2/5 : ℝ)*r^5+2*r^7/(7*(1-r^2)) =
+        2*r*UnicyclicScalar.D (r^2)/(105*(1-r^2)) := by
+    dsimp [UnicyclicScalar.D]
+    field_simp [ne_of_gt hs]
+    ring
+  rw [heq] at hu
+  have hU : L * (105*(1-r^2)) ≤ 2*r*UnicyclicScalar.D (r^2) :=
+    (le_div_iff₀ (mul_pos (by norm_num) hs)).mp hu
+  have hT : 2*r ≤ L*(2*t^2-1+r^2) := by
+    have hdiv : r/L ≤ t^2-(1-r^2)/2 := by
+      change (1-r^2)/2 + r/L ≤ t^2 at htur
+      linarith only [htur]
+    have hh := (div_le_iff₀ hL).mp hdiv
+    nlinarith only [hh]
+  have hTD := mul_le_mul_of_nonneg_right hT (le_of_lt hd)
+  have hid : L * UnicyclicScalar.R t (r^2) =
+      L*(2*t^2-1+r^2)*UnicyclicScalar.D (r^2) - L*(105*(1-r^2)) := by
+    dsimp [UnicyclicScalar.R]
+    ring
+  have hh : 0 ≤ L * UnicyclicScalar.R t (r^2) := by
+    linarith only [hTD,hU,hid]
+  exact nonneg_of_mul_nonneg_right hh hL
+
+theorem lower_bound_from_log_uncertainty {r t p3 : ℝ}
+    (hr0 : 0 < r) (hr1 : r < 1) (ht0 : 0 ≤ t) (ht1 : t ≤ 1)
+    (htur : (1-r^2)/2 + r/Real.log ((1+r)/(1-r)) ≤ t^2)
+    (hp3 : p3 ≤ t^3) :
+    -(1/16 : ℝ) ≤
+      (3*t^4-2*p3+(1-r^2)*((1/2 : ℝ)-(3/2 : ℝ)*t^2))/(r^2) := by
+  exact UnicyclicScalar.skewness_scalar_bound ht0 ht1 (sq_pos_of_pos hr0)
+    (by nlinarith) (rational_constraint hr0 hr1 htur) hp3
+
+#print axioms lower_bound_from_log_uncertainty
+end
+end UnicyclicReduction
+
+end CheckedModule2
+
+/- proof/SimplexMoments.lean; SHA256 6908780184c50363b69e297ee108f686a99d9ca7f5d272b51c62e6a0161beb4f -/
+section CheckedModule3
+
+/-!
+Finite-simplex moment inequalities and the algebraic upper skewness bound.
+This file does not identify the scalar expression with a Markov-current
+cumulant; that spectral and probabilistic bridge is a separate obligation.
+-/
+
+namespace UnicyclicSimplex
+
+open scoped BigOperators
+
+variable {ι : Type*}
+
+theorem third_elementary_nonneg (s : Finset ι) (x : ι → ℝ)
+    (hx : ∀ i ∈ s, 0 ≤ x i) :
+    0 ≤ (∑ i ∈ s, x i)^3 -
+      3 * (∑ i ∈ s, x i) * (∑ i ∈ s, (x i)^2) +
+      2 * (∑ i ∈ s, (x i)^3) := by
+  classical
+  induction s using Finset.induction_on with
+  | empty => simp
+  | @insert a s ha ih =>
+    have hxs : ∀ i ∈ s, 0 ≤ x i := fun i hi => hx i (Finset.mem_insert_of_mem hi)
+    have hxa : 0 ≤ x a := hx a (Finset.mem_insert_self a s)
+    have hprev := ih hxs
+    have hsq := Finset.sum_sq_le_sq_sum_of_nonneg hxs
+    have hprod : 0 ≤ 3 * x a *
+        ((∑ i ∈ s, x i)^2 - ∑ i ∈ s, (x i)^2) := by
+      exact mul_nonneg (by positivity) (sub_nonneg.mpr hsq)
+    simp only [Finset.sum_insert ha]
+    nlinarith only [hprev, hprod]
+
+theorem simplex_second_moment_le_one (s : Finset ι) (x : ι → ℝ)
+    (hx : ∀ i ∈ s, 0 ≤ x i) (hsum : ∑ i ∈ s, x i = 1) :
+    (∑ i ∈ s, (x i)^2) ≤ 1 := by
+  have h := Finset.sum_sq_le_sq_sum_of_nonneg hx
+  simpa only [hsum, one_pow] using h
+
+theorem simplex_third_relation (s : Finset ι) (x : ι → ℝ)
+    (hx : ∀ i ∈ s, 0 ≤ x i) (hsum : ∑ i ∈ s, x i = 1) :
+    0 ≤ 1 - 3 * (∑ i ∈ s, (x i)^2) + 2 * (∑ i ∈ s, (x i)^3) := by
+  simpa only [hsum, one_pow, mul_one] using third_elementary_nonneg s x hx
+
+theorem sum_cubes_le_sqrt_second_cube (s : Finset ι) (x : ι → ℝ)
+    (t : ℝ) (ht : 0 ≤ t) (hx : ∀ i ∈ s, 0 ≤ x i)
+    (htsq : ∑ i ∈ s, (x i)^2 = t^2) :
+    (∑ i ∈ s, (x i)^3) ≤ t^3 := by
+  have hpoint : ∀ i ∈ s, (x i)^3 ≤ t * (x i)^2 := by
+    intro i hi
+    have hxi := hx i hi
+    have hsqi : (x i)^2 ≤ t^2 := by
+      rw [← htsq]
+      exact Finset.single_le_sum (fun j _ => sq_nonneg (x j)) hi
+    have hle : x i ≤ t := by nlinarith
+    have hmul := mul_le_mul_of_nonneg_right hle (sq_nonneg (x i))
+    nlinarith only [hmul]
+  calc
+    (∑ i ∈ s, (x i)^3) ≤ ∑ i ∈ s, t * (x i)^2 :=
+      Finset.sum_le_sum hpoint
+    _ = t * ∑ i ∈ s, (x i)^2 := by rw [Finset.mul_sum]
+    _ = t^3 := by rw [htsq]; ring
+
+theorem skewness_upper_scalar (p2 p3 c2 : ℝ)
+    (hc2 : 0 ≤ c2) (hp2 : p2 ≤ 1)
+    (he3 : 0 ≤ 1 - 3*p2 + 2*p3)
+    (hvar : 0 ≤ (1-c2)/2 + p2*c2) :
+    c2 * (3*p2^2 - 2*p3) + (c2-1)*(1-3*p2)/2 ≤ 1 := by
+  let e2 := (1-p2)/2
+  have he2 : 0 ≤ e2 := by dsimp [e2]; linarith
+  have hbound : 4*c2*e2 ≤ c2+1 := by dsimp [e2]; nlinarith only [hvar]
+  have hprod := mul_le_mul_of_nonneg_right hbound he2
+  have he3prod := mul_nonneg hc2 he3
+  dsimp [e2] at hprod
+  nlinarith only [hprod, he3prod]
+
+theorem skewness_upper_simplex (s : Finset ι) (x : ι → ℝ) (c : ℝ)
+    (hx : ∀ i ∈ s, 0 ≤ x i) (hsum : ∑ i ∈ s, x i = 1)
+    (hvar : 0 ≤ (1-c^2)/2 + (∑ i ∈ s, (x i)^2)*c^2) :
+    c^2 * (3*(∑ i ∈ s, (x i)^2)^2 - 2*(∑ i ∈ s, (x i)^3)) +
+      (c^2-1)*(1-3*(∑ i ∈ s, (x i)^2))/2 ≤ 1 := by
+  exact skewness_upper_scalar _ _ _ (sq_nonneg c)
+    (simplex_second_moment_le_one s x hx hsum)
+    (simplex_third_relation s x hx hsum) hvar
+
+#print axioms third_elementary_nonneg
+#print axioms sum_cubes_le_sqrt_second_cube
+#print axioms skewness_upper_simplex
+
+end UnicyclicSimplex
+
+end CheckedModule3
+
+/- proof/SpectralMomentBound.lean; SHA256 c7b592c5af017d4269f8fd5f0e40e2f1576e9c7689c00f75a06b30089d21a503 -/
+section CheckedModule4
+
+/-!
+A fully quantified probability-vector theorem under an explicit logarithmic
+uncertainty premise. The Markov-rate-to-moment bridge is not asserted here.
+-/
+namespace UnicyclicMoments
+noncomputable section
+open scoped BigOperators
+set_option maxHeartbeats 1000000
+
+def skewness (p2 p3 r : ℝ) : ℝ :=
+  (3*p2^2-2*p3+(1-r^2)*(1-3*p2)/2)/(r^2)
+
+theorem spectral_skewness_interval {ι : Type*} (s : Finset ι) (x : ι → ℝ)
+    (r : ℝ) (hr0 : 0 < r) (hr1 : r < 1)
+    (hx : ∀ i ∈ s, 0 ≤ x i) (hsum : ∑ i ∈ s, x i = 1)
+    (htur : (1-r^2)/2+r/Real.log ((1+r)/(1-r)) ≤ ∑ i ∈ s, (x i)^2) :
+    -(1/16 : ℝ) ≤ skewness (∑ i ∈ s, (x i)^2) (∑ i ∈ s, (x i)^3) r ∧
+      skewness (∑ i ∈ s, (x i)^2) (∑ i ∈ s, (x i)^3) r ≤ 1 := by
+  let p2 := ∑ i ∈ s, (x i)^2
+  let p3 := ∑ i ∈ s, (x i)^3
+  have hp2 : 0 ≤ p2 := Finset.sum_nonneg (fun i _ => sq_nonneg (x i))
+  have hp21 : p2 ≤ 1 := UnicyclicSimplex.simplex_second_moment_le_one s x hx hsum
+  let t := Real.sqrt p2
+  have ht0 : 0 ≤ t := Real.sqrt_nonneg p2
+  have ht2 : t^2 = p2 := Real.sq_sqrt hp2
+  have ht1 : t ≤ 1 := by nlinarith only [ht2,hp21,ht0]
+  have hp3 : p3 ≤ t^3 :=
+    UnicyclicSimplex.sum_cubes_le_sqrt_second_cube s x t ht0 hx ht2.symm
+  have htur' : (1-r^2)/2+r/Real.log ((1+r)/(1-r)) ≤ t^2 := by
+    rw [ht2]
+    exact htur
+  have hlower := UnicyclicReduction.lower_bound_from_log_uncertainty
+    hr0 hr1 ht0 ht1 htur' hp3
+  have heq_lower :
+      (3*t^4-2*p3+(1-r^2)*((1/2 : ℝ)-(3/2 : ℝ)*t^2))/(r^2) =
+        skewness p2 p3 r := by
+    dsimp [skewness]
+    have h4 : t^4 = p2^2 := by
+      calc
+        t^4 = (t^2)^2 := by ring
+        _ = p2^2 := by rw [ht2]
+    rw [h4,ht2]
+    ring
+  rw [heq_lower] at hlower
+  have hm : 0 < 1-r := by linarith
+  have hL : 0 < Real.log ((1+r)/(1-r)) := by
+    apply Real.log_pos
+    apply (one_lt_div hm).mpr
+    linarith
+  have hc : 0 ≤ r/Real.log ((1+r)/(1-r)) := le_of_lt (div_pos hr0 hL)
+  have hv : 0 ≤ p2-(1-r^2)/2 := by
+    change (1-r^2)/2+r/Real.log ((1+r)/(1-r)) ≤ p2 at htur
+    linarith only [htur,hc]
+  have hvar : 0 ≤ (1-(1/r)^2)/2+p2*(1/r)^2 := by
+    have heq : (1-(1/r)^2)/2+p2*(1/r)^2 = (p2-(1-r^2)/2)/(r^2) := by
+      field_simp [ne_of_gt hr0]
+      ring
+    rw [heq]
+    exact div_nonneg hv (sq_nonneg r)
+  have hupper := UnicyclicSimplex.skewness_upper_simplex s x (1/r) hx hsum hvar
+  have heq_upper :
+      (1/r)^2*(3*p2^2-2*p3)+((1/r)^2-1)*(1-3*p2)/2 = skewness p2 p3 r := by
+    dsimp [skewness]
+    field_simp [ne_of_gt hr0]
+    ring
+  change (1/r)^2*(3*p2^2-2*p3)+((1/r)^2-1)*(1-3*p2)/2 ≤ 1 at hupper
+  rw [heq_upper] at hupper
+  exact ⟨hlower,hupper⟩
+
+#print axioms spectral_skewness_interval
+end
+end UnicyclicMoments
+
+end CheckedModule4
+
+/- proof/ProductCoefficients.lean; SHA256 c7c0782d78e9d2dc08920dd5d95b827f066acc6542f3dbae2f25420caa326509 -/
+section CheckedModule5
+
+/-! Exact first three coefficients of a finite product of linear factors. -/
+
+namespace UnicyclicProduct
+
+open scoped BigOperators
+open Polynomial
+
+variable {ι : Type*}
+
+noncomputable def linearProduct (s : Finset ι) (x : ι → ℝ) : Polynomial ℝ :=
+  ∏ i ∈ s, (1 + C (x i) * X)
+
+theorem linear_mul_coeff_zero (a : ℝ) (P : Polynomial ℝ) :
+    ((1+C a*X)*P).coeff 0 = P.coeff 0 := by
+  simp [add_mul, mul_assoc, coeff_C_mul]
+
+theorem linear_mul_coeff_succ (a : ℝ) (P : Polynomial ℝ) (n : ℕ) :
+    ((1+C a*X)*P).coeff (n+1) = P.coeff (n+1) + a*P.coeff n := by
+  simp [add_mul, mul_assoc, coeff_C_mul, coeff_X_mul]
+
+theorem linearProduct_coefficients (s : Finset ι) (x : ι → ℝ) :
+    (linearProduct s x).coeff 0 = 1 ∧
+    (linearProduct s x).coeff 1 = ∑ i ∈ s, x i ∧
+    2*(linearProduct s x).coeff 2 =
+      (∑ i ∈ s, x i)^2 - ∑ i ∈ s, (x i)^2 ∧
+    6*(linearProduct s x).coeff 3 =
+      (∑ i ∈ s, x i)^3 - 3*(∑ i ∈ s, x i)*(∑ i ∈ s, (x i)^2) +
+        2*(∑ i ∈ s, (x i)^3) := by
+  classical
+  induction s using Finset.induction_on with
+  | empty => simp [linearProduct, coeff_one]
+  | @insert a s ha ih =>
+    obtain ⟨h0,h1,h2,h3⟩ := ih
+    have hp : linearProduct (insert a s) x =
+        (1+C (x a)*X)*linearProduct s x := by
+      simp [linearProduct, Finset.prod_insert ha]
+    rw [hp]
+    simp only [linear_mul_coeff_zero, linear_mul_coeff_succ,
+      Finset.sum_insert ha]
+    norm_num only [Nat.reduceAdd]
+    refine ⟨h0, ?_, ?_, ?_⟩
+    · rw [h0, h1]
+      ring
+    · rw [h1]
+      nlinarith only [h2]
+    · have hm := congrArg (fun r : ℝ => 3*x a*r) h2
+      dsimp at hm
+      nlinarith only [h3, hm]
+
+theorem normalized_linearProduct_coefficients (s : Finset ι) (x : ι → ℝ)
+    (hsum : ∑ i ∈ s, x i = 1) :
+    (linearProduct s x).coeff 1 = 1 ∧
+    (linearProduct s x).coeff 2 = (1-∑ i ∈ s, (x i)^2)/2 ∧
+    (linearProduct s x).coeff 3 =
+      (1-3*(∑ i ∈ s, (x i)^2)+2*(∑ i ∈ s, (x i)^3))/6 := by
+  obtain ⟨_,h1,h2,h3⟩ := linearProduct_coefficients s x
+  rw [hsum] at h1 h2 h3
+  norm_num at h2 h3
+  refine ⟨h1, ?_, ?_⟩
+  · linarith only [h2]
+  · linarith only [h3]
+
+#print axioms linearProduct_coefficients
+#print axioms normalized_linearProduct_coefficients
+
+end UnicyclicProduct
+
+end CheckedModule5
+
+/- proof/SpectralCoefficients.lean; SHA256 e968b960649a1400c6e887f5361010868ed209f51ea8946b5e311df7a9d1d00c -/
+section CheckedModule6
+
+/-!
+Conversion of a positive-spectrum factorization into characteristic
+coefficients. This is a polynomial theorem. The matrix factorization itself
+is not assumed as a definition and must be supplied by the matrix proof.
+-/
+
+namespace UnicyclicProduct
+
+open scoped BigOperators
+open Polynomial
+
+variable {ι : Type*}
+
+noncomputable def shiftedProduct (s : Finset ι) (theta : ι → ℝ) : Polynomial ℝ :=
+  ∏ i ∈ s, (X+C (theta i))
+
+theorem shiftedProduct_factorization (s : Finset ι) (theta : ι → ℝ)
+    (htheta : ∀ i ∈ s, theta i ≠ 0) :
+    shiftedProduct s theta =
+      C (∏ i ∈ s, theta i) * linearProduct s (fun i => 1/theta i) := by
+  have hpoint : ∀ i ∈ s,
+      X+C (theta i) = C (theta i)*(1+C (1/theta i)*X) := by
+    intro i hi
+    have hprod : C (theta i)*C (1/theta i) = (1 : Polynomial ℝ) := by
+      rw [← map_mul]
+      simp [one_div, htheta i hi]
+    rw [mul_add, mul_one, ← mul_assoc, hprod, one_mul]
+    ring
+  dsimp [shiftedProduct, linearProduct]
+  calc
+    (∏ i ∈ s, (X+C (theta i))) =
+        ∏ i ∈ s, C (theta i)*(1+C (1/theta i)*X) := Finset.prod_congr rfl hpoint
+    _ = (∏ i ∈ s, C (theta i)) * (∏ i ∈ s, (1+C (1/theta i)*X)) :=
+      Finset.prod_mul_distrib
+    _ = C (∏ i ∈ s, theta i) * (∏ i ∈ s, (1+C (1/theta i)*X)) := by
+      rw [map_prod]
+
+theorem characteristic_coefficients_from_spectrum
+    (s : Finset ι) (theta : ι → ℝ) (P : Polynomial ℝ) (d : ℝ)
+    (htheta : ∀ i ∈ s, theta i ≠ 0)
+    (hd : d = ∏ i ∈ s, theta i)
+    (hfactor : P+C d = shiftedProduct s theta) :
+    P.coeff 1 = d*(∑ i ∈ s, 1/theta i) ∧
+    P.coeff 2 = d*((∑ i ∈ s, 1/theta i)^2 - ∑ i ∈ s, (1/theta i)^2)/2 ∧
+    P.coeff 3 = d*((∑ i ∈ s, 1/theta i)^3 -
+      3*(∑ i ∈ s, 1/theta i)*(∑ i ∈ s, (1/theta i)^2) +
+      2*(∑ i ∈ s, (1/theta i)^3))/6 := by
+  have hid : P+C d = C d * linearProduct s (fun i => 1/theta i) := by
+    rw [hfactor, shiftedProduct_factorization s theta htheta, ← hd]
+  have hc1 := congrArg (fun Q : Polynomial ℝ => Q.coeff 1) hid
+  have hc2 := congrArg (fun Q : Polynomial ℝ => Q.coeff 2) hid
+  have hc3 := congrArg (fun Q : Polynomial ℝ => Q.coeff 3) hid
+  norm_num [coeff_add, coeff_C, coeff_C_mul] at hc1 hc2 hc3
+  obtain ⟨_,h1,h2,h3⟩ := linearProduct_coefficients s (fun i => 1/theta i)
+  simp only [one_div] at h1 h2 h3 ⊢
+  refine ⟨?_, ?_, ?_⟩
+  · rw [h1] at hc1
+    exact hc1
+  · have hm := congrArg (fun r : ℝ => d*r) h2
+    dsimp at hm
+    rw [hc2]
+    nlinarith only [hm]
+  · have hm := congrArg (fun r : ℝ => d*r) h3
+    dsimp at hm
+    rw [hc3]
+    nlinarith only [hm]
+
+theorem normalized_characteristic_coefficients_from_spectrum
+    (s : Finset ι) (theta : ι → ℝ) (P : Polynomial ℝ) (d T : ℝ)
+    (htheta : ∀ i ∈ s, theta i ≠ 0)
+    (hd : d = ∏ i ∈ s, theta i)
+    (hfactor : P+C d = shiftedProduct s theta)
+    (hT : T = ∑ i ∈ s, 1/theta i) (hTnz : T ≠ 0) :
+    P.coeff 1 = d*T ∧
+    P.coeff 2 = d*T^2*(1-∑ i ∈ s, ((1/theta i)/T)^2)/2 ∧
+    P.coeff 3 = d*T^3*(1-3*(∑ i ∈ s, ((1/theta i)/T)^2) +
+      2*(∑ i ∈ s, ((1/theta i)/T)^3))/6 := by
+  obtain ⟨h1,h2,h3⟩ := characteristic_coefficients_from_spectrum
+    s theta P d htheta hd hfactor
+  have hm2 : (∑ i ∈ s, ((1/theta i)/T)^2) =
+      (∑ i ∈ s, (1/theta i)^2)/T^2 := by
+    simp_rw [div_pow]
+    rw [Finset.sum_div]
+  have hm3 : (∑ i ∈ s, ((1/theta i)/T)^3) =
+      (∑ i ∈ s, (1/theta i)^3)/T^3 := by
+    simp_rw [div_pow]
+    rw [Finset.sum_div]
+  rw [← hT] at h1 h2 h3
+  refine ⟨h1, ?_, ?_⟩
+  · rw [h2, hm2]
+    field_simp
+    ring
+  · rw [h3, hm2, hm3]
+    field_simp
+    ring
+
+#print axioms shiftedProduct_factorization
+#print axioms characteristic_coefficients_from_spectrum
+#print axioms normalized_characteristic_coefficients_from_spectrum
+
+end UnicyclicProduct
+
+end CheckedModule6
+
+/- proof/CumulantAlgebra.lean; SHA256 81f20d38bc87e43e1d0026c49832209284053d562a4e423e3a89eb77d5889c58 -/
+section CheckedModule7
+
+/-!
+Algebra of the first three winding-current cumulants.
+
+If P(s) = a1*s + a2*s^2 + a3*s^3 + ... is the characteristic
+polynomial at zero tilt, implicit differentiation of
+P(lambda(k)) = U*(exp(k)-1) + V*(exp(-k)-1)
+gives the three displayed equations proved here for the explicit definitions.
+
+This file verifies their algebraic consequences. It does NOT prove that a
+given Markov generator has this tilted characteristic polynomial, nor does
+it prove the spectral coefficient assumptions from the transition rates.
+-/
+
+namespace UnicyclicCumulant
+
+noncomputable section
+
+def first (a1 U V : ℝ) : ℝ := (U-V)/a1
+
+def second (a1 a2 U V : ℝ) : ℝ :=
+  ((U+V) - 2*a2*(first a1 U V)^2)/a1
+
+def third (a1 a2 a3 U V : ℝ) : ℝ :=
+  ((U-V) - 6*a2*(first a1 U V)*(second a1 a2 U V) -
+    6*a3*(first a1 U V)^3)/a1
+
+theorem first_equation (a1 U V : ℝ) (ha1 : a1 ≠ 0) :
+    a1 * first a1 U V = U-V := by
+  dsimp [first]
+  field_simp
+
+theorem second_equation (a1 a2 U V : ℝ) (ha1 : a1 ≠ 0) :
+    a1 * second a1 a2 U V + 2*a2*(first a1 U V)^2 = U+V := by
+  dsimp [second]
+  rw [mul_div_cancel₀ _ ha1]
+  ring
+
+theorem third_equation (a1 a2 a3 U V : ℝ) (ha1 : a1 ≠ 0) :
+    a1 * third a1 a2 a3 U V +
+      6*a2*(first a1 U V)*(second a1 a2 U V) +
+      6*a3*(first a1 U V)^3 = U-V := by
+  dsimp [third]
+  rw [mul_div_cancel₀ _ ha1]
+  ring
+
+theorem scaled_cumulant_reduction
+    (a1 a2 a3 U V d T c p2 p3 C1 C2 C3 : ℝ)
+    (hd : d ≠ 0)
+    (ha1 : a1 = d*T)
+    (ha2 : a2 = d*T^2*(1-p2)/2)
+    (ha3 : a3 = d*T^3*(1-3*p2+2*p3)/6)
+    (hminus : U-V = d*c)
+    (hplus : U+V = d*(c^2+1)/2)
+    (h1 : a1*C1 = U-V)
+    (h2 : a1*C2 + 2*a2*C1^2 = U+V)
+    (h3 : a1*C3 + 6*a2*C1*C2 + 6*a3*C1^3 = U-V) :
+    T*C1 = c ∧
+    T*C2 = (1-c^2)/2 + p2*c^2 ∧
+    T*C3 = c*(c^2*(3*p2^2-2*p3) + (c^2-1)*(1-3*p2)/2) := by
+  have hC1 : T*C1 = c := by
+    apply mul_left_cancel₀ hd
+    calc
+      d*(T*C1) = a1*C1 := by rw [ha1]; ring
+      _ = U-V := h1
+      _ = d*c := hminus
+  have hC2sum : T*C2 + (1-p2)*c^2 = (c^2+1)/2 := by
+    apply mul_left_cancel₀ hd
+    calc
+      d*(T*C2 + (1-p2)*c^2) = a1*C2 + 2*a2*C1^2 := by
+        rw [ha1, ha2, ← hC1]
+        ring
+      _ = U+V := h2
+      _ = d*((c^2+1)/2) := by rw [hplus]; ring
+  have hC2 : T*C2 = (1-c^2)/2 + p2*c^2 := by linarith only [hC2sum]
+  have hC3sum : T*C3 + 3*(1-p2)*c*((1-c^2)/2+p2*c^2) +
+      (1-3*p2+2*p3)*c^3 = c := by
+    apply mul_left_cancel₀ hd
+    calc
+      d*(T*C3 + 3*(1-p2)*c*((1-c^2)/2+p2*c^2) +
+          (1-3*p2+2*p3)*c^3) =
+          a1*C3 + 6*a2*C1*C2 + 6*a3*C1^3 := by
+        rw [ha1, ha2, ha3, ← hC2, ← hC1]
+        ring
+      _ = U-V := h3
+      _ = d*c := hminus
+  refine ⟨hC1, hC2, ?_⟩
+  nlinarith only [hC3sum]
+
+theorem cumulant_ratio_reduction
+    (a1 a2 a3 U V d T c p2 p3 C1 C2 C3 : ℝ)
+    (hd : d ≠ 0) (hT : T ≠ 0) (hc : c ≠ 0)
+    (ha1 : a1 = d*T)
+    (ha2 : a2 = d*T^2*(1-p2)/2)
+    (ha3 : a3 = d*T^3*(1-3*p2+2*p3)/6)
+    (hminus : U-V = d*c)
+    (hplus : U+V = d*(c^2+1)/2)
+    (h1 : a1*C1 = U-V)
+    (h2 : a1*C2 + 2*a2*C1^2 = U+V)
+    (h3 : a1*C3 + 6*a2*C1*C2 + 6*a3*C1^3 = U-V) :
+    C2/C1 = c*p2 - (c^2-1)/(2*c) ∧
+    C3/C1 = c^2*(3*p2^2-2*p3) + (c^2-1)*(1-3*p2)/2 := by
+  obtain ⟨hC1, hC2, hC3⟩ := scaled_cumulant_reduction
+    a1 a2 a3 U V d T c p2 p3 C1 C2 C3 hd ha1 ha2 ha3
+    hminus hplus h1 h2 h3
+  have hC1nz : C1 ≠ 0 := by
+    intro hz
+    rw [hz, mul_zero] at hC1
+    exact hc hC1.symm
+  constructor
+  · have hratio : C2/C1 = ((1-c^2)/2+p2*c^2)/c := by
+      apply (div_eq_div_iff hC1nz hc).2
+      calc
+        C2*c = C2*(T*C1) := by rw [hC1]
+        _ = (T*C2)*C1 := by ring
+        _ = ((1-c^2)/2+p2*c^2)*C1 := by rw [hC2]
+    rw [hratio]
+    field_simp
+    ring
+  · apply (div_eq_iff hC1nz).2
+    apply mul_left_cancel₀ hT
+    calc
+      T*C3 = c*(c^2*(3*p2^2-2*p3) + (c^2-1)*(1-3*p2)/2) := hC3
+      _ = T*((c^2*(3*p2^2-2*p3) + (c^2-1)*(1-3*p2)/2)*C1) := by
+        rw [← hC1]
+        ring
+
+theorem explicit_cumulant_ratio_reduction
+    (a1 a2 a3 U V d T c p2 p3 : ℝ)
+    (hd : d ≠ 0) (hT : T ≠ 0) (hc : c ≠ 0)
+    (ha1 : a1 = d*T)
+    (ha2 : a2 = d*T^2*(1-p2)/2)
+    (ha3 : a3 = d*T^3*(1-3*p2+2*p3)/6)
+    (hminus : U-V = d*c)
+    (hplus : U+V = d*(c^2+1)/2) :
+    second a1 a2 U V / first a1 U V = c*p2 - (c^2-1)/(2*c) ∧
+    third a1 a2 a3 U V / first a1 U V =
+      c^2*(3*p2^2-2*p3) + (c^2-1)*(1-3*p2)/2 := by
+  have ha1nz : a1 ≠ 0 := by rw [ha1]; exact mul_ne_zero hd hT
+  exact cumulant_ratio_reduction a1 a2 a3 U V d T c p2 p3
+    (first a1 U V) (second a1 a2 U V) (third a1 a2 a3 U V)
+    hd hT hc ha1 ha2 ha3 hminus hplus
+    (first_equation a1 U V ha1nz)
+    (second_equation a1 a2 U V ha1nz)
+    (third_equation a1 a2 a3 U V ha1nz)
+
+#print axioms scaled_cumulant_reduction
+#print axioms explicit_cumulant_ratio_reduction
+
+end
+end UnicyclicCumulant
+
+end CheckedModule7
+
+/- proof/SpectralPolynomialBound.lean; SHA256 e0cfb37ef79b1bb4a089a7d273e7eb570d4a372637ed8cc261ab01e372d0dfd0 -/
+section CheckedModule8
+
+/-!
+The characteristic-polynomial bound, with a positive spectral shift and the
+thermodynamic uncertainty inequality explicit as hypotheses. This is not yet
+the arbitrary-rate Markov theorem: the separate matrix and corrector modules
+must supply these hypotheses from rates before that conclusion can be claimed.
+-/
+namespace UnicyclicPolynomial
+noncomputable section
+open scoped BigOperators
+open Polynomial UnicyclicCumulant
+set_option maxHeartbeats 2000000
+
+theorem bound_from_spectral_shift_and_uncertainty {ι : Type*}
+    (s : Finset ι) (hs : s.Nonempty) (theta : ι → ℝ)
+    (P : Polynomial ℝ) (a b : ℝ) (ha : 0 < a) (hb : 0 < b) (hba : b < a)
+    (hth : ∀ i ∈ s, 0 < theta i)
+    (hd : (a-b)^2 = ∏ i ∈ s, theta i)
+    (hfactor : P+C ((a-b)^2) = UnicyclicProduct.shiftedProduct s theta)
+    (htur : 1/Real.log (a/b) ≤
+      second (P.coeff 1) (P.coeff 2) (a^2) (b^2) /
+        first (P.coeff 1) (a^2) (b^2)) :
+    -(1/16 : ℝ) ≤
+      third (P.coeff 1) (P.coeff 2) (P.coeff 3) (a^2) (b^2) /
+        first (P.coeff 1) (a^2) (b^2) ∧
+      third (P.coeff 1) (P.coeff 2) (P.coeff 3) (a^2) (b^2) /
+        first (P.coeff 1) (a^2) (b^2) ≤ 1 := by
+  let T := ∑ i ∈ s, 1/theta i
+  have hT : 0 < T := Finset.sum_pos (fun i hi => one_div_pos.mpr (hth i hi)) hs
+  let x := fun i => (1/theta i)/T
+  let p2 := ∑ i ∈ s, (x i)^2
+  let p3 := ∑ i ∈ s, (x i)^3
+  let d := (a-b)^2
+  let c := (a+b)/(a-b)
+  let r := (a-b)/(a+b)
+  have hab : 0 < a+b := by linarith
+  have hdiff : 0 < a-b := sub_pos.mpr hba
+  have hd0 : d ≠ 0 := ne_of_gt (sq_pos_of_pos hdiff)
+  have hc0 : c ≠ 0 := div_ne_zero (ne_of_gt hab) (ne_of_gt hdiff)
+  have hr0 : 0 < r := div_pos hdiff hab
+  have hr1 : r < 1 := by
+    apply (div_lt_one hab).mpr
+    linarith
+  have hcr : c = 1/r := by
+    dsimp [c,r]
+    field_simp
+  have hx : ∀ i ∈ s, 0 ≤ x i := by
+    intro i hi
+    exact le_of_lt (div_pos (one_div_pos.mpr (hth i hi)) hT)
+  have hsum : ∑ i ∈ s, x i = 1 := by
+    dsimp [x]
+    rw [← Finset.sum_div]
+    exact div_self (ne_of_gt hT)
+  obtain ⟨ha1,ha2,ha3⟩ := UnicyclicProduct.normalized_characteristic_coefficients_from_spectrum
+    s theta P d T (fun i hi => ne_of_gt (hth i hi)) hd hfactor rfl (ne_of_gt hT)
+  have hminus : a^2-b^2 = d*c := by
+    dsimp [d,c]
+    field_simp
+    ring
+  have hplus : a^2+b^2 = d*(c^2+1)/2 := by
+    dsimp [d,c]
+    field_simp
+    ring
+  obtain ⟨hF,hS⟩ := explicit_cumulant_ratio_reduction
+    (P.coeff 1) (P.coeff 2) (P.coeff 3) (a^2) (b^2) d T c p2 p3
+    hd0 (ne_of_gt hT) hc0 ha1 ha2 ha3 hminus hplus
+  have hF' : c*p2-(c^2-1)/(2*c) = (p2-(1-r^2)/2)/r := by
+    rw [hcr]
+    field_simp [ne_of_gt hr0]
+    ring
+  rw [hF,hF'] at htur
+  have heq : (1+r)/(1-r) = a/b := by
+    apply (div_eq_div_iff (ne_of_gt (sub_pos.mpr hr1)) (ne_of_gt hb)).mpr
+    dsimp [r]
+    field_simp
+    ring
+  have htur' : (1-r^2)/2+r/Real.log ((1+r)/(1-r)) ≤ p2 := by
+    rw [heq]
+    have h := (le_div_iff₀ hr0).mp htur
+    have he : 1/Real.log (a/b)*r = r/Real.log (a/b) := by ring
+    rw [he] at h
+    nlinarith only [h]
+  have hbounds := UnicyclicMoments.spectral_skewness_interval s x r hr0 hr1 hx hsum htur'
+  have hS' : c^2*(3*p2^2-2*p3)+(c^2-1)*(1-3*p2)/2 =
+      UnicyclicMoments.skewness p2 p3 r := by
+    rw [hcr]
+    dsimp [UnicyclicMoments.skewness]
+    field_simp [ne_of_gt hr0]
+    ring
+  rw [hS,hS']
+  exact hbounds
+
+#print axioms bound_from_spectral_shift_and_uncertainty
+end
+end UnicyclicPolynomial
+
+end CheckedModule8
+
+/- proof/CyclicDeterminant.lean; SHA256 3dbac6c5bf3ac5c777ddc481daeaa07cdfe752a271f259b5dbe0c0e64a14a1e1 -/
+section CheckedModule9
+
+/-!
+The arbitrary-size combinatorial and determinant bridge for a tilted cycle.
+This is an auxiliary development; it does not yet state or prove the original
+Markov-current inequality. No hypothesis is intended to assume the determinant
+identity itself.
+-/
+
+open scoped BigOperators
+open Equiv
+
+namespace UnicyclicDeterminant
+
+noncomputable section
+
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem cycle_no_fixed [Fintype ι] [DecidableEq ι] (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (i : ι) : σ i ≠ i := by
+  intro h
+  have hd : Fintype.card ι ∣ 1 := by
+    simpa using (hc.pow_apply_eq (Finset.mem_univ i) (n := 1)).mp (by simpa using h)
+  have := Nat.le_of_dvd (by decide : 0 < 1) hd
+  omega
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem cycle_no_two [Fintype ι] [DecidableEq ι] (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (i : ι) : σ (σ i) ≠ i := by
+  intro h
+  have hd : Fintype.card ι ∣ 2 := by
+    apply (hc.pow_apply_eq (Finset.mem_univ i) (n := 2)).mp
+    simpa [pow_two, Perm.mul_apply] using h
+  have := Nat.le_of_dvd (by decide : 0 < 2) hd
+  omega
+
+theorem unpaired_forward_forces_cycle (σ π : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι)
+    (hs : ∀ i, π i = i ∨ π i = σ i ∨ π i = σ⁻¹ i)
+    (i : ι) (hi : π i = σ i) (hnext : π (σ i) ≠ i) : π = σ := by
+  have step (j : ι) (hj : π j = σ j ∧ π (σ j) ≠ j) :
+      π (σ j) = σ (σ j) ∧ π (σ (σ j)) ≠ σ j := by
+    have hforward : π (σ j) = σ (σ j) := by
+      rcases hs (σ j) with hfix | hforward | hback
+      · have hh : σ j = j := π.injective (hfix.trans hj.1.symm)
+        exact False.elim (cycle_no_fixed σ hc hn j hh)
+      · exact hforward
+      · exact False.elim (hj.2 (by simpa using hback))
+    refine ⟨hforward, ?_⟩
+    intro hbad
+    have hh : σ (σ j) = j := π.injective (hbad.trans hj.1.symm)
+    exact cycle_no_two σ hc hn j hh
+  have propagate : ∀ k : ℕ,
+      π ((σ ^ k) i) = σ ((σ ^ k) i) ∧
+        π (σ ((σ ^ k) i)) ≠ (σ ^ k) i := by
+    intro k
+    induction k with
+    | zero => simpa using And.intro hi hnext
+    | succ k ih => simpa [pow_succ', Perm.mul_apply] using step ((σ ^ k) i) ih
+  apply Equiv.ext
+  intro j
+  obtain ⟨k, _, hk⟩ := hc.exists_pow_eq (Finset.mem_univ i) (Finset.mem_univ j)
+  simpa [hk] using (propagate k).1
+
+theorem counted_edge_paired (σ π : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι)
+    (hs : ∀ i, π i = i ∨ π i = σ i ∨ π i = σ⁻¹ i)
+    (hforward : π ≠ σ) (hback : π ≠ σ⁻¹) (i : ι) :
+    π i = σ i ↔ π (σ i) = i := by
+  constructor
+  · intro hi
+    by_contra hnext
+    exact hforward (unpaired_forward_forces_cycle σ π hc hn hs i hi hnext)
+  · intro hi
+    by_contra hprev
+    have hs' : ∀ j, π j = j ∨ π j = σ⁻¹ j ∨ π j = (σ⁻¹)⁻¹ j := by
+      intro j
+      simpa [or_comm, or_left_comm, or_assoc] using hs j
+    apply hback
+    apply unpaired_forward_forces_cycle σ⁻¹ π hc.inv hn hs' (σ i)
+    · simpa using hi
+    · simpa using hprev
+
+def edgeTilt (A : Matrix ι ι ℝ) (a b : ι) (q : ℝ) : Matrix ι ι ℝ :=
+  fun i j =>
+    (if j = a then if i = b then q else 1 else 1) *
+    (if j = b then if i = a then q⁻¹ else 1 else 1) * A i j
+
+theorem edgeTilt_prod (A : Matrix ι ι ℝ) (a b : ι) (q : ℝ) (π : Perm ι) :
+    (∏ j, edgeTilt A a b q (π j) j) =
+      (if π a = b then q else 1) * (if π b = a then q⁻¹ else 1) *
+        ∏ j, A (π j) j := by
+  unfold edgeTilt
+  rw [Finset.prod_mul_distrib, Finset.prod_mul_distrib]
+  simp only [Finset.prod_ite_eq', Finset.mem_univ, ite_true]
+
+theorem permutation_term_tilt (A : Matrix ι ι ℝ) (σ π : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι)
+    (hA : ∀ i j, i ≠ j → i ≠ σ j → i ≠ σ⁻¹ j → A i j = 0)
+    (a : ι) (q : ℝ) (hq : q ≠ 0) :
+    (∏ j, edgeTilt A a (σ a) q (π j) j) =
+      (∏ j, A (π j) j) +
+      (if π = σ then (q - 1) * ∏ j, A (π j) j else 0) +
+      (if π = σ⁻¹ then (q⁻¹ - 1) * ∏ j, A (π j) j else 0) := by
+  rw [edgeTilt_prod]
+  have hinv : σ ≠ σ⁻¹ := by
+    intro h
+    have hh := congrArg (fun f : Perm ι => f (σ a)) h
+    exact cycle_no_two σ hc hn a (by simpa using hh)
+  by_cases hp : π = σ
+  · subst π
+    simp only [ite_true, hinv, ite_false, add_zero,
+      cycle_no_two σ hc hn a, mul_one]
+    ring
+  by_cases hp' : π = σ⁻¹
+  · subst π
+    have hrev : σ⁻¹ a ≠ σ a := by
+      intro h
+      have hh := congrArg σ h
+      exact cycle_no_two σ hc hn a (by simpa using hh.symm)
+    simp only [hp, ite_false, add_zero, ite_true, hrev, one_mul,
+      Perm.inv_apply_self]
+    ring
+  simp only [hp, hp', ite_false, add_zero]
+  by_cases hz : (∏ j, A (π j) j) = 0
+  · simp [hz]
+  have hs : ∀ j, π j = j ∨ π j = σ j ∨ π j = σ⁻¹ j := by
+    intro j
+    by_contra h
+    push_neg at h
+    have he : A (π j) j = 0 := hA (π j) j h.1 h.2.1 h.2.2
+    exact hz (Finset.prod_eq_zero (Finset.mem_univ j) he)
+  have hpair := counted_edge_paired σ π hc hn hs hp hp' a
+  by_cases he : π a = σ a
+  · simp [he, hpair.mp he, hq]
+  · have he' : π (σ a) ≠ a := fun h => he (hpair.mpr h)
+    simp [he, he']
+
+theorem cyclic_determinant_tilt (A : Matrix ι ι ℝ) (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι)
+    (hA : ∀ i j, i ≠ j → i ≠ σ j → i ≠ σ⁻¹ j → A i j = 0)
+    (a : ι) (q : ℝ) (hq : q ≠ 0) :
+    (edgeTilt A a (σ a) q).det = A.det +
+      (q - 1) * ((Perm.sign σ : ℤ) : ℝ) * (∏ j, A (σ j) j) +
+      (q⁻¹ - 1) * ((Perm.sign σ⁻¹ : ℤ) : ℝ) * (∏ j, A (σ⁻¹ j) j) := by
+  have hterm (π : Perm ι) :
+      ((Perm.sign π : ℤ) : ℝ) * (∏ j, edgeTilt A a (σ a) q (π j) j) =
+        ((Perm.sign π : ℤ) : ℝ) * (∏ j, A (π j) j) +
+        (if π = σ then (q - 1) * ((Perm.sign σ : ℤ) : ℝ) *
+          (∏ j, A (σ j) j) else 0) +
+        (if π = σ⁻¹ then (q⁻¹ - 1) * ((Perm.sign σ⁻¹ : ℤ) : ℝ) *
+          (∏ j, A (σ⁻¹ j) j) else 0) := by
+    rw [permutation_term_tilt A σ π hc hn hA a q hq]
+    split_ifs <;> simp_all <;> ring
+  simp_rw [Matrix.det_apply', hterm]
+  rw [Finset.sum_add_distrib, Finset.sum_add_distrib]
+  simp
+
+theorem one_way_permutation (σ π : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι)
+    (hs : ∀ i, π i = i ∨ π i = σ i) (hp : π ≠ 1) : π = σ := by
+  have hex : ∃ i, π i ≠ i := by
+    by_contra h
+    push_neg at h
+    exact hp (Equiv.ext h)
+  obtain ⟨i, hi⟩ := hex
+  have hforward : π i = σ i := (hs i).resolve_left hi
+  have hnext : π (σ i) ≠ i := by
+    intro h
+    rcases hs (σ i) with hf | hf
+    · exact cycle_no_fixed σ hc hn i (hf.symm.trans h)
+    · exact cycle_no_two σ hc hn i (hf.symm.trans h)
+  exact unpaired_forward_forces_cycle σ π hc hn
+    (fun j => (hs j).imp_right Or.inl) i hforward hnext
+
+theorem cyclic_bidiagonal_determinant (A : Matrix ι ι ℝ) (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι)
+    (hA : ∀ i j, i ≠ j → i ≠ σ j → A i j = 0) (a : ι) :
+    A.det = (∏ j, A j j) +
+      ((Perm.sign σ : ℤ) : ℝ) * (∏ j, A (σ j) j) := by
+  have hσ : σ ≠ 1 := by
+    intro h
+    exact cycle_no_fixed σ hc hn a (by simp [h])
+  have hterm (π : Perm ι) :
+      ((Perm.sign π : ℤ) : ℝ) * (∏ j, A (π j) j) =
+        (if π = 1 then (∏ j, A j j) else 0) +
+        (if π = σ then ((Perm.sign σ : ℤ) : ℝ) *
+          (∏ j, A (σ j) j) else 0) := by
+    by_cases hp : π = 1
+    · subst π
+      simp [hσ.symm]
+    by_cases hp' : π = σ
+    · subst π
+      simp [hσ]
+    simp only [hp, hp', ite_false, zero_add]
+    suffices hz : (∏ j, A (π j) j) = 0 by simp [hz]
+    by_contra hz
+    have hs : ∀ j, π j = j ∨ π j = σ j := by
+      intro j
+      by_contra h
+      push_neg at h
+      exact hz (Finset.prod_eq_zero (Finset.mem_univ j) (hA (π j) j h.1 h.2))
+    exact hp' (one_way_permutation σ π hc hn hs hp)
+  calc
+    A.det = ∑ π : Perm ι,
+        ((if π = 1 then (∏ j, A j j) else 0) +
+        (if π = σ then ((Perm.sign σ : ℤ) : ℝ) *
+          (∏ j, A (σ j) j) else 0)) := by
+      rw [Matrix.det_apply']
+      exact Finset.sum_congr rfl (fun π _ => hterm π)
+    _ = _ := by
+      rw [Finset.sum_add_distrib]
+      simp
+
+def cyclicBidiagonal (σ : Perm ι) (a b : ι → ℝ) : Matrix ι ι ℝ :=
+  fun i j => if i = j then a j else if i = σ j then -b j else 0
+
+theorem cycle_sign (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (a : ι) :
+    ((Perm.sign σ : ℤ) : ℝ) = -(-1 : ℝ) ^ Fintype.card ι := by
+  have hcycle : σ.IsCycle := by
+    refine ⟨a, cycle_no_fixed σ hc hn a, ?_⟩
+    intro b _
+    exact hc.2 (Finset.mem_univ a) (Finset.mem_univ b)
+  have hs : σ.support = Finset.univ := by
+    ext i
+    simp [Perm.mem_support, cycle_no_fixed σ hc hn i]
+  have hh := hcycle.sign
+  rw [hs, Finset.card_univ] at hh
+  have hh' := congrArg (fun x : ℤˣ => ((x : ℤ) : ℝ)) hh
+  simpa using hh'
+
+theorem cyclicBidiagonal_det (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (a b : ι → ℝ) (i : ι) :
+    (cyclicBidiagonal σ a b).det = (∏ j, a j) - ∏ j, b j := by
+  have hs : ∀ k j, k ≠ j → k ≠ σ j → cyclicBidiagonal σ a b k j = 0 := by
+    intro k j hk hkj
+    simp [cyclicBidiagonal, hk, hkj]
+  rw [cyclic_bidiagonal_determinant (cyclicBidiagonal σ a b) σ hc hn hs i]
+  simp only [cyclicBidiagonal, ite_true, cycle_no_fixed σ hc hn, ite_false]
+  rw [cycle_sign σ hc hn i, Finset.prod_neg]
+  have hh : (-1 : ℝ) ^ Fintype.card ι * (-1) ^ Fintype.card ι = 1 := by
+    rw [← mul_pow]
+    norm_num
+  simp only [Finset.card_univ]
+  rw [neg_mul, ← mul_assoc, hh, one_mul]
+  rfl
+
+theorem cyclic_gram_posDef (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (a b : ι → ℝ) (i : ι)
+    (hab : (∏ j, a j) ≠ ∏ j, b j) :
+    ((cyclicBidiagonal σ a b).transpose * cyclicBidiagonal σ a b).PosDef := by
+  have hdet : (cyclicBidiagonal σ a b).det ≠ 0 := by
+    rw [cyclicBidiagonal_det σ hc hn a b i]
+    exact sub_ne_zero.mpr hab
+  have hu : IsUnit (cyclicBidiagonal σ a b) :=
+    (Matrix.isUnit_iff_isUnit_det _).mpr (isUnit_iff_ne_zero.mpr hdet)
+  have hi : Function.Injective (cyclicBidiagonal σ a b).mulVec :=
+    Matrix.mulVec_injective_iff_isUnit.mpr hu
+  have hp := (Matrix.PosDef.one : (1 : Matrix ι ι ℝ).PosDef).conjTranspose_mul_mul_same hi
+  simpa using hp
+
+#print axioms unpaired_forward_forces_cycle
+#print axioms counted_edge_paired
+#print axioms cyclic_determinant_tilt
+#print axioms cyclic_gram_posDef
+
+end
+
+end UnicyclicDeterminant
+
+end CheckedModule9
+
+/- proof/CyclicMultiTilt.lean; SHA256 13da078b5a45a0dde01717324185fdec33a4a5ddfe718b828e641dbcd0a15cbd -/
+section CheckedModule10
+
+/-!
+Extension from a single tilted edge to independent reciprocal edge tilts.
+This file is an auxiliary bridge, not a proof of the original current bound.
+-/
+
+open scoped BigOperators
+open Equiv
+
+namespace UnicyclicDeterminant
+
+noncomputable section
+
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+
+def cycleTilt (A : Matrix ι ι ℝ) (σ : Perm ι) (q : ι → ℝ) : Matrix ι ι ℝ :=
+  fun i j => (if i = σ j then q j else 1) *
+    (if j = σ i then (q i)⁻¹ else 1) * A i j
+
+theorem cycleTilt_prod (A : Matrix ι ι ℝ) (σ π : Perm ι) (q : ι → ℝ) :
+    (∏ j, cycleTilt A σ q (π j) j) =
+      (∏ j, if π j = σ j then q j else 1) *
+      (∏ j, if π (σ j) = j then (q j)⁻¹ else 1) *
+      (∏ j, A (π j) j) := by
+  have hinv (j : ι) : π⁻¹ j = σ j ↔ π (σ j) = j := by
+    constructor
+    · intro h
+      have hh := congrArg π h
+      simpa using hh.symm
+    · intro h
+      apply π.injective
+      simpa using h.symm
+  have hb : (∏ j, if j = σ (π j) then (q (π j))⁻¹ else 1) =
+      ∏ j, if π (σ j) = j then (q j)⁻¹ else 1 := by
+    calc
+      _ = ∏ j, if π⁻¹ j = σ j then (q j)⁻¹ else 1 := by
+        simpa using Equiv.prod_comp π (fun j => if π⁻¹ j = σ j then (q j)⁻¹ else 1)
+      _ = _ := by simp_rw [hinv]
+  simp only [cycleTilt, Finset.prod_mul_distrib]
+  rw [hb]
+
+theorem cycle_forward_ne_backward (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (i : ι) : σ i ≠ σ⁻¹ i := by
+  intro h
+  apply cycle_no_two σ hc hn i
+  simpa using congrArg σ h
+
+theorem permutation_term_multitilt (A : Matrix ι ι ℝ) (σ π : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι)
+    (hA : ∀ i j, i ≠ j → i ≠ σ j → i ≠ σ⁻¹ j → A i j = 0)
+    (q : ι → ℝ) (hq : ∀ i, q i ≠ 0) (a : ι) :
+    (∏ j, cycleTilt A σ q (π j) j) =
+      (∏ j, A (π j) j) +
+      (if π = σ then ((∏ j, q j) - 1) * ∏ j, A (π j) j else 0) +
+      (if π = σ⁻¹ then ((∏ j, q j)⁻¹ - 1) * ∏ j, A (π j) j else 0) := by
+  rw [cycleTilt_prod]
+  have hinv : σ ≠ σ⁻¹ := by
+    intro h
+    exact cycle_forward_ne_backward σ hc hn a (congrArg (fun f : Perm ι => f a) h)
+  by_cases hp : π = σ
+  · subst π
+    simp only [ite_true, hinv, ite_false, add_zero,
+      cycle_no_two σ hc hn, Finset.prod_const_one, mul_one]
+    ring
+  by_cases hp' : π = σ⁻¹
+  · subst π
+    have hrev (j : ι) : σ⁻¹ j ≠ σ j := (cycle_forward_ne_backward σ hc hn j).symm
+    simp only [hp, ite_false, add_zero, ite_true, hrev,
+      Perm.inv_apply_self, Finset.prod_const_one, one_mul, Finset.prod_inv_distrib]
+    ring
+  simp only [hp, hp', ite_false, add_zero]
+  by_cases hz : (∏ j, A (π j) j) = 0
+  · simp [hz]
+  have hs : ∀ j, π j = j ∨ π j = σ j ∨ π j = σ⁻¹ j := by
+    intro j
+    by_contra h
+    push_neg at h
+    exact hz (Finset.prod_eq_zero (Finset.mem_univ j)
+      (hA (π j) j h.1 h.2.1 h.2.2))
+  have hpairs (j : ι) := counted_edge_paired σ π hc hn hs hp hp' j
+  have hb : (∏ j, if π (σ j) = j then (q j)⁻¹ else 1) =
+      (∏ j, if π j = σ j then q j else 1)⁻¹ := by
+    rw [← Finset.prod_inv_distrib]
+    apply Finset.prod_congr rfl
+    intro j _
+    by_cases he : π j = σ j
+    · simp [he, (hpairs j).mp he]
+    · have he' : π (σ j) ≠ j := fun h => he ((hpairs j).mpr h)
+      simp [he, he']
+  have hnz : (∏ j, if π j = σ j then q j else 1) ≠ 0 := by
+    apply Finset.prod_ne_zero_iff.mpr
+    intro j _
+    split_ifs <;> simp_all
+  rw [hb, mul_inv_cancel₀ hnz, one_mul]
+
+theorem cyclic_determinant_multitilt (A : Matrix ι ι ℝ) (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι)
+    (hA : ∀ i j, i ≠ j → i ≠ σ j → i ≠ σ⁻¹ j → A i j = 0)
+    (q : ι → ℝ) (hq : ∀ i, q i ≠ 0) (a : ι) :
+    (cycleTilt A σ q).det = A.det +
+      ((∏ j, q j) - 1) * ((Perm.sign σ : ℤ) : ℝ) * (∏ j, A (σ j) j) +
+      ((∏ j, q j)⁻¹ - 1) * ((Perm.sign σ⁻¹ : ℤ) : ℝ) *
+        (∏ j, A (σ⁻¹ j) j) := by
+  have hterm (π : Perm ι) :
+      ((Perm.sign π : ℤ) : ℝ) * (∏ j, cycleTilt A σ q (π j) j) =
+        ((Perm.sign π : ℤ) : ℝ) * (∏ j, A (π j) j) +
+        (if π = σ then ((∏ j, q j) - 1) * ((Perm.sign σ : ℤ) : ℝ) *
+          (∏ j, A (σ j) j) else 0) +
+        (if π = σ⁻¹ then ((∏ j, q j)⁻¹ - 1) * ((Perm.sign σ⁻¹ : ℤ) : ℝ) *
+          (∏ j, A (σ⁻¹ j) j) else 0) := by
+    rw [permutation_term_multitilt A σ π hc hn hA q hq a]
+    split_ifs <;> simp_all <;> ring
+  simp_rw [Matrix.det_apply', hterm]
+  rw [Finset.sum_add_distrib, Finset.sum_add_distrib]
+  simp
+
+#print axioms cyclic_determinant_multitilt
+
+end
+
+end UnicyclicDeterminant
+
+end CheckedModule10
+
+/- proof/CyclicRateBridge.lean; SHA256 f08365f2b5c69cec0460c13824df7f834a92093efef17dacd326c8cafda79024 -/
+section CheckedModule11
+
+/-!
+Rate-level matrix identities, using u_i=a_i^2 and v_i=b_i^2.
+This is a finite-matrix bridge only. Stochastic identification and the final
+skewness inequality are not asserted by this file.
+-/
+
+open scoped BigOperators
+open Equiv
+
+namespace UnicyclicDeterminant
+
+noncomputable section
+
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+
+def ringMatrix (σ : Perm ι) (d f g : ι → ℝ) : Matrix ι ι ℝ :=
+  fun i j => (if i = j then d j else 0) +
+    (if i = σ j then f j else 0) + (if j = σ i then g i else 0)
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem ringMatrix_support [Fintype ι] [DecidableEq ι] (σ : Perm ι) (d f g : ι → ℝ) :
+    ∀ i j, i ≠ j → i ≠ σ j → i ≠ σ⁻¹ j → ringMatrix σ d f g i j = 0 := by
+  intro i j hij hf hb
+  have hb' : j ≠ σ i := by
+    intro h
+    apply hb
+    simpa using (congrArg (fun k => σ⁻¹ k) h).symm
+  simp [ringMatrix, hij, hf, hb']
+
+theorem ringMatrix_forward (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (d f g : ι → ℝ) (j : ι) :
+    ringMatrix σ d f g (σ j) j = f j := by
+  simp [ringMatrix, cycle_no_fixed σ hc hn j, (cycle_no_two σ hc hn j).symm]
+
+theorem ringMatrix_backward (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (d f g : ι → ℝ) (j : ι) :
+    ringMatrix σ d f g (σ⁻¹ j) j = g (σ⁻¹ j) := by
+  simp [ringMatrix, cycle_no_fixed σ⁻¹ hc.inv hn j,
+    (cycle_forward_ne_backward σ hc hn j).symm]
+
+theorem signed_negative_product (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (f : ι → ℝ) (i : ι) :
+    ((Perm.sign σ : ℤ) : ℝ) * (∏ j, -f j) = -(∏ j, f j) := by
+  rw [cycle_sign σ hc hn i, Finset.prod_neg]
+  simp only [Finset.card_univ]
+  rw [neg_mul, ← mul_assoc, ← mul_pow]
+  norm_num
+
+theorem balanced_ring_eq_multitilt (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (d a b : ι → ℝ)
+    (ha : ∀ i, a i ≠ 0) (hb : ∀ i, b i ≠ 0) :
+    cycleTilt (ringMatrix σ d (fun i => -(a i)^2) (fun i => -(b i)^2))
+      σ (fun i => b i / a i) =
+    ringMatrix σ d (fun i => -a i * b i) (fun i => -a i * b i) := by
+  ext i j
+  by_cases hf : i = σ j
+  · subst i
+    simp [cycleTilt, ringMatrix, cycle_no_fixed σ hc hn j,
+      (cycle_no_two σ hc hn j).symm]
+    field_simp [ha, hb]
+    ring
+  by_cases hr : j = σ i
+  · subst j
+    simp [cycleTilt, ringMatrix, (cycle_no_fixed σ hc hn i).symm,
+      (cycle_no_two σ hc hn i).symm, hf]
+    field_simp [ha, hb]
+    ring
+  · simp [cycleTilt, ringMatrix, hf, hr]
+
+theorem balanced_ring_determinant_shift (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (d a b : ι → ℝ)
+    (ha : ∀ i, a i ≠ 0) (hb : ∀ i, b i ≠ 0) (i : ι) :
+    (ringMatrix σ d (fun i => -a i * b i) (fun i => -a i * b i)).det =
+      (ringMatrix σ d (fun i => -(a i)^2) (fun i => -(b i)^2)).det +
+        ((∏ j, a j) - ∏ j, b j)^2 := by
+  have hq : ∀ j, b j / a j ≠ 0 := fun j => div_ne_zero (hb j) (ha j)
+  have hap : (∏ j, a j) ≠ 0 := Finset.prod_ne_zero_iff.mpr (fun j _ => ha j)
+  have hbp : (∏ j, b j) ≠ 0 := Finset.prod_ne_zero_iff.mpr (fun j _ => hb j)
+  let A := ringMatrix σ d (fun i => -(a i)^2) (fun i => -(b i)^2)
+  have hf : ((Perm.sign σ : ℤ) : ℝ) * (∏ j, A (σ j) j) = -(∏ j, a j)^2 := by
+    simp only [A, ringMatrix_forward σ hc hn]
+    rw [signed_negative_product σ hc hn (fun j => (a j)^2) i, ← Finset.prod_pow]
+  have hr : ((Perm.sign σ⁻¹ : ℤ) : ℝ) * (∏ j, A (σ⁻¹ j) j) = -(∏ j, b j)^2 := by
+    simp only [A, ringMatrix_backward σ hc hn]
+    rw [signed_negative_product σ⁻¹ hc.inv hn (fun j => (b (σ⁻¹ j))^2) i,
+      Equiv.prod_comp σ⁻¹ (fun j => (b j)^2), Finset.prod_pow]
+  rw [← balanced_ring_eq_multitilt σ hc hn d a b ha hb]
+  rw [cyclic_determinant_multitilt A σ hc hn
+    (ringMatrix_support σ d (fun i => -(a i)^2) (fun i => -(b i)^2))
+    (fun i => b i / a i) hq i]
+  rw [mul_assoc, hf, mul_assoc, hr, Finset.prod_div_distrib]
+  field_simp [hap, hbp]
+  ring
+
+def cycleGradient (σ : Perm ι) (a b : ι → ℝ) : Matrix ι ι ℝ :=
+  fun i j => (if i = j then a j else 0) -
+    (if i = σ⁻¹ j then b (σ⁻¹ j) else 0)
+
+theorem cycleGradient_eq_bidiagonal (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (a b : ι → ℝ) :
+    cycleGradient σ a b = cyclicBidiagonal σ⁻¹ a (fun j => b (σ⁻¹ j)) := by
+  ext i j
+  by_cases h : i = j
+  · subst i
+    simp [cycleGradient, cyclicBidiagonal, (cycle_no_fixed σ⁻¹ hc.inv hn j).symm]
+  · by_cases h' : i = σ⁻¹ j <;>
+      simp [cycleGradient, cyclicBidiagonal, h, h', cycle_no_fixed σ⁻¹ hc.inv hn j]
+
+theorem cycleGradient_gram_posDef (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (a b : ι → ℝ) (i : ι)
+    (hab : (∏ j, a j) ≠ ∏ j, b j) :
+    ((cycleGradient σ a b).transpose * cycleGradient σ a b).PosDef := by
+  rw [cycleGradient_eq_bidiagonal σ hc hn a b]
+  apply cyclic_gram_posDef σ⁻¹ hc.inv hn a (fun j => b (σ⁻¹ j)) i
+  simpa [Equiv.prod_comp] using hab
+
+theorem cycleGradient_gram_entry (σ : Perm ι) (a b : ι → ℝ) (i j : ι) :
+    ((cycleGradient σ a b).transpose * cycleGradient σ a b) i j =
+      ((if i = j then a i * a j else 0) -
+        (if i = σ⁻¹ j then a i * b (σ⁻¹ j) else 0)) -
+      ((if σ⁻¹ i = j then b (σ⁻¹ i) * a j else 0) -
+        (if σ⁻¹ i = σ⁻¹ j then b (σ⁻¹ i) * b (σ⁻¹ j) else 0)) := by
+  simp only [Matrix.mul_apply, Matrix.transpose_apply, cycleGradient,
+    sub_mul, mul_sub, Finset.sum_sub_distrib, ite_mul, mul_ite,
+    zero_mul, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
+  simp only [eq_comm]
+  ring
+
+theorem cycleGradient_gram_eq (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (a b : ι → ℝ) :
+    (cycleGradient σ a b).transpose * cycleGradient σ a b =
+      ringMatrix σ (fun j => (a j)^2 + (b (σ⁻¹ j))^2)
+        (fun j => -a j * b j) (fun j => -a j * b j) := by
+  ext i j
+  rw [cycleGradient_gram_entry]
+  by_cases hij : i = j
+  · subst i
+    simp [ringMatrix, (cycle_no_fixed σ hc hn j).symm,
+      cycle_no_fixed σ⁻¹ hc.inv hn j, (cycle_no_fixed σ⁻¹ hc.inv hn j).symm]
+    ring
+  by_cases hf : i = σ j
+  · subst i
+    simp [ringMatrix, cycle_no_fixed σ hc hn j,
+      (cycle_no_two σ hc hn j).symm, cycle_forward_ne_backward σ hc hn j,
+      (cycle_no_fixed σ⁻¹ hc.inv hn j).symm]
+    ring
+  by_cases hr : j = σ i
+  · subst j
+    simp [ringMatrix, (cycle_no_fixed σ hc hn i).symm,
+      (cycle_no_two σ hc hn i).symm, (cycle_forward_ne_backward σ hc hn i).symm,
+      cycle_no_fixed σ⁻¹ hc.inv hn i]
+  · have hinv1 : i ≠ σ⁻¹ j := by
+      intro h
+      apply hr
+      simpa using (congrArg σ h).symm
+    have hinv2 : σ⁻¹ i ≠ j := by
+      intro h
+      apply hf
+      simpa using congrArg σ h
+    have hinv3 : σ⁻¹ i ≠ σ⁻¹ j := fun h => hij ((σ⁻¹).injective h)
+    simp [ringMatrix, hij, hf, hr, hinv1, hinv2, hinv3]
+
+theorem shifted_gram_eq_ring (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (a b : ι → ℝ) (s : ℝ) :
+    s • (1 : Matrix ι ι ℝ) + (cycleGradient σ a b).transpose * cycleGradient σ a b =
+      ringMatrix σ (fun j => s + (a j)^2 + (b (σ⁻¹ j))^2)
+        (fun j => -a j * b j) (fun j => -a j * b j) := by
+  rw [cycleGradient_gram_eq σ hc hn a b]
+  ext i j
+  by_cases h : i = j
+  · subst i
+    simp [ringMatrix, Matrix.add_apply, Matrix.smul_apply, Matrix.one_apply,
+      (cycle_no_fixed σ hc hn j).symm]
+    ring
+  · simp [ringMatrix, Matrix.add_apply, Matrix.smul_apply, Matrix.one_apply, h]
+
+theorem squared_rate_shifted_gram_determinant (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (a b : ι → ℝ)
+    (ha : ∀ i, a i ≠ 0) (hb : ∀ i, b i ≠ 0) (i : ι) (s : ℝ) :
+    (s • (1 : Matrix ι ι ℝ) +
+      (cycleGradient σ a b).transpose * cycleGradient σ a b).det =
+      (ringMatrix σ (fun j => s + (a j)^2 + (b (σ⁻¹ j))^2)
+        (fun j => -(a j)^2) (fun j => -(b j)^2)).det +
+          ((∏ j, a j) - ∏ j, b j)^2 := by
+  rw [shifted_gram_eq_ring σ hc hn a b s]
+  exact balanced_ring_determinant_shift σ hc hn
+    (fun j => s + (a j)^2 + (b (σ⁻¹ j))^2) a b ha hb i
+
+theorem ringMatrix_column_sum (σ : Perm ι) (d f g : ι → ℝ) (j : ι) :
+    (∑ i, ringMatrix σ d f g i j) = d j + f j + g (σ⁻¹ j) := by
+  have hrev (i : ι) : j = σ i ↔ i = σ⁻¹ j := by
+    constructor
+    · intro h
+      simpa using (congrArg (fun k => σ⁻¹ k) h).symm
+    · intro h
+      simpa using (congrArg σ h).symm
+  simp only [ringMatrix, Finset.sum_add_distrib, hrev,
+    Finset.sum_ite_eq', Finset.mem_univ, ite_true]
+
+theorem squared_rate_det_zero (σ : Perm ι) (a b : ι → ℝ) (i : ι) :
+    (ringMatrix σ (fun j => (a j)^2 + (b (σ⁻¹ j))^2)
+      (fun j => -(a j)^2) (fun j => -(b j)^2)).det = 0 := by
+  let A := ringMatrix σ (fun j => (a j)^2 + (b (σ⁻¹ j))^2)
+    (fun j => -(a j)^2) (fun j => -(b j)^2)
+  change A.det = 0
+  by_contra hd
+  have hv : Matrix.vecMul (fun _ : ι => (1 : ℝ)) A = 0 := by
+    ext j
+    simp only [Matrix.vecMul, dotProduct, one_mul, Pi.zero_apply]
+    change (∑ k, ringMatrix σ (fun j => (a j)^2 + (b (σ⁻¹ j))^2)
+      (fun j => -(a j)^2) (fun j => -(b j)^2) k j) = 0
+    rw [ringMatrix_column_sum]
+    ring
+  have hz := Matrix.eq_zero_of_vecMul_eq_zero hd hv
+  have hi := congrFun hz i
+  norm_num at hi
+
+#print axioms balanced_ring_determinant_shift
+#print axioms cycleGradient_gram_posDef
+#print axioms squared_rate_shifted_gram_determinant
+#print axioms squared_rate_det_zero
+
+end
+
+end UnicyclicDeterminant
+
+end CheckedModule11
+
+/- proof/PositiveRateMatrices.lean; SHA256 899c5b0834aea9d622212bd21933529f6dcbb8fc0285379ec592d23c7d90ff89 -/
+section CheckedModule12
+
+/-!
+The finite-matrix bridge stated with arbitrary strictly positive original
+clockwise and anticlockwise rates, rather than assumed spectral data.
+The stationary-current and cumulant identification is a separate obligation.
+-/
+
+open scoped BigOperators
+open Equiv
+
+namespace UnicyclicDeterminant
+
+noncomputable section
+
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+
+def rateMatrix (σ : Perm ι) (u v : ι → ℝ) (s : ℝ) : Matrix ι ι ℝ :=
+  ringMatrix σ (fun j => s + u j + v (σ⁻¹ j)) (fun j => -u j) (fun j => -v j)
+
+def rateGradient (σ : Perm ι) (u v : ι → ℝ) : Matrix ι ι ℝ :=
+  cycleGradient σ (fun j => Real.sqrt (u j)) (fun j => Real.sqrt (v j))
+
+def rateGram (σ : Perm ι) (u v : ι → ℝ) : Matrix ι ι ℝ :=
+  (rateGradient σ u v).transpose * rateGradient σ u v
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem sqrt_product_square [Fintype ι] [DecidableEq ι] (u : ι → ℝ) (hu : ∀ j, 0 ≤ u j) :
+    (∏ j, Real.sqrt (u j))^2 = ∏ j, u j := by
+  rw [← Finset.prod_pow]
+  apply Finset.prod_congr rfl
+  intro j _
+  exact Real.sq_sqrt (hu j)
+
+theorem rateGram_posDef (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (u v : ι → ℝ)
+    (hu : ∀ j, 0 < u j) (hv : ∀ j, 0 < v j)
+    (hUV : (∏ j, u j) ≠ ∏ j, v j) (i : ι) :
+    (rateGram σ u v).PosDef := by
+  unfold rateGram rateGradient
+  apply cycleGradient_gram_posDef σ hc hn
+    (fun j => Real.sqrt (u j)) (fun j => Real.sqrt (v j)) i
+  intro h
+  apply hUV
+  have hh := congrArg (fun x : ℝ => x^2) h
+  dsimp only at hh
+  rw [sqrt_product_square u (fun j => (hu j).le),
+    sqrt_product_square v (fun j => (hv j).le)] at hh
+  exact hh
+
+theorem rateGram_shifted_determinant (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (u v : ι → ℝ)
+    (hu : ∀ j, 0 < u j) (hv : ∀ j, 0 < v j) (i : ι) (s : ℝ) :
+    (s • (1 : Matrix ι ι ℝ) + rateGram σ u v).det =
+      (rateMatrix σ u v s).det +
+        ((∏ j, Real.sqrt (u j)) - ∏ j, Real.sqrt (v j))^2 := by
+  have ha : ∀ j, Real.sqrt (u j) ≠ 0 := fun j => (Real.sqrt_pos.mpr (hu j)).ne'
+  have hb : ∀ j, Real.sqrt (v j) ≠ 0 := fun j => (Real.sqrt_pos.mpr (hv j)).ne'
+  have hh := squared_rate_shifted_gram_determinant σ hc hn
+    (fun j => Real.sqrt (u j)) (fun j => Real.sqrt (v j)) ha hb i s
+  have hsqu : ∀ j, (Real.sqrt (u j))^2 = u j := fun j => Real.sq_sqrt (hu j).le
+  have hsqv : ∀ j, (Real.sqrt (v j))^2 = v j := fun j => Real.sq_sqrt (hv j).le
+  simpa only [rateGram, rateGradient, rateMatrix, hsqu, hsqv] using hh
+
+theorem rateMatrix_det_zero (σ : Perm ι) (u v : ι → ℝ)
+    (hu : ∀ j, 0 ≤ u j) (hv : ∀ j, 0 ≤ v j) (i : ι) :
+    (rateMatrix σ u v 0).det = 0 := by
+  have hh := squared_rate_det_zero σ
+    (fun j => Real.sqrt (u j)) (fun j => Real.sqrt (v j)) i
+  have hsqu : ∀ j, (Real.sqrt (u j))^2 = u j := fun j => Real.sq_sqrt (hu j)
+  have hsqv : ∀ j, (Real.sqrt (v j))^2 = v j := fun j => Real.sq_sqrt (hv j)
+  simpa only [rateMatrix, zero_add, hsqu, hsqv] using hh
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem rateMatrix_add_scalar [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u v : ι → ℝ) (s : ℝ) :
+    s • (1 : Matrix ι ι ℝ) + rateMatrix σ u v 0 = rateMatrix σ u v s := by
+  ext i j
+  by_cases h : i = j <;>
+    simp [rateMatrix, ringMatrix, Matrix.add_apply, Matrix.smul_apply,
+      Matrix.one_apply, h] ; ring
+
+theorem rateMatrix_determinant_tilt (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (u v : ι → ℝ) (i : ι) (s q : ℝ) (hq : q ≠ 0) :
+    (edgeTilt (rateMatrix σ u v s) i (σ i) q).det =
+      (rateMatrix σ u v s).det - (∏ j, u j) * (q - 1) -
+        (∏ j, v j) * (q⁻¹ - 1) := by
+  have hf : ((Perm.sign σ : ℤ) : ℝ) *
+      (∏ j, rateMatrix σ u v s (σ j) j) = -(∏ j, u j) := by
+    simp only [rateMatrix, ringMatrix_forward σ hc hn]
+    exact signed_negative_product σ hc hn u i
+  have hr : ((Perm.sign σ⁻¹ : ℤ) : ℝ) *
+      (∏ j, rateMatrix σ u v s (σ⁻¹ j) j) = -(∏ j, v j) := by
+    simp only [rateMatrix, ringMatrix_backward σ hc hn]
+    rw [signed_negative_product σ⁻¹ hc.inv hn (fun j => v (σ⁻¹ j)) i,
+      Equiv.prod_comp σ⁻¹ v]
+  rw [cyclic_determinant_tilt (rateMatrix σ u v s) σ hc hn
+    (ringMatrix_support σ (fun j => s + u j + v (σ⁻¹ j))
+      (fun j => -u j) (fun j => -v j)) i q hq]
+  rw [mul_assoc, hf, mul_assoc, hr]
+  ring
+
+theorem finRotate_isCycleOn (n : ℕ) (hn : 2 ≤ n) :
+    (finRotate n).IsCycleOn (Finset.univ : Finset (Fin n)) := by
+  simpa only [← Perm.coe_support_eq_set_support, support_finRotate_of_le hn]
+    using (isCycle_finRotate_of_le hn).isCycleOn
+
+theorem fin_ring_rateGram_posDef (n : ℕ) (hn : 3 ≤ n) (u v : Fin n → ℝ)
+    (hu : ∀ j, 0 < u j) (hv : ∀ j, 0 < v j)
+    (hUV : (∏ j, u j) ≠ ∏ j, v j) :
+    (rateGram (finRotate n) u v).PosDef := by
+  apply rateGram_posDef (finRotate n) (finRotate_isCycleOn n (by omega))
+    (by simpa using hn) u v hu hv hUV ⟨0, by omega⟩
+
+theorem fin_ring_shifted_determinant (n : ℕ) (hn : 3 ≤ n) (u v : Fin n → ℝ)
+    (hu : ∀ j, 0 < u j) (hv : ∀ j, 0 < v j) (s : ℝ) :
+    (s • (1 : Matrix (Fin n) (Fin n) ℝ) + rateGram (finRotate n) u v).det =
+      (rateMatrix (finRotate n) u v s).det +
+        ((∏ j, Real.sqrt (u j)) - ∏ j, Real.sqrt (v j))^2 := by
+  exact rateGram_shifted_determinant (finRotate n)
+    (finRotate_isCycleOn n (by omega)) (by simpa using hn) u v hu hv ⟨0, by omega⟩ s
+
+#print axioms rateGram_posDef
+#print axioms rateGram_shifted_determinant
+#print axioms rateMatrix_det_zero
+#print axioms rateMatrix_determinant_tilt
+#print axioms fin_ring_rateGram_posDef
+#print axioms fin_ring_shifted_determinant
+
+end
+
+end UnicyclicDeterminant
+
+end CheckedModule12
+
+/- proof/HermitianShift.lean; SHA256 376e2aac47359e30e4bc05bdd9f067414fadc3e7859074e5e297ea4b13ae9af6 -/
+section CheckedModule13
+
+/-!
+Exact spectral factorization of a shifted real symmetric matrix.
+
+This file uses mathlib's proved finite-dimensional spectral theorem.  It does
+not assert that a particular stochastic generator has the required spectrum;
+that is the separate rate-defined Gram-matrix obligation.
+-/
+
+open scoped BigOperators
+open Polynomial
+
+namespace UnicyclicSpectral
+
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+
+theorem det_shift_eq_prod (H : Matrix ι ι ℝ) (hH : H.IsHermitian) (s : ℝ) :
+    (s • (1 : Matrix ι ι ℝ) + H).det =
+      ∏ i, (s + hH.eigenvalues i) := by
+  have hdiag :
+      star (hH.eigenvectorUnitary : Matrix ι ι ℝ) * H *
+        (hH.eigenvectorUnitary : Matrix ι ι ℝ) =
+      Matrix.diagonal hH.eigenvalues := by
+    simpa using hH.star_mul_self_mul_eq_diagonal
+  have hconj :
+      star (hH.eigenvectorUnitary : Matrix ι ι ℝ) *
+          (s • (1 : Matrix ι ι ℝ) + H) *
+          (hH.eigenvectorUnitary : Matrix ι ι ℝ) =
+      s • (1 : Matrix ι ι ℝ) + Matrix.diagonal hH.eigenvalues := by
+    rw [Matrix.mul_add, Matrix.add_mul, Matrix.mul_smul, Matrix.mul_one,
+      Matrix.smul_mul, unitary.coe_star_mul_self, hdiag]
+  have hdet := congrArg Matrix.det hconj
+  rw [Matrix.det_mul_right_comm, unitary.coe_star_mul_self, Matrix.one_mul] at hdet
+  rw [Matrix.smul_one_eq_diagonal, Matrix.diagonal_add, Matrix.det_diagonal] at hdet
+  simpa only [Matrix.smul_one_eq_diagonal] using hdet
+
+/-- Evaluation of the characteristic polynomial of `-L` is `det(s I + L)`. -/
+theorem charpoly_neg_eval (L : Matrix ι ι ℝ) (s : ℝ) :
+    (-L).charpoly.eval s = (s • (1 : Matrix ι ι ℝ) + L).det := by
+  rw [Matrix.charpoly, Matrix.eval_det, Matrix.matPolyEquiv_charmatrix]
+  simp [Matrix.scalar, Matrix.smul_one_eq_diagonal, Pi.algebraMap_def]
+
+theorem charpoly_neg_eq_spectral_product
+    (H : Matrix ι ι ℝ) (hH : H.IsHermitian) :
+    (-H).charpoly = ∏ i, (X + C (hH.eigenvalues i)) := by
+  apply Polynomial.funext
+  intro s
+  rw [charpoly_neg_eval, det_shift_eq_prod H hH]
+  simp only [Polynomial.eval_prod, Polynomial.eval_add, Polynomial.eval_X,
+    Polynomial.eval_C]
+
+/-- A pointwise determinant shift gives the exact polynomial factorization. -/
+theorem polynomial_factorization_of_det_shift
+    (L H : Matrix ι ι ℝ) (hH : H.IsHermitian) (d : ℝ)
+    (hshift : ∀ s : ℝ,
+      (s • (1 : Matrix ι ι ℝ) + H).det =
+      (s • (1 : Matrix ι ι ℝ) + L).det + d) :
+    (-L).charpoly + C d = ∏ i, (X + C (hH.eigenvalues i)) := by
+  apply Polynomial.funext
+  intro s
+  simp only [Polynomial.eval_add, Polynomial.eval_C]
+  rw [charpoly_neg_eval, ← hshift, det_shift_eq_prod H hH]
+  simp only [Polynomial.eval_prod, Polynomial.eval_add, Polynomial.eval_X,
+    Polynomial.eval_C]
+
+#print axioms det_shift_eq_prod
+#print axioms charpoly_neg_eval
+#print axioms charpoly_neg_eq_spectral_product
+#print axioms polynomial_factorization_of_det_shift
+
+end UnicyclicSpectral
+
+end CheckedModule13
+
+/- proof/PositiveRateSpectrum.lean; SHA256 0b2854493e1923f8bd14947400e9ea9437f535bfb4cb9c3fd52d5ecf7241f8ae -/
+section CheckedModule14
+
+/-!
+The positive spectral factorization derived from arbitrary positive cycle
+rates. This discharges the matrix/spectrum hypotheses; it does not assume
+them. A current-uncertainty proof is still needed for the final bound.
+-/
+
+open scoped BigOperators
+open Equiv Polynomial
+
+namespace UnicyclicDeterminant
+
+noncomputable section
+
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+
+theorem positive_rate_spectral_factorization (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (u v : ι → ℝ)
+    (hu : ∀ j, 0 < u j) (hv : ∀ j, 0 < v j)
+    (hUV : (∏ j, u j) ≠ ∏ j, v j) (i : ι) :
+    ∃ theta : ι → ℝ,
+      (∀ j, 0 < theta j) ∧
+      (-(rateMatrix σ u v 0)).charpoly +
+          C (((∏ j, Real.sqrt (u j)) - ∏ j, Real.sqrt (v j))^2) =
+        ∏ j, (X + C (theta j)) ∧
+      (((∏ j, Real.sqrt (u j)) - ∏ j, Real.sqrt (v j))^2) = ∏ j, theta j ∧
+      (-(rateMatrix σ u v 0)).charpoly.coeff 0 = 0 := by
+  have hH := rateGram_posDef σ hc hn u v hu hv hUV i
+  let theta := hH.isHermitian.eigenvalues
+  have htheta : ∀ j, 0 < theta j := fun j => hH.eigenvalues_pos j
+  have hshift (s : ℝ) :
+      (s • (1 : Matrix ι ι ℝ) + rateGram σ u v).det =
+        (s • (1 : Matrix ι ι ℝ) + rateMatrix σ u v 0).det +
+          (((∏ j, Real.sqrt (u j)) - ∏ j, Real.sqrt (v j))^2) := by
+    rw [rateMatrix_add_scalar σ u v s]
+    exact rateGram_shifted_determinant σ hc hn u v hu hv i s
+  have hfactor := UnicyclicSpectral.polynomial_factorization_of_det_shift
+    (rateMatrix σ u v 0) (rateGram σ u v) hH.isHermitian
+    (((∏ j, Real.sqrt (u j)) - ∏ j, Real.sqrt (v j))^2) hshift
+  have hp0 : (-(rateMatrix σ u v 0)).charpoly.eval 0 = 0 := by
+    rw [UnicyclicSpectral.charpoly_neg_eval]
+    simp only [zero_smul, zero_add]
+    exact rateMatrix_det_zero σ u v (fun j => (hu j).le) (fun j => (hv j).le) i
+  have hd : (((∏ j, Real.sqrt (u j)) - ∏ j, Real.sqrt (v j))^2) = ∏ j, theta j := by
+    have hh := congrArg (fun p : Polynomial ℝ => p.eval 0) hfactor
+    simpa only [Polynomial.eval_add, Polynomial.eval_C, Polynomial.eval_prod,
+      Polynomial.eval_X, hp0, zero_add, theta] using hh
+  refine ⟨theta, htheta, hfactor, hd, ?_⟩
+  rwa [Polynomial.coeff_zero_eq_eval_zero]
+
+theorem fin_ring_positive_spectral_factorization (n : ℕ) (hn : 3 ≤ n)
+    (u v : Fin n → ℝ) (hu : ∀ j, 0 < u j) (hv : ∀ j, 0 < v j)
+    (hUV : (∏ j, u j) ≠ ∏ j, v j) :
+    ∃ theta : Fin n → ℝ,
+      (∀ j, 0 < theta j) ∧
+      (-(rateMatrix (finRotate n) u v 0)).charpoly +
+          C (((∏ j, Real.sqrt (u j)) - ∏ j, Real.sqrt (v j))^2) =
+        ∏ j, (X + C (theta j)) ∧
+      (((∏ j, Real.sqrt (u j)) - ∏ j, Real.sqrt (v j))^2) = ∏ j, theta j ∧
+      (-(rateMatrix (finRotate n) u v 0)).charpoly.coeff 0 = 0 := by
+  exact positive_rate_spectral_factorization (finRotate n)
+    (finRotate_isCycleOn n (by omega)) (by simpa using hn) u v hu hv hUV ⟨0, by omega⟩
+
+#print axioms positive_rate_spectral_factorization
+#print axioms fin_ring_positive_spectral_factorization
+
+end
+
+end UnicyclicDeterminant
+
+end CheckedModule14
+
+/- proof/AdjugateJets.lean; SHA256 649d0d39c3ee71021c21aeebb4fbe53d92e6cd999e703e2afcb9083506074a95 -/
+section CheckedModule15
+
+/-!
+Finite-dimensional determinant jet transfer. A matrix-vector residual that
+vanishes through order two forces the same vanishing for the determinant,
+provided one component of the vector is one at zero. This is an ordinary
+calculus theorem, intended to connect actual Poisson correctors to the first
+two characteristic-polynomial cumulants without assuming a Perron branch.
+-/
+namespace UnicyclicJets
+noncomputable section
+open scoped BigOperators
+set_option maxHeartbeats 2000000
+
+def ZeroJet2 (f : ℝ → ℝ) : Prop :=
+  f 0 = 0 ∧ deriv f 0 = 0 ∧ deriv (deriv f) 0 = 0
+
+theorem second_deriv_mul (a b : ℝ → ℝ)
+    (ha : ContDiff ℝ 2 a) (hb : ContDiff ℝ 2 b) :
+    deriv (deriv (fun x => a x*b x)) 0 =
+      deriv (deriv a) 0*b 0 + 2*deriv a 0*deriv b 0 +
+        a 0*deriv (deriv b) 0 := by
+  have ha' : ContDiff ℝ 1 (deriv a) := (contDiff_succ_iff_deriv.mp ha).2.2
+  have hb' : ContDiff ℝ 1 (deriv b) := (contDiff_succ_iff_deriv.mp hb).2.2
+  have hfirst : deriv (fun x => a x*b x) =
+      (fun x => deriv a x*b x+a x*deriv b x) := by
+    funext x
+    exact (((ha.differentiable (by norm_num) x).hasDerivAt).mul
+      ((hb.differentiable (by norm_num) x).hasDerivAt)).deriv
+  rw [hfirst]
+  have h := ((((ha'.differentiable (by norm_num) 0).hasDerivAt).mul
+      ((hb.differentiable (by norm_num) 0).hasDerivAt)).add
+    (((ha.differentiable (by norm_num) 0).hasDerivAt).mul
+      ((hb'.differentiable (by norm_num) 0).hasDerivAt))).deriv
+  convert h using 1 ; ring
+
+theorem zeroJet2_mul (a b : ℝ → ℝ)
+    (ha : ContDiff ℝ 2 a) (hb : ContDiff ℝ 2 b) (hz : ZeroJet2 b) :
+    ZeroJet2 (fun x => a x*b x) := by
+  rcases hz with ⟨h0,h1,h2⟩
+  refine ⟨by simp [h0], ?_, ?_⟩
+  · rw [deriv_mul (ha.differentiable (by norm_num) 0) (hb.differentiable (by norm_num) 0)]
+    simp [h0,h1]
+  · rw [second_deriv_mul a b ha hb]
+    simp [h0,h1,h2]
+
+theorem zeroJet2_cancel (a b : ℝ → ℝ)
+    (ha : ContDiff ℝ 2 a) (hb : ContDiff ℝ 2 b) (hb0 : b 0 = 1)
+    (hz : ZeroJet2 (fun x => a x*b x)) : ZeroJet2 a := by
+  rcases hz with ⟨h0,h1,h2⟩
+  have ha0 : a 0 = 0 := by simpa [hb0] using h0
+  have ha1 : deriv a 0 = 0 := by
+    rw [deriv_mul (ha.differentiable (by norm_num) 0) (hb.differentiable (by norm_num) 0)] at h1
+    simpa [hb0,ha0] using h1
+  have ha2 : deriv (deriv a) 0 = 0 := by
+    rw [second_deriv_mul a b ha hb] at h2
+    simpa [hb0,ha0,ha1] using h2
+  exact ⟨ha0,ha1,ha2⟩
+
+theorem zeroJet2_sum {ι : Type*} (s : Finset ι) (f : ι → ℝ → ℝ)
+    (hf : ∀ i ∈ s, ContDiff ℝ 2 (f i))
+    (hz : ∀ i ∈ s, ZeroJet2 (f i)) :
+    ZeroJet2 (fun x => ∑ i ∈ s, f i x) := by
+  have hfirst : deriv (fun x => ∑ i ∈ s, f i x) =
+      (fun x => ∑ i ∈ s, deriv (f i) x) := by
+    funext x
+    exact (HasDerivAt.sum (fun i hi => ((hf i hi).differentiable (by norm_num) x).hasDerivAt)).deriv
+  refine ⟨?_, ?_, ?_⟩
+  · exact Finset.sum_eq_zero (fun i hi => (hz i hi).1)
+  · rw [hfirst]
+    exact Finset.sum_eq_zero (fun i hi => (hz i hi).2.1)
+  · rw [hfirst]
+    have hf' : ∀ i ∈ s, ContDiff ℝ 1 (deriv (f i)) :=
+      fun i hi => (contDiff_succ_iff_deriv.mp (hf i hi)).2.2
+    have hh := (HasDerivAt.sum (fun i hi =>
+      ((hf' i hi).differentiable (by norm_num) 0).hasDerivAt)).deriv
+    rw [hh]
+    exact Finset.sum_eq_zero (fun i hi => (hz i hi).2.2)
+
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+
+theorem contDiff_det (A : ℝ → Matrix ι ι ℝ)
+    (hA : ∀ i j, ContDiff ℝ 2 (fun x => A x i j)) :
+    ContDiff ℝ 2 (fun x => (A x).det) := by
+  simp only [Matrix.det_apply']
+  exact ContDiff.sum (fun p _ =>
+    contDiff_const.mul (contDiff_prod (fun j _ => hA (p j) j)))
+
+theorem contDiff_adjugate (A : ℝ → Matrix ι ι ℝ)
+    (hA : ∀ i j, ContDiff ℝ 2 (fun x => A x i j)) (i j : ι) :
+    ContDiff ℝ 2 (fun x => (A x).adjugate i j) := by
+  simp_rw [Matrix.adjugate_apply]
+  apply contDiff_det
+  intro k l
+  by_cases hk : k = j
+  · subst k
+    simp only [Matrix.updateRow_self]
+    exact contDiff_const
+  · simp only [Matrix.updateRow_ne hk]
+    exact hA k l
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem contDiff_mulVec [Fintype ι] [DecidableEq ι] (A : ℝ → Matrix ι ι ℝ) (v : ℝ → ι → ℝ)
+    (hA : ∀ i j, ContDiff ℝ 2 (fun x => A x i j))
+    (hv : ∀ i, ContDiff ℝ 2 (fun x => v x i)) (i : ι) :
+    ContDiff ℝ 2 (fun x => (A x).mulVec (v x) i) := by
+  change ContDiff ℝ 2 (fun x => ∑ j, A x i j*v x j)
+  exact ContDiff.sum (fun j _ => (hA i j).mul (hv j))
+
+theorem determinant_zero_jet_of_residual
+    (A : ℝ → Matrix ι ι ℝ) (v : ℝ → ι → ℝ) (i : ι)
+    (hA : ∀ j k, ContDiff ℝ 2 (fun x => A x j k))
+    (hv : ∀ j, ContDiff ℝ 2 (fun x => v x j))
+    (hvi : v 0 i = 1)
+    (hz : ∀ j, ZeroJet2 (fun x => (A x).mulVec (v x) j)) :
+    ZeroJet2 (fun x => (A x).det) := by
+  have hleft : ZeroJet2 (fun x =>
+      ∑ j, (A x).adjugate i j*((A x).mulVec (v x) j)) := by
+    apply zeroJet2_sum
+    · intro j _
+      exact (contDiff_adjugate A hA i j).mul (contDiff_mulVec A v hA hv j)
+    · intro j _
+      exact zeroJet2_mul _ _ (contDiff_adjugate A hA i j)
+        (contDiff_mulVec A v hA hv j) (hz j)
+  have hid : (fun x => ∑ j, (A x).adjugate i j*((A x).mulVec (v x) j)) =
+      (fun x => (A x).det*v x i) := by
+    funext x
+    change ((A x).adjugate).mulVec ((A x).mulVec (v x)) i = _
+    rw [Matrix.mulVec_mulVec,Matrix.adjugate_mul,Matrix.smul_mulVec_assoc,Matrix.one_mulVec]
+    rfl
+  rw [hid] at hleft
+  exact zeroJet2_cancel _ _ (contDiff_det A hA) (hv i) hvi hleft
+
+#print axioms determinant_zero_jet_of_residual
+end
+end UnicyclicJets
+
+end CheckedModule15
+
+/- proof/CyclicConstruction.lean; SHA256 df5a8a9803626395c0a9a9420965006cb213a5223b5b1b72943e34fbd44b4e49 -/
+section CheckedModule16
+
+/-!
+Constructive finite cyclic recurrences.  These are actual constructions from
+positive rates and a single-cycle permutation, not definitions that assume the
+stationary or corrector conclusions.  This file is under active checking.
+-/
+namespace UnicyclicConstruction
+noncomputable section
+open scoped BigOperators
+open Equiv
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+set_option maxHeartbeats 2000000
+
+def transferTerm (σ : Perm ι) (ρ f : ι → ℝ) (k : ℕ) (i : ι) : ℝ :=
+  (∏ j ∈ Finset.range k, ρ ((σ^j) i)) * f ((σ^k) i)
+
+def green (σ : Perm ι) (ρ f : ι → ℝ) (n : ℕ) (i : ι) : ℝ :=
+  ∑ k ∈ Finset.range n, transferTerm σ ρ f k i
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem transfer_step [Fintype ι] [DecidableEq ι] (σ : Perm ι) (ρ f : ι → ℝ) (k : ℕ) (i : ι) :
+    ρ i * transferTerm σ ρ f k (σ i) = transferTerm σ ρ f (k+1) i := by
+  have hshift (j : ℕ) : (σ^j) (σ i) = (σ^(j+1)) i := by
+    rw [pow_succ, Perm.mul_apply]
+  simp only [transferTerm, Finset.prod_range_succ', pow_zero, Perm.one_apply]
+  simp_rw [hshift]
+  ring
+
+theorem green_recurrence_raw (σ : Perm ι) (ρ f : ι → ℝ) (n : ℕ) (i : ι) :
+    green σ ρ f n i - ρ i * green σ ρ f n (σ i) =
+      f i-transferTerm σ ρ f n i := by
+  have hm : ρ i * green σ ρ f n (σ i) =
+      ∑ k ∈ Finset.range n, transferTerm σ ρ f (k+1) i := by
+    rw [green, Finset.mul_sum]
+    apply Finset.sum_congr rfl
+    intro k hk
+    exact transfer_step σ ρ f k i
+  have hs := Finset.sum_range_succ (fun k => transferTerm σ ρ f k i) n
+  have hs' := Finset.sum_range_succ' (fun k => transferTerm σ ρ f k i) n
+  have hzero : transferTerm σ ρ f 0 i = f i := by simp [transferTerm]
+  dsimp only [green]
+  dsimp only [green] at hm
+  linarith only [hm, hs, hs', hzero]
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem orbit_product [Fintype ι] [DecidableEq ι] (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (ρ : ι → ℝ) (i : ι) :
+    (∏ k ∈ Finset.range (Fintype.card ι), ρ ((σ^k) i)) = ∏ j, ρ j := by
+  apply Finset.prod_bij (fun k hk => (σ^k) i)
+  · intro k hk
+    exact Finset.mem_univ _
+  · intro k hk l hl hkl
+    have he := (hc.pow_apply_eq_pow_apply (Finset.mem_univ i)).mp hkl
+    have hk' := Finset.mem_range.mp hk
+    have hl' := Finset.mem_range.mp hl
+    simpa only [Finset.card_univ, Nat.ModEq, Nat.mod_eq_of_lt hk', Nat.mod_eq_of_lt hl'] using he
+  · intro j hj
+    obtain ⟨k, hk, he⟩ := hc.exists_pow_eq (Finset.mem_univ i) (Finset.mem_univ j)
+    exact ⟨k, Finset.mem_range.mpr (by simpa using hk), he⟩
+  · intro k hk
+    rfl
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem orbit_sum [Fintype ι] [DecidableEq ι] (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (f : ι → ℝ) (i : ι) :
+    (∑ k ∈ Finset.range (Fintype.card ι), f ((σ^k) i)) = ∑ j, f j := by
+  apply Finset.sum_bij (fun k hk => (σ^k) i)
+  · intro k hk
+    exact Finset.mem_univ _
+  · intro k hk l hl hkl
+    have he := (hc.pow_apply_eq_pow_apply (Finset.mem_univ i)).mp hkl
+    have hk' := Finset.mem_range.mp hk
+    have hl' := Finset.mem_range.mp hl
+    simpa only [Finset.card_univ, Nat.ModEq, Nat.mod_eq_of_lt hk', Nat.mod_eq_of_lt hl'] using he
+  · intro j hj
+    obtain ⟨k, hk, he⟩ := hc.exists_pow_eq (Finset.mem_univ i) (Finset.mem_univ j)
+    exact ⟨k, Finset.mem_range.mpr (by simpa using hk), he⟩
+  · intro k hk
+    rfl
+
+theorem green_recurrence (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (ρ f : ι → ℝ) (i : ι) :
+    green σ ρ f (Fintype.card ι) i -
+      ρ i * green σ ρ f (Fintype.card ι) (σ i) =
+      (1-∏ j, ρ j)*f i := by
+  rw [green_recurrence_raw]
+  have hp : (σ^(Fintype.card ι)) i = i := by
+    simpa using hc.pow_card_apply (Finset.mem_univ i)
+  rw [transferTerm, orbit_product σ hc ρ i, hp]
+  ring
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem green_positive [Fintype ι] [DecidableEq ι] (σ : Perm ι) (ρ f : ι → ℝ)
+    (hρ : ∀ i, 0 < ρ i) (hf : ∀ i, 0 < f i) (i : ι) :
+    0 < green σ ρ f (Fintype.card ι) i := by
+  apply Finset.sum_pos
+  · intro k hk
+    exact mul_pos (Finset.prod_pos (fun j hj => hρ _)) (hf _)
+  · exact ⟨0, Finset.mem_range.mpr (Fintype.card_pos_iff.mpr ⟨i⟩)⟩
+
+theorem exists_positive_cyclic_solution (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (ρ f : ι → ℝ)
+    (hρ : ∀ i, 0 < ρ i) (hf : ∀ i, 0 < f i)
+    (hprod : (∏ i, ρ i) < 1) :
+    ∃ x : ι → ℝ, (∀ i, 0 < x i) ∧ ∀ i, x i-ρ i*x (σ i)=f i := by
+  let Z : ℝ := 1-∏ i, ρ i
+  have hZ : 0 < Z := sub_pos.mpr hprod
+  refine ⟨fun i => green σ ρ f (Fintype.card ι) i/Z, ?_, ?_⟩
+  · intro i
+    exact div_pos (green_positive σ ρ f hρ hf i) hZ
+  · intro i
+    have hh := green_recurrence σ hc ρ f i
+    change green σ ρ f (Fintype.card ι) i/Z -
+      ρ i*(green σ ρ f (Fintype.card ι) (σ i)/Z) = f i
+    calc
+      _ = (green σ ρ f (Fintype.card ι) i-
+            ρ i*green σ ρ f (Fintype.card ι) (σ i))/Z := by ring
+      _ = f i := by
+        rw [hh]
+        change Z*f i/Z=f i
+        field_simp [ne_of_gt hZ]
+
+/-- A normalized positive stationary flow is constructed from the rates. -/
+theorem exists_stationary_cycle [Nonempty ι] (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (u v : ι → ℝ)
+    (hu : ∀ i, 0 < u i) (hv : ∀ i, 0 < v i)
+    (hUV : (∏ i, v i) < ∏ i, u i) :
+    ∃ (π : ι → ℝ) (J : ℝ), (∀ i, 0 < π i) ∧
+      (∑ i, π i)=1 ∧ 0<J ∧ ∀ i, π i*u i-π (σ i)*v i=J := by
+  have hup : 0 < ∏ i, u i := Finset.prod_pos (fun i hi => hu i)
+  have hp : (∏ i, v i/u i) < 1 := by
+    rw [Finset.prod_div_distrib]
+    exact (div_lt_one hup).mpr hUV
+  obtain ⟨x, hx, he⟩ := exists_positive_cyclic_solution σ hc
+    (fun i => v i/u i) (fun i => 1/u i)
+    (fun i => div_pos (hv i) (hu i)) (fun i => one_div_pos.mpr (hu i)) hp
+  let Z := ∑ i, x i
+  have hZ : 0 < Z := Finset.sum_pos (fun i hi => hx i) Finset.univ_nonempty
+  have he' : ∀ i, u i*x i-v i*x (σ i)=1 := by
+    intro i
+    have hh := congrArg (fun z : ℝ => u i*z) (he i)
+    field_simp [ne_of_gt (hu i)] at hh
+    nlinarith only [hh]
+  refine ⟨fun i => x i/Z, 1/Z, ?_, ?_, one_div_pos.mpr hZ, ?_⟩
+  · intro i
+    exact div_pos (hx i) hZ
+  · simp only [div_eq_mul_inv, ← Finset.sum_mul]
+    exact mul_inv_cancel₀ (ne_of_gt hZ)
+  · intro i
+    calc
+      _ = (u i*x i-v i*x (σ i))/Z := by ring
+      _ = 1/Z := by rw [he' i]
+
+theorem exists_positive_gradient (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (u v : ι → ℝ)
+    (hu : ∀ i, 0 < u i) (hv : ∀ i, 0 < v i)
+    (hUV : (∏ i, v i) < ∏ i, u i) (J : ℝ) (hJ : 0<J) :
+    ∃ g : ι → ℝ, (∀ i, 0<g i) ∧
+      ∀ i, u i*g i-v (σ⁻¹ i)*g (σ⁻¹ i)=J := by
+  have hup : 0 < ∏ i, u i := Finset.prod_pos (fun i hi => hu i)
+  have hp : (∏ i, v (σ⁻¹ i)/u i) < 1 := by
+    rw [Finset.prod_div_distrib, Equiv.prod_comp σ⁻¹ v]
+    exact (div_lt_one hup).mpr hUV
+  obtain ⟨g, hg, he⟩ := exists_positive_cyclic_solution σ⁻¹ hc.inv
+    (fun i => v (σ⁻¹ i)/u i) (fun i => J/u i)
+    (fun i => div_pos (hv _) (hu i)) (fun i => div_pos hJ (hu i)) hp
+  refine ⟨g, hg, ?_⟩
+  intro i
+  have hh := congrArg (fun z : ℝ => u i*z) (he i)
+  field_simp [ne_of_gt (hu i)] at hh
+  simp only [one_div] at hh
+  nlinarith only [hh]
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem gradient_sum_one [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u v π g : ι → ℝ) (J : ℝ)
+    (hJ : J ≠ 0) (hnorm : (∑ i, π i)=1)
+    (hflux : ∀ i, π i*u i-π (σ i)*v i=J)
+    (hrec : ∀ i, u i*g i-v (σ⁻¹ i)*g (σ⁻¹ i)=J) :
+    (∑ i, g i)=1 := by
+  have hleft : (∑ i, π i*(u i*g i-v (σ⁻¹ i)*g (σ⁻¹ i)))=J := by
+    simp_rw [hrec]
+    rw [← Finset.sum_mul, hnorm, one_mul]
+  have hreindex :
+      (∑ i, π i*(v (σ⁻¹ i)*g (σ⁻¹ i))) =
+        ∑ i, π (σ i)*(v i*g i) := by
+    simpa only [Perm.inv_apply_self] using
+      (Equiv.sum_comp σ (fun i => π i*(v (σ⁻¹ i)*g (σ⁻¹ i)))).symm
+  have hright : (∑ i, π i*(u i*g i-v (σ⁻¹ i)*g (σ⁻¹ i))) =
+      J*(∑ i, g i) := by
+    simp only [mul_sub, Finset.sum_sub_distrib]
+    rw [hreindex, ← Finset.sum_sub_distrib]
+    calc
+      _ = ∑ i, (π i*u i-π (σ i)*v i)*g i := by
+        apply Finset.sum_congr rfl
+        intro i hi
+        ring
+      _ = ∑ i, J*g i := by simp_rw [hflux]
+      _ = _ := (Finset.mul_sum _ _ _).symm
+  apply mul_left_cancel₀ hJ
+  simpa using hright.symm.trans hleft
+
+/-- Explicitly integrate every zero-sum edge function around a finite cycle. -/
+theorem exists_cyclic_coboundary [Nonempty ι] (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (r : ι → ℝ)
+    (hr : (∑ i, r i)=0) :
+    ∃ h : ι → ℝ, ∀ i, h (σ i)-h i=r i := by
+  let N : ℕ := Fintype.card ι
+  let H : ι → ℝ := fun i => ∑ k ∈ Finset.range N, green σ (fun _ => 1) r k i
+  have hN : (N : ℝ) ≠ 0 := by
+    exact_mod_cast (ne_of_gt (Fintype.card_pos : 0 < Fintype.card ι))
+  have hstep (k : ℕ) (i : ι) :
+      green σ (fun _ => 1) r k (σ i)-green σ (fun _ => 1) r k i =
+        r ((σ^k) i)-r i := by
+    have hh := green_recurrence_raw σ (fun _ => 1) r k i
+    simp only [transferTerm, Finset.prod_const_one, one_mul] at hh
+    linarith only [hh]
+  have hdiff (i : ι) : H (σ i)-H i = -(N : ℝ)*r i := by
+    dsimp only [H]
+    rw [← Finset.sum_sub_distrib]
+    simp_rw [hstep]
+    rw [Finset.sum_sub_distrib, orbit_sum σ hc r i, hr]
+    simp only [Finset.sum_const, Finset.card_range, nsmul_eq_mul, zero_sub, neg_mul]
+  refine ⟨fun i => -H i/(N : ℝ), ?_⟩
+  intro i
+  calc
+    _ = -(H (σ i)-H i)/(N : ℝ) := by ring
+    _ = r i := by rw [hdiff i]; field_simp [hN]
+
+/-- Positive rates on a genuine finite cycle supply a centered Poisson
+corrector for every winding increment of total one. -/
+theorem exists_stationary_corrector [Nonempty ι] (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (u v d : ι → ℝ)
+    (hu : ∀ i, 0 < u i) (hv : ∀ i, 0 < v i)
+    (hUV : (∏ i, v i) < ∏ i, u i) (hd : (∑ i, d i)=1) :
+    ∃ (π : ι → ℝ) (J : ℝ) (h : ι → ℝ),
+      (∀ i, 0<π i) ∧ (∑ i, π i)=1 ∧ 0<J ∧
+      (∀ i, π i*u i-π (σ i)*v i=J) ∧ (∑ i, π i*h i)=0 ∧
+      ∀ i, u i*(d i+h (σ i)-h i)-
+        v (σ⁻¹ i)*(d (σ⁻¹ i)+h i-h (σ⁻¹ i))=J := by
+  obtain ⟨π,J,hπ,hnorm,hJ,hflux⟩ := exists_stationary_cycle σ hc u v hu hv hUV
+  obtain ⟨g,hg,hrec⟩ := exists_positive_gradient σ hc u v hu hv hUV J hJ
+  have hgsum := gradient_sum_one σ u v π g J (ne_of_gt hJ) hnorm hflux hrec
+  have hrsum : (∑ i, (g i-d i))=0 := by
+    rw [Finset.sum_sub_distrib, hgsum, hd]
+    ring
+  obtain ⟨h,hdiff⟩ := exists_cyclic_coboundary σ hc (fun i => g i-d i) hrsum
+  let μ : ℝ := ∑ i, π i*h i
+  refine ⟨π,J,(fun i => h i-μ),hπ,hnorm,hJ,hflux,?_,?_⟩
+  · simp only [mul_sub, Finset.sum_sub_distrib, ← Finset.sum_mul]
+    rw [hnorm]
+    dsimp [μ]
+    ring
+  · intro i
+    have hf : d i+(h (σ i)-μ)-(h i-μ)=g i := by
+      have hh := hdiff i
+      linarith only [hh]
+    have hb : d (σ⁻¹ i)+(h i-μ)-(h (σ⁻¹ i)-μ)=g (σ⁻¹ i) := by
+      have hh := hdiff (σ⁻¹ i)
+      simp only [Perm.apply_inv_self] at hh
+      linarith only [hh]
+    rw [hf,hb]
+    exact hrec i
+
+end
+end UnicyclicConstruction
+
+#print axioms UnicyclicConstruction.exists_stationary_cycle
+#print axioms UnicyclicConstruction.exists_stationary_corrector
+
+end CheckedModule16
+
+/- proof/FiniteTUR.lean; SHA256 0b68bc85e64cd468bbd9bedd12a1dae246d510f69d685132ae6fff7c57e45660 -/
+section CheckedModule17
+
+/-!
+The finite flow inequality used in the proposed Markov-chain argument.
+The inputs are positive forward/backward stationary edge flows of common net
+flux, and corrected edge increments summing to one.  The theorem proves the
+claimed inequality for their quadratic form.  Identification of these objects
+with arbitrary ring rates and tilted-generator cumulants is NOT assumed proved.
+-/
+namespace UnicyclicFiniteTUR
+noncomputable section
+open scoped BigOperators
+set_option maxHeartbeats 2000000
+
+theorem log_ratio_lower {x : ℝ} (hx : 1 ≤ x) :
+    2*(x-1)/(x+1) ≤ Real.log x := by
+  let f : ℝ → ℝ := fun y => Real.log y - 2*(y-1)/(y+1)
+  have hd : ∀ y, 1 ≤ y →
+      HasDerivAt f ((y-1)^2/(y*(y+1)^2)) y := by
+    intro y hy
+    have hy0 : 0 < y := lt_of_lt_of_le (by norm_num) hy
+    have hy1 : y+1 ≠ 0 := ne_of_gt (by linarith)
+    have hh := (Real.hasDerivAt_log (ne_of_gt hy0)).sub
+      ((((hasDerivAt_id y).sub_const 1).const_mul 2).div
+        ((hasDerivAt_id y).add_const 1) hy1)
+    convert hh using 1 ; dsimp [f] ; field_simp ; ring
+  have hm : MonotoneOn f (Set.Ici (1 : ℝ)) := by
+    apply monotoneOn_of_deriv_nonneg (convex_Ici (1 : ℝ))
+    · intro y hy
+      exact (hd y hy).continuousAt.continuousWithinAt
+    · intro y hy
+      exact (hd y (interior_subset hy)).differentiableAt.differentiableWithinAt
+    · intro y hy
+      have hy' : 1 ≤ y := interior_subset hy
+      rw [(hd y hy').deriv]
+      apply div_nonneg (sq_nonneg _)
+      exact mul_nonneg (by linarith) (sq_nonneg _)
+  have hh := hm (by simp : (1 : ℝ) ∈ Set.Ici (1 : ℝ)) hx hx
+  simp only [f, Real.log_one, sub_self, mul_zero, zero_div, sub_zero] at hh
+  linarith only [hh]
+
+theorem flow_log_lower {a b J : ℝ} (ha : 0 < a) (hb : 0 < b)
+    (hJ : 0 < J) (hflux : a-b=J) :
+    2*J/(a+b) ≤ Real.log (a/b) := by
+  have hratio : 1 ≤ a/b := (le_div_iff₀ hb).mpr (by linarith)
+  have hh := log_ratio_lower hratio
+  have hab : a+b ≠ 0 := ne_of_gt (add_pos ha hb)
+  have hid : 2*(a/b-1)/(a/b+1) = 2*J/(a+b) := by
+    rw [← hflux]
+    field_simp
+  rwa [hid] at hh
+
+theorem finite_flow_tur_product {ι : Type*} [Fintype ι]
+    (a b g : ι → ℝ) (J : ℝ)
+    (ha : ∀ i, 0 < a i) (hb : ∀ i, 0 < b i)
+    (hJ : 0 < J) (hflux : ∀ i, a i-b i=J)
+    (hg : (∑ i, g i) = 1) :
+    2*J ≤ (∑ i, (a i+b i)*g i^2) *
+      (∑ i, Real.log (a i/b i)) := by
+  have hw : ∀ i, 0 < a i+b i := fun i => add_pos (ha i) (hb i)
+  have hc2 : 0 ≤ ∑ i, (a i+b i)*g i^2 := by
+    apply Finset.sum_nonneg
+    intro i hi
+    exact mul_nonneg (le_of_lt (hw i)) (sq_nonneg _)
+  have hcs : 1 ≤ (∑ i, (a i+b i)*g i^2) * ∑ i, (a i+b i)⁻¹ := by
+    have hh := Finset.sum_sq_le_sum_mul_sum_of_sq_eq_mul
+      (Finset.univ : Finset ι) (r := g)
+      (f := fun i => (a i+b i)*g i^2) (g := fun i => (a i+b i)⁻¹)
+      (fun i hi => mul_nonneg (le_of_lt (hw i)) (sq_nonneg _))
+      (fun i hi => le_of_lt (inv_pos.mpr (hw i)))
+      (fun i hi => by field_simp [ne_of_gt (hw i)])
+    simpa [hg] using hh
+  have hlog : 2*J*(∑ i, (a i+b i)⁻¹) ≤
+      ∑ i, Real.log (a i/b i) := by
+    rw [Finset.mul_sum]
+    apply Finset.sum_le_sum
+    intro i hi
+    simpa only [div_eq_mul_inv] using
+      flow_log_lower (ha i) (hb i) hJ (hflux i)
+  have hmul := mul_le_mul_of_nonneg_left hlog hc2
+  have htwoJ : 0 ≤ 2*J := by positivity
+  have hmul2 := mul_le_mul_of_nonneg_left hcs htwoJ
+  nlinarith only [hmul, hmul2]
+
+theorem finite_flow_tur {ι : Type*} [Fintype ι]
+    (a b g : ι → ℝ) (J : ℝ)
+    (ha : ∀ i, 0 < a i) (hb : ∀ i, 0 < b i)
+    (hJ : 0 < J) (hflux : ∀ i, a i-b i=J)
+    (hg : (∑ i, g i) = 1) :
+    2/(∑ i, Real.log (a i/b i)) ≤
+      (∑ i, (a i+b i)*g i^2)/J := by
+  have hp := finite_flow_tur_product a b g J ha hb hJ hflux hg
+  have hc2 : 0 ≤ ∑ i, (a i+b i)*g i^2 := by
+    exact Finset.sum_nonneg (fun i hi =>
+      mul_nonneg (le_of_lt (add_pos (ha i) (hb i))) (sq_nonneg _))
+  have hA : 0 < ∑ i, Real.log (a i/b i) := by
+    by_contra hn
+    have hn' := le_of_not_gt hn
+    have hprod := mul_nonpos_of_nonneg_of_nonpos hc2 hn'
+    linarith only [hp, hprod, hJ]
+  exact (div_le_div_iff₀ hA hJ).mpr hp
+
+end
+end UnicyclicFiniteTUR
+
+#print axioms UnicyclicFiniteTUR.log_ratio_lower
+#print axioms UnicyclicFiniteTUR.finite_flow_tur
+
+end CheckedModule17
+
+/- proof/CyclicPoisson.lean; SHA256 fd859dbac57f2f8cbf24785e6d1888fca543c3e88df132fe54b212e4ef77fdc7 -/
+section CheckedModule18
+
+/-! Finite Poisson solvability and perturbation coefficients for actual cyclic
+rates. These definitions use the generator acting on functions (the transpose
+of the column generator used in the determinant development). -/
+namespace UnicyclicPoisson
+noncomputable section
+open scoped BigOperators
+open Equiv UnicyclicConstruction
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+set_option maxHeartbeats 2000000
+
+def generator (σ : Perm ι) (u v f : ι → ℝ) (i : ι) : ℝ :=
+  u i*(f (σ i)-f i)+v (σ⁻¹ i)*(f (σ⁻¹ i)-f i)
+
+def drift (σ : Perm ι) (u v d : ι → ℝ) (i : ι) : ℝ :=
+  u i*d i-v (σ⁻¹ i)*d (σ⁻¹ i)
+
+def tiltFirst (σ : Perm ι) (u v d f : ι → ℝ) (i : ι) : ℝ :=
+  u i*d i*f (σ i)-v (σ⁻¹ i)*d (σ⁻¹ i)*f (σ⁻¹ i)
+
+def tiltSecondOne (σ : Perm ι) (u v d : ι → ℝ) (i : ι) : ℝ :=
+  u i*d i^2+v (σ⁻¹ i)*d (σ⁻¹ i)^2
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem weighted_gradient_sum [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u v π g : ι → ℝ) (J : ℝ)
+    (hflux : ∀ i, π i*u i-π (σ i)*v i=J) :
+    (∑ i, π i*(u i*g i-v (σ⁻¹ i)*g (σ⁻¹ i))) = J*(∑ i, g i) := by
+  have hreindex :
+      (∑ i, π i*(v (σ⁻¹ i)*g (σ⁻¹ i))) =
+        ∑ i, π (σ i)*(v i*g i) := by
+    simpa only [Perm.inv_apply_self] using
+      (Equiv.sum_comp σ (fun i => π i*(v (σ⁻¹ i)*g (σ⁻¹ i)))).symm
+  simp only [mul_sub, Finset.sum_sub_distrib]
+  rw [hreindex, ← Finset.sum_sub_distrib]
+  calc
+    _ = ∑ i, (π i*u i-π (σ i)*v i)*g i := by
+      apply Finset.sum_congr rfl
+      intro i hi
+      ring
+    _ = ∑ i, J*g i := by simp_rw [hflux]
+    _ = _ := (Finset.mul_sum _ _ _).symm
+
+theorem stationary_generator_zero (σ : Perm ι) (u v π f : ι → ℝ) (J : ℝ)
+    (hflux : ∀ i, π i*u i-π (σ i)*v i=J) :
+    (∑ i, π i*generator σ u v f i)=0 := by
+  have hh := weighted_gradient_sum σ u v π (fun i => f (σ i)-f i) J hflux
+  have he (i : ι) :
+      u i*(f (σ i)-f i)-v (σ⁻¹ i)*(f (σ (σ⁻¹ i))-f (σ⁻¹ i)) =
+        generator σ u v f i := by
+    simp only [Perm.apply_inv_self, generator]
+    ring
+  simp_rw [he] at hh
+  simpa only [Finset.sum_sub_distrib, Equiv.sum_comp σ f, sub_self, mul_zero] using hh
+
+theorem exists_signed_cyclic_solution (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (ρ f : ι → ℝ)
+    (hprod : (∏ i, ρ i)<1) :
+    ∃ x : ι → ℝ, ∀ i, x i-ρ i*x (σ i)=f i := by
+  let Z : ℝ := 1-∏ i, ρ i
+  have hZ : 0<Z := sub_pos.mpr hprod
+  refine ⟨fun i => green σ ρ f (Fintype.card ι) i/Z, ?_⟩
+  intro i
+  have hh := green_recurrence σ hc ρ f i
+  calc
+    _ = (green σ ρ f (Fintype.card ι) i-
+          ρ i*green σ ρ f (Fintype.card ι) (σ i))/Z := by ring
+    _ = f i := by
+      rw [hh]
+      change Z*f i/Z=f i
+      field_simp [ne_of_gt hZ]
+
+/-- Every zero-stationary-mean forcing has a centered Poisson solution,
+constructed through a finite cyclic Green sum. -/
+theorem exists_centered_poisson [Nonempty ι] (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (u v π f : ι → ℝ) (J : ℝ)
+    (hu : ∀ i, 0<u i) (_hv : ∀ i, 0<v i)
+    (hUV : (∏ i, v i)<∏ i, u i)
+    (hnorm : (∑ i, π i)=1) (hJ : J≠0)
+    (hflux : ∀ i, π i*u i-π (σ i)*v i=J)
+    (hf : (∑ i, π i*f i)=0) :
+    ∃ h : ι → ℝ, (∑ i, π i*h i)=0 ∧ ∀ i, generator σ u v h i=f i := by
+  have hup : 0<∏ i, u i := Finset.prod_pos (fun i hi => hu i)
+  have hp : (∏ i, v (σ⁻¹ i)/u i)<1 := by
+    rw [Finset.prod_div_distrib, Equiv.prod_comp σ⁻¹ v]
+    exact (div_lt_one hup).mpr hUV
+  obtain ⟨g,he⟩ := exists_signed_cyclic_solution σ⁻¹ hc.inv
+    (fun i => v (σ⁻¹ i)/u i) (fun i => f i/u i) hp
+  have hrec : ∀ i, u i*g i-v (σ⁻¹ i)*g (σ⁻¹ i)=f i := by
+    intro i
+    have hh := congrArg (fun z : ℝ => u i*z) (he i)
+    field_simp [ne_of_gt (hu i)] at hh
+    simp only [one_div] at hh
+    nlinarith only [hh]
+  have hgsum : (∑ i, g i)=0 := by
+    have hh := weighted_gradient_sum σ u v π g J hflux
+    simp_rw [hrec] at hh
+    rw [hf] at hh
+    exact (mul_eq_zero.mp hh.symm).resolve_left hJ
+  obtain ⟨h,hdiff⟩ := exists_cyclic_coboundary σ hc g hgsum
+  let μ : ℝ := ∑ i, π i*h i
+  refine ⟨fun i => h i-μ, ?_, ?_⟩
+  · simp only [mul_sub, Finset.sum_sub_distrib, ← Finset.sum_mul]
+    rw [hnorm]
+    dsimp [μ]
+    ring
+  · intro i
+    have hfwd : (h (σ i)-μ)-(h i-μ)=g i := by
+      have hh := hdiff i
+      linarith only [hh]
+    have hback : (h (σ⁻¹ i)-μ)-(h i-μ)= -g (σ⁻¹ i) := by
+      have hh := hdiff (σ⁻¹ i)
+      simp only [Perm.apply_inv_self] at hh
+      linarith only [hh]
+    simp only [generator, hfwd, hback]
+    nlinarith only [hrec i]
+
+def secondCoefficient (σ : Perm ι) (u v d π h : ι → ℝ) : ℝ :=
+  ∑ i, π i*(tiltSecondOne σ u v d i+2*tiltFirst σ u v d h i)
+
+def edgeQuadratic (σ : Perm ι) (u v d π h : ι → ℝ) : ℝ :=
+  ∑ i, (π i*u i+π (σ i)*v i)*(d i+h (σ i)-h i)^2
+
+theorem secondCoefficient_eq_edgeQuadratic (σ : Perm ι)
+    (u v d π h : ι → ℝ) (J : ℝ)
+    (hflux : ∀ i, π i*u i-π (σ i)*v i=J)
+    (hcenter : (∑ i, π i*h i)=0)
+    (hcorr : ∀ i, generator σ u v h i+drift σ u v d i=J) :
+    secondCoefficient σ u v d π h = edgeQuadratic σ u v d π h := by
+  let K : ι → ℝ := fun i =>
+    u i*(d i+h (σ i)-h i)^2+
+      v (σ⁻¹ i)*(d (σ⁻¹ i)+h i-h (σ⁻¹ i))^2
+  have hpoint (i : ι) :
+      K i+2*h i*J =
+        (tiltSecondOne σ u v d i+2*tiltFirst σ u v d h i)+
+          generator σ u v (fun i => h i^2) i := by
+    rw [← hcorr i]
+    dsimp [K, generator, drift, tiltSecondOne, tiltFirst]
+    ring
+  have hs :
+      (∑ i, (π i*K i+2*J*(π i*h i))) =
+        ∑ i, (π i*(tiltSecondOne σ u v d i+2*tiltFirst σ u v d h i)+
+          π i*generator σ u v (fun i => h i^2) i) := by
+    apply Finset.sum_congr rfl
+    intro i hi
+    calc
+      _ = π i*(K i+2*h i*J) := by ring
+      _ = π i*((tiltSecondOne σ u v d i+2*tiltFirst σ u v d h i)+
+            generator σ u v (fun i => h i^2) i) := by rw [hpoint i]
+      _ = _ := by ring
+  simp only [Finset.sum_add_distrib, ← Finset.mul_sum] at hs
+  rw [hcenter, stationary_generator_zero σ u v π (fun i => h i^2) J hflux] at hs
+  have hK : (∑ i, π i*K i)=secondCoefficient σ u v d π h := by
+    dsimp only [secondCoefficient]
+    linarith only [hs]
+  have hreindex :
+      (∑ i, π i*v (σ⁻¹ i)*(d (σ⁻¹ i)+h i-h (σ⁻¹ i))^2) =
+        ∑ i, π (σ i)*v i*(d i+h (σ i)-h i)^2 := by
+    simpa only [Perm.inv_apply_self] using
+      (Equiv.sum_comp σ (fun i =>
+        π i*v (σ⁻¹ i)*(d (σ⁻¹ i)+h i-h (σ⁻¹ i))^2)).symm
+  have hKedge : (∑ i, π i*K i)=edgeQuadratic σ u v d π h := by
+    dsimp only [K, edgeQuadratic]
+    simp only [mul_add, add_mul, Finset.sum_add_distrib, ← mul_assoc]
+    rw [hreindex]
+  exact hK.symm.trans hKedge
+
+/-- Construct genuine first and second perturbation coefficients from the
+rates, including the centered first and second vector coefficients. -/
+theorem exists_two_coefficients [Nonempty ι] (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (u v d : ι → ℝ)
+    (hu : ∀ i, 0<u i) (hv : ∀ i, 0<v i)
+    (hUV : (∏ i, v i)<∏ i, u i) (hd : (∑ i, d i)=1) :
+    ∃ (π h k : ι → ℝ) (J C2 : ℝ),
+      (∀ i, 0<π i) ∧ (∑ i, π i)=1 ∧ 0<J ∧
+      (∀ i, π i*u i-π (σ i)*v i=J) ∧
+      (∑ i, π i*h i)=0 ∧ (∑ i, π i*k i)=0 ∧
+      (∀ i, generator σ u v h i+drift σ u v d i=J) ∧
+      (∀ i, generator σ u v k i+2*tiltFirst σ u v d h i+
+        tiltSecondOne σ u v d i=C2+2*J*h i) ∧
+      C2=edgeQuadratic σ u v d π h := by
+  obtain ⟨π,J,h,hπ,hnorm,hJ,hflux,hcenter,hcor⟩ :=
+    exists_stationary_corrector σ hc u v d hu hv hUV hd
+  have hfirst : ∀ i, generator σ u v h i+drift σ u v d i=J := by
+    intro i
+    have hh := hcor i
+    dsimp [generator, drift]
+    nlinarith only [hh]
+  let C2 := secondCoefficient σ u v d π h
+  let f : ι → ℝ := fun i => C2+2*J*h i-
+    (tiltSecondOne σ u v d i+2*tiltFirst σ u v d h i)
+  have hf : (∑ i, π i*f i)=0 := by
+    have hs : (∑ i, π i*f i) =
+        C2*(∑ i, π i)+2*J*(∑ i, π i*h i)-
+          secondCoefficient σ u v d π h := by
+      dsimp only [f, secondCoefficient]
+      simp only [Finset.mul_sum, ← Finset.sum_add_distrib, ← Finset.sum_sub_distrib]
+      apply Finset.sum_congr rfl
+      intro i hi
+      ring
+    rw [hs, hnorm, hcenter]
+    dsimp [C2]
+    ring
+  obtain ⟨k,hkcenter,hk⟩ := exists_centered_poisson σ hc u v π f J
+    hu hv hUV hnorm (ne_of_gt hJ) hflux hf
+  refine ⟨π,h,k,J,C2,hπ,hnorm,hJ,hflux,hcenter,hkcenter,hfirst,?_,?_⟩
+  · intro i
+    have hh := hk i
+    dsimp only [f] at hh
+    linarith only [hh]
+  · exact secondCoefficient_eq_edgeQuadratic σ u v d π h J hflux hcenter hfirst
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem stationary_flow_affinity [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u v π : ι → ℝ)
+    (hu : ∀ i, 0<u i) (hv : ∀ i, 0<v i) (hπ : ∀ i, 0<π i) :
+    (∑ i, Real.log ((π i*u i)/(π (σ i)*v i))) =
+      Real.log ((∏ i, u i)/(∏ i, v i)) := by
+  have hterm (i : ι) :
+      Real.log ((π i*u i)/(π (σ i)*v i)) =
+        Real.log (u i/v i)+Real.log (π i)-Real.log (π (σ i)) := by
+    rw [Real.log_div (mul_ne_zero (ne_of_gt (hπ i)) (ne_of_gt (hu i)))
+      (mul_ne_zero (ne_of_gt (hπ _)) (ne_of_gt (hv i))),
+      Real.log_mul (ne_of_gt (hπ i)) (ne_of_gt (hu i)),
+      Real.log_mul (ne_of_gt (hπ _)) (ne_of_gt (hv i)),
+      Real.log_div (ne_of_gt (hu i)) (ne_of_gt (hv i))]
+    ring
+  simp_rw [hterm]
+  rw [Finset.sum_sub_distrib, Finset.sum_add_distrib, Equiv.sum_comp σ (fun i => Real.log (π i))]
+  have hup : (∏ i, u i)≠0 := ne_of_gt (Finset.prod_pos (fun i hi => hu i))
+  have hvp : (∏ i, v i)≠0 := ne_of_gt (Finset.prod_pos (fun i hi => hv i))
+  rw [Real.log_div hup hvp,
+    Real.log_prod Finset.univ u (fun i hi => ne_of_gt (hu i)),
+    Real.log_prod Finset.univ v (fun i hi => ne_of_gt (hv i))]
+  simp_rw [Real.log_div (ne_of_gt (hu _)) (ne_of_gt (hv _))]
+  rw [Finset.sum_sub_distrib]
+  ring
+
+/-- The finite-flow TUR expressed using the actual rate-product affinity and
+the corrected quadratic form. No uncertainty bound is a hypothesis. -/
+theorem edgeQuadratic_tur (σ : Perm ι) (u v d π h : ι → ℝ) (J : ℝ)
+    (hu : ∀ i, 0<u i) (hv : ∀ i, 0<v i) (hπ : ∀ i, 0<π i)
+    (hJ : 0<J) (hflux : ∀ i, π i*u i-π (σ i)*v i=J)
+    (hd : (∑ i, d i)=1) :
+    2/Real.log ((∏ i, u i)/(∏ i, v i)) ≤ edgeQuadratic σ u v d π h/J := by
+  have hg : (∑ i, (d i+h (σ i)-h i))=1 := by
+    rw [Finset.sum_sub_distrib, Finset.sum_add_distrib, Equiv.sum_comp σ h, hd]
+    ring
+  have hh := UnicyclicFiniteTUR.finite_flow_tur
+    (fun i => π i*u i) (fun i => π (σ i)*v i) (fun i => d i+h (σ i)-h i) J
+    (fun i => mul_pos (hπ i) (hu i)) (fun i => mul_pos (hπ _) (hv i))
+    hJ hflux hg
+  rw [stationary_flow_affinity σ u v π hu hv hπ] at hh
+  exact hh
+
+end
+end UnicyclicPoisson
+
+#print axioms UnicyclicPoisson.exists_centered_poisson
+#print axioms UnicyclicPoisson.exists_two_coefficients
+#print axioms UnicyclicPoisson.edgeQuadratic_tur
+
+end CheckedModule18
+
+/- proof/CyclicResidualJets.lean; SHA256 e5de7316471e2a74d9939bbf706296afe89ff5837732da6be0bc9e1bdd76f6ae -/
+section CheckedModule19
+
+/-! Componentwise residual jets for the actual tilted row generator. -/
+namespace UnicyclicResidualJets
+noncomputable section
+open scoped BigOperators
+open Equiv UnicyclicPoisson
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+set_option maxHeartbeats 2000000
+
+def polyJet (h k s : ℝ) : ℝ := 1+s*h+s^2*k/2
+def polyJetD (h k s : ℝ) : ℝ := h+s*k
+def lambdaJet (J C2 s : ℝ) : ℝ := J*s+C2*s^2/2
+def lambdaJetD (J C2 s : ℝ) : ℝ := J+C2*s
+def expPoly (d h k s : ℝ) : ℝ := Real.exp (s*d)*polyJet h k s
+def expPolyD (d h k s : ℝ) : ℝ :=
+  Real.exp (s*d)*(d*polyJet h k s+polyJetD h k s)
+def expPolyDD (d h k s : ℝ) : ℝ :=
+  Real.exp (s*d)*(d^2*polyJet h k s+2*d*polyJetD h k s+k)
+
+theorem hasDerivAt_polyJet (h k s : ℝ) :
+    HasDerivAt (polyJet h k) (polyJetD h k s) s := by
+  convert (((hasDerivAt_const s (1 : ℝ)).add ((hasDerivAt_id s).mul_const h)).add
+    ((((hasDerivAt_id s).pow 2).mul_const k).div_const 2)) using 1 ;
+    dsimp [polyJet, polyJetD] ; ring
+
+theorem hasDerivAt_polyJetD (h k s : ℝ) :
+    HasDerivAt (polyJetD h k) k s := by
+  simpa only [polyJetD, one_mul] using ((hasDerivAt_id s).mul_const k).const_add h
+
+theorem hasDerivAt_lambdaJet (J C2 s : ℝ) :
+    HasDerivAt (lambdaJet J C2) (lambdaJetD J C2 s) s := by
+  convert (((hasDerivAt_id s).const_mul J).add
+    ((((hasDerivAt_id s).pow 2).const_mul C2).div_const 2)) using 1 ;
+    dsimp [lambdaJet, lambdaJetD] ; ring
+
+theorem hasDerivAt_lambdaJetD (J C2 s : ℝ) :
+    HasDerivAt (lambdaJetD J C2) C2 s := by
+  simpa only [lambdaJetD, mul_one] using ((hasDerivAt_id s).const_mul C2).const_add J
+
+theorem hasDerivAt_exp_scaled (d s : ℝ) :
+    HasDerivAt (fun t => Real.exp (t*d)) (d*Real.exp (s*d)) s := by
+  simpa [mul_comm] using ((hasDerivAt_id s).mul_const d).exp
+
+theorem hasDerivAt_expPoly (d h k s : ℝ) :
+    HasDerivAt (expPoly d h k) (expPolyD d h k s) s := by
+  convert (hasDerivAt_exp_scaled d s).mul (hasDerivAt_polyJet h k s) using 1 ;
+    dsimp [expPoly, expPolyD] ; ring
+
+theorem hasDerivAt_expPolyD (d h k s : ℝ) :
+    HasDerivAt (expPolyD d h k) (expPolyDD d h k s) s := by
+  convert (hasDerivAt_exp_scaled d s).mul
+    (((hasDerivAt_polyJet h k s).const_mul d).add (hasDerivAt_polyJetD h k s)) using 1 ;
+    dsimp [expPolyD, expPolyDD] ; ring
+
+def residual (σ : Perm ι) (u v d h k : ι → ℝ) (J C2 s : ℝ) (i : ι) : ℝ :=
+  lambdaJet J C2 s*polyJet (h i) (k i) s-
+    u i*expPoly (d i) (h (σ i)) (k (σ i)) s-
+    v (σ⁻¹ i)*expPoly (-d (σ⁻¹ i)) (h (σ⁻¹ i)) (k (σ⁻¹ i)) s+
+    (u i+v (σ⁻¹ i))*polyJet (h i) (k i) s
+
+def residualD (σ : Perm ι) (u v d h k : ι → ℝ) (J C2 s : ℝ) (i : ι) : ℝ :=
+  (lambdaJetD J C2 s*polyJet (h i) (k i) s+
+    lambdaJet J C2 s*polyJetD (h i) (k i) s)-
+    u i*expPolyD (d i) (h (σ i)) (k (σ i)) s-
+    v (σ⁻¹ i)*expPolyD (-d (σ⁻¹ i)) (h (σ⁻¹ i)) (k (σ⁻¹ i)) s+
+    (u i+v (σ⁻¹ i))*polyJetD (h i) (k i) s
+
+def residualDD (σ : Perm ι) (u v d h k : ι → ℝ) (J C2 s : ℝ) (i : ι) : ℝ :=
+  (C2*polyJet (h i) (k i) s+2*lambdaJetD J C2 s*polyJetD (h i) (k i) s+
+    lambdaJet J C2 s*k i)-
+    u i*expPolyDD (d i) (h (σ i)) (k (σ i)) s-
+    v (σ⁻¹ i)*expPolyDD (-d (σ⁻¹ i)) (h (σ⁻¹ i)) (k (σ⁻¹ i)) s+
+    (u i+v (σ⁻¹ i))*k i
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem hasDerivAt_residual [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u v d h k : ι → ℝ)
+    (J C2 s : ℝ) (i : ι) :
+    HasDerivAt (fun t => residual σ u v d h k J C2 t i)
+      (residualD σ u v d h k J C2 s i) s := by
+  convert ((((hasDerivAt_lambdaJet J C2 s).mul (hasDerivAt_polyJet (h i) (k i) s)).sub
+    ((hasDerivAt_expPoly (d i) (h (σ i)) (k (σ i)) s).const_mul (u i))).sub
+    ((hasDerivAt_expPoly (-d (σ⁻¹ i)) (h (σ⁻¹ i)) (k (σ⁻¹ i)) s).const_mul (v (σ⁻¹ i)))).add
+    ((hasDerivAt_polyJet (h i) (k i) s).const_mul (u i+v (σ⁻¹ i))) using 1
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem hasDerivAt_residualD [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u v d h k : ι → ℝ)
+    (J C2 s : ℝ) (i : ι) :
+    HasDerivAt (fun t => residualD σ u v d h k J C2 t i)
+      (residualDD σ u v d h k J C2 s i) s := by
+  have hfirst := ((hasDerivAt_lambdaJetD J C2 s).mul
+    (hasDerivAt_polyJet (h i) (k i) s)).add
+    ((hasDerivAt_lambdaJet J C2 s).mul (hasDerivAt_polyJetD (h i) (k i) s))
+  have hfwd := hfirst.sub
+    ((hasDerivAt_expPolyD (d i) (h (σ i)) (k (σ i)) s).const_mul (u i))
+  have hback := hfwd.sub
+    ((hasDerivAt_expPolyD (-d (σ⁻¹ i)) (h (σ⁻¹ i)) (k (σ⁻¹ i)) s).const_mul (v (σ⁻¹ i)))
+  have hall := hback.add
+    ((hasDerivAt_polyJetD (h i) (k i) s).const_mul (u i+v (σ⁻¹ i)))
+  convert hall using 1 ;
+    dsimp [residualD, residualDD] ; ring
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem residual_zero [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u v d h k : ι → ℝ) (J C2 : ℝ) (i : ι) :
+    residual σ u v d h k J C2 0 i=0 := by
+  simp [residual, lambdaJet, polyJet, expPoly]
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem residualD_zero [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u v d h k : ι → ℝ) (J C2 : ℝ)
+    (hfirst : ∀ i, generator σ u v h i+drift σ u v d i=J) (i : ι) :
+    residualD σ u v d h k J C2 0 i=0 := by
+  have hh := hfirst i
+  dsimp [generator, drift] at hh
+  simp only [residualD, lambdaJet, lambdaJetD, polyJet, polyJetD, expPolyD,
+    zero_mul, mul_zero, zero_pow (by decide : 2≠0), zero_div, add_zero,
+    zero_add, Real.exp_zero, one_mul]
+  nlinarith only [hh]
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem residualDD_zero [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u v d h k : ι → ℝ) (J C2 : ℝ)
+    (hsecond : ∀ i, generator σ u v k i+2*tiltFirst σ u v d h i+
+      tiltSecondOne σ u v d i=C2+2*J*h i) (i : ι) :
+    residualDD σ u v d h k J C2 0 i=0 := by
+  have hh := hsecond i
+  dsimp [generator, tiltFirst, tiltSecondOne] at hh
+  simp only [residualDD, lambdaJet, lambdaJetD, polyJet, polyJetD, expPolyDD,
+    zero_mul, mul_zero, zero_pow (by decide : 2≠0), zero_div, add_zero,
+    zero_add, Real.exp_zero, one_mul]
+  nlinarith only [hh]
+
+theorem residual_jets_zero (σ : Perm ι) (u v d h k : ι → ℝ) (J C2 : ℝ)
+    (hfirst : ∀ i, generator σ u v h i+drift σ u v d i=J)
+    (hsecond : ∀ i, generator σ u v k i+2*tiltFirst σ u v d h i+
+      tiltSecondOne σ u v d i=C2+2*J*h i) (i : ι) :
+    residual σ u v d h k J C2 0 i=0 ∧
+      HasDerivAt (fun t => residual σ u v d h k J C2 t i) 0 0 ∧
+      HasDerivAt (deriv (fun t => residual σ u v d h k J C2 t i)) 0 0 := by
+  refine ⟨residual_zero σ u v d h k J C2 i, ?_, ?_⟩
+  · have hh := hasDerivAt_residual σ u v d h k J C2 0 i
+    rwa [residualD_zero σ u v d h k J C2 hfirst i] at hh
+  · have hd : deriv (fun t => residual σ u v d h k J C2 t i) =
+        fun t => residualD σ u v d h k J C2 t i := by
+      funext t
+      exact (hasDerivAt_residual σ u v d h k J C2 t i).deriv
+    rw [hd]
+    have hh := hasDerivAt_residualD σ u v d h k J C2 0 i
+    rwa [residualDD_zero σ u v d h k J C2 hsecond i] at hh
+
+theorem residual_derivatives_zero (σ : Perm ι) (u v d h k : ι → ℝ) (J C2 : ℝ)
+    (hfirst : ∀ i, generator σ u v h i+drift σ u v d i=J)
+    (hsecond : ∀ i, generator σ u v k i+2*tiltFirst σ u v d h i+
+      tiltSecondOne σ u v d i=C2+2*J*h i) (i : ι) :
+    residual σ u v d h k J C2 0 i=0 ∧
+      deriv (fun t => residual σ u v d h k J C2 t i) 0=0 ∧
+      deriv (deriv (fun t => residual σ u v d h k J C2 t i)) 0=0 := by
+  obtain ⟨h0,h1,h2⟩ := residual_jets_zero σ u v d h k J C2 hfirst hsecond i
+  exact ⟨h0,h1.deriv,h2.deriv⟩
+
+end
+end UnicyclicResidualJets
+
+#print axioms UnicyclicResidualJets.residual_jets_zero
+#print axioms UnicyclicResidualJets.residual_derivatives_zero
+
+end CheckedModule19
+
+/- proof/RateTiltedAction.lean; SHA256 dd569f4f846dfc7fd8a9c00573ed75a377899d37a9ac3ada8e634b8d2a94e167 -/
+section CheckedModule20
+
+/-! Component identity for the tilted backward-generator residual. -/
+
+open scoped BigOperators
+open Equiv
+
+namespace UnicyclicDeterminant
+
+noncomputable section
+
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem edgeTilt_eq_single_cycleTilt [Fintype ι] [DecidableEq ι] (A : Matrix ι ι ℝ) (σ : Perm ι) (a : ι) (q : ℝ) :
+    edgeTilt A a (σ a) q = cycleTilt A σ (fun j => if j = a then q else 1) := by
+  ext i j
+  by_cases hj : j = a
+  · subst j
+    by_cases hi : i = a
+    · subst i
+      simp [edgeTilt, cycleTilt]
+    · simp [edgeTilt, cycleTilt, hi]
+  · by_cases hi : i = a
+    · subst i
+      simp [edgeTilt, cycleTilt, hj]
+    · simp [edgeTilt, cycleTilt, hj, hi]
+
+theorem cycleTilt_ringMatrix (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (d f g q : ι → ℝ) :
+    cycleTilt (ringMatrix σ d f g) σ q =
+      ringMatrix σ d (fun j => q j * f j) (fun j => (q j)⁻¹ * g j) := by
+  ext i j
+  by_cases hij : i = j
+  · subst i
+    simp [cycleTilt, ringMatrix, (cycle_no_fixed σ hc hn j).symm]
+  by_cases hf : i = σ j
+  · subst i
+    simp [cycleTilt, ringMatrix, cycle_no_fixed σ hc hn j,
+      (cycle_no_two σ hc hn j).symm]
+  by_cases hr : j = σ i
+  · subst j
+    simp [cycleTilt, ringMatrix, (cycle_no_fixed σ hc hn i).symm,
+      (cycle_no_two σ hc hn i).symm]
+  · simp [cycleTilt, ringMatrix, hij, hf, hr]
+
+theorem ringMatrix_transpose_mulVec (σ : Perm ι) (d f g r : ι → ℝ) (i : ι) :
+    (ringMatrix σ d f g).transpose.mulVec r i =
+      d i * r i + f i * r (σ i) + g (σ⁻¹ i) * r (σ⁻¹ i) := by
+  have hrev (j : ι) : i = σ j ↔ j = σ⁻¹ i := by
+    constructor
+    · intro h
+      simpa using (congrArg (fun k => σ⁻¹ k) h).symm
+    · intro h
+      simpa using (congrArg σ h).symm
+  simp only [Matrix.mulVec, Matrix.transpose_apply, dotProduct, ringMatrix,
+    add_mul, Finset.sum_add_distrib, ite_mul, zero_mul, hrev,
+    Finset.sum_ite_eq', Finset.mem_univ, ite_true]
+
+theorem tilted_rate_transpose_mulVec (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (u v r : ι → ℝ) (a i : ι) (lam q : ℝ) :
+    (edgeTilt (rateMatrix σ u v lam) a (σ a) q).transpose.mulVec r i =
+      (lam + u i + v (σ⁻¹ i)) * r i -
+      u i * (if i = a then q else 1) * r (σ i) -
+      v (σ⁻¹ i) * (if σ⁻¹ i = a then q⁻¹ else 1) * r (σ⁻¹ i) := by
+  rw [edgeTilt_eq_single_cycleTilt]
+  unfold rateMatrix
+  rw [cycleTilt_ringMatrix σ hc hn, ringMatrix_transpose_mulVec]
+  have hinv : (if σ⁻¹ i = a then q else 1)⁻¹ =
+      (if σ⁻¹ i = a then q⁻¹ else 1) := by
+    split_ifs <;> simp
+  rw [hinv]
+  ring
+
+theorem tilted_rate_residual (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι))
+    (hn : 3 ≤ Fintype.card ι) (u v r : ι → ℝ) (a i : ι) (lam s : ℝ) :
+    (edgeTilt (rateMatrix σ u v lam) a (σ a) (Real.exp s)).transpose.mulVec r i =
+      lam * r i -
+      u i * Real.exp (s * (if i = a then 1 else 0)) * r (σ i) -
+      v (σ⁻¹ i) * Real.exp (-s * (if σ⁻¹ i = a then 1 else 0)) * r (σ⁻¹ i) +
+      (u i + v (σ⁻¹ i)) * r i := by
+  rw [tilted_rate_transpose_mulVec σ hc hn]
+  have hf : Real.exp (s * (if i = a then 1 else 0)) =
+      (if i = a then Real.exp s else 1) := by
+    split_ifs <;> simp
+  have hb : Real.exp (-s * (if σ⁻¹ i = a then 1 else 0)) =
+      (if σ⁻¹ i = a then (Real.exp s)⁻¹ else 1) := by
+    split_ifs <;> simp [Real.exp_neg]
+  rw [hf, hb]
+  ring
+
+#print axioms tilted_rate_transpose_mulVec
+#print axioms tilted_rate_residual
+
+end
+
+end UnicyclicDeterminant
+
+end CheckedModule20
+
+/- proof/ImplicitCumulants.lean; SHA256 c110dcda007fb24f8d021a22dfee8a25fbf68866a9bef5160c762d839d33fee5 -/
+section CheckedModule21
+
+/-!
+Implicit differentiation of a unicyclic characteristic equation.
+
+This module proves the first three coefficient/cumulant equations for any
+C^3 real branch satisfying the displayed characteristic equation. It does
+not assume those three equations. Identifying the characteristic equation
+with the transition-rate matrix remains a separate matrix theorem.
+-/
+
+namespace UnicyclicImplicit
+
+noncomputable section
+
+theorem hasDerivAt_exp_neg (x : ℝ) :
+    HasDerivAt (fun y : ℝ => Real.exp (-y)) (-Real.exp (-x)) x := by
+  simpa only [Function.comp_def, mul_neg_one] using
+    (Real.hasDerivAt_exp (-x)).comp x (hasDerivAt_id x).neg
+
+theorem implicit_cumulant_equations_of_jets
+    (P : Polynomial ℝ) (U V : ℝ) (f f1 f2 f3 : ℝ → ℝ)
+    (hf1 : ∀ x, HasDerivAt f (f1 x) x)
+    (hf2 : ∀ x, HasDerivAt f1 (f2 x) x)
+    (hf3 : ∀ x, HasDerivAt f2 (f3 x) x)
+    (hf0 : f 0 = 0)
+    (hroot : ∀ x, P.eval (f x) = U*(Real.exp x-1)+V*(Real.exp (-x)-1)) :
+    P.coeff 1 * f1 0 = U-V ∧
+    P.coeff 1 * f2 0 + 2*P.coeff 2*(f1 0)^2 = U+V ∧
+    P.coeff 1 * f3 0 + 6*P.coeff 2*f1 0*f2 0 +
+      6*P.coeff 3*(f1 0)^3 = U-V := by
+  have hrootfun : (fun x => P.eval (f x)) =
+      (fun x => U*(Real.exp x-1)+V*(Real.exp (-x)-1)) := funext hroot
+  have hfirst : ∀ x, P.derivative.eval (f x) * f1 x =
+      U*Real.exp x - V*Real.exp (-x) := by
+    intro x
+    have hleft := (P.hasDerivAt (f x)).comp x (hf1 x)
+    have hright := (((Real.hasDerivAt_exp x).sub_const 1).const_mul U).add
+      (((hasDerivAt_exp_neg x).sub_const 1).const_mul V)
+    simp only [Function.comp_def] at hleft
+    rw [hrootfun] at hleft
+    have heq := hleft.unique hright
+    nlinarith only [heq]
+  have hfirstfun : (fun x => P.derivative.eval (f x) * f1 x) =
+      (fun x => U*Real.exp x - V*Real.exp (-x)) := funext hfirst
+  have hsecond : ∀ x,
+      P.derivative.eval (f x)*f2 x + P.derivative.derivative.eval (f x)*(f1 x)^2 =
+      U*Real.exp x + V*Real.exp (-x) := by
+    intro x
+    have hleft := ((P.derivative.hasDerivAt (f x)).comp x (hf1 x)).mul (hf2 x)
+    have hright := ((Real.hasDerivAt_exp x).const_mul U).sub
+      ((hasDerivAt_exp_neg x).const_mul V)
+    simp only [Function.comp_def] at hleft
+    rw [hfirstfun] at hleft
+    have heq := hleft.unique hright
+    nlinarith only [heq]
+  have hsecondfun : (fun x =>
+      P.derivative.eval (f x)*f2 x + P.derivative.derivative.eval (f x)*(f1 x)^2) =
+      (fun x => U*Real.exp x + V*Real.exp (-x)) := funext hsecond
+  have hthird : ∀ x,
+      P.derivative.eval (f x)*f3 x +
+      3*P.derivative.derivative.eval (f x)*f1 x*f2 x +
+      P.derivative.derivative.derivative.eval (f x)*(f1 x)^3 =
+      U*Real.exp x - V*Real.exp (-x) := by
+    intro x
+    have hleft := (((P.derivative.hasDerivAt (f x)).comp x (hf1 x)).mul (hf3 x)).add
+      (((P.derivative.derivative.hasDerivAt (f x)).comp x (hf1 x)).mul ((hf2 x).pow 2))
+    have hright := ((Real.hasDerivAt_exp x).const_mul U).add
+      ((hasDerivAt_exp_neg x).const_mul V)
+    simp only [Function.comp_def] at hleft
+    rw [hsecondfun] at hleft
+    have heq := hleft.unique hright
+    norm_num at heq
+    nlinarith only [heq]
+  have h1 := hfirst 0
+  have h2 := hsecond 0
+  have h3 := hthird 0
+  norm_num [hf0, ← Polynomial.coeff_zero_eq_eval_zero,
+    Polynomial.coeff_derivative] at h1 h2 h3
+  refine ⟨?_, ?_, ?_⟩
+  · exact h1
+  · nlinarith only [h2]
+  · nlinarith only [h3]
+
+theorem implicit_cumulant_equations
+    (P : Polynomial ℝ) (U V : ℝ) (f : ℝ → ℝ)
+    (hf : ContDiff ℝ 3 f) (hf0 : f 0 = 0)
+    (hroot : ∀ x, P.eval (f x) = U*(Real.exp x-1)+V*(Real.exp (-x)-1)) :
+    P.coeff 1 * deriv f 0 = U-V ∧
+    P.coeff 1 * deriv (deriv f) 0 + 2*P.coeff 2*(deriv f 0)^2 = U+V ∧
+    P.coeff 1 * deriv (deriv (deriv f)) 0 +
+      6*P.coeff 2*deriv f 0*deriv (deriv f) 0 +
+      6*P.coeff 3*(deriv f 0)^3 = U-V := by
+  have hf' : ContDiff ℝ 2 (deriv f) := (contDiff_succ_iff_deriv.mp hf).2.2
+  have hf'' : ContDiff ℝ 1 (deriv (deriv f)) := (contDiff_succ_iff_deriv.mp hf').2.2
+  apply implicit_cumulant_equations_of_jets P U V f
+    (deriv f) (deriv (deriv f)) (deriv (deriv (deriv f)))
+  · intro x
+    exact (hf.differentiable (by norm_num) x).hasDerivAt
+  · intro x
+    exact (hf'.differentiable (by norm_num) x).hasDerivAt
+  · intro x
+    exact (hf''.differentiable (by norm_num) x).hasDerivAt
+  · exact hf0
+  · exact hroot
+
+#print axioms implicit_cumulant_equations_of_jets
+#print axioms implicit_cumulant_equations
+
+end
+end UnicyclicImplicit
+
+end CheckedModule21
+
+/- proof/ResidualCumulants.lean; SHA256 d7749c54dcec472aa3e740971313cdd24bc820c428ee2ac4945f3a61f33f5b79 -/
+section CheckedModule22
+
+/-!
+The first two characteristic coefficient equations follow from a residual
+that vanishes to second order at zero. An exact eigenvalue branch is not
+required. This is designed to accept the determinant jet established from
+the actual finite-state Poisson correctors.
+-/
+
+namespace UnicyclicImplicit
+
+noncomputable section
+
+def characteristicResidual (P : Polynomial ℝ) (U V : ℝ) (f : ℝ → ℝ)
+    (x : ℝ) : ℝ :=
+  P.eval (f x) - (U*(Real.exp x-1)+V*(Real.exp (-x)-1))
+
+theorem cumulant_equations_of_zero_residual_jet
+    (P : Polynomial ℝ) (U V : ℝ) (f : ℝ → ℝ)
+    (hf : ContDiff ℝ 2 f) (hf0 : f 0 = 0)
+    (hres1 : deriv (characteristicResidual P U V f) 0 = 0)
+    (hres2 : deriv (deriv (characteristicResidual P U V f)) 0 = 0) :
+    P.coeff 1 * deriv f 0 = U-V ∧
+    P.coeff 1 * deriv (deriv f) 0 + 2*P.coeff 2*(deriv f 0)^2 = U+V := by
+  have hf' : ContDiff ℝ 1 (deriv f) := (contDiff_succ_iff_deriv.mp hf).2.2
+  have hfirstfun : deriv (characteristicResidual P U V f) =
+      (fun x => P.derivative.eval (f x)*deriv f x -
+        (U*Real.exp x-V*Real.exp (-x))) := by
+    funext x
+    have hleft := (P.hasDerivAt (f x)).comp x
+      (hf.differentiable (by norm_num) x).hasDerivAt
+    have hright := (((Real.hasDerivAt_exp x).sub_const 1).const_mul U).add
+      (((hasDerivAt_exp_neg x).sub_const 1).const_mul V)
+    have hh := (hleft.sub hright).deriv
+    simp only [Function.comp_def] at hh
+    simpa only [characteristicResidual, mul_neg, sub_eq_add_neg,
+      add_neg_cancel_right] using hh
+  have h1 := hres1
+  rw [hfirstfun] at h1
+  have h2 := hres2
+  rw [hfirstfun] at h2
+  have hleft := ((P.derivative.hasDerivAt (f 0)).comp 0
+      (hf.differentiable (by norm_num) 0).hasDerivAt).mul
+        (hf'.differentiable (by norm_num) 0).hasDerivAt
+  have hright := ((Real.hasDerivAt_exp 0).const_mul U).sub
+      ((hasDerivAt_exp_neg 0).const_mul V)
+  have hd := (hleft.sub hright).deriv
+  simp only [Function.comp_def] at hd
+  rw [hd] at h2
+  norm_num [hf0, ← Polynomial.coeff_zero_eq_eval_zero,
+    Polynomial.coeff_derivative] at h1 h2
+  constructor <;> nlinarith only [h1,h2]
+
+def quadraticBranch (J C2 x : ℝ) : ℝ := J*x+C2*x^2/2
+
+theorem quadraticBranch_deriv (J C2 x : ℝ) :
+    HasDerivAt (quadraticBranch J C2) (J+C2*x) x := by
+  convert ((hasDerivAt_id x).const_mul J).add
+    ((((hasDerivAt_id x).pow 2).const_mul C2).div_const 2) using 1 ;
+    simp only [quadraticBranch, id_eq, Nat.cast_ofNat] ; ring
+
+theorem quadraticBranch_deriv_fun (J C2 : ℝ) :
+    deriv (quadraticBranch J C2) = (fun x => J+C2*x) := by
+  funext x
+  exact (quadraticBranch_deriv J C2 x).deriv
+
+theorem quadraticBranch_second_deriv_zero (J C2 : ℝ) :
+    deriv (deriv (quadraticBranch J C2)) 0 = C2 := by
+  rw [quadraticBranch_deriv_fun]
+  simpa using (((hasDerivAt_id (0 : ℝ)).const_mul C2).const_add J).deriv
+
+theorem quadraticBranch_contDiff (J C2 : ℝ) :
+    ContDiff ℝ 2 (quadraticBranch J C2) := by
+  exact ((contDiff_const.mul contDiff_id).add
+    ((contDiff_const.mul (contDiff_id.pow 2)).div_const 2))
+
+/-- This is the direct input/output interface for a determinant `ZeroJet2`. -/
+theorem quadratic_coefficient_equations_of_zero_residual_jet
+    (P : Polynomial ℝ) (U V J C2 : ℝ)
+    (hres1 : deriv (characteristicResidual P U V (quadraticBranch J C2)) 0 = 0)
+    (hres2 : deriv (deriv
+      (characteristicResidual P U V (quadraticBranch J C2))) 0 = 0) :
+    P.coeff 1*J = U-V ∧ P.coeff 1*C2+2*P.coeff 2*J^2 = U+V := by
+  have h := cumulant_equations_of_zero_residual_jet P U V
+    (quadraticBranch J C2) (quadraticBranch_contDiff J C2)
+    (by simp [quadraticBranch]) hres1 hres2
+  rw [quadraticBranch_second_deriv_zero] at h
+  simpa only [quadraticBranch_deriv_fun,
+    mul_zero, add_zero] using h
+
+#print axioms cumulant_equations_of_zero_residual_jet
+#print axioms quadratic_coefficient_equations_of_zero_residual_jet
+
+end
+end UnicyclicImplicit
+
+end CheckedModule22
+
+/- proof/RateJets.lean; SHA256 ef2cac9374c0e7a0e7ad13ce6c35ba5c1bbb956a4025dd838a4b0543ce499b71 -/
+section CheckedModule23
+
+/-!
+First and second characteristic coefficients obtained from actual finite
+Poisson equations. The determinant jet transfer is proved by the adjugate
+identity; no eigenvalue or uncertainty conclusion is assumed.
+-/
+namespace UnicyclicRateJets
+noncomputable section
+open scoped BigOperators
+open Equiv UnicyclicDeterminant UnicyclicPoisson UnicyclicResidualJets
+open UnicyclicJets UnicyclicImplicit
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+set_option maxHeartbeats 2000000
+
+def countedIncrement (a : ι) (i : ι) : ℝ := if i=a then 1 else 0
+
+theorem countedIncrement_sum (a : ι) : (∑ i, countedIncrement a i)=1 := by
+  simp [countedIncrement]
+
+def jetMatrix (σ : Perm ι) (u v : ι → ℝ) (a : ι) (J C2 t : ℝ) : Matrix ι ι ℝ :=
+  (edgeTilt (rateMatrix σ u v (lambdaJet J C2 t)) a (σ a) (Real.exp t)).transpose
+
+theorem contDiff_polyJet (h k : ℝ) : ContDiff ℝ 2 (polyJet h k) := by
+  exact (contDiff_const.add (contDiff_id.mul contDiff_const)).add
+    (((contDiff_id.pow 2).mul contDiff_const).div_const 2)
+
+theorem contDiff_lambdaJet (J C2 : ℝ) : ContDiff ℝ 2 (lambdaJet J C2) := by
+  exact ((contDiff_const.mul contDiff_id).add
+    ((contDiff_const.mul (contDiff_id.pow 2)).div_const 2))
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem contDiff_rateMatrix [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u v : ι → ℝ) (J C2 : ℝ) (i j : ι) :
+    ContDiff ℝ 2 (fun t => rateMatrix σ u v (lambdaJet J C2 t) i j) := by
+  have hDiag : ContDiff ℝ 2 (fun t => lambdaJet J C2 t+u j+v (σ⁻¹ j)) :=
+    ((contDiff_lambdaJet J C2).add contDiff_const).add contDiff_const
+  dsimp only [rateMatrix, ringMatrix]
+  split_ifs <;>
+    first | exact (hDiag.add contDiff_const).add contDiff_const | exact contDiff_const
+
+theorem contDiff_jetMatrix (σ : Perm ι) (u v : ι → ℝ) (a : ι)
+    (J C2 : ℝ) (i j : ι) :
+    ContDiff ℝ 2 (fun t => jetMatrix σ u v a J C2 t i j) := by
+  have hA := contDiff_rateMatrix σ u v J C2 j i
+  have he : ContDiff ℝ 2 Real.exp := Real.contDiff_exp
+  have hn : ContDiff ℝ 2 (fun t : ℝ => Real.exp (-t)) :=
+    Real.contDiff_exp.comp contDiff_id.neg
+  dsimp only [jetMatrix, Matrix.transpose_apply, edgeTilt]
+  simp_rw [← Real.exp_neg]
+  split_ifs <;>
+    first | exact (he.mul hn).mul hA
+          | exact (he.mul contDiff_const).mul hA
+          | exact (contDiff_const.mul hn).mul hA
+          | exact (contDiff_const.mul contDiff_const).mul hA
+
+theorem jetMatrix_mulVec (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (hn : 3≤Fintype.card ι)
+    (u v h k : ι → ℝ) (a : ι) (J C2 t : ℝ) (i : ι) :
+    (jetMatrix σ u v a J C2 t).mulVec (fun j => polyJet (h j) (k j) t) i =
+      UnicyclicResidualJets.residual σ u v (countedIncrement a) h k J C2 t i := by
+  rw [jetMatrix, tilted_rate_residual σ hc hn]
+  dsimp only [UnicyclicResidualJets.residual, countedIncrement, expPoly]
+  rw [mul_neg, neg_mul]
+  ring
+
+theorem jetMatrix_det (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (hn : 3≤Fintype.card ι)
+    (u v : ι → ℝ) (a : ι) (J C2 t : ℝ) :
+    (jetMatrix σ u v a J C2 t).det =
+      characteristicResidual (-(rateMatrix σ u v 0)).charpoly
+        (∏ i, u i) (∏ i, v i) (quadraticBranch J C2) t := by
+  rw [jetMatrix, Matrix.det_transpose,
+    rateMatrix_determinant_tilt σ hc hn u v a (lambdaJet J C2 t)
+      (Real.exp t) (Real.exp_ne_zero t)]
+  dsimp only [characteristicResidual, quadraticBranch, lambdaJet]
+  rw [UnicyclicSpectral.charpoly_neg_eval, rateMatrix_add_scalar, Real.exp_neg]
+  ring
+
+theorem coefficient_equations_from_poisson (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (hn : 3≤Fintype.card ι)
+    (u v h k : ι → ℝ) (a : ι) (J C2 : ℝ)
+    (hfirst : ∀ i, generator σ u v h i+drift σ u v (countedIncrement a) i=J)
+    (hsecond : ∀ i, generator σ u v k i+
+      2*tiltFirst σ u v (countedIncrement a) h i+
+      tiltSecondOne σ u v (countedIncrement a) i=C2+2*J*h i) :
+    (-(rateMatrix σ u v 0)).charpoly.coeff 1*J=(∏ i, u i)-(∏ i, v i) ∧
+      (-(rateMatrix σ u v 0)).charpoly.coeff 1*C2+
+        2*(-(rateMatrix σ u v 0)).charpoly.coeff 2*J^2=(∏ i, u i)+(∏ i, v i) := by
+  have hz : ∀ i, ZeroJet2 (fun t =>
+      (jetMatrix σ u v a J C2 t).mulVec (fun j => polyJet (h j) (k j) t) i) := by
+    intro i
+    have hid : (fun t => (jetMatrix σ u v a J C2 t).mulVec
+        (fun j => polyJet (h j) (k j) t) i) =
+        (fun t => UnicyclicResidualJets.residual σ u v (countedIncrement a) h k J C2 t i) := by
+      funext t
+      exact jetMatrix_mulVec σ hc hn u v h k a J C2 t i
+    rw [hid]
+    obtain ⟨h0,h1,h2⟩ := residual_jets_zero σ u v (countedIncrement a) h k J C2
+      hfirst hsecond i
+    exact ⟨h0,h1.deriv,h2.deriv⟩
+  have hdet := determinant_zero_jet_of_residual
+    (jetMatrix σ u v a J C2) (fun t i => polyJet (h i) (k i) t) a
+    (contDiff_jetMatrix σ u v a J C2) (fun i => contDiff_polyJet (h i) (k i))
+    (by simp [polyJet]) hz
+  have hid : (fun t => (jetMatrix σ u v a J C2 t).det) =
+      characteristicResidual (-(rateMatrix σ u v 0)).charpoly
+        (∏ i, u i) (∏ i, v i) (quadraticBranch J C2) := by
+    funext t
+    exact jetMatrix_det σ hc hn u v a J C2 t
+  rw [hid] at hdet
+  exact quadratic_coefficient_equations_of_zero_residual_jet _ _ _ J C2
+    hdet.2.1 hdet.2.2
+
+#print axioms coefficient_equations_from_poisson
+end
+end UnicyclicRateJets
+
+end CheckedModule23
+
+/- proof/ActualCycleBound.lean; SHA256 b97e316753f842658b2ca074d0017888310fb4a32c798446a1855ad9122d3243 -/
+section CheckedModule24
+
+/-!
+The winding-current characteristic-coefficient inequality for arbitrary
+strictly positive nearest-neighbour rates on a finite cycle with positive
+affinity. All stationary, variance, spectral, and uncertainty ingredients
+are constructed or proved from the rates.
+-/
+namespace UnicyclicActual
+noncomputable section
+open scoped BigOperators
+open Equiv Polynomial UnicyclicDeterminant UnicyclicPoisson UnicyclicRateJets
+open UnicyclicCumulant
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+set_option maxHeartbeats 2000000
+
+def ratePolynomial (σ : Perm ι) (u v : ι → ℝ) : Polynomial ℝ :=
+  (-(rateMatrix σ u v 0)).charpoly
+
+def rateSkewness (σ : Perm ι) (u v : ι → ℝ) : ℝ :=
+  third ((ratePolynomial σ u v).coeff 1) ((ratePolynomial σ u v).coeff 2)
+    ((ratePolynomial σ u v).coeff 3) (∏ i, u i) (∏ i, v i) /
+      first ((ratePolynomial σ u v).coeff 1) (∏ i, u i) (∏ i, v i)
+
+theorem positive_current_coefficient_data [Nonempty ι] (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (hn : 3≤Fintype.card ι)
+    (u v : ι → ℝ) (hu : ∀ i, 0<u i) (hv : ∀ i, 0<v i)
+    (hUV : (∏ i, v i)<∏ i, u i) (a : ι) :
+    0<(ratePolynomial σ u v).coeff 1 ∧
+      2/Real.log ((∏ i, u i)/(∏ i, v i)) ≤
+        second ((ratePolynomial σ u v).coeff 1) ((ratePolynomial σ u v).coeff 2)
+          (∏ i, u i) (∏ i, v i) /
+        first ((ratePolynomial σ u v).coeff 1) (∏ i, u i) (∏ i, v i) := by
+  obtain ⟨π,h,k,J,C2,hπ,hnorm,hJ,hflux,hcenter,hkcenter,hfirst,hsecond,hC2⟩ :=
+    exists_two_coefficients σ hc u v (countedIncrement a) hu hv hUV
+      (countedIncrement_sum a)
+  obtain ⟨hc1,hc2⟩ := coefficient_equations_from_poisson σ hc hn u v h k a J C2
+    hfirst hsecond
+  change (ratePolynomial σ u v).coeff 1*J=(∏ i, u i)-(∏ i, v i) at hc1
+  change (ratePolynomial σ u v).coeff 1*C2+
+      2*(ratePolynomial σ u v).coeff 2*J^2=(∏ i, u i)+(∏ i, v i) at hc2
+  have ha1 : 0<(ratePolynomial σ u v).coeff 1 := by
+    have hp : 0<(ratePolynomial σ u v).coeff 1*J := by rw [hc1]; linarith
+    exact (mul_pos_iff_of_pos_right hJ).mp hp
+  have hJdef : first ((ratePolynomial σ u v).coeff 1) (∏ i, u i) (∏ i, v i)=J := by
+    apply (div_eq_iff (ne_of_gt ha1)).mpr
+    nlinarith only [hc1]
+  have hC2def : second ((ratePolynomial σ u v).coeff 1) ((ratePolynomial σ u v).coeff 2)
+      (∏ i, u i) (∏ i, v i)=C2 := by
+    dsimp only [second]
+    rw [hJdef]
+    apply (div_eq_iff (ne_of_gt ha1)).mpr
+    nlinarith only [hc2]
+  refine ⟨ha1, ?_⟩
+  rw [hJdef,hC2def,hC2]
+  exact edgeQuadratic_tur σ u v (countedIncrement a) π h J hu hv hπ hJ hflux
+    (countedIncrement_sum a)
+
+theorem positive_current_skewness_bounds [Nonempty ι] (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (hn : 3≤Fintype.card ι)
+    (u v : ι → ℝ) (hu : ∀ i, 0<u i) (hv : ∀ i, 0<v i)
+    (hUV : (∏ i, v i)<∏ i, u i) (i0 : ι) :
+    -(1/16 : ℝ) ≤ rateSkewness σ u v ∧ rateSkewness σ u v ≤ 1 := by
+  let a := ∏ i, Real.sqrt (u i)
+  let b := ∏ i, Real.sqrt (v i)
+  have ha : 0<a := Finset.prod_pos (fun i _ => Real.sqrt_pos.mpr (hu i))
+  have hb : 0<b := Finset.prod_pos (fun i _ => Real.sqrt_pos.mpr (hv i))
+  have hau : a^2=∏ i, u i := sqrt_product_square u (fun i => (hu i).le)
+  have hbv : b^2=∏ i, v i := sqrt_product_square v (fun i => (hv i).le)
+  have hba : b<a := by nlinarith only [hau,hbv,hUV,ha,hb]
+  obtain ⟨theta,htheta,hfactor,hd,hp0⟩ := positive_rate_spectral_factorization
+    σ hc hn u v hu hv (ne_of_gt hUV) i0
+  obtain ⟨ha1,htur⟩ := positive_current_coefficient_data σ hc hn u v hu hv hUV i0
+  have hlog : Real.log ((∏ i, u i)/(∏ i, v i))=2*Real.log (a/b) := by
+    rw [← hau,← hbv,← div_pow,Real.log_pow]
+    norm_num
+  have hlogpos : 0<Real.log (a/b) := Real.log_pos ((one_lt_div hb).mpr hba)
+  have hfrac : 2/(2*Real.log (a/b))=1/Real.log (a/b) := by
+    field_simp [ne_of_gt hlogpos]
+  rw [hlog,hfrac,← hau,← hbv] at htur
+  have hbound := UnicyclicPolynomial.bound_from_spectral_shift_and_uncertainty
+    (Finset.univ : Finset ι) Finset.univ_nonempty theta (ratePolynomial σ u v)
+    a b ha hb hba (fun i _ => htheta i) hd hfactor htur
+  simpa only [rateSkewness,hau,hbv] using hbound
+
+theorem fin_ring_positive_current_skewness_bounds (n : ℕ) (hn : 3≤n)
+    (u v : Fin n → ℝ) (hu : ∀ i, 0<u i) (hv : ∀ i, 0<v i)
+    (hUV : (∏ i, v i)<∏ i, u i) :
+    -(1/16 : ℝ) ≤ rateSkewness (finRotate n) u v ∧
+      rateSkewness (finRotate n) u v ≤ 1 := by
+  let i0 : Fin n := ⟨0, by omega⟩
+  letI : Nonempty (Fin n) := ⟨i0⟩
+  exact positive_current_skewness_bounds (finRotate n)
+    (finRotate_isCycleOn n (by omega)) (by simpa using hn) u v hu hv hUV i0
+
+#print axioms positive_current_coefficient_data
+#print axioms positive_current_skewness_bounds
+#print axioms fin_ring_positive_current_skewness_bounds
+end
+end UnicyclicActual
+
+end CheckedModule24
+
+/- proof/ImplicitLocal.lean; SHA256 35beae768b0062fdcc9461d545240bd19556f7f011ba5bed2d8ba7696ad2d25c -/
+section CheckedModule25
+
+/-! Local version of the implicit characteristic-equation differentiation.
+Only a C³ germ and the characteristic equation near zero are required.
+This proves the derivative equations; it does not construct an eigenbranch.
+-/
+
+open Filter
+open scoped Topology
+
+namespace UnicyclicImplicit
+
+noncomputable section
+
+theorem implicit_cumulant_equations_of_local_jets
+    (P : Polynomial ℝ) (U V : ℝ) (f f1 f2 f3 : ℝ → ℝ)
+    (hf1 : ∀ᶠ x in 𝓝 (0 : ℝ), HasDerivAt f (f1 x) x)
+    (hf2 : ∀ᶠ x in 𝓝 (0 : ℝ), HasDerivAt f1 (f2 x) x)
+    (hf3 : HasDerivAt f2 (f3 0) 0)
+    (hf0 : f 0 = 0)
+    (hroot : ∀ᶠ x in 𝓝 (0 : ℝ),
+      P.eval (f x) = U*(Real.exp x-1)+V*(Real.exp (-x)-1)) :
+    P.coeff 1 * f1 0 = U-V ∧
+    P.coeff 1 * f2 0 + 2*P.coeff 2*(f1 0)^2 = U+V ∧
+    P.coeff 1 * f3 0 + 6*P.coeff 2*f1 0*f2 0 +
+      6*P.coeff 3*(f1 0)^3 = U-V := by
+  have hfirst : ∀ᶠ x in 𝓝 (0 : ℝ),
+      P.derivative.eval (f x) * f1 x = U*Real.exp x - V*Real.exp (-x) := by
+    filter_upwards [hroot.eventually_nhds, hf1] with x hxroot hxf1
+    have hleft := (P.hasDerivAt (f x)).comp x hxf1
+    have hright := (((Real.hasDerivAt_exp x).sub_const 1).const_mul U).add
+      (((hasDerivAt_exp_neg x).sub_const 1).const_mul V)
+    simp only [Function.comp_def] at hleft
+    have heq := (hleft.congr_of_eventuallyEq
+      (hxroot.mono (fun _ h => h.symm))).unique hright
+    nlinarith only [heq]
+  have hsecond : ∀ᶠ x in 𝓝 (0 : ℝ),
+      P.derivative.eval (f x)*f2 x + P.derivative.derivative.eval (f x)*(f1 x)^2 =
+      U*Real.exp x + V*Real.exp (-x) := by
+    filter_upwards [hfirst.eventually_nhds, hf1, hf2] with x hxfirst hxf1 hxf2
+    have hleft := ((P.derivative.hasDerivAt (f x)).comp x hxf1).mul hxf2
+    have hright := ((Real.hasDerivAt_exp x).const_mul U).sub
+      ((hasDerivAt_exp_neg x).const_mul V)
+    simp only [Function.comp_def] at hleft
+    have heq := (hleft.congr_of_eventuallyEq
+      (hxfirst.mono (fun _ h => h.symm))).unique hright
+    nlinarith only [heq]
+  have hthird :
+      P.derivative.eval (f 0)*f3 0 +
+      3*P.derivative.derivative.eval (f 0)*f1 0*f2 0 +
+      P.derivative.derivative.derivative.eval (f 0)*(f1 0)^3 =
+      U*Real.exp 0 - V*Real.exp (-0) := by
+    have hleft := (((P.derivative.hasDerivAt (f 0)).comp 0 hf1.self_of_nhds).mul hf3).add
+      (((P.derivative.derivative.hasDerivAt (f 0)).comp 0 hf1.self_of_nhds).mul
+        (hf2.self_of_nhds.pow 2))
+    have hright := ((Real.hasDerivAt_exp 0).const_mul U).add
+      ((hasDerivAt_exp_neg 0).const_mul V)
+    simp only [Function.comp_def] at hleft
+    have heq := (hleft.congr_of_eventuallyEq
+      (hsecond.mono (fun _ h => h.symm))).unique hright
+    norm_num at heq ⊢
+    nlinarith only [heq]
+  have h1 := hfirst.self_of_nhds
+  have h2 := hsecond.self_of_nhds
+  have h3 := hthird
+  norm_num [hf0, ← Polynomial.coeff_zero_eq_eval_zero,
+    Polynomial.coeff_derivative] at h1 h2 h3
+  refine ⟨h1, ?_, ?_⟩
+  · nlinarith only [h2]
+  · nlinarith only [h3]
+
+theorem implicit_cumulant_equations_local
+    (P : Polynomial ℝ) (U V : ℝ) (f : ℝ → ℝ)
+    (hf : ContDiffAt ℝ 3 f 0) (hf0 : f 0 = 0)
+    (hroot : ∀ᶠ x in 𝓝 (0 : ℝ),
+      P.eval (f x) = U*(Real.exp x-1)+V*(Real.exp (-x)-1)) :
+    P.coeff 1 * deriv f 0 = U-V ∧
+    P.coeff 1 * deriv (deriv f) 0 + 2*P.coeff 2*(deriv f 0)^2 = U+V ∧
+    P.coeff 1 * deriv (deriv (deriv f)) 0 +
+      6*P.coeff 2*deriv f 0*deriv (deriv f) 0 +
+      6*P.coeff 3*(deriv f 0)^3 = U-V := by
+  have hf' : ContDiffAt ℝ 2 (deriv f) 0 := by
+    simpa only [deriv] using
+      (hf.fderiv_right (m := 2) (by norm_num)).clm_apply contDiffAt_const
+  have hf'' : ContDiffAt ℝ 1 (deriv (deriv f)) 0 := by
+    simpa only [deriv] using
+      (hf'.fderiv_right (m := 1) (by norm_num)).clm_apply contDiffAt_const
+  apply implicit_cumulant_equations_of_local_jets P U V f
+    (deriv f) (deriv (deriv f)) (deriv (deriv (deriv f)))
+  · filter_upwards [hf.eventually (by norm_num)] with x hx
+    exact (hx.differentiableAt (by norm_num)).hasDerivAt
+  · filter_upwards [hf'.eventually (by norm_num)] with x hx
+    exact (hx.differentiableAt (by norm_num)).hasDerivAt
+  · exact (hf''.differentiableAt (by norm_num)).hasDerivAt
+  · exact hf0
+  · exact hroot
+
+#print axioms implicit_cumulant_equations_of_local_jets
+#print axioms implicit_cumulant_equations_local
+
+end
+end UnicyclicImplicit
+
+end CheckedModule25
+
+/- proof/PolynomialBranch.lean; SHA256 d2f7e4a06162d6d9a6373cacae31041c3d1c3cd252169ea09ea27963352147ea -/
+section CheckedModule26
+
+/-!
+Existence of a local C³ branch for a simple polynomial root.
+
+This is an application of mathlib's proved inverse function theorem, with
+the nonzero derivative discharged by the linear polynomial coefficient.
+It constructs the scalar root germ, not a Perron eigenvector or the
+long-time stochastic cumulant generating function.
+-/
+
+open Filter
+open scoped Topology
+
+namespace UnicyclicImplicit
+
+noncomputable section
+
+theorem polynomial_eval_contDiff (P : Polynomial ℝ) :
+    ContDiff ℝ 3 (fun x : ℝ => P.eval x) := by
+  induction P using Polynomial.induction_on' with
+  | add p q hp hq => simpa using hp.add hq
+  | monomial n a =>
+    simpa using (contDiff_const (c := a)).mul (contDiff_id.pow n)
+
+theorem exists_local_polynomial_branch
+    (P : Polynomial ℝ) (g : ℝ → ℝ)
+    (hP0 : P.eval 0 = 0) (hP1 : P.coeff 1 ≠ 0)
+    (hg : ContDiffAt ℝ 3 g 0) (hg0 : g 0 = 0) :
+    ∃ f : ℝ → ℝ, ContDiffAt ℝ 3 f 0 ∧ f 0 = 0 ∧
+      ∀ᶠ x in 𝓝 (0 : ℝ), P.eval (f x) = g x := by
+  have hPder : P.derivative.eval 0 ≠ 0 := by
+    simpa [← Polynomial.coeff_zero_eq_eval_zero, Polynomial.coeff_derivative] using hP1
+  have hPd : ContDiffAt ℝ 3 (fun x : ℝ => P.eval x) 0 :=
+    (polynomial_eval_contDiff P).contDiffAt
+  have hPf := (P.hasDerivAt 0).hasFDerivAt_equiv hPder
+  have hn : (1 : WithTop ℕ∞) ≤ 3 := by norm_num
+  let v : ℝ → ℝ := hPd.localInverse hPf hn
+  have hv0 : v 0 = 0 := by
+    simpa [v, hP0] using hPd.localInverse_apply_image hPf hn
+  have hv : ContDiffAt ℝ 3 v 0 := by
+    simpa [v, hP0] using hPd.to_localInverse hPf hn
+  have hvr : ∀ᶠ y in 𝓝 (0 : ℝ), P.eval (v y) = y := by
+    simpa [v, ContDiffAt.localInverse, hP0] using
+      (hPd.hasStrictFDerivAt' hPf hn).eventually_right_inverse
+  refine ⟨fun x => v (g x), ?_, ?_, ?_⟩
+  · have hv' : ContDiffAt ℝ 3 v (g 0) := by simpa [hg0] using hv
+    exact hv'.comp 0 hg
+  · simpa [hg0] using hv0
+  · have hgt : Tendsto g (𝓝 (0 : ℝ)) (𝓝 (0 : ℝ)) := by
+      simpa [hg0] using hg.continuousAt.tendsto
+    exact hgt.eventually hvr
+
+theorem exists_local_winding_branch
+    (P : Polynomial ℝ) (U V : ℝ)
+    (hP0 : P.eval 0 = 0) (hP1 : P.coeff 1 ≠ 0) :
+    ∃ f : ℝ → ℝ, ContDiffAt ℝ 3 f 0 ∧ f 0 = 0 ∧
+      ∀ᶠ x in 𝓝 (0 : ℝ),
+        P.eval (f x) = U*(Real.exp x-1)+V*(Real.exp (-x)-1) := by
+  apply exists_local_polynomial_branch P
+    (fun x => U*(Real.exp x-1)+V*(Real.exp (-x)-1)) hP0 hP1
+  · exact ((contDiff_const.mul (Real.contDiff_exp.sub contDiff_const)).add
+      (contDiff_const.mul
+        ((Real.contDiff_exp.comp contDiff_id.neg).sub contDiff_const))).contDiffAt
+  · simp
+
+#print axioms exists_local_polynomial_branch
+#print axioms exists_local_winding_branch
+
+end
+end UnicyclicImplicit
+
+end CheckedModule26
+
+/- proof/BranchCumulants.lean; SHA256 645b400bbeb4e7222f3e2b1b3a31ea018091c2c937c341b9f3acfdceaf9432bb -/
+section CheckedModule27
+
+/-!
+Identification of the explicit characteristic coefficients with the
+derivatives of the constructed local smooth root. This avoids treating
+the coefficient formulas as an unproved definition of root derivatives.
+-/
+
+open Filter
+open scoped Topology
+
+namespace UnicyclicCumulant
+
+noncomputable section
+
+theorem first_swap (a1 U V : ℝ) : first a1 V U = -first a1 U V := by
+  dsimp [first]
+  ring
+
+theorem second_swap (a1 a2 U V : ℝ) :
+    second a1 a2 V U = second a1 a2 U V := by
+  dsimp [second]
+  rw [first_swap]
+  ring
+
+theorem third_swap (a1 a2 a3 U V : ℝ) :
+    third a1 a2 a3 V U = -third a1 a2 a3 U V := by
+  dsimp [third]
+  rw [first_swap,second_swap]
+  ring
+
+theorem skewness_swap (a1 a2 a3 U V : ℝ) :
+    third a1 a2 a3 V U / first a1 V U =
+      third a1 a2 a3 U V / first a1 U V := by
+  rw [third_swap,first_swap]
+  simp
+
+theorem first_second_unique
+    (a1 a2 U V C1 C2 : ℝ) (ha1 : a1 ≠ 0)
+    (h1 : a1*C1 = U-V)
+    (h2 : a1*C2+2*a2*C1^2 = U+V) :
+    C1 = first a1 U V ∧ C2 = second a1 a2 U V := by
+  have he1 := first_equation a1 U V ha1
+  have he2 := second_equation a1 a2 U V ha1
+  have hc1 : C1 = first a1 U V := mul_left_cancel₀ ha1 (h1.trans he1.symm)
+  rw [hc1] at h2
+  have hc2 : a1*C2 = a1*second a1 a2 U V := by linarith only [h2,he2]
+  exact ⟨hc1,mul_left_cancel₀ ha1 hc2⟩
+
+theorem first_three_unique
+    (a1 a2 a3 U V C1 C2 C3 : ℝ) (ha1 : a1 ≠ 0)
+    (h1 : a1*C1 = U-V)
+    (h2 : a1*C2+2*a2*C1^2 = U+V)
+    (h3 : a1*C3+6*a2*C1*C2+6*a3*C1^3 = U-V) :
+    C1 = first a1 U V ∧ C2 = second a1 a2 U V ∧
+      C3 = third a1 a2 a3 U V := by
+  obtain ⟨hc1,hc2⟩ := first_second_unique a1 a2 U V C1 C2 ha1 h1 h2
+  rw [hc1,hc2] at h3
+  have he3 := third_equation a1 a2 a3 U V ha1
+  have hc3 : a1*C3 = a1*third a1 a2 a3 U V := by linarith only [h3,he3]
+  exact ⟨hc1,hc2,mul_left_cancel₀ ha1 hc3⟩
+
+theorem local_branch_derivatives
+    (P : Polynomial ℝ) (U V : ℝ) (f : ℝ → ℝ)
+    (hP1 : P.coeff 1 ≠ 0) (hf : ContDiffAt ℝ 3 f 0) (hf0 : f 0 = 0)
+    (hroot : ∀ᶠ x in 𝓝 (0 : ℝ),
+      P.eval (f x) = U*(Real.exp x-1)+V*(Real.exp (-x)-1)) :
+    deriv f 0 = first (P.coeff 1) U V ∧
+    deriv (deriv f) 0 = second (P.coeff 1) (P.coeff 2) U V ∧
+    deriv (deriv (deriv f)) 0 = third (P.coeff 1) (P.coeff 2) (P.coeff 3) U V := by
+  obtain ⟨h1,h2,h3⟩ := UnicyclicImplicit.implicit_cumulant_equations_local
+    P U V f hf hf0 hroot
+  exact first_three_unique (P.coeff 1) (P.coeff 2) (P.coeff 3) U V
+    (deriv f 0) (deriv (deriv f) 0) (deriv (deriv (deriv f)) 0)
+    hP1 h1 h2 h3
+
+theorem exists_local_branch_with_explicit_derivatives
+    (P : Polynomial ℝ) (U V : ℝ)
+    (hP0 : P.eval 0 = 0) (hP1 : P.coeff 1 ≠ 0) :
+    ∃ f : ℝ → ℝ, ContDiffAt ℝ 3 f 0 ∧ f 0 = 0 ∧
+      (∀ᶠ x in 𝓝 (0 : ℝ),
+        P.eval (f x) = U*(Real.exp x-1)+V*(Real.exp (-x)-1)) ∧
+      deriv f 0 = first (P.coeff 1) U V ∧
+      deriv (deriv f) 0 = second (P.coeff 1) (P.coeff 2) U V ∧
+      deriv (deriv (deriv f)) 0 = third (P.coeff 1) (P.coeff 2) (P.coeff 3) U V := by
+  obtain ⟨f,hf,hf0,hroot⟩ :=
+    UnicyclicImplicit.exists_local_winding_branch P U V hP0 hP1
+  exact ⟨f,hf,hf0,hroot,local_branch_derivatives P U V f hP1 hf hf0 hroot⟩
+
+#print axioms first_second_unique
+#print axioms first_three_unique
+#print axioms skewness_swap
+#print axioms local_branch_derivatives
+#print axioms exists_local_branch_with_explicit_derivatives
+
+end
+end UnicyclicCumulant
+
+end CheckedModule27
+
+/- proof/RateReversal.lean; SHA256 002a9fba47d8087f0aa292e411c296d80b9571dde702fe0b93065d7ba8a1d60e -/
+section CheckedModule28
+
+/-!
+Reversing the chosen cycle orientation preserves the rate generator and
+exchanges clockwise and anticlockwise products. The third/first cumulant
+ratio is therefore unchanged. No sign assumption on the affinity is used.
+-/
+
+open scoped BigOperators
+open Equiv Polynomial
+
+namespace UnicyclicReversal
+
+noncomputable section
+
+open UnicyclicDeterminant UnicyclicCumulant
+
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+
+omit [Fintype ι] [DecidableEq ι] in
+theorem rateMatrix_reversal [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u v : ι → ℝ) (s : ℝ) :
+    rateMatrix σ⁻¹ (fun j => v (σ⁻¹ j)) (fun j => u (σ⁻¹ j)) s =
+      rateMatrix σ u v s := by
+  ext i j
+  have hf :
+      (if j = σ⁻¹ i then -u (σ⁻¹ i) else 0) =
+        (if i = σ j then -u j else 0) := by
+    by_cases hij : i = σ j
+    · subst i
+      simp
+    · have hji : j ≠ σ⁻¹ i := by
+        intro h
+        apply hij
+        simpa using (congrArg σ h).symm
+      simp [hij,hji]
+  have hb :
+      (if i = σ⁻¹ j then -v (σ⁻¹ j) else 0) =
+        (if j = σ i then -v i else 0) := by
+    by_cases hji : j = σ i
+    · subst j
+      simp
+    · have hij : i ≠ σ⁻¹ j := by
+        intro h
+        apply hji
+        simpa using (congrArg σ h).symm
+      simp [hij,hji]
+  simp only [rateMatrix,ringMatrix,inv_inv,Perm.inv_apply_self]
+  rw [hf,hb]
+  have hd : s+v (σ⁻¹ j)+u j = s+u j+v (σ⁻¹ j) := by ring
+  rw [hd]
+  ring
+
+theorem ratePolynomial_reversal (σ : Perm ι) (u v : ι → ℝ) :
+    (-(rateMatrix σ⁻¹ (fun j => v (σ⁻¹ j)) (fun j => u (σ⁻¹ j)) 0)).charpoly =
+      (-(rateMatrix σ u v 0)).charpoly := by
+  rw [rateMatrix_reversal]
+
+theorem rate_coefficient_skewness_reversal (σ : Perm ι) (u v : ι → ℝ) :
+    let P := (-(rateMatrix σ u v 0)).charpoly
+    let P' := (-(rateMatrix σ⁻¹ (fun j => v (σ⁻¹ j))
+      (fun j => u (σ⁻¹ j)) 0)).charpoly
+    third (P'.coeff 1) (P'.coeff 2) (P'.coeff 3)
+        (∏ j, v (σ⁻¹ j)) (∏ j, u (σ⁻¹ j)) /
+      first (P'.coeff 1) (∏ j, v (σ⁻¹ j)) (∏ j, u (σ⁻¹ j)) =
+    third (P.coeff 1) (P.coeff 2) (P.coeff 3) (∏ j, u j) (∏ j, v j) /
+      first (P.coeff 1) (∏ j, u j) (∏ j, v j) := by
+  dsimp only
+  simp only [rateMatrix_reversal σ u v 0, Equiv.prod_comp]
+  exact skewness_swap _ _ _ _ _
+
+#print axioms rateMatrix_reversal
+#print axioms ratePolynomial_reversal
+#print axioms rate_coefficient_skewness_reversal
+
+end
+end UnicyclicReversal
+
+end CheckedModule28
+
+/- proof/WindingSkewness.lean; SHA256 6bdd7656d8e88a74ca3269d2fd6b018b3040e16439374f21ed6dc2ccdc65b25a -/
+section CheckedModule29
+
+/-!
+Orientation-independent winding skewness theorem for arbitrary positive
+nearest-neighbour rates on a finite cycle of at least three states.
+
+The final theorem concerns actual derivatives of a local C³ zero-eigenvalue
+branch of the actual counted-edge tilted generator. Existence of such a
+branch is also proved. No spectral, stationary, variance, or uncertainty
+conclusion appears among the hypotheses. The standard probabilistic
+identification of this eigenvalue germ with long-time current cumulants is
+explained in the research report, not implemented as a path-space theorem.
+-/
+namespace UnicyclicWinding
+noncomputable section
+open scoped BigOperators Topology
+open Filter Equiv Polynomial
+open UnicyclicDeterminant UnicyclicActual UnicyclicReversal UnicyclicCumulant
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+set_option maxHeartbeats 2000000
+
+theorem rateSkewness_reversal (σ : Perm ι) (u v : ι → ℝ) :
+    rateSkewness σ⁻¹ (fun j => v (σ⁻¹ j)) (fun j => u (σ⁻¹ j)) =
+      rateSkewness σ u v := by
+  exact rate_coefficient_skewness_reversal σ u v
+
+theorem rate_coefficient_pos [Nonempty ι] (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (hn : 3≤Fintype.card ι)
+    (u v : ι → ℝ) (hu : ∀ i, 0<u i) (hv : ∀ i, 0<v i)
+    (hUV : (∏ i, u i)≠∏ i, v i) (a : ι) :
+    0<(ratePolynomial σ u v).coeff 1 := by
+  rcases lt_or_gt_of_ne hUV with huv | hvu
+  · have hrev : (∏ i, u (σ⁻¹ i))<(∏ i, v (σ⁻¹ i)) := by
+      simpa only [Equiv.prod_comp] using huv
+    have h := (positive_current_coefficient_data σ⁻¹ hc.inv hn
+      (fun i => v (σ⁻¹ i)) (fun i => u (σ⁻¹ i))
+      (fun i => hv _) (fun i => hu _) hrev a).1
+    simpa only [ratePolynomial,rateMatrix_reversal] using h
+  · exact (positive_current_coefficient_data σ hc hn u v hu hv hvu a).1
+
+theorem rate_skewness_bounds [Nonempty ι] (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (hn : 3≤Fintype.card ι)
+    (u v : ι → ℝ) (hu : ∀ i, 0<u i) (hv : ∀ i, 0<v i)
+    (hUV : (∏ i, u i)≠∏ i, v i) (a : ι) :
+    -(1/16 : ℝ)≤rateSkewness σ u v ∧ rateSkewness σ u v≤1 := by
+  rcases lt_or_gt_of_ne hUV with huv | hvu
+  · have hrev : (∏ i, u (σ⁻¹ i))<(∏ i, v (σ⁻¹ i)) := by
+      simpa only [Equiv.prod_comp] using huv
+    have h := positive_current_skewness_bounds σ⁻¹ hc.inv hn
+      (fun i => v (σ⁻¹ i)) (fun i => u (σ⁻¹ i))
+      (fun i => hv _) (fun i => hu _) hrev a
+    simpa only [rateSkewness_reversal] using h
+  · exact positive_current_skewness_bounds σ hc hn u v hu hv hvu a
+
+def tiltedCharacteristic (σ : Perm ι) (u v : ι → ℝ) (a : ι) (s z : ℝ) : ℝ :=
+  (edgeTilt (rateMatrix σ u v z) a (σ a) (Real.exp s)).det
+
+theorem tiltedCharacteristic_formula (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (hn : 3≤Fintype.card ι)
+    (u v : ι → ℝ) (a : ι) (s z : ℝ) :
+    tiltedCharacteristic σ u v a s z =
+      (ratePolynomial σ u v).eval z-
+        ((∏ i, u i)*(Real.exp s-1)+(∏ i, v i)*(Real.exp (-s)-1)) := by
+  rw [tiltedCharacteristic,rateMatrix_determinant_tilt σ hc hn u v a z
+    (Real.exp s) (Real.exp_ne_zero s)]
+  dsimp only [ratePolynomial]
+  rw [UnicyclicSpectral.charpoly_neg_eval,rateMatrix_add_scalar,Real.exp_neg]
+  ring
+
+/-- The current skewness interval for every smooth root germ of the actual
+counted-edge tilted characteristic equation. -/
+theorem winding_skewness_interval [Nonempty ι] (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (hn : 3≤Fintype.card ι)
+    (u v : ι → ℝ) (hu : ∀ i, 0<u i) (hv : ∀ i, 0<v i)
+    (hUV : (∏ i, u i)≠∏ i, v i) (a : ι) (f : ℝ → ℝ)
+    (hf : ContDiffAt ℝ 3 f 0) (hf0 : f 0=0)
+    (hroot : ∀ᶠ s in 𝓝 (0 : ℝ), tiltedCharacteristic σ u v a s (f s)=0) :
+    deriv f 0≠0 ∧
+      -(1/16 : ℝ)≤deriv (deriv (deriv f)) 0/deriv f 0 ∧
+      deriv (deriv (deriv f)) 0/deriv f 0≤1 := by
+  have hp1 := rate_coefficient_pos σ hc hn u v hu hv hUV a
+  have heq : ∀ᶠ s in 𝓝 (0 : ℝ),
+      (ratePolynomial σ u v).eval (f s)=
+        (∏ i, u i)*(Real.exp s-1)+(∏ i, v i)*(Real.exp (-s)-1) := by
+    filter_upwards [hroot] with s hs
+    rw [tiltedCharacteristic_formula σ hc hn] at hs
+    exact sub_eq_zero.mp hs
+  obtain ⟨h1,h2,h3⟩ := local_branch_derivatives (ratePolynomial σ u v)
+    (∏ i, u i) (∏ i, v i) f (ne_of_gt hp1) hf hf0 heq
+  have hnz : first ((ratePolynomial σ u v).coeff 1) (∏ i, u i) (∏ i, v i)≠0 :=
+    div_ne_zero (sub_ne_zero.mpr hUV) (ne_of_gt hp1)
+  rw [h1,h3]
+  exact ⟨hnz,rate_skewness_bounds σ hc hn u v hu hv hUV a⟩
+
+/-- Existence and the bound, obtained from the rates alone. -/
+theorem exists_winding_branch_and_interval [Nonempty ι] (σ : Perm ι)
+    (hc : σ.IsCycleOn (Finset.univ : Finset ι)) (hn : 3≤Fintype.card ι)
+    (u v : ι → ℝ) (hu : ∀ i, 0<u i) (hv : ∀ i, 0<v i)
+    (hUV : (∏ i, u i)≠∏ i, v i) (a : ι) :
+    ∃ f : ℝ → ℝ, ContDiffAt ℝ 3 f 0 ∧ f 0=0 ∧
+      (∀ᶠ s in 𝓝 (0 : ℝ), tiltedCharacteristic σ u v a s (f s)=0) ∧
+      deriv f 0≠0 ∧
+      -(1/16 : ℝ)≤deriv (deriv (deriv f)) 0/deriv f 0 ∧
+      deriv (deriv (deriv f)) 0/deriv f 0≤1 := by
+  have hp0 : (ratePolynomial σ u v).eval 0=0 := by
+    rw [ratePolynomial,UnicyclicSpectral.charpoly_neg_eval]
+    simp only [zero_smul,zero_add]
+    exact rateMatrix_det_zero σ u v (fun i => (hu i).le) (fun i => (hv i).le) a
+  have hp1 := rate_coefficient_pos σ hc hn u v hu hv hUV a
+  obtain ⟨f,hf,hf0,hroot⟩ := UnicyclicImplicit.exists_local_winding_branch
+    (ratePolynomial σ u v) (∏ i, u i) (∏ i, v i) hp0 (ne_of_gt hp1)
+  have hz : ∀ᶠ s in 𝓝 (0 : ℝ), tiltedCharacteristic σ u v a s (f s)=0 := by
+    filter_upwards [hroot] with s hs
+    rw [tiltedCharacteristic_formula σ hc hn,hs,sub_self]
+  exact ⟨f,hf,hf0,hz,winding_skewness_interval σ hc hn u v hu hv hUV a f hf hf0 hz⟩
+
+#print axioms rate_skewness_bounds
+#print axioms winding_skewness_interval
+#print axioms exists_winding_branch_and_interval
+end
+end UnicyclicWinding
+
+end CheckedModule29
+
+/- proof/TwoStateSkewness.lean; SHA256 b695d3aa9cab17c21eccef92cfa15b11693416099e3b19102077ed2ed1e8c352 -/
+section CheckedModule30
+
+/-!
+The two-state cycle, represented by two parallel reaction edges, has the
+quadratic characteristic polynomial X² + (u0+u1+v0+v1)X.  This file checks
+the stronger coefficient-ratio interval [1/4,1] for that small boundary
+case. It is a completeness lemma, not the new arbitrary-size argument.
+-/
+
+namespace UnicyclicTwoState
+
+noncomputable section
+
+open UnicyclicCumulant
+
+theorem quadratic_skewness_formula (a U V : ℝ) (ha : a ≠ 0) (hUV : U ≠ V) :
+    third a 1 0 U V / first a U V =
+      1-6*(U+V)/a^2+12*(U-V)^2/a^4 := by
+  have hd : U-V ≠ 0 := sub_ne_zero.mpr hUV
+  dsimp [third,second,first]
+  field_simp [ha,hd]
+  ring
+
+theorem quadratic_scalar_interval (a α β : ℝ)
+    (ha : 0<a) (hα : 0≤α) (hβ : 0≤β) (hab : 2*(α+β)≤a) :
+    (1/4 : ℝ) ≤ 1-6*(α^2+β^2)/a^2+12*(α^2-β^2)^2/a^4 ∧
+      1-6*(α^2+β^2)/a^2+12*(α^2-β^2)^2/a^4 ≤ 1 := by
+  have hs : 0≤α+β := add_nonneg hα hβ
+  have hp : 0≤α*β := mul_nonneg hα hβ
+  have ha2 : 4*(α+β)^2≤a^2 := by
+    have hh := mul_nonneg (sub_nonneg.mpr hab) (by positivity : 0≤a+2*(α+β))
+    nlinarith only [hh]
+  have hc : (α-β)^2≤(α+β)^2 := by nlinarith only [hp]
+  have hlower := mul_nonneg (sub_nonneg.mpr ha2)
+    (show 0≤a^2-4*(α-β)^2 by nlinarith only [ha2,hc])
+  have hsum : 0≤α^2+β^2 := add_nonneg (sq_nonneg α) (sq_nonneg β)
+  have hgap : 0≤a^2-2*(α^2+β^2) := by nlinarith only [ha2,hp,hsum]
+  have hupper := mul_nonneg hsum hgap
+  have hcross : 0≤α^2*β^2 := mul_nonneg (sq_nonneg α) (sq_nonneg β)
+  have ha4 : 0<a^4 := pow_pos ha 4
+  have heq : 1-6*(α^2+β^2)/a^2+12*(α^2-β^2)^2/a^4 =
+      (a^4-6*(α^2+β^2)*a^2+12*(α^2-β^2)^2)/a^4 := by
+    field_simp [ne_of_gt ha]
+    ring
+  rw [heq]
+  constructor
+  · apply (le_div_iff₀ ha4).mpr
+    nlinarith only [hlower]
+  · apply (div_le_iff₀ ha4).mpr
+    nlinarith only [hupper,hcross]
+
+theorem two_state_coefficient_skewness_interval
+    (u0 u1 v0 v1 : ℝ) (hu0 : 0<u0) (hu1 : 0<u1)
+    (hv0 : 0<v0) (hv1 : 0<v1) (hUV : u0*u1 ≠ v0*v1) :
+    let a := u0+u1+v0+v1
+    (1/4 : ℝ) ≤ third a 1 0 (u0*u1) (v0*v1) / first a (u0*u1) (v0*v1) ∧
+      third a 1 0 (u0*u1) (v0*v1) / first a (u0*u1) (v0*v1) ≤ 1 := by
+  dsimp only
+  have ha : 0<u0+u1+v0+v1 := by positivity
+  rw [quadratic_skewness_formula _ _ _ (ne_of_gt ha) hUV]
+  have hα := Real.sqrt_nonneg (u0*u1)
+  have hβ := Real.sqrt_nonneg (v0*v1)
+  have hα2 := Real.sq_sqrt (mul_pos hu0 hu1).le
+  have hβ2 := Real.sq_sqrt (mul_pos hv0 hv1).le
+  have hαsum : 2*Real.sqrt (u0*u1)≤u0+u1 := by
+    nlinarith [sq_nonneg (u0-u1)]
+  have hβsum : 2*Real.sqrt (v0*v1)≤v0+v1 := by
+    nlinarith [sq_nonneg (v0-v1)]
+  have hab : 2*(Real.sqrt (u0*u1)+Real.sqrt (v0*v1))≤u0+u1+v0+v1 := by
+    linarith only [hαsum,hβsum]
+  simpa only [hα2,hβ2] using quadratic_scalar_interval
+    (u0+u1+v0+v1) (Real.sqrt (u0*u1)) (Real.sqrt (v0*v1)) ha hα hβ hab
+
+#print axioms two_state_coefficient_skewness_interval
+
+end
+end UnicyclicTwoState
+
+end CheckedModule30
+
+/- proof/TwoStateWinding.lean; SHA256 abf58b87b8aa329f77bd473ac150a2b16e7d0e41b5f72e14dd07cb5dbe204e39 -/
+section CheckedModule31
+
+/-!
+The actual counted-channel tilted determinant for the two-state ring.
+Two parallel reaction channels must remain distinguished: the counting
+factor is placed only on u0 and v0, not on an entire combined matrix entry.
+This supplies the small-size boundary case of the winding theorem.
+-/
+
+open Filter Polynomial
+open scoped Topology
+
+namespace UnicyclicTwoState
+
+noncomputable section
+
+open UnicyclicCumulant UnicyclicImplicit
+
+def twoStateMatrix (u0 u1 v0 v1 s z : ℝ) : Matrix (Fin 2) (Fin 2) ℝ :=
+  !![z+u0+v1, -(u1+v0*Real.exp (-s));
+     -(u0*Real.exp s+v1), z+u1+v0]
+
+def quadraticRatePolynomial (u0 u1 v0 v1 : ℝ) : Polynomial ℝ :=
+  X^2+C (u0+u1+v0+v1)*X
+
+theorem twoState_characteristic_formula (u0 u1 v0 v1 s z : ℝ) :
+    (twoStateMatrix u0 u1 v0 v1 s z).det =
+      (quadraticRatePolynomial u0 u1 v0 v1).eval z -
+        ((u0*u1)*(Real.exp s-1)+(v0*v1)*(Real.exp (-s)-1)) := by
+  simp only [twoStateMatrix,Matrix.det_fin_two_of,
+    quadraticRatePolynomial,Polynomial.eval_add,Polynomial.eval_pow,
+    Polynomial.eval_X,Polynomial.eval_mul,Polynomial.eval_C]
+  rw [Real.exp_neg]
+  field_simp [Real.exp_ne_zero s]
+  ring
+
+theorem quadraticRatePolynomial_coefficients (u0 u1 v0 v1 : ℝ) :
+    (quadraticRatePolynomial u0 u1 v0 v1).eval 0=0 ∧
+    (quadraticRatePolynomial u0 u1 v0 v1).coeff 1=u0+u1+v0+v1 ∧
+    (quadraticRatePolynomial u0 u1 v0 v1).coeff 2=1 ∧
+    (quadraticRatePolynomial u0 u1 v0 v1).coeff 3=0 := by
+  norm_num [quadraticRatePolynomial,Polynomial.coeff_add,
+    Polynomial.coeff_C_mul,Polynomial.coeff_X_pow,Polynomial.coeff_X]
+
+theorem two_state_winding_interval
+    (u0 u1 v0 v1 : ℝ) (hu0 : 0<u0) (hu1 : 0<u1)
+    (hv0 : 0<v0) (hv1 : 0<v1) (hUV : u0*u1 ≠ v0*v1)
+    (f : ℝ → ℝ) (hf : ContDiffAt ℝ 3 f 0) (hf0 : f 0=0)
+    (hroot : ∀ᶠ s in 𝓝 (0 : ℝ), (twoStateMatrix u0 u1 v0 v1 s (f s)).det=0) :
+    deriv f 0 ≠ 0 ∧
+      (1/4 : ℝ) ≤ deriv (deriv (deriv f)) 0 / deriv f 0 ∧
+      deriv (deriv (deriv f)) 0 / deriv f 0 ≤ 1 := by
+  have ha : 0<u0+u1+v0+v1 := by positivity
+  obtain ⟨hp0,hp1,hp2,hp3⟩ := quadraticRatePolynomial_coefficients u0 u1 v0 v1
+  have hp1ne : (quadraticRatePolynomial u0 u1 v0 v1).coeff 1≠0 := by
+    rw [hp1]
+    exact ne_of_gt ha
+  have heq : ∀ᶠ s in 𝓝 (0 : ℝ),
+      (quadraticRatePolynomial u0 u1 v0 v1).eval (f s) =
+        (u0*u1)*(Real.exp s-1)+(v0*v1)*(Real.exp (-s)-1) := by
+    filter_upwards [hroot] with s hs
+    rw [twoState_characteristic_formula] at hs
+    exact sub_eq_zero.mp hs
+  obtain ⟨h1,h2,h3⟩ := local_branch_derivatives
+    (quadraticRatePolynomial u0 u1 v0 v1) (u0*u1) (v0*v1)
+    f hp1ne hf hf0 heq
+  simp only [hp1,hp2,hp3] at h1 h2 h3
+  rw [h1,h3]
+  refine ⟨div_ne_zero (sub_ne_zero.mpr hUV) (ne_of_gt ha), ?_⟩
+  exact two_state_coefficient_skewness_interval u0 u1 v0 v1 hu0 hu1 hv0 hv1 hUV
+
+theorem exists_two_state_winding_branch_and_interval
+    (u0 u1 v0 v1 : ℝ) (hu0 : 0<u0) (hu1 : 0<u1)
+    (hv0 : 0<v0) (hv1 : 0<v1) (hUV : u0*u1 ≠ v0*v1) :
+    ∃ f : ℝ → ℝ, ContDiffAt ℝ 3 f 0 ∧ f 0=0 ∧
+      (∀ᶠ s in 𝓝 (0 : ℝ), (twoStateMatrix u0 u1 v0 v1 s (f s)).det=0) ∧
+      deriv f 0 ≠ 0 ∧
+      (1/4 : ℝ) ≤ deriv (deriv (deriv f)) 0 / deriv f 0 ∧
+      deriv (deriv (deriv f)) 0 / deriv f 0 ≤ 1 := by
+  have ha : 0<u0+u1+v0+v1 := by positivity
+  obtain ⟨hp0,hp1,hp2,hp3⟩ := quadraticRatePolynomial_coefficients u0 u1 v0 v1
+  have hp1ne : (quadraticRatePolynomial u0 u1 v0 v1).coeff 1≠0 := by
+    rw [hp1]
+    exact ne_of_gt ha
+  obtain ⟨f,hf,hf0,hroot⟩ := exists_local_winding_branch
+    (quadraticRatePolynomial u0 u1 v0 v1) (u0*u1) (v0*v1) hp0 hp1ne
+  have hz : ∀ᶠ s in 𝓝 (0 : ℝ), (twoStateMatrix u0 u1 v0 v1 s (f s)).det=0 := by
+    filter_upwards [hroot] with s hs
+    rw [twoState_characteristic_formula,hs,sub_self]
+  exact ⟨f,hf,hf0,hz,two_state_winding_interval u0 u1 v0 v1 hu0 hu1 hv0 hv1 hUV
+    f hf hf0 hz⟩
+
+#print axioms twoState_characteristic_formula
+#print axioms two_state_winding_interval
+#print axioms exists_two_state_winding_branch_and_interval
+
+end
+end UnicyclicTwoState
+
+end CheckedModule31
+
+/- proof/PoissonWinding.lean; SHA256 13b9e3056e93341bc97857a772fa0c8573ab8b0524898e0ff1c414b9673874cc -/
+section CheckedModule32
+
+/-!
+For the one-state counted-event convention the winding process is the
+difference of two Poisson counts. Its explicit cumulant generating
+function has equal first and third derivatives. This is a boundary case,
+not the novel arbitrary-cycle argument.
+-/
+
+namespace UnicyclicPoissonBoundary
+
+noncomputable section
+
+def poissonWinding (U V s : ℝ) : ℝ :=
+  U*(Real.exp s-1)+V*(Real.exp (-s)-1)
+
+theorem poisson_winding_derivatives (U V : ℝ) :
+    deriv (poissonWinding U V) 0=U-V ∧
+      deriv (deriv (deriv (poissonWinding U V))) 0=U-V := by
+  have hf : ContDiff ℝ 3 (poissonWinding U V) := by
+    exact (contDiff_const.mul (Real.contDiff_exp.sub contDiff_const)).add
+      (contDiff_const.mul
+        ((Real.contDiff_exp.comp contDiff_id.neg).sub contDiff_const))
+  obtain ⟨h1,h2,h3⟩ := UnicyclicImplicit.implicit_cumulant_equations
+    Polynomial.X U V (poissonWinding U V) hf (by simp [poissonWinding])
+      (fun x => by simp [poissonWinding])
+  norm_num [Polynomial.coeff_X] at h1 h2 h3
+  exact ⟨h1,h3⟩
+
+theorem poisson_winding_skewness (U V : ℝ) (hUV : U ≠ V) :
+    deriv (poissonWinding U V) 0≠0 ∧
+      deriv (deriv (deriv (poissonWinding U V))) 0 /
+        deriv (poissonWinding U V) 0=1 := by
+  obtain ⟨h1,h3⟩ := poisson_winding_derivatives U V
+  rw [h1,h3]
+  exact ⟨sub_ne_zero.mpr hUV,div_self (sub_ne_zero.mpr hUV)⟩
+
+#print axioms poisson_winding_derivatives
+#print axioms poisson_winding_skewness
+
+end
+end UnicyclicPoissonBoundary
+
+end CheckedModule32
+
+/- proof/AllResults.lean; SHA256 b03a7ca93a07f5ef4221302df5fddec5a87d222061b3880508148db36bef6c34 -/
+section CheckedModule33
+
+/-!
+Principal actual-matrix derivative theorems, with the conventional smaller
+marked-channel models included separately. The arbitrary-ring theorem is
+UnicyclicWinding.winding_skewness_interval. Its hypotheses and its branch
+existence theorem are stated in WindingSkewness.lean.
+-/
+
+#print axioms UnicyclicWinding.winding_skewness_interval
+#print axioms UnicyclicWinding.exists_winding_branch_and_interval
+#print axioms UnicyclicTwoState.two_state_winding_interval
+#print axioms UnicyclicTwoState.exists_two_state_winding_branch_and_interval
+#print axioms UnicyclicPoissonBoundary.poisson_winding_skewness
+
+end CheckedModule33
+
+
+set_option pp.universes true
+set_option pp.explicit true
+#check @UnicyclicWinding.winding_skewness_interval
+#check @UnicyclicWinding.exists_winding_branch_and_interval
+#check @UnicyclicTwoState.two_state_winding_interval
+#check @UnicyclicPoissonBoundary.poisson_winding_skewness
+#print UnicyclicDeterminant.ringMatrix
+#print UnicyclicDeterminant.rateMatrix
+#print UnicyclicDeterminant.edgeTilt
+#print UnicyclicWinding.tiltedCharacteristic
+#print UnicyclicActual.rateSkewness

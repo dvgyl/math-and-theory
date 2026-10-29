@@ -1,0 +1,285 @@
+{
+  "format_version": 1,
+  "package_id": "unicyclic-skewness",
+  "formal_scope": "The interval for actual tilted-matrix derivatives and a local branch is formalized. Identification with long-time stochastic cumulants and sharpness have conventional proofs. Lean does not construct a continuous-time sample-path probability space or a separate optimizing-sequence theorem.",
+  "proof_roots": [
+    {
+      "path": "proof",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.toml",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "proof/ActualCycleBound.lean": "b97e316753f842658b2ca074d0017888310fb4a32c798446a1855ad9122d3243",
+    "proof/AdjugateJets.lean": "649d0d39c3ee71021c21aeebb4fbe53d92e6cd999e703e2afcb9083506074a95",
+    "proof/AllResults.lean": "b03a7ca93a07f5ef4221302df5fddec5a87d222061b3880508148db36bef6c34",
+    "proof/BranchCumulants.lean": "645b400bbeb4e7222f3e2b1b3a31ea018091c2c937c341b9f3acfdceaf9432bb",
+    "proof/CumulantAlgebra.lean": "81f20d38bc87e43e1d0026c49832209284053d562a4e423e3a89eb77d5889c58",
+    "proof/CyclicConstruction.lean": "df5a8a9803626395c0a9a9420965006cb213a5223b5b1b72943e34fbd44b4e49",
+    "proof/CyclicDeterminant.lean": "3dbac6c5bf3ac5c777ddc481daeaa07cdfe752a271f259b5dbe0c0e64a14a1e1",
+    "proof/CyclicMultiTilt.lean": "13da078b5a45a0dde01717324185fdec33a4a5ddfe718b828e641dbcd0a15cbd",
+    "proof/CyclicPoisson.lean": "fd859dbac57f2f8cbf24785e6d1888fca543c3e88df132fe54b212e4ef77fdc7",
+    "proof/CyclicRateBridge.lean": "f08365f2b5c69cec0460c13824df7f834a92093efef17dacd326c8cafda79024",
+    "proof/CyclicResidualJets.lean": "e5de7316471e2a74d9939bbf706296afe89ff5837732da6be0bc9e1bdd76f6ae",
+    "proof/FiniteTUR.lean": "0b68bc85e64cd468bbd9bedd12a1dae246d510f69d685132ae6fff7c57e45660",
+    "proof/HermitianShift.lean": "376e2aac47359e30e4bc05bdd9f067414fadc3e7859074e5e297ea4b13ae9af6",
+    "proof/ImplicitCumulants.lean": "c110dcda007fb24f8d021a22dfee8a25fbf68866a9bef5160c762d839d33fee5",
+    "proof/ImplicitLocal.lean": "35beae768b0062fdcc9461d545240bd19556f7f011ba5bed2d8ba7696ad2d25c",
+    "proof/LogRelaxation.lean": "828a4fd8eeb3e2e3ef3ced7b1e1c1f20976862ee8bea7bc7b64d6c24eac5bc4a",
+    "proof/PoissonWinding.lean": "13b9e3056e93341bc97857a772fa0c8573ab8b0524898e0ff1c414b9673874cc",
+    "proof/PolynomialBranch.lean": "d2f7e4a06162d6d9a6373cacae31041c3d1c3cd252169ea09ea27963352147ea",
+    "proof/PositiveRateMatrices.lean": "899c5b0834aea9d622212bd21933529f6dcbb8fc0285379ec592d23c7d90ff89",
+    "proof/PositiveRateSpectrum.lean": "0b2854493e1923f8bd14947400e9ea9437f535bfb4cb9c3fd52d5ecf7241f8ae",
+    "proof/ProductCoefficients.lean": "c7c0782d78e9d2dc08920dd5d95b827f066acc6542f3dbae2f25420caa326509",
+    "proof/RateJets.lean": "ef2cac9374c0e7a0e7ad13ce6c35ba5c1bbb956a4025dd838a4b0543ce499b71",
+    "proof/RateReversal.lean": "002a9fba47d8087f0aa292e411c296d80b9571dde702fe0b93065d7ba8a1d60e",
+    "proof/RateTiltedAction.lean": "dd569f4f846dfc7fd8a9c00573ed75a377899d37a9ac3ada8e634b8d2a94e167",
+    "proof/RationalReduction.lean": "a9f417adc31c569ca4b2a1bab2df6c73e1d75dd4d029ddab46ec686a2e259554",
+    "proof/ResidualCumulants.lean": "d7749c54dcec472aa3e740971313cdd24bc820c428ee2ac4945f3a61f33f5b79",
+    "proof/ScalarCertificate.lean": "73e145308ed0a4fe4688e6b5fb04af11d82df8cf5c7923411eb97d75031c683a",
+    "proof/SimplexMoments.lean": "6908780184c50363b69e297ee108f686a99d9ca7f5d272b51c62e6a0161beb4f",
+    "proof/SpectralCoefficients.lean": "e968b960649a1400c6e887f5361010868ed209f51ea8946b5e311df7a9d1d00c",
+    "proof/SpectralMomentBound.lean": "c7b592c5af017d4269f8fd5f0e40e2f1576e9c7689c00f75a06b30089d21a503",
+    "proof/SpectralPolynomialBound.lean": "e0cfb37ef79b1bb4a089a7d273e7eb570d4a372637ed8cc261ab01e372d0dfd0",
+    "proof/TwoStateSkewness.lean": "b695d3aa9cab17c21eccef92cfa15b11693416099e3b19102077ed2ed1e8c352",
+    "proof/TwoStateWinding.lean": "abf58b87b8aa329f77bd473ac150a2b16e7d0e41b5f72e14dd07cb5dbe204e39",
+    "proof/WindingSkewness.lean": "6bdd7656d8e88a74ca3269d2fd6b018b3040e16439374f21ed6dc2ccdc65b25a"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 642,
+      "sha256": "228856bc48cd472fa4119165a603c4f120996b310718abcd69ed143367c877d3"
+    },
+    "CITATION.bib": {
+      "bytes": 314,
+      "sha256": "49e8c58f80d5fc187529e9e93b6d1a34427b66533047a688ae5ec2586bf71310"
+    },
+    "CITATION.cff": {
+      "bytes": 855,
+      "sha256": "62da423cd36eb72edcb97c080a3a93db4e75fd3b7236b7c67d2b776af6361296"
+    },
+    "FORMALIZATION.md": {
+      "bytes": 2885,
+      "sha256": "9cbfe6bd7bf82747833ce2f69762a559b2e9f24e3a285fe5730ad287ae2badb0"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 3133,
+      "sha256": "dbd47e3b831aa753188e479577baa663ce88747ac9f3873e3e9d5f26d140eb0f"
+    },
+    "SHA256SUMS": {
+      "bytes": 5152,
+      "sha256": "a285583c3143b43146bf75d46bad6793abba97741b51e1762d6106f41df729c2"
+    },
+    "VERIFICATION.md": {
+      "bytes": 3107,
+      "sha256": "f033a716cc9dc5136f061dd02d93a8fd8dc3d602afbba31654aedcdfc458ddcd"
+    },
+    "certificate.json": {
+      "bytes": 2869,
+      "sha256": "44eac28b94aaec93d86a83e3ed8cc58f575ada75091606a9eface058722709a3"
+    },
+    "certificate_tables.tex": {
+      "bytes": 3403,
+      "sha256": "faa21368aba25a951b0c28581d295dffc9bf6631aea8cf2800565a430a84bf58"
+    },
+    "check_certificate.py": {
+      "bytes": 1881,
+      "sha256": "5465533fcefac4845fb5b0730022d7e8ef4017e373624a9ea1098af0fa77f6c6"
+    },
+    "manuscript.pdf": {
+      "bytes": 363896,
+      "sha256": "c3ab4d874f9144f7d631a1e57432f87cb1a2ddb8b1b3d51fb08e606cd8c9e997"
+    },
+    "manuscript.tex": {
+      "bytes": 32131,
+      "sha256": "04247af8b9ea5f4451d03e820bbe4708085f00999b61ec775d750715d3e92b73"
+    },
+    "package-manifest.json": {
+      "bytes": 8958,
+      "sha256": "be223f907a5e1b2093b8df93b411d73030849c37847d049eefab29cd399875cc"
+    },
+    "proof/ActualCycleBound.lean": {
+      "bytes": 4999,
+      "sha256": "b97e316753f842658b2ca074d0017888310fb4a32c798446a1855ad9122d3243"
+    },
+    "proof/AdjugateJets.lean": {
+      "bytes": 5858,
+      "sha256": "649d0d39c3ee71021c21aeebb4fbe53d92e6cd999e703e2afcb9083506074a95"
+    },
+    "proof/AllResults.lean": {
+      "bytes": 676,
+      "sha256": "b03a7ca93a07f5ef4221302df5fddec5a87d222061b3880508148db36bef6c34"
+    },
+    "proof/BranchCumulants.lean": {
+      "bytes": 3522,
+      "sha256": "645b400bbeb4e7222f3e2b1b3a31ea018091c2c937c341b9f3acfdceaf9432bb"
+    },
+    "proof/CumulantAlgebra.lean": {
+      "bytes": 4943,
+      "sha256": "81f20d38bc87e43e1d0026c49832209284053d562a4e423e3a89eb77d5889c58"
+    },
+    "proof/CyclicConstruction.lean": {
+      "bytes": 11840,
+      "sha256": "df5a8a9803626395c0a9a9420965006cb213a5223b5b1b72943e34fbd44b4e49"
+    },
+    "proof/CyclicDeterminant.lean": {
+      "bytes": 11504,
+      "sha256": "3dbac6c5bf3ac5c777ddc481daeaa07cdfe752a271f259b5dbe0c0e64a14a1e1"
+    },
+    "proof/CyclicMultiTilt.lean": {
+      "bytes": 4865,
+      "sha256": "13da078b5a45a0dde01717324185fdec33a4a5ddfe718b828e641dbcd0a15cbd"
+    },
+    "proof/CyclicPoisson.lean": {
+      "bytes": 11284,
+      "sha256": "fd859dbac57f2f8cbf24785e6d1888fca543c3e88df132fe54b212e4ef77fdc7"
+    },
+    "proof/CyclicRateBridge.lean": {
+      "bytes": 10089,
+      "sha256": "f08365f2b5c69cec0460c13824df7f834a92093efef17dacd326c8cafda79024"
+    },
+    "proof/CyclicResidualJets.lean": {
+      "bytes": 7846,
+      "sha256": "e5de7316471e2a74d9939bbf706296afe89ff5837732da6be0bc9e1bdd76f6ae"
+    },
+    "proof/FiniteTUR.lean": {
+      "bytes": 4566,
+      "sha256": "0b68bc85e64cd468bbd9bedd12a1dae246d510f69d685132ae6fff7c57e45660"
+    },
+    "proof/HermitianShift.lean": {
+      "bytes": 3108,
+      "sha256": "376e2aac47359e30e4bc05bdd9f067414fadc3e7859074e5e297ea4b13ae9af6"
+    },
+    "proof/ImplicitCumulants.lean": {
+      "bytes": 4717,
+      "sha256": "c110dcda007fb24f8d021a22dfee8a25fbf68866a9bef5160c762d839d33fee5"
+    },
+    "proof/ImplicitLocal.lean": {
+      "bytes": 4399,
+      "sha256": "35beae768b0062fdcc9461d545240bd19556f7f011ba5bed2d8ba7696ad2d25c"
+    },
+    "proof/LogRelaxation.lean": {
+      "bytes": 2469,
+      "sha256": "828a4fd8eeb3e2e3ef3ced7b1e1c1f20976862ee8bea7bc7b64d6c24eac5bc4a"
+    },
+    "proof/PoissonWinding.lean": {
+      "bytes": 1506,
+      "sha256": "13b9e3056e93341bc97857a772fa0c8573ab8b0524898e0ff1c414b9673874cc"
+    },
+    "proof/PolynomialBranch.lean": {
+      "bytes": 3014,
+      "sha256": "d2f7e4a06162d6d9a6373cacae31041c3d1c3cd252169ea09ea27963352147ea"
+    },
+    "proof/PositiveRateMatrices.lean": {
+      "bytes": 5958,
+      "sha256": "899c5b0834aea9d622212bd21933529f6dcbb8fc0285379ec592d23c7d90ff89"
+    },
+    "proof/PositiveRateSpectrum.lean": {
+      "bytes": 3194,
+      "sha256": "0b2854493e1923f8bd14947400e9ea9437f535bfb4cb9c3fd52d5ecf7241f8ae"
+    },
+    "proof/ProductCoefficients.lean": {
+      "bytes": 2513,
+      "sha256": "c7c0782d78e9d2dc08920dd5d95b827f066acc6542f3dbae2f25420caa326509"
+    },
+    "proof/RateJets.lean": {
+      "bytes": 5527,
+      "sha256": "ef2cac9374c0e7a0e7ad13ce6c35ba5c1bbb956a4025dd838a4b0543ce499b71"
+    },
+    "proof/RateReversal.lean": {
+      "bytes": 2526,
+      "sha256": "002a9fba47d8087f0aa292e411c296d80b9571dde702fe0b93065d7ba8a1d60e"
+    },
+    "proof/RateTiltedAction.lean": {
+      "bytes": 3748,
+      "sha256": "dd569f4f846dfc7fd8a9c00573ed75a377899d37a9ac3ada8e634b8d2a94e167"
+    },
+    "proof/RationalReduction.lean": {
+      "bytes": 2263,
+      "sha256": "a9f417adc31c569ca4b2a1bab2df6c73e1d75dd4d029ddab46ec686a2e259554"
+    },
+    "proof/ResidualCumulants.lean": {
+      "bytes": 3924,
+      "sha256": "d7749c54dcec472aa3e740971313cdd24bc820c428ee2ac4945f3a61f33f5b79"
+    },
+    "proof/ScalarCertificate.lean": {
+      "bytes": 12521,
+      "sha256": "73e145308ed0a4fe4688e6b5fb04af11d82df8cf5c7923411eb97d75031c683a"
+    },
+    "proof/SimplexMoments.lean": {
+      "bytes": 3682,
+      "sha256": "6908780184c50363b69e297ee108f686a99d9ca7f5d272b51c62e6a0161beb4f"
+    },
+    "proof/SpectralCoefficients.lean": {
+      "bytes": 3975,
+      "sha256": "e968b960649a1400c6e887f5361010868ed209f51ea8946b5e311df7a9d1d00c"
+    },
+    "proof/SpectralMomentBound.lean": {
+      "bytes": 2825,
+      "sha256": "c7b592c5af017d4269f8fd5f0e40e2f1576e9c7689c00f75a06b30089d21a503"
+    },
+    "proof/SpectralPolynomialBound.lean": {
+      "bytes": 3540,
+      "sha256": "e0cfb37ef79b1bb4a089a7d273e7eb570d4a372637ed8cc261ab01e372d0dfd0"
+    },
+    "proof/TwoStateSkewness.lean": {
+      "bytes": 3071,
+      "sha256": "b695d3aa9cab17c21eccef92cfa15b11693416099e3b19102077ed2ed1e8c352"
+    },
+    "proof/TwoStateWinding.lean": {
+      "bytes": 4246,
+      "sha256": "abf58b87b8aa329f77bd473ac150a2b16e7d0e41b5f72e14dd07cb5dbe204e39"
+    },
+    "proof/WindingSkewness.lean": {
+      "bytes": 6161,
+      "sha256": "6bdd7656d8e88a74ca3269d2fd6b018b3040e16439374f21ed6dc2ccdc65b25a"
+    },
+    "proof/lake-manifest.json": {
+      "bytes": 3525,
+      "sha256": "f62991ec02e33df6906f01a53daa1240c4f660861bcb035c07d71d7ce3174501"
+    },
+    "proof/lakefile.toml": {
+      "bytes": 285,
+      "sha256": "ccf6cab59304705552127b6d35cbcf6b5f92c60be9afde8006ad5a28bda0da34"
+    },
+    "proof/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    "requirements.txt": {
+      "bytes": 14,
+      "sha256": "25f9f1fb1988b230147a1d3092d34e09c069eb7a6c6d6df46b3973b9f2d36efc"
+    },
+    "verification/UnicyclicAll.lean.txt": {
+      "bytes": 173884,
+      "sha256": "5be5e7c946b16b6e1cad65a71818a423f47216838810b8af40e28ca428786bdf"
+    },
+    "verification/UnicyclicAll.log": {
+      "bytes": 76710,
+      "sha256": "1b9a52ec90f02342d22fd4ebbdead5b2c0db16b8e5cee9d729f5cd305c3396f5"
+    },
+    "verification/certificate-check.json": {
+      "bytes": 250,
+      "sha256": "1c6e574b2067abd0ed3a77003a45a0ab4baa4f031a64b731cdcd90b6c3e3ee6a"
+    },
+    "verification/verification.json": {
+      "bytes": 969945,
+      "sha256": "8d3ba438db3fef0e0c7f405a660e539432e175343162977a714b4ae092047886"
+    },
+    "verification_status.tex": {
+      "bytes": 706,
+      "sha256": "6e8db8f3af4eb6730cdbec8f18748655dd4e2c8a4da85082e65c1721e6014307"
+    },
+    "verify.py": {
+      "bytes": 9700,
+      "sha256": "74889d29dd5cc6c8637051321c530ed668e28f74e10496b92dc684dd73506c02"
+    }
+  }
+}

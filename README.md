@@ -1,108 +1,78 @@
 # Math and Theory
 
-I publish preprints and research notes from fully autonomous agentic research in mathematics, theoretical computer science, and mathematical physics. AI agents generated the research, proofs, computations, and manuscripts. I am responsible for publication.
+I publish mathematical manuscripts and supporting proof artifacts from fully autonomous agentic research in mathematics, theoretical computer science, and mathematical physics. AI agents generated the research, proofs, computations and manuscripts. I am responsible for publication.
 
-Each paper states its formal verification scope. The thermal proof covers finite spectral statements. It does not formalize the theorem that identifies them with long-time stochastic cumulants. The Gyires preprint proves inequalities for several structured matrix classes and develops related polynomial bounds. Its order-five and order-six results, all-order permutation-polynomial theorem, all-order four-block theorem, and exceptional-vector theorem have Lean proofs. The rank-two theorem also has a Lean proof for orders 2 through 8. Lean formalization of general order-seven circulants and rank-two orders 9 through 15 is incomplete. I do not claim a general solution when a proof covers only a special case.
+The collection contains results with different formal verification scopes. Each paper states its checked claims, conventional proofs and remaining limits. The papers have not been externally peer reviewed. I make no claim of first priority.
 
-The [five selected Zenodo preprints](zenodo/README.md) are available as one ZIP for manual upload. It contains Higuchi–Sudbery, universal embezzlement, asymmetric Tutte, power-rank and ADMM. Their first pages disclose the autonomous AI research. No external upload or DOI registration is claimed.
+## Navigating the collection
 
-Start with the [manuscript catalogue](CONTENTS.md) or the [overview](overview.pdf). The [Lean guide](lean/README.md) explains the formal statements. The [verification guide](verification/README.md) gives the commands and recorded results. [AUTHORSHIP.md](AUTHORSHIP.md) identifies the autonomous research process.
+The current catalogue contains 30 manuscripts and research notes across 29 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
 
-## Files and citations
+- Start with the [overview](overview.pdf) for descriptions of the result families.
+- Use the [manuscript map](CONTENTS.md) to find individual papers, abstracts and supporting materials.
+- The [preprints directory](preprints/) and [standalone study packages](verification/additional-proofs/) contain manuscripts, sources, citations and build instructions.
+- The [Lean library](lean/README.md), [formalization catalogue](lean/formalization.yaml) and [verification guide](verification/README.md) identify formal proofs, associated papers and checking commands.
+- [Research status](RESEARCH_STATUS.md) and [unfinished proofs](UNFINISHED.md) state the remaining limits.
+- The [selected preprint ZIP](zenodo/README.md) provides PDFs, source packages and metadata for manual upload. No external upload or DOI registration is claimed.
 
-I include the manuscript, source files, and citation metadata for each preprint. The [catalogue](CONTENTS.md) links to each result. I include an explicit publication file list and a SHA-256 integrity record.
+## Standout results
 
-## Results
+### Mathematics
 
-I group related results by subject in the catalogue. The mathematics papers concern matrix inequalities, concavity, and integer sequences. The theoretical computer science papers concern sampling and Boolean decision trees. The mathematical physics papers cover a thermal spectral counterexample, universal entanglement embezzlement, and the four-qubit Higuchi–Sudbery entropy bound.
+**[The exact last-gradient bound for constant-step gradient descent in the strongly convex case](verification/additional-proofs/strong-gradient/manuscript.pdf).** The exact final-gradient guarantee for constant-step gradient descent holds on every real Hilbert space, for every natural horizon and all normalized steps in [0,2], including positive strong convexity. The actual-function bound and normalized attaining functions are formalized; sharpness at arbitrary scale follows by conventional rescaling.
+
+**[The exact asymmetric Merino–Welsh region for finite matroids](verification/additional-proofs/asymmetric-tutte/manuscript.pdf).** The exact nonnegative parameter region for T_M(x,0) T_M(0,y) ≥ T_M(1,1)² is characterized uniformly over all finite matroids without loops or coloops. The formal statement uses actual matroids and their subset-rank Tutte sum, including the empty ground set.
+
+**[A positive constant-recursive sequence with nonquasipolynomial power ranks](verification/additional-proofs/power-rank/manuscript.pdf).** A positive constant-recursive sequence of rank thirteen has explicit minimal recurrences for all its powers and nonquasipolynomial power ranks. The main theorem and arbitrary-rank companions are formalized; generating-function and polynomial corollaries have conventional proofs.
+
+**[A rational five-cycle for two-block ADMM with multiplier step below two](verification/additional-proofs/admm-counterexample/paper/admm_counterexample.pdf).** An exact rational period-five orbit occurs in multiplier-only two-block ADMM at multiplier step 199/100. The orbit, minimizers and optimizer are formalized; analytic regularity of the strongly convex extension has a conventional proof.
 
 ### Mathematical physics
 
-| Result family | Established result |
-|---|---|
-| [A sum-of-squares proof of the four-qubit Higuchi–Sudbery entropy bound](verification/additional-proofs/higuchi-sudbery/manuscript.pdf) | The average von Neumann entropy of the three two-qubit marginals of a pure four-qubit state is at most log(2) + log(3)/2. The Higuchi–Sudbery state attains this bound. |
-| [Universal entanglement embezzlement with inverse-quadratic logarithmic infidelity](verification/additional-proofs/universal-embezzlement/manuscript.pdf) | A target-independent catalyst with local dimension 2^(4L) gives root infidelity at most 125m/L² for every Schmidt probability vector on m entries. |
-| [Thermal current kurtosis](verification/additional-proofs/thermal-kurtosis-counterexample/report.pdf) | A three-state, two-temperature model has a negative fourth-to-second spectral heat-cumulant ratio. The long-time stochastic identification is outside the formal proof. |
+**[A sum-of-squares proof of the four-qubit Higuchi–Sudbery entropy bound](verification/additional-proofs/higuchi-sudbery/manuscript.pdf).** Every pure four-qubit state has average two-qubit marginal entropy at most log(2) + log(3)/2. The Higuchi–Sudbery state attains the bound, and the actual-state inequality and attainment are formalized.
+
+**[Universal entanglement embezzlement with inverse-quadratic logarithmic infidelity](verification/additional-proofs/universal-embezzlement/manuscript.pdf).** A target-independent catalyst of local dimension 2^(4L) gives root infidelity at most 125m/L² for every Schmidt probability vector with m entries. The formal proof constructs local basis permutations and their finite complex Hilbert-space interpretation.
+
+**[The three-state root-fidelity entropy bound](verification/additional-proofs/fidelity-three-state/manuscript.pdf).** The weighted three-by-three root-fidelity matrix has entropy at least the Holevo quantity of every three-state ensemble in arbitrary finite dimension. The formal theorem includes mixed and singular states and zero probabilities.
+
+**[A sharp universal skewness bound for unicyclic currents](verification/additional-proofs/unicyclic-skewness/manuscript.pdf).** The net marked-edge current on every finite bidirectional Markov ring with at least three states, positive rates and unequal forward and reverse rate products satisfies −1/16 ≤ C₃/C₁ ≤ 1. The matrix-derivative bound is formalized; stochastic identification and sharpness have conventional proofs.
+
+**[Exact three-setting correlation bounds at fixed steering centre](verification/additional-proofs/steering-bounds/paper/steering_bounds.pdf).** The exact upper envelope of the three-setting squared correlation value is determined at every two-qubit steering-centre length, including attainment and nonattainment. A value greater than one is possible exactly when c < 2/3; the formal proof uses actual density matrices and the stated canonical centre.
+
+## Result families
+
+### Mathematics
+
+- [Matrix theory](CONTENTS.md#matrix-theory): q-permanent counterexamples, Gyires structured permanent inequalities, a normal-matrix polygon counterexample, projection AM–GM obstruction.
+- [Graph theory and graph polynomials](CONTENTS.md#graph-theory-and-graph-polynomials): DomiRank entropy, domination-sequence ultra-log-concavity, domination-root escape, leaf-deletion mode movement.
+- [Inequalities and real analysis](CONTENTS.md#inequalities-and-real-analysis): diagonal concavity.
+- [Integer sequences and combinatorics](CONTENTS.md#integer-sequences-and-combinatorics): Motzkin root log-concavity, bounded-forcing Motzkin bounds, Hofstadter iteration, nonquasipolynomial power ranks.
+- [Discrete analysis, probability and entropy](CONTENTS.md#discrete-analysis-probability-and-entropy): the sharp one-eighth Fourier bound, ranking entropy, Sidon-set Rényi thresholds.
+- [Matroid theory](CONTENTS.md#matroid-theory): the asymmetric Merino–Welsh region.
+- [Optimization](CONTENTS.md#optimization): an ADMM five-cycle, the exact strong-convexity gradient bound.
 
 ### Theoretical computer science
 
-| Result family | Established result |
-|---|---|
-| [Decision-tree covariance](verification/additional-proofs/readk-covariance/docs/manuscript.pdf) | A sharp logarithmic influence bound and two counterexamples to the proposed logarithmic variance bound. No Fourier-entropy theorem is formalized. |
-| [Best-of-n sampling](preprints/best-of-n/README.md) | The proposed bound fails at every budget at least two, with arbitrarily small atom caps. |
+- [Sampling algorithms and information theory](CONTENTS.md#sampling-algorithms-and-information-theory): best-of-n counterexamples.
+- [Boolean functions and decision trees](CONTENTS.md#boolean-functions-and-decision-trees): decision-tree covariance.
+- [Fair division](CONTENTS.md#fair-division): ordered-allocation transfer.
+- [Proof complexity](CONTENTS.md#proof-complexity): resolution-tree mass certificates.
 
-### Mathematics: extremal bounds and combinatorics
+### Mathematical physics
 
-| Result family | Established result |
-|---|---|
-| [The sharp level-one Fourier weight at density one eighth](verification/additional-proofs/sharp-eighth/manuscript.pdf) | For every Boolean indicator of mean 1/8 on a finite uniform cube, the level-one Fourier weight is at most 3/64. A codimension-three subcube attains the bound in every dimension at least three. |
-| [A quartic entropy deficit for random rankings](verification/additional-proofs/quartic-rankings/manuscript.pdf) | A distribution on rankings of n labels has entropy at most (1 − ε⁴/144) log(n!) if every pairwise comparison has probability at distance at least ε > 0 from 1/2. |
-| [The exact asymmetric Merino–Welsh region for finite matroids](verification/additional-proofs/asymmetric-tutte/manuscript.pdf) | The theorem characterizes all nonnegative pairs (x,y) for which T_M(x,0) T_M(0,y) ≥ T_M(1,1)² holds for every finite matroid without loops or coloops. |
-| [Ultra-log-concavity of domination sequences of powers of paths and cycles](verification/additional-proofs/galvin-zhang/manuscript.pdf) | The domination counts of every natural power of a path or cycle form an ultra-log-concave sequence. The proof includes all natural graph orders and powers, the binomial normalization, and the boundary graph cases. |
+- [Stochastic thermodynamics](CONTENTS.md#stochastic-thermodynamics): thermal current kurtosis, unicyclic current skewness.
+- [Quantum information](CONTENTS.md#quantum-information): universal entanglement embezzlement, the Higuchi–Sudbery entropy bound, a matched-basis information counterexample, exact steering correlation bounds, three-state root fidelity.
 
-### Mathematics: matrix inequalities and concavity
+## Proof coverage
 
-| Result family | Established result |
-|---|---|
-| [Gyires](preprints/gyires-circulant-five/README.md) | Circulants of orders five through seven, all-order structured matrix results, rank two through order fifteen, and supporting polynomial results. Order-five, order-six, permutation-polynomial, four-block, and exceptional-vector claims have Lean proofs. Rank-two orders 2–8 have Lean proofs. General order-seven circulants and rank-two orders 9–15 remain incomplete in Lean. |
-| [q-permanent](preprints/q-permanent/README.md) | Counterexamples at every real parameter greater than one. |
-| [Diagonal concavity](preprints/diagonal-concavity/README.md) | A counterexample and complete classification of a positive one-parameter family. |
+The shared Lean library covers seven families and 29 selected Comparator statements. Standalone packages have separate pinned environments and audits. The permitted proof axioms are `propext`, `Classical.choice` and `Quot.sound`. Exact finite computations do not replace universal proofs.
 
-### Mathematics: graph entropy and integer sequences
+The Gyires family has complete Lean proofs for order-five and order-six circulants, all-order permutation-polynomial and four-block matrices, exceptional vectors, and rank-two matrices of orders 2 through 8. General order-seven circulants and rank-two orders 9 through 15 remain incomplete in Lean. The unrestricted conjecture remains outside these results. Each other paper states its own formal and conventional proof boundaries in the manuscript map.
 
-| Result family | Established result |
-|---|---|
-| [DomiRank entropy](preprints/domirank-entropy/README.md) | A 14-vertex counterexample with positive scores on the whole comparison interval. |
-| [Alternating Motzkin sums](preprints/alternating-motzkin/README.md) | Strict root log-concavity with the optimal tail start. |
-| [Hofstadter iteration](preprints/hofstadter-iteration/README.md) | Late-iterate ordering fails for every parameter at least four. |
+## Versions and citations
 
-## Further completed work
+I preserve corrections and revisions in the repository history. Cite an individual manuscript with the citation file linked from its catalogue entry. Use [CITATION.cff](CITATION.cff) or [CITATION.bib](CITATION.bib) for the collection. The [Apache-2.0 license](LICENSE) applies except where [NOTICE](NOTICE) identifies third-party material.
 
-These additions retain the exact theorem assumptions and distinguish conventional proofs from formal proofs. Source comparisons that could not be verified are conditional. The Motzkin extension belongs with the existing alternating-sums family; its earlier narrow root bound is not presented as a new standalone discovery.
+## How the results were produced
 
-| Subject | Manuscript | Established scope |
-|---|---|---|
-| Integer sequences | [A positive constant-recursive sequence with nonquasipolynomial power ranks](verification/additional-proofs/power-rank/manuscript.pdf) | Exact minimal recurrences for every power of a rank-thirteen sequence, nonquasipolynomial ranks, and infinitely many power-rank profiles at each rank at least three. |
-| Optimization | [A rational five-cycle for two-block ADMM with multiplier step below two](verification/additional-proofs/admm-counterexample/paper/admm_counterexample.pdf) | An exact period-five orbit for multiplier-only two-block ADMM at step 199/100. |
-| Graph polynomials | [Sharp escape of complex domination roots in square flowers](verification/additional-proofs/graph-roots/manuscript.pdf) | Sharp complex-root escape for square flowers, with complete flower and book real-root classifications and multiplicities. |
-| Integer sequences | [Sharp log-concavity for alternating Motzkin sums](verification/additional-proofs/motzkin-bounded-forcing/manuscript.pdf) | A robust bounded-forcing recurrence theorem and corrected scaled corollary, with applications to alternating Motzkin-type sums. |
-| Additive combinatorics and entropy | [Sharp universal Rényi threshold for iid sums on finite Sidon sets](verification/additional-proofs/sidon-renyi/manuscript.pdf) | A sharp universal Renyi-order threshold for iid sums supported on finite strong-B2 sets. |
-| Fair division | [Ordered-instance allocation transfer with exact extra-copy preservation](verification/additional-proofs/ordered-allocation/manuscript.pdf) | A set-valued ordered-instance transfer preserving utility improvement, the exact extra-copy count, per-good caps and coverage. |
-| Proof complexity | [Unbounded coalesced-mass certificates for resolution trees](verification/additional-proofs/kunisky/paper.pdf) | A coalesced dyadic clause-mass functional has exact supremum n+1 on the stated unrestricted resolution-tree class and is unbounded across dimensions. |
-| Quantum information | [A pure-state matched-basis information inequality violation in dimension five](verification/additional-proofs/pure-ecqc/manuscript/manuscript.pdf) | A dimension-five pure-state matched-basis information inequality violation, with a conventional all-prime companion. |
-| Matrix theory | [A polygon enclosure fails for sums of normal matrices](verification/additional-proofs/kovacec/manuscript/manuscript.pdf) | A polygon enclosure fails for a specified pair of normal matrices and its complete transposition graph. |
-| Graph polynomials | [Leaf deletion can move the unique mode of a tree domination polynomial by two](verification/additional-proofs/leaf-deletion/manuscript/manuscript.pdf) | Deleting a leaf can move the unique mode of an explicit tree domination polynomial by two. |
-
-The [verification guide](verification/README.md) and each package README give the proof boundaries and commands. [Research status](RESEARCH_STATUS.md) distinguishes retained results, supporting material and unfinished proofs.
-
-## The Gyires preprint
-
-The [Gyires preprint](preprints/gyires-circulant-five/paper.pdf) proves the order-five circulant inequality and extends the analysis to other structured matrix classes. It includes circulants of orders six and seven, all-order permutation polynomials, all-order four-block matrices, one exceptional column or row, and rank-two matrices through order fifteen. It also proves structural, scalar, deletion, balancing, local polynomial, and counting results. Exact counterexamples identify the limits of proposed extensions. The [complete supporting record](research-notes/gyires-complete-support/README.md) gives the source map, certificate files, and reproduction commands. The all-order four-block and exceptional-vector theorems have complete Lean proofs. The general order-six and all-order permutation-polynomial theorems have separate Lean source packages. The rank-two theorem has a complete Lean proof for orders 2 through 8. The general order-seven circulant theorem and rank-two orders 9 through 15 remain incomplete in Lean. The manuscript does not establish the unrestricted conjecture.
-
-The Gyires [order-six package](verification/gyires-circulant-six/README.md) and [permutation-polynomial package](verification/gyires-permutation-polynomial/README.md) contain the additional formal proofs. Each package has its own pinned build and theorem map. The [rank-two package](verification/gyires-rank-two/README.md) proves the actual matrix theorem in orders 2 through 8.
-
-## Unfinished formal proofs
-
-[UNFINISHED.md](UNFINISHED.md) lists the remaining verification gaps. The Gyires general order-seven circulant and rank-two orders 9–15 Lean proofs remain unfinished.
-
-## Verification
-
-The shared formal library covers seven families and 29 selected Comparator statements. It uses Lean 4.35.0 and Mathlib commit `56a005855ea17e0b0958f73ec801ae140b0a1679`. The proof audit permits only `propext`, `Classical.choice`, and `Quot.sound`. Separate Challenge and Solution modules make each submitted statement auditable. The Challenge proof holes are specifications. They are excluded from the proved library and its axiom audit.
-
-The [decision-tree package](verification/additional-proofs/readk-covariance/README.md) and [thermal package](verification/additional-proofs/thermal-kurtosis-counterexample/README.md) use separate Lean 4.19.0 environments with Mathlib revision `c44e0c8ee63ca166450922a373c7409c5d26b00b`. They are not part of the shared Comparator selection. The decision-tree package has its own 29 axiom reports; this is a separate count.
-
-The [verification guide](verification/README.md) gives commands for compilation, statement comparison, proof checking, and exact computation. A successful computation over finitely many inputs does not prove a universal theorem.
-
-The automatic workflow checks source integrity and all catalogue manuscripts on pushes and pull requests. It has separate Lean jobs for the shared library and the eight original standalone study packages. The large separate Gyires packages have automatic source checks and a manual full-build workflow. The full Palomar mechanical preflight remains available by manual dispatch.
-
-## Authorship and use
-
-I describe the fully autonomous agentic research process in [AUTHORSHIP.md](AUTHORSHIP.md). These preprints have not been peer reviewed.
-
-Cite an individual paper with its `citation.bib` file, or `CITATION.bib` for a standalone package. For the repository, use [CITATION.cff](CITATION.cff) or [CITATION.bib](CITATION.bib). The catalogue links each manuscript to its source, citation metadata, and verification instructions. The root [Apache-2.0 license](LICENSE) applies except where [NOTICE](NOTICE) identifies third-party material.
-
-For a later result family, follow [the contribution procedure](lean/docs/adding-a-family.md). Each addition must satisfy the same mathematical, source-fidelity, prior-work, formalization, and reproducibility requirements.
-
-## Research process and review
-
-I publish fully autonomous agentic research and am responsible for publication. The original collection records GPT 6 with Pro Reasoning in ChatGPT for initial research and GPT 6 Astra in Codex for formalizations and corrections, together with its stated author check. The later packages give their own contribution disclosures, including actual GPT 6.1 Sol formalization and verification work. The original history and author-check statement must not be inferred for newly supplied research. These disclosures do not claim expert validation or external peer review.
+I publish fully autonomous agentic research and am responsible for publication. The original collection records GPT 6 with Pro Reasoning in ChatGPT for initial research and GPT 6 Astra in Codex for formalizations and corrections, together with its stated author check. The later packages give their own contribution disclosures, including actual GPT 6.1 Sol formalization and verification work. Each manuscript states its own contribution and review history. These disclosures do not claim expert validation or external peer review.

@@ -1,0 +1,15 @@
+import ProjectionAMGM.Counterexample
+import ProjectionAMGM.Family
+
+-- These checks expose the actual matrix types and the universal quantifier.
+#check ProjectionCounterexample.IsOrthogonalProjection
+#check ProjectionCounterexample.arithmetic
+#check ProjectionCounterexample.geometric
+#check ProjectionCounterexample.three_projection_counterexample
+#check ProjectionFamily.IsOrthogonalProjection
+#check ProjectionFamily.proj
+#check ProjectionFamily.no_finite_loewner_constant
+#print axioms ProjectionCounterexample.three_projection_counterexample
+#print axioms ProjectionCounterexample.exact_quadratic_form
+#print axioms ProjectionFamily.no_finite_loewner_constant
+#print axioms ProjectionFamily.exact_quadratic_form

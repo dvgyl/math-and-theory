@@ -64,6 +64,40 @@
       }
     },
     {
+      "id": "kovacec",
+      "discipline": "Mathematics",
+      "area": "Matrix theory",
+      "title": "A polygon enclosure fails for sums of normal matrices",
+      "kind": "Standalone theorem and reproducible proof package",
+      "summary": "A polygon enclosure fails for a specified pair of normal matrices and its complete transposition graph.",
+      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/kovacec/README.md",
+      "paper": "verification/additional-proofs/kovacec/manuscript/manuscript.pdf",
+      "formal_scope": "Actual normal matrices, determinants, straight-segment exterior and component exclusion are formalized. Correspondence with an external source conjecture is conditional.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/kovacec"
+      },
+      "manuscript_engine": "pdflatex"
+    },
+    {
+      "id": "projection-amgm",
+      "discipline": "Mathematics",
+      "area": "Matrix theory",
+      "title": "An unbounded obstruction to projection AM–GM in Loewner order",
+      "kind": "Focused research note and reproducible proof package",
+      "summary": "Three rank-one orthogonal projections in dimension three violate the symmetrized-product Loewner AM–GM bound. No finite real multiplier repairs it, even with a positive-definite mean. The examples do not satisfy the additional nonsingular block structure of the motivating coordinate-descent application.",
+      "source": "The manuscript credits the motivating Sun–Luo–Ye projection comparison and distinguishes nearby norm inequalities. Exact correspondence with the published conjecture and historical priority remain conditional.",
+      "source_url": "https://doi.org/10.1287/moor.2019.0990",
+      "paper": "verification/additional-proofs/projection-amgm/paper.pdf",
+      "formal_scope": "Lean verifies a rational three-projection matrix obstruction and a parameterized obstruction for every real multiplier in dimension three; rank-one, positive-definite mean, rational all-multiplier choices, and the standard minimal-factor observation have complete conventional proofs.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/projection-amgm"
+      },
+      "manuscript_engine": "pdflatex"
+    },
+    {
       "id": "domirank-entropy",
       "discipline": "Mathematics",
       "area": "Graph theory and matrix analysis",
@@ -82,6 +116,56 @@
       "formalization": {
         "kind": "comparator"
       }
+    },
+    {
+      "id": "galvin-zhang",
+      "discipline": "Mathematics",
+      "area": "Graph theory",
+      "title": "Ultra-log-concavity of domination sequences of powers of paths and cycles",
+      "kind": "Ultra-log-concavity of domination sequences",
+      "summary": "The domination counts of every natural power of a path or cycle form an ultra-log-concave sequence. The proof includes all natural graph orders and powers, the binomial normalization, and the boundary graph cases.",
+      "source": "Galvin and Zhang, Conjecture 1.8.",
+      "source_url": "https://arxiv.org/abs/2408.12731",
+      "paper": "verification/additional-proofs/galvin-zhang/manuscript.pdf",
+      "formal_scope": "Actual finite graph domination counts for powers of paths and cycles. No theorem for arbitrary graphs or real-rootedness is asserted.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/galvin-zhang"
+      }
+    },
+    {
+      "id": "graph-roots",
+      "discipline": "Mathematics",
+      "area": "Graph polynomials",
+      "title": "Sharp escape of complex domination roots in square flowers",
+      "kind": "Standalone theorem and reproducible proof package",
+      "summary": "Sharp complex-root escape for square flowers, with complete flower and book real-root classifications and multiplicities.",
+      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/graph-roots/README.md",
+      "paper": "verification/additional-proofs/graph-roots/manuscript.pdf",
+      "formal_scope": "All numbered manuscript conclusions are formalized in seventy modules with 258 endpoint audits. Historical novelty and exact external-source correspondence remain provisional.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/graph-roots"
+      },
+      "manuscript_engine": "pdflatex"
+    },
+    {
+      "id": "leaf-deletion",
+      "discipline": "Mathematics",
+      "area": "Graph polynomials",
+      "title": "Leaf deletion can move the unique mode of a tree domination polynomial by two",
+      "kind": "Standalone theorem and reproducible proof package",
+      "summary": "Deleting a leaf can move the unique mode of an explicit tree domination polynomial by two.",
+      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/leaf-deletion/README.md",
+      "paper": "verification/additional-proofs/leaf-deletion/manuscript/manuscript.pdf",
+      "formal_scope": "The fixed tree, deletion, actual domination counts and unique-mode movement are formalized. External question identity and historical priority remain provisional.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/leaf-deletion"
+      },
+      "manuscript_engine": "pdflatex"
     },
     {
       "id": "diagonal-concavity",
@@ -121,7 +205,26 @@
       "paper": "preprints/alternating-motzkin/paper.pdf",
       "formalization": {
         "kind": "comparator"
-      }
+      },
+      "family_group": "alternating-motzkin"
+    },
+    {
+      "id": "motzkin-bounded-forcing",
+      "discipline": "Mathematics",
+      "area": "Integer sequences",
+      "title": "Sharp log-concavity for alternating Motzkin sums",
+      "kind": "Standalone theorem and reproducible proof package",
+      "summary": "A robust bounded-forcing recurrence theorem and corrected scaled corollary, with applications to alternating Motzkin-type sums.",
+      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/motzkin-bounded-forcing/README.md",
+      "paper": "verification/additional-proofs/motzkin-bounded-forcing/manuscript.pdf",
+      "formal_scope": "The arbitrary-real recurrence theorem and scaled corollary, including zero forcing, are formalized. Concrete sequences, uniform-family applications, root transfer and threshold classification retain conventional proofs.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/motzkin-bounded-forcing"
+      },
+      "manuscript_engine": "pdflatex",
+      "family_group": "alternating-motzkin"
     },
     {
       "id": "hofstadter-iteration",
@@ -142,6 +245,123 @@
       "formalization": {
         "kind": "comparator"
       }
+    },
+    {
+      "id": "power-rank",
+      "discipline": "Mathematics",
+      "area": "Integer sequences",
+      "title": "A positive constant-recursive sequence with nonquasipolynomial power ranks",
+      "kind": "Standalone theorem and reproducible proof package",
+      "summary": "Exact minimal recurrences for every power of a rank-thirteen sequence, nonquasipolynomial ranks, and infinitely many power-rank profiles at each rank at least three.",
+      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/power-rank/README.md",
+      "paper": "verification/additional-proofs/power-rank/manuscript.pdf",
+      "formal_scope": "The main and arbitrary-rank companion theorems are formalized. Generating-function and polynomial corollaries retain conventional proofs.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/power-rank"
+      },
+      "manuscript_engine": "pdflatex"
+    },
+    {
+      "id": "sharp-eighth",
+      "discipline": "Mathematics",
+      "area": "Discrete analysis",
+      "title": "The sharp level-one Fourier weight at density one eighth",
+      "kind": "Sharp finite-cube Fourier bound",
+      "summary": "For every Boolean indicator of mean 1/8 on a finite uniform cube, the level-one Fourier weight is at most 3/64. A codimension-three subcube attains the bound in every dimension at least three.",
+      "source": "Yu, On Average Distance, Level-1 Fourier Weight, and Chang’s Lemma, 2026 revision.",
+      "source_url": "https://arxiv.org/abs/2504.02593v2",
+      "paper": "verification/additional-proofs/sharp-eighth/manuscript.pdf",
+      "formal_scope": "The formal proof includes arbitrary dimensions, the exact moment identities, the Hamming-distance bound, and sharpness witnesses.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/sharp-eighth"
+      }
+    },
+    {
+      "id": "quartic-rankings",
+      "discipline": "Mathematics",
+      "area": "Probability and combinatorics",
+      "title": "A quartic entropy deficit for random rankings",
+      "kind": "Entropy deficit from pairwise comparison bias",
+      "summary": "A distribution on rankings of n labels has entropy at most (1 − ε⁴/144) log(n!) if every pairwise comparison has probability at distance at least ε > 0 from 1/2.",
+      "source": "Acan, Devlin, and Kahn, 2019; the manuscript identifies the established entropy arguments.",
+      "source_url": "https://doi.org/10.1016/j.jcta.2018.08.004",
+      "paper": "verification/additional-proofs/quartic-rankings/manuscript.pdf",
+      "formal_scope": "The proof includes all finite sizes and actual position-valued permutations. It assumes neither independent comparisons nor transitive preferred directions.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/quartic-rankings"
+      }
+    },
+    {
+      "id": "sidon-renyi",
+      "discipline": "Mathematics",
+      "area": "Additive combinatorics and entropy",
+      "title": "Sharp universal Rényi threshold for iid sums on finite Sidon sets",
+      "kind": "Standalone theorem and reproducible proof package",
+      "summary": "A sharp universal Renyi-order threshold for iid sums supported on finite strong-B2 sets.",
+      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/sidon-renyi/README.md",
+      "paper": "verification/additional-proofs/sidon-renyi/manuscript.pdf",
+      "formal_scope": "The finite-support iid theorem, zero probabilities and critical endpoint are formalized. Comparison with unverified source definitions is conditional.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/sidon-renyi"
+      },
+      "manuscript_engine": "pdflatex"
+    },
+    {
+      "id": "asymmetric-tutte",
+      "discipline": "Mathematics",
+      "area": "Matroid theory",
+      "title": "The exact asymmetric Merino–Welsh region for finite matroids",
+      "kind": "Exact asymmetric parameter region",
+      "summary": "The theorem characterizes all nonnegative pairs (x,y) for which T_M(x,0) T_M(0,y) ≥ T_M(1,1)² holds for every finite matroid without loops or coloops.",
+      "source": "Liu, 2026; Chen and Xie, 2026. The manuscript states the relation to the diagonal theorem.",
+      "source_url": "https://github.com/michaeliu4/tutte-threshold",
+      "paper": "verification/additional-proofs/asymmetric-tutte/manuscript.pdf",
+      "formal_scope": "The statement uses actual Mathlib matroids and the literal subset rank sum. It includes empty ground sets and finite ground sets in arbitrary ambient types.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/asymmetric-tutte"
+      },
+      "manuscript_engine": "pdflatex"
+    },
+    {
+      "id": "admm-counterexample",
+      "discipline": "Mathematics",
+      "area": "Optimization",
+      "title": "A rational five-cycle for two-block ADMM with multiplier step below two",
+      "kind": "Standalone theorem and reproducible proof package",
+      "summary": "An exact period-five orbit for multiplier-only two-block ADMM at step 199/100.",
+      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/admm-counterexample/README.md",
+      "paper": "verification/additional-proofs/admm-counterexample/paper/admm_counterexample.pdf",
+      "formal_scope": "Seven modules and eleven endpoint audits cover the orbit, minimizers and optimizer. Analytic regularity of the finite strongly convex extension retains a conventional proof.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/admm-counterexample"
+      },
+      "manuscript_engine": "pdflatex"
+    },
+    {
+      "id": "strong-gradient",
+      "discipline": "Mathematics",
+      "area": "Convex optimization",
+      "title": "The exact last-gradient bound for constant-step gradient descent in the strongly convex case",
+      "summary": "The exact final-gradient guarantee holds on every real Hilbert space for L > 0, 0 ≤ μ ≤ L, normalized step 0 ≤ h ≤ 2 and every natural horizon. Actual one-dimensional Huber and quadratic functions attain its two branches.",
+      "formal_scope": "The actual-function upper bound and normalized actual-function attainment are formalized, including every horizon and closed parameter boundary. Sharpness for arbitrary L > 0 and radius R > 0 is proved by rescaling in the manuscript, without a separate Lean wrapper.",
+      "paper": "verification/additional-proofs/strong-gradient/manuscript.pdf",
+      "kind": "Standalone theorem and reproducible proof package",
+      "source": "Prior results and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/strong-gradient/README.md",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/strong-gradient"
+      },
+      "manuscript_engine": "pdflatex"
     },
     {
       "id": "best-of-n",
@@ -180,206 +400,6 @@
       }
     },
     {
-      "id": "thermal-kurtosis-counterexample",
-      "discipline": "Mathematical physics",
-      "area": "Stochastic thermodynamics",
-      "title": "A three-state thermal counterexample to a heat-current kurtosis conjecture",
-      "kind": "Exact finite spectral counterexample",
-      "summary": "A three-state two-temperature thermal rate model satisfies local detailed balance and has an exact negative fourth-to-second cold-heat spectral cumulant ratio. Lean checks the finite matrices, complex spectrum, a smooth locally dominant eigenvalue branch, and the exact derivative ratio. It does not formalize the stochastic long-time identification theorem.",
-      "source": "Ptaszyński, Physical Review E 106, 024119 (2022), Eq. (19).",
-      "source_url": "https://doi.org/10.1103/PhysRevE.106.024119",
-      "paper": "verification/additional-proofs/thermal-kurtosis-counterexample/report.pdf",
-      "formalization": {
-        "kind": "standalone",
-        "root": "verification/additional-proofs/thermal-kurtosis-counterexample"
-      }
-    },
-    {
-      "id": "sharp-eighth",
-      "discipline": "Mathematics",
-      "area": "Discrete analysis",
-      "title": "The sharp level-one Fourier weight at density one eighth",
-      "kind": "Sharp finite-cube Fourier bound",
-      "summary": "For every Boolean indicator of mean 1/8 on a finite uniform cube, the level-one Fourier weight is at most 3/64. A codimension-three subcube attains the bound in every dimension at least three.",
-      "source": "Yu, On Average Distance, Level-1 Fourier Weight, and Chang’s Lemma, 2026 revision.",
-      "source_url": "https://arxiv.org/abs/2504.02593v2",
-      "paper": "verification/additional-proofs/sharp-eighth/manuscript.pdf",
-      "formal_scope": "The formal proof includes arbitrary dimensions, the exact moment identities, the Hamming-distance bound, and sharpness witnesses.",
-      "formalization": {
-        "kind": "standalone",
-        "root": "verification/additional-proofs/sharp-eighth"
-      }
-    },
-    {
-      "id": "galvin-zhang",
-      "discipline": "Mathematics",
-      "area": "Graph theory",
-      "title": "Ultra-log-concavity of domination sequences of powers of paths and cycles",
-      "kind": "Ultra-log-concavity of domination sequences",
-      "summary": "The domination counts of every natural power of a path or cycle form an ultra-log-concave sequence. The proof includes all natural graph orders and powers, the binomial normalization, and the boundary graph cases.",
-      "source": "Galvin and Zhang, Conjecture 1.8.",
-      "source_url": "https://arxiv.org/abs/2408.12731",
-      "paper": "verification/additional-proofs/galvin-zhang/manuscript.pdf",
-      "formal_scope": "Actual finite graph domination counts for powers of paths and cycles. No theorem for arbitrary graphs or real-rootedness is asserted.",
-      "formalization": {
-        "kind": "standalone",
-        "root": "verification/additional-proofs/galvin-zhang"
-      }
-    },
-    {
-      "id": "universal-embezzlement",
-      "discipline": "Mathematical physics",
-      "area": "Quantum information",
-      "title": "Universal entanglement embezzlement with inverse-quadratic logarithmic infidelity",
-      "kind": "Universal catalyst with a quantitative error bound",
-      "summary": "A target-independent catalyst with local dimension 2^(4L) gives root infidelity at most 125m/L² for every Schmidt probability vector on m entries.",
-      "source": "Van Dam and Hayden, 2003; Leung and Wang, 2014.",
-      "source_url": "https://arxiv.org/abs/1311.6842",
-      "paper": "verification/additional-proofs/universal-embezzlement/manuscript.pdf",
-      "formal_scope": "The proof constructs local basis permutations and establishes their finite complex Hilbert-space interpretation. Arbitrary changes to an external Schmidt basis are not separately formalized.",
-      "formalization": {
-        "kind": "standalone",
-        "root": "verification/additional-proofs/universal-embezzlement"
-      },
-      "manuscript_engine": "pdflatex"
-    },
-    {
-      "id": "asymmetric-tutte",
-      "discipline": "Mathematics",
-      "area": "Matroid theory",
-      "title": "The exact asymmetric Merino–Welsh region for finite matroids",
-      "kind": "Exact asymmetric parameter region",
-      "summary": "The theorem characterizes all nonnegative pairs (x,y) for which T_M(x,0) T_M(0,y) ≥ T_M(1,1)² holds for every finite matroid without loops or coloops.",
-      "source": "Liu, 2026; Chen and Xie, 2026. The manuscript states the relation to the diagonal theorem.",
-      "source_url": "https://github.com/michaeliu4/tutte-threshold",
-      "paper": "verification/additional-proofs/asymmetric-tutte/manuscript.pdf",
-      "formal_scope": "The statement uses actual Mathlib matroids and the literal subset rank sum. It includes empty ground sets and finite ground sets in arbitrary ambient types.",
-      "formalization": {
-        "kind": "standalone",
-        "root": "verification/additional-proofs/asymmetric-tutte"
-      },
-      "manuscript_engine": "pdflatex"
-    },
-    {
-      "id": "higuchi-sudbery",
-      "discipline": "Mathematical physics",
-      "area": "Quantum information",
-      "title": "A sum-of-squares proof of the four-qubit Higuchi–Sudbery entropy bound",
-      "kind": "Four-qubit entropy bound with attainment",
-      "summary": "The average von Neumann entropy of the three two-qubit marginals of a pure four-qubit state is at most log(2) + log(3)/2. The Higuchi–Sudbery state attains this bound.",
-      "source": "Higuchi and Sudbery, 2000.",
-      "source_url": "https://arxiv.org/abs/quant-ph/0005013",
-      "paper": "verification/additional-proofs/higuchi-sudbery/manuscript.pdf",
-      "formal_scope": "The proof uses all sixteen complex amplitudes, actual reduced-matrix eigenvalues, an exact sum-of-squares identity, and an explicit maximizing state.",
-      "formalization": {
-        "kind": "standalone",
-        "root": "verification/additional-proofs/higuchi-sudbery"
-      },
-      "manuscript_engine": "pdflatex"
-    },
-    {
-      "id": "quartic-rankings",
-      "discipline": "Mathematics",
-      "area": "Probability and combinatorics",
-      "title": "A quartic entropy deficit for random rankings",
-      "kind": "Entropy deficit from pairwise comparison bias",
-      "summary": "A distribution on rankings of n labels has entropy at most (1 − ε⁴/144) log(n!) if every pairwise comparison has probability at distance at least ε > 0 from 1/2.",
-      "source": "Acan, Devlin, and Kahn, 2019; the manuscript identifies the established entropy arguments.",
-      "source_url": "https://doi.org/10.1016/j.jcta.2018.08.004",
-      "paper": "verification/additional-proofs/quartic-rankings/manuscript.pdf",
-      "formal_scope": "The proof includes all finite sizes and actual position-valued permutations. It assumes neither independent comparisons nor transitive preferred directions.",
-      "formalization": {
-        "kind": "standalone",
-        "root": "verification/additional-proofs/quartic-rankings"
-      }
-    },
-    {
-      "id": "power-rank",
-      "discipline": "Mathematics",
-      "area": "Integer sequences",
-      "title": "A positive constant-recursive sequence with nonquasipolynomial power ranks",
-      "kind": "Standalone theorem and reproducible proof package",
-      "summary": "Exact minimal recurrences for every power of a rank-thirteen sequence, nonquasipolynomial ranks, and infinitely many power-rank profiles at each rank at least three.",
-      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
-      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/power-rank/README.md",
-      "paper": "verification/additional-proofs/power-rank/manuscript.pdf",
-      "formal_scope": "The main and arbitrary-rank companion theorems are formalized. Generating-function and polynomial corollaries retain conventional proofs.",
-      "formalization": {
-        "kind": "standalone",
-        "root": "verification/additional-proofs/power-rank"
-      },
-      "manuscript_engine": "pdflatex"
-    },
-    {
-      "id": "admm-counterexample",
-      "discipline": "Mathematics",
-      "area": "Optimization",
-      "title": "A rational five-cycle for two-block ADMM with multiplier step below two",
-      "kind": "Standalone theorem and reproducible proof package",
-      "summary": "An exact period-five orbit for multiplier-only two-block ADMM at step 199/100.",
-      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
-      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/admm-counterexample/README.md",
-      "paper": "verification/additional-proofs/admm-counterexample/paper/admm_counterexample.pdf",
-      "formal_scope": "Seven modules and eleven endpoint audits cover the orbit, minimizers and optimizer. Analytic regularity of the finite strongly convex extension retains a conventional proof.",
-      "formalization": {
-        "kind": "standalone",
-        "root": "verification/additional-proofs/admm-counterexample"
-      },
-      "manuscript_engine": "pdflatex"
-    },
-    {
-      "id": "graph-roots",
-      "discipline": "Mathematics",
-      "area": "Graph polynomials",
-      "title": "Sharp escape of complex domination roots in square flowers",
-      "kind": "Standalone theorem and reproducible proof package",
-      "summary": "Sharp complex-root escape for square flowers, with complete flower and book real-root classifications and multiplicities.",
-      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
-      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/graph-roots/README.md",
-      "paper": "verification/additional-proofs/graph-roots/manuscript.pdf",
-      "formal_scope": "All numbered manuscript conclusions are formalized in seventy modules with 258 endpoint audits. Historical novelty and exact external-source correspondence remain provisional.",
-      "formalization": {
-        "kind": "standalone",
-        "root": "verification/additional-proofs/graph-roots"
-      },
-      "manuscript_engine": "pdflatex"
-    },
-    {
-      "id": "motzkin-bounded-forcing",
-      "discipline": "Mathematics",
-      "area": "Integer sequences",
-      "title": "Sharp log-concavity for alternating Motzkin sums",
-      "kind": "Standalone theorem and reproducible proof package",
-      "summary": "A robust bounded-forcing recurrence theorem and corrected scaled corollary, with applications to alternating Motzkin-type sums.",
-      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
-      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/motzkin-bounded-forcing/README.md",
-      "paper": "verification/additional-proofs/motzkin-bounded-forcing/manuscript.pdf",
-      "formal_scope": "The arbitrary-real recurrence theorem and scaled corollary, including zero forcing, are formalized. Concrete sequences, uniform-family applications, root transfer and threshold classification retain conventional proofs.",
-      "formalization": {
-        "kind": "standalone",
-        "root": "verification/additional-proofs/motzkin-bounded-forcing"
-      },
-      "manuscript_engine": "pdflatex",
-      "family_group": "alternating-motzkin"
-    },
-    {
-      "id": "sidon-renyi",
-      "discipline": "Mathematics",
-      "area": "Additive combinatorics and entropy",
-      "title": "Sharp universal Rényi threshold for iid sums on finite Sidon sets",
-      "kind": "Standalone theorem and reproducible proof package",
-      "summary": "A sharp universal Renyi-order threshold for iid sums supported on finite strong-B2 sets.",
-      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
-      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/sidon-renyi/README.md",
-      "paper": "verification/additional-proofs/sidon-renyi/manuscript.pdf",
-      "formal_scope": "The finite-support iid theorem, zero probabilities and critical endpoint are formalized. Comparison with unverified source definitions is conditional.",
-      "formalization": {
-        "kind": "standalone",
-        "root": "verification/additional-proofs/sidon-renyi"
-      },
-      "manuscript_engine": "pdflatex"
-    },
-    {
       "id": "ordered-allocation",
       "discipline": "Theoretical computer science",
       "area": "Fair division",
@@ -414,6 +434,72 @@
       "manuscript_engine": "pdflatex"
     },
     {
+      "id": "thermal-kurtosis-counterexample",
+      "discipline": "Mathematical physics",
+      "area": "Stochastic thermodynamics",
+      "title": "A three-state thermal counterexample to a heat-current kurtosis conjecture",
+      "kind": "Exact finite spectral counterexample",
+      "summary": "A three-state two-temperature thermal rate model satisfies local detailed balance and has an exact negative fourth-to-second cold-heat spectral cumulant ratio. Lean checks the finite matrices, complex spectrum, a smooth locally dominant eigenvalue branch, and the exact derivative ratio. It does not formalize the stochastic long-time identification theorem.",
+      "source": "Ptaszyński, Physical Review E 106, 024119 (2022), Eq. (19).",
+      "source_url": "https://doi.org/10.1103/PhysRevE.106.024119",
+      "paper": "verification/additional-proofs/thermal-kurtosis-counterexample/report.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/thermal-kurtosis-counterexample"
+      }
+    },
+    {
+      "id": "unicyclic-skewness",
+      "discipline": "Mathematical physics",
+      "area": "Stochastic thermodynamics",
+      "title": "A sharp universal skewness bound for unicyclic currents",
+      "summary": "The net marked-edge current on every finite bidirectional Markov ring with at least three states, positive rates and unequal forward and reverse rate products satisfies −1/16 ≤ C₃/C₁ ≤ 1. The two-channel two-state case has the stronger interval [1/4,1]. This ratio is not standardized skewness.",
+      "formal_scope": "The interval for actual tilted-matrix derivatives and a local branch is formalized. Identification with long-time stochastic cumulants and sharpness have conventional proofs. Lean does not construct a continuous-time sample-path probability space or a separate optimizing-sequence theorem.",
+      "paper": "verification/additional-proofs/unicyclic-skewness/manuscript.pdf",
+      "kind": "Standalone theorem and reproducible proof package",
+      "source": "Prior results and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/unicyclic-skewness/README.md",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/unicyclic-skewness"
+      },
+      "manuscript_engine": "pdflatex"
+    },
+    {
+      "id": "universal-embezzlement",
+      "discipline": "Mathematical physics",
+      "area": "Quantum information",
+      "title": "Universal entanglement embezzlement with inverse-quadratic logarithmic infidelity",
+      "kind": "Universal catalyst with a quantitative error bound",
+      "summary": "A target-independent catalyst with local dimension 2^(4L) gives root infidelity at most 125m/L² for every Schmidt probability vector on m entries.",
+      "source": "Van Dam and Hayden, 2003; Leung and Wang, 2014.",
+      "source_url": "https://arxiv.org/abs/1311.6842",
+      "paper": "verification/additional-proofs/universal-embezzlement/manuscript.pdf",
+      "formal_scope": "The proof constructs local basis permutations and establishes their finite complex Hilbert-space interpretation. Arbitrary changes to an external Schmidt basis are not separately formalized.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/universal-embezzlement"
+      },
+      "manuscript_engine": "pdflatex"
+    },
+    {
+      "id": "higuchi-sudbery",
+      "discipline": "Mathematical physics",
+      "area": "Quantum information",
+      "title": "A sum-of-squares proof of the four-qubit Higuchi–Sudbery entropy bound",
+      "kind": "Four-qubit entropy bound with attainment",
+      "summary": "The average von Neumann entropy of the three two-qubit marginals of a pure four-qubit state is at most log(2) + log(3)/2. The Higuchi–Sudbery state attains this bound.",
+      "source": "Higuchi and Sudbery, 2000.",
+      "source_url": "https://arxiv.org/abs/quant-ph/0005013",
+      "paper": "verification/additional-proofs/higuchi-sudbery/manuscript.pdf",
+      "formal_scope": "The proof uses all sixteen complex amplitudes, actual reduced-matrix eigenvalues, an exact sum-of-squares identity, and an explicit maximizing state.",
+      "formalization": {
+        "kind": "standalone",
+        "root": "verification/additional-proofs/higuchi-sudbery"
+      },
+      "manuscript_engine": "pdflatex"
+    },
+    {
       "id": "pure-ecqc",
       "discipline": "Mathematical physics",
       "area": "Quantum information",
@@ -431,36 +517,36 @@
       "manuscript_engine": "pdflatex"
     },
     {
-      "id": "kovacec",
-      "discipline": "Mathematics",
-      "area": "Matrix theory",
-      "title": "A polygon enclosure fails for sums of normal matrices",
+      "id": "steering-bounds",
+      "discipline": "Mathematical physics",
+      "area": "Quantum information",
+      "title": "Exact three-setting correlation bounds at fixed steering centre",
+      "summary": "The exact least upper bound of the optimized three-setting squared correlation value is determined for every two-qubit steering-centre length. The threshold for a value greater than one is c < 2/3. Attainment, nonattainment and the singular marginal boundary are included.",
+      "formal_scope": "Actual two-qubit density matrices, canonical filters, Pauli correlations, the exact least upper bound, attainment and nonattainment, and fully entangled fraction are formalized. The steering-ellipsoid and optimized CJWR measurement interpretations use cited external correspondences; general steerability is outside the result.",
+      "paper": "verification/additional-proofs/steering-bounds/paper/steering_bounds.pdf",
       "kind": "Standalone theorem and reproducible proof package",
-      "summary": "A polygon enclosure fails for a specified pair of normal matrices and its complete transposition graph.",
-      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
-      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/kovacec/README.md",
-      "paper": "verification/additional-proofs/kovacec/manuscript/manuscript.pdf",
-      "formal_scope": "Actual normal matrices, determinants, straight-segment exterior and component exclusion are formalized. Correspondence with an external source conjecture is conditional.",
+      "source": "Prior results and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/steering-bounds/README.md",
       "formalization": {
         "kind": "standalone",
-        "root": "verification/additional-proofs/kovacec"
+        "root": "verification/additional-proofs/steering-bounds"
       },
       "manuscript_engine": "pdflatex"
     },
     {
-      "id": "leaf-deletion",
-      "discipline": "Mathematics",
-      "area": "Graph polynomials",
-      "title": "Leaf deletion can move the unique mode of a tree domination polynomial by two",
+      "id": "fidelity-three-state",
+      "discipline": "Mathematical physics",
+      "area": "Quantum information",
+      "title": "The three-state root-fidelity entropy bound",
+      "summary": "The entropy of the weighted three-by-three root-fidelity matrix bounds the Holevo quantity of every three-state ensemble in arbitrary finite dimension. The result includes mixed and singular states and zero probabilities.",
+      "formal_scope": "The unrestricted three-state ensemble theorem is formalized for actual positive semidefinite complex matrices of trace one, nonnegative weights summing to one, spectral entropy and nuclear-norm root fidelity. Credited QICLean foundations and prior-work adapters retain their attribution.",
+      "paper": "verification/additional-proofs/fidelity-three-state/manuscript.pdf",
       "kind": "Standalone theorem and reproducible proof package",
-      "summary": "Deleting a leaf can move the unique mode of an explicit tree domination polynomial by two.",
-      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
-      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/leaf-deletion/README.md",
-      "paper": "verification/additional-proofs/leaf-deletion/manuscript/manuscript.pdf",
-      "formal_scope": "The fixed tree, deletion, actual domination counts and unique-mode movement are formalized. External question identity and historical priority remain provisional.",
+      "source": "Prior results and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/verification/additional-proofs/fidelity-three-state/README.md",
       "formalization": {
         "kind": "standalone",
-        "root": "verification/additional-proofs/leaf-deletion"
+        "root": "verification/additional-proofs/fidelity-three-state"
       },
       "manuscript_engine": "pdflatex"
     }

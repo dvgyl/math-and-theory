@@ -1,0 +1,216 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black,citecolor=blue!55!black]{hyperref}
+\hypersetup{pdftitle={An unbounded obstruction to projection AM-GM in Loewner order},pdfauthor={Dev D. Goyal},pdfsubject={Exact counterexamples and Lean verification}}
+\usepackage{enumitem}
+\setlist{itemsep=3pt,topsep=5pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\G}{\mathcal G}
+\newcommand{\M}{\mathcal M}
+\DeclareMathOperator{\rank}{rank}
+\title{An unbounded obstruction to projection AM--GM in Loewner order\\[4pt]
+\large A rational counterexample and an unbounded obstruction}
+\author{Dev D. Goyal}
+\date{29 October 2026}
+
+\begin{document}
+\maketitle
+\noindent\textbf{Research disclosure.} This work is fully autonomous agentic research. Artificial intelligence systems generated the research, proofs, formalization, and manuscript. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed.
+
+\begin{abstract}
+Can the symmetrized product of orthogonal projections be bounded in Loewner order by the corresponding power of their arithmetic mean? A counterexample is given consisting of three rational rank-one projections in dimension three. More strongly, for every real constant $C$, three such projections can be chosen so that their symmetrized product is not bounded above by $C$ times the cube of their mean. The mean in these examples is positive definite. The proofs are elementary exact matrix computations. The accompanying Lean 4 development checks the actual matrix statements, including projection identities and failure of positive semidefiniteness. This note concerns the projection Loewner-order conjecture, not a disproof of an optimal coordinate-descent convergence rate. The relation to prior work is stated in Section~\ref{sec:prior}.
+\end{abstract}
+
+\section{The original problem}
+
+For real orthogonal projections $P_1,\ldots,P_n\in\R^{N\times N}$, write
+\[
+ \M(P_1,\ldots,P_n)=\frac1n\sum_{i=1}^n P_i,
+ \qquad
+ \G(P_1,\ldots,P_n)=\frac1{n!}\sum_{\sigma\in S_n}
+ P_{\sigma(n)}\cdots P_{\sigma(1)}.
+\]
+Both matrices are symmetric: transpose reverses a permutation product, and reversal permutes the terms in the sum. The Loewner order $X\preceq Y$ means that $Y-X$ is positive semidefinite.
+
+The projection arithmetic--geometric mean question is motivated by the work of Sun--Luo--Ye~\cite{sun}. The comparison studied here is
+\begin{equation}\label{eq:conjecture}
+ \G(P_1,\ldots,P_n)\preceq\M(P_1,\ldots,P_n)^n
+\end{equation}
+for arbitrary real orthogonal projections. The theorems below concern this explicit unrestricted formulation. The additional block structure in coordinate-descent applications is discussed in Section~\ref{sec:prior}. The weaker comparison $\G\preceq\M$ is consistent with the examples.
+
+\section{A complete rational counterexample}
+
+Let $w=(1,1,1)^T$, let $J=ww^T$, and let $I$ denote the $3\times3$ identity matrix.
+
+\begin{theorem}\label{thm:finite}
+Set
+\[
+ u_1=(-1,1,1)^T,\qquad u_2=(1,-1,1)^T,\qquad u_3=(1,1,-1)^T,
+ \qquad P_i=\frac13u_i u_i^T.
+\]
+These are rational rank-one orthogonal projections. With $A=\M(P_1,P_2,P_3)$ and $G=\G(P_1,P_2,P_3)$,
+\begin{equation}\label{eq:finite-identities}
+ A=\frac{4I-J}{9},\qquad
+ G=\frac{J-2I}{81},\qquad
+ A^3-G=\frac{82I-30J}{729}.
+\end{equation}
+In particular,
+\[
+ w^T(A^3-G)w=-\frac8{243}<0,
+\]
+so \eqref{eq:conjecture} is false for $n=N=3$.
+\end{theorem}
+
+\begin{proof}
+Each $u_i$ has squared norm $3$, hence $P_i^T=P_i$ and
+$P_i^2=u_i(u_i^Tu_i)u_i^T/9=P_i$. Since $u_i\ne0$, its rank is one.
+Direct summation gives
+\[
+ \sum_i u_i=w,\qquad \sum_i u_i u_i^T=4I-J,
+\]
+which proves the formula for $A$. If $i,j,k$ are distinct, $u_i^Tu_j=u_j^Tu_k=-1$, so
+\[
+ P_iP_jP_k=\frac1{27}u_i u_k^T.
+\]
+For each ordered pair of distinct endpoints $(i,k)$ there is exactly one remaining middle index. Thus
+\[
+ G=\frac1{162}\sum_{i\ne k}u_i u_k^T
+   =\frac1{162}\left(ww^T-\sum_i u_i u_i^T\right)
+   =\frac{J-2I}{81}.
+\]
+Finally $J^2=3J$, so $(4I-J)^3=64I-21J$. Subtracting $G$ yields
+\eqref{eq:finite-identities}. Since $Jw=3w$ and $w^Tw=3$, the displayed negative quadratic form follows.
+\end{proof}
+
+\section{No finite multiplicative correction}
+
+\begin{theorem}\label{thm:unbounded}
+For every $C\in\R$ there are three rank-one real orthogonal projections $P_1,P_2,P_3\in\R^{3\times3}$ such that
+\[
+ \G(P_1,P_2,P_3)\not\preceq C\,\M(P_1,P_2,P_3)^3.
+\]
+The projections may be chosen with positive-definite arithmetic mean. For every prescribed real $C$, they may also be chosen to have rational entries.
+\end{theorem}
+
+\begin{proof}
+For a parameter $r>0$, put $d=1+2r^2$, $b=1-r^2$, and
+\[
+ v_i=(1-r)w+3r e_i,\qquad P_i(r)=\frac{v_i v_i^T}{3d}\quad(1\le i\le3),
+\]
+where $e_i$ are the standard coordinate vectors. These have the identities
+\begin{equation}\label{eq:gram}
+ v_i^Tv_i=3d,\qquad v_i^Tv_j=3b\ (i\ne j),\qquad
+ v_i^Tw=3,\qquad \sum_i v_i=3w.
+\end{equation}
+Thus each $P_i(r)$ is a nonzero symmetric idempotent of rank one.
+
+Write $A_r=\M(P_1(r),P_2(r),P_3(r))$ and $G_r=\G(P_1(r),P_2(r),P_3(r))$. From \eqref{eq:gram},
+\[
+ A_rw=\frac1d w.
+\]
+For distinct $i,j,k$, multiplication of the rank-one matrices gives
+\[
+ P_i(r)P_j(r)P_k(r)w=\frac{b^2}{d^3}v_i.
+\]
+Every first index occurs twice among the six permutations. Averaging and using $\sum_i v_i=3w$ therefore gives
+\begin{equation}\label{eq:family-action}
+ G_rw=\frac{(r^2-1)^2}{d^3}w,\qquad
+ A_r^3w=\frac1{d^3}w.
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:family-gap}
+ w^T(CA_r^3-G_r)w
+  =\frac{3\bigl(C-(r^2-1)^2\bigr)}{(1+2r^2)^3}.
+\end{equation}
+Choose $r=|C|+2$. To see directly that $(r^2-1)^2>C$, put $x=|C|\ge0$. Then
+$r^2-1=x^2+4x+3\ge x+3$, and $(x+3)^2>x\ge C$.
+The denominator of \eqref{eq:family-gap} is positive, so the quadratic form is negative. This proves the asserted Loewner failure.
+
+The column matrix of the $v_i$ is $V=3rI+(1-r)J$. It acts as multiplication by $3$ on $\R w$ and by $3r$ on $w^\perp$. Since $A_r=VV^T/(9d)$, its eigenvalues are $1/d$ on $\R w$ and $r^2/d$ on $w^\perp$, both positive. Finally choose an integer $r>|C|+2$ instead; the same strict inequality holds and every $P_i(r)$ has rational entries.
+\end{proof}
+
+The obstruction is visible on a common eigenvector of $A_r$ and $G_r$: the ratio of their relevant eigenvalues is
+\[
+ \frac{w^TG_rw}{w^TA_r^3w}=(r^2-1)^2.
+\]
+It therefore persists for positive-definite means and becomes arbitrarily large with the dimension and number of factors fixed. For $r\ge1$, the condition number of $A_r$ is $r^2$. This family does not rule out a comparison restricted to means with a prescribed condition-number bound.
+
+\begin{proposition}[Minimal number of factors]\label{prop:two}
+For two real symmetric matrices $X,Y$,
+\[
+ \left(\frac{X+Y}{2}\right)^2-\frac{XY+YX}{2}
+   =\frac14(X-Y)^2\succeq0.
+\]
+Thus \eqref{eq:conjecture} holds for one or two projections in every dimension, and three is the smallest possible number of factors in a counterexample.
+\end{proposition}
+
+\begin{proof}
+Expand the square. Because $X-Y$ is symmetric, $(X-Y)^2=(X-Y)^T(X-Y)$ is positive semidefinite.
+\end{proof}
+
+This two-factor identity is standard, and appears already in Recht--R\'e~\cite{recht}; it is included only to locate the first possible failure. No claim of minimal ambient dimension is made.
+
+\section{Prior work and scope}\label{sec:prior}
+
+The distinction between several related matrix comparisons is essential:
+\begin{enumerate}[leftmargin=*]
+\item The projection comparison~\eqref{eq:conjecture} uses orthogonal projections and Loewner order. Theorem~\ref{thm:unbounded} rules out every finite multiplicative repair for this formulation, with three factors.
+\item The Recht--R\'e norm conjecture allows general positive-semidefinite matrices and takes the spectral norm after averaging products. Lai--Lim~\cite{lai} and De Sa~\cite{desa} refuted that conjecture in 2020. Those results are not being claimed as new here. Lai--Lim also note that the unrestricted positive-semidefinite Loewner version fails for three factors, without providing a projection example in that passage.
+\item De Sa's main norm counterexamples use matrices with eigenvalues $0,1,2$, which are not projections. His separate construction using projections concerns a different expression, with norms inside the expectation. Neither construction is automatically a prior counterexample to \eqref{eq:conjecture}.
+\item Kim--Lee--Yun~\cite{kim}, Appendix~E.2, revisit the projection AM--GM route in the analysis of general quadratic Hessians. Their main results and conjectures involve convergence rates and second-moment operators, which are not settled by the present Loewner-order failure.
+\end{enumerate}
+
+The closest results above concern different matrix hypotheses or different comparisons. The contribution here is the explicit upper-Loewner obstruction for projections and its unbounded ratio in fixed dimension. No unconditional claim of priority is made.
+
+The motivating block-coordinate application imposes additional structure: $P_i=I-A_iA_i^T$, $A_i^TA_i=I$, and a square nonsingular concatenation $[A_1,\ldots,A_n]$. The three-dimensional rank-one family does not satisfy that additional block structure. The result establishes the failure of the unrestricted projection comparison~\eqref{eq:conjecture} and the absence of a finite multiplicative correction. These results do not refute the scalar-coordinate specialization or establish a reversal of the algorithms' convergence comparison. The known weak inequality $\G\preceq\M$ is consistent with the examples.
+
+\section{Formal verification and reproducibility}
+
+The accompanying project uses Lean~4.19.0 and the following Mathlib commit:
+\begin{center}\small\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.\end{center}
+The finite theorem is encoded using matrices over $\R$, symmetry and idempotence, the explicit average of all six products, and Mathlib's \texttt{Matrix.PosSemidef} predicate. The witness quadratic form is evaluated inside Lean's proof system. The parameterized theorem likewise connects the actual projection family to failure of positive semidefiniteness for every real constant $C$.
+
+The principal declaration in the namespace \texttt{ProjectionCounterexample} is
+\begin{center}\texttt{three\_projection\_counterexample}.\end{center}
+It asserts the existence of three real symmetric idempotents for which $A^3-G$ is not positive semidefinite. The principal declaration in the namespace \texttt{ProjectionFamily} is
+\begin{center}\texttt{no\_finite\_loewner\_constant}.\end{center}
+It quantifies over every real $C$ and asserts the same failure for $CA^3-G$. Both use the displayed average of all six products, so every ordering occurs exactly once.
+
+The rank-one property, positive-definite mean, rational choice, and two-factor statement have complete proofs in this paper. They are not included in the endpoints of these Lean declarations. The formal sources and reproduction commands accompany this paper. The finite Python check uses exact rational arithmetic and covers Theorem~\ref{thm:finite}; it does not establish the universal quantifier in Theorem~\ref{thm:unbounded}.
+
+\section*{Source availability and license}
+The mathematical source and formal verification files accompany this note. They are licensed under Apache-2.0. Lean and Mathlib retain their own licenses. Public reproducibility instructions and a declaration map are in the accompanying README.
+
+\clearpage
+\begin{thebibliography}{9}
+\bibitem{sun} R. Sun, Z.-Q. Luo, and Y. Ye.
+\emph{On the Efficiency of Random Permutation for ADMM and Coordinate Descent}.
+Mathematics of Operations Research 45(1), 233--271, 2020.
+\href{https://doi.org/10.1287/moor.2019.0990}{doi:10.1287/moor.2019.0990}.
+\href{https://par.nsf.gov/servlets/purl/10201446}{Public full text}.
+\bibitem{recht} B. Recht and C. R\'e.
+\emph{Toward a Noncommutative Arithmetic--Geometric Mean Inequality: Conjectures, Case-Studies, and Consequences}.
+COLT, PMLR 23, 11.1--11.24, 2012.
+\url{https://proceedings.mlr.press/v23/recht12.html}.
+\bibitem{lai} Z. Lai and L.-H. Lim.
+\emph{Recht--R\'e Noncommutative Arithmetic--Geometric Mean Conjecture is False}.
+ICML, PMLR 119, 5608--5617, 2020.
+\url{https://proceedings.mlr.press/v119/lai20a.html}.
+\bibitem{desa} C. De Sa.
+\emph{Random Reshuffling is Not Always Better}.
+Advances in Neural Information Processing Systems 33, 2020.
+\url{https://proceedings.neurips.cc/paper/2020/hash/42299f06ee419aa5d9d07798b56779e2-Abstract.html}.
+\bibitem{kim} D. Kim, J. Lee, and C. Yun.
+\emph{Provable Benefit of Random Permutations over Uniform Sampling in Stochastic Coordinate Descent}.
+ICML, PMLR 267, 30480--30547, 2025.
+\url{https://proceedings.mlr.press/v267/kim25x.html}.
+\end{thebibliography}
+\end{document}

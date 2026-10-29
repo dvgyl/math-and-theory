@@ -1,0 +1,81 @@
+Milne.canonical_operator_bound (M : Milne.CMatrix) (hM : Milne.Density M) (hB : Milne.partialB M = (1 / 2) • 1) :
+  Matrix.PosSemidef (↑(1 - Milne.center M / 2) • 1 - M)
+Milne.canonical_purity_bound (M : Milne.CMatrix) (hM : Milne.Density M) (hB : Milne.partialB M = (1 / 2) • 1) :
+  (M * M).trace.re ≤ 1 - Milne.center M + Milne.center M ^ 2 / 2
+Milne.purityDifference_filter (M : Milne.CMatrix) (F : Matrix Milne.Q Milne.Q ℂ) :
+  Milne.purityDifference (Milne.onBob F * M * Milne.onBob F) = F.det ^ 2 * Milne.purityDifference M
+Milne.correlationSq_purityDifference (M : Milne.CMatrix) (hM : Milne.Density M) :
+  Milne.correlationSq M =
+    4 * (Milne.purityDifference M).re + 1 + Milne.blochSq (Milne.partialA M) - Milne.blochSq (Milne.partialB M)
+Milne.canonicalize_reconstruction (M : Milne.CMatrix) (hM : Milne.Density M) (hdet : (Milne.partialB M).det ≠ 0) :
+  Milne.onBob (Milne.bobFilter M hM) * Milne.canonicalize M hM * Milne.onBob (Milne.bobFilter M hM) = M
+Milne.filtered_alice_bloch_bound (M : Milne.CMatrix) (hM : Milne.Density M) (hB : Milne.partialB M = (1 / 2) • 1)
+  (F : Matrix Milne.Q Milne.Q ℂ) (hF : F.IsHermitian) (hTr : (F * F).trace = 2) :
+  let ρ := Milne.onBob F * M * Milne.onBob F;
+  let r := Milne.blochLength (Milne.partialB ρ);
+  Milne.blochSq (Milne.partialA ρ) ≤ (Milne.center M + (1 - Milne.center M) * r) ^ 2
+Milne.arbitrary_steering_bound (M : Milne.CMatrix) (hM : Milne.Density M) (hdet : (Milne.partialB M).det ≠ 0) :
+  Milne.correlationSq M ≤ Milne.steeringEnvelopeSq (Milne.center (Milne.canonicalize M hM))
+Milne.singular_Bob_support (M : Milne.CMatrix) (hM : Milne.Density M) (hdet : (Milne.partialB M).det = 0) :
+  M = Milne.onBob (Milne.partialB M) * M * Milne.onBob (Milne.partialB M)
+Milne.singular_Bob_entangled_overlap_bound (M : Milne.CMatrix) (hM : Milne.Density M)
+  (hdet : (Milne.partialB M).det = 0) (v : Milne.QQ → ℂ) (hv : Milne.MaximallyEntangled v) : Milne.overlap M v ≤ 1 / 2
+Milne.singular_Bob_blochSq (M : Milne.CMatrix) (hM : Milne.Density M) (hdet : (Milne.partialB M).det = 0) :
+  Milne.blochSq (Milne.partialB M) = 1
+Milne.singular_Bob_purityDifference_zero (M : Milne.CMatrix) (hM : Milne.Density M)
+  (hdet : (Milne.partialB M).det = 0) : Milne.purityDifference M = 0
+Milne.all_states_steering_bound (M : Milne.CMatrix) (hM : Milne.Density M) :
+  Milne.correlationSq M ≤ Milne.steeringEnvelopeSq (Milne.steeringCenter M hM)
+Milne.steeringEnvelope_attained {c : ℝ} (hc0 : 0 ≤ c) (hc : c < 2 / 3) :
+  ∃ M,
+    ∃ (hM : Milne.Density M),
+      (Milne.partialB M).det ≠ 0 ∧
+        Milne.center (Milne.canonicalize M hM) = c ∧ Milne.correlationSq M = Milne.steeringEnvelopeSq c
+Milne.steeringEnvelope_supremum {c ε : ℝ} (hc : 2 / 3 ≤ c) (hc1 : c ≤ 1) (hε : 0 < ε) :
+  ∃ M,
+    ∃ (hM : Milne.Density M),
+      (Milne.partialB M).det ≠ 0 ∧
+        Milne.center (Milne.canonicalize M hM) = c ∧ Milne.steeringEnvelopeSq c - ε < Milne.correlationSq M
+Milne.steeringEnvelope_isLUB {c : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) :
+  IsLUB (Milne.steeringSpectrum c) (Milne.steeringEnvelopeSq c)
+Milne.three_setting_violation_possible_iff {c : ℝ} (hc0 : 0 ≤ c) (_hc1 : c ≤ 1) :
+  (∃ M, ∃ (hM : Milne.Density M), Milne.steeringCenter M hM = c ∧ 1 < Milne.steeringValue M) ↔ c < 2 / 3
+Milne.no_maximizer_on_flat_branch (M : Milne.CMatrix) (hM : Milne.Density M) (hc : 2 / 3 ≤ Milne.steeringCenter M hM)
+  (hc1 : Milne.steeringCenter M hM < 1) : Milne.correlationSq M < 1
+Milne.steeringEndpoint_isGreatest : IsGreatest (Milne.steeringSpectrum 1) 1
+Milne.all_states_entangled_overlap_bound (M : Milne.CMatrix) (hM : Milne.Density M) (v : Milne.QQ → ℂ)
+  (hv : Milne.MaximallyEntangled v) : Milne.overlap M v ≤ 1 - Milne.steeringCenter M hM / 2
+Milne.fullyEntangledFraction_bound (M : Milne.CMatrix) (hM : Milne.Density M) :
+  Milne.fullyEntangledFraction M ≤ 1 - Milne.steeringCenter M hM / 2
+Milne.fullyEntangledFraction_isGreatest {c : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) :
+  IsGreatest (Milne.entangledFractionSpectrum c) (1 - c / 2)
+Milne.entangledFractionEnvelope_isGreatest {c : ℝ} (hc0 : 0 ≤ c) (hc1 : c ≤ 1) :
+  IsGreatest (Milne.entangledFractionSpectrum c) (1 - c / 2)
+Milne.decimal_threshold_counterexample :
+  ∃ M,
+    ∃ (hM : Milne.Density M),
+      (Milne.partialB M).det ≠ 0 ∧
+        Milne.center (Milne.canonicalize M hM) = 53 / 80 ∧ Milne.correlationSq M = 1512 / 1511
+'Milne.canonical_operator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.canonical_purity_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.purityDifference_filter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.correlationSq_purityDifference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.canonicalize_reconstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.filtered_alice_bloch_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.arbitrary_steering_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.singular_Bob_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.singular_Bob_entangled_overlap_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.singular_Bob_blochSq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.singular_Bob_purityDifference_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.all_states_steering_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.steeringEnvelope_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.steeringEnvelope_supremum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.steeringEnvelope_isLUB' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.three_setting_violation_possible_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.no_maximizer_on_flat_branch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.steeringEndpoint_isGreatest' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.all_states_entangled_overlap_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.fullyEntangledFraction_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.fullyEntangledFraction_isGreatest' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.entangledFractionEnvelope_isGreatest' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Milne.decimal_threshold_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]

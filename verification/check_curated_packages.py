@@ -10,6 +10,7 @@ import tomllib
 CURATED_IDS = frozenset({
     'power-rank', 'admm-counterexample', 'graph-roots', 'motzkin-bounded-forcing',
     'sidon-renyi', 'ordered-allocation', 'kunisky', 'pure-ecqc', 'kovacec', 'leaf-deletion',
+    'steering-bounds', 'strong-gradient', 'unicyclic-skewness', 'projection-amgm', 'fidelity-three-state',
 })
 HASH = re.compile(r'[0-9a-f]{64}\Z')
 REVISION = re.compile(r'[0-9a-f]{40}\Z')
@@ -103,7 +104,7 @@ def validate_entry(name, entry, allow_pending=False):
                 'Invalid curated proof-root record: ' + name)
         require(valid_path(root['path'], root=True) and
                 isinstance(root['lean_version'], str) and
-                re.fullmatch(r'\d+\.\d+\.\d+', root['lean_version']) and
+                re.fullmatch(r'\d+\.\d+\.\d+(?:-rc[1-9]\d*)?', root['lean_version']) and
                 isinstance(root['mathlib_revision'], str) and REVISION.fullmatch(root['mathlib_revision']),
                 'Invalid curated toolchain pin: ' + name)
         require(root['lakefile'] in {'lakefile.toml', 'lakefile.lean'} and

@@ -103,6 +103,23 @@ class CuratedPackageTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Wrong curated Lean pin'):
             self.check()
 
+    def test_release_candidate_pin_is_exact(self):
+        self.entry['proof_roots'][0]['lean_version'] = '4.35.0-rc3'
+        (self.formal / 'lean-toolchain').write_text('leanprover/lean4:v4.35.0-rc3\n')
+        self.inner(); self.seal()
+        self.check()
+        (self.formal / 'lean-toolchain').write_text('leanprover/lean4:v4.35.0\n')
+        self.inner(); self.seal()
+        with self.assertRaisesRegex(ValueError, 'Wrong curated Lean pin'):
+            self.check()
+
+    def test_malformed_toolchain_versions_fail(self):
+        for version in ('4.35.0-rc', '4.35.0-rc0', '4.35.0-rc3junk', 'nightly', '4.35'):
+            with self.subTest(version=version):
+                self.entry['proof_roots'][0]['lean_version'] = version
+                with self.assertRaisesRegex(ValueError, 'Invalid curated toolchain pin'):
+                    curated.validate_entry('power-rank', self.entry)
+
     def test_wrong_mathlib_requirement_fails_even_after_file_rehash(self):
         path = self.formal / 'lakefile.toml'
         path.write_text(path.read_text().replace(PIN, 'a' * 40))
@@ -171,7 +188,7 @@ class CuratedPackageTests(unittest.TestCase):
             with self.subTest(name=name):
                 self.assertFalse(curated.valid_path(name))
 
-    def test_registry_requires_all_ten_ids(self):
+    def test_registry_requires_complete_id_set(self):
         root = Path(self.temp.name) / 'repo'
         (root / 'verification').mkdir(parents=True)
         (root / 'verification/curated-packages.json').write_text(json.dumps(

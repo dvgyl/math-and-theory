@@ -1,0 +1,284 @@
+{
+  "status": "passed",
+  "mode": "isolated_fresh_source_replay_pinned_dependency_objects",
+  "lean_version": "Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)",
+  "compiler_sha256": "92c3d35b5bfaa5e0fea413a775d504cf46cd95e1345df61c2274f76779e7e023",
+  "dependencies": {
+    "Cli": {
+      "commit": "02dbd02bc00ec4916e99b04b2245b30200e200d0",
+      "tracked_source_clean": true
+    },
+    "LeanSearchClient": {
+      "commit": "25078369972d295301f5a1e53c3e5850cf6d9d4c",
+      "tracked_source_clean": true
+    },
+    "Qq": {
+      "commit": "fa4f7f15d97591a9cf3aa7724ba371c7fc6dda02",
+      "tracked_source_clean": true
+    },
+    "aesop": {
+      "commit": "5d50b08dedd7d69b3d9b3176e0d58a23af228884",
+      "tracked_source_clean": true
+    },
+    "batteries": {
+      "commit": "f5d04a9c4973d401c8c92500711518f7c656f034",
+      "tracked_source_clean": true
+    },
+    "importGraph": {
+      "commit": "e6a9f0f5ee3ccf7443a0070f92b62f8db12ae82b",
+      "tracked_source_clean": true
+    },
+    "mathlib": {
+      "commit": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "tracked_source_clean": true
+    },
+    "plausible": {
+      "commit": "77e08eddc486491d7b9e470926b3dbe50319451a",
+      "tracked_source_clean": true
+    },
+    "proofwidgets": {
+      "commit": "c4919189477c3221e6a204008998b0d724f49904",
+      "tracked_source_clean": true
+    }
+  },
+  "trust_level": 0,
+  "warnings_as_errors": true,
+  "local_modules_rebuilt": 18,
+  "principal_types_checked": 23,
+  "principal_axiom_sets_checked": 23,
+  "fresh_network_portable_lake_build": false,
+  "no_supplied_task_owned_objects": true,
+  "process_limit": 1,
+  "per_module_timeout_seconds": 600,
+  "per_process_address_space_limit_bytes": 8589934592,
+  "source_sha256": {
+    "Lean/MilneAllStates.lean": "1af2f132aeff89d775a00e7ca13447156637ac3b4b673d87d4bef5ed17e88370",
+    "Lean/MilneBlochDefs.lean": "56324a6f0b5edc2fbdd8c452b2c194c61d6cbd61d93e0c8b8763d1c2c5d3dac5",
+    "Lean/MilneCanonicalization.lean": "ace418303e1c19cc437c52012cb5f6a3cfcf2b08b84c6604cd4a2821d98ef040",
+    "Lean/MilneCore.lean": "bbc6a39aa80bd86b084472a25f8acea8ff3106ec2ce37ff19c6ecd26295ffb3d",
+    "Lean/MilneCorrelation.lean": "502a21928eac4d84c8cd07c0e3ea8b78282076d9d9645b8738b22deaca8db93d",
+    "Lean/MilneDefs.lean": "7f1d3ec37eeac51c8e29a148fa5dcf628676c093dfe76d574fff8e0d310aeb0c",
+    "Lean/MilneFiltering.lean": "3a5197d27c866e3bd3024dbfc0704a6fd4336129cf60118a3582811ac8e410a9",
+    "Lean/MilneFractionOptimality.lean": "54ac5c12cf8848ee34dd3b6097f2c27692bf201ac599e622c5bb602e0f91236b",
+    "Lean/MilneFractionSharpness.lean": "823304c63a54d8e5b4f3db2416420389be803041bb42377f37ebb0f68e186ade",
+    "Lean/MilneNonattainment.lean": "a36f22874d9ca7c92adf1460f51ce71e5cf9aea3a2ed2175436a96f4a9a2ade6",
+    "Lean/MilneOptimality.lean": "30bc767d11efecaad89544b4c2e02efa68f2a5eb211bfebdcf0718a8fad8313c",
+    "Lean/MilnePurityCovariance.lean": "b6d68d753e8aab9e39268829fce5ed98cfb01eba207ddc251b600d33c8d9d16e",
+    "Lean/MilneQubit.lean": "937c88d426d8e710323c10e88993dbb514954062287d81905b1c2fd95416b44e",
+    "Lean/MilneScalarBounds.lean": "39c653ad30be9668a1133612c2b25c428b7ecf8d95484b00337f24675c28678c",
+    "Lean/MilneSharpness.lean": "bfa7111951012cafe677797bdba7ea0ce0d3298486cfc4eb40b97e48d87967c0",
+    "Lean/MilneSingular.lean": "3c5c40e90d8bf060df9d41459c23105b9d52c94c20f1ca905a9cc7eefe8b1cb1",
+    "Lean/MilneSteering.lean": "366541af83bcb8ed86440b2fc558144c0d273f75ace9c0cb44123af7b0a7ba89",
+    "Lean/MilneVerification.lean": "53d1344e37a200bb766622235cd7d6c4d55621a3977b560b5175da43bc3e674b"
+  },
+  "axioms": {
+    "Milne.canonical_operator_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.canonical_purity_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.purityDifference_filter": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.correlationSq_purityDifference": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.canonicalize_reconstruction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.filtered_alice_bloch_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.arbitrary_steering_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.singular_Bob_support": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.singular_Bob_entangled_overlap_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.singular_Bob_blochSq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.singular_Bob_purityDifference_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.all_states_steering_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.steeringEnvelope_attained": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.steeringEnvelope_supremum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.steeringEnvelope_isLUB": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.three_setting_violation_possible_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.no_maximizer_on_flat_branch": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.steeringEndpoint_isGreatest": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.all_states_entangled_overlap_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.fullyEntangledFraction_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.fullyEntangledFraction_isGreatest": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.entangledFractionEnvelope_isGreatest": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Milne.decimal_threshold_counterexample": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "module_results": [
+    {
+      "module": "MilneDefs",
+      "exit_code": 0,
+      "seconds": 1.67
+    },
+    {
+      "module": "MilneCore",
+      "exit_code": 0,
+      "seconds": 9.95
+    },
+    {
+      "module": "MilneFiltering",
+      "exit_code": 0,
+      "seconds": 3.48
+    },
+    {
+      "module": "MilneCanonicalization",
+      "exit_code": 0,
+      "seconds": 2.37
+    },
+    {
+      "module": "MilneQubit",
+      "exit_code": 0,
+      "seconds": 2.62
+    },
+    {
+      "module": "MilnePurityCovariance",
+      "exit_code": 0,
+      "seconds": 2.63
+    },
+    {
+      "module": "MilneBlochDefs",
+      "exit_code": 0,
+      "seconds": 1.52
+    },
+    {
+      "module": "MilneCorrelation",
+      "exit_code": 0,
+      "seconds": 30.55
+    },
+    {
+      "module": "MilneScalarBounds",
+      "exit_code": 0,
+      "seconds": 3.98
+    },
+    {
+      "module": "MilneSteering",
+      "exit_code": 0,
+      "seconds": 9.52
+    },
+    {
+      "module": "MilneSingular",
+      "exit_code": 0,
+      "seconds": 3.18
+    },
+    {
+      "module": "MilneSharpness",
+      "exit_code": 0,
+      "seconds": 27.67
+    },
+    {
+      "module": "MilneFractionSharpness",
+      "exit_code": 0,
+      "seconds": 8.91
+    },
+    {
+      "module": "MilneAllStates",
+      "exit_code": 0,
+      "seconds": 1.78
+    },
+    {
+      "module": "MilneOptimality",
+      "exit_code": 0,
+      "seconds": 1.92
+    },
+    {
+      "module": "MilneNonattainment",
+      "exit_code": 0,
+      "seconds": 2.38
+    },
+    {
+      "module": "MilneFractionOptimality",
+      "exit_code": 0,
+      "seconds": 1.67
+    },
+    {
+      "module": "MilneVerification",
+      "exit_code": 0,
+      "seconds": 24.17
+    }
+  ],
+  "principal_log_sha256": "e261b5465cc6576dea841f4ef8ce853a9cc0599cca65ec789aeab436ede0e4b5"
+}

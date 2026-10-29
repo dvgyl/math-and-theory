@@ -1,0 +1,469 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=25mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,longtable,array}
+\usepackage{xcolor,hyperref,fancyhdr,microtype}
+\hypersetup{pdftitle={The three-state root-fidelity entropy bound},pdfauthor={Dev D. Goyal},pdfsubject={Fully autonomous agentic AI research},pdfkeywords={quantum information, Holevo quantity, root fidelity, entropy, Lean},colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black,citecolor=blue!45!black}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Three-state root-fidelity entropy}
+\fancyhead[R]{\small Root-fidelity entropy bound}
+\fancyfoot[C]{\thepage}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\tr}{\operatorname{Tr}}
+\newcommand{\Ent}{\mathrm{S}}
+\newcommand{\Rel}{\mathrm{D}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\normone}[1]{\left\lVert #1\right\rVert_1}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\title{The three-state root-fidelity entropy bound}\author{Dev D. Goyal}\date{29 October 2026}
+\begin{document}
+\maketitle
+\noindent\textbf{Autonomous AI research disclosure.}
+This work is fully autonomous agentic AI research. AI systems developed the
+mathematical argument, formal proofs, and manuscript. Dev D. Goyal is
+responsible for the public release. No expert validation or peer review is
+claimed.
+
+\begin{abstract}
+For an ensemble of three finite-dimensional quantum states, its pairwise
+root fidelities form a positive matrix after weighting by the ensemble
+probabilities. The entropy of this matrix bounds the ensemble's Holevo
+quantity from above. The proof applies to arbitrary dimension, mixed and
+singular states, and zero probabilities. It first proves a three-block
+trace-norm comparison for entropy deficits. A simultaneous diagonal
+attainment construction, the scalar three-by-three absolute-value entropy
+comparison, and joint convexity of relative entropy give this comparison.
+A weighted-root Gram matrix then gives the ensemble bound. The result is
+the unrestricted inequality stated by Fannes, de Melo, Roga, and
+\.{Z}yczkowski. A complete Lean formalization accompanies the proof.
+\end{abstract}
+
+\section{The ensemble bound}
+
+The Holevo quantity bounds the classical information that a measurement
+can extract from a quantum-state ensemble. The result below bounds it using
+three probabilities and three pairwise root fidelities. The matrix in the
+bound has size three regardless of the dimension of the states.
+
+For a finite-dimensional positive semidefinite matrix $T$, use
+\[
+ \Ent(T)=-\sum_k \lambda_k(T)\log\lambda_k(T),\qquad 0\log0=0.
+\]
+This definition also applies to matrices whose trace is not one. All
+logarithms are natural. Changing to any logarithm base greater than one
+multiplies every entropy in the result by the same positive constant.
+
+\begin{theorem}[Three-state root-fidelity entropy inequality]\label{thm:main}
+Let $\rho_1,\rho_2,\rho_3$ be density matrices on any finite-dimensional
+complex Hilbert space. Let $p_i\ge0$ and $\sum_{i=1}^3p_i=1$. Define
+\[
+ \sigma=\sum_{i=1}^3p_i\rho_i,
+ \qquad
+ C_{ij}=\sqrt{p_i p_j}\,
+       \normone{\sqrt{\rho_i}\sqrt{\rho_j}}.
+\]
+Then $C$ is positive semidefinite with trace one, and
+\begin{equation}\label{eq:main}
+ \Ent(\sigma)-\sum_{i=1}^3p_i\Ent(\rho_i)\le\Ent(C).
+\end{equation}
+\end{theorem}
+
+The matrix uses the \emph{unsquared} root fidelity. Under the convention
+$F(\rho,\tau)=\normone{\sqrt\rho\sqrt\tau}^2$, its entries are
+$C_{ij}=\sqrt{p_i p_j F(\rho_i,\rho_j)}$.
+Equation~\eqref{eq:main} is the unrestricted inequality stated as
+Conjecture~1, equation~(18), in the published Fannes--de Melo--Roga--\.{Z}yczkowski
+paper~\cite{fmrz}. There is no assumption of commutativity, full rank,
+strictly positive probabilities, qubit dimension, or compatible polar
+unitaries.
+
+The bound is attained when the state supports are mutually orthogonal.
+Then the off-diagonal root fidelities vanish, $C=\diag(p_1,p_2,p_3)$,
+and both sides of~\eqref{eq:main} equal $H(p)=-\sum_i p_i\log p_i$.
+It is also attained when all three states coincide: the Holevo quantity
+is zero and $C=vv^*$ for $v_i=\sqrt{p_i}$ has entropy zero.
+These examples do not give a complete equality characterization.
+
+\section{Scalar comparison in dimension three}
+
+An elementary proof of a known ingredient follows. Its entropy
+content occurs in the pure-state discussion of~\cite{fmrz}, using the
+spectral monotonicity studied by Mitchison and Jozsa~\cite{mj}.
+
+\begin{lemma}\label{lem:scalar}
+If $A\succeq0$ is a complex $3\times3$ matrix and $B=(|A_{ij}|)$, then
+$B\succeq0$ and $\Ent(B)\ge\Ent(A)$. If $A\succ0$, then $B\succ0$.
+\end{lemma}
+
+\begin{proof}
+Write
+\[
+ A=\begin{pmatrix}a&u&v\\ \bar u&b&w\\ \bar v&\bar w&c\end{pmatrix}.
+\]
+The principal minors of orders one and two are unchanged upon replacing
+entries by their absolute values. For the remaining principal minor,
+\[
+ \det B-\det A
+ =2\bigl(|u w\bar v|-\operatorname{Re}(u w\bar v)\bigr)\ge0.
+\]
+The principal-minor criterion proves the claimed positivity statements.
+
+First assume $A\succ0$. Let $x_1,x_2,x_3$ and $y_1,y_2,y_3$ be the
+eigenvalues of $A$ and $B$. Their first elementary symmetric functions
+agree because the traces agree. Their second elementary symmetric
+functions agree because the sums of the principal minors of order two
+agree. Their third elementary symmetric functions satisfy
+$y_1y_2y_3\ge x_1x_2x_3$. Hence, for all $t\ge0$,
+\[
+ \prod_{k=1}^3(t+y_k)\ge\prod_{k=1}^3(t+x_k).
+\]
+Define
+\[
+ Q(t)=\sum_{k=1}^3\bigl((t+y_k)\log(t+y_k)
+                       -(t+x_k)\log(t+x_k)\bigr).
+\]
+The derivative is the logarithm of the ratio of the two products, so
+$Q'(t)\ge0$. For each fixed $x>0$,
+\[
+ (t+x)\log(t+x)=t\log t+x\log t+x+O(t^{-1})
+ \quad(t\longrightarrow\infty).
+\]
+The common number of eigenvalues and their equal sums imply
+$Q(t)\longrightarrow0$. Therefore $Q(0)\le0$, which is precisely
+$\Ent(B)\ge\Ent(A)$.
+
+For singular $A$, apply the positive definite case to $A+\varepsilon I_3$.
+Its entrywise absolute-value matrix is $B+\varepsilon I_3$, since the
+diagonal entries of $A$ are nonnegative. Continuity of $-x\log x$ at zero
+and continuity of finite-dimensional eigenvalues give the limit as
+$\varepsilon\downarrow0$.
+\end{proof}
+
+Write $\delta T$ for the ordinary diagonal matrix with the same diagonal
+as $T$. In particular, $\delta A=\delta B$ in Lemma~\ref{lem:scalar}.
+For positive definite matrices define the unnormalized relative entropy
+\[
+ \Rel(X\Vert Y)=\tr X(\log X-\log Y).
+\]
+The trace is real in this setting. Because $\log\delta A$ is diagonal,
+\begin{equation}\label{eq:diag-deficit}
+ \Rel(A\Vert\delta A)=\Ent(\delta A)-\Ent(A).
+\end{equation}
+Consequently Lemma~\ref{lem:scalar} gives
+\begin{equation}\label{eq:scalar-D}
+ \Rel(B\Vert\delta B)\le\Rel(A\Vert\delta A)
+ \qquad(A\succ0).
+\end{equation}
+
+\section{Simultaneous diagonal attainment}
+
+The following construction is the one in Li and Zhang's proof of their
+positivity theorem~\cite{lizhang}. Neither that construction nor the
+positivity theorem is claimed as new here; Drury's earlier result is
+credited in their paper.
+
+\begin{lemma}[Li--Zhang construction]\label{lem:decomp}
+Let $G=(G_{ij})_{i,j=1}^3\succeq0$ have square blocks of common size $d$.
+There are unitaries $U_1,U_2,U_3$ such that, with
+$U=U_1\oplus U_2\oplus U_3$ and $G'=UGU^*$, the scalar matrices
+\[
+ A_r=\bigl((G'_{ij})_{rr}\bigr)_{i,j=1}^3,
+ \qquad B_r=(|(A_r)_{ij}|),\qquad 1\le r\le d,
+\]
+satisfy
+\begin{equation}\label{eq:decomp}
+ C=\sum_{r=1}^d B_r,
+ \qquad C_{ij}=\normone{G_{ij}}.
+\end{equation}
+Every $A_r$ and $B_r$ is positive semidefinite. If $G\succ0$, they are
+positive definite.
+\end{lemma}
+
+\begin{proof}
+Successive block-unitary conjugations make blocks $12$ and $23$ positive
+semidefinite: use their right polar decompositions, first changing block
+coordinate $2$ and then block coordinate $3$. The second change leaves
+block $12$ fixed. Write the resulting block $13$ as $PW$ with $P\succeq0$
+and $W$ unitary. Polar factors can be extended to unitaries even when the
+blocks are singular. Diagonalize $W$ by a common internal unitary basis
+change in all three block coordinates. Blocks $12$ and $23$ remain
+positive, while block $13$ becomes $\widetilde P\diag(z_r)$ with
+$|z_r|=1$ and $\widetilde P\succeq0$.
+
+Thus, for each block, the sum of the absolute values of its diagonal
+entries equals its trace norm. For block $13$ this is
+$\sum_r|\widetilde P_{rr}z_r|=\tr\widetilde P$; the other blocks and
+their adjoints have the same property. Trace norms are unchanged by the
+unitary transformations, giving~\eqref{eq:decomp}. Each $A_r$ is a
+principal submatrix of $G'$. Apply Lemma~\ref{lem:scalar} to finish.
+\end{proof}
+
+In particular, $C\succeq0$ and $\tr C=\tr G$. The assertion that $C$ is
+positive is established prior mathematics. The next section supplies the
+entropy comparison used to reach the original target.
+
+\section{The block entropy inequality}
+
+Let $\Delta G=G_{11}\oplus G_{22}\oplus G_{33}$ be pinching by the three
+outer block coordinates.
+
+\begin{theorem}\label{thm:block}
+For every $G\succeq0$ with three square blocks of common size $d\ge1$, set
+$C_{ij}=\normone{G_{ij}}$. Then
+\begin{equation}\label{eq:block}
+ \Ent(\delta C)-\Ent(C)
+ \le \Ent(\Delta G)-\Ent(G).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+\emph{Positive definite case.} Assume $G\succ0$. Obtain $U,G',A_r,B_r$
+from Lemma~\ref{lem:decomp}. Let $\Phi$ pinch the internal coordinate
+$r$, retaining an entry between $(i,r)$ and $(j,s)$ exactly when $r=s$.
+This is a finite unitary average. Explicitly, with
+$\omega=\exp(2\pi\mathrm{i}/d)$, let
+$Z_k e_{i,r}=\omega^{kr}e_{i,r}$ for $0\le k<d$. Then
+\[
+ \Phi(T)=\frac1d\sum_{k=0}^{d-1}Z_kTZ_k^*.
+\]
+The identity follows by summing the geometric progression
+$\sum_k\omega^{k(r-s)}$.
+
+The proof uses joint convexity and unitary invariance of quantum relative entropy.
+These are established results, and their proofs are included in the
+checked prior-foundation dependency bundle. They imply
+\begin{equation}\label{eq:pinch}
+ \Rel(G'\Vert\Delta G')
+ \ge \Rel(\Phi(G')\Vert\Phi(\Delta G')).
+\end{equation}
+After reordering coordinates, the two arguments on the right are
+$\bigoplus_r A_r$ and $\bigoplus_r\delta A_r$. Relative entropy is
+additive over direct sums, since matrix logarithms act separately on the
+summands. Therefore the right-hand side is
+$\sum_r\Rel(A_r\Vert\delta A_r)$.
+
+Equation~\eqref{eq:scalar-D} yields
+\[
+ \sum_r\Rel(A_r\Vert\delta A_r)
+ \ge\sum_r\Rel(B_r\Vert\delta B_r).
+\]
+Joint convexity also yields the homogeneous finite-sum inequality
+\begin{equation}\label{eq:sum}
+ \Rel\left(\sum_r X_r\,\middle\Vert\,\sum_rY_r\right)
+ \le\sum_r\Rel(X_r\Vert Y_r).
+\end{equation}
+Indeed, apply joint convexity to the uniform averages and multiply by
+$d$, using $\Rel(tX\Vert tY)=t\Rel(X\Vert Y)$ for $t>0$.
+Applying~\eqref{eq:sum} to $X_r=B_r$, $Y_r=\delta B_r$, and using
+\eqref{eq:decomp}, gives the chain
+\begin{align}\label{eq:chain}
+ \Rel(G\Vert\Delta G)
+ &=\Rel(G'\Vert\Delta G')\notag\\
+ &\ge\sum_r\Rel(A_r\Vert\delta A_r)\notag\\
+ &\ge\sum_r\Rel(B_r\Vert\delta B_r)\notag\\
+ &\ge\Rel(C\Vert\delta C).
+\end{align}
+The first equality uses the fact that block-diagonal $U$ satisfies
+$\Delta(UGU^*)=U(\Delta G)U^*$.
+
+Finally, $\log\Delta G$ is block diagonal, so
+\[
+ \tr(G\log\Delta G)=\tr(\Delta G\log\Delta G).
+\]
+It follows that
+$\Rel(G\Vert\Delta G)=\Ent(\Delta G)-\Ent(G)$.
+Use~\eqref{eq:diag-deficit} for $C$ to turn~\eqref{eq:chain}
+into~\eqref{eq:block}.
+
+\emph{Singular case.} For $\varepsilon>0$ apply the proved result to
+$G_\varepsilon=G+\varepsilon I_{3d}$. The off-diagonal blocks are
+unchanged. For each diagonal block, positivity gives
+\[
+ \normone{G_{ii}+\varepsilon I_d}
+ =\tr G_{ii}+d\varepsilon.
+\]
+Its norm-compression matrix is consequently
+$C_\varepsilon=C+d\varepsilon I_3$. Also
+$\Delta G_\varepsilon=\Delta G+\varepsilon I_{3d}$ and
+$\delta C_\varepsilon=\delta C+d\varepsilon I_3$.
+All four entropy terms converge as $\varepsilon\downarrow0$ by the
+continuity of finite-dimensional entropy. This proves the assertion with
+no rank or nonzero-block restriction.
+\end{proof}
+
+\section{Reduction to a three-state ensemble}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Form the rectangular matrix
+\[
+ X=[\sqrt{p_1}\sqrt{\rho_1}\quad
+    \sqrt{p_2}\sqrt{\rho_2}\quad
+    \sqrt{p_3}\sqrt{\rho_3}],\qquad G=X^*X.
+\]
+Then $XX^*=\sigma$. The nonzero eigenvalues of $X^*X$ and $XX^*$
+coincide, with multiplicity. Since zero eigenvalues contribute zero to
+entropy, $\Ent(G)=\Ent(\sigma)$. Furthermore,
+\[
+ G_{ij}=\sqrt{p_ip_j}\sqrt{\rho_i}\sqrt{\rho_j},
+ \qquad G_{ii}=p_i\rho_i.
+\]
+Thus its norm-compression matrix is exactly $C$ from the theorem.
+Lemma~\ref{lem:decomp} proves $C\succeq0$, and $C_{ii}=p_i$ proves
+$\tr C=1$.
+
+Let $H(p)=-\sum_i p_i\log p_i$. Direct-sum additivity and the scaling
+identity
+$\Ent(p_i\rho_i)=p_i\Ent(\rho_i)-p_i\log p_i$ give
+\[
+ \Ent(\Delta G)=H(p)+\sum_i p_i\Ent(\rho_i),
+ \qquad \Ent(\delta C)=H(p).
+\]
+The scaling identity is interpreted continuously at $p_i=0$.
+Substitute these identities in Theorem~\ref{thm:block} and cancel $H(p)$:
+\[
+ H(p)-\Ent(C)\le H(p)+\sum_i p_i\Ent(\rho_i)-\Ent(\sigma).
+\]
+Rearrangement gives~\eqref{eq:main}.
+\end{proof}
+
+The block formulation is a useful structural form of the same result. It
+is not counted here as a second independent research breakthrough. The
+argument makes essential use of the three-by-three absolute-value lemma;
+it does not establish an analogous statement for an arbitrary number of
+states.
+
+\section{Formalization and reproduction}\label{sec:lean}
+
+The accompanying Lean declaration is
+\code{Fidelity.holevo_le_entropy_rootFidelityMatrix}.
+Its hypotheses are exactly nonnegative real weights summing to one and
+three positive semidefinite complex matrices of trace one on a common
+finite index type. The formal proof derives nonemptiness of this type
+from trace one. It imposes no commutativity, rank, dimension, or
+polar-compatibility restriction.
+
+Entropy is the spectral sum of $-x\log x$. The definition
+\code{Fidelity.nuclear A} is the real part of $\tr\sqrt{A^*A}$;
+its equality with the QIC trace norm on finite ordinal indices is proved.
+The formal scalar comparison uses an exponential witness and the Gibbs
+variational inequality for positive definite three-by-three matrices.
+It supplies the positive definite part of Lemma~\ref{lem:scalar}.
+The formal block proof handles singular matrices by regularization.
+It does not formalize the derivative calculation printed here.
+The remaining formal steps follow the block argument and Gram reduction.
+
+The dependency bundle contains 42 prior QICLean source modules~\cite{qic} from
+commit
+\begin{center}\small\code{acda92aa70e69b37507e422bceb5414036859fe6}.\end{center}
+The bundle retains their proofs,
+copyright notices, and Apache 2.0 license. These foundations are credited
+prior work. The local proof combines 25 modules. The pinned compiler is
+Lean 4.35.0-rc3, commit
+\begin{center}\small\code{470d5ce1400764999581fd26d5d72b00d990b0f4}.\end{center}
+Mathlib is pinned to
+\begin{center}\small\code{c55e6e786f49471c72fbddbec5415808896aec1e}.\end{center}
+The reproduction files retain all transitive package revision pins.
+
+From the proof directory, run
+\begin{verbatim}
+python3 fetch_mathlib_cache.py
+lake build FullCandidate
+lake lean Audit.lean
+\end{verbatim}
+The audit prints the fully quantified theorem and its transitive axioms.
+The accepted logical foundations are \code{propext},
+\code{Classical.choice}, and \code{Quot.sound}.
+
+The companion sources, dependency pins, verifier, and licenses are
+distributed in the Math and Theory collection:
+\url{https://github.com/dvgyl/math-and-theory}.
+
+\section{Relation to prior work}
+
+The inequality is Conjecture~1, equation~(18), of
+Fannes, de Melo, Roga, and \.{Z}yczkowski~\cite{fmrz}.
+Their paper gives the pure-state result and weaker bounds obtained by
+reducing the off-diagonal fidelities. Zhang, Wu, and Fei~\cite{zwf}
+prove the target under a compatibility condition on three polar
+unitaries. The present statement has no such condition.
+
+The scalar entropy comparison is known from the pure-state analysis
+in~\cite{fmrz} and the spectral monotonicity in~\cite{mj}.
+The simultaneous diagonal construction and positivity theorem are due to
+Li and Zhang~\cite{lizhang}, who credit Drury's earlier positivity
+result. Joint convexity, entropy continuity, and the Gram-spectrum
+identity are also prior results. The entropy comparison for the block
+trace-norm matrix is the step that connects these ingredients to the full
+ensemble inequality. It is a structural form of the same result, rather
+than a second independent contribution.
+
+Related polar reduction, dephasing, and convexity methods appear in
+Tang and coauthors~\cite{tang} for a different triangular-block entropy
+inequality. Theorem~4.2 and Appendix~A of that source do not state the
+three-block trace-norm comparison proved here.
+Priority is not certified by the available literature review. In
+particular, the complete texts of~\cite{km,sll,gy} were not available
+for comparison. An accessible-information bound alone does not imply
+a bound on the Holevo quantity. These access limits leave possible
+overlap unresolved; they do not change the theorem proved here.
+
+\begin{thebibliography}{9}
+\bibitem{fmrz}
+M.~Fannes, F.~de Melo, W.~Roga, and K.~\.{Z}yczkowski,
+\emph{Matrices of fidelities for ensembles of quantum states and the Holevo
+quantity}, Quantum Information and Computation \textbf{12} (2012), 472--489.
+\href{https://doi.org/10.26421/QIC12.5-6-8}{doi:10.26421/QIC12.5-6-8};
+\href{https://arxiv.org/abs/1104.2271}{arXiv:1104.2271}.
+
+\bibitem{mj}
+G.~Mitchison and R.~Jozsa, \emph{Towards a geometrical interpretation of
+quantum information compression}, Physical Review A \textbf{69} (2004),
+032304. \href{https://doi.org/10.1103/PhysRevA.69.032304}{doi:10.1103/PhysRevA.69.032304};
+\href{https://arxiv.org/abs/quant-ph/0309177}{arXiv:quant-ph/0309177}.
+
+\bibitem{lizhang}
+C.-K.~Li and F.~Zhang, \emph{Positivity of partitioned Hermitian matrices
+with unitarily invariant norms}, Positivity \textbf{19} (2015), 439--444.
+\href{https://arxiv.org/abs/1407.0331v3}{arXiv:1407.0331v3}.
+
+\bibitem{zwf}
+L.~Zhang, J.~Wu, and S.-M.~Fei, \emph{Universal upper bound for the Holevo
+information induced by a quantum operation}, 2012 preprint, Theorem~3.4.
+\href{https://arxiv.org/abs/1110.5979v3}{arXiv:1110.5979v3}.
+
+\bibitem{km}
+L.~Klotz and C.~M\"adler, \emph{An Addendum to a Paper by Li and Zhang},
+in Operator Theory: Advances and Applications \textbf{263} (2018),
+387--392. \href{https://doi.org/10.1007/978-3-319-68849-7_15}{doi:10.1007/978-3-319-68849-7\_15}.
+
+
+\bibitem{sll}
+Y.~Sun, S.~Luo, and X.~Lei, \emph{Gram Matrices of Mixed-State Ensembles},
+International Journal of Theoretical Physics \textbf{60} (2021), 3211--3224.
+\href{https://doi.org/10.1007/s10773-021-04908-8}{doi:10.1007/s10773-021-04908-8}.
+
+
+\bibitem{gy}
+W.~Gao and S.~Yu, \emph{Alternative upper bound for accessible information
+and wave-particle duality}, Physical Review A \textbf{114} (2026), 012466.
+\href{https://doi.org/10.1103/ks9d-73dp}{doi:10.1103/ks9d-73dp}.
+
+
+\bibitem{tang}
+Z.~Tang, C.~Zhu, G.~Bai, and X.~Wang, \emph{Classical Capacity and
+Entanglement Cost of the Amplitude Damping Channel}, 2026 preprint.
+\href{https://arxiv.org/abs/2609.28592v1}{arXiv:2609.28592v1}.
+
+\bibitem{qic}
+QICLean contributors, \emph{QICLean}, source repository.
+\href{https://github.com/LionSR/QICLean/tree/acda92aa70e69b37507e422bceb5414036859fe6}{Pinned source tree}.
+The source retains its Apache 2.0 license and individual copyright notices.
+
+\end{thebibliography}
+\end{document}

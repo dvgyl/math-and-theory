@@ -363,6 +363,170 @@
         "formalization/LeafMode/ShapeCertificate.lean": "726a54e5a93089ae1c69fe5c5c5b93da39dd37761c0ee5711b8178215362c18f"
       },
       "integrity_manifests": []
+    },
+    "steering-bounds": {
+      "root": "verification/additional-proofs/steering-bounds",
+      "release_manifest_sha256": "9b4724e5d2b3770656189847e93dcabf42fee4088679cfd53aae426277a371a5",
+      "formal_scope": "Actual two-qubit density matrices, canonical filters, Pauli correlations, the exact least upper bound, attainment and nonattainment, and fully entangled fraction are formalized. The steering-ellipsoid and optimized CJWR measurement interpretations use cited external correspondences; general steerability is outside the result.",
+      "proof_roots": [
+        {
+          "path": ".",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.lean",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "Lean/MilneAllStates.lean": "1af2f132aeff89d775a00e7ca13447156637ac3b4b673d87d4bef5ed17e88370",
+        "Lean/MilneBlochDefs.lean": "56324a6f0b5edc2fbdd8c452b2c194c61d6cbd61d93e0c8b8763d1c2c5d3dac5",
+        "Lean/MilneCanonicalization.lean": "ace418303e1c19cc437c52012cb5f6a3cfcf2b08b84c6604cd4a2821d98ef040",
+        "Lean/MilneCore.lean": "bbc6a39aa80bd86b084472a25f8acea8ff3106ec2ce37ff19c6ecd26295ffb3d",
+        "Lean/MilneCorrelation.lean": "502a21928eac4d84c8cd07c0e3ea8b78282076d9d9645b8738b22deaca8db93d",
+        "Lean/MilneDefs.lean": "7f1d3ec37eeac51c8e29a148fa5dcf628676c093dfe76d574fff8e0d310aeb0c",
+        "Lean/MilneFiltering.lean": "3a5197d27c866e3bd3024dbfc0704a6fd4336129cf60118a3582811ac8e410a9",
+        "Lean/MilneFractionOptimality.lean": "54ac5c12cf8848ee34dd3b6097f2c27692bf201ac599e622c5bb602e0f91236b",
+        "Lean/MilneFractionSharpness.lean": "823304c63a54d8e5b4f3db2416420389be803041bb42377f37ebb0f68e186ade",
+        "Lean/MilneNonattainment.lean": "a36f22874d9ca7c92adf1460f51ce71e5cf9aea3a2ed2175436a96f4a9a2ade6",
+        "Lean/MilneOptimality.lean": "30bc767d11efecaad89544b4c2e02efa68f2a5eb211bfebdcf0718a8fad8313c",
+        "Lean/MilnePurityCovariance.lean": "b6d68d753e8aab9e39268829fce5ed98cfb01eba207ddc251b600d33c8d9d16e",
+        "Lean/MilneQubit.lean": "937c88d426d8e710323c10e88993dbb514954062287d81905b1c2fd95416b44e",
+        "Lean/MilneScalarBounds.lean": "39c653ad30be9668a1133612c2b25c428b7ecf8d95484b00337f24675c28678c",
+        "Lean/MilneSharpness.lean": "bfa7111951012cafe677797bdba7ea0ce0d3298486cfc4eb40b97e48d87967c0",
+        "Lean/MilneSingular.lean": "3c5c40e90d8bf060df9d41459c23105b9d52c94c20f1ca905a9cc7eefe8b1cb1",
+        "Lean/MilneSteering.lean": "366541af83bcb8ed86440b2fc558144c0d273f75ace9c0cb44123af7b0a7ba89",
+        "Lean/MilneVerification.lean": "53d1344e37a200bb766622235cd7d6c4d55621a3977b560b5175da43bc3e674b"
+      },
+      "integrity_manifests": []
+    },
+    "strong-gradient": {
+      "root": "verification/additional-proofs/strong-gradient",
+      "release_manifest_sha256": "7eee88e7fe4f617c5f2ce51e41b6d0fff82c3b32975de0396c585569454ca65e",
+      "formal_scope": "The actual-function upper bound and normalized actual-function attainment are formalized, including every horizon and closed parameter boundary. Sharpness for arbitrary L > 0 and radius R > 0 is proved by rescaling in the manuscript, without a separate Lean wrapper.",
+      "proof_roots": [
+        {
+          "path": "lean",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.lean",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "lean/THGStrong.lean": "fcd08b5cdb4a094ccb1d244311bde60e925d37dc4fac1b57bd7324a227feb9e3",
+        "lean/THGStrong/Analytic.lean": "4d364f784942fed17d3567b18bddd5b5df81f4040097b4a674d35be31b0c19c2",
+        "lean/THGStrong/AnalyticBase.lean": "4da641d7bb833a175e489505fcc04ac6127cad5f15e3ee5b8fba43246a535eff",
+        "lean/THGStrong/AnalyticFinal.lean": "a766c4d6f64c57efd0dd214d4b04416d44fb5426fd0f1c15b7ac8e40bd0fb5d8",
+        "lean/THGStrong/Attainment.lean": "7c7a8d9c9255773806a5f6fc50dfa826880fb251073dc59f2abdcbaaf6d156f6",
+        "lean/THGStrong/Balance.lean": "0dc550fe3cf9eca7b86dc3324a8d11b7ad8cf7f6dfaae1bdeb2bc964dcab0cd3",
+        "lean/THGStrong/Balanced.lean": "0eceb34f03c5d1438fef75497cfb50b6083aa1aae5a897e4e54d1b70f0b99498",
+        "lean/THGStrong/CertificateAPI.lean": "ccd4814e2bcbc7e88946d6a5d6dbfd70ae30e07b96cb8230d80cf71503920d69",
+        "lean/THGStrong/Coefficients.lean": "bd4734873b2f026027803a4702c9cf6ca9d112e6abc1350628688fe1fe056c03",
+        "lean/THGStrong/Core.lean": "c6d6af06d5c459e24714275fda7d6ac6d68598442a46d35a4f85e59789be68da",
+        "lean/THGStrong/Cuts.lean": "be16962c3ef1ea6f9dbddd9b0273a6889a9f451b08172c4e9a0fb0435c310299",
+        "lean/THGStrong/CutsFin.lean": "7cb67483ee8bcdbbd7f239e649cd84b93c3cef1a1e62ac5253cb3474cfcb2000",
+        "lean/THGStrong/History.lean": "da59da044de1bc4dddcb0b4943e82074549f75787a27d4d1ce277e09d97737c0",
+        "lean/THGStrong/Huber.lean": "57e8fd10d06f96fa1ef97ffdc2a89f5df69c8eac20d4a5b815687d2a58534d51",
+        "lean/THGStrong/Main.lean": "b3f532a5a0df5e05472079ab3ed2d0c617a2e62cd241f2db9915e3bf5e19bc34",
+        "lean/THGStrong/Reduction.lean": "d28f82006f80d26ef6aead07d076ec53fc8c9568461ba9745bac44adc0f7dc8c",
+        "lean/THGStrong/ScalarBase.lean": "466e9001ecf999a6606642ee6f35af8d5ab829fd9b547005181dee5315c67d37",
+        "lean/THGStrong/Scalars.lean": "de01ea89757cc0741d0bda92e7809cf4df03ecbf7a5a8255b4872e844a06e8f9",
+        "lean/THGStrong/Scaling.lean": "8ea1d483f38e11fc1204863707ac48c720bf74f8033f8ec496116f1e3e46b1b9",
+        "lean/THGStrong/Sharpness.lean": "d4587ac8bbe221c2b4906d61e7ffba6f5cf8a31eafbaad271a2412d56f7e0baf"
+      },
+      "integrity_manifests": []
+    },
+    "unicyclic-skewness": {
+      "root": "verification/additional-proofs/unicyclic-skewness",
+      "release_manifest_sha256": "f4740e81d385d80e599095b585be579c835b1f3b1108d962b3edacff0d7ff3c5",
+      "formal_scope": "The interval for actual tilted-matrix derivatives and a local branch is formalized. Identification with long-time stochastic cumulants and sharpness have conventional proofs. Lean does not construct a continuous-time sample-path probability space or a separate optimizing-sequence theorem.",
+      "proof_roots": [
+        {
+          "path": "proof",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "proof/ActualCycleBound.lean": "b97e316753f842658b2ca074d0017888310fb4a32c798446a1855ad9122d3243",
+        "proof/AdjugateJets.lean": "649d0d39c3ee71021c21aeebb4fbe53d92e6cd999e703e2afcb9083506074a95",
+        "proof/AllResults.lean": "b03a7ca93a07f5ef4221302df5fddec5a87d222061b3880508148db36bef6c34",
+        "proof/BranchCumulants.lean": "645b400bbeb4e7222f3e2b1b3a31ea018091c2c937c341b9f3acfdceaf9432bb",
+        "proof/CumulantAlgebra.lean": "81f20d38bc87e43e1d0026c49832209284053d562a4e423e3a89eb77d5889c58",
+        "proof/CyclicConstruction.lean": "df5a8a9803626395c0a9a9420965006cb213a5223b5b1b72943e34fbd44b4e49",
+        "proof/CyclicDeterminant.lean": "3dbac6c5bf3ac5c777ddc481daeaa07cdfe752a271f259b5dbe0c0e64a14a1e1",
+        "proof/CyclicMultiTilt.lean": "13da078b5a45a0dde01717324185fdec33a4a5ddfe718b828e641dbcd0a15cbd",
+        "proof/CyclicPoisson.lean": "fd859dbac57f2f8cbf24785e6d1888fca543c3e88df132fe54b212e4ef77fdc7",
+        "proof/CyclicRateBridge.lean": "f08365f2b5c69cec0460c13824df7f834a92093efef17dacd326c8cafda79024",
+        "proof/CyclicResidualJets.lean": "e5de7316471e2a74d9939bbf706296afe89ff5837732da6be0bc9e1bdd76f6ae",
+        "proof/FiniteTUR.lean": "0b68bc85e64cd468bbd9bedd12a1dae246d510f69d685132ae6fff7c57e45660",
+        "proof/HermitianShift.lean": "376e2aac47359e30e4bc05bdd9f067414fadc3e7859074e5e297ea4b13ae9af6",
+        "proof/ImplicitCumulants.lean": "c110dcda007fb24f8d021a22dfee8a25fbf68866a9bef5160c762d839d33fee5",
+        "proof/ImplicitLocal.lean": "35beae768b0062fdcc9461d545240bd19556f7f011ba5bed2d8ba7696ad2d25c",
+        "proof/LogRelaxation.lean": "828a4fd8eeb3e2e3ef3ced7b1e1c1f20976862ee8bea7bc7b64d6c24eac5bc4a",
+        "proof/PoissonWinding.lean": "13b9e3056e93341bc97857a772fa0c8573ab8b0524898e0ff1c414b9673874cc",
+        "proof/PolynomialBranch.lean": "d2f7e4a06162d6d9a6373cacae31041c3d1c3cd252169ea09ea27963352147ea",
+        "proof/PositiveRateMatrices.lean": "899c5b0834aea9d622212bd21933529f6dcbb8fc0285379ec592d23c7d90ff89",
+        "proof/PositiveRateSpectrum.lean": "0b2854493e1923f8bd14947400e9ea9437f535bfb4cb9c3fd52d5ecf7241f8ae",
+        "proof/ProductCoefficients.lean": "c7c0782d78e9d2dc08920dd5d95b827f066acc6542f3dbae2f25420caa326509",
+        "proof/RateJets.lean": "ef2cac9374c0e7a0e7ad13ce6c35ba5c1bbb956a4025dd838a4b0543ce499b71",
+        "proof/RateReversal.lean": "002a9fba47d8087f0aa292e411c296d80b9571dde702fe0b93065d7ba8a1d60e",
+        "proof/RateTiltedAction.lean": "dd569f4f846dfc7fd8a9c00573ed75a377899d37a9ac3ada8e634b8d2a94e167",
+        "proof/RationalReduction.lean": "a9f417adc31c569ca4b2a1bab2df6c73e1d75dd4d029ddab46ec686a2e259554",
+        "proof/ResidualCumulants.lean": "d7749c54dcec472aa3e740971313cdd24bc820c428ee2ac4945f3a61f33f5b79",
+        "proof/ScalarCertificate.lean": "73e145308ed0a4fe4688e6b5fb04af11d82df8cf5c7923411eb97d75031c683a",
+        "proof/SimplexMoments.lean": "6908780184c50363b69e297ee108f686a99d9ca7f5d272b51c62e6a0161beb4f",
+        "proof/SpectralCoefficients.lean": "e968b960649a1400c6e887f5361010868ed209f51ea8946b5e311df7a9d1d00c",
+        "proof/SpectralMomentBound.lean": "c7b592c5af017d4269f8fd5f0e40e2f1576e9c7689c00f75a06b30089d21a503",
+        "proof/SpectralPolynomialBound.lean": "e0cfb37ef79b1bb4a089a7d273e7eb570d4a372637ed8cc261ab01e372d0dfd0",
+        "proof/TwoStateSkewness.lean": "b695d3aa9cab17c21eccef92cfa15b11693416099e3b19102077ed2ed1e8c352",
+        "proof/TwoStateWinding.lean": "abf58b87b8aa329f77bd473ac150a2b16e7d0e41b5f72e14dd07cb5dbe204e39",
+        "proof/WindingSkewness.lean": "6bdd7656d8e88a74ca3269d2fd6b018b3040e16439374f21ed6dc2ccdc65b25a"
+      },
+      "integrity_manifests": []
+    },
+    "projection-amgm": {
+      "root": "verification/additional-proofs/projection-amgm",
+      "release_manifest_sha256": "9974b20dc7a36f2a2ea162d56fdb720cd87376e8d7c309e11f459517af2b599c",
+      "formal_scope": "Lean verifies a rational three-projection matrix obstruction and a parameterized obstruction for every real multiplier in dimension three; rank-one, positive-definite mean, rational all-multiplier choices, and the standard minimal-factor observation have complete conventional proofs.",
+      "proof_roots": [
+        {
+          "path": ".",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "Audit.lean": "23b6ef75dfddee2d1ea67f7a03a7c6c7b1331e5c8b11875eedc0f73bbe0472f7",
+        "ProjectionAMGM.lean": "c68e14cdc110ace69c55911ef63429e3635805c2e752d22043120b7e234a7e36",
+        "ProjectionAMGM/Counterexample.lean": "0ea593da255e84cff7d82f78d1c8fb96206f7e74498c5256229ccb3b713f53a2",
+        "ProjectionAMGM/Family.lean": "e9dd5d8dd5b8a38b1757758fda0ac1c8e0fd335d7130bad65d1b60a881e1576a"
+      },
+      "integrity_manifests": []
+    },
+    "fidelity-three-state": {
+      "root": "verification/additional-proofs/fidelity-three-state",
+      "release_manifest_sha256": "93abcfafe083f52ffd6db13929674e39cbf3c4077870e0d460e2a081f0d0f695",
+      "formal_scope": "The unrestricted three-state ensemble theorem is formalized for actual positive semidefinite complex matrices of trace one, nonnegative weights summing to one, spectral entropy and nuclear-norm root fidelity. Credited QICLean foundations and prior-work adapters retain their attribution.",
+      "proof_roots": [
+        {
+          "path": ".",
+          "lean_version": "4.35.0-rc3",
+          "mathlib_revision": "c55e6e786f49471c72fbddbec5415808896aec1e",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "Audit.lean": "728f213d4e0d05daf9c86228673c322a66f60542b09b61acd76e7cd0280f9c5e",
+        "FullCandidate.lean": "a171016940e66743fb86f77e6c842ee1d5f5ca5ae1e68593292df7f6afbd2256",
+        "QICFoundation.lean": "ce1dd09708a233f96268db1277374be9234a6f1aa938719b021dea06d29f0fb7"
+      },
+      "integrity_manifests": []
     }
   }
 }

@@ -43,6 +43,7 @@ jobs:
           python lean/scripts/check-lean-sources.py
           python verification/check_gyires_certificates.py
           python verification/check_gyires_packages.py
+          python verification/additional-proofs/unicyclic-skewness/check_certificate.py
       - name: Check certificate failures and publication boundaries
         run: |
           python -m unittest discover -s verification -p 'test_*.py'
@@ -261,6 +262,16 @@ jobs:
             project: formalization
           - package: admm-counterexample
             project: .
+          - package: steering-bounds
+            project: .
+          - package: strong-gradient
+            project: lean
+          - package: unicyclic-skewness
+            project: proof
+          - package: projection-amgm
+            project: .
+          - package: fidelity-three-state
+            project: .
     env:
       LEAN_NUM_THREADS: '1'
     steps:
@@ -285,7 +296,18 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [[ '${{ matrix.package }}' == 'admm-counterexample' ]]; then
+          if [[ '${{ matrix.package }}' == 'steering-bounds' ]]; then
+            ulimit -v 8388608
+            python3 scripts/verify.py --serial
+          elif [[ '${{ matrix.package }}' == 'strong-gradient' ]]; then
+            python3 verify.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib --output "${RUNNER_TEMP}/gradient-source-verification" --timeout 600
+          elif [[ '${{ matrix.package }}' == 'unicyclic-skewness' ]]; then
+            python3 ../verify.py --mathlib .lake/packages/mathlib --lean-bin "$(lean --print-prefix)/bin" --output "${RUNNER_TEMP}/unicyclic-source-verification" --timeout 600
+          elif [[ '${{ matrix.package }}' == 'projection-amgm' ]]; then
+            sh verify.sh
+          elif [[ '${{ matrix.package }}' == 'fidelity-three-state' ]]; then
+            python3 verify.py --output "${RUNNER_TEMP}/fidelity-source-verification.json" --log-dir "${RUNNER_TEMP}/fidelity-source-logs" --timeout 1800
+          elif [[ '${{ matrix.package }}' == 'admm-counterexample' ]]; then
             python3 verify_lean.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib --output "${RUNNER_TEMP}/admm-source-verification"
           else
             python3 -B check_package.py

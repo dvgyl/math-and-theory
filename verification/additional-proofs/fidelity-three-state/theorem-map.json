@@ -1,0 +1,46 @@
+{
+  "main_theorem": "Fidelity.holevo_le_entropy_rootFidelityMatrix",
+  "paper": "manuscript.tex",
+  "results": [
+    {
+      "paper_label": "thm:main",
+      "declarations": [
+        "Fidelity.holevo_le_entropy_rootFidelityMatrix",
+        "Fidelity.rootFidelityMatrix_posSemidef",
+        "Fidelity.rootFidelityMatrix_trace_one"
+      ],
+      "scope": "Every finite dimension; three positive semidefinite trace-one complex matrices; nonnegative weights summing to one."
+    },
+    {
+      "paper_label": "lem:scalar",
+      "declarations": [
+        "Fidelity.entryAbs_posSemidef_three",
+        "Fidelity.entryAbs_posDef_three",
+        "Fidelity.entropy_entryAbs_three_posDef"
+      ],
+      "scope": "The formal entropy lemma covers the positive definite case. The paper also proves the singular scalar extension by continuity; the formal main proof regularizes the block matrix."
+    },
+    {
+      "paper_label": "lem:decomp",
+      "declarations": [
+        "Fidelity.exists_li_zhang_decomposition",
+        "Fidelity.exists_li_zhang_decomposition_posDef"
+      ],
+      "scope": "Credited Li–Zhang construction for positive semidefinite three-block matrices, with a positive definite refinement."
+    },
+    {
+      "paper_label": "thm:block",
+      "declarations": [
+        "Fidelity.relativeEntropy_normCompression3_posDef",
+        "Fidelity.blockCoherence_normCompression3"
+      ],
+      "scope": "Three equal square blocks in every nonempty finite internal dimension, including singular positive semidefinite matrices."
+    }
+  ],
+  "definitions": {
+    "entropy": "Matrix.vonNeumannEntropy: spectral sum of Real.negMulLog",
+    "nuclear_norm": "Fidelity.nuclear: real trace of CFC.abs",
+    "ensemble_average": "Fidelity.ensembleAverage",
+    "fidelity_matrix": "Fidelity.rootFidelityMatrix: weighted unsquared root fidelities"
+  }
+}

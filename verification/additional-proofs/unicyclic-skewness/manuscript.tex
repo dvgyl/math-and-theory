@@ -1,0 +1,776 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage[a4paper,margin=27mm,headheight=16pt,headsep=9mm,footskip=12mm]{geometry}
+\usepackage{xcolor,booktabs,array,longtable}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{tcolorbox}
+\usepackage{fvextra}
+\definecolor{ink}{HTML}{183347}
+\definecolor{accent}{HTML}{236577}
+\definecolor{pale}{HTML}{F1F5F7}
+\hypersetup{colorlinks=true,linkcolor=ink,citecolor=accent,urlcolor=accent,
+  pdftitle={A sharp universal skewness bound for unicyclic currents},
+  pdfsubject={Sharp current cumulant bound and exact positivity certificate},pdfauthor={Dev D. Goyal}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{ink}Unicyclic current skewness}
+\fancyhead[R]{\small\sffamily Research manuscript}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.35pt}
+\setlength{\parskip}{4pt plus 1pt}
+\setlength{\parindent}{1em}
+\setlength{\emergencystretch}{2em}
+\setlist{topsep=4pt,itemsep=2pt,parsep=0pt}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\Id}{I}
+\newcommand{\cum}{\operatorname{cum}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\adj}{\operatorname{adj}}
+\newcommand{\Lean}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\term}[1]{\textbf{#1}}
+\input{verification_status.tex}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+  {\color{accent}\sffamily\small RESEARCH MANUSCRIPT}\par\vspace{9pt}
+  {\color{ink}\LARGE\bfseries A sharp universal skewness bound\par
+  for unicyclic currents}\par\vspace{10pt}
+  {\small Dev D. Goyal}\par\vspace{5pt}
+  {\small 29 October 2026}
+\end{center}
+\vspace{4pt}
+\begin{tcolorbox}[colback=pale,colframe=accent,boxrule=0.5pt,arc=0pt,
+  left=9pt,right=9pt,top=7pt,bottom=7pt]
+\textbf{Authorship and responsibility.} This work is fully autonomous
+agentic research. AI systems autonomously generated and developed the research,
+proofs, formalizations, corrections, and manuscript. Dev D. Goyal is responsible
+for publication. No expert human validation or peer review is claimed.
+\end{tcolorbox}
+\begin{tcolorbox}[colback=pale,colframe=accent,boxrule=0.5pt,arc=0pt,
+  left=9pt,right=9pt,top=7pt,bottom=7pt]
+\textbf{\VerificationHeading.} \VerificationText
+\end{tcolorbox}
+\begin{abstract}
+For a finite continuous-time Markov chain on a bidirectional ring, let $C_k$
+denote the $k$th cumulant per unit time of the net crossing count of a fixed
+edge. The conjectured dimension-independent interval
+$-1/16\le C_3/C_1\le1$ is proved for arbitrary strictly positive rates and
+nonzero affinity. Both constants are sharp. The proof combines the known positive
+midpoint spectrum of the tilted generator with a finite-ring proof of the
+thermodynamic uncertainty relation. The lower bound then reduces to a
+two-variable polynomial inequality, certified by exact positive integer
+coefficients on three rational intervals. The accompanying Lean 4
+development verifies the actual finite-rate tilted-matrix theorem, including
+existence of its local eigenvalue branch. The stochastic interpretation,
+formal scope, prior work, and complete integer certificate are stated
+explicitly. The conventional two-state and one-state cases are included
+as supplements.
+\end{abstract}
+\noindent\textbf{Keywords.} Markov currents; unicyclic networks; cumulant
+bounds; thermodynamic uncertainty; exact positivity certificate; Lean 4.
+
+\section{The problem and the contribution}
+
+Ptaszy\'nski~\cite{Ptaszynski2022}, Eq.~(21), proposes the universal interval
+\begin{equation}\label{eq:target}
+  -\frac1{16}\le \frac{C_3}{C_1}\le1
+\end{equation}
+for winding currents in unicyclic Markov networks. The nearest-neighbour
+ring and the counted edge are specified in Eqs.~(72)--(74) of that paper.
+Here $C_k$ is a cumulant per unit time; the ratio $C_3/C_1$ is the normalized
+third cumulant used in that work, rather than the usual standardized third
+central moment.
+
+The original paper numerically optimizes over rates and studies an
+irreversible family with one slow transition. That family already shows
+that the proposed universal constants are optimal. A proof of the interval
+for arbitrary bidirectional rates was not supplied. The result here proves
+\eqref{eq:target} for every ring with $n\ge3$ states, strictly positive
+forward and reverse rates, and nonzero affinity. The separate kurtosis,
+joint-cumulant, and sharper fixed-size optimization claims of
+\cite{Ptaszynski2022} are outside the theorem.
+
+The determinant separation and the real-rooted midpoint shift used below
+are established prior work: they appear in Appendix~C of Pietzonka, Barato
+and Seifert~\cite{Pietzonka2016}. The thermodynamic uncertainty relation is
+also established prior work~\cite{Gingrich2016}. The contribution is the
+sharp third/first cumulant interval obtained by combining these ingredients
+with a new exact scalar inequality. Finite constructions for the stationary law and correction terms derive
+these ingredients from the rate assumptions in the formal development.
+
+The proposed contribution is a proof of \eqref{eq:target}. Bibliographic
+priority is not established by the formal proof. First-passage skewness bounds
+\cite{Barato2015,Wampler2022} concern different normalizations and do not
+directly supply this result. The novelty assessment remains subject to further literature comparison.
+
+\section{Statement and conventions}\label{sec:statement}
+
+Read indices modulo $n$. Write $u_i>0$ for the rate $i\to i+1$ and $v_i>0$
+for the rate $i+1\to i$. Set
+\begin{equation}\label{eq:UV}
+  U=\prod_{i=0}^{n-1}u_i,\qquad
+  V=\prod_{i=0}^{n-1}v_i,\qquad
+  A=\log(U/V).
+\end{equation}
+Let $N_t$ count forward minus reverse crossings of any fixed edge during
+the time interval $[0,t]$. For an arbitrary initial probability distribution,
+define
+\begin{equation}\label{eq:cumulants}
+  C_k=\lim_{t\to\infty}\frac{\cum_k(N_t)}{t}.
+\end{equation}
+
+\begin{theorem}[Sharp universal current bound]\label{thm:main}
+Let $n\ge3$, let every $u_i,v_i$ be strictly positive, and suppose $U\ne V$.
+The limits in \eqref{eq:cumulants} exist for $k=1,2,3$, $C_1\ne0$, and
+\[
+  \boxed{\displaystyle -\frac1{16}\le\frac{C_3}{C_1}\le1.}
+\]
+Both constants are sharp over strictly positive rates and arbitrary ring
+sizes.
+\end{theorem}
+
+Let $W_s$ be the column generator tilted at the counted edge: multiply its
+forward off-diagonal rate by $e^s$ and its reverse rate by $e^{-s}$, leaving
+the diagonal escape rates unchanged. In particular,
+$(W_0)_{i+1,i}=u_i$, $(W_0)_{i,i+1}=v_i$, and
+$(W_0)_{ii}=-(u_i+v_{i-1})$.
+
+\begin{theorem}[Finite-matrix form]\label{thm:matrix}
+Under the rate assumptions of Theorem~\ref{thm:main}, there exists a local
+$C^3$ real branch $\lambda$ satisfying
+\[
+  \lambda(0)=0,\qquad \det(\lambda(s)\Id-W_s)=0
+\]
+for all $s$ sufficiently close to zero. Every such local branch satisfies
+\[
+  \lambda'(0)\ne0,\qquad
+  -\frac1{16}\le\frac{\lambda'''(0)}{\lambda'(0)}\le1.
+\]
+\end{theorem}
+
+The formal target is Theorem~\ref{thm:matrix}, together with its branch
+existence assertion. The stationary distribution, correction terms,
+midpoint spectral positivity, uncertainty inequality, and characteristic
+coefficient formulas are derived from the rates; they are not extra
+hypotheses. Section~\ref{sec:stochastic} gives the ordinary mathematical
+identification $C_k=\lambda^{(k)}(0)$.
+
+\begin{remark}[Scope]
+At $U=V$ the mean winding current vanishes, so the literal quotient
+$C_3/C_1$ is undefined. The theorem is about the ring specified above and
+does not add dangling trees or additional cycles. Two states require two
+distinguished transition channels; the one-state counted-event convention
+is a difference of Poisson counts. These boundary models are treated in
+Appendix~\ref{app:small}.
+\end{remark}
+
+\section{The stochastic and finite-matrix formulations}\label{sec:stochastic}
+
+For a chain with state $X_t$, define the marked generating vector by
+$F_i(t,s)=\E[e^{sN_t}\mathbf1_{\{X_t=i\}}]$. Conditioning over the next
+infinitesimal jump gives
+\[
+  \partial_tF(t,s)=W_sF(t,s),\qquad F(0,s)=p_{\rm initial}.
+\]
+The holding rates remain unchanged, while a marked forward or reverse jump
+contributes $e^s$ or $e^{-s}$. Consequently,
+\begin{equation}\label{eq:mgf}
+  \E[e^{sN_t}]=\mathbf1^T e^{tW_s}p_{\rm initial}.
+\end{equation}
+
+For real $s$, $W_s$ is an irreducible Metzler matrix. Adding a sufficiently
+large multiple of the identity produces an irreducible nonnegative matrix
+with positive diagonal. Perron--Frobenius theory gives a simple real
+eigenvalue $\lambda(s)$ strictly larger in real part than the other
+eigenvalues, with positive left and right eigenvectors. At $s=0$ it is zero.
+Simple-root perturbation gives an analytic continuation near zero. Let
+$\Pi(s)$ be its analytic spectral projection. In a sufficiently small
+neighbourhood of zero there is a decomposition
+\[
+ e^{tW_s}=e^{t\lambda(s)}\Pi(s)+R_t(s),\qquad
+ a(s)=\mathbf1^T\Pi(s)p_{\rm initial}.
+\]
+At zero, $\Pi(0)=\pi\mathbf1^T$, so $a(0)=1$ for every initial probability
+distribution. The complementary spectrum has a uniform gap. Analytic
+spectral projection and finite-dimensional semigroup estimates therefore
+bound the first three $s$-derivatives of $e^{-t\lambda(s)}R_t(s)$ by a
+polynomial in $t$ times a uniformly decaying exponential. The same estimates
+follow by analytic continuation to a smaller complex neighbourhood and
+Cauchy bounds. Since $a(s)$ is analytic and nonzero near zero,
+\eqref{eq:mgf} yields
+\begin{equation}\label{eq:scgf}
+  \log\E[e^{sN_t}]=t\lambda(s)+O(1),
+\end{equation}
+where the remainder and its first three $s$-derivatives are bounded locally.
+This derivative-uniform estimate justifies differentiating
+\eqref{eq:scgf} at zero and dividing by $t$, which proves existence of the
+limits and
+\begin{equation}\label{eq:identification}
+  C_k=\lambda^{(k)}(0),\qquad k=1,2,3.
+\end{equation}
+This is the standard path-to-matrix identification used for finite-state
+current cumulants. It is supplied here as a mathematical argument. The
+Lean development does not construct a probability space of continuous-time
+sample paths.
+
+\section{The positive midpoint spectrum}\label{sec:spectrum}
+
+For now orient the ring so that $U>V$. Define
+\begin{equation}\label{eq:Pdelta}
+  P(z)=\det(z\Id-W_0),\qquad
+  \delta=(\sqrt U-\sqrt V)^2>0.
+\end{equation}
+
+\begin{lemma}[Counted-edge separation]\label{lem:det}
+For every real $s,z$,
+\begin{equation}\label{eq:tiltdet}
+  \det(z\Id-W_s)=P(z)-U(e^s-1)-V(e^{-s}-1).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Expand the determinant over permutations. A supported permutation of the
+cycle consists of fixed vertices, adjacent transpositions, and possibly
+one full forward or reverse cycle. The two counting factors cancel in an
+adjacent transposition. Only the full cycles retain a counting factor;
+their signed contributions are $-Ue^s$ and $-Ve^{-s}$. Subtracting the
+untilted determinant proves the identity.
+\end{proof}
+
+Define the cyclic gradient matrix $B$ by
+\begin{equation}\label{eq:gram}
+  (Bx)_i=\sqrt{u_i}\,x_i-\sqrt{v_i}\,x_{i+1},\qquad H=B^TB.
+\end{equation}
+Its diagonal is $u_i+v_{i-1}$, and each neighbouring off-diagonal is
+$-\sqrt{u_iv_i}$. The determinant of $B$ is $\sqrt U-\sqrt V$, so $B$ is
+invertible, $H$ is positive definite, and $\det H=\delta$. The same
+permutation expansion gives
+\begin{equation}\label{eq:spectralshift}
+  \det(z\Id+H)=P(z)+\delta.
+\end{equation}
+Equivalently, $H$ is minus a diagonal conjugate of $W_{-A/2}$.
+These midpoint facts are the known reduction of~\cite[Appendix C]{Pietzonka2016};
+they do not require reversibility of $W_0$.
+
+Let $\theta_i>0$ be the eigenvalues of $H$, and put
+\begin{equation}\label{eq:moments}
+  T=\sum_i\frac1{\theta_i},\qquad
+  x_i=\frac1{T\theta_i},\qquad
+  p_2=\sum_ix_i^2,\qquad p_3=\sum_ix_i^3.
+\end{equation}
+The vector $x$ is a positive probability vector. Also define
+\begin{equation}\label{eq:c}
+  c=\frac{\sqrt U+\sqrt V}{\sqrt U-\sqrt V}
+   =\coth(A/4)>1.
+\end{equation}
+If $a_j$ denotes the coefficient of $z^j$ in $P$, expansion of
+\eqref{eq:spectralshift} and the elementary symmetric identities give
+\begin{equation}\label{eq:coefficients}
+  a_1=\delta T,\quad
+  a_2=\frac{\delta T^2}{2}(1-p_2),\quad
+  a_3=\frac{\delta T^3}{6}(1-3p_2+2p_3).
+\end{equation}
+In particular $a_1>0$, which also gives the local root branch by the implicit
+function theorem. Differentiating
+$P(\lambda(s))=U(e^s-1)+V(e^{-s}-1)$ at zero yields
+\begin{align}
+ a_1C_1&=U-V,\notag\\
+ a_1C_2+2a_2C_1^2&=U+V,\label{eq:cumulantcoeff}\\
+ a_1C_3+6a_2C_1C_2+6a_3C_1^3&=U-V.\notag
+\end{align}
+Use $U-V=\delta c$ and $U+V=\delta(c^2+1)/2$ to obtain
+\begin{align}
+ TC_1&=c,\notag\\
+ TC_2&=c^2p_2-\frac{c^2-1}{2},\label{eq:ratios}\\
+ S:=\frac{C_3}{C_1}
+   &=c^2(3p_2^2-2p_3)+\frac{c^2-1}{2}(1-3p_2).\notag
+\end{align}
+Thus the remaining problem is an inequality for a probability vector and
+the affinity parameter.
+
+\section{A finite proof of the variance--affinity constraint}\label{sec:TUR}
+
+The proof uses the thermodynamic uncertainty inequality
+\begin{equation}\label{eq:TUR}
+  \frac{C_2}{C_1}\ge\frac2A.
+\end{equation}
+It is an established result~\cite{Gingrich2016}. The following finite-ring
+proof supplies all of its ingredients directly from the rates.
+
+\subsection{Stationarity and correctors}
+Let $\pi$ be the stationary probability vector and write
+\[
+  a_i=\pi_i u_i,\qquad b_i=\pi_{i+1}v_i.
+\]
+Stationarity means $a_i-b_i=J$, independently of $i$. An explicit positive
+construction is
+\begin{align}
+ \rho_i&=v_i/u_i,\notag\\
+ w_i&=\sum_{k=0}^{n-1}\frac1{u_{i+k}}
+                 \prod_{j=0}^{k-1}\rho_{i+j},\label{eq:stationary}\\
+ Z&=\sum_iw_i,\qquad \pi_i=w_i/Z,\qquad J=(1-V/U)/Z.\notag
+\end{align}
+The empty product is one. The geometric recurrence gives
+$u_iw_i-v_iw_{i+1}=1-V/U$, proving positivity, normalization, and the
+common flux identity. In particular $J>0$.
+
+Let $d_i$ be the increment assigned to a forward crossing of edge $i$,
+with $\sum_i d_i=1$. For a single counted edge, $d_i$ is its indicator.
+The backward generator is
+\[
+  Qf_i=u_i(f_{i+1}-f_i)+v_{i-1}(f_{i-1}-f_i).
+\]
+Solve the centered Poisson equation
+\begin{equation}\label{eq:poisson}
+  Qh_i+u_id_i-v_{i-1}d_{i-1}=J,
+  \qquad \sum_i\pi_i h_i=0.
+\end{equation}
+The forcing has stationary mean zero. The maximum principle gives
+$\ker Q=\operatorname{span}\{\mathbf1\}$: at a maximum of a function in
+the kernel, positivity of both neighbouring rates forces its neighbours
+to have the same value, and this propagates around the ring. Thus $Q$ has
+rank $n-1$. Since $\pi^TQ=0$, its image is precisely
+$\{b:\pi^Tb=0\}$. The Poisson equation therefore has a solution, unique
+after imposing the centering condition. One can also construct it by
+solving a finite cyclic recurrence for the gradient and integrating a
+zero-sum increment around the cycle. For an explicit cyclic integration,
+if $\sum_i r_i=0$, then
+\[
+  h_i=-\frac1n\sum_{k=0}^{n-1}\sum_{j=0}^{k-1}r_{i+j}
+  \quad\text{satisfies}\quad h_{i+1}-h_i=r_i.
+\]
+Subtracting the $\pi$-mean centers $h$. These finite recurrences, including
+their solvability for signed forcing, are proved in the accompanying Lean
+construction.
+
+Set $g_i=d_i+h_{i+1}-h_i$, so $\sum_i g_i=1$. The first characteristic
+derivative is $C_1=J$. Differentiating the centered eigenvector equation
+twice gives
+\begin{equation}\label{eq:C2raw}
+ C_2=\sum_i\pi_i\left[u_id_i^2+v_{i-1}d_{i-1}^2
+       +2u_id_i h_{i+1}-2v_{i-1}d_{i-1}h_{i-1}\right].
+\end{equation}
+The same identity can be obtained without an analytic eigenvector: solve
+a second finite Poisson equation for $k$ and substitute the quadratic
+approximate eigenpair
+$\lambda(s)=Js+C_2s^2/2$, $r_i(s)=1+sh_i+s^2k_i/2$.
+Its tilted-matrix residual vanishes to order two. Multiplication by the
+adjugate transfers this vanishing to the determinant, identifying $J,C_2$
+with the first two equations in \eqref{eq:cumulantcoeff}. This is the route
+used by the formal proof.
+
+\begin{lemma}[Corrected-increment variance]\label{lem:variance}
+The second cumulant has the exact quadratic representation
+\begin{equation}\label{eq:variance}
+  C_2=\sum_i(a_i+b_i)g_i^2.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Stationarity applied to $h^2$ yields the Dirichlet identity
+\[
+ \sum_i(a_i+b_i)(h_{i+1}-h_i)^2
+   =-2\sum_i\pi_i h_iQh_i.
+\]
+Insert \eqref{eq:poisson} and use $\sum_i\pi_i h_i=0$. The right side becomes
+$2\sum_i(a_i h_i-b_i h_{i+1})d_i$. Expanding the square in
+\eqref{eq:variance} then gives
+\[
+ \sum_i(a_i+b_i)d_i^2
+ +2\sum_i d_i(a_i h_{i+1}-b_i h_i),
+\]
+which is \eqref{eq:C2raw} after shifting an index.
+\end{proof}
+
+\subsection{Cauchy--Schwarz and the logarithm}
+Weighted Cauchy--Schwarz and $\sum_i g_i=1$ give
+\begin{equation}\label{eq:CS}
+  C_2\sum_i\frac1{a_i+b_i}\ge1.
+\end{equation}
+For $a>b>0$,
+\[
+  \log(a/b)\ge\frac{2(a-b)}{a+b}.
+\]
+Indeed the derivative of $\log y-2(y-1)/(y+1)$ is
+$(y-1)^2/[y(y+1)^2]\ge0$ for $y\ge1$, and its value at one is zero.
+Apply this with $a_i-b_i=J>0$. Telescoping the stationary factors gives
+\begin{equation}\label{eq:affinityCS}
+ A=\sum_i\log(a_i/b_i)
+   \ge2J\sum_i\frac1{a_i+b_i}.
+\end{equation}
+Combining \eqref{eq:CS} and \eqref{eq:affinityCS} yields
+$AC_2\ge2J$, proving \eqref{eq:TUR} because $C_1=J$.
+
+\section{Reduction of the lower bound to exact algebra}\label{sec:lower}
+
+Put $r=1/c\in(0,1)$, $z=r^2$, and $t=\sqrt{p_2}\in(0,1]$.
+Each $x_i\le t$, so
+\begin{equation}\label{eq:momentbound}
+  p_3\le t^3.
+\end{equation}
+Since $A=2\log((1+r)/(1-r))$, equations \eqref{eq:ratios} and
+\eqref{eq:TUR} imply
+\begin{equation}\label{eq:momentTUR}
+  t^2\ge\frac{1-r^2}{2}
+       +\frac{r}{\log((1+r)/(1-r))}.
+\end{equation}
+
+\begin{lemma}[Rational logarithm bound]\label{lem:log}
+For $0\le r<1$,
+\begin{equation}\label{eq:logbound}
+ \log\frac{1+r}{1-r}
+ \le 2r+\frac{2r^3}{3}+\frac{2r^5}{5}
+            +\frac{2r^7}{7(1-r^2)}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The difference between the right and left sides is zero at zero. Its
+derivative is $4r^8/[7(1-r^2)^2]\ge0$.
+\end{proof}
+
+Define
+\begin{align}
+ D(z)&=105-70z-14z^2-6z^3,\label{eq:D}\\
+ R(t,z)&=2D(z)t^2-(1-z)(D(z)+105),\label{eq:R}\\
+ F(t,z)&=48t^4-32t^3-24t^2+8+z(24t^2-7).\label{eq:F}
+\end{align}
+On $[0,1]$ we have $D(z)\ge15$. The right side of
+\eqref{eq:logbound} equals $2rD(z)/[105(1-z)]$. Taking reciprocals in
+\eqref{eq:momentTUR}, all denominators being positive, proves
+\begin{equation}\label{eq:Rnonnegative}
+  R(t,z)\ge0.
+\end{equation}
+The key scalar statement is the following.
+
+\begin{lemma}[Exact scalar inequality]\label{lem:scalar}
+If $0\le t,z\le1$ and $R(t,z)\ge0$, then $F(t,z)\ge0$.
+\end{lemma}
+
+Before proving the lemma, observe that it completes the lower-bound
+argument. Equation~\eqref{eq:ratios} gives the exact identity
+\begin{equation}\label{eq:finalLower}
+  16z\left(S+\frac1{16}\right)
+     =F(t,z)+32(t^3-p_3)\ge0.
+\end{equation}
+Since $z>0$, this is $S\ge-1/16$.
+
+\section{An exact positivity certificate}\label{sec:certificate}
+
+\begin{proof}[Proof of Lemma~\ref{lem:scalar}]
+At $z=1$,
+\begin{equation}\label{eq:Fone}
+ F(t,1)=(2t-1)^2(12t^2+4t+1)\ge0.
+\end{equation}
+Suppose, for a contradiction, that $F(t,z)<0$. Write $B=24t^2-7$.
+The affine dependence on $z$ and \eqref{eq:Fone} imply $B>0$. Set
+\[
+ q=-\frac{48t^4-32t^3-24t^2+8}{B}.
+\]
+Then $z<q\le1$. Also $B>0$ implies
+$t^2>7/24>(27/50)^2$, hence $t\ge27/50$.
+Let
+\[
+ E(z,q)=15+(1-z)(1-q)(20+6(z+q))>0.
+\]
+Direct polynomial expansion gives
+\begin{equation}\label{eq:monotonicR}
+ D(z)R(t,q)-D(q)R(t,z)
+   =(q-z)\bigl[D(z)D(q)+105E(z,q)\bigr]>0.
+\end{equation}
+Since $D(z),D(q)>0$ and $R(t,z)\ge0$, we conclude that $R(t,q)>0$.
+A second exact identity is
+\begin{equation}\label{eq:Pidentity}
+  B^4R(t,q)=2(t-1)P_{14}(t),
+\end{equation}
+where
+\begin{align}\label{eq:P14}
+ P_{14}(t)={}&10616832t^{14}-15261696t^{13}-20127744t^{12}\notag\\
+ &+20336640t^{11}+53514240t^{10}-47832576t^9\notag\\
+ &-29349376t^8+30811392t^7+5745408t^6\notag\\
+ &-7539040t^5-671776t^4+645104t^3\notag\\
+ &+179568t^2-17623t-17623.
+\end{align}
+The integer certificates in Appendix~\ref{app:certificate} prove
+$P_{14}(t)\ge0$ on $[27/50,1]$. Thus the right side of
+\eqref{eq:Pidentity} is nonpositive, because $t\le1$, while its left side
+is positive, because $B>0$ and $R(t,q)>0$. This contradiction proves the
+lemma.
+\end{proof}
+
+For completeness, the certificates cover the three closed intervals
+\[
+ [27/50,541/1000],\qquad [541/1000,3/5],\qquad [3/5,1].
+\]
+For an interval $[a/q_0,b/q_0]$ they have the form
+\begin{equation}\label{eq:integercertificate}
+ L\,P_{14}(t)=\sum_{j=0}^{14}c_j(q_0t-a)^j(b-q_0t)^{14-j},
+ \qquad L>0,\quad c_j>0.
+\end{equation}
+All quantities $L,c_j,a,b,q_0$ in the appendix are exact integers. Each
+displayed identity is an identity of polynomials, and every basis factor
+is nonnegative on its indicated interval. Consequently the certificate
+is directly verifiable by expansion and positivity; it is not a numerical
+sign test. The identities are literally expanded and checked by the
+\Lean{ring} tactic in \Lean{ScalarCertificate.lean}.
+
+One can also reproduce the calculation from the ordinary Bernstein basis.
+Write $P_{14}(t)=\sum_{m=0}^{14}p_mt^m$. On an interval $[a,b]$ its standard
+Bernstein coefficients are
+\begin{equation}\label{eq:Bernstein}
+ \beta_k=\sum_{j=0}^k\frac{\binom{k}{j}}{\binom{14}{j}}(b-a)^j
+             \sum_{m=j}^{14}p_m\binom{m}{j}a^{m-j}.
+\end{equation}
+They satisfy
+$P_{14}(a+(b-a)y)=\sum_k\beta_k\binom{14}{k}y^k(1-y)^{14-k}$.
+The exact minimum $\beta_k$ on the three intervals is, respectively,
+\begin{gather*}
+ \frac{16724209717245771704643}{1491606235504150390625000000},\\[3pt]
+ \frac{2289148847063183313623970162523707}
+      {15258789062500000000000000000000000000},\\[3pt]
+ \frac{42140182568}{6103515625}.
+\end{gather*}
+These positive rational numbers summarize, but are not substitutes for,
+the full exact identities in the appendix.
+
+\section{The upper bound, reversal, and sharpness}\label{sec:upper}
+
+Let
+\[
+ e_2=\frac{1-p_2}{2},\qquad e_3=\frac{1-3p_2+2p_3}{6}.
+\]
+These are nonnegative elementary symmetric sums of the probability vector
+$x$. Equation~\eqref{eq:ratios} rewrites as
+\begin{equation}\label{eq:upperS}
+  S=1-3(c^2+1)e_2+12c^2e_2^2-6c^2e_3.
+\end{equation}
+The nonnegativity of $C_2$ gives $4c^2e_2\le c^2+1$. Multiplication by
+$3e_2\ge0$ shows that the positive quadratic term in \eqref{eq:upperS} is
+at most $3(c^2+1)e_2$. Thus $S\le1$.
+
+Reversing the ring orientation replaces $C_1,C_3$ by $-C_1,-C_3$, leaving
+their ratio unchanged. At the matrix level, if $\sigma$ is the successor
+permutation, reversal replaces it by $\sigma^{-1}$ and sets
+\[
+ u'_i=v_{\sigma^{-1}i},\qquad v'_i=u_{\sigma^{-1}i}.
+\]
+The untilted generator is unchanged, and $U,V$ are exchanged. This supplies
+the case $U<V$ and completes the proof of the two inequalities.
+
+The extremizing family was already identified
+in~\cite{Ptaszynski2022}. In an irreversible ring, take one forward rate
+$1/(n-1)$ and all others equal to one. At $V=0$, the inverse-rate weights
+are
+\[
+ x_1=\frac12,\qquad x_2=\cdots=x_n=\frac1{2(n-1)},
+\]
+and the third/first cumulant ratio is $3p_2^2-2p_3$. Direct substitution gives
+\begin{equation}\label{eq:sharp}
+ S=-\frac{n^2-8n+8}{16(n-1)^2}\longrightarrow-\frac1{16}.
+\end{equation}
+For each fixed $n$, sufficiently small positive backward rates approximate
+this value. The simple zero eigenvalue and the coefficient formulas vary
+continuously with the rates, with $C_1\ne0$ at the irreversible limit.
+Taking $n$ large proves sharpness over strictly positive rates. A single
+increasingly slow forward stage makes its normalized waiting-time weight
+tend to one and hence gives $S\to1$; the same positive-rate approximation
+applies. No better dimension-independent constants are possible.
+
+\section{Formal verification and reproducibility}\label{sec:formal}
+
+\subsection{Exact formal scope}
+\BuildStatusText
+
+The principal checked declarations are
+\begin{quote}\small
+\Lean{UnicyclicWinding.winding_skewness_interval}\par
+\Lean{UnicyclicWinding.exists_winding_branch_and_interval}.
+\end{quote}
+Their assumptions specify a finite index type, a permutation forming one
+cycle on the whole type, cardinality at least three, strictly positive
+forward and reverse rates, unequal rate products, and a marked edge. The
+first declaration quantifies over every local $C^3$ zero-eigenvalue branch
+of the actual tilted characteristic matrix; the second constructs such a
+branch from the rates and proves the interval. Neither theorem assumes a
+stationary law, a spectral decomposition, a variance formula, or an
+uncertainty bound.
+
+The algebraic proof works with a positive midpoint Gram matrix and its
+characteristic polynomial. Finite Green sums construct the stationary law
+and both correctors. A second-order residual is transferred to the
+determinant through $\adj(M)M=\det(M)\Id$. Polynomial derivative identities
+then connect the actual branch derivatives to the certified scalar bound.
+The small-state supplements have separate declarations in
+\Lean{TwoStateWinding.lean} and \Lean{PoissonWinding.lean}.
+
+The formal theorem does not introduce continuous-time sample paths or
+formalize the probability-space limit in \eqref{eq:cumulants}. Its stochastic
+interpretation is the standard proof in Section~\ref{sec:stochastic}.
+Sharpness is proved in Section~\ref{sec:upper}; the principal Lean interval
+theorems do not themselves assert the optimizing limiting sequence.
+
+\subsection{Environment and build}
+The development uses Lean 4.19.0, compiler commit
+\Lean{6caaee842e94}, and mathlib revision
+\begin{center}\small\Lean{c44e0c8ee63ca166450922a373c7409c5d26b00b}.\end{center}
+The proof uses the ordinary Lean/mathlib foundations
+\Lean{propext}, \Lean{Classical.choice}, and \Lean{Quot.sound}, with no
+added problem-specific axioms. No declaration containing \Lean{sorry},
+\Lean{admit}, or an unproved substitute is acceptable as verification.
+
+The accompanying \Lean{verify.py} assembles every local source into one
+isolated compilation, excludes local object files from its imports, checks
+the pinned compiler and mathlib revision, and records hashes and compiler
+results. It rejects placeholder proofs and any nonstandard axiom dependency.
+After installing the stated toolchain and mathlib dependencies, run:
+\begin{Verbatim}[fontsize=\small,breaklines=true,frame=single,framesep=6pt]
+python3 verify.py --mathlib /path/to/mathlib4 \
+  --lean-bin /path/to/lean-4.19.0-linux/bin --output verification
+python3 check_certificate.py
+\end{Verbatim}
+A successful run returns zero and records \Lean{all_passed=true} in
+\Lean{verification.json} in the \Lean{verification} directory.
+Its source hashes identify the exact checked files.
+The independent certificate check uses Python and SymPy. It expands every
+integer certificate and checks the polynomial reduction identities. The Lean
+proof checks these identities independently with kernel-checked tactics.
+
+\section{Assessment and limitations}
+
+The result resolves the dimension-independent interval proposed in
+\cite{Ptaszynski2022}, within its positive-rate ring model and for the
+specified winding observable. Violating the interval therefore excludes
+that model for this observable. It does not settle the paper's other
+cumulant conjectures or the optimal bounds at each fixed ring size.
+
+The argument does not settle the separate kurtosis, joint-cumulant, or
+fixed-size optimization questions. Extending the method to other higher
+cumulants remains an open direction.
+
+\clearpage
+\begin{thebibliography}{9}
+\bibitem{Ptaszynski2022}
+K.~Ptaszy\'nski,
+\emph{Bounds on skewness and kurtosis of steady-state currents},
+Physical Review E \textbf{106}, 024119 (2022).
+\href{https://doi.org/10.1103/PhysRevE.106.024119}{doi:10.1103/PhysRevE.106.024119}.
+\href{https://arxiv.org/abs/2204.08421}{arXiv:2204.08421}.
+
+\bibitem{Gingrich2016}
+T.~R.~Gingrich, J.~M.~Horowitz, N.~Perunov, and J.~L.~England,
+\emph{Dissipation Bounds All Steady-State Current Fluctuations},
+Physical Review Letters \textbf{116}, 120601 (2016).
+\href{https://doi.org/10.1103/PhysRevLett.116.120601}{doi:10.1103/PhysRevLett.116.120601}.
+\href{https://arxiv.org/abs/1512.02212}{arXiv:1512.02212}.
+
+\bibitem{Barato2015}
+A.~C.~Barato and U.~Seifert,
+\emph{Skewness and Kurtosis in Statistical Kinetics},
+Physical Review Letters \textbf{115}, 188103 (2015).
+\href{https://doi.org/10.1103/PhysRevLett.115.188103}{doi:10.1103/PhysRevLett.115.188103}.
+
+\bibitem{Wampler2022}
+T.~Wampler and A.~C.~Barato,
+\emph{Skewness and Kurtosis in Stochastic Thermodynamics},
+Journal of Physics A: Mathematical and Theoretical \textbf{55}, 014002 (2022).
+\href{https://arxiv.org/abs/2110.14540}{arXiv:2110.14540}.
+
+\bibitem{Pietzonka2016}
+P.~Pietzonka, A.~C.~Barato, and U.~Seifert,
+\emph{Universal bounds on current fluctuations},
+Physical Review E \textbf{93}, 052145 (2016), Appendix~C.
+\href{https://doi.org/10.1103/PhysRevE.93.052145}{doi:10.1103/PhysRevE.93.052145}.
+\href{https://arxiv.org/abs/1512.01221}{arXiv:1512.01221}.
+\end{thebibliography}
+
+\appendix
+\clearpage
+\section{Complete integer positivity certificate}\label{app:certificate}
+For each of the following three intervals, the entries satisfy the exact
+identity
+\[
+ L\,P_{14}(t)=\sum_{j=0}^{14}c_j(q_0t-a)^j(b-q_0t)^{14-j}.
+\]
+The polynomial $P_{14}$ is given in \eqref{eq:P14}. Each $L$ and each $c_j$
+is positive. On $[a/q_0,b/q_0]$ every term is nonnegative, proving
+$P_{14}(t)\ge0$. These tables reproduce all coefficients from the companion
+\Lean{certificate.json}; they can be checked by exact integer
+polynomial arithmetic independently of the formal proof.
+\input{certificate_tables.tex}
+
+\clearpage
+\section{The small-state conventions}\label{app:small}
+
+\subsection{Two states with two distinguished channels}
+For $n=2$, the two oppositely traversed edges become parallel transition
+channels. They must remain distinguished when counting. Put
+\[
+  U=u_0u_1,\quad V=v_0v_1,\quad
+  a=u_0+u_1+v_0+v_1,
+\]
+with all four rates positive and $U\ne V$. The correct tilted matrix is
+\begin{equation}\label{eq:twoMatrix}
+ z\Id-W_s=
+ \begin{pmatrix}
+ z+u_0+v_1&-(u_1+v_0e^{-s})\\
+ -(u_0e^s+v_1)&z+u_1+v_0
+ \end{pmatrix}.
+\end{equation}
+Only the marked channel is tilted; multiplying a whole combined
+off-diagonal entry by a counting factor would describe a different
+observable. Direct expansion gives
+\begin{equation}\label{eq:twoDet}
+ \det(z\Id-W_s)=z^2+az-U(e^s-1)-V(e^{-s}-1).
+\end{equation}
+The same characteristic differentiation therefore yields
+\begin{equation}\label{eq:twoS}
+  S=1-\frac{6(U+V)}{a^2}+\frac{12(U-V)^2}{a^4}.
+\end{equation}
+Let $\alpha=\sqrt U$, $\beta=\sqrt V$, and set
+\[
+ r=\frac{\alpha-\beta}{\alpha+\beta},\qquad
+ k=\frac{4(\alpha+\beta)^2}{a^2}.
+\]
+Arithmetic--geometric mean gives $0<k\le1$, and $r^2\le1$. Equation
+\eqref{eq:twoS} becomes
+\[
+ S=1-\frac{3k}{4}\bigl(1+r^2(1-k)\bigr),\qquad
+ S-\frac14=\frac34(1-k)(1-kr^2).
+\]
+Both factors in the latter expression are nonnegative, and the former
+expression is at most one. Hence the stronger two-state interval is
+\begin{equation}\label{eq:twoBound}
+  \frac14\le\frac{C_3}{C_1}\le1.
+\end{equation}
+The actual two-channel determinant, local branch existence, and this
+derivative interval are the subject of \Lean{TwoStateWinding.lean}.
+
+\subsection{One state with counted events}
+In the conventional one-state counted-event model, forward and reverse
+events form independent Poisson counts with positive rates $u,v$. Their
+difference has cumulant generating function per unit time
+\[
+  \lambda(s)=u(e^s-1)+v(e^{-s}-1).
+\]
+Thus $\lambda'(0)=\lambda'''(0)=u-v$. If $u\ne v$, then
+\[
+  \frac{C_3}{C_1}=1.
+\]
+The explicit derivative identity is formalized in
+\Lean{PoissonWinding.lean}. These small-state calculations are conventional
+boundary cases and are not additional novelty claims.
+
+\end{document}
