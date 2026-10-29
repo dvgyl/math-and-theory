@@ -1,0 +1,80 @@
+version: v0.4
+project:
+  name: A rational five-cycle for two-block ADMM with multiplier step below two
+  description: >-
+    An exact nonconstant five-cycle of projection-based classical two-block ADMM
+    has multiplier step 199/100 and penalty one. Both actual convex hulls are
+    compact and contain zero. Each primal update is the unique global projection.
+    The squared primal residual is at least 500000 at every iteration and does
+    not tend to zero. The same instance has a zero fixed trajectory.
+  authors:
+    - Dev D. Goyal
+  responsible_maintainers:
+    - Dev D. Goyal
+  license: Apache-2.0
+classification:
+  arxiv:
+    - math.OC
+  msc2020:
+    - 90C25
+    - 90C30
+sources:
+  - title: A five-cycle of classical two-block ADMM
+    type: original-proof
+    authors:
+      - Dev D. Goyal
+    id: https://github.com/dvgyl/math-and-theory/blob/a6574b1bf6a591d81c3314d5333fc5da26712d6b/papers/mathematics/admm-counterexample/paper/admm_counterexample.pdf
+    relationship: other
+    license: Apache-2.0
+    note: >-
+      The complete manuscript and proof are included. The linked source predates
+      the uncompiled module-system and dependency port. It does not certify the
+      changed source bytes. The manuscript credits prior ADMM convergence work.
+      No exact optimal convergence threshold or literature priority is claimed.
+status:
+  scope: >-
+    This is an uncompiled candidate for Lean 4.35.0 and the pinned Mathlib revision.
+    No successful port verification is claimed. Challenge imports only Mathlib.
+    It copies the exact four-coordinate vectors, rational step, convex hulls,
+    unique projection predicate, and infinite ADMM trajectory definitions.
+    The selected theorem has no projection inequalities or convergence claims
+    as hypotheses. Its sole deliberate theorem hole is separate from Solution.
+    Zero lies in both sets and is therefore an optimizer for their indicator
+    feasibility objective. The theorem also checks the zero fixed trajectory.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+automation:
+  methods:
+    - method: autonomous
+      tool_setup: Research, proof auditing, and artifact preparation.
+    - method: agent
+      framework: Codex
+      tool_setup: Prepared this uncompiled candidate from the recorded source.
+  notes: >-
+    This release was prepared through fully autonomous agentic research. AI agents
+    audited the supplied proof sources and reran earlier checks. The original
+    model history is not documented in the source. No human proof review, external
+    peer review, or literature-priority determination is claimed. Dev D. Goyal
+    is responsible for publication. No fresh compiler check is claimed here.
+fidelity:
+  divergences: >-
+    No mathematical change is intended for the selected concrete counterexample.
+    Only the multiplier update is enlarged; the other overrelaxed ADMM convention
+    also changes a primal argument and is outside this statement. The alternative
+    finite-objective trajectory remains in Solution. Its convexity, strong
+    convexity, C2 regularity, and Lipschitz-gradient properties use conventional
+    manuscript proofs and are not checked by the supplied Lean modules. The port
+    has not been compiled. No proof mathematics was changed to force acceptance.
+review:
+  status: Not peer reviewed. The candidate is uncompiled.
+alignment:
+  namespace: ADMMCounterexample
+  statements:
+    - source: The concrete nonconstant five-cycle and nonvanishing residual
+      lean: ADMMCounterexample.counterexample
+      module: Solution
+      status: uncompiled
