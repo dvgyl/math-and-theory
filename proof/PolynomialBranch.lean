@@ -41,7 +41,7 @@ theorem exists_local_polynomial_branch
   have hPd : ContDiffAt ℝ 3 (fun x : ℝ => P.eval x) 0 :=
     (polynomial_eval_contDiff P).contDiffAt
   have hPf := (P.hasDerivAt 0).hasFDerivAt_equiv hPder
-  have hn : (1 : WithTop ℕ∞) ≤ 3 := by norm_num
+  have hn : (3 : WithTop ℕ∞) ≠ 0 := by norm_num
   let v : ℝ → ℝ := hPd.localInverse hPf hn
   have hv0 : v 0 = 0 := by
     simpa [v, hP0] using hPd.localInverse_apply_image hPf hn

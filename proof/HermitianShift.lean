@@ -1,5 +1,5 @@
 module
-public import Mathlib.LinearAlgebra.Matrix.Spectrum
+public import Mathlib.Analysis.Matrix.Spectrum
 public import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
 public import Mathlib.Algebra.Polynomial.Roots
 public import Mathlib.Tactic.Ring
@@ -28,24 +28,23 @@ theorem det_shift_eq_prod (H : Matrix ι ι ℝ) (hH : H.IsHermitian) (s : ℝ) 
       star (hH.eigenvectorUnitary : Matrix ι ι ℝ) * H *
         (hH.eigenvectorUnitary : Matrix ι ι ℝ) =
       Matrix.diagonal hH.eigenvalues := by
-    simpa using hH.star_mul_self_mul_eq_diagonal
+    simpa [Unitary.conjStarAlgAut_star_apply] using hH.conjStarAlgAut_star_eigenvectorUnitary
   have hconj :
       star (hH.eigenvectorUnitary : Matrix ι ι ℝ) *
           (s • (1 : Matrix ι ι ℝ) + H) *
           (hH.eigenvectorUnitary : Matrix ι ι ℝ) =
       s • (1 : Matrix ι ι ℝ) + Matrix.diagonal hH.eigenvalues := by
     rw [Matrix.mul_add, Matrix.add_mul, Matrix.mul_smul, Matrix.mul_one,
-      Matrix.smul_mul, unitary.coe_star_mul_self, hdiag]
+      Matrix.smul_mul, Unitary.coe_star_mul_self, hdiag]
   have hdet := congrArg Matrix.det hconj
-  rw [Matrix.det_mul_right_comm, unitary.coe_star_mul_self, Matrix.one_mul] at hdet
+  rw [Matrix.det_mul_right_comm, Unitary.coe_star_mul_self, Matrix.one_mul] at hdet
   rw [Matrix.smul_one_eq_diagonal, Matrix.diagonal_add, Matrix.det_diagonal] at hdet
   simpa only [Matrix.smul_one_eq_diagonal] using hdet
 
 /-- Evaluation of the characteristic polynomial of `-L` is `det(s I + L)`. -/
 theorem charpoly_neg_eval (L : Matrix ι ι ℝ) (s : ℝ) :
     (-L).charpoly.eval s = (s • (1 : Matrix ι ι ℝ) + L).det := by
-  rw [Matrix.charpoly, Matrix.eval_det, Matrix.matPolyEquiv_charmatrix]
-  simp [Matrix.scalar, Matrix.smul_one_eq_diagonal, Pi.algebraMap_def]
+  simpa [Matrix.scalar, Matrix.smul_one_eq_diagonal, Pi.algebraMap_def] using Matrix.eval_charpoly (-L) s
 
 theorem charpoly_neg_eq_spectral_product
     (H : Matrix ι ι ℝ) (hH : H.IsHermitian) :

@@ -1,6 +1,7 @@
 module
+public import PermutationCompat
 public import Mathlib.GroupTheory.Perm.Cycle.Basic
-public import Mathlib.Data.Real.Basic
+public import Mathlib.Basic.Real.Basic
 public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.Ring
@@ -178,7 +179,6 @@ theorem exists_positive_gradient (σ : Perm ι)
   intro i
   have hh := congrArg (fun z : ℝ => u i*z) (he i)
   field_simp [ne_of_gt (hu i)] at hh
-  simp only [one_div] at hh
   nlinarith only [hh]
 
 omit [Fintype ι] [DecidableEq ι] in
@@ -193,7 +193,7 @@ theorem gradient_sum_one [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u v π g 
   have hreindex :
       (∑ i, π i*(v (σ⁻¹ i)*g (σ⁻¹ i))) =
         ∑ i, π (σ i)*(v i*g i) := by
-    simpa only [Perm.inv_apply_self] using
+    simpa only [UnicyclicPerm.inv_apply_apply] using
       (Equiv.sum_comp σ (fun i => π i*(v (σ⁻¹ i)*g (σ⁻¹ i)))).symm
   have hright : (∑ i, π i*(u i*g i-v (σ⁻¹ i)*g (σ⁻¹ i))) =
       J*(∑ i, g i) := by
@@ -266,7 +266,7 @@ theorem exists_stationary_corrector [Nonempty ι] (σ : Perm ι)
       linarith only [hh]
     have hb : d (σ⁻¹ i)+(h i-μ)-(h (σ⁻¹ i)-μ)=g (σ⁻¹ i) := by
       have hh := hdiff (σ⁻¹ i)
-      simp only [Perm.apply_inv_self] at hh
+      simp only [UnicyclicPerm.apply_inv_apply] at hh
       linarith only [hh]
     rw [hf,hb]
     exact hrec i

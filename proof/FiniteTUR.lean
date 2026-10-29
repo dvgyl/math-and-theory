@@ -32,7 +32,11 @@ theorem log_ratio_lower {x : ℝ} (hx : 1 ≤ x) :
     have hh := (Real.hasDerivAt_log (ne_of_gt hy0)).sub
       ((((hasDerivAt_id y).sub_const 1).const_mul 2).div
         ((hasDerivAt_id y).add_const 1) hy1)
-    convert hh using 1 ; dsimp [f] ; field_simp ; ring
+    convert hh using 1
+    · funext z
+      simp only [f, Pi.sub_apply, Pi.div_apply, id_eq]
+    · simp only [id_eq]
+      field_simp [ne_of_gt hy0, hy1] <;> ring
   have hm : MonotoneOn f (Set.Ici (1 : ℝ)) := by
     apply monotoneOn_of_deriv_nonneg (convex_Ici (1 : ℝ))
     · intro y hy

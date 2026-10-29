@@ -1,4 +1,5 @@
 module
+public import PermutationCompat
 public import CyclicDeterminant
 
 @[expose] public section
@@ -72,7 +73,7 @@ theorem permutation_term_multitilt (A : Matrix ι ι ℝ) (σ π : Perm ι)
   · subst π
     have hrev (j : ι) : σ⁻¹ j ≠ σ j := (cycle_forward_ne_backward σ hc hn j).symm
     simp only [hp, ite_false, add_zero, ite_true, hrev,
-      Perm.inv_apply_self, Finset.prod_const_one, one_mul, Finset.prod_inv_distrib]
+      UnicyclicPerm.inv_apply_apply, Finset.prod_const_one, one_mul, Finset.prod_inv_distrib]
     ring
   simp only [hp, hp', ite_false, add_zero]
   by_cases hz : (∏ j, A (π j) j) = 0

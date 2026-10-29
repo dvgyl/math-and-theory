@@ -1,4 +1,5 @@
 module
+public import PermutationCompat
 public import CyclicMultiTilt
 public import Mathlib.Tactic.FieldSimp
 public import Mathlib.LinearAlgebra.Matrix.Nondegenerate
@@ -32,19 +33,19 @@ theorem ringMatrix_support [Fintype ι] [DecidableEq ι] (σ : Perm ι) (d f g :
     intro h
     apply hb
     simpa using (congrArg (fun k => σ⁻¹ k) h).symm
-  simp [ringMatrix, hij, hf, hb']
+  simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, ringMatrix, hij, hf, hb']
 
 theorem ringMatrix_forward (σ : Perm ι)
     (hc : σ.IsCycleOn (Finset.univ : Finset ι))
     (hn : 3 ≤ Fintype.card ι) (d f g : ι → ℝ) (j : ι) :
     ringMatrix σ d f g (σ j) j = f j := by
-  simp [ringMatrix, cycle_no_fixed σ hc hn j, (cycle_no_two σ hc hn j).symm]
+  simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, ringMatrix, cycle_no_fixed σ hc hn j, (cycle_no_two σ hc hn j).symm]
 
 theorem ringMatrix_backward (σ : Perm ι)
     (hc : σ.IsCycleOn (Finset.univ : Finset ι))
     (hn : 3 ≤ Fintype.card ι) (d f g : ι → ℝ) (j : ι) :
     ringMatrix σ d f g (σ⁻¹ j) j = g (σ⁻¹ j) := by
-  simp [ringMatrix, cycle_no_fixed σ⁻¹ hc.inv hn j,
+  simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, ringMatrix, cycle_no_fixed σ⁻¹ hc.inv hn j,
     (cycle_forward_ne_backward σ hc hn j).symm]
 
 theorem signed_negative_product (σ : Perm ι)
@@ -66,17 +67,15 @@ theorem balanced_ring_eq_multitilt (σ : Perm ι)
   ext i j
   by_cases hf : i = σ j
   · subst i
-    simp [cycleTilt, ringMatrix, cycle_no_fixed σ hc hn j,
+    simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, cycleTilt, ringMatrix, cycle_no_fixed σ hc hn j,
       (cycle_no_two σ hc hn j).symm]
-    field_simp [ha, hb]
-    ring
+    field_simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, ha, hb] <;> ring
   by_cases hr : j = σ i
   · subst j
-    simp [cycleTilt, ringMatrix, (cycle_no_fixed σ hc hn i).symm,
+    simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, cycleTilt, ringMatrix, (cycle_no_fixed σ hc hn i).symm,
       (cycle_no_two σ hc hn i).symm, hf]
-    field_simp [ha, hb]
-    ring
-  · simp [cycleTilt, ringMatrix, hf, hr]
+    field_simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, ha, hb] <;> ring
+  · simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, cycleTilt, ringMatrix, hf, hr]
 
 theorem balanced_ring_determinant_shift (σ : Perm ι)
     (hc : σ.IsCycleOn (Finset.univ : Finset ι))
@@ -101,7 +100,7 @@ theorem balanced_ring_determinant_shift (σ : Perm ι)
     (ringMatrix_support σ d (fun i => -(a i)^2) (fun i => -(b i)^2))
     (fun i => b i / a i) hq i]
   rw [mul_assoc, hf, mul_assoc, hr, Finset.prod_div_distrib]
-  field_simp [hap, hbp]
+  field_simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, hap, hbp]
   ring
 
 def cycleGradient (σ : Perm ι) (a b : ι → ℝ) : Matrix ι ι ℝ :=
@@ -115,9 +114,9 @@ theorem cycleGradient_eq_bidiagonal (σ : Perm ι)
   ext i j
   by_cases h : i = j
   · subst i
-    simp [cycleGradient, cyclicBidiagonal, (cycle_no_fixed σ⁻¹ hc.inv hn j).symm]
+    simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, cycleGradient, cyclicBidiagonal, (cycle_no_fixed σ⁻¹ hc.inv hn j).symm]
   · by_cases h' : i = σ⁻¹ j <;>
-      simp [cycleGradient, cyclicBidiagonal, h, h', cycle_no_fixed σ⁻¹ hc.inv hn j]
+      simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, cycleGradient, cyclicBidiagonal, h, h', cycle_no_fixed σ⁻¹ hc.inv hn j]
 
 theorem cycleGradient_gram_posDef (σ : Perm ι)
     (hc : σ.IsCycleOn (Finset.univ : Finset ι))
@@ -150,18 +149,16 @@ theorem cycleGradient_gram_eq (σ : Perm ι)
   rw [cycleGradient_gram_entry]
   by_cases hij : i = j
   · subst i
-    simp [ringMatrix, (cycle_no_fixed σ hc hn j).symm,
-      cycle_no_fixed σ⁻¹ hc.inv hn j, (cycle_no_fixed σ⁻¹ hc.inv hn j).symm]
-    ring
+    simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, ringMatrix, (cycle_no_fixed σ hc hn j).symm,
+      cycle_no_fixed σ⁻¹ hc.inv hn j, (cycle_no_fixed σ⁻¹ hc.inv hn j).symm] <;> ring
   by_cases hf : i = σ j
   · subst i
-    simp [ringMatrix, cycle_no_fixed σ hc hn j,
+    simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, ringMatrix, cycle_no_fixed σ hc hn j,
       (cycle_no_two σ hc hn j).symm, cycle_forward_ne_backward σ hc hn j,
-      (cycle_no_fixed σ⁻¹ hc.inv hn j).symm]
-    ring
+      (cycle_no_fixed σ⁻¹ hc.inv hn j).symm] <;> ring
   by_cases hr : j = σ i
   · subst j
-    simp [ringMatrix, (cycle_no_fixed σ hc hn i).symm,
+    simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, ringMatrix, (cycle_no_fixed σ hc hn i).symm,
       (cycle_no_two σ hc hn i).symm, (cycle_forward_ne_backward σ hc hn i).symm,
       cycle_no_fixed σ⁻¹ hc.inv hn i]
   · have hinv1 : i ≠ σ⁻¹ j := by
@@ -173,7 +170,7 @@ theorem cycleGradient_gram_eq (σ : Perm ι)
       apply hf
       simpa using congrArg σ h
     have hinv3 : σ⁻¹ i ≠ σ⁻¹ j := fun h => hij ((σ⁻¹).injective h)
-    simp [ringMatrix, hij, hf, hr, hinv1, hinv2, hinv3]
+    simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, ringMatrix, hij, hf, hr, hinv1, hinv2, hinv3]
 
 theorem shifted_gram_eq_ring (σ : Perm ι)
     (hc : σ.IsCycleOn (Finset.univ : Finset ι))
@@ -185,10 +182,9 @@ theorem shifted_gram_eq_ring (σ : Perm ι)
   ext i j
   by_cases h : i = j
   · subst i
-    simp [ringMatrix, Matrix.add_apply, Matrix.smul_apply, Matrix.one_apply,
-      (cycle_no_fixed σ hc hn j).symm]
-    ring
-  · simp [ringMatrix, Matrix.add_apply, Matrix.smul_apply, Matrix.one_apply, h]
+    simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, ringMatrix, Matrix.add_apply, Matrix.smul_apply, Matrix.one_apply,
+      (cycle_no_fixed σ hc hn j).symm] <;> ring
+  · simp [-Perm.coe_inv, UnicyclicPerm.inv_apply_apply, UnicyclicPerm.apply_inv_apply, ringMatrix, Matrix.add_apply, Matrix.smul_apply, Matrix.one_apply, h]
 
 theorem squared_rate_shifted_gram_determinant (σ : Perm ι)
     (hc : σ.IsCycleOn (Finset.univ : Finset ι))
@@ -226,8 +222,7 @@ theorem squared_rate_det_zero (σ : Perm ι) (a b : ι → ℝ) (i : ι) :
     simp only [Matrix.vecMul, dotProduct, one_mul, Pi.zero_apply]
     change (∑ k, ringMatrix σ (fun j => (a j)^2 + (b (σ⁻¹ j))^2)
       (fun j => -(a j)^2) (fun j => -(b j)^2) k j) = 0
-    rw [ringMatrix_column_sum]
-    ring
+    rw [ringMatrix_column_sum] <;> ring
   have hz := Matrix.eq_zero_of_vecMul_eq_zero hd hv
   have hi := congrFun hz i
   norm_num at hi

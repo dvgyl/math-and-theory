@@ -28,7 +28,7 @@ sources:
     license: Apache-2.0
     note: >-
       The complete manuscript, exact scalar certificate, and proof are included.
-      This source predates the uncompiled module-system and dependency port.
+      This source predates the module-system and dependency port.
       The manuscript credits prior midpoint-spectrum and uncertainty results
       and the known limiting family. Formal verification does not certify priority.
   - title: Physical Review E 106, 024119 (2022)
@@ -41,8 +41,10 @@ sources:
     note: The proposed interval is credited to Equation 21 of this work.
 status:
   scope: >-
-    This is an uncompiled candidate for Lean 4.35.0 and the pinned Mathlib revision.
-    No successful port verification is claimed. The selected statements concern
+    Local Lean 4.35.0 compilation, exact Comparator comparison, permitted-axiom
+    checking, default Lean kernel replay, and a strict 80-endpoint audit pass.
+    The local Comparator ran without a sandbox. Full pinned Palomar preflight
+    remains required. The selected statements concern
     actual finite-matrix derivatives and local branch existence. Challenge imports
     only Mathlib and copies the exact ring matrix, rate matrix, edge tilt, and
     tilted characteristic definitions. No spectral, stationary, variance, or
@@ -60,7 +62,7 @@ automation:
       tool_setup: Research, proofs, formalizations, corrections, and manuscript preparation.
     - method: agent
       framework: Codex
-      tool_setup: Prepared this uncompiled candidate from the recorded source.
+      tool_setup: Prepared and locally checked this candidate from the recorded source.
   notes: >-
     This work is fully autonomous agentic research. AI systems generated and
     developed the research, proofs, formalizations, corrections, and manuscript.
@@ -76,17 +78,19 @@ fidelity:
     optimizing-sequence theorem. The ratio is not standardized skewness. Equal
     forward and reverse rate products are excluded because the mean is zero.
     Separate one-state and two-state conventions remain in the proof package.
-    No mathematical proof body changed during this uncompiled port.
+    The port changes imports and proof scripts for current APIs. All original
+    declaration headers and mathematical definition bodies are unchanged. Two
+    proved inverse-permutation cancellation lemmas are added.
 review:
-  status: Not peer reviewed. The candidate is uncompiled.
+  status: Not peer reviewed. Local checks do not establish novelty.
 alignment:
   namespace: UnicyclicWinding
   statements:
     - source: The actual-matrix local derivative interval
       lean: UnicyclicWinding.winding_skewness_interval
       module: Solution
-      status: uncompiled
+      status: locally-checked
     - source: Local branch existence and interval from rates alone
       lean: UnicyclicWinding.exists_winding_branch_and_interval
       module: Solution
-      status: uncompiled
+      status: locally-checked

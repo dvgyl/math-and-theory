@@ -1,0 +1,121 @@
+@UnicyclicWinding.winding_skewness_interval : ∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι] [Nonempty ι]
+  (σ : Equiv.Perm ι),
+  σ.IsCycleOn ↑Finset.univ →
+    3 ≤ Fintype.card ι →
+      ∀ (u v : ι → ℝ),
+        (∀ (i : ι), 0 < u i) →
+          (∀ (i : ι), 0 < v i) →
+            ∏ i, u i ≠ ∏ i, v i →
+              ∀ (a : ι) (f : ℝ → ℝ),
+                ContDiffAt ℝ 3 f 0 →
+                  f 0 = 0 →
+                    (∀ᶠ (s : ℝ) in nhds 0, UnicyclicWinding.tiltedCharacteristic σ u v a s (f s) = 0) →
+                      deriv f 0 ≠ 0 ∧
+                        -(1 / 16) ≤ deriv (deriv (deriv f)) 0 / deriv f 0 ∧ deriv (deriv (deriv f)) 0 / deriv f 0 ≤ 1
+@UnicyclicWinding.exists_winding_branch_and_interval : ∀ {ι : Type u_1} [inst : Fintype ι] [inst_1 : DecidableEq ι]
+  [Nonempty ι] (σ : Equiv.Perm ι),
+  σ.IsCycleOn ↑Finset.univ →
+    3 ≤ Fintype.card ι →
+      ∀ (u v : ι → ℝ),
+        (∀ (i : ι), 0 < u i) →
+          (∀ (i : ι), 0 < v i) →
+            ∏ i, u i ≠ ∏ i, v i →
+              ∀ (a : ι),
+                ∃ f,
+                  ContDiffAt ℝ 3 f 0 ∧
+                    f 0 = 0 ∧
+                      (∀ᶠ (s : ℝ) in nhds 0, UnicyclicWinding.tiltedCharacteristic σ u v a s (f s) = 0) ∧
+                        deriv f 0 ≠ 0 ∧
+                          -(1 / 16) ≤ deriv (deriv (deriv f)) 0 / deriv f 0 ∧ deriv (deriv (deriv f)) 0 / deriv f 0 ≤ 1
+'UnicyclicActual.positive_current_coefficient_data' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicActual.positive_current_skewness_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicActual.fin_ring_positive_current_skewness_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicJets.determinant_zero_jet_of_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicWinding.winding_skewness_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicWinding.exists_winding_branch_and_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicTwoState.two_state_winding_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicTwoState.exists_two_state_winding_branch_and_interval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UnicyclicPoissonBoundary.poisson_winding_skewness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicCumulant.first_second_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicCumulant.first_three_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicCumulant.skewness_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicCumulant.local_branch_derivatives' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicCumulant.exists_local_branch_with_explicit_derivatives' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UnicyclicCumulant.scaled_cumulant_reduction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicCumulant.explicit_cumulant_ratio_reduction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicConstruction.exists_stationary_cycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicConstruction.exists_stationary_corrector' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.unpaired_forward_forces_cycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.counted_edge_paired' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.cyclic_determinant_tilt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.cyclic_gram_posDef' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.cyclic_determinant_multitilt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicPoisson.exists_centered_poisson' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicPoisson.exists_two_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicPoisson.edgeQuadratic_tur' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.balanced_ring_determinant_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.cycleGradient_gram_posDef' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.squared_rate_shifted_gram_determinant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.squared_rate_det_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicResidualJets.residual_jets_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicResidualJets.residual_derivatives_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicFiniteTUR.log_ratio_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicFiniteTUR.finite_flow_tur' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicSpectral.det_shift_eq_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicSpectral.charpoly_neg_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicSpectral.charpoly_neg_eq_spectral_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicSpectral.polynomial_factorization_of_det_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicImplicit.implicit_cumulant_equations_of_jets' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicImplicit.implicit_cumulant_equations' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicImplicit.implicit_cumulant_equations_of_local_jets' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicImplicit.implicit_cumulant_equations_local' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicLog.log_ratio_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicPoissonBoundary.poisson_winding_derivatives' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicImplicit.exists_local_polynomial_branch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicImplicit.exists_local_winding_branch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.rateGram_posDef' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.rateGram_shifted_determinant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.rateMatrix_det_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.rateMatrix_determinant_tilt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.fin_ring_rateGram_posDef' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.fin_ring_shifted_determinant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.positive_rate_spectral_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.fin_ring_positive_spectral_factorization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UnicyclicProduct.linearProduct_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicProduct.normalized_linearProduct_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicRateJets.coefficient_equations_from_poisson' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicReversal.rateMatrix_reversal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicReversal.ratePolynomial_reversal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicReversal.rate_coefficient_skewness_reversal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.tilted_rate_transpose_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicDeterminant.tilted_rate_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicReduction.lower_bound_from_log_uncertainty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicImplicit.cumulant_equations_of_zero_residual_jet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicImplicit.quadratic_coefficient_equations_of_zero_residual_jet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UnicyclicScalar.scalar_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicScalar.skewness_scalar_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicSimplex.third_elementary_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicSimplex.sum_cubes_le_sqrt_second_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicSimplex.skewness_upper_simplex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicProduct.shiftedProduct_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicProduct.characteristic_coefficients_from_spectrum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicProduct.normalized_characteristic_coefficients_from_spectrum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UnicyclicMoments.spectral_skewness_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicPolynomial.bound_from_spectral_shift_and_uncertainty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UnicyclicTwoState.two_state_coefficient_skewness_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicTwoState.twoState_characteristic_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicWinding.rate_skewness_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnicyclicPerm.inv_apply_apply' depends on axioms: [Quot.sound]
+'UnicyclicPerm.apply_inv_apply' depends on axioms: [Quot.sound]

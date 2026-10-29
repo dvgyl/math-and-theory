@@ -1,6 +1,7 @@
 module
 public import PositiveRateMatrices
 public import HermitianShift
+public import Mathlib.Analysis.Matrix.PosDef
 
 @[expose] public section
 

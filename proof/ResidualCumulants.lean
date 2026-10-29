@@ -35,7 +35,8 @@ theorem cumulant_equations_of_zero_residual_jet
     have hright := (((Real.hasDerivAt_exp x).sub_const 1).const_mul U).add
       (((hasDerivAt_exp_neg x).sub_const 1).const_mul V)
     have hh := (hleft.sub hright).deriv
-    simp only [Function.comp_def] at hh
+    change deriv (fun t : ℝ => P.eval (f t) - (U*(Real.exp t-1)+V*(Real.exp (-t)-1))) x = _
+    simp only [Function.comp_def, Pi.sub_def, Pi.add_def] at hh
     simpa only [characteristicResidual, mul_neg, sub_eq_add_neg,
       add_neg_cancel_right] using hh
   have h1 := hres1
@@ -48,7 +49,7 @@ theorem cumulant_equations_of_zero_residual_jet
   have hright := ((Real.hasDerivAt_exp 0).const_mul U).sub
       ((hasDerivAt_exp_neg 0).const_mul V)
   have hd := (hleft.sub hright).deriv
-  simp only [Function.comp_def] at hd
+  simp only [Function.comp_def, Pi.mul_def, Pi.sub_def] at hd
   rw [hd] at h2
   norm_num [hf0, ← Polynomial.coeff_zero_eq_eval_zero,
     Polynomial.coeff_derivative] at h1 h2
@@ -59,8 +60,8 @@ def quadraticBranch (J C2 x : ℝ) : ℝ := J*x+C2*x^2/2
 theorem quadraticBranch_deriv (J C2 x : ℝ) :
     HasDerivAt (quadraticBranch J C2) (J+C2*x) x := by
   convert ((hasDerivAt_id x).const_mul J).add
-    ((((hasDerivAt_id x).pow 2).const_mul C2).div_const 2) using 1 ;
-    simp only [quadraticBranch, id_eq, Nat.cast_ofNat] ; ring
+    ((((hasDerivAt_id x).pow 2).const_mul C2).div_const 2) using 1 <;>
+    (try funext y) <;> simp only [quadraticBranch, id_eq, Pi.add_apply, Pi.pow_apply, Nat.cast_ofNat] <;> ring
 
 theorem quadraticBranch_deriv_fun (J C2 : ℝ) :
     deriv (quadraticBranch J C2) = (fun x => J+C2*x) := by

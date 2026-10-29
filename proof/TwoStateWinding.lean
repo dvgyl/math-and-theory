@@ -2,7 +2,7 @@ module
 public import TwoStateSkewness
 public import BranchCumulants
 public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-public import Mathlib.Data.Matrix.Notation
+public import Mathlib.LinearAlgebra.Matrix.Notation
 
 @[expose] public section
 

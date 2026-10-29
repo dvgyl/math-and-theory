@@ -1,8 +1,9 @@
 module
+public import PermutationCompat
 public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 public import Mathlib.GroupTheory.Perm.Cycle.Basic
-public import Mathlib.Data.Real.Basic
-public import Mathlib.Data.Real.StarOrdered
+public import Mathlib.Basic.Real.Basic
+public import Mathlib.Algebra.Order.Star.Real
 public import Mathlib.LinearAlgebra.Matrix.PosDef
 public import Mathlib.Tactic.Ring
 public import Mathlib.Tactic.Push
@@ -138,7 +139,7 @@ theorem permutation_term_tilt (A : Matrix ι ι ℝ) (σ π : Perm ι)
       have hh := congrArg σ h
       exact cycle_no_two σ hc hn a (by simpa using hh.symm)
     simp only [hp, ite_false, add_zero, ite_true, hrev, one_mul,
-      Perm.inv_apply_self]
+      UnicyclicPerm.inv_apply_apply]
     ring
   simp only [hp, hp', ite_false, add_zero]
   by_cases hz : (∏ j, A (π j) j) = 0

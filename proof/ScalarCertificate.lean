@@ -1,5 +1,5 @@
 module
-public import Mathlib.Data.Real.Basic
+public import Mathlib.Basic.Real.Basic
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.Ring
 public import Mathlib.Tactic.Positivity
@@ -206,8 +206,8 @@ theorem scalar_lower {t z : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1)
     linarith
   let q : ℝ := -(48*t^4-32*t^3-24*t^2+8)/(24*t^2-7)
   have hroot : F t q = 0 := by
-    dsimp [F,q]
-    field_simp [ne_of_gt hb]
+    dsimp only [F,q]
+    rw [div_mul_cancel₀ _ (ne_of_gt hb)]
     ring
   have hdiff : F t z = (z-q)*(24*t^2-7) := by
     dsimp [F] at hroot ⊢
@@ -229,8 +229,8 @@ theorem scalar_lower {t z : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1)
   have hp : 0 ≤ P t := P_nonneg htl ht1
   have hid : (24*t^2-7)^4 * R t q = 2*(t-1)*P t := by
     dsimp [q,R,D,P]
-    field_simp [ne_of_gt hb]
-    ring
+    have hden : -7 + t^2*24 ≠ 0 := by nlinarith [hb]
+    field_simp [ne_of_gt hb, hden] <;> ring
   have hrq : 0 < R t q := R_order hz0 hq0 hz1 hq1 hzq hr
   have hleft : 0 < (24*t^2-7)^4 * R t q := mul_pos (pow_pos hb 4) hrq
   have hright : 2*(t-1)*P t ≤ 0 :=

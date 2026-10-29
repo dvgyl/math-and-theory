@@ -1,5 +1,9 @@
 module
-public import Mathlib
+public import Mathlib.Analysis.Matrix.Spectrum
+public import Mathlib.Analysis.Calculus.ContDiff.Deriv
+public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
+public import Mathlib.GroupTheory.Perm.Cycle.Basic
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 
 /-! The derivative ratio uses the actual marked-edge tilted matrix on a finite
 cycle. The rates are positive. Their forward and reverse products differ.
@@ -7,7 +11,7 @@ Long-time stochastic identification and sharpness are conventional proofs. -/
 @[expose] public section
 noncomputable section
 open scoped BigOperators Topology
-open Filter Equiv Polynomial
+open Filter Equiv
 
 namespace UnicyclicDeterminant
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]

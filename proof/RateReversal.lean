@@ -1,4 +1,6 @@
 module
+public import Mathlib.LinearAlgebra.Matrix.Charpoly.Basic
+public import PermutationCompat
 public import PositiveRateMatrices
 public import BranchCumulants
 
@@ -36,7 +38,7 @@ theorem rateMatrix_reversal [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u v : 
         intro h
         apply hij
         simpa using (congrArg σ h).symm
-      simp [hij,hji]
+      simp [-Perm.coe_inv, hij,hji]
   have hb :
       (if i = σ⁻¹ j then -v (σ⁻¹ j) else 0) =
         (if j = σ i then -v i else 0) := by
@@ -47,8 +49,8 @@ theorem rateMatrix_reversal [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u v : 
         intro h
         apply hji
         simpa using (congrArg σ h).symm
-      simp [hij,hji]
-  simp only [rateMatrix,ringMatrix,inv_inv,Perm.inv_apply_self]
+      simp [-Perm.coe_inv, hij,hji]
+  simp only [rateMatrix,ringMatrix,inv_inv,UnicyclicPerm.inv_apply_apply]
   rw [hf,hb]
   have hd : s+v (σ⁻¹ j)+u j = s+u j+v (σ⁻¹ j) := by ring
   rw [hd]

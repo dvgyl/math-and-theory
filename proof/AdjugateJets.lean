@@ -1,6 +1,7 @@
 module
 public import Mathlib.LinearAlgebra.Matrix.Adjugate
 public import Mathlib.Analysis.Calculus.ContDiff.Operations
+public import Mathlib.Analysis.Calculus.ContDiff.Deriv
 public import Mathlib.Analysis.Calculus.Deriv.Mul
 public import Mathlib.Analysis.Calculus.Deriv.Add
 public import Mathlib.Tactic.Ring
@@ -47,7 +48,7 @@ theorem zeroJet2_mul (a b : ℝ → ℝ)
     ZeroJet2 (fun x => a x*b x) := by
   rcases hz with ⟨h0,h1,h2⟩
   refine ⟨by simp [h0], ?_, ?_⟩
-  · rw [deriv_mul (ha.differentiable (by norm_num) 0) (hb.differentiable (by norm_num) 0)]
+  · rw [deriv_fun_mul (ha.differentiable (by norm_num) 0) (hb.differentiable (by norm_num) 0)]
     simp [h0,h1]
   · rw [second_deriv_mul a b ha hb]
     simp [h0,h1,h2]
@@ -58,7 +59,7 @@ theorem zeroJet2_cancel (a b : ℝ → ℝ)
   rcases hz with ⟨h0,h1,h2⟩
   have ha0 : a 0 = 0 := by simpa [hb0] using h0
   have ha1 : deriv a 0 = 0 := by
-    rw [deriv_mul (ha.differentiable (by norm_num) 0) (hb.differentiable (by norm_num) 0)] at h1
+    rw [deriv_fun_mul (ha.differentiable (by norm_num) 0) (hb.differentiable (by norm_num) 0)] at h1
     simpa [hb0,ha0] using h1
   have ha2 : deriv (deriv a) 0 = 0 := by
     rw [second_deriv_mul a b ha hb] at h2
@@ -72,7 +73,7 @@ theorem zeroJet2_sum {ι : Type*} (s : Finset ι) (f : ι → ℝ → ℝ)
   have hfirst : deriv (fun x => ∑ i ∈ s, f i x) =
       (fun x => ∑ i ∈ s, deriv (f i) x) := by
     funext x
-    exact (HasDerivAt.sum (fun i hi => ((hf i hi).differentiable (by norm_num) x).hasDerivAt)).deriv
+    exact (HasDerivAt.fun_sum (fun i hi => ((hf i hi).differentiable (by norm_num) x).hasDerivAt)).deriv
   refine ⟨?_, ?_, ?_⟩
   · exact Finset.sum_eq_zero (fun i hi => (hz i hi).1)
   · rw [hfirst]
@@ -80,7 +81,7 @@ theorem zeroJet2_sum {ι : Type*} (s : Finset ι) (f : ι → ℝ → ℝ)
   · rw [hfirst]
     have hf' : ∀ i ∈ s, ContDiff ℝ 1 (deriv (f i)) :=
       fun i hi => (contDiff_succ_iff_deriv.mp (hf i hi)).2.2
-    have hh := (HasDerivAt.sum (fun i hi =>
+    have hh := (HasDerivAt.fun_sum (fun i hi =>
       ((hf' i hi).differentiable (by norm_num) 0).hasDerivAt)).deriv
     rw [hh]
     exact Finset.sum_eq_zero (fun i hi => (hz i hi).2.2)
@@ -134,7 +135,7 @@ theorem determinant_zero_jet_of_residual
       (fun x => (A x).det*v x i) := by
     funext x
     change ((A x).adjugate).mulVec ((A x).mulVec (v x)) i = _
-    rw [Matrix.mulVec_mulVec,Matrix.adjugate_mul,Matrix.smul_mulVec_assoc,Matrix.one_mulVec]
+    rw [Matrix.mulVec_mulVec,Matrix.adjugate_mul,Matrix.smul_mulVec,Matrix.one_mulVec]
     rfl
   rw [hid] at hleft
   exact zeroJet2_cancel _ _ (contDiff_det A hA) (hv i) hvi hleft

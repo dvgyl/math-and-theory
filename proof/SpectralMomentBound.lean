@@ -60,16 +60,14 @@ theorem spectral_skewness_interval {ι : Type*} (s : Finset ι) (x : ι → ℝ)
     linarith only [htur,hc]
   have hvar : 0 ≤ (1-(1/r)^2)/2+p2*(1/r)^2 := by
     have heq : (1-(1/r)^2)/2+p2*(1/r)^2 = (p2-(1-r^2)/2)/(r^2) := by
-      field_simp [ne_of_gt hr0]
-      ring
+      field_simp [ne_of_gt hr0] <;> ring
     rw [heq]
     exact div_nonneg hv (sq_nonneg r)
   have hupper := UnicyclicSimplex.skewness_upper_simplex s x (1/r) hx hsum hvar
   have heq_upper :
       (1/r)^2*(3*p2^2-2*p3)+((1/r)^2-1)*(1-3*p2)/2 = skewness p2 p3 r := by
     dsimp [skewness]
-    field_simp [ne_of_gt hr0]
-    ring
+    field_simp [ne_of_gt hr0] <;> ring
   change (1/r)^2*(3*p2^2-2*p3)+((1/r)^2-1)*(1-3*p2)/2 ≤ 1 at hupper
   rw [heq_upper] at hupper
   exact ⟨hlower,hupper⟩

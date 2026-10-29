@@ -25,15 +25,18 @@ theorem gap_deriv {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
   have hd : 7*(1-r^2) ≠ 0 := ne_of_gt (mul_pos (by norm_num) hsq)
   have hi := hasDerivAt_id r
   have hd' : HasDerivAt (fun x : ℝ => 7*(1-x^2)) (-14*r) r := by
-    convert (((hasDerivAt_const r (1 : ℝ)).sub (hi.pow 2)).const_mul 7) using 1 ;
-      simp only [id_eq] ; ring
+    convert (((hasDerivAt_const r (1 : ℝ)).sub (hi.pow 2)).const_mul 7) using 1 <;>
+      (try simp only [id_eq, Pi.sub_apply, Pi.pow_apply]) <;> ring
   have hq := ((hi.pow 7).const_mul 2).div hd' hd
   have hlp := (hi.const_add 1).log (ne_of_gt hp)
   have hlm := ((hasDerivAt_const r (1 : ℝ)).sub hi).log (ne_of_gt hm)
   have ht := (((((hi.const_mul 2).add ((hi.pow 3).const_mul (2/3 : ℝ))).add
     ((hi.pow 5).const_mul (2/5 : ℝ))).add hq).sub hlp).add hlm
-  convert ht using 1 ; simp only [id_eq] ;
-    field_simp [ne_of_gt hp, ne_of_gt hm, ne_of_gt hsq] ; ring
+  convert ht using 1
+  · funext x
+    simp only [gap, Pi.add_apply, Pi.sub_apply, Pi.div_apply, Pi.pow_apply, id_eq]
+  · simp only [id_eq, Pi.sub_apply, Pi.pow_apply]
+    field_simp [ne_of_gt hp, ne_of_gt hm, ne_of_gt hsq] <;> ring
 
 theorem gap_nonneg {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) : 0 ≤ gap r := by
   have hh : ∀ x ∈ Set.Icc (0 : ℝ) r,

@@ -58,7 +58,7 @@ theorem implicit_cumulant_equations_of_jets
     have hleft := ((P.derivative.hasDerivAt (f x)).comp x (hf1 x)).mul (hf2 x)
     have hright := ((Real.hasDerivAt_exp x).const_mul U).sub
       ((hasDerivAt_exp_neg x).const_mul V)
-    simp only [Function.comp_def] at hleft
+    simp only [Function.comp_def, Pi.mul_def] at hleft
     rw [hfirstfun] at hleft
     have heq := hleft.unique hright
     nlinarith only [heq]
@@ -75,7 +75,7 @@ theorem implicit_cumulant_equations_of_jets
       (((P.derivative.derivative.hasDerivAt (f x)).comp x (hf1 x)).mul ((hf2 x).pow 2))
     have hright := ((Real.hasDerivAt_exp x).const_mul U).add
       ((hasDerivAt_exp_neg x).const_mul V)
-    simp only [Function.comp_def] at hleft
+    simp only [Function.comp_def, Pi.mul_def, Pi.add_def, Pi.pow_def] at hleft
     rw [hsecondfun] at hleft
     have heq := hleft.unique hright
     norm_num at heq

@@ -1,4 +1,5 @@
 module
+public import PermutationCompat
 public import CyclicConstruction
 public import FiniteTUR
 
@@ -33,7 +34,7 @@ theorem weighted_gradient_sum [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u v 
   have hreindex :
       (∑ i, π i*(v (σ⁻¹ i)*g (σ⁻¹ i))) =
         ∑ i, π (σ i)*(v i*g i) := by
-    simpa only [Perm.inv_apply_self] using
+    simpa only [UnicyclicPerm.inv_apply_apply] using
       (Equiv.sum_comp σ (fun i => π i*(v (σ⁻¹ i)*g (σ⁻¹ i)))).symm
   simp only [mul_sub, Finset.sum_sub_distrib]
   rw [hreindex, ← Finset.sum_sub_distrib]
@@ -52,7 +53,7 @@ theorem stationary_generator_zero (σ : Perm ι) (u v π f : ι → ℝ) (J : �
   have he (i : ι) :
       u i*(f (σ i)-f i)-v (σ⁻¹ i)*(f (σ (σ⁻¹ i))-f (σ⁻¹ i)) =
         generator σ u v f i := by
-    simp only [Perm.apply_inv_self, generator]
+    simp only [UnicyclicPerm.apply_inv_apply, generator]
     ring
   simp_rw [he] at hh
   simpa only [Finset.sum_sub_distrib, Equiv.sum_comp σ f, sub_self, mul_zero] using hh
@@ -94,7 +95,6 @@ theorem exists_centered_poisson [Nonempty ι] (σ : Perm ι)
     intro i
     have hh := congrArg (fun z : ℝ => u i*z) (he i)
     field_simp [ne_of_gt (hu i)] at hh
-    simp only [one_div] at hh
     nlinarith only [hh]
   have hgsum : (∑ i, g i)=0 := by
     have hh := weighted_gradient_sum σ u v π g J hflux
@@ -114,7 +114,7 @@ theorem exists_centered_poisson [Nonempty ι] (σ : Perm ι)
       linarith only [hh]
     have hback : (h (σ⁻¹ i)-μ)-(h i-μ)= -g (σ⁻¹ i) := by
       have hh := hdiff (σ⁻¹ i)
-      simp only [Perm.apply_inv_self] at hh
+      simp only [UnicyclicPerm.apply_inv_apply] at hh
       linarith only [hh]
     simp only [generator, hfwd, hback]
     nlinarith only [hrec i]
@@ -160,7 +160,7 @@ theorem secondCoefficient_eq_edgeQuadratic (σ : Perm ι)
   have hreindex :
       (∑ i, π i*v (σ⁻¹ i)*(d (σ⁻¹ i)+h i-h (σ⁻¹ i))^2) =
         ∑ i, π (σ i)*v i*(d i+h (σ i)-h i)^2 := by
-    simpa only [Perm.inv_apply_self] using
+    simpa only [UnicyclicPerm.inv_apply_apply] using
       (Equiv.sum_comp σ (fun i =>
         π i*v (σ⁻¹ i)*(d (σ⁻¹ i)+h i-h (σ⁻¹ i))^2)).symm
   have hKedge : (∑ i, π i*K i)=edgeQuadratic σ u v d π h := by
@@ -189,6 +189,7 @@ theorem exists_two_coefficients [Nonempty ι] (σ : Perm ι)
     intro i
     have hh := hcor i
     dsimp [generator, drift]
+    simp only [Perm.coe_inv] at hh
     nlinarith only [hh]
   let C2 := secondCoefficient σ u v d π h
   let f : ι → ℝ := fun i => C2+2*J*h i-
@@ -233,8 +234,8 @@ theorem stationary_flow_affinity [Fintype ι] [DecidableEq ι] (σ : Perm ι) (u
   have hup : (∏ i, u i)≠0 := ne_of_gt (Finset.prod_pos (fun i hi => hu i))
   have hvp : (∏ i, v i)≠0 := ne_of_gt (Finset.prod_pos (fun i hi => hv i))
   rw [Real.log_div hup hvp,
-    Real.log_prod Finset.univ u (fun i hi => ne_of_gt (hu i)),
-    Real.log_prod Finset.univ v (fun i hi => ne_of_gt (hv i))]
+    Real.log_prod (fun i hi => ne_of_gt (hu i)),
+    Real.log_prod (fun i hi => ne_of_gt (hv i))]
   simp_rw [Real.log_div (ne_of_gt (hu _)) (ne_of_gt (hv _))]
   rw [Finset.sum_sub_distrib]
   ring

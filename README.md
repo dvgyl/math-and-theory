@@ -1,8 +1,10 @@
 # A sharp universal skewness bound for unicyclic currents
 
-This is an uncompiled submission candidate. It pins Lean 4.35.0 and Mathlib
-`56a005855ea17e0b0958f73ec801ae140b0a1679`. No successful compilation, Comparator check, or
-Palomar preflight is claimed for these bytes.
+This candidate pins Lean 4.35.0 and Mathlib
+`56a005855ea17e0b0958f73ec801ae140b0a1679`. Local compilation, exact Comparator
+comparison, default Lean kernel replay, and the strict endpoint audit pass.
+The local Comparator ran without a sandbox. Full pinned Palomar preflight is
+still required.
 
 The selected theorems use the actual marked-edge tilted matrix of a finite cycle
 with at least three states. Every forward and reverse rate is strictly positive.
@@ -12,7 +14,7 @@ from the rates alone. No spectral or uncertainty conclusion is assumed.
 
 [Challenge.lean](Challenge.lean) imports only Mathlib. It copies the exact matrix
 and tilt definitions. Its two deliberate theorem holes are separate from
-[Solution.lean](Solution.lean), which imports all 34 proof modules.
+[Solution.lean](Solution.lean), which imports the 34 original proof modules and one compatibility module.
 The Comparator path is [comparator/unicyclic-skewness.json](comparator/unicyclic-skewness.json).
 The root Lake package maps the proof library to `proof/`.
 

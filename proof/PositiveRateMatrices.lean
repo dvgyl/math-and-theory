@@ -1,6 +1,6 @@
 module
 public import CyclicRateBridge
-public import Mathlib.Data.Real.Sqrt
+public import Mathlib.Analysis.Real.Sqrt
 public import Mathlib.GroupTheory.Perm.Fin
 
 @[expose] public section
@@ -49,7 +49,6 @@ theorem rateGram_posDef (σ : Perm ι)
   intro h
   apply hUV
   have hh := congrArg (fun x : ℝ => x^2) h
-  dsimp only at hh
   rw [sqrt_product_square u (fun j => (hu j).le),
     sqrt_product_square v (fun j => (hv j).le)] at hh
   exact hh

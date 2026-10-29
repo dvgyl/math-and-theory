@@ -64,11 +64,9 @@ theorem characteristic_coefficients_from_spectrum
   · rw [h1] at hc1
     exact hc1
   · have hm := congrArg (fun r : ℝ => d*r) h2
-    dsimp at hm
     rw [hc2]
     nlinarith only [hm]
   · have hm := congrArg (fun r : ℝ => d*r) h3
-    dsimp at hm
     rw [hc3]
     nlinarith only [hm]
 
@@ -95,11 +93,9 @@ theorem normalized_characteristic_coefficients_from_spectrum
   rw [← hT] at h1 h2 h3
   refine ⟨h1, ?_, ?_⟩
   · rw [h2, hm2]
-    field_simp
-    ring
+    field_simp <;> ring
   · rw [h3, hm2, hm3]
-    field_simp
-    ring
+    field_simp <;> ring
 
 #print axioms shiftedProduct_factorization
 #print axioms characteristic_coefficients_from_spectrum

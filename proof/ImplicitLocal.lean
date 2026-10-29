@@ -1,5 +1,6 @@
 module
 public import ImplicitCumulants
+public import Mathlib.Analysis.Calculus.ContDiff.Deriv
 
 @[expose] public section
 
@@ -83,11 +84,9 @@ theorem implicit_cumulant_equations_local
       6*P.coeff 2*deriv f 0*deriv (deriv f) 0 +
       6*P.coeff 3*(deriv f 0)^3 = U-V := by
   have hf' : ContDiffAt ℝ 2 (deriv f) 0 := by
-    simpa only [deriv] using
-      (hf.fderiv_right (m := 2) (by norm_num)).clm_apply contDiffAt_const
+    exact hf.derivWithin (by norm_num)
   have hf'' : ContDiffAt ℝ 1 (deriv (deriv f)) 0 := by
-    simpa only [deriv] using
-      (hf'.fderiv_right (m := 1) (by norm_num)).clm_apply contDiffAt_const
+    exact hf'.derivWithin (by norm_num)
   apply implicit_cumulant_equations_of_local_jets P U V f
     (deriv f) (deriv (deriv f)) (deriv (deriv (deriv f)))
   · filter_upwards [hf.eventually (by norm_num)] with x hx

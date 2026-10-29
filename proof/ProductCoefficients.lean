@@ -1,7 +1,7 @@
 module
 public import Mathlib.Algebra.Polynomial.Coeff
 public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
-public import Mathlib.Data.Real.Basic
+public import Mathlib.Basic.Real.Basic
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.Ring
 public import Mathlib.Tactic.NormNum
@@ -54,7 +54,6 @@ theorem linearProduct_coefficients (s : Finset ι) (x : ι → ℝ) :
     · rw [h1]
       nlinarith only [h2]
     · have hm := congrArg (fun r : ℝ => 3*x a*r) h2
-      dsimp at hm
       nlinarith only [h3, hm]
 
 theorem normalized_linearProduct_coefficients (s : Finset ι) (x : ι → ℝ)

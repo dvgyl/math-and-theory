@@ -72,8 +72,7 @@ theorem bound_from_spectral_shift_and_uncertainty {ι : Type*}
     hd0 (ne_of_gt hT) hc0 ha1 ha2 ha3 hminus hplus
   have hF' : c*p2-(c^2-1)/(2*c) = (p2-(1-r^2)/2)/r := by
     rw [hcr]
-    field_simp [ne_of_gt hr0]
-    ring
+    field_simp [ne_of_gt hr0] <;> ring
   rw [hF,hF'] at htur
   have heq : (1+r)/(1-r) = a/b := by
     apply (div_eq_div_iff (ne_of_gt (sub_pos.mpr hr1)) (ne_of_gt hb)).mpr
@@ -91,8 +90,7 @@ theorem bound_from_spectral_shift_and_uncertainty {ι : Type*}
       UnicyclicMoments.skewness p2 p3 r := by
     rw [hcr]
     dsimp [UnicyclicMoments.skewness]
-    field_simp [ne_of_gt hr0]
-    ring
+    field_simp [ne_of_gt hr0] <;> ring
   rw [hS,hS']
   exact hbounds
 

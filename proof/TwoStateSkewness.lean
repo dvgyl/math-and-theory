@@ -1,6 +1,6 @@
 module
 public import CumulantAlgebra
-public import Mathlib.Data.Real.Sqrt
+public import Mathlib.Analysis.Real.Sqrt
 public import Mathlib.Tactic.Positivity
 
 @[expose] public section
@@ -45,8 +45,7 @@ theorem quadratic_scalar_interval (a α β : ℝ)
   have ha4 : 0<a^4 := pow_pos ha 4
   have heq : 1-6*(α^2+β^2)/a^2+12*(α^2-β^2)^2/a^4 =
       (a^4-6*(α^2+β^2)*a^2+12*(α^2-β^2)^2)/a^4 := by
-    field_simp [ne_of_gt ha]
-    ring
+    field_simp [ne_of_gt ha] <;> ring
   rw [heq]
   constructor
   · apply (le_div_iff₀ ha4).mpr
