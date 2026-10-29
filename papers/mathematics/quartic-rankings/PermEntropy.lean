@@ -1,2 +1,0 @@
-import PermEntropy.TheoremAll
-import PermEntropy.PermutationTheorem

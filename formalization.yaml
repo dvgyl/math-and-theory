@@ -1,0 +1,95 @@
+version: v0.4
+project:
+  name: The three-state root-fidelity entropy bound
+  description: >-
+    For three positive semidefinite trace-one complex matrices in any finite
+    dimension, the ensemble Holevo quantity is at most the entropy of the
+    weighted root-fidelity matrix. Nonnegative weights sum to one. Singular
+    matrices and zero weights are included. Root fidelity is not squared fidelity.
+  authors:
+    - Dev D. Goyal
+  responsible_maintainers:
+    - Dev D. Goyal
+  license: Apache-2.0
+classification:
+  arxiv:
+    - quant-ph
+  msc2020:
+    - 81P45
+    - 15A42
+sources:
+  - title: The three-state root-fidelity entropy bound
+    type: original-proof
+    authors:
+      - Dev D. Goyal
+    id: https://github.com/dvgyl/math-and-theory/blob/a6574b1bf6a591d81c3314d5333fc5da26712d6b/papers/physics/fidelity-three-state/manuscript.pdf
+    relationship: other
+    license: Apache-2.0
+    note: >-
+      The manuscript and complete proof are included. This source predates the
+      uncompiled dependency port and source-file split. The original inequality
+      is credited to Fannes, de Melo, Roga, and Życzkowski. The proof credits
+      the Li–Zhang construction and prior quantum relative entropy results.
+      Priority is not certified.
+  - title: QICLean
+    type: other
+    authors:
+      - Sirui Lu
+      - TNLean contributors
+    id: https://github.com/LionSR/QICLean/tree/acda92aa70e69b37507e422bceb5414036859fe6
+    relationship: background
+    license: Apache-2.0
+    author_endorsement: not-contacted
+    note: >-
+      Forty-two prior foundation modules are bundled in their original order.
+      Their complete source blocks, legal notices, and proof bodies are retained.
+      LICENSE.QICLean and QICFoundation.sources.json record attribution and hashes.
+      This bundled source is not claimed as a new research contribution.
+status:
+  scope: >-
+    This is an uncompiled candidate for Lean 4.35.0 and the pinned Mathlib revision.
+    No successful port verification is claimed. The selected statements are
+    structural positivity of the actual root-fidelity matrix and the fully
+    quantified ensemble entropy inequality. Challenge imports only Mathlib.
+    It copies the exact entropy, nuclear norm, ensemble average, and root-fidelity
+    matrix definitions. Its two deliberate theorem holes are separate from
+    Solution. The structural target supplies a Hermitian proof for the entropy
+    term. No entropy inequality is assumed as a hypothesis or definition.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+automation:
+  methods:
+    - method: autonomous
+      tool_setup: Mathematical argument, formal proofs, and manuscript preparation.
+    - method: agent
+      framework: Codex
+      tool_setup: Prepared this uncompiled candidate from the recorded source.
+  notes: >-
+    This is fully autonomous agentic AI research. AI systems developed the
+    mathematical argument, formal proofs, and manuscript. Dev D. Goyal is
+    responsible for publication. No expert validation or peer review is claimed.
+    The source disclosure does not identify the original model history.
+fidelity:
+  divergences: >-
+    No mathematical change is intended. The exact final theorem and statement
+    definitions are retained. The positivity theorem is also a Challenge target
+    because entropy takes a Hermitian proof. The foundation split preserves
+    every original module block byte-for-byte. The dependency port and split
+    have not been compiled. No mathematical proof repair was attempted.
+review:
+  status: Not peer reviewed. The candidate is uncompiled.
+alignment:
+  namespace: Fidelity
+  statements:
+    - source: Positive semidefiniteness of the weighted root-fidelity matrix
+      lean: Fidelity.rootFidelityMatrix_posSemidef
+      module: Solution
+      status: uncompiled
+    - source: The three-state root-fidelity entropy inequality
+      lean: Fidelity.holevo_le_entropy_rootFidelityMatrix
+      module: Solution
+      status: uncompiled
