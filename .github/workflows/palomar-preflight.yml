@@ -1,48 +1,16 @@
 name: Palomar mechanical preflight
-
-# This workflow checks public source. It does not submit or register a result.
 on:
   workflow_dispatch:
-
 permissions:
   contents: read
-
 jobs:
   verify:
-    name: ${{ matrix.family }}
-    strategy:
-      fail-fast: false
-      max-parallel: 4
-      matrix:
-        include:
-          - family: gyires-circulant-five
-            configuration: lean/comparator/mathematics/gyires.json
-            request_id: pf0000000007
-          - family: q-permanent
-            configuration: lean/comparator/mathematics/q-permanent.json
-            request_id: pf0000000001
-          - family: best-of-n
-            configuration: lean/comparator/theoretical-computer-science/best-of-n.json
-            request_id: pf0000000002
-          - family: hofstadter-iteration
-            configuration: lean/comparator/mathematics/hofstadter-iteration.json
-            request_id: pf0000000003
-          - family: diagonal-concavity
-            configuration: lean/comparator/mathematics/diagonal-concavity.json
-            request_id: pf0000000004
-          - family: alternating-motzkin
-            configuration: lean/comparator/mathematics/motzkin.json
-            request_id: pf0000000005
-          - family: domirank-entropy
-            configuration: lean/comparator/mathematics/domirank-entropy.json
-            request_id: pf0000000006
-    uses: PalomarRegistry/PalomarSubmission/.github/workflows/submission.yml@c02bbeaed888df45c4e28c4e99dba540ad21552a
+    uses: PalomarRegistry/PalomarSubmission/.github/workflows/submission.yml@14aa8d6b3c2f14a8540605e37144560b9a00e7e7
     with:
       repository: ${{ github.repository }}
       commit: ${{ github.sha }}
-      pipeline_commit: c02bbeaed888df45c4e28c4e99dba540ad21552a
-      request_id: ${{ matrix.request_id }}
+      pipeline_commit: 14aa8d6b3c2f14a8540605e37144560b9a00e7e7
+      request_id: sb2026102910
       mode: full
       execution_profile: palomar-standard-v1
-      options: >-
-        {"project_path":"lean","formalization_metadata_path":"lean/formalization.yaml","comparator_config_path":"${{ matrix.configuration }}","authorization_relationship":"I am a responsible author or maintainer"}
+      options: '{"formalization_metadata_path":"formalization.yaml","comparator_config_path":"comparator/steering-bounds.json","authorization_relationship":"I am a responsible author or maintainer"}'

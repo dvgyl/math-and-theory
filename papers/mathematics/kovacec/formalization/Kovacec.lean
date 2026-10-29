@@ -1,6 +1,0 @@
-import KovacecResolution
-
-#check KovacecResolution.completed_counterexample
-#print axioms KovacecResolution.completed_counterexample
-#print axioms KovacecResolution.conjecture7_false
-#print axioms KovacecResolution.ordinary_convex_combination
