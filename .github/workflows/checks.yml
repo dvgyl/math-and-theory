@@ -43,12 +43,12 @@ jobs:
           python lean/scripts/check-lean-sources.py
           python verification/check_gyires_certificates.py
           python verification/check_gyires_packages.py
-          python verification/additional-proofs/unicyclic-skewness/check_certificate.py
+          python papers/physics/unicyclic-skewness/check_certificate.py
       - name: Check certificate failures and publication boundaries
         run: |
           python -m unittest discover -s verification -p 'test_*.py'
-          python verification/additional-proofs/readk-covariance/scripts/test_verifiers.py
-          python verification/additional-proofs/thermal-kurtosis-counterexample/test_verifiers.py
+          python papers/theoretical-computer-science/readk-covariance/scripts/test_verifiers.py
+          python papers/physics/thermal-kurtosis-counterexample/test_verifiers.py
 
   manuscripts:
     name: Manuscript builds
@@ -101,7 +101,7 @@ jobs:
       - name: Copy the unchanged release package
         run: |
           mkdir -p .ci-work
-          cp -R verification/additional-proofs/readk-covariance .ci-work/readk-covariance
+          cp -R papers/theoretical-computer-science/readk-covariance .ci-work/readk-covariance
       - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
         with:
           lake-package-directory: .ci-work/readk-covariance
@@ -115,10 +115,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 verification/check_ci_workcopy.py readk verification/additional-proofs/readk-covariance .ci-work/readk-covariance
+          python3 verification/check_ci_workcopy.py readk papers/theoretical-computer-science/readk-covariance .ci-work/readk-covariance
           (cd .ci-work/readk-covariance && bash verify.sh)
           python3 .ci-work/readk-covariance/scripts/test_verifiers.py
-          python3 verification/check_ci_workcopy.py readk verification/additional-proofs/readk-covariance .ci-work/readk-covariance
+          python3 verification/check_ci_workcopy.py readk papers/theoretical-computer-science/readk-covariance .ci-work/readk-covariance
 
   thermal-lean-419:
     name: Thermal Lean 4.19 build and axiom audit
@@ -137,7 +137,7 @@ jobs:
           path: .ci-work/mathlib4
           persist-credentials: false
       - name: Copy the unchanged release package
-        run: cp -R verification/additional-proofs/thermal-kurtosis-counterexample .ci-work/thermal-kurtosis-counterexample
+        run: cp -R papers/physics/thermal-kurtosis-counterexample .ci-work/thermal-kurtosis-counterexample
       - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
         with:
           lake-package-directory: .ci-work/mathlib4
@@ -165,11 +165,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 verification/check_ci_workcopy.py thermal verification/additional-proofs/thermal-kurtosis-counterexample .ci-work/thermal-kurtosis-counterexample
+          python3 verification/check_ci_workcopy.py thermal papers/physics/thermal-kurtosis-counterexample .ci-work/thermal-kurtosis-counterexample
           bash .ci-work/thermal-kurtosis-counterexample/verify.sh "$PWD/.ci-work/mathlib4" 2>&1 | tee "$RUNNER_TEMP/thermal-verify.log"
           python3 verification/check_embedded_packages.py --thermal-log "$RUNNER_TEMP/thermal-verify.log"
           python3 .ci-work/thermal-kurtosis-counterexample/test_verifiers.py
-          python3 verification/check_ci_workcopy.py thermal verification/additional-proofs/thermal-kurtosis-counterexample .ci-work/thermal-kurtosis-counterexample
+          python3 verification/check_ci_workcopy.py thermal papers/physics/thermal-kurtosis-counterexample .ci-work/thermal-kurtosis-counterexample
 
   study-proofs:
     name: Study proof — ${{ matrix.study }}
@@ -178,13 +178,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        study:
-          - sharp-eighth
-          - universal-embezzlement
-          - galvin-zhang
-          - asymmetric-tutte
-          - higuchi-sudbery
-          - quartic-rankings
+        include:
+          - study: sharp-eighth
+            root: papers/mathematics/sharp-eighth
+          - study: universal-embezzlement
+            root: papers/physics/universal-embezzlement
+          - study: galvin-zhang
+            root: papers/mathematics/galvin-zhang
+          - study: asymmetric-tutte
+            root: papers/mathematics/asymmetric-tutte
+          - study: higuchi-sudbery
+            root: papers/physics/higuchi-sudbery
+          - study: quartic-rankings
+            root: papers/mathematics/quartic-rankings
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
         with:
@@ -193,7 +199,7 @@ jobs:
         env:
           LEAN_NUM_THREADS: '1'
         with:
-          lake-package-directory: verification/additional-proofs/${{ matrix.study }}
+          lake-package-directory: ${{ matrix.root }}
           auto-config: 'false'
           build: 'true'
           test: 'false'
@@ -206,7 +212,7 @@ jobs:
         run: |
           python3 verification/run_study_audit.py "$STUDY_NAME" "$RUNNER_TEMP/study-audit.txt"
           if [ "$STUDY_NAME" = "higuchi-sudbery" ]; then
-            python3 verification/additional-proofs/higuchi-sudbery/tools/audit_sos.py
+            python3 papers/physics/higuchi-sudbery/tools/audit_sos.py
           fi
           git diff --exit-code
 
@@ -223,7 +229,7 @@ jobs:
           persist-credentials: false
       - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
         with:
-          lake-package-directory: verification/gyires-rank-two
+          lake-package-directory: papers/mathematics/gyires/formalization/rank-two
           auto-config: 'false'
           build: 'false'
           test: 'false'
@@ -231,7 +237,7 @@ jobs:
           use-mathlib-cache: 'true'
           use-github-cache: 'false'
       - name: Compile all sources and check the final theorem
-        working-directory: verification/gyires-rank-two
+        working-directory: papers/mathematics/gyires/formalization/rank-two
         run: |
           python3 check_package.py
           python3 -B test_verify.py
@@ -239,10 +245,10 @@ jobs:
           rank_lean="$(elan which lean)"
           rank_dependencies="$(lake env printenv LEAN_PATH)"
           LEAN_PATH="$PWD/.verification/build:$rank_dependencies" "$rank_lean" \
-            --trust=0 -j1 -M8192 -DwarningAsError=true -R ../gyires-rank-two-eight-audit \
-            ../gyires-rank-two-eight-audit/RankTwoEightScopedAudit.lean \
-            > ../gyires-rank-two-eight-audit/audit.log
-          python3 ../gyires-rank-two-eight-audit/check_audit.py ../gyires-rank-two-eight-audit/audit.log
+            --trust=0 -j1 -M8192 -DwarningAsError=true -R ../rank-two-eight-audit \
+            ../rank-two-eight-audit/RankTwoEightScopedAudit.lean \
+            > ../rank-two-eight-audit/audit.log
+          python3 ../rank-two-eight-audit/check_audit.py ../rank-two-eight-audit/audit.log
           git diff --exit-code
 
   completed-portable-proofs:
@@ -254,23 +260,35 @@ jobs:
       max-parallel: 2
       matrix:
         include:
+          - package: quantum-exact-contraction
+            root: papers/physics/quantum-exact-contraction
+            project: .
           - package: power-rank
+            root: papers/mathematics/power-rank
             project: formalization
           - package: graph-roots
+            root: papers/mathematics/graph-roots
             project: formalization
           - package: motzkin-bounded-forcing
+            root: papers/mathematics/motzkin/bounded-forcing
             project: formalization
           - package: admm-counterexample
+            root: papers/mathematics/admm-counterexample
             project: .
           - package: steering-bounds
+            root: papers/physics/steering-bounds
             project: .
           - package: strong-gradient
+            root: papers/mathematics/strong-gradient
             project: lean
           - package: unicyclic-skewness
+            root: papers/physics/unicyclic-skewness
             project: proof
           - package: projection-amgm
+            root: papers/mathematics/projection-amgm
             project: .
           - package: fidelity-three-state
+            root: papers/physics/fidelity-three-state
             project: .
     env:
       LEAN_NUM_THREADS: '1'
@@ -281,7 +299,7 @@ jobs:
       - name: Copy the immutable public package
         run: |
           mkdir -p .ci-work
-          cp -R verification/additional-proofs/${{ matrix.package }} .ci-work/${{ matrix.package }}
+          cp -R "${{ matrix.root }}" .ci-work/${{ matrix.package }}
       - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
         with:
           lake-package-directory: .ci-work/${{ matrix.package }}/${{ matrix.project }}
@@ -296,7 +314,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [[ '${{ matrix.package }}' == 'steering-bounds' ]]; then
+          if [[ '${{ matrix.package }}' == 'quantum-exact-contraction' ]]; then
+            python3 test_verifier.py
+            python3 verify.py
+          elif [[ '${{ matrix.package }}' == 'steering-bounds' ]]; then
             ulimit -v 8388608
             python3 scripts/verify.py --serial
           elif [[ '${{ matrix.package }}' == 'strong-gradient' ]]; then

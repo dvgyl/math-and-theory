@@ -11,9 +11,9 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-EXTENSIONS = ROOT / 'research-notes/gyires-extensions/certificates'
-SUPPORT = ROOT / 'research-notes/gyires-complete-support/certificates'
-ORDER_FIVE = ROOT / 'verification/gyires-circulant-five'
+EXTENSIONS = ROOT / 'papers/mathematics/gyires/research-notes/extensions/certificates'
+SUPPORT = ROOT / 'papers/mathematics/gyires/research-notes/complete-support/certificates'
+ORDER_FIVE = ROOT / 'papers/mathematics/gyires/verification'
 
 
 class CertificateFailureTests(unittest.TestCase):
@@ -85,43 +85,43 @@ class CertificateFailureTests(unittest.TestCase):
                 self.failed(self.run_script('check_axioms.py', log), 'RESULT: FAIL')
 
     def test_source_checker_rejects_missing_proof_library(self):
-        relative = 'verification/gyires-circulant-five/scan_sources.py'
+        relative = 'papers/mathematics/gyires/verification/scan_sources.py'
         target = self.folder / relative
         target.parent.mkdir(parents=True)
         shutil.copy2(ORDER_FIVE / 'scan_sources.py', target)
-        for name, count in [('Challenges/GyiresCirculant5.lean', 18),
-                            ('Solutions/GyiresCirculant5.lean', 0),
-                            ('Solutions/GyiresFourBlock.lean', 0),
-                            ('Solutions/GyiresExceptional.lean', 0)]:
+        for name, count in [('Challenges/Mathematics/Gyires/CirculantFive.lean', 18),
+                            ('Solutions/Mathematics/Gyires/CirculantFive.lean', 0),
+                            ('Solutions/Mathematics/Gyires/FourBlock.lean', 0),
+                            ('Solutions/Mathematics/Gyires/ExceptionalVector.lean', 0)]:
             path = self.folder / 'lean' / name
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text('example : True := by sorry\n' * count)
         self.failed(self.run_script(relative), 'RESULT: FAIL')
 
     def test_source_checker_requires_both_libraries_and_exact_placeholders(self):
-        relative = 'verification/gyires-circulant-five/scan_sources.py'
+        relative = 'papers/mathematics/gyires/verification/scan_sources.py'
         target = self.folder / relative
         target.parent.mkdir(parents=True)
         shutil.copy2(ORDER_FIVE / 'scan_sources.py', target)
-        for name, count in [('Challenges/GyiresCirculant5.lean', 18),
-                            ('Solutions/GyiresCirculant5.lean', 0),
-                            ('Solutions/GyiresFourBlock.lean', 0),
-                            ('Solutions/GyiresExceptional.lean', 0)]:
+        for name, count in [('Challenges/Mathematics/Gyires/CirculantFive.lean', 18),
+                            ('Solutions/Mathematics/Gyires/CirculantFive.lean', 0),
+                            ('Solutions/Mathematics/Gyires/FourBlock.lean', 0),
+                            ('Solutions/Mathematics/Gyires/ExceptionalVector.lean', 0)]:
             path = self.folder / 'lean' / name
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text('example : True := by sorry\n' * count)
-        for family in ('GyiresCirculant5', 'Gyires'):
+        for family in ('Gyires/CirculantFive', 'Gyires'):
             path = self.folder / 'lean/MathAndTheory/Mathematics' / family / 'Proof.lean'
-            path.parent.mkdir(parents=True)
+            path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text('example : True := by trivial\n')
         self.passed(self.run_script(relative))
-        for family in ('GyiresCirculant5', 'Gyires'):
+        for family in ('Gyires/CirculantFive', 'Gyires'):
             path = self.folder / 'lean/MathAndTheory/Mathematics' / family / 'Proof.lean'
             source = path.read_text()
             path.unlink()
             self.failed(self.run_script(relative), 'RESULT: FAIL')
             path.write_text(source)
-        path = self.folder / 'lean/Challenges/GyiresCirculant5.lean'
+        path = self.folder / 'lean/Challenges/Mathematics/Gyires/CirculantFive.lean'
         source = path.read_text()
         for count in (17, 19):
             path.write_text('example : True := by sorry\n' * count)

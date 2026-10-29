@@ -38,10 +38,10 @@ class CertificateReports(unittest.TestCase):
         for name, filename, change in cases:
             with self.subTest(case=name), tempfile.TemporaryDirectory() as tmp:
                 directory = Path(tmp)
-                for group, family in [('support', 'gyires-complete-support'),
-                                      ('extensions', 'gyires-extensions')]:
+                for group, family in [('support', 'complete-support'),
+                                      ('extensions', 'extensions')]:
                     (directory / group).mkdir()
-                    for source in (ROOT / 'research-notes' / family / 'results').glob('*.json'):
+                    for source in (ROOT / 'papers/mathematics/gyires/research-notes' / family / 'results').glob('*.json'):
                         shutil.copyfile(source, directory / group / source.name)
                 if filename is not None:
                     path = next(directory.glob('*/' + filename))

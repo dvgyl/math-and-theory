@@ -16,18 +16,25 @@ jobs:
       matrix:
         include:
           - family: gyires-circulant-five
+            configuration: lean/comparator/mathematics/gyires.json
             request_id: pf0000000007
           - family: q-permanent
+            configuration: lean/comparator/mathematics/q-permanent.json
             request_id: pf0000000001
           - family: best-of-n
+            configuration: lean/comparator/theoretical-computer-science/best-of-n.json
             request_id: pf0000000002
           - family: hofstadter-iteration
+            configuration: lean/comparator/mathematics/hofstadter-iteration.json
             request_id: pf0000000003
           - family: diagonal-concavity
+            configuration: lean/comparator/mathematics/diagonal-concavity.json
             request_id: pf0000000004
           - family: alternating-motzkin
+            configuration: lean/comparator/mathematics/motzkin.json
             request_id: pf0000000005
           - family: domirank-entropy
+            configuration: lean/comparator/mathematics/domirank-entropy.json
             request_id: pf0000000006
     uses: PalomarRegistry/PalomarSubmission/.github/workflows/submission.yml@c02bbeaed888df45c4e28c4e99dba540ad21552a
     with:
@@ -38,4 +45,4 @@ jobs:
       mode: full
       execution_profile: palomar-standard-v1
       options: >-
-        {"project_path":"lean","formalization_metadata_path":"lean/formalization.yaml","comparator_config_path":"lean/comparator/${{ matrix.family }}.json","authorization_relationship":"I am a responsible author or maintainer"}
+        {"project_path":"lean","formalization_metadata_path":"lean/formalization.yaml","comparator_config_path":"${{ matrix.configuration }}","authorization_relationship":"I am a responsible author or maintainer"}

@@ -17,7 +17,7 @@ def is_public_path(name):
         not path.is_absolute() and path.as_posix() == name and "\\" not in name
         and not any(part in EXCLUDED_DIRS or part in {".", ".."} for part in path.parts)
         and path.suffix not in BUILD_SUFFIXES and path.name != ".DS_Store"
-        and (path.suffix != ".log" or path.parts[0] == "verification")
+        and (path.suffix != ".log" or path.parts[0] in {"verification", "papers"})
     )
 
 

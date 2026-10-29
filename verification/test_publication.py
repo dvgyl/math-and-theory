@@ -3,6 +3,7 @@ import hashlib
 import json
 from pathlib import Path
 import tempfile
+import shutil
 import unittest
 from unittest.mock import patch
 import zipfile
@@ -18,15 +19,15 @@ class PublicationTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name) / "source"
         (self.root / "verification/records").mkdir(parents=True)
-        (self.root / "preprints/example").mkdir(parents=True)
-        (self.root / "preprints/example/paper.pdf").write_bytes(b"PDF fixture")
-        (self.root / "preprints/example/paper.tex").write_text("TeX fixture")
+        (self.root / "papers/mathematics/example").mkdir(parents=True)
+        (self.root / "papers/mathematics/example/paper.pdf").write_bytes(b"PDF fixture")
+        (self.root / "papers/mathematics/example/paper.tex").write_text("TeX fixture")
         (self.root / "catalogue.json").write_text(json.dumps({"schema_version": 1, "families": [
-            {"id": "example", "paper": "preprints/example/paper.pdf",
+            {"id": "example", "discipline": "Mathematics", "paper": "papers/mathematics/example/paper.pdf",
              "formalization": {"kind": "comparator"}, "module": "Example", "namespace": "Example",
-             "comparator": "lean/comparator/example.json", "theorems": []}]}))
-        self.names = sorted([MANIFEST, HASHES, "catalogue.json", "preprints/example/paper.pdf",
-                             "preprints/example/paper.tex"])
+             "comparator": "lean/comparator/mathematics/example.json", "theorems": []}]}))
+        self.names = sorted([MANIFEST, HASHES, "catalogue.json", "papers/mathematics/example/paper.pdf",
+                             "papers/mathematics/example/paper.tex"])
         self.record()
 
     def record(self):
@@ -50,12 +51,12 @@ class PublicationTests(unittest.TestCase):
     def test_archive_families_use_the_saved_catalogue(self):
         catalogue_path = self.root / "catalogue.json"
         catalogue = json.loads(catalogue_path.read_text())
-        second = dict(catalogue["families"][0], id="second", paper="preprints/second/paper.pdf",
-                      comparator="lean/comparator/second.json")
+        second = dict(catalogue["families"][0], id="second", paper="papers/mathematics/second/paper.pdf",
+                      comparator="lean/comparator/mathematics/second.json")
         catalogue["families"].append(second)
-        (self.root / "preprints/second").mkdir()
+        (self.root / "papers/mathematics/second").mkdir()
         for suffix in ("pdf", "tex"):
-            name = f"preprints/second/paper.{suffix}"
+            name = f"papers/mathematics/second/paper.{suffix}"
             (self.root / name).write_bytes(b"Second manuscript")
             self.names.append(name)
         self.names.sort()
@@ -86,12 +87,12 @@ class PublicationTests(unittest.TestCase):
             load_publication_files(self.root)
 
     def test_missing_file_fails(self):
-        (self.root / "preprints/example/paper.pdf").unlink()
+        (self.root / "papers/mathematics/example/paper.pdf").unlink()
         with self.assertRaises(ValueError):
             verify(self.root)
 
     def test_changed_file_fails(self):
-        (self.root / "preprints/example/paper.pdf").write_bytes(b"changed")
+        (self.root / "papers/mathematics/example/paper.pdf").write_bytes(b"changed")
         with self.assertRaises(ValueError):
             verify(self.root)
 
@@ -109,7 +110,7 @@ class PublicationTests(unittest.TestCase):
                     load_publication_files(self.root)
 
     def test_symbolic_link_fails(self):
-        target = self.root / "preprints/example/paper.pdf"
+        target = self.root / "papers/mathematics/example/paper.pdf"
         target.unlink()
         target.symlink_to(self.root / "catalogue.json")
         with self.assertRaises(ValueError):
@@ -124,7 +125,7 @@ class PublicationTests(unittest.TestCase):
         output.mkdir()
         source = self.root / "catalogue.json"
         before = source.read_bytes()
-        for name in ["example.pdf", "example-archival-package.zip", "packages.json"]:
+        for name in ["example.pdf", "math-and-theory-source.zip", "packages.json"]:
             with self.subTest(name=name):
                 link = output / name
                 link.symlink_to(source)
@@ -148,39 +149,78 @@ class PublicationTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     build(self.root, output)
 
-    def test_standalone_manuscript_outside_preprints(self):
-        package = self.root / "verification/additional-proofs/example-standalone"
-        package.mkdir(parents=True)
-        (package / "report.pdf").write_bytes(b"Standalone PDF")
-        (package / "report.tex").write_text("Standalone TeX")
+    def test_real_legacy_and_curated_packages_share_one_complete_archive(self):
+        # Exercise the actual package validators: mocking them hid missing
+        # snapshot registry files and legacy-only metadata assumptions.
+        source = Path(__file__).resolve().parents[1]
+        selected = {"sharp-eighth", "projection-amgm"}
+        source_catalogue = json.loads((source / "catalogue.json").read_text())
+        families = [f for f in source_catalogue["families"] if f["id"] in selected]
         catalogue = json.loads((self.root / "catalogue.json").read_text())
-        catalogue["families"].append({
-            "id": "example-standalone",
-            "paper": "verification/additional-proofs/example-standalone/report.pdf",
-            "formalization": {"kind": "standalone", "root": "verification/additional-proofs/example-standalone"},
-        })
+        catalogue["families"].extend(families)
         (self.root / "catalogue.json").write_text(json.dumps(catalogue))
-        self.names.extend(["verification/additional-proofs/example-standalone/report.pdf",
-                           "verification/additional-proofs/example-standalone/report.tex"])
-        self.names.sort()
+        for family in families:
+            name = family["formalization"]["root"]
+            shutil.copytree(source / name, self.root / name)
+        registry = json.loads((source / "verification/curated-packages.json").read_text())
+        registry["packages"] = {"projection-amgm": registry["packages"]["projection-amgm"]}
+        (self.root / "verification/curated-packages.json").write_text(json.dumps(registry))
+        self.names = sorted(p.relative_to(self.root).as_posix()
+                            for p in self.root.rglob("*") if p.is_file())
         self.record()
+        from check_embedded_packages import EXPECTED_MANIFESTS
+        legacy = {"sharp-eighth": EXPECTED_MANIFESTS["sharp-eighth"]}
         output = Path(self.temp.name) / "packages"
-        evidence = {"example-standalone": {"formal_scope": "Finite example.",
-                                           "lean_version": "4.19.0", "mathlib_revision": "a" * 40}}
-        with patch("build_archives.check_packages", return_value=evidence), \
-             patch.dict("build_archives.EXPECTED_MANIFESTS", {"example-standalone": "b" * 64}):
+        with patch.dict(EXPECTED_MANIFESTS, legacy, clear=True), \
+             patch("check_curated_packages.CURATED_IDS", frozenset({"projection-amgm"})):
             first = build(self.root, output)
             second = build(self.root, output)
         self.assertEqual(first, second)
-        self.assertEqual(len(first), 2)
-        self.assertEqual((output / "example-standalone.pdf").read_bytes(), b"Standalone PDF")
-        with zipfile.ZipFile(output / "example-standalone-archival-package.zip") as bundle:
+        self.assertEqual(len(first), 3)
+        self.assertEqual(len(list(output.glob("*.zip"))), 1)
+        self.assertEqual({row["archive"] for row in first}, {"math-and-theory-source.zip"})
+        with zipfile.ZipFile(output / first[0]["archive"]) as bundle:
             metadata = json.loads(bundle.read("PACKAGE.json"))
-            self.assertEqual(metadata["manuscript"],
-                             "math-and-theory/verification/additional-proofs/example-standalone/report.pdf")
-            self.assertEqual(metadata["formalization"]["kind"], "standalone")
+            self.assertEqual(metadata["format_version"], 2)
+            rows = {row["family"]: row for row in metadata["manuscripts"]}
+            self.assertEqual(rows["sharp-eighth"]["formalization"]["manifest_sha256"],
+                             legacy["sharp-eighth"])
+            proof = rows["projection-amgm"]["formalization"]
+            self.assertEqual(proof["manifest_sha256"],
+                             registry["packages"]["projection-amgm"]["release_manifest_sha256"])
+            self.assertEqual(proof["proof_roots"], registry["packages"]["projection-amgm"]["proof_roots"])
             for name in self.names:
                 self.assertEqual(bundle.read(f"math-and-theory/{name}"), (self.root / name).read_bytes())
+        # Refreshing the collection hash must not excuse a corrupted inner package.
+        damaged = self.root / "papers/mathematics/projection-amgm/README.md"
+        damaged.write_text(damaged.read_text() + "\nUnreviewed change.\n")
+        self.record()
+        with patch.dict(EXPECTED_MANIFESTS, legacy, clear=True), \
+             patch("check_curated_packages.CURATED_IDS", frozenset({"projection-amgm"})):
+            with self.assertRaisesRegex(ValueError, "Changed curated file"):
+                build(self.root, output)
+
+
+class LayoutTests(unittest.TestCase):
+    def test_route_requires_registered_family_or_explicit_discipline(self):
+        from repository_layout import family_root
+        with self.assertRaisesRegex(ValueError, "Unregistered"):
+            family_root("unregistered-result")
+        self.assertEqual(family_root("unregistered-result", "Mathematics"),
+                         "papers/mathematics/unregistered-result")
+
+    def test_route_rejects_unsafe_names_and_unknown_subjects(self):
+        from repository_layout import family_root
+        for name in ("../outside", "UpperCase", "a/b", ""):
+            with self.assertRaises(ValueError):
+                family_root(name, "Mathematics")
+        with self.assertRaisesRegex(ValueError, "Unknown discipline"):
+            family_root("example", "Unknown")
+
+    def test_companions_share_their_family(self):
+        from repository_layout import family_root
+        self.assertEqual(family_root("motzkin-bounded-forcing"),
+                         family_root("alternating-motzkin") + "/bounded-forcing")
 
 
 if __name__ == "__main__":

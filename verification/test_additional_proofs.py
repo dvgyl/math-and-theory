@@ -1,4 +1,5 @@
 """Reject changed packages and incomplete proof evidence."""
+from repository_layout import family_root
 
 import hashlib
 import json
@@ -14,7 +15,7 @@ from catalogue_paths import load_families
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PACKAGES = ROOT / "verification/additional-proofs"
+
 
 
 class AdditionalProofTests(unittest.TestCase):
@@ -23,8 +24,8 @@ class AdditionalProofTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.readk = Path(self.temp.name) / "readk-covariance"
         self.thermal = Path(self.temp.name) / "thermal-kurtosis-counterexample"
-        shutil.copytree(PACKAGES / self.readk.name, self.readk)
-        shutil.copytree(PACKAGES / self.thermal.name, self.thermal)
+        shutil.copytree(ROOT / family_root(self.readk.name), self.readk)
+        shutil.copytree(ROOT / family_root(self.thermal.name), self.thermal)
 
     def test_release_members_and_evidence_pass(self):
         readk = check_manifest(self.readk, EXPECTED_MANIFESTS[self.readk.name])
@@ -83,16 +84,16 @@ class AdditionalProofTests(unittest.TestCase):
 
     def test_standalone_catalogue_rejects_cross_package_manuscript(self):
         root = Path(self.temp.name) / "catalogue-root"
-        package = root / "verification/additional-proofs/example"
+        package = root / "papers/mathematics/example"
         package.mkdir(parents=True)
         (package / "report.pdf").write_bytes(b"PDF")
         (package / "report.tex").write_text("TeX")
-        family = {"id": "example", "paper": "verification/additional-proofs/example/report.pdf",
-                  "formalization": {"kind": "standalone", "root": "verification/additional-proofs/example"}}
+        family = {"id": "example", "discipline": "Mathematics", "paper": "papers/mathematics/example/report.pdf",
+                  "formalization": {"kind": "standalone", "root": "papers/mathematics/example"}}
         catalogue = {"schema_version": 1, "families": [family]}
         (root / "catalogue.json").write_text(json.dumps(catalogue))
         self.assertEqual(len(load_families(root)), 1)
-        family["formalization"]["root"] = "verification/additional-proofs/other"
+        family["formalization"]["root"] = "papers/mathematics/other"
         (root / "catalogue.json").write_text(json.dumps(catalogue))
         with self.assertRaisesRegex(ValueError, "Invalid standalone route"):
             load_families(root)

@@ -1,0 +1,169 @@
+{
+  "format_version": 1,
+  "package_id": "kovacec",
+  "formal_scope": "Actual normal matrices, determinants, straight-segment exterior and component exclusion are formalized. Correspondence with an external source conjecture is conditional.",
+  "proof_roots": [
+    {
+      "path": "formalization",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.toml",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "formalization/Kovacec.lean": "bff54530ca185b0d983faf15f8d1751bea652dc9de5697e617da4f668a734caa",
+    "formalization/KovacecBoundary.lean": "3c324c1dda254b2b53b0183f8f031cfa1c21dcb2929b92eb1bbfdc9de439de2c",
+    "formalization/KovacecCertificate.lean": "930f43cfea9f60c6df4a119f86eb5998e14ecd892d4b293bb9bceca158b2fecc",
+    "formalization/KovacecGraph.lean": "c36017aed5c8ead8b74da76234f16b7b4d2c0c488c574efc7e1f3e6513260d69",
+    "formalization/KovacecJordan.lean": "84c38392be4232b88b1076e525c4361bfe40938f6ffdbe256cc8367c15e9ec8b",
+    "formalization/KovacecLoop.lean": "3c43402ce96e9db950d6cf4e0d00e683356a09fe87253e573ec0e7faac7623f7",
+    "formalization/KovacecResolution.lean": "a4e2a215ca1937fc198920a78118408c49df456588cee89cb0c7618cc84ef34b",
+    "formalization/RayComponent.lean": "3a7db9a3e425722f10c4ad676ff3126a2b836dc6ec65e1f9e8d5970808e682ee",
+    "formalization/RayExterior.lean": "ecc7046260f774f75c5cc017a33087d5120de15cec2026f75743f3f69ac179eb",
+    "formalization/ReplayAudit.lean": "e8883783451075aec663b5ae95f2ae58c978c43272be2799988fa4e07f2765c3"
+  },
+  "integrity_manifests": [],
+  "files": {
+    ".gitignore": {
+      "bytes": 58,
+      "sha256": "0981dfab8acb87580ddf8856af6700621cf5aa4ab2f9f2160347c6a5ac5e8db1"
+    },
+    "CITATION.bib": {
+      "bytes": 182,
+      "sha256": "d66b299d4a37dd95f6c0d867517b3b2287092438ceb3ea28977694161ebefadf"
+    },
+    "CITATION.cff": {
+      "bytes": 659,
+      "sha256": "917ed19222420b89ea333a3f3f62f5724d0bf7a3f200a9f3448c70d24128a696"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 2952,
+      "sha256": "2426cfca4cf2e09d3d18f05ded91a8284146e6a9f2a126a097eec53293a65279"
+    },
+    "SHA256SUMS": {
+      "bytes": 3137,
+      "sha256": "891c37a7948a4e1f1ee7b4b2592edeea165be7edb75e652615939d60b28176fe"
+    },
+    "formalization/Kovacec.lean": {
+      "bytes": 243,
+      "sha256": "bff54530ca185b0d983faf15f8d1751bea652dc9de5697e617da4f668a734caa"
+    },
+    "formalization/KovacecBoundary.lean": {
+      "bytes": 3124,
+      "sha256": "3c324c1dda254b2b53b0183f8f031cfa1c21dcb2929b92eb1bbfdc9de439de2c"
+    },
+    "formalization/KovacecCertificate.lean": {
+      "bytes": 5400,
+      "sha256": "930f43cfea9f60c6df4a119f86eb5998e14ecd892d4b293bb9bceca158b2fecc"
+    },
+    "formalization/KovacecGraph.lean": {
+      "bytes": 7684,
+      "sha256": "c36017aed5c8ead8b74da76234f16b7b4d2c0c488c574efc7e1f3e6513260d69"
+    },
+    "formalization/KovacecJordan.lean": {
+      "bytes": 5059,
+      "sha256": "84c38392be4232b88b1076e525c4361bfe40938f6ffdbe256cc8367c15e9ec8b"
+    },
+    "formalization/KovacecLoop.lean": {
+      "bytes": 4735,
+      "sha256": "3c43402ce96e9db950d6cf4e0d00e683356a09fe87253e573ec0e7faac7623f7"
+    },
+    "formalization/KovacecResolution.lean": {
+      "bytes": 5610,
+      "sha256": "a4e2a215ca1937fc198920a78118408c49df456588cee89cb0c7618cc84ef34b"
+    },
+    "formalization/LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "formalization/RayComponent.lean": {
+      "bytes": 4297,
+      "sha256": "3a7db9a3e425722f10c4ad676ff3126a2b836dc6ec65e1f9e8d5970808e682ee"
+    },
+    "formalization/RayExterior.lean": {
+      "bytes": 2301,
+      "sha256": "ecc7046260f774f75c5cc017a33087d5120de15cec2026f75743f3f69ac179eb"
+    },
+    "formalization/ReplayAudit.lean": {
+      "bytes": 389,
+      "sha256": "e8883783451075aec663b5ae95f2ae58c978c43272be2799988fa4e07f2765c3"
+    },
+    "formalization/build.sh": {
+      "bytes": 878,
+      "sha256": "cccf7b678e7d289c1db54a9687adf6138f4756bb4231560fb8016da423d488e8"
+    },
+    "formalization/check_axioms.py": {
+      "bytes": 2963,
+      "sha256": "f55cc1154e5d432135632030b57b60afa80af846bd20485c679127229c68d478"
+    },
+    "formalization/lake-manifest.json": {
+      "bytes": 3549,
+      "sha256": "be9feca39c4079775555cf0fcc44e0bcdc8267f4ad3afae9bf30c9b146766ce7"
+    },
+    "formalization/lakefile.toml": {
+      "bytes": 411,
+      "sha256": "88e169b40e28b84cf9a083c78dee3a77aa0dba9531b5351e5427d3c983fe1897"
+    },
+    "formalization/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    "formalization/tests/test_verifier.py": {
+      "bytes": 4920,
+      "sha256": "3b1dd320533e5c03db571f658258793d5c5f8a4f95e43ab649862af684f839a3"
+    },
+    "manuscript/AUTHORSHIP.md": {
+      "bytes": 372,
+      "sha256": "073875964196aba0fc3dfd0496419d315654686a16ca05bf130e4687d8315780"
+    },
+    "manuscript/CITATION.bib": {
+      "bytes": 182,
+      "sha256": "d66b299d4a37dd95f6c0d867517b3b2287092438ceb3ea28977694161ebefadf"
+    },
+    "manuscript/CITATION.cff": {
+      "bytes": 659,
+      "sha256": "917ed19222420b89ea333a3f3f62f5724d0bf7a3f200a9f3448c70d24128a696"
+    },
+    "manuscript/FORMALIZATION.md": {
+      "bytes": 3725,
+      "sha256": "09dd9068e254f9619163573ce4b382cf21d34eaec8694a74802f85e2a63c3376"
+    },
+    "manuscript/LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "manuscript/README.md": {
+      "bytes": 244,
+      "sha256": "0dca175e8c1498ed519cbf569dfc3ecba6e32f3e698202e0de0478506b957a8a"
+    },
+    "manuscript/build.sh": {
+      "bytes": 279,
+      "sha256": "7310241b0ccaa65036f9cc624902c4e5614f4c3c46d2a4b5fb0ce14bbe1c0cc8"
+    },
+    "manuscript/citation.bib": {
+      "bytes": 182,
+      "sha256": "d66b299d4a37dd95f6c0d867517b3b2287092438ceb3ea28977694161ebefadf"
+    },
+    "manuscript/figures/kovacec_counterexample.png": {
+      "bytes": 121791,
+      "sha256": "9aec57663972fe5ec85c7eb1fb7c5c7da10bedf9b71af1e0c2833a3059b68a80"
+    },
+    "manuscript/manuscript.pdf": {
+      "bytes": 374976,
+      "sha256": "b618b6b78ed5a68e6f544e13fac1340a7517369f07d422d2b3e598b5a371fed7"
+    },
+    "manuscript/manuscript.tex": {
+      "bytes": 16208,
+      "sha256": "79013cd6c54a82050e1563d121c090fd541a89c449cff33b47098c5cea735d86"
+    },
+    "manuscript/references.bib": {
+      "bytes": 411,
+      "sha256": "d671ce05c9821a2992798bc97ca11f619a61cc6d0a052f746df2f608a0a85782"
+    }
+  }
+}

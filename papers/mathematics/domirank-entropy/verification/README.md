@@ -1,0 +1,19 @@
+# Independent DomiRank checks
+
+I include exact computational checks for the DomiRank entropy counterexample here.
+
+Run from the repository root after installing [the pinned packages](../../../../verification/requirements.txt):
+
+```sh
+python3 papers/mathematics/domirank-entropy/verification/scripts/verify.py
+```
+
+The program constructs the graph from its edge rules. It checks all 32 edges, connectivity, and every degree. Exact matrix calculations verify a rational LDL factorization of `15I+4A` and the five-class quotient formula. Exact rational root isolation proves that all relevant numerator and denominator polynomials have no root on the closed comparison interval. Their left-endpoint signs then establish interval positivity.
+
+The program independently inverts the full 14 by 14 matrices at both endpoints. It computes the oriented-edge covariance. Finite rational logarithm bounds reproduce all ten endpoint probability enclosures and prove an entropy gap greater than `1/10000`. An 80-decimal calculation illustrates the gap; it is not used as the sign proof.
+
+[Logs](logs) record the run. The [central guide](../../../../verification/README.md) records formal and independent-kernel checks. [Statement fidelity](../../../../lean/docs/mathematics/domirank-entropy.md) explains the source normalization and spectral condition. These checks concern the exact graph and mathematical model, not empirical network performance.
+
+## Research process and review
+
+The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.

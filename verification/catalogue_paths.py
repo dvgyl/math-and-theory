@@ -1,4 +1,5 @@
 """Read manuscript paths and formalization kinds from one catalogue."""
+from repository_layout import family_root
 
 import json
 from pathlib import Path
@@ -49,14 +50,14 @@ def validate_families(root, record, public_names=None):
             raise ValueError(f"Missing formalization kind: {name}")
         kind = formalization.get("kind")
         if kind == "comparator":
-            if set(formalization) != {"kind"} or paper != f"preprints/{name}/paper.pdf":
+            if set(formalization) != {"kind"} or paper != family_root(name, family.get('discipline')) + "/paper.pdf":
                 raise ValueError(f"Invalid Comparator route: {name}")
             if not all(key in family for key in ("module", "namespace", "comparator", "theorems")):
                 raise ValueError(f"Missing Comparator fields: {name}")
-            if family["comparator"] != f"lean/comparator/{name}.json":
+            if family["comparator"] != "lean/comparator/" + "/".join(family_root(name, family.get('discipline')).split("/")[1:]) + ".json":
                 raise ValueError(f"Invalid Comparator path: {name}")
         elif kind == "standalone":
-            package = f"verification/additional-proofs/{name}"
+            package = family_root(name, family.get('discipline'))
             if set(formalization) != {"kind", "root"} or formalization["root"] != package:
                 raise ValueError(f"Invalid standalone route: {name}")
             if not paper.startswith(package + "/"):

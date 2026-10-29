@@ -1,12 +1,12 @@
 module
 import MathAndTheory
-import Solutions.QPermanent
-import Solutions.DomiRank
-import Solutions.DiagonalConcavity
-import Solutions.Hofstadter
-import Solutions.Motzkin
-import Solutions.BestOfN
-import Solutions.GyiresCirculant5
+import Solutions.Mathematics.QPermanent.Main
+import Solutions.Mathematics.DomiRank.Main
+import Solutions.Mathematics.DiagonalConcavity.Main
+import Solutions.Mathematics.Hofstadter.Main
+import Solutions.Mathematics.Motzkin.Main
+import Solutions.TheoreticalCS.BestOfN.Main
+import Solutions.Mathematics.Gyires.CirculantFive
 
 /-!
 Publication acceptance checks.  These type ascriptions restate the target claims,

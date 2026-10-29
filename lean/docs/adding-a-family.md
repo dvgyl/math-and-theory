@@ -14,15 +14,15 @@ A family is one coherent group of results. A manuscript must state the verificat
 
 Add modules under `MathAndTheory/Mathematics`, `MathAndTheory/TheoreticalCS`, or `MathAndTheory/MathematicalPhysics`. Use the shared pinned Lean 4.35.0 Lake project.
 
-Add an independent Challenge and a matching Solution. Keep the Challenge below 300 lines where practical. Add one Comparator configuration for the family. Update the shared formalization metadata and axiom audit. Set the catalogue entry's formalization kind to `comparator`.
+Add an independent Challenge under `Challenges/<discipline>/<family>/` and a matching Solution under `Solutions/<discipline>/<family>/`. Keep the Challenge below 300 lines where practical. Add one Comparator configuration under `comparator/<discipline>/` and a family guide under `docs/<discipline>/`. Update the shared formalization metadata and axiom audit. Set the catalogue entry's formalization kind to `comparator`.
 
 Run source validation, the library build, the axiom audit, Comparator, and the independent kernel checks. Challenge proof placeholders remain outside the proved library and its axiom audit.
 
 ## Preserve a standalone package
 
-Use a standalone package when an established formalization requires a separate pinned environment. Place it under `verification/additional-proofs/<family-id>/`. Preserve its source files, relative paths, dependency pins, verification records, and complete file manifest. Set the catalogue entry's formalization kind to `standalone`.
+Use a standalone package when an established formalization requires a separate pinned environment. Place it under `papers/<discipline>/<family-id>/`. Preserve its source files, relative paths, dependency pins, verification records, and complete file manifest. Set the catalogue entry's formalization kind to `standalone`.
 
-Keep the manuscript and citation files in the package. Link to them from the collection; do not make duplicate copies under `preprints/`. The catalogue must identify the package root, manifest, and manuscript. The package manifest records its toolchain, Mathlib revision, file hashes, and formal scope.
+Keep the manuscript and citation files in the package. Link to them from the collection; do not make duplicate manuscript or proof trees. The catalogue must identify the package root, manifest, and manuscript. The package manifest records its toolchain, Mathlib revision, file hashes, and formal scope.
 
 Check exact manifest coverage, source evidence, theorem-report coverage, permitted axioms, and independent arithmetic. Test that incorrect mathematics or incomplete evidence produces failure. Add a separate automatic proof job that reproduces the package with its pinned dependencies. Run builds in temporary working copies. Do not replace committed verification records with generated output.
 

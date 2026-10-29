@@ -37,7 +37,7 @@ for p in lean:
     if not challenge:require(re.search(r'\bimport\s+Challenges\.',code) is None,f'Proof imports a Challenge: {rel}')
     require(not p.is_symlink(),f'Symbolic link: {rel}')
     if challenge:require(len(p.read_text().splitlines())<300,f'Challenge has at least 300 lines: {rel}')
-configs=list((root/'lean/comparator').glob('*.json'));names=[]
+configs=list((root/'lean/comparator').rglob('*.json'));names=[]
 for p in configs:
     c=json.loads(p.read_text());require(set(c)=={'challenge_module','solution_module','theorem_names','permitted_axioms'},f'Unexpected Comparator fields: {p.name}')
     require(set(c['permitted_axioms'])=={'propext','Classical.choice','Quot.sound'},f'Axiom allowlist: {p.name}')
@@ -49,14 +49,14 @@ families=load_families(root)
 comparator_families=[f for f in families if f['formalization']['kind']=='comparator']
 standalone_families=[f for f in families if f['formalization']['kind']=='standalone']
 require(len(comparator_families)==len(configs),'Comparator catalogue/configuration count mismatch')
-require({f['id'] for f in comparator_families}=={p.stem for p in configs},'Comparator catalogue/configuration identifiers differ')
+require({f['comparator'] for f in comparator_families}=={p.relative_to(root).as_posix() for p in configs},'Comparator catalogue/configuration identifiers differ')
 for f in comparator_families:
-    config_path = root / 'lean/comparator' / (f['id'] + '.json')
+    config_path = root / f['comparator']
     selected = json.loads(config_path.read_text())['theorem_names'] if config_path.is_file() else []
     require(f.get('theorems') == selected, f'Catalogue theorem coverage differs: {f["id"]}')
-    d=root/'preprints'/f['id']
+    d=(root/f['paper']).parent
     for name in ['paper.tex','paper.pdf','references.bib','citation.bib','README.md']:require((d/name).is_file(),f'Missing paper artifact: {f["id"]}/{name}')
-    require((root/'lean/docs'/(f['id']+'.md')).is_file(),f'Missing formal guide: {f["id"]}')
+    require((root/f['comparator'].replace('lean/comparator/', 'lean/docs/').replace('.json', '.md')).is_file(),f'Missing formal guide: {f["id"]}')
 check_packages(root,families)
 links=0
 for p in files:

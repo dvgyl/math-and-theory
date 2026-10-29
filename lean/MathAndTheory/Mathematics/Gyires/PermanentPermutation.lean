@@ -1,6 +1,6 @@
 module
 
-public import MathAndTheory.Mathematics.GyiresCirculant5.Remarks
+public import MathAndTheory.Mathematics.Gyires.CirculantFive.Remarks
 
 @[expose] public section
 

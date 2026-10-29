@@ -1,6 +1,6 @@
 module
 
-public import MathAndTheory.Mathematics.GyiresCirculant5.PermanentGram
+public import MathAndTheory.Mathematics.Gyires.CirculantFive.PermanentGram
 public import Mathlib.Algebra.QuadraticDiscriminant
 public import Mathlib.Analysis.Real.Sqrt
 

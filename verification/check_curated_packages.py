@@ -7,11 +7,15 @@ from pathlib import Path, PurePosixPath
 import re
 import tomllib
 
-CURATED_IDS = frozenset({
-    'power-rank', 'admm-counterexample', 'graph-roots', 'motzkin-bounded-forcing',
-    'sidon-renyi', 'ordered-allocation', 'kunisky', 'pure-ecqc', 'kovacec', 'leaf-deletion',
-    'steering-bounds', 'strong-gradient', 'unicyclic-skewness', 'projection-amgm', 'fidelity-three-state',
-})
+# Older packages have dedicated verification adapters; every other standalone
+# catalogue entry uses the common frozen-package protocol.
+from repository_layout import CATALOGUE, family_root
+from check_study_packages import PROFILES
+LEGACY_IDS = frozenset(PROFILES) | {'readk-covariance', 'thermal-kurtosis-counterexample'}
+CURATED_IDS = frozenset(f['id'] for f in CATALOGUE['families']
+                        if f['formalization']['kind'] == 'standalone'
+                        and f['id'] not in LEGACY_IDS)
+
 HASH = re.compile(r'[0-9a-f]{64}\Z')
 REVISION = re.compile(r'[0-9a-f]{40}\Z')
 BLOCKED = {'.git', '.lake', '.verification', '__pycache__', '.build'}
@@ -87,7 +91,7 @@ def check_records(package, records):
 def validate_entry(name, entry, allow_pending=False):
     require(name in CURATED_IDS and isinstance(entry, dict) and set(entry) == ENTRY_KEYS,
             'Invalid curated registry entry: ' + name)
-    require(entry['root'] == 'verification/additional-proofs/' + name,
+    require(entry['root'] == family_root(name),
             'Wrong curated package route: ' + name)
     require(isinstance(entry['formal_scope'], str) and bool(entry['formal_scope'].strip()),
             'Missing curated formal scope: ' + name)

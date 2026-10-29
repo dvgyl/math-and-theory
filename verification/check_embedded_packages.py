@@ -18,14 +18,14 @@ from check_curated_packages import load_registry, check as check_curated
 
 
 EXPECTED_MANIFESTS = {
-    "asymmetric-tutte": "6dd17f1b7a2ab4b87f840fc073683326d1fcd542e3f4adbb093f2440e3cc55a3",
+    "asymmetric-tutte": "05d56b54d039f7f47040add53bcb9f0e75501f97d0adeccb9906fca38529996d",
     "galvin-zhang": "1e8e5c56f9ea7d8bbd14c4dadeeb93a9a346c351ebcb5a35e17b552b6a886276",
-    "higuchi-sudbery": "91a75f007d60bcdd3c1aeef938f66470aee291384b77f50764c54ccac93a93cb",
-    "quartic-rankings": "e0333c6dedf134e7e98c6bfd8587353ab2951bc495791bd1205db784edf84b26",
-    "readk-covariance": "bb6884906ec8d419883f0f733b284d4be52d68cc21cec7975c380d87ca5ac3da",
-    "sharp-eighth": "6c07072d22663bc2c1af2897e9f1623b6a3df42c9b4b9149d7f6021243354398",
-    "thermal-kurtosis-counterexample": "5501fe4e6dc9fb19912d804f389b7982ff0847ae6634914c23affa30b38f91b6",
-    "universal-embezzlement": "5887b121bf67cd2c6fd4141049787a177c4a5c6b14ffae0c6bbfdc9c7d0cb076"
+    "higuchi-sudbery": "d4a218d171c824c9b73684d7ccae16adf355b1a911a7d46935a3eccdb4f7ac15",
+    "quartic-rankings": "bcfffa2f54209add3b357e5260eb28683c53908e24c8c34704d550977b6e08a3",
+    "readk-covariance": "3d124f4af104bbf61275fcc838d356a874541869a995b7fa6368c01f74ef1b6a",
+    "sharp-eighth": "7da5e59ceb66bbb8a8c5f7c0ae3cfee2432daaba885e46513d575ce00b38e985",
+    "thermal-kurtosis-counterexample": "5dfc5d4a64941e0b07b320e7b8fe31569768ec1360cc1bac5f44c7cf024b09a0",
+    "universal-embezzlement": "01f0f4f45fc69996b183e2cae54f04f417c0b270a7b308a4512f3e35d781d6b7"
 }
 MATHLIB = "c44e0c8ee63ca166450922a373c7409c5d26b00b"
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
@@ -254,7 +254,7 @@ if __name__ == "__main__":
     if args.arithmetic:
         check_arithmetic(root, families)
     if args.thermal_log:
-        package = root / "verification/additional-proofs/thermal-kurtosis-counterexample"
+        package = root / "papers/physics/thermal-kurtosis-counterexample"
         thermal_axioms((package / "ThermalKurtosis.lean").read_text(), args.thermal_log.read_text())
     print(json.dumps({"status": "PASS", "standalone_packages": len(manifests),
                       "fresh_arithmetic": args.arithmetic, "fresh_thermal_axioms": bool(args.thermal_log)}))

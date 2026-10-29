@@ -1,4 +1,5 @@
 """Run a package audit and require its complete theorem output."""
+from repository_layout import family_root
 from pathlib import Path
 import argparse
 import os
@@ -17,7 +18,7 @@ def main():
     parser.add_argument("output", type=Path)
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
-    package = root / "verification/additional-proofs" / args.study
+    package = root / family_root(args.study)
     output = args.output.resolve()
     if root == output or root in output.parents or args.output.is_symlink():
         raise ValueError("The audit output must be outside the repository.")

@@ -13,9 +13,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--support', type=Path,
-                    default=ROOT / 'research-notes/gyires-complete-support/results')
+                    default=ROOT / 'papers/mathematics/gyires/research-notes/complete-support/results')
 parser.add_argument('--extensions', type=Path,
-                    default=ROOT / 'research-notes/gyires-extensions/results')
+                    default=ROOT / 'papers/mathematics/gyires/research-notes/extensions/results')
 args = parser.parse_args()
 errors = []
 

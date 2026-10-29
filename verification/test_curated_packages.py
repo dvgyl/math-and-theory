@@ -26,7 +26,7 @@ class CuratedPackageTests(unittest.TestCase):
             'rev = "' + PIN + '"\n')
         (self.formal / 'lake-manifest.json').write_text(json.dumps({'packages': [
             {'name': 'mathlib', 'type': 'git', 'rev': PIN}]}))
-        self.entry = {'root': 'verification/additional-proofs/power-rank',
+        self.entry = {'root': 'papers/mathematics/power-rank',
                       'release_manifest_sha256': None,
                       'formal_scope': 'The endpoint theorem in Main.lean.',
                       'proof_roots': [{'path': 'formalization', 'lean_version': '4.19.0',

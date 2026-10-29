@@ -5,11 +5,11 @@ public import MathAndTheory.Mathematics.QPermanent.FinitePolynomial
 public import MathAndTheory.Mathematics.DomiRank.Conclusion
 public import MathAndTheory.AuditSupport
 public import MathAndTheory.TheoreticalCS.BestOfN.Finite
-public import MathAndTheory.Mathematics.DiagonalConcavity
+public import MathAndTheory.Mathematics.DiagonalConcavity.Main
 public import MathAndTheory.Mathematics.Hofstadter.Family
 public import MathAndTheory.Mathematics.Motzkin.Source
 public import MathAndTheory.TheoreticalCS.BestOfN.Extension
-public import MathAndTheory.Mathematics.GyiresCirculant5.Main
+public import MathAndTheory.Mathematics.Gyires.CirculantFive.Main
 public import MathAndTheory.Mathematics.Gyires.PermanentCauchySchwarz
 public import MathAndTheory.Mathematics.Gyires.PermanentPermutation
 public import MathAndTheory.Mathematics.Gyires.DimensionConstant

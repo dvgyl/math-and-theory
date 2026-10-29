@@ -1,4 +1,5 @@
 """Reject incomplete or changed study proof records."""
+from repository_layout import family_root
 from pathlib import Path
 import copy
 import json
@@ -7,7 +8,7 @@ import tempfile
 import unittest
 from check_study_packages import check, check_audit
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 
 
 class StudyPackageTests(unittest.TestCase):
@@ -15,7 +16,7 @@ class StudyPackageTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.package = Path(self.temp.name) / "sharp-eighth"
-        shutil.copytree(ROOT / "additional-proofs/sharp-eighth", self.package)
+        shutil.copytree(ROOT / family_root("sharp-eighth"), self.package)
         self.manifest = json.loads((self.package / "manifest.json").read_text())
         self.record = self.package / "verification/source-checks.json"
         self.evidence = json.loads(self.record.read_text())
@@ -62,7 +63,7 @@ class StudyPackageTests(unittest.TestCase):
 
 class QuarticAuditTests(unittest.TestCase):
     def setUp(self):
-        self.package = ROOT / "additional-proofs/quartic-rankings"
+        self.package = ROOT / family_root("quartic-rankings")
         self.output = (self.package / "verification/compile/PermEntropy.Verification.txt").read_text()
 
     def test_complete_kernel_audit_passes(self):

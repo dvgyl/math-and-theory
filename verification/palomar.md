@@ -18,6 +18,6 @@ Use the [Actions run list](https://github.com/dvgyl/math-and-theory/actions/work
 
 ## Submission fields
 
-Each future submission uses repository `https://github.com/dvgyl/math-and-theory`, a full published 40-character commit, project path `lean`, metadata path `lean/formalization.yaml`, and one repository-relative configuration path `lean/comparator/<family>.json`. The human submitter relationship is `I am a responsible author or maintainer`.
+Each future submission uses repository `https://github.com/dvgyl/math-and-theory`, a full published 40-character commit, project path `lean`, metadata path `lean/formalization.yaml`, and one repository-relative configuration path `lean/comparator/<discipline>/<family>.json`. The human submitter relationship is `I am a responsible author or maintainer`.
 
 The [catalogue](../CONTENTS.md) gives the family identifiers. No Palomar submission has been made. Research interest, attribution, statement review, and registration remain separate from mechanical verification.

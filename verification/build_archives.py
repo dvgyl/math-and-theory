@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build manuscript packages from the checked publication manifest."""
+"""Export one complete source archive and individually indexed manuscripts."""
 import argparse
 import hashlib
 import json
@@ -48,28 +48,26 @@ def build(root, output):
     standalone_roots = [family["formalization"]["root"] + "/" for family in families
                         if family["formalization"]["kind"] == "standalone"]
     manifests = {}
+    registry = {}
     if standalone_roots:
+        registry_path = "verification/curated-packages.json"
+        registry = json.loads(contents[registry_path])["packages"]
         with tempfile.TemporaryDirectory() as folder:
             snapshot = Path(folder)
             for name, content in contents.items():
-                if any(name.startswith(prefix) for prefix in standalone_roots):
+                if name == registry_path or any(name.startswith(prefix) for prefix in standalone_roots):
                     target = snapshot / name
                     target.parent.mkdir(parents=True, exist_ok=True)
                     target.write_bytes(content)
             manifests = check_packages(snapshot, families)
     manifest_digest = hashlib.sha256(contents[HASHES]).hexdigest()
+    archive = output / "math-and-theory-source.zip"
+    for path in [archive, output / "packages.json", *(output / f"{family['id']}.pdf" for family in families)]:
+        check_output(path)
+    metadata = []
     for family in families:
         name = family["id"]
-        check_output(output / f"{name}.pdf")
-        check_output(output / f"{name}-archival-package.zip")
-    check_output(output / "packages.json")
-    results = []
-    for family in families:
-        name = family["id"]
-        pdf = output / f"{name}.pdf"
-        archive = output / f"{name}-archival-package.zip"
-        atomic_write(pdf, contents[family["paper"]])
-        metadata = {
+        entry = {
             "family": name,
             "manuscript": f"math-and-theory/{family['paper']}",
             "source_manifest_sha256": manifest_digest,
@@ -77,38 +75,49 @@ def build(root, output):
         }
         if family["formalization"]["kind"] == "standalone":
             package = manifests[name]
-            metadata["scope"] = package["formal_scope"]
-            metadata["formalization"] = {
-                "kind": "standalone",
-                "root": f"math-and-theory/{family['formalization']['root']}",
-                "manifest_sha256": EXPECTED_MANIFESTS[name],
-                "lean_version": package["lean_version"],
-                "mathlib_revision": package["mathlib_revision"],
-            }
-        members = {f"math-and-theory/{path}": content for path, content in contents.items()}
-        members["PACKAGE.json"] = (json.dumps(metadata, indent=2) + "\n").encode()
-        with tempfile.NamedTemporaryFile(dir=output, delete=False) as stream:
-            temporary = Path(stream.name)
-        try:
-            with zipfile.ZipFile(temporary, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as bundle:
-                for member, content in sorted(members.items()):
-                    info = zipfile.ZipInfo(member, date_time=(2000, 1, 1, 0, 0, 0))
-                    info.compress_type = zipfile.ZIP_DEFLATED
-                    info.external_attr = 0o100644 << 16
-                    bundle.writestr(info, content)
-            with zipfile.ZipFile(temporary) as bundle:
-                if set(bundle.namelist()) != set(members) or bundle.testzip() is not None:
-                    raise ValueError(f"Archive integrity check failed: {archive.name}")
-                for member, content in members.items():
-                    if bundle.read(member) != content:
-                        raise ValueError(f"Archive member differs: {member}")
-            check_output(archive)
-            temporary.replace(archive)
-        finally:
-            temporary.unlink(missing_ok=True)
+            entry["scope"] = package["formal_scope"]
+            proof = {"kind": "standalone",
+                     "root": f"math-and-theory/{family['formalization']['root']}"}
+            if name in registry:
+                proof["manifest_sha256"] = registry[name]["release_manifest_sha256"]
+                proof["proof_roots"] = package["proof_roots"]
+            else:
+                proof.update(manifest_sha256=EXPECTED_MANIFESTS[name],
+                             lean_version=package["lean_version"],
+                             mathlib_revision=package["mathlib_revision"])
+            entry["formalization"] = proof
+        metadata.append(entry)
+    members = {f"math-and-theory/{path}": content for path, content in contents.items()}
+    members["PACKAGE.json"] = (json.dumps({"format_version": 2, "manuscripts": metadata},
+                                         indent=2) + "\n").encode()
+    with tempfile.NamedTemporaryFile(dir=output, delete=False) as stream:
+        temporary = Path(stream.name)
+    try:
+        with zipfile.ZipFile(temporary, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as bundle:
+            for member, content in sorted(members.items()):
+                info = zipfile.ZipInfo(member, date_time=(2000, 1, 1, 0, 0, 0))
+                info.compress_type = zipfile.ZIP_DEFLATED
+                info.external_attr = 0o100644 << 16
+                bundle.writestr(info, content)
+        with zipfile.ZipFile(temporary) as bundle:
+            if set(bundle.namelist()) != set(members) or bundle.testzip() is not None:
+                raise ValueError(f"Archive integrity check failed: {archive.name}")
+            for member, content in members.items():
+                if bundle.read(member) != content:
+                    raise ValueError(f"Archive member differs: {member}")
+        check_output(archive)
+        temporary.replace(archive)
+    finally:
+        temporary.unlink(missing_ok=True)
+    archive_digest = hashlib.sha256(archive.read_bytes()).hexdigest()
+    results = []
+    for family in families:
+        name = family["id"]
+        pdf = output / f"{name}.pdf"
+        atomic_write(pdf, contents[family["paper"]])
         results.append({"family": name, "pdf": pdf.name, "archive": archive.name,
-                        "pdf_sha256": hashlib.sha256(pdf.read_bytes()).hexdigest(),
-                        "archive_sha256": hashlib.sha256(archive.read_bytes()).hexdigest(),
+                        "pdf_sha256": hashlib.sha256(contents[family["paper"]]).hexdigest(),
+                        "archive_sha256": archive_digest,
                         "archive_members": len(members)})
     atomic_write(output / "packages.json", (json.dumps(results, indent=2) + "\n").encode())
     return results

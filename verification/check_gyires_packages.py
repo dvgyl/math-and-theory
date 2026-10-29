@@ -6,7 +6,7 @@ import re
 import subprocess
 import sys
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1] / "papers/mathematics/gyires/formalization"
 
 
 def require(condition, message):
@@ -71,8 +71,8 @@ def check_six(root):
 
 
 if __name__ == "__main__":
-    count = check_six(ROOT / "gyires-circulant-six")
-    subprocess.run([sys.executable, "-B", str(ROOT / "gyires-permutation-polynomial/check_package.py")], check=True)
-    subprocess.run([sys.executable, "-B", str(ROOT / "gyires-rank-two/check_package.py")], check=True)
+    count = check_six(ROOT / "circulant-six")
+    subprocess.run([sys.executable, "-B", str(ROOT / "permutation-polynomial/check_package.py")], check=True)
+    subprocess.run([sys.executable, "-B", str(ROOT / "rank-two/check_package.py")], check=True)
     print(json.dumps({"status": "PASS", "order_six_sources": count, "permutation_sources": 405, "rank_two_sources": 160,
                       "scope": "Source integrity and import coverage. No Lean compilation in this command."}))

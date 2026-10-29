@@ -27,7 +27,7 @@ def main():
     if hashlib.sha256(raw).hexdigest() != EXPECTED:
         raise ValueError("The citation schema hash differs.")
     schema = json.loads(raw)
-    files = [ROOT / "CITATION.cff"] + sorted((ROOT / "verification/additional-proofs").glob("*/CITATION.cff"))
+    files = [ROOT / "CITATION.cff"] + sorted((ROOT / "papers").rglob("CITATION.cff"))
     for path in files:
         document = json_values(yaml.safe_load(path.read_text()))
         jsonschema.validate(document, schema)

@@ -14,7 +14,7 @@ class SparseSamplerTests(unittest.TestCase):
             raise RuntimeError("The sampler tests require a C++ compiler.")
         cls.directory = tempfile.TemporaryDirectory()
         cls.binary = str(Path(cls.directory.name) / "sampler")
-        source = Path(__file__).resolve().parents[1] / "research-notes/gyires-complete-support/exploratory-data/sparse_regular_sampler.cpp"
+        source = Path(__file__).resolve().parents[1] / "papers/mathematics/gyires/research-notes/complete-support/exploratory-data/sparse_regular_sampler.cpp"
         subprocess.run([compiler, "-std=c++17", "-O2", "-Wall", "-Wextra", "-Werror", str(source), "-o", cls.binary], check=True, capture_output=True)
 
     @classmethod

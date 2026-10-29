@@ -1,7 +1,7 @@
 module
 
 public import MathAndTheory.Mathematics.Gyires.ExceptionalVector
-public import MathAndTheory.Mathematics.GyiresCirculant5.Remarks
+public import MathAndTheory.Mathematics.Gyires.CirculantFive.Remarks
 public import Mathlib.Tactic.FinCases
 
 @[expose] public section

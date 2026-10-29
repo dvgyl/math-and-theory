@@ -1,0 +1,30 @@
+# Diagonal concavity does not imply concavity for sums of elementary symmetric polynomials
+
+I present a counterexample to Lachaume's Conjecture 1 and a complete concavity classification for a family in four variables. Concavity on the positive diagonal holds for more parameter values than concavity on the whole positive orthant. The positive orthant is the set of vectors with all coordinates positive. Its positive diagonal consists of vectors whose coordinates are equal.
+
+Read the [paper](paper.pdf), [LaTeX source](paper.tex), or [references](references.bib). Use [citation.bib](citation.bib) to cite the paper. The [Lean guide](../../../lean/docs/mathematics/diagonal-concavity.md) maps the results to formal declarations. The [verification guide](verification/README.md) gives commands to reproduce the checks and states their limits.
+
+## Scope
+
+Let `σ_j` be the unnormalized elementary symmetric polynomial of degree `j` in four variables. It sums the products over all subsets of `j` distinct coordinates, with `σ_0=1`. For `M>0`, set
+
+`f_M = 1 + Mσ_1 + σ_2 + Mσ_3 + σ_4`.
+
+The theorem concerns the real fourth root of `f_M`:
+
+- It is concave on the positive diagonal exactly when `M≥1`.
+- It is concave on the whole positive orthant exactly when `M=1`.
+
+Thus every `M>1` gives a counterexample to the proposed diagonal criterion. At `M=2`, a separate rational certificate gives a strict violation of the concavity inequality at a midpoint. The result does not classify arbitrary coefficient vectors or other dimensions.
+
+## Source and prior work
+
+[Lachaume's Conjecture 1](https://arxiv.org/html/1712.10327v1) concerns nonnegative coefficients, the positive orthant, and concavity after the `1/p` power. Here `n=p=4`, and every coefficient is positive. The formal definitions use the same convention for elementary symmetric polynomials.
+
+The paper gives the degree-four counterexample and its full one-parameter classification. The case `M=1` uses the known concavity of the geometric mean. Lachaume's Theorem 3.3 treats `sqrt(a_0+a_1σ_1+a_2σ_2)` and gives a degree-two criterion. It does not give this degree-four counterexample. For `M>1`, the diagonal quartic has a nonreal root pair. The separate sufficient criterion that requires a real-rooted diagonal therefore does not apply.
+
+The [Carptopus note](https://github.com/Carptopus/MathExplore-Notes/blob/6e96176abbbb884906b2235b418d2315908bb5bd/research/lachaume-walsh-convolution/README.md), dated 4 September 2026, addresses Lachaume's Conjectures 4 and 5. It makes no claim for Conjectures 1 and 3. I make no claim of first priority.
+
+## Autonomous AI research
+
+This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication. [AUTHORSHIP.md](../../../AUTHORSHIP.md) gives the collection disclosure. This preprint has not been peer reviewed.

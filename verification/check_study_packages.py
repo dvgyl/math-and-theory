@@ -1,4 +1,5 @@
 """Check pinned study packages and complete source verification records."""
+from repository_layout import family_root
 from collections import Counter
 from pathlib import Path
 import argparse
@@ -129,5 +130,5 @@ if __name__ == "__main__":
     parser.add_argument("name", choices=sorted(PROFILES))
     parser.add_argument("--audit-log", required=True, type=Path)
     args = parser.parse_args()
-    package = Path(__file__).resolve().parent / "additional-proofs" / args.name
+    package = Path(__file__).resolve().parents[1] / family_root(args.name)
     print(json.dumps({"status": "PASS", "reports": check_audit(package, args.name, args.audit_log.read_text())}))
