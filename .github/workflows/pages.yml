@@ -21,6 +21,18 @@ jobs:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
       - run: python3 site/build.py "$RUNNER_TEMP/research-site"
+      - name: Add search-engine ownership file
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          python3 - <<'PYCODE'
+          import os, re
+          from pathlib import Path
+          key = os.environ['INDEXNOW_KEY']
+          if not re.fullmatch(r'[a-f0-9]{48}', key):
+              raise ValueError('The IndexNow ownership key is missing or invalid.')
+          (Path(os.environ['RUNNER_TEMP']) / 'research-site' / (key + '.txt')).write_text(key)
+          PYCODE
       - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b
         with:
           path: ${{ runner.temp }}/research-site
