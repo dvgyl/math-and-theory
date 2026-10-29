@@ -13,7 +13,6 @@ The current catalogue contains 30 manuscripts and research notes across 29 resul
 - The [preprints directory](preprints/) and [standalone study packages](verification/additional-proofs/) contain manuscripts, sources, citations and build instructions.
 - The [Lean library](lean/README.md), [formalization catalogue](lean/formalization.yaml) and [verification guide](verification/README.md) identify formal proofs, associated papers and checking commands.
 - [Research status](RESEARCH_STATUS.md) and [unfinished proofs](UNFINISHED.md) state the remaining limits.
-- The [selected preprint ZIP](zenodo/README.md) provides PDFs, source packages and metadata for manual upload. No external upload or DOI registration is claimed.
 
 ## Standout results
 

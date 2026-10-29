@@ -2,7 +2,7 @@
 
 The catalogue contains the retained completed mathematical statements, their manuscripts and reproducibility files. Some source comparisons remain provisional. A standalone theorem is not labelled a disproof of an external conjecture when the external definitions or proof class could not be confirmed. The papers state the exact internal definitions and assumptions.
 
-The nine selected Zenodo preprints are Higuchi–Sudbery, universal embezzlement, asymmetric Tutte, power-rank, ADMM, steering bounds, the strong-convexity gradient bound, unicyclic skewness and three-state root fidelity. Their selection compares the original repository with the new results. It reflects scope and significance, not a priority certificate. The graph-root family and other retained papers remain available in the catalogue.
+The nine standout results are Higuchi–Sudbery, universal embezzlement, asymmetric Tutte, power-rank, ADMM, steering bounds, the strong-convexity gradient bound, unicyclic skewness and three-state root fidelity. Their selection compares the original repository with the new results. It reflects scope and significance, not a priority certificate. The graph-root family and other retained papers remain available in the catalogue.
 
 The bounded-forcing Motzkin theorem extends the existing sequence family. The earlier root-log-concavity statement is supporting material, not a separate novelty claim. Elementary, known or duplicate observations are not added as independent research papers.
 
@@ -17,4 +17,4 @@ The following bounds retain these proof boundaries:
 - **A sharp universal skewness bound for unicyclic currents.** The interval for actual tilted-matrix derivatives and a local branch is formalized. Identification with long-time stochastic cumulants and sharpness have conventional proofs. Lean does not construct a continuous-time sample-path probability space or a separate optimizing-sequence theorem.
 - **The three-state root-fidelity entropy bound.** The unrestricted three-state ensemble theorem is formalized for actual positive semidefinite complex matrices of trace one, nonnegative weights summing to one, spectral entropy and nuclear-norm root fidelity. Credited QICLean foundations and prior-work adapters retain their attribution.
 
-The projection AM–GM obstruction is retained as a focused research note in the matrix-theory family map. Its no-finite-multiplier result uses means that become arbitrarily ill-conditioned and does not cover the motivating nonsingular block-coordinate class. It is outside the selected strongest-preprint bundle.
+The projection AM–GM obstruction is retained as a focused research note in the matrix-theory family map. Its no-finite-multiplier result uses means that become arbitrarily ill-conditioned and does not cover the motivating nonsingular block-coordinate class. It is outside the README’s standout selection.
