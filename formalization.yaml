@@ -1,0 +1,110 @@
+version: v0.4
+project:
+  name: Universal entanglement embezzlement with inverse-quadratic logarithmic infidelity
+  description: >-
+    A catalyst family independent of the target gives root fidelity at least
+    1 - 125m/L^2 for every finite Schmidt probability vector on m entries and
+    every integer L >= 1. The catalyst has local dimension n = 2^(4L).
+    The equivalent error bound is 2000m/(log_2 n)^2. The formal statements
+    use normalized diagonal states and separate local basis permutations
+    in finite complex Hilbert space.
+  authors:
+    - Dev D. Goyal
+  responsible_maintainers:
+    - Dev D. Goyal
+  license: Apache-2.0
+repository:
+  role: substantive-development
+classification:
+  arxiv:
+    - quant-ph
+  msc2020:
+    - 81P40
+    - 81P45
+sources:
+  - title: Universal entanglement embezzlement with inverse-quadratic logarithmic infidelity
+    type: original-proof
+    authors:
+      - Dev D. Goyal
+    id: https://github.com/dvgyl/math-and-theory/blob/a6574b1bf6a591d81c3314d5333fc5da26712d6b/papers/physics/universal-embezzlement/manuscript.pdf
+    relationship: other
+    license: Apache-2.0
+    note: >-
+      The complete proof source and manuscript are included. The linked source
+      records the development before the module-system port and independent
+      Comparator statement. The preserved manuscript describes the original
+      Lean 4.19.0 environment. This submission pins Lean 4.35.0 and requires
+      fresh full preflight. Historical priority is not certified.
+  - title: Universal entanglement transformations without communication
+    type: paper
+    authors:
+      - W. van Dam
+      - P. Hayden
+    id: https://arxiv.org/abs/quant-ph/0201041
+    relationship: background
+  - title: Characteristics of universal embezzling families
+    type: paper
+    authors:
+      - D. Leung
+      - B. Wang
+    id: https://arxiv.org/abs/1311.6842
+    relationship: background
+status:
+  scope: >-
+    Complete source proofs are supplied. The module-system port is uncompiled.
+    The two selected statements quantify over every finite index type J with
+    decidable equality, every chosen j_0 in J, every nonnegative p with sum one,
+    and every L >= 1. Here m is the cardinality of J, including zero-probability
+    entries. The catalyst coefficients depend only on L. The permutation can
+    depend on the target. Each party's combined register has dimension mn.
+    Both compared states have norm one. Root fidelity is the norm of their
+    complex inner product; root infidelity is 1 minus root fidelity.
+    The listed axioms are the expected permitted axioms. Fresh preflight must
+    check their actual transitive use. The proof-status counts exclude the
+    two deliberate Challenge holes.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+automation:
+  methods:
+    - method: autonomous
+      models:
+        - GPT 6 with Pro Reasoning
+      framework: ChatGPT
+      tool_setup: Autonomous initial research and proofs.
+    - method: agent
+      models:
+        - GPT 6 Astra
+      framework: Codex
+      tool_setup: Autonomous formalizations and corrections.
+  notes: >-
+    The authors checked the proofs to the best of their mathematical abilities.
+    This check is not expert validation or peer review. Dev D. Goyal is responsible
+    for publication. The submission package was prepared autonomously in Codex.
+    Its current toolchain and module-system port have not been compiled.
+fidelity:
+  divergences: >-
+    The formal operational result uses the displayed diagonal states in finite
+    complex Hilbert space. The bipartite map acts by separate basis permutations
+    on the two parties. Arbitrary changes from an external basis to Schmidt form
+    are not separately formalized. The bound is uniform over p for fixed m.
+    It retains the full dependence on m and L. The dimension sequence is
+    n = 2^(4L), not every positive integer dimension. Fidelity is root fidelity,
+    not its square. Optimal constants, gate complexity, and exact catalyst return
+    are not claimed.
+review:
+  status: Not peer reviewed. The current submission port is uncompiled.
+alignment:
+  namespace: Embezzlement
+  statements:
+    - source: Local basis permutations and root fidelity at least 1 - 125m/L^2
+      lean: Embezzlement.universal_tent_local_unitary
+      module: Solution
+      status: Source proof supplied; current port uncompiled.
+    - source: Equivalent bound with error 2000m/(log_2 n)^2
+      lean: Embezzlement.universal_tent_logarithmic_fidelity
+      module: Solution
+      status: Source proof supplied; current port uncompiled.
