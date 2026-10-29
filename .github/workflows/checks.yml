@@ -13,7 +13,8 @@ env:
 
 concurrency:
   group: checks-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  # Let long proof builds finish; newer pushes queue instead of restarting them.
+  cancel-in-progress: false
 
 jobs:
   source:
@@ -240,6 +241,8 @@ jobs:
         working-directory: papers/mathematics/gyires/formalization/rank-two
         run: |
           python3 check_package.py
+          # Check the audit wrapper's paths and parser before the long source build.
+          python3 ../rank-two-eight-audit/check_audit.py "$GITHUB_WORKSPACE/verification/records/gyires-rank-two-eight-scoped.log"
           python3 -B test_verify.py
           python3 verify.py
           rank_lean="$(elan which lean)"

@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 
 AUDIT = Path(__file__).resolve().parent
-PACKAGE = AUDIT.parent / 'gyires-rank-two'
+PACKAGE = AUDIT.parent / 'rank-two'
 EXPECTED_PARSER_SHA256 = '88ec257c2f37d74a17aa10e2da14e2c18b6885d7cca40809e45676ebf72e884b'
 
 EXPECTED_REPORTS_SHA256 = '027bf5a8f3535ebc0a4046ed56c8804e9fa4d64be10a05e6b4af0055127730d0'

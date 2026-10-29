@@ -13,10 +13,10 @@ python3 verify.py
 rank_lean="$(elan which lean)"
 rank_dependencies="$(lake env printenv LEAN_PATH)"
 LEAN_PATH="$PWD/.verification/build:$rank_dependencies" "$rank_lean" \
-  --trust=0 -j1 -M8192 -DwarningAsError=true -R ../gyires-rank-two-eight-audit \
-  ../gyires-rank-two-eight-audit/RankTwoEightScopedAudit.lean \
-  > ../gyires-rank-two-eight-audit/audit.log
-python3 ../gyires-rank-two-eight-audit/check_audit.py ../gyires-rank-two-eight-audit/audit.log
+  --trust=0 -j1 -M8192 -DwarningAsError=true -R ../rank-two-eight-audit \
+  ../rank-two-eight-audit/RankTwoEightScopedAudit.lean \
+  > ../rank-two-eight-audit/audit.log
+python3 ../rank-two-eight-audit/check_audit.py ../rank-two-eight-audit/audit.log
 ```
 
 The audit uses the same pinned toolchain and dependency objects as the source build. Its parser requires exactly six named reports and permits only `propext`, `Classical.choice`, and `Quot.sound`. It checks the parser source and expected-name hashes before accepting output. A nonzero compiler status must stop the command sequence.
