@@ -17,8 +17,9 @@ def is_public_path(name):
         not path.is_absolute() and path.as_posix() == name and "\\" not in name
         and not any(part in EXCLUDED_DIRS or part in {".", ".."} for part in path.parts)
         and path.suffix not in BUILD_SUFFIXES and path.name != ".DS_Store"
-        # The shared research ledger is updated by concurrent sessions; it is not a publication file.
-        and name != "ACTIVE_PROBLEMS.md"
+        # The shared research ledger and its registration notes are updated by concurrent
+        # sessions; they are not publication files.
+        and name != "ACTIVE_PROBLEMS.md" and path.parts[:2] != ("research", "active")
         and (path.suffix != ".log" or path.parts[0] in {"verification", "papers"})
     )
 
