@@ -1,0 +1,66 @@
+import NearSharpFullRank
+import CycleCounterexample
+import Lean.Environment
+import Lean.Elab.Command
+import Lean.Util.CollectAxioms
+
+/-!
+This final audit submits the actual stored types and bodies of the six central
+declarations to the kernel again, under fresh names. It does not merely create
+aliases referring to the imported declarations. The imported dependency
+environment is the one produced by the separate fresh source build.
+
+This command checks the selected bodies relative to that environment; it does
+not purport to recheck every imported mathlib declaration.
+-/
+
+open Lean Elab Command
+
+set_option autoImplicit false
+set_option maxHeartbeats 0
+
+elab "#kernel_recheck_body " source:ident " as " target:ident : command => do
+  liftCoreM do
+    let sourceName := source.getId
+    let targetName := target.getId
+    if (← getEnv).contains targetName then
+      throwError "Audit declaration name already exists: {targetName}"
+    let info ← getConstInfo sourceName
+    let declaration ← match info with
+      | .thmInfo value =>
+        if value.value.getUsedConstants.contains sourceName then
+          throwError "Audit refuses a body directly referring to its own source name"
+        pure <| Declaration.thmDecl { value with name := targetName, all := [targetName] }
+      | .defnInfo value =>
+        if value.safety != .safe then
+          throwError "Audit requires a safe definition: {sourceName}"
+        if value.value.getUsedConstants.contains sourceName then
+          throwError "Audit refuses a body directly referring to its own source name"
+        pure <| Declaration.defnDecl { value with name := targetName, all := [targetName] }
+      | _ =>
+        throwError "Audit expects a theorem or definition with a stored body: {sourceName}"
+    -- This is the raw, always-checking kernel entry point.  The resulting
+    -- temporary kernel environment is used only to certify this addition.
+    match Lean.Kernel.Environment.addDeclCore (← getEnv).toKernelEnv 0 declaration none with
+      | .error exception => throwKernelException exception
+      | .ok _ => pure ()
+    let axioms ← collectAxioms sourceName
+    let allowed : Array Name := #[``propext, ``Classical.choice, ``Quot.sound]
+    for name in axioms do
+      unless allowed.contains name do
+        throwError "Unexpected axiom in rechecked declaration {targetName}: {name}"
+    logInfo m!"CENTRAL_BODY_RECHECK_PASS {sourceName.toString}"
+
+#kernel_recheck_body ADMMNearSharpCertificate.C188.certificate as ADMMNearSharpAudit.certificate188
+#kernel_recheck_body ADMMNearSharpCertificate.C1886.certificate as ADMMNearSharpAudit.certificate1886
+#kernel_recheck_body ADMMNearSharpAllSteps.initialized_admm_objective_converges as ADMMNearSharpAudit.consensus
+#kernel_recheck_body ADMMNearSharpAllSteps.rankDeficient_original_admm_converges as ADMMNearSharpAudit.affine
+#kernel_recheck_body ADMMNearSharpAllSteps.fullRank_original_admm_converges as ADMMNearSharpAudit.fullRank
+#kernel_recheck_body ADMM128Counterexample.counterexample as ADMMNearSharpAudit.cycle
+
+#print axioms ADMMNearSharpCertificate.C188.certificate
+#print axioms ADMMNearSharpCertificate.C1886.certificate
+#print axioms ADMMNearSharpAllSteps.initialized_admm_objective_converges
+#print axioms ADMMNearSharpAllSteps.rankDeficient_original_admm_converges
+#print axioms ADMMNearSharpAllSteps.fullRank_original_admm_converges
+#print axioms ADMM128Counterexample.counterexample

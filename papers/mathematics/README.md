@@ -23,6 +23,7 @@ Each family directory contains its manuscripts, proof sources or shared-library 
 | [A 64-point spectral tile in F₂⁹ with no periodic complement](binary-spectral-tile/) | [PDF](binary-spectral-tile/manuscript.pdf) |
 | [The exact asymmetric Merino–Welsh region for finite matroids](asymmetric-tutte/) | [PDF](asymmetric-tutte/manuscript.pdf) |
 | [A rational five-cycle for two-block ADMM with multiplier step below two](admm-counterexample/) | [PDF](admm-counterexample/paper/admm_counterexample.pdf) |
+| [A narrow interval for the universal multiplier step of two-block ADMM](admm-multiplier-step/) | [PDF](admm-multiplier-step/manuscript.pdf) |
 | [Escaping Nesterov flows and iterates below critical damping](nesterov-subcritical/) | [PDF](nesterov-subcritical/manuscript.pdf) |
 | [Periodic obstructions to small-extrapolation Chambolle–Pock](chambolle-pock-cycles/) | [PDF](chambolle-pock-cycles/manuscript.pdf) |
 | [The exact last-gradient bound for constant-step gradient descent in the strongly convex case](strong-gradient/) | [PDF](strong-gradient/manuscript.pdf) |

@@ -10,7 +10,7 @@ The collection contains results with different formal verification scopes. Each 
 
 ## Navigating the collection
 
-The current catalogue contains 36 manuscripts and research notes across 35 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
+The current catalogue contains 37 manuscripts and research notes across 36 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
 
 - Start with the [overview](overview.pdf) for descriptions of the result families.
 - Use the [manuscript map](CONTENTS.md) to find individual papers, abstracts and supporting materials.
@@ -25,6 +25,8 @@ The results I consider the strongest, in order of significance.
 
 ### Mathematics
 
+**[A narrow interval for the universal multiplier step of two-block ADMM](papers/mathematics/admm-multiplier-step/manuscript.pdf).** Two-block ADMM with relaxation only in the multiplier update converges for every constant step 0 < τ ≤ 1.886 on finite-dimensional convex problems with attained proximal steps and a saddle point. Fixed compact polytopes in R¹²⁸ have a nonconstant periodic orbit for every τ ≥ 1.8868954…, so the universal threshold lies in an interval of width below 0.0009. The convergence theorem, its certificates and the periodic orbit are formalized in Lean.
+
 **[The exact last-gradient bound for constant-step gradient descent in the strongly convex case](papers/mathematics/strong-gradient/manuscript.pdf).** The exact final-gradient guarantee for constant-step gradient descent holds on every real Hilbert space, for every natural horizon and all normalized steps in [0,2], including positive strong convexity. The actual-function bound and normalized attaining functions are formalized; sharpness at arbitrary scale follows by conventional rescaling.
 
 **[Escaping Nesterov flows and iterates below critical damping](papers/mathematics/nesterov-subcritical/manuscript.pdf).** For X″ + (r/t)X′ + ∇F(X) = 0 from rest and for the Nesterov iteration with momentum k/(k+r), universal boundedness over convex objectives with 1-Lipschitz gradient and attained minimum holds on the Hilbert space ℓ² exactly when r ≥ 3. An explicit convex planar potential has an escaping trajectory for every 0 < r ≤ 2. The Hilbert-space and discrete thresholds and the planar escape for 1 < r ≤ 2 are formalized; the finite-dimensional range 2 < r < 3 remains open.
@@ -32,8 +34,6 @@ The results I consider the strongest, in order of significance.
 **[The exact asymmetric Merino–Welsh region for finite matroids](papers/mathematics/asymmetric-tutte/manuscript.pdf).** The exact nonnegative parameter region for T_M(x,0) T_M(0,y) ≥ T_M(1,1)² is characterized uniformly over all finite matroids without loops or coloops. The formal statement uses actual matroids and their subset-rank Tutte sum, including the empty ground set.
 
 **[A positive constant-recursive sequence with nonquasipolynomial power ranks](papers/mathematics/power-rank/manuscript.pdf).** A positive constant-recursive sequence of rank thirteen has explicit minimal recurrences for all its powers and nonquasipolynomial power ranks. The main theorem and arbitrary-rank companions are formalized; generating-function and polynomial corollaries have conventional proofs.
-
-**[A rational five-cycle for two-block ADMM with multiplier step below two](papers/mathematics/admm-counterexample/paper/admm_counterexample.pdf).** An exact rational period-five orbit occurs in multiplier-only two-block ADMM at multiplier step 199/100. The orbit, minimizers and optimizer are formalized; analytic regularity of the strongly convex extension has a conventional proof.
 
 ### Mathematical physics
 
@@ -59,7 +59,7 @@ The results I consider the strongest, in order of significance.
 - [Integer sequences and combinatorics](CONTENTS.md#integer-sequences-and-combinatorics): Motzkin root log-concavity, bounded-forcing Motzkin bounds, Hofstadter iteration, nonquasipolynomial power ranks.
 - [Discrete analysis, tilings, probability and entropy](CONTENTS.md#discrete-analysis-tilings-probability-and-entropy): the sharp one-eighth Fourier bound, a spectral tile in F₂⁹ with no periodic complement, ranking entropy, Sidon-set Rényi thresholds.
 - [Matroid theory](CONTENTS.md#matroid-theory): the asymmetric Merino–Welsh region.
-- [Optimization](CONTENTS.md#optimization): an ADMM five-cycle, escaping subcritical Nesterov flows, Chambolle–Pock cycles, the exact strong-convexity gradient bound.
+- [Optimization](CONTENTS.md#optimization): the ADMM multiplier-step interval, an ADMM five-cycle, escaping subcritical Nesterov flows, Chambolle–Pock cycles, the exact strong-convexity gradient bound.
 
 ### Theoretical computer science
 
@@ -85,7 +85,8 @@ I use the names below to connect common search terms to each result and its file
 | Root fidelity, three-state ensemble, Holevo quantity, quantum entropy | [Three-state root-fidelity bound](papers/physics/fidelity-three-state/) |
 | Merino–Welsh, Merino-Welsh, Tutte polynomial, finite matroids | [Asymmetric Merino–Welsh region](papers/mathematics/asymmetric-tutte/) |
 | Pauli channels, depolarizing channels, hockey-stick divergence, quantum contraction | [Exact conditional contraction](papers/physics/quantum-exact-contraction/) |
-| Alternating direction method of multipliers, ADMM, convergence counterexample | [Rational period-five ADMM orbit](papers/mathematics/admm-counterexample/) |
+| Alternating direction method of multipliers, ADMM dual step size, Glowinski golden ratio, multiplier relaxation | [ADMM multiplier-step interval](papers/mathematics/admm-multiplier-step/) |
+| ADMM convergence counterexample, period-five orbit | [Rational period-five ADMM orbit](papers/mathematics/admm-counterexample/) |
 | Nesterov accelerated gradient flow and iteration, vanishing damping, subcritical damping, unbounded trajectories | [Escaping subcritical Nesterov flows](papers/mathematics/nesterov-subcritical/) |
 | Hard-core model, spectral independence, uniqueness threshold, Glauber dynamics | [Critical hard-core influence bounds](papers/theoretical-computer-science/critical-hardcore/) |
 | Unextendible product bases, UPB, Schmidt number, bound entanglement, Tiles state | [Minimum-rank multiplicativity and the Tiles state](papers/physics/upb-tensor-rank/) |

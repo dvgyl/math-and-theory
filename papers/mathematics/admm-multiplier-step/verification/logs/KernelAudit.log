@@ -1,0 +1,107 @@
+CENTRAL_BODY_RECHECK_PASS ADMMNearSharpCertificate.C188.certificate
+CENTRAL_BODY_RECHECK_PASS ADMMNearSharpCertificate.C1886.certificate
+CENTRAL_BODY_RECHECK_PASS ADMMNearSharpAllSteps.initialized_admm_objective_converges
+CENTRAL_BODY_RECHECK_PASS ADMMNearSharpAllSteps.rankDeficient_original_admm_converges
+CENTRAL_BODY_RECHECK_PASS ADMMNearSharpAllSteps.fullRank_original_admm_converges
+CENTRAL_BODY_RECHECK_PASS ADMM128Counterexample.counterexample
+'ADMMNearSharpCertificate.C188.certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ADMMNearSharpCertificate.C1886.certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ADMMNearSharpAllSteps.initialized_admm_objective_converges' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ADMMNearSharpAllSteps.rankDeficient_original_admm_converges' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ADMMNearSharpAllSteps.fullRank_original_admm_converges' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ADMM128Counterexample.counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+ADMMNearSharpCertificate.C188.certificate.{u_1} {E : Type u_1} [NormedAddCommGroup E] [InnerProductSpace ℝ E] (τ : ℝ)
+  (hlo : 7 / 4 ≤ τ) (hhi : τ ≤ 47 / 25) : ADMMNearSharp.MemoryCertificate 11 τ E
+ADMMNearSharpCertificate.C1886.certificate.{u_1} {E : Type u_1} [NormedAddCommGroup E] [InnerProductSpace ℝ E] (τ : ℝ)
+  (hlo : 47 / 25 ≤ τ) (hhi : τ ≤ 943 / 500) : ADMMNearSharp.MemoryCertificate 19 τ E
+ADMMNearSharpAllSteps.initialized_admm_objective_converges.{u_1} {E : Type u_1} [NormedAddCommGroup E]
+  [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 943 / 500) {C D : Set E}
+  {f g : E → ℝ} {pf pg : E → E} (hf : ConvexOn ℝ C f) (hg : ConvexOn ℝ D g)
+  (hpf : ∀ (c : E), ADMM74.IsProx C f c (pf c)) (hpg : ∀ (c : E), ADMM74.IsProx D g c (pg c))
+  (hex : ∃ z u, ADMM74.IsSaddle C D f g z u) (s₀ : E × E) :
+  ∃ z u,
+    ADMM74.IsSaddle C D f g z u ∧
+      z ∈ C ∩ D ∧
+        (∀ y ∈ C ∩ D, f z + g z ≤ f y + g y) ∧
+          Filter.Tendsto
+              (fun n => pf ((ADMMInterval.trajectory τ pf pg s₀ n).1 - (ADMMInterval.trajectory τ pf pg s₀ n).2))
+              Filter.atTop (nhds z) ∧
+            Filter.Tendsto (fun n => (ADMMInterval.trajectory τ pf pg s₀ n).1) Filter.atTop (nhds z) ∧
+              Filter.Tendsto (fun n => (ADMMInterval.trajectory τ pf pg s₀ n).2) Filter.atTop (nhds u) ∧
+                Filter.Tendsto
+                  (fun n =>
+                    f (pf ((ADMMInterval.trajectory τ pf pg s₀ n).1 - (ADMMInterval.trajectory τ pf pg s₀ n).2)) +
+                      g (ADMMInterval.trajectory τ pf pg s₀ (n + 1)).1)
+                  Filter.atTop (nhds (f z + g z))
+ADMMNearSharpAllSteps.rankDeficient_original_admm_converges.{u_1, u_2, u_3} {U : Type u_1} {V : Type u_2} {E : Type u_3}
+  [NormedAddCommGroup U] [NormedSpace ℝ U] [NormedAddCommGroup V] [NormedSpace ℝ V] [NormedAddCommGroup E]
+  [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] (C : Set U) (D : Set V) (f : U → ℝ) (g : V → ℝ) (A : U →ᵃ[ℝ] E)
+  (B : V →ᵃ[ℝ] E) (ρ : ℝ) (hρ : 0 < ρ) (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 943 / 500) (hf : ConvexOn ℝ C f)
+  (hg : ConvexOn ℝ D g) (hpx : ∀ (c : E), ∃ x, ADMM74.IsAffineProx C f A ρ c x)
+  (hpy : ∀ (c : E), ∃ y, ADMM74.IsAffineProx D g B ρ c y) (x : ℕ → U) (y : ℕ → V) (u : ℕ → E)
+  (hx : ∀ (n : ℕ), ADMM74.IsAffineProx C f A ρ (B (y n) - u n) (x (n + 1)))
+  (hy : ∀ (n : ℕ), ADMM74.IsAffineProx D g B ρ (A (x (n + 1)) + u n) (y (n + 1)))
+  (hu : ∀ (n : ℕ), u (n + 1) = u n + τ • (A (x (n + 1)) - B (y (n + 1)))) (x₀ : U) (y₀ : V) (w₀ : E)
+  (hsaddle : ADMM74.IsAffineSaddle C D f g A B x₀ y₀ w₀) :
+  ∃ xLim yLim wLim,
+    ADMM74.IsAffineSaddle C D f g A B xLim yLim wLim ∧
+      Filter.Tendsto (fun n => A (x n)) Filter.atTop (nhds (A xLim)) ∧
+        Filter.Tendsto (fun n => B (y n)) Filter.atTop (nhds (B yLim)) ∧
+          Filter.Tendsto (fun n => ρ • u n) Filter.atTop (nhds wLim) ∧
+            Filter.Tendsto (fun n => f (x n) + g (y n)) Filter.atTop (nhds (f xLim + g yLim)) ∧
+              ∀ a ∈ C, ∀ b ∈ D, A a = B b → f xLim + g yLim ≤ f a + g b
+ADMMNearSharpAllSteps.fullRank_original_admm_converges.{u_1, u_2, u_3} {U : Type u_1} {V : Type u_2} {E : Type u_3}
+  [NormedAddCommGroup U] [NormedSpace ℝ U] [NormedAddCommGroup V] [NormedSpace ℝ V] [NormedAddCommGroup E]
+  [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] (C : Set U) (D : Set V) (f : U → ℝ) (g : V → ℝ) (A : U →ᵃ[ℝ] E)
+  (B : V →ᵃ[ℝ] E) (L : E → U) (R : E → V) (hLA : Function.LeftInverse L ⇑A) (hRB : Function.LeftInverse R ⇑B)
+  (hL : Continuous L) (hR : Continuous R) (ρ : ℝ) (hρ : 0 < ρ) (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 943 / 500)
+  (hf : ConvexOn ℝ C f) (hg : ConvexOn ℝ D g) (hpx : ∀ (c : E), ∃ x, ADMM74.IsAffineProx C f A ρ c x)
+  (hpy : ∀ (c : E), ∃ y, ADMM74.IsAffineProx D g B ρ c y) (x : ℕ → U) (y : ℕ → V) (u : ℕ → E)
+  (hx : ∀ (n : ℕ), ADMM74.IsAffineProx C f A ρ (B (y n) - u n) (x (n + 1)))
+  (hy : ∀ (n : ℕ), ADMM74.IsAffineProx D g B ρ (A (x (n + 1)) + u n) (y (n + 1)))
+  (hu : ∀ (n : ℕ), u (n + 1) = u n + τ • (A (x (n + 1)) - B (y (n + 1)))) (x₀ : U) (y₀ : V) (w₀ : E)
+  (hsaddle : ADMM74.IsAffineSaddle C D f g A B x₀ y₀ w₀) :
+  ∃ xLim yLim wLim,
+    ADMM74.IsAffineSaddle C D f g A B xLim yLim wLim ∧
+      Filter.Tendsto x Filter.atTop (nhds xLim) ∧
+        Filter.Tendsto y Filter.atTop (nhds yLim) ∧
+          Filter.Tendsto (fun n => ρ • u n) Filter.atTop (nhds wLim) ∧
+            Filter.Tendsto (fun n => f (x n) + g (y n)) Filter.atTop (nhds (f xLim + g yLim)) ∧
+              ∀ a ∈ C, ∀ b ∈ D, A a = B b → f xLim + g yLim ≤ f a + g b
+ADMM128Counterexample.counterexample (τ : ℝ) (hτ : ADMM128Counterexample.tau0 ≤ τ) :
+  (∀ (c : ADMM128Counterexample.V), ∃! y, ADMM74.IsProx ADMM128Counterexample.C (fun x => 0) c y) ∧
+    (∀ (c : ADMM128Counterexample.V), ∃! y, ADMM74.IsProx ADMM128Counterexample.D (fun x => 0) c y) ∧
+      (∀ (n : ℕ),
+          (ADMM128Counterexample.Z (n + 1), ADMM128Counterexample.U τ (n + 1)) =
+            ADMMInterval.originalMap τ ADMM128Counterexample.proxC ADMM128Counterexample.proxD
+              (ADMM128Counterexample.Z n, ADMM128Counterexample.U τ n)) ∧
+        Convex ℝ ADMM128Counterexample.C ∧
+          IsCompact ADMM128Counterexample.C ∧
+            IsClosed ADMM128Counterexample.C ∧
+              Convex ℝ ADMM128Counterexample.D ∧
+                IsCompact ADMM128Counterexample.D ∧
+                  IsClosed ADMM128Counterexample.D ∧
+                    0 ∈ ADMM128Counterexample.C ∩ ADMM128Counterexample.D ∧
+                      ADMM74.IsSaddle ADMM128Counterexample.C ADMM128Counterexample.D (fun x => 0) (fun x => 0) 0 0 ∧
+                        ADMM128Counterexample.IsADMMTrajectory τ ADMM128Counterexample.X ADMM128Counterexample.Z
+                            (ADMM128Counterexample.U τ) ∧
+                          (∀ (n : ℕ),
+                              (∀ (y : ADMM128Counterexample.V),
+                                  ADMM74.IsProx ADMM128Counterexample.C (fun x => 0)
+                                      (ADMM128Counterexample.Z n - ADMM128Counterexample.U τ n) y →
+                                    y = ADMM128Counterexample.X (n + 1)) ∧
+                                ∀ (y : ADMM128Counterexample.V),
+                                  ADMM74.IsProx ADMM128Counterexample.D (fun x => 0)
+                                      (ADMM128Counterexample.X (n + 1) + ADMM128Counterexample.U τ n) y →
+                                    y = ADMM128Counterexample.Z (n + 1)) ∧
+                            (∀ (n : ℕ), ADMM128Counterexample.X (n + 128) = ADMM128Counterexample.X n) ∧
+                              (∀ (n : ℕ), ADMM128Counterexample.Z (n + 128) = ADMM128Counterexample.Z n) ∧
+                                (∀ (n : ℕ), ADMM128Counterexample.U τ (n + 128) = ADMM128Counterexample.U τ n) ∧
+                                  (∀ (n : ℕ),
+                                      ‖ADMM128Counterexample.X n - ADMM128Counterexample.Z n‖ ^ 2 =
+                                        16383999960516622876672) ∧
+                                    ¬Filter.Tendsto
+                                          (fun n => ‖ADMM128Counterexample.X n - ADMM128Counterexample.Z n‖ ^ 2)
+                                          Filter.atTop (nhds 0) ∧
+                                      ∀ (l : ADMM128Counterexample.V),
+                                        ¬Filter.Tendsto ADMM128Counterexample.Z Filter.atTop (nhds l)

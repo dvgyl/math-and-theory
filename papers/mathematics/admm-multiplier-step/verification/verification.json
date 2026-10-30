@@ -1,0 +1,3290 @@
+{
+  "compiler": "Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)",
+  "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+  "dependency_checkouts": {
+    "mathlib": {
+      "revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "tracked_sources_clean": true
+    },
+    "plausible": {
+      "revision": "77e08eddc486491d7b9e470926b3dbe50319451a",
+      "tracked_sources_clean": true
+    },
+    "LeanSearchClient": {
+      "revision": "25078369972d295301f5a1e53c3e5850cf6d9d4c",
+      "tracked_sources_clean": true
+    },
+    "importGraph": {
+      "revision": "e6a9f0f5ee3ccf7443a0070f92b62f8db12ae82b",
+      "tracked_sources_clean": true
+    },
+    "proofwidgets": {
+      "revision": "c4919189477c3221e6a204008998b0d724f49904",
+      "tracked_sources_clean": true
+    },
+    "aesop": {
+      "revision": "5d50b08dedd7d69b3d9b3176e0d58a23af228884",
+      "tracked_sources_clean": true
+    },
+    "Qq": {
+      "revision": "fa4f7f15d97591a9cf3aa7724ba371c7fc6dda02",
+      "tracked_sources_clean": true
+    },
+    "batteries": {
+      "revision": "f5d04a9c4973d401c8c92500711518f7c656f034",
+      "tracked_sources_clean": true
+    },
+    "Cli": {
+      "revision": "02dbd02bc00ec4916e99b04b2245b30200e200d0",
+      "tracked_sources_clean": true
+    }
+  },
+  "build_configuration_sha256": {
+    "lean/lakefile.lean": "194a79977a1076cacdfed32ae3d14e21234ff020d226121f823427579bb6e32b",
+    "lean/lake-manifest.json": "fcf9d40fdd2e08c8bb4a3e7f735145094c2ba45d881b38f912b0df6fa8bacf3f",
+    "lean/lean-toolchain": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea",
+    "lean/KernelBodyAudit.lean": "292566ba366dff44804a55266e54cd049d4af4463d552d6dc696d5c65966ce65",
+    "verify_lean.py": "b566adbac76d87aa355961cec5674406b1bb034c42414c7aba259f51995c7fa1"
+  },
+  "recorded_utc": "2026-10-30T05:12:56.185620+00:00",
+  "source_sha256": {
+    "lean/ADMMCertificate.lean": "1fcea65ef5338dc1e94a2f482c70ad813ef97428822094763bdd8a241f7b7d45",
+    "lean/ProximalModel.lean": "6490b93014ca0eb74d08f60a89a3d5a49329583043aeeb12943731208e98aeba",
+    "lean/MemoryConvergence.lean": "e6d4bd7c5f1e9f912e9a05771f4ba881b19032e523b2d51372aa319599ca4c9c",
+    "lean/ADMMConvergence.lean": "c9212c432c44b9318c5354a0c13846bfb83005a9ab4fc50afbdfde867c005ba1",
+    "lean/LinearReduction.lean": "2dfeca470651c6bfc05e13091de8d800af3c6370de08b085ebf8f508e6d201cf",
+    "lean/InfimalImage.lean": "40725c1d5cc6898a4edf85452a3d737783efdc48c7e89e2a880316196c692941",
+    "lean/RankDeficientADMM.lean": "d842f4bf833dff66231fd49057a7b5ce0ce3a39d998fa520b5d0c929ce9403f6",
+    "lean/SaddleLifting.lean": "e142eabf88a6c92b06f6cc9d6a22ab100734be480e73f51ca5325d77c8697ffe",
+    "lean/ADMMIntervalCertificate.lean": "5a81651ace0ba1636cda062a0ebfb80c80c01be63b640e9958141309d7bd4b19",
+    "lean/ScaledProximalModel.lean": "96776cac942da3780376a34db781cd4d999bdadd336b57407e0afeeebbdf1058",
+    "lean/ADMMIntervalConvergence.lean": "fe8d561d1b2c8e820151ddb17bb611590df006aaef8d6b9119ed08b6b7eae3ad",
+    "lean/ClassicalADMM.lean": "1aa99063f93d585fdad0b6e574857ad12076c37ca52d31a2a4472801e2806976",
+    "lean/AllStepsADMM.lean": "bf556d9ad9a40f4186961c0573172f155280dbb31a2c3137cbd849d9b33387cc",
+    "lean/MemoryCertificate.lean": "9b43bec1dac2cb390bf1c6e69ffc92fa64b6e15b1686ad5da9cc5816c6c33455",
+    "lean/DelayedMemory.lean": "7b1821319b9c3abd92895174e4bbc4602db4221f54caa8820643d88f82f073da",
+    "lean/FiniteMemoryADMM.lean": "5d62431fa995750916a42882d6a77d3bc777047bf772f458c32154fb4e523676",
+    "lean/OriginalMemoryADMM.lean": "9d7eb5f23a249b72dfb65ca7362f2993226bc6c3a466125b20c349e4097b4dd1",
+    "lean/Quadratic.lean": "bd169c7009df7542887031efffea9487aeac51fd2f1d96ca2723261cf6022a97",
+    "lean/IntegerMatrix.lean": "1bd4274e2c1f7d875ad533be409381433358d977a773d0463d19627800c4efd8",
+    "lean/IntegerCross.lean": "7490cd35ce27ed1ecad6b3a1c3d3678b4a38e646985fa0635dfe225d7d52d67d",
+    "lean/StandardRows.lean": "0de47998e3f3571764ba78eed0ec3ea215932019d5de753dce631c020f4cfbbd",
+    "lean/IntegerEmbedding.lean": "a6965e66e28b00a9a10fd2fc37fc265e098c41a5b05b47c77d6f64c06b8b4179",
+    "lean/IntegerNumerics.lean": "ad5499990478aac7bf7cc176752d0441e224e394ffe6c74b384b44b9d4bbc475",
+    "lean/NearSharpData188Defs.lean": "de674b97723b485e21d1c0d718fa276ff7bf25eab222eba499f8299080a1b98d",
+    "lean/NearSharpData188_lower_lo_gram_identity_0.lean": "a82679a25712e6408c0f34041966ccb969f0451c88806a3ab6dcfe5b4be73be2",
+    "lean/NearSharpData188_lower_lo_gram_identity_6.lean": "4a1da36824d1d0685e5a1c2532e06d09ee3cff7544edf5b37c7dd108af3b6e6f",
+    "lean/NearSharpData188_lower_lo_gram_identity_12.lean": "092c2c64c30bb2ef426a99aaad28f659c88a0e33be5e132a54042fb9f4b0dfa0",
+    "lean/NearSharpData188_lower_lo_gram_identity_18.lean": "8e17d5ef754990fd980597f62a0305b87f9d73ab63af6f6ee20d2dad82b7c18a",
+    "lean/NearSharpData188_Tlo_gram_identity_0.lean": "cbd1178fb80a0efe6c37cf0e16b53780851429f2201357a11c30c9490d53a6fc",
+    "lean/NearSharpData188_Tlo_gram_identity_6.lean": "3ef5046b45995352875a81650405a6a96422a33af56f8bc1d7123c9952d697c5",
+    "lean/NearSharpData188_Tlo_gram_identity_12.lean": "c87f07cbdb5bf53119552f63fe89950649eddf92bdc3ced1ed04f22b6ad6fe38",
+    "lean/NearSharpData188_Tlo_gram_identity_18.lean": "802b50f2f7e32657c7f14047f64600576b1d0ac0fb10f4a33efa56293414479a",
+    "lean/NearSharpData188_lower_hi_gram_identity_0.lean": "6a1bf08cc39f32ef1413023bd902c016a3d6025d9501e1b3eeaee667ced115e0",
+    "lean/NearSharpData188_lower_hi_gram_identity_6.lean": "48e7a1dbd54ffc5fa19730eaf60826124b803bc791c59c4a5aa08564d2bf356d",
+    "lean/NearSharpData188_lower_hi_gram_identity_12.lean": "f65c0a212a818e27db3547a9b76426245d601310feef6f0204b45e4959169ead",
+    "lean/NearSharpData188_lower_hi_gram_identity_18.lean": "4d884d60a459854f2711350f881ca85f635a3e08efa69b5562b623c2f3934454",
+    "lean/NearSharpData188_Thi_gram_identity_0.lean": "d6fb196726bfee73e02c55eafed861c10ebc1376686447d19bef35147d8bd69e",
+    "lean/NearSharpData188_Thi_gram_identity_6.lean": "6fa7d1ea3b39d4be0ae621c720da8f452f1c5fdf42565c0bb8f8c7e720417ba8",
+    "lean/NearSharpData188_Thi_gram_identity_12.lean": "0c7a37aa71e62923c4af0dbd31a9e9bd2a67f3c681d659eacda7984a59ed5c7c",
+    "lean/NearSharpData188_Thi_gram_identity_18.lean": "2e9ac583bd9d09d7e5ddeadc0f0208f28bb82a7bb0f6c2cf4e77759c72fad374",
+    "lean/NearSharpData188_weightedFZ_identity_0.lean": "0a4dbdb83bbe5f989520f75167b4c57f83b392625d267166304d7b0be9aea301",
+    "lean/NearSharpData188_weightedFZ_identity_6.lean": "2959d32156277abf86b6a64dcaa2f48dd3f3f842f568208ca8530cae96cd2991",
+    "lean/NearSharpData188_weightedFZ_identity_12.lean": "bfc503047eb35483e80c08e020044b32f500269c98b6a76e5fc202f0dbdcbd42",
+    "lean/NearSharpData188_weightedGZ_identity_0.lean": "c4ec6c33275972c9f5cfa118c895d9042910959a5a70ce2acef6d7a2212ba4e5",
+    "lean/NearSharpData188_weightedGZ_identity_6.lean": "e7339333ae35435b43f0d13b3e367f14d7e821ec73cb45744bfda0bd70baacde",
+    "lean/NearSharpData188_weightedGZ_identity_12.lean": "8a97a0c0fe02ff7e896f906e3edd3a0df7893ed3f8b2a49214999d748ebf7fc2",
+    "lean/NearSharpData188_endpoint_fast_lo_0.lean": "0b670176cbbebbb00e28479c576bffa5fa0dcfdc714c424fc53da74b87fc88f3",
+    "lean/NearSharpData188_endpoint_fast_lo_6.lean": "3f289f576168b7868edc5688f6485fcda9dfe00e55f943740ed96cf9ef93227e",
+    "lean/NearSharpData188_endpoint_fast_lo_12.lean": "b90a890cde67823a2e50e0720ffc8daff46e16f1f3dda345ae0b98ad86431064",
+    "lean/NearSharpData188_endpoint_fast_lo_18.lean": "a4dafcf684a6f60ff380b397009338c771eb887b815307429765ad5d165ac490",
+    "lean/NearSharpData188_endpoint_fast_lo_24.lean": "3b63f9f3c7fd4b0a799fd6c6b90bc50f345b037229a024eb408c3422b43b6a67",
+    "lean/NearSharpData188_endpoint_fast_hi_0.lean": "98ac325985d66ceddf294346b0c7ce59c807750448791c3901b0db2661618a83",
+    "lean/NearSharpData188_endpoint_fast_hi_6.lean": "c3fe01e3d5567794a09f1bbe5acd28d980b3b958b682ab5da75e84137cd0a9f9",
+    "lean/NearSharpData188_endpoint_fast_hi_12.lean": "524c600992143c9301564102ebee0fb0749cfaf61a71ed096b5fee2d1f22075a",
+    "lean/NearSharpData188_endpoint_fast_hi_18.lean": "9b3223573d8fa0ffac4fe2485ff8af19fb3c6da79a99aa01108a5648e7c0e68a",
+    "lean/NearSharpData188_endpoint_fast_hi_24.lean": "6883b94dc2599a1a2b4402b2bb5558a60b5e04faa65598560e1b8b0009d9d539",
+    "lean/NearSharpData188_Simple0.lean": "3c75ea5952e6068677113677decf81a8def867b2cd5eaec68cb8d0e730e248af",
+    "lean/NearSharpData188_Simple1.lean": "023537860c3eb6faf2c3688b547b86669e64464a2f4c0a9bc837c40e18997a44",
+    "lean/NearSharpData188_Simple2.lean": "c437df8778378cfd8e8b06cf1ca723236d6dfc0fbfda109aa9e5dc0d02e9f5d7",
+    "lean/NearSharpData188_Simple3.lean": "66c9cce6309b805862a8f5718bf936f31fafa716208b0e19b473da3d87072749",
+    "lean/NearSharpData188_Simple4.lean": "ac89a5851b966652c7dd3631391178c4a70d42e5f609d057c77cf30026d6f6f2",
+    "lean/NearSharpData188_Simple5.lean": "bc4a798198ceb00eb2592c67a862d531fc04f259fd5b2f5a752645bbbd0dc752",
+    "lean/NearSharpData188_Simple6.lean": "f51a4ae1b3b8e06a520238ff948d7b9bbf78f0dc8a6d35f3d1297f42ef6b1459",
+    "lean/NearSharpData188_Simple7.lean": "d6b0477252803b44bc8b28a5d8d731bc2b536604b6e683d3c186a599cb8afd84",
+    "lean/NearSharpData188_Simple8.lean": "d5d7a3933a3fda30b510faba2425daf9e515f2c3744e2d2302c9b3dda7d23ba4",
+    "lean/NearSharpData188_Simple9.lean": "3d450d11924927c7e29850795107ec6165a94a05ed34ef69fea760bb1ec374b9",
+    "lean/NearSharpData188_Simple10.lean": "b981e8f0174d01c30fab0ef2016afd6488647905ac73d054215d4925403d59ce",
+    "lean/NearSharpData188_Simple11.lean": "7a1af846fa9644593fabbdccc68a60a895a07b3550d37ab9386cf757c14dd0b4",
+    "lean/NearSharpData188.lean": "7791815b5ce9d4dda7d424f464332dc422dea1939ac75b6586d818357471b308",
+    "lean/NearSharpPSD188.lean": "a2e64f89c3d95ec5c3755130ea00a722bba696ae35e5e59c192f23927628980f",
+    "lean/GapAlgebra.lean": "deeff152c675d1682382cc5b88b902f461911fd8682dace1961c9fcb51ae22d7",
+    "lean/IntegerGap.lean": "85de2878bcfb77b0d4627274f72ce89bb211ecb936ca37fc5977cba9b3e4fa04",
+    "lean/NearSharpNumeric188.lean": "5389fe312fd27c725fb3b6beb7c98cac49ed5c85cac7bf307a9842270a1c3d62",
+    "lean/AffineMatrix.lean": "57999725eeea4116c405423d535ba8899c8e69bfc147d0fb2144b65acfffeba3",
+    "lean/MatrixCertificate.lean": "edea549d64eb6501b4296e6462e3189d29db8b721299d0084b85b38cf6884c41",
+    "lean/NearSharpCertificate188.lean": "38e7415356e5d16138f58e185b75a17cce2d3b707b12588c851dcbcafdbb490f",
+    "lean/NearSharpData1886Defs.lean": "c462e71bb51adb8fdb4c7cffaeac544fec1a1f560a385701b7c5579ff27ec188",
+    "lean/NearSharpData1886_lower_lo_gram_identity_0.lean": "4edae3505b701eeb3347ed276418da4b46575e491e40b4c4f997a596a7a55146",
+    "lean/NearSharpData1886_lower_lo_gram_identity_6.lean": "a51e4cfc7de5d3e19da9e9cc77a1f7a3e86f727c9be5f7693715ab89ae9a957f",
+    "lean/NearSharpData1886_lower_lo_gram_identity_12.lean": "51242a734baf0bda835b6c774851c91538a59c7248989b8cebc8204458b72429",
+    "lean/NearSharpData1886_lower_lo_gram_identity_18.lean": "450f06e849b3fc3a34058c7c26c5d13479fb9859ee92ddcb53a857f0e3023e26",
+    "lean/NearSharpData1886_lower_lo_gram_identity_24.lean": "1989b71295643bc737b811c21b8150f69885e4db0a057a6361686a0a6c8292e3",
+    "lean/NearSharpData1886_lower_lo_gram_identity_30.lean": "2afabdb3736db804ab2a97fe9c891a15960bd13cc6abd71f892042decb91f345",
+    "lean/NearSharpData1886_lower_lo_gram_identity_36.lean": "84a62266fcdf54d2d8137b4b51c09c91bd450e0dedd259a8d30ee12113fe10d5",
+    "lean/NearSharpData1886_Tlo_gram_identity_0.lean": "2603adfa30cebfcdbe467ea9c43343cc30281ffdd41c37fc2fe1749d60d91e1b",
+    "lean/NearSharpData1886_Tlo_gram_identity_6.lean": "573e039f203be680e14fc22aad1e33860b81224873210b167b6d7012d77b4cda",
+    "lean/NearSharpData1886_Tlo_gram_identity_12.lean": "675737956b8ac1bc4dffabeab54d05a292b5f04b169d5b57b3ada50721987d39",
+    "lean/NearSharpData1886_Tlo_gram_identity_18.lean": "8bdd03ea33d8c01c3c8d24558adad6236c5afe56dde242d83c921525abe2e0e4",
+    "lean/NearSharpData1886_Tlo_gram_identity_24.lean": "0157601eb4c550bd373a7f3d522663dcf4260956f727730281c6532171862e8f",
+    "lean/NearSharpData1886_Tlo_gram_identity_30.lean": "396ea2c262842037a74b63ab1abd9e410f916d29b6d2d0437af0ef68345be686",
+    "lean/NearSharpData1886_Tlo_gram_identity_36.lean": "0e6e8cb20af4fb4f3934c7a9e88c39a79b3983899877e50fb05c07dffadbcedc",
+    "lean/NearSharpData1886_lower_hi_gram_identity_0.lean": "0bb13e87e0d23da4aa38e5c8e7211ae3a405a3e95345204c72622600ab01030b",
+    "lean/NearSharpData1886_lower_hi_gram_identity_6.lean": "062786b84d0e22b7a20a8af3d80b0b459b8e116758145e6a9549a2a2fbd2d29e",
+    "lean/NearSharpData1886_lower_hi_gram_identity_12.lean": "e9b4360188494531486392bce7e8ad1e95c8b491c6a6bcbfe2369d59ab3a02ad",
+    "lean/NearSharpData1886_lower_hi_gram_identity_18.lean": "76539348793c111668f7fce8d8645daf9b290256bd6d620edaf2e76f41cc4dc7",
+    "lean/NearSharpData1886_lower_hi_gram_identity_24.lean": "d45a49ddb4ea95b2168e60b644d86ac7ce8882210329f3ded527599af4d5a413",
+    "lean/NearSharpData1886_lower_hi_gram_identity_30.lean": "8adbe27d0f108d32973cae3b3df7f231d9c2b9376616eda7e3f22293ded74350",
+    "lean/NearSharpData1886_lower_hi_gram_identity_36.lean": "36ed0decd62a51ec652be6d043569254fa5b5f59c8d0697f44c5e175c6c14b38",
+    "lean/NearSharpData1886_Thi_gram_identity_0.lean": "c2ea212c4634494da1bcfa9ba092e472ab20a76d6dea833f1edcc8255740fd30",
+    "lean/NearSharpData1886_Thi_gram_identity_6.lean": "9b3b0382535dc3c72b31230f415f0b0a518619fb6bfc622e8a6b4679d2522d60",
+    "lean/NearSharpData1886_Thi_gram_identity_12.lean": "81e988bc021c2c827a3c359fcfb66645316d91e2e3844ddaa3d4d207452f1de2",
+    "lean/NearSharpData1886_Thi_gram_identity_18.lean": "fd8ab01b136c28919ff315f6f05f10b3fe4a19dfe0f740e5e03e12c556d36125",
+    "lean/NearSharpData1886_Thi_gram_identity_24.lean": "e1abdf7419b7a6ea622ecf5a697be7f5acdb7fa3deae4ff0ebe507cdaefed528",
+    "lean/NearSharpData1886_Thi_gram_identity_30.lean": "197a6c1f9eee88c1c0a15867bb4247187fa2ca00cc65872233227f45dc248250",
+    "lean/NearSharpData1886_Thi_gram_identity_36.lean": "122a2feb7ab2167b91711006d067ac9f80926f701e221ad89902670829dd1545",
+    "lean/NearSharpData1886_weightedFZ_identity_0.lean": "5809f0996b2cecf6183538c7f80a07a8cb7ecb450f68252f51f5cf598ad3e028",
+    "lean/NearSharpData1886_weightedFZ_identity_6.lean": "dba45191048dd6c36cdb80e61e10a5fcef880bfeb9b2d99ae969fe33bcc65c60",
+    "lean/NearSharpData1886_weightedFZ_identity_12.lean": "df72433ef23e661dcd59dfe38bf68c9ff3fcc1cfd59a3390b3971b1ab81f20a3",
+    "lean/NearSharpData1886_weightedFZ_identity_18.lean": "e38645ba69585cb9d77523f4e439ad59ce70e4c5062e8131674a7e8b1f703d06",
+    "lean/NearSharpData1886_weightedGZ_identity_0.lean": "fe031ddd72b82d805af53b5bfa5d2545e8b5627b91ddaf435f7bb19bef9878c1",
+    "lean/NearSharpData1886_weightedGZ_identity_6.lean": "326bfb2edbf0b164bf097a473210fc5b183504b1ba6ed2a68f9eee59833921a7",
+    "lean/NearSharpData1886_weightedGZ_identity_12.lean": "c41f973b6e9b6da958dc431a0941b4319c5eadaeca53ad03d74de4c21a31b5d3",
+    "lean/NearSharpData1886_weightedGZ_identity_18.lean": "4923b297322a03c10a86ac8335053e5f061958edab1f0794b44f5f4a82d6fcab",
+    "lean/NearSharpData1886_endpoint_fast_lo_0.lean": "de7350a8327619536514477d339742922e2bcd9ac16220a1e6fc7643a3fd9073",
+    "lean/NearSharpData1886_endpoint_fast_lo_6.lean": "ebc3f63774c1be81fc86cc36875d1eef4d895aeff7a2903f1e610e523fc19264",
+    "lean/NearSharpData1886_endpoint_fast_lo_12.lean": "e1dd7797e51dc497ff6df08a2ac73adbd63a8b41d56069c0cf43385fb4d07d37",
+    "lean/NearSharpData1886_endpoint_fast_lo_18.lean": "fea8e41968bd1ae8d3afb26a8cc4fa71c62bb6589547cb137d84944e84bb22da",
+    "lean/NearSharpData1886_endpoint_fast_lo_24.lean": "d639ec4e12ab558cb08356d998cebcb0e7e8dbb860c2779b385b95c3fa0e0508",
+    "lean/NearSharpData1886_endpoint_fast_lo_30.lean": "79c005049b0ebdc938627de105a5a7713ee81a961c2e7903b1d0dc3c4335fe46",
+    "lean/NearSharpData1886_endpoint_fast_lo_36.lean": "f2489faf2ff17d7bb11284f2f1eb1d9e895d5eaabb3da53cef214e492de1bfaf",
+    "lean/NearSharpData1886_endpoint_fast_hi_0.lean": "f17250ccd5e2c263c5f61f065600a7f7038de99e387f77cc59d931794dceba11",
+    "lean/NearSharpData1886_endpoint_fast_hi_6.lean": "662c80ac86f4ef196c4e83e194ee15caa925d8cbb3dd10b78c12e3f057c73282",
+    "lean/NearSharpData1886_endpoint_fast_hi_12.lean": "a47456933b4aa922beb25e3f8456d6b92eb4bbae6d225149a0e27b923d4ccdfb",
+    "lean/NearSharpData1886_endpoint_fast_hi_18.lean": "7e6f6924db02003cd90538ab9589cb14f7b9136af05b4b09bc2b5b1d020f4a4f",
+    "lean/NearSharpData1886_endpoint_fast_hi_24.lean": "93e8564986640dff9de6816672d95ff11766454936814dccf4d6220c8ba0fdc0",
+    "lean/NearSharpData1886_endpoint_fast_hi_30.lean": "e124b080e615063ca8e5057d50620b8f7df7d32d82022421fb7397231e5b05dc",
+    "lean/NearSharpData1886_endpoint_fast_hi_36.lean": "a140d90a49f02811f2f6db28d9d9a65a55a539428fda337f25a38682c20b4435",
+    "lean/NearSharpData1886_Simple0.lean": "0abdf47a335e6fcfd732ac32dd4a91ceaa2e78e8303d0e44f6968597ba15c7c1",
+    "lean/NearSharpData1886_Simple1.lean": "5818266766cb98a63ead5e6647f6bd24b64d749ddf5cb30a1701194313863269",
+    "lean/NearSharpData1886_Simple2.lean": "af485d1072efbf3637b3ff10063346221d9cfb0d0d4226c65c79c868b68f8d6b",
+    "lean/NearSharpData1886_Simple3.lean": "5e8ab1abc80d4db4ce18da6b2dd6abaeb9bf9f1873a11c9568b932244ca486d9",
+    "lean/NearSharpData1886_Simple4.lean": "df1fea77044aeb9cd7f25b5bc92d88f8f16f1ee0aa140643f31daac66b2c03fc",
+    "lean/NearSharpData1886_Simple5.lean": "ed0d98d4a2e50f56ffdab35c685c3d39a027cefb8130c71fbb2213c750d0285f",
+    "lean/NearSharpData1886_Simple6.lean": "997bba7a4d561e85b4bae5977e40bc1061b9fab14b49da4ec28323e2bbcc9745",
+    "lean/NearSharpData1886_Simple7.lean": "5f8bb849150503ede155a7427e7ff204eab01534c3d2947d00dd07b15739aa2f",
+    "lean/NearSharpData1886_Simple8.lean": "e1d1f4199ab9e162953725a69c2c44e6c1eaafb08b861c4059a584a193252e00",
+    "lean/NearSharpData1886_Simple9.lean": "330ed677b22f172885ab00a5538dbe9362d383622eabea1e4eec1b4d44f006de",
+    "lean/NearSharpData1886_Simple10.lean": "c2784215e79999e542a84a923def1b975b58fb837761a041fa8adecf20e73f8d",
+    "lean/NearSharpData1886_Simple11.lean": "eebfc7af9e201ec6c66b52e9153947f22d05ccce4f2116aae938d1aae00dcec4",
+    "lean/NearSharpData1886.lean": "d718ad5414b77ee1e7d411271a2c5f2a5d5ef967116f8d3189ca4411b59cc585",
+    "lean/NearSharpPSD1886.lean": "e3be96615f17278f78e5e101cbf0760eb91df88fd516615f54d00b6aae4fa224",
+    "lean/NearSharpNumeric1886.lean": "8ff52297b1516ba6e35d18694bcefbe5d3b86525026ac97d77a23ac959d224ce",
+    "lean/NearSharpCertificate1886.lean": "1ecc967face15c879f9f5591d5e40ec4e5827d66463845501b2fd2675893c419",
+    "lean/NearSharpAllSteps.lean": "34f291760354bfd5dad105a0f20bba44d97a6c93f0f3cdc807aac22058a5b1eb",
+    "lean/NearSharpRankDeficient.lean": "ffd12f80d9d63aa6744804331e1a4cb4b6aaaeb3b35eb1b4be0f099c801fa993",
+    "lean/NearSharpFullRank.lean": "b09e32d32aca12e10cd341d47d0d748a4f5bb3a612e2de6e47076d4ebb30d7f0",
+    "lean/CycleGeometry.lean": "72d02ee6d188846796185bb7625e91a8e26d25c7dbd5361cea8329dd14866c5e",
+    "lean/CycleDataCore.lean": "b27c3b372bee7ea807d19658b3e6b018410cd20b7aa6f3d1b47ddf530be6f504",
+    "lean/CycleAlgebra.lean": "623774afe51184a23fab7c03021ae6e172b47407d36200ea878fc0e1a07dbb6c",
+    "lean/CycleWellposed.lean": "8c3c0f07952975f449b194fff695d66e6be0595a3c66a62f1cf3848e8433df03",
+    "lean/CycleRows00.lean": "853d7d5309a9a17cfc3964e9590461e6afacbba93ace1c108d10346d798ead33",
+    "lean/CycleRows01.lean": "4fba7af96382f2858a562f57cea93e6bdc7ddd50535efbc3f6c8c2191b841441",
+    "lean/CycleRows02.lean": "b58285f07f721b8c9df1060b1b29ec44ce577de5578c1480e47df09527e413f6",
+    "lean/CycleRows03.lean": "bab6c3ad73405e37e28caae739ad0dbeb270c0961167b9a2d72b2a56a32ff2d3",
+    "lean/CycleRows04.lean": "330a6f97c500a3471ed2e5d2aaa25458f05b7dc014adf1be3f8487fe4e5ff1dc",
+    "lean/CycleRows05.lean": "c8edec6f362c9af518dde3417fcdcf1b2fa5a55f65255e90140e8dfdde31a407",
+    "lean/CycleRows06.lean": "bb4870baafee4c11fbba6bb4925ce60f685913825f8646004c27b4b7374bb511",
+    "lean/CycleRows07.lean": "bd73f785b79dd3c0fc7d3756b5a8d947c8f6998851186a06081c8df28c86688d",
+    "lean/CycleRows08.lean": "3cb5603872f4a8b501a46dcc0c7a804dbc8a21057c196bc924599aef83fe1899",
+    "lean/CycleRows09.lean": "c70b5f4e3bf9a28e25857ca8c0c5bd09f4f3ef6068e7e1ece3ece6e2bde9c576",
+    "lean/CycleRows10.lean": "ac2f60bdd56a5a7fdc8d9dd4e68481aec067af240409ae465627a8440f6aa7e6",
+    "lean/CycleRows11.lean": "6b83b89f3de94f5f62ea6701efa24aa9c17a368f676898d77b4025838c0e5610",
+    "lean/CycleRows12.lean": "43d661c6e56c0455e21f487455d4bdec2548e394adaab14ce765e568aba51346",
+    "lean/CycleRows13.lean": "895387d9512a19cfa8e99a1174b4731fa4f26603ad7312738573754725db2e79",
+    "lean/CycleRows14.lean": "6ec9050ba67f23f64b1f5d8c28de91714b7f77557cc1340f9d58c90a7e4a7478",
+    "lean/CycleRows15.lean": "481f0128d560ebab73e788f51287eb182a75f115470fd65083c34f43f96658d8",
+    "lean/CycleData.lean": "02607692dc5c98b06cd51c259bd85ed4f660e1fabec36e7167fe02921594c1aa",
+    "lean/CycleCounterexample.lean": "45e4478a4dbb6f96dafb81712d6d868c5333f3f283bc4e9a1d7a62d7a26cd3aa"
+  },
+  "roots": [
+    "NearSharpFullRank",
+    "CycleCounterexample"
+  ],
+  "lean_path": "$REPLAY/admm-out/objects:$MATHLIB/.lake/packages/Cli/.lake/build/lib/lean:$MATHLIB/.lake/packages/batteries/.lake/build/lib/lean:$MATHLIB/.lake/packages/Qq/.lake/build/lib/lean:$MATHLIB/.lake/packages/aesop/.lake/build/lib/lean:$MATHLIB/.lake/packages/proofwidgets/.lake/build/lib/lean:$MATHLIB/.lake/packages/importGraph/.lake/build/lib/lean:$MATHLIB/.lake/packages/LeanSearchClient/.lake/build/lib/lean:$MATHLIB/.lake/packages/plausible/.lake/build/lib/lean:$MATHLIB/.lake/build/lib/lean:$LEAN_HOME/lib/lean",
+  "builds": [
+    {
+      "module": "ADMMCertificate",
+      "exit_code": 0,
+      "seconds": 19.843946864000827,
+      "log": "logs/ADMMCertificate.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/ADMMCertificate.olean",
+        "$REPLAY/admm/lean/ADMMCertificate.lean"
+      ],
+      "object_sha256": "b6b3a4ed80046cef38c72aeddb0737e6ddc77a4d6027ec4e8e1724c30b529a0d"
+    },
+    {
+      "module": "ProximalModel",
+      "exit_code": 0,
+      "seconds": 11.72006842799965,
+      "log": "logs/ProximalModel.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/ProximalModel.olean",
+        "$REPLAY/admm/lean/ProximalModel.lean"
+      ],
+      "object_sha256": "c94bfa442cfc8d53af7028ab7c7532a681f6b08519212137c92d5975d3bd4fb0"
+    },
+    {
+      "module": "MemoryConvergence",
+      "exit_code": 0,
+      "seconds": 4.482038604999616,
+      "log": "logs/MemoryConvergence.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/MemoryConvergence.olean",
+        "$REPLAY/admm/lean/MemoryConvergence.lean"
+      ],
+      "object_sha256": "f553636386b1d53b318d7bdfa2f22fa7a7ed9cfb79b6e18e7bd58e0e1a8c1cfb"
+    },
+    {
+      "module": "ADMMConvergence",
+      "exit_code": 0,
+      "seconds": 10.252923639000073,
+      "log": "logs/ADMMConvergence.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/ADMMConvergence.olean",
+        "$REPLAY/admm/lean/ADMMConvergence.lean"
+      ],
+      "object_sha256": "576091a18542e8fe953969193e60fbd3e80e2ad9ed9c5739e836bcab56a663df"
+    },
+    {
+      "module": "LinearReduction",
+      "exit_code": 0,
+      "seconds": 5.780549297000107,
+      "log": "logs/LinearReduction.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/LinearReduction.olean",
+        "$REPLAY/admm/lean/LinearReduction.lean"
+      ],
+      "object_sha256": "f189f66ff343872a625ea3db71e4467b5e145d88e4b2db2d95bf8cb869112318"
+    },
+    {
+      "module": "InfimalImage",
+      "exit_code": 0,
+      "seconds": 6.828503352000553,
+      "log": "logs/InfimalImage.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/InfimalImage.olean",
+        "$REPLAY/admm/lean/InfimalImage.lean"
+      ],
+      "object_sha256": "47873153a4aabe3aa142a3cb5a60a00c5cf867d102b459f9d2f2f1a94a479c16"
+    },
+    {
+      "module": "RankDeficientADMM",
+      "exit_code": 0,
+      "seconds": 5.90546835799978,
+      "log": "logs/RankDeficientADMM.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/RankDeficientADMM.olean",
+        "$REPLAY/admm/lean/RankDeficientADMM.lean"
+      ],
+      "object_sha256": "e20cf929b59c0b06c92066ed7edf849a414735c9efce6de068f16fca38483a8d"
+    },
+    {
+      "module": "SaddleLifting",
+      "exit_code": 0,
+      "seconds": 3.854797834999772,
+      "log": "logs/SaddleLifting.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/SaddleLifting.olean",
+        "$REPLAY/admm/lean/SaddleLifting.lean"
+      ],
+      "object_sha256": "15fd1366b01bcd0ebd77cff7339d15bf9186f9e7d92705853fea0aa3e5a6ba92"
+    },
+    {
+      "module": "ADMMIntervalCertificate",
+      "exit_code": 0,
+      "seconds": 34.73595171799934,
+      "log": "logs/ADMMIntervalCertificate.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/ADMMIntervalCertificate.olean",
+        "$REPLAY/admm/lean/ADMMIntervalCertificate.lean"
+      ],
+      "object_sha256": "161bbfb81affd180de17615ef1ef63c303ee466f5a32992b3d7e6527c42f42b9"
+    },
+    {
+      "module": "ScaledProximalModel",
+      "exit_code": 0,
+      "seconds": 4.1454996219999884,
+      "log": "logs/ScaledProximalModel.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/ScaledProximalModel.olean",
+        "$REPLAY/admm/lean/ScaledProximalModel.lean"
+      ],
+      "object_sha256": "455c9e9f30354cd31e3425cb1fe0c9ad9aca4be72650ee581ca7760ed1475f8e"
+    },
+    {
+      "module": "ADMMIntervalConvergence",
+      "exit_code": 0,
+      "seconds": 16.595530336999218,
+      "log": "logs/ADMMIntervalConvergence.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/ADMMIntervalConvergence.olean",
+        "$REPLAY/admm/lean/ADMMIntervalConvergence.lean"
+      ],
+      "object_sha256": "26395e55cd7ad82bfd6271680fd1829876ada63d2173d0c9a103432f92acb889"
+    },
+    {
+      "module": "ClassicalADMM",
+      "exit_code": 0,
+      "seconds": 13.653327423000519,
+      "log": "logs/ClassicalADMM.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/ClassicalADMM.olean",
+        "$REPLAY/admm/lean/ClassicalADMM.lean"
+      ],
+      "object_sha256": "2bc108e961a87a9cb948a4065625a14a666dc5b5285bd11fab94d24a4c641ff0"
+    },
+    {
+      "module": "AllStepsADMM",
+      "exit_code": 0,
+      "seconds": 6.096411134001755,
+      "log": "logs/AllStepsADMM.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/AllStepsADMM.olean",
+        "$REPLAY/admm/lean/AllStepsADMM.lean"
+      ],
+      "object_sha256": "09fcc7d068e7ef1e473a044969dfb1e5791ce7c3060748a15cae6bfc7ef40740"
+    },
+    {
+      "module": "MemoryCertificate",
+      "exit_code": 0,
+      "seconds": 3.6414198790007504,
+      "log": "logs/MemoryCertificate.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/MemoryCertificate.olean",
+        "$REPLAY/admm/lean/MemoryCertificate.lean"
+      ],
+      "object_sha256": "3776eb073a74c63557b42733e801efa8dbfa0494a6b7a386d249706a32e1771e"
+    },
+    {
+      "module": "DelayedMemory",
+      "exit_code": 0,
+      "seconds": 4.3253407449992665,
+      "log": "logs/DelayedMemory.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/DelayedMemory.olean",
+        "$REPLAY/admm/lean/DelayedMemory.lean"
+      ],
+      "object_sha256": "db53c61e563175fda10337de0de0c41c4c217028ac9ee7c6c4f7deeae7d459ab"
+    },
+    {
+      "module": "FiniteMemoryADMM",
+      "exit_code": 0,
+      "seconds": 7.709984999000881,
+      "log": "logs/FiniteMemoryADMM.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/FiniteMemoryADMM.olean",
+        "$REPLAY/admm/lean/FiniteMemoryADMM.lean"
+      ],
+      "object_sha256": "e00d884cf03e166511c4f84c6619b5382d6720a1b21e910757070ce3f867a85b"
+    },
+    {
+      "module": "OriginalMemoryADMM",
+      "exit_code": 0,
+      "seconds": 4.733107514999574,
+      "log": "logs/OriginalMemoryADMM.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/OriginalMemoryADMM.olean",
+        "$REPLAY/admm/lean/OriginalMemoryADMM.lean"
+      ],
+      "object_sha256": "c59f1d59d54c02160dc04aabf0989b263aaeb9f80baefff7ab726dbe57b9a85f"
+    },
+    {
+      "module": "Quadratic",
+      "exit_code": 0,
+      "seconds": 10.264292683999884,
+      "log": "logs/Quadratic.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/Quadratic.olean",
+        "$REPLAY/admm/lean/Quadratic.lean"
+      ],
+      "object_sha256": "c5d1c65a92f9baa5dfba02464edae9ee2d37d7129bd2225380c22fffb4e86b5d"
+    },
+    {
+      "module": "IntegerMatrix",
+      "exit_code": 0,
+      "seconds": 5.888334512999791,
+      "log": "logs/IntegerMatrix.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/IntegerMatrix.olean",
+        "$REPLAY/admm/lean/IntegerMatrix.lean"
+      ],
+      "object_sha256": "6e2bc7dae3b67fedf71c69fe74b9cf6a2bef8831ee538b8f189cbf4ffc85ab18"
+    },
+    {
+      "module": "IntegerCross",
+      "exit_code": 0,
+      "seconds": 5.7327647089987295,
+      "log": "logs/IntegerCross.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/IntegerCross.olean",
+        "$REPLAY/admm/lean/IntegerCross.lean"
+      ],
+      "object_sha256": "10c8f35b0fd527d5110efb376f3269aa6f9841652ce32ec382b3f64ad907bec9"
+    },
+    {
+      "module": "StandardRows",
+      "exit_code": 0,
+      "seconds": 12.204866175999996,
+      "log": "logs/StandardRows.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/StandardRows.olean",
+        "$REPLAY/admm/lean/StandardRows.lean"
+      ],
+      "object_sha256": "1fc00272ef7b75174f435e7071bbf0d8c6c1758723e609ec613a0c3889e8592c"
+    },
+    {
+      "module": "IntegerEmbedding",
+      "exit_code": 0,
+      "seconds": 6.615273207999053,
+      "log": "logs/IntegerEmbedding.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/IntegerEmbedding.olean",
+        "$REPLAY/admm/lean/IntegerEmbedding.lean"
+      ],
+      "object_sha256": "fb063ec760d3baba2c8023a00d96e1ab3dc71d46a4a095fd10f27bb062084b65"
+    },
+    {
+      "module": "IntegerNumerics",
+      "exit_code": 0,
+      "seconds": 1.477625937999619,
+      "log": "logs/IntegerNumerics.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/IntegerNumerics.olean",
+        "$REPLAY/admm/lean/IntegerNumerics.lean"
+      ],
+      "object_sha256": "6b2f6d93eda6f9e55373bb6fb538512d107cb95e1fb6a9160b07d75e51f87796"
+    },
+    {
+      "module": "NearSharpData188Defs",
+      "exit_code": 0,
+      "seconds": 33.331055442000434,
+      "log": "logs/NearSharpData188Defs.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188Defs.olean",
+        "$REPLAY/admm/lean/NearSharpData188Defs.lean"
+      ],
+      "object_sha256": "949910dbaf83d773ab1e69c3d2ea321e153dbd0ae1e4a3c954aeb1566c550061"
+    },
+    {
+      "module": "NearSharpData188_lower_lo_gram_identity_0",
+      "exit_code": 0,
+      "seconds": 11.517519843999253,
+      "log": "logs/NearSharpData188_lower_lo_gram_identity_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_lower_lo_gram_identity_0.olean",
+        "$REPLAY/admm/lean/NearSharpData188_lower_lo_gram_identity_0.lean"
+      ],
+      "object_sha256": "3a1271c1b2b3e20c012d152304d4c7eeb0428e9a94e00f868367ca568fa42649"
+    },
+    {
+      "module": "NearSharpData188_lower_lo_gram_identity_6",
+      "exit_code": 0,
+      "seconds": 12.206292064000081,
+      "log": "logs/NearSharpData188_lower_lo_gram_identity_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_lower_lo_gram_identity_6.olean",
+        "$REPLAY/admm/lean/NearSharpData188_lower_lo_gram_identity_6.lean"
+      ],
+      "object_sha256": "4efe3b919e0e2a9bc708bab4715f5739a2fbf65af33305085dcfe301535dc7e8"
+    },
+    {
+      "module": "NearSharpData188_lower_lo_gram_identity_12",
+      "exit_code": 0,
+      "seconds": 11.839398602998699,
+      "log": "logs/NearSharpData188_lower_lo_gram_identity_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_lower_lo_gram_identity_12.olean",
+        "$REPLAY/admm/lean/NearSharpData188_lower_lo_gram_identity_12.lean"
+      ],
+      "object_sha256": "4aef92a04d62a23a49c6a339862f81e26fb8c30f541a975912425b9ad6efff1a"
+    },
+    {
+      "module": "NearSharpData188_lower_lo_gram_identity_18",
+      "exit_code": 0,
+      "seconds": 11.543981540000459,
+      "log": "logs/NearSharpData188_lower_lo_gram_identity_18.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_lower_lo_gram_identity_18.olean",
+        "$REPLAY/admm/lean/NearSharpData188_lower_lo_gram_identity_18.lean"
+      ],
+      "object_sha256": "fa2ec248a6f1b9387ceae5f34356746eb3ed438b3c4345f872c358cd32a57cfd"
+    },
+    {
+      "module": "NearSharpData188_Tlo_gram_identity_0",
+      "exit_code": 0,
+      "seconds": 10.86420107199956,
+      "log": "logs/NearSharpData188_Tlo_gram_identity_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Tlo_gram_identity_0.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Tlo_gram_identity_0.lean"
+      ],
+      "object_sha256": "97701c08b01dc8e832a212e2702f82c9a498c96a2e25ed77b28220368750c61e"
+    },
+    {
+      "module": "NearSharpData188_Tlo_gram_identity_6",
+      "exit_code": 0,
+      "seconds": 11.013948505000371,
+      "log": "logs/NearSharpData188_Tlo_gram_identity_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Tlo_gram_identity_6.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Tlo_gram_identity_6.lean"
+      ],
+      "object_sha256": "155571115143ae5e765565cd45538e7dca27b06da7967bec037af79856860a78"
+    },
+    {
+      "module": "NearSharpData188_Tlo_gram_identity_12",
+      "exit_code": 0,
+      "seconds": 11.252878498000427,
+      "log": "logs/NearSharpData188_Tlo_gram_identity_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Tlo_gram_identity_12.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Tlo_gram_identity_12.lean"
+      ],
+      "object_sha256": "97fafe619b43874c0abd895f5fcf5baf49576657402f7e76b34cad21405a2456"
+    },
+    {
+      "module": "NearSharpData188_Tlo_gram_identity_18",
+      "exit_code": 0,
+      "seconds": 11.0624983839989,
+      "log": "logs/NearSharpData188_Tlo_gram_identity_18.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Tlo_gram_identity_18.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Tlo_gram_identity_18.lean"
+      ],
+      "object_sha256": "5b058a76d68df34acf97ebe9263119c59dfc45ab9a6e17e91362a4b35c9314fc"
+    },
+    {
+      "module": "NearSharpData188_lower_hi_gram_identity_0",
+      "exit_code": 0,
+      "seconds": 10.576294673999655,
+      "log": "logs/NearSharpData188_lower_hi_gram_identity_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_lower_hi_gram_identity_0.olean",
+        "$REPLAY/admm/lean/NearSharpData188_lower_hi_gram_identity_0.lean"
+      ],
+      "object_sha256": "80f2feb04b3703154fa5fbc7ca417f853e0433f2253e0b70858916ed199fc5bb"
+    },
+    {
+      "module": "NearSharpData188_lower_hi_gram_identity_6",
+      "exit_code": 0,
+      "seconds": 11.021895865998886,
+      "log": "logs/NearSharpData188_lower_hi_gram_identity_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_lower_hi_gram_identity_6.olean",
+        "$REPLAY/admm/lean/NearSharpData188_lower_hi_gram_identity_6.lean"
+      ],
+      "object_sha256": "a57fd3fe9eee31b5ff8a4e7b6c88de25631dd02e39b37d24679d576baf061b13"
+    },
+    {
+      "module": "NearSharpData188_lower_hi_gram_identity_12",
+      "exit_code": 0,
+      "seconds": 11.428201426999294,
+      "log": "logs/NearSharpData188_lower_hi_gram_identity_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_lower_hi_gram_identity_12.olean",
+        "$REPLAY/admm/lean/NearSharpData188_lower_hi_gram_identity_12.lean"
+      ],
+      "object_sha256": "5ef142fefbf896e53f5319737e1d71e1e627f28144187409d864295c0b838b77"
+    },
+    {
+      "module": "NearSharpData188_lower_hi_gram_identity_18",
+      "exit_code": 0,
+      "seconds": 11.41426654299903,
+      "log": "logs/NearSharpData188_lower_hi_gram_identity_18.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_lower_hi_gram_identity_18.olean",
+        "$REPLAY/admm/lean/NearSharpData188_lower_hi_gram_identity_18.lean"
+      ],
+      "object_sha256": "4de367ac19642b1582b24e6ed8486631865f5ef1b3ff327cd1c1c66533820fa4"
+    },
+    {
+      "module": "NearSharpData188_Thi_gram_identity_0",
+      "exit_code": 0,
+      "seconds": 10.880605272001048,
+      "log": "logs/NearSharpData188_Thi_gram_identity_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Thi_gram_identity_0.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Thi_gram_identity_0.lean"
+      ],
+      "object_sha256": "3ffa92afa1b1b4cece514db3a556ce22fa755272ca2fb7244ac0d802f940cd47"
+    },
+    {
+      "module": "NearSharpData188_Thi_gram_identity_6",
+      "exit_code": 0,
+      "seconds": 10.969437318999553,
+      "log": "logs/NearSharpData188_Thi_gram_identity_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Thi_gram_identity_6.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Thi_gram_identity_6.lean"
+      ],
+      "object_sha256": "57defef76460366000326c824bcf08b58df8041a09e5c54e1c36da13ab878008"
+    },
+    {
+      "module": "NearSharpData188_Thi_gram_identity_12",
+      "exit_code": 0,
+      "seconds": 11.615692399000181,
+      "log": "logs/NearSharpData188_Thi_gram_identity_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Thi_gram_identity_12.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Thi_gram_identity_12.lean"
+      ],
+      "object_sha256": "70e89e5ebdb1c4ec86e80d0889d336b8a45131839f85a2da3b7653644f29df62"
+    },
+    {
+      "module": "NearSharpData188_Thi_gram_identity_18",
+      "exit_code": 0,
+      "seconds": 11.56806153999969,
+      "log": "logs/NearSharpData188_Thi_gram_identity_18.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Thi_gram_identity_18.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Thi_gram_identity_18.lean"
+      ],
+      "object_sha256": "48aff2f54718e435c840168314fe23c6f247e24b61e806170dd1cc8f06d72408"
+    },
+    {
+      "module": "NearSharpData188_weightedFZ_identity_0",
+      "exit_code": 0,
+      "seconds": 8.65777295800035,
+      "log": "logs/NearSharpData188_weightedFZ_identity_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_weightedFZ_identity_0.olean",
+        "$REPLAY/admm/lean/NearSharpData188_weightedFZ_identity_0.lean"
+      ],
+      "object_sha256": "a91c87864f970656275019fa6bbd2f0d35019dce597356b4ec8110722675e8d8"
+    },
+    {
+      "module": "NearSharpData188_weightedFZ_identity_6",
+      "exit_code": 0,
+      "seconds": 8.218782758000089,
+      "log": "logs/NearSharpData188_weightedFZ_identity_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_weightedFZ_identity_6.olean",
+        "$REPLAY/admm/lean/NearSharpData188_weightedFZ_identity_6.lean"
+      ],
+      "object_sha256": "a6b39a10d26deee1c21b764bf1597d009144c61c0f95d27addea74fc72da92f7"
+    },
+    {
+      "module": "NearSharpData188_weightedFZ_identity_12",
+      "exit_code": 0,
+      "seconds": 2.4648799869992217,
+      "log": "logs/NearSharpData188_weightedFZ_identity_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_weightedFZ_identity_12.olean",
+        "$REPLAY/admm/lean/NearSharpData188_weightedFZ_identity_12.lean"
+      ],
+      "object_sha256": "2d286bb31b5c5f25d0997048b92b52b6fc0c9f674a2e84f61a839e2842fd4732"
+    },
+    {
+      "module": "NearSharpData188_weightedGZ_identity_0",
+      "exit_code": 0,
+      "seconds": 8.680536669000503,
+      "log": "logs/NearSharpData188_weightedGZ_identity_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_weightedGZ_identity_0.olean",
+        "$REPLAY/admm/lean/NearSharpData188_weightedGZ_identity_0.lean"
+      ],
+      "object_sha256": "3b5af477880f20db74c29e5fc38e5db3dab952a6359afa97d4414fabea797fa5"
+    },
+    {
+      "module": "NearSharpData188_weightedGZ_identity_6",
+      "exit_code": 0,
+      "seconds": 8.461534172000029,
+      "log": "logs/NearSharpData188_weightedGZ_identity_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_weightedGZ_identity_6.olean",
+        "$REPLAY/admm/lean/NearSharpData188_weightedGZ_identity_6.lean"
+      ],
+      "object_sha256": "7e70480c7e796d7cfa2d45e92556d4bc2892920598e10bbcabebfe1793712047"
+    },
+    {
+      "module": "NearSharpData188_weightedGZ_identity_12",
+      "exit_code": 0,
+      "seconds": 2.8115901190012664,
+      "log": "logs/NearSharpData188_weightedGZ_identity_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_weightedGZ_identity_12.olean",
+        "$REPLAY/admm/lean/NearSharpData188_weightedGZ_identity_12.lean"
+      ],
+      "object_sha256": "f1bb44b65732d313a18706afd0b47452a121edf19b2d033b5a2488373dd766e8"
+    },
+    {
+      "module": "NearSharpData188_endpoint_fast_lo_0",
+      "exit_code": 0,
+      "seconds": 21.613392807999844,
+      "log": "logs/NearSharpData188_endpoint_fast_lo_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_endpoint_fast_lo_0.olean",
+        "$REPLAY/admm/lean/NearSharpData188_endpoint_fast_lo_0.lean"
+      ],
+      "object_sha256": "fd2c338e59de05b09e81ea81796f0bdeea6023a7af799771318e483704395da3"
+    },
+    {
+      "module": "NearSharpData188_endpoint_fast_lo_6",
+      "exit_code": 0,
+      "seconds": 20.530059864000577,
+      "log": "logs/NearSharpData188_endpoint_fast_lo_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_endpoint_fast_lo_6.olean",
+        "$REPLAY/admm/lean/NearSharpData188_endpoint_fast_lo_6.lean"
+      ],
+      "object_sha256": "dae29f11fc68af421582df83571e7c25a256461986f61399c5677c8f0246216d"
+    },
+    {
+      "module": "NearSharpData188_endpoint_fast_lo_12",
+      "exit_code": 0,
+      "seconds": 21.374465589000465,
+      "log": "logs/NearSharpData188_endpoint_fast_lo_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_endpoint_fast_lo_12.olean",
+        "$REPLAY/admm/lean/NearSharpData188_endpoint_fast_lo_12.lean"
+      ],
+      "object_sha256": "8bdcfbb489ef92a6d6ef701af7a52a4cf8fbee5b89eeb81a8fa9bde537ddb0d4"
+    },
+    {
+      "module": "NearSharpData188_endpoint_fast_lo_18",
+      "exit_code": 0,
+      "seconds": 20.609983287000432,
+      "log": "logs/NearSharpData188_endpoint_fast_lo_18.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_endpoint_fast_lo_18.olean",
+        "$REPLAY/admm/lean/NearSharpData188_endpoint_fast_lo_18.lean"
+      ],
+      "object_sha256": "96c0f28184e966b9888cd1e8b3f5e0bbe1c7c7a208afe5ab35b7fed03077ee22"
+    },
+    {
+      "module": "NearSharpData188_endpoint_fast_lo_24",
+      "exit_code": 0,
+      "seconds": 8.328292885000337,
+      "log": "logs/NearSharpData188_endpoint_fast_lo_24.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_endpoint_fast_lo_24.olean",
+        "$REPLAY/admm/lean/NearSharpData188_endpoint_fast_lo_24.lean"
+      ],
+      "object_sha256": "de934f6f20f47075dde8ef801c1b9c81d1268242aba5d1b50844c44c8d6210ec"
+    },
+    {
+      "module": "NearSharpData188_endpoint_fast_hi_0",
+      "exit_code": 0,
+      "seconds": 20.7986149999997,
+      "log": "logs/NearSharpData188_endpoint_fast_hi_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_endpoint_fast_hi_0.olean",
+        "$REPLAY/admm/lean/NearSharpData188_endpoint_fast_hi_0.lean"
+      ],
+      "object_sha256": "17fd5ecd77f4b79efe0e62c94ba9b93e98c1f993a23936a09b8f7237ded865ac"
+    },
+    {
+      "module": "NearSharpData188_endpoint_fast_hi_6",
+      "exit_code": 0,
+      "seconds": 20.49561573400024,
+      "log": "logs/NearSharpData188_endpoint_fast_hi_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_endpoint_fast_hi_6.olean",
+        "$REPLAY/admm/lean/NearSharpData188_endpoint_fast_hi_6.lean"
+      ],
+      "object_sha256": "188a5501c829295c0456c4f3e6c6174834a35b06be464bd3df210083abc34252"
+    },
+    {
+      "module": "NearSharpData188_endpoint_fast_hi_12",
+      "exit_code": 0,
+      "seconds": 19.679636541000946,
+      "log": "logs/NearSharpData188_endpoint_fast_hi_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_endpoint_fast_hi_12.olean",
+        "$REPLAY/admm/lean/NearSharpData188_endpoint_fast_hi_12.lean"
+      ],
+      "object_sha256": "9fab502eb855b6c02f3b4cc6d18608764dada08a02c5dc16d494c6949798fb55"
+    },
+    {
+      "module": "NearSharpData188_endpoint_fast_hi_18",
+      "exit_code": 0,
+      "seconds": 19.796768046999205,
+      "log": "logs/NearSharpData188_endpoint_fast_hi_18.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_endpoint_fast_hi_18.olean",
+        "$REPLAY/admm/lean/NearSharpData188_endpoint_fast_hi_18.lean"
+      ],
+      "object_sha256": "928836755ffe6fa32a4a3652a95b175f02cc2e625c61febafd642e1c81e42c44"
+    },
+    {
+      "module": "NearSharpData188_endpoint_fast_hi_24",
+      "exit_code": 0,
+      "seconds": 7.578270027999679,
+      "log": "logs/NearSharpData188_endpoint_fast_hi_24.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_endpoint_fast_hi_24.olean",
+        "$REPLAY/admm/lean/NearSharpData188_endpoint_fast_hi_24.lean"
+      ],
+      "object_sha256": "ef3df85a4888286e073c014e3b976e53a5f1e9a76787afdeaf35563da54c1039"
+    },
+    {
+      "module": "NearSharpData188_Simple0",
+      "exit_code": 0,
+      "seconds": 1.8536284109995904,
+      "log": "logs/NearSharpData188_Simple0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Simple0.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Simple0.lean"
+      ],
+      "object_sha256": "666988ffc364139c2a2e0db077efe348a63fb4e4fd4bf8c98c813bc006a6e636"
+    },
+    {
+      "module": "NearSharpData188_Simple1",
+      "exit_code": 0,
+      "seconds": 1.9320939299996098,
+      "log": "logs/NearSharpData188_Simple1.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Simple1.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Simple1.lean"
+      ],
+      "object_sha256": "86e98dce6912b8f2072a335ab7fae98c6f4a0d32410778f4badd956067cb76e0"
+    },
+    {
+      "module": "NearSharpData188_Simple2",
+      "exit_code": 0,
+      "seconds": 2.0065234230005444,
+      "log": "logs/NearSharpData188_Simple2.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Simple2.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Simple2.lean"
+      ],
+      "object_sha256": "8b20e4457ef8ea981900ee205a2a57bba41ec117910330458c76b49a102fb22f"
+    },
+    {
+      "module": "NearSharpData188_Simple3",
+      "exit_code": 0,
+      "seconds": 2.026352057000622,
+      "log": "logs/NearSharpData188_Simple3.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Simple3.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Simple3.lean"
+      ],
+      "object_sha256": "5960ed68a5fb51b3423998f21e11f418f2f1f89eb1cbd3741f1ca29015cb652f"
+    },
+    {
+      "module": "NearSharpData188_Simple4",
+      "exit_code": 0,
+      "seconds": 1.783699189998515,
+      "log": "logs/NearSharpData188_Simple4.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Simple4.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Simple4.lean"
+      ],
+      "object_sha256": "f32c85821e903b3f845dafc0c7c3c7469862fc926014afa8c07b52e0afebf222"
+    },
+    {
+      "module": "NearSharpData188_Simple5",
+      "exit_code": 0,
+      "seconds": 2.230658518999917,
+      "log": "logs/NearSharpData188_Simple5.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Simple5.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Simple5.lean"
+      ],
+      "object_sha256": "a438ecfeb89cdf71f2378902ce267c770e61fc49052ef7929de2a0bee8f03586"
+    },
+    {
+      "module": "NearSharpData188_Simple6",
+      "exit_code": 0,
+      "seconds": 2.4128771880004933,
+      "log": "logs/NearSharpData188_Simple6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Simple6.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Simple6.lean"
+      ],
+      "object_sha256": "9abe774fba27c6db58f1517afeab88f3a652a751f6a85107c1295add13b13167"
+    },
+    {
+      "module": "NearSharpData188_Simple7",
+      "exit_code": 0,
+      "seconds": 1.8785853659992426,
+      "log": "logs/NearSharpData188_Simple7.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Simple7.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Simple7.lean"
+      ],
+      "object_sha256": "dcdd1f264bdf35837ddfab71faf5059423cbbea8011c84ccf41c9623c60ee992"
+    },
+    {
+      "module": "NearSharpData188_Simple8",
+      "exit_code": 0,
+      "seconds": 2.176172741999835,
+      "log": "logs/NearSharpData188_Simple8.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Simple8.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Simple8.lean"
+      ],
+      "object_sha256": "ffeaf7985da28ac9d3d40389a06b7edf1c70655c75af1ab1c992dd13cb692501"
+    },
+    {
+      "module": "NearSharpData188_Simple9",
+      "exit_code": 0,
+      "seconds": 2.3739225670015003,
+      "log": "logs/NearSharpData188_Simple9.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Simple9.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Simple9.lean"
+      ],
+      "object_sha256": "a17657e0a9f7f8a3cb1fecf31f6e431ba13f765ea90277c835dcc422b7681d1d"
+    },
+    {
+      "module": "NearSharpData188_Simple10",
+      "exit_code": 0,
+      "seconds": 1.6570567409999057,
+      "log": "logs/NearSharpData188_Simple10.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Simple10.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Simple10.lean"
+      ],
+      "object_sha256": "adffd6d4308c7389e1f47b4b1850cab90cee1dad9fd1dc2327543ca5eca1c2f0"
+    },
+    {
+      "module": "NearSharpData188_Simple11",
+      "exit_code": 0,
+      "seconds": 2.1420455259994924,
+      "log": "logs/NearSharpData188_Simple11.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188_Simple11.olean",
+        "$REPLAY/admm/lean/NearSharpData188_Simple11.lean"
+      ],
+      "object_sha256": "5c166f763a5b75cd4da601eaa0b1f22d3c3bbd0f1398de77a00a1241ed434160"
+    },
+    {
+      "module": "NearSharpData188",
+      "exit_code": 0,
+      "seconds": 12.783002964999469,
+      "log": "logs/NearSharpData188.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188.olean",
+        "$REPLAY/admm/lean/NearSharpData188.lean"
+      ],
+      "object_sha256": "14becd142231443681b8f5526b1821be5a4bc78f3df365eb0decfd2758aa2452"
+    },
+    {
+      "module": "NearSharpPSD188",
+      "exit_code": 0,
+      "seconds": 11.60408380499939,
+      "log": "logs/NearSharpPSD188.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpPSD188.olean",
+        "$REPLAY/admm/lean/NearSharpPSD188.lean"
+      ],
+      "object_sha256": "b5cacc5cf113ac94886ffa39e263621f740862393fcaf5ff8566e9ab53126920"
+    },
+    {
+      "module": "GapAlgebra",
+      "exit_code": 0,
+      "seconds": 8.75032526799987,
+      "log": "logs/GapAlgebra.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/GapAlgebra.olean",
+        "$REPLAY/admm/lean/GapAlgebra.lean"
+      ],
+      "object_sha256": "92033e903f732f3db7d9fccfb7de588fdeaf70b5fef7eb9a81711ba289a1d8f9"
+    },
+    {
+      "module": "IntegerGap",
+      "exit_code": 0,
+      "seconds": 6.174523391999173,
+      "log": "logs/IntegerGap.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/IntegerGap.olean",
+        "$REPLAY/admm/lean/IntegerGap.lean"
+      ],
+      "object_sha256": "00aa4ca8c07ddbc7345c84c0010a3984a2ef6f803a29c7f3f3aee450f2950fdb"
+    },
+    {
+      "module": "NearSharpNumeric188",
+      "exit_code": 0,
+      "seconds": 10.309423885000797,
+      "log": "logs/NearSharpNumeric188.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpNumeric188.olean",
+        "$REPLAY/admm/lean/NearSharpNumeric188.lean"
+      ],
+      "object_sha256": "1ef262a5771e561bf936ba162c8ed84756d0f1b9176c47dbf9755e72b10eeafd"
+    },
+    {
+      "module": "AffineMatrix",
+      "exit_code": 0,
+      "seconds": 7.346039803000167,
+      "log": "logs/AffineMatrix.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/AffineMatrix.olean",
+        "$REPLAY/admm/lean/AffineMatrix.lean"
+      ],
+      "object_sha256": "5f4a2754b94cd794c857dc5e77b5a355959b243f0bb71eab1def84946d75b19c"
+    },
+    {
+      "module": "MatrixCertificate",
+      "exit_code": 0,
+      "seconds": 6.966758901999128,
+      "log": "logs/MatrixCertificate.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/MatrixCertificate.olean",
+        "$REPLAY/admm/lean/MatrixCertificate.lean"
+      ],
+      "object_sha256": "6f77e42b3bd7461def256fa3821abece5a1103d36ecd8d41066a85c387d0ed73"
+    },
+    {
+      "module": "NearSharpCertificate188",
+      "exit_code": 0,
+      "seconds": 12.360904012000901,
+      "log": "logs/NearSharpCertificate188.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpCertificate188.olean",
+        "$REPLAY/admm/lean/NearSharpCertificate188.lean"
+      ],
+      "object_sha256": "b075f3ee3bbf7f1554682008b53008df062a824a00177eaf3afde67b210817ce"
+    },
+    {
+      "module": "NearSharpData1886Defs",
+      "exit_code": 0,
+      "seconds": 79.91030575199875,
+      "log": "logs/NearSharpData1886Defs.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886Defs.olean",
+        "$REPLAY/admm/lean/NearSharpData1886Defs.lean"
+      ],
+      "object_sha256": "aac40e3e5d61dac8fe522b7e140c448af8386aa3a97bde033fe4b38dbe8f801b"
+    },
+    {
+      "module": "NearSharpData1886_lower_lo_gram_identity_0",
+      "exit_code": 0,
+      "seconds": 25.20366995400036,
+      "log": "logs/NearSharpData1886_lower_lo_gram_identity_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_lower_lo_gram_identity_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_lower_lo_gram_identity_0.lean"
+      ],
+      "object_sha256": "3fc20385d60e74d5eb583e2bbc37651a9cacb4d552bf0cf6b071918bb7f13733"
+    },
+    {
+      "module": "NearSharpData1886_lower_lo_gram_identity_6",
+      "exit_code": 0,
+      "seconds": 26.73179850499946,
+      "log": "logs/NearSharpData1886_lower_lo_gram_identity_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_lower_lo_gram_identity_6.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_lower_lo_gram_identity_6.lean"
+      ],
+      "object_sha256": "bb2c55447f4c648999df0670eb4d4cc7bc795c85f162b3bc57dc8c9194411c50"
+    },
+    {
+      "module": "NearSharpData1886_lower_lo_gram_identity_12",
+      "exit_code": 0,
+      "seconds": 26.776937877999444,
+      "log": "logs/NearSharpData1886_lower_lo_gram_identity_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_lower_lo_gram_identity_12.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_lower_lo_gram_identity_12.lean"
+      ],
+      "object_sha256": "ac605c7aa3202c255119bf0e964768f64f023c138bf397fc04e12536bc9dcdb5"
+    },
+    {
+      "module": "NearSharpData1886_lower_lo_gram_identity_18",
+      "exit_code": 0,
+      "seconds": 25.34782988599909,
+      "log": "logs/NearSharpData1886_lower_lo_gram_identity_18.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_lower_lo_gram_identity_18.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_lower_lo_gram_identity_18.lean"
+      ],
+      "object_sha256": "380c6dfc73a3dd0831bdbd139b1f77b2bbca649aef4f0185c46420c281de27fd"
+    },
+    {
+      "module": "NearSharpData1886_lower_lo_gram_identity_24",
+      "exit_code": 0,
+      "seconds": 25.739410747000875,
+      "log": "logs/NearSharpData1886_lower_lo_gram_identity_24.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_lower_lo_gram_identity_24.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_lower_lo_gram_identity_24.lean"
+      ],
+      "object_sha256": "ea9c2122b7515b2c77dbdcda3b3e9d97f37198bb7e9f1c01717a4fc5b343cd15"
+    },
+    {
+      "module": "NearSharpData1886_lower_lo_gram_identity_30",
+      "exit_code": 0,
+      "seconds": 27.642274564001127,
+      "log": "logs/NearSharpData1886_lower_lo_gram_identity_30.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_lower_lo_gram_identity_30.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_lower_lo_gram_identity_30.lean"
+      ],
+      "object_sha256": "1d10c894d59e0365ad788abfff756f279ea7e74784e7bb0eded8a5736839d7f5"
+    },
+    {
+      "module": "NearSharpData1886_lower_lo_gram_identity_36",
+      "exit_code": 0,
+      "seconds": 17.501484050999352,
+      "log": "logs/NearSharpData1886_lower_lo_gram_identity_36.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_lower_lo_gram_identity_36.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_lower_lo_gram_identity_36.lean"
+      ],
+      "object_sha256": "3d9e01563147b6938fe80257ae67b32493c0fc47db01ad8ee470cf325a088be9"
+    },
+    {
+      "module": "NearSharpData1886_Tlo_gram_identity_0",
+      "exit_code": 0,
+      "seconds": 24.572592435000843,
+      "log": "logs/NearSharpData1886_Tlo_gram_identity_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Tlo_gram_identity_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Tlo_gram_identity_0.lean"
+      ],
+      "object_sha256": "8e6afab911daac8e7752b3f38f48cf988a7504f2beb727563937460512b7c695"
+    },
+    {
+      "module": "NearSharpData1886_Tlo_gram_identity_6",
+      "exit_code": 0,
+      "seconds": 25.22145343900047,
+      "log": "logs/NearSharpData1886_Tlo_gram_identity_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Tlo_gram_identity_6.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Tlo_gram_identity_6.lean"
+      ],
+      "object_sha256": "be84448229ed045bdc98113d4d9c15c666b67e487fea20ab0011fd75ad281d13"
+    },
+    {
+      "module": "NearSharpData1886_Tlo_gram_identity_12",
+      "exit_code": 0,
+      "seconds": 26.11860080199949,
+      "log": "logs/NearSharpData1886_Tlo_gram_identity_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Tlo_gram_identity_12.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Tlo_gram_identity_12.lean"
+      ],
+      "object_sha256": "aab060aafa740ef989facd74b4a485f6086e4f08dee8bbd0764e4a902be508a0"
+    },
+    {
+      "module": "NearSharpData1886_Tlo_gram_identity_18",
+      "exit_code": 0,
+      "seconds": 26.278349098000035,
+      "log": "logs/NearSharpData1886_Tlo_gram_identity_18.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Tlo_gram_identity_18.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Tlo_gram_identity_18.lean"
+      ],
+      "object_sha256": "5c74c7936afee350b23d0dccab22ea8a426b2612b69489c2749b813fd39c35f0"
+    },
+    {
+      "module": "NearSharpData1886_Tlo_gram_identity_24",
+      "exit_code": 0,
+      "seconds": 26.02254101300059,
+      "log": "logs/NearSharpData1886_Tlo_gram_identity_24.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Tlo_gram_identity_24.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Tlo_gram_identity_24.lean"
+      ],
+      "object_sha256": "ecb76cc50302242fcb25f3c80db681dfd2b123a43810b5e12710129a67a9954b"
+    },
+    {
+      "module": "NearSharpData1886_Tlo_gram_identity_30",
+      "exit_code": 0,
+      "seconds": 26.56941394200112,
+      "log": "logs/NearSharpData1886_Tlo_gram_identity_30.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Tlo_gram_identity_30.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Tlo_gram_identity_30.lean"
+      ],
+      "object_sha256": "e711bab9d12194a156c2e215aab7f66ca6705ba1d48c4a785d3d435df25c025b"
+    },
+    {
+      "module": "NearSharpData1886_Tlo_gram_identity_36",
+      "exit_code": 0,
+      "seconds": 17.719748007999442,
+      "log": "logs/NearSharpData1886_Tlo_gram_identity_36.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Tlo_gram_identity_36.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Tlo_gram_identity_36.lean"
+      ],
+      "object_sha256": "4e8f956eee5433277808784511e4cf481432640772564c187afa914eac1d81a2"
+    },
+    {
+      "module": "NearSharpData1886_lower_hi_gram_identity_0",
+      "exit_code": 0,
+      "seconds": 25.367755986000702,
+      "log": "logs/NearSharpData1886_lower_hi_gram_identity_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_lower_hi_gram_identity_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_lower_hi_gram_identity_0.lean"
+      ],
+      "object_sha256": "012d3bca003cc8e2ea7b573eab671954f10b28247630dd13e3d2cb5fea4c7cf2"
+    },
+    {
+      "module": "NearSharpData1886_lower_hi_gram_identity_6",
+      "exit_code": 0,
+      "seconds": 27.092008914998587,
+      "log": "logs/NearSharpData1886_lower_hi_gram_identity_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_lower_hi_gram_identity_6.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_lower_hi_gram_identity_6.lean"
+      ],
+      "object_sha256": "48837397a6d9d3f3dc0205636dd7e8874653f914c13b1152ff368729b9b3af74"
+    },
+    {
+      "module": "NearSharpData1886_lower_hi_gram_identity_12",
+      "exit_code": 0,
+      "seconds": 27.576931972002058,
+      "log": "logs/NearSharpData1886_lower_hi_gram_identity_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_lower_hi_gram_identity_12.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_lower_hi_gram_identity_12.lean"
+      ],
+      "object_sha256": "d041674231da815ef99b6be51a1d1ef14d8ceec2c10b9d9e371b1aa3b11b8ca9"
+    },
+    {
+      "module": "NearSharpData1886_lower_hi_gram_identity_18",
+      "exit_code": 0,
+      "seconds": 26.91881591299898,
+      "log": "logs/NearSharpData1886_lower_hi_gram_identity_18.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_lower_hi_gram_identity_18.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_lower_hi_gram_identity_18.lean"
+      ],
+      "object_sha256": "ca373c7afe8ddfbf4cfdb99ac1ee8694c519d99e90d10b1e0941bad51d925256"
+    },
+    {
+      "module": "NearSharpData1886_lower_hi_gram_identity_24",
+      "exit_code": 0,
+      "seconds": 26.745333268998365,
+      "log": "logs/NearSharpData1886_lower_hi_gram_identity_24.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_lower_hi_gram_identity_24.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_lower_hi_gram_identity_24.lean"
+      ],
+      "object_sha256": "78b919103cc0acea01b898446a034c48dfd82dc01e20546d563d5b632513186c"
+    },
+    {
+      "module": "NearSharpData1886_lower_hi_gram_identity_30",
+      "exit_code": 0,
+      "seconds": 27.29276223100169,
+      "log": "logs/NearSharpData1886_lower_hi_gram_identity_30.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_lower_hi_gram_identity_30.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_lower_hi_gram_identity_30.lean"
+      ],
+      "object_sha256": "a9b9e86966b107c0e514f0e15a724d33f8e6d886320263c872ac86a38187080b"
+    },
+    {
+      "module": "NearSharpData1886_lower_hi_gram_identity_36",
+      "exit_code": 0,
+      "seconds": 19.51910970300014,
+      "log": "logs/NearSharpData1886_lower_hi_gram_identity_36.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_lower_hi_gram_identity_36.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_lower_hi_gram_identity_36.lean"
+      ],
+      "object_sha256": "e42c31f68b30be2f2b9b2de926213b91a28e9ec3908c95c98ab9c718fed9527e"
+    },
+    {
+      "module": "NearSharpData1886_Thi_gram_identity_0",
+      "exit_code": 0,
+      "seconds": 25.77942632200211,
+      "log": "logs/NearSharpData1886_Thi_gram_identity_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Thi_gram_identity_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Thi_gram_identity_0.lean"
+      ],
+      "object_sha256": "30b10b544b290a222c5a879ddbcad71991cfd1091652b2c610387ac44a2299f0"
+    },
+    {
+      "module": "NearSharpData1886_Thi_gram_identity_6",
+      "exit_code": 0,
+      "seconds": 26.700758866001706,
+      "log": "logs/NearSharpData1886_Thi_gram_identity_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Thi_gram_identity_6.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Thi_gram_identity_6.lean"
+      ],
+      "object_sha256": "239487f5219c9cf379760ecffcd09991e6141cd36671eed8ac968c3dddc312e1"
+    },
+    {
+      "module": "NearSharpData1886_Thi_gram_identity_12",
+      "exit_code": 0,
+      "seconds": 27.143269043001055,
+      "log": "logs/NearSharpData1886_Thi_gram_identity_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Thi_gram_identity_12.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Thi_gram_identity_12.lean"
+      ],
+      "object_sha256": "718a2f34eca171e2b14ff8990a8dde8b2fb68fd9fa3ad9795f3c7d677ead8878"
+    },
+    {
+      "module": "NearSharpData1886_Thi_gram_identity_18",
+      "exit_code": 0,
+      "seconds": 26.87311988199872,
+      "log": "logs/NearSharpData1886_Thi_gram_identity_18.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Thi_gram_identity_18.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Thi_gram_identity_18.lean"
+      ],
+      "object_sha256": "6152b15dba5fd46630ccded71d05a3d6c2fcd39ff9ba0adc7abc9be315b0ee35"
+    },
+    {
+      "module": "NearSharpData1886_Thi_gram_identity_24",
+      "exit_code": 0,
+      "seconds": 28.5784337269979,
+      "log": "logs/NearSharpData1886_Thi_gram_identity_24.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Thi_gram_identity_24.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Thi_gram_identity_24.lean"
+      ],
+      "object_sha256": "4f93ce691858f9c8637192b9cd3feab81f35c2ffc12b5f2ad3471a4a583d8154"
+    },
+    {
+      "module": "NearSharpData1886_Thi_gram_identity_30",
+      "exit_code": 0,
+      "seconds": 28.191426461002266,
+      "log": "logs/NearSharpData1886_Thi_gram_identity_30.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Thi_gram_identity_30.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Thi_gram_identity_30.lean"
+      ],
+      "object_sha256": "35e373e56e4f598bdb831bd2daf5b9b897e44e3c4fd9475c1d29c48d8ab4c66f"
+    },
+    {
+      "module": "NearSharpData1886_Thi_gram_identity_36",
+      "exit_code": 0,
+      "seconds": 18.944741324998176,
+      "log": "logs/NearSharpData1886_Thi_gram_identity_36.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Thi_gram_identity_36.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Thi_gram_identity_36.lean"
+      ],
+      "object_sha256": "fc8aa8a0f73b02fbbeebe374a8bbcad5c061ab0b7f8bb35e44b29d72e588dd51"
+    },
+    {
+      "module": "NearSharpData1886_weightedFZ_identity_0",
+      "exit_code": 0,
+      "seconds": 18.55088760400031,
+      "log": "logs/NearSharpData1886_weightedFZ_identity_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_weightedFZ_identity_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_weightedFZ_identity_0.lean"
+      ],
+      "object_sha256": "2e5723beeb707b5da82a83d56eddaa844d82a7b15e18b0b768ec6b607a15d837"
+    },
+    {
+      "module": "NearSharpData1886_weightedFZ_identity_6",
+      "exit_code": 0,
+      "seconds": 17.703968298999825,
+      "log": "logs/NearSharpData1886_weightedFZ_identity_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_weightedFZ_identity_6.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_weightedFZ_identity_6.lean"
+      ],
+      "object_sha256": "3b88c94122d79d0649d9a3789896c1f308e34aaba0df19f363651ce005a1dc6a"
+    },
+    {
+      "module": "NearSharpData1886_weightedFZ_identity_12",
+      "exit_code": 0,
+      "seconds": 18.020894828001474,
+      "log": "logs/NearSharpData1886_weightedFZ_identity_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_weightedFZ_identity_12.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_weightedFZ_identity_12.lean"
+      ],
+      "object_sha256": "a485d41b5963b4367370ac201b20543abe3399d631201e1a0bf4e9c252806cc6"
+    },
+    {
+      "module": "NearSharpData1886_weightedFZ_identity_18",
+      "exit_code": 0,
+      "seconds": 9.002335437999136,
+      "log": "logs/NearSharpData1886_weightedFZ_identity_18.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_weightedFZ_identity_18.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_weightedFZ_identity_18.lean"
+      ],
+      "object_sha256": "890f91664732a630e9b3299bfbdd7c7e4606ea0a5bfd1de04fe26ac342ec2e4a"
+    },
+    {
+      "module": "NearSharpData1886_weightedGZ_identity_0",
+      "exit_code": 0,
+      "seconds": 19.14437182599795,
+      "log": "logs/NearSharpData1886_weightedGZ_identity_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_weightedGZ_identity_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_weightedGZ_identity_0.lean"
+      ],
+      "object_sha256": "5b083e24fe2bfa55c4d1e8221e449ebfada0ea924b229c401746a4d1f05ecdfb"
+    },
+    {
+      "module": "NearSharpData1886_weightedGZ_identity_6",
+      "exit_code": 0,
+      "seconds": 18.425232567999046,
+      "log": "logs/NearSharpData1886_weightedGZ_identity_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_weightedGZ_identity_6.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_weightedGZ_identity_6.lean"
+      ],
+      "object_sha256": "64181ef6a32e6b0b561cb183463693975892f8c2388acc4e91da3fa7ef078f9e"
+    },
+    {
+      "module": "NearSharpData1886_weightedGZ_identity_12",
+      "exit_code": 0,
+      "seconds": 17.33916958199916,
+      "log": "logs/NearSharpData1886_weightedGZ_identity_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_weightedGZ_identity_12.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_weightedGZ_identity_12.lean"
+      ],
+      "object_sha256": "c939e29844a64c06b5e7d549e3b4cdcd35bcc0805cf6a94312b356617b966e2e"
+    },
+    {
+      "module": "NearSharpData1886_weightedGZ_identity_18",
+      "exit_code": 0,
+      "seconds": 8.711291423998773,
+      "log": "logs/NearSharpData1886_weightedGZ_identity_18.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_weightedGZ_identity_18.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_weightedGZ_identity_18.lean"
+      ],
+      "object_sha256": "ecaf5e16c21013d22c43d4187980502b31925b8ba5f1179c508ca11eb74952bd"
+    },
+    {
+      "module": "NearSharpData1886_endpoint_fast_lo_0",
+      "exit_code": 0,
+      "seconds": 55.57689897599994,
+      "log": "logs/NearSharpData1886_endpoint_fast_lo_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_endpoint_fast_lo_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_endpoint_fast_lo_0.lean"
+      ],
+      "object_sha256": "6cfd0d21ab46ee9345684ad6e73c070f98138d356beced157fa3d63883195fac"
+    },
+    {
+      "module": "NearSharpData1886_endpoint_fast_lo_6",
+      "exit_code": 0,
+      "seconds": 54.359439617001044,
+      "log": "logs/NearSharpData1886_endpoint_fast_lo_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_endpoint_fast_lo_6.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_endpoint_fast_lo_6.lean"
+      ],
+      "object_sha256": "d975b26412d12e49769f2ad661968d5b63c1c5d0b9347016dee72ef365f29bd4"
+    },
+    {
+      "module": "NearSharpData1886_endpoint_fast_lo_12",
+      "exit_code": 0,
+      "seconds": 54.64919321900015,
+      "log": "logs/NearSharpData1886_endpoint_fast_lo_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_endpoint_fast_lo_12.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_endpoint_fast_lo_12.lean"
+      ],
+      "object_sha256": "c5818bd3c86b9cac3148848904570bb0f4d42c575e04ea753d2b6fec10004675"
+    },
+    {
+      "module": "NearSharpData1886_endpoint_fast_lo_18",
+      "exit_code": 0,
+      "seconds": 54.04587526799878,
+      "log": "logs/NearSharpData1886_endpoint_fast_lo_18.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_endpoint_fast_lo_18.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_endpoint_fast_lo_18.lean"
+      ],
+      "object_sha256": "913ab5d9574658b40f29024b672d5cf297293c36f2f9c754f67ddb037c801127"
+    },
+    {
+      "module": "NearSharpData1886_endpoint_fast_lo_24",
+      "exit_code": 0,
+      "seconds": 51.90607749400078,
+      "log": "logs/NearSharpData1886_endpoint_fast_lo_24.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_endpoint_fast_lo_24.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_endpoint_fast_lo_24.lean"
+      ],
+      "object_sha256": "e61f1c97554854e65d331ed7c890c1834657ec49bc83786e99340d7cab75df1c"
+    },
+    {
+      "module": "NearSharpData1886_endpoint_fast_lo_30",
+      "exit_code": 0,
+      "seconds": 52.99522079399685,
+      "log": "logs/NearSharpData1886_endpoint_fast_lo_30.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_endpoint_fast_lo_30.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_endpoint_fast_lo_30.lean"
+      ],
+      "object_sha256": "d88d493f9c5568873b160417c7af078d7967d896a2e2a9fb3530a22d7cfb6e72"
+    },
+    {
+      "module": "NearSharpData1886_endpoint_fast_lo_36",
+      "exit_code": 0,
+      "seconds": 52.55377629800205,
+      "log": "logs/NearSharpData1886_endpoint_fast_lo_36.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_endpoint_fast_lo_36.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_endpoint_fast_lo_36.lean"
+      ],
+      "object_sha256": "8f291c76d0e348f6c11ab3ffab63c5947df5a0228873309bd58f7741595f1af6"
+    },
+    {
+      "module": "NearSharpData1886_endpoint_fast_hi_0",
+      "exit_code": 0,
+      "seconds": 52.06668773799902,
+      "log": "logs/NearSharpData1886_endpoint_fast_hi_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_endpoint_fast_hi_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_endpoint_fast_hi_0.lean"
+      ],
+      "object_sha256": "c5a939fc71ad48d60088b357f90b4bbe9b21ac1b52cbad63e3071e7c2d6bd1a7"
+    },
+    {
+      "module": "NearSharpData1886_endpoint_fast_hi_6",
+      "exit_code": 0,
+      "seconds": 51.56406561300173,
+      "log": "logs/NearSharpData1886_endpoint_fast_hi_6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_endpoint_fast_hi_6.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_endpoint_fast_hi_6.lean"
+      ],
+      "object_sha256": "1b328c1b26283d38af4c46c8b74febd3ef0220d68110624814c3346219511a1a"
+    },
+    {
+      "module": "NearSharpData1886_endpoint_fast_hi_12",
+      "exit_code": 0,
+      "seconds": 53.57180262399925,
+      "log": "logs/NearSharpData1886_endpoint_fast_hi_12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_endpoint_fast_hi_12.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_endpoint_fast_hi_12.lean"
+      ],
+      "object_sha256": "919ae060ad202dd3b87e0a58546813bfe700482d1d8984241e3d354ad81e3967"
+    },
+    {
+      "module": "NearSharpData1886_endpoint_fast_hi_18",
+      "exit_code": 0,
+      "seconds": 54.03974006899807,
+      "log": "logs/NearSharpData1886_endpoint_fast_hi_18.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_endpoint_fast_hi_18.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_endpoint_fast_hi_18.lean"
+      ],
+      "object_sha256": "aded36755aa0c751bf71e55ceab42e40810c07dc699d2a4f227d16c8993de20a"
+    },
+    {
+      "module": "NearSharpData1886_endpoint_fast_hi_24",
+      "exit_code": 0,
+      "seconds": 59.00849095600279,
+      "log": "logs/NearSharpData1886_endpoint_fast_hi_24.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_endpoint_fast_hi_24.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_endpoint_fast_hi_24.lean"
+      ],
+      "object_sha256": "14094dceb17f59f97598c39a84b28bce5066705638f63b13b5e7de76923b0f24"
+    },
+    {
+      "module": "NearSharpData1886_endpoint_fast_hi_30",
+      "exit_code": 0,
+      "seconds": 55.9888546200018,
+      "log": "logs/NearSharpData1886_endpoint_fast_hi_30.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_endpoint_fast_hi_30.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_endpoint_fast_hi_30.lean"
+      ],
+      "object_sha256": "10fcbfe0a2b9487b54e85a136b0a5baba6e72880832ece01caf1a702cf5d8a5a"
+    },
+    {
+      "module": "NearSharpData1886_endpoint_fast_hi_36",
+      "exit_code": 0,
+      "seconds": 54.46709593000196,
+      "log": "logs/NearSharpData1886_endpoint_fast_hi_36.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_endpoint_fast_hi_36.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_endpoint_fast_hi_36.lean"
+      ],
+      "object_sha256": "d389c3f48e6cac0d79a41e587ebe1cba1c18f366e42a609f2f1a36d4a4f15f30"
+    },
+    {
+      "module": "NearSharpData1886_Simple0",
+      "exit_code": 0,
+      "seconds": 2.78479101099947,
+      "log": "logs/NearSharpData1886_Simple0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Simple0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Simple0.lean"
+      ],
+      "object_sha256": "7cb2ecd26e6f4cbde2304e756978a5631061891e1ab4dbb39f4fe22bb017c723"
+    },
+    {
+      "module": "NearSharpData1886_Simple1",
+      "exit_code": 0,
+      "seconds": 3.2380891790016904,
+      "log": "logs/NearSharpData1886_Simple1.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Simple1.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Simple1.lean"
+      ],
+      "object_sha256": "392322cfb72784c582b9a182ede6f7c04e39461c00577a0dc42352d06ff53993"
+    },
+    {
+      "module": "NearSharpData1886_Simple2",
+      "exit_code": 0,
+      "seconds": 3.1530787169976975,
+      "log": "logs/NearSharpData1886_Simple2.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Simple2.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Simple2.lean"
+      ],
+      "object_sha256": "789e8f94c7a107ccec8272f7e67abc88fc116f268ca8301044846c205eb48117"
+    },
+    {
+      "module": "NearSharpData1886_Simple3",
+      "exit_code": 0,
+      "seconds": 3.689800899999682,
+      "log": "logs/NearSharpData1886_Simple3.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Simple3.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Simple3.lean"
+      ],
+      "object_sha256": "462345ec623649490b39612e78b605a13dfd8084dbbed8704d3c5106cfddddfe"
+    },
+    {
+      "module": "NearSharpData1886_Simple4",
+      "exit_code": 0,
+      "seconds": 3.15477324099993,
+      "log": "logs/NearSharpData1886_Simple4.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Simple4.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Simple4.lean"
+      ],
+      "object_sha256": "56f9294e955e90c004919ece03e00cdaf2715f82fde26e30c453ac4523c8a5d9"
+    },
+    {
+      "module": "NearSharpData1886_Simple5",
+      "exit_code": 0,
+      "seconds": 3.4707722239982104,
+      "log": "logs/NearSharpData1886_Simple5.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Simple5.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Simple5.lean"
+      ],
+      "object_sha256": "09acfde2cf4070df20dc41e2c982b963a472fcb4a9d930648e865491732f64d8"
+    },
+    {
+      "module": "NearSharpData1886_Simple6",
+      "exit_code": 0,
+      "seconds": 3.0003537379998306,
+      "log": "logs/NearSharpData1886_Simple6.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Simple6.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Simple6.lean"
+      ],
+      "object_sha256": "1e9a87b8777b1238f3a55fc5aef9a69bdc5eff11116883f70a4ada59c81950e7"
+    },
+    {
+      "module": "NearSharpData1886_Simple7",
+      "exit_code": 0,
+      "seconds": 4.391266633003397,
+      "log": "logs/NearSharpData1886_Simple7.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Simple7.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Simple7.lean"
+      ],
+      "object_sha256": "66e8097ec0cb44a4eb5d4f21e277e8c684b9199a804f9e4b32d8cfa9f597e730"
+    },
+    {
+      "module": "NearSharpData1886_Simple8",
+      "exit_code": 0,
+      "seconds": 1.7676602190003905,
+      "log": "logs/NearSharpData1886_Simple8.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Simple8.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Simple8.lean"
+      ],
+      "object_sha256": "94ca3ce569f094a4b87c3d3fa0e8be9abd0f3b779a58864668040801f4892292"
+    },
+    {
+      "module": "NearSharpData1886_Simple9",
+      "exit_code": 0,
+      "seconds": 2.171476879000693,
+      "log": "logs/NearSharpData1886_Simple9.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Simple9.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Simple9.lean"
+      ],
+      "object_sha256": "4d4395f70f55cfd3041a369779d78b557280d14e756cc8b035d67c5ec793ef2b"
+    },
+    {
+      "module": "NearSharpData1886_Simple10",
+      "exit_code": 0,
+      "seconds": 1.7654061629982607,
+      "log": "logs/NearSharpData1886_Simple10.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Simple10.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Simple10.lean"
+      ],
+      "object_sha256": "17c98714c004bc0310048e1407a8ddb3544b8d13a102cee398cc1ca991aadf06"
+    },
+    {
+      "module": "NearSharpData1886_Simple11",
+      "exit_code": 0,
+      "seconds": 2.4259516399979475,
+      "log": "logs/NearSharpData1886_Simple11.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886_Simple11.olean",
+        "$REPLAY/admm/lean/NearSharpData1886_Simple11.lean"
+      ],
+      "object_sha256": "e013581fa411011434c2d325386686c16c20f2361f39f3beaf2b130b9fddc326"
+    },
+    {
+      "module": "NearSharpData1886",
+      "exit_code": 0,
+      "seconds": 17.457070214997657,
+      "log": "logs/NearSharpData1886.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886.olean",
+        "$REPLAY/admm/lean/NearSharpData1886.lean"
+      ],
+      "object_sha256": "3ca7854cc310c5e68d62d4f5931f5e384791f6709119be52d15a07702d803f08"
+    },
+    {
+      "module": "NearSharpPSD1886",
+      "exit_code": 0,
+      "seconds": 11.214489531001163,
+      "log": "logs/NearSharpPSD1886.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpPSD1886.olean",
+        "$REPLAY/admm/lean/NearSharpPSD1886.lean"
+      ],
+      "object_sha256": "17420b3a4d8dcebf4a6695b05cc9f654f65caaa7bf19690836fcf944ef083677"
+    },
+    {
+      "module": "NearSharpNumeric1886",
+      "exit_code": 0,
+      "seconds": 10.79655684699901,
+      "log": "logs/NearSharpNumeric1886.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpNumeric1886.olean",
+        "$REPLAY/admm/lean/NearSharpNumeric1886.lean"
+      ],
+      "object_sha256": "f22c3b2fc614cd4e0998a0f23d47959eee668e8edd8e79278bfeb5d474708bf9"
+    },
+    {
+      "module": "NearSharpCertificate1886",
+      "exit_code": 0,
+      "seconds": 17.722811677998834,
+      "log": "logs/NearSharpCertificate1886.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpCertificate1886.olean",
+        "$REPLAY/admm/lean/NearSharpCertificate1886.lean"
+      ],
+      "object_sha256": "16788ec94007ba33de29ce638593b63f8aace39a25a1ff28e6c4c8d61c795673"
+    },
+    {
+      "module": "NearSharpAllSteps",
+      "exit_code": 0,
+      "seconds": 11.916380171998753,
+      "log": "logs/NearSharpAllSteps.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpAllSteps.olean",
+        "$REPLAY/admm/lean/NearSharpAllSteps.lean"
+      ],
+      "object_sha256": "7dbd42f7aa47d1571afccce48f57493e9e64e7d78ca5d27e95e3eaa48b6d9302"
+    },
+    {
+      "module": "NearSharpRankDeficient",
+      "exit_code": 0,
+      "seconds": 13.03039237899793,
+      "log": "logs/NearSharpRankDeficient.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpRankDeficient.olean",
+        "$REPLAY/admm/lean/NearSharpRankDeficient.lean"
+      ],
+      "object_sha256": "47288521b5c4e900f34a11b4a21f0169f0a4410578b75b4bd7eebaf9fbd405e2"
+    },
+    {
+      "module": "NearSharpFullRank",
+      "exit_code": 0,
+      "seconds": 9.313544628999807,
+      "log": "logs/NearSharpFullRank.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpFullRank.olean",
+        "$REPLAY/admm/lean/NearSharpFullRank.lean"
+      ],
+      "object_sha256": "efbffce859ac7dda60f5180a654396429c0364848fb0bb836d38f9de5b96af90"
+    },
+    {
+      "module": "CycleGeometry",
+      "exit_code": 0,
+      "seconds": 5.914905683999677,
+      "log": "logs/CycleGeometry.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleGeometry.olean",
+        "$REPLAY/admm/lean/CycleGeometry.lean"
+      ],
+      "object_sha256": "577968a90d58b9dc295c820f2c1d65e725b528a40de2a4adc31cb3fdc5a4145d"
+    },
+    {
+      "module": "CycleDataCore",
+      "exit_code": 0,
+      "seconds": 14.943207940999855,
+      "log": "logs/CycleDataCore.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleDataCore.olean",
+        "$REPLAY/admm/lean/CycleDataCore.lean"
+      ],
+      "object_sha256": "1bc577cd4f9ea6e74f89d0bda57a09b179c364c856653948625c3d9577a65659"
+    },
+    {
+      "module": "CycleAlgebra",
+      "exit_code": 0,
+      "seconds": 13.120697042999382,
+      "log": "logs/CycleAlgebra.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleAlgebra.olean",
+        "$REPLAY/admm/lean/CycleAlgebra.lean"
+      ],
+      "object_sha256": "3922e0e49de1d3776a7a53d1f13bee74f4a50df9e034065219b5198d6fc40ad5"
+    },
+    {
+      "module": "CycleWellposed",
+      "exit_code": 0,
+      "seconds": 3.194957781000994,
+      "log": "logs/CycleWellposed.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleWellposed.olean",
+        "$REPLAY/admm/lean/CycleWellposed.lean"
+      ],
+      "object_sha256": "7f2028e5e80bfc5a1c240147137143421fb8c8fa34d1d594377facc48432d408"
+    },
+    {
+      "module": "CycleRows00",
+      "exit_code": 0,
+      "seconds": 20.392265206999582,
+      "log": "logs/CycleRows00.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows00.olean",
+        "$REPLAY/admm/lean/CycleRows00.lean"
+      ],
+      "object_sha256": "6e12e76177ff01da1cfd8baf54be641d47f4f3f42c7a28d0144f91d76c3b46ac"
+    },
+    {
+      "module": "CycleRows01",
+      "exit_code": 0,
+      "seconds": 20.01503623100143,
+      "log": "logs/CycleRows01.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows01.olean",
+        "$REPLAY/admm/lean/CycleRows01.lean"
+      ],
+      "object_sha256": "616293ebf21488acd76ca26983ea98a764ff6ac56990cb536fd57de5336f5d6d"
+    },
+    {
+      "module": "CycleRows02",
+      "exit_code": 0,
+      "seconds": 20.307770376999542,
+      "log": "logs/CycleRows02.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows02.olean",
+        "$REPLAY/admm/lean/CycleRows02.lean"
+      ],
+      "object_sha256": "d9fb14cd80c4fc29f381c2ef99d73d283ec49aac8a7c88d5f9993924a5807de1"
+    },
+    {
+      "module": "CycleRows03",
+      "exit_code": 0,
+      "seconds": 19.96293179499844,
+      "log": "logs/CycleRows03.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows03.olean",
+        "$REPLAY/admm/lean/CycleRows03.lean"
+      ],
+      "object_sha256": "fedfd64244b76467bb0e334d361af559331fcd4d29de96eaa2ba4956a7a56582"
+    },
+    {
+      "module": "CycleRows04",
+      "exit_code": 0,
+      "seconds": 20.889801283999986,
+      "log": "logs/CycleRows04.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows04.olean",
+        "$REPLAY/admm/lean/CycleRows04.lean"
+      ],
+      "object_sha256": "d0db1210822a6dc9898149b6c6fbaea4def0c0cb961b44fd6e46249cc0b83265"
+    },
+    {
+      "module": "CycleRows05",
+      "exit_code": 0,
+      "seconds": 21.348477846000605,
+      "log": "logs/CycleRows05.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows05.olean",
+        "$REPLAY/admm/lean/CycleRows05.lean"
+      ],
+      "object_sha256": "286524a3cc2899850f4e2a8999567dbbc6b8d9a737026886161b98c202b5045d"
+    },
+    {
+      "module": "CycleRows06",
+      "exit_code": 0,
+      "seconds": 20.547672680997493,
+      "log": "logs/CycleRows06.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows06.olean",
+        "$REPLAY/admm/lean/CycleRows06.lean"
+      ],
+      "object_sha256": "535066d515b06088bbdbbdfc5d8dee6a45ace7b6c53700a1a4ce0d62e287887b"
+    },
+    {
+      "module": "CycleRows07",
+      "exit_code": 0,
+      "seconds": 20.976153498999338,
+      "log": "logs/CycleRows07.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows07.olean",
+        "$REPLAY/admm/lean/CycleRows07.lean"
+      ],
+      "object_sha256": "0cd5b2c321c4cc0fec82826ff81659b84909feb23785de914c97e3783eda3298"
+    },
+    {
+      "module": "CycleRows08",
+      "exit_code": 0,
+      "seconds": 19.93651729799967,
+      "log": "logs/CycleRows08.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows08.olean",
+        "$REPLAY/admm/lean/CycleRows08.lean"
+      ],
+      "object_sha256": "30d2f37b6d24451fdea4c83be198a2600693668bab54ba43c48ffc9177459182"
+    },
+    {
+      "module": "CycleRows09",
+      "exit_code": 0,
+      "seconds": 20.626937600998644,
+      "log": "logs/CycleRows09.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows09.olean",
+        "$REPLAY/admm/lean/CycleRows09.lean"
+      ],
+      "object_sha256": "04374a167ff77fed34b477af12392e618f96d2386df7a41a3cb4a77581674c78"
+    },
+    {
+      "module": "CycleRows10",
+      "exit_code": 0,
+      "seconds": 19.609475596000266,
+      "log": "logs/CycleRows10.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows10.olean",
+        "$REPLAY/admm/lean/CycleRows10.lean"
+      ],
+      "object_sha256": "bc4b26d8a2448f64e60666d56be00404de1ef078f1d951edcb8a7e4300387a04"
+    },
+    {
+      "module": "CycleRows11",
+      "exit_code": 0,
+      "seconds": 19.716533724000328,
+      "log": "logs/CycleRows11.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows11.olean",
+        "$REPLAY/admm/lean/CycleRows11.lean"
+      ],
+      "object_sha256": "3389c18d63d8954e89c372fd6c764d4759d9bb7145c182b43926e7ef569466d6"
+    },
+    {
+      "module": "CycleRows12",
+      "exit_code": 0,
+      "seconds": 20.43964296899867,
+      "log": "logs/CycleRows12.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows12.olean",
+        "$REPLAY/admm/lean/CycleRows12.lean"
+      ],
+      "object_sha256": "13e4ce0dbe53abec04a2d42f993e76f72a0ba885f946c9cfd6c72b063c1214b4"
+    },
+    {
+      "module": "CycleRows13",
+      "exit_code": 0,
+      "seconds": 10.452255771997443,
+      "log": "logs/CycleRows13.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows13.olean",
+        "$REPLAY/admm/lean/CycleRows13.lean"
+      ],
+      "object_sha256": "b04e2bbdbbc95128ee7b5978e92ac4d203f3c19aa40f3978294bb42b5034ece2"
+    },
+    {
+      "module": "CycleRows14",
+      "exit_code": 0,
+      "seconds": 10.226570884999092,
+      "log": "logs/CycleRows14.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows14.olean",
+        "$REPLAY/admm/lean/CycleRows14.lean"
+      ],
+      "object_sha256": "0e706357374921c7bf9e458b6565b34a4454d160d2e952c5a704a121664db321"
+    },
+    {
+      "module": "CycleRows15",
+      "exit_code": 0,
+      "seconds": 10.966556974999548,
+      "log": "logs/CycleRows15.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleRows15.olean",
+        "$REPLAY/admm/lean/CycleRows15.lean"
+      ],
+      "object_sha256": "7e3e138bb53cc8591df9b8de5d2b7ddfc722d54db31fe0bbaf40c0a225059d8e"
+    },
+    {
+      "module": "CycleData",
+      "exit_code": 0,
+      "seconds": 9.544985177999479,
+      "log": "logs/CycleData.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleData.olean",
+        "$REPLAY/admm/lean/CycleData.lean"
+      ],
+      "object_sha256": "e4780a1402d60181e1bb415f7c5890b29acd701984079880d76cd48d801f8b81"
+    },
+    {
+      "module": "CycleCounterexample",
+      "exit_code": 0,
+      "seconds": 3.6036777490007808,
+      "log": "logs/CycleCounterexample.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/CycleCounterexample.olean",
+        "$REPLAY/admm/lean/CycleCounterexample.lean"
+      ],
+      "object_sha256": "7edc9d5d9bea1e8f8560b9359b8ce87b67ca4d4005e11c787af5eef93be2bd9f"
+    }
+  ],
+  "status": "passed",
+  "all_sources_built_from_scratch": true,
+  "central_body_recheck_requested": true,
+  "central_body_recheck": true,
+  "resumed_clean_build": false,
+  "audit": {
+    "exit_code": 0,
+    "seconds": 34.042365725999844,
+    "command": [
+      "$LEAN_HOME/bin/lean",
+      "-j",
+      "1",
+      "--root=$REPLAY/admm-out",
+      "--trust=0",
+      "$REPLAY/admm-out/KernelAudit.lean"
+    ],
+    "log": "logs/KernelAudit.log",
+    "generated_source_sha256": "dd649837fd8e534e9e53455cbd0ceaea47d9fdc263fba14c68cde3306e2223da"
+  },
+  "central_body_recheck_names": [
+    "ADMMNearSharpCertificate.C188.certificate",
+    "ADMMNearSharpCertificate.C1886.certificate",
+    "ADMMNearSharpAllSteps.initialized_admm_objective_converges",
+    "ADMMNearSharpAllSteps.rankDeficient_original_admm_converges",
+    "ADMMNearSharpAllSteps.fullRank_original_admm_converges",
+    "ADMM128Counterexample.counterexample"
+  ],
+  "axioms": {
+    "ADMMNearSharpCertificate.C188.certificate": "propext, Classical.choice, Quot.sound",
+    "ADMMNearSharpCertificate.C1886.certificate": "propext, Classical.choice, Quot.sound",
+    "ADMMNearSharpAllSteps.initialized_admm_objective_converges": "propext, Classical.choice, Quot.sound",
+    "ADMMNearSharpAllSteps.rankDeficient_original_admm_converges": "propext, Classical.choice, Quot.sound",
+    "ADMMNearSharpAllSteps.fullRank_original_admm_converges": "propext, Classical.choice, Quot.sound",
+    "ADMM128Counterexample.counterexample": "propext, Classical.choice, Quot.sound"
+  },
+  "final_module_count": 168,
+  "final_module_exit_codes": {
+    "ADMMCertificate": 0,
+    "ProximalModel": 0,
+    "MemoryConvergence": 0,
+    "ADMMConvergence": 0,
+    "LinearReduction": 0,
+    "InfimalImage": 0,
+    "RankDeficientADMM": 0,
+    "SaddleLifting": 0,
+    "ADMMIntervalCertificate": 0,
+    "ScaledProximalModel": 0,
+    "ADMMIntervalConvergence": 0,
+    "ClassicalADMM": 0,
+    "AllStepsADMM": 0,
+    "MemoryCertificate": 0,
+    "DelayedMemory": 0,
+    "FiniteMemoryADMM": 0,
+    "OriginalMemoryADMM": 0,
+    "Quadratic": 0,
+    "IntegerMatrix": 0,
+    "IntegerCross": 0,
+    "StandardRows": 0,
+    "IntegerEmbedding": 0,
+    "IntegerNumerics": 0,
+    "NearSharpData188Defs": 0,
+    "NearSharpData188_lower_lo_gram_identity_0": 0,
+    "NearSharpData188_lower_lo_gram_identity_6": 0,
+    "NearSharpData188_lower_lo_gram_identity_12": 0,
+    "NearSharpData188_lower_lo_gram_identity_18": 0,
+    "NearSharpData188_Tlo_gram_identity_0": 0,
+    "NearSharpData188_Tlo_gram_identity_6": 0,
+    "NearSharpData188_Tlo_gram_identity_12": 0,
+    "NearSharpData188_Tlo_gram_identity_18": 0,
+    "NearSharpData188_lower_hi_gram_identity_0": 0,
+    "NearSharpData188_lower_hi_gram_identity_6": 0,
+    "NearSharpData188_lower_hi_gram_identity_12": 0,
+    "NearSharpData188_lower_hi_gram_identity_18": 0,
+    "NearSharpData188_Thi_gram_identity_0": 0,
+    "NearSharpData188_Thi_gram_identity_6": 0,
+    "NearSharpData188_Thi_gram_identity_12": 0,
+    "NearSharpData188_Thi_gram_identity_18": 0,
+    "NearSharpData188_weightedFZ_identity_0": 0,
+    "NearSharpData188_weightedFZ_identity_6": 0,
+    "NearSharpData188_weightedFZ_identity_12": 0,
+    "NearSharpData188_weightedGZ_identity_0": 0,
+    "NearSharpData188_weightedGZ_identity_6": 0,
+    "NearSharpData188_weightedGZ_identity_12": 0,
+    "NearSharpData188_endpoint_fast_lo_0": 0,
+    "NearSharpData188_endpoint_fast_lo_6": 0,
+    "NearSharpData188_endpoint_fast_lo_12": 0,
+    "NearSharpData188_endpoint_fast_lo_18": 0,
+    "NearSharpData188_endpoint_fast_lo_24": 0,
+    "NearSharpData188_endpoint_fast_hi_0": 0,
+    "NearSharpData188_endpoint_fast_hi_6": 0,
+    "NearSharpData188_endpoint_fast_hi_12": 0,
+    "NearSharpData188_endpoint_fast_hi_18": 0,
+    "NearSharpData188_endpoint_fast_hi_24": 0,
+    "NearSharpData188_Simple0": 0,
+    "NearSharpData188_Simple1": 0,
+    "NearSharpData188_Simple2": 0,
+    "NearSharpData188_Simple3": 0,
+    "NearSharpData188_Simple4": 0,
+    "NearSharpData188_Simple5": 0,
+    "NearSharpData188_Simple6": 0,
+    "NearSharpData188_Simple7": 0,
+    "NearSharpData188_Simple8": 0,
+    "NearSharpData188_Simple9": 0,
+    "NearSharpData188_Simple10": 0,
+    "NearSharpData188_Simple11": 0,
+    "NearSharpData188": 0,
+    "NearSharpPSD188": 0,
+    "GapAlgebra": 0,
+    "IntegerGap": 0,
+    "NearSharpNumeric188": 0,
+    "AffineMatrix": 0,
+    "MatrixCertificate": 0,
+    "NearSharpCertificate188": 0,
+    "NearSharpData1886Defs": 0,
+    "NearSharpData1886_lower_lo_gram_identity_0": 0,
+    "NearSharpData1886_lower_lo_gram_identity_6": 0,
+    "NearSharpData1886_lower_lo_gram_identity_12": 0,
+    "NearSharpData1886_lower_lo_gram_identity_18": 0,
+    "NearSharpData1886_lower_lo_gram_identity_24": 0,
+    "NearSharpData1886_lower_lo_gram_identity_30": 0,
+    "NearSharpData1886_lower_lo_gram_identity_36": 0,
+    "NearSharpData1886_Tlo_gram_identity_0": 0,
+    "NearSharpData1886_Tlo_gram_identity_6": 0,
+    "NearSharpData1886_Tlo_gram_identity_12": 0,
+    "NearSharpData1886_Tlo_gram_identity_18": 0,
+    "NearSharpData1886_Tlo_gram_identity_24": 0,
+    "NearSharpData1886_Tlo_gram_identity_30": 0,
+    "NearSharpData1886_Tlo_gram_identity_36": 0,
+    "NearSharpData1886_lower_hi_gram_identity_0": 0,
+    "NearSharpData1886_lower_hi_gram_identity_6": 0,
+    "NearSharpData1886_lower_hi_gram_identity_12": 0,
+    "NearSharpData1886_lower_hi_gram_identity_18": 0,
+    "NearSharpData1886_lower_hi_gram_identity_24": 0,
+    "NearSharpData1886_lower_hi_gram_identity_30": 0,
+    "NearSharpData1886_lower_hi_gram_identity_36": 0,
+    "NearSharpData1886_Thi_gram_identity_0": 0,
+    "NearSharpData1886_Thi_gram_identity_6": 0,
+    "NearSharpData1886_Thi_gram_identity_12": 0,
+    "NearSharpData1886_Thi_gram_identity_18": 0,
+    "NearSharpData1886_Thi_gram_identity_24": 0,
+    "NearSharpData1886_Thi_gram_identity_30": 0,
+    "NearSharpData1886_Thi_gram_identity_36": 0,
+    "NearSharpData1886_weightedFZ_identity_0": 0,
+    "NearSharpData1886_weightedFZ_identity_6": 0,
+    "NearSharpData1886_weightedFZ_identity_12": 0,
+    "NearSharpData1886_weightedFZ_identity_18": 0,
+    "NearSharpData1886_weightedGZ_identity_0": 0,
+    "NearSharpData1886_weightedGZ_identity_6": 0,
+    "NearSharpData1886_weightedGZ_identity_12": 0,
+    "NearSharpData1886_weightedGZ_identity_18": 0,
+    "NearSharpData1886_endpoint_fast_lo_0": 0,
+    "NearSharpData1886_endpoint_fast_lo_6": 0,
+    "NearSharpData1886_endpoint_fast_lo_12": 0,
+    "NearSharpData1886_endpoint_fast_lo_18": 0,
+    "NearSharpData1886_endpoint_fast_lo_24": 0,
+    "NearSharpData1886_endpoint_fast_lo_30": 0,
+    "NearSharpData1886_endpoint_fast_lo_36": 0,
+    "NearSharpData1886_endpoint_fast_hi_0": 0,
+    "NearSharpData1886_endpoint_fast_hi_6": 0,
+    "NearSharpData1886_endpoint_fast_hi_12": 0,
+    "NearSharpData1886_endpoint_fast_hi_18": 0,
+    "NearSharpData1886_endpoint_fast_hi_24": 0,
+    "NearSharpData1886_endpoint_fast_hi_30": 0,
+    "NearSharpData1886_endpoint_fast_hi_36": 0,
+    "NearSharpData1886_Simple0": 0,
+    "NearSharpData1886_Simple1": 0,
+    "NearSharpData1886_Simple2": 0,
+    "NearSharpData1886_Simple3": 0,
+    "NearSharpData1886_Simple4": 0,
+    "NearSharpData1886_Simple5": 0,
+    "NearSharpData1886_Simple6": 0,
+    "NearSharpData1886_Simple7": 0,
+    "NearSharpData1886_Simple8": 0,
+    "NearSharpData1886_Simple9": 0,
+    "NearSharpData1886_Simple10": 0,
+    "NearSharpData1886_Simple11": 0,
+    "NearSharpData1886": 0,
+    "NearSharpPSD1886": 0,
+    "NearSharpNumeric1886": 0,
+    "NearSharpCertificate1886": 0,
+    "NearSharpAllSteps": 0,
+    "NearSharpRankDeficient": 0,
+    "NearSharpFullRank": 0,
+    "CycleGeometry": 0,
+    "CycleDataCore": 0,
+    "CycleAlgebra": 0,
+    "CycleWellposed": 0,
+    "CycleRows00": 0,
+    "CycleRows01": 0,
+    "CycleRows02": 0,
+    "CycleRows03": 0,
+    "CycleRows04": 0,
+    "CycleRows05": 0,
+    "CycleRows06": 0,
+    "CycleRows07": 0,
+    "CycleRows08": 0,
+    "CycleRows09": 0,
+    "CycleRows10": 0,
+    "CycleRows11": 0,
+    "CycleRows12": 0,
+    "CycleRows13": 0,
+    "CycleRows14": 0,
+    "CycleRows15": 0,
+    "CycleData": 0,
+    "CycleCounterexample": 0
+  },
+  "completed_utc": "2026-10-30T06:01:40.077419+00:00"
+}

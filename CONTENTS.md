@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**36 manuscripts and research notes across 35 result families in mathematics, theoretical computer science, and mathematical physics.**
+**37 manuscripts and research notes across 36 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -221,6 +221,16 @@ An exact period-five orbit for multiplier-only two-block ADMM at step 199/100.
 **Formal scope.** Seven modules and eleven endpoint audits cover the orbit, minimizers and optimizer. Analytic regularity of the finite strongly convex extension retains a conventional proof.
 
 [Paper PDF](papers/mathematics/admm-counterexample/paper/admm_counterexample.pdf) · [LaTeX](papers/mathematics/admm-counterexample/paper/admm_counterexample.tex) · [Reproduction and source context](papers/mathematics/admm-counterexample/README.md) · [Citation](papers/mathematics/admm-counterexample/CITATION.bib)
+
+#### [A narrow interval for the universal multiplier step of two-block ADMM](papers/mathematics/admm-multiplier-step/manuscript.pdf)
+
+**Family:** `admm-multiplier-step`.
+
+Two-block ADMM with relaxation only in the multiplier update converges for every constant step 0 < τ ≤ 1.886 on finite-dimensional convex problems whose proximal subproblems attain their minima and which have a saddle point. Both primal blocks, the multiplier and the objective values converge, with no smoothness, strong convexity or bounded-iterate assumption. Fixed compact polytopes in R¹²⁸ have a nonconstant periodic ADMM orbit for every τ ≥ 1.8868954…, so the largest step with universal convergence lies in an interval of width below 0.0009. Affine-constraint versions are also proved. The earlier assertion of convergence up to τ = 2 by Gao et al. (2022) is shown to be false.
+
+**Formal scope.** The consensus convergence theorem for 0 < τ ≤ 943/500, the arbitrary-rank and full-rank affine-constraint theorems, both finite-memory certificates and the periodic orbit in R^128 are formalized in 168 Lean modules. Individual objective-value limits, the reduction from proper closed convex functions to proximal attainment, and penalty rescaling are conventional.
+
+[Paper PDF](papers/mathematics/admm-multiplier-step/manuscript.pdf) · [LaTeX](papers/mathematics/admm-multiplier-step/manuscript.tex) · [Proof and reproduction](papers/mathematics/admm-multiplier-step/README.md) · [Citation](papers/mathematics/admm-multiplier-step/CITATION.bib)
 
 #### [Escaping Nesterov flows and iterates below critical damping](papers/mathematics/nesterov-subcritical/manuscript.pdf)
 

@@ -530,8 +530,35 @@
         "kind": "standalone",
         "root": "papers/mathematics/admm-counterexample"
       },
-      "manuscript_engine": "pdflatex",
-      "standout": true
+      "manuscript_engine": "pdflatex"
+    },
+    {
+      "id": "admm-multiplier-step",
+      "discipline": "Mathematics",
+      "area": "Optimization",
+      "title": "A narrow interval for the universal multiplier step of two-block ADMM",
+      "kind": "Convergence theorem, periodic counterexample and reproducible proof package",
+      "standout": true,
+      "significance_rank": 10,
+      "keywords": [
+        "ADMM",
+        "alternating direction method of multipliers",
+        "dual step size",
+        "Glowinski golden ratio",
+        "multiplier relaxation",
+        "convergence threshold",
+        "Lyapunov certificate"
+      ],
+      "summary": "Two-block ADMM with relaxation only in the multiplier update converges for every constant step 0 < τ ≤ 943/500 = 1.886 on finite-dimensional convex problems whose proximal subproblems attain their minima and which have a saddle point; both primal blocks, the multiplier and the objective values converge. Fixed compact polytopes in R^128 with zero objectives have a nonconstant periodic orbit for every τ ≥ 897744153596994489/475778439151265168 ≈ 1.8868954. The largest step with universal convergence therefore lies in an interval of width below 0.0009; its exact value is open.",
+      "formal_scope": "The consensus convergence theorem for 0 < τ ≤ 943/500, the arbitrary-rank and full-rank affine-constraint theorems, both finite-memory certificates and the periodic orbit in R^128 are formalized in 168 Lean modules. Individual objective-value limits, the reduction from proper closed convex functions to proximal attainment, and penalty rescaling are conventional.",
+      "source": "Fortin and Glowinski proved convergence for steps below the golden ratio; Tao and Yuan call the general convex case Glowinski's open question. Gao et al. (2022) asserted the range 1 < τ ≤ 2, which the periodic orbit contradicts. Related work and limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/admm-multiplier-step/README.md",
+      "paper": "papers/mathematics/admm-multiplier-step/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/mathematics/admm-multiplier-step"
+      },
+      "manuscript_engine": "pdflatex"
     },
     {
       "id": "nesterov-subcritical",

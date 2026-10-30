@@ -1,0 +1,338 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,array,longtable,microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\hypersetup{pdftitle={A narrow interval for the universal multiplier step of two-block ADMM},pdfauthor={Dev D. Goyal},pdfsubject={Fully autonomous agentic research},pdfkeywords={ADMM, dual step size, Glowinski, convex optimization, Lyapunov certificate, periodic orbit, Lean}}
+\allowdisplaybreaks[2]
+\setlength{\emergencystretch}{3em}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\makeatletter\g@addto@macro\UrlBreaks{\do\_\do\.}\makeatother
+\newcommand{\lean}[1]{{\urlstyle{tt}\nolinkurl{#1}}}
+\newcommand{\conv}{\operatorname{conv}}
+\newcommand{\taulo}{943/500}
+\newcommand{\tauup}{\tau_{\mathrm{up}}}
+\newcommand{\replaystatus}{A fresh replay on 30 October 2026, compiling all 168 modules from source into a new object directory against a Mathlib checkout built at the pinned revision and resubmitting the six central declaration bodies to the kernel, passed; its record is in \texttt{verification/}.}
+\title{A narrow interval for the universal multiplier step\\ of two-block ADMM}
+\author{Dev D. Goyal}
+\date{30 October 2026}
+\begin{document}
+\maketitle
+
+\section*{Research process and AI disclosure}
+This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment below is provisional.
+
+The research, the exact certificates, the Lean formalization and earlier reports were produced by autonomous AI research agents in earlier sessions whose records do not name the model or system used. Three uploaded packages contributed: a convergence dossier for $0<\tau\le7/4$, an interval package for $[3/2,7/4]$ that also treated general linear constraints and examined an earlier published claim, and a package with longer-memory certificates and the periodic orbit in $\R^{128}$. The first two are superseded by this paper; their Lean modules are included unchanged where the final proof uses them.
+
+Opus 5.5 by Anthropic used with Claude Code assessed and consolidated the three packages for this release. It coordinated independent AI referee checks, which included new exact-arithmetic rechecks of the cycle certificate and of both longer-memory certificates, ran the fresh Lean replay described in Section~\ref{sec:formal}, added the comparison with Gao et~al.\ (2022) and the scope notes, and wrote this manuscript. AI referee checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:formal}; it does not establish novelty or priority.
+
+\begin{abstract}
+We study classical two-block ADMM with a fixed penalty when only the multiplier update is multiplied by a constant step $\tau$. For finite-dimensional convex problems whose proximal subproblems attain their minima and which have a saddle point, the iteration converges for every $0<\tau\le \taulo=1.886$: both primal blocks and the multiplier converge to a saddle point, and the objective values converge to the optimum. No smoothness, strong convexity, bounded iterates or summability is assumed. Conversely, one fixed pair of compact convex polytopes in $\R^{128}$, with zero objectives, has a nonconstant periodic ADMM orbit for every $\tau\ge\tauup\approx1.8868954$. The largest step with universal convergence therefore lies in an interval of width less than $0.0009$. The convergence proof combines quadratic energies of up to twenty consecutive states with exact rational certificates that are affine in $\tau$. Affine-constraint versions are also proved. The convergence theorems, the certificates and the periodic orbit are formalized in Lean~4.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+The alternating direction method of multipliers (ADMM) for
+\[
+\min\{f(x)+g(z): x=z\}
+\]
+alternates two proximal steps with a multiplier update. Fortin and Glowinski allowed the multiplier update to be scaled by a constant $\tau$ and proved convergence for $0<\tau<(1+\sqrt5)/2$ \cite{FortinGlowinski}. Whether this golden-ratio range can be enlarged for general convex problems has been an open question; Tao and Yuan call it Glowinski's open question and answer it for quadratic objectives \cite{TaoYuan}. Gu and Yang showed that the conventional energy used in convergence proofs can increase beyond the golden ratio, so that proof technique cannot cross it \cite{GuYang}. Larger steps are known under extra assumptions, such as strong convexity \cite{MaShuLiWu}, an added proximal term \cite{Ma2020}, or summability of multiplier increments \cite{ChenSunToh}. The earlier result of this collection is an exact five-cycle at $\tau=199/100$ for compact polytopes, valid from $\tau\ge140111/70637\approx1.98353554$, which rules out universal convergence on all of $(0,2)$ \cite{FiveCycle}.
+
+This paper brackets the universal threshold. The convergence theorem (Theorem~\ref{thm:main}) covers every $0<\tau\le\taulo$. The periodic orbit (Theorem~\ref{thm:cycle}) exists for every $\tau\ge\tauup$, where
+\[
+\tauup=\frac{897744153596994489}{475778439151265168}\approx1.8868954112306315.
+\]
+Hence the supremum $\tau_*$ of steps with universal convergence satisfies
+\begin{equation}\label{eq:bracket}
+1.886\le\tau_*\le\tauup,\qquad \tauup-1.886<0.0009.
+\end{equation}
+The exact value of $\tau_*$ is not determined.
+
+The method is not new. Convergence comes from a quadratic Lyapunov energy of several consecutive states, certified by nonnegative combinations of convex interpolation inequalities and positive-semidefinite matrices; this is the approach of automated Lyapunov analysis \cite{UpadhyayaTight,AutoLyap}. The periodic orbit uses vertex normal-cone certificates for polytopes, as in the earlier five-cycle. What is new, as far as the literature we inspected shows, is the bracket~\eqref{eq:bracket} for the unmodified iteration in the general convex class.
+
+Gao et~al.\ asserted convergence of this iteration for every $1<\tau\le2$ \cite{Gao2022}. Section~\ref{sec:gao} explains why that assertion cannot hold: its displayed inequality fails on a scalar example, the iteration has a two-cycle at $\tau=2$, and Theorem~\ref{thm:cycle} contradicts it for every $\tau\ge\tauup$.
+
+\section{Setting and results}\label{sec:results}
+Let $E$ be a finite-dimensional real inner-product space. Let $C,D\subseteq E$ be convex sets and let $f,g:E\to\R$ be convex on $C$ and $D$, respectively; values outside $C$ and $D$ play no role. Equivalently, one may add the convex indicators of $C$ and $D$.
+
+\begin{definition}
+A point $p$ is a \emph{proximal point} of $f$ on $C$ at center $c$ if $p\in C$ and
+\[
+f(p)+\tfrac12\norm{p-c}^2\le f(y)+\tfrac12\norm{y-c}^2\qquad(y\in C).
+\]
+We write $p=P_f(c)$. A \emph{saddle point} is a pair $(z_*,u_*)$ with $z_*\in C\cap D$ and
+\[
+f(y)\ge f(z_*)-\ip{u_*}{y-z_*}\ (y\in C),\qquad g(y)\ge g(z_*)+\ip{u_*}{y-z_*}\ (y\in D).
+\]
+\end{definition}
+Adding the two inequalities of a saddle point shows that $z_*$ minimizes $f+g$ on $C\cap D$.
+
+\paragraph{Standing hypotheses.}
+For every $c\in E$, proximal points of $f$ on $C$ and of $g$ on $D$ exist, and a saddle point exists. Convexity makes proximal points unique (Lemma~\ref{lem:prox}).
+
+The algorithm, with penalty one in consensus form, is
+\begin{equation}\label{eq:admm}
+x^{k+1}=P_f(z^k-u^k),\qquad z^{k+1}=P_g(x^{k+1}+u^k),\qquad u^{k+1}=u^k+\tau(x^{k+1}-z^{k+1}).
+\end{equation}
+Only the last update contains $\tau$. This is the multiplier-only relaxation of Fortin and Glowinski, not the over-relaxation that replaces $x^{k+1}$ by $\alpha x^{k+1}+(1-\alpha)z^k$ in the later steps.
+
+\begin{theorem}[Convergence]\label{thm:main}
+Assume the standing hypotheses and fix $0<\tau\le\taulo$. For every initial $(z^0,u^0)\in E\times E$ there is a saddle point $(\bar z,\bar u)$ such that
+\[
+x^{k+1}\to\bar z,\qquad z^k\to\bar z,\qquad u^k\to\bar u,
+\]
+and $f(x^{k+1})\to f(\bar z)$, $g(z^{k+1})\to g(\bar z)$. In particular $f(x^{k+1})+g(z^{k+1})$ converges to the minimum of $f+g$ on $C\cap D$.
+\end{theorem}
+
+For a penalty $\rho>0$ apply Theorem~\ref{thm:main} to $f/\rho$ and $g/\rho$; the variable $u$ is then the multiplier divided by $\rho$. When $f$ and $g$ are proper, closed and convex with effective domains $C$ and $D$, the proximal points exist for every center by the standard theory, so the standing hypotheses reduce to existence of a saddle point. The formal statement keeps attainment as an explicit hypothesis.
+
+\begin{theorem}[Affine constraints]\label{thm:affine}
+Let $U,V,E$ be finite-dimensional real inner-product spaces, let $A:U\to E$ and $B:V\to E$ be affine maps of arbitrary rank, let $C\subseteq U$ and $D\subseteq V$ be convex, and let $f$ and $g$ be convex on $C$ and $D$. Fix $\rho>0$ and $0<\tau\le\taulo$. Assume that for every center the subproblems
+\[
+\min_{x\in C} f(x)+\tfrac\rho2\norm{A(x)-c}^2,\qquad \min_{y\in D} g(y)+\tfrac\rho2\norm{B(y)-c}^2
+\]
+attain their minima, and that the problem $\min\{f(x)+g(y):x\in C,\ y\in D,\ A(x)=B(y)\}$ has a saddle point. Let $(x_n,y_n,u_n)$ be any sequence produced by
+\[
+x_{n+1}\in\operatorname*{arg\,min}_{x\in C} f(x)+\tfrac\rho2\norm{A(x)-B(y_n)+u_n}^2,\quad
+y_{n+1}\in\operatorname*{arg\,min}_{y\in D} g(y)+\tfrac\rho2\norm{A(x_{n+1})-B(y)+u_n}^2,
+\]
+and $u_{n+1}=u_n+\tau(A(x_{n+1})-B(y_{n+1}))$, with arbitrary choices among minimizers. Then $A(x_n)$, $B(y_n)$, $\rho u_n$ and $f(x_n)+g(y_n)$ converge to the corresponding values at a saddle point of the original problem, and that limit value is the optimum. If $A$ and $B$ have continuous left inverses, then $x_n$ and $y_n$ also converge.
+\end{theorem}
+The usual form $A_0x+B_0y=b$ is the case $A=A_0$, $B(y)=b-B_0y$. Without injectivity the raw iterates need not converge: if $f$ does not depend on a coordinate of $x$ that $A$ ignores, an arbitrary choice of minimizers can move that coordinate at will.
+
+\begin{theorem}[Periodic orbit]\label{thm:cycle}
+There are compact convex polytopes $C,D\subset\R^{128}$, both containing $0$, such that for every $\tau\ge\tauup$ the iteration~\eqref{eq:admm} with $f=g=0$ on $C$ and $D$ has a nonconstant periodic orbit whose period divides $128$. Every proximal step on the orbit is the unique projection onto the respective polytope, $(0,0)$ is a saddle point, $\norm{x^k-z^k}^2=16383999960516622876672$ for every $k$, and $z^k$ has no limit.
+\end{theorem}
+The polytopes do not depend on $\tau$; the initial multiplier is proportional to $\tau$.
+
+\begin{corollary}
+The bracket~\eqref{eq:bracket} holds for the supremum $\tau_*$ of steps $t$ such that every $0<\tau\le t$ gives convergence in the class of Theorem~\ref{thm:main}.
+\end{corollary}
+
+The obstruction uses indicator objectives. Thresholds for smooth or strongly convex subclasses are not addressed; the earlier five-cycle has a strongly convex $C^2$ extension \cite{FiveCycle}, but only from $\tau\ge140111/70637$.
+
+\section{Proximal steps and supporting inequalities}\label{sec:prox}
+For $x\in C$ write $a\in\partial_Cf(x)$ when $f(y)\ge f(x)+\ip{a}{y-x}$ for every $y\in C$. This does not assume differentiability.
+
+\begin{lemma}\label{lem:prox}
+$p=P_f(c)$ if and only if $p\in C$ and $c-p\in\partial_Cf(p)$. Proximal points are unique and $P_f$ is nonexpansive.
+\end{lemma}
+\begin{proof}
+If $c-p\in\partial_Cf(p)$, add the supporting inequality to $\tfrac12\norm{y-c}^2-\tfrac12\norm{p-c}^2=\tfrac12\norm{y-p}^2-\ip{c-p}{y-p}$. Conversely, compare $p$ with $p+t(y-p)$ for $0<t\le1$, use convexity, divide by $t$ and let $t\downarrow0$. For two centers, adding the supporting inequalities at $p=P_f(c)$ and $q=P_f(d)$ gives $\norm{p-q}^2\le\ip{c-d}{p-q}$, which proves uniqueness and nonexpansiveness.
+\end{proof}
+
+\begin{lemma}\label{lem:sandwich}
+Let $y_k\to y$ in $C$, let $a_k\in\partial_Cf(y_k)$ converge, and let $b\in\partial_Cf(y)$. Then $f(y_k)\to f(y)$.
+\end{lemma}
+\begin{proof}
+$f(y)+\ip{b}{y_k-y}\le f(y_k)\le f(y)-\ip{a_k}{y-y_k}$, and both outer terms tend to $f(y)$.
+\end{proof}
+Lemma~\ref{lem:sandwich} gives objective convergence without assuming continuity of $f$ at boundary points of $C$, where convex functions can jump.
+
+\section{Finite-memory certificates}\label{sec:certificates}
+\subsection{Centred variables and supporting gaps}
+Fix a saddle point $(z_*,u_*)$ and replace $f$ and $g$ by
+\[
+\widehat f(x)=f(x+z_*)+\ip{u_*}{x}-f(z_*),\qquad \widehat g(z)=g(z+z_*)-\ip{u_*}{z}-g(z_*).
+\]
+Then $\widehat f,\widehat g\ge0$ vanish at the origin with supporting normal zero there. Put $\zeta^k=z^k-z_*$ and $v^k=(u^k-u_*)/\tau$. The multiplier update gives $x^k-z_*=\zeta^k+v^k-v^{k-1}$, and Lemma~\ref{lem:prox} identifies the normals
+\begin{equation}\label{eq:normals}
+a^k=\zeta^{k-1}-\tau v^{k-1}-(x^k-z_*)\in\partial\widehat f(x^k-z_*),\qquad
+b^k=(x^k-z_*)+\tau v^{k-1}-\zeta^k\in\partial\widehat g(\zeta^k).
+\end{equation}
+The points are independent of $\tau$ and the normals are affine in $\tau$.
+
+In a window of $m$ updates, label the saddle point as sample $0$ and the updates as samples $1,\dots,m$. For every ordered pair of samples the supporting gaps
+\[
+I_f(i,j)=\widehat f(X_j)-\widehat f(X_i)-\ip{a_i}{X_j-X_i}\ge0,\qquad
+I_g(i,j)=\widehat g(Z_j)-\widehat g(Z_i)-\ip{b_i}{Z_j-Z_i}\ge0
+\]
+hold, where $X_i$, $Z_i$, $a_i$, $b_i$ are the centred points and normals. A certificate assigns nonnegative weights $\lambda^f_{ij},\lambda^g_{ij}$ whose row and column sums agree at every sample. Then all function values cancel in $\sum\lambda^f_{ij}I_f(i,j)+\sum\lambda^g_{ij}I_g(i,j)$, which is a quadratic form in the state window and is nonnegative on actual ADMM windows.
+
+\subsection{The certificate identity}
+Write a window of $m+1$ consecutive states as $w=(\zeta^0,v^0,\dots,\zeta^m,v^m)\in E^{2m+2}$ and, for a real symmetric matrix $M$, $[w]_M=\sum_{i,j}M_{ij}\ip{w_i}{w_j}$. Let $S_0$ and $S_1$ select the first and last $m$ states of the window, and let $H_m$ represent $\norm{\zeta^m-\zeta^{m-1}}^2+\norm{v^m-v^{m-1}}^2$. A certificate for the step interval $[\alpha,\beta]$ consists of rational symmetric matrices $P_\alpha,P_\beta$ and $T_\alpha,T_\beta$ and one set of weights such that, at both endpoints $\tau\in\{\alpha,\beta\}$,
+\begin{equation}\label{eq:identity}
+[S_0w]_{P(\tau)}-[S_1w]_{P(\tau)}-[w]_{H_m}-\sum_{i,j}\lambda^f_{ij}I_f(i,j)-\sum_{i,j}\lambda^g_{ij}I_g(i,j)=[Dw]_{T(\tau)}
+\end{equation}
+as an identity of quadratic forms, where $D$ maps the window to differences of its states, so that $[Dw]_{T}$ vanishes on constant windows, and
+\begin{equation}\label{eq:psd}
+P(\tau)-C_m\succeq0,\qquad T(\tau)\succeq0,
+\end{equation}
+where $C_m$ represents $\norm{\zeta^{m-1}}^2+\norm{v^{m-1}}^2$ on the newest stored state. Because the normals~\eqref{eq:normals} are affine in $\tau$, so is the left side of~\eqref{eq:identity}. Defining $P(\tau)$ and $T(\tau)$ by linear interpolation between the endpoints, \eqref{eq:identity} holds for every $\tau\in[\alpha,\beta]$, and \eqref{eq:psd} holds by convexity of the positive-semidefinite cone. Scalar identities lift to vectors by bilinearity.
+
+\subsection{The classical branch \texorpdfstring{$0<\tau<3/2$}{0 < tau < 3/2}}\label{sec:classical}
+For $k\ge1$ let $r_k=v^k-v^{k-1}=x^k-z^k$, $q_{k+1}=\zeta^{k+1}-\zeta^k$ and $E_k=\norm{\zeta^k}^2+\tau\norm{v^k}^2$. The supporting inequalities between the new proximal points and the saddle point give
+\[
+E_k-E_{k+1}\ge(2-\tau)\norm{r_{k+1}}^2+\norm{q_{k+1}}^2+2\ip{r_{k+1}}{q_{k+1}},
+\]
+and monotonicity of the $g$-normals at consecutive points gives $\ip{q_{k+1}}{r_{k+1}+(\tau-1)r_k}\ge0$. With $W_k=E_k+|\tau-1|\norm{r_k}^2$ and $2|t\ip ab|\le|t|(\norm a^2+\norm b^2)$,
+\[
+W_k-W_{k+1}\ge(2-\tau-|\tau-1|)\norm{r_{k+1}}^2+(1-|\tau-1|)\norm{q_{k+1}}^2.
+\]
+Both coefficients are positive exactly for $0<\tau<3/2$, so $W_k$ is a coercive energy with strict decrease of the increments.
+
+\subsection{A three-state certificate on \texorpdfstring{$[3/2,7/4]$}{[3/2, 7/4]}}
+Here $m=3$. The weights, with zero diagonals and samples ordered as saddle, first, second and third update, are
+\[
+\Lambda_f=\begin{pmatrix}
+0&3327&4525&3133\\3011&0&25648&88936\\3180&0&0&26993\\4794&114268&0&0
+\end{pmatrix},\qquad
+\Lambda_g=\begin{pmatrix}
+0&3957&3650&3378\\2996&0&230607&0\\3595&168638&0&150993\\4394&61008&88969&0
+\end{pmatrix}.
+\]
+Each matrix has equal row and column sums at every index. The energy matrices on $(\zeta^0,v^0,\zeta^1,v^1,\zeta^2,v^2)$ are given by
+{\small
+\setlength{\arraycolsep}{3pt}
+\[
+8P_{3/2}=\begin{pmatrix}
+532740&-116092&-189104&138756&-331592&-22664\\
+-116092&800006&306244&-242242&-190182&-537802\\
+-189104&306244&488680&-231192&-286856&-71272\\
+138756&-242242&-231192&370768&93176&-101376\\
+-331592&-190182&-286856&93176&637624&95536\\
+-22664&-537802&-71272&-101376&95536&657976
+\end{pmatrix},
+\]
+\[
+8P_{7/4}=\begin{pmatrix}
+599964&-137604&-298760&169140&-289160&-31536\\
+-137604&897627&378338&-195741&-240779&-678597\\
+-298760&378338&697952&-308936&-386472&-64992\\
+169140&-195741&-308936&249496&140936&-22080\\
+-289160&-240779&-386472&140936&694808&98128\\
+-31536&-678597&-64992&-22080&98128&722608
+\end{pmatrix},
+\]}
+and $P(\tau)=(7-4\tau)P_{3/2}+(4\tau-6)P_{7/4}$. The matrices $P_{3/2}-C_3$ and $P_{7/4}-C_3$ and the two dissipation matrices $T_{3/2}$, $T_{7/4}$ have exact rational $LDL^{\mathsf T}$ factorizations with positive pivots. The dissipation matrices are not independent input: they are the residual of~\eqref{eq:identity} after subtracting the supporting gaps, and the independent checkers rebuild them from the iteration.
+
+\subsection{Longer memories on \texorpdfstring{$[7/4,\taulo]$}{[7/4, 943/500]}}
+Two further certificates use longer windows.
+\begin{center}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Step interval&States $m$&Energy matrix&Listed weights&Positive weights\\
+\midrule
+$[7/4,\,47/25]$&12&$24\times24$&312&188\\
+$[47/25,\,\taulo]$&20&$40\times40$&840&353\\
+\bottomrule
+\end{tabular}
+\end{center}
+Their exact data are in \lean{certificates/exact_175_188_m12.json} and \lean{certificates/exact_188_1886_m20.json}. Each interval uses one set of weights at both endpoints. The rational checker verifies~\eqref{eq:identity} at both endpoints, flow balance and nonnegativity of the weights, and exact $LDL^{\mathsf T}$ factorizations with positive pivots of $P_\alpha-C_m$, $P_\beta-C_m$, $T_\alpha$ and $T_\beta$. The Lean proof instead uses integer Gram certificates: for a rational matrix $A_{\mathbb Z}/d$ it checks $q^2A_{\mathbb Z}=dR^{\mathsf T}R+E$ with $d,q>0$ and an integer symmetric $E$ that is diagonally dominant with nonnegative diagonal, which implies $A_{\mathbb Z}/d\succeq0$.
+
+\section{From certificates to convergence}\label{sec:convergence}
+Fix $\tau$ and a certificate of memory $m$ covering it; the classical branch is the case $m=1$ with energy $W_k$. Relative to a saddle point define
+\[
+\mathcal E_k=[(\zeta^k,v^k,\dots,\zeta^{k+m-1},v^{k+m-1})]_{P(\tau)}.
+\]
+By~\eqref{eq:psd}, $\mathcal E_k\ge\norm{\zeta^{k+m-1}}^2+\norm{v^{k+m-1}}^2$. By~\eqref{eq:identity} and nonnegativity of the gaps and of $[Dw]_{T(\tau)}$,
+\[
+\mathcal E_k-\mathcal E_{k+1}\ge\norm{\zeta^{k+m}-\zeta^{k+m-1}}^2+\norm{v^{k+m}-v^{k+m-1}}^2.
+\]
+Hence the states are bounded and their increments are square summable; in particular $x^{k+1}-z^{k+1}=v^{k+1}-v^k\to0$. These are conclusions, not hypotheses.
+
+The state map $T_\tau:(z,u)\mapsto(z^+,u^+)$ is continuous by Lemma~\ref{lem:prox}. A bounded sequence in finite dimension has a convergent subsequence $s_{k_j}\to\bar s$. Vanishing increments give $s_{k_j+1}\to\bar s$, and continuity gives $s_{k_j+1}=T_\tau(s_{k_j})\to T_\tau(\bar s)$, so $\bar s$ is a fixed point. Because $\tau>0$, a fixed point has $x=z$, and Lemma~\ref{lem:prox} turns the two proximal equations into the saddle-point inequalities. Now centre the energy at this saddle point $\bar s$. Along the subsequence the finitely many states in the window converge to $\bar s$, so $\mathcal E_{k_j}\to0$; monotonicity gives $\mathcal E_k\to0$ and coercivity gives $s_k\to\bar s$. Continuity of $P_f$ gives $x^{k+1}\to P_f(\bar z-\bar u)=\bar z$.
+
+Finally $a^{k+1}=z^k-u^k-x^{k+1}\to-\bar u$ and $b^{k+1}=x^{k+1}+u^k-z^{k+1}\to\bar u$ are supporting normals converging to the saddle normals, so Lemma~\ref{lem:sandwich} gives $f(x^{k+1})\to f(\bar z)$ and $g(z^{k+1})\to g(\bar z)$. The intervals $(0,3/2)$, $[3/2,7/4]$, $[7/4,47/25]$ and $[47/25,\taulo]$ cover $(0,\taulo]$, which proves Theorem~\ref{thm:main}.
+
+\section{Affine constraints}\label{sec:affine}
+For Theorem~\ref{thm:affine} define the infimal images
+\[
+F(a)=\inf\{f(x):x\in C,\ A(x)=a\},\qquad G(b)=\inf\{g(y):y\in D,\ B(y)=b\}
+\]
+on the images $A(C)$ and $B(D)$. The original saddle point bounds every fibre from below, so $F$ and $G$ are finite and convex there. If $x$ attains the original affine subproblem, it also attains the fibre infimum at $A(x)$; otherwise a better point in the same fibre would improve the subproblem. Hence $A(x)$ is the proximal point of $F/\rho$ at the corresponding center, and every choice of original minimizers induces the same consensus iteration on the images, with multiplier $u$. Theorem~\ref{thm:main} gives a limiting image saddle point $(a,q)$. Attainment of the original subproblems at the centers $a-q$ and $a+q$, together with uniqueness of image proximal points, provides original points whose images both equal $a$; they attain their fibre infima and form an original saddle point with multiplier $\rho q$. Fibre optimality identifies the original objective values along the trajectory with the image values, which proves convergence of $f(x_n)+g(y_n)$ without closedness of $F$ or $G$. Continuous left inverses transfer image convergence to the raw iterates.
+
+\section{The periodic obstruction}\label{sec:cycle}
+The certificate file \lean{certificates/exact_cycle_18869_10000_K128.json} supplies integer vectors $z,v\in\mathbb Z^{128}$. Let $S$ be the cyclic left shift, so $S^{128}=I$, and set
+\[
+x=z+v-S^{-1}v,\qquad C=\conv\{S^ix:0\le i<128\},\qquad D=\conv\{S^iz:0\le i<128\}.
+\]
+The coordinates of $z$ and $v$ sum to zero, hence so do those of $x$, and averaging all shifts shows $0\in C\cap D$. With zero objectives, $(0,0)$ is a saddle point.
+
+For each offset $j$ define the vertex margins
+\[
+M_f(j,\tau)=\ip{S^{-1}z-\tau S^{-1}v-x}{x-S^jx},\qquad M_g(j,\tau)=\ip{x+\tau S^{-1}v-z}{z-S^jz}.
+\]
+Each is an integer plus $\tau$ times an integer. The certificate verifies that every slope is nonnegative and that every margin is nonnegative at $\tau=\tauup$; the binding inequality is the $f$-margin at offset $j=3$. Hence all margins are nonnegative for every $\tau\ge\tauup$.
+
+Nonnegative vertex margins extend by convexity to the whole polytope: if $p\in K$ and $\ip{c-p}{y-p}\le0$ for every $y\in K$, then $\norm{y-c}^2=\norm{p-c}^2+\norm{y-p}^2-2\ip{c-p}{y-p}\ge\norm{p-c}^2+\norm{y-p}^2$, so $p$ is the unique projection of $c$ onto $K$. Define $x^i=S^ix$, $z^i=S^iz$ and $u^i=\tau S^iv$. Because $S$ is orthogonal, the base inequalities give both proximal steps at every phase, and the multiplier update is the identity $u^i-u^{i-1}=\tau(S^iv-S^{i-1}v)=\tau(x^i-z^i)$. The sequences have period dividing $128$, the residual $\norm{x-z}^2=16383999960516622876672$ is constant, and $Sz\ne z$ gives $\norm{z^{k+1}-z^k}=\norm{Sz-z}>0$ at every step, so $z^k$ does not converge. This proves Theorem~\ref{thm:cycle}.
+
+The independent referee check reproduced every margin with exact arithmetic at $\tau=\tauup$, at $1.8869$, $1.9$, $2$, $3$ and $1000$, and confirmed that the first projection fails just below $\tauup$, so the bound is tight for this orbit. A Fourier optimization located the integer vectors; it is not part of the proof.
+
+\section{An earlier published claim}\label{sec:gao}
+Gao, Li, Ma, Li, Sun, Maihemuti and Jin study relaxed ADMM for model-predictive control and, according to our reading of their Sections~2.2.3 and~4.3, assert convergence of the multiplier-only iteration~\eqref{eq:admm} for $1<\tau\le2$ \cite{Gao2022}. With penalty one in consensus form, a saddle point $(z_*,u_*)$, $r_k=x^k-z^k$ and $q_k=(u^k-u_*)^2/\tau+(z^k-z_*)^2$, their inequalities (45) and (47) specialize to
+\[
+q_k-q_{k+1}\ge\tau(z^{k+1}-z^k)^2+(\tau-1)r_k^2+(2-\tau)r_{k+1}^2.
+\]
+Take $E=\R$, $f(x)=x$, $g(z)=-z$ and $z^0=u^0=0$. The saddle point is $(0,-1)$, the updates are $x^{k+1}=z^k-u^k-1$, $z^{k+1}=z^k=0$ and $u^{k+1}=(1-\tau)u^k-\tau$. At $\tau=3/2$ one finds $q_1-q_2=1/8$ while the right side is $5/8$; at $\tau=7/4$ the values are $9/64$ and $57/64$. At $\tau=2$ the iteration is an actual two-cycle, $u^k$ alternating between $0$ and $-2$ and $x^k$ between $-1$ and $1$. This scalar example converges for $\tau<2$, so it refutes only the displayed inequality; Theorem~\ref{thm:cycle} refutes the asserted range for every $\tau\ge\tauup$. We could not re-open the full text of~\cite{Gao2022} while preparing this release, so the identification of their equations rests on an earlier reading recorded in the uploaded package.
+
+\section{Formal verification}\label{sec:formal}
+The Lean project in \lean{lean/} pins Lean~4.19.0 (commit \texttt{6caaee842e94}) and Mathlib revision \texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}, with every transitive dependency fixed in \lean{lake-manifest.json}. It contains 168 proof modules and one audit module. The six central declarations are:
+{\sloppy
+\begin{itemize}[leftmargin=1.5em]
+\item \lean{ADMMNearSharpAllSteps.initialized_admm_objective_converges}: Theorem~\ref{thm:main} for $0<\tau\le\taulo$, with the trajectory defined by iterating the actual map~\eqref{eq:admm} from an arbitrary initial state, \texttt{ConvexOn} hypotheses, proximal points that are global minimizers for every center, and an existing saddle point. It concludes convergence to a saddle point, global optimality of the limit, and convergence of the summed objective values.
+\item \lean{ADMMNearSharpAllSteps.rankDeficient_original_admm_converges} and \lean{ADMMNearSharpAllSteps.fullRank_original_admm_converges}: Theorem~\ref{thm:affine}, with arbitrary sequences satisfying the original affine minimization and multiplier relations; the second theorem assumes continuous left inverses.
+\item \lean{ADMMNearSharpCertificate.C188.certificate} and \lean{ADMMNearSharpCertificate.C1886.certificate}: the two longer-memory certificates as data, with their identities, flow balance and positivity proved.
+\item \lean{ADMM128Counterexample.counterexample}: Theorem~\ref{thm:cycle}, including unique proximal points for every center, compactness and convexity of both polytopes, the saddle point, the orbit of the actual map for every $\tau\ge\tauup$, period $128$, the constant residual, and nonconvergence of $z^k$.
+\end{itemize}
+}
+The modules fall into groups: proximal model, generic memory convergence and the classical and three-state branches (inherited unchanged from the earlier convergence package); the generic finite-memory certificate theory (\texttt{MemoryCertificate}, \texttt{DelayedMemory}, \texttt{FiniteMemoryADMM}, \texttt{OriginalMemoryADMM}); the Gram-certificate bridge (\texttt{Quadratic}, \texttt{Integer*}, \texttt{StandardRows}); the generated certificate data (\texttt{NearSharpData*}, \texttt{NearSharpCertificate*}); the cycle (\texttt{Cycle*}); and the final assembly (\texttt{NearSharpAllSteps}, \texttt{NearSharpRankDeficient}, \texttt{NearSharpFullRank}).
+
+The verifier \lean{verify_lean.py} checks the dependency pins and clean checkouts, compiles every local module in dependency order into a new object directory with one thread, and then submits the stored bodies of the six central declarations to the Lean kernel again under fresh names. Every central declaration depends only on \texttt{propext}, \lean{Classical.choice} and \lean{Quot.sound}. Integer facts are decided by the kernel; no \lean{native_decide} is used. \replaystatus{} The standard-library programs \lean{checks/check_exact_interval.py} and \lean{checks/exact_circulant_cycle.py} independently rebuild the certificate identities and the cycle margins with rational arithmetic.
+
+Formal scope: individual objective-value limits (rather than their sum), the reduction from proper closed convex functions to the attainment hypothesis, and penalty rescaling in consensus form are conventional arguments given above.
+
+\section{Related work and novelty}\label{sec:related}
+The comparisons below concern the exact iteration~\eqref{eq:admm}.
+\begin{longtable}{@{}p{0.27\textwidth}p{0.67\textwidth}@{}}
+\toprule
+Source&Relation to this paper\\
+\midrule\endhead
+Fortin--Glowinski \cite{FortinGlowinski}&Convergence for $0<\tau<(1+\sqrt5)/2$; the classical range.\\
+Tao--Yuan \cite{TaoYuan}&The range $(0,2)$ for quadratic objectives; general convex objectives are left open.\\
+Gu--Yang \cite{GuYang}&The conventional energy can increase beyond the golden ratio. This obstructs one proof technique, not convergence; the energies here use several states.\\
+Chen--Sun--Toh \cite{ChenSunToh}&Larger steps under an assumed summability of multiplier increments, which is derived here.\\
+Ma--Shu--Li--Wu \cite{MaShuLiWu}; Ma \cite{Ma2020}&Larger steps under strong convexity with a rank condition, or with an added proximal term.\\
+Gao et~al.\ \cite{Gao2022}&Asserts $1<\tau\le2$ for general convex problems; see Section~\ref{sec:gao}.\\
+Upadhyaya et~al.\ \cite{UpadhyayaTight}; AutoLyap \cite{AutoLyap}&Automated quadratic Lyapunov analysis, including iterate histories. This is the methodology used here.\\
+Nilsson--\AA kerman--Giselsson \cite{Nilsson}&Sharp results for an extended family of splitting methods whose relaxation also changes the primal arguments; a different iteration.\\
+Bai--Rao \cite{BaiRao}; Zhang \cite{Zhang}&Larger dual steps with primal corrections or a proximal term, or with linear or strongly convex objectives and changing penalties.\\
+Five-cycle \cite{FiveCycle}&The earlier obstruction of this collection, from $\tau\ge140111/70637$, with a strongly convex extension.\\
+\bottomrule
+\end{longtable}
+No earlier theorem establishing universal convergence of~\eqref{eq:admm} beyond the golden ratio for general convex problems, and no convex obstruction below the five-cycle range of this collection, was found in the sources we inspected; Gao et~al.\ is an earlier assertion whose stated range is false. This is a provisional assessment. Unindexed or inaccessible work, and equivalent reformulations of other splitting methods, remain priority risks.
+
+\section{Limitations and open questions}
+The exact threshold $\tau_*$ in~\eqref{eq:bracket} is open. The results concern finite dimension, exact subproblems, fixed $\tau$ and penalty, and two blocks; weak convergence in infinite dimension, inexact or varying steps, more blocks and rates are not addressed. The obstruction uses indicator objectives, so the thresholds for smooth or strongly convex subclasses may be larger. No practical recommendation for $\tau$ follows from the theorems.
+
+\begin{thebibliography}{99}
+\bibitem{FortinGlowinski} M.~Fortin and R.~Glowinski, \emph{Augmented Lagrangian Methods: Applications to the Numerical Solution of Boundary-Value Problems}, Studies in Mathematics and its Applications~15, North-Holland, 1983.
+\bibitem{TaoYuan} M.~Tao and X.~Yuan, On Glowinski's open question on the alternating direction method of multipliers, \emph{J. Optim. Theory Appl.} 179 (2018), 163--196. \url{https://doi.org/10.1007/s10957-018-1338-x}.
+\bibitem{GuYang} G.~Gu and J.~Yang, On the dual step length of the alternating direction method of multipliers, arXiv:2006.08309, 2020.
+\bibitem{ChenSunToh} L.~Chen, D.~Sun and K.-C.~Toh, A note on the convergence of ADMM for linearly constrained convex optimization problems, \emph{Comput. Optim. Appl.} 66 (2017), 327--343. \url{https://doi.org/10.1007/s10589-016-9864-7}.
+\bibitem{MaShuLiWu} F.~Ma, J.~Shu, Y.~Li and J.~Wu, The dual step size of the alternating direction method can be larger than 1.618 when one function is strongly convex, \emph{J. Ind. Manag. Optim.} 17 (2021), 1173--1185. \url{https://doi.org/10.3934/jimo.2020016}.
+\bibitem{Ma2020} F.~Ma, Convergence study on the proximal alternating direction method with larger step size, \emph{Numer. Algorithms} 85 (2020), 399--425. \url{https://doi.org/10.1007/s11075-019-00819-2}.
+\bibitem{Gao2022} J.~Gao, S.~E.~Li, F.~Ma, W.~Li, H.~Sun, M.~Maihemuti and C.~Jin, Accelerated convergence of time-splitting algorithm by relaxation method, \emph{IET Control Theory Appl.} 16 (2022), 776--788. \url{https://doi.org/10.1049/cth2.12270}.
+\bibitem{UpadhyayaTight} M.~Upadhyaya, S.~Banert, A.~B.~Taylor and P.~Giselsson, Automated tight Lyapunov analysis for first-order methods, \emph{Math. Program.} (2024). \url{https://doi.org/10.1007/s10107-024-02061-8}.
+\bibitem{AutoLyap} M.~Upadhyaya, S.~Das Gupta, A.~B.~Taylor, S.~Banert and P.~Giselsson, The AutoLyap software suite for computer-assisted Lyapunov analyses of first-order methods, arXiv:2506.24076, 2025.
+\bibitem{Nilsson} M.~Nilsson, A.~\AA kerman and P.~Giselsson, Extending Douglas--Rachford splitting for convex optimization, arXiv:2511.19637, 2025.
+\bibitem{BaiRao} J.~Bai and S.~Rao, A new insight on the prediction-correction framework with applications to several first-order methods, \emph{Oper. Res. Lett.} 68 (2026), 107487. \url{https://doi.org/10.1016/j.orl.2026.107487}.
+\bibitem{Zhang} T.~Zhang, On the $O(1/K^2)$ ergodic convergence of ADMM with dual step size from 0 to 2, \emph{J. Oper. Res. Soc. China} 14 (2026), 521--532. \url{https://doi.org/10.1007/s40305-024-00568-7}.
+\bibitem{FiveCycle} D.~D.~Goyal, A rational five-cycle for two-block ADMM with multiplier step below two, preprint, 2026. \url{https://github.com/dvgyl/math-and-theory/tree/main/papers/mathematics/admm-counterexample}.
+\end{thebibliography}
+\end{document}
