@@ -1,0 +1,579 @@
+{
+  "format_version": 1,
+  "package_id": "nesterov-subcritical",
+  "formal_scope": "The continuous-time Hilbert-space threshold, the discrete threshold and the planar escape for 1 < r ≤ 2, including actual gradients, global solutions from rest and norm divergence, are formalized. The planar escape of the same potential for 0 < r ≤ 1, its boundedness for r > 2 and existence of solutions for r ≤ 1 are conventional.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.lean",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/AllPositiveThreshold.lean": "5c2a648cc50d280e23e8e3958f4655fc4c2adb7906f709e2593f517b4561d2dc",
+    "lean/Audit.lean": "713cb3f9c4b4abd09ed046e56c00df991137ce5138002ab0f8b683aefae5f845",
+    "lean/BlockScaling.lean": "f98eef33dcc6c0183d22b582acfefa3128578eeae0fd476988e8440d4f6ecd23",
+    "lean/ConvexProjection.lean": "fe8f05f7f12caa3baecb2dc8b660c1d3098d12c503a76230d073b1a0c73a3666",
+    "lean/EulerObstruction.lean": "462b0d80fdaca3fd50bc8dd7b2c87f222770f4bed4d44d871c386899c1089dca",
+    "lean/ExponentSelection.lean": "da1e797dd11184811e34661c59b519fecc5b1ee094327f9d61d76626b7eaf783",
+    "lean/FiniteActual.lean": "289ffd2c178d60757d582334d10ea207e63128a22f3c3960dc2fba57d842b9dc",
+    "lean/FiniteEuler.lean": "c394725aa30bc7ed183e5f8b71d713cf7c10da617cf66e4216b99445c9da647f",
+    "lean/FiniteExcursion.lean": "bd0a95823ef13fb4879577e92a1a53912b5a317b11f74a4c7c5dfcdd59184d0b",
+    "lean/GeneralVolterraCalculus.lean": "077fd36ee49e504323dc74636dc8e3364a39f40cdb0d9afb3a4668e7e1ae7ae3",
+    "lean/GeneralVolterraKernel.lean": "1c8bb41dc552431aae7dab7367d899578f760d6919fe2d7ca45a90aafed91e2f",
+    "lean/GeneralVolterraOperator.lean": "9aa6c886ef5e12404d9264147f292ef092bf0a99fb15fcfceae1805f995b3cdf",
+    "lean/HighDamping.lean": "fa069ea7b6db710d6daf489a3cb5b0a9766f08a5671ddca5a54288327be5cf44",
+    "lean/HilbertEscape.lean": "a0a59e2b33021bb74672d4c44dc47b0fb3d5e7076ccff6609041feb4f0dd0da8",
+    "lean/HilbertModel.lean": "316b12c925c6f8aef8604c6f94501c2f4c8cc2bd23439c29b33468d4e28593fa",
+    "lean/HilbertSum.lean": "acefa19320bf2af03fd704c70434a025b57d95e7fb925cbf5ed0fa6c936ccc02",
+    "lean/LowDampingHilbert.lean": "b1c7234265f25ab66b8aae6e5281e1d4385c66b205df95c8a6ab792fee5bdcc8",
+    "lean/LowDampingMain.lean": "5688cad131220a4b4137ecf08c2d9038c152f8b0e2728998fa1eea19ea33b90a",
+    "lean/LowDampingPotential.lean": "d3185aa2617600e01790bdb2da991356aa481b0f6f62cb610c057bb85eea7deb",
+    "lean/LowDampingTrajectory.lean": "284de1171e6ca0cd3ff60495f39837b86543244b53c38100c46cd2a5fd135563",
+    "lean/MoreauTrajectory.lean": "d8c1b5b785147f2e5d2b06a266a303f2b22baa4450446f65f3b219ddd1cc6123",
+    "lean/NAGAxisLift.lean": "e6a5ce897ff37f047ad2de83b9dda98ef1319123257c1332f59a0ba134821efd",
+    "lean/NAGBasic.lean": "f1663be67279e203003dbc31c2a50f09e2cdd0d816458b65856fc4851d66d4e7",
+    "lean/NAGConjugacy.lean": "b39747fa8820dc31d1094af64f84f380eac750281bade1a15e75cfd41cdd9f6e",
+    "lean/NAGDescent.lean": "4bcf0fbb3805a53510dd5e5c22c64c4a32a97df4596c29c448a74794e225bef3",
+    "lean/NAGHighDamping.lean": "32e5e210007b03af06f4e620d4be80e355c7e45fb826c308638d0e4bf7e54d21",
+    "lean/NAGHilbertEscape.lean": "e4a3ea1bf89eafdc062755b70f4c435d420f780747242b2a9cbeee32472ecfad",
+    "lean/NAGHilbertModel.lean": "fa35c2931b1a5f3c0d8a7261fa997dd2676d10aa91e63ae31764eca0b67d0635",
+    "lean/NAGLowDamping.lean": "0f238702f5da12ccbdae2e58161ab52ac90f0cbec505c823e600956623595e73",
+    "lean/NAGLowHilbert.lean": "6c513b0aa7cfeceb529a9f3b932b7072bfa5adf9b310617822af6f971f222919",
+    "lean/NAGODELimit.lean": "fee991082d4ae8d248bf56742551179181eab4dc17fa00011d0d4906cd9ac341",
+    "lean/NAGPlanarExcursion.lean": "6f869c68bb211bacff5d1bb523d22b6400cc8670ee9724c53d4f2da228c5c6a3",
+    "lean/NAGSharpThreshold.lean": "0ce67df7dbbc105cbbbd48e3b8b571a2b3efaed7178c6b99142e8ce0bc9b463d",
+    "lean/NAGStability.lean": "626c4a323eccf0abcec4ff8f64c05cd595cb08010a5bdd3bc2ca99cbfdfdc00e",
+    "lean/NAGVelocity.lean": "14e8543d1d6e16a5037095d02fb3e9a54452dbf1756984f6f7e0be01f5df3de7",
+    "lean/PlanarAllDamping.lean": "f4c997272243ee0f8750961c333036c8123d8ada75e92eab9c4fa8b3993d44f1",
+    "lean/PlanarEnergy.lean": "cb6e8506dd7daf669bf67841eb7b71eea640db21bccfb3592bdddde9c9c9a78b",
+    "lean/PlanarInvariants.lean": "1d12f1fb092c9f8fb4d29d3938109b6b431da2df69a8376ae8849753fc26502c",
+    "lean/PlanarMain.lean": "db4016cc731db4fb65ef4c21eb435920eb1441715d5e1bec93566e28b31302e2",
+    "lean/PlanarTrajectory.lean": "610e9ed70891f8386e89d37af9f32461ea80eef539089288276c0b1c63442272",
+    "lean/PlanarUnbounded.lean": "17120b27986e75ebac96779746079500137eed093f6418c632b637e71b61b2c1",
+    "lean/PowerAlgebra.lean": "1785ab4e09e0025a40eddcb98c80b00d3cb703d2eb3d01f107c05a5675585070",
+    "lean/PowerEstimates.lean": "5c1a688358953f897a3d9baa5eb56e04affceee5f6b1c3da32dec913c63c6618",
+    "lean/PowerExterior.lean": "9dd79dd1b84bd9f62986493d16a6a07cf5f03fa4500b1783792ae4e4d90de1fe",
+    "lean/PowerMinimizers.lean": "4d374e12c63d9c56d07425ab70f25d613c7b02058c5f10f2099379ebed6bfb07",
+    "lean/PowerModel.lean": "840e01a179a66b84a99b03372afdcd3b020f67770e9ba211e59dc9263f68a089",
+    "lean/PowerNormal.lean": "21257f4949d710b8eccc6e98a86b4cfdbc09edd180d509ab5c20a8a9b1ddd29c",
+    "lean/PowerValley.lean": "b8922b2e422f6d78443033fd998d2b256dd00b35fdf5550af9067b71049b5b61",
+    "lean/RadialHuber.lean": "047c69701aad55ffe34e8e5c2ddc49c6ccf3feea98a15cb202cc436880d5c176",
+    "lean/ScalarModelBounds.lean": "4786d20f08cd7cdf52a01d21f46683bf8a290262546e75c0b9157e9edddf9d1d",
+    "lean/SharpThreshold.lean": "604c337ce224f474c45ea21dec9b3c981f31d5160b2efc3a1779ad5d32eaea70",
+    "lean/TimeScaling.lean": "949669d8c1ae5398be4e7368d9fc5b38b299e945eb986a2cf85c8ce59aa70da7",
+    "lean/UniformTaylor.lean": "35fcd9543f31f0283bed2749f6e7de31a557bd13f6586b0631d0ed7d6e6d73a6",
+    "lean/ValleyModel.lean": "d1b4b05fb695938bf4f70b19753adf50867d810ec3f7131916c868f853ef609b",
+    "lean/ValleyPath.lean": "1fe75bfa5205cd16827a0fcb878b65f9556f2ec6486ec8bd2b65583bf11f5a12",
+    "lean/VolterraAcceleration.lean": "b2195bb8babaa96bd1a614852c0957c89d2a190e57d5f826884b3aed3dd3349f"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 1358,
+      "sha256": "5d1be0820eeeef650cca36a00ef6a574bd81b2e847ee7c8f8b880c0739eefa97"
+    },
+    "CITATION.bib": {
+      "bytes": 372,
+      "sha256": "8237feceaa922bf382b04350e96c6e702150993d39c76fa11a545fc0f853d208"
+    },
+    "CITATION.cff": {
+      "bytes": 1536,
+      "sha256": "398e2510bfbab772b52d64d1658046c514aa8f1f760dcd74d60954f006af052b"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 2400,
+      "sha256": "dc022883c99ed748991388443d03e916500276586413711e8d9abdb8d234a782"
+    },
+    "VERIFICATION.md": {
+      "bytes": 2626,
+      "sha256": "07d1fb46790b9beed643d5393bc403d24e6796378ab71290da3b72216649ae22"
+    },
+    "lean/AllPositiveThreshold.lean": {
+      "bytes": 2848,
+      "sha256": "5c2a648cc50d280e23e8e3958f4655fc4c2adb7906f709e2593f517b4561d2dc"
+    },
+    "lean/Audit.lean": {
+      "bytes": 4355,
+      "sha256": "713cb3f9c4b4abd09ed046e56c00df991137ce5138002ab0f8b683aefae5f845"
+    },
+    "lean/BlockScaling.lean": {
+      "bytes": 4192,
+      "sha256": "f98eef33dcc6c0183d22b582acfefa3128578eeae0fd476988e8440d4f6ecd23"
+    },
+    "lean/ConvexProjection.lean": {
+      "bytes": 6980,
+      "sha256": "fe8f05f7f12caa3baecb2dc8b660c1d3098d12c503a76230d073b1a0c73a3666"
+    },
+    "lean/EulerObstruction.lean": {
+      "bytes": 7065,
+      "sha256": "462b0d80fdaca3fd50bc8dd7b2c87f222770f4bed4d44d871c386899c1089dca"
+    },
+    "lean/ExponentSelection.lean": {
+      "bytes": 1272,
+      "sha256": "da1e797dd11184811e34661c59b519fecc5b1ee094327f9d61d76626b7eaf783"
+    },
+    "lean/FiniteActual.lean": {
+      "bytes": 2257,
+      "sha256": "289ffd2c178d60757d582334d10ea207e63128a22f3c3960dc2fba57d842b9dc"
+    },
+    "lean/FiniteEuler.lean": {
+      "bytes": 4903,
+      "sha256": "c394725aa30bc7ed183e5f8b71d713cf7c10da617cf66e4216b99445c9da647f"
+    },
+    "lean/FiniteExcursion.lean": {
+      "bytes": 10676,
+      "sha256": "bd0a95823ef13fb4879577e92a1a53912b5a317b11f74a4c7c5dfcdd59184d0b"
+    },
+    "lean/GeneralVolterraCalculus.lean": {
+      "bytes": 9180,
+      "sha256": "077fd36ee49e504323dc74636dc8e3364a39f40cdb0d9afb3a4668e7e1ae7ae3"
+    },
+    "lean/GeneralVolterraKernel.lean": {
+      "bytes": 4718,
+      "sha256": "1c8bb41dc552431aae7dab7367d899578f760d6919fe2d7ca45a90aafed91e2f"
+    },
+    "lean/GeneralVolterraOperator.lean": {
+      "bytes": 12349,
+      "sha256": "9aa6c886ef5e12404d9264147f292ef092bf0a99fb15fcfceae1805f995b3cdf"
+    },
+    "lean/HighDamping.lean": {
+      "bytes": 8013,
+      "sha256": "fa069ea7b6db710d6daf489a3cb5b0a9766f08a5671ddca5a54288327be5cf44"
+    },
+    "lean/HilbertEscape.lean": {
+      "bytes": 5188,
+      "sha256": "a0a59e2b33021bb74672d4c44dc47b0fb3d5e7076ccff6609041feb4f0dd0da8"
+    },
+    "lean/HilbertModel.lean": {
+      "bytes": 3239,
+      "sha256": "316b12c925c6f8aef8604c6f94501c2f4c8cc2bd23439c29b33468d4e28593fa"
+    },
+    "lean/HilbertSum.lean": {
+      "bytes": 6835,
+      "sha256": "acefa19320bf2af03fd704c70434a025b57d95e7fb925cbf5ed0fa6c936ccc02"
+    },
+    "lean/LowDampingHilbert.lean": {
+      "bytes": 6145,
+      "sha256": "b1c7234265f25ab66b8aae6e5281e1d4385c66b205df95c8a6ab792fee5bdcc8"
+    },
+    "lean/LowDampingMain.lean": {
+      "bytes": 4794,
+      "sha256": "5688cad131220a4b4137ecf08c2d9038c152f8b0e2728998fa1eea19ea33b90a"
+    },
+    "lean/LowDampingPotential.lean": {
+      "bytes": 7343,
+      "sha256": "d3185aa2617600e01790bdb2da991356aa481b0f6f62cb610c057bb85eea7deb"
+    },
+    "lean/LowDampingTrajectory.lean": {
+      "bytes": 8611,
+      "sha256": "284de1171e6ca0cd3ff60495f39837b86543244b53c38100c46cd2a5fd135563"
+    },
+    "lean/MoreauTrajectory.lean": {
+      "bytes": 3867,
+      "sha256": "d8c1b5b785147f2e5d2b06a266a303f2b22baa4450446f65f3b219ddd1cc6123"
+    },
+    "lean/NAGAxisLift.lean": {
+      "bytes": 3729,
+      "sha256": "e6a5ce897ff37f047ad2de83b9dda98ef1319123257c1332f59a0ba134821efd"
+    },
+    "lean/NAGBasic.lean": {
+      "bytes": 1513,
+      "sha256": "f1663be67279e203003dbc31c2a50f09e2cdd0d816458b65856fc4851d66d4e7"
+    },
+    "lean/NAGConjugacy.lean": {
+      "bytes": 823,
+      "sha256": "b39747fa8820dc31d1094af64f84f380eac750281bade1a15e75cfd41cdd9f6e"
+    },
+    "lean/NAGDescent.lean": {
+      "bytes": 2159,
+      "sha256": "4bcf0fbb3805a53510dd5e5c22c64c4a32a97df4596c29c448a74794e225bef3"
+    },
+    "lean/NAGHighDamping.lean": {
+      "bytes": 6671,
+      "sha256": "32e5e210007b03af06f4e620d4be80e355c7e45fb826c308638d0e4bf7e54d21"
+    },
+    "lean/NAGHilbertEscape.lean": {
+      "bytes": 3027,
+      "sha256": "e4a3ea1bf89eafdc062755b70f4c435d420f780747242b2a9cbeee32472ecfad"
+    },
+    "lean/NAGHilbertModel.lean": {
+      "bytes": 6617,
+      "sha256": "fa35c2931b1a5f3c0d8a7261fa997dd2676d10aa91e63ae31764eca0b67d0635"
+    },
+    "lean/NAGLowDamping.lean": {
+      "bytes": 9185,
+      "sha256": "0f238702f5da12ccbdae2e58161ab52ac90f0cbec505c823e600956623595e73"
+    },
+    "lean/NAGLowHilbert.lean": {
+      "bytes": 1434,
+      "sha256": "6c513b0aa7cfeceb529a9f3b932b7072bfa5adf9b310617822af6f971f222919"
+    },
+    "lean/NAGODELimit.lean": {
+      "bytes": 6948,
+      "sha256": "fee991082d4ae8d248bf56742551179181eab4dc17fa00011d0d4906cd9ac341"
+    },
+    "lean/NAGPlanarExcursion.lean": {
+      "bytes": 6119,
+      "sha256": "6f869c68bb211bacff5d1bb523d22b6400cc8670ee9724c53d4f2da228c5c6a3"
+    },
+    "lean/NAGSharpThreshold.lean": {
+      "bytes": 4637,
+      "sha256": "0ce67df7dbbc105cbbbd48e3b8b571a2b3efaed7178c6b99142e8ce0bc9b463d"
+    },
+    "lean/NAGStability.lean": {
+      "bytes": 6049,
+      "sha256": "626c4a323eccf0abcec4ff8f64c05cd595cb08010a5bdd3bc2ca99cbfdfdc00e"
+    },
+    "lean/NAGVelocity.lean": {
+      "bytes": 3311,
+      "sha256": "14e8543d1d6e16a5037095d02fb3e9a54452dbf1756984f6f7e0be01f5df3de7"
+    },
+    "lean/PlanarAllDamping.lean": {
+      "bytes": 4469,
+      "sha256": "f4c997272243ee0f8750961c333036c8123d8ada75e92eab9c4fa8b3993d44f1"
+    },
+    "lean/PlanarEnergy.lean": {
+      "bytes": 14975,
+      "sha256": "cb6e8506dd7daf669bf67841eb7b71eea640db21bccfb3592bdddde9c9c9a78b"
+    },
+    "lean/PlanarInvariants.lean": {
+      "bytes": 7041,
+      "sha256": "1d12f1fb092c9f8fb4d29d3938109b6b431da2df69a8376ae8849753fc26502c"
+    },
+    "lean/PlanarMain.lean": {
+      "bytes": 3341,
+      "sha256": "db4016cc731db4fb65ef4c21eb435920eb1441715d5e1bec93566e28b31302e2"
+    },
+    "lean/PlanarTrajectory.lean": {
+      "bytes": 3411,
+      "sha256": "610e9ed70891f8386e89d37af9f32461ea80eef539089288276c0b1c63442272"
+    },
+    "lean/PlanarUnbounded.lean": {
+      "bytes": 3886,
+      "sha256": "17120b27986e75ebac96779746079500137eed093f6418c632b637e71b61b2c1"
+    },
+    "lean/PowerAlgebra.lean": {
+      "bytes": 2900,
+      "sha256": "1785ab4e09e0025a40eddcb98c80b00d3cb703d2eb3d01f107c05a5675585070"
+    },
+    "lean/PowerEstimates.lean": {
+      "bytes": 2528,
+      "sha256": "5c1a688358953f897a3d9baa5eb56e04affceee5f6b1c3da32dec913c63c6618"
+    },
+    "lean/PowerExterior.lean": {
+      "bytes": 2084,
+      "sha256": "9dd79dd1b84bd9f62986493d16a6a07cf5f03fa4500b1783792ae4e4d90de1fe"
+    },
+    "lean/PowerMinimizers.lean": {
+      "bytes": 1452,
+      "sha256": "4d374e12c63d9c56d07425ab70f25d613c7b02058c5f10f2099379ebed6bfb07"
+    },
+    "lean/PowerModel.lean": {
+      "bytes": 6194,
+      "sha256": "840e01a179a66b84a99b03372afdcd3b020f67770e9ba211e59dc9263f68a089"
+    },
+    "lean/PowerNormal.lean": {
+      "bytes": 5257,
+      "sha256": "21257f4949d710b8eccc6e98a86b4cfdbc09edd180d509ab5c20a8a9b1ddd29c"
+    },
+    "lean/PowerValley.lean": {
+      "bytes": 2368,
+      "sha256": "b8922b2e422f6d78443033fd998d2b256dd00b35fdf5550af9067b71049b5b61"
+    },
+    "lean/RadialHuber.lean": {
+      "bytes": 9396,
+      "sha256": "047c69701aad55ffe34e8e5c2ddc49c6ccf3feea98a15cb202cc436880d5c176"
+    },
+    "lean/ScalarModelBounds.lean": {
+      "bytes": 2462,
+      "sha256": "4786d20f08cd7cdf52a01d21f46683bf8a290262546e75c0b9157e9edddf9d1d"
+    },
+    "lean/SharpThreshold.lean": {
+      "bytes": 4708,
+      "sha256": "604c337ce224f474c45ea21dec9b3c981f31d5160b2efc3a1779ad5d32eaea70"
+    },
+    "lean/TimeScaling.lean": {
+      "bytes": 2524,
+      "sha256": "949669d8c1ae5398be4e7368d9fc5b38b299e945eb986a2cf85c8ce59aa70da7"
+    },
+    "lean/UniformTaylor.lean": {
+      "bytes": 2699,
+      "sha256": "35fcd9543f31f0283bed2749f6e7de31a557bd13f6586b0631d0ed7d6e6d73a6"
+    },
+    "lean/ValleyModel.lean": {
+      "bytes": 6802,
+      "sha256": "d1b4b05fb695938bf4f70b19753adf50867d810ec3f7131916c868f853ef609b"
+    },
+    "lean/ValleyPath.lean": {
+      "bytes": 8663,
+      "sha256": "1fe75bfa5205cd16827a0fcb878b65f9556f2ec6486ec8bd2b65583bf11f5a12"
+    },
+    "lean/VolterraAcceleration.lean": {
+      "bytes": 8220,
+      "sha256": "b2195bb8babaa96bd1a614852c0957c89d2a190e57d5f826884b3aed3dd3349f"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3553,
+      "sha256": "ab4c92a072907d34e24178daa75c63828f8e9c3fdfbe77e5caa41d54723a9a3c"
+    },
+    "lean/lakefile.lean": {
+      "bytes": 1560,
+      "sha256": "7f4e86ae9348f1583eb7a0e6cab8d3c40adc9488e4650f0699abc5b042c5e4e6"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    "lean/verify_release.py": {
+      "bytes": 17043,
+      "sha256": "7dca78ca4d0c96c1fe13325059e8bde0aaa0c0f7fd5e93b11a75d892f499f2c9"
+    },
+    "manuscript.pdf": {
+      "bytes": 382056,
+      "sha256": "789bd2ce85d274506c92752cbc102bc90edc2a0c686dffcb241550a016bde6aa"
+    },
+    "manuscript.tex": {
+      "bytes": 29421,
+      "sha256": "4a1bf15b223448e3b6ffd494f23fbff04ca78c0fa5cec7e19fde91d2e4c81afb"
+    },
+    "verification/README.md": {
+      "bytes": 888,
+      "sha256": "6539affdd8d05823f0692e56b2819579c192c783c969427e5e71bdac6ad27787"
+    },
+    "verification/logs/AllPositiveThreshold.log": {
+      "bytes": 261,
+      "sha256": "a4dbc4c976cfdf67bc216a82a643f217f5c365e96764ab8300e476dbd77b9b4e"
+    },
+    "verification/logs/Audit.log": {
+      "bytes": 13407,
+      "sha256": "6502240f9548871fe71a9b8d8fdb63ff26cc0918e0ac59bb8513828cbd1acde3"
+    },
+    "verification/logs/BlockScaling.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/ConvexProjection.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/EulerObstruction.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/ExponentSelection.log": {
+      "bytes": 105,
+      "sha256": "2efaec40ea1acab537121689e6400f7ac5df32e52bd8b7fecefe103543b9c200"
+    },
+    "verification/logs/FiniteActual.log": {
+      "bytes": 223,
+      "sha256": "d411bafd1564bf970862614b621976b9db4712b6eb0dc1aecdbfd6d6ea168351"
+    },
+    "verification/logs/FiniteEuler.log": {
+      "bytes": 111,
+      "sha256": "00f90403fa7e20a399669e4cc09aaa09c6d02951ee5643c1a49d846a264b97ab"
+    },
+    "verification/logs/FiniteExcursion.log": {
+      "bytes": 124,
+      "sha256": "ba32efd561bb16f6d80eccf23712f20e8e1e28b8a9224b9e3f75ac71bc3ac336"
+    },
+    "verification/logs/GeneralVolterraCalculus.log": {
+      "bytes": 109,
+      "sha256": "4bc2ed1e131e1ddeacd9aa52ced12753478e0aaa4851c9652f959ea603f77e9f"
+    },
+    "verification/logs/GeneralVolterraKernel.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/GeneralVolterraOperator.log": {
+      "bytes": 109,
+      "sha256": "14c8f7dc40eb240ac255c4949ea69f9485b199a20ad48323dc7228c0cf5ac767"
+    },
+    "verification/logs/HighDamping.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/HilbertEscape.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/HilbertModel.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/HilbertSum.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/LowDampingHilbert.log": {
+      "bytes": 125,
+      "sha256": "c0cb765b60b992c11ae482b93782ad04e6b1b838d13c1ebb29fdfa4507aa9ab1"
+    },
+    "verification/logs/LowDampingMain.log": {
+      "bytes": 106,
+      "sha256": "d111380bfc7c1648ac4da579020f4fe175dfd0c798c7215031fe9707ee4e02a0"
+    },
+    "verification/logs/LowDampingPotential.log": {
+      "bytes": 193,
+      "sha256": "0acb78296b77b3f88e4ab523c4d2bdb1aec3a6f7b7e0fa6b704f9f304da59710"
+    },
+    "verification/logs/LowDampingTrajectory.log": {
+      "bytes": 190,
+      "sha256": "4e9861f0be49ace2c308420e54aed9667410b899cadd6cfbe65e74e5efb9fd4b"
+    },
+    "verification/logs/MoreauTrajectory.log": {
+      "bytes": 211,
+      "sha256": "11ba796b162ab00aa92ac09c7988a7d7ecfdd2256f0688a27a439ab107401996"
+    },
+    "verification/logs/NAGAxisLift.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/NAGBasic.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/NAGConjugacy.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/NAGDescent.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/NAGHighDamping.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/NAGHilbertEscape.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/NAGHilbertModel.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/NAGLowDamping.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/NAGLowHilbert.log": {
+      "bytes": 114,
+      "sha256": "01d052e988518414c108dd66635b48147d1ff74d25f3889878a0048b46135665"
+    },
+    "verification/logs/NAGODELimit.log": {
+      "bytes": 107,
+      "sha256": "d3cb4119077a82468dd58998fc916e8158d82efac5d6c486e0cd02151dd2dd0b"
+    },
+    "verification/logs/NAGPlanarExcursion.log": {
+      "bytes": 336,
+      "sha256": "4d297cedec56ad7c907be3f804300f2b24c5d1294dc210f238d7b42b4c1f32a7"
+    },
+    "verification/logs/NAGSharpThreshold.log": {
+      "bytes": 363,
+      "sha256": "42b2179305a10c94d7b7117cb42d0746ddd25526d6d34b04f8bda12334ba9f55"
+    },
+    "verification/logs/NAGStability.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/NAGVelocity.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/PlanarAllDamping.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/PlanarEnergy.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/PlanarInvariants.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/PlanarMain.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/PlanarTrajectory.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/PlanarUnbounded.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/PowerAlgebra.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/PowerEstimates.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/PowerExterior.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/PowerMinimizers.log": {
+      "bytes": 217,
+      "sha256": "310b13ede7ba2899e04ab350b44b8b1848f860c12a888284f8320e5f1f823d1b"
+    },
+    "verification/logs/PowerModel.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/PowerNormal.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/PowerValley.log": {
+      "bytes": 519,
+      "sha256": "caa75f08b11f0ce8d997f61502df76614fad4fa916e567ff88ac3bea66af1408"
+    },
+    "verification/logs/RadialHuber.log": {
+      "bytes": 288,
+      "sha256": "2d7926db6f2bcf3afedb281fcf9bfcaf1538b1126d5776a13b359f8bd3d1ae76"
+    },
+    "verification/logs/ScalarModelBounds.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/SharpThreshold.log": {
+      "bytes": 237,
+      "sha256": "996a584579986035cc035190c78919099fd8d114772320f89462451021317bc8"
+    },
+    "verification/logs/TimeScaling.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/UniformTaylor.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/ValleyModel.log": {
+      "bytes": 477,
+      "sha256": "98a0d986856052823d5a08f987b52c7b85d68aafb021f830cefea92225109c58"
+    },
+    "verification/logs/ValleyPath.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/VolterraAcceleration.log": {
+      "bytes": 129,
+      "sha256": "9d37768ff8e1d979d8654a487bb860f5440bd10ba5de272a8142fbd1858e7253"
+    },
+    "verification/receipt.json": {
+      "bytes": 90305,
+      "sha256": "9ecee4959ec589480a1465c0b29b6bb3be2666c3c5c89302f8ebe135dcf933a2"
+    }
+  }
+}

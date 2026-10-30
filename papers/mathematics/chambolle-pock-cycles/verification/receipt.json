@@ -1,0 +1,1005 @@
+{
+  "status": "passed",
+  "started_utc": "2026-10-30T02:59:00.810935+00:00",
+  "modules": [
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--version"
+      ],
+      "exit_code": 0,
+      "seconds": 0.061745607999910135,
+      "log": "lean-version.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "seconds": 0.002720552000027965,
+      "log": "mathlib-revision.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "seconds": 0.3221262119996027,
+      "log": "mathlib-working-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/plausible",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0026737519992821035,
+      "log": "dependency-plausible-revision.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/plausible",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "seconds": 0.00466995799979486,
+      "log": "dependency-plausible-working-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/LeanSearchClient",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0023089410005923128,
+      "log": "dependency-LeanSearchClient-revision.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/LeanSearchClient",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0035381589996177354,
+      "log": "dependency-LeanSearchClient-working-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/importGraph",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "seconds": 0.002342957999644568,
+      "log": "dependency-importGraph-revision.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/importGraph",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0045742749998680665,
+      "log": "dependency-importGraph-working-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/proofwidgets",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "seconds": 0.002151839000362088,
+      "log": "dependency-proofwidgets-revision.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/proofwidgets",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0060811759994976455,
+      "log": "dependency-proofwidgets-working-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/aesop",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0022344489998431527,
+      "log": "dependency-aesop-revision.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/aesop",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "seconds": 0.007370280999566603,
+      "log": "dependency-aesop-working-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/Qq",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0021391280006355373,
+      "log": "dependency-Qq-revision.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/Qq",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0051771450007436215,
+      "log": "dependency-Qq-working-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/batteries",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "seconds": 0.002193084000282397,
+      "log": "dependency-batteries-revision.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/batteries",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "seconds": 0.009214071999849693,
+      "log": "dependency-batteries-working-tree.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/Cli",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "seconds": 0.002312316999450559,
+      "log": "dependency-Cli-revision.log"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "$MATHLIB/.lake/packages/Cli",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit_code": 0,
+      "seconds": 0.004204304000268166,
+      "log": "dependency-Cli-working-tree.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/Proximal.olean",
+        "$REPLAY/cp/Proximal.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 10.19392581000011,
+      "log": "Proximal.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/ThreeCycleThreshold.olean",
+        "$REPLAY/cp/ThreeCycleThreshold.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 6.835863977000372,
+      "log": "ThreeCycleThreshold.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/ThreeCycleFunctions.olean",
+        "$REPLAY/cp/ThreeCycleFunctions.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 9.246691063000071,
+      "log": "ThreeCycleFunctions.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/GeneralSteps.olean",
+        "$REPLAY/cp/GeneralSteps.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 17.25921177700002,
+      "log": "GeneralSteps.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/TriangleCycle.olean",
+        "$REPLAY/cp/TriangleCycle.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 22.117053058000238,
+      "log": "TriangleCycle.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/ParameterBoundary.olean",
+        "$REPLAY/cp/ParameterBoundary.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 9.90509670099982,
+      "log": "ParameterBoundary.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/PhaseDiagram.olean",
+        "$REPLAY/cp/PhaseDiagram.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 4.116284912000083,
+      "log": "PhaseDiagram.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/QuadraticStability.olean",
+        "$REPLAY/cp/QuadraticStability.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 16.485922616999233,
+      "log": "QuadraticStability.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/FiniteCycle.olean",
+        "$REPLAY/cp/FiniteCycle.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 6.536416647999431,
+      "log": "FiniteCycle.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/SevenCycle.olean",
+        "$REPLAY/cp/SevenCycle.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 149.38857048499995,
+      "log": "SevenCycle.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/AttractingCycle.olean",
+        "$REPLAY/cp/AttractingCycle.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 6.154756507000457,
+      "log": "AttractingCycle.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/SevenAttracting.olean",
+        "$REPLAY/cp/SevenAttracting.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 2.828934303999631,
+      "log": "SevenAttracting.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/TrigSupport.olean",
+        "$REPLAY/cp/TrigSupport.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 16.068516223999723,
+      "log": "TrigSupport.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/TrigGrid.olean",
+        "$REPLAY/cp/TrigGrid.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 14.093491566000012,
+      "log": "TrigGrid.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/FourierModes.olean",
+        "$REPLAY/cp/FourierModes.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 7.179353870999876,
+      "log": "FourierModes.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/FourierAlgebra.olean",
+        "$REPLAY/cp/FourierAlgebra.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 6.049598430000515,
+      "log": "FourierAlgebra.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/FourierCertificates.olean",
+        "$REPLAY/cp/FourierCertificates.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 4.569580959999257,
+      "log": "FourierCertificates.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/FourierSums.olean",
+        "$REPLAY/cp/FourierSums.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 5.675590175000252,
+      "log": "FourierSums.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/FourierRobustness.olean",
+        "$REPLAY/cp/FourierRobustness.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 6.167388005000248,
+      "log": "FourierRobustness.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/AsymptoticParameters.olean",
+        "$REPLAY/cp/AsymptoticParameters.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 3.9927809520004303,
+      "log": "AsymptoticParameters.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/cp-out/AsymptoticCycle.olean",
+        "$REPLAY/cp/AsymptoticCycle.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 3.768445079999765,
+      "log": "AsymptoticCycle.log"
+    },
+    {
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j1",
+        "--trust=0",
+        "-DwarningAsError=true",
+        "$REPLAY/cp-out/AxiomAudit.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 26.906334311000137,
+      "log": "AxiomAudit.log"
+    }
+  ],
+  "theorems": [
+    "CPSharpness.supports_iff_isProx",
+    "CPSharpness.threeCycle_sos_identity",
+    "CPSharpness.proximal_three_cycle_polynomial_nonneg",
+    "CPSharpness.step_product_three_cycle_polynomial_nonneg",
+    "CPSharpness.zero_saddle",
+    "CPSharpness.primal_isProx",
+    "CPSharpness.dual_isProx",
+    "CPSharpness.sharp_cycle_nonconvergence",
+    "CPSharpness.polynomial_iff_boundary",
+    "CPSharpness.boundary_below_quadratic_exact_interval",
+    "CPSharpness.sharp_three_cycle_iff",
+    "CPSharpness.sharp_three_cycle_counterexample",
+    "CPQuadratic.eigenmode_characteristic",
+    "CPQuadratic.cp_positive_quadratic_eigenmode_stable",
+    "CPQuadratic.cp_nonnegative_quadratic_eigenmode_stable_or_one",
+    "FiniteCP.project_isProx",
+    "FiniteCP.certified_step",
+    "FiniteCP.certified_nonconvergence",
+    "FiniteCP.origin_saddle",
+    "SevenCP.strict_normal_certificate",
+    "SevenCP.compact_saddle",
+    "SevenCP.actual_seven_cycle",
+    "SevenCP.below_three_cycle_and_quadratic",
+    "FiniteCP.project_locally_constant",
+    "FiniteCP.cycle_one_step_capture",
+    "FiniteCP.nearby_iterates_not_convergent",
+    "SevenCP.seven_cycle_one_step_capture",
+    "SevenCP.seven_cycle_open_basin",
+    "SevenCP.rational_example_open_basin",
+    "TrigSupport.cubicSquare_le_one",
+    "TrigSupport.cos_cube_add_sin_cube_le_one",
+    "TrigGrid.fourier_support",
+    "AsymptoticCP.rawPrimal_periodic",
+    "AsymptoticCP.dualPoints_norm_sq",
+    "AsymptoticCP.rawDual_support_identity",
+    "AsymptoticCP.primalPoints_zero_ne_one",
+    "AsymptoticCP.dualPoints_support_bound",
+    "AsymptoticCP.primalPoints_sum_zero",
+    "AsymptoticCP.dualPoints_sum_zero",
+    "AsymptoticCP.positive_theta_normal_certificate",
+    "AsymptoticCP.exists_fourier_period",
+    "AsymptoticCP.fourier_family_normal_certificate",
+    "AsymptoticCP.fourier_family_periodic",
+    "AsymptoticCP.fourier_family_nonconvergence",
+    "AsymptoticCP.counterexamples_for_every_product_above_two"
+  ],
+  "mathlib_expected_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+  "allowed_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "verifier_sha256": "110723b893bd26f419f2eb2461e5a60011d419f6574fd25083582aa836219e98",
+  "configuration_sha256": {
+    "lean-toolchain": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea",
+    "lakefile.lean": "c7b6b0fba047de69df554fdcc028df402cb0b11e6a167ce42d90a04fa78f89a2",
+    "lake-manifest.json": "ea87093477c43fcf7e8eae6f3d262f4b5fdfe570d4db97baca4dbe6fc285cb08"
+  },
+  "lean_version": "Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)",
+  "lean_executable_sha256": "92c3d35b5bfaa5e0fea413a775d504cf46cd95e1345df61c2274f76779e7e023",
+  "toolchain": "leanprover/lean4:v4.19.0",
+  "mathlib_path": "$MATHLIB",
+  "dependency_metadata_sha256": {
+    "lean-toolchain": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea",
+    "lake-manifest.json": "5c6421b650bc87a2427a892a39e5522dc44543ca4ac1bd6e9f08d536c044a752"
+  },
+  "mathlib_actual_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+  "dependency_manifest": {
+    "version": "1.1.0",
+    "packagesDir": ".lake/packages",
+    "packages": [
+      {
+        "url": "https://github.com/leanprover-community/plausible",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover-community",
+        "rev": "77e08eddc486491d7b9e470926b3dbe50319451a",
+        "name": "plausible",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "main",
+        "inherited": false,
+        "configFile": "lakefile.toml"
+      },
+      {
+        "url": "https://github.com/leanprover-community/LeanSearchClient",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover-community",
+        "rev": "25078369972d295301f5a1e53c3e5850cf6d9d4c",
+        "name": "LeanSearchClient",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "main",
+        "inherited": false,
+        "configFile": "lakefile.toml"
+      },
+      {
+        "url": "https://github.com/leanprover-community/import-graph",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover-community",
+        "rev": "e6a9f0f5ee3ccf7443a0070f92b62f8db12ae82b",
+        "name": "importGraph",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "main",
+        "inherited": false,
+        "configFile": "lakefile.toml"
+      },
+      {
+        "url": "https://github.com/leanprover-community/ProofWidgets4",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover-community",
+        "rev": "c4919189477c3221e6a204008998b0d724f49904",
+        "name": "proofwidgets",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "v0.0.57",
+        "inherited": false,
+        "configFile": "lakefile.lean"
+      },
+      {
+        "url": "https://github.com/leanprover-community/aesop",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover-community",
+        "rev": "5d50b08dedd7d69b3d9b3176e0d58a23af228884",
+        "name": "aesop",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "master",
+        "inherited": false,
+        "configFile": "lakefile.toml"
+      },
+      {
+        "url": "https://github.com/leanprover-community/quote4",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover-community",
+        "rev": "fa4f7f15d97591a9cf3aa7724ba371c7fc6dda02",
+        "name": "Qq",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "master",
+        "inherited": false,
+        "configFile": "lakefile.toml"
+      },
+      {
+        "url": "https://github.com/leanprover-community/batteries",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover-community",
+        "rev": "f5d04a9c4973d401c8c92500711518f7c656f034",
+        "name": "batteries",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "main",
+        "inherited": false,
+        "configFile": "lakefile.toml"
+      },
+      {
+        "url": "https://github.com/leanprover/lean4-cli",
+        "type": "git",
+        "subDir": null,
+        "scope": "leanprover",
+        "rev": "02dbd02bc00ec4916e99b04b2245b30200e200d0",
+        "name": "Cli",
+        "manifestFile": "lake-manifest.json",
+        "inputRev": "main",
+        "inherited": true,
+        "configFile": "lakefile.toml"
+      }
+    ],
+    "name": "mathlib",
+    "lakeDir": ".lake"
+  },
+  "dependency_revisions": {
+    "plausible": "77e08eddc486491d7b9e470926b3dbe50319451a",
+    "LeanSearchClient": "25078369972d295301f5a1e53c3e5850cf6d9d4c",
+    "importGraph": "e6a9f0f5ee3ccf7443a0070f92b62f8db12ae82b",
+    "proofwidgets": "c4919189477c3221e6a204008998b0d724f49904",
+    "aesop": "5d50b08dedd7d69b3d9b3176e0d58a23af228884",
+    "Qq": "fa4f7f15d97591a9cf3aa7724ba371c7fc6dda02",
+    "batteries": "f5d04a9c4973d401c8c92500711518f7c656f034",
+    "Cli": "02dbd02bc00ec4916e99b04b2245b30200e200d0"
+  },
+  "source_sha256": {
+    "Proximal": "2efdcf3904452df2c6284f486c8ef33e9880a580c1f32a380f8cc1884f17ce70",
+    "ThreeCycleThreshold": "9fbf23c83c26f000c96138758b8be0a60e14e82342b435b826afad8e7941b78d",
+    "ThreeCycleFunctions": "5abba2a46a1564388d0c615280b7e92a92dd19f7ad5c4ec321017bc65ce7bcc4",
+    "GeneralSteps": "f73f40d2c1a48a53d1ad93506435e38e135548d22b04db2292b944c26f943a12",
+    "TriangleCycle": "a99e78075e202707ae09bea72524f29d9fc3606d08db81cb7c7dc43980b65e34",
+    "ParameterBoundary": "5aadc1f2d9e8e2a42bf73dfc0da9e54e4b958ec46fd2ad5231ad45708f4c145c",
+    "PhaseDiagram": "4a0eb3eeca38c4231fd1aa3179d8e167983faf16c7f0881220a9a83ed00c9b54",
+    "QuadraticStability": "91fc601a8888be23edc55f032e9e9d3e5f774d1411ecc137e502b670f4858c98",
+    "FiniteCycle": "9e2124402908f1a495baec729b05640653c81def1a534ae68763b040a9a0a9a8",
+    "SevenCycle": "b853679898ebfa7ab343bdd15bece3d89c7a1f98c76f9f7e65c83cf44a45b158",
+    "AttractingCycle": "1520c24673d4705127246c5c1637098a1ed50e8c4d988471fffc5792e23f47b4",
+    "SevenAttracting": "71562434fc6a59caec190e11bb9540b12f94dfd71946d52cd2cb677a2a04a134",
+    "TrigSupport": "c7512f3c1ef030f1a3ab845ccd01fa5364b28b54e649c492e464f51f5b823b43",
+    "TrigGrid": "b500d4cdb0d4c16daf0ab416fdd0d913a9d90dc764b12576f3a9efd92e1a2fb6",
+    "FourierModes": "61453ee37e6073d25bcef83d2e578dc62b1bc2479f721ed7741aec946a672e92",
+    "FourierAlgebra": "6815d2e7e27e38eb8740789e52d042133f8e174d088d6ecab66bff15d0a02a37",
+    "FourierCertificates": "58b765f991a321d3196f12a17d1e9b984a7c44a88c2ff1cf8220ab87164dbcec",
+    "FourierSums": "2dcde54df55586e1582b21e412e7bff97bdbcb7fcff18f93d0728cda505617f4",
+    "FourierRobustness": "93f500f521b538f0bcd52ffbe57ff8f0779d188d6285273b019cc14ad300bd0d",
+    "AsymptoticParameters": "faf19d3ccd9db896f6a2169d986ca2680aa94e06adb6724d485e18c6fb9a37db",
+    "AsymptoticCycle": "06446db5ef89be085af27435fa1a95e751ad717f003549ef682df7d7f31ed419"
+  },
+  "lean_path": "$REPLAY/cp-out:$MATHLIB/.lake/build/lib/lean:$MATHLIB/.lake/packages/plausible/.lake/build/lib/lean:$MATHLIB/.lake/packages/LeanSearchClient/.lake/build/lib/lean:$MATHLIB/.lake/packages/importGraph/.lake/build/lib/lean:$MATHLIB/.lake/packages/proofwidgets/.lake/build/lib/lean:$MATHLIB/.lake/packages/aesop/.lake/build/lib/lean:$MATHLIB/.lake/packages/Qq/.lake/build/lib/lean:$MATHLIB/.lake/packages/batteries/.lake/build/lib/lean:$MATHLIB/.lake/packages/Cli/.lake/build/lib/lean",
+  "trust_level": 0,
+  "warnings_as_errors": true,
+  "axiom_reports": {
+    "CPSharpness.supports_iff_isProx": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CPSharpness.threeCycle_sos_identity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CPSharpness.proximal_three_cycle_polynomial_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CPSharpness.step_product_three_cycle_polynomial_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CPSharpness.zero_saddle": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CPSharpness.primal_isProx": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CPSharpness.dual_isProx": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CPSharpness.sharp_cycle_nonconvergence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CPSharpness.polynomial_iff_boundary": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CPSharpness.boundary_below_quadratic_exact_interval": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CPSharpness.sharp_three_cycle_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CPSharpness.sharp_three_cycle_counterexample": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CPQuadratic.eigenmode_characteristic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CPQuadratic.cp_positive_quadratic_eigenmode_stable": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CPQuadratic.cp_nonnegative_quadratic_eigenmode_stable_or_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "FiniteCP.project_isProx": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "FiniteCP.certified_step": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "FiniteCP.certified_nonconvergence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "FiniteCP.origin_saddle": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SevenCP.strict_normal_certificate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SevenCP.compact_saddle": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SevenCP.actual_seven_cycle": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SevenCP.below_three_cycle_and_quadratic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "FiniteCP.project_locally_constant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "FiniteCP.cycle_one_step_capture": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "FiniteCP.nearby_iterates_not_convergent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SevenCP.seven_cycle_one_step_capture": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SevenCP.seven_cycle_open_basin": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SevenCP.rational_example_open_basin": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TrigSupport.cubicSquare_le_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TrigSupport.cos_cube_add_sin_cube_le_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TrigGrid.fourier_support": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AsymptoticCP.rawPrimal_periodic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AsymptoticCP.dualPoints_norm_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AsymptoticCP.rawDual_support_identity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AsymptoticCP.primalPoints_zero_ne_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AsymptoticCP.dualPoints_support_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AsymptoticCP.primalPoints_sum_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AsymptoticCP.dualPoints_sum_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AsymptoticCP.positive_theta_normal_certificate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AsymptoticCP.exists_fourier_period": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AsymptoticCP.fourier_family_normal_certificate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AsymptoticCP.fourier_family_periodic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AsymptoticCP.fourier_family_nonconvergence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "AsymptoticCP.counterexamples_for_every_product_above_two": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "object_sha256": {
+    "Proximal": "6c50a95397a86b8eafc62a231319289bf4b45ed27798d9f0e5d5a359ca245575",
+    "ThreeCycleThreshold": "d5224d6c21bc77289c3df5ecedd9ddf4b877483e69c71a4613c0afd26c2f32f5",
+    "ThreeCycleFunctions": "e59804aecf3f90f8629d4a398575f9211a97f0b3e59bcf56d39f28317dd4c7a1",
+    "GeneralSteps": "4c53e6f2812672a9e292250529f94d4edc136736143d4a840f9a727736c4cdac",
+    "TriangleCycle": "3b43219b1124703a9cddd51ba9d662510e8b04ced0d1fbe73bf406b35721973d",
+    "ParameterBoundary": "175f7b26a976f836773c0100ade6db00d8dd226408c478b6a13fdab0a0d5ddd1",
+    "PhaseDiagram": "217c6292798026312b6479d924a33b48554af93c259828b7ee7de3f163fde606",
+    "QuadraticStability": "60a3fa4e3a32a831e3dcf6ac3d0992a0b6a527e8b3ff9340500c9dbd9282f395",
+    "FiniteCycle": "0012a9f0c0fc500df08fe0411f3c1ec1ea5433f5f365c0ce08a976ce189dfd6d",
+    "SevenCycle": "e1a8992a74ba3ef7385daad9655e5785cb11341fb38d253e6fa83d31f667aafb",
+    "AttractingCycle": "0e84e8b4493d2d6be309247a38f292af1655af1670cf03486d468e6fa1629da3",
+    "SevenAttracting": "eb7a0b011ec6554e0301b2b549c7f151beac7a648f823c0f21a9af0882cb4582",
+    "TrigSupport": "d79f690837049490cc6721126425bd0c044a83b24856556e773f9c3aedad2c34",
+    "TrigGrid": "19cfa41d0145f546bb5aedb892b73dde8794ab2ab0bf6d433b949bbec9780e07",
+    "FourierModes": "ec2783d4ee57af3c5274a0daa5ccd299e2651fdd4e547fafc8bb65a006bf5be1",
+    "FourierAlgebra": "7edec7d8ff8ea4efe54816a61856ef5945d29253b33d405d068f5aff34c72748",
+    "FourierCertificates": "2fa4e86e2a33d7f96a25d5b552987985227e49ca4ffe60107d5015b7c68c3875",
+    "FourierSums": "2c1c86dca389c560751489a89a2a961324e519a80754601e75798d6ab3277906",
+    "FourierRobustness": "4fa48987d2bb6a82abd8341b4a634dab19d22897f965742287389502b63fd522",
+    "AsymptoticParameters": "d9fc789f826014c58efb964e156cf13052d58e9754a9ddc29aed2f0cc0144a0d",
+    "AsymptoticCycle": "d209e8ad3b9a2bf770e6b0a21fc9f8468afc91e5b5a677908e274ba38884b1e0"
+  },
+  "finished_utc": "2026-10-30T03:04:56.948845+00:00"
+}

@@ -12,5 +12,6 @@ Each family directory contains its manuscripts, proof sources or shared-library 
 | [Exact three-setting correlation bounds at fixed steering centre](steering-bounds/) | [PDF](steering-bounds/paper/steering_bounds.pdf) |
 | [The three-state root-fidelity entropy bound](fidelity-three-state/) | [PDF](fidelity-three-state/manuscript.pdf) |
 | [Exact conditional contraction for Pauli channels and depolarization in every dimension](quantum-exact-contraction/) | [PDF](quantum-exact-contraction/quantum_exact_contraction.pdf) |
+| [Strong minimum-rank multiplicativity from unextendible product constraints](upb-tensor-rank/) | [PDF](upb-tensor-rank/manuscript.pdf) |
 
 [All subjects](../README.md) · [Complete catalogue](../../CONTENTS.md)

@@ -1,0 +1,113 @@
+import Proximal
+import ThreeCycleThreshold
+import ThreeCycleFunctions
+import GeneralSteps
+import TriangleCycle
+import ParameterBoundary
+import PhaseDiagram
+import QuadraticStability
+import FiniteCycle
+import SevenCycle
+import AttractingCycle
+import SevenAttracting
+import TrigSupport
+import TrigGrid
+import FourierModes
+import FourierAlgebra
+import FourierCertificates
+import FourierSums
+import FourierRobustness
+import AsymptoticParameters
+import AsymptoticCycle
+
+#print axioms CPSharpness.supports_iff_isProx
+#print axioms CPSharpness.threeCycle_sos_identity
+#print axioms CPSharpness.proximal_three_cycle_polynomial_nonneg
+#print axioms CPSharpness.step_product_three_cycle_polynomial_nonneg
+#print axioms CPSharpness.zero_saddle
+#print axioms CPSharpness.primal_isProx
+#print axioms CPSharpness.dual_isProx
+#print axioms CPSharpness.sharp_cycle_nonconvergence
+#print axioms CPSharpness.polynomial_iff_boundary
+#print axioms CPSharpness.boundary_below_quadratic_exact_interval
+#print axioms CPSharpness.sharp_three_cycle_iff
+#print axioms CPSharpness.sharp_three_cycle_counterexample
+#print axioms CPQuadratic.eigenmode_characteristic
+#print axioms CPQuadratic.cp_positive_quadratic_eigenmode_stable
+#print axioms CPQuadratic.cp_nonnegative_quadratic_eigenmode_stable_or_one
+#print axioms FiniteCP.project_isProx
+#print axioms FiniteCP.certified_step
+#print axioms FiniteCP.certified_nonconvergence
+#print axioms FiniteCP.origin_saddle
+#print axioms SevenCP.strict_normal_certificate
+#print axioms SevenCP.compact_saddle
+#print axioms SevenCP.actual_seven_cycle
+#print axioms SevenCP.below_three_cycle_and_quadratic
+#print axioms FiniteCP.project_locally_constant
+#print axioms FiniteCP.cycle_one_step_capture
+#print axioms FiniteCP.nearby_iterates_not_convergent
+#print axioms SevenCP.seven_cycle_one_step_capture
+#print axioms SevenCP.seven_cycle_open_basin
+#print axioms SevenCP.rational_example_open_basin
+#print axioms TrigSupport.cubicSquare_le_one
+#print axioms TrigSupport.cos_cube_add_sin_cube_le_one
+#print axioms TrigGrid.fourier_support
+#print axioms AsymptoticCP.rawPrimal_periodic
+#print axioms AsymptoticCP.dualPoints_norm_sq
+#print axioms AsymptoticCP.rawDual_support_identity
+#print axioms AsymptoticCP.primalPoints_zero_ne_one
+#print axioms AsymptoticCP.dualPoints_support_bound
+#print axioms AsymptoticCP.primalPoints_sum_zero
+#print axioms AsymptoticCP.dualPoints_sum_zero
+#print axioms AsymptoticCP.positive_theta_normal_certificate
+#print axioms AsymptoticCP.exists_fourier_period
+#print axioms AsymptoticCP.fourier_family_normal_certificate
+#print axioms AsymptoticCP.fourier_family_periodic
+#print axioms AsymptoticCP.fourier_family_nonconvergence
+#print axioms AsymptoticCP.counterexamples_for_every_product_above_two
+
+#check @CPSharpness.supports_iff_isProx
+#check @CPSharpness.threeCycle_sos_identity
+#check @CPSharpness.proximal_three_cycle_polynomial_nonneg
+#check @CPSharpness.step_product_three_cycle_polynomial_nonneg
+#check @CPSharpness.zero_saddle
+#check @CPSharpness.primal_isProx
+#check @CPSharpness.dual_isProx
+#check @CPSharpness.sharp_cycle_nonconvergence
+#check @CPSharpness.polynomial_iff_boundary
+#check @CPSharpness.boundary_below_quadratic_exact_interval
+#check @CPSharpness.sharp_three_cycle_iff
+#check @CPSharpness.sharp_three_cycle_counterexample
+#check @CPQuadratic.eigenmode_characteristic
+#check @CPQuadratic.cp_positive_quadratic_eigenmode_stable
+#check @CPQuadratic.cp_nonnegative_quadratic_eigenmode_stable_or_one
+#check @FiniteCP.project_isProx
+#check @FiniteCP.certified_step
+#check @FiniteCP.certified_nonconvergence
+#check @FiniteCP.origin_saddle
+#check @SevenCP.strict_normal_certificate
+#check @SevenCP.compact_saddle
+#check @SevenCP.actual_seven_cycle
+#check @SevenCP.below_three_cycle_and_quadratic
+#check @FiniteCP.project_locally_constant
+#check @FiniteCP.cycle_one_step_capture
+#check @FiniteCP.nearby_iterates_not_convergent
+#check @SevenCP.seven_cycle_one_step_capture
+#check @SevenCP.seven_cycle_open_basin
+#check @SevenCP.rational_example_open_basin
+#check @TrigSupport.cubicSquare_le_one
+#check @TrigSupport.cos_cube_add_sin_cube_le_one
+#check @TrigGrid.fourier_support
+#check @AsymptoticCP.rawPrimal_periodic
+#check @AsymptoticCP.dualPoints_norm_sq
+#check @AsymptoticCP.rawDual_support_identity
+#check @AsymptoticCP.primalPoints_zero_ne_one
+#check @AsymptoticCP.dualPoints_support_bound
+#check @AsymptoticCP.primalPoints_sum_zero
+#check @AsymptoticCP.dualPoints_sum_zero
+#check @AsymptoticCP.positive_theta_normal_certificate
+#check @AsymptoticCP.exists_fourier_period
+#check @AsymptoticCP.fourier_family_normal_certificate
+#check @AsymptoticCP.fourier_family_periodic
+#check @AsymptoticCP.fourier_family_nonconvergence
+#check @AsymptoticCP.counterexamples_for_every_product_above_two

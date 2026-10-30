@@ -1,0 +1,198 @@
+def NesterovSharpThreshold.UniversalBoundedness : ℝ → Prop :=
+fun r =>
+  ∀ (F : ↥NesterovHilbert.Hilbert → ℝ) (G : ↥NesterovHilbert.Hilbert → ↥NesterovHilbert.Hilbert)
+    (X V : ℝ → ↥NesterovHilbert.Hilbert),
+    ConvexOn ℝ Set.univ F →
+      (∀ (x : ↥NesterovHilbert.Hilbert), HasGradientAt F (G x) x) →
+        LipschitzWith 1 G →
+          (∃ z, ∀ (x : ↥NesterovHilbert.Hilbert), F z ≤ F x) →
+            Continuous X →
+              Continuous V →
+                V 0 = 0 →
+                  (∀ t ≥ 0, HasDerivAt X (V t) t) →
+                    (∀ t > 0, HasDerivAt V (-(r / t) • V t - G (X t)) t) → ∃ C, ∀ t ≥ 0, ‖X t‖ ≤ C
+NesterovSharpThreshold.exists_subcritical_norm_divergent_flow {r : ℝ} (hr : 1 < r) (hr3 : r < 3) :
+  ∃ F G X V,
+    ConvexOn ℝ Set.univ F ∧
+      (∀ (x : ↥NesterovHilbert.Hilbert), HasGradientAt F (G x) x) ∧
+        LipschitzWith 1 G ∧
+          (∀ (x : ↥NesterovHilbert.Hilbert), ‖G x‖ ≤ 2) ∧
+            F 0 = 0 ∧
+              (∀ (x : ↥NesterovHilbert.Hilbert), 0 ≤ F x) ∧
+                Continuous X ∧
+                  Continuous V ∧
+                    X 0 = NesterovHilbert.initialData (NesterovThresholdModel.point 2 1) ∧
+                      V 0 = 0 ∧
+                        (∀ t ≥ 0, HasDerivAt X (V t) t) ∧
+                          (∀ t > 0, HasDerivAt V (-(r / t) • V t - G (X t)) t) ∧
+                            Filter.Tendsto (fun t => ‖X t‖) Filter.atTop Filter.atTop
+NesterovSharpThreshold.sharp_boundedness_threshold {r : ℝ} (hr : 1 < r) :
+  NesterovSharpThreshold.UniversalBoundedness r ↔ 3 ≤ r
+NesterovSharpThreshold.exists_positive_subcritical_norm_divergent_flow {r : ℝ} (hr : 0 < r) (hr3 : r < 3) :
+  ∃ F G X V z,
+    ConvexOn ℝ Set.univ F ∧
+      (∀ (x : ↥NesterovHilbert.Hilbert), HasGradientAt F (G x) x) ∧
+        LipschitzWith 1 G ∧
+          (∀ (x : ↥NesterovHilbert.Hilbert), ‖G x‖ ≤ 2) ∧
+            F z = 0 ∧
+              (∀ (x : ↥NesterovHilbert.Hilbert), 0 ≤ F x) ∧
+                Continuous X ∧
+                  Continuous V ∧
+                    V 0 = 0 ∧
+                      (∀ t ≥ 0, HasDerivAt X (V t) t) ∧
+                        (∀ t > 0, HasDerivAt V (-(r / t) • V t - G (X t)) t) ∧
+                          Filter.Tendsto (fun t => ‖X t‖) Filter.atTop Filter.atTop
+NesterovSharpThreshold.sharp_boundedness_threshold_all_positive {r : ℝ} (hr : 0 < r) :
+  NesterovSharpThreshold.UniversalBoundedness r ↔ 3 ≤ r
+NesterovHighDamping.bounded_distance.{u_1} {E : Type u_1} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+  [CompleteSpace E] {r : ℝ} (hr : 3 ≤ r) {f : E → ℝ} {g : E → E} (hc : ConvexOn ℝ Set.univ f)
+  (hg : ∀ (x : E), HasGradientAt f (g x) x) {q u : ℝ → E} (hq : ContinuousOn q (Set.Ici 0))
+  (hu : ContinuousOn u (Set.Ici 0)) (hqd : ∀ t > 0, HasDerivAt q (u t) t)
+  (hud : ∀ t > 0, HasDerivAt u (-(r / t) • u t - g (q t)) t) {z : E} (hz : ∀ (x : E), f z ≤ f x) (t : ℝ) :
+  t ≥ 0 → ‖q t - z‖ ≤ ‖q 0 - z‖
+def DiscreteNesterov.UniversalDiscreteBoundedness : ℝ → Prop :=
+fun r =>
+  ∀ (F : ↥NesterovHilbert.Hilbert → ℝ) (G : ↥NesterovHilbert.Hilbert → ↥NesterovHilbert.Hilbert)
+    (b : ↥NesterovHilbert.Hilbert),
+    ConvexOn ℝ Set.univ F →
+      (∀ (x : ↥NesterovHilbert.Hilbert), HasGradientAt F (G x) x) →
+        LipschitzWith 1 G →
+          (∃ z, ∀ (x : ↥NesterovHilbert.Hilbert), F z ≤ F x) → ∃ C, ∀ (k : ℕ), ‖DiscreteNesterov.nagX r 1 G b k‖ ≤ C
+def DiscreteNesterov.nagState.{u_1} : {E : Type u_1} →
+  [inst : NormedAddCommGroup E] → [inst : NormedSpace ℝ E] → ℝ → ℝ → (E → E) → E → ℕ → E × E :=
+fun {E} [NormedAddCommGroup E] [NormedSpace ℝ E] r h G b x =>
+  Nat.brecOn x fun x f =>
+    (match (motive := (x : ℕ) → Nat.below x → E × E) x with
+      | 0 => fun x => (b, b)
+      | k.succ => fun x =>
+        let old := x.1;
+        let x := old.2 - h ^ 2 • G old.2;
+        (x, x + DiscreteNesterov.momentum r k • (x - old.1)))
+      f
+DiscreteNesterov.sharp_discrete_boundedness_threshold {r : ℝ} (hr : 0 < r) :
+  DiscreteNesterov.UniversalDiscreteBoundedness r ↔ 3 ≤ r
+DiscreteNesterov.exists_subcritical_discrete_norm_divergence {r : ℝ} (hr : 1 < r) (hr3 : r < 3) :
+  ∃ F G,
+    ConvexOn ℝ Set.univ F ∧
+      (∀ (x : ↥NesterovHilbert.Hilbert), HasGradientAt F (G x) x) ∧
+        LipschitzWith 1 G ∧
+          (∀ (x : ↥NesterovHilbert.Hilbert), ‖G x‖ ≤ 2) ∧
+            F 0 = 0 ∧
+              (∀ (x : ↥NesterovHilbert.Hilbert), 0 ≤ F x) ∧
+                Filter.Tendsto
+                  (fun k =>
+                    ‖DiscreteNesterov.nagX r 1 G (NesterovHilbert.initialData (NesterovThresholdModel.point 2 1)) k‖)
+                  Filter.atTop Filter.atTop
+DiscreteNesterov.exists_discrete_norm_divergence_below_three {r : ℝ} (hr : 0 < r) (hr3 : r < 3) :
+  ∃ F G b z,
+    ConvexOn ℝ Set.univ F ∧
+      (∀ (x : ↥NesterovHilbert.Hilbert), HasGradientAt F (G x) x) ∧
+        LipschitzWith 1 G ∧
+          (∀ (x : ↥NesterovHilbert.Hilbert), ‖G x‖ ≤ 2) ∧
+            F z = 0 ∧
+              (∀ (x : ↥NesterovHilbert.Hilbert), 0 ≤ F x) ∧
+                Filter.Tendsto (fun k => ‖DiscreteNesterov.nagX r 1 G b k‖) Filter.atTop Filter.atTop
+NesterovPlanar.planar_valley_escape {r : ℝ} (hr : 1 < r) (hr2 : r ≤ 2) :
+  (∀ (z : NesterovModel.Plane), NesterovModel.potential z = (if ‖z‖ ≤ 1 then (‖z‖ ^ 2 + 1) / 2 else ‖z‖) - z 0) ∧
+    ConvexOn ℝ Set.univ NesterovModel.potential ∧
+      Differentiable ℝ NesterovModel.potential ∧
+        (∀ (z : NesterovModel.Plane), HasGradientAt NesterovModel.potential (NesterovModel.gradient z) z) ∧
+          LipschitzWith 1 NesterovModel.gradient ∧
+            (∀ (z : NesterovModel.Plane), 0 ≤ NesterovModel.potential z) ∧
+              (∀ (z : NesterovModel.Plane), NesterovModel.potential z = 0 ↔ z 1 = 0 ∧ 1 ≤ z 0) ∧
+                ∃ q u,
+                  Continuous q ∧
+                    Continuous u ∧
+                      q 0 = NesterovModel.point 2 1 ∧
+                        u 0 = 0 ∧
+                          HasDerivAt q 0 0 ∧
+                            (∀ (t : ℝ), 0 ≤ t → HasDerivAt q (u t) t) ∧
+                              (∀ (t : ℝ), 0 < t → HasDerivAt u (-(r / t) • u t - NesterovModel.gradient (q t)) t) ∧
+                                Filter.Tendsto (fun t => q t 0) Filter.atTop Filter.atTop ∧
+                                  Filter.Tendsto (fun t => ‖q t‖) Filter.atTop Filter.atTop
+NesterovPlanar.every_planar_trajectory_escapes {r : ℝ} (hr : 1 < r) (hr2 : r ≤ 2) (q u : ℝ → NesterovModel.Plane)
+  (hq : ContinuousOn q (Set.Ici 0)) (hu : ContinuousOn u (Set.Ici 0)) (hqd : ∀ t > 0, HasDerivAt q (u t) t)
+  (hud : ∀ t > 0, HasDerivAt u (-(r / t) • u t - NesterovModel.gradient (q t)) t) (hq0 : q 0 = NesterovModel.point 2 1)
+  (hu0 : u 0 = 0) :
+  Filter.Tendsto (fun t => q t 0) Filter.atTop Filter.atTop ∧ Filter.Tendsto (fun t => ‖q t‖) Filter.atTop Filter.atTop
+NesterovPlanar.planar_escape_all_low_damping {r : ℝ} (hr : 0 < r) (hr2 : r ≤ 2) :
+  ∃ F G,
+    ConvexOn ℝ Set.univ F ∧
+      (∀ (z : EuclideanSpace ℝ (Fin 2)), HasGradientAt F (G z) z) ∧
+        LipschitzWith 1 G ∧
+          (∀ (z : EuclideanSpace ℝ (Fin 2)), ‖G z‖ ≤ 2) ∧
+            (∃ zmin, ∀ (z : EuclideanSpace ℝ (Fin 2)), F zmin ≤ F z) ∧
+              ∃ q u,
+                Continuous q ∧
+                  Continuous u ∧
+                    u 0 = 0 ∧
+                      HasDerivAt q 0 0 ∧
+                        (∀ t ≥ 0, HasDerivAt q (u t) t) ∧
+                          (∀ t > 0, HasDerivAt u (-(r / t) • u t - G (q t)) t) ∧
+                            Filter.Tendsto (fun t => ‖q t‖) Filter.atTop Filter.atTop
+'NesterovSharpThreshold.exists_subcritical_norm_divergent_flow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NesterovSharpThreshold.sharp_boundedness_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovSharpThreshold.exists_positive_subcritical_norm_divergent_flow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NesterovSharpThreshold.sharp_boundedness_threshold_all_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NesterovHighDamping.bounded_distance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiscreteNesterov.sharp_discrete_boundedness_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiscreteNesterov.exists_subcritical_discrete_norm_divergence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'DiscreteNesterov.exists_discrete_norm_divergence_below_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NesterovPlanar.planar_valley_escape' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovPlanar.every_planar_trajectory_escapes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovPlanar.planar_escape_all_low_damping' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovThresholdModel.potential_hasGradientAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovThresholdModel.gradient_lipschitz' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovThresholdModel.exterior_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovThreshold.exists_parameter_actual_excursion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovThreshold.exists_finite_euler_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GeneralNesterovExistence.exists_global_nesterov' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovHilbert.sumPotential_hasGradient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovHilbert.sumGradient_lipschitz' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovHilbert.hilbert_hasGradient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovHilbert.escape_from_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovThresholdModel.potential_axis_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovThresholdModel.arbitrarily_large_minimizers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovLowDamping.exists_low_damping_escape' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovSharpThreshold.exists_low_damping_norm_divergent_flow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'DiscreteNesterov.nag_bounded_distance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiscreteNesterov.exists_low_discrete_norm_divergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NAGLowDamping.exists_scalar_escape' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiscreteNesterov.exists_planar_discrete_excursion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiscreteNesterov.exists_exponent_all_discrete_excursions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiscreteNesterov.finite_horizon_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiscreteNesterov.extrapolated_step_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiscreteNesterov.finite_discrete_gronwall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GeneralNesterovExistence.exists_global_nesterov_with_acceleration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'DiscreteNesterov.discrete_hasGradient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiscreteNesterov.discrete_convex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiscreteNesterov.discrete_lipschitz' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiscreteNesterov.discrete_gradient_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiscreteNesterov.discrete_iterate_coordinate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiscreteNesterov.discrete_escape_from_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiscreteNesterov.nag_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovPlanar.exists_planar_escaping_trajectory' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovPlanar.PlanarTrajectory.first_coordinate_tendsto_atTop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NesterovPlanar.weightedEnergy_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovPlanar.unbounded_of_euler_forcing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovAxisLift.lift_flow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovModel.potential_convex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovModel.potential_hasGradientAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovModel.gradient_lipschitz' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NesterovModel.potential_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,514 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=26mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,booktabs,longtable,array}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
+\usepackage{enumitem,fancyvrb,needspace}
+\setlist{topsep=4pt,itemsep=3pt,parsep=0pt}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\F}{\mathbb F}
+\newcommand{\C}{\mathbb C}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\PT}{\mathrm{PT}}
+\newcommand{\code}[1]{\texttt{\small #1}}
+\newcommand{\modname}[1]{\texttt{\footnotesize #1}}
+\newcommand{\pair}[2]{\langle #1,#2\rangle}
+\hypersetup{pdftitle={A 64-point spectral tile in binary dimension nine with no periodic complement},pdfauthor={Dev D. Goyal},
+pdfsubject={Fully autonomous agentic research},
+pdfkeywords={Fuglede conjecture, spectral sets, tiling, periodic tiling property, finite abelian groups, Lean 4}}
+\newcommand{\replaystatus}{A fresh replay on 30 October 2026, compiling all 16 project modules and the generated audit of 123 public declarations with \code{--trust=0} against a Mathlib checkout built at the pinned revision, passed; its record is in \code{verification/}.}
+\newcommand{\uniquestatus}{Theorem~\ref{thm:unique} is formalized in the module \modname{BinaryComplements} as \nolinkurl{BinaryFuglede.tilingPair_iff_translate}, with the count \nolinkurl{BinaryFuglede.card_complements}; Section~\ref{sec:formal} describes its certificate. The exhaustive enumerations in \code{checks/check\_construction.py} confirm it independently.}
+
+\begin{document}
+\begin{center}
+{\LARGE\bfseries A 64-point spectral tile in $\F_2^9$\par
+with no periodic complement}\par
+\vspace{9pt}
+{\large An explicit obstruction to subspace tiling complements}\par
+\vspace{8pt}
+Dev D. Goyal\par
+30 October 2026
+\end{center}
+
+\section*{Research process and AI disclosure}
+This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
+
+The search, the construction, the proof of Theorem~\ref{thm:main}, its Lean formalization and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session state that it was an autonomous ChatGPT session in which GPT-6 Astra Pro agents carried out the search, the formalization and skeptical reviews of statement correspondence and novelty.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It coordinated an independent AI referee check, which rebuilt the construction from Table~\ref{tab:bases}, rechecked every character sum, the tiling and the allowed shifts, enumerated all tiling complements in two independent ways, and compared the Lean statements with the theorem. That enumeration showed that the complement is unique up to translation. Opus 5.5 then found the proof of Theorem~\ref{thm:unique} through the line graph of $K_8$, formalized it in the Lean module \modname{BinaryComplements}, wrote \code{checks/check\_construction.py}, ran the fresh Lean replay described in Section~\ref{sec:formal}, and revised this manuscript. AI referee checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:formal}.
+
+\begin{abstract}
+We construct an explicit aperiodic set $E\subset\F_2^9$ of cardinality $64$ which is spectral and tiles by translation, but has no periodic tiling complement. Its tiling complements are exactly the $512$ translates of one aperiodic eight-point set. In particular, no linear subspace complements $E$, and the elementary abelian group $\F_2^9$ fails the periodic tiling property. The construction consists of eight three-dimensional subspaces in parallel six-dimensional fibers. A common eight-point complement and an explicit spectrum are given. The nonzero shifts disjoint from $E$ are exactly the $28$ pair sums of an affine eight-circuit; these contain no three-dimensional subspace. Any periodic eight-point complement would produce such a subspace, giving the obstruction. The central theorem, including a basis of all complex-valued functions on the actual set and quantification over every tiling complement, and the classification of all complements are formalized in Lean~4 with pinned dependencies. The result answers the stronger subspace-complement part of Ferguson--Iosevich's Question~8.1, and its equivalent Question~8.2, negatively. It does not settle the remaining spectral-to-tiling implication in dimension nine. Sharpness in positive binary dimension uses their external dimension-eight theorem. Public-source checks found no matching example; historical priority remains provisional.
+\end{abstract}
+
+\section{The question and the precise contribution}
+
+For a finite abelian group, spectrality asks for an orthogonal basis of characters restricted to a set; translational tiling asks for a unique additive factorization of the group. A linear-subspace complement is an especially rigid way to tile a binary vector space. The two properties can therefore agree even when the more rigid conclusion fails.
+
+Ferguson and Iosevich~\cite{fi8} prove that every nonempty spectral set and every tile in $\F_2^8$ has a linear-subspace tiling complement. Their Question~8.1 asks whether a spectral $64$-point set in $\F_2^9$ must tile, and asks the stronger subspace-complement question. The present example refutes the stronger assertion. It also excludes every periodic complement, not merely every subspace, and its complements are determined completely: they are the translates of one aperiodic set (Theorem~\ref{thm:unique}). The original spectral-to-tiling question remains open: our set has an explicit tiling complement.
+
+The affine-circuit ingredient is already present in Section~7 of~\cite{fi8}. There it obstructs the Fourier support of one specified spectrum while the underlying set still has a subspace complement. Here the pair sums of that circuit exhaust the allowed disjoint shifts of a different spectral tile. This exhaustion, and its consequence for \emph{all} complements, is the structural distinction.
+
+The mathematical theorem below is unconditional and finite. Its relation to the current questions is a source-correspondence claim, and its priority is a literature assessment. Neither priority nor significance is decided by a Lean kernel check. The record supplies the proof and verification artifacts without claiming external peer review or a particular publication outcome.
+
+\section{Definitions and the construction}
+
+Write $G=\F_2^9=V\times W$, where $V=\F_2^6$ and $W=\F_2^3$. All vector additions below are in characteristic two. The standard pairing is denoted by $u\cdot x$, and the character with frequency $u\in G$ is
+\[
+\chi_u(x)=(-1)^{u\cdot x}\in\C.
+\]
+The inner product on $\C^A$, for a finite set $A$, is counting measure:
+$\pair fg_A=\sum_{x\in A}f(x)\overline{g(x)}$.
+
+\begin{definition}
+A set $A\subset G$ is \emph{spectral} if there is $L\subset G$ such that
+$\{\chi_\ell|_A:\ell\in L\}$ is an orthogonal basis of the full vector space $\C^A$.
+We write $A\oplus B=G$ if $(a,b)\mapsto a+b$ is a bijection $A\times B\to G$.
+A set $A$ is \emph{periodic} if $A+p=A$ for some $p\ne0$, and \emph{aperiodic} otherwise.
+The group has the \emph{periodic tiling property} if every aperiodic tile has a periodic tiling complement. Equivalently, for every tiling pair $A\oplus B=G$, either $A$ is periodic or $A$ has some periodic complement.
+\end{definition}
+
+We encode vectors by binary integers, with the least significant bit representing the first coordinate. Thus the integer sum $x+64i$, with $0\leq x<64$ and $0\leq i<8$, encodes $(x,i)\in V\times W$; vector addition of codes is XOR. Set
+\begin{equation}\label{eq:C}
+C=\{0,1,2,4,8,16,32,63\}
+ =\{0,e_1,e_2,e_3,e_4,e_5,e_6,e_1+\cdots+e_6\}\subset V.
+\end{equation}
+For $i\in W$, define $K_i\leq V$ by the bases in Table~\ref{tab:bases}. Every displayed row is linearly independent.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{@{}cr@{\qquad}cr@{}}
+\toprule
+$i$&Basis of $K_i$&$i$&Basis of $K_i$\\
+\midrule
+0&$11,22,37$&4&$7,26,43$\\
+1&$7,26,43$&5&$11,21,39$\\
+2&$14,23,35$&6&$15,19,38$\\
+3&$13,22,39$&7&$11,23,38$\\
+\bottomrule
+\end{tabular}
+\caption{The eight three-dimensional subspaces. The repetition $K_1=K_4$ is intentional.}\label{tab:bases}
+\end{table}
+
+Define the three actual subsets of $G$ by
+\begin{equation}\label{eq:construction}
+E=\bigcup_{i\in W}(K_i\times\{i\}),\qquad
+\Lambda=C\times W,\qquad T=C\times\{0\}.
+\end{equation}
+
+\begin{theorem}[Explicit spectral tile without periodic complements]\label{thm:main}
+For the sets in~\eqref{eq:construction}:
+\begin{enumerate}
+\item $|E|=|\Lambda|=64$ and $|T|=8$. The functions $\chi_\lambda|_E$, $\lambda\in\Lambda$, form an orthogonal basis of $\C^E$.
+\item $E\oplus T=G$.
+\item $E$ is aperiodic, and every $B\subset G$ satisfying $E\oplus B=G$ is aperiodic.
+\item No linear subspace $H\leq G$ satisfies $E\oplus H=G$. The group $\F_2^9$ does not have the periodic tiling property.
+\end{enumerate}
+All assertions concern the displayed finite sets and the usual additive group and vector-space structures. There is no assumption that a complement has a chosen form, lies in a given fiber, or arises from the search that produced the example.
+\end{theorem}
+
+The next sections give a self-contained proof. The exact difference-set identity explains the obstruction, although the Lean development certifies the sufficient difference-coverage implication directly rather than exporting that entire identity as a separate theorem; Section~\ref{sec:formal} makes this boundary precise.
+
+\section{The small linear-algebra certificate}
+
+Let
+\begin{equation}\label{eq:D}
+D=(C+C)\setminus\{0\}
+  =\{x\in V:\wt(x)\in\{1,2,5,6\}\}.
+\end{equation}
+Indeed, sums involving zero give weights one or six, sums of distinct coordinate vectors give weight two, and sums of the all-ones vector with a coordinate vector give weight five. These four cases give $6+1+15+6=28$ distinct elements.
+
+For transparency, Table~\ref{tab:spaces} lists all nonzero elements of every $K_i$ and its orthogonal complement. A row is obtained by taking the seven nonempty subset sums of its basis, and by solving its three binary orthogonality equations. All listed entries have weight three or four. Consequently
+\begin{equation}\label{eq:weightfacts}
+K_i\cap D=K_i^\perp\cap D=\varnothing\quad(0\leq i<8),
+\qquad
+\bigcup_i K_i=\{x\in V:\wt(x)\in\{0,3,4\}\}.
+\end{equation}
+Here the intersections with $D$ are empty because $0\notin D$. The last set has $1+\binom63+\binom64=36$ elements; the union can also be read directly from the table.
+
+\begin{table}[htbp]
+\centering\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}c@{\quad}l@{\quad}l@{}}
+\toprule
+$i$&$K_i\setminus\{0\}$&$K_i^\perp\setminus\{0\}$\\
+\midrule
+0&$11,22,29,37,46,51,56$&$7,26,29,41,46,51,52$\\
+1&$7,26,29,43,44,49,54$&$14,19,29,37,43,54,56$\\
+2&$14,23,25,35,45,52,58$&$11,23,28,38,45,49,58$\\
+3&$13,22,27,39,42,49,60$&$14,21,27,39,41,50,60$\\
+4&$7,26,29,43,44,49,54$&$14,19,29,37,43,54,56$\\
+5&$11,21,30,39,44,50,57$&$13,19,30,39,42,52,57$\\
+6&$15,19,28,38,41,53,58$&$15,22,25,35,44,53,58$\\
+7&$11,23,28,38,45,49,58$&$14,23,25,35,45,52,58$\\
+\bottomrule
+\end{tabular}
+\caption{Complete nonzero lists for the subspaces and their duals. These data suffice to check every linear-algebra assertion used in the conventional proof.}\label{tab:spaces}
+\end{table}
+
+The cross-fiber certificate is Table~\ref{tab:cross}. In every row $i+j=a$ in $W$. Recall that
+\[
+(K_i+K_j)^\perp=K_i^\perp\cap K_j^\perp.
+\]
+Thus a zero intersection gives $K_i+K_j=V$, while an intersection $\{0,n\}$ gives the hyperplane $n^\perp$.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{@{}cccc@{}}
+\toprule
+$a$&$(i,j)$&$K_i^\perp\cap K_j^\perp$&$K_i+K_j$\\
+\midrule
+1&$(2,3)$&$\{0\}$&$V$\\
+2&$(0,2)$&$\{0\}$&$V$\\
+3&$(1,2)$&$\{0\}$&$V$\\
+5&$(3,6)$&$\{0\}$&$V$\\
+6&$(0,6)$&$\{0\}$&$V$\\
+7&$(1,6)$&$\{0\}$&$V$\\
+\midrule
+4&$(0,4)$&$\{0,29\}$&$29^\perp$\\
+4&$(1,5)$&$\{0,19\}$&$19^\perp$\\
+4&$(3,7)$&$\{0,14\}$&$14^\perp$\\
+\bottomrule
+\end{tabular}
+\caption{Coverage of every nonzero $W$-coordinate. The last three hyperplanes cover $V$ because $29+19=14$ in binary vector notation.}\label{tab:cross}
+\end{table}
+
+For the exceptional label $a=4$, if $x$ belongs to neither $29^\perp$ nor $19^\perp$, both pairings equal one, so $14\cdot x=(29+19)\cdot x=0$. This proves the stated three-hyperplane coverage. No classification of codes, Hadamard matrices or tilings is required for any table entry.
+
+\section{The explicit spectrum and tiling}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(1)]
+Each $K_i$ has eight elements, in a different $W$-fiber, so $|E|=64$. The cardinalities of $\Lambda$ and $T$ follow directly from~\eqref{eq:C}.
+
+For a subspace $K\leq V$ and $d\notin K^\perp$, choose $k_0\in K$ with $d\cdot k_0=1$. Translating the character sum by $k_0$ changes its sign and leaves its index set fixed. Therefore
+\begin{equation}\label{eq:charsum}
+\sum_{x\in K}(-1)^{d\cdot x}=0\qquad(d\notin K^\perp).
+\end{equation}
+Consider distinct frequencies $(c,u),(c',u')\in C\times W$. Their inner product on $E$ is
+\begin{equation}\label{eq:gram}
+\sum_{i\in W}(-1)^{(u+u')\cdot i}
+       \sum_{x\in K_i}(-1)^{(c+c')\cdot x}.
+\end{equation}
+If $c\ne c'$, then $c+c'\in D$ and~\eqref{eq:weightfacts} places it outside every $K_i^\perp$. Each inner sum vanishes by~\eqref{eq:charsum}. If $c=c'$, then $u\ne u'$, and~\eqref{eq:gram} is eight times the sum of a nontrivial character of $W$, hence again zero.
+
+Each character has squared norm $64$. We have $64$ nonzero mutually orthogonal vectors in the $64$-dimensional space $\C^E$, so they form an orthogonal basis. This proves spectrality with the stated spectrum, not merely a lower bound on the number of orthogonal characters.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(2)]
+Fix $i$. If $k+c=k'+c'$ with $k,k'\in K_i$ and $c,c'\in C$, then
+$k+k'=c+c'$. If $c\ne c'$, the right side belongs to $D$, contradicting~\eqref{eq:weightfacts}. Thus $c=c'$ and $k=k'$. The $8\cdot8=64$ sums are distinct and fill $V$, proving $K_i\oplus C=V$. Apply this independently in all eight $W$-fibers to obtain $E\oplus T=G$.
+\end{proof}
+
+\section{All disjoint shifts, and aperiodicity of the tile}
+
+For a set containing zero in a binary group, a shift $v$ has $E\cap(E+v)=\varnothing$ exactly when $v\notin E+E$. In particular zero is never a disjoint shift of our nonempty set.
+
+\begin{proposition}[Exact difference set]\label{prop:diff}
+The set in~\eqref{eq:construction} satisfies
+\begin{align}
+E+E
+ &=\bigl(V\times(W\setminus\{0\})\bigr)
+   \ \cup\ \bigl(\{x:\wt(x)\in\{0,3,4\}\}\times\{0\}\bigr),\label{eq:diff}\\
+G\setminus(E+E)&=D\times\{0\}.\label{eq:allowed}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+The fiber of $E+E$ above $0\in W$ is $\bigcup_i(K_i+K_i)=\bigcup_iK_i$, which is the stated set by~\eqref{eq:weightfacts}. Above $a\ne0$ it is
+\[
+\bigcup_{i\in W}(K_i+K_{i+a}).
+\]
+For $a\in\{1,2,3,5,6,7\}$, Table~\ref{tab:cross} gives one summand equal to $V$. For $a=4$, its last three rows give three hyperplanes whose union is $V$. This proves~\eqref{eq:diff}, and~\eqref{eq:allowed} follows from~\eqref{eq:D}.
+\end{proof}
+
+\begin{proposition}\label{prop:aperiodic}
+The set $E$ has no nonzero translation period.
+\end{proposition}
+
+\begin{proof}
+If $(v,a)\in V\times W$ is a period, comparison of fibers gives
+$K_i+v=K_{i+a}$ for every $i$. A translate of one linear subspace that is another linear subspace must equal the original subspace: since zero belongs to the translated set, $v$ belongs to the first subspace. Hence $K_i=K_{i+a}$.
+
+Table~\ref{tab:spaces} shows that $K_0$ is distinct from $K_a$ for every $a\ne0$, so $a=0$. The same fiber equations now put $v$ in every $K_i$. In particular $v\in K_0\cap K_2=\{0\}$, again visible in the table. Thus $(v,a)=0$.
+\end{proof}
+
+\section{The circuit obstruction and every periodic complement}
+
+We give a structural proof of the small obstruction, crediting the circuit argument in~\cite[Section~7]{fi8}. It explains the finite certificate used by Lean.
+
+\begin{lemma}[The affine-circuit relation]\label{lem:circuit}
+The only nonempty even-cardinality subset of $C$ with sum zero is $C$ itself. Every vector in $D$ has a unique representation as the sum of an unordered pair of distinct points of $C$. If three distinct vectors of $D$ sum to zero, their three representing pairs are the edges of a triangle on $C$.
+\end{lemma}
+
+\begin{proof}
+Among the seven nonzero points of $C$, a binary linear relation has the form
+$\sum_{j=1}^6\alpha_j e_j+\beta(e_1+\cdots+e_6)=0$. Comparing coordinates gives $\alpha_j=\beta$ for all $j$. Thus it uses none or all seven nonzero points. Including zero changes the cardinality but not the sum, which proves the even-cardinality assertion.
+
+Two different unordered pairs with equal sums would have a nonempty even symmetric difference of size at most four and sum zero. The first assertion rules this out.
+
+Now view three distinct representing pairs as edges of a simple graph on the eight points of $C$. The vertices of odd degree have sum zero because the three edge labels sum to zero. Their number is even and at most six, so there are no such vertices. A simple graph with three distinct edges and all degrees even is a triangle.
+\end{proof}
+
+\begin{lemma}[No three-dimensional allowed subspace]\label{lem:no3}
+There is no three-dimensional subspace $M\leq V$ such that $M\setminus\{0\}\subset D$. The same assertion holds for $D\times\{0\}\subset G$.
+\end{lemma}
+
+\begin{proof}
+Suppose $a,b,c$ are independent vectors and all seven nonzero vectors of their span belong to $D$. The labels $a,b,a+b$ correspond to the three edges of a triangle, by Lemma~\ref{lem:circuit}. The edge representing $c$ must intersect each of those three edges: for $x\in\{a,b,a+b\}$, the distinct labels $c,x,c+x$ sum to zero and therefore represent a triangle.
+
+An edge meeting all three edges of a triangle is one of the triangle's own edges. Indeed, if it has a vertex outside the triangle, its other vertex misses the opposite edge; if both its vertices are inside, it is a triangle edge. Thus $c\in\{a,b,a+b\}$, contrary to independence. A subspace contained in the horizontal factor of $G$ is identified with its projection to $V$, giving the second assertion.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(3)--(4)]
+Proposition~\ref{prop:aperiodic} proves that $E$ is aperiodic. Let $B\subset G$ satisfy $E\oplus B=G$. Cardinalities give $|B|=512/64=8$. Unique representation implies
+\begin{equation}\label{eq:complementdiff}
+(B+B)\cap(E+E)=\{0\}.
+\end{equation}
+To check this implication, an equality $b+b'=e+e'$ gives $e+b=e'+b'$; injectivity of the sum map forces $b=b'$ and $e=e'$. By~\eqref{eq:allowed}, every nonzero difference of two points of $B$ therefore belongs to $D\times\{0\}$.
+
+Suppose $p\ne0$ is a period of $B$. Choose $u\in B$, then
+\[
+v\in B\setminus\{u,u+p\},\qquad
+w\in B\setminus\{u,u+p,v,v+p\}.
+\]
+These choices exist because $|B|=8$. Put $a=u+v$ and $b=u+w$. The vectors $p,a,b$ are independent: $a\notin\{0,p\}$, and the exclusion defining $w$ gives
+$b\notin\{0,p,a,p+a\}$.
+
+Every nonzero vector of $\Span\{p,a,b\}$ is a difference of points of $B$. Explicit witnesses are
+\begin{align*}
+p&=u+(u+p),&a&=u+v,&b&=u+w,\\
+p+a&=(u+p)+v,&p+b&=(u+p)+w,\\
+a+b&=v+w,&p+a+b&=(v+p)+w.
+\end{align*}
+All seven vectors are thus in $D\times\{0\}$ by~\eqref{eq:complementdiff}, contradicting Lemma~\ref{lem:no3}. This excludes every periodic complement.
+
+If a linear subspace $H$ complemented $E$, it would have eight elements. Any nonzero element of $H$ would be a period of $H$, contradicting what was just proved. Finally, $E$ is an aperiodic tile without a periodic complement, which is exactly a counterexample to the periodic tiling property.
+\end{proof}
+
+This proof uses no enumeration of possible complements. Only the explicit set of allowed shifts is finite data; the exclusion quantifies every subset $B\subset G$.
+
+\section{All tiling complements}
+
+The allowed shifts determine the complements completely.
+
+\begin{theorem}[The complements of $E$]\label{thm:unique}
+A set $B\subset G$ satisfies $E\oplus B=G$ if and only if $B=T+g$ for some $g\in G$. The $512$ translates of $T$ are pairwise distinct, so $E$ has exactly $512$ tiling complements, and none of them is periodic.
+\end{theorem}
+
+\begin{lemma}[The line graph of $K_8$]\label{lem:linegraph}
+Label each $x\in D$ by the unique pair $\{a,b\}\subset C$ with $x=a+b$ (Lemma~\ref{lem:circuit}). For distinct $x,y\in D$, the sum $x+y$ lies in $D$ if and only if the labels of $x$ and $y$ share exactly one point.
+\end{lemma}
+
+\begin{proof}
+If the labels are $\{a,b\}$ and $\{a,c\}$, then $x+y=b+c\in D$. If they are disjoint, $\{a,b\}$ and $\{c,d\}$, and $x+y=e+f$ with $\{e,f\}\subset C$, then the symmetric difference of $\{a,b,c,d\}$ and $\{e,f\}$ is a nonempty subset of $C$ of even cardinality at most six with sum zero, contrary to Lemma~\ref{lem:circuit}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:unique}]
+Translation by $g$ is a bijection of $G$, so $E\oplus T=G$ gives $E\oplus(T+g)=G$. The weights of the elements of $C$ are $0$, $1$ and $6$. If $p\ne0$ were a period of $T$, then $p=0+p\in T$, so $p=(c,0)$ with $c\in C\setminus\{0\}$ and $c+C=C$; but $c+e_j$ has weight two for $c=e_i$ and $j\ne i$, and weight five for $c=e_1+\cdots+e_6$. Thus $T$ is aperiodic. Hence $T+g=T+g'$ only for $g=g'$, and no translate of $T$ is periodic.
+
+Conversely, let $E\oplus B=G$ and fix $b_0\in B$. By~\eqref{eq:complementdiff} and~\eqref{eq:allowed}, every $b+b_0$ with $b\in B\setminus\{b_0\}$ lies in $D\times\{0\}$, and so does every sum $(b+b_0)+(b'+b_0)=b+b'$ of two distinct such elements. Hence $B+b_0=B'\times\{0\}$, where $0\in B'$, $|B'|=8$, and $Q=B'\setminus\{0\}$ is a set of seven elements of $D$ whose pairwise sums lie in $D$. By Lemma~\ref{lem:linegraph}, the labels of the elements of $Q$ are seven distinct edges of the complete graph on $C$, any two of which share a point.
+
+Seven such edges cannot contain a triangle: by the argument in the proof of Lemma~\ref{lem:no3}, every edge meeting all three edges of a triangle is one of them. Take two edges $\{c,a\}$ and $\{c,b\}$ of $Q$. An edge meeting both and avoiding $c$ must be $\{a,b\}$, which would complete a triangle. So every edge contains $c$. There are exactly seven edges at $c$, so
+\[
+Q=\{c+c':c'\in C\setminus\{c\}\},\qquad B'=c+C,\qquad B=T+(b_0+(c,0)).\qedhere
+\]
+\end{proof}
+
+Theorem~\ref{thm:unique} gives a second proof of Theorem~\ref{thm:main}(3)--(4), since every complement is a translate of the aperiodic set $T$. \uniquestatus
+
+\section{Consequences for the current questions}
+
+\subsection{The strengthened Fuglede question}
+
+Theorem~\ref{thm:main} answers the subspace-complement part of~\cite[Question~8.1]{fi8} negatively. The same paper states that its Question~8.2, asking for some spectrum with a three-dimensional subspace in its Fourier support, is equivalent to that stronger assertion. Hence Question~8.2 has a negative answer as well. This last deduction uses the source's equivalence; the release does not claim a separately formalized Fourier-support theorem quantified over arbitrary spectra.
+
+The original implication remains outside the result. The broader preprint~\cite{fi9} reduces its unresolved binary dimension-nine case to spectral sets of cardinality $64$. Our set is in that cardinality class, but it tiles. Failure of linear complements cannot be substituted for failure of tiling.
+
+\subsection{Sharp dimension, with an external dependency}
+
+Accepting the dimension-eight theorem of~\cite[Theorem~1.1]{fi8}, nine is the least \emph{positive} binary dimension in which a spectral set or a tile can fail to have a subspace complement. It is also the least positive binary dimension in which the periodic tiling property fails.
+
+Here is the deduction for smaller dimensions. Embed $\F_2^d$, $1\leq d\leq8$, as a subspace of $\F_2^8$. A tile of the smaller space is a tile of the larger one after extending its complement along the extra coordinates. A spectral set remains spectral under this embedding. An ambient subspace complement supplied by the dimension-eight theorem intersects $\F_2^d$ in a subspace complement in the smaller group: the representative of a point of $\F_2^d$ differs from its tile point by a vector of that intersection. For aperiodic tiles this complement has more than one element and is periodic. A complement of size one would force the tile to be the full nontrivial group, which is periodic.
+
+This is a consequence of an external preprint, including its classification inputs. Neither that classification nor the positive result through dimension eight is part of our Lean certificate. The unconditional new finite statement in this record is the dimension-nine construction itself.
+
+\subsection{Earlier negative implications for universal PT}
+
+Fan--Zhang~\cite{fz} ask whether all elementary abelian groups have the periodic tiling property. Their Theorem~1.10 assumes PT for a group \emph{and all its subgroups} before deducing that all its tiles are spectral. Fan--Kadir's nonspectral binary tile in dimension thirteen~\cite{fk} therefore already refutes universal elementary-group PT. A subsequent manuscript gives a nonspectral binary tile in dimension eleven~\cite{mm}. Together with the all-subgroups implication, that proves PT failure in some binary dimension at most eleven; it does not by itself identify dimension eleven as a failure. Our result supplies a direct witness in dimension nine. It is not the first refutation of the universal PT assertion.
+
+\section{Formal statements, correspondence and verification}\label{sec:formal}
+
+\subsection{The actual mathematical objects}
+
+The Lean ambient space is literally
+\[
+\code{Fin 9}\ \longrightarrow\ \code{ZMod 2},
+\]
+with its usual additive group and $\F_2$-module structure. Binary decoding is proved bijective from $\code{Fin 512}$, and decoding XOR is proved equal to vector addition. The tables in \code{BinaryData} enumerate exactly the sets in~\eqref{eq:construction}, using the code $x+64i$ fixed above. They define actual subsets, not lists with multiplicities.
+
+\code{TilingPair A B} asserts bijectivity of the sum map on the subtype product $A\times B$. \code{Periodic A} requires a nonzero actual vector preserving set membership. \code{HasPTProperty} quantifies all actual tiling pairs. These definitions retain both uniqueness of representation and the quantifier over alternative complements.
+
+Spectrality is not defined to be a passed matrix test. The additive characters are complex-valued functions on the genuine vector space; their homomorphism laws are proved. \code{BinarySpectral} constructs a Lean \code{Basis} of \emph{all} functions $E\to\C$, reindexes it by the actual frequency subset $\Lambda$, proves that each basis vector is the restricted character, and proves counting-measure orthogonality with complex conjugation. Thus the Gram certificate is connected to the analytic statement it is meant to certify.
+
+The combined declaration is
+\begin{center}
+\small\nolinkurl{BinaryFuglede.spectral_aperiodic_tile_without_periodic_complement}.
+\end{center}
+It contains all cardinalities and all four assertions of Theorem~\ref{thm:main}, apart from the separately named group-property conclusion
+\code{BinaryFuglede.binary\_nine\_fails\_PT}.
+The existential strengthened-question counterexample is
+\code{BinaryFuglede.exists\_spectral\_counterexample}.
+Finite-type instances in these statements enumerate finite subtypes; they impose no additional mathematical restriction on $E$, $\Lambda$, $T$ or arbitrary complements.
+
+\subsection{Map of the sixteen modules}
+
+\begingroup\small
+\begin{longtable}{@{}p{43mm}p{109mm}@{}}
+\toprule
+Module&Statement correspondence\\
+\midrule
+\endhead
+\modname{BinaryBasic}&The actual $\F_2^9$, 512-element cardinality, bijective binary decoding and compatibility with addition.\\
+\modname{BinaryData}&The displayed points, frequencies, complement and 28 allowed-shift codes; actual subset definitions.\\
+\modname{BinaryTilingDefs}&Unique tiling, nonzero translation periods, and the group PT property.\\
+\modname{BinaryTilingCodes}&An exact representation certificate for each of the 512 group elements.\\
+\modname{BinaryTiling}&Bijective sum map, set cardinalities, and the actual theorem $E\oplus T=G$.\\
+\modname{BinaryAperiodic}&For every candidate nonzero period, a genuine point leaves $E$; concludes that $E$ is aperiodic.\\
+\modname{BinaryObstruction}&Exact difference coverage outside the 28 codes, and exclusion of every allowed three-generator cube.\\
+\modname{BinarySubspacePrelude}&Vector-space and independence facts needed to extract a three-dimensional subspace obstruction.\\
+\modname{BinaryNoLinear}&Transport of code certificates to vectors; no three-dimensional difference-free subspace and no such tiling.\\
+\modname{BinaryPeriodicity}&Every genuine complement has eight points; a presumed period produces seven forbidden allowed differences.\\
+\modname{BinaryNoSubspace}&No subspace of any dimension can complement $E$; cardinality forces any hypothetical one to dimension three.\\
+\modname{BinaryCharacters}&Actual integer/complex additive characters, pairing laws, conjugation and squared norm.\\
+\modname{BinaryWalsh}&Exact integer Walsh sums and coverage of every nonzero difference of the listed frequencies.\\
+\modname{BinarySpectral}&Complex linear independence, a basis of $\C^E$ indexed by $\Lambda$, and genuine spectrality.\\
+\modname{BinaryMain}&The combined explicit theorem, no periodic or subspace complement, the existential counterexample and $\neg\PT(\F_2^9)$.\\
+\modname{BinaryComplements}&Theorem~\ref{thm:unique}: $B$ complements $E$ if and only if $B$ is a translate of $T$; the translates are distinct, and there are exactly 512 complements.\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+The conventional proof uses the transparent tables to derive the complete identity~\eqref{eq:allowed}. The formal proof directly certifies the implication
+\begin{equation}\label{eq:formalcover}
+v\ne0\ \text{and}\ v\notin E+E\quad\Longrightarrow\quad v\in\mathrm{Allowed},
+\end{equation}
+where \code{Allowed} is the displayed set of 28 decoded vectors, and certifies that no $a,b,c$ have all seven cube sums in \code{Allowed}. These are exactly the directions used to exclude a complement. For Theorem~\ref{thm:unique}, a single kernel certificate over the 28 allowed codes checks that for every pair $x,y$ with $x+y$ allowed, one translate $c+C$ with $c\in C$ contains $x$, $y$ and every common neighbour of $x$ and $y$ other than $x+y$. Together with the cube exclusion, which rules out $x+y$ itself, this places every complement inside a translate of $T$; a complement contained in another complement equals it. The full equality~\eqref{eq:allowed}, the graph interpretation of its 28 vectors, and the intermediate subspace tables are explanatory conventional mathematics, not additional separately exported Lean theorems. The final conclusions do not rely on accepting those explanations as axioms.
+
+\subsection{Pinned environment and trust boundary}
+
+The release specifies Lean~4.19.0 and mathlib commit
+\begin{center}
+\small\nolinkurl{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+\end{center}
+Every transitive dependency is pinned in the Lake manifest. Exact finite checks use ordinary Lean reduction, not \code{native\_decide}, external SAT output or a numerical oracle. The isolated verifier recompiles every project module and the generated axiom audit from frozen sources with \code{--trust=0}, warnings as errors, and automatic implicit variables disabled. Its project-object search path starts empty; no development or earlier-project objects are used. Dependency object caches are reused with kernel checking at trust zero; this is not a claim to rebuild all of mathlib from source.
+
+The permitted axiom closures contain only \code{propext}, \code{Classical.choice} and \code{Quot.sound}. The verifier rejects placeholders, custom axioms and forbidden executable-proof shortcuts. The successful receipt and its source hashes, rather than an informal count of theorem declarations, identify what was checked.
+
+\replaystatus{} The original release recorded a passing clean build of all 15 project modules and the complete generated audit of 106 public definitions and theorems on 30 October 2026.
+
+\section{Priority assessment and comparison}
+
+The current primary texts were checked before and after the construction, including the two Ferguson--Iosevich preprints, the PT framework, Fan--Kadir, and the full version-two manuscript of Korea Superintelligence Labs. Its public theorem list concerns a different base tile and a dimension-eleven nonspectral construction. Its underlying Lean repository is private; the public PDF and complete claim dossier were inspected, but unpublished source could not be.
+
+There is a particularly relevant potential confusion in the broader Ferguson--Iosevich paper: its periodic-spectrum computation uses some general, rather than subgroup, tiling certificates. That does not establish the impossibility of subgroup complements. We therefore inspected the actual source archive, not only the certificate labels. Its 114 JSON files contain 922 distinct 64-point arrays within the binary nine-dimensional coordinate range. For 921, the audit constructs and directly verifies a three-dimensional linear complement. The remaining array is explicitly an eight-dimensional divisibility negative control: it has no four-point tiling complement, and the source does not assert spectrality. None of those public arrays duplicates the present obstruction. The audit, in \code{discovery/}, records all source locations, complement bases, and the archive hash; it is a reproducible priority screen, not an exhaustive classification of the authors' possible constructions.
+
+Older binary-space tiling work~\cite{clvz,ev,dinitz,szaboward} was searched under linear tiles, subgroup complements, perfect codes, translation kernels, and group factorizations. A non-linear \emph{shape} can still be a linear tile, and an aperiodic tiling \emph{pair} can still permit a different periodic complement. Full-rank tilings impose another condition, namely that both factors span the ambient group; our eight-point complement spans only six dimensions. These distinctions were used when screening apparently related examples. No matching obstruction was found in the inspected primary texts. One relevant full-rank-tiling article was available only through its primary abstract~\cite{ov}; that access limitation is retained in the audit.
+
+A recent periodic-tiling manuscript in the OpenAI/math repository concerns $\mathbb Z^3$ and a cyclic-factor encoding~\cite{oaitiling}; inspection of its actual PDF found no matching finite binary statement. Searches additionally covered arXiv updates, publisher records, author pages, mathematical databases, MathOverflow and repositories. Negative search results do not establish nonexistence of earlier work. The affirmative novelty evidence is the directly stated strengthened question together with the explicit distinction from the closest public examples.
+
+In summary, the finite theorem is formally verified; the construction appears to resolve an explicit structural question posed four days earlier; and historical priority remains provisional. The principal Fuglede implication in dimension nine remains unresolved.
+
+\section{Reproduction and discovery record}
+
+The \code{lean/} directory contains the project sources, the pinned toolchain and manifest, \code{modules.json}, the strict verifier \code{verify\_release.py} and the frozen source hashes. For an existing pristine checkout of the pinned mathlib revision, the strict command has the form
+\Needspace{7\baselineskip}
+\begin{Verbatim}[fontsize=\small]
+python3 verify_release.py \
+  --lean-home /absolute/path/to/lean-4.19.0-linux \
+  --mathlib /absolute/path/to/mathlib4 \
+  --out /absolute/path/to/new-empty-verification-directory
+\end{Verbatim}
+The verifier also accepts dependencies prepared by Lake, through the options \code{--mathlib} and \code{--packages-dir} pointing into \code{.lake/packages}; \code{VERIFICATION.md} gives both variants. Do not update dependencies while reproducing the frozen release. A PASS receipt requires all module exit codes to be zero and the observed axiom-audit count to match the expected count. Allow several minutes and several gigabytes of memory for exact certificate reduction.
+
+The research record of the earlier session describes an unsuccessful heuristic search for spectral non-tiles, using Hadamard switching and spectral-pair trades. It claims no exhaustion. The selected precursor came from a known quaternionic Hadamard seed~\cite{mr}; its 2,242 saved switches can be replayed exactly. Coordinate changes then exposed the eight-fiber structure, and removing affine fiber offsets produced~\eqref{eq:construction}. That simplification was checked separately and is the actual set formalized here.
+
+The standard-library program \code{checks/check\_construction.py} uses exact integers. It rebuilds $E$ from Table~\ref{tab:bases}, verifies all 2,016 off-diagonal character sums, the tiling, aperiodicity and the identity~\eqref{eq:allowed}, confirms Lemma~\ref{lem:linegraph}, enumerates all complements of $E$ by a clique search and by an exact-cover search that uses no difference criterion, and checks all 788,035 three-dimensional subspaces of $\F_2^9$. It runs in a few seconds. These calculations are independent error detection; they are not inputs to the Lean proof. The search archive itself is not included.
+
+\begin{thebibliography}{99}
+
+\bibitem{fi8} S.~J.~Ferguson and J.~Iosevich.
+\emph{Fuglede's conjecture holds in eight dimensions over the field with two elements}.
+\href{https://arxiv.org/html/2610.36417v1}{arXiv:2610.36417v1}, 26 October 2026.
+Theorem~1.1, Section~7, Questions~8.1--8.2. Unrefereed preprint at the audit date.
+
+\bibitem{fi9} S.~J.~Ferguson and J.~Iosevich.
+\emph{Fuglede's conjecture holds in $\F_p^d$ for $p=2$, $d=8$ and $p=11$, $d=3$}.
+\href{https://arxiv.org/html/2610.30712v1}{arXiv:2610.30712v1}, 22 October 2026.
+Primary source and ancillary archive: \url{https://arxiv.org/src/2610.30712v1}.
+
+\bibitem{fz} S.~Fan and T.~Zhang.
+\emph{Periodicity of tiles in finite abelian groups}.
+\href{https://arxiv.org/html/2408.12901v2}{arXiv:2408.12901v2}, revised 20 September 2025.
+Theorems~1.8 and~1.10, Question~10.1.
+
+\bibitem{fk} S.~Fan and M.~Kadir.
+\emph{Translational tiles without spectra in finite abelian $p$-groups}.
+\href{https://arxiv.org/abs/2609.00087}{arXiv:2609.00087v1}, submitted 31 August 2026.
+
+\bibitem{mm} Korea Superintelligence Labs / Machina Mathematica.
+\emph{Tiles without spectra in abelian $2$-groups: a smaller elementary abelian example, exact orthogonality defects, and the optimality of a fibre--clique certificate}.
+Version~2, public source snapshot 7 September 2026.
+\href{https://ideosphere.ai/papers/fuglede-pgroup}{Ideosphere primary record};
+\href{https://lean.up.railway.app/papers/fuglede-pgroup-v2.pdf}{original PDF}.
+Theorem~8.1, Remark~8.4 and Section~12. Model-generated preprint; public PDF inspected.
+
+\bibitem{clvz} G.~Cohen, S.~Litsyn, A.~Vardy and G.~Z\'emor.
+\emph{Tilings of binary spaces}.
+SIAM Journal on Discrete Mathematics \textbf{9}(3) (1996), 393--412.
+\href{https://doi.org/10.1137/S0895480195280137}{doi:10.1137/S0895480195280137}.
+
+\bibitem{ev} T.~Etzion and A.~Vardy.
+\emph{On perfect codes and tilings: problems and solutions}.
+SIAM Journal on Discrete Mathematics \textbf{11}(2) (1998), 205--223.
+\href{https://doi.org/10.1137/S0895480196309171}{doi:10.1137/S0895480196309171}.
+
+\bibitem{ov} P.~R.~J.~\"Osterg\aa rd and A.~Vardy.
+\emph{Resolving the existence of full-rank tilings of binary Hamming spaces}.
+SIAM Journal on Discrete Mathematics \textbf{18}(2), 382--387.
+\href{https://doi.org/10.1137/S0895480104435804}{doi:10.1137/S0895480104435804}.
+Primary abstract checked; full text not retrieved in this audit.
+
+\bibitem{dinitz} M.~Dinitz.
+\emph{Full rank tilings of finite abelian groups}.
+SIAM Journal on Discrete Mathematics \textbf{20}(1) (2006), 160--170.
+\href{https://doi.org/10.1137/S0895480104445794}{doi:10.1137/S0895480104445794}.
+
+\bibitem{szaboward} S.~Szab\'o and C.~Ward.
+\emph{Factoring abelian groups and tiling binary spaces}.
+Pure Mathematics and Applications \textbf{8}(1) (1997), 111--115.
+Author-uploaded scanned primary text inspected.
+
+\bibitem{mr} A.~Montolio and J.~Rif\`a.
+\emph{Hadamard $\mathbb Z_2\mathbb Z_4Q_8$-codes: rank and kernel} (2015).
+\href{https://ddd.uab.cat/pub/caplli/2015/142878/codtheapp_a2015p273.pdf}{Public author manuscript}.
+Used only for a known search seed; the displayed construction is verified independently.
+
+\bibitem{oaitiling} OpenAI.
+\emph{A translational tile with no fully periodic tiling in dimension three}.
+23 September 2026.
+\href{https://github.com/openai/math/blob/main/preprints/A-translational-tile-with-no-fully-periodic-tiling-in-dimension-three-September-23-2026/paper.pdf}{Primary manuscript in the OpenAI/math repository}.
+The problem concerns lattice and Euclidean tilings, not finite-group PT.
+
+\end{thebibliography}
+\end{document}

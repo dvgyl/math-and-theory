@@ -257,7 +257,8 @@ jobs:
   completed-portable-proofs:
     name: Completed proof package (${{ matrix.package }})
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    # The Nesterov verifier replays every imported proof at each of its 56 modules.
+    timeout-minutes: ${{ matrix.package == 'nesterov-subcritical' && 120 || 60 }}
     strategy:
       fail-fast: false
       max-parallel: 2
@@ -293,6 +294,21 @@ jobs:
           - package: fidelity-three-state
             root: papers/physics/fidelity-three-state
             project: .
+          - package: chambolle-pock-cycles
+            root: papers/mathematics/chambolle-pock-cycles
+            project: lean
+          - package: nesterov-subcritical
+            root: papers/mathematics/nesterov-subcritical
+            project: lean
+          - package: critical-hardcore
+            root: papers/theoretical-computer-science/critical-hardcore
+            project: lean
+          - package: upb-tensor-rank
+            root: papers/physics/upb-tensor-rank
+            project: lean
+          - package: binary-spectral-tile
+            root: papers/mathematics/binary-spectral-tile
+            project: lean
     env:
       LEAN_NUM_THREADS: '1'
     steps:
@@ -331,6 +347,16 @@ jobs:
             sh verify.sh
           elif [[ '${{ matrix.package }}' == 'fidelity-three-state' ]]; then
             python3 verify.py --output "${RUNNER_TEMP}/fidelity-source-verification.json" --log-dir "${RUNNER_TEMP}/fidelity-source-logs" --timeout 1800
+          elif [[ '${{ matrix.package }}' == 'nesterov-subcritical' ]]; then
+            python3 verify_release.py --lean-home "$(lean --print-prefix)" --mathlib .lake/packages/mathlib --out "${RUNNER_TEMP}/nesterov-subcritical-verification"
+          elif [[ '${{ matrix.package }}' == 'binary-spectral-tile' ]]; then
+            python3 verify_release.py --lean-home "$(lean --print-prefix)" --mathlib .lake/packages/mathlib --packages-dir .lake/packages --out "${RUNNER_TEMP}/binary-spectral-tile-verification"
+          elif [[ '${{ matrix.package }}' == 'upb-tensor-rank' ]]; then
+            python3 verify.py
+          elif [[ '${{ matrix.package }}' == 'critical-hardcore' ]]; then
+            python3 verify.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib
+          elif [[ '${{ matrix.package }}' == 'chambolle-pock-cycles' ]]; then
+            python3 verify_lean.py --mathlib .lake/packages/mathlib --lean "$(lean --print-prefix)/bin/lean" --output "${RUNNER_TEMP}/chambolle-pock-verification"
           elif [[ '${{ matrix.package }}' == 'admm-counterexample' ]]; then
             python3 verify_lean.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib --output "${RUNNER_TEMP}/admm-source-verification"
           else

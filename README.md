@@ -10,7 +10,7 @@ The collection contains results with different formal verification scopes. Each 
 
 ## Navigating the collection
 
-The current catalogue contains 31 manuscripts and research notes across 30 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
+The current catalogue contains 36 manuscripts and research notes across 35 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
 
 - Start with the [overview](overview.pdf) for descriptions of the result families.
 - Use the [manuscript map](CONTENTS.md) to find individual papers, abstracts and supporting materials.
@@ -21,9 +21,13 @@ The current catalogue contains 31 manuscripts and research notes across 30 resul
 
 ## Standout results
 
+The results I consider the strongest, in order of significance.
+
 ### Mathematics
 
 **[The exact last-gradient bound for constant-step gradient descent in the strongly convex case](papers/mathematics/strong-gradient/manuscript.pdf).** The exact final-gradient guarantee for constant-step gradient descent holds on every real Hilbert space, for every natural horizon and all normalized steps in [0,2], including positive strong convexity. The actual-function bound and normalized attaining functions are formalized; sharpness at arbitrary scale follows by conventional rescaling.
+
+**[Escaping Nesterov flows and iterates below critical damping](papers/mathematics/nesterov-subcritical/manuscript.pdf).** For X″ + (r/t)X′ + ∇F(X) = 0 from rest and for the Nesterov iteration with momentum k/(k+r), universal boundedness over convex objectives with 1-Lipschitz gradient and attained minimum holds on the Hilbert space ℓ² exactly when r ≥ 3. An explicit convex planar potential has an escaping trajectory for every 0 < r ≤ 2. The Hilbert-space and discrete thresholds and the planar escape for 1 < r ≤ 2 are formalized; the finite-dimensional range 2 < r < 3 remains open.
 
 **[The exact asymmetric Merino–Welsh region for finite matroids](papers/mathematics/asymmetric-tutte/manuscript.pdf).** The exact nonnegative parameter region for T_M(x,0) T_M(0,y) ≥ T_M(1,1)² is characterized uniformly over all finite matroids without loops or coloops. The formal statement uses actual matroids and their subset-rank Tutte sum, including the empty ground set.
 
@@ -33,11 +37,11 @@ The current catalogue contains 31 manuscripts and research notes across 30 resul
 
 ### Mathematical physics
 
-**[Exact conditional contraction for Pauli channels and depolarization in every dimension](papers/physics/quantum-exact-contraction/quantum_exact_contraction.pdf).** The conditional hockey-stick contraction coefficient is exact for every stochastic Pauli qubit channel and the full physical depolarizing family in every dimension d ≥ 2. The formal proof covers every γ ≥ 1, arbitrary finite quantum references, all boundary cases, and matching density-state witnesses.
-
 **[A sum-of-squares proof of the four-qubit Higuchi–Sudbery entropy bound](papers/physics/higuchi-sudbery/manuscript.pdf).** Every pure four-qubit state has average two-qubit marginal entropy at most log(2) + log(3)/2. The Higuchi–Sudbery state attains the bound, and the actual-state inequality and attainment are formalized.
 
 **[Universal entanglement embezzlement with inverse-quadratic logarithmic infidelity](papers/physics/universal-embezzlement/manuscript.pdf).** A target-independent catalyst of local dimension 2^(4L) gives root infidelity at most 125m/L² for every Schmidt probability vector with m entries. The formal proof constructs local basis permutations and their finite complex Hilbert-space interpretation.
+
+**[Exact conditional contraction for Pauli channels and depolarization in every dimension](papers/physics/quantum-exact-contraction/quantum_exact_contraction.pdf).** The conditional hockey-stick contraction coefficient is exact for every stochastic Pauli qubit channel and the full physical depolarizing family in every dimension d ≥ 2. The formal proof covers every γ ≥ 1, arbitrary finite quantum references, all boundary cases, and matching density-state witnesses.
 
 **[The three-state root-fidelity entropy bound](papers/physics/fidelity-three-state/manuscript.pdf).** The weighted three-by-three root-fidelity matrix has entropy at least the Holevo quantity of every three-state ensemble in arbitrary finite dimension. The formal theorem includes mixed and singular states and zero probabilities.
 
@@ -53,13 +57,13 @@ The current catalogue contains 31 manuscripts and research notes across 30 resul
 - [Graph theory and graph polynomials](CONTENTS.md#graph-theory-and-graph-polynomials): DomiRank entropy, domination-sequence ultra-log-concavity, domination-root escape, leaf-deletion mode movement.
 - [Inequalities and real analysis](CONTENTS.md#inequalities-and-real-analysis): diagonal concavity.
 - [Integer sequences and combinatorics](CONTENTS.md#integer-sequences-and-combinatorics): Motzkin root log-concavity, bounded-forcing Motzkin bounds, Hofstadter iteration, nonquasipolynomial power ranks.
-- [Discrete analysis, probability and entropy](CONTENTS.md#discrete-analysis-probability-and-entropy): the sharp one-eighth Fourier bound, ranking entropy, Sidon-set Rényi thresholds.
+- [Discrete analysis, tilings, probability and entropy](CONTENTS.md#discrete-analysis-tilings-probability-and-entropy): the sharp one-eighth Fourier bound, a spectral tile in F₂⁹ with no periodic complement, ranking entropy, Sidon-set Rényi thresholds.
 - [Matroid theory](CONTENTS.md#matroid-theory): the asymmetric Merino–Welsh region.
-- [Optimization](CONTENTS.md#optimization): an ADMM five-cycle, the exact strong-convexity gradient bound.
+- [Optimization](CONTENTS.md#optimization): an ADMM five-cycle, escaping subcritical Nesterov flows, Chambolle–Pock cycles, the exact strong-convexity gradient bound.
 
 ### Theoretical computer science
 
-- [Sampling algorithms and information theory](CONTENTS.md#sampling-algorithms-and-information-theory): best-of-n counterexamples.
+- [Sampling algorithms and information theory](CONTENTS.md#sampling-algorithms-and-information-theory): critical hard-core influence bounds, best-of-n counterexamples.
 - [Boolean functions and decision trees](CONTENTS.md#boolean-functions-and-decision-trees): decision-tree covariance.
 - [Fair division](CONTENTS.md#fair-division): ordered-allocation transfer.
 - [Proof complexity](CONTENTS.md#proof-complexity): resolution-tree mass certificates.
@@ -67,7 +71,7 @@ The current catalogue contains 31 manuscripts and research notes across 30 resul
 ### Mathematical physics
 
 - [Stochastic thermodynamics](CONTENTS.md#stochastic-thermodynamics): thermal current kurtosis, unicyclic current skewness.
-- [Quantum information](CONTENTS.md#quantum-information): universal entanglement embezzlement, the Higuchi–Sudbery entropy bound, a matched-basis information counterexample, exact steering correlation bounds, three-state root fidelity, exact conditional quantum contraction.
+- [Quantum information](CONTENTS.md#quantum-information): universal entanglement embezzlement, the Higuchi–Sudbery entropy bound, a matched-basis information counterexample, exact steering correlation bounds, three-state root fidelity, exact conditional quantum contraction, Schmidt numbers of tensor powers of the Tiles state.
 
 ## Find a result
 
@@ -82,6 +86,10 @@ I use the names below to connect common search terms to each result and its file
 | Merino–Welsh, Merino-Welsh, Tutte polynomial, finite matroids | [Asymmetric Merino–Welsh region](papers/mathematics/asymmetric-tutte/) |
 | Pauli channels, depolarizing channels, hockey-stick divergence, quantum contraction | [Exact conditional contraction](papers/physics/quantum-exact-contraction/) |
 | Alternating direction method of multipliers, ADMM, convergence counterexample | [Rational period-five ADMM orbit](papers/mathematics/admm-counterexample/) |
+| Nesterov accelerated gradient flow and iteration, vanishing damping, subcritical damping, unbounded trajectories | [Escaping subcritical Nesterov flows](papers/mathematics/nesterov-subcritical/) |
+| Hard-core model, spectral independence, uniqueness threshold, Glauber dynamics | [Critical hard-core influence bounds](papers/theoretical-computer-science/critical-hardcore/) |
+| Unextendible product bases, UPB, Schmidt number, bound entanglement, Tiles state | [Minimum-rank multiplicativity and the Tiles state](papers/physics/upb-tensor-rank/) |
+| Chambolle–Pock, Chambolle-Pock, PDHG, primal-dual hybrid gradient, extrapolation, periodic orbits | [Chambolle–Pock periodic obstructions](papers/mathematics/chambolle-pock-cycles/) |
 | C-finite sequences, constant-recursive sequences, power ranks, nonquasipolynomial | [Power-rank sequence and companion results](papers/mathematics/power-rank/) |
 | Markov rings, stochastic currents, unicyclic networks, skewness | [Unicyclic current bound](papers/physics/unicyclic-skewness/) |
 | Quantum steering, steering ellipsoids, two-qubit correlations, three-setting bounds | [Fixed-centre steering bounds](papers/physics/steering-bounds/) |
@@ -100,4 +108,4 @@ I preserve corrections and revisions in the repository history. Cite an individu
 
 ## How the results were produced
 
-I publish fully autonomous agentic research and am responsible for publication. The original collection records GPT 6 with Pro Reasoning in ChatGPT for initial research and GPT 6 Astra in Codex for formalizations and corrections, together with its stated author check. The later packages give their own contribution disclosures, including actual GPT 6.1 Sol formalization and verification work. Each manuscript states its own contribution and review history. These disclosures do not claim expert validation or external peer review.
+I publish fully autonomous agentic research and am responsible for publication. Models used: GPT 6 Astra in ChatGPT and Codex (29 October 2026), GPT 6.1 Sol in Codex (29 October 2026), and Opus 5.5 by Anthropic in Claude Code (30 October 2026). Each manuscript states how they were used and its review history; the [authorship record](AUTHORSHIP.md) gives the details. These disclosures do not claim expert validation or external peer review.

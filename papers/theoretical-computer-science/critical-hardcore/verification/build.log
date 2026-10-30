@@ -1,0 +1,259 @@
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+Fresh project output: $REPLAY/verification/clean-dk6iczxf/olean
+Dependency compiled caches are reused read-only after commit and worktree checks.
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/AdaptiveTrials.olean CriticalHardcore/AdaptiveTrials.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/FirstDanger.olean CriticalHardcore/FirstDanger.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/WordTrialTree.olean CriticalHardcore/WordTrialTree.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/WordTrialMass.olean CriticalHardcore/WordTrialMass.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/Nonbacktracking.olean CriticalHardcore/Nonbacktracking.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/NonbacktrackingChoices.olean CriticalHardcore/NonbacktrackingChoices.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/NonbacktrackingWordEquiv.olean CriticalHardcore/NonbacktrackingWordEquiv.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/NonbacktrackingAppend.olean CriticalHardcore/NonbacktrackingAppend.lean
+CriticalHardcore/NonbacktrackingAppend.lean:20:0: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.NBChoices.ofFn_lettersOfList':
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/WordTrialLocal.olean CriticalHardcore/WordTrialLocal.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/NonbacktrackingLocal.olean CriticalHardcore/NonbacktrackingLocal.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/NonbacktrackingSurvival.olean CriticalHardcore/NonbacktrackingSurvival.lean
+CriticalHardcore/NonbacktrackingSurvival.lean:117:0: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.NBChoices.survival_nonneg':
+  [DecidableEq V]
+  [DecidableRel G.Adj]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] [DecidableRel G.Adj] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/NonbacktrackingTrials.olean CriticalHardcore/NonbacktrackingTrials.lean
+CriticalHardcore/NonbacktrackingTrials.lean:67:0: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.NBChoices.two_div_one_sub_trialQ':
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/CollisionScale.olean CriticalHardcore/CollisionScale.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/CollisionBound.olean CriticalHardcore/CollisionBound.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/GibbsModel.olean CriticalHardcore/GibbsModel.lean
+CriticalHardcore/GibbsModel.lean:30:8: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.mem_independentSets':
+  [DecidableEq V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+CriticalHardcore/GibbsModel.lean:35:0: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.independent_mono':
+  [DecidableEq V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+CriticalHardcore/GibbsModel.lean:40:8: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.independent_empty':
+  [DecidableEq V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/LocalContraction.olean CriticalHardcore/LocalContraction.lean
+CriticalHardcore/LocalContraction.lean:124:4: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+CriticalHardcore/LocalContraction.lean:131:4: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+CriticalHardcore/LocalContraction.lean:134:4: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/DeletionRecursion.olean CriticalHardcore/DeletionRecursion.lean
+CriticalHardcore/DeletionRecursion.lean:92:8: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.mem_neighborList':
+  [DecidableEq V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+CriticalHardcore/DeletionRecursion.lean:97:0: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.neighborList_nodup':
+  [DecidableEq V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/WeightedTree.olean CriticalHardcore/WeightedTree.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/WeightedTotals.olean CriticalHardcore/WeightedTotals.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/ComputationTree.olean CriticalHardcore/ComputationTree.lean
+CriticalHardcore/ComputationTree.lean:54:0: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.neighborList_length_le_degree':
+  [DecidableEq V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/WeightedPaths.olean CriticalHardcore/WeightedPaths.lean
+CriticalHardcore/WeightedPaths.lean:62:0: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.WeightedTree.head_of_mem_paths':
+  [DecidableEq V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/ComputationGeometry.olean CriticalHardcore/ComputationGeometry.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/PathCountBridge.olean CriticalHardcore/PathCountBridge.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/GibbsInfluence.olean CriticalHardcore/GibbsInfluence.lean
+CriticalHardcore/GibbsInfluence.lean:306:4: warning: try 'simp' instead of 'simpa'
+note: this linter can be disabled with `set_option linter.unnecessarySimpa false`
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/InfluenceTransfer.olean CriticalHardcore/InfluenceTransfer.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/RegularCompletion.olean CriticalHardcore/RegularCompletion.lean
+CriticalHardcore/RegularCompletion.lean:50:0: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.RegularCompletion.slot_injective':
+  [DecidableEq V]
+  [NeZero Δ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] [NeZero Δ] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+CriticalHardcore/RegularCompletion.lean:56:8: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.RegularCompletion.vertical_fst':
+  [DecidableEq V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+CriticalHardcore/RegularCompletion.lean:59:0: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.RegularCompletion.vertical_involutive':
+  [DecidableEq V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+CriticalHardcore/RegularCompletion.lean:64:0: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.RegularCompletion.vertical_ne':
+  [DecidableEq V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+CriticalHardcore/RegularCompletion.lean:158:0: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.RegularCompletion.card_vertex':
+  [DecidableEq V]
+  [NeZero Δ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] [NeZero Δ] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/ScaleInterpretation.olean CriticalHardcore/ScaleInterpretation.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/Pinning.olean CriticalHardcore/Pinning.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/SpectralStatement.olean CriticalHardcore/SpectralStatement.lean
+CriticalHardcore/SpectralStatement.lean:32:0: warning: automatically included section variable(s) unused in theorem 'CriticalHardcore.all_pinned_rows_of_residual_rows':
+  [Fintype V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype V] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/Main.olean CriticalHardcore/Main.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore.olean CriticalHardcore.lean
+EXIT 0
+
+$ $LEAN_HOME/bin/lean -j1 -DautoImplicit=false -o $REPLAY/verification/clean-dk6iczxf/olean/CriticalHardcore/Audit.olean CriticalHardcore/Audit.lean
+CriticalHardcore.critical_hardcore_influence_rows.{u_1} {V : Type u_1} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
+  [DecidableRel G.Adj] {lam : ℝ} (hlam : 0 < lam) (d : ℕ) (hd : 2 ≤ d)
+  (hcritical : lam ≤ CriticalHardcore.criticalActivity d) (hdegree : ∀ (v : V), G.degree v ≤ d + 1) (S : Finset V)
+  (u : V) (hu : u ∈ S) :
+  ∑ v ∈ S, |CriticalHardcore.coordinateInfluence G lam S u v| ≤
+    CriticalHardcore.criticalInfluenceBound d (Fintype.card V) lam
+CriticalHardcore.critical_hardcore_spectral_independence.{u_1} {V : Type u_1} [Fintype V] [DecidableEq V]
+  (G : SimpleGraph V) [DecidableRel G.Adj] {lam : ℝ} (hlam : 0 < lam) (d : ℕ) (hd : 2 ≤ d)
+  (hcritical : lam ≤ CriticalHardcore.criticalActivity d) (hdegree : ∀ (v : V), G.degree v ≤ d + 1) :
+  CriticalHardcore.LinftySpectrallyIndependent G lam (CriticalHardcore.criticalInfluenceBound d (Fintype.card V) lam)
+CriticalHardcore.critical_hardcore_pinned_rows.{u_1} {V : Type u_1} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
+  [DecidableRel G.Adj] {lam : ℝ} (hlam : 0 < lam) (d : ℕ) (hd : 2 ≤ d)
+  (hcritical : lam ≤ CriticalHardcore.criticalActivity d) (hdegree : ∀ (v : V), G.degree v ≤ d + 1) {S P Q : Finset V}
+  (hp : CriticalHardcore.FeasiblePinning G S P Q) {u : V}
+  (hu : 0 < CriticalHardcore.pinnedOccupation G lam S P Q u ∧ CriticalHardcore.pinnedOccupation G lam S P Q u < 1) :
+  ∑ v ∈ S, |CriticalHardcore.pinnedCoordinateInfluence G lam S P Q u v| ≤
+    CriticalHardcore.criticalInfluenceBound d (Fintype.card V) lam
+CriticalHardcore.criticalInfluenceBound_le_real {lam : ℝ} (hlam : 0 ≤ lam) (d n : ℕ) (hd : 2 ≤ d) :
+  CriticalHardcore.criticalInfluenceBound d n lam ≤
+    1 +
+      ↑(d + 1) * CriticalHardcore.pmax lam *
+        (12 * ↑d * (√↑(2 * (d + 1) * n) + 1) * (1 + Real.logb (↑d) (√↑(2 * (d + 1) * n) + 1)))
+def CriticalHardcore.criticalInfluenceBound : ℕ → ℕ → ℝ → ℝ :=
+fun d n lam => 1 + ↑(d + 1) * CriticalHardcore.pmax lam * ↑(CriticalHardcore.collisionScale d (2 * (d + 1) * n))
+def CriticalHardcore.LinftySpectrallyIndependent.{u_1} : {V : Type u_1} →
+  [inst : Fintype V] → [inst : DecidableEq V] → SimpleGraph V → ℝ → ℝ → Prop :=
+fun {V} [Fintype V] [DecidableEq V] G lam C =>
+  ∀ (P Q : Finset V),
+    CriticalHardcore.FeasiblePinning G Finset.univ P Q →
+      ∀ (u : V),
+        0 < CriticalHardcore.pinnedOccupation G lam Finset.univ P Q u ∧
+            CriticalHardcore.pinnedOccupation G lam Finset.univ P Q u < 1 →
+          ∑ v, |CriticalHardcore.pinnedCoordinateInfluence G lam Finset.univ P Q u v| ≤ C
+def CriticalHardcore.pinnedCoordinateInfluence.{u_1} : {V : Type u_1} →
+  [inst : DecidableEq V] → SimpleGraph V → ℝ → Finset V → Finset V → Finset V → V → V → ℝ :=
+fun {V} [DecidableEq V] G lam S P Q u v =>
+  CriticalHardcore.pinnedConditionalExpectation G lam S P Q u true (CriticalHardcore.coordinate v) -
+    CriticalHardcore.pinnedConditionalExpectation G lam S P Q u false (CriticalHardcore.coordinate v)
+def CriticalHardcore.pinnedConditionalExpectation.{u_1} : {V : Type u_1} →
+  [inst : DecidableEq V] → SimpleGraph V → ℝ → Finset V → Finset V → Finset V → V → Bool → (V → ℝ) → ℝ :=
+fun {V} [DecidableEq V] G lam S P Q u b f =>
+  CriticalHardcore.pinnedConditionalMoment G lam S P Q u b f /
+    CriticalHardcore.pinnedConditionalPartition G lam S P Q u b
+def CriticalHardcore.pinnedConditionalPartition.{u_1} : {V : Type u_1} →
+  [inst : DecidableEq V] → SimpleGraph V → ℝ → Finset V → Finset V → Finset V → V → Bool → ℝ :=
+fun {V} [DecidableEq V] G lam S P Q u b =>
+  ∑ I ∈ CriticalHardcore.pinnedConditionalIndependentSets G S P Q u b, lam ^ I.card
+def CriticalHardcore.pinnedConditionalIndependentSets.{u_1} : {V : Type u_1} →
+  [inst : DecidableEq V] → SimpleGraph V → Finset V → Finset V → Finset V → V → Bool → Finset (Finset V) :=
+fun {V} [DecidableEq V] G S P Q u b =>
+  {I ∈ CriticalHardcore.pinnedIndependentSets G S P Q | if b = true then u ∈ I else u ∉ I}
+structure CriticalHardcore.FeasiblePinning.{u_1} {V : Type u_1} (G : SimpleGraph V) (S P Q : Finset V) : Prop
+number of parameters: 5
+fields:
+  CriticalHardcore.FeasiblePinning.occupied_subset : P ⊆ S
+  CriticalHardcore.FeasiblePinning.unoccupied_subset : Q ⊆ S
+  CriticalHardcore.FeasiblePinning.disjoint : Disjoint P Q
+  CriticalHardcore.FeasiblePinning.independent : CriticalHardcore.Independent G P
+constructor:
+  CriticalHardcore.FeasiblePinning.mk.{u_1} {V : Type u_1} {G : SimpleGraph V} {S P Q : Finset V}
+    (occupied_subset : P ⊆ S) (unoccupied_subset : Q ⊆ S) (disjoint : Disjoint P Q)
+    (independent : CriticalHardcore.Independent G P) : CriticalHardcore.FeasiblePinning G S P Q
+def CriticalHardcore.criticalActivity : ℕ → ℝ :=
+fun d => ↑d ^ d / (↑d - 1) ^ (d + 1)
+'CriticalHardcore.critical_hardcore_influence_rows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CriticalHardcore.critical_hardcore_spectral_independence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CriticalHardcore.critical_hardcore_pinned_rows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CriticalHardcore.criticalInfluenceBound_le_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CriticalHardcore.regular_survival_sqrt_sum_le_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+EXIT 0

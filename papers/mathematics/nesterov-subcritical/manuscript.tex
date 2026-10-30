@@ -1,0 +1,254 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,array,longtable,microtype,graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\hypersetup{pdftitle={Escaping Nesterov flows and iterates below critical damping},pdfauthor={Dev D. Goyal},pdfsubject={Fully autonomous agentic research},pdfkeywords={Nesterov accelerated gradient, vanishing damping, subcritical damping, unbounded trajectories, convex optimization, Lean}}
+\allowdisplaybreaks[2]
+\setlength{\emergencystretch}{3em}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\eps}{\varepsilon}
+\makeatletter\g@addto@macro\UrlBreaks{\do\_\do\.}\makeatother
+\newcommand{\lean}[1]{{\urlstyle{tt}\nolinkurl{#1}}}
+\newcommand{\replaystatus}{A fresh replay on 30 October 2026, compiling all 56 modules from source with \texttt{--trust=0} against a Mathlib checkout built at the pinned revision, passed with every audited axiom closure standard; its record is in \texttt{verification/}.}
+\title{Escaping Nesterov flows and iterates\\ below critical damping}
+\author{Dev D. Goyal}
+\date{30 October 2026}
+\begin{document}
+\maketitle
+
+\section*{Research process and AI disclosure}
+This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
+
+Three uploaded research packages contributed: a continuous-time Hilbert-space threshold, an escaping planar trajectory at damping $r=2$, and a discrete-time threshold for the Nesterov iteration. Their research, proofs, Lean formalizations and earlier notes were produced by autonomous AI research agents in earlier sessions whose records do not name the model or system used.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the three packages for this release and coordinated independent AI referee checks of the first two. It proposed and proved the extension of the planar example from $r=2$ to every $0<r\le2$; the boundedness of the same planar flows for $r>2$ was found during refereeing. It generalized the Lean proof of the planar example to every $1<r\le2$, merged the three Lean developments into one project, ran the fresh Lean replay described in Section~\ref{sec:formal}, checked the discrete transfer argument, and wrote this combined manuscript. AI referee checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:formal}.
+
+\begin{abstract}
+We study zero-velocity solutions of $X''+\frac rtX'+\nabla F(X)=0$ and the corresponding Nesterov iteration with momentum $k/(k+r)$, for convex $F$ with a globally $1$-Lipschitz gradient and an attained minimum. For $r\ge3$ all trajectories and iterates are bounded. We show that this threshold is sharp. On $\ell^2(\N;\R^2)$, for every $0<r<3$ there is such an objective whose flow from rest has $\norm{X(t)}\to\infty$, and another whose unit-step iterates have $\norm{X_k}\to\infty$. In the plane, the explicit potential $f(x,y)=h(\sqrt{x^2+y^2})-x$, with $h$ the Huber function, has an escaping trajectory from $(2,1)$ for every $0<r\le2$, while every such trajectory is bounded for $r>2$. Whether boundedness fails in finite dimension for $2<r<3$ remains open. The Hilbert-space and discrete thresholds and the planar escape for $1<r\le2$ are formalized in Lean~4.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+Su, Boyd and Cand\`es modeled Nesterov's accelerated gradient method by
+\begin{equation}\label{eq:ode}
+X''(t)+\frac rtX'(t)+\nabla F(X(t))=0,\qquad t>0,\qquad X'(0)=0,
+\end{equation}
+with $r=3$ \cite{SBC}. For a convex $F$ with a minimizer, the energy $t^2(F(X)-\min F)+\frac12\norm{tX'+(r-1)(X-z)}^2$ is nonincreasing when $r\ge3$, which bounds every trajectory. For $r>3$ trajectories converge weakly \cite{ACPR,May}; at $r=3$ point convergence was proved recently \cite{JangRyu,BFN}. For $r<3$ objective values still decrease, at the rate $t^{-2r/3}$ \cite{ACR,AAD}, but nothing in this literature bounds the trajectory. Jang and Ryu record the subcritical behavior of trajectories as open in the version of their paper we consulted \cite{JangRyu}.
+
+We show that the classical threshold $r=3$ is sharp for boundedness, in three senses.
+
+\begin{enumerate}[leftmargin=1.5em]
+\item \emph{Continuous time on Hilbert space} (Theorem~\ref{thm:hilbert}). On $H=\ell^2(\N;\R^2)$, universal boundedness of zero-velocity solutions holds exactly when $r\ge3$.
+\item \emph{An explicit planar potential} (Theorem~\ref{thm:planar}). For $f(x,y)=h(R)-x$, $R=\sqrt{x^2+y^2}$, with the Huber function $h$, the solution from $(2,1)$ at rest escapes to infinity exactly when $0<r\le2$.
+\item \emph{The discrete iteration} (Theorem~\ref{thm:discrete}). For $X_{k+1}=Y_k-\nabla F(Y_k)$, $Y_{k+1}=X_{k+1}+\frac k{k+r}(X_{k+1}-X_k)$, universal boundedness on $\ell^2(\N;\R^2)$ holds exactly when $r\ge3$.
+\end{enumerate}
+
+For $0<r\le1$ escape is elementary, since the free motion $X'=ct^{-r}$ already has unbounded displacement. The substantive ranges are $1<r\le2$ in the plane and $1<r<3$ in Hilbert space. The Hilbert-space objectives are sums of rescaled two-dimensional valleys, each producing a longer and longer finite excursion; a single planar valley of this type cannot reach $r>2$ (Remark~\ref{rem:valleys}). Whether a finite-dimensional objective has an unbounded zero-velocity trajectory for some $2<r<3$ is the main open question. In every example the set of minimizers is unbounded, which is necessary in finite dimension.
+
+\section{Statements}\label{sec:statements}
+Throughout, an \emph{actual solution} of~\eqref{eq:ode} on a real Hilbert space $H$ is a pair of continuous maps $X,V:[0,\infty)\to H$ such that $X'=V$ on $[0,\infty)$, with a genuine derivative at $t=0$, and $V'(t)=-\frac rtV(t)-\nabla F(X(t))$ for $t>0$, with $V(0)=0$. The objectives are convex, everywhere finite and Fr\'echet differentiable, with a globally $1$-Lipschitz gradient.
+
+\begin{theorem}[Hilbert-space threshold]\label{thm:hilbert}
+Let $H=\ell^2(\N;\R^2)$ and $r>0$. Every actual solution for every convex $F$ with a globally $1$-Lipschitz gradient and an attained minimum is bounded if and only if $r\ge3$. More precisely:
+\begin{enumerate}[label=(\alph*)]
+\item if $r\ge3$ and $z$ minimizes $F$, then $\norm{X(t)-z}\le\norm{X(0)-z}$ for all $t\ge0$, on every real Hilbert space;
+\item if $1<r<3$, there is a convex $F\ge0$ with $F(0)=0$, a $1$-Lipschitz gradient bounded by $2$, and an actual solution with $X(0)_n=2^{-n}(2,1)/16$ and $\norm{X(t)}\to\infty$;
+\item if $0<r\le1$, there is such an $F$ with an attained minimum and an actual solution with $\norm{X(t)}\to\infty$.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[An explicit planar valley]\label{thm:planar}
+Let $h(s)=(s^2+1)/2$ for $0\le s\le1$, $h(s)=s$ for $s\ge1$, and $f(x,y)=h(R)-x$ with $R=\sqrt{x^2+y^2}$. Then $f$ is convex, $\nabla f(z)=z/\max\{1,\norm z\}-(1,0)$ is $1$-Lipschitz and bounded by $2$, $f\ge0$, and the minimizers of $f$ form the ray $\{(x,0):x\ge1\}$. For every $r>0$ there is an actual solution of~\eqref{eq:ode} with $X(0)=(2,1)$, and for every actual solution with these data:
+\begin{enumerate}[label=(\alph*)]
+\item if $0<r\le2$, then the first coordinate and the norm of $X(t)$ tend to $+\infty$;
+\item if $r>2$, then $X$ is bounded and its first coordinate converges.
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}\label{cor:finite}
+In $\R^2$, universal boundedness of zero-velocity solutions fails for every $0<r\le2$.
+\end{corollary}
+
+For the discrete statement let $F$ be convex with a globally $1$-Lipschitz gradient, $r>0$ and $b\in H$, and define
+\begin{equation}\label{eq:nag}
+X_0=Y_0=b,\qquad X_{k+1}=Y_k-\nabla F(Y_k),\qquad Y_{k+1}=X_{k+1}+\frac k{k+r}(X_{k+1}-X_k).
+\end{equation}
+In the index $n=k+1$ the momentum is $(n-1)/(n+r-1)$, the rational family of Chambolle and Dossal \cite{ChambolleDossal}; at $r=3$ it is the classical $(n-1)/(n+2)$. It is not the square-root recursion used in FISTA.
+
+\begin{theorem}[Discrete threshold]\label{thm:discrete}
+Let $H=\ell^2(\N;\R^2)$ and $r>0$. The iterates~\eqref{eq:nag} are bounded for every convex $F$ with a globally $1$-Lipschitz gradient and an attained minimum, and every $b$, if and only if $r\ge3$. If $r\ge3$ and $z$ minimizes $F$, then $\norm{X_k-z}\le\norm{b-z}$ for all $k$ on every real Hilbert space. If $0<r<3$, there are $F\ge0$ attaining $0$, with a $1$-Lipschitz gradient bounded by $2$, and $b$ with $\norm{X_k}\to\infty$; for $1<r<3$ one may take $F(0)=0$ and $b_n=2^{-n}(2,1)/16$.
+\end{theorem}
+
+Only the negative directions for $1<r<3$ in Theorems~\ref{thm:hilbert} and~\ref{thm:discrete}, and the planar statement for $1<r\le2$, require new arguments. The positive directions are classical, and the ranges $0<r\le1$ are elementary.
+
+\section{The planar valley}\label{sec:planar}
+\subsection{The potential}
+Let $P$ be the Euclidean projection onto the closed unit ball. Then $\nabla f(z)=P(z)-(1,0)$, which is $1$-Lipschitz because $P$ is nonexpansive, and $\norm{\nabla f}\le2$. The function $z\mapsto h(\norm z)$ is convex because $h$ is convex and nondecreasing on $[0,\infty)$. Inside the unit ball $f(x,y)=\frac12((x-1)^2+y^2)$, which vanishes only at $(1,0)$; outside, $f=R-x\ge0$, with equality exactly when $y=0$ and $x\ge1$.
+
+\subsection{Invariants of the flow}
+Let $X=(x,y)$ be an actual solution from $(2,1)$ at rest, write $v=x'$, $w=y'$ and $V=R-x\ge0$. The first coordinate of $\nabla f$ is nonpositive, so $(t^rv)'=t^r(1-x/\max\{1,R\})\ge0$; since $t^rv(t)\to0$ as $t\downarrow0$, $v\ge0$ and $x\ge2$, hence $R\ge2$. The trajectory therefore stays in the region where
+\begin{equation}\label{eq:planar-ode}
+v'=-\frac rtv+\frac VR,\qquad w'=-\frac rtw-\frac yR.
+\end{equation}
+The energy $A=\frac12(v^2+w^2)+V$ satisfies $A'=-\frac rt(v^2+w^2)\le0$, so with $W=\frac12w^2+V$,
+\begin{equation}\label{eq:planar-energy}
+0\le W\le A\le A(0)=\sqrt5-2<1.
+\end{equation}
+Finally $y^2=R^2-x^2=V(R+x)$.
+
+\subsection{Escape for \texorpdfstring{$1<r\le2$}{1 < r <= 2}}
+Define the completed-square energy
+\[
+E=\tfrac12(tw+(r-1)y)^2+t^2V\ \ge\ t^2V.
+\]
+From~\eqref{eq:planar-ode}, $(tw+(r-1)y)'=-ty/R$ and $V'=(-vV+yw)/R$, so
+\begin{equation}\label{eq:Eprime}
+E'=t\Bigl(2V-(r-1)\frac{y^2}R\Bigr)-t^2\frac{vV}R
+ =\frac{tV}{R}\bigl((4-2r)x+(3-r)V\bigr)-t^2\frac{vV}R,
+\end{equation}
+using $y^2=V(R+x)$ and $R=x+V$. For $1<r\le2$ the bracket is nonnegative, and since $R\ge2$ and $E\ge t^2V$,
+\[
+\bigl(e^{x/2}E\bigr)'=e^{x/2}\Bigl(E'+\frac v2E\Bigr)\ge e^{x/2}\,t^2vV\Bigl(\frac12-\frac1R\Bigr)\ge0.
+\]
+Hence $J=e^{x/2}E$ is nondecreasing and $J(t)\ge J(0)=e(r-1)^2/2>0$.
+
+Suppose now that $x\le M$ for all $t$, with $M\ge2$. Then $R\le M+1$ and $y^2\le(2M+1)V$ by~\eqref{eq:planar-energy}. For $t\ge1$,
+\[
+E\le t^2w^2+(r-1)^2y^2+t^2V\le(2M+3)t^2W,
+\]
+while $E\ge J(0)e^{-M/2}$. Hence $W\ge c/t^2$ for $t\ge1$, with $c=J(0)e^{-M/2}/(2M+3)$. Put $H=x+y^2/(8(M+1))$. By~\eqref{eq:planar-ode},
+\[
+H''+\frac rtH'=\frac VR+\frac{w^2-y^2/R}{4(M+1)}\ge\frac V{M+1}+\frac{w^2-2V}{4(M+1)}\ge\frac{W}{2(M+1)}\ge\frac{c'}{t^2},
+\]
+with $c'=c/(2(M+1))$, using $y^2/R\le2V$. Thus $(t^rH')'\ge c't^{r-2}$ on $[1,\infty)$, so $t^rH'(t)\ge H'(1)+c'(t^{r-1}-1)/(r-1)$ and $H'(t)\ge c'/(2(r-1)t)$ for all large $t$, because $r>1$. Then $H$ grows at least like a multiple of $\log t$, while $H\le M+1$ under the hypothesis. This contradiction shows that $x$ is unbounded; being nondecreasing, $x\to\infty$, and $\norm X\ge x$.
+
+\subsection{Escape for \texorpdfstring{$0<r\le1$}{0 < r <= 1}}
+Here $t^rv(t)=\int_0^ts^rV/R\,ds$. Since $V>0$ near $t=0$, $\kappa=t_0^rv(t_0)>0$ for some $t_0>0$, and monotonicity of $t^rv$ gives $v(t)\ge\kappa t^{-r}$ for $t\ge t_0$. As $\int^\infty t^{-r}dt=\infty$ for $r\le1$, $x\to\infty$.
+
+\subsection{Boundedness for \texorpdfstring{$r>2$}{r > 2}}
+Suppose $r>2$ and $x\to\infty$; recall that $x$ is nondecreasing. Since $V<1$, the bracket in~\eqref{eq:Eprime} satisfies $(4-2r)x+(3-r)V\le-(r-2)x$ once $(r-2)x\ge3-r$, and $x/R\ge2/3$ for $x\ge2$. Thus $E'\le-\frac23(r-2)tV$ for all large $t$, and since $E\ge0$, $\int^\infty tV\,dt<\infty$. On the other hand, by Fubini,
+\[
+\int_0^\infty v\,dt=\int_0^\infty t^{-r}\!\int_0^ts^r\frac VR\,ds\,dt=\frac1{r-1}\int_0^\infty s\frac VR\,ds<\infty,
+\]
+so $x$ is bounded, a contradiction. Hence $x$ converges, and $y^2\le V(2x+1)$ is bounded.
+
+\begin{remark}[Limits of valley potentials]\label{rem:valleys}
+The argument for $r\le2$ uses that the valley floor is exactly the ray $y=0$ with $f=R-x$ outside the unit ball, which makes $\frac{y^2}{R}\le2V$. A valley $\norm{(x,y)}_p-x$ with $p<2$ would give room for $2<r<3$, as in Section~\ref{sec:hilbert}, but its gradient is not Lipschitz along the floor, and every $C^{1,1}$ smoothing makes the floor locally quadratic again. In the referee's simulations a fixed smoothing produced only finite excursions for $r=2.4$. This is a heuristic, not a theorem. In finite dimension a bounded set of minimizers forces bounded trajectories, since $F(X(t))\le F(X(0))$ and sublevel sets are bounded, so any finite-dimensional example for $2<r<3$ needs an unbounded minimizer set.
+\end{remark}
+
+\section{Global solutions from rest}\label{sec:existence}
+Let $G$ be a globally $1$-Lipschitz map on a Banach space with $\norm G\le2$, and fix $X_0$. For $r>0$ and $0\le s\le t$ let
+\[
+K_r(t,s)=\int_s^t\Bigl(\frac s\sigma\Bigr)^rd\sigma=\begin{cases}\dfrac{s-t^{1-r}s^r}{r-1},&r\ne1,\\[1ex] s\log(t/s),&r=1,\end{cases}
+\]
+so that $0\le K_r(t,s)\le t-s$. A continuous solution of $X(t)=X_0-\int_0^tK_r(t,s)G(X(s))\,ds$ is an actual solution of~\eqref{eq:ode} with $\nabla F=G$: differentiation gives $V(t)=X'(t)=-t^{-r}\int_0^ts^rG(X(s))\,ds$ and $V'=-\frac rtV-G(X)$ for $t>0$, while $\norm{V(t)}\le2t$ and $\norm{X(t)-X_0}\le t^2$ give continuity at $0$ and the derivative $X'(0)=0$. On bounded continuous functions $b$ on $[0,\infty)$, the map
+\[
+(\mathcal Tb)(t)=-e^{-2t}\int_0^tK_r(t,s)\,G\bigl(X_0+e^{2s}b(s)\bigr)\,ds
+\]
+satisfies $\norm{\mathcal Tb-\mathcal Tc}_\infty\le\frac14\norm{b-c}_\infty$, because $\sup_te^{-2t}\int_0^t(t-s)e^{2s}ds\le\frac14$. Its fixed point gives $X(t)=X_0+e^{2t}b(t)$. The Lean development formalizes this construction for $r>1$; the cases $r\le1$ use the same estimate with the kernel above.
+
+\section{Hilbert space: escape for \texorpdfstring{$1<r<3$}{1 < r < 3}}\label{sec:hilbert}
+\subsection{Moreau valleys}
+Choose an even integer $m\ge2$ with $p=m/(m-1)$ satisfying $p(r-1)\le2$; this is possible because $r<3$. Let $C_m=\{(h-1,b):h^m+b^m\le1\}$, a compact convex set containing $0$, and for $\eps>0$ let
+\[
+F_\eps(z)=\max_{g\in C_m}\Bigl(\ip gz-\frac\eps2\norm g^2\Bigr),\qquad G_\eps(z)=P_{C_m}(z/\eps).
+\]
+Then $F_\eps$ is convex, $\nabla F_\eps=G_\eps$ is $\eps^{-1}$-Lipschitz, $F_\eps\ge0=F_\eps(0)$, $(G_\eps)_1\le0$, $\norm{G_\eps}\le\sqrt5$, and $F_\eps(2,1)\le1$; $F_\eps$ is the Moreau envelope of $\norm{\cdot}_p-x$. Write $z=(x,y)$, $G_\eps(z)=(-a,b)$ and suppose $x\ge2$. With $(\xi,\eta)=z-\eps G_\eps(z)$, $R=\norm{(\xi,\eta)}_p$ and $V=R-\xi$, the projection identities give $1-a=(\xi/R)^{p-1}$, $b=\operatorname{sgn}(\eta)(|\eta|/R)^{p-1}$ and $F_\eps(z)=V+\frac\eps2(a^2+b^2)$. Elementary convexity estimates then yield
+\begin{equation}\label{eq:valley}
+a\le\frac{F_\eps}{2},\qquad yb\le pF_\eps+\eps,\qquad a\ge\frac{p-1}{B}(F_\eps-\eps),\qquad y^2\le4BF_\eps+2\eps^2,
+\end{equation}
+whenever $0<\eps\le1$, $2\le x\le M$, $F_\eps\le1$ and $B=M+2$.
+
+\subsection{Finite excursions}
+\begin{proposition}\label{prop:excursion}
+Let $1<r<3$ and $p$ as above. For every $M\ge2$ there is $\eps\in(0,1]$ such that every actual solution for $G_\eps$ from $(2,1)$ at rest has $x(t)>M$ for some $t$, and then for all later times.
+\end{proposition}
+\begin{proof}[Sketch]
+As in Section~\ref{sec:planar}, $x$ is nondecreasing and $W=\frac12w^2+F_\eps\le1$. Assume $x\le M$ throughout. With $E=\frac12(tw+(r-1)y)^2+t^2F_\eps$ one has the exact identity $E'=t(2F_\eps-(r-1)yb)-t^2va$, and~\eqref{eq:valley} with $p(r-1)\le2$ gives $(e^{x/2}E)'\ge-(r-1)\eps te^{M/2}$. For $\eps$ small relative to a horizon $T$ this keeps $e^{x/2}E$ above half its initial value on $[0,T]$, which yields $W\ge c/t^2$ on $[1,T]$. For $H=x+ky^2$ with $k=(p-1)/(4pB)$ the identity $H''+\frac rtH'=a+2k(w^2-yb)$ and~\eqref{eq:valley} give $H''+\frac rtH'\ge d/t^2$ on $[1,T]$. Then $L=tH'+(r-1)H$ satisfies $L'\ge d/t$, so $tH'\ge1$ on $[S,T]$ for explicit $S<T$, and $H(T)\ge B+1$, contradicting $H\le B$. All constants depend only on $r$, $p$ and $M$, and are chosen before the trajectory.
+\end{proof}
+The explicit constants are those of the formal development: $J_*=e(r-1)^2/2$, $e_0=J_*/(2e^{M/2})$, $C=2+4B(r-1)^2$, $c=e_0/(2C)$, $K=(p-1)/(2B)$, $d=Kc/2$, $S=\exp(((r-1)B+3)/d)$, $T=Se^{B+1}$ and $\eps=\min\{1,J_*/((r-1)e^{M/2}T^2),e_0/(4(r-1)^2),c/(6T^2)\}$.
+
+\subsection{One objective on \texorpdfstring{$\ell^2$}{l2}}
+Let $a_n=2^{-n}/16$ and $M_n=2+(n+1)/a_n$, and choose $\eps_n$ by Proposition~\ref{prop:excursion}. Define
+\[
+\Phi(z)=\sum_{n\ge0}a_n^2\eps_n^2F_{\eps_n}(z_n/a_n),\qquad \nabla\Phi(z)=\bigl(a_n\eps_n^2G_{\eps_n}(z_n/a_n)\bigr)_{n\ge0}.
+\]
+Each block gradient is $\eps_n$-Lipschitz with norm at most $3a_n$, so the series converges, $\Phi$ is convex with $\Phi\ge0=\Phi(0)$, the gradient is $1$-Lipschitz with norm at most $3/8$, and the block descent inequalities sum to $|\Phi(z+h)-\Phi(z)-\ip{\nabla\Phi(z)}h|\le\frac12\norm h^2$. Section~\ref{sec:existence} gives an actual solution from $X_n(0)=a_n(2,1)$. The rescaling $Q_n(s)=a_n^{-1}X_n(s/\eps_n)$ turns block $n$ into an actual solution for $G_{\eps_n}$ from $(2,1)$; the factor $\eps_n^2$ in $\Phi$ makes the time change exact. By Proposition~\ref{prop:excursion} there is $s_n$ with $(Q_n)_1(s)>M_n$ for all $s\ge s_n$, so $\norm{X(t)}\ge a_nM_n>n+1$ for all $t\ge s_n/\eps_n$. Hence $\norm{X(t)}\to\infty$ along the whole time axis.
+
+\section{The positive side and low damping in continuous time}\label{sec:positive}
+Let $r\ge3$, let $z$ minimize $F$ and $e=X-z$. The energy $\mathcal E=t^2(F(X)-F(z))+\frac12\norm{tX'+(r-1)e}^2$ satisfies $\mathcal E'=2t(F(X)-F(z))-(r-1)t\ip{e}{\nabla F(X)}\le(3-r)t(F(X)-F(z))\le0$ by convexity. With $\mathcal E(0)=\frac12(r-1)^2\norm{e(0)}^2$ and $h=\norm e^2$, discarding nonnegative terms gives $\frac{d}{dt}[t^{r-1}(h-h(0))]\le0$, so $\norm{X(t)-z}\le\norm{X(0)-z}$. No Lipschitz assumption is needed once a solution is given.
+
+For $0<r\le1$, set $\beta=\frac{r+1}{2(r+3)}$, $b=1-\beta$ and $v_1=\frac4{r+3}$, and let $q(t)=t^2-\beta t^4$ for $t\le1$ and $q(t)=b+v_1\int_1^t\sigma^{-r}d\sigma$ for $t\ge1$. With $a(x)=2(r+1)\bigl(1-\frac{1-\sqrt{1-4\beta c(x)}}{2\beta}\bigr)$, $c(x)=\min\{\max\{x,0\},b\}$, and $f(x)=\int_x^ba$, the function $f$ is convex, $C^{1,1}$ and nonnegative with minimum on $[b,\infty)$, and $q$ solves $q''+\frac rtq'=-f'(q)$ with $q(0)=q'(0)=0$ and $q\to\infty$. Rescaling to a $1$-Lipschitz gradient and lifting along a unit vector gives Theorem~\ref{thm:hilbert}(c) on any Hilbert space, including $\R^2$.
+
+\section{The discrete iteration}\label{sec:discrete}
+\subsection{Finite-horizon approximation}
+For $h>0$ and a $1$-Lipschitz $G$ consider $X_{k+1}=Y_k-h^2G(Y_k)$, $Y_{k+1}=X_{k+1}+\beta_k(X_{k+1}-X_k)$ with $\beta_k=k/(k+r)$. Put $z_k=X_{k+1}$, $w_k=h^{-1}(X_{k+1}-X_k)$ and $\tau_k=(k+r)h$. Then exactly
+\[
+Y_{k+1}=z_k+h\beta_kw_k,\qquad w_{k+1}=\beta_kw_k-hG(Y_{k+1}),\qquad z_{k+1}=z_k+hw_{k+1},\qquad \beta_k=1-\frac{rh}{\tau_k}.
+\]
+The last identity is the damping $r/t$ at time $\tau_k$ without approximation. Let $(Q,U)$ be an actual solution with $Q(0)=b$, $\norm U\le B$ on $[0,T]$, and with acceleration continuous on $[0,T]$. Uniform continuity gives one-step defects at most $hc$ for small $h$, and with $e_k=\norm{z_k-Q(\tau_k)}+\norm{w_k-U(\tau_k)}$ one obtains $e_{k+1}\le(1+3h)e_k+h(2hB+3c)$, hence $e_N\le e^{3T}(e_0+T(2hB+3c))$ when $Nh\le T$. Since $e_0\to0$ as $h\to0$, for every $\eta>0$ there are $h\in(0,1]$ and $N$ with $(N+r)h=T$ and $\norm{X_{N+1}-Q(T)}\le\eta$. The acceleration of the Volterra solution of Section~\ref{sec:existence} extends continuously to $t=0$, with value $-G(b)/(r+1)$.
+
+\subsection{Planar excursions and permanence}
+Normalize $\widehat G_\eps=\frac{\eps^2}4G_\eps$, which is $1$-Lipschitz for $\eps\le1$. Its solution from $(2,1)$ at rest, rescaled in time by $\delta=\eps/2$, is a solution for $G_\eps$, so Proposition~\ref{prop:excursion} with $L=M+2$ gives a time $T$ with $q_1(T)>M+2$. The approximation with $\eta=1$ yields a discrete orbit with $(X_{N+1})_1>M$. The crossing is permanent: with $d_k=(X_{k+1}-X_k)_1$, $d_0=-h^2(\widehat G_\eps)_1(b)\ge0$ and $d_{k+1}=\beta_kd_k-h^2(\widehat G_\eps)_1(Y_{k+1})\ge0$, so the first coordinate of the iterates is nondecreasing. This is exact for the discrete orbit and needs no long-time approximation.
+
+\subsection{One objective on \texorpdfstring{$\ell^2$}{l2}}
+With $a_n$ and $M_n$ as before, choose $\eps_n,h_n\in(0,1]$ by the planar discrete excursion, and set
+\[
+\Phi(z)=\sum_na_n^2\frac{h_n^2\eps_n^2}4F_{\eps_n}(z_n/a_n),\qquad \nabla\Phi(z)=\Bigl(a_n\frac{h_n^2\eps_n^2}4G_{\eps_n}(z_n/a_n)\Bigr)_n.
+\]
+As in Section~\ref{sec:hilbert}, $\Phi$ is convex, $\Phi\ge0=\Phi(0)$, and $\nabla\Phi$ is $1$-Lipschitz with norm at most $3/8$. The unit-step iteration~\eqref{eq:nag} from $b_n=a_n(2,1)$ satisfies $(X_k)_n=a_nX^{(n)}_k$ exactly, where $X^{(n)}$ is the planar iteration with step $h_n$ and gradient $\widehat G_{\eps_n}$. Each block crosses $M_n$ permanently, so $\norm{X_k}\ge a_nM_n>n+1$ for all large $k$, and $\norm{X_k}\to\infty$.
+
+\subsection{The positive side and low damping}
+Let $r\ge3$, $z$ a minimizer, $t_k=(k+r-1)/(r-1)$, $Z_k=t_kY_k-(t_k-1)X_k$ and $\mathcal E_k=(t_k^2-t_k)(F(X_k)-F(z))+\frac12\norm{Z_k-z}^2$. The descent lemma at $Y_k$, combined with convexity at $X_k$ and at $z$ with weights $t_k-1$ and $1$, together with $t_{k+1}\beta_k=t_k-1$ and $t_{k+1}^2-t_{k+1}\le t_k^2$ for $r\ge3$, gives $\mathcal E_{k+1}\le\mathcal E_k$. Since $t_0=1$ and $Z_0=b$, $\norm{Z_k-z}\le\norm{b-z}$, and $X_{k+1}-z$ is a convex combination of $Z_{k+1}-z$ and $X_k-z$, so $\norm{X_k-z}\le\norm{b-z}$ by induction. For $0<r\le1$ take $f(x)=\int_2^x\min\{\max\{t-2,-1\},0\}dt$ on $\R$ and $X_0=0$: then $X_1=1$, $X_2=2$, and $X_{k+2}-X_{k+1}\ge\frac1{k+1}$, so $X_k\to\infty$; lift along a unit vector.
+
+\section{Formal verification}\label{sec:formal}
+The Lean project in \texttt{lean/} pins Lean~4.19.0 (commit \texttt{6caaee842e94}) and Mathlib revision \texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}. It merges the three uploaded developments, whose modules are included unchanged, with new modules for the planar generalization. The principal declarations are:
+{\sloppy
+\begin{itemize}[leftmargin=1.5em]
+\item \lean{NesterovSharpThreshold.exists_subcritical_norm_divergent_flow} and \lean{NesterovSharpThreshold.sharp_boundedness_threshold} (Theorem~\ref{thm:hilbert}(b) and the equivalence for $r>1$), \lean{NesterovSharpThreshold.sharp_boundedness_threshold_all_positive} and \lean{NesterovSharpThreshold.exists_positive_subcritical_norm_divergent_flow} (all $r>0$), and \lean{NesterovHighDamping.bounded_distance} (part (a), on every real Hilbert space). Universal boundedness is the definition \lean{NesterovSharpThreshold.UniversalBoundedness}, which quantifies over actual gradients, $1$-Lipschitz bounds, attained minima and actual solutions on $\ell^2(\N;\R^2)$.
+\item \lean{DiscreteNesterov.sharp_discrete_boundedness_threshold}, \lean{DiscreteNesterov.exists_subcritical_discrete_norm_divergence} and \lean{DiscreteNesterov.exists_discrete_norm_divergence_below_three} (Theorem~\ref{thm:discrete}); the recursion is \lean{DiscreteNesterov.nagState}.
+\item \lean{NesterovPlanar.planar_valley_escape} and \lean{NesterovPlanar.every_planar_trajectory_escapes} (Theorem~\ref{thm:planar}(a) for $1<r\le2$, including the potential's formula, convexity, gradient, Lipschitz bound, zero set, existence of a solution and escape of every solution), and \lean{NesterovPlanar.planar_escape_all_low_damping} (Corollary~\ref{cor:finite}; for $0<r\le1$ it uses the lifted scalar example of Section~\ref{sec:positive}).
+\end{itemize}
+}
+Each statement uses the actual Fr\'echet gradient (\texttt{HasGradientAt}), \texttt{LipschitzWith 1}, \texttt{ConvexOn} on the whole space, genuine derivatives (\texttt{HasDerivAt}) with the equation asserted for $t>0$ and the derivative at $0$ taken two-sided after constant extension to negative times, and \texttt{Tendsto} of the norm to infinity. All headline theorems depend only on \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. \replaystatus{}
+
+Formal scope: Theorem~\ref{thm:planar}(a) for $0<r\le1$ and part (b), existence of solutions for $r\le1$ by the kernel of Section~\ref{sec:existence}, and Remark~\ref{rem:valleys} are conventional arguments. Everything else in Theorems~\ref{thm:hilbert}, \ref{thm:planar} and~\ref{thm:discrete} is formalized.
+
+\section{Related work and novelty}\label{sec:related}
+Su, Boyd and Cand\`es introduced~\eqref{eq:ode} and the energy argument for $r\ge3$ \cite{SBC}. Weak convergence for $r>3$ is due to Attouch, Chbani, Peypouquet and Redont \cite{ACPR} and May \cite{May}, and for the discrete family to Chambolle and Dossal \cite{ChambolleDossal}. Point convergence at $r=3$ was proved by Jang and Ryu \cite{JangRyu} and, in Hilbert space and in discrete time, by Bo\c{t}, Fadili and Nguyen \cite{BFN}. For $r<3$, Attouch, Chbani and Riahi \cite{ACR} and Apidopoulos, Aujol and Dossal \cite{AAD} prove the rate $O(t^{-2r/3})$ for objective values, which is compatible with our escaping trajectories because the minimizer sets are unbounded. Cabot, Engler and Gadat \cite{CEG} study asymptotically small dissipation; the free-motion mechanism behind the case $r\le1$ is classical. Ryu \cite{Ryu} constructed a convergent orbit of infinite length at $r=3$, a different pathology.
+
+We found no earlier result showing unbounded zero-velocity trajectories or iterates with an attained minimum for $1<r<3$, either in the plane for $1<r\le2$ or in Hilbert space. This is a provisional assessment based on the sources we could inspect; full texts of several theses were not accessible to the agents that prepared the packages, and arXiv itself could not be reached from the environment in which this manuscript was prepared, so version-specific statements about arXiv preprints rely on the earlier package records and search results.
+
+\section{Open questions}
+Does every convex $F$ on $\R^d$ with a Lipschitz gradient and an attained minimum have bounded zero-velocity trajectories for $2<r<3$? Does the discrete iteration admit a finite-dimensional unbounded orbit for some $1<r<3$? What happens when the minimizer set is bounded in Hilbert space? The constructions here say nothing about these cases.
+
+\begin{thebibliography}{99}
+\bibitem{SBC} W.~Su, S.~Boyd and E.~J.~Cand\`es, A differential equation for modeling Nesterov's accelerated gradient method: theory and insights, \emph{J. Mach. Learn. Res.} 17 (2016), no.~153, 1--43.
+\bibitem{ACPR} H.~Attouch, Z.~Chbani, J.~Peypouquet and P.~Redont, Fast convergence of inertial dynamics and algorithms with asymptotic vanishing viscosity, \emph{Math. Program.} 168 (2018), 123--175.
+\bibitem{May} R.~May, Asymptotic for a second-order evolution equation with convex potential and vanishing damping term, \emph{Turkish J. Math.} 41 (2017), 681--685.
+\bibitem{ChambolleDossal} A.~Chambolle and C.~Dossal, On the convergence of the iterates of the ``fast iterative shrinkage/thresholding algorithm'', \emph{J. Optim. Theory Appl.} 166 (2015), 968--982. \url{https://doi.org/10.1007/s10957-015-0746-4}.
+\bibitem{ACR} H.~Attouch, Z.~Chbani and H.~Riahi, Rate of convergence of the Nesterov accelerated gradient method in the subcritical case $\alpha\le3$, \emph{ESAIM Control Optim. Calc. Var.} 25 (2019), article~2. \url{https://doi.org/10.1051/cocv/2017083}.
+\bibitem{AAD} V.~Apidopoulos, J.-F.~Aujol and C.~Dossal, Convergence rate of inertial forward--backward algorithm beyond Nesterov's rule, \emph{Math. Program.} 180 (2020), 137--156. \url{https://doi.org/10.1007/s10107-018-1350-9}.
+\bibitem{CEG} A.~Cabot, H.~Engler and S.~Gadat, On the long time behavior of second order differential equations with asymptotically small dissipation, \emph{Trans. Amer. Math. Soc.} 361 (2009), 5983--6017.
+\bibitem{JangRyu} U.~Jang and E.~K.~Ryu, Point convergence of Nesterov's accelerated gradient method: an AI-assisted proof, arXiv:2510.23513, version~2, 2026.
+\bibitem{BFN} R.~I.~Bo\c{t}, J.~Fadili and D.-K.~Nguyen, The iterates of Nesterov's accelerated algorithm converge in the critical regimes, arXiv:2510.22715, 2025.
+\bibitem{Ryu} E.~K.~Ryu, Nesterov flow may travel infinitely long to converge to a minimizer, arXiv:2604.06651, 2026.
+\end{thebibliography}
+\end{document}

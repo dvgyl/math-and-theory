@@ -1,0 +1,661 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,longtable,array,enumitem}
+\usepackage{xcolor,hyperref,fancyhdr}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,
+  urlcolor=blue!45!black,pdftitle={Strong minimum-rank multiplicativity from unextendible product constraints},
+  pdfauthor={Dev D. Goyal},pdfsubject={Fully autonomous agentic research}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Strong minimum-rank multiplicativity}
+\fancyhead[R]{\small Dev D. Goyal}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{2em}
+\setlist{nosep,leftmargin=*}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\tr}{\operatorname{Tr}}
+\newcommand{\SN}{\operatorname{SN}}
+\newcommand{\SR}{\operatorname{SR}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\minrank}{\operatorname{m}}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\pure}[1]{\ket{#1}\!\bra{#1}}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\replaystatus}{A fresh replay on 30 October 2026, compiling all 22 modules from source at kernel trust level zero against a Mathlib checkout built at the pinned revision, passed; its record is in \code{verification/}.}
+
+\title{Strong minimum-rank multiplicativity from\newline
+unextendible product constraints\newline
+\large Exact Schmidt numbers of every tensor power of the Tiles state}
+\author{Dev D. Goyal}
+\date{30 October 2026}
+
+\begin{document}
+\maketitle
+\section*{Research process and AI disclosure}
+This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
+
+The research, the proofs, the Lean formalization and an earlier version of this note were produced by autonomous AI research agents in an earlier session whose records do not name the model or system used.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this release, checked the rank-doubling argument, the Tiles computations and the passage from support rank to Schmidt number, ran the fresh Lean replay described in Section~\ref{sec:lean}, and revised this manuscript. AI checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:lean}.
+
+\begin{abstract}
+Let $S\subset A\otimes B$ be annihilated by an unextendible family of product
+functionals. If every nonzero element of $T\subset C\otimes D$ has Schmidt
+rank at least $r$, then every nonzero element of $S\otimes T$, regrouped across
+$AC:BD$, has Schmidt rank at least $2r$. When $S$ contains a rank-two vector,
+this gives the exact identity $\minrank(S\otimes T)=2\minrank(T)$ for every
+nonzero partner $T$. The proof uses a rank-nullity inequality for two local
+compressions and the unextendibility condition. For the canonical Tiles
+projector $P$ and state $\rho=P/4$, it yields
+$\minrank(\ran P^{\otimes N})=\SN(\rho^{\otimes N})=2^N$ for all $N\ge1$.
+A nine-column decomposition supplies the exact upper bound. We give the full
+proof, a stronger partial-transpose cone exclusion, carefully separated
+operational and classification consequences, a formal correspondence audit,
+and a skeptical assessment of the literature.
+\end{abstract}
+
+\section{Definitions and the precise result}
+
+All vector spaces below are finite-dimensional over $\C$. Fix local bases and
+identify a vector in $A\otimes B$ with its coefficient matrix. Its Schmidt
+rank is then its matrix rank. For a nonzero subspace $S$ write
+\[
+  \minrank(S)=\min\{\rank X:0\ne X\in S\}.
+\]
+The minimum exists because the attainable ranks form a nonempty finite set of
+positive integers. The tensor product of matrix subspaces always means the
+span of the actual matrices
+\begin{equation}\label{eq:coefficient}
+ (X\boxtimes Y)_{(a,c),(b,d)}=X_{a,b}Y_{c,d}.
+\end{equation}
+Thus the two parties are $A\otimes C$ and $B\otimes D$. The rank under this
+regrouping is essential; it is not the rank across $AB:CD$.
+
+Let $f_t\in A^*$ and $g_t\in B^*$, indexed by a finite set. Call the product
+functionals \emph{unextendible} when
+\begin{equation}\label{eq:upb}
+ \bigl[f_t(u)g_t(v)=0\text{ for every }t\bigr]
+ \quad\Longrightarrow\quad u=0\text{ or }v=0.
+\end{equation}
+If the functionals are inner products with vectors, this is the usual
+absence of a nonzero product vector orthogonal to the entire family.
+Mutual orthogonality, normalization, and linear independence of family members
+are not required for the general result. In coordinates the functionals are
+linear, so their coefficients already incorporate any complex conjugates
+needed by the Hilbert-space convention.
+
+\begin{theorem}[Rank doubling]\label{thm:doubling}
+Suppose $S\subset A\otimes B$ satisfies
+\[
+ S\subseteq\bigcap_t\ker(f_t\otimes g_t)
+\]
+for a family satisfying \eqref{eq:upb}. Let $r\ge1$, and suppose every nonzero
+element of $T\subset C\otimes D$ has rank at least $r$. Then every nonzero
+element of $S\otimes T$, with the regrouping \eqref{eq:coefficient}, has rank
+at least $2r$.
+\end{theorem}
+
+\begin{corollary}[Strong minimum-rank multiplicativity]\label{cor:strong}
+If, in addition, $S$ contains a nonzero vector of rank at most two, then for
+every nonzero matrix subspace $T$,
+\begin{equation}\label{eq:strong}
+ \minrank(S\otimes T)=2\minrank(T).
+\end{equation}
+\end{corollary}
+
+The extra hypothesis in this corollary is essential to the stated equality.
+The theorem does not assert that every UPB complement has minimum rank two,
+or that minimum rank is multiplicative for arbitrary pairs of subspaces.
+General minimum-output-rank multiplicativity is known to fail
+\cite{cubitt2008}.
+
+For a positive semidefinite operator $R$, let $\mathcal C_k$ be the cone of
+finite sums $\sum_i\pure{v_i}$ with $\SR(v_i)\le k$. Arbitrary nonnegative
+weights are included by absorbing their square roots into the unnormalized
+vectors. For a trace-one state, membership in $\mathcal C_k$ is exactly
+Schmidt number at most $k$ \cite{terhal2000}. In particular, the lower bounds
+below concern \emph{every} pure-state decomposition.
+
+\section{Proof of the general theorem}
+
+\begin{lemma}[Two compressions]\label{lem:compression}
+For compatible complex matrices $X,L,R$, if $LXR=0$, then
+\begin{equation}\label{eq:compression}
+ \rank(LX)+\rank(XR)\le\rank X.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Set $W=\ran X$ and restrict $L$ to $W$. Its image is $\ran(LX)$. Also
+$\ran(XR)\subseteq W\cap\ker L$, by the assumed zero composition.
+Rank-nullity for $L|_W$ therefore gives
+\[
+ \rank(LX)+\rank(XR)
+ \le \dim\ran(L|_W)+\dim\ker(L|_W)
+ =\dim W=\rank X.
+\]
+No positivity, adjoint relation, or independence condition is used.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:doubling}]
+Write the coordinates of $f_t,g_t$ as $\alpha_{t,a},\beta_{t,b}$. Regard
+$X\in S\otimes T$ as a block matrix $X_{a,b}\in T$, each block indexed by
+$(c,d)$. Membership follows for a simple tensor and then for their linear
+span. The same observation in the other direction says that, for fixed
+$c,d$, the matrix $(X_{ac,bd})_{a,b}$ lies in $S$.
+
+For each $t$, define the block-row and block-column contractions
+\[
+ (L_tX)_{c,(b,d)}=\sum_a\alpha_{t,a}X_{ac,bd},\qquad
+ (XR_t)_{(a,c),d}=\sum_bX_{ac,bd}\beta_{t,b}.
+\]
+The annihilation of the fixed-$c,d$ slices gives $L_tXR_t=0$.
+If $L_tX\ne0$, at least one of its blocks is a nonzero linear combination
+of the $X_{a,b}$, hence a nonzero member of $T$. A submatrix cannot have
+larger rank than its parent matrix, so $\rank(L_tX)\ge r$. The identical
+argument gives $\rank(XR_t)\ge r$ whenever $XR_t\ne0$.
+
+Suppose $X\ne0$ but $\rank X<2r$. Lemma~\ref{lem:compression} now implies,
+for every $t$,
+\begin{equation}\label{eq:dichotomy}
+ L_tX=0\quad\text{or}\quad XR_t=0.
+\end{equation}
+Choose a nonzero entry $X_{a_0c_0,b_0d_0}$ and define
+\[
+ u_a=X_{ac_0,b_0d_0},\qquad v_b=X_{a_0c_0,bd_0}.
+\]
+Both vectors are nonzero. The first alternative in \eqref{eq:dichotomy}
+implies $f_t(u)=0$; the second implies $g_t(v)=0$. Consequently
+$f_t(u)g_t(v)=0$ for every $t$, contrary to \eqref{eq:upb}. This proves the
+claimed bound for every nonzero $X$ in the tensor-product subspace.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:strong}]
+Put $r=\minrank(T)$ and choose nonzero $Y\in T$ attaining this rank. Choose
+the assumed nonzero $X_0\in S$ of rank at most two. Factorizations of $X_0$
+and $Y$ into at most two and $r$ simple tensors show that the nonzero matrix
+$X_0\boxtimes Y$ has rank at most $2r$. Theorem~\ref{thm:doubling} gives the
+opposite bound on this matrix and on every other nonzero member of
+$S\otimes T$. Thus the minimum is attained and equals $2r$.
+\end{proof}
+
+The proof is entirely algebraic. In particular, it does not assume a
+Schmidt-number multiplicativity principle for mixed states, or import a
+tensor-power lower bound from the literature.
+
+\section{The Tiles state and the exact upper bound}
+
+Let $e_0,e_1,e_2$ be the standard basis of $\C^3$, and put
+$s=e_0+e_1+e_2$. Use the following unnormalized Tiles product vectors:
+\begin{align*}
+ w_0&=e_0\otimes(e_0-e_1),&
+ w_1&=e_2\otimes(e_1-e_2),\\
+ w_2&=(e_0-e_1)\otimes e_2,&
+ w_3&=(e_1-e_2)\otimes e_0,\\
+ w_4&=s\otimes s.
+\end{align*}
+This is the standard UPB construction of Bennett et al.\ \cite{bennett1999}.
+The five vectors are mutually orthogonal, with squared norms $2,2,2,2,9$.
+Define
+\begin{equation}\label{eq:tilesP}
+ P=I_9-\frac12\sum_{t=0}^{3}\pure{w_t}-\frac19\pure{w_4},
+ \qquad \rho=\frac14P.
+\end{equation}
+Thus $P$ is a rank-four orthogonal projection, and $\rho$ is positive
+semidefinite with trace one. All local coordinates are real, so each
+subtracted product projector is fixed by partial transpose on the second
+party. Consequently $P^\Gamma=P$ and $\rho^\Gamma=\rho\succeq0$.
+
+For completeness, unextendibility can be checked without numerical
+optimization. Both lists of local factors are permutations of
+\[
+ e_0,\ e_2,\ e_0-e_1,\ e_1-e_2,\ s.
+\]
+The determinants for their ten increasing triples, used as columns, are
+$1,-1,-1,1,-1,2,1,2,-1,3$. Any three local factors therefore span $\C^3$.
+A nonzero vector can be orthogonal to at most two of them. Two nonzero local
+vectors can consequently annihilate at most four of the five product
+vectors, proving unextendibility.
+
+The complement $S=\ran P$ has the concrete coefficient-matrix description
+\begin{equation}\label{eq:tilesS}
+ S=\left\{
+ \begin{pmatrix}
+ a&a&b\\ c&-2(a+b+c+d)&b\\ c&d&d
+ \end{pmatrix}:a,b,c,d\in\C\right\}.
+\end{equation}
+It contains the rank-two matrix
+\[
+ X_0=\begin{pmatrix}1&1&-1\\0&0&-1\\0&0&0\end{pmatrix}.
+\]
+Corollary~\ref{cor:strong} applies, and induction gives
+\begin{equation}\label{eq:support}
+ \minrank(S^{\otimes N})=2^N\qquad(N\ge1).
+\end{equation}
+
+The passage from minimum support rank to \emph{exact} Schmidt number needs a
+separate upper bound. A single rank-two vector in $S$ would not suffice.
+Here an explicit decomposition provides it. For a computational basis cell
+$q=(a,b)$, put $p_q=P\ket{a,b}$. The four two-cell tiles are
+\[
+ \{(0,0),(0,1)\},\quad \{(2,1),(2,2)\},\quad
+ \{(0,2),(1,2)\},\quad \{(1,0),(2,0)\}.
+\]
+If $q$ belongs to one of these tiles, let $z_q$ be the sum of its two basis
+vectors. That sum is a product vector, since the two cells share a row or a
+column. Directly from \eqref{eq:tilesP},
+\[
+ p_q=\tfrac12z_q-\tfrac19s\otimes s.
+\]
+For the remaining center cell,
+\[
+ p_{(1,1)}=e_1\otimes e_1-\tfrac19s\otimes s.
+\]
+Every column therefore has Schmidt rank at most two. Since $P=P^2=P^*$,
+\begin{equation}\label{eq:decomposition}
+ P=\sum_{q\in\{0,1,2\}^2}\pure{p_q}.
+\end{equation}
+Tensoring this identity gives $9^N$ pure terms of Schmidt rank at most $2^N$
+for $P^{\otimes N}$, and positive rescaling gives the same bound for
+$\rho^{\otimes N}$.
+
+\begin{theorem}[Exact all-copy Tiles formula]\label{thm:tiles}
+For every integer $N\ge1$, across the bipartition
+$A_1\cdots A_N:B_1\cdots B_N$,
+\begin{equation}\label{eq:exact}
+ \boxed{\quad\SN(\rho^{\otimes N})
+ =\minrank(\ran P^{\otimes N})=2^N.\quad}
+\end{equation}
+The state has local dimension $3^N$, trace one, and is fixed by partial
+transpose.
+\end{theorem}
+
+\begin{proof}
+Only the lower Schmidt-number bound remains. If a positive operator $R$ is
+written as $\sum_i\pure{v_i}$, every $v_i$ lies in $\ran R$. Indeed, for
+$z\in\ker R$, the equality $0=\bra zR\ket z=\sum_i|\langle z,v_i\rangle|^2$
+forces each inner product to vanish. Apply this to $R=\rho^{\otimes N}$.
+Equation~\eqref{eq:support} forces every nonzero decomposition vector to
+have rank at least $2^N$. Equation~\eqref{eq:decomposition} supplies a
+decomposition at that rank, proving equality. Trace, positivity, and partial
+transpose commute with the regrouped tensor construction as stated.
+\end{proof}
+
+\section{Consequences and their formal scope}
+
+\subsection{An exclusion from a sum of Schmidt-number cones}
+
+The formal project also proves the stronger cone statement
+\begin{equation}\label{eq:cone}
+ \rho^{\otimes N}\notin
+ \mathcal C_{2^N-1}+\Gamma(\mathcal C_{2^N-1}).
+\end{equation}
+To see why, put $K=I-P^{\otimes N}$. Then $K\succeq0$, $K^\Gamma=K$, and
+$\tr(K\rho^{\otimes N})=0$. If $\rho^{\otimes N}=Q+\Gamma(T)$ with
+$Q,T\in\mathcal C_{2^N-1}$, self-adjointness of partial transpose for the
+trace pairing gives
+\[
+ 0=\tr(KQ)+\tr(KT).
+\]
+Expanding the two pure-state decompositions expresses the right side as a
+sum of nonnegative quadratic forms. Every such vector is in $\ker K$, hence
+in $\ran P^{\otimes N}$. Equation~\eqref{eq:support} forces all of them to
+vanish, a contradiction. This argument handles the fact that $\Gamma(T)$
+itself need not be positive.
+
+Equation~\eqref{eq:cone} is an explicit family statement. It is not claimed
+as a new asymptotic existence theorem for large-Schmidt-number PPT states
+or as a dimension-optimal cone separation; see Section~\ref{sec:prior}.
+
+\subsection{Exact zero-error preparation cost}
+
+For a trace-one density operator $\sigma$, the known operational
+interpretation of Schmidt number is \cite{terhal2000,yue2019}
+\[
+ E_c^{(0)}(\sigma)=\log_2\SN(\sigma),
+\]
+when the resource is a maximally entangled state and preparation is by LOCC
+with zero error. Thus Theorem~\ref{thm:tiles} implies
+\[
+ E_c^{(0)}(\rho^{\otimes N})=N,
+ \qquad \lim_{N\to\infty}\frac1N E_c^{(0)}(\rho^{\otimes N})=1.
+\]
+Exactly $N$ Bell pairs suffice and fewer cannot suffice. This is a consequence
+of the verified Schmidt-number theorem together with the cited operational
+identification. LOCC protocols and that identification are not formalized in
+this package. The statement concerns exact zero-error cost, not the ordinary
+asymptotic entanglement cost allowing vanishing approximation error, and not
+preparation under PPT-preserving operations.
+
+\subsection{The entire rank-four two-qutrit PPT class}
+
+The existing classification of rank-four two-qutrit PPT entangled states says
+that each is, up to normalization, a local invertible transform of a projector
+onto an orthogonal UPB complement \cite{skowronek2011,chendjokovic2011}.
+Such states have Schmidt number two \cite{sanpera2001}. Local invertible
+transformations preserve both Schmidt number and support minimum rank, and
+carry product annihilators to product annihilators. Applying
+Theorem~\ref{thm:doubling} inductively, and tensoring their rank-two
+decompositions for the upper bound, gives
+\begin{equation}\label{eq:class}
+ \SN(\rho_1\otimes\cdots\otimes\rho_N)=2^N
+\end{equation}
+for any $N$ entangled rank-four two-qutrit PPT states, including unequal
+factors. Their tensor-product support also has minimum rank $2^N$.
+
+This is a mathematical corollary using published classification results.
+The package formalizes the general UPB theorem and the unconditional explicit
+Tiles instance. It does not formalize the classification of all rank-four
+two-qutrit PPT states. Accordingly, \eqref{eq:class} must not be described as
+an unconditional all-class Lean theorem.
+
+\subsection{A channel interpretation with an arbitrary partner}
+
+Choose an isometry $V:\C^4\to\C^3\otimes\C^3$ whose range is $S$, and form
+$\Phi(\sigma)=\tr_B(V\sigma V^*)$. The minimum output rank equals
+$\minrank(S)$. For another finite-dimensional channel $\Psi$ with a
+Stinespring range $T$, the product isometry has range $S\otimes T$ under
+the same regrouping. Corollary~\ref{cor:strong} therefore gives
+\[
+ r_{\min}(\Phi\otimes\Psi)=2r_{\min}(\Psi),\qquad
+ S_{0,\min}(\Phi\otimes\Psi)=1+S_{0,\min}(\Psi),
+\]
+with base-two logarithms. Pure inputs suffice: the output of a mixture has
+support containing the output support of each pure component with positive
+weight. This is an interpretation of the verified arbitrary-subspace theorem;
+the channel and Stinespring infrastructure is not formalized here. It does
+not imply $\SN(\rho\otimes\sigma)=2\SN(\sigma)$ for arbitrary mixed
+$\sigma$, whose support minimum rank can be smaller than its Schmidt number.
+
+\section{Lean verification and correspondence}\label{sec:lean}
+
+All 22 Lean modules compile with the pinned toolchain, with warnings treated as errors, and the central exports depend only on \code{propext}, \code{Classical.choice} and \code{Quot.sound}. \replaystatus
+
+The mathematical objects are represented directly. \code{HasSR k v} means a
+sum of at most $k$ unrestricted complex simple tensors. The module
+\code{RankBridge.lean} proves its equivalence with \code{Matrix.rank <= k}.
+\code{PureCone} quantifies over an arbitrary finite list of complex vectors
+and their exact outer-product sum. There is no restriction to the displayed
+column decomposition when proving nonmembership.
+
+\code{matrixTensorSpace S T} is the linear span of actual simple coefficient
+tensor products, not an assumed tensor-rank surrogate. Its slice properties
+are proved by span induction. \code{HasMinimumRank} contains both a universal
+lower bound and a nonzero attaining matrix, so its use does not conceal an
+empty subspace or a vacuous minimum.
+
+The explicit power modules use a zero-based parameter: \code{n} denotes
+$N=n+1$ copies. \code{PowerIndex n} has cardinality $3^{n+1}$.
+\code{tilesPower n} is the recursively regrouped tensor product of the
+actual $9\times9$ rational projector. \code{tilesDensity n} is
+$4^{-(n+1)}\code{tilesPower n}$, and a separate theorem proves its literal
+normalized tensor recurrence.
+
+\begingroup\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.36\linewidth}>{\raggedright\arraybackslash}p{0.58\linewidth}@{}}
+\toprule
+Module & Mathematical responsibility \\
+\midrule
+\endhead
+\code{BlockRank.lean} & Rank-nullity proof of Lemma~\ref{lem:compression}. \\
+\code{UPBRank.lean} & Rank doubling, local contractions, and the nonzero-entry
+contradiction against unextendibility. \\
+\code{StrongTensor.lean} & The actual tensor-product span, arbitrary partner,
+attained minimum, and general strong multiplicativity. \\
+\code{TilesBase.lean}, \code{TilesUPB.lean} & Concrete rational projector,
+complex unextendibility, support equations, and a rank-two witness. \\
+\code{TensorProductProjection.lean} & Regrouping, projection and positivity
+identities, partial transpose, and fixed-support slice membership. \\
+\code{SchmidtUpper.lean} & Nine-column pure decomposition and tensoring of
+finite Schmidt decompositions. \\
+\code{PowerFamily.lean} & All-copy support bounds with an attainer, exact
+Schmidt-number cone membership, and the stronger cone exclusion. \\
+\code{Normalization.lean}, \code{NormalizedPower.lean} & Trace, nonzero
+scaling, literal tensor recurrence, normalized positivity and exact result. \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+The principal exports are:
+\begin{itemize}
+\item \code{upb_tensor_no_sr}
+\item \code{upb_strong_minimum_rank}
+\item \code{tiles_strong_minimum_rank}
+\item \code{tilesPower_support_minimum}
+\item \code{tilesDensity_schmidtNumber_exact}
+\item \code{normalized_sharp_tiles_power_family}
+\end{itemize}
+The exact normalized statement is an equivalence
+\[
+ \code{PureCone (HasSR k) (tilesDensity n)}
+ \quad\Longleftrightarrow\quad 2^{n+1}\le k.
+\]
+Consequently it includes both directions of the claimed Schmidt-number
+formula, rather than verifying only one selected decomposition.
+
+The review of the formal statements covered conjugations, the regrouped
+bipartition, the distinction between support rank and mixed-state Schmidt
+number, zero-dimensional or zero-vector cases, and whether any central
+assertion was merely assumed. These were AI checks, not external human peer
+review.
+
+\section{Prior art, novelty, and significance}\label{sec:prior}
+
+\subsection{The strongest relevant baselines found}
+
+\paragraph{Exponential growth was already implicit in 2001.}
+Vidal and Cirac prove for a locally equivalent Tiles projector that every
+normalized product-vector expectation of its $N$th tensor power is bounded by $\beta^N$, where
+$\beta=(1+\alpha_1)/2<1$ \cite[Eqs.~(5)--(7)]{vidalcirac2001}.
+Every squared Schmidt coefficient of a normalized support vector is
+therefore at most $\beta^N$. Since these coefficients sum to one, their
+number is at least $\beta^{-N}$. This minimum-rank consequence is an
+inference from their proof. It rules out describing the present result as
+the first exponential support-rank growth theorem for Tiles. The candidate
+advance is the sharp base two and exact all-copy evaluation.
+
+\paragraph{The two-copy equality is established prior art.}
+Chen, Yang, and Tang prove Schmidt number four for two rank-four two-qutrit
+PPT entangled factors \cite[Lemma~19(iii)]{chen2017}. Their Proposition~20
+states an $N+1$ support-rank lower bound for arbitrary products of $N$
+completely entangled supports. Neither result, as stated, is the present
+sharp all-copy UPB theorem. Their $N=2$ result is explicitly excluded from
+the novelty claim.
+
+\paragraph{Tensor stability of UPBs concerns different subspaces.}
+M\"uller-Hermes, Reeb, and Wolf prove multiplicativity of minimum product
+overlap with separable positive matrices \cite[Lemma~3]{mhrw2016}.
+Cheng, Winter, and Yu give a quantitative UPB tensorization statement
+\cite[version~1, Section~6]{cheng2020}. Such results control the complement
+of the tensor product of the UPB \emph{spans}; that is different from the
+tensor product of their orthogonal complements used here. The transitivity
+results of Davidson, Marcoux, and Radjavi likewise concern annihilators of
+tensor products, giving a sum of subspaces rather than this tensor product
+of complementary supports \cite[Section~3]{dmr2008}.
+
+\paragraph{Other exact rank and cost laws already exist.}
+Alicki and Fannes establish all-copy minimum output R\'enyi entropy
+additivity for Werner--Holevo channels in a range of orders; minimum output
+rank multiplicativity for that family follows \cite{alicki2004}.
+Yue and Chitambar exhibit exact regularized zero-error costs and strong
+nonadditivity for different mixed-state families \cite{yue2019}.
+These prevent any claim that exact tensor laws or exact zero-error cost
+computations are new in themselves. No direct reduction of the UPB
+arbitrary-partner result to these theorems was found.
+
+\paragraph{This is not a record for PPT Schmidt number versus dimension.}
+At local dimension $d=3^N$, the present value is
+$2^N=d^{\log_3 2}$. Huber, Lami, Lancien, and M\"uller-Hermes already give
+linear scaling and quantitative typical-state estimates
+\cite{hllmh2018}; more recent near-maximal constructions also exist. Their older mean-width bounds additionally
+imply linear-order necessary thresholds for containing all PPT states in
+$\mathcal C_k+\Gamma(\mathcal C_k)$. Indeed, after centering trace-one
+sections, the mean width of the latter is at most twice that of
+$\mathcal C_k$, by convex hull and partial-transpose symmetry. Thus the
+qualitative failure of a fixed finite cutoff is not a novelty claim here.
+
+\subsection{Search coverage and remaining uncertainty}
+
+The search examined primary journal and conference manuscripts, arXiv
+versions, author and institutional copies, and theses surfaced through the
+queries. It also included targeted searches of MathOverflow, mathematical
+databases, and relevant public repositories. Alternative formulations included UPB complements, minimum
+support Schmidt rank, minimum output rank, strong additivity at R\'enyi
+order zero, rank-one-spanned annihilators, transitive operator spaces, and
+regularized zero-error entanglement cost. Searches were repeated after the
+proof emerged, including recent-year searches as of the session date.
+
+In particular,
+Cheng--Winter--Yu's Proposition~22 has different content in different
+versions; only the identified version supports that comparison. Search
+snippets and generated summaries were not accepted as theorem statements.
+No exact preemption was found for Theorem~\ref{thm:doubling},
+Corollary~\ref{cor:strong}, or the full all-copy Tiles formula. This is not
+a completeness certificate for the literature, and a missing search result
+is not evidence of originality.
+
+\subsection{Skeptical contribution assessment}
+
+The strongest defensible interpretation is a candidate structural theorem
+with an exact application to a canonical bound-entangled state and, using
+existing classification, an entire minimal-rank two-qutrit PPT class.
+It determines every copy number and remains valid against an arbitrary
+matrix-space partner. Those features make it more substantive than a finite
+numerical instance or a formalization of the known two-copy equality.
+
+Nevertheless, the literature search did not locate an established major conjecture
+specifically asking for this sharp law. The state itself, single-copy
+Schmidt number, two-copy case, nonsharp exponential growth, and general
+high-Schmidt-number PPT existence are all prior art. A claim of a major
+field-wide breakthrough, or of guaranteed suitability for a leading venue,
+would exceed the evidence. Mathematical correctness is now supported by
+formal verification; originality remains provisional and specialist
+priority review is still needed.
+
+\section{Reproduction and release contents}
+
+The package contains the complete Lean project sources, the exact dependency
+manifest, the verifier, the fresh replay record, this note and its LaTeX
+source, and separate exact rational matrix checkers in
+\code{calculations/}.
+Earlier weaker cone modules are retained as audited dependencies and research
+history, without independent novelty claims.
+
+With Git, Python~3, and \code{elan} installed, enter the archive's
+\code{lean} directory and run:
+\begin{verbatim}
+elan toolchain install leanprover/lean4:v4.19.0
+lake exe cache get
+python3 verify.py
+\end{verbatim}
+Keep the supplied \code{lake-manifest.json}. The verifier checks exact Git
+revisions and rejects tracked dependency modifications, so silently changing
+a dependency fails verification. An optional \code{--lean-bin} argument
+accepts a directory containing the pinned \code{lean} and \code{lake}
+binaries. It clears inherited Lean search paths and recompiles every project
+module in a fresh temporary directory, without reusing a project object.
+
+The verifier rejects declarations or proof escapes including
+\code{sorry}, \code{admit}, new \code{axiom} declarations,
+\code{native_decide}, and kernel-check bypasses in project sources. It
+then parses the printed dependencies of the central theorems against the
+explicit foundational allowlist. The release hashes cover the proofs,
+manifest, and reproduction scripts; the build report separately records the
+exact sources checked in the fresh build.
+
+\begin{thebibliography}{99}\small
+
+\bibitem{bennett1999}
+C. H. Bennett et al., ``Unextendible Product Bases and Bound Entanglement,''
+\emph{Phys. Rev. Lett.} \textbf{82}, 5385 (1999).
+\href{https://arxiv.org/abs/quant-ph/9808030}{arXiv:quant-ph/9808030}.
+
+\bibitem{terhal2000}
+B. M. Terhal and P. Horodecki, ``A Schmidt number for density matrices,''
+\emph{Phys. Rev. A} \textbf{61}, 040301(R) (2000).
+\href{https://arxiv.org/abs/quant-ph/9911117}{arXiv:quant-ph/9911117}.
+
+\bibitem{vidalcirac2001}
+G. Vidal and J. I. Cirac, ``Irreversibility in Asymptotic Manipulations of
+Entanglement,'' \emph{Phys. Rev. Lett.} \textbf{86}, 5803 (2001).
+Inspected \href{https://arxiv.org/abs/quant-ph/0102036v2}{arXiv:quant-ph/0102036v2},
+Eqs.~(5)--(7).
+
+\bibitem{sanpera2001}
+A. Sanpera, D. Bru\ss, and M. Lewenstein, ``Schmidt-number witnesses and
+bound entanglement,'' \emph{Phys. Rev. A} \textbf{63}, 050301(R) (2001).
+\href{https://arxiv.org/abs/quant-ph/0009109v2}{arXiv:quant-ph/0009109v2}, Lemma~3.
+
+\bibitem{alicki2004}
+R. Alicki and M. Fannes, ``Note on Multiple Additivity of Minimal R\'enyi
+Entropy Output of the Werner--Holevo Channels,''
+\emph{Open Syst. Inf. Dyn.} \textbf{11}, 339--342 (2004).
+\href{https://arxiv.org/abs/quant-ph/0407033v2}{arXiv:quant-ph/0407033v2}.
+
+\bibitem{dmr2008}
+K. R. Davidson, L. W. Marcoux, and H. Radjavi, ``Transitive spaces of
+operators,'' \emph{Integral Equations Operator Theory} \textbf{61}, 187--210
+(2008). \href{https://arxiv.org/abs/0706.2449}{arXiv:0706.2449};
+author revised manuscript, Section~3.
+
+\bibitem{cubitt2008}
+T. Cubitt, A. W. Harrow, D. Leung, A. Montanaro, and A. Winter,
+``Counterexamples to additivity of minimum output $p$-R\'enyi entropy for
+$p$ close to 0,'' \emph{Commun. Math. Phys.} \textbf{284}, 281--290 (2008).
+\href{https://arxiv.org/abs/0712.3628}{arXiv:0712.3628}.
+
+\bibitem{skowronek2011}
+\L. Skowronek, ``Three-by-three bound entanglement with general unextendible
+product bases,'' \emph{J. Math. Phys.} \textbf{52}, 122202 (2011).
+\href{https://arxiv.org/abs/1105.2709v1}{arXiv:1105.2709v1},
+Theorem~3.21 and Remark~3.22.
+
+\bibitem{chendjokovic2011}
+L. Chen and D. \v{Z}. Djokovi\'c, ``Description of rank four PPT entangled
+states of two qutrits,'' \emph{J. Math. Phys.} \textbf{52}, 122203 (2011).
+\href{https://arxiv.org/abs/1105.3142v2}{arXiv:1105.3142v2}, Theorem~25.
+
+\bibitem{mhrw2016}
+A. M\"uller-Hermes, D. Reeb, and M. M. Wolf, ``Positivity of linear maps
+under tensor powers,'' \emph{J. Math. Phys.} \textbf{57}, 015202 (2016).
+\href{https://arxiv.org/abs/1502.05630v2}{arXiv:1502.05630v2}, Lemma~3.
+
+\bibitem{chen2017}
+L. Chen, Y. Yang, and W.-S. Tang, ``Schmidt number of bipartite and
+multipartite states under local projections,''
+\emph{Quantum Inf. Process.} \textbf{16}, 75 (2017).
+\href{https://arxiv.org/abs/1609.05100v1}{arXiv:1609.05100v1},
+Lemma~19 and Proposition~20.
+
+\bibitem{hllmh2018}
+M. Huber, L. Lami, C. Lancien, and A. M\"uller-Hermes,
+``High-Dimensional Entanglement in States with Positive Partial Transposition,''
+\emph{Phys. Rev. Lett.} \textbf{121}, 200503 (2018).
+\href{https://arxiv.org/abs/1802.04975v1}{arXiv:1802.04975v1};
+expanded manuscript, Theorems~IV.1 and IV.2.
+
+\bibitem{yue2019}
+Q. Yue and E. Chitambar, ``The zero-error entanglement cost is highly
+non-additive,'' \emph{J. Math. Phys.} \textbf{60}, 112204 (2019).
+\href{https://arxiv.org/abs/1808.10516v1}{arXiv:1808.10516v1}, Eqs.~(2), (4), and (7).
+
+\bibitem{cheng2020}
+H.-C. Cheng, A. Winter, and N. Yu, ``Discrimination of quantum states under
+locality constraints in the many-copy setting,''
+\href{https://arxiv.org/abs/2011.13063v1}{arXiv:2011.13063v1} (2020),
+Section~6, Definition~21 and Proposition~22. Numbering is version-specific.
+
+\end{thebibliography}
+\end{document}

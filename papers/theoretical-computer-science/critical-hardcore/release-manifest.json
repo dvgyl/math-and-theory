@@ -1,0 +1,243 @@
+{
+  "format_version": 1,
+  "package_id": "critical-hardcore",
+  "formal_scope": "The influence bound for the actual hard-core Gibbs measure on every finite simple graph of maximum degree at most Δ, all activities up to λ_c(Δ) and all feasible pinnings is formalized in 32 Lean modules, including the regular completion and the nonbacktracking collision estimate. The Glauber-dynamics mixing corollary and the numerical observations on the constant are not formalized.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.lean",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/CriticalHardcore.lean": "bd53e7093a04b82c6fb1d6818a60d0942508126ec465fd0d050fd92d3d978ba0",
+    "lean/CriticalHardcore/AdaptiveTrials.lean": "5d87e561efbb85c0662f876208fcb001bc1bb282e04f7aadf4302cfb893f9c98",
+    "lean/CriticalHardcore/Audit.lean": "4c424249c06497a3a5b708072bc5485721b4836495b547ef7317332a9fa64756",
+    "lean/CriticalHardcore/CollisionBound.lean": "5640860661b0934246be7e16c6e74ec07146ae4d1d6e663ea0e0d33eeaa8d6b5",
+    "lean/CriticalHardcore/CollisionScale.lean": "c46fdc132287c88c311d5ea22d93656393420ef369440497e676137847c00f74",
+    "lean/CriticalHardcore/ComputationGeometry.lean": "6fdff67e720d7dbd6f8cc660d54c8de55f1677f41e02291d69a48093d54f9f49",
+    "lean/CriticalHardcore/ComputationTree.lean": "9b4070a3961f635703d5618e69debb43e8102d6adec09d042b5d0324d804fcee",
+    "lean/CriticalHardcore/DeletionRecursion.lean": "d7fa850c80760aa83ef86d00bf684dc27de515be2deb7eed360c77af0d3ef753",
+    "lean/CriticalHardcore/FirstDanger.lean": "c168f80ee9016486ee7f0d074e059e21b9afc7fd43b9aa22c8d1128b726bb47b",
+    "lean/CriticalHardcore/GibbsInfluence.lean": "c63a17c70dbb2fc9cd997923f9a767427b395994c2d7e2cb60ee3f59a4a6f5e1",
+    "lean/CriticalHardcore/GibbsModel.lean": "56ed9a6f5b8cb06f8b1340235a79d9d4cf5eb40deca7fb5c4f6b6480dcab8343",
+    "lean/CriticalHardcore/InfluenceTransfer.lean": "76531d030da2b87d267c1d80d3e4489c0dc9431ff4aa06af840d2f222f160184",
+    "lean/CriticalHardcore/LocalContraction.lean": "0f6a4ca836b399843f48e712fa661383c7a0291dea1d638224d0d09c439bcfd4",
+    "lean/CriticalHardcore/Main.lean": "70bc8558f006c591f6c3fc239c0ae9f8a5ff3c8b748f81b0079d0f333a8fb900",
+    "lean/CriticalHardcore/Nonbacktracking.lean": "2e93ce076bc98889e6d265a6394738a8a3b2f837a316d041e73b7e91881e72bd",
+    "lean/CriticalHardcore/NonbacktrackingAppend.lean": "caa6f532a404202c5b828cf49d72f4a89182843ac8fed3d75995c9d6d7fddc0a",
+    "lean/CriticalHardcore/NonbacktrackingChoices.lean": "476b9fc631958fb85418d6fbfd23860bc6bab1890574a83d17c7cd89e52f120c",
+    "lean/CriticalHardcore/NonbacktrackingLocal.lean": "91bcdaf6d31450e453ce2ba12bd4918f461ec10aac22c1325ce01f7538d0d071",
+    "lean/CriticalHardcore/NonbacktrackingSurvival.lean": "db05f51ea8ee7f9b68b8f5ac9937b0960ebb8fecf49883377c62a8db0c5252a7",
+    "lean/CriticalHardcore/NonbacktrackingTrials.lean": "4bbfaf1e064d3610845cb868a05af65a1b1e680339dd8d5bbf923491512886ae",
+    "lean/CriticalHardcore/NonbacktrackingWordEquiv.lean": "7bd2d0e7beb8950cc9a584d9e06d442cfeb3345763c804feb3370805f0a24dd7",
+    "lean/CriticalHardcore/PathCountBridge.lean": "9d78670736892f8bb4388669dc1cb3b5592d81ef5c05d165a5f38aa5b61d175a",
+    "lean/CriticalHardcore/Pinning.lean": "1d2f0435972aac37b95322bee0706e929b6a0a1ab0ecf7ca27fa18da681199b5",
+    "lean/CriticalHardcore/RegularCompletion.lean": "e922dbf24c73e214010790bd4e8b005bd26da278be8c06bd337cb6fddc4e9f6e",
+    "lean/CriticalHardcore/ScaleInterpretation.lean": "c6f102d01ed6d009d896771b650be644c7491af5df85d92052a31833c2b8e6b7",
+    "lean/CriticalHardcore/SpectralStatement.lean": "05c9d851df11d79f04f7de8bcd22142adbf13b92bf556c20c8189fdfda05356e",
+    "lean/CriticalHardcore/WeightedPaths.lean": "4b99a45492e60430e3cf3401f8572b236886aa5aa981b4468c01753684aaa547",
+    "lean/CriticalHardcore/WeightedTotals.lean": "9ab7f6e99eb8a2e016f4ed73991af659767246edb75091062430703d3d8e17d6",
+    "lean/CriticalHardcore/WeightedTree.lean": "880b73e2148481a2d0b5f678ec06f6ca4e2d13a327da47e9369985e1dfc886e5",
+    "lean/CriticalHardcore/WordTrialLocal.lean": "0cd82d3c0661e10f70b4fe82dcd897ba84f1a30ca93d10494f1174e7a8047019",
+    "lean/CriticalHardcore/WordTrialMass.lean": "aca2902be3951311eb66ebd5255ea8c75184fdfefe420748d3b7d15b63ddc42c",
+    "lean/CriticalHardcore/WordTrialTree.lean": "d3d3a058a491c2be244e84e081b208e1366330899b014f675192403aa3840a4b"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 1308,
+      "sha256": "95bf66ecc27006f01a1ac9e857f240fe5e2ae172c94abe7e37fe801fbe8bb104"
+    },
+    "CITATION.bib": {
+      "bytes": 388,
+      "sha256": "004a7e4dffa5c38b6f901528285d290a3b3b0e384f5ac3c8b128ced0b9d2e8bb"
+    },
+    "CITATION.cff": {
+      "bytes": 1481,
+      "sha256": "e86458ed3e6273c15911e90481f0f6dcc238c6d67cac1bbefbce4860eeff948f"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 2285,
+      "sha256": "a5aff8061e9f93a108bd2a621b7e19b50f6563f522779426d056556d7e438b5d"
+    },
+    "VERIFICATION.md": {
+      "bytes": 1653,
+      "sha256": "ad05fdc31991a2667fec944f94ea610c7031b9d7e57ba733ccbb2e5b077aabbd"
+    },
+    "lean/CriticalHardcore.lean": {
+      "bytes": 29,
+      "sha256": "bd53e7093a04b82c6fb1d6818a60d0942508126ec465fd0d050fd92d3d978ba0"
+    },
+    "lean/CriticalHardcore/AdaptiveTrials.lean": {
+      "bytes": 9920,
+      "sha256": "5d87e561efbb85c0662f876208fcb001bc1bb282e04f7aadf4302cfb893f9c98"
+    },
+    "lean/CriticalHardcore/Audit.lean": {
+      "bytes": 1059,
+      "sha256": "4c424249c06497a3a5b708072bc5485721b4836495b547ef7317332a9fa64756"
+    },
+    "lean/CriticalHardcore/CollisionBound.lean": {
+      "bytes": 1534,
+      "sha256": "5640860661b0934246be7e16c6e74ec07146ae4d1d6e663ea0e0d33eeaa8d6b5"
+    },
+    "lean/CriticalHardcore/CollisionScale.lean": {
+      "bytes": 3101,
+      "sha256": "c46fdc132287c88c311d5ea22d93656393420ef369440497e676137847c00f74"
+    },
+    "lean/CriticalHardcore/ComputationGeometry.lean": {
+      "bytes": 1003,
+      "sha256": "6fdff67e720d7dbd6f8cc660d54c8de55f1677f41e02291d69a48093d54f9f49"
+    },
+    "lean/CriticalHardcore/ComputationTree.lean": {
+      "bytes": 8464,
+      "sha256": "9b4070a3961f635703d5618e69debb43e8102d6adec09d042b5d0324d804fcee"
+    },
+    "lean/CriticalHardcore/DeletionRecursion.lean": {
+      "bytes": 9821,
+      "sha256": "d7fa850c80760aa83ef86d00bf684dc27de515be2deb7eed360c77af0d3ef753"
+    },
+    "lean/CriticalHardcore/FirstDanger.lean": {
+      "bytes": 8599,
+      "sha256": "c168f80ee9016486ee7f0d074e059e21b9afc7fd43b9aa22c8d1128b726bb47b"
+    },
+    "lean/CriticalHardcore/GibbsInfluence.lean": {
+      "bytes": 12816,
+      "sha256": "c63a17c70dbb2fc9cd997923f9a767427b395994c2d7e2cb60ee3f59a4a6f5e1"
+    },
+    "lean/CriticalHardcore/GibbsModel.lean": {
+      "bytes": 10470,
+      "sha256": "56ed9a6f5b8cb06f8b1340235a79d9d4cf5eb40deca7fb5c4f6b6480dcab8343"
+    },
+    "lean/CriticalHardcore/InfluenceTransfer.lean": {
+      "bytes": 5761,
+      "sha256": "76531d030da2b87d267c1d80d3e4489c0dc9431ff4aa06af840d2f222f160184"
+    },
+    "lean/CriticalHardcore/LocalContraction.lean": {
+      "bytes": 7616,
+      "sha256": "0f6a4ca836b399843f48e712fa661383c7a0291dea1d638224d0d09c439bcfd4"
+    },
+    "lean/CriticalHardcore/Main.lean": {
+      "bytes": 4063,
+      "sha256": "70bc8558f006c591f6c3fc239c0ae9f8a5ff3c8b748f81b0079d0f333a8fb900"
+    },
+    "lean/CriticalHardcore/Nonbacktracking.lean": {
+      "bytes": 12102,
+      "sha256": "2e93ce076bc98889e6d265a6394738a8a3b2f837a316d041e73b7e91881e72bd"
+    },
+    "lean/CriticalHardcore/NonbacktrackingAppend.lean": {
+      "bytes": 7501,
+      "sha256": "caa6f532a404202c5b828cf49d72f4a89182843ac8fed3d75995c9d6d7fddc0a"
+    },
+    "lean/CriticalHardcore/NonbacktrackingChoices.lean": {
+      "bytes": 5628,
+      "sha256": "476b9fc631958fb85418d6fbfd23860bc6bab1890574a83d17c7cd89e52f120c"
+    },
+    "lean/CriticalHardcore/NonbacktrackingLocal.lean": {
+      "bytes": 10772,
+      "sha256": "91bcdaf6d31450e453ce2ba12bd4918f461ec10aac22c1325ce01f7538d0d071"
+    },
+    "lean/CriticalHardcore/NonbacktrackingSurvival.lean": {
+      "bytes": 6481,
+      "sha256": "db05f51ea8ee7f9b68b8f5ac9937b0960ebb8fecf49883377c62a8db0c5252a7"
+    },
+    "lean/CriticalHardcore/NonbacktrackingTrials.lean": {
+      "bytes": 5295,
+      "sha256": "4bbfaf1e064d3610845cb868a05af65a1b1e680339dd8d5bbf923491512886ae"
+    },
+    "lean/CriticalHardcore/NonbacktrackingWordEquiv.lean": {
+      "bytes": 11513,
+      "sha256": "7bd2d0e7beb8950cc9a584d9e06d442cfeb3345763c804feb3370805f0a24dd7"
+    },
+    "lean/CriticalHardcore/PathCountBridge.lean": {
+      "bytes": 5479,
+      "sha256": "9d78670736892f8bb4388669dc1cb3b5592d81ef5c05d165a5f38aa5b61d175a"
+    },
+    "lean/CriticalHardcore/Pinning.lean": {
+      "bytes": 20133,
+      "sha256": "1d2f0435972aac37b95322bee0706e929b6a0a1ab0ecf7ca27fa18da681199b5"
+    },
+    "lean/CriticalHardcore/RegularCompletion.lean": {
+      "bytes": 5981,
+      "sha256": "e922dbf24c73e214010790bd4e8b005bd26da278be8c06bd337cb6fddc4e9f6e"
+    },
+    "lean/CriticalHardcore/ScaleInterpretation.lean": {
+      "bytes": 1988,
+      "sha256": "c6f102d01ed6d009d896771b650be644c7491af5df85d92052a31833c2b8e6b7"
+    },
+    "lean/CriticalHardcore/SpectralStatement.lean": {
+      "bytes": 1849,
+      "sha256": "05c9d851df11d79f04f7de8bcd22142adbf13b92bf556c20c8189fdfda05356e"
+    },
+    "lean/CriticalHardcore/WeightedPaths.lean": {
+      "bytes": 5511,
+      "sha256": "4b99a45492e60430e3cf3401f8572b236886aa5aa981b4468c01753684aaa547"
+    },
+    "lean/CriticalHardcore/WeightedTotals.lean": {
+      "bytes": 1552,
+      "sha256": "9ab7f6e99eb8a2e016f4ed73991af659767246edb75091062430703d3d8e17d6"
+    },
+    "lean/CriticalHardcore/WeightedTree.lean": {
+      "bytes": 14114,
+      "sha256": "880b73e2148481a2d0b5f678ec06f6ca4e2d13a327da47e9369985e1dfc886e5"
+    },
+    "lean/CriticalHardcore/WordTrialLocal.lean": {
+      "bytes": 2955,
+      "sha256": "0cd82d3c0661e10f70b4fe82dcd897ba84f1a30ca93d10494f1174e7a8047019"
+    },
+    "lean/CriticalHardcore/WordTrialMass.lean": {
+      "bytes": 5413,
+      "sha256": "aca2902be3951311eb66ebd5255ea8c75184fdfefe420748d3b7d15b63ddc42c"
+    },
+    "lean/CriticalHardcore/WordTrialTree.lean": {
+      "bytes": 5123,
+      "sha256": "d3d3a058a491c2be244e84e081b208e1366330899b014f675192403aa3840a4b"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3553,
+      "sha256": "a511ceb4e7547730bd246736ce678fc17f42c1c5e46fd455447d5c46a1cbac2f"
+    },
+    "lean/lakefile.lean": {
+      "bytes": 288,
+      "sha256": "874965465379b376388f19688d5a7aabc0e86aa8330ce9bc5307048ce2289bf5"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    "lean/verify.py": {
+      "bytes": 9270,
+      "sha256": "b517cb25d1a2b981d5d419259201cae6623c3c9765e91a10397399931e92cca1"
+    },
+    "manuscript.pdf": {
+      "bytes": 367384,
+      "sha256": "23b1d3f53bcae63a45bc60f06eb58c46685f20219362b5e049e4dd3c129e84c0"
+    },
+    "manuscript.tex": {
+      "bytes": 38373,
+      "sha256": "31d6faed3c841a8e588c3e9e830168f04a84ed74cf9c4119eb9633bcdf738c6c"
+    },
+    "verification/README.md": {
+      "bytes": 888,
+      "sha256": "46c92b549eb467b94a07fb1585a63dbe57bc02a99adeed1772c3b99623295b1a"
+    },
+    "verification/axioms.txt": {
+      "bytes": 5467,
+      "sha256": "ccee8752f7c1a3ffb5ece748f8979660198101b982b295aa341aab0c21d9478b"
+    },
+    "verification/build.log": {
+      "bytes": 18834,
+      "sha256": "f18a394fba68f7ad567f18ad7b26d3aaca38c29a1d6617b04d21b77bea125798"
+    },
+    "verification/certificate.json": {
+      "bytes": 9267,
+      "sha256": "bd08f19f16ee44441444e0c7245a4bf4eba5055680edc082145be8de14a0bb43"
+    }
+  }
+}

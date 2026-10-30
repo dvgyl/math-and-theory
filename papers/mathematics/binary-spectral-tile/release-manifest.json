@@ -1,0 +1,260 @@
+{
+  "format_version": 1,
+  "package_id": "binary-spectral-tile",
+  "formal_scope": "Spectrality with an actual basis of all complex functions on E, the tiling E ⊕ T = F₂⁹, aperiodicity of E, the exclusion of every periodic and every subspace complement, the classification of all complements as the 512 translates of T, and the failure of the periodic tiling property for F₂⁹ are formalized in 16 Lean modules. Minimality of dimension nine depends on an external dimension-eight theorem and is not formalized.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.lean",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/AxiomAudit.lean": "1708d596b25aaae126aef38b78956e1fff0fa767b8a2822927876755d0996be9",
+    "lean/BinaryAperiodic.lean": "a816f34a0da2681b7df791f5b2ca67fec1a66286e6adfb898f0e25d9b2c3e123",
+    "lean/BinaryBasic.lean": "258882931a90d36d7d187dbf125155dde5a61a3987063abca425d1fee7d10b4b",
+    "lean/BinaryCharacters.lean": "0ca4c450b631cf322c60b0b155e1f7752e237532e90ddd84a3d3b73ee45c4057",
+    "lean/BinaryComplements.lean": "677ac82e850944e0519674993cd65323ecb5f6e7dc484d3f1ce856ed19dc7ffc",
+    "lean/BinaryData.lean": "9a123dfb59a359aa98b5ff3eafc33f353a4136b5d7cc0b1073e477cb7cefab04",
+    "lean/BinaryMain.lean": "4506b684617f707b5dcf6e91c989f1db51ea1459ff4bdfb7b989070b8ea84320",
+    "lean/BinaryNoLinear.lean": "7ac66840a2f9c985ea5888dab7190d5c0aaa94093a9c5e68ec1986eb6a73a87e",
+    "lean/BinaryNoSubspace.lean": "4baaeda6f0f936ff0ce52748f61650f30723c04004cf02b8dcf03328e9653577",
+    "lean/BinaryObstruction.lean": "24c9e91f3d5b2f9fdbc32436fc46d9d2ac83c9d5c051014ac9393de8889f618d",
+    "lean/BinaryPeriodicity.lean": "1c513f56ac20cb2f61d05941846dac9e9197eb687896a81949b63d3697be910e",
+    "lean/BinarySpectral.lean": "889df10280742b8d77847934b1734f51fda446da26d42881e3877fc2ace38314",
+    "lean/BinarySubspacePrelude.lean": "b06efca0c01c16bdc8aaf00d0f8ca07119d5233aac80e0ca9ab5b2e390174e59",
+    "lean/BinaryTiling.lean": "50503f65c96ab6e168c76657c5bae5a02cebeeb8d638e7fea6b6dcc23e8dd55f",
+    "lean/BinaryTilingCodes.lean": "0ea8de01556148b52a1896366d549b5e92f3d67cbe0adeacbae67551999f1c52",
+    "lean/BinaryTilingDefs.lean": "409942f1d2f78435aef35683500254eb6d8147631e4f14eba271cb03dfb66bc4",
+    "lean/BinaryWalsh.lean": "998a6cd967583f4b144994e3b7b06fca870e7f29e3a92d109cd6a868e1ba6060"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 1531,
+      "sha256": "68a47abd964b705228450b270ecbc39e0b36302fc1bd46677e412c7ba69a6d03"
+    },
+    "CITATION.bib": {
+      "bytes": 382,
+      "sha256": "a25521420e0044d901163f42745fa5baa914b999809ebd91a22614a362428b07"
+    },
+    "CITATION.cff": {
+      "bytes": 1471,
+      "sha256": "2ce1fe7c424e34b7716bf6e70cc00ffea73ad7a6da7bf70f130b5aea547c17ef"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 2617,
+      "sha256": "fbfb2d213b81582b7aa58b5e8b6d64a490b9b0422fc76c0e5cc644b2520d13ee"
+    },
+    "VERIFICATION.md": {
+      "bytes": 2190,
+      "sha256": "4d1870a98313b54d7fd61f5747ef23e3308f066b42b7ba6381a073728e920b88"
+    },
+    "checks/check_construction.py": {
+      "bytes": 4577,
+      "sha256": "749b4c15a6b65d90dea892baece7ec16c6662da22c632045675abc4e7e4f0c3b"
+    },
+    "checks/construction.json": {
+      "bytes": 2350,
+      "sha256": "cbfe2da41ec4d9c6e5034837a369f2cba3440dde43676cf09adc9fec249f0ac5"
+    },
+    "discovery/FI_ANCILLARY_64_AUDIT.json": {
+      "bytes": 530190,
+      "sha256": "9f032e10daa1b10f2c21f0bb5847508fafc54d13057dc62fd019b4115da557f8"
+    },
+    "discovery/README.md": {
+      "bytes": 1064,
+      "sha256": "ab81eac254fb1c1f7e2986861f5d13a3e3574334b80f2fa1d925d97677d47a80"
+    },
+    "discovery/audit_fi_ancillary_examples.py": {
+      "bytes": 4048,
+      "sha256": "0d332ac42acfe73c6e6d071eb5d56c4fcfb5409a0d38f021d476365adf13310c"
+    },
+    "lean/AxiomAudit.lean": {
+      "bytes": 6067,
+      "sha256": "1708d596b25aaae126aef38b78956e1fff0fa767b8a2822927876755d0996be9"
+    },
+    "lean/BinaryAperiodic.lean": {
+      "bytes": 10743,
+      "sha256": "a816f34a0da2681b7df791f5b2ca67fec1a66286e6adfb898f0e25d9b2c3e123"
+    },
+    "lean/BinaryBasic.lean": {
+      "bytes": 2099,
+      "sha256": "258882931a90d36d7d187dbf125155dde5a61a3987063abca425d1fee7d10b4b"
+    },
+    "lean/BinaryCharacters.lean": {
+      "bytes": 2360,
+      "sha256": "0ca4c450b631cf322c60b0b155e1f7752e237532e90ddd84a3d3b73ee45c4057"
+    },
+    "lean/BinaryComplements.lean": {
+      "bytes": 12199,
+      "sha256": "677ac82e850944e0519674993cd65323ecb5f6e7dc484d3f1ce856ed19dc7ffc"
+    },
+    "lean/BinaryData.lean": {
+      "bytes": 1389,
+      "sha256": "9a123dfb59a359aa98b5ff3eafc33f353a4136b5d7cc0b1073e477cb7cefab04"
+    },
+    "lean/BinaryMain.lean": {
+      "bytes": 2215,
+      "sha256": "4506b684617f707b5dcf6e91c989f1db51ea1459ff4bdfb7b989070b8ea84320"
+    },
+    "lean/BinaryNoLinear.lean": {
+      "bytes": 3647,
+      "sha256": "7ac66840a2f9c985ea5888dab7190d5c0aaa94093a9c5e68ec1986eb6a73a87e"
+    },
+    "lean/BinaryNoSubspace.lean": {
+      "bytes": 690,
+      "sha256": "4baaeda6f0f936ff0ce52748f61650f30723c04004cf02b8dcf03328e9653577"
+    },
+    "lean/BinaryObstruction.lean": {
+      "bytes": 14767,
+      "sha256": "24c9e91f3d5b2f9fdbc32436fc46d9d2ac83c9d5c051014ac9393de8889f618d"
+    },
+    "lean/BinaryPeriodicity.lean": {
+      "bytes": 5507,
+      "sha256": "1c513f56ac20cb2f61d05941846dac9e9197eb687896a81949b63d3697be910e"
+    },
+    "lean/BinarySpectral.lean": {
+      "bytes": 5032,
+      "sha256": "889df10280742b8d77847934b1734f51fda446da26d42881e3877fc2ace38314"
+    },
+    "lean/BinarySubspacePrelude.lean": {
+      "bytes": 1230,
+      "sha256": "b06efca0c01c16bdc8aaf00d0f8ca07119d5233aac80e0ca9ab5b2e390174e59"
+    },
+    "lean/BinaryTiling.lean": {
+      "bytes": 2709,
+      "sha256": "50503f65c96ab6e168c76657c5bae5a02cebeeb8d638e7fea6b6dcc23e8dd55f"
+    },
+    "lean/BinaryTilingCodes.lean": {
+      "bytes": 73531,
+      "sha256": "0ea8de01556148b52a1896366d549b5e92f3d67cbe0adeacbae67551999f1c52"
+    },
+    "lean/BinaryTilingDefs.lean": {
+      "bytes": 622,
+      "sha256": "409942f1d2f78435aef35683500254eb6d8147631e4f14eba271cb03dfb66bc4"
+    },
+    "lean/BinaryWalsh.lean": {
+      "bytes": 19338,
+      "sha256": "998a6cd967583f4b144994e3b7b06fca870e7f29e3a92d109cd6a868e1ba6060"
+    },
+    "lean/REPRODUCE.txt": {
+      "bytes": 4002,
+      "sha256": "9c2a0a140b5e6ac8a1ec77397aedc6abf6678cef72f151ba5526e1dcafff0c6a"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3547,
+      "sha256": "6998f8312b775bb375f74fbcecced695ad12d4a3030338b30cf59df846adbb83"
+    },
+    "lean/lakefile.lean": {
+      "bytes": 378,
+      "sha256": "1da866c74dcbafed45299ffa30db0390b576213e2c67aea4cd49fd73a9ddee8c"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    "lean/modules.json": {
+      "bytes": 524,
+      "sha256": "f809cdacf555fde39ffb8ed71e133f0397d9e9618a0c7132a9f61fa26c8ff21d"
+    },
+    "lean/release-freeze.json": {
+      "bytes": 7480,
+      "sha256": "5f9f9a32a741fc03cb9feaf0255e9b6c58911c4a437798dc6d4d03e40136c723"
+    },
+    "lean/verify_release.py": {
+      "bytes": 20133,
+      "sha256": "c16c9d4ac578b87d5ff276a3ebe086089eac45e6c00f163955005d6d64069226"
+    },
+    "manuscript.pdf": {
+      "bytes": 350809,
+      "sha256": "a2f2c7e3bb91edbbb9d70f5357bc91e73e33a808626917ce49cb2457253b102a"
+    },
+    "manuscript.tex": {
+      "bytes": 41955,
+      "sha256": "fed71ad041b660eb0ba7bf5cb214df27b41735fee40373805ad4524bc92d8bf5"
+    },
+    "verification/README.md": {
+      "bytes": 921,
+      "sha256": "370e92aa23f67c33a0c96b53f39fae618d2d58b588b5af796c1c856fb863d1f9"
+    },
+    "verification/logs/AxiomAudit.log": {
+      "bytes": 10839,
+      "sha256": "61f0542c6719ffe18cb846fe4319838116f87643918ab0df7d11999df6beae6c"
+    },
+    "verification/logs/BinaryAperiodic.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/BinaryBasic.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/BinaryCharacters.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/BinaryComplements.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/BinaryData.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/BinaryMain.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/BinaryNoLinear.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/BinaryNoSubspace.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/BinaryObstruction.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/BinaryPeriodicity.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/BinarySpectral.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/BinarySubspacePrelude.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/BinaryTiling.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/BinaryTilingCodes.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/BinaryTilingDefs.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/BinaryWalsh.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/receipt.json": {
+      "bytes": 27320,
+      "sha256": "314e31f16045dd3af90d2c61486b3edbda8aa52e284ef85f48c735d220daa307"
+    }
+  }
+}

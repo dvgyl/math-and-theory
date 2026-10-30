@@ -1,0 +1,2453 @@
+{
+  "started_utc": "2026-10-30T03:15:17.909009+00:00",
+  "lean_version": "Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)",
+  "lean_binary": "$LEAN_HOME/bin/lean",
+  "lean_binary_sha256": "92c3d35b5bfaa5e0fea413a775d504cf46cd95e1345df61c2274f76779e7e023",
+  "lean_toolchain": "leanprover/lean4:v4.19.0",
+  "pinned_dependencies": {
+    "mathlib": {
+      "revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "url": "https://github.com/leanprover-community/mathlib4.git"
+    },
+    "plausible": {
+      "revision": "77e08eddc486491d7b9e470926b3dbe50319451a",
+      "url": "https://github.com/leanprover-community/plausible"
+    },
+    "LeanSearchClient": {
+      "revision": "25078369972d295301f5a1e53c3e5850cf6d9d4c",
+      "url": "https://github.com/leanprover-community/LeanSearchClient"
+    },
+    "importGraph": {
+      "revision": "e6a9f0f5ee3ccf7443a0070f92b62f8db12ae82b",
+      "url": "https://github.com/leanprover-community/import-graph"
+    },
+    "proofwidgets": {
+      "revision": "c4919189477c3221e6a204008998b0d724f49904",
+      "url": "https://github.com/leanprover-community/ProofWidgets4"
+    },
+    "aesop": {
+      "revision": "5d50b08dedd7d69b3d9b3176e0d58a23af228884",
+      "url": "https://github.com/leanprover-community/aesop"
+    },
+    "Qq": {
+      "revision": "fa4f7f15d97591a9cf3aa7724ba371c7fc6dda02",
+      "url": "https://github.com/leanprover-community/quote4"
+    },
+    "batteries": {
+      "revision": "f5d04a9c4973d401c8c92500711518f7c656f034",
+      "url": "https://github.com/leanprover-community/batteries"
+    },
+    "Cli": {
+      "revision": "02dbd02bc00ec4916e99b04b2245b30200e200d0",
+      "url": "https://github.com/leanprover/lean4-cli"
+    }
+  },
+  "source_sha256": {
+    "RadialHuber.lean": "047c69701aad55ffe34e8e5c2ddc49c6ccf3feea98a15cb202cc436880d5c176",
+    "ValleyModel.lean": "d1b4b05fb695938bf4f70b19753adf50867d810ec3f7131916c868f853ef609b",
+    "ConvexProjection.lean": "fe8f05f7f12caa3baecb2dc8b660c1d3098d12c503a76230d073b1a0c73a3666",
+    "PowerAlgebra.lean": "1785ab4e09e0025a40eddcb98c80b00d3cb703d2eb3d01f107c05a5675585070",
+    "PowerModel.lean": "840e01a179a66b84a99b03372afdcd3b020f67770e9ba211e59dc9263f68a089",
+    "PowerNormal.lean": "21257f4949d710b8eccc6e98a86b4cfdbc09edd180d509ab5c20a8a9b1ddd29c",
+    "PowerEstimates.lean": "5c1a688358953f897a3d9baa5eb56e04affceee5f6b1c3da32dec913c63c6618",
+    "PowerExterior.lean": "9dd79dd1b84bd9f62986493d16a6a07cf5f03fa4500b1783792ae4e4d90de1fe",
+    "ScalarModelBounds.lean": "4786d20f08cd7cdf52a01d21f46683bf8a290262546e75c0b9157e9edddf9d1d",
+    "PowerValley.lean": "b8922b2e422f6d78443033fd998d2b256dd00b35fdf5550af9067b71049b5b61",
+    "PowerMinimizers.lean": "4d374e12c63d9c56d07425ab70f25d613c7b02058c5f10f2099379ebed6bfb07",
+    "ExponentSelection.lean": "da1e797dd11184811e34661c59b519fecc5b1ee094327f9d61d76626b7eaf783",
+    "FiniteEuler.lean": "c394725aa30bc7ed183e5f8b71d713cf7c10da617cf66e4216b99445c9da647f",
+    "ValleyPath.lean": "1fe75bfa5205cd16827a0fcb878b65f9556f2ec6486ec8bd2b65583bf11f5a12",
+    "FiniteExcursion.lean": "bd0a95823ef13fb4879577e92a1a53912b5a317b11f74a4c7c5dfcdd59184d0b",
+    "MoreauTrajectory.lean": "d8c1b5b785147f2e5d2b06a266a303f2b22baa4450446f65f3b219ddd1cc6123",
+    "FiniteActual.lean": "289ffd2c178d60757d582334d10ea207e63128a22f3c3960dc2fba57d842b9dc",
+    "GeneralVolterraKernel.lean": "1c8bb41dc552431aae7dab7367d899578f760d6919fe2d7ca45a90aafed91e2f",
+    "GeneralVolterraOperator.lean": "9aa6c886ef5e12404d9264147f292ef092bf0a99fb15fcfceae1805f995b3cdf",
+    "GeneralVolterraCalculus.lean": "077fd36ee49e504323dc74636dc8e3364a39f40cdb0d9afb3a4668e7e1ae7ae3",
+    "HilbertSum.lean": "acefa19320bf2af03fd704c70434a025b57d95e7fb925cbf5ed0fa6c936ccc02",
+    "BlockScaling.lean": "f98eef33dcc6c0183d22b582acfefa3128578eeae0fd476988e8440d4f6ecd23",
+    "TimeScaling.lean": "949669d8c1ae5398be4e7368d9fc5b38b299e945eb986a2cf85c8ce59aa70da7",
+    "HilbertModel.lean": "316b12c925c6f8aef8604c6f94501c2f4c8cc2bd23439c29b33468d4e28593fa",
+    "HilbertEscape.lean": "a0a59e2b33021bb74672d4c44dc47b0fb3d5e7076ccff6609041feb4f0dd0da8",
+    "HighDamping.lean": "fa069ea7b6db710d6daf489a3cb5b0a9766f08a5671ddca5a54288327be5cf44",
+    "SharpThreshold.lean": "604c337ce224f474c45ea21dec9b3c981f31d5160b2efc3a1779ad5d32eaea70",
+    "LowDampingPotential.lean": "d3185aa2617600e01790bdb2da991356aa481b0f6f62cb610c057bb85eea7deb",
+    "LowDampingTrajectory.lean": "284de1171e6ca0cd3ff60495f39837b86543244b53c38100c46cd2a5fd135563",
+    "LowDampingMain.lean": "5688cad131220a4b4137ecf08c2d9038c152f8b0e2728998fa1eea19ea33b90a",
+    "LowDampingHilbert.lean": "b1c7234265f25ab66b8aae6e5281e1d4385c66b205df95c8a6ab792fee5bdcc8",
+    "AllPositiveThreshold.lean": "5c2a648cc50d280e23e8e3958f4655fc4c2adb7906f709e2593f517b4561d2dc",
+    "NAGBasic.lean": "f1663be67279e203003dbc31c2a50f09e2cdd0d816458b65856fc4851d66d4e7",
+    "NAGConjugacy.lean": "b39747fa8820dc31d1094af64f84f380eac750281bade1a15e75cfd41cdd9f6e",
+    "NAGHilbertModel.lean": "fa35c2931b1a5f3c0d8a7261fa997dd2676d10aa91e63ae31764eca0b67d0635",
+    "NAGVelocity.lean": "14e8543d1d6e16a5037095d02fb3e9a54452dbf1756984f6f7e0be01f5df3de7",
+    "NAGHilbertEscape.lean": "e4a3ea1bf89eafdc062755b70f4c435d420f780747242b2a9cbeee32472ecfad",
+    "NAGStability.lean": "626c4a323eccf0abcec4ff8f64c05cd595cb08010a5bdd3bc2ca99cbfdfdc00e",
+    "UniformTaylor.lean": "35fcd9543f31f0283bed2749f6e7de31a557bd13f6586b0631d0ed7d6e6d73a6",
+    "NAGODELimit.lean": "fee991082d4ae8d248bf56742551179181eab4dc17fa00011d0d4906cd9ac341",
+    "VolterraAcceleration.lean": "b2195bb8babaa96bd1a614852c0957c89d2a190e57d5f826884b3aed3dd3349f",
+    "NAGPlanarExcursion.lean": "6f869c68bb211bacff5d1bb523d22b6400cc8670ee9724c53d4f2da228c5c6a3",
+    "NAGDescent.lean": "4bcf0fbb3805a53510dd5e5c22c64c4a32a97df4596c29c448a74794e225bef3",
+    "NAGHighDamping.lean": "32e5e210007b03af06f4e620d4be80e355c7e45fb826c308638d0e4bf7e54d21",
+    "NAGAxisLift.lean": "e6a5ce897ff37f047ad2de83b9dda98ef1319123257c1332f59a0ba134821efd",
+    "NAGLowDamping.lean": "0f238702f5da12ccbdae2e58161ab52ac90f0cbec505c823e600956623595e73",
+    "NAGLowHilbert.lean": "6c513b0aa7cfeceb529a9f3b932b7072bfa5adf9b310617822af6f971f222919",
+    "NAGSharpThreshold.lean": "0ce67df7dbbc105cbbbd48e3b8b571a2b3efaed7178c6b99142e8ce0bc9b463d",
+    "PlanarEnergy.lean": "cb6e8506dd7daf669bf67841eb7b71eea640db21bccfb3592bdddde9c9c9a78b",
+    "EulerObstruction.lean": "462b0d80fdaca3fd50bc8dd7b2c87f222770f4bed4d44d871c386899c1089dca",
+    "PlanarInvariants.lean": "1d12f1fb092c9f8fb4d29d3938109b6b431da2df69a8376ae8849753fc26502c",
+    "PlanarUnbounded.lean": "17120b27986e75ebac96779746079500137eed093f6418c632b637e71b61b2c1",
+    "PlanarTrajectory.lean": "610e9ed70891f8386e89d37af9f32461ea80eef539089288276c0b1c63442272",
+    "PlanarMain.lean": "db4016cc731db4fb65ef4c21eb435920eb1441715d5e1bec93566e28b31302e2",
+    "PlanarAllDamping.lean": "f4c997272243ee0f8750961c333036c8123d8ada75e92eab9c4fa8b3993d44f1",
+    "Audit.lean": "713cb3f9c4b4abd09ed046e56c00df991137ce5138002ab0f8b683aefae5f845"
+  },
+  "imports": {
+    "RadialHuber": [
+      "Mathlib.Analysis.InnerProductSpace.PiL2",
+      "Mathlib.Analysis.Calculus.Gradient.Basic",
+      "Mathlib.Analysis.Asymptotics.Lemmas",
+      "Mathlib.Analysis.Convex.Function",
+      "Mathlib.Tactic"
+    ],
+    "ValleyModel": [
+      "RadialHuber"
+    ],
+    "ConvexProjection": [
+      "Mathlib.Analysis.InnerProductSpace.Projection",
+      "Mathlib.Analysis.Calculus.Gradient.Basic",
+      "Mathlib.Analysis.Asymptotics.Lemmas",
+      "Mathlib.Analysis.Convex.Function",
+      "Mathlib.Tactic"
+    ],
+    "PowerAlgebra": [
+      "Mathlib.Analysis.Convex.Mul",
+      "Mathlib.Tactic"
+    ],
+    "PowerModel": [
+      "ConvexProjection",
+      "PowerAlgebra",
+      "Mathlib.Analysis.InnerProductSpace.PiL2",
+      "Mathlib.Analysis.Calculus.LagrangeMultipliers",
+      "Mathlib.Analysis.Calculus.LocalExtr.Basic",
+      "Mathlib.Analysis.Calculus.FDeriv.Mul"
+    ],
+    "PowerNormal": [
+      "PowerModel",
+      "Mathlib.Analysis.Calculus.Deriv.Pow"
+    ],
+    "PowerEstimates": [
+      "PowerAlgebra"
+    ],
+    "PowerExterior": [
+      "PowerNormal",
+      "PowerEstimates"
+    ],
+    "ScalarModelBounds": [
+      "Mathlib.Tactic"
+    ],
+    "PowerValley": [
+      "PowerExterior",
+      "ScalarModelBounds"
+    ],
+    "PowerMinimizers": [
+      "PowerModel"
+    ],
+    "ExponentSelection": [
+      "PowerAlgebra"
+    ],
+    "FiniteEuler": [
+      "Mathlib.Analysis.Calculus.Deriv.MeanValue",
+      "Mathlib.Analysis.SpecialFunctions.Log.Deriv",
+      "Mathlib.Tactic"
+    ],
+    "ValleyPath": [
+      "Mathlib.Analysis.Calculus.Deriv.MeanValue",
+      "Mathlib.Analysis.SpecialFunctions.Pow.Deriv",
+      "Mathlib.Analysis.SpecialFunctions.ExpDeriv",
+      "Mathlib.Tactic"
+    ],
+    "FiniteExcursion": [
+      "FiniteEuler",
+      "ValleyPath"
+    ],
+    "MoreauTrajectory": [
+      "PowerValley",
+      "ValleyPath"
+    ],
+    "FiniteActual": [
+      "FiniteExcursion",
+      "MoreauTrajectory",
+      "ExponentSelection"
+    ],
+    "GeneralVolterraKernel": [
+      "Mathlib.Analysis.SpecialFunctions.ExpDeriv",
+      "Mathlib.Analysis.SpecialFunctions.Pow.Deriv",
+      "Mathlib.Analysis.Convex.SpecificFunctions.Basic",
+      "Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus",
+      "Mathlib.Tactic"
+    ],
+    "GeneralVolterraOperator": [
+      "GeneralVolterraKernel",
+      "Mathlib.Topology.ContinuousMap.Bounded.Normed",
+      "Mathlib.Topology.MetricSpace.Contracting"
+    ],
+    "GeneralVolterraCalculus": [
+      "GeneralVolterraOperator",
+      "Mathlib.Analysis.Calculus.Deriv.Slope"
+    ],
+    "HilbertSum": [
+      "Mathlib.Analysis.InnerProductSpace.l2Space",
+      "Mathlib.Analysis.Calculus.Gradient.Basic",
+      "Mathlib.Analysis.Calculus.SmoothSeries",
+      "Mathlib.Analysis.Convex.Function",
+      "Mathlib.Tactic"
+    ],
+    "BlockScaling": [
+      "HilbertSum",
+      "Mathlib.Analysis.SpecificLimits.Basic"
+    ],
+    "TimeScaling": [
+      "HilbertSum",
+      "BlockScaling"
+    ],
+    "HilbertModel": [
+      "BlockScaling",
+      "PowerModel"
+    ],
+    "HilbertEscape": [
+      "HilbertModel",
+      "TimeScaling",
+      "GeneralVolterraCalculus"
+    ],
+    "HighDamping": [
+      "Mathlib.Analysis.InnerProductSpace.Calculus",
+      "Mathlib.Analysis.Calculus.Gradient.Basic",
+      "Mathlib.Analysis.Convex.Deriv",
+      "Mathlib.Analysis.SpecialFunctions.Pow.Deriv",
+      "Mathlib.Tactic"
+    ],
+    "SharpThreshold": [
+      "HilbertEscape",
+      "HighDamping",
+      "MoreauTrajectory",
+      "FiniteExcursion",
+      "ExponentSelection"
+    ],
+    "LowDampingPotential": [
+      "Mathlib.Analysis.Convex.Deriv",
+      "Mathlib.Analysis.Calculus.Gradient.Basic",
+      "Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus",
+      "Mathlib.Analysis.SpecialFunctions.Sqrt",
+      "Mathlib.Tactic"
+    ],
+    "LowDampingTrajectory": [
+      "LowDampingPotential",
+      "Mathlib.Analysis.SpecialFunctions.Pow.Deriv",
+      "Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics",
+      "Mathlib.Analysis.SpecialFunctions.Log.Deriv"
+    ],
+    "LowDampingMain": [
+      "LowDampingTrajectory"
+    ],
+    "LowDampingHilbert": [
+      "HilbertModel",
+      "LowDampingMain"
+    ],
+    "AllPositiveThreshold": [
+      "SharpThreshold",
+      "LowDampingHilbert"
+    ],
+    "NAGBasic": [
+      "Mathlib.Analysis.InnerProductSpace.Basic",
+      "Mathlib.Tactic"
+    ],
+    "NAGConjugacy": [
+      "NAGBasic"
+    ],
+    "NAGHilbertModel": [
+      "HilbertModel",
+      "NAGConjugacy"
+    ],
+    "NAGVelocity": [
+      "NAGBasic"
+    ],
+    "NAGHilbertEscape": [
+      "NAGHilbertModel",
+      "NAGVelocity"
+    ],
+    "NAGStability": [
+      "Mathlib.Analysis.Normed.Module.Basic",
+      "Mathlib.Analysis.SpecialFunctions.Exp",
+      "Mathlib.Tactic"
+    ],
+    "UniformTaylor": [
+      "Mathlib.Analysis.Calculus.MeanValue",
+      "Mathlib.Topology.UniformSpace.HeineCantor",
+      "Mathlib.Topology.MetricSpace.Pseudo.Defs",
+      "Mathlib.Tactic"
+    ],
+    "NAGODELimit": [
+      "NAGVelocity",
+      "NAGStability",
+      "UniformTaylor",
+      "Mathlib.Analysis.Normed.Group.Bounded"
+    ],
+    "VolterraAcceleration": [
+      "GeneralVolterraCalculus",
+      "Mathlib.Analysis.SpecialFunctions.Integrals"
+    ],
+    "NAGPlanarExcursion": [
+      "NAGODELimit",
+      "NAGHilbertModel",
+      "VolterraAcceleration",
+      "FiniteActual",
+      "TimeScaling"
+    ],
+    "NAGDescent": [
+      "NAGBasic",
+      "HighDamping"
+    ],
+    "NAGHighDamping": [
+      "NAGDescent"
+    ],
+    "NAGAxisLift": [
+      "NAGConjugacy",
+      "HilbertModel"
+    ],
+    "NAGLowDamping": [
+      "NAGBasic",
+      "Mathlib.Analysis.Calculus.Gradient.Basic",
+      "Mathlib.Analysis.Convex.Deriv",
+      "Mathlib.Analysis.PSeries",
+      "Mathlib.Analysis.SpecialFunctions.Integrals",
+      "Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus"
+    ],
+    "NAGLowHilbert": [
+      "NAGAxisLift",
+      "NAGLowDamping"
+    ],
+    "NAGSharpThreshold": [
+      "NAGHilbertEscape",
+      "NAGPlanarExcursion",
+      "NAGHighDamping",
+      "NAGLowHilbert"
+    ],
+    "PlanarEnergy": [
+      "Mathlib.Analysis.Calculus.Deriv.MeanValue",
+      "Mathlib.Analysis.SpecialFunctions.Sqrt",
+      "Mathlib.Analysis.SpecialFunctions.ExpDeriv",
+      "Mathlib.Tactic"
+    ],
+    "EulerObstruction": [
+      "Mathlib.Analysis.Calculus.Deriv.MeanValue",
+      "Mathlib.Analysis.SpecialFunctions.Log.Deriv",
+      "Mathlib.Analysis.SpecialFunctions.Pow.Deriv",
+      "Mathlib.Tactic"
+    ],
+    "PlanarInvariants": [
+      "PlanarEnergy",
+      "Mathlib.Analysis.SpecialFunctions.Pow.Deriv"
+    ],
+    "PlanarUnbounded": [
+      "PlanarInvariants",
+      "EulerObstruction"
+    ],
+    "PlanarTrajectory": [
+      "PlanarUnbounded",
+      "ValleyModel"
+    ],
+    "PlanarMain": [
+      "GeneralVolterraCalculus",
+      "PlanarTrajectory"
+    ],
+    "PlanarAllDamping": [
+      "PlanarMain",
+      "LowDampingHilbert"
+    ],
+    "Audit": [
+      "AllPositiveThreshold",
+      "FiniteActual",
+      "PowerMinimizers",
+      "NAGSharpThreshold",
+      "PlanarAllDamping"
+    ]
+  },
+  "config_sha256": {
+    "verify_release.py": "7dca78ca4d0c96c1fe13325059e8bde0aaa0c0f7fd5e93b11a75d892f499f2c9",
+    "lake-manifest.json": "ab4c92a072907d34e24178daa75c63828f8e9c3fdfbe77e5caa41d54723a9a3c",
+    "lean-toolchain": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea",
+    "lakefile.lean": "7f4e86ae9348f1583eb7a0e6cab8d3c40adc9488e4650f0699abc5b042c5e4e6"
+  },
+  "lean_path": "$REPLAY/nesterov-out/objects:$MATHLIB/.lake/build/lib/lean:$MATHLIB/.lake/packages/plausible/.lake/build/lib/lean:$MATHLIB/.lake/packages/LeanSearchClient/.lake/build/lib/lean:$MATHLIB/.lake/packages/importGraph/.lake/build/lib/lean:$MATHLIB/.lake/packages/proofwidgets/.lake/build/lib/lean:$MATHLIB/.lake/packages/aesop/.lake/build/lib/lean:$MATHLIB/.lake/packages/Qq/.lake/build/lib/lean:$MATHLIB/.lake/packages/batteries/.lake/build/lib/lean:$MATHLIB/.lake/packages/Cli/.lake/build/lib/lean",
+  "lean_sysroot": "$LEAN_HOME",
+  "allowed_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "verification_policy": "Fresh copy of every source compiled in order into a fresh object directory with --trust=0 -j1 -DwarningAsError=true; only pinned Mathlib/dependency builds on LEAN_PATH; all #print axioms results must be standard",
+  "modules": [
+    {
+      "module": "RadialHuber",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/RadialHuber.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/RadialHuber.ilean",
+        "RadialHuber.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 11.845,
+      "log_sha256": "2d7926db6f2bcf3afedb281fcf9bfcaf1538b1126d5776a13b359f8bd3d1ae76",
+      "olean_sha256": "9a6b2a3fbdc0deddba36809e0aea5becaead9b0fe4b24d8b23288ee3a10d024d",
+      "axiom_reports": {
+        "NesterovModel.radialHuber_hasFDerivAt": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovModel.valley_convex": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovModel.valleyGradient_lipschitz": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "ValleyModel",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/ValleyModel.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/ValleyModel.ilean",
+        "ValleyModel.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 9.405,
+      "log_sha256": "98a0d986856052823d5a08f987b52c7b85d68aafb021f830cefea92225109c58",
+      "olean_sha256": "7664cca10ee7eec33f6504fa82b88f867545f0e24b7948018723a9ab06d4d42e",
+      "axiom_reports": {
+        "NesterovModel.potential_convex": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovModel.potential_hasGradientAt": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovModel.gradient_lipschitz": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovModel.gradient_norm_le_two": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovModel.potential_minimizers": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "ConvexProjection",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/ConvexProjection.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/ConvexProjection.ilean",
+        "ConvexProjection.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 8.158,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "e797d875255abd7d780bf28a34df32886d1c0bf394ac4eb56323424867756c67",
+      "axiom_reports": {}
+    },
+    {
+      "module": "PowerAlgebra",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/PowerAlgebra.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/PowerAlgebra.ilean",
+        "PowerAlgebra.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 5.679,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "315f6d27f705f6f3c42feae1ce841b5efedff45156d9c6b4e636780ddfd4edac",
+      "axiom_reports": {}
+    },
+    {
+      "module": "PowerModel",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/PowerModel.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/PowerModel.ilean",
+        "PowerModel.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 10.255,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "fee78f754bbaba780e2b31dbd7bae0f0fcc86bc62a2bd26d9ea7e4f82bf741df",
+      "axiom_reports": {}
+    },
+    {
+      "module": "PowerNormal",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/PowerNormal.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/PowerNormal.ilean",
+        "PowerNormal.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 14.997,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "fef3571cbf45c208f0f73d47cd8b3db174d680c7cf1a1a92755fa56c3c483861",
+      "axiom_reports": {}
+    },
+    {
+      "module": "PowerEstimates",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/PowerEstimates.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/PowerEstimates.ilean",
+        "PowerEstimates.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 8.069,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "83c3fedd5f9be1f09ab1039f946c4c89a379867e489adcd094484efb1c404f28",
+      "axiom_reports": {}
+    },
+    {
+      "module": "PowerExterior",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/PowerExterior.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/PowerExterior.ilean",
+        "PowerExterior.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 9.982,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "3c58f49eca111ef07bcf93543a120fbee7adb9fde05adc2c3a59919134938392",
+      "axiom_reports": {}
+    },
+    {
+      "module": "ScalarModelBounds",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/ScalarModelBounds.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/ScalarModelBounds.ilean",
+        "ScalarModelBounds.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 46.873,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "74af6d08771f7674868848ddc4632f05aab1c1b429d14997feeac08ee8e4df75",
+      "axiom_reports": {}
+    },
+    {
+      "module": "PowerValley",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/PowerValley.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/PowerValley.ilean",
+        "PowerValley.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 8.48,
+      "log_sha256": "caa75f08b11f0ce8d997f61502df76614fad4fa916e567ff88ac3bea66af1408",
+      "olean_sha256": "e5bac9a5ef712cc2fe54596433d1fb1a9ce0caf223e6259c3d7a3070cd629e8f",
+      "axiom_reports": {
+        "NesterovThresholdModel.potential_convex": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovThresholdModel.potential_hasGradientAt": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovThresholdModel.gradient_lipschitz": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovThresholdModel.gradient_norm_le_three": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovThresholdModel.exterior_bounds": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "PowerMinimizers",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/PowerMinimizers.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/PowerMinimizers.ilean",
+        "PowerMinimizers.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 6.308,
+      "log_sha256": "310b13ede7ba2899e04ab350b44b8b1848f860c12a888284f8320e5f1f823d1b",
+      "olean_sha256": "5a838e1b39603ca803dbfe8ee0140b263c88e848802fc562c50f4c39c9cd3901",
+      "axiom_reports": {
+        "NesterovThresholdModel.potential_axis_zero": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovThresholdModel.arbitrarily_large_minimizers": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "ExponentSelection",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/ExponentSelection.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/ExponentSelection.ilean",
+        "ExponentSelection.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 4.111,
+      "log_sha256": "2efaec40ea1acab537121689e6400f7ac5df32e52bd8b7fecefe103543b9c200",
+      "olean_sha256": "a760a6172437ea83cafc490fa7f5064875f0293607ebdad09cf99995751c7d46",
+      "axiom_reports": {
+        "NesterovThresholdModel.exists_powerExponent": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "FiniteEuler",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/FiniteEuler.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/FiniteEuler.ilean",
+        "FiniteEuler.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 7.525,
+      "log_sha256": "00f90403fa7e20a399669e4cc09aaa09c6d02951ee5643c1a49d846a264b97ab",
+      "olean_sha256": "4fc200f36f35afdecd4d0ffd36f38713771bccdd1de147de43e52f62ad9fb0a9",
+      "axiom_reports": {
+        "NesterovThreshold.exists_finite_euler_obstruction": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "ValleyPath",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/ValleyPath.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/ValleyPath.ilean",
+        "ValleyPath.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 18.277,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "696250234354a6aee5898baa12fbb1c4573dad1c54e94acf9af43d3fd9d3546e",
+      "axiom_reports": {}
+    },
+    {
+      "module": "FiniteExcursion",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/FiniteExcursion.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/FiniteExcursion.ilean",
+        "FiniteExcursion.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 20.204,
+      "log_sha256": "ba32efd561bb16f6d80eccf23712f20e8e1e28b8a9224b9e3f75ac71bc3ac336",
+      "olean_sha256": "546bab31eb72135fefd8930f5757b0f576df016e0888b1cb0f6700d950203d57",
+      "axiom_reports": {
+        "NesterovThreshold.exists_parameter_excursion": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "MoreauTrajectory",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/MoreauTrajectory.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/MoreauTrajectory.ilean",
+        "MoreauTrajectory.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 7.632,
+      "log_sha256": "11ba796b162ab00aa92ac09c7988a7d7ecfdd2256f0688a27a439ab107401996",
+      "olean_sha256": "0e36e071d7b8d62f04b5b69e99c916be6d5241eb4422673f14d1dca5f10805f0",
+      "axiom_reports": {
+        "NesterovThreshold.ValleyPath.ofVector": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovThreshold.actual_first_coordinate_monotone": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "FiniteActual",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/FiniteActual.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/FiniteActual.ilean",
+        "FiniteActual.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 7.231,
+      "log_sha256": "d411bafd1564bf970862614b621976b9db4712b6eb0dc1aecdbfd6d6ea168351",
+      "olean_sha256": "1caf37fd1502272730811a3656073ed80358d68153713406c09d1bd341829eb8",
+      "axiom_reports": {
+        "NesterovThreshold.exists_parameter_actual_excursion": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovThreshold.exists_exponent_all_excursions": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "GeneralVolterraKernel",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/GeneralVolterraKernel.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/GeneralVolterraKernel.ilean",
+        "GeneralVolterraKernel.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 6.42,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "eb7bf2d0eb811a3383c2cef31c83be19d413795e4377a65b1dadbdf38afe0a24",
+      "axiom_reports": {}
+    },
+    {
+      "module": "GeneralVolterraOperator",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/GeneralVolterraOperator.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/GeneralVolterraOperator.ilean",
+        "GeneralVolterraOperator.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 12.338,
+      "log_sha256": "14c8f7dc40eb240ac255c4949ea69f9485b199a20ad48323dc7228c0cf5ac767",
+      "olean_sha256": "f09969d9305205f012a642121289ec5eeb1ccd71fea89b1f593b5084c3998e52",
+      "axiom_reports": {
+        "GeneralNesterovExistence.exists_global_volterra": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "GeneralVolterraCalculus",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/GeneralVolterraCalculus.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/GeneralVolterraCalculus.ilean",
+        "GeneralVolterraCalculus.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 12.577,
+      "log_sha256": "4bc2ed1e131e1ddeacd9aa52ced12753478e0aaa4851c9652f959ea603f77e9f",
+      "olean_sha256": "f36e22aea54d616cd514ba21204ec0988aa8cd3e326e5bdf92bcd9d394a651cd",
+      "axiom_reports": {
+        "GeneralNesterovExistence.exists_global_nesterov": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "HilbertSum",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/HilbertSum.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/HilbertSum.ilean",
+        "HilbertSum.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 16.44,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "67469e1a04c8a0a669f32293b2f419edc332c6a8d431d864c47071f0964e6e9d",
+      "axiom_reports": {}
+    },
+    {
+      "module": "BlockScaling",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/BlockScaling.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/BlockScaling.ilean",
+        "BlockScaling.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 7.695,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "27dc431402f3187799369645b68850f91fee3061afbe9c82f1e391bf31ffe44e",
+      "axiom_reports": {}
+    },
+    {
+      "module": "TimeScaling",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/TimeScaling.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/TimeScaling.ilean",
+        "TimeScaling.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 5.706,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "4bdcca07e790297a090a432b19fdf38e25de8783ba4b3626760edeae3a9af56b",
+      "axiom_reports": {}
+    },
+    {
+      "module": "HilbertModel",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/HilbertModel.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/HilbertModel.ilean",
+        "HilbertModel.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 6.29,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "d008a832ce519b7e18588e6075bd2b99bbd70ad8d7e9d000f450b28ebcd8919a",
+      "axiom_reports": {}
+    },
+    {
+      "module": "HilbertEscape",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/HilbertEscape.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/HilbertEscape.ilean",
+        "HilbertEscape.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 10.444,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "7eb4d55782a709465ba42be10871356ae817e967d8a97cd500e2d8621d7312c3",
+      "axiom_reports": {}
+    },
+    {
+      "module": "HighDamping",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/HighDamping.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/HighDamping.ilean",
+        "HighDamping.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 12.536,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "8af07f5c8b846852357d6b13316bc2af903515e048ab567f97c0f4a63c2a7ca8",
+      "axiom_reports": {}
+    },
+    {
+      "module": "SharpThreshold",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/SharpThreshold.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/SharpThreshold.ilean",
+        "SharpThreshold.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 10.416,
+      "log_sha256": "996a584579986035cc035190c78919099fd8d114772320f89462451021317bc8",
+      "olean_sha256": "b6f25e587fffd5202d361411bf138ebea6e61dcecb2e9f975c3b1364d0cf3d04",
+      "axiom_reports": {
+        "NesterovSharpThreshold.exists_subcritical_norm_divergent_flow": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovSharpThreshold.sharp_boundedness_threshold": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "LowDampingPotential",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/LowDampingPotential.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/LowDampingPotential.ilean",
+        "LowDampingPotential.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 15.652,
+      "log_sha256": "0acb78296b77b3f88e4ab523c4d2bdb1aec3a6f7b7e0fa6b704f9f304da59710",
+      "olean_sha256": "7b75f435c3833c32e2d5c4694d25a94dcae3a93d503eb9a9419a221df53c0713",
+      "axiom_reports": {
+        "NesterovLowDamping.potential_convex": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovLowDamping.force_lipschitz": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "LowDampingTrajectory",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/LowDampingTrajectory.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/LowDampingTrajectory.ilean",
+        "LowDampingTrajectory.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 10.9,
+      "log_sha256": "4e9861f0be49ace2c308420e54aed9667410b899cadd6cfbe65e74e5efb9fd4b",
+      "olean_sha256": "83d59eb014e365fe749d76b36137df664e2dbaed80cc5ee6c71a0b5215de7fe0",
+      "axiom_reports": {
+        "NesterovLowDamping.ode_identity": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovLowDamping.position_tendsto": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "LowDampingMain",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/LowDampingMain.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/LowDampingMain.ilean",
+        "LowDampingMain.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 8.333,
+      "log_sha256": "d111380bfc7c1648ac4da579020f4fe175dfd0c798c7215031fe9707ee4e02a0",
+      "olean_sha256": "ede0c59fd09a7ec861b290b3c02cabae9e566140cb218c24bbb35df3401ce5b8",
+      "axiom_reports": {
+        "NesterovLowDamping.exists_low_damping_escape": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "LowDampingHilbert",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/LowDampingHilbert.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/LowDampingHilbert.ilean",
+        "LowDampingHilbert.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 8.966,
+      "log_sha256": "c0cb765b60b992c11ae482b93782ad04e6b1b838d13c1ebb29fdfa4507aa9ab1",
+      "olean_sha256": "53cea8f03bed0bb3d3a4a076f3e1b61149d51571deec7145e7a0ae2e49cf701d",
+      "axiom_reports": {
+        "NesterovSharpThreshold.exists_low_damping_norm_divergent_flow": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "AllPositiveThreshold",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/AllPositiveThreshold.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/AllPositiveThreshold.ilean",
+        "AllPositiveThreshold.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 8.591,
+      "log_sha256": "a4dbc4c976cfdf67bc216a82a643f217f5c365e96764ab8300e476dbd77b9b4e",
+      "olean_sha256": "7b193112095354eabc35ba870df9a091c86d23d8c8dcdd86b3b27b65eafd5478",
+      "axiom_reports": {
+        "NesterovSharpThreshold.exists_positive_subcritical_norm_divergent_flow": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovSharpThreshold.sharp_boundedness_threshold_all_positive": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "NAGBasic",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/NAGBasic.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/NAGBasic.ilean",
+        "NAGBasic.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 3.861,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "726f586fcee671befb03b4c3177f912f2dc5d4fad6bc2e82077b6c4a5fb4ff2d",
+      "axiom_reports": {}
+    },
+    {
+      "module": "NAGConjugacy",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/NAGConjugacy.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/NAGConjugacy.ilean",
+        "NAGConjugacy.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 2.843,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "fe110366a9f0ef95dcb39adb42a9e74e61bb78c6efc627e162f7a4fd44293acb",
+      "axiom_reports": {}
+    },
+    {
+      "module": "NAGHilbertModel",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/NAGHilbertModel.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/NAGHilbertModel.ilean",
+        "NAGHilbertModel.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 8.928,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "c1111ba993938341130e2440f78db48ae6994ea67235b0823a491d9ca0dc0e28",
+      "axiom_reports": {}
+    },
+    {
+      "module": "NAGVelocity",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/NAGVelocity.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/NAGVelocity.ilean",
+        "NAGVelocity.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 5.649,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "ec05816a616226adc169c7e37c1ef2e2b688e5ff62bd5cb6afc89a75828e261a",
+      "axiom_reports": {}
+    },
+    {
+      "module": "NAGHilbertEscape",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/NAGHilbertEscape.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/NAGHilbertEscape.ilean",
+        "NAGHilbertEscape.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 4.904,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "af164d33057c7aafd0ad2ec91ed22c47fbc4c89cca7da05bc89c63627e366136",
+      "axiom_reports": {}
+    },
+    {
+      "module": "NAGStability",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/NAGStability.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/NAGStability.ilean",
+        "NAGStability.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 7.65,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "e45cc32e14a58f6dc0b5bcf9ba270140c6c9510af9f689629cfb3b7db0ab861a",
+      "axiom_reports": {}
+    },
+    {
+      "module": "UniformTaylor",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/UniformTaylor.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/UniformTaylor.ilean",
+        "UniformTaylor.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 3.941,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "7a61bdc42209d471342b5576d7cdc80dc1f501d13efc72168917037861feeb95",
+      "axiom_reports": {}
+    },
+    {
+      "module": "NAGODELimit",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/NAGODELimit.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/NAGODELimit.ilean",
+        "NAGODELimit.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 9.187,
+      "log_sha256": "d3cb4119077a82468dd58998fc916e8158d82efac5d6c486e0cd02151dd2dd0b",
+      "olean_sha256": "7858bed8841b62f98079f7043561fe66b5f6d8fd76699e974dbde3e5546d48d9",
+      "axiom_reports": {
+        "DiscreteNesterov.finite_horizon_approximation": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "VolterraAcceleration",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/VolterraAcceleration.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/VolterraAcceleration.ilean",
+        "VolterraAcceleration.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 10.236,
+      "log_sha256": "9d37768ff8e1d979d8654a487bb860f5440bd10ba5de272a8142fbd1858e7253",
+      "olean_sha256": "785ac4f0fed1dba4c98694d0476b1f5ad4c96fe83fc21794d32dfcfa3d6a1d9f",
+      "axiom_reports": {
+        "GeneralNesterovExistence.exists_global_nesterov_with_acceleration": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "NAGPlanarExcursion",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/NAGPlanarExcursion.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/NAGPlanarExcursion.ilean",
+        "NAGPlanarExcursion.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 13.341,
+      "log_sha256": "4d297cedec56ad7c907be3f804300f2b24c5d1294dc210f238d7b42b4c1f32a7",
+      "olean_sha256": "76cd95b429c1ad1442df35b3b44c5bd25bd8a202d1fdc234a1e39ecb552d3c38",
+      "axiom_reports": {
+        "DiscreteNesterov.finite_horizon_approximation": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.exists_planar_discrete_excursion": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.exists_exponent_all_discrete_excursions": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "NAGDescent",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/NAGDescent.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/NAGDescent.ilean",
+        "NAGDescent.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 5.023,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "fc1e2ba52a61c96e904eb499c64e81380e73014c54de326ffffb42807a2b746a",
+      "axiom_reports": {}
+    },
+    {
+      "module": "NAGHighDamping",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/NAGHighDamping.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/NAGHighDamping.ilean",
+        "NAGHighDamping.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 14.744,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "5eb6217801db1a2224d94bb5d3a9770490243166ea36669af97f0764ca4c03d8",
+      "axiom_reports": {}
+    },
+    {
+      "module": "NAGAxisLift",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/NAGAxisLift.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/NAGAxisLift.ilean",
+        "NAGAxisLift.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 5.429,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "fd6b4a050fd00f1199dea8aef2ebea4e5eea47ce7b9859ee5a88972047c0e1c3",
+      "axiom_reports": {}
+    },
+    {
+      "module": "NAGLowDamping",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/NAGLowDamping.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/NAGLowDamping.ilean",
+        "NAGLowDamping.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 7.013,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "8bb42b7b5d320c1292254a24bc270a76f6066ba4c7af83f092d7d9b87049519e",
+      "axiom_reports": {}
+    },
+    {
+      "module": "NAGLowHilbert",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/NAGLowHilbert.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/NAGLowHilbert.ilean",
+        "NAGLowHilbert.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 6.402,
+      "log_sha256": "01d052e988518414c108dd66635b48147d1ff74d25f3889878a0048b46135665",
+      "olean_sha256": "08d88508aa84193a0d80f5ee2da3973a02c3ccca22c9095c310f7470e2f4722b",
+      "axiom_reports": {
+        "DiscreteNesterov.exists_low_discrete_norm_divergence": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "NAGSharpThreshold",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/NAGSharpThreshold.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/NAGSharpThreshold.ilean",
+        "NAGSharpThreshold.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 13.174,
+      "log_sha256": "42b2179305a10c94d7b7117cb42d0746ddd25526d6d34b04f8bda12334ba9f55",
+      "olean_sha256": "ba336ed8c80cb860be2a955bc498b77fa253e3e7f99e177cb631ea4ff4cb111e",
+      "axiom_reports": {
+        "DiscreteNesterov.exists_subcritical_discrete_norm_divergence": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.exists_discrete_norm_divergence_below_three": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.sharp_discrete_boundedness_threshold": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    },
+    {
+      "module": "PlanarEnergy",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/PlanarEnergy.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/PlanarEnergy.ilean",
+        "PlanarEnergy.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 21.679,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "7c913bf12f7ee33f70415a1fb55be1c636510580c622c587af5b6907cbfebb57",
+      "axiom_reports": {}
+    },
+    {
+      "module": "EulerObstruction",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/EulerObstruction.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/EulerObstruction.ilean",
+        "EulerObstruction.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 6.229,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "3c3770d18077866616382277e9be086ea47c2e507b512e4a80c0607e452a9157",
+      "axiom_reports": {}
+    },
+    {
+      "module": "PlanarInvariants",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/PlanarInvariants.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/PlanarInvariants.ilean",
+        "PlanarInvariants.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 8.311,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "b64866ac39648a72a148beb2dabcaebef3d718d5db0a12603025d25eb566fabb",
+      "axiom_reports": {}
+    },
+    {
+      "module": "PlanarUnbounded",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/PlanarUnbounded.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/PlanarUnbounded.ilean",
+        "PlanarUnbounded.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 5.119,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "4fc92731a0e1132029a22afab8775fb3beddab7c3ccc23d07f972bafa9f4f8c8",
+      "axiom_reports": {}
+    },
+    {
+      "module": "PlanarTrajectory",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/PlanarTrajectory.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/PlanarTrajectory.ilean",
+        "PlanarTrajectory.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 4.623,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "1151a78e05dd60e6bfbd873f50369b21aee2757e6a9e0ee9d05d12196a3b53c5",
+      "axiom_reports": {}
+    },
+    {
+      "module": "PlanarMain",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/PlanarMain.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/PlanarMain.ilean",
+        "PlanarMain.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 4.947,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "94eeb9cfed6733d302ff5d04955ea0ad45d4b159b6270d40cec97f02eb4179e4",
+      "axiom_reports": {}
+    },
+    {
+      "module": "PlanarAllDamping",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/PlanarAllDamping.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/PlanarAllDamping.ilean",
+        "PlanarAllDamping.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 5.771,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "12c07021ec37ba7211d4c68e01b6488a451d508543ee19fa5b863040192bdc3f",
+      "axiom_reports": {}
+    },
+    {
+      "module": "Audit",
+      "trust": 0,
+      "returncode": 0,
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--trust=0",
+        "-j1",
+        "-DwarningAsError=true",
+        "-o",
+        "$REPLAY/nesterov-out/objects/Audit.olean",
+        "-i",
+        "$REPLAY/nesterov-out/objects/Audit.ilean",
+        "Audit.lean"
+      ],
+      "cwd": "$REPLAY/nesterov-out/sources",
+      "elapsed_seconds": 70.55,
+      "log_sha256": "6502240f9548871fe71a9b8d8fdb63ff26cc0918e0ac59bb8513828cbd1acde3",
+      "olean_sha256": "4863b874eeab180b994c914ca52b05350cc3abcf4fb03c5187ee27802c53ed60",
+      "axiom_reports": {
+        "NesterovSharpThreshold.exists_subcritical_norm_divergent_flow": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovSharpThreshold.sharp_boundedness_threshold": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovSharpThreshold.exists_positive_subcritical_norm_divergent_flow": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovSharpThreshold.sharp_boundedness_threshold_all_positive": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovHighDamping.bounded_distance": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.sharp_discrete_boundedness_threshold": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.exists_subcritical_discrete_norm_divergence": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.exists_discrete_norm_divergence_below_three": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovPlanar.planar_valley_escape": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovPlanar.every_planar_trajectory_escapes": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovPlanar.planar_escape_all_low_damping": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovThresholdModel.potential_hasGradientAt": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovThresholdModel.gradient_lipschitz": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovThresholdModel.exterior_bounds": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovThreshold.exists_parameter_actual_excursion": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovThreshold.exists_finite_euler_obstruction": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "GeneralNesterovExistence.exists_global_nesterov": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovHilbert.sumPotential_hasGradient": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovHilbert.sumGradient_lipschitz": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovHilbert.hilbert_hasGradient": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovHilbert.escape_from_blocks": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovThresholdModel.potential_axis_zero": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovThresholdModel.arbitrarily_large_minimizers": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovLowDamping.exists_low_damping_escape": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovSharpThreshold.exists_low_damping_norm_divergent_flow": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.nag_bounded_distance": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.exists_low_discrete_norm_divergence": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NAGLowDamping.exists_scalar_escape": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.exists_planar_discrete_excursion": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.exists_exponent_all_discrete_excursions": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.finite_horizon_approximation": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.extrapolated_step_error": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.finite_discrete_gronwall": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "GeneralNesterovExistence.exists_global_nesterov_with_acceleration": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.discrete_hasGradient": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.discrete_convex": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.discrete_lipschitz": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.discrete_gradient_bound": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.discrete_iterate_coordinate": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.discrete_escape_from_blocks": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "DiscreteNesterov.nag_map": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovPlanar.exists_planar_escaping_trajectory": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovPlanar.PlanarTrajectory.first_coordinate_tendsto_atTop": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovPlanar.weightedEnergy_monotone": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovPlanar.unbounded_of_euler_forcing": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovAxisLift.lift_flow": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovModel.potential_convex": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovModel.potential_hasGradientAt": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovModel.gradient_lipschitz": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "NesterovModel.potential_eq_zero_iff": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      }
+    }
+  ],
+  "status": "PASS",
+  "audit_log": "def NesterovSharpThreshold.UniversalBoundedness : ℝ → Prop :=\nfun r =>\n  ∀ (F : ↥NesterovHilbert.Hilbert → ℝ) (G : ↥NesterovHilbert.Hilbert → ↥NesterovHilbert.Hilbert)\n    (X V : ℝ → ↥NesterovHilbert.Hilbert),\n    ConvexOn ℝ Set.univ F →\n      (∀ (x : ↥NesterovHilbert.Hilbert), HasGradientAt F (G x) x) →\n        LipschitzWith 1 G →\n          (∃ z, ∀ (x : ↥NesterovHilbert.Hilbert), F z ≤ F x) →\n            Continuous X →\n              Continuous V →\n                V 0 = 0 →\n                  (∀ t ≥ 0, HasDerivAt X (V t) t) →\n                    (∀ t > 0, HasDerivAt V (-(r / t) • V t - G (X t)) t) → ∃ C, ∀ t ≥ 0, ‖X t‖ ≤ C\nNesterovSharpThreshold.exists_subcritical_norm_divergent_flow {r : ℝ} (hr : 1 < r) (hr3 : r < 3) :\n  ∃ F G X V,\n    ConvexOn ℝ Set.univ F ∧\n      (∀ (x : ↥NesterovHilbert.Hilbert), HasGradientAt F (G x) x) ∧\n        LipschitzWith 1 G ∧\n          (∀ (x : ↥NesterovHilbert.Hilbert), ‖G x‖ ≤ 2) ∧\n            F 0 = 0 ∧\n              (∀ (x : ↥NesterovHilbert.Hilbert), 0 ≤ F x) ∧\n                Continuous X ∧\n                  Continuous V ∧\n                    X 0 = NesterovHilbert.initialData (NesterovThresholdModel.point 2 1) ∧\n                      V 0 = 0 ∧\n                        (∀ t ≥ 0, HasDerivAt X (V t) t) ∧\n                          (∀ t > 0, HasDerivAt V (-(r / t) • V t - G (X t)) t) ∧\n                            Filter.Tendsto (fun t => ‖X t‖) Filter.atTop Filter.atTop\nNesterovSharpThreshold.sharp_boundedness_threshold {r : ℝ} (hr : 1 < r) :\n  NesterovSharpThreshold.UniversalBoundedness r ↔ 3 ≤ r\nNesterovSharpThreshold.exists_positive_subcritical_norm_divergent_flow {r : ℝ} (hr : 0 < r) (hr3 : r < 3) :\n  ∃ F G X V z,\n    ConvexOn ℝ Set.univ F ∧\n      (∀ (x : ↥NesterovHilbert.Hilbert), HasGradientAt F (G x) x) ∧\n        LipschitzWith 1 G ∧\n          (∀ (x : ↥NesterovHilbert.Hilbert), ‖G x‖ ≤ 2) ∧\n            F z = 0 ∧\n              (∀ (x : ↥NesterovHilbert.Hilbert), 0 ≤ F x) ∧\n                Continuous X ∧\n                  Continuous V ∧\n                    V 0 = 0 ∧\n                      (∀ t ≥ 0, HasDerivAt X (V t) t) ∧\n                        (∀ t > 0, HasDerivAt V (-(r / t) • V t - G (X t)) t) ∧\n                          Filter.Tendsto (fun t => ‖X t‖) Filter.atTop Filter.atTop\nNesterovSharpThreshold.sharp_boundedness_threshold_all_positive {r : ℝ} (hr : 0 < r) :\n  NesterovSharpThreshold.UniversalBoundedness r ↔ 3 ≤ r\nNesterovHighDamping.bounded_distance.{u_1} {E : Type u_1} [NormedAddCommGroup E] [InnerProductSpace ℝ E]\n  [CompleteSpace E] {r : ℝ} (hr : 3 ≤ r) {f : E → ℝ} {g : E → E} (hc : ConvexOn ℝ Set.univ f)\n  (hg : ∀ (x : E), HasGradientAt f (g x) x) {q u : ℝ → E} (hq : ContinuousOn q (Set.Ici 0))\n  (hu : ContinuousOn u (Set.Ici 0)) (hqd : ∀ t > 0, HasDerivAt q (u t) t)\n  (hud : ∀ t > 0, HasDerivAt u (-(r / t) • u t - g (q t)) t) {z : E} (hz : ∀ (x : E), f z ≤ f x) (t : ℝ) :\n  t ≥ 0 → ‖q t - z‖ ≤ ‖q 0 - z‖\ndef DiscreteNesterov.UniversalDiscreteBoundedness : ℝ → Prop :=\nfun r =>\n  ∀ (F : ↥NesterovHilbert.Hilbert → ℝ) (G : ↥NesterovHilbert.Hilbert → ↥NesterovHilbert.Hilbert)\n    (b : ↥NesterovHilbert.Hilbert),\n    ConvexOn ℝ Set.univ F →\n      (∀ (x : ↥NesterovHilbert.Hilbert), HasGradientAt F (G x) x) →\n        LipschitzWith 1 G →\n          (∃ z, ∀ (x : ↥NesterovHilbert.Hilbert), F z ≤ F x) → ∃ C, ∀ (k : ℕ), ‖DiscreteNesterov.nagX r 1 G b k‖ ≤ C\ndef DiscreteNesterov.nagState.{u_1} : {E : Type u_1} →\n  [inst : NormedAddCommGroup E] → [inst : NormedSpace ℝ E] → ℝ → ℝ → (E → E) → E → ℕ → E × E :=\nfun {E} [NormedAddCommGroup E] [NormedSpace ℝ E] r h G b x =>\n  Nat.brecOn x fun x f =>\n    (match (motive := (x : ℕ) → Nat.below x → E × E) x with\n      | 0 => fun x => (b, b)\n      | k.succ => fun x =>\n        let old := x.1;\n        let x := old.2 - h ^ 2 • G old.2;\n        (x, x + DiscreteNesterov.momentum r k • (x - old.1)))\n      f\nDiscreteNesterov.sharp_discrete_boundedness_threshold {r : ℝ} (hr : 0 < r) :\n  DiscreteNesterov.UniversalDiscreteBoundedness r ↔ 3 ≤ r\nDiscreteNesterov.exists_subcritical_discrete_norm_divergence {r : ℝ} (hr : 1 < r) (hr3 : r < 3) :\n  ∃ F G,\n    ConvexOn ℝ Set.univ F ∧\n      (∀ (x : ↥NesterovHilbert.Hilbert), HasGradientAt F (G x) x) ∧\n        LipschitzWith 1 G ∧\n          (∀ (x : ↥NesterovHilbert.Hilbert), ‖G x‖ ≤ 2) ∧\n            F 0 = 0 ∧\n              (∀ (x : ↥NesterovHilbert.Hilbert), 0 ≤ F x) ∧\n                Filter.Tendsto\n                  (fun k =>\n                    ‖DiscreteNesterov.nagX r 1 G (NesterovHilbert.initialData (NesterovThresholdModel.point 2 1)) k‖)\n                  Filter.atTop Filter.atTop\nDiscreteNesterov.exists_discrete_norm_divergence_below_three {r : ℝ} (hr : 0 < r) (hr3 : r < 3) :\n  ∃ F G b z,\n    ConvexOn ℝ Set.univ F ∧\n      (∀ (x : ↥NesterovHilbert.Hilbert), HasGradientAt F (G x) x) ∧\n        LipschitzWith 1 G ∧\n          (∀ (x : ↥NesterovHilbert.Hilbert), ‖G x‖ ≤ 2) ∧\n            F z = 0 ∧\n              (∀ (x : ↥NesterovHilbert.Hilbert), 0 ≤ F x) ∧\n                Filter.Tendsto (fun k => ‖DiscreteNesterov.nagX r 1 G b k‖) Filter.atTop Filter.atTop\nNesterovPlanar.planar_valley_escape {r : ℝ} (hr : 1 < r) (hr2 : r ≤ 2) :\n  (∀ (z : NesterovModel.Plane), NesterovModel.potential z = (if ‖z‖ ≤ 1 then (‖z‖ ^ 2 + 1) / 2 else ‖z‖) - z 0) ∧\n    ConvexOn ℝ Set.univ NesterovModel.potential ∧\n      Differentiable ℝ NesterovModel.potential ∧\n        (∀ (z : NesterovModel.Plane), HasGradientAt NesterovModel.potential (NesterovModel.gradient z) z) ∧\n          LipschitzWith 1 NesterovModel.gradient ∧\n            (∀ (z : NesterovModel.Plane), 0 ≤ NesterovModel.potential z) ∧\n              (∀ (z : NesterovModel.Plane), NesterovModel.potential z = 0 ↔ z 1 = 0 ∧ 1 ≤ z 0) ∧\n                ∃ q u,\n                  Continuous q ∧\n                    Continuous u ∧\n                      q 0 = NesterovModel.point 2 1 ∧\n                        u 0 = 0 ∧\n                          HasDerivAt q 0 0 ∧\n                            (∀ (t : ℝ), 0 ≤ t → HasDerivAt q (u t) t) ∧\n                              (∀ (t : ℝ), 0 < t → HasDerivAt u (-(r / t) • u t - NesterovModel.gradient (q t)) t) ∧\n                                Filter.Tendsto (fun t => q t 0) Filter.atTop Filter.atTop ∧\n                                  Filter.Tendsto (fun t => ‖q t‖) Filter.atTop Filter.atTop\nNesterovPlanar.every_planar_trajectory_escapes {r : ℝ} (hr : 1 < r) (hr2 : r ≤ 2) (q u : ℝ → NesterovModel.Plane)\n  (hq : ContinuousOn q (Set.Ici 0)) (hu : ContinuousOn u (Set.Ici 0)) (hqd : ∀ t > 0, HasDerivAt q (u t) t)\n  (hud : ∀ t > 0, HasDerivAt u (-(r / t) • u t - NesterovModel.gradient (q t)) t) (hq0 : q 0 = NesterovModel.point 2 1)\n  (hu0 : u 0 = 0) :\n  Filter.Tendsto (fun t => q t 0) Filter.atTop Filter.atTop ∧ Filter.Tendsto (fun t => ‖q t‖) Filter.atTop Filter.atTop\nNesterovPlanar.planar_escape_all_low_damping {r : ℝ} (hr : 0 < r) (hr2 : r ≤ 2) :\n  ∃ F G,\n    ConvexOn ℝ Set.univ F ∧\n      (∀ (z : EuclideanSpace ℝ (Fin 2)), HasGradientAt F (G z) z) ∧\n        LipschitzWith 1 G ∧\n          (∀ (z : EuclideanSpace ℝ (Fin 2)), ‖G z‖ ≤ 2) ∧\n            (∃ zmin, ∀ (z : EuclideanSpace ℝ (Fin 2)), F zmin ≤ F z) ∧\n              ∃ q u,\n                Continuous q ∧\n                  Continuous u ∧\n                    u 0 = 0 ∧\n                      HasDerivAt q 0 0 ∧\n                        (∀ t ≥ 0, HasDerivAt q (u t) t) ∧\n                          (∀ t > 0, HasDerivAt u (-(r / t) • u t - G (q t)) t) ∧\n                            Filter.Tendsto (fun t => ‖q t‖) Filter.atTop Filter.atTop\n'NesterovSharpThreshold.exists_subcritical_norm_divergent_flow' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'NesterovSharpThreshold.sharp_boundedness_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovSharpThreshold.exists_positive_subcritical_norm_divergent_flow' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'NesterovSharpThreshold.sharp_boundedness_threshold_all_positive' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'NesterovHighDamping.bounded_distance' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DiscreteNesterov.sharp_discrete_boundedness_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DiscreteNesterov.exists_subcritical_discrete_norm_divergence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'DiscreteNesterov.exists_discrete_norm_divergence_below_three' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'NesterovPlanar.planar_valley_escape' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovPlanar.every_planar_trajectory_escapes' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovPlanar.planar_escape_all_low_damping' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovThresholdModel.potential_hasGradientAt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovThresholdModel.gradient_lipschitz' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovThresholdModel.exterior_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovThreshold.exists_parameter_actual_excursion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovThreshold.exists_finite_euler_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]\n'GeneralNesterovExistence.exists_global_nesterov' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovHilbert.sumPotential_hasGradient' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovHilbert.sumGradient_lipschitz' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovHilbert.hilbert_hasGradient' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovHilbert.escape_from_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovThresholdModel.potential_axis_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovThresholdModel.arbitrarily_large_minimizers' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovLowDamping.exists_low_damping_escape' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovSharpThreshold.exists_low_damping_norm_divergent_flow' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'DiscreteNesterov.nag_bounded_distance' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DiscreteNesterov.exists_low_discrete_norm_divergence' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NAGLowDamping.exists_scalar_escape' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DiscreteNesterov.exists_planar_discrete_excursion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DiscreteNesterov.exists_exponent_all_discrete_excursions' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DiscreteNesterov.finite_horizon_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DiscreteNesterov.extrapolated_step_error' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DiscreteNesterov.finite_discrete_gronwall' depends on axioms: [propext, Classical.choice, Quot.sound]\n'GeneralNesterovExistence.exists_global_nesterov_with_acceleration' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'DiscreteNesterov.discrete_hasGradient' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DiscreteNesterov.discrete_convex' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DiscreteNesterov.discrete_lipschitz' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DiscreteNesterov.discrete_gradient_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DiscreteNesterov.discrete_iterate_coordinate' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DiscreteNesterov.discrete_escape_from_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DiscreteNesterov.nag_map' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovPlanar.exists_planar_escaping_trajectory' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovPlanar.PlanarTrajectory.first_coordinate_tendsto_atTop' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'NesterovPlanar.weightedEnergy_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovPlanar.unbounded_of_euler_forcing' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovAxisLift.lift_flow' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovModel.potential_convex' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovModel.potential_hasGradientAt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovModel.gradient_lipschitz' depends on axioms: [propext, Classical.choice, Quot.sound]\n'NesterovModel.potential_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+  "headline_axioms": {
+    "NesterovSharpThreshold.exists_subcritical_norm_divergent_flow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovSharpThreshold.sharp_boundedness_threshold": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovSharpThreshold.exists_positive_subcritical_norm_divergent_flow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovSharpThreshold.sharp_boundedness_threshold_all_positive": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovHighDamping.bounded_distance": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.sharp_discrete_boundedness_threshold": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.exists_subcritical_discrete_norm_divergence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.exists_discrete_norm_divergence_below_three": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovPlanar.planar_valley_escape": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovPlanar.every_planar_trajectory_escapes": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovPlanar.planar_escape_all_low_damping": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "all_axiom_reports": {
+    "NesterovModel.radialHuber_hasFDerivAt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovModel.valley_convex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovModel.valleyGradient_lipschitz": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovModel.potential_convex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovModel.potential_hasGradientAt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovModel.gradient_lipschitz": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovModel.gradient_norm_le_two": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovModel.potential_minimizers": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovThresholdModel.potential_convex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovThresholdModel.potential_hasGradientAt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovThresholdModel.gradient_lipschitz": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovThresholdModel.gradient_norm_le_three": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovThresholdModel.exterior_bounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovThresholdModel.potential_axis_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovThresholdModel.arbitrarily_large_minimizers": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovThresholdModel.exists_powerExponent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovThreshold.exists_finite_euler_obstruction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovThreshold.exists_parameter_excursion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovThreshold.ValleyPath.ofVector": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovThreshold.actual_first_coordinate_monotone": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovThreshold.exists_parameter_actual_excursion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovThreshold.exists_exponent_all_excursions": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "GeneralNesterovExistence.exists_global_volterra": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "GeneralNesterovExistence.exists_global_nesterov": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovSharpThreshold.exists_subcritical_norm_divergent_flow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovSharpThreshold.sharp_boundedness_threshold": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovLowDamping.potential_convex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovLowDamping.force_lipschitz": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovLowDamping.ode_identity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovLowDamping.position_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovLowDamping.exists_low_damping_escape": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovSharpThreshold.exists_low_damping_norm_divergent_flow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovSharpThreshold.exists_positive_subcritical_norm_divergent_flow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovSharpThreshold.sharp_boundedness_threshold_all_positive": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.finite_horizon_approximation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "GeneralNesterovExistence.exists_global_nesterov_with_acceleration": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.exists_planar_discrete_excursion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.exists_exponent_all_discrete_excursions": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.exists_low_discrete_norm_divergence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.exists_subcritical_discrete_norm_divergence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.exists_discrete_norm_divergence_below_three": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.sharp_discrete_boundedness_threshold": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovHighDamping.bounded_distance": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovPlanar.planar_valley_escape": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovPlanar.every_planar_trajectory_escapes": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovPlanar.planar_escape_all_low_damping": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovHilbert.sumPotential_hasGradient": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovHilbert.sumGradient_lipschitz": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovHilbert.hilbert_hasGradient": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovHilbert.escape_from_blocks": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.nag_bounded_distance": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NAGLowDamping.exists_scalar_escape": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.extrapolated_step_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.finite_discrete_gronwall": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.discrete_hasGradient": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.discrete_convex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.discrete_lipschitz": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.discrete_gradient_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.discrete_iterate_coordinate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.discrete_escape_from_blocks": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "DiscreteNesterov.nag_map": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovPlanar.exists_planar_escaping_trajectory": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovPlanar.PlanarTrajectory.first_coordinate_tendsto_atTop": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovPlanar.weightedEnergy_monotone": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovPlanar.unbounded_of_euler_forcing": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovAxisLift.lift_flow": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NesterovModel.potential_eq_zero_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "all_audited_axioms_standard": true,
+  "total_elapsed_seconds": 608.732,
+  "finished_utc": "2026-10-30T03:25:26.414694+00:00"
+}

@@ -1,0 +1,205 @@
+{
+  "format_version": 1,
+  "package_id": "upb-tensor-rank",
+  "formal_scope": "The rank-doubling theorem with an arbitrary partner, strong minimum-rank multiplicativity, the Tiles support and normalized density operators, and the exact all-copy Schmidt-number equivalence are formalized in 22 Lean modules. The zero-error LOCC cost, the rank-four two-qutrit PPT class and the channel interpretation combine the formal theorem with published results.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.lean",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/AllK.lean": "49b39a2ab62edcc0c0872fc8ef181a5641840be081be86b6a756d9d1217d024a",
+    "lean/BlockRank.lean": "bacd32227649bec5220af9d36478098b098ad421c6c49e73f17f3066a3c7bdd5",
+    "lean/CESTensor.lean": "0d27b4bc0d4ba0acd21f47939d019166f7b8e54e2f17f329cb6a1cec2479ae42",
+    "lean/CESTensorGeneral.lean": "fb2c0c28278c86d71ca8f6d18451eec6d8e8e70a2915bccdb7e88c0c491b4f68",
+    "lean/ConeExclusion.lean": "2749d4bf1b9ec714fa8a481b84bf4b509b63f57aaf288f028ac2f166dcf0230f",
+    "lean/CoreDefs.lean": "8791fcb1ce29d25bc38b4a8f0dab6046b24ce85bac393b508de40cd4203de31c",
+    "lean/GeneralDefs.lean": "7f8397bca42aeef689a3fd5657278aad61b79fbae78763851d04f953f1dfb001",
+    "lean/GenericCone.lean": "883fc5e6e2babed6e40b4a3e54abd74df5e89cda6c941b1f25d63f413ee9f8bd",
+    "lean/Hierarchy.lean": "4961c8f3349458a55dc814daf35c45858263199b4905188f8b7e0088578a072c",
+    "lean/Main.lean": "a06d6a91e311d015f9ccbded51c48c5b66bd522fafee1e9c7c9df9ebcd533c1d",
+    "lean/Normalization.lean": "dc0b76b1ad1b23a902cdc68b110e6a016e458a78efeb76b54488ea54c0f6b224",
+    "lean/NormalizedPower.lean": "169ea7b38094963a96806f917a02d3bd2c7b3dfac835ae908194b36263a6ba8a",
+    "lean/PowerFamily.lean": "fd6837af9a269b9050753a4ecf2f0deafe69aa4022fc6a591227727bd2f4130b",
+    "lean/RankBridge.lean": "c6e9189106f6745cc0f12bb9e44fdb81176ee9dd8060794e2c9c407d86cc00fd",
+    "lean/SchmidtUpper.lean": "1a8db4b3d09ea8ca3f16cf61f2ca99c3dc1a7b37439b9d105f2c8e61360a605f",
+    "lean/StrongTensor.lean": "aa9f340c7f4d98ed8d9c0b3b0ca8eb240ee7d126468fe379fbdb2face9d56235",
+    "lean/TensorProductProjection.lean": "337192508e6ebd6475a0029f55fa76fe803bb732be04ceca4be3abbd0399808d",
+    "lean/TensorProjection.lean": "10950ddacda852fac404fcfd90d1b82fd033c318d56354171176417d0b8f3cc4",
+    "lean/TilesBase.lean": "17b8804d943ba4381e8519d473c7f95e1086e074a6f6e0a77fa57af873734592",
+    "lean/TilesTensor.lean": "81f12d16012d50eefb9a04e67ff41c004da480d26f1efded4dcd872360d90099",
+    "lean/TilesUPB.lean": "f8678b31e549f23bf0e931c6962efaabc73bc3d0153f9c4146707e061dfacbcd",
+    "lean/UPBRank.lean": "c8cb1637df241e49f33ffefcfbabda6a41a3e7f3f262c5ff99166e95b9963e2f"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 902,
+      "sha256": "0dc7bdc097336103475ea282b57f72a61151891e423503a6d69c64d5cec3f99a"
+    },
+    "CITATION.bib": {
+      "bytes": 370,
+      "sha256": "89ee2e25ef3552fdc24ca1302b39f5c21d29cd005b99763b192df76f84613c26"
+    },
+    "CITATION.cff": {
+      "bytes": 1399,
+      "sha256": "65435685685883b63751905ae407e95c28989f825f0b966d4f87290a69da99fc"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 2207,
+      "sha256": "57a3ded7b30da2e51677bde7f95a100b038ea5e1f915da1a42abe6adb0d8f907"
+    },
+    "VERIFICATION.md": {
+      "bytes": 1635,
+      "sha256": "e65d601af0837c799c485b33c07ffa057bb32e55a46d56b324876eb5b4823577"
+    },
+    "calculations/exact_matrix_audit.json": {
+      "bytes": 503,
+      "sha256": "771d8dc17994ffaa8538f7b06115300bd91941ee1b3519d04d94b037abe3dc6e"
+    },
+    "calculations/exact_matrix_audit.py": {
+      "bytes": 3844,
+      "sha256": "ed7cd36172173e00b31912a1c676c045b65254d210441c6e008eaa47ca85a023"
+    },
+    "calculations/explicit_matrix.json": {
+      "bytes": 65808,
+      "sha256": "068fd10e90be08330273cb173e4464ae18a1adf3031a289faa205559198c7c8c"
+    },
+    "calculations/tiles_column_spectra.py": {
+      "bytes": 2932,
+      "sha256": "c07adda1ba23a45e4c603d6968933e537360319d724d70ecf303aebb83ffa13f"
+    },
+    "lean/AllK.lean": {
+      "bytes": 3701,
+      "sha256": "49b39a2ab62edcc0c0872fc8ef181a5641840be081be86b6a756d9d1217d024a"
+    },
+    "lean/BlockRank.lean": {
+      "bytes": 2661,
+      "sha256": "bacd32227649bec5220af9d36478098b098ad421c6c49e73f17f3066a3c7bdd5"
+    },
+    "lean/CESTensor.lean": {
+      "bytes": 9965,
+      "sha256": "0d27b4bc0d4ba0acd21f47939d019166f7b8e54e2f17f329cb6a1cec2479ae42"
+    },
+    "lean/CESTensorGeneral.lean": {
+      "bytes": 9739,
+      "sha256": "fb2c0c28278c86d71ca8f6d18451eec6d8e8e70a2915bccdb7e88c0c491b4f68"
+    },
+    "lean/ConeExclusion.lean": {
+      "bytes": 3412,
+      "sha256": "2749d4bf1b9ec714fa8a481b84bf4b509b63f57aaf288f028ac2f166dcf0230f"
+    },
+    "lean/CoreDefs.lean": {
+      "bytes": 2759,
+      "sha256": "8791fcb1ce29d25bc38b4a8f0dab6046b24ce85bac393b508de40cd4203de31c"
+    },
+    "lean/GeneralDefs.lean": {
+      "bytes": 1017,
+      "sha256": "7f8397bca42aeef689a3fd5657278aad61b79fbae78763851d04f953f1dfb001"
+    },
+    "lean/GenericCone.lean": {
+      "bytes": 3514,
+      "sha256": "883fc5e6e2babed6e40b4a3e54abd74df5e89cda6c941b1f25d63f413ee9f8bd"
+    },
+    "lean/Hierarchy.lean": {
+      "bytes": 2628,
+      "sha256": "4961c8f3349458a55dc814daf35c45858263199b4905188f8b7e0088578a072c"
+    },
+    "lean/Main.lean": {
+      "bytes": 3048,
+      "sha256": "a06d6a91e311d015f9ccbded51c48c5b66bd522fafee1e9c7c9df9ebcd533c1d"
+    },
+    "lean/Normalization.lean": {
+      "bytes": 3770,
+      "sha256": "dc0b76b1ad1b23a902cdc68b110e6a016e458a78efeb76b54488ea54c0f6b224"
+    },
+    "lean/NormalizedPower.lean": {
+      "bytes": 4121,
+      "sha256": "169ea7b38094963a96806f917a02d3bd2c7b3dfac835ae908194b36263a6ba8a"
+    },
+    "lean/PowerFamily.lean": {
+      "bytes": 8578,
+      "sha256": "fd6837af9a269b9050753a4ecf2f0deafe69aa4022fc6a591227727bd2f4130b"
+    },
+    "lean/RankBridge.lean": {
+      "bytes": 1693,
+      "sha256": "c6e9189106f6745cc0f12bb9e44fdb81176ee9dd8060794e2c9c407d86cc00fd"
+    },
+    "lean/SchmidtUpper.lean": {
+      "bytes": 3442,
+      "sha256": "1a8db4b3d09ea8ca3f16cf61f2ca99c3dc1a7b37439b9d105f2c8e61360a605f"
+    },
+    "lean/StrongTensor.lean": {
+      "bytes": 5903,
+      "sha256": "aa9f340c7f4d98ed8d9c0b3b0ca8eb240ee7d126468fe379fbdb2face9d56235"
+    },
+    "lean/TensorProductProjection.lean": {
+      "bytes": 5645,
+      "sha256": "337192508e6ebd6475a0029f55fa76fe803bb732be04ceca4be3abbd0399808d"
+    },
+    "lean/TensorProjection.lean": {
+      "bytes": 6158,
+      "sha256": "10950ddacda852fac404fcfd90d1b82fd033c318d56354171176417d0b8f3cc4"
+    },
+    "lean/TilesBase.lean": {
+      "bytes": 20332,
+      "sha256": "17b8804d943ba4381e8519d473c7f95e1086e074a6f6e0a77fa57af873734592"
+    },
+    "lean/TilesTensor.lean": {
+      "bytes": 3964,
+      "sha256": "81f12d16012d50eefb9a04e67ff41c004da480d26f1efded4dcd872360d90099"
+    },
+    "lean/TilesUPB.lean": {
+      "bytes": 3044,
+      "sha256": "f8678b31e549f23bf0e931c6962efaabc73bc3d0153f9c4146707e061dfacbcd"
+    },
+    "lean/UPBRank.lean": {
+      "bytes": 6842,
+      "sha256": "c8cb1637df241e49f33ffefcfbabda6a41a3e7f3f262c5ff99166e95b9963e2f"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3530,
+      "sha256": "de4d8b873c6375444fa1eb94dd60c49539ba678dc77de5ea6fff8d2266fe2d52"
+    },
+    "lean/lakefile.lean": {
+      "bytes": 614,
+      "sha256": "9cf26ef22630616d7cba25435a9e8b2fc268dd8ff74b51ada36c253f120847da"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    "lean/verify.py": {
+      "bytes": 8274,
+      "sha256": "2e1add2445639d972b2225c7045085eeb082bf3b6004e5e4bee0f1dcdb3065ec"
+    },
+    "manuscript.pdf": {
+      "bytes": 352457,
+      "sha256": "40a4f2c99b2592ad62812c470b769a3857d1f3e38cbca03c597a8405b2eb8435"
+    },
+    "manuscript.tex": {
+      "bytes": 31590,
+      "sha256": "fdcfbf53e8ce1ff5821d82779ef8a797ffe1c9e2a8d857b11c3bf26c1a02b3a4"
+    },
+    "verification/README.md": {
+      "bytes": 949,
+      "sha256": "ffb69a5f67cc28813f2df405590f0ce08e30dcf46cf9dc1fbffc50f13c08ba51"
+    },
+    "verification/clean_build.log": {
+      "bytes": 5238,
+      "sha256": "dd93ea593491d364c07058c60b1bad91535a26ec9bdf64ac916b782a6bd32c01"
+    },
+    "verification/verification.json": {
+      "bytes": 6949,
+      "sha256": "ff92461077725e97f4f2ec3e31bc0c67e9d9b810ab1028143b73f2fee28308da"
+    }
+  }
+}

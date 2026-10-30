@@ -1,0 +1,80 @@
+REPRODUCING THE BINARY SPECTRAL TILE AND COMPLEMENT OBSTRUCTION
+
+The release uses Lean 4.19.0 (commit 6caaee842e94) and mathlib commit
+c44e0c8ee63ca166450922a373c7409c5d26b00b. lake-manifest.json pins every
+transitive dependency to a full git commit. Python 3.10+ and git are required
+for the independent verifier.
+
+RELEASE ASSEMBLY (maintainer only, after all mathematical modules are final)
+
+Place the current .lean modules and these support files in one directory.
+List every current Binary project module in modules.json and set main_module
+to BinaryMain. The main theorem and all spectral certificates must be complete
+before freezing. No LTI modules, earlier research modules, trial files, or
+development audit files belong in this separate release.
+
+  python3 verify_release.py --freeze
+
+This generates AxiomAudit.lean for every public project declaration and records
+all source/configuration hashes in release-freeze.json. Freezing is not proof
+verification. A changed release must be reviewed and explicitly re-frozen using
+--freeze --force; normal verification refuses changed hashes.
+
+DEPENDENCY PREPARATION
+
+Install the exact Lean release using elan or unpack the official Lean 4.19.0
+distribution. In a fresh release checkout, `lake exe cache get` obtains the
+manifest-pinned dependencies and mathlib's released object cache. Do not run
+`lake update`, which would rewrite the reviewed dependency manifest. Keep the
+dependency git checkouts pristine. The verifier checks all pinned commits and
+both tracked and untracked source changes.
+
+Alternatively, use an existing pristine standalone mathlib checkout at the
+pinned commit, with its matching dependency cache under .lake/packages.
+
+INDEPENDENT VERIFICATION
+
+For a standalone mathlib checkout:
+
+  python3 verify_release.py \
+    --lean-home /absolute/path/to/lean-4.19.0-linux \
+    --mathlib /absolute/path/to/mathlib4 \
+    --out /absolute/path/to/new-empty-verification-directory
+
+For dependencies prepared by Lake in the release directory:
+
+  python3 verify_release.py \
+    --lean-home /absolute/path/to/lean-4.19.0-linux \
+    --mathlib .lake/packages/mathlib \
+    --packages-dir .lake/packages \
+    --out /absolute/path/to/new-empty-verification-directory
+
+The finite certificates use ordinary Lean/kernel reduction. No external
+checker output, SAT oracle, or native_decide result is accepted as a proof.
+Allow several minutes and several GB of RAM for the larger exact checks.
+
+Every project module is compiled from the frozen sources with --trust=0,
+-DwarningAsError=true, and -DautoImplicit=false. The complete generated audit
+is also compiled with --trust=0. The compiler search path contains only newly
+built project objects, pinned dependency libraries, and the exact Lean system
+library. No search-workspace or earlier-project proof objects are used.
+
+The dependency object cache is reused, while imported kernel proofs are replayed
+at trust level zero. The verifier does not claim to recompile all of mathlib
+from source. `lake build` is a useful convenience build, but it does not replace
+this isolated trust-zero verification and its receipt.
+
+SUCCESS CRITERIA AND OUTPUT
+
+The verifier rejects placeholder proofs, custom axioms, unsafe/native proof
+shortcuts, trust/check overrides, unlisted research imports, source changes,
+dependency changes, incomplete axiom coverage, and compiler warnings/errors.
+Only propext, Classical.choice, and Quot.sound are allowed in audited axiom
+closures. Every public definition and theorem is audited; private auxiliary
+constants are checked through the closures of the declarations using them.
+
+Success requires receipt.json to say status PASS, every module to have exit
+code zero and trust zero, and observed_audit_count to equal expected_audit_count.
+The output includes frozen source copies, new .olean files, per-module logs,
+the complete axiom inventory, binary/source/configuration hashes, dependency
+commits, commands, timing information, and the final verification receipt.

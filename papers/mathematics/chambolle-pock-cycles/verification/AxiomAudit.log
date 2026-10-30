@@ -1,0 +1,389 @@
+'CPSharpness.supports_iff_isProx' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CPSharpness.threeCycle_sos_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CPSharpness.proximal_three_cycle_polynomial_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CPSharpness.step_product_three_cycle_polynomial_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CPSharpness.zero_saddle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CPSharpness.primal_isProx' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CPSharpness.dual_isProx' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CPSharpness.sharp_cycle_nonconvergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CPSharpness.polynomial_iff_boundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CPSharpness.boundary_below_quadratic_exact_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CPSharpness.sharp_three_cycle_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CPSharpness.sharp_three_cycle_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CPQuadratic.eigenmode_characteristic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CPQuadratic.cp_positive_quadratic_eigenmode_stable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CPQuadratic.cp_nonnegative_quadratic_eigenmode_stable_or_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'FiniteCP.project_isProx' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiniteCP.certified_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiniteCP.certified_nonconvergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiniteCP.origin_saddle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SevenCP.strict_normal_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SevenCP.compact_saddle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SevenCP.actual_seven_cycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SevenCP.below_three_cycle_and_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiniteCP.project_locally_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiniteCP.cycle_one_step_capture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiniteCP.nearby_iterates_not_convergent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SevenCP.seven_cycle_one_step_capture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SevenCP.seven_cycle_open_basin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SevenCP.rational_example_open_basin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TrigSupport.cubicSquare_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TrigSupport.cos_cube_add_sin_cube_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TrigGrid.fourier_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymptoticCP.rawPrimal_periodic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymptoticCP.dualPoints_norm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymptoticCP.rawDual_support_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymptoticCP.primalPoints_zero_ne_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymptoticCP.dualPoints_support_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymptoticCP.primalPoints_sum_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymptoticCP.dualPoints_sum_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymptoticCP.positive_theta_normal_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymptoticCP.exists_fourier_period' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymptoticCP.fourier_family_normal_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymptoticCP.fourier_family_periodic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymptoticCP.fourier_family_nonconvergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AsymptoticCP.counterexamples_for_every_product_above_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CPSharpness.supports_iff_isProx : ∀ {E : Type u_1} [inst : NormedAddCommGroup E] [inst_1 : InnerProductSpace ℝ E]
+  {C : Set E} {f : E → ℝ} {c x : E}, ConvexOn ℝ C f → (CPSharpness.Supports C f x (c - x) ↔ CPSharpness.IsProx C f c x)
+@CPSharpness.threeCycle_sos_identity : ∀ {E : Type u_1} {F : Type u_2} [inst : NormedAddCommGroup E]
+  [inst_1 : InnerProductSpace ℝ E] [inst_2 : NormedAddCommGroup F] [inst_3 : InnerProductSpace ℝ F] (κ θ : ℝ)
+  (x₀ x₁ x₂ : E) (a₀ a₁ a₂ y₀ y₁ y₂ : F),
+  CPSharpness.threeCyclePolynomial κ θ * CPSharpness.cycleEnergy x₀ x₁ x₂ =
+    4 * CPSharpness.squareSum✝ κ θ a₀ a₁ a₂ y₀ y₁ y₂ - 8 * CPSharpness.dualCycleForm κ θ a₀ a₁ a₂ y₀ y₁ y₂ -
+        4 * (3 + κ * (1 + 3 * θ)) * CPSharpness.primalCycleForm x₀ x₁ x₂ a₀ a₁ a₂ y₀ y₁ y₂ +
+      (κ ^ 2 * (1 + θ) ^ 2 + 3) * (CPSharpness.cycleEnergy x₀ x₁ x₂ - CPSharpness.cycleEnergy a₀ a₁ a₂)
+@CPSharpness.proximal_three_cycle_polynomial_nonneg : ∀ {E : Type u_1} {F : Type u_2} [inst : NormedAddCommGroup E]
+  [inst_1 : InnerProductSpace ℝ E] [inst_2 : CompleteSpace E] [inst_3 : NormedAddCommGroup F]
+  [inst_4 : InnerProductSpace ℝ F] [inst_5 : CompleteSpace F] {C : Set E} {D : Set F} {f : E → ℝ} {g : F → ℝ},
+  ConvexOn ℝ C f →
+    ConvexOn ℝ D g →
+      ∀ (L : E →L[ℝ] F),
+        ‖L‖ ≤ 1 →
+          ∀ {κ θ : ℝ},
+            0 ≤ κ →
+              0 ≤ θ →
+                ∀ (x₀ x₁ x₂ : E) (y₀ y₁ y₂ : F),
+                  CPSharpness.IsProx C f (x₂ - (ContinuousLinearMap.adjoint L) y₂) x₀ →
+                    CPSharpness.IsProx C f (x₀ - (ContinuousLinearMap.adjoint L) y₀) x₁ →
+                      CPSharpness.IsProx C f (x₁ - (ContinuousLinearMap.adjoint L) y₁) x₂ →
+                        CPSharpness.IsProx D (fun y => κ * g y) (y₂ + κ • ((1 + θ) • L x₀ - θ • L x₂)) y₀ →
+                          CPSharpness.IsProx D (fun y => κ * g y) (y₀ + κ • ((1 + θ) • L x₁ - θ • L x₀)) y₁ →
+                            CPSharpness.IsProx D (fun y => κ * g y) (y₁ + κ • ((1 + θ) • L x₂ - θ • L x₁)) y₂ →
+                              ¬(x₀ = x₁ ∧ x₁ = x₂ ∧ y₀ = y₁ ∧ y₁ = y₂) → 0 ≤ CPSharpness.threeCyclePolynomial κ θ
+@CPSharpness.step_product_three_cycle_polynomial_nonneg : ∀ {E : Type u_1} {F : Type u_2} [inst : NormedAddCommGroup E]
+  [inst_1 : InnerProductSpace ℝ E] [inst_2 : NormedAddCommGroup F] [inst_3 : InnerProductSpace ℝ F]
+  [inst_4 : CompleteSpace E] [inst_5 : CompleteSpace F] {C : Set E} {D : Set F} {f : E → ℝ} {g : F → ℝ},
+  ConvexOn ℝ C f →
+    ConvexOn ℝ D g →
+      ∀ (L : E →L[ℝ] F) {τ σ θ : ℝ},
+        0 < τ →
+          0 < σ →
+            0 ≤ θ →
+              ∀ (x₀ x₁ x₂ : E) (y₀ y₁ y₂ : F),
+                CPSharpness.IsProx C (fun x => τ * f x) (x₂ - τ • (ContinuousLinearMap.adjoint L) y₂) x₀ →
+                  CPSharpness.IsProx C (fun x => τ * f x) (x₀ - τ • (ContinuousLinearMap.adjoint L) y₀) x₁ →
+                    CPSharpness.IsProx C (fun x => τ * f x) (x₁ - τ • (ContinuousLinearMap.adjoint L) y₁) x₂ →
+                      CPSharpness.IsProx D (fun y => σ * g y) (y₂ + σ • ((1 + θ) • L x₀ - θ • L x₂)) y₀ →
+                        CPSharpness.IsProx D (fun y => σ * g y) (y₀ + σ • ((1 + θ) • L x₁ - θ • L x₀)) y₁ →
+                          CPSharpness.IsProx D (fun y => σ * g y) (y₁ + σ • ((1 + θ) • L x₂ - θ • L x₁)) y₂ →
+                            ¬(x₀ = x₁ ∧ x₁ = x₂ ∧ y₀ = y₁ ∧ y₁ = y₂) →
+                              0 ≤ CPSharpness.threeCyclePolynomial (τ * σ * ‖L‖ ^ 2) θ
+CPSharpness.zero_saddle : ∀ (s b : ℝ), CPSharpness.IsBilinearSaddle CPSharpness.C (CPSharpness.D s b) 0 0
+CPSharpness.primal_isProx : ∀ (s b : ℝ),
+  1 / 2 ≤ b →
+    2 ≤ s + b →
+      ∀ (i : Fin 3), CPSharpness.IsProx CPSharpness.C (fun x => 0) (CPSharpness.PrimalCenter s b i) (CPSharpness.X i)
+CPSharpness.dual_isProx : ∀ (s b κ θ : ℝ),
+  s ^ 2 + 3 * b ^ 2 ≤ κ * ((1 + θ) * s - (1 + 3 * θ) * b) →
+    2 * (s ^ 2 + 3 * b ^ 2) ≤ κ * ((1 + 2 * θ) * s + b) →
+      ∀ (i : Fin 3),
+        CPSharpness.IsProx (CPSharpness.D s b) (fun x => 0) (CPSharpness.DualCenter s b κ θ i) (CPSharpness.Y s b i)
+CPSharpness.sharp_cycle_nonconvergence : ∀ (κ θ : ℝ),
+  0 < κ →
+    0 ≤ θ →
+      0 ≤ κ ^ 2 * (1 + θ) ^ 2 - 2 * κ * (1 + 3 * θ) - 3 →
+        ¬∃ w,
+            Filter.Tendsto
+              (fun n =>
+                (CPSharpness.cpMap (κ * (1 + θ) / 2) (1 / 2) κ θ)^[n]
+                  (CPSharpness.X 0, CPSharpness.Y (κ * (1 + θ) / 2) (1 / 2) 0))
+              Filter.atTop (nhds w)
+@CPSharpness.polynomial_iff_boundary : ∀ {κ θ : ℝ},
+  0 ≤ κ → 0 ≤ θ → (0 ≤ κ ^ 2 * (1 + θ) ^ 2 - 2 * κ * (1 + 3 * θ) - 3 ↔ CPSharpness.threeCycleBoundary θ ≤ κ)
+@CPSharpness.boundary_below_quadratic_exact_interval : ∀ {θ : ℝ},
+  0 ≤ θ → (CPSharpness.threeCycleBoundary θ < 4 / (1 + 2 * θ) ↔ θ < (4 * √5 - 5) / 22)
+CPSharpness.sharp_three_cycle_iff : ∀ (κ θ : ℝ),
+  0 < κ → 0 ≤ θ → (CPSharpness.HasConvexThreeCycle κ θ ↔ CPSharpness.threeCycleBoundary θ ≤ κ)
+CPSharpness.sharp_three_cycle_counterexample : ∀ (κ θ : ℝ),
+  0 < κ →
+    0 ≤ θ →
+      CPSharpness.threeCycleBoundary θ ≤ κ →
+        IsCompact CPSharpness.C ∧
+          IsCompact (CPSharpness.D (κ * (1 + θ) / 2) (1 / 2)) ∧
+            Convex ℝ CPSharpness.C ∧
+              Convex ℝ (CPSharpness.D (κ * (1 + θ) / 2) (1 / 2)) ∧
+                CPSharpness.IsBilinearSaddle CPSharpness.C (CPSharpness.D (κ * (1 + θ) / 2) (1 / 2)) 0 0 ∧
+                  (∀ (n : ℕ),
+                      CPSharpness.cycle (κ * (1 + θ) / 2) (1 / 2) (n + 1) =
+                        CPSharpness.cpMap (κ * (1 + θ) / 2) (1 / 2) κ θ
+                          (CPSharpness.cycle (κ * (1 + θ) / 2) (1 / 2) n)) ∧
+                    ¬∃ w,
+                        Filter.Tendsto
+                          (fun n =>
+                            (CPSharpness.cpMap (κ * (1 + θ) / 2) (1 / 2) κ θ)^[n]
+                              (CPSharpness.X 0, CPSharpness.Y (κ * (1 + θ) / 2) (1 / 2) 0))
+                          Filter.atTop (nhds w)
+@CPQuadratic.eigenmode_characteristic : ∀ {E : Type u_1} {F : Type u_2} [inst : NormedAddCommGroup E]
+  [inst_1 : InnerProductSpace ℂ E] [inst_2 : CompleteSpace E] [inst_3 : NormedAddCommGroup F]
+  [inst_4 : InnerProductSpace ℂ F] [inst_5 : CompleteSpace F] (H : E →L[ℂ] E) (G : F →L[ℂ] F) (L : E →L[ℂ] F),
+  IsSelfAdjoint H →
+    IsSelfAdjoint G →
+      ∀ {τ σ θ : ℝ} {z : ℂ} {x : E} {y : F},
+        CPQuadratic.IsCPEigenmode H G L τ σ θ z x y →
+          ↑((‖x‖ ^ 2 + τ * (inner x (H x)).re) * (‖y‖ ^ 2 + σ * (inner y (G y)).re)) * z ^ 2 +
+                ↑(-2 * ‖x‖ ^ 2 * ‖y‖ ^ 2 - τ * (inner x (H x)).re * ‖y‖ ^ 2 - σ * (inner y (G y)).re * ‖x‖ ^ 2 +
+                      τ * σ * ‖inner y (L x)‖ ^ 2 * (1 + θ)) *
+                  z +
+              ↑(‖x‖ ^ 2 * ‖y‖ ^ 2 - τ * σ * ‖inner y (L x)‖ ^ 2 * θ) =
+            0
+@CPQuadratic.cp_positive_quadratic_eigenmode_stable : ∀ {E : Type u_1} {F : Type u_2} [inst : NormedAddCommGroup E]
+  [inst_1 : InnerProductSpace ℂ E] [inst_2 : CompleteSpace E] [inst_3 : NormedAddCommGroup F]
+  [inst_4 : InnerProductSpace ℂ F] [inst_5 : CompleteSpace F] (H : E →L[ℂ] E) (G : F →L[ℂ] F) (L : E →L[ℂ] F),
+  CPQuadratic.PositiveDefinite H →
+    CPQuadratic.PositiveDefinite G →
+      ∀ {τ σ θ : ℝ},
+        0 < τ →
+          0 < σ →
+            0 < θ →
+              τ * σ * ‖L‖ ^ 2 < 4 / (1 + 2 * θ) →
+                ∀ {z : ℂ} {x : E} {y : F}, x ≠ 0 ∨ y ≠ 0 → CPQuadratic.IsCPEigenmode H G L τ σ θ z x y → ‖z‖ < 1
+@CPQuadratic.cp_nonnegative_quadratic_eigenmode_stable_or_one : ∀ {E : Type u_1} {F : Type u_2}
+  [inst : NormedAddCommGroup E] [inst_1 : InnerProductSpace ℂ E] [inst_2 : CompleteSpace E]
+  [inst_3 : NormedAddCommGroup F] [inst_4 : InnerProductSpace ℂ F] [inst_5 : CompleteSpace F] (H : E →L[ℂ] E)
+  (G : F →L[ℂ] F) (L : E →L[ℂ] F),
+  H.IsPositive →
+    G.IsPositive →
+      ∀ {τ σ θ : ℝ},
+        0 < τ →
+          0 < σ →
+            0 < θ →
+              τ * σ * ‖L‖ ^ 2 < 4 / (1 + 2 * θ) →
+                ∀ {z : ℂ} {x : E} {y : F}, x ≠ 0 ∨ y ≠ 0 → CPQuadratic.IsCPEigenmode H G L τ σ θ z x y → ‖z‖ < 1 ∨ z = 1
+@FiniteCP.project_isProx : ∀ {n d : ℕ} [inst : NeZero n] (x : Fin n → FiniteCP.Space d) (c : FiniteCP.Space d),
+  CPSharpness.IsProx (FiniteCP.hull x) (fun x => 0) c (FiniteCP.project x c)
+@FiniteCP.certified_step : ∀ {n d : ℕ} [inst : NeZero n] (x y : Fin n → FiniteCP.Space d) (κ θ : ℝ),
+  FiniteCP.NormalCertificate x y κ θ →
+    ∀ (i : Fin n), FiniteCP.cpMap x y κ θ (x i, y i) = (x (FiniteCP.nextIndex i), y (FiniteCP.nextIndex i))
+@FiniteCP.certified_nonconvergence : ∀ {n d : ℕ} [inst : NeZero n] (x y : Fin n → FiniteCP.Space d) (κ θ : ℝ),
+  FiniteCP.NormalCertificate x y κ θ →
+    ∀ (i j : Fin n),
+      x i ≠ x j → ¬∃ w, Filter.Tendsto (fun k => (FiniteCP.cpMap x y κ θ)^[k] (x 0, y 0)) Filter.atTop (nhds w)
+@FiniteCP.origin_saddle : ∀ {n d : ℕ} [inst : NeZero n] (x y : Fin n → FiniteCP.Space d),
+  ∑ i, x i = 0 → ∑ i, y i = 0 → FiniteCP.IsSaddle (FiniteCP.hull x) (FiniteCP.hull y) 0 0
+@SevenCP.strict_normal_certificate : ∀ {κ θ : ℝ},
+  2499 / 1000 ≤ κ →
+    κ ≤ 2501 / 1000 →
+      0 ≤ θ →
+        θ ≤ 1 / 400 →
+          (∀ (i j : Fin 7),
+              j ≠ FiniteCP.nextIndex i →
+                inner (SevenCP.X i - SevenCP.Y i - SevenCP.X (FiniteCP.nextIndex i))
+                    (SevenCP.X j - SevenCP.X (FiniteCP.nextIndex i)) <
+                  0) ∧
+            ∀ (i j : Fin 7),
+              j ≠ FiniteCP.nextIndex i →
+                inner
+                    (SevenCP.Y i + κ • ((1 + θ) • SevenCP.X (FiniteCP.nextIndex i) - θ • SevenCP.X i) -
+                      SevenCP.Y (FiniteCP.nextIndex i))
+                    (SevenCP.Y j - SevenCP.Y (FiniteCP.nextIndex i)) <
+                  0
+SevenCP.compact_saddle : IsCompact (FiniteCP.hull SevenCP.X) ∧
+  IsCompact (FiniteCP.hull SevenCP.Y) ∧
+    Convex ℝ (FiniteCP.hull SevenCP.X) ∧
+      Convex ℝ (FiniteCP.hull SevenCP.Y) ∧ FiniteCP.IsSaddle (FiniteCP.hull SevenCP.X) (FiniteCP.hull SevenCP.Y) 0 0
+@SevenCP.actual_seven_cycle : ∀ {κ θ : ℝ},
+  2499 / 1000 ≤ κ →
+    κ ≤ 2501 / 1000 →
+      0 ≤ θ →
+        θ ≤ 1 / 400 →
+          (∀ (k : ℕ),
+              (FiniteCP.cpMap SevenCP.X SevenCP.Y κ θ)^[k] (SevenCP.X 0, SevenCP.Y 0) =
+                FiniteCP.orbit SevenCP.X SevenCP.Y k) ∧
+            (∀ (k : ℕ), FiniteCP.orbit SevenCP.X SevenCP.Y (k + 7) = FiniteCP.orbit SevenCP.X SevenCP.Y k) ∧
+              ¬∃ w,
+                  Filter.Tendsto (fun k => (FiniteCP.cpMap SevenCP.X SevenCP.Y κ θ)^[k] (SevenCP.X 0, SevenCP.Y 0))
+                    Filter.atTop (nhds w)
+@SevenCP.below_three_cycle_and_quadratic : ∀ {κ θ : ℝ},
+  2499 / 1000 ≤ κ → κ ≤ 2501 / 1000 → 0 ≤ θ → θ ≤ 1 / 400 → κ < CPSharpness.threeCycleBoundary θ ∧ κ < 4 / (1 + 2 * θ)
+@FiniteCP.project_locally_constant : ∀ {n d : ℕ} [inst : NeZero n] (x : Fin n → FiniteCP.Space d) (c : FiniteCP.Space d)
+  (i : Fin n),
+  (∀ (j : Fin n), j ≠ i → inner (c - x i) (x j - x i) < 0) →
+    ∀ᶠ (u : FiniteCP.Space d) in nhds c, FiniteCP.project x u = x i
+@FiniteCP.cycle_one_step_capture : ∀ {n d : ℕ} [inst : NeZero n] (x y : Fin n → FiniteCP.Space d) (κ θ : ℝ),
+  (∀ (i j : Fin n),
+      j ≠ FiniteCP.nextIndex i → inner (x i - y i - x (FiniteCP.nextIndex i)) (x j - x (FiniteCP.nextIndex i)) < 0) →
+    (∀ (i j : Fin n),
+        j ≠ FiniteCP.nextIndex i →
+          inner (y i + κ • ((1 + θ) • x (FiniteCP.nextIndex i) - θ • x i) - y (FiniteCP.nextIndex i))
+              (y j - y (FiniteCP.nextIndex i)) <
+            0) →
+      ∀ (i : Fin n),
+        ∀ᶠ (w : FiniteCP.Space d × FiniteCP.Space d) in nhds (x i, y i),
+          ∀ (k : ℕ), (FiniteCP.cpMap x y κ θ)^[k + 1] w = (FiniteCP.cpMap x y κ θ)^[k + 1] (x i, y i)
+@FiniteCP.nearby_iterates_not_convergent : ∀ {n d : ℕ} [inst : NeZero n] (x y : Fin n → FiniteCP.Space d) (κ θ : ℝ),
+  (∀ (i j : Fin n),
+      j ≠ FiniteCP.nextIndex i → inner (x i - y i - x (FiniteCP.nextIndex i)) (x j - x (FiniteCP.nextIndex i)) < 0) →
+    (∀ (i j : Fin n),
+        j ≠ FiniteCP.nextIndex i →
+          inner (y i + κ • ((1 + θ) • x (FiniteCP.nextIndex i) - θ • x i) - y (FiniteCP.nextIndex i))
+              (y j - y (FiniteCP.nextIndex i)) <
+            0) →
+      ∀ (a b : Fin n),
+        x a ≠ x b →
+          ∀ (i : Fin n),
+            ∀ᶠ (w : FiniteCP.Space d × FiniteCP.Space d) in nhds (x i, y i),
+              ¬∃ v, Filter.Tendsto (fun k => (FiniteCP.cpMap x y κ θ)^[k] w) Filter.atTop (nhds v)
+@SevenCP.seven_cycle_one_step_capture : ∀ {κ θ : ℝ},
+  2499 / 1000 ≤ κ →
+    κ ≤ 2501 / 1000 →
+      0 ≤ θ →
+        θ ≤ 1 / 400 →
+          ∀ (i : Fin 7),
+            ∀ᶠ (w : FiniteCP.Space 4 × FiniteCP.Space 4) in nhds (SevenCP.X i, SevenCP.Y i),
+              ∀ (k : ℕ),
+                (FiniteCP.cpMap SevenCP.X SevenCP.Y κ θ)^[k + 1] w =
+                  (FiniteCP.cpMap SevenCP.X SevenCP.Y κ θ)^[k + 1] (SevenCP.X i, SevenCP.Y i)
+@SevenCP.seven_cycle_open_basin : ∀ {κ θ : ℝ},
+  2499 / 1000 ≤ κ →
+    κ ≤ 2501 / 1000 →
+      0 ≤ θ →
+        θ ≤ 1 / 400 →
+          ∀ (i : Fin 7),
+            ∀ᶠ (w : FiniteCP.Space 4 × FiniteCP.Space 4) in nhds (SevenCP.X i, SevenCP.Y i),
+              ¬∃ v, Filter.Tendsto (fun k => (FiniteCP.cpMap SevenCP.X SevenCP.Y κ θ)^[k] w) Filter.atTop (nhds v)
+SevenCP.rational_example_open_basin : ∀ (i : Fin 7),
+  ∀ᶠ (w : FiniteCP.Space 4 × FiniteCP.Space 4) in nhds (SevenCP.X i, SevenCP.Y i),
+    ¬∃ v, Filter.Tendsto (fun k => (FiniteCP.cpMap SevenCP.X SevenCP.Y (5 / 2) (1 / 1000))^[k] w) Filter.atTop (nhds v)
+@TrigSupport.cubicSquare_le_one : ∀ {s r : ℝ}, 0 ≤ s → s ≤ 1 / 8 → 4 * s ≤ r → r ≤ 1 → TrigSupport.cubicSquare s r ≤ 1
+@TrigSupport.cos_cube_add_sin_cube_le_one : ∀ {t a : ℝ},
+  0 < t →
+    Real.sin t ≤ 1 / 8 →
+      0 ≤ a → a + t ≤ Real.pi / 2 → 4 * Real.sin t ≤ Real.sin (2 * a + t) → Real.cos a ^ 3 + Real.sin (a + t) ^ 3 ≤ 1
+@TrigGrid.fourier_support : ∀ {K j : ℕ} {t : ℝ},
+  K % 4 = 3 →
+    1 ≤ j →
+      j < K →
+        0 < t →
+          ↑K * t = Real.pi / 2 →
+            Real.sin t ≤ 1 / 8 →
+              4 * Real.sin t ^ 3 ≤
+                TrigGrid.fourierA t 0 - TrigGrid.fourierA t 1 - TrigGrid.fourierA t j + TrigGrid.fourierA t (j + 1)
+AsymptoticCP.rawPrimal_periodic : ∀ (N : ℕ) (κ : ℝ),
+  Function.Periodic (fun i => AsymptoticCP.rawPrimal N κ ↑i) (AsymptoticCP.period N)
+AsymptoticCP.dualPoints_norm_sq : ∀ (N : ℕ) (κ : ℝ),
+  1 ≤ N →
+    AsymptoticCP.spectralD2 N < κ →
+      ∀ (i : Fin (AsymptoticCP.period N)), ‖AsymptoticCP.dualPoints N κ i‖ ^ 2 = AsymptoticCP.sizeM N κ
+AsymptoticCP.rawDual_support_identity : ∀ (N : ℕ) (κ r δ : ℝ),
+  1 ≤ N →
+    AsymptoticCP.spectralD2 N < κ →
+      inner (AsymptoticCP.rawDual N κ r + κ • AsymptoticCP.rawPrimal N κ (r + 1) - AsymptoticCP.rawDual N κ (r + 1))
+          (AsymptoticCP.rawDual N κ (r + 1 + δ) - AsymptoticCP.rawDual N κ (r + 1)) =
+        -κ * (4 - AsymptoticCP.correlation N 1 - AsymptoticCP.correlation N δ + AsymptoticCP.correlation N (δ + 1))
+AsymptoticCP.primalPoints_zero_ne_one : ∀ (N : ℕ) (κ : ℝ),
+  1 ≤ N → AsymptoticCP.spectralD2 N < κ → AsymptoticCP.primalPoints N κ 0 ≠ AsymptoticCP.primalPoints N κ 1
+AsymptoticCP.dualPoints_support_bound : ∀ (N : ℕ) (κ : ℝ),
+  1 ≤ N →
+    AsymptoticCP.spectralD2 N < κ →
+      Real.sin (AsymptoticCP.angle N) ≤ 1 / 8 →
+        ∀ (i j : Fin (AsymptoticCP.period N)),
+          j ≠ FiniteCP.nextIndex i →
+            inner
+                (AsymptoticCP.dualPoints N κ i + κ • AsymptoticCP.primalPoints N κ (FiniteCP.nextIndex i) -
+                  AsymptoticCP.dualPoints N κ (FiniteCP.nextIndex i))
+                (AsymptoticCP.dualPoints N κ j - AsymptoticCP.dualPoints N κ (FiniteCP.nextIndex i)) ≤
+              -4 * κ * Real.sin (AsymptoticCP.angle N) ^ 3
+AsymptoticCP.primalPoints_sum_zero : ∀ (N : ℕ) (κ : ℝ), 1 ≤ N → ∑ i, AsymptoticCP.primalPoints N κ i = 0
+AsymptoticCP.dualPoints_sum_zero : ∀ (N : ℕ) (κ : ℝ), ∑ i, AsymptoticCP.dualPoints N κ i = 0
+@AsymptoticCP.positive_theta_normal_certificate : ∀ {n d : ℕ} [inst : NeZero n] (x y : Fin n → FiniteCP.Space d)
+  {κ θ s M : ℝ},
+  0 < κ →
+    0 ≤ θ →
+      0 ≤ s →
+        0 < M →
+          θ ≤ s ^ 3 / M →
+            (∀ (i : Fin n), y i = x i - x (FiniteCP.nextIndex i)) →
+              (∀ (i : Fin n), ‖y i‖ ^ 2 = M) →
+                (∀ (i j : Fin n),
+                    j ≠ FiniteCP.nextIndex i →
+                      inner (y i + κ • x (FiniteCP.nextIndex i) - y (FiniteCP.nextIndex i))
+                          (y j - y (FiniteCP.nextIndex i)) ≤
+                        -4 * κ * s ^ 3) →
+                  FiniteCP.NormalCertificate x y κ θ
+@AsymptoticCP.exists_fourier_period : ∀ {κ : ℝ},
+  2 < κ →
+    ∃ N,
+      4 ≤ N ∧
+        0 < Real.pi / (2 * (4 * ↑N + 3)) ∧
+          Real.pi / (2 * (4 * ↑N + 3)) < 1 / 8 ∧ 2 + 2 * Real.sin (Real.pi / (2 * (4 * ↑N + 3))) < κ
+AsymptoticCP.fourier_family_normal_certificate : ∀ (N : ℕ) (κ θ : ℝ),
+  1 ≤ N →
+    AsymptoticCP.spectralD2 N < κ →
+      Real.sin (AsymptoticCP.angle N) ≤ 1 / 8 →
+        0 ≤ θ →
+          θ ≤ AsymptoticCP.thetaRadius N κ →
+            FiniteCP.NormalCertificate (AsymptoticCP.primalPoints N κ) (AsymptoticCP.dualPoints N κ) κ θ
+AsymptoticCP.fourier_family_periodic : ∀ (N : ℕ) (κ θ : ℝ),
+  1 ≤ N →
+    AsymptoticCP.spectralD2 N < κ →
+      Real.sin (AsymptoticCP.angle N) ≤ 1 / 8 →
+        0 ≤ θ →
+          θ ≤ AsymptoticCP.thetaRadius N κ →
+            ∀ (k : ℕ),
+              (FiniteCP.cpMap (AsymptoticCP.primalPoints N κ) (AsymptoticCP.dualPoints N κ) κ
+                      θ)^[k + AsymptoticCP.period N]
+                  (AsymptoticCP.primalPoints N κ 0, AsymptoticCP.dualPoints N κ 0) =
+                (FiniteCP.cpMap (AsymptoticCP.primalPoints N κ) (AsymptoticCP.dualPoints N κ) κ θ)^[k]
+                  (AsymptoticCP.primalPoints N κ 0, AsymptoticCP.dualPoints N κ 0)
+AsymptoticCP.fourier_family_nonconvergence : ∀ (N : ℕ) (κ θ : ℝ),
+  1 ≤ N →
+    AsymptoticCP.spectralD2 N < κ →
+      Real.sin (AsymptoticCP.angle N) ≤ 1 / 8 →
+        0 ≤ θ →
+          θ ≤ AsymptoticCP.thetaRadius N κ →
+            ¬∃ w,
+                Filter.Tendsto
+                  (fun k =>
+                    (FiniteCP.cpMap (AsymptoticCP.primalPoints N κ) (AsymptoticCP.dualPoints N κ) κ θ)^[k]
+                      (AsymptoticCP.primalPoints N κ 0, AsymptoticCP.dualPoints N κ 0))
+                  Filter.atTop (nhds w)
+@AsymptoticCP.counterexamples_for_every_product_above_two : ∀ {κ : ℝ},
+  2 < κ →
+    ∃ N,
+      4 ≤ N ∧
+        ∃ ε,
+          0 < ε ∧
+            Convex ℝ (FiniteCP.hull (AsymptoticCP.primalPoints N κ)) ∧
+              IsCompact (FiniteCP.hull (AsymptoticCP.primalPoints N κ)) ∧
+                Convex ℝ (FiniteCP.hull (AsymptoticCP.dualPoints N κ)) ∧
+                  IsCompact (FiniteCP.hull (AsymptoticCP.dualPoints N κ)) ∧
+                    FiniteCP.IsSaddle (FiniteCP.hull (AsymptoticCP.primalPoints N κ))
+                        (FiniteCP.hull (AsymptoticCP.dualPoints N κ)) 0 0 ∧
+                      ∀ (θ : ℝ),
+                        0 ≤ θ →
+                          θ ≤ ε →
+                            (∀ (k : ℕ),
+                                (FiniteCP.cpMap (AsymptoticCP.primalPoints N κ) (AsymptoticCP.dualPoints N κ) κ
+                                        θ)^[k + AsymptoticCP.period N]
+                                    (AsymptoticCP.primalPoints N κ 0, AsymptoticCP.dualPoints N κ 0) =
+                                  (FiniteCP.cpMap (AsymptoticCP.primalPoints N κ) (AsymptoticCP.dualPoints N κ) κ θ)^[k]
+                                    (AsymptoticCP.primalPoints N κ 0, AsymptoticCP.dualPoints N κ 0)) ∧
+                              ¬∃ w,
+                                  Filter.Tendsto
+                                    (fun k =>
+                                      (FiniteCP.cpMap (AsymptoticCP.primalPoints N κ) (AsymptoticCP.dualPoints N κ) κ
+                                            θ)^[k]
+                                        (AsymptoticCP.primalPoints N κ 0, AsymptoticCP.dualPoints N κ 0))
+                                    Filter.atTop (nhds w)

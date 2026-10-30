@@ -1,0 +1,380 @@
+{
+  "format_version": 1,
+  "package_id": "chambolle-pock-cycles",
+  "formal_scope": "The universal three-cycle threshold and its attainment, the seven-cycle with its open basin, the four-dimensional family for every κ > 2 and the quadratic eigenmode comparison are formalized in 21 Lean modules. The limsup consequence, numerical observations of larger θ-intervals and basin sizes, and the finite-dimensional matrix-convergence bridge are conventional or observational.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.lean",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/AsymptoticCycle.lean": "06446db5ef89be085af27435fa1a95e751ad717f003549ef682df7d7f31ed419",
+    "lean/AsymptoticParameters.lean": "faf19d3ccd9db896f6a2169d986ca2680aa94e06adb6724d485e18c6fb9a37db",
+    "lean/AttractingCycle.lean": "1520c24673d4705127246c5c1637098a1ed50e8c4d988471fffc5792e23f47b4",
+    "lean/FiniteCycle.lean": "9e2124402908f1a495baec729b05640653c81def1a534ae68763b040a9a0a9a8",
+    "lean/FourierAlgebra.lean": "6815d2e7e27e38eb8740789e52d042133f8e174d088d6ecab66bff15d0a02a37",
+    "lean/FourierCertificates.lean": "58b765f991a321d3196f12a17d1e9b984a7c44a88c2ff1cf8220ab87164dbcec",
+    "lean/FourierModes.lean": "61453ee37e6073d25bcef83d2e578dc62b1bc2479f721ed7741aec946a672e92",
+    "lean/FourierRobustness.lean": "93f500f521b538f0bcd52ffbe57ff8f0779d188d6285273b019cc14ad300bd0d",
+    "lean/FourierSums.lean": "2dcde54df55586e1582b21e412e7bff97bdbcb7fcff18f93d0728cda505617f4",
+    "lean/GeneralSteps.lean": "f73f40d2c1a48a53d1ad93506435e38e135548d22b04db2292b944c26f943a12",
+    "lean/ParameterBoundary.lean": "5aadc1f2d9e8e2a42bf73dfc0da9e54e4b958ec46fd2ad5231ad45708f4c145c",
+    "lean/PhaseDiagram.lean": "4a0eb3eeca38c4231fd1aa3179d8e167983faf16c7f0881220a9a83ed00c9b54",
+    "lean/Proximal.lean": "2efdcf3904452df2c6284f486c8ef33e9880a580c1f32a380f8cc1884f17ce70",
+    "lean/QuadraticStability.lean": "91fc601a8888be23edc55f032e9e9d3e5f774d1411ecc137e502b670f4858c98",
+    "lean/SevenAttracting.lean": "71562434fc6a59caec190e11bb9540b12f94dfd71946d52cd2cb677a2a04a134",
+    "lean/SevenCycle.lean": "b853679898ebfa7ab343bdd15bece3d89c7a1f98c76f9f7e65c83cf44a45b158",
+    "lean/ThreeCycleFunctions.lean": "5abba2a46a1564388d0c615280b7e92a92dd19f7ad5c4ec321017bc65ce7bcc4",
+    "lean/ThreeCycleThreshold.lean": "9fbf23c83c26f000c96138758b8be0a60e14e82342b435b826afad8e7941b78d",
+    "lean/TriangleCycle.lean": "a99e78075e202707ae09bea72524f29d9fc3606d08db81cb7c7dc43980b65e34",
+    "lean/TrigGrid.lean": "b500d4cdb0d4c16daf0ab416fdd0d913a9d90dc764b12576f3a9efd92e1a2fb6",
+    "lean/TrigSupport.lean": "c7512f3c1ef030f1a3ab845ccd01fa5364b28b54e649c492e464f51f5b823b43"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 1126,
+      "sha256": "d79924dfef7b6709bbc5c4bf09215bc726872b948c798aa63fed1a9121923f93"
+    },
+    "CITATION.bib": {
+      "bytes": 374,
+      "sha256": "a1d647b3a0ed4315ef043feb868ee52453b77b245f8a12efe1f3772603c6522f"
+    },
+    "CITATION.cff": {
+      "bytes": 1437,
+      "sha256": "a8752ed8f381462e1950dba87ccf5a386ceacd9ca36def794324e85a9dc895f1"
+    },
+    "FORMAL_CORRESPONDENCE.md": {
+      "bytes": 8651,
+      "sha256": "9e8382118b0a939c0d83313d97a0cf3549b0e6d0d192140f4501212352e0fade"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 2472,
+      "sha256": "6f2e2c49f3dbee825b89d9eaf36cf58cbe3ee7ee3eb5db73763c16a0e6f87d54"
+    },
+    "VERIFICATION.md": {
+      "bytes": 1578,
+      "sha256": "856033d5a1fe8647803120d43d38213de3cbd8c37d6c54342c73d104871e833e"
+    },
+    "exact_certificate/generate_seven_cycle.py": {
+      "bytes": 5438,
+      "sha256": "d635dd18e5888047aff0c48569c3f24c180ea6136913fe8a5ff048c78305be1d"
+    },
+    "exact_certificate/period7_rational_certificate.json": {
+      "bytes": 2624,
+      "sha256": "4f98e370b98f8376bd313b01a992ee6d83bcc27565955a1c4e3f9a44b97fc9c8"
+    },
+    "exact_certificate/verify_period7.py": {
+      "bytes": 1857,
+      "sha256": "099a108752999d05d0c846a8c1275b56db4dd156cf05acf144877e4f9bc6f614"
+    },
+    "figures/fourier_plot_parameters.json": {
+      "bytes": 512,
+      "sha256": "8b4ab785b3bde66f855a27d8ea8957f25910dc0abfb6b9047ae22438de7ca637"
+    },
+    "figures/parameter_bounds.pdf": {
+      "bytes": 20990,
+      "sha256": "ff8e420dba3116f2af2a709af73830ea37dfe1e4f4d3c3d6de769e76e45a637c"
+    },
+    "figures/parameter_bounds.png": {
+      "bytes": 168376,
+      "sha256": "72479eec3f10cc81027d9c2edca536ba91931ddc1e690dca63911e0685aed29f"
+    },
+    "lean/AsymptoticCycle.lean": {
+      "bytes": 5239,
+      "sha256": "06446db5ef89be085af27435fa1a95e751ad717f003549ef682df7d7f31ed419"
+    },
+    "lean/AsymptoticParameters.lean": {
+      "bytes": 1773,
+      "sha256": "faf19d3ccd9db896f6a2169d986ca2680aa94e06adb6724d485e18c6fb9a37db"
+    },
+    "lean/AttractingCycle.lean": {
+      "bytes": 6680,
+      "sha256": "1520c24673d4705127246c5c1637098a1ed50e8c4d988471fffc5792e23f47b4"
+    },
+    "lean/FiniteCycle.lean": {
+      "bytes": 7392,
+      "sha256": "9e2124402908f1a495baec729b05640653c81def1a534ae68763b040a9a0a9a8"
+    },
+    "lean/FourierAlgebra.lean": {
+      "bytes": 6322,
+      "sha256": "6815d2e7e27e38eb8740789e52d042133f8e174d088d6ecab66bff15d0a02a37"
+    },
+    "lean/FourierCertificates.lean": {
+      "bytes": 4192,
+      "sha256": "58b765f991a321d3196f12a17d1e9b984a7c44a88c2ff1cf8220ab87164dbcec"
+    },
+    "lean/FourierModes.lean": {
+      "bytes": 5543,
+      "sha256": "61453ee37e6073d25bcef83d2e578dc62b1bc2479f721ed7741aec946a672e92"
+    },
+    "lean/FourierRobustness.lean": {
+      "bytes": 3711,
+      "sha256": "93f500f521b538f0bcd52ffbe57ff8f0779d188d6285273b019cc14ad300bd0d"
+    },
+    "lean/FourierSums.lean": {
+      "bytes": 5019,
+      "sha256": "2dcde54df55586e1582b21e412e7bff97bdbcb7fcff18f93d0728cda505617f4"
+    },
+    "lean/GeneralSteps.lean": {
+      "bytes": 9838,
+      "sha256": "f73f40d2c1a48a53d1ad93506435e38e135548d22b04db2292b944c26f943a12"
+    },
+    "lean/ParameterBoundary.lean": {
+      "bytes": 5625,
+      "sha256": "5aadc1f2d9e8e2a42bf73dfc0da9e54e4b958ec46fd2ad5231ad45708f4c145c"
+    },
+    "lean/PhaseDiagram.lean": {
+      "bytes": 5226,
+      "sha256": "4a0eb3eeca38c4231fd1aa3179d8e167983faf16c7f0881220a9a83ed00c9b54"
+    },
+    "lean/Proximal.lean": {
+      "bytes": 4953,
+      "sha256": "2efdcf3904452df2c6284f486c8ef33e9880a580c1f32a380f8cc1884f17ce70"
+    },
+    "lean/QuadraticStability.lean": {
+      "bytes": 17258,
+      "sha256": "91fc601a8888be23edc55f032e9e9d3e5f774d1411ecc137e502b670f4858c98"
+    },
+    "lean/SevenAttracting.lean": {
+      "bytes": 1711,
+      "sha256": "71562434fc6a59caec190e11bb9540b12f94dfd71946d52cd2cb677a2a04a134"
+    },
+    "lean/SevenCycle.lean": {
+      "bytes": 4934,
+      "sha256": "b853679898ebfa7ab343bdd15bece3d89c7a1f98c76f9f7e65c83cf44a45b158"
+    },
+    "lean/ThreeCycleFunctions.lean": {
+      "bytes": 4638,
+      "sha256": "5abba2a46a1564388d0c615280b7e92a92dd19f7ad5c4ec321017bc65ce7bcc4"
+    },
+    "lean/ThreeCycleThreshold.lean": {
+      "bytes": 5193,
+      "sha256": "9fbf23c83c26f000c96138758b8be0a60e14e82342b435b826afad8e7941b78d"
+    },
+    "lean/TriangleCycle.lean": {
+      "bytes": 13924,
+      "sha256": "a99e78075e202707ae09bea72524f29d9fc3606d08db81cb7c7dc43980b65e34"
+    },
+    "lean/TrigGrid.lean": {
+      "bytes": 8086,
+      "sha256": "b500d4cdb0d4c16daf0ab416fdd0d913a9d90dc764b12576f3a9efd92e1a2fb6"
+    },
+    "lean/TrigSupport.lean": {
+      "bytes": 4638,
+      "sha256": "c7512f3c1ef030f1a3ab845ccd01fa5364b28b54e649c492e464f51f5b823b43"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3531,
+      "sha256": "ea87093477c43fcf7e8eae6f3d262f4b5fdfe570d4db97baca4dbe6fc285cb08"
+    },
+    "lean/lakefile.lean": {
+      "bytes": 658,
+      "sha256": "c7b6b0fba047de69df554fdcc028df402cb0b11e6a167ce42d90a04fa78f89a2"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    "lean/verify_lean.py": {
+      "bytes": 11377,
+      "sha256": "110723b893bd26f419f2eb2461e5a60011d419f6574fd25083582aa836219e98"
+    },
+    "manuscript.pdf": {
+      "bytes": 344242,
+      "sha256": "218b27c2638c9da01c16b647b39974d904777691a1547fdd9fb577b344e00651"
+    },
+    "manuscript.tex": {
+      "bytes": 40172,
+      "sha256": "0464953c8088ee5e92eb75b937c96b67861a3adc12c2fd4bea514cc24537d45b"
+    },
+    "plot_parameter_region.py": {
+      "bytes": 3186,
+      "sha256": "bc98844e93f8182b2f354a336569f6b75fc28cb65c595881286e0f54767d5c49"
+    },
+    "verification/AsymptoticCycle.log": {
+      "bytes": 118,
+      "sha256": "fd38d0612bed28691d1aec900271eb97e9142184d81afa2965e45c276bed0bd1"
+    },
+    "verification/AsymptoticParameters.log": {
+      "bytes": 96,
+      "sha256": "8e6eb5af00f589df542687b576dc7b6e8b750817d36cc387a92b55c1d5bf8990"
+    },
+    "verification/AttractingCycle.log": {
+      "bytes": 287,
+      "sha256": "3771556c2d10049ec59ceb8d8a11239115a9872f5c173149dff1b9512ba95b3b"
+    },
+    "verification/AxiomAudit.lean.txt": {
+      "bytes": 4758,
+      "sha256": "66ef078238769b55f46cb4b22d5efd2472c880fcc82b433757cbb2fe037bf954"
+    },
+    "verification/AxiomAudit.log": {
+      "bytes": 25970,
+      "sha256": "b11b7029445da70af61e8d465ceffc0ab791fcaac605cf5f095d83c04cad16b6"
+    },
+    "verification/FiniteCycle.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/FourierAlgebra.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/FourierCertificates.log": {
+      "bytes": 99,
+      "sha256": "35ad9c20761d7ee5b0bd36c1c88ed97496481ef0316991de749dc56a3defe496"
+    },
+    "verification/FourierModes.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/FourierRobustness.log": {
+      "bytes": 104,
+      "sha256": "736b10a7f912e5c7b68489b28a485a23a34fa820117809f00a40eb12a203c100"
+    },
+    "verification/FourierSums.log": {
+      "bytes": 190,
+      "sha256": "919ece5acbf21cb705691381689e1cd83c9f47ee3eddc8c64ba8f025b5c68152"
+    },
+    "verification/GeneralSteps.log": {
+      "bytes": 232,
+      "sha256": "5a0936a29fb97ced9dae952561a12382753f5d0921e8673f0d0d87405f8921da"
+    },
+    "verification/ParameterBoundary.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/PhaseDiagram.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/Proximal.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/QuadraticStability.log": {
+      "bytes": 236,
+      "sha256": "babc5c859f1c6f024ccecd158cc2da8dda5849b3fcf6a676c77603658629a6b1"
+    },
+    "verification/README.md": {
+      "bytes": 910,
+      "sha256": "7ef08ff596b230d8491a6ccf1e5ed4714ba65e7c0121acd9118570d016d1c87e"
+    },
+    "verification/SevenAttracting.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/SevenCycle.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/ThreeCycleFunctions.log": {
+      "bytes": 112,
+      "sha256": "cd5be261da376fdcd3d1a77dc980deeca0e06c7b607ffeec5a55b16fefec64df"
+    },
+    "verification/ThreeCycleThreshold.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/TriangleCycle.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/TrigGrid.log": {
+      "bytes": 86,
+      "sha256": "41b39849db42b8a3e5b0edd9036223096d9167ccb26eaf7add516f7ea6fdd47e"
+    },
+    "verification/TrigSupport.log": {
+      "bytes": 102,
+      "sha256": "e2f874660efcfb2b825563c310dc59e099c423b5a56904989e9a4fa3f910f327"
+    },
+    "verification/dependency-Cli-revision.log": {
+      "bytes": 41,
+      "sha256": "83775c0c37df4892edd11712ba9c0fc5657534af1f399ea6da534ec4b489df2e"
+    },
+    "verification/dependency-Cli-working-tree.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/dependency-LeanSearchClient-revision.log": {
+      "bytes": 41,
+      "sha256": "fe5e2b291ee7c0ee2862e8c87ec70fc29e8599b3ff16a9b39cfe76f27fd30207"
+    },
+    "verification/dependency-LeanSearchClient-working-tree.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/dependency-Qq-revision.log": {
+      "bytes": 41,
+      "sha256": "3a113a4fee8a9c52c075c546887de0b28e78a8b8f8c69d4b8d6986bdc0e20545"
+    },
+    "verification/dependency-Qq-working-tree.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/dependency-aesop-revision.log": {
+      "bytes": 41,
+      "sha256": "43887a17947e75ebec56372cb5b25c10ae389c69ac88c2627ffecfc0adfd8e08"
+    },
+    "verification/dependency-aesop-working-tree.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/dependency-batteries-revision.log": {
+      "bytes": 41,
+      "sha256": "d1dd9e03465309b43b034589c936326b14f616e7fb2f3f52c17f8b9094426f47"
+    },
+    "verification/dependency-batteries-working-tree.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/dependency-importGraph-revision.log": {
+      "bytes": 41,
+      "sha256": "830441e9e75ac681a70b9f4ec6fbae725f97714ac30e20544b916b6ac5096a9c"
+    },
+    "verification/dependency-importGraph-working-tree.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/dependency-plausible-revision.log": {
+      "bytes": 41,
+      "sha256": "8c225aad5e3d382454f4b320bf788030dd981c0ed087f232f4eeda4b80b2211f"
+    },
+    "verification/dependency-plausible-working-tree.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/dependency-proofwidgets-revision.log": {
+      "bytes": 41,
+      "sha256": "a693832492e2787ecb1b1e1f9235c0945c3c17cd270cbf4dbabddce2c2334c71"
+    },
+    "verification/dependency-proofwidgets-working-tree.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/lean-version.log": {
+      "bytes": 78,
+      "sha256": "5362a246ce2545424db10a77de8fd4694f4cf8b0170dfd43fa727acf7f7f259b"
+    },
+    "verification/mathlib-revision.log": {
+      "bytes": 41,
+      "sha256": "7c5e5dfacfc0943447dba5f5bd28c520d15249702af49b30e242982ee4fa03fb"
+    },
+    "verification/mathlib-working-tree.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/receipt.json": {
+      "bytes": 29163,
+      "sha256": "4a5715a4ec89c998cd7b0aff51cccc79aca49b8872fea4dcae379d0f1c29fb5f"
+    }
+  }
+}

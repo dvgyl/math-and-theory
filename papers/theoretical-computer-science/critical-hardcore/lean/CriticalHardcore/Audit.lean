@@ -1,0 +1,23 @@
+import CriticalHardcore.Main
+
+/-! Executable statement and foundational-axiom audit of the central results. -/
+
+#check CriticalHardcore.critical_hardcore_influence_rows
+#check CriticalHardcore.critical_hardcore_spectral_independence
+#check CriticalHardcore.critical_hardcore_pinned_rows
+#check CriticalHardcore.criticalInfluenceBound_le_real
+
+#print CriticalHardcore.criticalInfluenceBound
+#print CriticalHardcore.LinftySpectrallyIndependent
+#print CriticalHardcore.pinnedCoordinateInfluence
+#print CriticalHardcore.pinnedConditionalExpectation
+#print CriticalHardcore.pinnedConditionalPartition
+#print CriticalHardcore.pinnedConditionalIndependentSets
+#print CriticalHardcore.FeasiblePinning
+#print CriticalHardcore.criticalActivity
+
+#print axioms CriticalHardcore.critical_hardcore_influence_rows
+#print axioms CriticalHardcore.critical_hardcore_spectral_independence
+#print axioms CriticalHardcore.critical_hardcore_pinned_rows
+#print axioms CriticalHardcore.criticalInfluenceBound_le_real
+#print axioms CriticalHardcore.regular_survival_sqrt_sum_le_scale

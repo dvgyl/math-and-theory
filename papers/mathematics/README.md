@@ -20,8 +20,11 @@ Each family directory contains its manuscripts, proof sources or shared-library 
 | [The sharp level-one Fourier weight at density one eighth](sharp-eighth/) | [PDF](sharp-eighth/manuscript.pdf) |
 | [A quartic entropy deficit for random rankings](quartic-rankings/) | [PDF](quartic-rankings/manuscript.pdf) |
 | [Sharp universal Rényi threshold for iid sums on finite Sidon sets](sidon-renyi/) | [PDF](sidon-renyi/manuscript.pdf) |
+| [A 64-point spectral tile in F₂⁹ with no periodic complement](binary-spectral-tile/) | [PDF](binary-spectral-tile/manuscript.pdf) |
 | [The exact asymmetric Merino–Welsh region for finite matroids](asymmetric-tutte/) | [PDF](asymmetric-tutte/manuscript.pdf) |
 | [A rational five-cycle for two-block ADMM with multiplier step below two](admm-counterexample/) | [PDF](admm-counterexample/paper/admm_counterexample.pdf) |
+| [Escaping Nesterov flows and iterates below critical damping](nesterov-subcritical/) | [PDF](nesterov-subcritical/manuscript.pdf) |
+| [Periodic obstructions to small-extrapolation Chambolle–Pock](chambolle-pock-cycles/) | [PDF](chambolle-pock-cycles/manuscript.pdf) |
 | [The exact last-gradient bound for constant-step gradient descent in the strongly convex case](strong-gradient/) | [PDF](strong-gradient/manuscript.pdf) |
 
 [All subjects](../README.md) · [Complete catalogue](../../CONTENTS.md)

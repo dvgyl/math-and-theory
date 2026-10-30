@@ -1,0 +1,69 @@
+CriticalHardcore.critical_hardcore_influence_rows.{u_1} {V : Type u_1} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
+  [DecidableRel G.Adj] {lam : ℝ} (hlam : 0 < lam) (d : ℕ) (hd : 2 ≤ d)
+  (hcritical : lam ≤ CriticalHardcore.criticalActivity d) (hdegree : ∀ (v : V), G.degree v ≤ d + 1) (S : Finset V)
+  (u : V) (hu : u ∈ S) :
+  ∑ v ∈ S, |CriticalHardcore.coordinateInfluence G lam S u v| ≤
+    CriticalHardcore.criticalInfluenceBound d (Fintype.card V) lam
+CriticalHardcore.critical_hardcore_spectral_independence.{u_1} {V : Type u_1} [Fintype V] [DecidableEq V]
+  (G : SimpleGraph V) [DecidableRel G.Adj] {lam : ℝ} (hlam : 0 < lam) (d : ℕ) (hd : 2 ≤ d)
+  (hcritical : lam ≤ CriticalHardcore.criticalActivity d) (hdegree : ∀ (v : V), G.degree v ≤ d + 1) :
+  CriticalHardcore.LinftySpectrallyIndependent G lam (CriticalHardcore.criticalInfluenceBound d (Fintype.card V) lam)
+CriticalHardcore.critical_hardcore_pinned_rows.{u_1} {V : Type u_1} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
+  [DecidableRel G.Adj] {lam : ℝ} (hlam : 0 < lam) (d : ℕ) (hd : 2 ≤ d)
+  (hcritical : lam ≤ CriticalHardcore.criticalActivity d) (hdegree : ∀ (v : V), G.degree v ≤ d + 1) {S P Q : Finset V}
+  (hp : CriticalHardcore.FeasiblePinning G S P Q) {u : V}
+  (hu : 0 < CriticalHardcore.pinnedOccupation G lam S P Q u ∧ CriticalHardcore.pinnedOccupation G lam S P Q u < 1) :
+  ∑ v ∈ S, |CriticalHardcore.pinnedCoordinateInfluence G lam S P Q u v| ≤
+    CriticalHardcore.criticalInfluenceBound d (Fintype.card V) lam
+CriticalHardcore.criticalInfluenceBound_le_real {lam : ℝ} (hlam : 0 ≤ lam) (d n : ℕ) (hd : 2 ≤ d) :
+  CriticalHardcore.criticalInfluenceBound d n lam ≤
+    1 +
+      ↑(d + 1) * CriticalHardcore.pmax lam *
+        (12 * ↑d * (√↑(2 * (d + 1) * n) + 1) * (1 + Real.logb (↑d) (√↑(2 * (d + 1) * n) + 1)))
+def CriticalHardcore.criticalInfluenceBound : ℕ → ℕ → ℝ → ℝ :=
+fun d n lam => 1 + ↑(d + 1) * CriticalHardcore.pmax lam * ↑(CriticalHardcore.collisionScale d (2 * (d + 1) * n))
+def CriticalHardcore.LinftySpectrallyIndependent.{u_1} : {V : Type u_1} →
+  [inst : Fintype V] → [inst : DecidableEq V] → SimpleGraph V → ℝ → ℝ → Prop :=
+fun {V} [Fintype V] [DecidableEq V] G lam C =>
+  ∀ (P Q : Finset V),
+    CriticalHardcore.FeasiblePinning G Finset.univ P Q →
+      ∀ (u : V),
+        0 < CriticalHardcore.pinnedOccupation G lam Finset.univ P Q u ∧
+            CriticalHardcore.pinnedOccupation G lam Finset.univ P Q u < 1 →
+          ∑ v, |CriticalHardcore.pinnedCoordinateInfluence G lam Finset.univ P Q u v| ≤ C
+def CriticalHardcore.pinnedCoordinateInfluence.{u_1} : {V : Type u_1} →
+  [inst : DecidableEq V] → SimpleGraph V → ℝ → Finset V → Finset V → Finset V → V → V → ℝ :=
+fun {V} [DecidableEq V] G lam S P Q u v =>
+  CriticalHardcore.pinnedConditionalExpectation G lam S P Q u true (CriticalHardcore.coordinate v) -
+    CriticalHardcore.pinnedConditionalExpectation G lam S P Q u false (CriticalHardcore.coordinate v)
+def CriticalHardcore.pinnedConditionalExpectation.{u_1} : {V : Type u_1} →
+  [inst : DecidableEq V] → SimpleGraph V → ℝ → Finset V → Finset V → Finset V → V → Bool → (V → ℝ) → ℝ :=
+fun {V} [DecidableEq V] G lam S P Q u b f =>
+  CriticalHardcore.pinnedConditionalMoment G lam S P Q u b f /
+    CriticalHardcore.pinnedConditionalPartition G lam S P Q u b
+def CriticalHardcore.pinnedConditionalPartition.{u_1} : {V : Type u_1} →
+  [inst : DecidableEq V] → SimpleGraph V → ℝ → Finset V → Finset V → Finset V → V → Bool → ℝ :=
+fun {V} [DecidableEq V] G lam S P Q u b =>
+  ∑ I ∈ CriticalHardcore.pinnedConditionalIndependentSets G S P Q u b, lam ^ I.card
+def CriticalHardcore.pinnedConditionalIndependentSets.{u_1} : {V : Type u_1} →
+  [inst : DecidableEq V] → SimpleGraph V → Finset V → Finset V → Finset V → V → Bool → Finset (Finset V) :=
+fun {V} [DecidableEq V] G S P Q u b =>
+  {I ∈ CriticalHardcore.pinnedIndependentSets G S P Q | if b = true then u ∈ I else u ∉ I}
+structure CriticalHardcore.FeasiblePinning.{u_1} {V : Type u_1} (G : SimpleGraph V) (S P Q : Finset V) : Prop
+number of parameters: 5
+fields:
+  CriticalHardcore.FeasiblePinning.occupied_subset : P ⊆ S
+  CriticalHardcore.FeasiblePinning.unoccupied_subset : Q ⊆ S
+  CriticalHardcore.FeasiblePinning.disjoint : Disjoint P Q
+  CriticalHardcore.FeasiblePinning.independent : CriticalHardcore.Independent G P
+constructor:
+  CriticalHardcore.FeasiblePinning.mk.{u_1} {V : Type u_1} {G : SimpleGraph V} {S P Q : Finset V}
+    (occupied_subset : P ⊆ S) (unoccupied_subset : Q ⊆ S) (disjoint : Disjoint P Q)
+    (independent : CriticalHardcore.Independent G P) : CriticalHardcore.FeasiblePinning G S P Q
+def CriticalHardcore.criticalActivity : ℕ → ℝ :=
+fun d => ↑d ^ d / (↑d - 1) ^ (d + 1)
+'CriticalHardcore.critical_hardcore_influence_rows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CriticalHardcore.critical_hardcore_spectral_independence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CriticalHardcore.critical_hardcore_pinned_rows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CriticalHardcore.criticalInfluenceBound_le_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CriticalHardcore.regular_survival_sqrt_sum_le_scale' depends on axioms: [propext, Classical.choice, Quot.sound]

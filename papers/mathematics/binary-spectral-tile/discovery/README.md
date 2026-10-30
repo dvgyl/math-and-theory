@@ -1,0 +1,5 @@
+# Priority screen of the public Ferguson–Iosevich examples
+
+[audit_fi_ancillary_examples.py](audit_fi_ancillary_examples.py) reads the public source archive of arXiv:2610.30712v1 (`https://arxiv.org/src/2610.30712v1`, saved next to the script as `fi_2610.30712v1_source.tar`; the archive is not redistributed here). It extracts every distinct 64-point array in `[0, 512)` from the archive's JSON files and searches for a three-dimensional subspace that avoids the array's nonzero differences, which certifies a linear tiling complement.
+
+The recorded output, [FI_ANCILLARY_64_AUDIT.json](FI_ANCILLARY_64_AUDIT.json), lists the archive's SHA-256 hash, 114 JSON files and 922 distinct arrays. A linear complement was found for 921 of them, each with its basis and source locations. The remaining array is an eight-dimensional negative control in the source that has no tiling complement and is not claimed to be spectral. None of the arrays is the tile of this package, which has no linear complement. This is a screen of public examples, not a proof of priority.

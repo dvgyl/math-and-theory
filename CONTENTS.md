@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**31 manuscripts and research notes across 30 result families in mathematics, theoretical computer science, and mathematical physics.**
+**36 manuscripts and research notes across 35 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -152,7 +152,7 @@ Exact minimal recurrences for every power of a rank-thirteen sequence, nonquasip
 
 [Paper PDF](papers/mathematics/power-rank/manuscript.pdf) · [LaTeX](papers/mathematics/power-rank/manuscript.tex) · [Reproduction and source context](papers/mathematics/power-rank/README.md) · [Citation](papers/mathematics/power-rank/CITATION.bib)
 
-### Discrete analysis, probability and entropy
+### Discrete analysis, tilings, probability and entropy
 
 #### [The sharp level-one Fourier weight at density one eighth](papers/mathematics/sharp-eighth/manuscript.pdf)
 
@@ -186,6 +186,16 @@ A sharp universal Renyi-order threshold for iid sums supported on finite strong-
 
 [Paper PDF](papers/mathematics/sidon-renyi/manuscript.pdf) · [LaTeX](papers/mathematics/sidon-renyi/manuscript.tex) · [Reproduction and source context](papers/mathematics/sidon-renyi/README.md) · [Citation](papers/mathematics/sidon-renyi/CITATION.bib)
 
+#### [A 64-point spectral tile in F₂⁹ with no periodic complement](papers/mathematics/binary-spectral-tile/manuscript.pdf)
+
+**Family:** `binary-spectral-tile`.
+
+An explicit 64-point set E ⊂ F₂⁹ is spectral and tiles by translation, but has no periodic tiling complement: its complements are exactly the 512 translates of one aperiodic eight-point set. In particular no linear subspace complements E, and F₂⁹ fails the periodic tiling property of Fan and Zhang. The construction places eight three-dimensional subspaces in parallel six-dimensional fibres; the shifts disjoint from E are the 28 pair sums of an affine eight-circuit, which form the line graph of K₈ and contain no three-dimensional subspace. This answers negatively the stronger subspace-complement part of Question 8.1 of Ferguson and Iosevich and its equivalent Question 8.2. Whether every spectral 64-point subset of F₂⁹ tiles remains open.
+
+**Formal scope.** Spectrality with an actual basis of all complex functions on E, the tiling E ⊕ T = F₂⁹, aperiodicity of E, the exclusion of every periodic and every subspace complement, the classification of all complements as the 512 translates of T, and the failure of the periodic tiling property for F₂⁹ are formalized in 16 Lean modules. Minimality of dimension nine depends on an external dimension-eight theorem and is not formalized.
+
+[Paper PDF](papers/mathematics/binary-spectral-tile/manuscript.pdf) · [LaTeX](papers/mathematics/binary-spectral-tile/manuscript.tex) · [Proof and reproduction](papers/mathematics/binary-spectral-tile/README.md) · [Citation](papers/mathematics/binary-spectral-tile/CITATION.bib)
+
 ### Matroid theory
 
 #### [The exact asymmetric Merino–Welsh region for finite matroids](papers/mathematics/asymmetric-tutte/manuscript.pdf)
@@ -212,6 +222,26 @@ An exact period-five orbit for multiplier-only two-block ADMM at step 199/100.
 
 [Paper PDF](papers/mathematics/admm-counterexample/paper/admm_counterexample.pdf) · [LaTeX](papers/mathematics/admm-counterexample/paper/admm_counterexample.tex) · [Reproduction and source context](papers/mathematics/admm-counterexample/README.md) · [Citation](papers/mathematics/admm-counterexample/CITATION.bib)
 
+#### [Escaping Nesterov flows and iterates below critical damping](papers/mathematics/nesterov-subcritical/manuscript.pdf)
+
+**Family:** `nesterov-subcritical`.
+
+For zero-velocity solutions of X″ + (r/t)X′ + ∇F(X) = 0 and for the Nesterov iteration with momentum k/(k+r), with F convex, its gradient 1-Lipschitz and its minimum attained, boundedness holds for r ≥ 3. On the Hilbert space ℓ²(ℕ;ℝ²) this threshold is sharp for both: for every 0 < r < 3 an explicit block sum of smoothed valleys has a trajectory, and another has iterates, with norms tending to infinity. In the plane, the potential h(√(x²+y²)) − x with the Huber function h has an escaping trajectory from (2,1) for every 0 < r ≤ 2 and bounded trajectories for r > 2. The finite-dimensional range 2 < r < 3 is open.
+
+**Formal scope.** The continuous-time Hilbert-space threshold, the discrete threshold and the planar escape for 1 < r ≤ 2, including actual gradients, global solutions from rest and norm divergence, are formalized. The planar escape of the same potential for 0 < r ≤ 1, its boundedness for r > 2 and existence of solutions for r ≤ 1 are conventional.
+
+[Paper PDF](papers/mathematics/nesterov-subcritical/manuscript.pdf) · [LaTeX](papers/mathematics/nesterov-subcritical/manuscript.tex) · [Proof and reproduction](papers/mathematics/nesterov-subcritical/README.md) · [Citation](papers/mathematics/nesterov-subcritical/CITATION.bib)
+
+#### [Periodic obstructions to small-extrapolation Chambolle–Pock](papers/mathematics/chambolle-pock-cycles/manuscript.pdf)
+
+**Family:** `chambolle-pock-cycles`.
+
+For the unmodified primal-first Chambolle–Pock iteration with extrapolation θ and step product κ = τσ‖L‖², every κ > 2 admits fixed compact polytopes in R⁴ whose iteration cycles without converging for all sufficiently small θ ≥ 0. Any universal sufficient condition κ < c(θ) therefore satisfies limsup c(θ) ≤ 2 as θ ↓ 0, while bilinear and quadratic problems allow κ < 4/(1+2θ). A nonconstant three-cycle of actual proximal updates exists exactly when κ²(1+θ)² − 2κ(1+3θ) − 3 ≥ 0, attained by compact triangles, and a rational seven-cycle has an open set of nonconvergent starting points. The obstructing θ-intervals are very small and the bound two is not shown to be sharp.
+
+**Formal scope.** The universal three-cycle threshold and its attainment, the seven-cycle with its open basin, the four-dimensional family for every κ > 2 and the quadratic eigenmode comparison are formalized in 21 Lean modules. The limsup consequence, numerical observations of larger θ-intervals and basin sizes, and the finite-dimensional matrix-convergence bridge are conventional or observational.
+
+[Paper PDF](papers/mathematics/chambolle-pock-cycles/manuscript.pdf) · [LaTeX](papers/mathematics/chambolle-pock-cycles/manuscript.tex) · [Proof and reproduction](papers/mathematics/chambolle-pock-cycles/README.md) · [Citation](papers/mathematics/chambolle-pock-cycles/CITATION.bib)
+
 #### [The exact last-gradient bound for constant-step gradient descent in the strongly convex case](papers/mathematics/strong-gradient/manuscript.pdf)
 
 **Family:** `strong-gradient`.
@@ -225,6 +255,16 @@ The exact final-gradient guarantee holds on every real Hilbert space for L > 0, 
 ## Theoretical computer science
 
 ### Sampling algorithms and information theory
+
+#### [Critical hard-core influence bounds via nonbacktracking collisions](papers/theoretical-computer-science/critical-hardcore/manuscript.pdf)
+
+**Family:** `critical-hardcore`.
+
+For each fixed Δ ≥ 3, every row of the hard-core influence matrix has absolute sum O_Δ(√n log n) on every n-vertex graph of maximum degree at most Δ, at every activity up to the uniqueness threshold λ_c(Δ) and under every feasible pinning, with an explicit constant. The proof combines exact vertex-deletion identities, a known local squared-message contraction, a self-avoiding-walk transfer in the style of Sinclair, Srivastava, Štefankovič and Yin, and a finite form of the nonbacktracking collision argument of Bencs et al. It recovers, up to a logarithm, an O(√n) bound that was stated in 2025 and withdrawn in 2026. The constant is large, and the mixing-time consequence for Glauber dynamics is conditional on a published proposition.
+
+**Formal scope.** The influence bound for the actual hard-core Gibbs measure on every finite simple graph of maximum degree at most Δ, all activities up to λ_c(Δ) and all feasible pinnings is formalized in 32 Lean modules, including the regular completion and the nonbacktracking collision estimate. The Glauber-dynamics mixing corollary and the numerical observations on the constant are not formalized.
+
+[Paper PDF](papers/theoretical-computer-science/critical-hardcore/manuscript.pdf) · [LaTeX](papers/theoretical-computer-science/critical-hardcore/manuscript.tex) · [Proof and reproduction](papers/theoretical-computer-science/critical-hardcore/README.md) · [Citation](papers/theoretical-computer-science/critical-hardcore/CITATION.bib)
 
 #### [Counterexamples to a best-of-n win-rate bound at every budget](papers/theoretical-computer-science/best-of-n/paper.pdf)
 
@@ -364,6 +404,16 @@ The conditional hockey-stick contraction coefficient is determined exactly for e
 **Formal scope.** The exact conditional hockey-stick contraction coefficients are formalized for actual finite-reference density states, every stochastic Pauli qubit channel, the full physical signed depolarizing family in every dimension d ≥ 2, and every γ ≥ 1. Channel constructors, unrestricted upper bounds and matching supremum witnesses are included. Unital-qubit normal-form existence is cited; erasure-simulation and ensemble-guessing consequences retain conventional proofs.
 
 [Paper PDF](papers/physics/quantum-exact-contraction/quantum_exact_contraction.pdf) · [LaTeX](papers/physics/quantum-exact-contraction/quantum_exact_contraction.tex) · [Citation](papers/physics/quantum-exact-contraction/CITATION.bib) · [Proof and reproduction](papers/physics/quantum-exact-contraction/README.md)
+
+#### [Strong minimum-rank multiplicativity from unextendible product constraints](papers/physics/upb-tensor-rank/manuscript.pdf)
+
+**Family:** `upb-tensor-rank`.
+
+A complex matrix subspace annihilated by an unextendible family of product functionals doubles minimum rank under tensor products: if every nonzero member of T has rank at least r, every nonzero member of S ⊗ T has rank at least 2r, and the minimum rank is exactly doubled when S contains a rank-two matrix. For the Tiles bound entangled state ρ, this gives Schmidt number SN(ρ^⊗N) = 2^N for every N ≥ 1, so N copies cost exactly N ebits to prepare by LOCC with zero error. The two-copy case and nonsharp exponential growth were known.
+
+**Formal scope.** The rank-doubling theorem with an arbitrary partner, strong minimum-rank multiplicativity, the Tiles support and normalized density operators, and the exact all-copy Schmidt-number equivalence are formalized in 22 Lean modules. The zero-error LOCC cost, the rank-four two-qutrit PPT class and the channel interpretation combine the formal theorem with published results.
+
+[Paper PDF](papers/physics/upb-tensor-rank/manuscript.pdf) · [LaTeX](papers/physics/upb-tensor-rank/manuscript.tex) · [Proof and reproduction](papers/physics/upb-tensor-rank/README.md) · [Citation](papers/physics/upb-tensor-rank/CITATION.bib)
 
 ## Proof status and authorship
 

@@ -452,6 +452,34 @@
       "manuscript_engine": "pdflatex"
     },
     {
+      "id": "binary-spectral-tile",
+      "discipline": "Mathematics",
+      "area": "Spectral sets and tilings",
+      "title": "A 64-point spectral tile in F₂⁹ with no periodic complement",
+      "kind": "Explicit counterexample, classification of complements and reproducible proof package",
+      "significance_rank": 145,
+      "keywords": [
+        "Fuglede conjecture",
+        "spectral sets",
+        "translational tiling",
+        "periodic tiling property",
+        "finite abelian groups",
+        "binary vector spaces",
+        "subspace tiling complement",
+        "Ferguson–Iosevich"
+      ],
+      "summary": "An explicit 64-point subset E of F₂⁹, built from eight three-dimensional subspaces of F₂⁶ in the fibres over F₂³, is spectral with spectrum C × F₂³ and tiles F₂⁹ with the complement T = C × {0}, where C is an affine eight-circuit. Every tiling complement of E is a translate of T, and none is periodic, so no linear subspace complements E and F₂⁹ fails the periodic tiling property. This answers negatively the subspace-complement part of a question of Ferguson and Iosevich; whether every spectral 64-point subset of F₂⁹ tiles remains open.",
+      "formal_scope": "Spectrality with an actual basis of all complex functions on E, the tiling E ⊕ T = F₂⁹, aperiodicity of E, the exclusion of every periodic and every subspace complement, the classification of all complements as the 512 translates of T, and the failure of the periodic tiling property for F₂⁹ are formalized in 16 Lean modules. Minimality of dimension nine depends on an external dimension-eight theorem and is not formalized.",
+      "source": "Ferguson and Iosevich (arXiv:2610.36417, October 2026) asked whether spectral 64-point subsets of F₂⁹ have subspace tiling complements; Fan and Zhang defined the periodic tiling property for finite abelian groups. Related work and limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/binary-spectral-tile/README.md",
+      "paper": "papers/mathematics/binary-spectral-tile/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/mathematics/binary-spectral-tile"
+      },
+      "manuscript_engine": "pdflatex"
+    },
+    {
       "id": "asymmetric-tutte",
       "discipline": "Mathematics",
       "area": "Matroid theory",
@@ -493,7 +521,6 @@
         "dual step size",
         "counterexample"
       ],
-      "standout": true,
       "summary": "An exact period-five orbit for multiplier-only two-block ADMM at step 199/100.",
       "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
       "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/admm-counterexample/README.md",
@@ -502,6 +529,61 @@
       "formalization": {
         "kind": "standalone",
         "root": "papers/mathematics/admm-counterexample"
+      },
+      "manuscript_engine": "pdflatex",
+      "standout": true
+    },
+    {
+      "id": "nesterov-subcritical",
+      "discipline": "Mathematics",
+      "area": "Convex optimization",
+      "title": "Escaping Nesterov flows and iterates below critical damping",
+      "kind": "Sharp thresholds, explicit counterexamples and reproducible proof package",
+      "standout": true,
+      "significance_rank": 30,
+      "keywords": [
+        "Nesterov accelerated gradient",
+        "Nesterov ODE",
+        "vanishing damping",
+        "subcritical damping",
+        "unbounded trajectories",
+        "FISTA momentum",
+        "Su–Boyd–Candès"
+      ],
+      "summary": "For the Nesterov differential equation X″ + (r/t)X′ + ∇F(X) = 0 from rest, and for the Nesterov iteration with momentum k/(k+r), universal boundedness over convex objectives with 1-Lipschitz gradient and attained minimum holds on the Hilbert space ℓ²(ℕ;ℝ²) exactly when r ≥ 3. The explicit planar potential h(√(x²+y²)) − x, with the Huber function h, has an escaping trajectory from (2,1) for every 0 < r ≤ 2 and bounded trajectories for r > 2. The finite-dimensional range 2 < r < 3 is open.",
+      "formal_scope": "The continuous-time Hilbert-space threshold, the discrete threshold and the planar escape for 1 < r ≤ 2, including actual gradients, global solutions from rest and norm divergence, are formalized. The planar escape of the same potential for 0 < r ≤ 1, its boundedness for r > 2 and existence of solutions for r ≤ 1 are conventional.",
+      "source": "Su, Boyd and Candès introduced the equation; boundedness for r ≥ 3 is classical, and Jang and Ryu record the subcritical case as open. Related work and limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/nesterov-subcritical/README.md",
+      "paper": "papers/mathematics/nesterov-subcritical/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/mathematics/nesterov-subcritical"
+      },
+      "manuscript_engine": "pdflatex"
+    },
+    {
+      "id": "chambolle-pock-cycles",
+      "discipline": "Mathematics",
+      "area": "Optimization",
+      "title": "Periodic obstructions to small-extrapolation Chambolle–Pock",
+      "kind": "Counterexample families, exact threshold and reproducible proof package",
+      "significance_rank": 170,
+      "keywords": [
+        "Chambolle–Pock",
+        "Chambolle-Pock",
+        "PDHG",
+        "primal-dual hybrid gradient",
+        "extrapolation parameter",
+        "periodic orbits"
+      ],
+      "summary": "For the unmodified Chambolle–Pock method, every step product κ = τσ‖L‖² > 2 admits fixed compact polytopes in R^4 whose iteration is periodic and nonconvergent for all sufficiently small extrapolation θ ≥ 0, so any universal sufficient condition κ < c(θ) has limsup c(θ) ≤ 2 as θ ↓ 0, below the quadratic bound 4/(1+2θ). A nonconstant three-cycle exists exactly when κ²(1+θ)² − 2κ(1+3θ) − 3 ≥ 0, and a rational seven-cycle has an open set of nonconvergent starts. The obstructing θ-intervals are very small.",
+      "formal_scope": "The universal three-cycle threshold and its attainment, the seven-cycle with its open basin, the four-dimensional family for every κ > 2 and the quadratic eigenmode comparison are formalized in 21 Lean modules. The limsup consequence, numerical observations of larger θ-intervals and basin sizes, and the finite-dimensional matrix-convergence bridge are conventional or observational.",
+      "source": "Banert, Upadhyaya and Giselsson proved convergence for θ > 1/2 and κ < 4/(1+2θ), and Upadhyaya gave a sufficient condition for small θ. Related work and limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/chambolle-pock-cycles/README.md",
+      "paper": "papers/mathematics/chambolle-pock-cycles/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/mathematics/chambolle-pock-cycles"
       },
       "manuscript_engine": "pdflatex"
     },
@@ -529,6 +611,32 @@
       "formalization": {
         "kind": "standalone",
         "root": "papers/mathematics/strong-gradient"
+      },
+      "manuscript_engine": "pdflatex"
+    },
+    {
+      "id": "critical-hardcore",
+      "discipline": "Theoretical computer science",
+      "area": "Sampling algorithms and spectral independence",
+      "title": "Critical hard-core influence bounds via nonbacktracking collisions",
+      "kind": "Theorem and reproducible proof package",
+      "significance_rank": 130,
+      "keywords": [
+        "hard-core model",
+        "spectral independence",
+        "uniqueness threshold",
+        "Glauber dynamics",
+        "independent sets",
+        "nonbacktracking walks"
+      ],
+      "summary": "For every Δ ≥ 3, every n-vertex graph of maximum degree at most Δ, every hard-core activity 0 < λ ≤ λ_c(Δ) = (Δ−1)^(Δ−1)/(Δ−2)^Δ and every feasible pinning, each absolute row sum of the influence matrix is at most 1 + 12Δ(Δ−1)[λ/(1+λ)] r⌈log_{Δ−1} r⌉ with r = ⌊√(2Δn)⌋ + 1, an O_Δ(√n log n) ℓ∞-spectral-independence bound at the uniqueness threshold. The constant is large, and the Glauber-dynamics mixing consequence depends on a published proposition that is not formalized.",
+      "formal_scope": "The influence bound for the actual hard-core Gibbs measure on every finite simple graph of maximum degree at most Δ, all activities up to λ_c(Δ) and all feasible pinnings is formalized in 32 Lean modules, including the regular completion and the nonbacktracking collision estimate. The Glauber-dynamics mixing corollary and the numerical observations on the constant are not formalized.",
+      "source": "Chen and Jiang stated an O(√n) critical bound in 2025 and withdrew it in January 2026; Bencs et al. (2026) asked the critical two-spin question. Related work and limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/theoretical-computer-science/critical-hardcore/README.md",
+      "paper": "papers/theoretical-computer-science/critical-hardcore/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/theoretical-computer-science/critical-hardcore"
       },
       "manuscript_engine": "pdflatex"
     },
@@ -842,6 +950,34 @@
       "formalization": {
         "kind": "standalone",
         "root": "papers/physics/quantum-exact-contraction"
+      },
+      "manuscript_engine": "pdflatex"
+    },
+    {
+      "id": "upb-tensor-rank",
+      "discipline": "Mathematical physics",
+      "area": "Quantum information",
+      "title": "Strong minimum-rank multiplicativity from unextendible product constraints",
+      "kind": "Theorem, exact all-copy formula and reproducible proof package",
+      "significance_rank": 155,
+      "keywords": [
+        "unextendible product bases",
+        "UPB",
+        "Schmidt number",
+        "bound entanglement",
+        "Tiles state",
+        "PPT entangled states",
+        "zero-error entanglement cost",
+        "minimum rank"
+      ],
+      "summary": "If a complex matrix subspace S is annihilated by an unextendible family of product functionals, every nonzero member of S ⊗ T has rank at least twice the minimum rank of T; if S also contains a rank-two matrix, m(S ⊗ T) = 2m(T) for every nonzero T. For the Tiles bound entangled state ρ, the Schmidt number of ρ^⊗N and the minimum rank of its support are exactly 2^N for every N ≥ 1.",
+      "formal_scope": "The rank-doubling theorem with an arbitrary partner, strong minimum-rank multiplicativity, the Tiles support and normalized density operators, and the exact all-copy Schmidt-number equivalence are formalized in 22 Lean modules. The zero-error LOCC cost, the rank-four two-qutrit PPT class and the channel interpretation combine the formal theorem with published results.",
+      "source": "The Tiles UPB is due to Bennett et al. (1999); Chen, Yang and Tang (2017) proved the two-copy case and Vidal and Cirac (2001) implied nonsharp exponential growth. Related work and limits are stated in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/physics/upb-tensor-rank/README.md",
+      "paper": "papers/physics/upb-tensor-rank/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/physics/upb-tensor-rank"
       },
       "manuscript_engine": "pdflatex"
     }
