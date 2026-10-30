@@ -437,7 +437,7 @@
       "discipline": "Mathematics",
       "area": "Valuation theory",
       "title": "Depth-one Artin–Schreier defect towers are composita",
-      "kind": "Theorem resolving a published conjecture and partial formal proof package",
+      "kind": "Theorem resolving a published conjecture and reproducible proof package",
       "significance_rank": 105,
       "keywords": [
         "Artin–Schreier extensions",
@@ -449,8 +449,8 @@
         "Krasner lemma",
         "Nart–Novacoski conjecture"
       ],
-      "summary": "Over a perfect henselian subfield K of k((y^ℚ)) containing k(y) and without finite accumulation points, with k algebraically closed of characteristic p, a nontrivial finite Artin–Schreier tower of depth one is a compositum of Artin–Schreier extensions of K. This is the converse conjectured by Nart and Novacoski, who proved the forward implication.",
-      "formal_scope": "The converse is formalized in 18 Lean modules for Artin–Schreier towers inside the Hahn field, with depth one stated as the least length of an Okutsu sequence in an algebraic closure and henselianity as unique extension of the valuation to algebraic extensions. The identification with Mac Lane–Vaquié depth, the valuation-ring form of henselianity and the forward implication rest on published results and are not formalized.",
+      "summary": "Over a perfect henselian subfield K of k((y^ℚ)) containing k(y) and without finite accumulation points, with k algebraically closed of characteristic p, a nontrivial finite Artin–Schreier tower has depth one if and only if it is a compositum of Artin–Schreier extensions of K. Nart and Novacoski proved the forward implication and conjectured the converse, which is proved here.",
+      "formal_scope": "Both implications are formalized in 20 Lean modules in the source's setting: the algebraic closure of K inside the Hahn field with the Hahn valuation, depth one stated as the least Okutsu length over all primitive generators, and henselianity as unique extension of the valuation to algebraic extensions. The identification of that minimum with Mac Lane–Vaquié depth is the source's Theorem 1.3 and is not formalized.",
       "source": "Nart and Novacoski (JPAA 2026; arXiv:2503.18827v2) stated the converse as Conjecture 4.1 and proved the forward implication. The minimal-face extraction is Kedlaya's (2017, Lemma 9.3). Historical priority is not certified.",
       "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/artin-schreier-depth/README.md",
       "paper": "papers/mathematics/artin-schreier-depth/manuscript.pdf",

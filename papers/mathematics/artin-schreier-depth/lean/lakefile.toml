@@ -1,7 +1,7 @@
 # Generated module inventory; use scripts/verify_cached.py for serialized fresh builds.
 name = "as_depth_research"
 version = "0.1.0"
-defaultTargets = ["AdditiveGalois", "ClosureTransport", "FirstAccumulation", "FirstBlock", "FirstBlockContainment", "HahnASRoot", "HahnBoundary", "HahnFinite", "HahnFrobenius", "HahnSupport", "HenselianKrasner", "OkutsuDepth", "OreFace", "SupportAssembly", "SupportClosure", "TowerClosureConverse", "TowerDepthObstruction", "TowerFirstBlock", "AxiomAudit"]
+defaultTargets = ["AdditiveGalois", "ClosureTransport", "FirstAccumulation", "FirstBlock", "FirstBlockContainment", "HahnASRoot", "HahnBoundary", "HahnClosureDepth", "HahnClosureForward", "HahnFinite", "HahnFrobenius", "HahnSupport", "HenselianKrasner", "OkutsuDepth", "OreFace", "SupportAssembly", "SupportClosure", "TowerClosureConverse", "TowerDepthObstruction", "TowerFirstBlock", "AxiomAudit"]
 moreLeanArgs = ["-j", "1", "-s", "65536"]
 
 [[require]]
@@ -29,6 +29,12 @@ name = "HahnASRoot"
 
 [[lean_lib]]
 name = "HahnBoundary"
+
+[[lean_lib]]
+name = "HahnClosureDepth"
+
+[[lean_lib]]
+name = "HahnClosureForward"
 
 [[lean_lib]]
 name = "HahnFinite"

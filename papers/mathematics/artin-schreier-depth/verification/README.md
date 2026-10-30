@@ -1,6 +1,6 @@
 # Fresh replay record
 
-This directory records the fresh Lean replay of this package run for its publication on 30 October 2026 (19 fresh modules and 387 audited declarations, status passed).
+This directory records the fresh Lean replay of this package run for its publication on 30 October 2026 (20 fresh modules and 435 audited declarations, status passed).
 The run used Lean 4.19.0 (commit 6caaee842e94) on Linux x86_64 and a clean checkout of Mathlib
 c44e0c8ee63ca166450922a373c7409c5d26b00b whose required modules were built from source on the same machine.
 Every local module was compiled from source into a fresh output directory by the package's own verifier.

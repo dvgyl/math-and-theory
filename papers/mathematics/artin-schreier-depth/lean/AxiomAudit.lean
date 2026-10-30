@@ -7,6 +7,8 @@ import FirstBlock
 import FirstBlockContainment
 import HahnASRoot
 import HahnBoundary
+import HahnClosureDepth
+import HahnClosureForward
 import HahnFinite
 import HahnFrobenius
 import HahnSupport
@@ -34,7 +36,7 @@ set_option maxRecDepth 10000
 
 open Lean Elab Command in
 run_cmd do
-  let modules : Array Name := #[`AdditiveGalois, `ClosureTransport, `FirstAccumulation, `FirstBlock, `FirstBlockContainment, `HahnASRoot, `HahnBoundary, `HahnFinite, `HahnFrobenius, `HahnSupport, `HenselianKrasner, `OkutsuDepth, `OreFace, `SupportAssembly, `SupportClosure, `TowerClosureConverse, `TowerDepthObstruction, `TowerFirstBlock]
+  let modules : Array Name := #[`AdditiveGalois, `ClosureTransport, `FirstAccumulation, `FirstBlock, `FirstBlockContainment, `HahnASRoot, `HahnBoundary, `HahnClosureDepth, `HahnClosureForward, `HahnFinite, `HahnFrobenius, `HahnSupport, `HenselianKrasner, `OkutsuDepth, `OreFace, `SupportAssembly, `SupportClosure, `TowerClosureConverse, `TowerDepthObstruction, `TowerFirstBlock]
   let allowed : Array Name := #[`propext, `Classical.choice, `Quot.sound]
   let env ← getEnv
   for moduleName in modules do

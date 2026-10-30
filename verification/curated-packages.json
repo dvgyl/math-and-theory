@@ -1164,8 +1164,8 @@
     },
     "artin-schreier-depth": {
       "root": "papers/mathematics/artin-schreier-depth",
-      "release_manifest_sha256": "21e8af1f246229416369a0d45d32d34c7628ade9002d416e8ba6789717291580",
-      "formal_scope": "The converse is formalized in 18 Lean modules for Artin–Schreier towers inside the Hahn field, with depth one stated as the least length of an Okutsu sequence in an algebraic closure and henselianity as unique extension of the valuation to algebraic extensions. The identification with Mac Lane–Vaquié depth, the valuation-ring form of henselianity and the forward implication rest on published results and are not formalized.",
+      "release_manifest_sha256": "ca9cd51cf684899cf2bb1c5542d80ebbd10d11f04bb5460548bd6ffd7bfd96cb",
+      "formal_scope": "Both implications are formalized in 20 Lean modules in the source's setting: the algebraic closure of K inside the Hahn field with the Hahn valuation, depth one stated as the least Okutsu length over all primitive generators, and henselianity as unique extension of the valuation to algebraic extensions. The identification of that minimum with Mac Lane–Vaquié depth is the source's Theorem 1.3 and is not formalized.",
       "proof_roots": [
         {
           "path": "lean",
@@ -1177,13 +1177,15 @@
       ],
       "proof_sources": {
         "lean/AdditiveGalois.lean": "5e92e21740b3f7a9c1a28a0dca3ca73ef170092e948412f8104fbfdeca6bf7b2",
-        "lean/AxiomAudit.lean": "b42a14a3577b98f20dad6f4b55cea37c146c53871276e60914cf6e3cf49087ec",
+        "lean/AxiomAudit.lean": "2816d37689e066ae2cf47f704fbc086c48f69e247c58ad49f1a5fd5336615ccc",
         "lean/ClosureTransport.lean": "7a88e20f16fdf27ef5b964810203ad4e54aa363004c7a08dad419e6283d4631d",
         "lean/FirstAccumulation.lean": "10f6e31fca6e9d31d72e5b7f7b903895b29e23f972a6b9163d56446407330241",
         "lean/FirstBlock.lean": "e6dd9fd5f42807b7b1591421339a6b238dc5c1f7afd8fecc7e79e92057cf97cf",
         "lean/FirstBlockContainment.lean": "b22d937a406f577f785906eeeac01678b1643f984f1dd2fa1443114daadfe9d8",
         "lean/HahnASRoot.lean": "0590c4a576660d03a3895f4151c19d12cc2569cf6cfae9b1c7f06b2c3dfe55e3",
         "lean/HahnBoundary.lean": "985cf68dfeea87a7efb8f200e520ac5941bc3701a9c4c25c6cadb4a7ac33174d",
+        "lean/HahnClosureDepth.lean": "2597c146329165e1b8f4af8bc543da55a42c51cd0eaaed8737771b17e86b6bbf",
+        "lean/HahnClosureForward.lean": "9bd669d2b5afef7f3a7ecd1d29329cf1af574ab15d2197bf52afcd0ba4aa1e73",
         "lean/HahnFinite.lean": "9d4eeb8d6e0256d6e04f8d73ac11579a71e16990f3ff7d0d12424f8fc0cdde56",
         "lean/HahnFrobenius.lean": "85301cff3972392b59acce2dc1b8248346d2dce81c9e9ae2dac4a67f4ad9cd45",
         "lean/HahnSupport.lean": "85df22416529f5add6a4dff84e383700334355eca9a89ab8c2a7e11164a8bd19",
