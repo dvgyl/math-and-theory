@@ -325,6 +325,9 @@ jobs:
           - package: upper-ppt-hierarchy
             root: papers/physics/upper-ppt-hierarchy
             project: lean
+          - package: structural-selfadhesivity
+            root: papers/mathematics/structural-selfadhesivity
+            project: proof/e3_lean
           - package: matrix-pencil-completion
             root: papers/mathematics/matrix-pencil-completion
             project: lean_p1_converse
@@ -377,6 +380,11 @@ jobs:
             python3 scripts/verify_cached.py --mathlib-cache .lake/packages/mathlib --lean-bin "$(lean --print-prefix)/bin/lean" --packages-root .lake/packages --output "${RUNNER_TEMP}/unit-squareclasses-verification"
           elif [[ '${{ matrix.package }}' == 'keller-klein' ]]; then
             python3 verify.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib
+          elif [[ '${{ matrix.package }}' == 'structural-selfadhesivity' ]]; then
+            python3 ../verify_E3.py --lake lake --reuse-packages "$PWD/.lake/packages" --output "${RUNNER_TEMP}/structural-selfadhesivity-verification"
+            python3 ../E3_all_overlap_check.py ../E3_all_overlap_polymatroids.json --output "${RUNNER_TEMP}/e3-positive-check.json"
+            python3 ../E3_negative_check.py
+            python3 ../E3_lean_witness_correspondence.py
           elif [[ '${{ matrix.package }}' == 'matrix-pencil-completion' ]]; then
             command -v rg >/dev/null || { sudo apt-get update && sudo apt-get install --yes ripgrep; }
             bash verify.sh

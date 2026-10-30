@@ -1,0 +1,30 @@
+import IndependentScopeAudit
+
+#print axioms InfoE3.counterexample
+#print axioms InfoE3.counterexample_all_labelings
+#print axioms InfoE3.structural
+#print axioms InfoE3.no_selfadhesive_inducer
+#print axioms InfoE3.structural_with_crossing_independences
+#print axioms InfoE3.PM.split_on_modular_pair
+#print axioms InfoE3.PM.crossing_cmi_zero
+#print axioms InfoE3.PM.adhesive_crossing_independent
+#print axioms InfoE3.PM.relabelProfile
+#print axioms InfoE3.relabelProfile_image
+#print axioms InfoE3.relabelProfile_modular_pair
+#print axioms InfoE3.Structural.every_labeling
+#print axioms InfoE3.PMInt.of_local
+#print axioms InfoE3.cmi_nonnegative
+#print axioms InfoE3.unlisted_cmi_positive
+#print axioms InfoE3.ci_catalog_complete
+#print axioms InfoE3.ci_catalog_valid
+#print axioms InfoE3.exactly_twenty_six_zeros
+#print axioms InfoE3.copy_injective
+#print axioms InfoE3.orig_injective
+#print axioms InfoE3.copy_preserves_inter
+#print axioms InfoE3.copy_preserves_union
+#print axioms InfoE3.copy_fixes_overlap
+#print axioms InfoE3.copies_intersection
+#print axioms InfoE3.copies_union
+#print axioms InfoE3.ScopeAudit.pattern_correspondence
+#print axioms InfoE3.ScopeAudit.all_overlaps_have_exact_structural_witnesses
+#print axioms InfoE3.ScopeAudit.no_real_profile_works_for_every_overlap

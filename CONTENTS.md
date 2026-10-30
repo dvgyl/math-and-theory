@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**42 manuscripts and research notes across 41 result families in mathematics, theoretical computer science, and mathematical physics.**
+**43 manuscripts and research notes across 42 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -251,6 +251,18 @@ Let X = Σ vᵢεᵢ with independent uniform signs, real coefficients, Σ vᵢ�
 **Formal scope.** The theorem for every finite vector of real coefficients, with the exact count of sign vectors and Mathlib's standard normal distribution function, is formalized in 62 Lean modules, including Prawitz smoothing, the characteristic-function envelopes and both analytic zones. Ivanisvili's Theorems 1.1 and 10.9, needed for the full conjecture, are external computer-assisted results and are not formalized.
 
 [Paper PDF](papers/mathematics/keller-klein/manuscript.pdf) · [LaTeX](papers/mathematics/keller-klein/manuscript.tex) · [Proof and reproduction](papers/mathematics/keller-klein/README.md) · [Citation](papers/mathematics/keller-klein/CITATION.bib)
+
+#### [Structural selfadhesivity does not imply a numerically selfadhesive realization](papers/mathematics/structural-selfadhesivity/manuscript.pdf)
+
+**Family:** `structural-selfadhesivity`.
+
+An explicit conditional-independence model on five variables, with 26 of the 80 elementary statements, admits for every overlap an adhesive polymatroid gluing whose two restrictions both induce it, yet no real polymatroid inducing it is selfadhesive in Matúš's numerical sense. This answers negatively Question 4.18 of Boege, who asked whether every structurally selfadhesive structural semigraphoid is induced by a selfadhesive polymatroid; his computation gave a positive answer for four variables. The positive part is certified by 32 integer polymatroids, the negative part by an exact identity among 51 nonnegative conditional mutual informations valid for every real inducing profile.
+
+**Formal scope.** Both parts are formalized in Lean for arbitrary real polymatroids, with actual subset and relabeling semantics, all 32 overlap witnesses and the exact separating identity. The minimality suggested by Boege's four-variable computation is a literature consequence and is not formalized.
+
+**Prior work.** [Boege, 2023.](https://doi.org/10.1016/j.ijar.2023.109027)
+
+[Paper PDF](papers/mathematics/structural-selfadhesivity/manuscript.pdf) · [LaTeX](papers/mathematics/structural-selfadhesivity/manuscript.tex) · [Proof and reproduction](papers/mathematics/structural-selfadhesivity/README.md) · [Citation](papers/mathematics/structural-selfadhesivity/CITATION.bib)
 
 ### Matroid theory
 
