@@ -1,0 +1,37 @@
+'KellerKlein.small_coefficient_upper_concentration' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.small_coefficient_upper_concentration_normal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.small_coefficient_upper_cdf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.rademacher_concentration_small_max' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.rademacherCDF_small_max_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.rademacher_concentration_zoneA' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.rademacher_concentration_zoneB' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.prawitz_indicator_majorant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.ZoneA.holderProfile_le_c_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.JUpper_le_c_pair_of_zoneB' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.actual_characteristic_envelopes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.zoneBAliasIntegral_compensated' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.one_le_H_add_H_of_large' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.central_hypotheses_nonvacuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+KellerKlein.small_coefficient_upper_concentration {n : ℕ} (coeff : Fin n → ℝ) {a x : ℝ} (ha : 0 < a)
+  (haMax : a ≤ 7 / 100) (hca : ∀ (i : Fin n), |coeff i| ≤ a) (hvar : ∑ i, coeff i ^ 2 = 1) (hx : 0 ≤ x) :
+  KellerKlein.rademacherConcentration coeff x ≤ KellerKlein.H a + KellerKlein.H x
+KellerKlein.small_coefficient_upper_cdf {n : ℕ} (coeff : Fin n → ℝ) {a x : ℝ} (ha : 0 < a) (haMax : a ≤ 7 / 100)
+  (hca : ∀ (i : Fin n), |coeff i| ≤ a) (hvar : ∑ i, coeff i ^ 2 = 1) (hx : 0 ≤ x) :
+  KellerKlein.rademacherCDF coeff x - ↑(ProbabilityTheory.cdf (ProbabilityTheory.gaussianReal 0 1)) x ≤
+    ↑(ProbabilityTheory.cdf (ProbabilityTheory.gaussianReal 0 1)) a - 1 / 2
+def KellerKlein.rademacherConcentration : {n : ℕ} → (Fin n → ℝ) → ℝ → ℝ :=
+fun {n} c x => KellerKlein.cubeProbability fun ω => |KellerKlein.rademacherSum c ω| ≤ x
+def KellerKlein.rademacherCDF : {n : ℕ} → (Fin n → ℝ) → ℝ → ℝ :=
+fun {n} c x => KellerKlein.cubeProbability fun ω => KellerKlein.rademacherSum c ω ≤ x
+def KellerKlein.cubeProbability : {n : ℕ} → (KellerKlein.BoolCube n → Prop) → ℝ :=
+fun {n} p => ↑(Finset.filter p Finset.univ).card / 2 ^ n
+def KellerKlein.rademacherSum : {n : ℕ} → (Fin n → ℝ) → KellerKlein.BoolCube n → ℝ :=
+fun {n} c ω => ∑ i, c i * KellerKlein.rademacherSign (ω i)
+def KellerKlein.H : ℝ → ℝ :=
+fun a => 2 * KellerKlein.c a
+def KellerKlein.c : ℝ → ℝ :=
+fun a => ∫ (x : ℝ) in 0 ..a, KellerKlein.phi x
+def KellerKlein.phi : ℝ → ℝ :=
+fun x => KellerKlein.gaussian x * KellerKlein.phi0
+def KellerKlein.phi0 : ℝ :=
+1 / √(2 * Real.pi)

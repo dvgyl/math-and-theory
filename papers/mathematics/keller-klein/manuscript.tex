@@ -1,0 +1,928 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype,booktabs,longtable,array}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,urlcolor=MidnightBlue,citecolor=MidnightBlue]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Keller--Klein conjecture: small coefficients}
+\fancyhead[R]{\small Dev D. Goyal}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\allowdisplaybreaks
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\E}{\mathbb E}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ph}{\varphi}
+\newcommand{\phz}{\varphi_0}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\ep}{e_0}
+\hypersetup{pdftitle={The small-coefficient upper half of the Keller--Klein conjecture},
+pdfauthor={Dev D. Goyal},
+pdfsubject={Fully autonomous agentic research},
+pdfkeywords={Keller-Klein conjecture, Rademacher sums, Berry-Esseen, normal approximation, Prawitz smoothing, Lean 4}}
+\newcommand{\replaystatus}{Fresh replays on 30 October 2026 compiled all 62 modules from source into new object directories against a Mathlib checkout built from source at the pinned revision, once with the default import trust level and once with \code{--trust=0}, which also rechecks imported declarations. Both passed, and all 14 audited declarations depend only on \code{propext}, \code{Classical.choice} and \code{Quot.sound}. Their records are in \code{verification/}.}
+\title{\textbf{The small-coefficient upper half\\of the Keller--Klein conjecture}\\[6pt]
+\large Analytic completion and Lean 4 formalization}
+\author{Dev D. Goyal}
+\date{30 October 2026}
+
+\begin{document}
+\maketitle
+
+\section*{Research process and AI disclosure}
+This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
+
+The proof, the Lean formalization and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session state that the note was prepared with ChatGPT; the model version is not recorded.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It coordinated an independent AI referee check, which re-derived the main chain of estimates by hand, compared the theorem with Ivanisvili's manuscript and with the Lean statements, recomputed exact sign-vector counts for several hundred coefficient vectors (comparing them with floating-point values of $\Phi$) and found no violation, and ran the exact rational constant checks. It ran the fresh Lean replays described in Section~\ref{sec:verification} and revised this manuscript: it made the dependence of the full conjecture on unrefereed external results explicit, credited the strategy and lemmas taken from Ivanisvili's manuscript, and removed claims that rested on files not included here. AI referee checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:verification}.
+
+\begin{abstract}
+Let $X=\sum_{i=1}^n v_i\varepsilon_i$, where the signs are independent and uniform,
+$\sum_i v_i^2=1$, and $|v_i|\le a\le7/100$. For every $x\ge0$ we prove
+\[
+ \Pp(|X|\le x)\le 2\Phi(x)+2\Phi(a)-2,
+ \qquad
+ \Pp(X\le x)-\Phi(x)\le\Phi(a)-\tfrac12.
+\]
+Here $a>0$ and $\Phi$ is the standard-normal distribution function. The proof
+handles arbitrary unequal real coefficients and atoms at both endpoints.
+It completes the small-coefficient upper-discrepancy regime explicitly left
+open in the recent manuscript of Ivanisvili. We give an analytic proof using
+Prawitz smoothing, coefficient profiles, and a compensated alias estimate.
+The formal development proves the actual finite probability theorem, including
+the characteristic function, smoothing inequality, analytic estimates, and
+identification with Mathlib's normal CDF.
+
+The proposed original contribution is this analytic completion. It carries
+out the route proposed in Section~11 of Ivanisvili's manuscript, a small-$a$
+analytic upper bound mirroring its Section~8. Prawitz's method, Ivanisvili's
+envelopes, Hölder profile reduction and oscillation inequality, and the
+previously treated coefficient ranges are credited to their sources. Together
+with Theorems~1.1 and~10.9 of Ivanisvili's manuscript, the theorem implies the
+full Keller--Klein conjecture. Those external results are computer-assisted,
+have not been refereed, and are not part of this Lean development, so the full
+conjecture is settled here only conditionally on them. Public literature
+searches support novelty of the stated completion, but do not establish
+priority against unpublished or simultaneous work.
+\end{abstract}
+
+\section{The theorem and its precise scope}
+
+Write
+\[
+ \phz=(2\pi)^{-1/2},\quad g(t)=e^{-t^2/2},\quad
+ \ph(t)=\phz g(t),\quad c(t)=\int_0^t\ph(s)\,ds=\Phi(t)-\tfrac12,
+ \quad H(t)=2c(t).
+\]
+For $t\ge0$, $H(t)=\Pp(|Z|\le t)$ for $Z\sim N(0,1)$.
+
+\begin{theorem}[Small-coefficient upper concentration]\label{thm:main}
+For every integer $n\ge0$, real vector $(v_i)_{i=1}^n$, and real numbers
+$a,x$ satisfying
+\[
+ 0<a\le\frac7{100},\qquad |v_i|\le a\ (1\le i\le n),\qquad
+ \sum_{i=1}^n v_i^2=1,\qquad x\ge0,
+\]
+the uniform independent-sign sum $X=\sum_i v_i\varepsilon_i$ satisfies
+\begin{equation}\label{eq:main}
+ \Pp(|X|\le x)\le H(x)+H(a).
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:cdf}
+ \Pp(X\le x)-\Phi(x)\le c(a)\qquad(x\ge0).
+\end{equation}
+\end{theorem}
+
+The parameter $a$ may be any upper bound on the maximum coefficient magnitude;
+it need not equal an attained coefficient. In particular it may be chosen as
+$\max_i|v_i|$. No ordering, rationality, distinct-sums assumption, positive
+lower coefficient bound, or restriction on $n$ is imposed. Normalization
+rules out $n=0$. Zero coefficients are allowed. For a concrete nonvacuity
+witness, $n=256$, $v_i=1/16$, and $a=1/16$ satisfy all coefficient hypotheses.
+This witness is formally checked without enumerating $2^{256}$ outcomes.
+
+The closed interval in \eqref{eq:main} is essential. Symmetry gives the exact
+identity, including atoms,
+\[
+ \Pp(|X|\le x)=2\Pp(X\le x)-1\qquad(x\ge0).
+\]
+Thus \eqref{eq:main} and \eqref{eq:cdf} are equivalent. The proof below does
+not replace either event by a strict event without accounting for its endpoint.
+
+\section{Relation to the established open problem}
+
+Keller and Klein's Conjecture 9.3 asks, for a normalized Rademacher sum and
+$a=\max_i|v_i|$, whether
+\begin{equation}\label{eq:full}
+ \sup_{t\in\R}\big|\Pp(X\le t)-\Phi(t)\big|\le c(a).
+\end{equation}
+It appears in the paper proving Tomaszewski's conjecture \cite{KK}. These are
+different assertions: Tomaszewski's conjecture is already a theorem and is not
+the novelty target here.
+
+For clarity, distinguish the following previously studied regimes.
+\begin{itemize}
+\item Equal coefficients were already covered by normal-approximation results
+for symmetric binomial and hypergeometric laws. Keller and Klein explicitly
+cite Mattner--Schulz for this case \cite{MS}; see also Hipp--Mattner \cite{HM}.
+\item Ma, Ye, and Han prove the conjecture for $n\le5$, treat equal weights,
+and give a large-coefficient upper-half result with additional hypotheses
+\cite{MYH}. Their theorem does not cover the unequal small coefficients in
+Theorem~\ref{thm:main}.
+\item Ivanisvili's manuscript dated 21 October 2026 asserts the lower
+discrepancy for every coefficient vector and the full conjecture for
+$a\ge0.07$ \cite{I}. Its public index explicitly leaves $a<0.07$ open.
+The manuscript states that its proof was generated by Grok Bot using Cursor's
+agents; it is a computer-assisted manuscript, not a refereed journal
+publication. Its Section~11 states that reaching $a\to0$ in the upper half
+needs a new idea, and proposes a small-$a$ analytic upper bound mirroring its
+Section~8. The present proof carries out that proposal.
+\end{itemize}
+
+The new theorem supplies exactly its missing small-$a$ upper half. Its
+significance is the closure of that remaining regime, including all unequal
+coefficient vectors and all thresholds, with the conjectured nonlinear error
+$c(a)$. This is not a finite-dimensional enumeration or a change in the
+conjecture's assumptions.
+
+\begin{corollary}[The full conjecture, conditional on external results]\label{cor:external}
+If Ivanisvili's Theorems 1.1 and 10.9 hold,
+Theorem~\ref{thm:main} implies \eqref{eq:full} for every normalized finite
+Rademacher sum.
+\end{corollary}
+
+\begin{proof}
+For $a\ge7/100$, use the cited full-range theorem. For $a\le7/100$, the new
+upper discrepancy and the cited lower discrepancy bound both sides for
+$t\ge0$. For $t<0$, put $y=-t>0$. Symmetry gives
+$\Pp(X\le t)=1-\Pp(X<y)$. Taking limits from below in the two bounds at
+nonnegative locations $r\uparrow y$, and using continuity of $\Phi$, gives
+the bounds for $\Pp(X<y)$ and hence for $t$. At $t=0$, the upper bound is
+already included in the new theorem and the lower bound follows from symmetry.
+\end{proof}
+
+\textbf{Verification boundary.} The corollary is an ordinary implication
+using external results. The Lean project proves Theorem~\ref{thm:main},
+not those external results or the all-coefficient two-sided statement
+\eqref{eq:full}. Neither a cited theorem nor a numerical certificate is inserted
+as a new axiom in the formal proof.
+
+The sharpness claim also has a precise scope. The familiar equal-weight
+example in \cite{KK} has odd $n$, $v_i=1/\sqrt n$, and $m=1/\sqrt n$.
+Every negative value of $X$ is at most $-m$, so
+\[
+ \Pp(X\le-m)-\Phi(-m)=\tfrac12-\Phi(-m)=c(m).
+\]
+Thus the full two-sided radius is attained on an infinite sequence of
+maximum coefficients tending to zero. This does not assert pointwise
+optimality for every real coefficient cap, or equality in the new upper
+half restricted to nonnegative thresholds. The equal-weight sharpness
+example is prior mathematics, not part of the originality claim.
+
+\section{Exact smoothing and the characteristic function}
+
+Changing each negative coefficient's sign is a bijection of the Boolean cube,
+so assume $v_i\ge0$ for the analytic argument. Put
+\[
+ f(s)=\E\cos(sX)=\prod_i\cos(v_i s),\qquad
+ \rho(u)=(1-u)\cot(\pi u)+\frac1\pi\quad(0<u<1),
+\]
+and, for $\xi\ge0$, define
+\[
+ k_\xi(u)=(1-u)\cos(\pi\xi u)+\rho(u)\sin(\pi\xi u).
+\]
+The kernel's endpoint values may be filled by its finite limits; changing
+them does not change any Lebesgue integral. The Lean definitions use raw division at endpoints, and
+the integral arguments explicitly use almost-everywhere equality where needed.
+
+The symmetric Prawitz bound at $T=\pi/a$ is
+\begin{equation}\label{eq:prawitz}
+ \Pp(|X|\le x)\le 2\int_0^1 k_{x/a}(u)f(\pi u/a)\,du.
+\end{equation}
+Prawitz smoothing is prior mathematics \cite{P}, and this symmetric form is
+Ivanisvili's Corollary~3.2 and Lemma~10.1 \cite{I}; the project proves the
+particular majorant used here, rather than postulating it.
+
+For completeness, its analytic construction can be checked directly. Set
+\[
+ A(z)=2\int_0^1\rho(u)\sin(2\pi zu)\,du,
+ \qquad S(z)=\frac{\sin^2(\pi z)}{\pi^2}.
+\]
+We use the unnormalized convention $\operatorname{sinc}(t)=\sin(t)/t$ for
+$t\ne0$, with $\operatorname{sinc}(0)=1$.
+Trigonometric addition and an elementary triangular cosine integral give,
+for $z>0$,
+\[
+ A(z+1)-A(z)=\frac{S(z)}{z^2(z+1)^2},\qquad A(m)=1\quad(m\in\mathbb N,\ m\ge1).
+\]
+The sine-difference identity gives
+\[
+ A(z+m)-A(m)=4\int_0^1\rho(u)\sin(\pi zu)
+                  \cos\bigl((2\pi m+\pi z)u\bigr)\,du.
+\]
+The factor $\rho(u)\sin(\pi zu)$ is integrable: the sine removes the
+$1/(\pi u)$ singularity at zero, and the limit at the other endpoint is
+finite. The Riemann--Lebesgue lemma therefore gives $A(z+m)\to1$ as
+$m\to\infty$.
+The first displayed recurrence makes $A(z+m)$ nondecreasing. It makes
+$A(z+m)+S(z)/(z+m)^2$ nonincreasing, since its increment is
+$-2S(z)/((z+m)(z+m+1)^2)$. Both sequences tend to $1$, so
+\[
+ A(z)\le1\le A(z)+\operatorname{sinc}^2(\pi z),\qquad z>0.
+\]
+Oddness of $A$ and its value at zero now yield
+\[
+ \boldsymbol1_{[0,\infty)}(w)
+ \le \frac{1+A(w/(2\pi))+\operatorname{sinc}^2(w/2)}2,
+ \qquad w\in\R.
+\]
+The right side equals $1$ at $w=0$. Apply the majorant at
+$T(x-X)$ and $T(x+X)$, subtract $1$, and average. The identity
+$\operatorname{sinc}^2(w/2)=2\int_0^1(1-u)\cos(uw)\,du$
+and the exact cosine product for the uniform cube prove \eqref{eq:prawitz}.
+
+Two bounds on this integral are used. First, when $0\le\xi\le1/2$, the kernel
+is nonnegative and weighted arithmetic--geometric mean gives
+\begin{equation}\label{eq:profile}
+ |f(s)|\le\sum_{i:v_i>0}v_i^2|\cos(v_i s)|^{1/v_i^2}.
+\end{equation}
+The weights sum to $1$. Therefore it suffices in this range to bound uniformly
+the actual profile integrals
+\[
+ G(a,b,\xi)=\int_0^1 k_\xi(u)|\cos(\pi bu/a)|^{1/b^2}\,du,
+ \qquad 0<b\le a.
+\]
+This implements the Hölder covering of Ivanisvili's Lemma~10.3 \cite{I} in an
+elementary finite form; he notes that the covering is sharp at $x=0$, where it
+recovers his Proposition~9.1.
+
+For the remaining thresholds use the characteristic-function envelopes.
+There is a root $\theta\in(17/10,9/5)$ of
+$|\cos\theta|=g(\theta)$ with $\pi/2<\theta<\pi$. Define
+\[
+ L_a(s)=\begin{cases}
+ \cos(as)^{1/a^2},&as\le\pi/2,\\
+ -|\cos(as)|e^{-(1-a^2)s^2/2},&\pi/2<as\le\theta,\\
+ -|\cos(as)|^{1/a^2},&\theta<as\le\pi,
+ \end{cases}
+\quad
+ U_a(s)=\begin{cases}g(s),&as\le\theta,\\
+ |\cos(as)|^{1/a^2},&\theta<as\le\pi.
+ \end{cases}
+\]
+Then $L_a\le f\le U_a$ on $[0,\pi/a]$. One verifies this using the monotonicity
+of $\log|\cos y|/y^2$: it decreases before $\pi/2$ and increases after it.
+Up to $\theta$, each absolute cosine is bounded by a Gaussian. For a negative
+product in the middle interval, remove a negative factor, bound its magnitude
+by $|\cos(as)|$, and bound the remaining factors by the Gaussian with variance
+at least $1-a^2$. These arguments prove the stated envelopes for every
+coefficient vector; the root and its bounds are also proved in Lean.
+
+Define
+\begin{equation}\label{eq:J}
+ J_a(x)=\int_0^1\max\{k_{x/a}(u)L_a(\pi u/a),
+                         k_{x/a}(u)U_a(\pi u/a)\}\,du.
+\end{equation}
+The maximum handles either sign of the kernel. Thus
+$\Pp(|X|\le x)\le2J_a(x)$ without a positivity assumption on that kernel.
+
+\section{Small thresholds: the uniform profile bound}
+
+We prove
+\begin{equation}\label{eq:Agoal}
+ G(a,b,\xi)\le c(a)+c(\xi a),
+ \quad 0<a\le7/100,\quad0<b\le a,\quad0\le\xi\le1/2.
+\end{equation}
+Put $r=b/a$. Throughout, use the proved elementary constants
+\[
+ 3<\pi,\quad9<\pi^2<10,\qquad39/100<\phz<2/5.
+\]
+
+\subsection{Kernel and primary peak}
+
+For $y=\pi u\in(0,\pi)$,
+\[
+ \frac1y-\frac y2\le\rho(u)
+ \le\frac1y-\frac y3+\frac{y^2}{3\pi}\le\frac1y.
+\]
+These follow from finite Taylor bounds and
+$\cot y\le1/y-y/3$; the latter follows by differentiating
+$(1-y^2/3)\sin y-y\cos y$. Also $\rho\ge0$.
+Let
+\begin{align*}
+ A&=\xi^2/2+\xi/3+\xi^3/6,& A_\ell&=\xi^2/2+\xi/2+\xi^3/6,\\
+ B&=(\xi^2/2+\xi/3)/\pi,&
+ C&=\xi^4/24+\xi^3/18+\xi^5/120,&D&=\xi^5/(360\pi).
+\end{align*}
+Taylor inequalities give
+\begin{align*}
+ L(y)&=1+\xi-y/\pi-A_\ell y^2\le k_\xi(y/\pi),\\
+ k_\xi(y/\pi)&\le U(y)=1+\xi-y/\pi-Ay^2+By^3+Cy^4+Dy^7,\\
+ 0&\le k_\xi(y/\pi)\le1+\xi.
+\end{align*}
+For the lower bound, split according to the sign of $1/y-y/2$ before
+multiplying a sine bound. This avoids an incorrect multiplication of an
+inequality by a negative coefficient.
+
+Rescale $s=\pi u/a$ and let $S=\min(\pi/(2b),\pi/a)\ge1/a$.
+On the primary peak,
+\[
+ |\cos(bs)|^{1/b^2}\le g(s)e^{-b^2s^4/12}.
+\]
+Indeed, successive differentiation gives $\tan z\ge z+z^3/3$, hence
+$-\log\cos z\ge z^2/2+z^4/12$ before $\pi/2$.
+Since $e^{-v}\le1-v+v^2/2$ for $v\ge0$, the primary integrand is bounded by
+\[
+ g(s)\left[U(as)-\frac{b^2s^4}{12}L(as)
+              +\frac{b^4s^8}{288}(1+\xi)\right].
+\]
+Use $M_j=\int_0^\infty s^jg(s)\,ds$, with
+$M_0=M_2=\pi\phz$, $M_1=1$, and $M_{j+2}=(j+1)M_j$.
+Integrating and extending to infinity yields
+\begin{align}
+ G_{\rm prim}\le{}&\phz a(1+\xi)-\frac{a^2}{\pi^2}
+ +\phz a^3\left[-A-\frac{r^2(1+\xi)}4\right]\notag\\
+ &+\frac{a^4}{\pi^2}\left[\xi^2+\frac{2\xi}3+\frac{2r^2}3\right]
+ +\phz a^5\left[3C+\frac54 A_\ell r^2+\frac{35}{96}(1+\xi)r^4\right]\notag\\
+ &+\frac{2\xi^5}{15\pi^2}a^8+128a^8.\label{eq:primaryA}
+\end{align}
+The extension error is explicit. Only the three negative monomials can
+increase the upper bound when extending. For $s\ge S\ge1/a$,
+$1\le(as)^6$, so their total is at most
+\[
+ \frac{48}{\pi^2}a^8+
+ \left(105A\phz+\frac{945}{12}(1+\xi)\phz\right)a^9
+ \le66a^8<128a^8.
+\]
+The Gaussian-only primary bound is \eqref{eq:primaryA} with all $r$ terms
+omitted. All these are actual integral comparisons, not asymptotic expansions.
+
+\subsection{The reflected peak}
+
+If $r\le1/2$, no reflected peak occurs. Otherwise write
+\[
+ d=\pi/b-\pi/a\ge0,\quad w=\pi/b-s,\quad t=1-u=a(w-d)/\pi,
+ \quad\beta=\pi\xi.
+\]
+On the interior of this peak $0<t<1/2$ and the profile is at most $g(w)$.
+For $0<t\le1/2$, a finite Taylor argument gives
+\[
+ 0\le\rho(1-t)\le\frac\pi3t^2+t^4.
+\]
+Here are the details. Put $z=\pi t$ and $Q=1-z^2/3-z^4/32$.
+For $Q\ge0$, the sextic cosine lower bound and quintic sine upper bound
+give
+\begin{align*}
+ z\cos z-Q\sin z
+ &\ge z\left(1-\frac{z^2}2+\frac{z^4}{24}-\frac{z^6}{720}\right)
+       -Q\left(z-\frac{z^3}6+\frac{z^5}{120}\right)\\
+ &=z^5\left(\frac{13}{1440}-\frac{11z^2}{2880}
+                                 +\frac{z^4}{3840}\right)\ge0.
+\end{align*}
+Indeed, $0\le z^2\le5/2$ and the parenthesis is at least $17/15360$ on
+that interval. For $Q<0$, the same conclusion follows directly from
+$\sin z,\cos z\ge0$. Dividing by $\sin z>0$ yields
+$1-z\cot z\le z^2/3+z^4/32$. The reflected identity
+$\rho(1-t)=(1-z\cot z)/\pi$ and $\pi^3\le32$ now prove the displayed
+bound. These comparisons are used only away from the raw-division
+endpoint $t=0$; the integral ignores that single point.
+Using $0\le\beta\le\pi/2$ and trigonometric addition,
+\[
+ k_\xi(1-t)\le t\cos\beta+(\beta+\pi/3)t^2\sin\beta+t^4\sin\beta.
+\]
+Set $M_j(d)=\int_d^\infty(w-d)^jg(w)\,dw$. The reflected contribution is
+at most
+\begin{equation}\label{eq:aliasA}
+ \frac{a^2}{\pi^2}\cos\beta M_1(d)
+ +\frac{a^3}{\pi^2}(\xi+1/3)\sin\beta M_2(d)
+ +\frac{a^5}{\pi^5}\sin\beta M_4(d).
+\end{equation}
+At $d=0$, the moments are $1$, $\pi\phz$, and $3\pi\phz$.
+For $d\ge0$, $g(d+t)\le g(d)g(t)$ gives $M_j(d)\le g(d)M_j(0)$.
+
+\subsection{Closing both coefficient-profile regimes}
+
+The target has the lower bound
+\[
+ c(a)+c(\xi a)\ge\phz a(1+\xi)-\frac{\phz a^3}{6}(1+\xi^3).
+\]
+If $r\ge19/20$, combine \eqref{eq:primaryA} and \eqref{eq:aliasA}, use
+$\sin(\pi\xi)\le\pi\xi$, and discard
+$-a^2(1-\cos(\pi\xi))/\pi^2\le0$. The cubic coefficient is at most
+\[
+ \phz\left[\frac16+\frac{\xi^2}2-\frac{361(1+\xi)}{1600}\right]
+ \le-\frac{449}{9600}\phz.
+\]
+The remaining positive terms give
+\begin{align*}
+ G-c(a)-c(\xi a)
+ &\le-\frac{449}{9600}\phz a^3+\frac5{4\pi^2}a^4
+ +\phz\left(\frac{1371}{1280}+\frac3{\pi^4}\right)a^5
+ +\left(128+\frac1{240\pi^2}\right)a^8\\
+ &\le-\frac{a^3}{200}.
+\end{align*}
+The last inequality is rational arithmetic using the displayed bounds on
+$\pi,\phz,a$.
+
+If $r\le19/20$ and a reflected peak exists, then
+$d\ge\pi/(19a)>2$, so $g(d)\le1/3$. Use the Gaussian-only primary bound
+and \eqref{eq:aliasA} to obtain
+\begin{align*}
+ G-c(a)-c(\xi a)
+ &\le-\frac{2a^2}{3\pi^2}
+ +\phz a^3\left(\frac16+\frac5{18\pi}\right)
+ +\frac7{12\pi^2}a^4
+ +\phz\left(\frac{113}{3840}+\frac1{\pi^4}\right)a^5
+ +\left(128+\frac1{240\pi^2}\right)a^8\\
+ &\le-\frac{a^2}{20}.
+\end{align*}
+If there is no reflected peak, the same upper estimate remains valid.
+This proves \eqref{eq:Agoal}. Combining with \eqref{eq:profile} and
+\eqref{eq:prawitz} proves Theorem~\ref{thm:main} for $0\le x\le a/2$.
+
+\section{Larger thresholds: the actual envelope integral}
+
+The characteristic-function envelopes below are those of Ivanisvili's
+Lemma~3.3 \cite{I}, and the argument follows the template of his Section~8.
+
+Suppose $x\ge a/2$ and write $\xi=x/a$. Define
+\[
+ D(x)=\int_0^\infty\sin(sx)g(s)\,ds,\quad
+ M(x)=\int_0^\infty s\cos(sx)g(s)\,ds,\quad
+ N(x)=\int_0^\infty s^2\sin(sx)g(s)\,ds.
+\]
+Integration by parts gives
+\[
+ M=1-xD,\qquad N=D+xM.
+\]
+We use $D(x)\le x$, $|M(x)|\le1$, $|N(x)|\le\pi\phz$, and, for
+$0\le x\le1$, $N(x)\le2x$. All follow directly from the integrals and
+the moment identities above.
+
+\subsection{Decomposition and the Gaussian baseline}
+
+Put $\ep=g(1/a)$ and
+\begin{align*}
+ E_a(x)&=\frac a\pi\int_0^{\pi/a} k_\xi(as/\pi)g(s)\,ds,\\
+ P_a(\xi)&=\frac a\pi\int_0^{1/a}
+  \max\{-k_\xi(as/\pi),0\}\,[g(s)-\cos(as)^{1/a^2}]\,ds,\\
+ A_a(\xi)&=\frac a\pi\int_{\theta/a}^{\pi/a}
+  |k_\xi(as/\pi)|\,|\cos(as)|^{1/a^2}\,ds.
+\end{align*}
+The exact envelope definition \eqref{eq:J} implies
+\begin{equation}\label{eq:decomp}
+ J_a(x)\le E_a(x)+P_a(\xi)+A_a(\xi)+6\ep.
+\end{equation}
+Here is the full remainder accounting. Split the $u$ integral at $1/\pi$
+and $\theta/\pi$. On the first part, the envelope minus Gaussian integrand
+is exactly the primary loss after rescaling. On the middle part it is at
+most $4\ep$: $|k_\xi(u)|\le1+1/(\pi u)\le2$, and the relevant envelopes
+and Gaussian are bounded in magnitude by $\ep$. The same facts on the last
+part give the alias integrand plus $2\ep$. Both interval lengths are at
+most $1$. The middle negative envelope bound uses $a\le1/2$ and
+$(1-a^2)\pi^2/8\ge1/2$.
+
+For the baseline, write $q(z)=\cot z-1/z+z/3$. Then
+\[
+ \rho(as/\pi)=\frac1{as}-\frac{as}3+\frac{a^2s^2}{3\pi}
+                 +(1-as/\pi)q(as).
+\]
+The Gaussian Fourier identities, with the scaling used here, are
+\begin{align*}
+ \int_0^\infty\cos(sx)g(s)\,ds&=\pi\ph(x),\\
+ \int_0^\infty s\sin(sx)g(s)\,ds&=\pi x\ph(x),\\
+ \int_0^\infty\frac{\sin(sx)}s g(s)\,ds&=\pi c(x).
+\end{align*}
+The last formula follows by differentiating under the integral with a
+Gaussian dominator and integrating the first formula from zero to $x$.
+These identities yield the infinite baseline
+\begin{equation}\label{eq:baseline}
+ B_a(x)=c(x)+a\ph(x)-\frac{a^2}{\pi^2}M(x)
+          -\frac{a^2x\ph(x)}3+\frac{a^3}{3\pi^2}N(x).
+\end{equation}
+In particular, the $x\ph(x)$ term has a negative sign.
+Finite Taylor estimates give $q\le0$ on $(0,\pi)$ and
+$|q(z)|\le z^3/30$ on $(0,1]$.
+For the rest, $|(1-u)q(\pi u)|\le\pi u/2$ follows from
+$\rho(u)\ge1/(\pi u)-\pi u/2$ and $q\le0$.
+Splitting at $s=1/a$, the absolute cotangent remainder is at most
+\[
+ \frac{a^4}{15\pi}+\frac{a^2}{2\pi}\ep.
+\]
+The Gaussian truncation from $\pi/a$ to infinity contributes at most
+\[
+ a^2\left(\frac2{\pi^2}+\frac1{\pi^3}
+                +\frac2{3\pi}+\frac{a^2}{3\pi^3}\right)g(\pi/a)
+ \le \ep.
+\]
+This follows from $1/(as)\le1/\pi$ on that tail and the moment estimates
+$\int_R^\infty sg(s)ds=g(R)$,
+$\int_R^\infty g(s)ds\le g(R)/R$, and
+$\int_R^\infty s^2g(s)ds\le(R+1/R)g(R)$.
+Indeed, the displayed parenthesis is at most $4$ for $a\le1$ and
+$\pi\ge1$, while $4a^2\le1$ for $a\le1/2$, and $g(\pi/a)\le\ep$.
+Consequently
+\begin{equation}\label{eq:Ebound}
+ E_a(x)\le B_a(x)+\frac{a^4}{15\pi}+2\ep.
+\end{equation}
+
+\subsection{Two primary-loss estimates}
+
+For $0\le z\le1$,
+\[
+ 0\le-\log\cos z-z^2/2\le z^4/12+z^6/20.
+\]
+For the upper bound, the finite sine and cosine polynomials show
+$\tan z\le z+z^3/3+3z^5/10$; integration proves the assertion.
+Thus for $0\le s\le1/a$,
+\[
+ 0\le g(s)-\cos(as)^{1/a^2}
+ \le g(s)\left(\frac{a^2s^4}{12}+\frac{a^4s^6}{20}\right).
+\]
+To control the cotangent correction globally, write
+$h(u)=\rho(u)-1/(\pi u)$. Since $-\pi u/2\le h(u)\le0$ and
+$\sin(sx)\le sx$ for $x,s\ge0$,
+\[
+ h(u)\sin(sx)\ge h(u)sx\ge-ax s^2/2,
+ \qquad u=as/\pi.
+\]
+This estimate holds even when the sine is negative. Together with the
+global sine and cosine Taylor bounds, it gives, for $0<s<1/a$,
+\[
+ k_\xi(as/\pi)\ge1-as/\pi+\xi
+  -s^2\left(\frac{x^2}2+\frac{x^3}{6a}+\frac{ax}2\right).
+\]
+Integrate the resulting negative-part bound to get
+\begin{equation}\label{eq:Psmall}
+ P_a(\xi)\le\phz\left(\frac54a^3+\frac{21}4a^5\right)
+             \left(\frac{x^2}2+\frac{x^3}{6a}+\frac{ax}2\right).
+\end{equation}
+Alternatively, use $|k_\xi(as/\pi)|\le1+1/(as)$ to obtain
+\begin{equation}\label{eq:Plarge}
+ P_a(\xi)\le\frac{\phz a^3}4+\frac{a^2}{6\pi}
+                        +\frac{3\phz a^5}4+\frac{2a^4}{5\pi}.
+\end{equation}
+There is no extra tail in these definitions: the middle-frequency errors
+were already included in \eqref{eq:decomp}.
+
+\subsection{A compensated alias estimate for every phase}
+
+Let $t=1-u$ and $\beta=\pi\xi$. On the alias interval $0<t<1/2$,
+\[
+ \rho(1-t)\le\frac\pi3t^2+t^4\le\frac43t^2.
+\]
+Trigonometric addition, $|\sin(\beta t)|\le\beta t$, and
+$|\cos(\beta t)|\le1$ imply
+\begin{align*}
+ |k_\xi(1-t)|\le{}&t|\cos\beta|
+   +(\pi\xi+4/3)t^2|\sin\beta|+
+          \frac{4\pi}3\xi t^3.
+\end{align*}
+The reflected profile is at most $\exp(-\pi^2t^2/(2a^2))$.
+Extending the nonnegative Gaussian integrals gives the actual alias bound
+\begin{equation}\label{eq:aliasB}
+ A_a(\xi)\le\frac{a^2}{\pi^2}|\cos\beta|
+  +\frac{\phz}{\pi}(\xi+\delta)a^3|\sin\beta|
+  +\frac{8\xi}{3\pi^3}a^4,
+ \qquad\delta=\frac4{3\pi}.
+\end{equation}
+For $Q>0,K\ge0$, Cauchy--Schwarz and a rationalized square root give
+\[
+ Q|\cos\beta|+K|\sin\beta|-Q\le\frac{K^2}{2Q}.
+\]
+The formal proof uses the corresponding squared polynomial identity and
+positivity, so no square-root approximation is needed.
+This elementary oscillation inequality is also Ivanisvili's Lemma 8.6 in
+the lower-half analysis \cite{I}; neither the inequality nor the general
+phase-compensation idea is claimed as new. Here it is combined with the
+upper-kernel estimate \eqref{eq:aliasB} and the uniform bounds needed for
+the previously unresolved upper half.
+Set $\eta=1/2+3/\pi^2$. The exact coefficient comparison
+\[
+ \frac{\phz^2}2(\xi+\delta)^2+\frac{8\xi}{3\pi^3}
+ \le\frac{\phz^2}2(\xi+\eta)^2+\frac6{\pi^4}(\xi+1)
+ \quad(\xi\ge0)
+\]
+follows from $\delta\le4/9$, $\eta\ge4/5$,
+$\phz^2\ge1521/10000$, $\pi^4\le100$, and $\pi^3\ge27$.
+For example, the linear coefficient on the right minus the left is
+nonnegative since
+$\phz^2(\eta-\delta)+6/\pi^4\ge(1521/10000)(16/45)+3/50>8/81$.
+The constant coefficient is also nonnegative. Hence
+\begin{equation}\label{eq:compalias}
+ A_a(\xi)-\frac{a^2}{\pi^2}
+ \le\frac{\phz^2}2(\xi+\eta)^2a^4+\frac6{\pi^4}(\xi+1)a^4.
+\end{equation}
+This cancels the leading $-a^2/\pi^2$ in \eqref{eq:baseline}; bounding the
+alias by its absolute magnitude before preserving that cancellation would
+lose the needed precision.
+
+\subsection{The complete master estimate}
+
+The exponential series implies
+$\ep\le6!(2a^2)^6=46080a^{12}$.
+For $a\le7/100$, exact rational arithmetic gives
+\[
+ 9\ep\le a^4/1000,\qquad
+ \frac{a^4}{15\pi}+9\ep\le a^4/40.
+\]
+The preceding decomposition and baseline require at most $8\ep$; we use
+the slightly larger $9\ep$ allowance uniformly.
+Combine \eqref{eq:decomp}, \eqref{eq:baseline}, \eqref{eq:Ebound},
+$M=1-xD$, and \eqref{eq:compalias}. For either primary bound
+$P_{\rm bd}$ in \eqref{eq:Psmall}--\eqref{eq:Plarge},
+\begin{align}
+ J_a(x)-c(x)-c(a)\le{}&a\ph(x)-c(a)-\frac{a^2x\ph(x)}3
+   +\frac{a^2xD(x)}{\pi^2}+\frac{a^3N(x)}{3\pi^2}+P_{\rm bd}\notag\\
+ &+\frac{\phz^2}2(\xi+\eta)^2a^4
+   +\frac6{\pi^4}(\xi+1)a^4+\frac{a^4}{40}.\label{eq:master}
+\end{align}
+
+\subsection{Closing the intermediate thresholds}
+
+Use $D\le x$, $N\le2x$,
+$\phz(1-x^2/2)\le\ph(x)\le\phz(1-x^2/2+x^4/8)$,
+and $c(a)\ge\phz(a-a^3/6)$. With $K=32/25$,
+the right side of \eqref{eq:master}, using \eqref{eq:Psmall}, divided by
+$\phz a^3$ is at most
+\begin{align*}
+ \mathcal P={}&\frac16-\frac{\xi^2}2-\frac\xi3
+ +a^2\left[\frac{\xi^4}8+\frac{\xi^3}6
+             +K\left(\frac{\xi^2}2+\frac{\xi^3}6+\frac\xi2\right)\right]
+ +a(C_2\xi^2+C_1\xi+C_0),\\
+ C_2={}&\frac{100}{351}+\frac15,\quad
+ C_1=\frac{400}{1053}+\frac13,\quad
+ C_0=\frac5{36}+\frac{200}{1053}+\frac5{78}.
+\end{align*}
+These constants dominate the coefficients using the earlier rational
+bounds on $\pi,\phz$ and $\eta\le5/6$.
+For $1/2\le\xi\le1$, use $\xi^4\le\xi^2$ and $\xi^3\le\xi^2$ in
+the $K$ term, and $\xi^3\le\xi$ in the standalone cubic term. Set
+$\alpha=7/100$ only in nonnegative coefficients. The exact checks are
+\begin{align*}
+ \frac16+\alpha C_0&\le\frac15,\\
+ -\frac12+\alpha C_2+\alpha^2\left(\frac18+\frac{2K}3\right)
+       &\le-\frac9{20},\\
+ -\frac13+\alpha C_1+\alpha^2\left(\frac16+\frac K2\right)
+       &\le-\frac{11}{40}.
+\end{align*}
+They give
+\[
+ \mathcal P\le\frac15-\frac9{20}\xi^2-\frac{11}{40}\xi\le-\frac1{20}.
+\]
+For $\xi\ge1$ and $a\xi=x\le1$, use
+$a^2\xi^4\le\xi^2$, $a^2\xi^3\le\xi$, and
+$a^2\xi^3\le a\xi^2$ in the $K$ term. The remaining coefficient checks are
+\begin{align*}
+ -\frac38+\alpha C_2+K\left(\frac{\alpha^2}2+\frac\alpha6\right)
+       &\le-\frac3{10},\\
+ -\frac16+\alpha C_1+\frac{K\alpha^2}2&\le-\frac1{10}.
+\end{align*}
+Thus
+\[
+ \mathcal P\le\frac15-\frac3{10}\xi^2-\frac1{10}\xi\le-\frac15.
+\]
+Therefore
+\begin{equation}\label{eq:smallgap}
+ J_a(x)-c(x)-c(a)\le-\phz a^3/20\qquad(a/2\le x\le1).
+\end{equation}
+
+\subsection{Closing the large thresholds before the tail cutoff}
+
+Use $xD=1-M\le2$, $|N|\le\pi\phz$, $\ph(x)\le\ph(1)$,
+and \eqref{eq:Plarge}; discard the favorable negative $x\ph(x)$ term.
+Since $e^{-1/2}\le5/8$,
+$\ph(1)-\phz\le-117/800$.
+Divide \eqref{eq:master} by $a$. Using $ax^2\le1$ and $a^2x\le a$,
+all positive terms are bounded by
+\begin{align*}
+ R(a)={}&\frac{a^2}{15}+\frac{2a}{9}+\frac{2a^2}{45}
+ +\left(\frac{a^2}{10}+\frac a{18}+\frac{3a^4}{10}+\frac{2a^3}{15}\right)\\
+ &+\frac2{25}\left(1+\frac{5a}3+\frac{25a^3}{36}\right)
+   +\frac2{27}(a+a^3)+\frac{a^3}{40}.
+\end{align*}
+Every coefficient is nonnegative, and
+\[
+ R(7/100)=\frac{1553895653}{13500000000},\qquad
+ -\frac{117}{800}+R(7/100)<-\frac1{40}.
+\]
+Thus
+\begin{equation}\label{eq:largegap}
+ J_a(x)-c(x)-c(a)\le-a/40\qquad(x\ge1,\ ax^2\le1).
+\end{equation}
+
+\subsection{The far tail and completion}
+
+If $ax^2\ge1$, then $x\ge1$ and $c(a)\ge a/3$. Since $a\le7/100<1/12$,
+the cubic term of the exponential series gives
+\[
+ e^{-1/(2a)}\le48a^3\le a/3.
+\]
+The Gaussian Mills bound therefore implies
+\[
+ 1-\Phi(x)\le\ph(x)/x\le e^{-1/(2a)}\le c(a).
+\]
+Consequently $H(x)+H(a)\ge1$, so \eqref{eq:main} follows from the actual
+probability being at most $1$. This branch makes no assertion that the
+smoothing envelope itself is below the target in the far tail.
+
+The small-threshold profile bound, \eqref{eq:smallgap}, \eqref{eq:largegap},
+and the far-tail probability bound cover every $x\ge0$, including all range
+joins. Together with \eqref{eq:prawitz}--\eqref{eq:J}, they prove
+Theorem~\ref{thm:main}.
+
+\section{Formal verification and reproducibility}\label{sec:verification}
+
+\replaystatus
+
+The theorem names in \code{KellerKlein/Main.lean} are
+\code{small_coefficient_upper_concentration},
+\code{small_coefficient_upper_concentration_normal}, and
+\code{small_coefficient_upper_cdf}. The latter two use
+\code{ProbabilityTheory.cdf (ProbabilityTheory.gaussianReal 0 1)} directly.
+The finite law is the cardinality of the appropriate subset of
+$\{\mathrm{false},\mathrm{true}\}^{\mathrm{Fin}\,n}$ divided by $2^n$.
+Coordinatewise Boolean sign flips prove equality in law under $v_i\mapsto|v_i|$.
+The exact characteristic function is proved by factoring the finite sum;
+no independence or distributional assertion is an extra hypothesis.
+
+The actual theorem hypotheses are exactly those in
+Theorem~\ref{thm:main}. In particular, the formal result has no hypothesis
+named ``master bound'', ``Prawitz bound'', ``envelope validity'', or
+``Gaussian approximation''. Every analytic fact used in those reductions is
+proved in the local dependency chain or comes from pinned Mathlib theorems.
+
+The clean verifier copies every local proof into a new source directory and
+builds entirely fresh project objects with
+\code{--trust=1 -j1 -DautoImplicit=false -Ddebug.skipKernelTC=false}.
+Every newly compiled declaration is kernel-checked; the positive import trust
+level permits reuse of previously compiled library declarations.
+The verifier checks every dependency's
+Git commit and clean tracked worktree, rejects unsupported proof mechanisms,
+and checks printed axiom dependencies of the actual central theorems.
+It also checks that the source files did not change during verification.
+Mathlib's compiled dependency objects are reused read-only. The Git checks
+establish the dependency source revisions; with a downloaded cache, the
+correspondence of the compiled objects to those sources is a trusted input.
+The verifier also accepts \code{--trust 0}, which additionally rechecks
+imported declarations.
+
+For an independent installation on Linux or WSL with Elan, enter the
+package's \code{lean/} directory and run:
+\begin{verbatim}
+lake exe cache get
+python3 verify.py --lean lean --mathlib .lake/packages/mathlib
+\end{verbatim}
+Keep the included manifest; do not run a dependency update before reproducing.
+The verifier writes three reports into a \code{verification/} directory next to \code{verify.py}:
+\code{build.log}, \code{axioms.txt}, and \code{certificate.json}.
+The certificate records source hashes, dependency commits, compiler identity,
+module exit codes, and central axiom dependencies.
+
+Three small Prawitz-support modules are ported from Jiyuan-Tan/CausalSmith,
+at the following commit, under Apache 2.0:
+\begin{center}\code{a7085d88d2e4b30003db7097ca374f4718da0f01}.\end{center}
+The original files, license, notice and port descriptions are in \code{third_party/causalsmith}.
+The recurrence approach was also informed by the publicly available
+CoolRmal/BerryEsseen development, at commit
+\begin{center}\code{bfb22608ad18b4fa9fda8dd9a1ed2c2b6fbc29e7}.\end{center}
+Its code was not copied.
+The exact probability reduction and the analytic completion are local
+proofs. Their mathematical ingredients are not all claimed to be novel.
+
+\subsection*{The external prior results}
+
+The full-conjecture corollary rests on Ivanisvili's Theorems~1.1 and~10.9,
+whose proofs combine analysis with interval-arithmetic certificates. A
+separate replay of those certificates was carried out during this research,
+at 96-bit precision and with an added guard for a rounding issue in the
+selection of profile maxima; it reported no failure. That replay is not part
+of this package, and it does not bring the external results inside the Lean
+trust boundary.
+
+\section{Novelty assessment}
+
+The searches used the conjecture name and alternative formulations:
+Rademacher Kolmogorov distance, the $\Phi(a)-1/2$ bound, closed symmetric
+concentration, the small maximum-coefficient regime, and the corresponding
+one-sided discrepancies. Primary journal and arXiv sources, recent preprints,
+author repositories, thesis references, MathOverflow searches, and mathematical
+database entries were checked. The relevant latest primary source found is
+Ivanisvili's October 2026 manuscript; its stated unresolved range matches the
+new theorem exactly.
+
+The search also tested closely related general concentration theorems rather
+than relying only on the conjecture's name. Mattner's sharp common-threshold
+binomial comparison \cite{M} does not directly imply the new bound. For example,
+take 400 coefficients equal to $3/100$ and 400 equal to $4/100$; their squared
+sum is $1$. At $x=1$, the best application of that comparison over its threshold
+parameter is greater than $3/4$, whereas
+$H(1)+H(1/25)<539/750<3/4$.
+
+Older sharp asymptotic bounds were checked as a separate possible source
+of a hidden implication. Put $\ell=\sum_i|v_i|^3$. In the Rademacher case,
+the two leading terms of Shevtsova's symmetric-sum estimate \cite{Sh}
+combine to $\phz\ell$, with a positive remainder; Chistyakov's symmetric
+consequence \cite{Ch} likewise adds a positive remainder to $\phz\ell$.
+For equal magnitudes, $\ell=a$, while
+\[
+ c(a)=\phz a-\frac{\phz}{6}a^3+O(a^5)<\phz a.
+\]
+The inspected estimates therefore do not supply the required signed cubic
+improvement, and this obstruction persists for nearby unequal vectors.
+
+Equal-weight results and point-mass bounds are prior mathematics and are
+excluded from the originality claim. The proposed new content is the uniform upper
+bound for arbitrary unequal coefficients with $a\le0.07$.
+
+The contribution's significance does not rest on its formalization alone.
+It supplies an infinite coefficient regime and all thresholds at the exact
+conjectured radius, and closes the remaining regime relative to the latest
+reported result. Formalization is an additional check on that mathematical
+claim. Whether the combined resolution merits a particular publication venue
+is for independent specialists to assess.
+
+The following limits remain explicit.
+\begin{itemize}
+\item Novelty is supported by the located public literature, not certified
+against unpublished work or simultaneous research. The frontier moved only
+nine days before this investigation; priority therefore remains provisional.
+\item The full-conjecture corollary uses the external computer-assisted
+results, which are unrefereed and outside the Lean trust boundary.
+\item The Lean verification relies on the pinned Lean compiler and on the
+compiled Mathlib objects. It does not verify the compiler implementation or
+the host operating system.
+\end{itemize}
+
+Numerically, the bound is tightest for even equal weights at $x=0$, where the
+relative slack $1-\sup_x(\Pp(X\le x)-\Phi(x))/c(a)$ is about $a^2/12$; the
+upper half is therefore not attained in the range $a\le7/100$.
+
+\begin{thebibliography}{9}
+\bibitem{KK} Nathan Keller and Ohad Klein.
+\emph{Proof of Tomaszewski's conjecture on randomly signed sums}.
+Advances in Mathematics 407 (2022), 108558. Conjecture 9.3 and the discussion
+following it. \href{https://arxiv.org/abs/2006.16834}{arXiv:2006.16834};
+\href{https://doi.org/10.1016/j.aim.2022.108558}{doi:10.1016/j.aim.2022.108558}.
+
+\bibitem{I} Paata Ivanisvili.
+\emph{The Keller--Klein Berry--Esseen conjecture: the reachable half for all
+Rademacher sums, and the full conjecture for $a_1\ge0.07$}.
+Computer-assisted proof generated by Grok Bot using Cursor's agents, 21 October 2026. Theorems 1.1 and 10.9,
+Sections 3, 8, and 10.
+\url{https://paatai.github.io/ai-proofs/keller-klein/keller-klein.pdf}.
+Status index: \url{https://paatai.github.io/ai-proofs/index.html}.
+
+\bibitem{MYH} Li Ma, Liu Ye, and Xin-Fang Han.
+\emph{Improved Berry--Esseen bound for Rademacher sum}.
+Chinese Journal of Applied Probability and Statistics 40(6) (2024), 910--941.
+\href{https://doi.org/10.12460/j.issn.1001-4268.aps.2024.2022121}{doi:10.12460/j.issn.1001-4268.aps.2024.2022121}.
+
+\bibitem{MS} Lutz Mattner and Jona Schulz.
+\emph{On normal approximations to symmetric hypergeometric laws}.
+Transactions of the American Mathematical Society 370 (2018), 727--748.
+\href{https://arxiv.org/abs/1404.7657}{arXiv:1404.7657};
+\href{https://doi.org/10.1090/tran/6986}{doi:10.1090/tran/6986}.
+
+\bibitem{HM} Christian Hipp and Lutz Mattner.
+\emph{On the normal approximation to symmetric binomial distributions}.
+Theory of Probability and Its Applications 52(3) (2008), 516--523
+(Russian original, 2007).
+\href{https://doi.org/10.1137/S0040585X97983213}{doi:10.1137/S0040585X97983213}.
+
+\bibitem{P} H. Prawitz.
+\emph{Limits for a distribution, if the characteristic function is given in a finite domain}.
+Scandinavian Actuarial Journal (1972), 138--154.
+\href{https://doi.org/10.1080/03461238.1972.10404645}{doi:10.1080/03461238.1972.10404645}.
+
+\bibitem{M} Lutz Mattner.
+\emph{Lower bounds for tails of sums of independent symmetric random variables}.
+Theory of Probability and Its Applications 53(2) (2009), 334--339
+(Russian original, 2008). Theorem 2.4 and Corollary 2.6 of the preprint.
+\href{https://arxiv.org/abs/math/0609200}{arXiv:math/0609200};
+\href{https://doi.org/10.1137/S0040585X97983651}{doi:10.1137/S0040585X97983651}.
+
+\bibitem{Sh} I. G. Shevtsova.
+\emph{Moment-Type Estimates with an Improved Structure for the Accuracy of the
+Normal Approximation to Distributions of Sums of Independent Symmetric
+Random Variables}.
+Theory of Probability and Its Applications 57(3) (2013), 468--496
+(Russian original, 2012).
+\href{https://doi.org/10.1137/S0040585X97986096}{doi:10.1137/S0040585X97986096}.
+
+\bibitem{Ch} G. P. Chistyakov.
+\emph{A New Asymptotic Expansion and Asymptotically Best Constants in
+Lyapunov's Theorem. I}.
+Theory of Probability and Its Applications 46(2) (2002), 226--242
+(Russian original, 2001).
+\href{https://doi.org/10.1137/S0040585X97978932}{doi:10.1137/S0040585X97978932}.
+\end{thebibliography}
+\end{document}

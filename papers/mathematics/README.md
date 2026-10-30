@@ -21,6 +21,7 @@ Each family directory contains its manuscripts, proof sources or shared-library 
 | [A quartic entropy deficit for random rankings](quartic-rankings/) | [PDF](quartic-rankings/manuscript.pdf) |
 | [Sharp universal Rényi threshold for iid sums on finite Sidon sets](sidon-renyi/) | [PDF](sidon-renyi/manuscript.pdf) |
 | [A 64-point spectral tile in F₂⁹ with no periodic complement](binary-spectral-tile/) | [PDF](binary-spectral-tile/manuscript.pdf) |
+| [The small-coefficient upper half of the Keller–Klein conjecture](keller-klein/) | [PDF](keller-klein/manuscript.pdf) |
 | [The exact asymmetric Merino–Welsh region for finite matroids](asymmetric-tutte/) | [PDF](asymmetric-tutte/manuscript.pdf) |
 | [A rational five-cycle for two-block ADMM with multiplier step below two](admm-counterexample/) | [PDF](admm-counterexample/paper/admm_counterexample.pdf) |
 | [A narrow interval for the universal multiplier step of two-block ADMM](admm-multiplier-step/) | [PDF](admm-multiplier-step/manuscript.pdf) |

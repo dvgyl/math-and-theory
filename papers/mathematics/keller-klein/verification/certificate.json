@@ -1,0 +1,512 @@
+{
+  "status": "PASS",
+  "date_utc": "2026-10-30T09:13:01.018715+00:00",
+  "compiler": "Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)",
+  "fresh_output": "$REPLAY/kk0/verification/clean-5el6xoqy/olean",
+  "dependency_policy": "Pinned clean source checkouts; compiled dependency caches reused read-only; cache-to-source correspondence is trusted, not rechecked",
+  "import_trust_level": 0,
+  "new_declarations_kernel_checked": true,
+  "compiler_options": [
+    "--trust=0",
+    "-j1",
+    "-DautoImplicit=false",
+    "-Ddebug.skipKernelTC=false"
+  ],
+  "dependencies": [
+    {
+      "name": "mathlib",
+      "commit": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "clean": true
+    },
+    {
+      "name": "plausible",
+      "commit": "77e08eddc486491d7b9e470926b3dbe50319451a",
+      "clean": true
+    },
+    {
+      "name": "LeanSearchClient",
+      "commit": "25078369972d295301f5a1e53c3e5850cf6d9d4c",
+      "clean": true
+    },
+    {
+      "name": "importGraph",
+      "commit": "e6a9f0f5ee3ccf7443a0070f92b62f8db12ae82b",
+      "clean": true
+    },
+    {
+      "name": "proofwidgets",
+      "commit": "c4919189477c3221e6a204008998b0d724f49904",
+      "clean": true
+    },
+    {
+      "name": "aesop",
+      "commit": "5d50b08dedd7d69b3d9b3176e0d58a23af228884",
+      "clean": true
+    },
+    {
+      "name": "Qq",
+      "commit": "fa4f7f15d97591a9cf3aa7724ba371c7fc6dda02",
+      "clean": true
+    },
+    {
+      "name": "batteries",
+      "commit": "f5d04a9c4973d401c8c92500711518f7c656f034",
+      "clean": true
+    },
+    {
+      "name": "Cli",
+      "commit": "02dbd02bc00ec4916e99b04b2245b30200e200d0",
+      "clean": true
+    }
+  ],
+  "module_count": 62,
+  "verifier_sha256": "f76af50ec0d4373c9bcef14164fd6bc24eca65e291327645fba28081178e9565",
+  "builds": [
+    {
+      "module": "KellerKlein.Imports",
+      "exit_code": 0,
+      "seconds": 4.407
+    },
+    {
+      "module": "KellerKlein.KernelDefs",
+      "exit_code": 0,
+      "seconds": 4.824
+    },
+    {
+      "module": "KellerKlein.Elementary",
+      "exit_code": 0,
+      "seconds": 16.844
+    },
+    {
+      "module": "KellerKlein.Envelopes",
+      "exit_code": 0,
+      "seconds": 19.528
+    },
+    {
+      "module": "KellerKlein.KernelBounds",
+      "exit_code": 0,
+      "seconds": 19.332
+    },
+    {
+      "module": "KellerKlein.Sinc",
+      "exit_code": 0,
+      "seconds": 4.318
+    },
+    {
+      "module": "KellerKlein.Vendor.PrawitzKernel",
+      "exit_code": 0,
+      "seconds": 3.506
+    },
+    {
+      "module": "KellerKlein.IntervalCompat",
+      "exit_code": 0,
+      "seconds": 3.578
+    },
+    {
+      "module": "KellerKlein.Vendor.PrawitzSignIntegrability",
+      "exit_code": 0,
+      "seconds": 9.387
+    },
+    {
+      "module": "KellerKlein.KernelMeasurability",
+      "exit_code": 0,
+      "seconds": 4.836
+    },
+    {
+      "module": "KellerKlein.KernelRegularity",
+      "exit_code": 0,
+      "seconds": 3.872
+    },
+    {
+      "module": "KellerKlein.EnvelopeRegularity",
+      "exit_code": 0,
+      "seconds": 5.776
+    },
+    {
+      "module": "KellerKlein.EnvelopeIntegral",
+      "exit_code": 0,
+      "seconds": 4.138
+    },
+    {
+      "module": "KellerKlein.GaussianMoments",
+      "exit_code": 0,
+      "seconds": 7.336
+    },
+    {
+      "module": "KellerKlein.CotangentRemainder",
+      "exit_code": 0,
+      "seconds": 5.139
+    },
+    {
+      "module": "KellerKlein.ZoneBKernel",
+      "exit_code": 0,
+      "seconds": 10.364
+    },
+    {
+      "module": "KellerKlein.ZoneBProfile",
+      "exit_code": 0,
+      "seconds": 10.969
+    },
+    {
+      "module": "KellerKlein.ZoneBIntegral",
+      "exit_code": 0,
+      "seconds": 11.983
+    },
+    {
+      "module": "KellerKlein.ZoneAKernel",
+      "exit_code": 0,
+      "seconds": 21.592
+    },
+    {
+      "module": "KellerKlein.ZoneAProfile",
+      "exit_code": 0,
+      "seconds": 7.716
+    },
+    {
+      "module": "KellerKlein.ZoneBRegions",
+      "exit_code": 0,
+      "seconds": 12.038
+    },
+    {
+      "module": "KellerKlein.GaussianFourier",
+      "exit_code": 0,
+      "seconds": 12.476
+    },
+    {
+      "module": "KellerKlein.GaussianTail",
+      "exit_code": 0,
+      "seconds": 5.77
+    },
+    {
+      "module": "KellerKlein.ZoneBRemainder",
+      "exit_code": 0,
+      "seconds": 7.574
+    },
+    {
+      "module": "KellerKlein.GaussianBaseline",
+      "exit_code": 0,
+      "seconds": 20.949
+    },
+    {
+      "module": "KellerKlein.ZoneAScaled",
+      "exit_code": 0,
+      "seconds": 7.758
+    },
+    {
+      "module": "KellerKlein.ZoneAAlias",
+      "exit_code": 0,
+      "seconds": 8.35
+    },
+    {
+      "module": "KellerKlein.ZoneAConstants",
+      "exit_code": 0,
+      "seconds": 26.904
+    },
+    {
+      "module": "KellerKlein.ZoneBAlias",
+      "exit_code": 0,
+      "seconds": 12.796
+    },
+    {
+      "module": "KellerKlein.ZoneBDecomposition",
+      "exit_code": 0,
+      "seconds": 12.208
+    },
+    {
+      "module": "KellerKlein.GaussianTarget",
+      "exit_code": 0,
+      "seconds": 6.192
+    },
+    {
+      "module": "KellerKlein.ZoneBClosure",
+      "exit_code": 0,
+      "seconds": 79.877
+    },
+    {
+      "module": "KellerKlein.ZoneBAliasCompensation",
+      "exit_code": 0,
+      "seconds": 14.792
+    },
+    {
+      "module": "KellerKlein.GaussianError",
+      "exit_code": 0,
+      "seconds": 11.28
+    },
+    {
+      "module": "KellerKlein.Vendor.TriangularCosineIntegral",
+      "exit_code": 0,
+      "seconds": 4.607
+    },
+    {
+      "module": "KellerKlein.PrawitzRecurrence",
+      "exit_code": 0,
+      "seconds": 6.673
+    },
+    {
+      "module": "KellerKlein.PrawitzOscillation",
+      "exit_code": 0,
+      "seconds": 4.453
+    },
+    {
+      "module": "KellerKlein.PrawitzLimit",
+      "exit_code": 0,
+      "seconds": 6.01
+    },
+    {
+      "module": "KellerKlein.PrawitzMajorant",
+      "exit_code": 0,
+      "seconds": 4.828
+    },
+    {
+      "module": "KellerKlein.Rademacher",
+      "exit_code": 0,
+      "seconds": 7.882
+    },
+    {
+      "module": "KellerKlein.PrawitzFinite",
+      "exit_code": 0,
+      "seconds": 6.427
+    },
+    {
+      "module": "KellerKlein.ProfileMixture",
+      "exit_code": 0,
+      "seconds": 3.728
+    },
+    {
+      "module": "KellerKlein.ShiftedGaussianMoments",
+      "exit_code": 0,
+      "seconds": 5.251
+    },
+    {
+      "module": "KellerKlein.ZoneAAliasIntegral",
+      "exit_code": 0,
+      "seconds": 10.181
+    },
+    {
+      "module": "KellerKlein.ZoneAAliasScaled",
+      "exit_code": 0,
+      "seconds": 6.055
+    },
+    {
+      "module": "KellerKlein.ZoneAIntegral",
+      "exit_code": 0,
+      "seconds": 7.105
+    },
+    {
+      "module": "KellerKlein.ZoneATail",
+      "exit_code": 0,
+      "seconds": 7.792
+    },
+    {
+      "module": "KellerKlein.ZoneATailBound",
+      "exit_code": 0,
+      "seconds": 12.636
+    },
+    {
+      "module": "KellerKlein.ZoneAIntegralBound",
+      "exit_code": 0,
+      "seconds": 4.623
+    },
+    {
+      "module": "KellerKlein.ZoneAFinalAlgebra",
+      "exit_code": 0,
+      "seconds": 29.866
+    },
+    {
+      "module": "KellerKlein.ZoneATheorem",
+      "exit_code": 0,
+      "seconds": 6.386
+    },
+    {
+      "module": "KellerKlein.PrawitzEnvelope",
+      "exit_code": 0,
+      "seconds": 7.328
+    },
+    {
+      "module": "KellerKlein.ZoneBTheorem",
+      "exit_code": 0,
+      "seconds": 10.607
+    },
+    {
+      "module": "KellerKlein.SignedRademacher",
+      "exit_code": 0,
+      "seconds": 3.734
+    },
+    {
+      "module": "KellerKlein.NormalCDF",
+      "exit_code": 0,
+      "seconds": 4.56
+    },
+    {
+      "module": "KellerKlein.Main",
+      "exit_code": 0,
+      "seconds": 4.126
+    },
+    {
+      "module": "KellerKlein.Nonvacuity",
+      "exit_code": 0,
+      "seconds": 4.226
+    },
+    {
+      "module": "KellerKlein.Audit",
+      "exit_code": 0,
+      "seconds": 41.729
+    },
+    {
+      "module": "KellerKlein",
+      "exit_code": 0,
+      "seconds": 3.416
+    },
+    {
+      "module": "KellerKlein.CrossoverBounds",
+      "exit_code": 0,
+      "seconds": 8.782
+    },
+    {
+      "module": "KellerKlein.FarTail",
+      "exit_code": 0,
+      "seconds": 2.775
+    },
+    {
+      "module": "KellerKlein.ZoneAAudit",
+      "exit_code": 0,
+      "seconds": 5.066
+    }
+  ],
+  "central_axioms": {
+    "KellerKlein.small_coefficient_upper_concentration": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "KellerKlein.small_coefficient_upper_concentration_normal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "KellerKlein.small_coefficient_upper_cdf": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "KellerKlein.rademacher_concentration_small_max": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "KellerKlein.rademacherCDF_small_max_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "KellerKlein.rademacher_concentration_zoneA": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "KellerKlein.rademacher_concentration_zoneB": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "KellerKlein.prawitz_indicator_majorant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "KellerKlein.ZoneA.holderProfile_le_c_pair": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "KellerKlein.JUpper_le_c_pair_of_zoneB": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "KellerKlein.actual_characteristic_envelopes": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "KellerKlein.zoneBAliasIntegral_compensated": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "KellerKlein.one_le_H_add_H_of_large": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "KellerKlein.central_hypotheses_nonvacuous": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "source_sha256": {
+    "KellerKlein.lean": "103617f4af7f2d93a1acf2651ebea8473b483554335ae4b4a050433b8d727400",
+    "KellerKlein/Audit.lean": "43c0b06f862fc893188d1f177ae247fff2719676f79881c6f194111760d202ad",
+    "KellerKlein/CotangentRemainder.lean": "72de1b7b5b7c4749f6e87ba0b727fffce73bd9f5676bff69d1144c24d20050ee",
+    "KellerKlein/CrossoverBounds.lean": "b88dd30518204408dcd77a8eec13951c79af0293a90fd0073a0f489f2223224c",
+    "KellerKlein/Elementary.lean": "be91e0d38d1d643fb72bc689e313c7ddeb8c875ad6d397a3fdcfb1c337cddbb2",
+    "KellerKlein/EnvelopeIntegral.lean": "d33a19520d26636f2a88641bfd275ca10cae1cd5d3838d35f7fe5d5b0fa724ed",
+    "KellerKlein/EnvelopeRegularity.lean": "29938c38d1ab72e1d401c9ed36b13ac8ea7237502f90a0e9877c902a8d42c4a3",
+    "KellerKlein/Envelopes.lean": "3e9ae25e9c57c62f2c1ba36302803bdcdc2e13562538afcf92443e7e396becea",
+    "KellerKlein/FarTail.lean": "a8c44054b98240c5433d3647e6dccd2973a071cbffda2dd3c15961b9e9810611",
+    "KellerKlein/GaussianBaseline.lean": "270cca50a68bcc64e148d6a31a02400b941b5977d1399679af56f0ee9385d397",
+    "KellerKlein/GaussianError.lean": "7b1f55c10795d5387b6072bf6f63971e0fa9b605e886c92cfca524195788d1d5",
+    "KellerKlein/GaussianFourier.lean": "3db9b4261724f331519650e2bbe774e0a2cffdfbedb6a79476fd87dbe8373ad6",
+    "KellerKlein/GaussianMoments.lean": "ef595b7eb17a797f13cc694fe7e1f7401b421469b66337d775a88ee57e23ae28",
+    "KellerKlein/GaussianTail.lean": "3e307c6c2002dde3e35216c71f7443987ccd8683cc2d64c901f167728972f321",
+    "KellerKlein/GaussianTarget.lean": "3377a7993c6ec2f09b2c534610f754886ee93c58cd76e0ec41bd8472ef720593",
+    "KellerKlein/Imports.lean": "eba52f55963dabe5d6671faa2ba6c0fff45397452eae533e16622de845151023",
+    "KellerKlein/IntervalCompat.lean": "ddf7ca5e93533c8c1d3797983ec2fff1dc0a7e650a318154f6c85de21f71e11c",
+    "KellerKlein/KernelBounds.lean": "603f78227c39cbfe79e045bd1778f0cd1c693a2f9ff26fbdbf73d73d82e041e9",
+    "KellerKlein/KernelDefs.lean": "7208938f0db3b0862b77477e6a8cb7f95e258c2277d7cf3c3905bd834132b048",
+    "KellerKlein/KernelMeasurability.lean": "c497c595f2d480264c97c14566a4cb2a5be9feb011ab8a1805739a92170be9fb",
+    "KellerKlein/KernelRegularity.lean": "d818fd2fe08c15a9be6d7d404a01d6d0827dfde54d85b76220e4eb3b6bf7f2e4",
+    "KellerKlein/Main.lean": "c54db895f68ddb7567fc0e12b93b0decf2bef560505c21f2f603fb89cd4c3be7",
+    "KellerKlein/Nonvacuity.lean": "0f8e49c279f5d20c30bb7ae3f0453f76f12f481354871459dcd6f441e4535a60",
+    "KellerKlein/NormalCDF.lean": "bffd9ade83b085434860ed8ea487f2f5243a87b629015138a5995f05e73f1df2",
+    "KellerKlein/PrawitzEnvelope.lean": "bacf78e8d0234ca847d3cd141e32356023eeb3c153039bd9d2735f3e193d77fc",
+    "KellerKlein/PrawitzFinite.lean": "601b1e774e18fe7388a2fffbea5d542acdf62a4ac6fdc4a4d49f40605b8f2c76",
+    "KellerKlein/PrawitzLimit.lean": "f3e803e9eb44095d2cbb9fd98c664cad0c3091be2fc4dc054d9abafe2b5611fa",
+    "KellerKlein/PrawitzMajorant.lean": "6c5af0b1d08ef55478d71642a31058f1907df51c9c7210e39c3950f517c0ba8e",
+    "KellerKlein/PrawitzOscillation.lean": "b4f647770e6bbe4fe002298cdb85fa1f7718cb50696d6a1450a2fbbd77411d8f",
+    "KellerKlein/PrawitzRecurrence.lean": "4544177670f2de9ed097eec515b0fc7fce6bf09b327091bc13ac2920c63403aa",
+    "KellerKlein/ProfileMixture.lean": "81a13d3dc20eead648044c81e50d5ffe38fe01abe202cdf572e74941868fb148",
+    "KellerKlein/Rademacher.lean": "5e1ef31049e35e39eee530b0c2ccd7a828bc3514b9ab7b7b10add9a07cc8a8b8",
+    "KellerKlein/ShiftedGaussianMoments.lean": "7a9591ba4c77e7431137cc87d3deae801bbc1ba8b7ae16ebb29f7b369d40c3cd",
+    "KellerKlein/SignedRademacher.lean": "48f92b714f729c8c0c2a3bc13a5c80c20b013da73a2d9fd08b8c4d110f8cdaca",
+    "KellerKlein/Sinc.lean": "847121218d8f63ef457ae93dbf06a21f5a1170b0d239b32d1a503191a4029613",
+    "KellerKlein/Vendor/PrawitzKernel.lean": "896fa8451ff90da96905b7e2903d44a81edb733d94c5294d2488e267ea5f4527",
+    "KellerKlein/Vendor/PrawitzSignIntegrability.lean": "65437c0190de1c97a13a61ff606cccaf99d4082ffde1e7df91af4251198d15a0",
+    "KellerKlein/Vendor/TriangularCosineIntegral.lean": "85587f8c85fa80d4a5c178f70229d3e709d372031427dfdddbf8614d0f3f00a9",
+    "KellerKlein/ZoneAAlias.lean": "59b9f97f68f5ef746283cb99ef841df23075c0ee71d51f02ae377f1bf3fba06f",
+    "KellerKlein/ZoneAAliasIntegral.lean": "c4af132f4a9ff2e79a9c093380f8c8e6a68cdb9fb33719903b4a281506354c0b",
+    "KellerKlein/ZoneAAliasScaled.lean": "906d2bb3b1f6800f5a09b6d19f442227868b550e0e7917dd570cdab4a5593af8",
+    "KellerKlein/ZoneAAudit.lean": "30c84dd2ce671ba59808e45482a95feb71caabe32d45d3356413070a7ffe6426",
+    "KellerKlein/ZoneAConstants.lean": "1f46f9e51a11ed765b4fb97f320764c1bd5d0e69f562761d0931c1e04ffd1e80",
+    "KellerKlein/ZoneAFinalAlgebra.lean": "401e0124ea00cb455864a1da528ba5b13567502b5e25e72c81ef04ecc0f6a0f8",
+    "KellerKlein/ZoneAIntegral.lean": "2ad160569df6f90ab972e1528db6c8cf0ab3a5a7afe58f5dcdbc31ca303e8b29",
+    "KellerKlein/ZoneAIntegralBound.lean": "eba26eafdfef234f54ffc6607ec65d82af3fd304ee13ae42378d7ed493e3d550",
+    "KellerKlein/ZoneAKernel.lean": "3123577350040a5bd1633755062a335b3370df6f87b762de55692a009eb55dfe",
+    "KellerKlein/ZoneAProfile.lean": "ba64ebd2b268cfe4baf8f00973088f476ca5c1e305a2fb6bb132a6b3c6553511",
+    "KellerKlein/ZoneAScaled.lean": "a636d9cabcc94205fd2ca6f2bc6ecd188431f6ddbcbfc5127acc33e031e21063",
+    "KellerKlein/ZoneATail.lean": "275619bc6938fed01c35f48313fb0bc3dd30c3ef4881f74cea6a125c83b1c110",
+    "KellerKlein/ZoneATailBound.lean": "bef1b65e63720973a13422030c63291116143d8f2870bd466754bff7965a3f4c",
+    "KellerKlein/ZoneATheorem.lean": "ee84cc26bc5cc0586b9218d2b2d7ec51540ec8286f8a4090e44b64651026c6fa",
+    "KellerKlein/ZoneBAlias.lean": "50646ce744cc0bc29e707098c1d81334a27afa7204bd01859065585a365ec68c",
+    "KellerKlein/ZoneBAliasCompensation.lean": "7d5deed1b0c8cd522aaa979c974a4457718e36592375a8a6dc028e9bfa480301",
+    "KellerKlein/ZoneBClosure.lean": "bb933c134b82c31aca665a60bd8b74d61cc657dba6d709a988d724a5321a2887",
+    "KellerKlein/ZoneBDecomposition.lean": "c4270dc27aad1bc7a34dbb2729a5afab3ce10a821f89af6d7b0c5a277ff250c0",
+    "KellerKlein/ZoneBIntegral.lean": "c3728dff779dc072084bf395a7607b2b2ce68c287561084e1e74f7a8c4822eb4",
+    "KellerKlein/ZoneBKernel.lean": "1d30e4e56edc50bb130bf747766c22ade34288548518b5f5663d8e8dfb36c5ff",
+    "KellerKlein/ZoneBProfile.lean": "ad82870ce85813610f0cd50fefc3234e586954f3196149e42b80cad7afdf4351",
+    "KellerKlein/ZoneBRegions.lean": "94a2287b837d94fb8e5a388da638559b623bed27957fd8ab9b9ba60d52b56bf8",
+    "KellerKlein/ZoneBRemainder.lean": "71148e83821f0c35e4b21a26c4b0b3d35ce20de99ae3577484c31b4d7d97f963",
+    "KellerKlein/ZoneBTheorem.lean": "e942e5ce31b9af35c639746b204ff790ea5d6970e4a4755913e9b6cfaf1e2f6b"
+  }
+}

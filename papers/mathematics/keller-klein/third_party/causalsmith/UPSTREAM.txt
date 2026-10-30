@@ -1,0 +1,29 @@
+Vendored Prawitz support modules
+===============================
+
+Source: https://github.com/Jiyuan-Tan/CausalSmith
+Commit: a7085d88d2e4b30003db7097ca374f4718da0f01
+License: Apache License 2.0 (LICENSE); original upstream NOTICE retained.
+
+This directory contains the original three upstream source files for provenance,
+stored with a .txt suffix so that they are not compiled. Their upstream paths are
+Causalean/Stat/CLT/BerryEsseen/{PrawitzKernel,PrawitzSignIntegrability,TriangularCosineIntegral}.lean.
+The compiled local ports are in lean/KellerKlein/Vendor/. Only those three ports are
+included in this project's Lean proof. The original NOTICE describes the larger
+upstream project and additional dependencies that are not vendored here.
+
+Port modifications for Lean 4.19 / pinned Mathlib:
+- Removed newer module/public syntax and adapted imports to local modules.
+- Added local sinc and interval-endpoint compatibility lemmas.
+- Replaced newer tactic spellings (including convert!) and supplied explicit
+  ring-normalization steps where API or tactic behavior differs.
+- Retained the underlying mathematical statements and proofs.
+
+Related conceptual source:
+https://github.com/CoolRmal/BerryEsseen
+Commit: bfb22608ad18b4fa9fda8dd9a1ed2c2b6fbc29e7
+The recurrence approach to Prawitz's majorant informed the independently written
+PrawitzRecurrence/PrawitzOscillation/PrawitzLimit/PrawitzMajorant modules.
+No source code was copied from that repository; no license was located there.
+The Prawitz inequality itself is established prior mathematics, not claimed as
+an original theorem of the present research.

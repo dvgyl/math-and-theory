@@ -1,0 +1,186 @@
+Keller--Klein small-coefficient upper half: zone A
+2026-10-30. The actual uniform Holder-profile inequality below is Lean verified
+in KellerKlein.ZoneA.holderProfile_le_c_pair (Lean 4.19.0, pinned Mathlib).
+The complete small-coefficient upper-probability theorem is assembled in
+KellerKlein.Main. The final fresh-build status is in verification/certificate.json.
+This auxiliary derivation covers Zone A only.
+
+Goal. For 0<a<=7/100, 0<=x<=a/2 and 0<b<=a, prove
+
+  G(b;x,pi/a) <= [H(x)+H(a)]/2,
+
+where H(z)=2 Phi(z)-1 and
+
+  G(b;x,T) = integral_0^1 k(u,-x,T) |cos(bTu)|^(1/b^2) du,
+  k(u,-x,T) = (1-u)cos(Tux) + rho(u)sin(Tux),
+  rho(u)=(1-u)cot(pi u)+1/pi.
+
+The endpoint kernel values are interpreted by continuous limits. All integrands
+are nonnegative in this zone. Ivanisvili, section 10, combines Prawitz and Holder
+to give P(|X|<=x)<=2 sup_{0<b<=a} G(b;x,pi/a). Thus the stated goal suffices.
+
+Notation. Set xi=x/a in [0,1/2], theta=b/a in (0,1], phi0=1/sqrt(2pi),
+  A=xi^2/2+xi/3+xi^3/6,
+  A_l=xi^2/2+xi/2+xi^3/6,
+  B=(xi^2/2+xi/3)/pi,
+  C=xi^4/24+xi^3/18+xi^5/120,
+  D=xi^5/(360pi).
+All these coefficients are nonnegative. A<=5/16, A_l<=19/48, and C<=113/11520.
+
+1. Kernel polynomial bounds.
+
+For y=pi u in [0,pi], the elementary cotangent estimates are
+
+  1/y-y/2 <= rho(u) <= 1/y-y/3+y^2/(3pi) <=1/y.
+
+The lower bound is elementary: for y<=sqrt(2), cos y>=1-y^2/2>=0 and
+sin y<=y give cot y>=1/y-y/2, hence rho(u)>=1/y-y/2. For y>=sqrt(2),
+the right side is nonpositive and rho(u)>=0 (Ivanisvili Lemma10.2, or differentiate
+1/pi-t cot(pi t) after reflecting u when u>=1/2). The upper bound follows from
+cot y<=1/y-y/3. To prove the latter without a series, differentiate
+F(y)=(1-y^2/3)sin y-y cos y: F'(y)=y(sin y-y cos y)/3>=0, since
+(sin y-y cos y)'=y sin y>=0 on [0,pi].
+The usual global Taylor inequalities cos z<=1-z^2/2+z^4/24,
+cos z>=1-z^2/2, sin z<=z-z^3/6+z^5/120, sin z>=z-z^3/6,
+and sin z<=z imply
+
+  L(y):=1+xi-y/pi-A_l y^2 <= k(y/pi,-x,pi/a)
+       <= U(y):=1+xi-y/pi-Ay^2+B y^3+C y^4+D y^7.
+  0<=k<=1+xi.
+
+Proof of the upper bound: insert
+  rho<=1/y-y/3+y^2/(3pi),
+apply the upper cosine polynomial to the coefficient 1-y/pi, the upper sine
+polynomial to 1/y+y^2/(3pi), and the lower sine polynomial to -y/3. The omitted
+y^5 terms are -xi^4/(24pi)-xi^3/(18pi), hence nonpositive.
+
+For the lower bound, use rho>=1/y-y/2. When y<=sqrt(2), this coefficient is
+nonnegative, so insert sin(xi y)>=xi y-xi^3 y^3/6 and cos>=1-xi^2y^2/2.
+This produces L plus nonnegative cubic and quartic terms. When y>=sqrt(2),
+insert sin(xi y)<=xi y into the nonpositive coefficient instead; the resulting
+lower bound is at least L. This justifies the lower bound even when L is negative.
+
+2. Primary peak.
+
+Use s=pi u/a and put S=min(pi/(2b),pi/a). Then S>=1/a.
+On 0<=s<=S,
+
+  cos(bs)^(1/b^2) <= exp(-s^2/2-b^2s^4/12).
+
+This follows from -log cos z>=z^2/2+z^4/12 for 0<=z<pi/2; at the endpoint
+both sides extend by inequality. For an elementary proof, tan z>=z follows
+by differentiation; then (tan z)'=1+tan(z)^2>=1+z^2 yields
+tan z>=z+z^3/3. Integrate once more to obtain the log-cosine bound. Since exp(-v)<=1-v+v^2/2 for v>=0,
+
+  k cos(bs)^(1/b^2)
+  <= exp(-s^2/2)[U(as) - (b^2 s^4/12)L(as)
+                   + (b^4 s^8/288)(1+xi)].
+
+Integrating and extending the polynomial Gaussian moments to infinity gives
+
+  G_primary <= phi0 a(1+xi)-a^2/pi^2
+      +phi0 a^3[-A-theta^2(1+xi)/4]
+      +(a^4/pi^2)[xi^2+2xi/3+2theta^2/3]
+      +phi0 a^5[3C+5A_l theta^2/4+35(1+xi)theta^4/96]
+      +(2xi^5/(15pi^2))a^8 + E.
+
+For the simpler Gaussian-only primary bound, omit every theta term in this
+formula (use cos(bs)^(1/b^2)<=exp(-s^2/2) directly).
+
+The extension error is at most 128 a^8. Indeed, only the negative monomials
+  -(a/pi)s, -Aa^2s^2, -b^2(1+xi)s^4/12
+can increase the upper estimate when extending. For s>=S>=1/a,
+1<=(a s)^6. Hence, for each nonnegative integer k,
+  integral_S^infinity s^k exp(-s^2/2) ds <= a^6 M_{k+6}(0).
+The needed Gaussian moments are M_7(0)=48, M_8(0)=105 pi phi0,
+and M_10(0)=945 pi phi0. Including the prefactor a/pi and using b<=a,
+  E <= (48/pi^2)a^8 + [105 A phi0+(945/12)(1+xi)phi0]a^9.
+Since a<=1, A<=5/16, xi<=1/2, phi0<=2/5, and pi^2>=9,
+  E/a^8 <= 48/9+105(5/16)(2/5)+(945/12)(3/2)(2/5)
+         =1577/24 <66<128.
+This polynomial-moment tail comparison replaces an earlier exponential-tail
+argument and retains the same deliberately generous 128 a^8 error budget.
+
+3. Alias peak.
+
+There is no alias portion when theta<=1/2. Otherwise set
+  c=pi/b-pi/a=pi(1-theta)/(theta a)>=0,
+  w=pi/b-s, t=1-u=a(w-c)/pi.
+On the alias range c<=w<=pi/(2b), we have 0<=t<=1/2 and
+  |cos(bs)|^(1/b^2)=cos(bw)^(1/b^2)<=exp(-w^2/2).
+Put beta=pi xi. Since 0<=beta<=pi/2,
+  cos(beta(1-t))<=cos beta+beta t sin beta,
+  sin(beta(1-t))<=sin beta.
+For 0<=t<=1/2,
+  rho(1-t)=1/pi-t cot(pi t)<=pi t^2/3+t^4.
+A finite-Taylor proof avoids cotangent partial fractions. For z in [0,pi/2],
+put w=z^2<=5/2 and Q=1-w/3-w^2/32. If Q<=0, Q sin z<=z cos z is
+automatic. If Q>=0, insert cos z>=1-w/2+w^2/24-w^3/720 and
+sin z<=z(1-w/6+w^2/120). The difference, divided by z, is
+w^2[13/1440-11w/2880+w^2/3840], whose bracket is decreasing on [0,5/2]
+and at 5/2 is 17/15360>0. Thus 1-z cot z<=z^2/3+z^4/32. Taking
+z=pi t and using pi^3<32 proves the displayed rho bound.
+Thus
+  k(1-t,-x,pi/a)<=t cos beta+(beta+pi/3)t^2 sin beta+t^4 sin beta.
+
+Writing M_j(c)=integral_c^infinity (w-c)^j exp(-w^2/2)dw gives
+  G_alias <= (a^2/pi^2)cos beta M_1(c)
+        +(a^3/pi^2)(xi+1/3)sin beta M_2(c)
+        +(a^5/pi^5)sin beta M_4(c).
+Since M_1(0)=1, M_2(0)=pi phi0, M_4(0)=3pi phi0,
+  G_alias <= a^2 cos beta/pi^2
+        +phi0 a^3(xi+1/3)sin beta/pi
+        +3phi0 a^5 sin beta/pi^4.
+
+4. theta>=19/20.
+
+The target is at least
+  phi0 a(1+xi)-phi0 a^3(1+xi^3)/6.
+Combining the primary and alias bounds, using sin(pi xi)<=pi xi and discarding
+the nonpositive term -a^2(1-cos(pi xi))/pi^2, the cubic coefficient is at most
+  phi0 [1/6+xi^2/2-(361/400)(1+xi)/4].
+This convex quadratic has maximum -449/9600 on [0,1/2] (the maximum is at 1/2).
+Bounding every other coefficient at xi=1/2 and theta=1 yields
+
+  G-[H(x)+H(a)]/2
+  <= -(449/9600)phi0 a^3 + (5/(4pi^2))a^4
+       +phi0(1371/1280+3/pi^4)a^5+(128+1/(240pi^2))a^8.
+
+Using 39/100<phi0<2/5, pi^2>=9, and a<=7/100, the right side is <=-a^3/200.
+This last assertion is an elementary rational inequality, recorded in the
+companion certificate script.
+
+5. theta<=19/20.
+
+If an alias portion exists, c>=pi/(19a)>2. Write w=c+t and use
+  exp(-(c+t)^2/2) <= exp(-c^2/2) exp(-t^2/2), t>=0.
+Because exp(c^2/2)>=1+c^2/2>=3, this gives
+  M_1(c)<=1/3, M_2(c)<=pi phi0/3, M_4(c)<=pi phi0.
+These deliberately loose bounds are sufficient and avoid any additional
+exponential-moment evaluation. Use the Gaussian-only primary estimate and
+the target lower estimate to get
+
+  G-[H(x)+H(a)]/2
+   <= -2a^2/(3pi^2)
+      +phi0 a^3[1/6+5/(18pi)]
+      +7a^4/(12pi^2)
+      +phi0 a^5[113/3840+1/pi^4]
+      +(128+1/(240pi^2))a^8.
+
+Using 9<=pi^2<=10, pi>=3, phi0<=2/5 and a<=7/100 makes this <=-a^2/20.
+If theta<=1/2 there is no alias, so the same upper estimate remains valid.
+
+Conclusion. Both theta branches prove the desired uniform Holder-profile bound.
+Every error term above is explicit. The actual functional theorem is now proved
+in Lean, with the integral changes of variables, kernel estimates, Gaussian
+moments, tail comparisons, and final inequalities included in its dependency
+chain. The probability reduction and Zone B (x>=a/2) are separate formal
+components assembled in KellerKlein.Main. The all-coefficient two-sided
+conjecture additionally uses external results and is not Lean verified here.
+
+Primary sources.
+  https://paatai.github.io/ai-proofs/keller-klein/keller-klein.pdf
+  https://paatai.github.io/ai-proofs/index.html
+  https://arxiv.org/abs/2006.16834
+The Prawitz and Holder reductions are prior work; only the uniform
+small-a analytic completion is under investigation for originality here.

@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**37 manuscripts and research notes across 36 result families in mathematics, theoretical computer science, and mathematical physics.**
+**38 manuscripts and research notes across 37 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -195,6 +195,16 @@ An explicit 64-point set E ⊂ F₂⁹ is spectral and tiles by translation, but
 **Formal scope.** Spectrality with an actual basis of all complex functions on E, the tiling E ⊕ T = F₂⁹, aperiodicity of E, the exclusion of every periodic and every subspace complement, the classification of all complements as the 512 translates of T, and the failure of the periodic tiling property for F₂⁹ are formalized in 16 Lean modules. Minimality of dimension nine depends on an external dimension-eight theorem and is not formalized.
 
 [Paper PDF](papers/mathematics/binary-spectral-tile/manuscript.pdf) · [LaTeX](papers/mathematics/binary-spectral-tile/manuscript.tex) · [Proof and reproduction](papers/mathematics/binary-spectral-tile/README.md) · [Citation](papers/mathematics/binary-spectral-tile/CITATION.bib)
+
+#### [The small-coefficient upper half of the Keller–Klein conjecture](papers/mathematics/keller-klein/manuscript.pdf)
+
+**Family:** `keller-klein`.
+
+Let X = Σ vᵢεᵢ with independent uniform signs, real coefficients, Σ vᵢ² = 1 and |vᵢ| ≤ a, where 0 < a ≤ 7/100. For every x ≥ 0, P(|X| ≤ x) ≤ 2Φ(x) + 2Φ(a) − 2, equivalently P(X ≤ x) − Φ(x) ≤ Φ(a) − 1/2. Keller and Klein conjectured the two-sided bound |P(X ≤ x) − Φ(x)| ≤ Φ(a₁) − 1/2 with a₁ the largest coefficient; Ivanisvili's computer-assisted manuscript of 21 October 2026 proves the lower half and the full conjecture for a₁ ≥ 0.07, and leaves this range open. The proof follows the analytic route his manuscript proposes, using Prawitz smoothing, coefficient profiles and a compensated alias estimate. Together with his results it implies the full conjecture, conditionally on those unrefereed external results.
+
+**Formal scope.** The theorem for every finite vector of real coefficients, with the exact count of sign vectors and Mathlib's standard normal distribution function, is formalized in 62 Lean modules, including Prawitz smoothing, the characteristic-function envelopes and both analytic zones. Ivanisvili's Theorems 1.1 and 10.9, needed for the full conjecture, are external computer-assisted results and are not formalized.
+
+[Paper PDF](papers/mathematics/keller-klein/manuscript.pdf) · [LaTeX](papers/mathematics/keller-klein/manuscript.tex) · [Proof and reproduction](papers/mathematics/keller-klein/README.md) · [Citation](papers/mathematics/keller-klein/CITATION.bib)
 
 ### Matroid theory
 

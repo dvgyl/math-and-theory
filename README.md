@@ -10,7 +10,7 @@ The collection contains results with different formal verification scopes. Each 
 
 ## Navigating the collection
 
-The current catalogue contains 37 manuscripts and research notes across 36 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
+The current catalogue contains 38 manuscripts and research notes across 37 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
 
 - Start with the [overview](overview.pdf) for descriptions of the result families.
 - Use the [manuscript map](CONTENTS.md) to find individual papers, abstracts and supporting materials.
@@ -26,6 +26,8 @@ The results I consider the strongest, in order of significance.
 ### Mathematics
 
 **[A narrow interval for the universal multiplier step of two-block ADMM](papers/mathematics/admm-multiplier-step/manuscript.pdf).** Two-block ADMM with relaxation only in the multiplier update converges for every constant step 0 < τ ≤ 1.886 on finite-dimensional convex problems with attained proximal steps and a saddle point. Fixed compact polytopes in R¹²⁸ have a nonconstant periodic orbit for every τ ≥ 1.8868954…, so the universal threshold lies in an interval of width below 0.0009. The convergence theorem, its certificates and the periodic orbit are formalized in Lean.
+
+**[The small-coefficient upper half of the Keller–Klein conjecture](papers/mathematics/keller-klein/manuscript.pdf).** For a Rademacher sum with unit variance and every coefficient at most 7/100 in absolute value, P(|X| ≤ x) ≤ 2Φ(x) + 2Φ(a) − 2 for every x ≥ 0. This closes the range of the Keller–Klein conjecture left open by Ivanisvili's computer-assisted results; with them it implies the full conjecture, conditionally on those unrefereed results. The theorem, including Prawitz smoothing and both analytic zones, is formalized in Lean.
 
 **[The exact last-gradient bound for constant-step gradient descent in the strongly convex case](papers/mathematics/strong-gradient/manuscript.pdf).** The exact final-gradient guarantee for constant-step gradient descent holds on every real Hilbert space, for every natural horizon and all normalized steps in [0,2], including positive strong convexity. The actual-function bound and normalized attaining functions are formalized; sharpness at arbitrary scale follows by conventional rescaling.
 
@@ -57,7 +59,7 @@ The results I consider the strongest, in order of significance.
 - [Graph theory and graph polynomials](CONTENTS.md#graph-theory-and-graph-polynomials): DomiRank entropy, domination-sequence ultra-log-concavity, domination-root escape, leaf-deletion mode movement.
 - [Inequalities and real analysis](CONTENTS.md#inequalities-and-real-analysis): diagonal concavity.
 - [Integer sequences and combinatorics](CONTENTS.md#integer-sequences-and-combinatorics): Motzkin root log-concavity, bounded-forcing Motzkin bounds, Hofstadter iteration, nonquasipolynomial power ranks.
-- [Discrete analysis, tilings, probability and entropy](CONTENTS.md#discrete-analysis-tilings-probability-and-entropy): the sharp one-eighth Fourier bound, a spectral tile in F₂⁹ with no periodic complement, ranking entropy, Sidon-set Rényi thresholds.
+- [Discrete analysis, tilings, probability and entropy](CONTENTS.md#discrete-analysis-tilings-probability-and-entropy): the sharp one-eighth Fourier bound, a spectral tile in F₂⁹ with no periodic complement, the small-coefficient Keller–Klein bound, ranking entropy, Sidon-set Rényi thresholds.
 - [Matroid theory](CONTENTS.md#matroid-theory): the asymmetric Merino–Welsh region.
 - [Optimization](CONTENTS.md#optimization): the ADMM multiplier-step interval, an ADMM five-cycle, escaping subcritical Nesterov flows, Chambolle–Pock cycles, the exact strong-convexity gradient bound.
 
@@ -87,6 +89,7 @@ I use the names below to connect common search terms to each result and its file
 | Pauli channels, depolarizing channels, hockey-stick divergence, quantum contraction | [Exact conditional contraction](papers/physics/quantum-exact-contraction/) |
 | Alternating direction method of multipliers, ADMM dual step size, Glowinski golden ratio, multiplier relaxation | [ADMM multiplier-step interval](papers/mathematics/admm-multiplier-step/) |
 | ADMM convergence counterexample, period-five orbit | [Rational period-five ADMM orbit](papers/mathematics/admm-counterexample/) |
+| Keller–Klein conjecture, Rademacher sums, Berry–Esseen bound, normal approximation | [Keller–Klein small-coefficient bound](papers/mathematics/keller-klein/) |
 | Nesterov accelerated gradient flow and iteration, vanishing damping, subcritical damping, unbounded trajectories | [Escaping subcritical Nesterov flows](papers/mathematics/nesterov-subcritical/) |
 | Hard-core model, spectral independence, uniqueness threshold, Glauber dynamics | [Critical hard-core influence bounds](papers/theoretical-computer-science/critical-hardcore/) |
 | Unextendible product bases, UPB, Schmidt number, bound entanglement, Tiles state | [Minimum-rank multiplicativity and the Tiles state](papers/physics/upb-tensor-rank/) |

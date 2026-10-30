@@ -313,6 +313,9 @@ jobs:
           - package: binary-spectral-tile
             root: papers/mathematics/binary-spectral-tile
             project: lean
+          - package: keller-klein
+            root: papers/mathematics/keller-klein
+            project: lean
     env:
       LEAN_NUM_THREADS: '1'
     steps:
@@ -355,6 +358,8 @@ jobs:
             python3 ../verify_lean.py --dependency-project . --output-dir "${RUNNER_TEMP}/admm-multiplier-step-verification"
           elif [[ '${{ matrix.package }}' == 'nesterov-subcritical' ]]; then
             python3 verify_release.py --lean-home "$(lean --print-prefix)" --mathlib .lake/packages/mathlib --out "${RUNNER_TEMP}/nesterov-subcritical-verification"
+          elif [[ '${{ matrix.package }}' == 'keller-klein' ]]; then
+            python3 verify.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib
           elif [[ '${{ matrix.package }}' == 'binary-spectral-tile' ]]; then
             python3 verify_release.py --lean-home "$(lean --print-prefix)" --mathlib .lake/packages/mathlib --packages-dir .lake/packages --out "${RUNNER_TEMP}/binary-spectral-tile-verification"
           elif [[ '${{ matrix.package }}' == 'upb-tensor-rank' ]]; then
