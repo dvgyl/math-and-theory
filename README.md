@@ -37,6 +37,8 @@ The results I consider the strongest, in order of significance.
 
 **[The exact asymmetric Merino–Welsh region for finite matroids](papers/mathematics/asymmetric-tutte/manuscript.pdf).** The exact nonnegative parameter region for T_M(x,0) T_M(0,y) ≥ T_M(1,1)² is characterized uniformly over all finite matroids without loops or coloops. The formal statement uses actual matroids and their subset-rank Tutte sum, including the empty ground set.
 
+**[Depth-one Artin–Schreier defect towers are composita](papers/mathematics/artin-schreier-depth/manuscript.pdf).** Over a perfect henselian subfield K of the Hahn field k((y^ℚ)) containing k(y) and without finite accumulation points, a nontrivial finite Artin–Schreier tower has depth one exactly when it is a compositum of Artin–Schreier extensions of K. This proves Conjecture 4.1 of Nart and Novacoski. Both implications are formalized in Lean in their setting, with depth one stated through Okutsu sequences; the identification of that minimum with depth is their Theorem 1.3.
+
 **[A positive constant-recursive sequence with nonquasipolynomial power ranks](papers/mathematics/power-rank/manuscript.pdf).** A positive constant-recursive sequence of rank thirteen has explicit minimal recurrences for all its powers and nonquasipolynomial power ranks. The main theorem and arbitrary-rank companions are formalized; generating-function and polynomial corollaries have conventional proofs. Eric Rowland has independently obtained an infinite family of rank sequences at rank three ([priority note](PRIORITY_AND_NOVELTY.md#power-ranks-of-a-constant-recursive-sequence)).
 
 ### Mathematical physics
