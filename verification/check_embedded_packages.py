@@ -23,7 +23,7 @@ EXPECTED_MANIFESTS = {
     "higuchi-sudbery": "c20bfa67bb9600a3f3fe5f952226c287925a04292ebfe702dc97ec1a112d8357",
     "quartic-rankings": "bcfffa2f54209add3b357e5260eb28683c53908e24c8c34704d550977b6e08a3",
     "readk-covariance": "3d124f4af104bbf61275fcc838d356a874541869a995b7fa6368c01f74ef1b6a",
-    "sharp-eighth": "631e26e5befa11dccd77e94606e743fbd7cae39383518c2364d7542e9f3e6f15",
+    "sharp-eighth": "57b819386378ee3f342b677069d62ce5fd44e2595efa492788395733556dd812",
     "thermal-kurtosis-counterexample": "5dfc5d4a64941e0b07b320e7b8fe31569768ec1360cc1bac5f44c7cf024b09a0",
     "universal-embezzlement": "01f0f4f45fc69996b183e2cae54f04f417c0b270a7b308a4512f3e35d781d6b7"
 }
