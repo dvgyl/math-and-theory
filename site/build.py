@@ -187,7 +187,7 @@ def split_entry(content):
             continue
         label = re.match(r'\*\*([^*]+?)\.\*\*\s*', para)
         name, body = (label.group(1), para[label.end():]) if label else (None, para)
-        if name in ('Original problem', 'Prior work', 'Prior results'):
+        if name in ('Original problem', 'Prior work', 'Prior results', 'Priority and subsequent correspondence'):
             parts['source'].append((name, body))
         elif name == 'Formal scope':
             parts['scope'].append(body)

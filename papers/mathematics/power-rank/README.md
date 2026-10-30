@@ -6,6 +6,12 @@ I give a complete conventional proof for an explicit positive integer-valued seq
 
 I also give a companion family with infinitely many distinct power-rank sequences at every fixed initial rank at least three. Its principal-relation Hilbert-function mechanism is standard supporting algebra. The companion family contradicts the unnumbered fixed-rank finiteness conjecture as written on page 2 of the author-hosted Rowland–Sistos Barrón preprint. I make no claim that rank 13 is minimal or that the rank-13 example has simple characteristic roots. Its nonquasipolynomial conclusion is not identified with the source’s undefined term “pseudo-polynomial.” Historical novelty, subsequent corrections and correspondence with a specific arXiv version remain unresolved.
 
+## Priority and subsequent correspondence
+
+On 29 October 2026, following my correspondence with Professor Eric Rowland, he informed me that he had recently been experimenting with an LLM and had independently obtained an infinite family of rank sequences for rank-three recurrences. His family also challenges the fixed-rank finiteness assertion in his paper with Jesús Sistos Barrón, which my companion family contradicts for every rank at least three. I had not known of this work, and my agents' original novelty searches had not found it.
+
+I acknowledge his independently discovered, overlapping result. I do not suggest that his construction duplicates my rank-thirteen example or my other companion theorems; the constructions have not been compared. The proofs and Lean formalization here are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#power-ranks-of-a-constant-recursive-sequence) gives the details.
+
 ## Files
 
 - [manuscript.pdf](manuscript.pdf) and [manuscript.tex](manuscript.tex): full mathematical argument.

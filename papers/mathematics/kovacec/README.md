@@ -10,6 +10,14 @@ I credit Alexander Kovačec for the motivating enclosure proposal. Literal sourc
 - [Formalization map](manuscript/FORMALIZATION.md) and [Lean proof package](formalization).
 - [Citation metadata](manuscript/CITATION.cff), [disclosure](manuscript/AUTHORSHIP.md), and [Apache-2.0 license](LICENSE).
 
+## Priority and subsequent correspondence
+
+On 29 October 2026, following my correspondence with Professor Alexander Kovačec, he informed me that he had independently discovered a counterexample to his own conjecture in June 2026, documented in an unpublished preprint. He also mentioned that Wenlin Zhang had independently contacted him with another counterexample, apparently involving Lean. These developments were previously unknown to me, and my agents' original novelty searches had not found them.
+
+I acknowledge both earlier discoveries. I have not seen either counterexample, and it has not been established whether either is equivalent to my construction. The matrices, determinant, proof and Lean formalization here are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#kovačec-polygon-enclosure) gives the details.
+
+## Formal proof and reproduction
+
 Nine scientific source files check the actual matrices, six permutations, nine transposition edges, straight-segment exterior, full Jordan boundary, a nonempty bounded component, exclusion from every bounded component closure, and the convex identity. Six audited endpoints cover the integrated scope. The names `Conjecture7`, `sourceGraph`, and `sourceBoundary` refer to definitions in the package; they do not authenticate an external source.
 
 The proof package pins Lean 4.19.0 and mathlib revision `c44e0c8ee63ca166450922a373c7409c5d26b00b`. The checked build and trust-zero audit succeeded on 28 October 2026. Formal checking establishes the displayed mathematical statements. It does not establish external source identity or novelty.

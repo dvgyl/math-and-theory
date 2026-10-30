@@ -10,6 +10,12 @@ The proof uses all sixteen complex amplitudes, actual reduced-matrix eigenvalues
 - [Editable manuscript](manuscript.tex).
 - [Citation](CITATION.cff).
 
+## Priority and subsequent correspondence
+
+On 30 October 2026, following my correspondence with Dr. Jef Pauwels, he informed me that the Omega Institute had recently announced a similar result. I was previously unaware of this work, and my agents' original novelty searches had not found it. Upon investigating, I found that the Omega Institute had registered the problem on 5 October 2026 and publicly committed a claimed Lean proof on 7 October 2026 ([public record](https://github.com/the-omega-institute/trureturing/issues/13454)), before I published this result on 27 October 2026. A subsequent comparison showed that our 272-term sum-of-squares certificates are algebraically equivalent.
+
+I acknowledge the Omega Institute's earlier public work and the substantial overlap between our results, and I make no originality or priority claim for this result. I have not independently checked their Lean proof. The proof here, its Lean formalization and the verification records are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#higuchisudbery-four-qubit-entropy-bound) gives the details.
+
 ## Reproduce the proof
 
 Use the pinned Lean 4.35.0 toolchain and Mathlib revision `56a005855ea17e0b0958f73ec801ae140b0a1679`. Install Git and the Lean toolchain manager `elan`. Start with a fresh copy of this directory.

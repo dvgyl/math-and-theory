@@ -6,6 +6,12 @@ I present a proof of the unrestricted three-state root-fidelity entropy inequali
 
 The paper proves the result through an entropy-deficit comparison for a positive matrix with three square blocks. It uses the credited Li–Zhang simultaneous diagonal construction, the known scalar three-by-three absolute-value entropy comparison, and joint convexity of quantum relative entropy. The block comparison and ensemble bound form one result family. Priority is not certified by the available literature comparison.
 
+## Priority and subsequent correspondence
+
+On 29 October 2026, following my correspondence with Dr. Wojciech Roga, one of the authors of the conjecture, he informed me that another group had contacted him several days earlier claiming to have solved the same conjecture using AI and Lean. I had been unaware of this parallel effort, and my agents' original novelty searches had not found it.
+
+I acknowledge this competing claimed solution. I have not seen it, the two proofs have not been compared, and neither mathematical equivalence nor priority has been conclusively established. The proof, Lean formalization and verification record here are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#three-state-root-fidelity-entropy-bound) gives the details.
+
 ## Read and reproduce
 
 - Read the [manuscript PDF](manuscript.pdf) or [TeX source](manuscript.tex) for the complete mathematical argument.

@@ -12,6 +12,12 @@ is spectral with spectrum `C × F₂³`, tiles `F₂⁹` with the complement `T 
 
 This answers negatively the stronger subspace-complement part of Question 8.1 of Ferguson and Iosevich (arXiv:2610.36417, 26 October 2026) and, through their stated equivalence, their Question 8.2. It does not settle whether every spectral 64-point subset of `F₂⁹` tiles. Accepting their dimension-eight theorem, nine is the least binary dimension in which the periodic tiling property fails.
 
+## Priority and subsequent correspondence
+
+On 30 October 2026, following my correspondence with Dr. Samuel Ferguson, he informed me that he and his coauthor Professor Joshua Iosevich had already become aware of counterexamples to the stronger statement shortly after submitting their recent arXiv paper. These findings were previously unknown to me, and my agents' original novelty searches had not found them.
+
+I acknowledge their prior awareness of counterexamples to the stronger subspace-complement statement. I have not seen their examples, and it has not been established whether they are equivalent to my 64-point construction. The construction, the classification of its 512 complements and the Lean formalization are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#binary-spectral-tile-in-dimension-nine) gives the details.
+
 ## Files
 
 - [Manuscript](manuscript.pdf) and [LaTeX source](manuscript.tex).

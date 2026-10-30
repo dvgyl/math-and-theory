@@ -40,6 +40,8 @@ A polygon enclosure fails for a specified pair of normal matrices and its comple
 
 **Formal scope.** Actual normal matrices, determinants, straight-segment exterior and component exclusion are formalized. Correspondence with an external source conjecture is conditional.
 
+**Priority and subsequent correspondence.** On 29 October 2026, through correspondence with Professor Alexander Kovačec, I learned of his own June 2026 counterexample, documented in an unpublished preprint, and of another counterexample sent to him by Wenlin Zhang. Equivalence with this construction has not been established. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#kovačec-polygon-enclosure).
+
 [Paper PDF](papers/mathematics/kovacec/manuscript/manuscript.pdf) · [LaTeX](papers/mathematics/kovacec/manuscript/manuscript.tex) · [Reproduction and source context](papers/mathematics/kovacec/README.md) · [Citation](papers/mathematics/kovacec/CITATION.bib)
 
 #### [An unbounded obstruction to projection AM–GM in Loewner order](papers/mathematics/projection-amgm/paper.pdf)
@@ -150,6 +152,8 @@ Exact minimal recurrences for every power of a rank-thirteen sequence, nonquasip
 
 **Formal scope.** The main and arbitrary-rank companion theorems are formalized. Generating-function and polynomial corollaries retain conventional proofs.
 
+**Priority and subsequent correspondence.** On 29 October 2026, through correspondence with Professor Eric Rowland, I learned that he had independently obtained an infinite family of rank sequences for rank-three recurrences while experimenting with an LLM. The constructions have not been compared. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#power-ranks-of-a-constant-recursive-sequence).
+
 [Paper PDF](papers/mathematics/power-rank/manuscript.pdf) · [LaTeX](papers/mathematics/power-rank/manuscript.tex) · [Reproduction and source context](papers/mathematics/power-rank/README.md) · [Citation](papers/mathematics/power-rank/CITATION.bib)
 
 ### Discrete analysis, tilings, probability and entropy
@@ -193,6 +197,8 @@ A sharp universal Renyi-order threshold for iid sums supported on finite strong-
 An explicit 64-point set E ⊂ F₂⁹ is spectral and tiles by translation, but has no periodic tiling complement: its complements are exactly the 512 translates of one aperiodic eight-point set. In particular no linear subspace complements E, and F₂⁹ fails the periodic tiling property of Fan and Zhang. The construction places eight three-dimensional subspaces in parallel six-dimensional fibres; the shifts disjoint from E are the 28 pair sums of an affine eight-circuit, which form the line graph of K₈ and contain no three-dimensional subspace. This answers negatively the stronger subspace-complement part of Question 8.1 of Ferguson and Iosevich and its equivalent Question 8.2. Whether every spectral 64-point subset of F₂⁹ tiles remains open.
 
 **Formal scope.** Spectrality with an actual basis of all complex functions on E, the tiling E ⊕ T = F₂⁹, aperiodicity of E, the exclusion of every periodic and every subspace complement, the classification of all complements as the 512 translates of T, and the failure of the periodic tiling property for F₂⁹ are formalized in 16 Lean modules. Minimality of dimension nine depends on an external dimension-eight theorem and is not formalized.
+
+**Priority and subsequent correspondence.** On 30 October 2026, through correspondence with Dr. Samuel Ferguson, I learned that he and Professor Joshua Iosevich had become aware of counterexamples to the stronger statement shortly after submitting their arXiv paper. Whether their examples are equivalent to this construction has not been established. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#binary-spectral-tile-in-dimension-nine).
 
 [Paper PDF](papers/mathematics/binary-spectral-tile/manuscript.pdf) · [LaTeX](papers/mathematics/binary-spectral-tile/manuscript.tex) · [Proof and reproduction](papers/mathematics/binary-spectral-tile/README.md) · [Citation](papers/mathematics/binary-spectral-tile/CITATION.bib)
 
@@ -382,6 +388,8 @@ The average von Neumann entropy of the three two-qubit marginals of a pure four-
 
 The proof uses all sixteen complex amplitudes, actual reduced-matrix eigenvalues, an exact sum-of-squares identity, and an explicit maximizing state.
 
+**Priority and subsequent correspondence.** On 30 October 2026, through correspondence with Dr. Jef Pauwels, I learned that the Omega Institute had registered this problem on 5 October 2026 and publicly committed a claimed Lean proof on 7 October 2026. Our 272-term sum-of-squares certificates are algebraically equivalent, and I make no originality or priority claim. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#higuchisudbery-four-qubit-entropy-bound).
+
 [Paper](papers/physics/higuchi-sudbery/manuscript.pdf) · [Source](papers/physics/higuchi-sudbery/manuscript.tex) · [Citation](papers/physics/higuchi-sudbery/CITATION.bib) · [Proof and verification](papers/physics/higuchi-sudbery/README.md)
 
 #### [A pure-state matched-basis information inequality violation in dimension five](papers/physics/pure-ecqc/manuscript/manuscript.pdf)
@@ -411,6 +419,8 @@ The exact least upper bound of the optimized three-setting squared correlation v
 The entropy of the weighted three-by-three root-fidelity matrix bounds the Holevo quantity of every three-state ensemble in arbitrary finite dimension. The result includes mixed and singular states and zero probabilities.
 
 **Formal scope.** The unrestricted three-state ensemble theorem is formalized for actual positive semidefinite complex matrices of trace one, nonnegative weights summing to one, spectral entropy and nuclear-norm root fidelity. Credited QICLean foundations and prior-work adapters retain their attribution.
+
+**Priority and subsequent correspondence.** On 29 October 2026, through correspondence with Dr. Wojciech Roga, I learned that another group had contacted him several days earlier claiming a solution of the same conjecture using AI and Lean. The two proofs have not been compared, and neither mathematical equivalence nor priority has been conclusively established. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#three-state-root-fidelity-entropy-bound).
 
 [Paper PDF](papers/physics/fidelity-three-state/manuscript.pdf) · [LaTeX](papers/physics/fidelity-three-state/manuscript.tex) · [Citation](papers/physics/fidelity-three-state/CITATION.bib) · [Proof and reproduction](papers/physics/fidelity-three-state/README.md)
 

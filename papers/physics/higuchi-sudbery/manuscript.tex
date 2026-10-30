@@ -31,7 +31,7 @@
 \title{A sum-of-squares proof of the four-qubit\newline
 Higuchi--Sudbery entropy bound}
 \author{Dev D. Goyal}
-\date{27 October 2026}
+\date{27 October 2026; priority note added 30 October 2026}
 
 \begin{document}
 \maketitle
@@ -42,7 +42,10 @@ Higuchi--Sudbery entropy bound}
 For a pure state of four qubits, the Higuchi--Sudbery problem asks for the largest average von Neumann entropy across the three partitions into pairs. The proof shows that this average is at most $\log2+\tfrac12\log3$, with natural logarithms. The Higuchi--Sudbery state attains the bound. The proof gives an exact polynomial identity that bounds the sum of the third elementary symmetric functions of the three marginal spectra by $5/36$. Its right side is a sum of 272 squared mixed cubics with positive integer weights. The identity holds for all sixteen complex amplitudes. A purity lower bound and a cubic majorant for $-x\log x$ then give the entropy inequality. The argument places no restriction on the one-qubit marginals. A companion Lean formalization includes the polynomial identity, the actual reduced-matrix eigenvalues, and an explicit state that attains the bound.
 \end{abstract}
 
-\section{The problem and the contribution}
+\section*{Priority and subsequent correspondence}
+\emph{Added 30 October 2026.} On 30 October 2026, following my correspondence with Dr.~Jef Pauwels, he informed me that the Omega Institute had recently announced a similar result. I was previously unaware of this work, and the novelty searches carried out by my research agents had not found it. The Omega Institute registered the problem on 5 October 2026 and publicly committed a claimed Lean proof on 7 October 2026~\cite{OMEGA}, before this manuscript was first published on 27 October 2026. A subsequent comparison showed that the two 272-term sum-of-squares certificates are algebraically equivalent. I acknowledge this earlier public work and the substantial overlap, and I make no originality or priority claim for the result. I have not independently checked the Omega Institute's Lean proof. The proof below and its formalization are unchanged.
+
+\section{The problem and the result}
 
 For a normalized pure state of four distinguishable qubits, let
 $\rho_{AB}$, $\rho_{AC}$, and $\rho_{AD}$ denote the reduced density
@@ -558,6 +561,13 @@ G.~Gour and N.~R.~Wallach,
 Journal of Mathematical Physics \textbf{51} (2010), 112201.
 \href{https://doi.org/10.1063/1.3511477}{doi:10.1063/1.3511477}.
 \url{https://arxiv.org/abs/1006.0036}.
+
+\bibitem{OMEGA}
+The Omega Institute,
+public problem record and claimed Lean proof for the four-qubit
+Higuchi--Sudbery bound (problem registered 5 October 2026; proof committed
+7 October 2026).
+\url{https://github.com/the-omega-institute/trureturing/issues/13454}.
 
 \bibitem{PG26}
 J.~Pauwels and O.~G\"uhne,

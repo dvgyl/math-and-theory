@@ -20,7 +20,7 @@ from check_curated_packages import load_registry, check as check_curated
 EXPECTED_MANIFESTS = {
     "asymmetric-tutte": "05d56b54d039f7f47040add53bcb9f0e75501f97d0adeccb9906fca38529996d",
     "galvin-zhang": "1e8e5c56f9ea7d8bbd14c4dadeeb93a9a346c351ebcb5a35e17b552b6a886276",
-    "higuchi-sudbery": "d4a218d171c824c9b73684d7ccae16adf355b1a911a7d46935a3eccdb4f7ac15",
+    "higuchi-sudbery": "c20bfa67bb9600a3f3fe5f952226c287925a04292ebfe702dc97ec1a112d8357",
     "quartic-rankings": "bcfffa2f54209add3b357e5260eb28683c53908e24c8c34704d550977b6e08a3",
     "readk-covariance": "3d124f4af104bbf61275fcc838d356a874541869a995b7fa6368c01f74ef1b6a",
     "sharp-eighth": "7da5e59ceb66bbb8a8c5f7c0ae3cfee2432daaba885e46513d575ce00b38e985",
