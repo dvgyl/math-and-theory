@@ -13,5 +13,6 @@ Each family directory contains its manuscripts, proof sources or shared-library 
 | [The three-state root-fidelity entropy bound](fidelity-three-state/) | [PDF](fidelity-three-state/manuscript.pdf) |
 | [Exact conditional contraction for Pauli channels and depolarization in every dimension](quantum-exact-contraction/) | [PDF](quantum-exact-contraction/quantum_exact_contraction.pdf) |
 | [Strong minimum-rank multiplicativity from unextendible product constraints](upb-tensor-rank/) | [PDF](upb-tensor-rank/manuscript.pdf) |
+| [No universal finite collapse of the upper PPT entanglement-cost hierarchy](upper-ppt-hierarchy/) | [PDF](upper-ppt-hierarchy/manuscript.pdf) |
 
 [All subjects](../README.md) · [Complete catalogue](../../CONTENTS.md)

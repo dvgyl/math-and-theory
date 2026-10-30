@@ -1,0 +1,687 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,enumitem,xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black,citecolor=blue!55!black]{hyperref}
+\hypersetup{pdftitle={No universal finite collapse of the upper PPT entanglement-cost hierarchy},pdfauthor={Dev D. Goyal},pdfsubject={Mathematical proof, Lean 4 verification, and qualified novelty assessment}}
+\usepackage{fancyhdr}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{Noncollapse of the upper PPT hierarchy}
+\fancyhead[R]{30 October 2026}
+\fancyfoot[C]{\thepage}
+\setlength{\parskip}{5pt}\setlength{\parindent}{0pt}
+\setlist{itemsep=2pt,topsep=4pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\one}{\mathbf1}
+\newcommand{\syn}{\mathcal R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\diag}{\operatorname{diag}}
+\title{No universal finite collapse of the\\upper PPT entanglement-cost hierarchy}
+\author{Dev D. Goyal\thanks{Fully autonomous agentic research; see the disclosure at the end. No expert validation or external peer review is claimed.}}
+\date{30 October 2026}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+For every integer $q\ge1$, there is a bipartite density matrix $\rho_q$ for which
+$\kappa_{q+1}(\rho_q)<\kappa_q(\rho_q)$ in the original upper hierarchy of
+Lami, Mele, and Regula. The witnesses can be chosen as full-rank product-Bell
+diagonal states on $\C^{d_q}\otimes\C^{d_q}$, where
+$d_q=2^{(2q+4)4^q}$. Consequently, no fixed finite upper level is exact for
+all bipartite states.
+
+The proof constructs arbitrarily long strictly positive reverse orbits of
+absolute partial transposition. A finite weighted-sign argument extends an
+orbit while controlling every coordinate. Strict positivity then turns a
+known telescoping dual identity into a quantitative obstruction for every
+shorter feasible upper chain. Bell expectations transfer the obstruction to
+unrestricted complex auxiliary matrices. The central all-depth theorem,
+including its physical state assumptions and the original SDP constraints,
+is formalized in Lean 4 with pinned dependencies.
+
+The located primary literature already proves arbitrary-depth noncollapse of
+the lower $\chi$ hierarchy and explicitly leaves this upper $\kappa$ question
+open. The originality assessment concerns the positive inverse-orbit
+construction and the resulting all-depth upper separation. It is supported
+by targeted searches before and after the proof, but historical priority
+remains qualified. The dimension bound is deliberately generous; the result
+does not claim efficient small witnesses, noncollapse in one fixed dimension,
+or impossibility of other single-letter formulas.
+\end{abstract}
+\paragraph{Verification status.} The all-depth theorem and the full-rank state statement were replayed from source for this release with the Lean kernel at trust zero. All 17 mathematical modules and the complete 256-declaration axiom audit succeeded, and every audited declaration depends only on \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
+
+\clearpage
+\tableofcontents
+\newpage
+
+\section{The theorem and its precise scope}
+For partial transposition $\Gamma$ on the second local system, define
+\begin{equation}\label{eq:kappa}
+\kappa_q(\rho)=\inf\left\{\Tr S_{q-1}:\begin{array}{l}
+S_{-1}=\rho,\quad S_i\succeq\pm S_{i-1}^{\Gamma}\quad(0\le i<q),\\
+S_{q-1}^{\Gamma}\succeq0
+\end{array}\right\}.
+\end{equation}
+This is the original indexing and terminal constraint in
+Lami--Mele--Regula~\cite{LMR}. The auxiliary matrices range over the entire
+complex matrix space. The PSD sandwich constraints force Hermiticity and
+positivity of the auxiliaries, so their traces are real. The formal definition
+uses the real part of the trace and proves this correspondence.
+
+\begin{theorem}[Strictness at every adjacent upper level]\label{thm:main}
+For every $q\ge1$, put
+\[
+n_q=(2q+4)4^q,\qquad d_q=2^{n_q}.
+\]
+There is a positive-definite, trace-one matrix $\rho_q$ on
+$\C^{d_q}\otimes\C^{d_q}$, diagonal in a product-Bell basis with strictly
+positive coefficients, such that
+\begin{equation}\label{eq:main}
+\kappa_{q+1}(\rho_q)<\kappa_q(\rho_q).
+\end{equation}
+Thus there is no integer $q\ge1$ for which $\kappa_q=\kappa_{q+1}$ holds
+on every finite-dimensional bipartite quantum state.
+\end{theorem}
+
+The construction is an existence proof over a finite collection of sign
+vectors, with an explicit dimension bound. It does not provide a short
+closed formula for the successful signs or a practical table of all state
+coefficients. This distinction does not affect the statement in
+Theorem~\ref{thm:main}: Lean proves that the required state exists, rather
+than accepting a missing numerical certificate as an assumption.
+
+The operational consequence uses the published bound
+\begin{equation}\label{eq:operational}
+E^{\rm exact}_{c,\rm PPT}(\rho)\le\log_2\kappa_r(\rho)
+\qquad(r\ge1).
+\end{equation}
+For the witness at level $q$, this implies
+$E^{\rm exact}_{c,\rm PPT}(\rho_q)<\log_2\kappa_q(\rho_q)$.
+Therefore no fixed upper level gives a universal exact PPT-cost formula.
+Equation~\eqref{eq:operational} is established prior mathematics
+\cite[Theorem S26, Eq.\ (S89)]{LMR}; the operational theory is not introduced
+as a Lean axiom or claimed to be re-formalized in this project.
+
+A further consequence uses the published regularization identity
+$E_{\kappa,q}^{\infty}=E^{\rm exact}_{c,\rm PPT}$
+\cite[Remark S27, Eq.\ (S98)]{LMR}. For each finite $q$, the witness must
+satisfy $\kappa_q(\rho_q^{\otimes m})<\kappa_q(\rho_q)^m$ for at least one
+integer $m\ge2$; otherwise its regularized logarithmic value could not be
+smaller than its one-copy value. Thus every finite upper level fails tensor additivity
+somewhere. This is a consequence of the formally proved separation and a
+cited prior theorem, not a separately formalized operational result.
+
+The quantifiers matter. The dimension is allowed to grow with $q$. This
+does not prove that one fixed state or one fixed dimension has infinitely
+many strict upper improvements. The construction itself reaches a simple
+terminal point after $q+1$ steps. The theorem also does not rule out a
+different single-letter characterization of exact PPT cost.
+
+\section{Bell coordinates and the unrestricted operator problem}
+Use the one-pair Bell order $(\Phi^+,\Phi^-,\Psi^+,\Psi^-)$ and the matrix
+\begin{equation}\label{eq:T}
+T_1=\frac12\begin{pmatrix}
+1&1&1&-1\\1&1&-1&1\\1&-1&1&1\\-1&1&1&1
+\end{pmatrix},\qquad T=T_1^{\otimes n}.
+\end{equation}
+Let $d=2^n$ and $N=4^n=d^2$. The matrix $T$ is symmetric, orthogonal,
+involutive, fixes $\one$, and has entries of absolute value $1/d$.
+In particular,
+\begin{equation}\label{eq:flat}
+T^2=I,\quad T\one=\one,\quad |T_{ij}|=d^{-1},\quad
+\sum_i(Tx)_i^2=\sum_i x_i^2.
+\end{equation}
+
+Let $P_j$ be the rank-one product-Bell projectors and write
+\[
+\syn(x)=\sum_{j=1}^N x_jP_j.
+\]
+The Bell bridge proves
+\begin{equation}\label{eq:bridge}
+\syn(x)^\Gamma=\syn(Tx),\quad
+\Tr\syn(x)=\sum_jx_j,\quad
+x\ge0\Longrightarrow\syn(x)\succeq0.
+\end{equation}
+Strictly positive coefficients give a positive-definite synthesized matrix.
+
+For an arbitrary complex matrix $X$, define its Bell expectations by
+\[
+\mathcal E(X)_j=\operatorname{Re}\Tr(P_jX).
+\]
+The formal bridge establishes
+\begin{equation}\label{eq:expect}
+X\succeq0\Longrightarrow\mathcal E(X)\ge0,\qquad
+\mathcal E(X^\Gamma)=T\mathcal E(X),\qquad
+\sum_j\mathcal E(X)_j=\operatorname{Re}\Tr X.
+\end{equation}
+Also $\mathcal E(\syn(x))=x$.
+
+Consequently, every feasible complex-matrix chain for $\syn(x)$ yields a
+coefficient chain
+\begin{equation}\label{eq:chain}
+s_0=x,\qquad s_{i+1}\ge|Ts_i|\ (0\le i<q),\qquad Ts_q\ge0,
+\end{equation}
+with the same real trace objective $\sum_js_q(j)$. Conversely, every such
+coefficient chain synthesizes a feasible matrix chain. Lower bounds below
+therefore apply to all complex auxiliaries. No assertion that an optimizer
+is Bell diagonal is needed.
+
+The manuscript uses the convenient chain indexing $s_0=x$ and $s_q$ terminal.
+It matches \eqref{eq:kappa} by $s_i=\mathcal E(S_{i-1})$. The Lean definitions
+and compatibility lemmas make this shift explicit.
+
+\section{A positive reverse-step lemma}
+Define the absolute-transform map
+\[
+F(x)=|Tx|,
+\]
+with absolute value coordinatewise. The central new construction extends a
+reverse orbit $F(w)=v$ while preserving strict positivity of $w$.
+
+\begin{lemma}[Finite weighted-sign inverse]\label{lem:inverse}
+Suppose $0\le\varepsilon<1$,
+\[
+|v_i-1|\le\varepsilon\quad\hbox{for every }i,
+\qquad \sum_i v_i^2=N.
+\]
+Let $a,t>0$ satisfy
+\begin{equation}\label{eq:gates}
+\frac{2t}{d}\le1,\qquad
+2N\exp(2\varepsilon t^2)<\exp(ta).
+\end{equation}
+There is a sign vector $s\in\{-1,1\}^N$ such that
+\[
+w=T(s\odot v),\qquad F(w)=v,\qquad
+|w_j-1|<\varepsilon+a\quad\hbox{for every }j,
+\qquad \sum_jw_j^2=N.
+\]
+If $\varepsilon+a<1$, then $w$ is strictly positive.
+\end{lemma}
+
+\begin{proof}
+Put $c=1-\varepsilon$. Since $v_i\ge c>0$, assign the two signs the weights
+\begin{equation}\label{eq:weights}
+\Pr(s_i=1)=\frac{v_i+c}{2v_i},\qquad
+\Pr(s_i=-1)=\frac{v_i-c}{2v_i}.
+\end{equation}
+These weights are nonnegative and sum to one. Use their finite product
+distribution. For each coordinate,
+\[
+\E(s_iv_i)=c,\qquad
+\E(s_iv_i-c)^2=v_i^2-c^2.
+\]
+All expectations here can be read simply as explicit finite weighted sums;
+no measure-theoretic existence result is required.
+
+For a fixed row $j$, set
+\[
+X_i=T_{ji}(s_iv_i-c),\qquad Z_j=\sum_iX_i=w_j-c.
+\]
+The row-sum identity in \eqref{eq:flat} gives the last equality. The variables
+are centered, and flatness gives
+\begin{equation}\label{eq:variance}
+\sum_i\E X_i^2
+=\frac1{d^2}\sum_i(v_i^2-c^2)=1-c^2\le2\varepsilon.
+\end{equation}
+Moreover,
+\[
+|X_i|\le\frac{v_i+c}{d}\le\frac2d.
+\]
+Thus $|tX_i|\le1$ by \eqref{eq:gates}. The elementary inequality
+$e^z\le1+z+z^2$ for $|z|\le1$ implies
+\[
+\E e^{\pm tX_i}\le1+t^2\E X_i^2\le e^{t^2\E X_i^2}.
+\]
+Factoring the finite product distribution and using \eqref{eq:variance},
+\begin{equation}\label{eq:mgf}
+\E e^{tZ_j}\le e^{2\varepsilon t^2},\qquad
+\E e^{-tZ_j}\le e^{2\varepsilon t^2}.
+\end{equation}
+
+Consider the nonnegative potential
+\[
+\Phi(s)=\sum_{j=1}^N\big(e^{tZ_j}+e^{-tZ_j}\big).
+\]
+Its weighted average is at most $2Ne^{2\varepsilon t^2}<e^{ta}$.
+Hence at least one sign vector has $\Phi(s)<e^{ta}$. Every summand is
+nonnegative, so $e^{tZ_j}<e^{ta}$ and $e^{-tZ_j}<e^{ta}$ for all $j$.
+Since $t>0$, this gives $|Z_j|<a$, and consequently
+$|w_j-1|<a+\varepsilon$.
+
+Finally, $Tw=s\odot v$ by involutivity. Since $v>0$,
+$F(w)=|s\odot v|=v$. Orthogonality and $s_i^2=1$ preserve the squared
+Euclidean norm exactly.
+\end{proof}
+
+The small variance in \eqref{eq:variance} is essential to this argument.
+A bound that uses only the ranges of the signs would discard the gain
+obtained from $v$ being close to $\one$. The Lean proof establishes the
+two-point moments, product factorization, exponential estimates, and
+existence of a successful sign vector directly. It does not invoke an
+unproved concentration inequality or a numerical random search.
+
+\section{Explicit parameters and arbitrarily long positive orbits}
+Fix $q\ge1$ and put
+\begin{equation}\label{eq:params}
+p=4^q,\qquad h=16p=2^{2q+4},\qquad d=h^p=2^{(2q+4)4^q},\qquad N=d^2.
+\end{equation}
+For $k\ge0$, define
+\begin{equation}\label{eq:errors}
+\varepsilon_k=\frac2{h^{4^k}},\qquad
+a_k=\frac1{h^{4^k}},\qquad
+t_k=\frac{(h^{4^k})^3}{8}.
+\end{equation}
+The subscript $k$ records the number of remaining error contractions, so
+inverse steps use $k=q-1,q-2,\ldots,0$.
+
+\begin{lemma}[All concentration gates hold]\label{lem:parameters}
+For $0\le k<q$, Lemma~\ref{lem:inverse} applies with
+$\varepsilon=\varepsilon_{k+1}$, $a=a_k$, and $t=t_k$.
+Moreover,
+\[
+\varepsilon_{k+1}+a_k\le\varepsilon_k\le\frac18.
+\]
+\end{lemma}
+
+\begin{proof}
+Write $b=h^{4^k}$. Then $\varepsilon_{k+1}=2/b^4$,
+$a_k=1/b$, and $t_k=b^3/8$. Since $b\ge h\ge16$,
+$2/b^4+1/b\le2/b\le1/8$. Also $3\cdot4^k\le4^q$, so
+$2t_k/d=b^3/(4d)\le1$.
+
+The exponent identities are
+\[
+2\varepsilon_{k+1}t_k^2=\frac{b^2}{16},\qquad
+t_ka_k=\frac{b^2}{8}.
+\]
+It remains to prove $2d^2<e^{b^2/16}$. Using $q\le4^q=p$,
+$p\ge1$, and $\log2<1$,
+\begin{align*}
+\log(2d^2)
+&=(1+4pq+8p)\log2\\
+&<1+4pq+8p\le13p^2<16p^2
+=\frac{h^2}{16}\le\frac{b^2}{16}.
+\end{align*}
+Multiplying the resulting strict inequality by $e^{b^2/16}$ proves
+$2d^2e^{2\varepsilon_{k+1}t_k^2}<e^{t_ka_k}$.
+\end{proof}
+
+Choose any Bell label $j$ and define
+\begin{equation}\label{eq:initial}
+v_0=\one,\qquad v_1=T(\one-2e_j)=\one-2Te_j.
+\end{equation}
+Then
+\[
+F(v_1)=v_0,\quad Tv_1=\one-2e_j,\quad
+\|v_1\|_2^2=N,\quad |v_1(i)-1|=\frac2d=\varepsilon_q.
+\]
+In particular $v_1>0$ and its partial-transpose coefficient at $j$ is $-1$.
+
+Starting from $v_1$, apply the inverse lemma $q$ times, with the gates
+provided by Lemma~\ref{lem:parameters}. This produces
+\begin{equation}\label{eq:orbit}
+v_0,v_1,\ldots,v_{q+1},\qquad
+F(v_{i+1})=v_i,
+\end{equation}
+such that every coordinate of every $v_i$ is at least $7/8$, and every
+$\|v_i\|_2^2=N$. The formal orbit interface retains the weaker bound $1/2$,
+which is enough for the subsequent quantitative argument.
+
+Every nonterminal reverse stage is also non-PPT. Indeed, if $Tv_i\ge0$
+and $F(v_i)=v_{i-1}$, then $Tv_i=v_{i-1}$ and $Tv_{i-1}=v_i\ge0$.
+Induction would contradict the known negative coordinate of $Tv_1$.
+Only the defect at $v_1$ is needed by the central Lean theorem.
+
+To obtain a definite finite specification, one may select at each step the
+first sign vector, in a fixed order, satisfying the rational coordinate
+bound for the next error level. Existence is proved by the preceding
+argument. This selection is finite but astronomically expensive at the
+displayed dimensions. The proof artifacts check the general existence
+argument without expanding these state tables.
+
+\section{Why full support forces an upper-level gap}
+Reverse the constructed orbit:
+\[
+A_i=v_{q+1-i}\quad(0\le i\le q+1).
+\]
+Then
+\begin{equation}\label{eq:forward}
+A_{i+1}=F(A_i),\quad A_{q+1}=\one,\quad
+A_i\ge\tfrac12\one,\quad \|A_0\|_2^2=N,\quad (TA_q)_j=-1.
+\end{equation}
+The greedy chain $A_0,A_1,\ldots,A_{q+1}$ is feasible at upper level $q+1$
+and has terminal trace $N$.
+
+We prove a strict lower bound on \emph{every} level-$q$ chain. This avoids
+any need to infer a strict infimum gap merely from nonattainment of equality.
+
+\begin{lemma}[Quantitative obstruction]\label{lem:gap}
+If $s_0=A_0$, $s_{i+1}\ge|Ts_i|$ for $0\le i<q$, and $Ts_q\ge0$, then
+\begin{equation}\label{eq:coarsegap}
+\sum_js_q(j)\ge N+\delta_q,\qquad
+\delta_q=\frac1{2(d+1)^{q+1}}>0.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For each stage define $D_i=\diag(\operatorname{sign}(TA_i))$, choosing
+sign $+1$ at zero. Thus
+\[
+A_{i+1}=D_iTA_i,\qquad TD_iA_{i+1}=A_i.
+\]
+Extend the candidate chain by $s_{q+1}=Ts_q$. Since $Ts_q\ge0$, this
+extension satisfies the final sandwich as well and preserves total trace.
+The active slack
+\[
+r_i=s_{i+1}-D_iTs_i
+\]
+is coordinatewise nonnegative. Orthogonality gives the exact identity
+\begin{equation}\label{eq:slack}
+A_{i+1}\cdot s_{i+1}-A_i\cdot s_i=A_{i+1}\cdot r_i\ge0.
+\end{equation}
+This underlying telescoping identity is the mechanism already used in
+Brinster et al., Appendix C, Lemma 7~\cite{Brinster}. The present argument
+uses an orbit with a uniform positive coordinate margin.
+
+Put $\Delta=\sum_js_q(j)-N$. Telescoping \eqref{eq:slack} from $0$ to $q$
+shows $\Delta\ge0$. Each individual increment is at most $\Delta$.
+Since $A_{i+1}\ge\tfrac12\one$, for every coordinate and $i<q$,
+\[
+0\le r_i(j)\le2\Delta.
+\]
+Let $e_i=s_i-A_i$. Then $e_0=0$ and
+\begin{equation}\label{eq:errorrec}
+e_{i+1}=D_iTe_i+r_i.
+\end{equation}
+Flatness gives $\|Tz\|_\infty\le d\|z\|_\infty$. A direct induction in
+\eqref{eq:errorrec} yields
+\[
+\|e_i\|_\infty\le2\Delta(d+1)^i\qquad(0\le i\le q).
+\]
+At the selected terminal coordinate, $Ts_q\ge0$ and $(TA_q)_j=-1$, hence
+\[
+1\le|(Te_q)_j|\le d\|e_q\|_\infty
+\le2\Delta d(d+1)^q\le2\Delta(d+1)^{q+1}.
+\]
+This proves \eqref{eq:coarsegap}.
+\end{proof}
+
+The crucial distinction is between an arbitrarily deep absolute-transpose
+orbit and an optimized SDP gap. An orbit with zero coordinates does not
+control all active slacks. The positive margin in \eqref{eq:forward}
+provides exactly that control. The proof does not assume a greedy optimizer.
+
+A Euclidean-norm refinement gives a stronger conventional estimate, but it
+is unnecessary for the central result. The theorem stated here and the verification
+discussion use the conservative bound \eqref{eq:coarsegap}, which is
+the one implemented in Lean.
+
+\section{Normalization and proof of the main theorem}
+Let $x=A_0=v_{q+1}$ and $\tau=\sum_jx_j$. Since $x_j\ge1/2$, we have
+$\tau>0$. Define
+\begin{equation}\label{eq:state}
+\rho_q=\syn(x/\tau).
+\end{equation}
+All Bell coefficients are strictly positive and sum to one, so $\rho_q$
+is a full-rank density matrix on the promised bipartite space.
+
+The greedy chain synthesizes a feasible upper-level $(q+1)$ witness with
+trace $N/\tau$. Thus
+\[
+\kappa_{q+1}(\rho_q)\le N/\tau.
+\]
+For any complex-matrix level-$q$ feasible chain, extract its Bell
+expectations using \eqref{eq:expect} and multiply the coefficients by $\tau$.
+This is a feasible raw chain with input $x$. Lemma~\ref{lem:gap} gives
+\[
+\operatorname{Re}\Tr S_{q-1}\ge\frac{N+\delta_q}{\tau}.
+\]
+Taking the infimum gives
+\begin{equation}\label{eq:normalizedgap}
+\kappa_q(\rho_q)\ge\frac{N+\delta_q}{\tau}
+>\frac N\tau\ge\kappa_{q+1}(\rho_q),
+\end{equation}
+proving Theorem~\ref{thm:main}.
+
+The formal proof establishes that the sets of feasible objective values are
+nonempty and bounded below before applying conditional-infimum lemmas.
+Nonemptiness follows, for example, by taking the first auxiliary coefficient
+vector to be a sufficiently large constant and keeping that constant for
+all subsequent stages. Its transform is the same nonnegative constant.
+The terminal PPT condition implies a nonnegative trace, giving a lower bound.
+
+The formalization therefore does not hide an empty optimization problem, an
+assumed optimizer, an unproved duality theorem, or an artificial restriction
+on the auxiliary matrices. The sandwich constraints also prove that the
+real-trace formal objective agrees with the usual Hermitian SDP objective.
+
+\section{Novelty assessment and significance}
+\subsection{What was already known}
+Lami, Mele, and Regula introduced converging upper and lower SDP hierarchies
+and proved their relation to exact PPT cost~\cite{LMR}. Their Supplemental
+Material, Conjecture S33, proposed finite collapse at a specific lower level,
+with a corresponding upper-level formula. The same subsection asks the
+analogous finite-collapse question for the upper hierarchy.
+
+Brinster et al. construct arbitrary-depth separations for the lower $\chi$
+hierarchy~\cite{Brinster}. Section IV, immediately after Eqs.\ (47)--(48),
+explicitly observes that their states do not show upper $\kappa$ noncollapse
+and leaves a finite upper formula open. Their Appendix C supplies the Bell
+transform formalism, multinegative examples, and the telescoping dual argument.
+These components receive prior credit; they are not claimed as discoveries
+of the present work.
+
+Earlier unpublished computations in the same research process had verified
+only $\kappa_2>\kappa_3$ and $\kappa_3>\kappa_4$ on explicit states, with related
+tensor nonmultiplicativity, and found one further finite example without a
+complete Lean proof. None of those finite examples establishes the quantifier
+over every $q$ proved here, and the present proof does not use them.
+
+\subsection{The contribution assessed here}
+The new mechanism is a positive inverse-orbit construction using biased
+signs and a small-variance finite exponential potential. It supplies exactly
+the full-support property that makes the upper optimization quantitatively
+rigid. Together, these steps yield a strict gap at every adjacent finite
+upper level for actual quantum states.
+
+This resolves the specific remaining universal upper-hierarchy question in
+the located primary literature. It is a structural result rather than a
+small change in a constant or one additional numerical level. It explains
+why optimized upper bounds can require arbitrarily large depth and removes
+every fixed upper level as a universal exact-cost candidate.
+
+The significance is bounded by the theorem's scope. The proof gives a very
+large dimension bound and a small guaranteed normalized gap. It does not
+improve the published approximation algorithm, optimize witness size, show
+unbounded depth at a fixed dimension, or establish a computational-hardness
+result. It leaves open other possible exact formulas. A specialist paper
+on this result would need normal external review; no venue acceptance or
+independent expert endorsement is asserted.
+
+\subsection{Search coverage and qualified priority conclusion}
+The audit refreshed the primary arXiv records and full texts, searched the
+upper/lower terminology and normalized-body formulations, and checked
+finite collapse, multinegativity, full-rank and dense examples, inverse
+absolute partial transposition, positive signed-Hadamard orbits, and related
+entanglement-cost additivity formulations. The normalized upper bodies
+$\widetilde{\mathrm{PPT}}_q=\{X\ge0:\kappa_q(X)\le1\}$ were distinguished
+from the lower bodies used in earlier contraction results.
+
+Repository checks included the index and priority disclosures of this
+collection,
+\href{https://github.com/OpenAI/math}{OpenAI/math}, and the public
+\href{https://github.com/the-omega-institute/trureturing}{trureturing}
+problem/proof registry. The relevant quantum subtrees in the registry were
+compared by tree identity with the preceding detailed audit; issue and PR
+queries were refreshed. The located first-level $2\times3$ problem
+\href{https://github.com/the-omega-institute/trureturing/issues/17758}{\#17758}
+concerns a distinct $\kappa_1$ versus logarithmic-negativity question and
+does not supply the present arbitrary-depth upper theorem.
+
+A related September 2026 doctoral-thesis abstract was located in the Scuola
+Normale Superiore repository; its full PDF returned an access error and was
+not audited. Targeted MathOverflow and mathematical-database searches did
+not locate a matching upper theorem. These access and indexing limitations
+are retained in the novelty record.
+
+The fresh Brinster arXiv record exposed only version 1, submitted
+17 September 2026, when checked. No inspected source contained the
+positive inverse-orbit result or all-depth upper separation proved here.
+The search records of that audit are not part of this release.
+
+\textbf{Priority assessment:} the theorem has a defensible, specifically
+supported originality claim relative to the located literature. Historical
+priority is still qualified. Search cannot exclude unindexed theses,
+unpublished manuscripts, private ongoing work, or a proof filed under
+unexpected terminology. Absence of a search hit is not treated as proof of
+novelty. Lean verifies the mathematical implication, not historical priority.
+
+\section{Lean correspondence and reproducibility}\label{sec:lean}
+\subsection{What is formalized}
+The central statement ranges over every natural $q\ge1$ and produces a
+normalized complex bipartite density matrix. The proof includes the finite
+sign existence lemma, all explicit parameter inequalities, the full finite
+induction, the concrete Bell partial-transpose instance, the quantitative
+coefficient obstruction, and its transfer to arbitrary complex-matrix SDP
+chains. It is not a proof merely of a finite table, a numerical residual,
+or an abstract involution without a physical instance.
+
+The proof is organized as follows.
+\begin{center}\small
+\begin{tabular}{@{}p{.31\textwidth}p{.62\textwidth}@{}}
+\toprule
+Module & Mathematical role\\\midrule
+\texttt{FoldSystem} & Flat symmetric involution; norm, trace, and dual-pairing identities.\\
+\texttt{SignConcentration} & Two-point weights and moments; finite product exponential bound.\\
+\texttt{InverseSign} & Simultaneous coordinate control and an exact positive inverse step.\\
+\texttt{ParameterBounds} & Explicit dimension, error, tilt, and strict exponential gates.\\
+\texttt{ReverseOrbit} & Initial defect and the complete finite reverse-orbit induction.\\
+\texttt{BellFoldSystem} & Actual product-Bell partial transposition satisfies every abstract assumption.\\
+\texttt{ChainGap} & Positive lower bound for every shorter feasible coefficient chain.\\
+\texttt{ArbitraryHierarchy} & Original arbitrary-depth complex SDP, nonempty infima, normalization, and matrix gap.\\
+\texttt{BellPositivity} & Strictly positive Bell weights imply positive definiteness.\\
+\texttt{AllDepth} & Final all-depth physical theorem and no universal finite collapse.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Earlier small structural modules provide Bell projectors, synthesis,
+expectations, and PSD facts. The earlier research's large finite data tables
+and optimization scripts are not dependencies of the new theorem.
+
+The use of \texttt{noncomputable} marks ordinary real-valued definitions and
+existential choices. It does not add axioms, bypass the kernel, or replace
+proofs with a solver result. Every sign-existence claim is proved. The
+project uses neither \texttt{sorry}/\texttt{admit}, custom axioms, nor a native
+decision oracle. Only the usual Lean foundations \texttt{propext},
+\texttt{Classical.choice}, and \texttt{Quot.sound} are allowed by the audit.
+
+\subsection{Pinned clean replay}
+The release pins Lean 4.19.0, commit \texttt{6caaee842e94}, and mathlib at
+\begin{center}\small\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.\end{center}
+Every transitive dependency is pinned by full git commit. The verifier
+rejects dirty dependency checkouts, changed frozen sources, unlisted project
+imports, prohibited proof shortcuts, unexpected axioms, and incomplete
+audit output.
+
+The replay freshly compiles 17 mathematical modules and
+the generated axiom audit, checking 256 public source declarations.
+Each compiler invocation checks the kernel at trust zero and disables
+automatic implicit parameters. The exact flags are
+\begin{center}\small\verb|-j1 --trust=0 -DwarningAsError=true -DautoImplicit=false|\end{center}
+The replay recorded with this release used a Mathlib checkout at the
+pinned revision whose modules had been built from source on the same machine;
+it took about seven minutes with two parallel jobs.
+
+\begin{minipage}{\textwidth}
+From the \texttt{lean/} directory of this package, after preparing the exact
+Lean release and dependencies, run:
+\begin{verbatim}
+lake exe cache get
+python3 verify_release.py \
+  --lean-home /absolute/path/to/lean-4.19.0-linux \
+  --mathlib .lake/packages/mathlib \
+  --packages-dir .lake/packages \
+  --out /absolute/path/to/new-empty-verification-directory \
+  --jobs 2
+\end{verbatim}
+\end{minipage}
+
+Do not run \texttt{lake update}, which changes the reviewed dependency
+manifest. A pristine standalone mathlib checkout at the same pin may also
+be supplied; \texttt{REPRODUCE.txt} gives that command.
+
+Success requires a receipt with status \texttt{PASS}, zero exit status for
+every module, and an axiom inventory matching the complete reviewed list.
+The receipt records exact commands, source/object/log hashes, dependency
+revisions, and timing. The receipt and logs of the replay for this release are
+in the package's \texttt{verification/} directory, and the continuous
+integration workflow repeats the replay on every change.
+
+\section{Independent scrutiny and remaining limitations}
+In the research process, AI reviewers challenged the proof on four points: whether the inverse
+sign distribution is genuinely defined and normalized; whether its variance
+and simultaneous bounds have the correct dimension factors; whether full
+support controls an optimized upper chain; and whether the formal statement
+is the actual complex-matrix SDP. Each issue is addressed by explicit
+lemmas, and the final theorem discharges the conditional orbit hypotheses.
+
+The development explored finite reverse-mask searches, dual exposed faces,
+and fixed-dimension nonpolyhedral possibilities before the general weighted
+sign argument. Those explorations did not establish the all-depth theorem
+and are not used as proof evidence. The old flag-padding, face-extraction,
+and greedy-depth shortcuts were not revived as assumptions. The successful
+proof proceeds through the complete inverse lemma and quantitative slack
+estimate given above.
+
+The final artifacts establish mathematical correctness subject to the
+standard trust in Lean's kernel and the pinned library foundations.
+They do not replace specialist peer review of the theorem's presentation,
+priority, or practical interpretation. The main unresolved quantitative
+questions are much smaller witness dimensions, useful normalized gaps,
+and simple successful sign patterns. These are future questions rather
+than qualifications to the proved all-depth existence theorem.
+
+\section*{Research process and AI disclosure}
+This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
+
+The theorem, its proof, the Lean formalization, the literature searches and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session do not name the AI system used.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It checked the definition of $\kappa_q$ in the Lean sources against the hierarchy stated in Section~1, including the partial transpose on the second system, the terminal PPT condition and the unrestricted complex auxiliaries; rederived by hand the inverse-sign lemma, the parameter inequalities, the initial defect and the quantitative chain gap; ran the fresh Lean replay described above; and revised this manuscript. The primary arXiv records could not be opened from its environment, so the comparison with the cited literature relies on the earlier session's audit. AI checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:lean}.
+
+\begingroup
+\interlinepenalty=10000
+\small
+\begin{thebibliography}{9}
+\setlength{\itemsep}{3pt}\setlength{\parsep}{0pt}
+\bibitem{LMR}
+L. Lami, F. A. Mele, and B. Regula.
+\emph{Computable entanglement cost under positive partial transpose operations}.
+Physical Review Letters \textbf{134}, 090202 (2025).
+\href{https://arxiv.org/abs/2405.09613v2}{arXiv:2405.09613v2}, 7 March 2025.
+
+\bibitem{Brinster}
+R. Brinster, T. V. Kondra, H. Kampermann, D. Bru\ss, and N. Wyderka.
+\emph{Multinegativity and single-letter formulas for asymptotic entanglement}.
+\href{https://arxiv.org/abs/2609.20698v1}{arXiv:2609.20698v1}, 17 September 2026.
+
+\bibitem{WJZ}
+X. Wang, M. Jing, and C. Zhu.
+\emph{Computable and Faithful Lower Bound on Entanglement Cost}.
+\href{https://arxiv.org/abs/2311.10649v4}{arXiv:2311.10649v4}, 7 May 2025.
+
+\bibitem{Lean}
+The Lean and mathlib communities.
+\emph{Lean 4.19.0 and mathlib}, pinned source and dependency manifest supplied
+with this release. Project proof sources, the replay receipt and the full
+axiom inventory are included with this manuscript's package.
+\end{thebibliography}
+\endgroup
+\end{document}

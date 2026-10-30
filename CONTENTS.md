@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**39 manuscripts and research notes across 38 result families in mathematics, theoretical computer science, and mathematical physics.**
+**40 manuscripts and research notes across 39 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -458,6 +458,18 @@ A complex matrix subspace annihilated by an unextendible family of product funct
 **Formal scope.** The rank-doubling theorem with an arbitrary partner, strong minimum-rank multiplicativity, the Tiles support and normalized density operators, and the exact all-copy Schmidt-number equivalence are formalized in 22 Lean modules. The zero-error LOCC cost, the rank-four two-qutrit PPT class and the channel interpretation combine the formal theorem with published results.
 
 [Paper PDF](papers/physics/upb-tensor-rank/manuscript.pdf) · [LaTeX](papers/physics/upb-tensor-rank/manuscript.tex) · [Proof and reproduction](papers/physics/upb-tensor-rank/README.md) · [Citation](papers/physics/upb-tensor-rank/CITATION.bib)
+
+#### [No universal finite collapse of the upper PPT entanglement-cost hierarchy](papers/physics/upper-ppt-hierarchy/manuscript.pdf)
+
+**Family:** `upper-ppt-hierarchy`.
+
+For every integer q ≥ 1 there is a bipartite density matrix ρ_q with κ_{q+1}(ρ_q) < κ_q(ρ_q) in the upper hierarchy of semidefinite programs of Lami, Mele and Regula, whose logarithms converge to the exact entanglement cost under PPT operations. The witnesses are full-rank product-Bell-diagonal states in local dimension 2^((2q+4)4^q), and the auxiliary matrices are unrestricted. Hence no fixed finite upper level is exact for all states. The proof builds arbitrarily long strictly positive reverse orbits of the absolute partial transpose by a weighted-sign argument and converts full support into a quantitative gap for every shorter chain. Brinster et al. had proved the corresponding all-depth statement for the lower χ hierarchy and left the upper question open. The theorem does not give one fixed state or dimension with infinitely many strict levels.
+
+**Formal scope.** The strict separation at every adjacent level, for the actual semidefinite programs with unrestricted complex auxiliaries and positive-definite trace-one states with positive Bell coefficients, and the absence of a universal finite collapse are formalized in 17 Lean modules. The operational exact-cost and tensor-multiplicativity consequences use published theorems of Lami, Mele and Regula.
+
+**Prior work.** [Lami, Mele and Regula, 2025; Brinster, Kondra, Kampermann, Bruß and Wyderka, 2026.](https://arxiv.org/abs/2609.20698)
+
+[Paper PDF](papers/physics/upper-ppt-hierarchy/manuscript.pdf) · [LaTeX](papers/physics/upper-ppt-hierarchy/manuscript.tex) · [Proof and reproduction](papers/physics/upper-ppt-hierarchy/README.md) · [Citation](papers/physics/upper-ppt-hierarchy/CITATION.bib)
 
 ## Proof status and authorship
 

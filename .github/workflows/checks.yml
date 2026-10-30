@@ -319,6 +319,9 @@ jobs:
           - package: unit-squareclasses
             root: papers/mathematics/unit-squareclasses
             project: lean
+          - package: upper-ppt-hierarchy
+            root: papers/physics/upper-ppt-hierarchy
+            project: lean
     env:
       LEAN_NUM_THREADS: '1'
     steps:
@@ -365,6 +368,8 @@ jobs:
             python3 scripts/verify_cached.py --mathlib-cache .lake/packages/mathlib --lean-bin "$(lean --print-prefix)/bin/lean" --packages-root .lake/packages --output "${RUNNER_TEMP}/unit-squareclasses-verification"
           elif [[ '${{ matrix.package }}' == 'keller-klein' ]]; then
             python3 verify.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib
+          elif [[ '${{ matrix.package }}' == 'upper-ppt-hierarchy' ]]; then
+            python3 verify_release.py --lean-home "$(lean --print-prefix)" --mathlib .lake/packages/mathlib --packages-dir .lake/packages --out "${RUNNER_TEMP}/upper-ppt-hierarchy-verification"
           elif [[ '${{ matrix.package }}' == 'binary-spectral-tile' ]]; then
             python3 verify_release.py --lean-home "$(lean --print-prefix)" --mathlib .lake/packages/mathlib --packages-dir .lake/packages --out "${RUNNER_TEMP}/binary-spectral-tile-verification"
           elif [[ '${{ matrix.package }}' == 'upb-tensor-rank' ]]; then

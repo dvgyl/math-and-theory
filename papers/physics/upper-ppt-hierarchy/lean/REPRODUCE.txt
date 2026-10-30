@@ -1,0 +1,70 @@
+ALL-DEPTH UPPER PPT HIERARCHY NONCOLLAPSE: REPRODUCTION
+
+Main theorem:
+  UpperNoncollapse.upperHierarchy_fullRank_strict_at_every_level
+in AllDepth.lean. For every q>=1, the theorem produces an actual positive-
+definite trace-one bipartite complex matrix with positive Bell coefficients
+and strict kappa(q+1)<kappa(q), where the SDP optimizes unrestricted complex
+auxiliaries. The local dimension is 2^((2*q+4)*4^q).
+
+The statement UpperNoncollapse.no_uniform_finite_collapse rules out a
+universal finite upper level. This does not assert a fixed dimension or a
+single state has infinitely many strict levels. The operational cost
+interpretation uses the cited Lami-Mele-Regula theorem, not a Lean axiom.
+
+PINS
+Lean 4.19.0, commit6caaee842e94.
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b.
+The lake-manifest.json pins every transitive package by full commit.
+Python3.10+ and git are required by the replay verifier.
+
+PREPARE DEPENDENCIES
+Install the exact Lean release with elan or its official distribution.
+From this formal directory run:
+  lake exe cache get
+Do not run lake update: that changes the reviewed manifest. Dependency
+source checkouts must remain pristine, including untracked source files.
+
+CLEAN REPLAY WITH LAKE'S PACKAGE LAYOUT
+  python3 verify_release.py \
+    --lean-home /absolute/path/to/lean-4.19.0-linux \
+    --mathlib .lake/packages/mathlib \
+    --packages-dir .lake/packages \
+    --out /absolute/path/to/new-empty-verification-directory \
+    --jobs 2
+
+CLEAN REPLAY WITH AN EXISTING PINNED MATHLIB CHECKOUT
+  python3 verify_release.py \
+    --lean-home /absolute/path/to/lean-4.19.0-linux \
+    --mathlib /absolute/path/to/mathlib4 \
+    --out /absolute/path/to/new-empty-verification-directory \
+    --jobs 2
+This latter layout takes packages from mathlib4/.lake/packages.
+Use --jobs1 as two separate tokens (--jobs 1) on constrained systems.
+
+The matching mathlib/dependency object cache is reused. All project objects
+and the complete axiom audit are freshly compiled in the new output tree.
+This is not a full source rebuild of mathlib. No development or historical
+project object directory is allowed in the fresh search path.
+
+Every project compilation uses --trust=0, -j1,
+-DwarningAsError=true, and-DautoImplicit=false. The verifier checks source
+freeze hashes, dependency revisions and cleanliness, import coverage,
+prohibited proof shortcuts, exact audit coverage, and all exit statuses.
+Only propext, Classical.choice, and Quot.sound are permitted in axiom closures.
+A successful result has receipt.json statusPASS, all module returncodes0,
+all trust values0, and observed_audit_count=expected_audit_count.
+
+The finite-sign concentration argument is an actual proof over all sign
+vectors; it does not invoke external random sampling, numerical SDP results,
+Bernstein as an axiom, or a supplied reverse-orbit certificate. All conditional
+helpers are discharged in positiveReverseOrbit_exists and AllDepth.
+No sorry, admit, custom axiom, unsafe/native_decide, opaque replacement, or
+external theorem oracle appears in the release proof sources.
+
+Maintainer only, after a deliberate source review:
+  python3 verify_release.py --freeze
+This creates the complete AxiomAudit.lean and the source/configuration freeze.
+Freezing alone is not successful proof verification. A frozen release must
+pass the separate clean replay above. Changes require a new reviewed freeze;
+never silently modify the delivered frozen source/configuration files.

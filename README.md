@@ -10,7 +10,7 @@ The collection contains results with different formal verification scopes. Each 
 
 ## Navigating the collection
 
-The current catalogue contains 39 manuscripts and research notes across 38 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
+The current catalogue contains 40 manuscripts and research notes across 39 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
 
 - Start with the [overview](overview.pdf) for descriptions of the result families.
 - Use the [manuscript map](CONTENTS.md) to find individual papers, abstracts and supporting materials.
@@ -38,6 +38,8 @@ The results I consider the strongest, in order of significance.
 **[A positive constant-recursive sequence with nonquasipolynomial power ranks](papers/mathematics/power-rank/manuscript.pdf).** A positive constant-recursive sequence of rank thirteen has explicit minimal recurrences for all its powers and nonquasipolynomial power ranks. The main theorem and arbitrary-rank companions are formalized; generating-function and polynomial corollaries have conventional proofs. Eric Rowland has independently obtained an infinite family of rank sequences at rank three ([priority note](PRIORITY_AND_NOVELTY.md#power-ranks-of-a-constant-recursive-sequence)).
 
 ### Mathematical physics
+
+**[No universal finite collapse of the upper PPT entanglement-cost hierarchy](papers/physics/upper-ppt-hierarchy/manuscript.pdf).** For every q ≥ 1 there is a full-rank Bell-diagonal state, in local dimension 2^((2q+4)4^q), whose level-(q+1) value in the upper PPT entanglement-cost hierarchy of Lami, Mele and Regula is strictly below its level-q value, so no fixed finite upper level is exact for all states. This answers the upper-hierarchy question that Brinster et al. left open after proving the lower case. The strict separation for the actual semidefinite programs is formalized in Lean.
 
 **[A sum-of-squares proof of the four-qubit Higuchi–Sudbery entropy bound](papers/physics/higuchi-sudbery/manuscript.pdf).** Every pure four-qubit state has average two-qubit marginal entropy at most log(2) + log(3)/2. The Higuchi–Sudbery state attains the bound, and the actual-state inequality and attainment are formalized. The Omega Institute published an algebraically equivalent certificate earlier, and I make no originality or priority claim ([priority note](PRIORITY_AND_NOVELTY.md#higuchisudbery-four-qubit-entropy-bound)).
 
@@ -74,7 +76,7 @@ The results I consider the strongest, in order of significance.
 ### Mathematical physics
 
 - [Stochastic thermodynamics](CONTENTS.md#stochastic-thermodynamics): thermal current kurtosis, unicyclic current skewness.
-- [Quantum information](CONTENTS.md#quantum-information): universal entanglement embezzlement, the Higuchi–Sudbery entropy bound, a matched-basis information counterexample, exact steering correlation bounds, three-state root fidelity, exact conditional quantum contraction, Schmidt numbers of tensor powers of the Tiles state.
+- [Quantum information](CONTENTS.md#quantum-information): universal entanglement embezzlement, the Higuchi–Sudbery entropy bound, a matched-basis information counterexample, exact steering correlation bounds, three-state root fidelity, exact conditional quantum contraction, Schmidt numbers of tensor powers of the Tiles state, noncollapse of the upper PPT entanglement-cost hierarchy.
 
 ## Find a result
 
@@ -88,6 +90,7 @@ I use the names below to connect common search terms to each result and its file
 | Root fidelity, three-state ensemble, Holevo quantity, quantum entropy | [Three-state root-fidelity bound](papers/physics/fidelity-three-state/) |
 | Merino–Welsh, Merino-Welsh, Tutte polynomial, finite matroids | [Asymmetric Merino–Welsh region](papers/mathematics/asymmetric-tutte/) |
 | Pauli channels, depolarizing channels, hockey-stick divergence, quantum contraction | [Exact conditional contraction](papers/physics/quantum-exact-contraction/) |
+| Entanglement cost, PPT operations, semidefinite hierarchies, partial transpose | [Upper PPT hierarchy noncollapse](papers/physics/upper-ppt-hierarchy/) |
 | Alternating direction method of multipliers, ADMM dual step size, Glowinski golden ratio, multiplier relaxation | [ADMM multiplier-step interval](papers/mathematics/admm-multiplier-step/) |
 | ADMM convergence counterexample, period-five orbit | [Rational period-five ADMM orbit](papers/mathematics/admm-counterexample/) |
 | Keller–Klein conjecture, Rademacher sums, Berry–Esseen bound, normal approximation | [Keller–Klein small-coefficient bound](papers/mathematics/keller-klein/) |
