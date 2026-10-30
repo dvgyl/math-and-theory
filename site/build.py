@@ -16,6 +16,7 @@ import html
 import json
 import re
 import shutil
+import subprocess
 import sys
 import textwrap
 import unicodedata
@@ -138,8 +139,25 @@ def collection_author():
 AUTHOR, ORCID = collection_author()
 
 
+PROFILE = 'https://github.com/dvgyl'
+
+
 def person(name):
-    return {'@type': 'Person', 'name': name, **({'sameAs': ORCID} if ORCID and name == AUTHOR else {})}
+    if name != AUTHOR:
+        return {'@type': 'Person', 'name': name}
+    return {'@type': 'Person', '@id': BASE + '#author', 'name': name, 'url': BASE + 'about/',
+            'sameAs': [u for u in (ORCID, PROFILE) if u]}
+
+
+def git_date(*paths):
+    """The last commit date touching any of the paths, or None without git history."""
+    try:
+        out = subprocess.run(['git', 'log', '-1', '--format=%cs', '--', *paths], cwd=ROOT, capture_output=True,
+                             text=True, timeout=30)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    date = out.stdout.strip()
+    return date if out.returncode == 0 and re.fullmatch(r'\d{4}-\d{2}-\d{2}', date) else None
 
 
 def read_contents():
@@ -189,6 +207,11 @@ def read_citation(path):
 
 
 def keywords(family):
+    curated = family.get('keywords')
+    if curated is not None:
+        if not (isinstance(curated, list) and curated and all(isinstance(k, str) and k.strip() for k in curated)):
+            raise BuildError(f'{family.get("id", "?")}: keywords must be a nonempty list of phrases.')
+        return list(dict.fromkeys(k.strip() for k in curated))
     words = []
     for i, word in enumerate(family['title'].split()):
         word = re.sub(r"['’]s$", '', word.strip('.,:;()[]"“”'))
@@ -283,19 +306,27 @@ def load_items():
         keys = keywords(f)
         search = [f['title'], abstract, f['discipline'], f['area'], entry['subject'], f['id'], f.get('family_group', ''),
                   f['kind'], PROOF[kind], *keys, 'standout' if f.get('standout') else '']
+        root = f['formalization'].get('root') or str(Path(f['paper']).parent)
         items.append(dict(
+            updated=git_date(str(Path(f['paper']).parent), root, f.get('comparator') or root, citations[0]),
             f=f, id=f['id'], title=f['title'], slug=slug, path=f'papers/{slug}/', url=f'{BASE}papers/{slug}/',
             discipline=f['discipline'], area=f['area'], subject=entry['subject'], kind=kind,
             standout=f.get('standout', False), parts=parts, abstract=abstract, teaser=clip(abstract, 300),
-            description=clip(abstract, 200), citation=citations[0], authors=authors, year=year, bibtex=bibtex,
+            description=clip(abstract, 158), citation=citations[0], authors=authors, year=year, bibtex=bibtex,
             keywords=keys, search=norm(' '.join(search))))
+    ranks = [f.get('significance_rank') for f in families if 'significance_rank' in f]
+    if any(type(r) is not int or r < 1 for r in ranks) or len(set(ranks)) != len(ranks):
+        raise BuildError('significance_rank values must be distinct positive integers.')
+    # Results appear in order of significance; unranked entries follow in catalogue order.
+    items.sort(key=lambda x: x['f'].get('significance_rank', len(families) + 10 ** 6))
     return items
 
 
 def page(path, title, description, body, schema, *, head='', current='', kind='website', index=True):
     url = BASE + path
     nav = [('Index', PATH + '#index', ''), ('Selected', PATH + 'standout/', 'standout'),
-           ('Subjects', PATH + 'subjects/', 'subjects'), ('About', PATH + 'about/', 'about'), ('GitHub', REPO, '')]
+           ('Subjects', PATH + 'subjects/', 'subjects'), ('Lean proofs', PATH + 'formal-proofs/', 'formal-proofs'),
+           ('About', PATH + 'about/', 'about'), ('GitHub', REPO, '')]
     here = ' aria-current="page"'
     nav = ''.join(f'<li><a href="{href}"{here if key and key == current else ""}>{label}</a></li>'
                   for label, href, key in nav)
@@ -310,7 +341,8 @@ def page(path, title, description, body, schema, *, head='', current='', kind='w
     footer = SEP.join(f'<a href="{href}">{label}</a>' for label, href in [
         ('Authorship disclosure', gh('AUTHORSHIP.md')), ('Unfinished formal proofs', gh('UNFINISHED.md')),
         ('License', gh('LICENSE')), ('Third-party notices', gh('NOTICE')), ('CITATION.cff', gh('CITATION.cff')),
-        ('Source repository', REPO), ('About', PATH + 'about/'), ('Sitemap', PATH + 'sitemap.xml')])
+        ('Source repository', REPO), ('About', PATH + 'about/'), ('Lean proofs', PATH + 'formal-proofs/'),
+        ('Atom feed', PATH + 'feed.xml'), ('Sitemap', PATH + 'sitemap.xml')])
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -322,11 +354,12 @@ def page(path, title, description, body, schema, *, head='', current='', kind='w
 <meta name="google-site-verification" content="{VERIFICATION}">
 <meta name="robots" content="{'index,follow' if index else 'noindex'}">
 <meta name="author" content="{esc(AUTHOR)}">
-<meta name="theme-color" content="#fbf9f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#f3eee4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1a1815" media="(prefers-color-scheme: dark)">
 {canonical}<link rel="icon" href="{PATH}assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{PATH}assets/site.css?v={VERSION}">
 <link rel="sitemap" type="application/xml" href="{BASE}sitemap.xml">
+<link rel="alternate" type="application/atom+xml" title="{SITE}: new and revised results" href="{BASE}feed.xml">
 {meta}
 {head}<script type="application/ld+json">{ld(schema)}</script>
 <script src="{PATH}assets/site.js?v={VERSION}" defer></script>
@@ -337,10 +370,17 @@ def page(path, title, description, body, schema, *, head='', current='', kind='w
 <main id="main" tabindex="-1"><div class="sheet">
 {body}
 </div></main>
-<footer class="colophon"><div class="sheet"><p>{SITE} publishes fully autonomous agentic AI research by {esc(AUTHOR)}, who is responsible for publication. The results have not been externally peer reviewed, and each formal check applies only to the scope its result states.</p><nav aria-label="Collection documents"><p>{footer}</p></nav></div></footer>
+<footer class="colophon"><div class="sheet"><p>I publish this fully autonomous agentic research and am responsible for it. The papers have not been externally peer reviewed, and each formal check applies only to the scope its result states.</p><nav aria-label="Collection documents"><p>{footer}</p></nav></div></footer>
 </body>
 </html>
 '''
+
+
+MODELS = (
+    '<ul class="models"><li><b>GPT\u00a06 Astra</b>, in ChatGPT and Codex\u00a0· 29 October 2026</li>'
+    '<li><b>GPT\u00a06.1 Sol</b>, in Codex\u00a0· 29 October 2026</li>'
+    '<li><b>Opus\u00a05.5</b> by Anthropic, in Claude Code\u00a0· 30 October 2026</li></ul>'
+    '<p class="section-note">Each manuscript states how these models were used for it.</p>')
 
 
 def kicker(trail):
@@ -580,12 +620,21 @@ def paper_page(x, items, subject_paths):
         ('citation_title', x['title']), *[('citation_author', a) for a in x['authors']],
         ('citation_publication_date', x['year']), ('citation_pdf_url', x['url'] + 'manuscript.pdf'),
         ('citation_abstract_html_url', x['url']), ('citation_language', 'en'),
-        ('citation_keywords', '; '.join(x['keywords']))]) + '\n'
+        ('citation_keywords', '; '.join(x['keywords'])),
+        *([('citation_online_date', x['updated'].replace('-', '/'))] if x['updated'] else [])]) + '\n'
+    head += f'<link rel="alternate" type="application/pdf" href="{x["url"]}manuscript.pdf" title="Manuscript PDF">\n'
     article = {'@type': 'ScholarlyArticle', '@id': x['url'] + '#article', 'headline': x['title'], 'name': x['title'],
                'url': x['url'], 'mainEntityOfPage': x['url'], 'abstract': x['abstract'], 'description': x['description'],
                'author': [person(a) for a in x['authors']], 'datePublished': x['year'], 'inLanguage': 'en',
                'genre': 'Research preprint', 'keywords': x['keywords'], 'isAccessibleForFree': True,
-               'about': [{'@type': 'Thing', 'name': x['discipline']}, {'@type': 'Thing', 'name': x['area']}],
+               'publisher': person(AUTHOR), 'copyrightHolder': person(AUTHOR),
+               'license': 'https://www.apache.org/licenses/LICENSE-2.0',
+               **({'dateModified': x['updated']} if x['updated'] else {}),
+               'about': [{'@type': 'Thing', 'name': x['discipline']}, {'@type': 'Thing', 'name': x['area']},
+                         {'@type': 'Thing', 'name': x['subject']}],
+               'hasPart': {'@type': 'SoftwareSourceCode', 'name': f'Lean 4 formalization: {x["title"]}',
+                           'codeRepository': r['lean_url'], 'programmingLanguage': 'Lean 4',
+                           'description': scope_text(x)[0]},
                'isPartOf': {'@type': 'Collection', '@id': BASE + '#collection', 'name': SITE, 'url': BASE},
                'encoding': {'@type': 'MediaObject', 'contentUrl': x['url'] + 'manuscript.pdf',
                             'encodingFormat': 'application/pdf'}}
@@ -667,7 +716,7 @@ def build(out):
                        f'<li><a href="{PATH}{subject_paths[s]}">{esc(s)}</a><span class="entry-meta">'
                        f'{results(len(in_subject[s]))} · {esc("; ".join(dict.fromkeys(x["area"] for x in in_subject[s])))}'
                        f'</span></li>' for s in listed) + '</ul></section>')
-    description = f'The {len(subjects)} subjects of the {SITE} research collection by {AUTHOR}, grouped by discipline.'
+    description = f'The {len(subjects)} subjects of the {SITE} research collection, grouped by discipline, with every result in each.'
     body = (f'<header class="page-head">{kicker(home)}<h1>Subjects</h1><p class="intro">The {len(items)} manuscripts '
             f'fall under {len(subjects)} subjects in {esc(topics)}. Each subject page states every result in it, with '
             f'links to the manuscript, the Lean proof and the verification steps.</p></header>{groups}')
@@ -678,14 +727,13 @@ def build(out):
                 {'@type': 'ListItem', 'position': i + 1, 'name': s, 'url': BASE + subject_paths[s]}
                 for i, s in enumerate(subjects)]}}, crumbs([('Home', ''), ('Subjects', None)])]}, current='subjects')
 
-    description = (f'{len(standout)} results marked as selected in the {SITE} catalogue, each with its statement, '
-                   f'formal scope, manuscript and Lean proof.')
-    body = (f'<header class="page-head">{kicker(home)}<h1>Selected results</h1><p class="intro">{len(standout)} of '
-            f'the {len(items)} manuscripts are marked as selected in the collection catalogue. Each entry states the '
-            f'result and the scope of its formal proof, with links to the manuscript, the Lean proof and the '
-            f'verification steps.</p><p class="disclosure">The selection is made within this collection and is not an '
-            f'external assessment. These results have not been externally peer reviewed, and their formal checks apply '
-            f'only to the stated scope.</p></header><ol class="numbered">'
+    description = (f'The {len(standout)} strongest results in {SITE}, each with its statement, formal scope, '
+                   f'manuscript and Lean proof.')
+    body = (f'<header class="page-head">{kicker(home)}<h1>Selected results</h1><p class="intro">These are the {len(standout)} '
+            f'results I consider the strongest of the {len(items)} in the collection. Each entry states the result and '
+            f'the scope of its formal proof, with links to the manuscript, the Lean proof and the verification steps.</p>'
+            f'<p class="disclosure">The selection is my own, not an external assessment. The papers have not been '
+            f'externally peer reviewed, and their formal checks apply only to the stated scope.</p></header><ol class="numbered">'
             + ''.join(statement_entry(x, 2, marked=False, scope=True) for x in standout) + '</ol>')
     pages['standout/'] = page('standout/', f'Selected results | {SITE}', description, body, {
         '@context': 'https://schema.org', '@graph': [{'@type': 'CollectionPage', 'name': 'Selected results',
@@ -725,18 +773,21 @@ def build(out):
     description = (f'Research manuscripts and Lean 4 formal proofs in {topics} by {AUTHOR}, with abstracts, source '
                    f'files and stated proof limits.')
     body = (f'<header class="masthead"><h1>{SITE}</h1><p class="subtitle">Research manuscripts and Lean 4 proofs\u00a0· '
-            f'{esc(AUTHOR)}</p></header><p class="intro">{SITE} collects {len(items)} research manuscripts in '
-            f'{esc(topics)}, each with a Lean 4 formalization. Every result has a page giving its abstract, the scope '
-            f'of its formal proof, the manuscript and LaTeX source, the Lean files and the steps for reproducing the '
-            f'checks.</p><p class="disclosure">These results come from fully autonomous agentic AI research published '
-            f'by {esc(AUTHOR)}. They have not been externally peer reviewed, and each formal check applies only to the '
-            f'scope stated on the result’s page. The <a href="{gh("AUTHORSHIP.md")}">authorship disclosure</a> '
-            f'describes how they were produced; <a href="{gh("UNFINISHED.md")}">UNFINISHED.md</a> lists the remaining '
-            f'formalization gaps.</p>'
+            f'{esc(AUTHOR)}</p></header><p class="intro">This is a collection of fully autonomous agentic research. I have '
+            f'been experimenting with large language models working as autonomous research agents on open problems in '
+            f'{esc(topics)}, and these {len(items)} manuscripts are the results: counterexamples, sharp bounds and exact '
+            f'thresholds, each with Lean 4 proofs of its stated formal scope.</p><p>Every result has its own page with the '
+            f'theorem, what Lean checks and what rests on a conventional proof, the manuscript and its LaTeX source, the '
+            f'Lean files, and the commands for reproducing the checks.</p><p class="disclosure">None of these papers has '
+            f'been externally peer reviewed, and I make no claim of priority. A formal check covers only the statement it '
+            f'checks. The <a href="{gh("AUTHORSHIP.md")}">authorship record</a> explains how each result was produced, and '
+            f'<a href="{gh("UNFINISHED.md")}">UNFINISHED.md</a> lists the remaining formalization gaps.</p>'
+            f'<section class="block" id="models" aria-labelledby="models-title"><h2 id="models-title" '
+            f'class="section-title">Models used</h2>{MODELS}</section>'
             f'<section class="block" id="selected" aria-labelledby="selected-title"><h2 id="selected-title" '
-            f'class="section-title">Selected results</h2><p class="section-note">{len(standout)} results marked as '
-            f'selected in the collection catalogue, a selection within this collection rather than an external '
-            f'assessment. <a href="{PATH}standout/">The same results with their formal scope</a>.</p>'
+            f'class="section-title">Selected results</h2><p class="section-note">The {len(standout)} results I consider '
+            f'the strongest; my own selection, not an external assessment. <a href="{PATH}standout/">The same results '
+            f'with their formal scope</a>.</p>'
             f'<ol class="numbered">' + ''.join(statement_entry(x, 3, marked=False, meta=False) for x in standout)
             + f'</ol></section><section class="block" id="index" aria-labelledby="index-title"><h2 id="index-title" '
             f'class="section-title">Index of results</h2><p class="section-note">All {len(items)} manuscripts, by '
@@ -754,17 +805,18 @@ def build(out):
     pages[''] = page('', f'{SITE}: mathematical research and Lean 4 proofs by {AUTHOR}', description, body, schema)
 
     comparator = sum(x['kind'] == 'comparator' for x in items)
-    description = (f'How the {SITE} research collection by {AUTHOR} was produced, how its Lean 4 proofs are checked, '
+    description = (f'How the {SITE} research collection was produced, which models were used, how its Lean 4 proofs are checked, '
                    f'and what its formal scope and peer-review status mean.')
     section = lambda key, title, text: (f'<section class="block" aria-labelledby="{key}"><h2 id="{key}" '
                                         f'class="section-title">{title}</h2>{text}</section>')
-    body = (f'<header class="page-head">{kicker(home)}<h1>About this collection</h1><p class="intro">{SITE} collects '
-            f'research manuscripts and Lean 4 formalizations in {esc(topics)}.</p></header>'
+    body = (f'<header class="page-head">{kicker(home)}<h1>About this collection</h1><p class="intro">This is a collection of '
+            f'fully autonomous agentic research in {esc(topics)}: the results of my experiments with large language '
+            f'models working as autonomous research agents on open problems.</p></header>'
             + section('produced', 'How the results were produced',
-                      f'<p>{esc(AUTHOR)} publishes fully autonomous agentic research and is responsible for publication. AI '
-                      f'agents generated the research, proofs, computations and manuscripts. The results have not been '
-                      f'externally peer reviewed. Each manuscript and package states its own contribution history; the '
-                      f'<a href="{gh("AUTHORSHIP.md")}">authorship disclosure</a> gives the full account.</p>')
+                      f'<p>AI agents chose the approaches and produced the research, proofs, computations, Lean '
+                      f'formalizations and manuscripts. I decide what to publish and am responsible for it. The results '
+                      f'have not been externally peer reviewed. Each manuscript states its own contribution history, and the '
+                      f'<a href="{gh("AUTHORSHIP.md")}">authorship record</a> gives the full account.</p>{MODELS}')
             + section('checked', 'How the proofs are checked',
                       f'<p>Every result links its Lean 4 formalization. {comparator} result families use the shared library '
                       f'in <a href="{gh("lean", True)}"><code>lean/</code></a>, where Comparator checks selected theorems '
@@ -775,8 +827,9 @@ def build(out):
                       f'the remaining formalization gaps. The <a href="{gh("verification/README.md")}">verification '
                       f'guide</a> gives the reproduction commands.</p>')
             + section('selection', 'Selected results',
-                      f'<p>The catalogue marks {len(standout)} results as selected. This is a selection within the '
-                      f'collection, not an external assessment; the same scope statements and limits apply.</p>')
+                      f'<p>I mark {len(standout)} results as selected: the ones I consider the strongest in the '
+                      f'collection. This is my own selection, not an external assessment, and the same scope statements and '
+                      f'limits apply.</p>')
             + section('citing', 'Citation and license',
                       f'<p>Cite an individual result with the citation file linked from its page. Cite the collection with '
                       f'<a href="{gh("CITATION.cff")}">CITATION.cff</a> or <a href="{gh("CITATION.bib")}">CITATION.bib</a>. '
@@ -805,6 +858,40 @@ def build(out):
                                        body, {'@context': 'https://schema.org', '@type': 'WebPage', 'name': 'Page not found'},
                                        index=False))
 
+    entries = ''
+    for x in items:
+        r = x['res']
+        names = ''
+        if x['kind'] == 'comparator':
+            names = ('<p class="caption">Checked theorems</p><ul class="mono-list">' + ''.join(
+                f'<li><code>{breakable(n, ".")}</code></li>' for n in r['theorems']) + '</ul>')
+        else:
+            for label, shown, more_roots, folder_url in r['roots']:
+                listed = ''.join(f'<li><a href="{esc(u)}"><code>{breakable(text)}</code></a></li>' for _, u, text, _ in shown)
+                if more_roots:
+                    listed += f'<li><a href="{esc(folder_url)}">{more_roots} more</a></li>'
+                names += f'<p class="caption">{esc(label)}</p><ul class="mono-list">{listed}</ul>'
+        entries += (f'<li>{mark(x)}<h3 class="title"><a href="{PATH}{x["path"]}">{esc(x["title"])}</a></h3>'
+                    f'<p class="entry-meta">{esc(x["area"])} · {proof_phrase(x)} · <a href="{esc(r["lean_url"])}">'
+                    f'Lean sources<span class="vh">: {esc(x["title"])}</span></a></p><p class="scope">'
+                    f'{typeset(scope_text(x)[0])}</p>{names}</li>')
+    description = (f'The Lean 4 formalizations behind the {len(items)} results of {SITE}: what each one proves, its '
+                   f'theorem names and library roots, and links to the sources.')
+    body = (f'<header class="page-head">{kicker(home)}<h1>Lean proofs</h1><p class="intro">Every result in the collection '
+            f'comes with Lean 4 proofs of its stated formal scope. This page lists, in order of significance, what each '
+            f'formalization proves, the checked theorem names or library roots, and where the sources are. The '
+            f'<a href="{gh("verification/README.md")}">verification guide</a> gives the commands for checking them.</p>'
+            f'</header><ul class="entries">{entries}</ul>')
+    pages['formal-proofs/'] = page('formal-proofs/', f'Lean 4 proofs of every result | {SITE}', description, body, {
+        '@context': 'https://schema.org', '@graph': [{'@type': 'CollectionPage', 'name': 'Lean proofs',
+        'url': BASE + 'formal-proofs/', 'description': description, 'mainEntity': {
+            '@type': 'ItemList', 'numberOfItems': len(items), 'itemListElement': [
+                {'@type': 'ListItem', 'position': i + 1, 'item': {
+                    '@type': 'SoftwareSourceCode', 'name': f'Lean 4 formalization: {x["title"]}',
+                    'codeRepository': x['res']['lean_url'], 'programmingLanguage': 'Lean 4', 'url': x['url']}}
+                for i, x in enumerate(items)]}}, crumbs([('Home', ''), ('Lean proofs', None)])]},
+        current='formal-proofs')
+
     for path, text in pages.items():
         (out / path).mkdir(parents=True, exist_ok=True)
         (out / path / 'index.html').write_text(text)
@@ -814,9 +901,37 @@ def build(out):
          'result_type': x['f']['kind'], 'formal_proof': x['kind'], 'standout': x['standout'], 'year': x['year'],
          'keywords': x['keywords'], 'abstract': x['abstract'], 'scope': scope_text(x)[0]} for x in items]}
     (out / 'search-index.json').write_text(json.dumps(index, ensure_ascii=False, indent=1) + '\n')
+    dated = {x['path']: x['updated'] for x in items}
+    latest = max((d for d in dated.values() if d), default=None)
+
+    def lastmod(path):
+        date = dated.get(path, latest)
+        return f'<lastmod>{date}</lastmod>' if date else ''
     (out / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/'
-                                     'schemas/sitemap/0.9">\n' + ''.join(f'<url><loc>{esc(BASE + p)}</loc></url>\n'
+                                     'schemas/sitemap/0.9">\n' + ''.join(f'<url><loc>{esc(BASE + p)}</loc>{lastmod(p)}</url>\n'
                                                                          for p in pages) + '</urlset>\n')
+    stamp = lambda d: (d or latest or '2026-01-01') + 'T00:00:00Z'
+    feed = ''.join(f'<entry><title>{esc(x["title"])}</title><id>{x["url"]}</id><link rel="alternate" href="{x["url"]}"/>'
+                   f'<link rel="enclosure" type="application/pdf" href="{x["url"]}manuscript.pdf"/>'
+                   f'<updated>{stamp(x["updated"])}</updated><published>{x["year"]}-01-01T00:00:00Z</published>'
+                   f'<category term="{esc(x["subject"])}"/><summary>{esc(x["abstract"])}</summary></entry>\n'
+                   for x in sorted(items, key=lambda x: x['updated'] or '', reverse=True))
+    (out / 'feed.xml').write_text(f'<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">'
+                                  f'<title>{SITE}</title><subtitle>Research manuscripts and Lean 4 proofs</subtitle>'
+                                  f'<id>{BASE}</id><link rel="alternate" href="{BASE}"/><link rel="self" '
+                                  f'href="{BASE}feed.xml"/><updated>{stamp(latest)}</updated><author><name>{esc(AUTHOR)}'
+                                  f'</name><uri>{BASE}about/</uri></author>\n{feed}</feed>\n')
+    llms = [f'# {SITE}', '', f'> Fully autonomous agentic research by {AUTHOR}: {len(items)} manuscripts in {topics}, '
+            'produced by large language models working as autonomous research agents on open problems, each with Lean 4 '
+            'proofs of its stated formal scope. Not externally peer reviewed; no priority is claimed.', '',
+            'Models used: GPT 6 Astra in ChatGPT and Codex (29 October 2026); GPT 6.1 Sol in Codex (29 October 2026); Opus 5.5 by '
+            f'Anthropic in Claude Code (30 October 2026). Each manuscript states how they were used. {gh("AUTHORSHIP.md")}', '',
+            '## Results, in order of significance', '']
+    llms += [f'- [{x["title"]}]({x["url"]}): {clip(x["abstract"], 240)} PDF: {x["url"]}manuscript.pdf; Lean: '
+             f'{x["res"]["lean_url"]}' for x in items]
+    llms += ['', '## More', '', f'- [Selected results]({BASE}standout/)', f'- [Lean proofs]({BASE}formal-proofs/)',
+             f'- [Subjects]({BASE}subjects/)', f'- [Source repository]({REPO})', f'- [Verification guide]({gh("verification/README.md")})']
+    (out / 'llms.txt').write_text('\n'.join(llms) + '\n')
     (out / 'robots.txt').write_text(f'User-agent: *\nAllow: /\n\nSitemap: {BASE}sitemap.xml\n')
     (out / '.nojekyll').write_text('')
     check_output(out)

@@ -194,6 +194,27 @@ class SiteTests(unittest.TestCase):
         robots = (self.out / 'robots.txt').read_text()
         self.assertIn('Sitemap: ' + BASE + 'sitemap.xml', robots)
 
+    def test_feed_llms_lean_page_and_significance_order(self):
+        import xml.dom.minidom
+        feed = xml.dom.minidom.parse(str(self.out / 'feed.xml'))
+        entries = feed.getElementsByTagName('entry')
+        self.assertEqual(len(entries), len(self.families))
+        llms = (self.out / 'llms.txt').read_text()
+        lean = (self.out / 'formal-proofs' / 'index.html').read_text()
+        ranked = sorted(self.families, key=lambda f: f.get('significance_rank', 10 ** 9))
+        positions = []
+        for family in ranked:
+            url = BASE + 'papers/' + self.builder.paper_slug(family['title']) + '/'
+            self.assertIn(url, llms)
+            self.assertIn(PATH + 'papers/' + self.builder.paper_slug(family['title']) + '/', lean)
+            positions.append(llms.index(url))
+        self.assertEqual(positions, sorted(positions), 'llms.txt must list results in order of significance')
+        home = (self.out / 'index.html').read_text()
+        self.assertIn('Models used', home)
+        selected = [f for f in ranked if f.get('standout')]
+        spots = [home.index('papers/' + self.builder.paper_slug(f['title']) + '/') for f in selected]
+        self.assertEqual(spots, sorted(spots), 'selected results must appear in order of significance')
+
     def test_incomplete_entries_and_missing_paths_fail(self):
         builder = load_builder()
         with tempfile.TemporaryDirectory() as temp:

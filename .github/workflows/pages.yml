@@ -19,6 +19,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          # Full history gives each page its last-modified date in the sitemap and feed.
+          fetch-depth: 0
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
       - run: python3 site/build.py "$RUNNER_TEMP/research-site"
       - name: Add search-engine ownership file
@@ -38,3 +41,22 @@ jobs:
           path: ${{ runner.temp }}/research-site
       - uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
         id: deployment
+      - name: Notify IndexNow of the published pages
+        continue-on-error: true
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          python3 - <<'PYCODE'
+          import json, os, re, urllib.request
+          from pathlib import Path
+          site = Path(os.environ['RUNNER_TEMP']) / 'research-site'
+          urls = re.findall(r'<loc>([^<]+)</loc>', (site / 'sitemap.xml').read_text())
+          key = os.environ['INDEXNOW_KEY']
+          body = json.dumps({'host': 'dvgyl.github.io', 'key': key,
+                             'keyLocation': f'https://dvgyl.github.io/math-and-theory/{key}.txt',
+                             'urlList': urls}).encode()
+          request = urllib.request.Request('https://api.indexnow.org/indexnow', data=body,
+                                           headers={'Content-Type': 'application/json; charset=utf-8'})
+          with urllib.request.urlopen(request, timeout=30) as response:
+              print('IndexNow status', response.status, 'for', len(urls), 'URLs')
+          PYCODE
