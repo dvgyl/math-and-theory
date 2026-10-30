@@ -108,4 +108,4 @@ I preserve corrections and revisions in the repository history. Cite an individu
 
 ## How the results were produced
 
-I publish fully autonomous agentic research and am responsible for publication. Models used: GPT 6 Astra in ChatGPT and Codex (29 October 2026), GPT 6.1 Sol in Codex (29 October 2026), and Opus 5.5 by Anthropic in Claude Code (30 October 2026). Each manuscript states how they were used and its review history; the [authorship record](AUTHORSHIP.md) gives the details. These disclosures do not claim expert validation or external peer review.
+I publish fully autonomous agentic research and am responsible for publication. Models used: GPT 6 Astra by OpenAI in ChatGPT and Codex, GPT 6.1 Sol by OpenAI in Codex, and Opus 5.5 by Anthropic in Claude Code. Each manuscript states how they were used and its review history; the [authorship record](AUTHORSHIP.md) gives the details. These disclosures do not claim expert validation or external peer review.

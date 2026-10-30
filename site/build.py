@@ -377,9 +377,9 @@ def page(path, title, description, body, schema, *, head='', current='', kind='w
 
 
 MODELS = (
-    '<ul class="models"><li><b>GPT\u00a06 Astra</b>, in ChatGPT and Codex\u00a0· 29 October 2026</li>'
-    '<li><b>GPT\u00a06.1 Sol</b>, in Codex\u00a0· 29 October 2026</li>'
-    '<li><b>Opus\u00a05.5</b> by Anthropic, in Claude Code\u00a0· 30 October 2026</li></ul>'
+    '<ul class="models"><li><b>GPT 6 Astra</b> by OpenAI, in ChatGPT and Codex</li>'
+    '<li><b>GPT 6.1 Sol</b> by OpenAI, in Codex</li>'
+    '<li><b>Opus 5.5</b> by Anthropic, in Claude Code</li></ul>'
     '<p class="section-note">Each manuscript states how these models were used for it.</p>')
 
 
@@ -924,8 +924,8 @@ def build(out):
     llms = [f'# {SITE}', '', f'> Fully autonomous agentic research by {AUTHOR}: {len(items)} manuscripts in {topics}, '
             'produced by large language models working as autonomous research agents on open problems, each with Lean 4 '
             'proofs of its stated formal scope. Not externally peer reviewed; no priority is claimed.', '',
-            'Models used: GPT 6 Astra in ChatGPT and Codex (29 October 2026); GPT 6.1 Sol in Codex (29 October 2026); Opus 5.5 by '
-            f'Anthropic in Claude Code (30 October 2026). Each manuscript states how they were used. {gh("AUTHORSHIP.md")}', '',
+            'Models used: GPT 6 Astra by OpenAI, in ChatGPT and Codex; GPT 6.1 Sol by OpenAI, in Codex; Opus 5.5 by '
+            f'Anthropic, in Claude Code. Each manuscript states how they were used. {gh("AUTHORSHIP.md")}', '',
             '## Results, in order of significance', '']
     llms += [f'- [{x["title"]}]({x["url"]}): {clip(x["abstract"], 240)} PDF: {x["url"]}manuscript.pdf; Lean: '
              f'{x["res"]["lean_url"]}' for x in items]
