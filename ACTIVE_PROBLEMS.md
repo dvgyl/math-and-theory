@@ -93,3 +93,13 @@ This ledger records current research assignments. An entry is not a theorem, an 
 - Scope: real derandomization, pseudorandomness or streaming consequences. All completed, active and closely related repository projects are excluded, including read-k covariance, sharp-eighth Fourier bounds, Keller–Klein and critical-hard-core results.
 - Tool status: both built-in web search engines and web open initially returned empty error responses. Direct public arXiv and conference-site access works; Google initially returned HTTP 429. Every coverage gap will be retained in NOVELTY_AUDIT.md.
 - Coordination: three concurrent subagents (the runtime maximum in addition to root) cover PRGs/derandomization, adaptive streaming, and classical streaming; later assignments reserve separate earlier-theorem and construction/code novelty audits. An exact candidate will be registered here before substantial proof work.
+
+
+## OPT-B — convex duality and variational principles
+
+- Owner: ChatGPT research session 691dd5dd5a0f, primary agent /root.
+- Registered 2026-10-30 after checking CONTENTS.md, catalogue.json, UNFINISHED.md and the shared local and remote ledgers. No prior OPT-B owner was recorded; unrecorded parallel sessions cannot be excluded.
+- Status: initial survey of at least twelve distinct candidate questions from multiple recent primary sources; no exact candidate selected and no substantial proof begun.
+- Scope: convex duality and variational principles. Exclude all completed, active and closely related repository projects, especially ADMM, Chambolle–Pock/PDHG and subcritical Nesterov.
+- Tool status: both built-in web search engines returned empty error responses. Direct public arXiv, Crossref and OpenAlex reads through approved read-only execution and GitHub connector reads work. Coverage failures will be recorded explicitly.
+- Coordination: three concurrent subagents cover disjoint discovery areas; later role rotations reserve separate equivalent-theorem and construction/code novelty auditors. No result, originality or exclusivity claim.
