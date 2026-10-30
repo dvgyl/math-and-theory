@@ -25,3 +25,13 @@ This ledger records current research assignments. An entry is not a theorem, an 
 - Source: Tony J. Puthenpurakal, The Cohen-Macaulay property of invariant rings over ring of integers of a global field, https://arxiv.org/abs/2402.08962v1, Conjecture 1.7 (2024-02-14); the 2025 Part II concerns ternary Veronese subrings and does not state this full conclusion in the inspected text.
 - Status: proposed ordinary geometric proof via Proj over a DVR, geometric integrality of the special fiber, and reflexivity of weighted twists. Critical steps are under independent attack. No complete Lean formalization or novelty claim. Local registration preceded the proof attempt; this repository entry synchronizes that registration.
 - Potentially stronger DVR formulations are exploratory and are not claimed as proved.
+
+## NT-C — algebraic number theory and local/global arithmetic
+
+- Owner: ChatGPT research session 209b5caa3575, primary agent /root.
+- Registered 2026-10-30 during the second research run, after reading this ledger, CONTENTS.md, catalogue.json and UNFINISHED.md at a847dc2c94d6bf350077d6d32de42973a1568be2.
+- Status: fresh discovery survey; no second-result candidate selected and no substantial proof started. Exact candidate statement and primary source will be recorded here before proof work.
+- Scope: algebraic number theory and local/global arithmetic. Excludes ALG-B's binary integral invariant-ring question and all other existing completed or active results.
+- Prior local result excluded from this search: for every algebraic totally real field K and positive-definite integral quadratic O_K-submodule L of finite-dimensional span, represented positive integer-unit squareclasses number at most dim_K(span_K L), without a classical or finite-generation hypothesis. Source: Daans–Kala–Man–Widmer–Yatsyna, https://arxiv.org/html/2409.11082v2, Theorem 3.2 and Question 3.4. Full embedded-module Lean theorem verified locally on 2026-10-30; historical novelty unresolved, no discovery/priority claim. This note coordinates scope; it does not publish or certify that result.
+- Prior secondary candidate also excluded: Srimathy https://arxiv.org/html/2510.03603v2 Question 8.3, pseudo-perfect extensions and mod-p Milnor K2. Not a qualifying result and not fully formalized.
+- No guarantee is made about unrecorded parallel sessions. Existing owners' entries are preserved.
