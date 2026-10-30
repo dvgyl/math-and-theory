@@ -1,0 +1,197 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype,booktabs,array}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,urlcolor=MidnightBlue,citecolor=MidnightBlue]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small The nonnegative rank of a Kronecker square}
+\fancyhead[R]{\small Dev D. Goyal}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\allowdisplaybreaks
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newcommand{\code}[1]{\nolinkurl{#1}}
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\rp}{\operatorname{rank}_+}
+\newcommand{\one}{\mathbf{1}}
+\hypersetup{pdftitle={Counterexamples to the Kronecker-square lower bound for nonnegative rank},
+pdfauthor={Dev D. Goyal},
+pdfsubject={Fully autonomous agentic research},
+pdfkeywords={nonnegative rank, nonnegative matrix factorization, Kronecker product, exact NMF, Lean 4}}
+\newcommand{\replaystatus}{A fresh replay on 30 October 2026 rebuilt all 14 modules of the Lean project from source against the pinned Mathlib revision and audited all 130 declarations defined in them, 96 of which are theorems; each depends only on \code{propext}, \code{Classical.choice} and \code{Quot.sound}. Two exact rational checks of the order-11 factorization also passed. The record is in \code{verification/} and \code{lean/verification/}.}
+\title{\textbf{Counterexamples to the Kronecker-square lower bound\\for nonnegative rank}}
+\author{Dev D. Goyal}
+\date{30 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Vandaele, Gillis, Glineur and Tuyttens conjectured in 2016 that every entrywise nonnegative matrix $M$ satisfies $\rp(M\otimes M)\ge\rp(M)\rk(M)$, where $\rp$ is the nonnegative rank. We show that this fails. For every integer $k\ge0$ there is an entrywise nonnegative rational matrix $C$ of order $k+11$ with $\rk C=k+10$, $\rp C=k+11$ and $\rp(C\otimes C)\le(k+10)^2+9$, so that $\rp(C\otimes C)\le\rp(C)\rk(C)-(k+1)$. The matrix is the direct sum of a classical $4\times4$ matrix of rank three and nonnegative rank four with a small diagonal perturbation of an all-ones matrix. The saving comes from the two mixed Kronecker blocks: a positive rank-one term can absorb a small real perturbation of rank $q$ using only $q+1$ nonnegative rank-one terms. At $k=0$ an explicit rational factorization of width $109$ of the $121\times121$ square has been checked in exact arithmetic, against the conjectured bound $110$. The whole family, with nonnegative rank minimized over all real factorizations, is formalized in Lean~4.
+\end{abstract}
+
+\paragraph{Verification status.} \replaystatus
+
+\section{The conjecture and the result}\label{sec:result}
+
+For an entrywise nonnegative real $m\times n$ matrix $M$, the \emph{nonnegative rank} $\rp(M)$ is the least integer $d\ge0$ such that $M=UV$ with $U\in\mathbb{R}_{\ge0}^{m\times d}$ and $V\in\mathbb{R}_{\ge0}^{d\times n}$; equivalently, the least number of nonnegative rank-one matrices with sum $M$~\cite{CR}. Ordinary rank is taken over $\mathbb{R}$. Clearly $\rk M\le\rp M\le\min\{m,n\}$.
+
+The Kronecker product satisfies $\rp(M\otimes N)\le\rp(M)\rp(N)$, and a conjecture recorded at a Dagstuhl seminar asked for equality. Vandaele, Gillis, Glineur and Tuyttens~\cite{VGGT} reported counterexamples to equality found by exact nonnegative matrix factorization heuristics, including a $4\times4$ matrix of rank three and nonnegative rank four whose Kronecker square has nonnegative rank $12=4\cdot3$. In light of this example they proposed the weaker bound
+\begin{equation}\label{eq:conj}
+\rp(M\otimes M)\ge\rp(M)\rk(M)\qquad\text{for every nonnegative matrix }M
+\end{equation}
+as Conjecture~1 of~\cite[\S6.1]{VGGT}. The statement imposes no symmetry, irreducibility or positivity condition. Chauhan and Choudhury~\cite{CC} recently proved~\eqref{eq:conj} for every nonnegative matrix with at most three rows or at most three columns, as a consequence of multiplicativity for such factors, and proved multiplicativity when one factor has rank one.
+
+Let $J_s$ be the $s\times s$ all-ones matrix and put
+\begin{equation}\label{eq:witness}
+A=\begin{pmatrix}17&17&1&1\\1&17&17&1\\1&1&17&17\\17&1&1&17\end{pmatrix},\qquad
+\epsilon_t=\frac{1}{100800\,t(3t+1)},\qquad B_t=J_{t+1}+\epsilon_tI_{t+1},\qquad C_t=A\oplus B_t.
+\end{equation}
+
+\begin{theorem}\label{thm:main}
+For every integer $t\ge1$ the matrix $C_t$ is entrywise nonnegative and rational, of order $t+5$, with
+\[
+\rk C_t=t+4,\qquad \rp C_t=t+5,\qquad \rp(C_t\otimes C_t)\le(t+4)^2+9 .
+\]
+Consequently $\rp(C_t)\rk(C_t)-\rp(C_t\otimes C_t)\ge t-5$, and~\eqref{eq:conj} fails for every $t\ge6$.
+\end{theorem}
+
+Writing $t=k+6$, Theorem~\ref{thm:main} gives the family of the abstract: order $k+11$, rank $k+10$, nonnegative rank $k+11$ and a deficit of at least $k+1$, which is unbounded. The smallest member is
+\[
+C_6=A\oplus\Bigl(J_7+\tfrac{1}{11491200}I_7\Bigr),\qquad \rk C_6=10,\quad \rp C_6=11,\quad \rp(C_6\otimes C_6)\le109<110 .
+\]
+The value $109$ is an upper bound; we do not determine $\rp(C_6\otimes C_6)$ and make no claim about the least order of a counterexample or about optimal constants.
+
+\section{Factorization facts}\label{sec:facts}
+
+The following facts are standard. A factorization of width $d$ can be padded by zero columns and rows to any larger width. Nonnegative rank is invariant under permutations of rows and of columns. If $M=UV$ and $N=XY$ are nonnegative factorizations, then $M\otimes N=(U\otimes X)(V\otimes Y)$, so widths multiply; for two matrices of the same shape, concatenating left factors and stacking right factors factors their sum, so widths add.
+
+For a direct sum, $\rk(M\oplus N)=\rk M+\rk N$ and
+\begin{equation}\label{eq:directsum}
+\rp(M\oplus N)=\rp(M)+\rp(N).
+\end{equation}
+Block-diagonal factors give $\le$. Conversely, write $M\oplus N$ as a sum of nonnegative rank-one terms $xy^{\mathsf T}$. Every term vanishes on the off-diagonal blocks. If $x$ has a positive entry in the rows of $M$, then $y$ vanishes on the columns of $N$, and such a term contributes nothing to the $N$ block; otherwise the term contributes nothing to the $M$ block. Splitting the terms accordingly gives factorizations of $M$ and $N$ whose widths add up to at most the original width. This is the matrix case of Lemma~4.1 of Qi, Comon and Lim~\cite{QCL}.
+
+\section{The seed matrix}\label{sec:seed}
+
+Let $P$ be the cyclic permutation matrix with first row $(0,1,0,0)$ and $S=I_4+P$, so that $A=16S+J_4$. Every row and column of $S$ sums to two. With
+\[
+U=I_4+\tfrac{1}{36}J_4,\qquad V=16S+\tfrac{1}{10}J_4
+\]
+we get $UV=16S+\bigl(\tfrac{1}{10}+\tfrac{32}{36}+\tfrac{4}{360}\bigr)J_4=16S+J_4=A$, a nonnegative factorization of width four whose entries satisfy $U_{ij}\ge\tfrac{1}{36}$ and $V_{ij}\ge\tfrac{1}{10}$.
+
+\emph{Ordinary rank.} Let $R$ consist of the first three columns of $A$ and
+\[
+T=\begin{pmatrix}1&0&0&1\\0&1&0&-1\\0&0&1&1\end{pmatrix}.
+\]
+Then $RT=A$, the leading $3\times3$ minor of $A$ equals $4608$, and hence $\rk A=3$. Note $|R_{ij}|\le17$ and $|T_{ij}|\le1$.
+
+\emph{Nonnegative rank.} Suppose $A=XY$ with nonnegative $X\in\mathbb{R}^{4\times3}$ and $Y\in\mathbb{R}^{3\times4}$. Each diagonal entry $17=\sum_hX_{ih}Y_{hi}$ has a term of size at least $17/3$, and by pigeonhole two distinct diagonal positions $i\ne j$ share the same index $h$. Since every term of $A_{ij}=\sum_\ell X_{i\ell}Y_{\ell j}$ is nonnegative,
+\[
+\Bigl(\tfrac{17}{3}\Bigr)^2\le(X_{ih}Y_{hi})(X_{jh}Y_{hj})=(X_{ih}Y_{hj})(X_{jh}Y_{hi})\le A_{ij}A_{ji}\le17,
+\]
+which is false because $289/9>17$. Padding excludes smaller widths, so $\rp A=4$ over all real nonnegative factorizations.
+
+The matrix $A$ and its rank gap are classical. The nested-squares family of~\cite[\S6.1]{VGGT} at $a=8/9$, with rows reordered as $(3,2,4,1)$, is $A/9$, and $A/36$ is a member of a family of Bocci, Carlini and Rapallo~\cite{BCR} after a permutation of rows and columns. The elementary argument above is included because the formal proof uses it.
+
+\section{A simplex factorization}\label{sec:simplex}
+
+The next identity lets a positive rank-one term absorb a small real perturbation of rank $q$ at the cost of only $q$ further nonnegative terms. It is the algebraic form of the familiar observation that a simplex with $q+1$ vertices fits around a point in the interior of the positive orthant.
+
+\begin{lemma}\label{lem:simplex}
+Let $q\ge1$, let $u$ be a column vector and $v$ a row vector with $u_i\ge\frac{1}{36}$ and $v_j\ge\frac{1}{10}$, and let $X$ and $Y$ be real matrices with $q$ columns and $q$ rows respectively, with $|X_{ih}|\le17$ and $|Y_{hj}|\le1$. Put $\eta=\frac{1}{840q}$ and $\epsilon=\frac{1}{33600q(q+1)}$. Then $uv+\epsilon XY$ has a nonnegative factorization of width $q+1$.
+\end{lemma}
+
+\begin{proof}
+Write $X_h$ for the columns of $X$, $Y_h$ for the rows of $Y$ and $\Sigma=\sum_{h=1}^qY_h$. Index $q+1$ left columns and right rows by $1,\dots,q,*$ and set
+\[
+H_h=u+\eta X_h,\quad H_*=u-\eta\sum_{h=1}^qX_h,\qquad
+G_h=\frac{v}{q+1}+\frac{\epsilon}{\eta}\Bigl(Y_h-\frac{\Sigma}{q+1}\Bigr),\quad G_*=\frac{v}{q+1}-\frac{\epsilon}{\eta}\,\frac{\Sigma}{q+1}.
+\]
+Then $\sum_hG_h+G_*=v$ and $G_h-G_*=(\epsilon/\eta)Y_h$, so
+\[
+\sum_hH_hG_h+H_*G_*=u\Bigl(\sum_hG_h+G_*\Bigr)+\eta\sum_hX_h(G_h-G_*)=uv+\epsilon XY.
+\]
+Every entry of $H_h$ is at least $\frac{1}{36}-\frac{17}{840q}$ and every entry of $H_*$ is at least $\frac{1}{36}-\frac{17}{840}=\frac{19}{2520}$; both are positive. Since $\epsilon/\eta=\frac{1}{40(q+1)}$ and each entry of $\Sigma$ has absolute value at most $q$, every entry of $G_h$ is at least $\frac{1}{10(q+1)}-\frac{1}{40(q+1)}\bigl(1+\frac{q}{q+1}\bigr)\ge\frac{1}{20(q+1)}$, and every entry of $G_*$ is at least $\frac{1}{10(q+1)}-\frac{1}{40(q+1)}=\frac{3}{40(q+1)}$.
+\end{proof}
+
+No sign or minimality condition on $X$ and $Y$ is needed.
+
+\section{The mixed Kronecker blocks}\label{sec:mixed}
+
+\begin{lemma}\label{lem:mixed}
+For every $t\ge1$, $\rp(A\otimes B_t)\le3t+4$ and $\rp(B_t\otimes A)\le3t+4$.
+\end{lemma}
+
+\begin{proof}
+Let $s=t+1$ and index $\{1,\dots,s\}$ as $1,\dots,t,*$. Let $W$ be the $s\times t$ matrix with rows $e_1^{\mathsf T},\dots,e_t^{\mathsf T}$ followed by $-\one_t^{\mathsf T}$, and let $Z$ be the $t\times s$ matrix with $Z_{hj}=[j=h]-\frac1s$, where the indicator vanishes in the last column. A direct check gives $WZ=E_s:=I_s-\frac1sJ_s$, with $|W_{ih}|,|Z_{hj}|\le1$. Put $\widehat R=R\otimes W$ and $\widehat T=T\otimes Z$, of inner dimension $q=3t$. Then $\widehat R\widehat T=A\otimes E_s$, $|\widehat R_{ih}|\le17$ and $|\widehat T_{hj}|\le1$.
+
+With $\epsilon=\epsilon_t$ and $\beta=1+\epsilon/s$ we have $\epsilon I_s=\epsilon E_s+\frac{\epsilon}{s}J_s$, hence
+\[
+A\otimes B_t=\beta\,A\otimes J_s+\epsilon\,A\otimes E_s=\sum_{h=0}^{3}(U_h\otimes\one_s)(\beta V_h\otimes\one_s^{\mathsf T})+\epsilon\widehat R\widehat T,
+\]
+where $U_h$ and $V_h$ are the columns of $U$ and the rows of $V$ from Section~\ref{sec:seed}. Keep the three terms with $h=1,2,3$ and combine the term with $h=0$ with $\epsilon\widehat R\widehat T$. The vectors $u=U_0\otimes\one_s$ and $v=\beta V_0\otimes\one_s^{\mathsf T}$ satisfy the hypotheses of Lemma~\ref{lem:simplex}, and with $q=3t$ its constants are $\eta=\frac{1}{2520t}$ and $\epsilon=\frac{1}{33600\cdot3t(3t+1)}=\epsilon_t$. Lemma~\ref{lem:simplex} therefore writes the combined term with $3t+1$ nonnegative rank-one terms, and $A\otimes B_t$ is a sum of $3+(3t+1)=3t+4$ of them. The matrix $B_t\otimes A$ is obtained from $A\otimes B_t$ by the same permutation of rows and of columns.
+\end{proof}
+
+\begin{remark}
+Since $\rk(A\otimes B_t)=3(t+1)$, Lemma~\ref{lem:mixed} gives $\rp(A\otimes B_t)\in\{3t+3,3t+4\}$, while $\rp(A)\rp(B_t)=4t+4$. So multiplicativity fails by at least $t$ for a pair in which $B_t$ is an arbitrarily small perturbation of a rank-one matrix; by~\cite[Theorem~1.3]{CC} it holds when one factor has rank exactly one.
+\end{remark}
+
+\section{Proof of Theorem~\ref{thm:main}}\label{sec:proof}
+
+All entries of $C_t$ are nonnegative rationals. For $\epsilon>0$ the matrix $J_s+\epsilon I_s$ is invertible, with inverse $\epsilon^{-1}I_s-\frac{1}{\epsilon(\epsilon+s)}J_s$ by $J_s^2=sJ_s$. Hence $\rk B_t=\rp B_t=t+1$. With Section~\ref{sec:seed} and~\eqref{eq:directsum}, $\rk C_t=3+(t+1)=t+4$ and $\rp C_t=4+(t+1)=t+5$.
+
+Reorder the row pairs and the column pairs of $C_t\otimes C_t$ by the blocks of their two coordinates. The same bijection on rows and columns identifies $C_t\otimes C_t$ with
+\[
+(A\otimes A)\oplus(A\otimes B_t)\oplus(B_t\otimes A)\oplus(B_t\otimes B_t).
+\]
+These blocks have nonnegative factorizations of widths $16$, $3t+4$, $3t+4$ and $(t+1)^2$, by the product rule and Lemma~\ref{lem:mixed}. Assembling them block-diagonally,
+\[
+\rp(C_t\otimes C_t)\le16+2(3t+4)+(t+1)^2=(t+4)^2+9 .
+\]
+Finally $(t+5)(t+4)-\bigl((t+4)^2+9\bigr)=t-5$. \qed
+
+\section{Formal verification and exact certificates}\label{sec:lean}
+
+The Lean project in \code{lean/} pins Lean~4.35.0-rc3 and Mathlib at commit \code{0db6cb99b412}; \code{lean/lake-manifest.json} fixes every dependency. Entrywise nonnegativity is \code{EntryNonneg M}, meaning $0\le M_{ij}$ for all $i,j$. \code{HasNMF M d} asserts the existence of real matrices $U,V$ with inner index \code{Fin d}, both entrywise nonnegative, with $UV=M$ exactly. \code{nnrank M} is the least such $d$, defined with \code{Nat.find}; the project proves that every finite nonnegative matrix has a factorization, that the minimum is attained, and that $\mathtt{nnrank}\,M\le d$ holds exactly when \code{HasNMF M d}. Ordinary rank is Mathlib's \code{Matrix.rank} over $\mathbb{R}$, and $\otimes$ is Mathlib's Kronecker product.
+
+The central declaration \code{MatCKronecker.exists\_rational\_counterexample\_with\_gap} states that for every natural number $k$ there is $C$ indexed by \code{Fin (k + 11)} with nonnegative rational entries, $\rk C=k+10$, $\mathtt{nnrank}\,C=k+11$, $\mathtt{nnrank}(C\otimes C)\le(k+10)^2+9$ and $\mathtt{nnrank}(C\otimes C)+k<\mathtt{nnrank}(C)\rk(C)$. The declaration \code{counterexample\_eleven} is the case $k=0$, and \code{vandaele\_gillis\_glineur\_tuyttens\_conjecture\_false} negates~\eqref{eq:conj} quantified over all finite rectangular real nonnegative matrices. The formal proof follows Sections~\ref{sec:facts}--\ref{sec:proof}, including the direct-sum lower bound, the pigeonhole bound for the seed and Lemma~\ref{lem:simplex} for arbitrary finite index types; \code{lean/CORRESPONDENCE.md} maps each step to its declarations.
+
+The script \code{lean/verify.sh} removes the project's build output, rebuilds every module with Lake's local artifact cache disabled, prints the types and axiom dependencies of all declarations defined in the project, and writes \code{lean/VERIFICATION.json}, which rejects unbuilt modules, missing declarations and any axiom beyond \code{propext}, \code{Classical.choice} and \code{Quot.sound}.
+
+Independently of Lean, \code{certificate/C11\_NMF109.json} stores $C_6$ and nonnegative rational matrices $L$ of size $121\times109$ and $R$ of size $109\times121$. The generator \code{certificate/exact\_certificate.py} rebuilds them from the construction and checks $LR=C_6\otimes C_6$ entry by entry in exact arithmetic. The separate script \code{certificate/check\_factorization.py} rebuilds $C_6$ from~\eqref{eq:witness}, compares it with the stored copy, checks the signs of $L$ and $R$ and all $14{,}641$ entries of $LR$, and computes $\rk A=3$ and $\rk C_6=10$ by rational elimination. These checks confirm the upper bound for the fixed witness only; the lower bound $\rp C_6=11$ rests on Section~\ref{sec:seed} and~\eqref{eq:directsum}, which are proved in Lean.
+
+\section{Prior work}\label{sec:prior}
+
+The conjecture and the seed matrix are from~\cite{VGGT}; the seed also appears in~\cite{BCR}. The direct-sum identity~\eqref{eq:directsum} is known~\cite{QCL}, and the sum and product rules are standard~\cite{CR}. The new ingredient is the use of Lemma~\ref{lem:simplex} in the mixed blocks $A\otimes B_t$, which lowers their width from $4(t+1)$ to $3t+4$ and, summed over the two mixed blocks, overcomes the conjectured bound. The literature comparison in October 2026 covered~\cite{VGGT,CC,BCR,QCL}, searches of the arXiv, MathOverflow and citing records, and the code accompanying~\cite{VGGT}. It found no earlier counterexample to~\eqref{eq:conj}, and~\cite{CC}, submitted in July 2026, treats the conjecture as open. The search is bounded and historical priority is not certified.
+
+\section{Limitations}\label{sec:limits}
+
+The theorem gives upper bounds for $\rp(C_t\otimes C_t)$; its exact value is not determined for any $t$, nor is the least order of a counterexample. The witness is a direct sum; the theorem says nothing about irreducible, symmetric or strictly positive counterexamples, which the conjecture does not exclude. Lean verification establishes only the formal statements described in Section~\ref{sec:lean}.
+
+\section*{Research process and AI disclosure}
+
+This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
+
+The construction, the proof, the Lean formalization, the exact certificate, the literature searches and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session state that two of its novelty reviews used GPT-6.1 Terra and GPT-6.1 Sol; they do not name the system used for the construction and the formalization.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It checked the argument line by line, read Conjecture~1 in~\cite{VGGT} and the statements of~\cite{CC}, compared the Lean definitions of nonnegativity, factorization, nonnegative rank and the conjecture with the statements above, ran the fresh Lean replay, reran the exact certificate, wrote the independent check \code{certificate/check\_factorization.py}, and wrote this manuscript. AI checks are not human peer review.
+
+\begin{thebibliography}{9}
+\bibitem{BCR} C.~Bocci, E.~Carlini and F.~Rapallo, Perturbation of matrices and non-negative rank with a view toward statistical models, arXiv:1010.3566, 2010.
+\bibitem{CC} B.~P.~Chauhan and P.~N.~Choudhury, SNT-rank: Kronecker products and Euclidean distance matrices, arXiv:2607.27037, 2026.
+\bibitem{CR} J.~E.~Cohen and U.~G.~Rothblum, Nonnegative ranks, decompositions, and factorizations of nonnegative matrices, \emph{Linear Algebra Appl.} 190 (1993), 149--168.
+\bibitem{QCL} Y.~Qi, P.~Comon and L.-H.~Lim, Semialgebraic geometry of nonnegative tensor rank, \emph{SIAM J. Matrix Anal. Appl.} 37 (2016), 1556--1580; arXiv:1601.05351.
+\bibitem{VGGT} A.~Vandaele, N.~Gillis, F.~Glineur and D.~Tuyttens, Heuristics for exact nonnegative matrix factorization, \emph{J. Global Optim.} 65 (2016), 369--400; arXiv:1411.7245.
+\end{thebibliography}
+
+\end{document}

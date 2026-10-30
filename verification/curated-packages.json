@@ -1364,6 +1364,38 @@
         "proof/e3_lean/InfoE3/Witnesses/W31.lean": "e9569cc5eb13c74eebb63490ff59bd725d49dc942eba65fd8beec4c412099b59"
       },
       "integrity_manifests": []
+    },
+    "nonnegative-rank-kronecker": {
+      "root": "papers/mathematics/nonnegative-rank-kronecker",
+      "release_manifest_sha256": "cbb4c15d22e8d3213d37aaa8f1fad673f186a7e31d32bd005e7b18585f30e96d",
+      "formal_scope": "The whole family is formalized in Lean, with nonnegative rank minimized over all real nonnegative factorizations, together with a literal negation of the conjecture over all finite rectangular nonnegative real matrices. The width-109 factorization of the order-11 witness is also checked in exact rational arithmetic. The exact nonnegative rank of the squares is not determined.",
+      "proof_roots": [
+        {
+          "path": "lean",
+          "lean_version": "4.35.0-rc3",
+          "mathlib_revision": "0db6cb99b412983de54b59ecc1b0b2747542cda3",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "lean/AxiomAudit.lean": "359e5331b0864107991fca34ead1ab98f7ba23f054c84df27b1911e16e5a0343",
+        "lean/MatCKronecker.lean": "842e5c80a48f931f811672c5ab4ea20a59690854c6a2446816749aa02110c823",
+        "lean/MatCKronecker/BasicFactorizations.lean": "02c22d1dfea0e737b50da31ebcd75dc130d95f98fc2501faf812b07acf754b98",
+        "lean/MatCKronecker/BlockKronecker.lean": "bcf9f878675f7a5214b3a5d032c1abfdb82b3d182f393c16c23e7f122188709d",
+        "lean/MatCKronecker/BlockRank.lean": "2ab4d27b7cafdb2f5d3a7c02f24d4f073e7814d28e98745e20661228491710d2",
+        "lean/MatCKronecker/BlockSum.lean": "42e53b3bb8f548637cda758c7d8ca690375e9645633c51126f1b414bc089e043",
+        "lean/MatCKronecker/Counterexample.lean": "65af2854a50caf3cdd1a9a9de2c60e7e75da5791d9704ece4df32e348e7824d7",
+        "lean/MatCKronecker/CrossData.lean": "8da915faf0d4443dbc47dadb6891b29d7aae917824b48d187ff4db32cbb6e577",
+        "lean/MatCKronecker/CrossFactors.lean": "7b11c9a8a02005b3699c33c17f131432e72a109009fe9df2b7810da739981250",
+        "lean/MatCKronecker/NonnegativeRank.lean": "fe22aa80df229e6ee54bb4e2aae09b773c1e34c83a8821341145925c45680a24",
+        "lean/MatCKronecker/PositiveIdentity.lean": "f7d518106ddef2a05b43f44cc7e5b86b79aa95a3b02141326988c6eb3029e4ad",
+        "lean/MatCKronecker/Seed.lean": "d54eefb5ca7db269fff13a7b6500b852ec3a347c82d48c5032299b55c5564e2a",
+        "lean/MatCKronecker/SeedNonnegativeRank.lean": "6dea1cd7392d84b55c35624a3103c59d807222a2bd92f0bb07a1ad487d827a47",
+        "lean/MatCKronecker/SimplexFactorization.lean": "f87e0d8e0d6393f8198f48d0d88bb51b6ebddb22090ed77ae145c572beddff2e",
+        "lean/MatCKronecker/SimplexUniform.lean": "50bda4c481f41211d21b90e05461fb21143816313963cc44d52615096e5c61c1"
+      },
+      "integrity_manifests": []
     }
   }
 }

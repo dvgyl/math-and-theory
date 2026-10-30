@@ -1,0 +1,194 @@
+{
+  "format_version": 1,
+  "package_id": "nonnegative-rank-kronecker",
+  "formal_scope": "The whole family is formalized in Lean, with nonnegative rank minimized over all real nonnegative factorizations, together with a literal negation of the conjecture over all finite rectangular nonnegative real matrices. The width-109 factorization of the order-11 witness is also checked in exact rational arithmetic. The exact nonnegative rank of the squares is not determined.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.35.0-rc3",
+      "mathlib_revision": "0db6cb99b412983de54b59ecc1b0b2747542cda3",
+      "lakefile": "lakefile.toml",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/AxiomAudit.lean": "359e5331b0864107991fca34ead1ab98f7ba23f054c84df27b1911e16e5a0343",
+    "lean/MatCKronecker.lean": "842e5c80a48f931f811672c5ab4ea20a59690854c6a2446816749aa02110c823",
+    "lean/MatCKronecker/BasicFactorizations.lean": "02c22d1dfea0e737b50da31ebcd75dc130d95f98fc2501faf812b07acf754b98",
+    "lean/MatCKronecker/BlockKronecker.lean": "bcf9f878675f7a5214b3a5d032c1abfdb82b3d182f393c16c23e7f122188709d",
+    "lean/MatCKronecker/BlockRank.lean": "2ab4d27b7cafdb2f5d3a7c02f24d4f073e7814d28e98745e20661228491710d2",
+    "lean/MatCKronecker/BlockSum.lean": "42e53b3bb8f548637cda758c7d8ca690375e9645633c51126f1b414bc089e043",
+    "lean/MatCKronecker/Counterexample.lean": "65af2854a50caf3cdd1a9a9de2c60e7e75da5791d9704ece4df32e348e7824d7",
+    "lean/MatCKronecker/CrossData.lean": "8da915faf0d4443dbc47dadb6891b29d7aae917824b48d187ff4db32cbb6e577",
+    "lean/MatCKronecker/CrossFactors.lean": "7b11c9a8a02005b3699c33c17f131432e72a109009fe9df2b7810da739981250",
+    "lean/MatCKronecker/NonnegativeRank.lean": "fe22aa80df229e6ee54bb4e2aae09b773c1e34c83a8821341145925c45680a24",
+    "lean/MatCKronecker/PositiveIdentity.lean": "f7d518106ddef2a05b43f44cc7e5b86b79aa95a3b02141326988c6eb3029e4ad",
+    "lean/MatCKronecker/Seed.lean": "d54eefb5ca7db269fff13a7b6500b852ec3a347c82d48c5032299b55c5564e2a",
+    "lean/MatCKronecker/SeedNonnegativeRank.lean": "6dea1cd7392d84b55c35624a3103c59d807222a2bd92f0bb07a1ad487d827a47",
+    "lean/MatCKronecker/SimplexFactorization.lean": "f87e0d8e0d6393f8198f48d0d88bb51b6ebddb22090ed77ae145c572beddff2e",
+    "lean/MatCKronecker/SimplexUniform.lean": "50bda4c481f41211d21b90e05461fb21143816313963cc44d52615096e5c61c1"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 1648,
+      "sha256": "7b3f20399b82518d345a4198592f49729c3621a82c8fde676c162aa8e922b519"
+    },
+    "CITATION.bib": {
+      "bytes": 394,
+      "sha256": "6d1b3a7683cc20b3aa47003c4174284530f9ffe6c01ffa3f4dfd3d2b26877a58"
+    },
+    "CITATION.cff": {
+      "bytes": 1529,
+      "sha256": "c107cb1eecf715ec296e24ddcccaa413fea87f3e0cde0a9fe53827755e6538ba"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 3292,
+      "sha256": "9f9e5dea805bae4bbe8096e54a1303adfcaa146372464cdc1e3975fada5f8aa7"
+    },
+    "VERIFICATION.md": {
+      "bytes": 2496,
+      "sha256": "77a7227b252029c78ed6469ad19ea271c88a9432c7fb52c2d797fbee5b47c31e"
+    },
+    "certificate/C11_NMF109.json": {
+      "bytes": 341304,
+      "sha256": "56b58aa043c70534b70059708dc82e2fa916ae3c140e8ea2c3f0cccd93f56ae7"
+    },
+    "certificate/check_factorization.py": {
+      "bytes": 2748,
+      "sha256": "382dfd58815a8251122bbe7ffbe6a81ee022b3aac4bfceb4f1d8fb174865c899"
+    },
+    "certificate/exact_certificate.py": {
+      "bytes": 27309,
+      "sha256": "090751c6b8451abacebc542e5656c27570219f599d865a4e06192b21683ea803"
+    },
+    "lean/AxiomAudit.lean": {
+      "bytes": 12644,
+      "sha256": "359e5331b0864107991fca34ead1ab98f7ba23f054c84df27b1911e16e5a0343"
+    },
+    "lean/CORRESPONDENCE.md": {
+      "bytes": 7706,
+      "sha256": "4c277f0e1283c4d41e464627e9888d9c2fcfb4c4003acedd737d0ee5a0e026a3"
+    },
+    "lean/MatCKronecker.lean": {
+      "bytes": 51,
+      "sha256": "842e5c80a48f931f811672c5ab4ea20a59690854c6a2446816749aa02110c823"
+    },
+    "lean/MatCKronecker/BasicFactorizations.lean": {
+      "bytes": 3343,
+      "sha256": "02c22d1dfea0e737b50da31ebcd75dc130d95f98fc2501faf812b07acf754b98"
+    },
+    "lean/MatCKronecker/BlockKronecker.lean": {
+      "bytes": 2106,
+      "sha256": "bcf9f878675f7a5214b3a5d032c1abfdb82b3d182f393c16c23e7f122188709d"
+    },
+    "lean/MatCKronecker/BlockRank.lean": {
+      "bytes": 1871,
+      "sha256": "2ab4d27b7cafdb2f5d3a7c02f24d4f073e7814d28e98745e20661228491710d2"
+    },
+    "lean/MatCKronecker/BlockSum.lean": {
+      "bytes": 5151,
+      "sha256": "42e53b3bb8f548637cda758c7d8ca690375e9645633c51126f1b414bc089e043"
+    },
+    "lean/MatCKronecker/Counterexample.lean": {
+      "bytes": 6523,
+      "sha256": "65af2854a50caf3cdd1a9a9de2c60e7e75da5791d9704ece4df32e348e7824d7"
+    },
+    "lean/MatCKronecker/CrossData.lean": {
+      "bytes": 3749,
+      "sha256": "8da915faf0d4443dbc47dadb6891b29d7aae917824b48d187ff4db32cbb6e577"
+    },
+    "lean/MatCKronecker/CrossFactors.lean": {
+      "bytes": 4769,
+      "sha256": "7b11c9a8a02005b3699c33c17f131432e72a109009fe9df2b7810da739981250"
+    },
+    "lean/MatCKronecker/NonnegativeRank.lean": {
+      "bytes": 5855,
+      "sha256": "fe22aa80df229e6ee54bb4e2aae09b773c1e34c83a8821341145925c45680a24"
+    },
+    "lean/MatCKronecker/PositiveIdentity.lean": {
+      "bytes": 2337,
+      "sha256": "f7d518106ddef2a05b43f44cc7e5b86b79aa95a3b02141326988c6eb3029e4ad"
+    },
+    "lean/MatCKronecker/Seed.lean": {
+      "bytes": 2922,
+      "sha256": "d54eefb5ca7db269fff13a7b6500b852ec3a347c82d48c5032299b55c5564e2a"
+    },
+    "lean/MatCKronecker/SeedNonnegativeRank.lean": {
+      "bytes": 2540,
+      "sha256": "6dea1cd7392d84b55c35624a3103c59d807222a2bd92f0bb07a1ad487d827a47"
+    },
+    "lean/MatCKronecker/SimplexFactorization.lean": {
+      "bytes": 5172,
+      "sha256": "f87e0d8e0d6393f8198f48d0d88bb51b6ebddb22090ed77ae145c572beddff2e"
+    },
+    "lean/MatCKronecker/SimplexUniform.lean": {
+      "bytes": 3860,
+      "sha256": "50bda4c481f41211d21b90e05461fb21143816313963cc44d52615096e5c61c1"
+    },
+    "lean/VERIFICATION.json": {
+      "bytes": 23597,
+      "sha256": "85ae058b778186a272ea306d489b633a634d1d068aa9eb02c9982896be5f4b59"
+    },
+    "lean/generate_audit.py": {
+      "bytes": 1864,
+      "sha256": "91a1d09b940f85ee981345b6fa03cbc528e1429e8acfcb79af3b3054e0ef277c"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3553,
+      "sha256": "23e3854189a340e6ba1bbb8b4e3f0a2b2344caf727d4bc6efe87f865e5d9e558"
+    },
+    "lean/lakefile.toml": {
+      "bytes": 255,
+      "sha256": "7d3d4cfe5dfe4e1ca1416cba9bae78630399f0da408e1ccb73dc8561b194bb55"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 29,
+      "sha256": "bc84812c94489d1e3e191baa1dc10d5eb684382d7fe9d2a5ab085e72c1c67e47"
+    },
+    "lean/make_verification_record.py": {
+      "bytes": 6828,
+      "sha256": "177fab43a653c502fa61e7d4cd29f4fb808bbef85f19fab81dc3f3715851e8bb"
+    },
+    "lean/verification/axioms.log": {
+      "bytes": 34958,
+      "sha256": "9ee4aa670b23a9cf231c881edc3072d73a6e2e9ecfece1a32c50ede95282454c"
+    },
+    "lean/verification/build.log": {
+      "bytes": 829,
+      "sha256": "3c0c992e27d51600a977035475d49c02460a95c2b4fcf6bff7c3826aaa9431ee"
+    },
+    "lean/verification/environment.log": {
+      "bytes": 367,
+      "sha256": "90063c19873317db1c5d4fd2b0872030535ed2c60b611efbc5e9be50f6731252"
+    },
+    "lean/verify.sh": {
+      "bytes": 1410,
+      "sha256": "eaf4315a1d32c729727a6a85048de0169f2c1c0009829b71cc9307ba15171516"
+    },
+    "manuscript.pdf": {
+      "bytes": 291384,
+      "sha256": "f1aade82042006ed6155ced3dfb9b7fc6ab73cf9871641ffe88ee3ac44a9c567"
+    },
+    "manuscript.tex": {
+      "bytes": 19228,
+      "sha256": "ca6d3f798cfb92f9b622b6884ecf6d18dc2bf426e64df9f0fb167361a7f1631b"
+    },
+    "verification/README.md": {
+      "bytes": 1416,
+      "sha256": "e3dd365f86490c70dc467785f328bbc1ab184d4530eb40071944a87f4c62e025"
+    },
+    "verification/certificate-check.json": {
+      "bytes": 613,
+      "sha256": "63454531cd9ede276f67532b3747c936a294190161235fe4fd81d2b689fc0746"
+    },
+    "verification/independent-check.json": {
+      "bytes": 137,
+      "sha256": "48979602218e48649056faf16420c49fd5866d4d99cbfe37e880b34e5379fc5c"
+    }
+  }
+}

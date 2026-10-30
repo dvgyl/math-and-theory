@@ -10,7 +10,7 @@ The collection contains results with different formal verification scopes. Each 
 
 ## Navigating the collection
 
-The current catalogue contains 43 manuscripts and research notes across 42 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
+The current catalogue contains 44 manuscripts and research notes across 43 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
 
 - Start with the [overview](overview.pdf) for descriptions of the result families.
 - Use the [manuscript map](CONTENTS.md) to find individual papers, abstracts and supporting materials.
@@ -39,6 +39,8 @@ The results I consider the strongest, in order of significance.
 
 **[Depth-one Artin–Schreier defect towers are composita](papers/mathematics/artin-schreier-depth/manuscript.pdf).** Over a perfect henselian subfield K of the Hahn field k((y^ℚ)) containing k(y) and without finite accumulation points, a nontrivial finite Artin–Schreier tower has depth one exactly when it is a compositum of Artin–Schreier extensions of K. This proves Conjecture 4.1 of Nart and Novacoski. Both implications are formalized in Lean in their setting, with depth one stated through Okutsu sequences; the identification of that minimum with depth is their Theorem 1.3.
 
+**[Counterexamples to the Kronecker-square lower bound for nonnegative rank](papers/mathematics/nonnegative-rank-kronecker/manuscript.pdf).** For every k ≥ 0 an explicit rational nonnegative matrix C of order k + 11, rank k + 10 and nonnegative rank k + 11 has a Kronecker square of nonnegative rank at most (k + 10)² + 9. This disproves the conjecture of Vandaele, Gillis, Glineur and Tuyttens that rank₊(M ⊗ M) ≥ rank₊(M) rank(M); the smallest witness has an exact width-109 factorization against the conjectured 110. The whole family is formalized in Lean with nonnegative rank minimized over all real factorizations.
+
 **[A positive constant-recursive sequence with nonquasipolynomial power ranks](papers/mathematics/power-rank/manuscript.pdf).** A positive constant-recursive sequence of rank thirteen has explicit minimal recurrences for all its powers and nonquasipolynomial power ranks. The main theorem and arbitrary-rank companions are formalized; generating-function and polynomial corollaries have conventional proofs. Eric Rowland has independently obtained an infinite family of rank sequences at rank three ([priority note](PRIORITY_AND_NOVELTY.md#power-ranks-of-a-constant-recursive-sequence)).
 
 ### Mathematical physics
@@ -61,7 +63,7 @@ The results I consider the strongest, in order of significance.
 
 ### Mathematics
 
-- [Matrix theory](CONTENTS.md#matrix-theory): q-permanent counterexamples, Gyires structured permanent inequalities, a normal-matrix polygon counterexample, projection AM–GM obstruction, matrix-pencil rank distance as a completion problem.
+- [Matrix theory](CONTENTS.md#matrix-theory): q-permanent counterexamples, Gyires structured permanent inequalities, a normal-matrix polygon counterexample, projection AM–GM obstruction, matrix-pencil rank distance as a completion problem, counterexamples to the Kronecker-square bound for nonnegative rank.
 - [Graph theory and graph polynomials](CONTENTS.md#graph-theory-and-graph-polynomials): DomiRank entropy, domination-sequence ultra-log-concavity, domination-root escape, leaf-deletion mode movement.
 - [Inequalities and real analysis](CONTENTS.md#inequalities-and-real-analysis): diagonal concavity.
 - [Integer sequences and combinatorics](CONTENTS.md#integer-sequences-and-combinatorics): Motzkin root log-concavity, bounded-forcing Motzkin bounds, Hofstadter iteration, nonquasipolynomial power ranks.
@@ -101,6 +103,7 @@ I use the names below to connect common search terms to each result and its file
 | Keller–Klein conjecture, Rademacher sums, Berry–Esseen bound, normal approximation | [Keller–Klein small-coefficient bound](papers/mathematics/keller-klein/) |
 | Quadratic lattices, totally real fields, unit square classes, universal quadratic forms | [Unit squareclass rank bound](papers/mathematics/unit-squareclasses/) |
 | Artin–Schreier extensions, defect, depth of valuations, Okutsu sequences, Hahn series | [Artin–Schreier depth](papers/mathematics/artin-schreier-depth/) |
+| Nonnegative rank, nonnegative matrix factorization, Kronecker product, Vandaele–Gillis–Glineur–Tuyttens conjecture | [Kronecker-square counterexamples](papers/mathematics/nonnegative-rank-kronecker/) |
 | Conditional independence, polymatroids, selfadhesivity, entropy region | [Structural selfadhesivity](papers/mathematics/structural-selfadhesivity/) |
 | Nesterov accelerated gradient flow and iteration, vanishing damping, subcritical damping, unbounded trajectories | [Escaping subcritical Nesterov flows](papers/mathematics/nesterov-subcritical/) |
 | Hard-core model, spectral independence, uniqueness threshold, Glauber dynamics | [Critical hard-core influence bounds](papers/theoretical-computer-science/critical-hardcore/) |

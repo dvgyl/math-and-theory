@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**43 manuscripts and research notes across 42 result families in mathematics, theoretical computer science, and mathematical physics.**
+**44 manuscripts and research notes across 43 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -65,6 +65,18 @@ Let A and B be m × n matrix pencils over an infinite field and δ(A, B) the lea
 **Prior work.** [Dodig and Stošić, 2025.](https://doi.org/10.13001/ela.2025.9593)
 
 [Paper PDF](papers/mathematics/matrix-pencil-completion/manuscript.pdf) · [LaTeX](papers/mathematics/matrix-pencil-completion/manuscript.tex) · [Proof and reproduction](papers/mathematics/matrix-pencil-completion/README.md) · [Citation](papers/mathematics/matrix-pencil-completion/CITATION.bib)
+
+#### [Counterexamples to the Kronecker-square lower bound for nonnegative rank](papers/mathematics/nonnegative-rank-kronecker/manuscript.pdf)
+
+**Family:** `nonnegative-rank-kronecker`.
+
+Vandaele, Gillis, Glineur and Tuyttens conjectured in 2016 that every nonnegative matrix M satisfies rank₊(M ⊗ M) ≥ rank₊(M) rank(M). For every k ≥ 0 an explicit rational nonnegative matrix C of order k + 11, rank k + 10 and nonnegative rank k + 11 has rank₊(C ⊗ C) ≤ (k + 10)² + 9, so the conjecture fails by at least k + 1. The matrix is the direct sum of a classical 4 × 4 matrix of rank three and nonnegative rank four with a small diagonal perturbation of an all-ones matrix; in the mixed Kronecker blocks a positive rank-one term absorbs a small real perturbation of rank q with only q + 1 nonnegative terms. At k = 0 an exact rational factorization of width 109 beats the conjectured bound 110.
+
+**Formal scope.** The whole family is formalized in Lean, with nonnegative rank minimized over all real nonnegative factorizations, together with a literal negation of the conjecture over all finite rectangular nonnegative real matrices. The width-109 factorization of the order-11 witness is also checked in exact rational arithmetic. The exact nonnegative rank of the squares is not determined.
+
+**Prior work.** [Vandaele, Gillis, Glineur and Tuyttens, 2016.](https://doi.org/10.1007/s10898-015-0350-z)
+
+[Paper PDF](papers/mathematics/nonnegative-rank-kronecker/manuscript.pdf) · [LaTeX](papers/mathematics/nonnegative-rank-kronecker/manuscript.tex) · [Proof and reproduction](papers/mathematics/nonnegative-rank-kronecker/README.md) · [Citation](papers/mathematics/nonnegative-rank-kronecker/CITATION.bib)
 
 ### Graph theory and graph polynomials
 

@@ -164,6 +164,33 @@
       "manuscript_engine": "pdflatex"
     },
     {
+      "id": "nonnegative-rank-kronecker",
+      "discipline": "Mathematics",
+      "area": "Matrix theory",
+      "title": "Counterexamples to the Kronecker-square lower bound for nonnegative rank",
+      "kind": "Counterexample to a published conjecture and reproducible proof package",
+      "significance_rank": 65,
+      "standout": true,
+      "keywords": [
+        "nonnegative rank",
+        "nonnegative matrix factorization",
+        "exact NMF",
+        "Kronecker product",
+        "tensor product",
+        "Vandaele–Gillis–Glineur–Tuyttens conjecture"
+      ],
+      "summary": "For every k ≥ 0 an explicit rational nonnegative matrix C of order k + 11, rank k + 10 and nonnegative rank k + 11 satisfies rank₊(C ⊗ C) ≤ (k + 10)² + 9. This disproves the conjecture of Vandaele, Gillis, Glineur and Tuyttens (J. Global Optim. 2016) that rank₊(M ⊗ M) ≥ rank₊(M) rank(M). At k = 0 an exact rational factorization of width 109 beats the conjectured bound 110.",
+      "formal_scope": "The whole family is formalized in Lean, with nonnegative rank minimized over all real nonnegative factorizations, together with a literal negation of the conjecture over all finite rectangular nonnegative real matrices. The width-109 factorization of the order-11 witness is also checked in exact rational arithmetic. The exact nonnegative rank of the squares is not determined.",
+      "source": "Vandaele, Gillis, Glineur and Tuyttens (J. Global Optim. 2016, Conjecture 1) proposed the bound; Chauhan and Choudhury (arXiv 2026) proved it for matrices with at most three rows or columns. The seed matrix is classical (Vandaele et al.; Bocci, Carlini and Rapallo) and direct-sum additivity is due to Qi, Comon and Lim. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/nonnegative-rank-kronecker/README.md",
+      "paper": "papers/mathematics/nonnegative-rank-kronecker/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/mathematics/nonnegative-rank-kronecker"
+      },
+      "manuscript_engine": "pdflatex"
+    },
+    {
       "id": "domirank-entropy",
       "discipline": "Mathematics",
       "area": "Graph theory and matrix analysis",
