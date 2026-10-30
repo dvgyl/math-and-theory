@@ -168,6 +168,8 @@ For every Boolean indicator of mean 1/8 on a finite uniform cube, the level-one 
 
 **Prior work.** [Yu, On Average Distance, Level-1 Fourier Weight, and Chang’s Lemma, 2026 revision.](https://arxiv.org/abs/2504.02593v2)
 
+**Priority and subsequent correspondence.** On 30 October 2026, Professor Lei Yu informed me that Yijia Fang and Hao Huang had already proved this bound, with the equality cases, in a manuscript shared privately about a month earlier and submitted to arXiv on 29 October 2026 ([arXiv:2610.40486](https://arxiv.org/abs/2610.40486)). I make no originality or priority claim for the bound. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#sharp-level-one-fourier-weight-at-density-one-eighth).
+
 [Paper PDF](papers/mathematics/sharp-eighth/manuscript.pdf) · [LaTeX](papers/mathematics/sharp-eighth/manuscript.tex) · [Citation](papers/mathematics/sharp-eighth/CITATION.bib) · [Reproduction](papers/mathematics/sharp-eighth/README.md)
 
 #### [A quartic entropy deficit for random rankings](papers/mathematics/quartic-rankings/manuscript.pdf)
@@ -198,7 +200,7 @@ An explicit 64-point set E ⊂ F₂⁹ is spectral and tiles by translation, but
 
 **Formal scope.** Spectrality with an actual basis of all complex functions on E, the tiling E ⊕ T = F₂⁹, aperiodicity of E, the exclusion of every periodic and every subspace complement, the classification of all complements as the 512 translates of T, and the failure of the periodic tiling property for F₂⁹ are formalized in 16 Lean modules. Minimality of dimension nine depends on an external dimension-eight theorem and is not formalized.
 
-**Priority and subsequent correspondence.** On 30 October 2026, through correspondence with Dr. Samuel Ferguson, I learned that he and Professor Joshua Iosevich had become aware of counterexamples to the stronger statement shortly after submitting their arXiv paper. Whether their examples are equivalent to this construction has not been established. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#binary-spectral-tile-in-dimension-nine).
+**Priority and subsequent correspondence.** On 30 October 2026, through correspondence with Dr. Samuel Ferguson, I learned that he and Professor Joshua Iosevich had become aware of counterexamples to the stronger statement shortly after submitting their arXiv paper. Whether their examples are equivalent to this construction has not been established; an AI-generated comparison he shared later that day provisionally suggests that they are not affinely equivalent, but it has not been verified. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#binary-spectral-tile-in-dimension-nine).
 
 [Paper PDF](papers/mathematics/binary-spectral-tile/manuscript.pdf) · [LaTeX](papers/mathematics/binary-spectral-tile/manuscript.tex) · [Proof and reproduction](papers/mathematics/binary-spectral-tile/README.md) · [Citation](papers/mathematics/binary-spectral-tile/CITATION.bib)
 

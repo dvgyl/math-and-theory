@@ -12,6 +12,10 @@ where `Φ` is the standard normal distribution function. Coefficients may be une
 
 Keller and Klein conjectured that `|P(X ≤ x) − Φ(x)| ≤ Φ(a₁) − 1/2` for all real `x`, where `a₁ = maxᵢ |vᵢ|` (Adv. Math. 2022, Conjecture 9.3). Ivanisvili's computer-assisted manuscript of 21 October 2026 proves the lower half for all coefficient vectors and the full conjecture for `a₁ ≥ 0.07`, and leaves exactly this upper half for `a₁ < 0.07` open, noting that it needs a new idea. The theorem here closes that range by the analytic route his Section 11 proposes. Together with his Theorems 1.1 and 10.9 it implies the full conjecture; those external results are computer-assisted, unrefereed and outside this Lean development, so the full conjecture is settled only conditionally on them.
 
+## Subsequent correspondence
+
+On 30 October 2026, Nathan Keller expressed interest in reviewing this work. He has not reviewed or validated the proof, and his interest should not be read as an endorsement. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#other-correspondence) lists this exchange.
+
 ## Files
 
 - [Manuscript](manuscript.pdf) and [LaTeX source](manuscript.tex).

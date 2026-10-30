@@ -108,7 +108,7 @@ The Gyires family has complete Lean proofs for order-five and order-six circulan
 
 ## Priority and novelty disclosures
 
-After publication, correspondence with researchers in the field brought earlier or overlapping work on five results to my attention: the Higuchi–Sudbery entropy bound, the Kovačec polygon enclosure, the root-fidelity entropy bound, the power-rank sequences and the binary spectral tile. My agents' original novelty searches had not found this work. [PRIORITY_AND_NOVELTY.md](PRIORITY_AND_NOVELTY.md) records when and how I learned of it, the public sources, and what remains uncertain. Each affected README and manuscript carries a dated note.
+After publication, correspondence with researchers in the field brought earlier or overlapping work on six results to my attention: the Higuchi–Sudbery entropy bound, the density-one-eighth Fourier-weight bound, the Kovačec polygon enclosure, the root-fidelity entropy bound, the power-rank sequences and the binary spectral tile. My agents' original novelty searches had not found this work. [PRIORITY_AND_NOVELTY.md](PRIORITY_AND_NOVELTY.md) records when and how I learned of it, the public sources, and what remains uncertain. Each affected README and manuscript carries a dated note. The same record lists two offers to review results, for the Keller–Klein and gradient-descent bounds; neither is an endorsement.
 
 ## Versions and citations
 

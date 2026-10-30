@@ -16,7 +16,9 @@ This answers negatively the stronger subspace-complement part of Question 8.1 of
 
 On 30 October 2026, following my correspondence with Dr. Samuel Ferguson, he informed me that he and his coauthor Professor Joshua Iosevich had already become aware of counterexamples to the stronger statement shortly after submitting their recent arXiv paper. These findings were previously unknown to me, and my agents' original novelty searches had not found them.
 
-I acknowledge their prior awareness of counterexamples to the stronger subspace-complement statement. I have not seen their examples, and it has not been established whether they are equivalent to my 64-point construction. The construction, the classification of its 512 complements and the Lean formalization are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#binary-spectral-tile-in-dimension-nine) gives the details.
+I acknowledge their prior awareness of counterexamples to the stronger subspace-complement statement. I have not seen their examples, and it has not been established whether they are equivalent to my 64-point construction. Later the same day, Dr. Ferguson shared an AI-generated comparison suggesting that my construction is not affinely equivalent to his displayed example or to any of 210 constructions he had saved, despite substantial structural overlap, and that the constructions share common classifications of their tiling complements and spectra. These are provisional AI-generated findings. I have not independently verified them, and I do not treat them as established mathematical conclusions. I continue to acknowledge Ferguson and Iosevich's earlier counterexamples.
+
+The construction, the classification of its 512 complements and the Lean formalization are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#binary-spectral-tile-in-dimension-nine) gives the details.
 
 ## Files
 

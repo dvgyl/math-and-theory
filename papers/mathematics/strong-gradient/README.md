@@ -31,4 +31,10 @@ The intended contribution is the complete positive strong-convexity case of Tayl
 
 The actual-function upper bound and normalized actual-function attainment are checked in Lean 4.19.0. Sharpness at arbitrary L and positive radius R is proved by rescaling in the manuscript; it is not a separate Lean wrapper.
 
+## Subsequent correspondence
+
+On 30 October 2026, Salah Chikhi offered to examine this result. He has not validated the proof, and his offer should not be read as an endorsement. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#other-correspondence) lists this exchange.
+
+## Build
+
 I build the manuscript with two runs of `pdflatex -no-shell-escape -interaction=nonstopmode -halt-on-error manuscript.tex`.

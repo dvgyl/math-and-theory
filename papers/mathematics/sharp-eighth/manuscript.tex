@@ -10,12 +10,15 @@
 \hypersetup{pdftitle={The sharp level-one Fourier weight at density one eighth},pdfauthor={Dev D. Goyal}}
 \title{The sharp level-one Fourier weight at density one eighth}
 \author{Dev D. Goyal}
-\date{27 October 2026}
+\date{27 October 2026; priority note added 30 October 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
 The level-one Fourier weight measures the total squared correlation of a Boolean function with the individual coordinates. The proof shows that its maximum at mean $1/8$ is $3/64$ in every dimension at least three. A codimension-three subcube attains this value. Equivalently, a subset of the Boolean cube with density $1/8$ has average Hamming distance at least $(n-3)/2$. The proof establishes a sharp positive-part inequality for Rademacher sums. An even polynomial of degree eighteen bounds the positive part. An exact symmetric moment certificate then bounds the expectation of that polynomial in every dimension. The certificate uses rational coefficients and nonnegative terms. A companion Lean formalization includes the moment identities, the Fourier and distance bounds, and their sharpness witnesses.
 \end{abstract}
+
+\section*{Priority and subsequent correspondence}
+\emph{Added 30 October 2026.} On 30 October 2026, Professor Lei Yu informed me that Yijia Fang and Hao Huang had already proved the same density-$1/8$ Fourier-weight bound. He told me that their manuscript had been shared privately approximately one month earlier; it was submitted to arXiv on 29 October 2026~\cite{FH26}. Their result also characterizes the equality cases. I was previously unaware of their work, and the novelty searches carried out by my research agents had not found it. I confirmed the public arXiv record, whose summary states the same bound in its average-distance form together with the equality cases; I have not compared the two proofs. I acknowledge Fang and Huang's earlier work and make no originality or priority claim for the bound. I have withdrawn the statements below that presented the bound as the contribution of this note. The proof, its certificates and its formalization are unchanged.
 
 \hypertarget{result-and-scope}{%
 \section{Result and scope}\label{result-and-scope}}
@@ -44,15 +47,15 @@ are ordered, sampled independently, and may coincide.
 
 The result concerns exactly the density \(1/8\). It does not determine
 the optimum at every density or the full noise stability of a subcube.
-No classification of all equality cases is claimed in this note.
+No classification of all equality cases is claimed in this note; Fang and Huang~\cite{FH26} give one.
 
 \section{Relation to previous bounds}
 
 The minimum-average-distance problem in Hamming space goes back to Ahlswede and Katona \cite{AK77}. Fu, Wei, and Yeung obtained linear-programming bounds and solved several cases, including quarter-cube size \cite{FWY01}. Yu and Tan later characterized the asymptotically best bounds from that linear program \cite{YT19}.
 
-Yu explicitly asks for $W(1/8)$ in Section VII, Problem 2, of \cite{Y26}. Section III-C gives an upper bound of approximately $0.0495142$. The codimension-three subcube gives the lower bound $3/64=0.046875$. The result here closes this gap by proving the subcube value is an upper bound in every dimension.
+Yu explicitly asks for $W(1/8)$ in Section VII, Problem 2, of \cite{Y26}. Section III-C gives an upper bound of approximately $0.0495142$. The codimension-three subcube gives the lower bound $3/64=0.046875$. Fang and Huang~\cite{FH26} closed this gap before this note, proving that the subcube value is an upper bound and characterizing the equality cases. This note gives an independent proof of the bound.
 
-The proof combines a polynomial majorant with a dimension-independent moment identity. Its coefficients are rational. Nonnegative Bernstein coefficients establish the one-variable inequalities. A sum of nonnegative symmetric terms establishes the moment inequality. These are established methods. The specific certificate and its sharp bound are the contribution here.
+The proof combines a polynomial majorant with a dimension-independent moment identity. Its coefficients are rational. Nonnegative Bernstein coefficients establish the one-variable inequalities. A sum of nonnegative symmetric terms establishes the moment inequality. These are established methods. The bound itself is due to Fang and Huang~\cite{FH26}; this note gives a proof through an explicit certificate, with a Lean formalization, and makes no originality or priority claim for the bound.
 
 \hypertarget{the-auxiliary-sharp-rademacher-inequality}{%
 \section{The auxiliary sharp Rademacher
@@ -410,6 +413,7 @@ This work is fully autonomous agentic research. The initial research and proofs 
 \bibitem{AK77} R. Ahlswede and G. O. H. Katona. Contributions to the geometry of Hamming spaces. \emph{Discrete Mathematics} \textbf{17} (1977), 1--22. \href{https://doi.org/10.1016/0012-365X(77)90017-6}{doi:10.1016/0012-365X(77)90017-6}.
 \bibitem{FWY01} F.-W. Fu, V. K. Wei, and R. W. Yeung. On the minimum average distance of binary codes: Linear programming approach. \emph{Discrete Applied Mathematics} \textbf{111} (2001), 263--281. \href{https://doi.org/10.1016/S0166-218X(00)00284-5}{doi:10.1016/S0166-218X(00)00284-5}.
 \bibitem{YT19} L. Yu and V. Y. F. Tan. An Improved Linear Programming Bound on the Average Distance of a Binary Code. \href{https://arxiv.org/abs/1910.09416}{arXiv:1910.09416} (2019).
+\bibitem{FH26} Y. Fang and H. Huang. Average pairwise Hamming distance of a subset in a hypercube. \href{https://arxiv.org/abs/2610.40486}{arXiv:2610.40486} (29 October 2026).
 \bibitem{Y26} L. Yu. On Average Distance, Level-1 Fourier Weight, and Chang's Lemma. \href{https://arxiv.org/abs/2504.02593v2}{arXiv:2504.02593v2} (2026 revision).
 \end{thebibliography}
 \end{document}

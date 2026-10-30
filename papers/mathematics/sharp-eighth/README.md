@@ -10,6 +10,12 @@ The formal proof includes arbitrary dimensions, the exact moment identities, the
 - [Editable manuscript](manuscript.tex).
 - [Citation](CITATION.cff).
 
+## Priority and subsequent correspondence
+
+On 30 October 2026, Professor Lei Yu informed me that Yijia Fang and Hao Huang had already proved the same density-1/8 Fourier-weight bound. He told me that their manuscript had been shared privately approximately one month earlier; it was submitted to arXiv on 29 October 2026 as [*Average pairwise Hamming distance of a subset in a hypercube*](https://arxiv.org/abs/2610.40486). Their result also characterizes the equality cases. I was previously unaware of their work, and my agents' original novelty searches had not found it.
+
+I confirmed the public arXiv record, whose summary states the same bound in its average-distance form together with the equality cases. The private circulation date is as Professor Yu reported it; I have not seen that version, and I have not compared the two proofs. I acknowledge Fang and Huang's earlier work, I make no originality or priority claim for this bound, and I have withdrawn the statements in the manuscript that presented the bound as its contribution. The proof here, its exact certificates and the Lean formalization are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#sharp-level-one-fourier-weight-at-density-one-eighth) gives the details.
+
 ## Reproduce the proof
 
 Use the pinned Lean 4.19.0 toolchain and Mathlib revision `c44e0c8ee63ca166450922a373c7409c5d26b00b`. Install Git and the Lean toolchain manager `elan`. Start with a fresh copy of this directory.
