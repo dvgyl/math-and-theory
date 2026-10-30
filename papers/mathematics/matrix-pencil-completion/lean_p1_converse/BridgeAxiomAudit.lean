@@ -1,0 +1,10 @@
+module
+
+import MatCP1Converse.StrictCancellation
+import MatCP1Converse.BorderGraph
+
+#print MatCP1Converse.strict_common_summand_cancellation
+#print MatCP1Converse.exists_invertible_border_graph
+#print axioms MatCP1Converse.familyStrictEquivalence_common_summand_iff
+#print axioms MatCP1Converse.strict_common_summand_cancellation
+#print axioms MatCP1Converse.exists_invertible_border_graph

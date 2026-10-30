@@ -10,7 +10,7 @@ The collection contains results with different formal verification scopes. Each 
 
 ## Navigating the collection
 
-The current catalogue contains 41 manuscripts and research notes across 40 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
+The current catalogue contains 42 manuscripts and research notes across 41 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
 
 - Start with the [overview](overview.pdf) for descriptions of the result families.
 - Use the [manuscript map](CONTENTS.md) to find individual papers, abstracts and supporting materials.
@@ -32,6 +32,8 @@ The results I consider the strongest, in order of significance.
 **[The exact last-gradient bound for constant-step gradient descent in the strongly convex case](papers/mathematics/strong-gradient/manuscript.pdf).** The exact final-gradient guarantee for constant-step gradient descent holds on every real Hilbert space, for every natural horizon and all normalized steps in [0,2], including positive strong convexity. The actual-function bound and normalized attaining functions are formalized; sharpness at arbitrary scale follows by conventional rescaling.
 
 **[Escaping Nesterov flows and iterates below critical damping](papers/mathematics/nesterov-subcritical/manuscript.pdf).** For X″ + (r/t)X′ + ∇F(X) = 0 from rest and for the Nesterov iteration with momentum k/(k+r), universal boundedness over convex objectives with 1-Lipschitz gradient and attained minimum holds on the Hilbert space ℓ² exactly when r ≥ 3. An explicit convex planar potential has an escaping trajectory for every 0 < r ≤ 2. The Hilbert-space and discrete thresholds and the planar escape for 1 < r ≤ 2 are formalized; the finite-dimensional range 2 < r < 3 remains open.
+
+**[Matrix-pencil rank distance as an explicit completion problem](papers/mathematics/matrix-pencil-completion/manuscript.pdf).** Over every infinite field, two matrix pencils have strict-equivalence classes at normal-rank distance at most x exactly when an explicit dilation of the first is a constant full-rank compression of the dilation of the second plus x scalar blocks. With a cited linearization theorem this proves the conjecture of Dodig and Stošić that the bounded rank perturbation problem for matrix pencils is a completion problem. The explicit theorem is formalized in Lean; three directly relevant articles have not been compared in full.
 
 **[The exact asymmetric Merino–Welsh region for finite matroids](papers/mathematics/asymmetric-tutte/manuscript.pdf).** The exact nonnegative parameter region for T_M(x,0) T_M(0,y) ≥ T_M(1,1)² is characterized uniformly over all finite matroids without loops or coloops. The formal statement uses actual matroids and their subset-rank Tutte sum, including the empty ground set.
 
@@ -57,7 +59,7 @@ The results I consider the strongest, in order of significance.
 
 ### Mathematics
 
-- [Matrix theory](CONTENTS.md#matrix-theory): q-permanent counterexamples, Gyires structured permanent inequalities, a normal-matrix polygon counterexample, projection AM–GM obstruction.
+- [Matrix theory](CONTENTS.md#matrix-theory): q-permanent counterexamples, Gyires structured permanent inequalities, a normal-matrix polygon counterexample, projection AM–GM obstruction, matrix-pencil rank distance as a completion problem.
 - [Graph theory and graph polynomials](CONTENTS.md#graph-theory-and-graph-polynomials): DomiRank entropy, domination-sequence ultra-log-concavity, domination-root escape, leaf-deletion mode movement.
 - [Inequalities and real analysis](CONTENTS.md#inequalities-and-real-analysis): diagonal concavity.
 - [Integer sequences and combinatorics](CONTENTS.md#integer-sequences-and-combinatorics): Motzkin root log-concavity, bounded-forcing Motzkin bounds, Hofstadter iteration, nonquasipolynomial power ranks.

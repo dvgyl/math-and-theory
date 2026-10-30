@@ -172,8 +172,13 @@ def check_pins(package, roots):
             require(isinstance(packages, list) and bool(packages) and
                     len({item.get('name') for item in packages}) == len(packages),
                     'Invalid curated dependency lock')
-            require(all(item.get('type') == 'git' and isinstance(item.get('rev'), str)
-                        and REVISION.fullmatch(item['rev']) for item in packages),
+            # A local path dependency is allowed only for a sibling proof root of the same package.
+            sibling_roots = {(package / other['path']).resolve() for other in roots}
+            require(all((item.get('type') == 'git' and isinstance(item.get('rev'), str)
+                         and REVISION.fullmatch(item['rev'])) or
+                        (item.get('type') == 'path' and isinstance(item.get('dir'), str) and
+                         (root / item['dir']).resolve() in sibling_roots)
+                        for item in packages),
                     'Unpinned curated dependency')
             mathlib = [item for item in packages if item.get('name') == 'mathlib']
             require(len(mathlib) == 1 and mathlib[0].get('rev') == revision,

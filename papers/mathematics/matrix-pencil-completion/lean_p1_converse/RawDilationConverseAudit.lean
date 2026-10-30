@@ -1,0 +1,17 @@
+import MatCP1Converse.RawDilationConverse
+
+#check @MatCP1Converse.matrix_dilation_completion_converse
+#check @MatCP1Converse.matrix_dilation_complement_presentation
+#check @MatCP1Converse.complement_orbitDistance_contraction
+
+#print axioms MatCP1Converse.raw_dilation_rank_transport
+#print axioms MatCP1Converse.raw_dilation_rank_smul_le
+#print axioms MatCP1Converse.matrix_dilation_complement_presentation
+#print axioms MatCP1Converse.matrix_dilation_rank_at_d
+#print axioms MatCP1Converse.matrix_dilation_rank_at_c
+#print axioms MatCP1Converse.matrix_dilation_joint_injective
+#print axioms MatCP1Converse.matrix_dilation_joint_surjective
+#print axioms MatCP1Converse.matrix_subpencil_extract_fixed_factor
+#print axioms MatCP1Converse.complement_orbitDistance_contraction
+#print axioms MatCP1Converse.Pencil.orbitDistance_coefficientChange
+#print axioms MatCP1Converse.matrix_dilation_completion_converse

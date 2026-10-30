@@ -1,0 +1,16 @@
+module
+
+import MatCP1
+
+#print MatCP1.matrix_common_summand_cancellation
+#print MatCP1.matrixJointCompression_common_summand_iff
+#print axioms MatCP1.eventually_bijective_affine
+#print axioms MatCP1.eventually_injective_affine
+#print axioms MatCP1.eventually_surjective_affine
+#print axioms MatCP1.jointCompression_of_subquotient
+#print axioms MatCP1.jointCompression_of_common_kernel
+#print axioms MatCP1.jointCompression_of_common_summand_diagram
+#print axioms MatCP1.jointCompression_cancel_common_summand
+#print axioms MatCP1.jointCompression_common_summand_iff
+#print axioms MatCP1.matrixJointCompression_common_summand_iff
+#print axioms MatCP1.matrix_common_summand_cancellation

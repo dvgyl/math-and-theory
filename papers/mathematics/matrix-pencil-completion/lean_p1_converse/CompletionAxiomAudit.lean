@@ -1,0 +1,19 @@
+import MatCP1Converse.CompletionSubpencil
+
+#print MatCP1Converse.matrix_subpencil_extract_fixed_factor
+#print MatCP1Converse.matrix_completion_extract_fixed_factor
+#print MatCP1Converse.subpencil_extract_fixed_factor
+#print MatCP1Converse.completion_extract_fixed_factor
+
+#print axioms MatCP1Converse.completion_border_factorization
+#print axioms MatCP1Converse.completion_normalize_pair
+#print axioms MatCP1Converse.completion_derivative_rank_ge_scalar_summand
+#print axioms MatCP1Converse.completion_derivative_rank_le_border
+#print axioms MatCP1Converse.completion_invertible_normalized_border
+#print axioms MatCP1Converse.completion_graph_shear_pair
+#print axioms MatCP1Converse.completion_schur_split
+#print axioms MatCP1Converse.completion_extract_centered
+#print axioms MatCP1Converse.completion_extract_fixed_factor
+#print axioms MatCP1Converse.matrix_completion_extract_fixed_factor
+#print axioms MatCP1Converse.subpencil_extract_fixed_factor
+#print axioms MatCP1Converse.matrix_subpencil_extract_fixed_factor

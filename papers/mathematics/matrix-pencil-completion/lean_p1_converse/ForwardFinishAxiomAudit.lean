@@ -1,0 +1,120 @@
+import MatCP1Converse.RawDilationForward
+import MatCP1Converse.ForwardDilationRecoveryMatrix
+import MatCP1Converse.ForwardAnchorSwapMatrix
+
+set_option pp.deepTerms true
+set_option pp.maxSteps 100000
+
+#print MatCP1Converse.matrix_dilation_completion_forward
+#print MatCP1Converse.matrix_dilation_completion_of_rank_bound
+#print MatCP1Converse.matrix_dilation_same_anchor
+#print MatCP1Converse.matrix_dilation_anchor_swap
+#print MatCP1Converse.matrix_dilation_complement_presentation
+#print MatCP1Converse.matrix_dilation_rank_at_d
+#print MatCP1Converse.matrix_dilation_joint_injective
+#print MatCP1Converse.matrix_dilation_joint_surjective
+
+#print axioms MatCP1Converse.dilationConstant
+#print axioms MatCP1Converse.dilationLinear
+#print axioms MatCP1Converse.dilationFamily
+#print axioms MatCP1Converse.scalarDilationFamily
+#print axioms MatCP1Converse.dilationConstant_apply
+#print axioms MatCP1Converse.dilationLinear_apply
+#print axioms MatCP1Converse.dilation_evaluation
+#print axioms MatCP1Converse.dilationEmbedding
+#print axioms MatCP1Converse.dilationCompression
+#print axioms MatCP1Converse.dilationEmbedding_apply
+#print axioms MatCP1Converse.dilationCompression_apply
+#print axioms MatCP1Converse.dilationEmbedding_injective
+#print axioms MatCP1Converse.dilationCompression_surjective
+#print axioms MatCP1Converse.dilation_compression_coefficients
+#print axioms MatCP1Converse.jointCompression_dilation_of_factorized_difference
+#print axioms MatCP1Converse.dilationSumCoordinate
+#print axioms MatCP1Converse.matrixDilationConstant
+#print axioms MatCP1Converse.matrixDilationLinear
+#print axioms MatCP1Converse.matrixDilationFamily
+#print axioms MatCP1Converse.matrixDilationConstant_conj
+#print axioms MatCP1Converse.matrixDilationLinear_conj
+#print axioms MatCP1Converse.matrixDilationFamily_conj
+#print axioms MatCP1Converse.scalarMatrixDilationFamily
+#print axioms MatCP1Converse.scalarMatrixDilationFamily_toLin
+#print axioms MatCP1Converse.twoBorderSumCoordinate
+#print axioms MatCP1Converse.twoBorder_matrix_conj
+#print axioms MatCP1Converse.matrixDilationFamily_unconj
+#print axioms MatCP1Converse.matrix_dilation_compression_of_factorized_difference
+#print axioms MatCP1Converse.dilationSwapSource
+#print axioms MatCP1Converse.dilationSwapTarget
+#print axioms MatCP1Converse.dilationSwapSource_apply
+#print axioms MatCP1Converse.dilationSwapTarget_apply
+#print axioms MatCP1Converse.dilationSwapSource_comp_reverse
+#print axioms MatCP1Converse.dilationSwapTarget_comp_reverse
+#print axioms MatCP1Converse.dilationSwapSourceEquiv
+#print axioms MatCP1Converse.dilationSwapTargetEquiv
+#print axioms MatCP1Converse.dilation_anchor_swap_coefficients
+#print axioms MatCP1Converse.jointCompression_dilation_anchor_swap
+#print axioms MatCP1Converse.matrix_dilation_anchor_swap
+#print axioms MatCP1Converse.dilationEval
+#print axioms MatCP1Converse.dilationEval_apply
+#print axioms MatCP1Converse.dilationELeft
+#print axioms MatCP1Converse.dilationERight
+#print axioms MatCP1Converse.dilationHLeft
+#print axioms MatCP1Converse.dilationHRight
+#print axioms MatCP1Converse.dilationKernelLift
+#print axioms MatCP1Converse.dilationQuotient
+#print axioms MatCP1Converse.dilationELeft_apply
+#print axioms MatCP1Converse.dilationERight_apply
+#print axioms MatCP1Converse.dilationHLeft_apply
+#print axioms MatCP1Converse.dilationHRight_apply
+#print axioms MatCP1Converse.dilationKernelLift_apply
+#print axioms MatCP1Converse.dilationQuotient_apply
+#print axioms MatCP1Converse.dilation_factor_E
+#print axioms MatCP1Converse.dilation_factor_H
+#print axioms MatCP1Converse.dilationELeft_injective
+#print axioms MatCP1Converse.dilationERight_surjective
+#print axioms MatCP1Converse.dilationHLeft_injective
+#print axioms MatCP1Converse.dilationHRight_surjective
+#print axioms MatCP1Converse.dilationKernelLift_injective
+#print axioms MatCP1Converse.dilationQuotient_surjective
+#print axioms MatCP1Converse.dilation_factors_prod_injective
+#print axioms MatCP1Converse.dilation_factors_coprod_surjective
+#print axioms MatCP1Converse.dilation_complement_constant
+#print axioms MatCP1Converse.dilation_complement_linear
+#print axioms MatCP1Converse.dilationQuotient_ker
+#print axioms MatCP1Converse.dilationKernelLift_range
+#print axioms MatCP1Converse.dilation_anchor_pair_injective
+#print axioms MatCP1Converse.dilation_anchor_coprod_surjective
+#print axioms MatCP1Converse.dilation_anchor_ker_inf
+#print axioms MatCP1Converse.dilation_anchor_range_sup
+#print axioms MatCP1Converse.dilation_rank_at_d
+#print axioms MatCP1Converse.dilation_rank_at_c
+#print axioms MatCP1Converse.recoveryConjMatrix
+#print axioms MatCP1Converse.recoveryConjMatrix_mulVec
+#print axioms MatCP1Converse.recoveryConjMatrix_comp
+#print axioms MatCP1Converse.recoveryConjMatrix_injective
+#print axioms MatCP1Converse.recoveryConjMatrix_surjective
+#print axioms MatCP1Converse.recoveryConjMatrix_kernel_range
+#print axioms MatCP1Converse.recoveryPairCoordinate
+#print axioms MatCP1Converse.recoveryConjMatrix_prod
+#print axioms MatCP1Converse.recoveryConjMatrix_coprod
+#print axioms MatCP1Converse.recoveryConjMatrix_prodMap
+#print axioms MatCP1Converse.recoveryConjMatrix_zero
+#print axioms MatCP1Converse.recoveryConjMatrix_id
+#print axioms MatCP1Converse.recoveryConjMatrix_rank
+#print axioms MatCP1Converse.matrixDilationEval
+#print axioms MatCP1Converse.matrixDilationEval_conj
+#print axioms MatCP1Converse.matrixDilationEval_eq_conjMatrix
+#print axioms MatCP1Converse.matrix_dilation_rank_at_d
+#print axioms MatCP1Converse.matrix_dilation_rank_at_c
+#print axioms MatCP1Converse.matrix_dilation_joint_injective
+#print axioms MatCP1Converse.matrix_dilation_joint_surjective
+#print axioms MatCP1Converse.matrix_dilation_complement_presentation
+#print axioms MatCP1Converse.forward_jointCompression_trans
+#print axioms MatCP1Converse.forward_jointCompression_remove_unique_right
+#print axioms MatCP1Converse.forward_jointCompression_remove_unique_middle
+#print axioms MatCP1Converse.jointCompression_dilation_constant_left
+#print axioms MatCP1Converse.jointCompression_dilation_constant_right
+#print axioms MatCP1Converse.jointCompression_dilation_same_anchor
+#print axioms MatCP1Converse.matrixJointCompression_prodMap
+#print axioms MatCP1Converse.matrix_dilation_same_anchor
+#print axioms MatCP1Converse.matrix_dilation_completion_of_rank_bound
+#print axioms MatCP1Converse.matrix_dilation_completion_forward

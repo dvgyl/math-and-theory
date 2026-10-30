@@ -1,0 +1,11 @@
+module
+
+import MatCP1Converse.PencilMixedFactors
+
+#check MatCP1Converse.normalized_pencil_all_moments
+#check MatCP1Converse.normalized_pencil_mixed_factorization
+#check MatCP1Converse.Pencil.exists_rank_mixed_factorization
+
+#print axioms MatCP1Converse.normalized_pencil_all_moments
+#print axioms MatCP1Converse.normalized_pencil_mixed_factorization
+#print axioms MatCP1Converse.Pencil.exists_rank_mixed_factorization

@@ -1,0 +1,315 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype,booktabs,array}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,urlcolor=MidnightBlue,citecolor=MidnightBlue]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Matrix-pencil rank distance as a completion problem}
+\fancyhead[R]{\small Dev D. Goyal}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\allowdisplaybreaks
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newcommand{\code}[1]{\nolinkurl{#1}}
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\cmp}{\preceq}
+\newcommand{\Ft}{F(t)}
+\hypersetup{pdftitle={Matrix-pencil rank distance as an explicit completion problem},
+pdfauthor={Dev D. Goyal},
+pdfsubject={Fully autonomous agentic research},
+pdfkeywords={matrix pencils, bounded rank perturbations, matrix pencil completion, strict equivalence, normal rank, Lean 4}}
+\newcommand{\replaystatus}{A fresh replay on 30 October 2026 rebuilt both Lean projects against a Mathlib checkout compiled from source at the pinned revision. All 58 modules of the main project were rebuilt, and its 276 exported theorems and the ten cancellation endpoints depend only on \code{propext}, \code{Classical.choice} and \code{Quot.sound}. The identification with the conjecture's barred pencils is cited, not formalized; Section~\ref{sec:lean} states the formal scope.}
+\title{\textbf{Matrix-pencil rank distance\\as an explicit completion problem}}
+\author{Dev D. Goyal}
+\date{30 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $A(t)=A_0+tA_1$ and $B(t)=B_0+tB_1$ be $m\times n$ matrix pencils over an infinite field $F$, and let $\delta(A,B)$ be the least normal rank of $A'-B'$ over all pencils $A'$ and $B'$ strictly equivalent to $A$ and $B$. For distinct $c,d\in F$ and every integer $x\ge0$ we prove that $\delta(A,B)\le x$ if and only if an explicit $(2m+n)\times(2n+m)$ dilation $K_{c,d}(A)$ is obtained from $K_{c,d}(B)\oplus(t-d)I_x$ by one constant full-row-rank matrix on the left and one constant full-column-rank matrix on the right. No regularity, rank or spectral condition is imposed, and $c$ or $d$ may be eigenvalues. Over an algebraically closed field and at anchors outside the spectra, a known theorem on strong block minimal bases linearizations turns this statement into Conjecture~1 of Dodig and Sto\v{s}i\'c, which asserts that the bounded rank perturbation problem for matrix pencils is a completion problem. The explicit theorem is formalized in Lean~4; the identification with the barred pencils of the conjecture is not.
+\end{abstract}
+
+\paragraph{Verification status.} \replaystatus
+
+\section{The theorem}\label{sec:theorem}
+
+Let $F$ be an infinite field, let $A(t)=A_0+tA_1$ and $B(t)=B_0+tB_1$ be $m\times n$ pencils over $F$, and let $x\ge0$ be an integer. The dimensions $m$, $n$ and $x$ may be zero. Two pencils are \emph{strictly equivalent}, $A\sim A'$, when $A'=PAQ$ for constant invertible matrices $P,Q$ over $F$. The normal rank of a pencil is its rank over the rational-function field $\Ft$. Put
+\[
+\delta(A,B)=\min_{A'\sim A,\ B'\sim B}\rk_{\Ft}(A'-B').
+\]
+The minimum is over both entire strict-equivalence classes and exists because the attainable ranks form a nonempty set of nonnegative integers.
+
+For pencils $U$ and $V$ of possibly different sizes, write $U\cmp V$ if there are constant matrices $P$ of full row rank and $Q$ of full column rank with $U_0=PV_0Q$ and $U_1=PV_1Q$; the same $P,Q$ serve both coefficients. Extending $P$ by rows and $Q$ by columns shows that $U\cmp V$ exactly when $U$ is the upper-left corner of a constant strictly equivalent representative of $V$, that is, when $V$ is equivalent to a completion of $U$.
+
+For $c,d\in F$ define the $(2m+n)\times(2n+m)$ pencil
+\[
+K_{c,d}(A)(t)=
+\begin{pmatrix}
+A(t)&0&I_m\\
+0&0&-(t-c)I_m\\
+I_n&-(t-d)I_n&0
+\end{pmatrix}.
+\]
+
+\begin{theorem}\label{thm:main}
+For every infinite field $F$, all $m\times n$ pencils $A,B$ over $F$, every integer $x\ge0$ and all distinct $c,d\in F$,
+\begin{equation}\label{eq:main}
+\delta(A,B)\le x\quad\Longleftrightarrow\quad K_{c,d}(A)\cmp K_{c,d}(B)\oplus(t-d)I_x.
+\end{equation}
+\end{theorem}
+
+No spectral avoidance, regularity, prescribed normal rank, nonzero dimension or canonical form is assumed. The forward implication also holds when $c=d$; distinctness is used only in the converse. Section~\ref{sec:conjecture} explains the relation to the conjecture of Dodig and Sto\v{s}i\'c~\cite{DS25}. The dilation $K_{c,d}$ is established block minimal bases machinery~\cite{DLPV18}, and the complementary construction of Section~\ref{sec:complement} has antecedents in matrix pencil reduction~\cite{Ver17,NP15}. Neither construction is claimed here.
+
+\section{Constant equivalence, changes of parameter and cancellation}\label{sec:basic}
+
+Strict equivalence of $A$ and $B$ induces strict equivalence of their dilations: if $A=PBQ$, the multipliers $\operatorname{diag}(P,P,Q^{-1})$ and $\operatorname{diag}(Q,Q,P^{-1})$ carry $K_{c,d}(B)$ to $K_{c,d}(A)$ coefficientwise. A bound on $\delta$ may therefore be realized by representatives and a completion transported back to the original pencils.
+
+An invertible homogeneous coefficient change
+\[
+(A_0,A_1)\longmapsto(aA_0+bA_1,\ cA_0+dA_1),\qquad ad-bc\ne0,
+\]
+preserves normal rank and $\delta$. Over $\Ft$ the transformed pencil is $(a+ct)\,A\bigl((b+dt)/(a+ct)\bigr)$; the fractional-linear substitution is an automorphism of $\Ft$ and the scalar $a+ct$ is nonzero. Constant row and column multipliers commute with the coefficient change, so both inequalities for the minimum over representatives follow. The formalization constructs the substitution on $\Ft$ and proves invariance of the actual minimum; it does not infer normal rank from finitely many evaluations.
+
+We also need common-summand cancellation:
+\begin{equation}\label{eq:cancel}
+U\oplus S\cmp V\oplus S\quad\Longleftrightarrow\quad U\cmp V.
+\end{equation}
+
+\begin{lemma}\label{lem:cancel}
+Over an infinite field, \eqref{eq:cancel} holds for arbitrary families, indexed by any set, of finite rectangular matrices, where $\cmp$ uses one pair $P,Q$ for all members of the family.
+\end{lemma}
+
+\begin{proof}
+Adjoining identities gives the implication from right to left. Conversely, a compression supplies a linking representation $T$, a monomorphism $(r,q)\colon T\to V\oplus S$ and an epimorphism $(p,s)\colon T\to U\oplus S$. On the two spaces of $T$ put $h_z=q+z(s-q)$. At $z=0$ the maps $(r,h_z)$ are injective, and at $z=1$ the maps $(p,h_z)$ are onto. Each of these four full-rank conditions holds off the roots of a nonzero minor polynomial, whatever the size of the family, so an infinite field contains a common good $z$. The kernels of the two maps $h_z$ form a linking subrepresentation. The restriction of $r$ to these kernels is injective, and the restriction of $p$ is onto, because every $u$ has a lift of $(u,0)$ through $(p,h_z)$. A section of the source surjection and a retraction of the target injection now give constant full-rank compression maps from $V$ to $U$.
+\end{proof}
+
+For compressed families of equal size the compression maps are square and hence invertible, so Lemma~\ref{lem:cancel} also gives cancellation for strict equivalence, without appeal to uniqueness of the Kronecker canonical form.
+
+\section{A decomposition at normal rank}\label{sec:decomposition}
+
+\begin{lemma}\label{lem:decomp}
+Every $m\times n$ pencil $D$ of normal rank $r$ over an infinite field has a decomposition
+\begin{equation}\label{eq:decomp}
+D(t)=U\,R(t)+L(t)\,V,\qquad a+b=r,
+\end{equation}
+where $U$ is a constant $m\times a$ matrix, $V$ a constant $b\times n$ matrix and $R,L$ are pencils.
+\end{lemma}
+
+This is established structure; the proof is included so that the argument does not rely on a canonical form.
+
+\begin{proof}
+For $r=0$ the assertion is immediate. Otherwise choose $e\in F$ with $\rk D(e)=r$: a nonzero $r\times r$ minor of $D$ has finitely many roots, and all larger minors vanish identically. (The Lean proof instead clears denominators in a rank factorization over $\Ft$; two nonzero polynomial certificates give both rank inequalities off a finite set, including rank zero.) Substitute $t=e+s$ and normalize $D(e)$ by constant invertible matrices, so that the pencil becomes
+\[
+M(s)=\begin{pmatrix}I_r+sG&sH\\ sJ&sN\end{pmatrix}.
+\]
+The block $I+sG$ is invertible over $F(s)$ because its determinant $p(s)$ has constant term one. The normal-rank bound forces the Schur complement to vanish. With $Z(s)=\operatorname{adj}(I+sG)$ this gives $p(s)N=sJZ(s)H$. Evaluating at $s=0$ gives $N=0$, and cancelling $s$ gives $JZ(s)H=0$.
+
+We show $JG^kZ(s)H=0$ for all $k\ge0$ by induction. Evaluating the $k$th identity at $s=0$ gives $JG^kH=0$. Multiplying $(I+sG)Z(s)=p(s)I$ on the left by $JG^k$ and on the right by $H$, and cancelling $s$, gives the next identity. Hence $JG^kH=0$ for all $k$.
+
+Let $W$ be the span of all vectors $G^kHv$. It contains $\im H$, is $G$-invariant and lies in $\ker J$. Choose a complement $T$ of $W$ in $F^r$ and put $a=\dim W$, $b=\dim T$. Both coefficients of $M$ map $W$, together with the residual source coordinates, into $W$ in the target. Let $U$ embed $W$ into the target, let $V$ project the source onto $T$ and let $S$ include $T$ into the source. Since $VS=I$, each $M_j(I-SV)$ factors through $U$, say as $UR_j$; with $L_j=M_jS$ we obtain $M_j=UR_j+L_jV$ for $j=0,1$. Undoing the constant equivalences and the translation preserves the constant factors and the affine degree. Empty spaces are allowed throughout.
+\end{proof}
+
+\section{The forward implication}\label{sec:forward}
+
+Suppose $A-B=UR+LV$ as in \eqref{eq:decomp}, and write $R=R_0+tR_1$, $L=L_0+tL_1$. We first show
+\begin{equation}\label{eq:embed}
+K_{c,d}(A)\cmp K_{c,d}(B)\oplus(t-d)I_a\oplus(t-c)I_b .
+\end{equation}
+The larger pencil has source coordinates $(u,v,w,w_a,w_b)$ and outputs
+\[
+Bu+w,\quad -(t-c)w,\quad u-(t-d)v,\quad (t-d)w_a,\quad (t-c)w_b .
+\]
+Embed the smaller source by the constant substitutions
+\[
+w=w'+L(c)Vu,\qquad w_a=R_1u+R(d)v,\qquad w_b=Vu,
+\]
+and map the five outputs $(f,g,h,j,k)$ by the constant map
+\[
+(f,g,h,j,k)\longmapsto\bigl(f+Uj+L_1k+UR(d)h,\ g+L(c)k,\ h\bigr).
+\]
+The composite is exactly $(Au+w',\,-(t-c)w',\,u-(t-d)v)$. The source embedding is injective and the output map is onto, because their retained-coordinate diagonal blocks are identities. This proves \eqref{eq:embed} coefficientwise.
+
+To move every added scalar block to the anchor $d$ we use an anchor interchange valid for every pencil. Put $\Delta=c-d$ and define constant maps
+\begin{align*}
+Q_{cd}(u,v,w)&=\bigl(u+\Delta v,\ v,\ w-\Delta A_1u-\Delta A(c)v\bigr),\\
+P_{cd}(f,g,h)&=\bigl(f+\Delta A_1h,\ g-\Delta f+\Delta A(d)h,\ h\bigr).
+\end{align*}
+Direct multiplication gives
+\begin{equation}\label{eq:swap}
+P_{cd}\,K_{c,d}(A)\,Q_{cd}=K_{d,c}(A),
+\end{equation}
+and interchanging $c$ and $d$ gives the inverse maps. Identity \eqref{eq:swap} holds over every field, without spectral assumptions and even for $c=d$.
+
+Put $M=B+UR$. Applying \eqref{eq:embed} to $M-B=UR$, with only the left factor, gives $K_{c,d}(M)\cmp K_{c,d}(B)\oplus(t-d)I_a$. Applying \eqref{eq:embed} to $A-M=LV$ with the anchors interchanged, and then \eqref{eq:swap} to both dilations, gives $K_{c,d}(A)\cmp K_{c,d}(M)\oplus(t-d)I_b$. Composing the two constant compressions gives a completion with $a+b=r$ scalar blocks at $d$. If $r\le x$, embed these $r$ coordinates into $x$ coordinates and discard the remaining outputs; the maps stay constant and of full rank. Finally, choose $A'\sim A$ and $B'\sim B$ with $\rk_{\Ft}(A'-B')\le x$, apply the construction and transport back by the multipliers of Section~\ref{sec:basic}. This proves the forward implication of \eqref{eq:main}.
+
+\section{A fixed factor from a completion}\label{sec:extract}
+
+\begin{lemma}\label{lem:extract}
+Let $X,Y$ be pencils of the same size, let $f=t-d$, and suppose $\rk X(d)=\rk Y(d)$ and $X\cmp Y\oplus fI_x$. Then there is a constant matrix $E$ with $\rk E\le x$ and
+\begin{equation}\label{eq:extract}
+X-fE\sim Y.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Realize the compression as the corner of a strictly equivalent completion. At $d$ the completion has the same rank as its corner $X$, so constant border shears that fix the corner make all off-corner blocks vanish at $d$. Since the entries are affine, the completion becomes
+\[
+\begin{pmatrix}X&fU\\ fV&fZ\end{pmatrix}
+\]
+with $U,V,Z$ constant. It remains to make $Z$ invertible while keeping $X$.
+
+For a pencil $M_0+fM_1$, the map $\ker M_0\to\operatorname{coker}M_0$ induced by $M_1$ has a rank invariant under constant strict equivalence; for $Y\oplus fI_x$ this rank is at least $x$. In the corner decomposition let $H$ be this map in coordinates, with the $x$ new source and target coordinates last, so that its lower-right block is $Z$. Adding vectors of $\ker X(d)$ to border columns and covectors annihilating $\im X(d)$ to border rows keeps $X$ and replaces $Z$ by $[T,\ I]\,H\,[S;\ I]$.
+
+Such $S,T$ exist because $\rk H\ge x$. Choose an $x$-dimensional embedding $J$ with $HJ$ injective, let $e$ be the standard embedding onto the last coordinates and put $J_z=e+z(J-e)$. The projection of $J_z$ onto the last coordinates is invertible at $z=0$, and $HJ_z$ is injective at $z=1$; avoiding the two finite exceptional sets and normalizing the last block gives $[S;I]$ with $H[S;I]$ injective. For an injective map $[a;b]$, extend the restriction of $b$ to $\ker a$ to an automorphism and factor the difference through $a$; this gives a row graph $[T,I]$ with $Ta+b$ invertible. Apply this to $H[S;I]$.
+
+After these constant shears $Z$ is invertible, and constant Schur elimination splits the pencil as $(X-fUZ^{-1}V)\oplus fI_x$. Cancelling $fI_x$ by Lemma~\ref{lem:cancel} and taking $E=UZ^{-1}V$ proves \eqref{eq:extract} with $\rk E\le x$. No polynomial row operation or division by $f$ is used, and $x=0$ is included.
+\end{proof}
+
+\section{A rank-distance bound for kernel and quotient compressions}\label{sec:static}
+
+\begin{lemma}\label{lem:static}
+Let $G_i$ be $N\times N$, $X_i$ full-column $N\times a$ and $Y_i$ full-row $b\times N$ matrices for $i=0,1$. Choose full-row $Q_i$ and full-column $K_i$ with $\ker Q_i=\im X_i$ and $\im K_i=\ker Y_i$, and set $P_i(z)=Q_i(G_i+zI)K_i$. Then
+\begin{equation}\label{eq:static}
+\delta(P_1,P_0)\le\rk_F\begin{pmatrix}G_1-G_0&X_1-X_0\\ Y_1-Y_0&0\end{pmatrix}.
+\end{equation}
+This holds over every field.
+\end{lemma}
+
+\begin{proof}
+If two injections $X_0,X_1$ agree modulo a subspace $U$, there is an automorphism $S$ with $SX_0=X_1$ and $\im(S-I)\subseteq U$: their preimages of $U$ coincide, the induced isomorphism of their images inside $U$ extends to an automorphism of $U$, then compatibly to $U+\im X_0=U+\im X_1$, and by the identity on a complement. With $U=\im(X_1-X_0)$ the displacement factors as $S-I=(X_1-X_0)D$. Dually there is an invertible $T$ with $Y_1T=Y_0$ and $T-I=W(Y_1-Y_0)$.
+
+Write $L_i=G_i+zI$, $\Delta X=X_1-X_0$, $\Delta Y=Y_1-Y_0$ and $\Delta G=G_1-G_0$. Expansion gives the identity
+\[
+L_1T-SL_0=\bigl[I,\ L_1W\bigr]\begin{pmatrix}\Delta G&\Delta X\\ \Delta Y&0\end{pmatrix}\begin{bmatrix}I\\ -DL_0\end{bmatrix}.
+\]
+The choices $Q_0S^{-1}$ and $TK_0$ are valid quotient and kernel maps for $X_1,Y_1$, and the resulting compressed pencil differs from $P_0$ by $Q_0S^{-1}(L_1T-SL_0)K_0$, whose normal rank is at most the bordered rank. Any two full quotients with the same kernel, and any two full injections with the same image, differ by constant invertible maps, so the bound holds for the strict-equivalence classes.
+\end{proof}
+
+\section{Complementary pencils and their contraction}\label{sec:complement}
+
+Let $L(z)=E+zH$ be a pencil whose coefficients have no common right kernel and whose coefficient images span the target. Factor $E=UV$ and $H=XY$ at their ranks, so that $U,X$ are injective and $V,Y$ are onto. Then $[U,X]$ is onto and $[V;Y]$ is injective. Choose a full kernel map $K$ of $[U,X]$ and a full quotient map $Q$ with $\ker Q=\im[V;Y]$, and put
+\begin{equation}\label{eq:complement}
+L^\#(z)=Q\,\operatorname{diag}\bigl(zI_{\rk E},\ I_{\rk H}\bigr)\,K .
+\end{equation}
+This determines a strict-equivalence class: other rank factorizations change the internal spaces by a block-diagonal automorphism that commutes with the diagonal pencil, other kernel and quotient bases give constant strict equivalence, and a common constant equivalence of $E,H$ transports the construction. Intrinsically, the source of $L^\#$ is $H^{-1}(\im E)/\ker H$ and its target is $\im E/E(\ker H)$, with coefficients induced by $E$ and $H$. This is the observation/control reduction of matrix pencils in the form given by Verdier~\cite[\S2.2]{Ver17}; related kernel-based dualities are developed by Noferini and Poloni~\cite{NP15}.
+
+\begin{lemma}\label{lem:contract}
+Suppose $L_i=E+zH_i$ for $i=0,1$ share $E$, that $\rk E=\rk H_0=\rk H_1=N$, and that both pairs satisfy the kernel and image conditions above. Then
+\begin{equation}\label{eq:contract}
+\delta(L_1^\#,L_0^\#)\le\rk(H_1-H_0).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Normalize $E$ to $\operatorname{diag}(I_N,0)$ by a common constant equivalence. Further common shears that keep $E$ make the leading $N\times N$ blocks of both $H_i$ invertible: factor $H_i$ through $N$-dimensional spaces; for each injective factor some left graph $[I,U]$ makes it invertible, and interpolating between two such choices gives one graph that works for both. Dually one right graph $[I;V]$ works for both surjective factors, and the infinitely many field elements avoid the finitely many determinant roots simultaneously. In this common chart
+\[
+H_i=\begin{pmatrix}G_i&B_i\\ C_i&C_iG_i^{-1}B_i\end{pmatrix},
+\]
+where the lower-right block is forced by $\rk H_i=N$. The kernel condition makes $B_i$ of full column rank and the image condition makes $C_i$ of full row rank. Put
+\[
+\Phi(H_i)=\begin{pmatrix}G_i^{-1}&-G_i^{-1}B_i\\ C_iG_i^{-1}&0\end{pmatrix}.
+\]
+Block multiplication gives
+\[
+\Phi(H_1)-\Phi(H_0)=
+\begin{pmatrix}-G_1^{-1}&0\\ -C_1G_1^{-1}&I\end{pmatrix}(H_1-H_0)
+\begin{pmatrix}G_0^{-1}&-G_0^{-1}B_0\\ 0&I\end{pmatrix},
+\]
+and the outer factors are invertible, so the rank of the difference is preserved exactly. Choose $Q_i,K_i$ with $\ker Q_i=\im(G_i^{-1}B_i)$ and $\im K_i=\ker(C_iG_i^{-1})$. In \eqref{eq:complement} the kernel and quotient may be taken as $[-K_i;\ G_i^{-1}K_i]$ and $[-Q_i,\ Q_i]$, whose product with the diagonal pencil is $Q_i(G_i^{-1}+zI)K_i$. Lemma~\ref{lem:static} with $X_i=-G_i^{-1}B_i$, $Y_i=C_iG_i^{-1}$ and the pivoted matrices, together with the rank identity above, gives \eqref{eq:contract}. Invariance of \eqref{eq:complement} removes every choice of chart and factorization.
+\end{proof}
+
+\section{Recovery from the dilation and the converse}\label{sec:converse}
+
+Write $V=F^n$, $W=F^m$, $\Delta=c-d$, $A_d=A(d)$ and $A_c=A(c)$. The evaluated dilation coefficients $E=K(A)(d)$ and $H=K(A)(c)$ factor through $J=V\oplus W$:
+\begin{align*}
+U_E(u,w)&=(A_du+w,\ \Delta w,\ u), & V_E(u,v,w)&=(u,w),\\
+U_H(k,h)&=(h,\ 0,\ k), & V_H(u,v,w)&=(u-\Delta v,\ A_cu+w).
+\end{align*}
+The left factors are injective and the right factors onto, so $E$ and $H$ both have rank $m+n$. Since $\Delta\ne0$, their common kernel is zero and their images span the target. A kernel and a quotient for the construction of Section~\ref{sec:complement} are
+\[
+\widehat K x=\bigl((x,0),(-x,-A_dx)\bigr),\qquad \widehat Q\bigl((u,w),(k,h)\bigr)=A_cu+w-h:
+\]
+indeed $\ker[U_E,U_H]=\im\widehat K$ and $\ker\widehat Q=\im[V_E;V_H]$, the latter using $\Delta\ne0$ to solve $v=(u-k)/\Delta$. Consequently
+\begin{equation}\label{eq:recover}
+\widehat Q\,\operatorname{diag}(zI,I)\,\widehat K=A_d+zA_c .
+\end{equation}
+This holds for every $A$, including anchors in the spectrum, and does not use any identification with barred pencils.
+
+\begin{proof}[Proof of the converse in Theorem~\ref{thm:main}]
+Assume $K(A)\cmp K(B)\oplus(t-d)I_x$. Both dilations have rank $m+n$ at $d$, so Lemma~\ref{lem:extract} with $X=K(A)$ and $Y=K(B)$ gives a constant $E_0$ with $\rk E_0\le x$ and
+\[
+L_1=K(A),\qquad L_0=K(A)-(t-d)E_0\sim K(B).
+\]
+Apply the common invertible coefficient change $\widetilde L_i(z)=L_i(d)+zL_i(c)$, of determinant $c-d$. The common constant coefficient has rank $m+n$, both leading coefficients have that rank, and the kernel and image conditions follow from the explicit factorizations and strict equivalence. Moreover $H_1-H_0=(c-d)E_0$. By \eqref{eq:recover} the complements lie in the classes of $A(d)+zA(c)$ and $B(d)+zB(c)$, so Lemma~\ref{lem:contract} gives
+\[
+\delta\bigl(A(d)+zA(c),\ B(d)+zB(c)\bigr)\le\rk\bigl((c-d)E_0\bigr)\le x .
+\]
+Invariance of $\delta$ under coefficient changes (Section~\ref{sec:basic}) returns this to $\delta(A,B)\le x$.
+\end{proof}
+
+\section{Relation to the conjecture of Dodig and Sto\v{s}i\'c}\label{sec:conjecture}
+
+Over an algebraically closed field, let $\bar A$ denote the class obtained from $A$ by increasing every left and right minimal index by one while keeping the nontrivial homogeneous invariant factors, as in~\cite[Definition~2.1]{DS25}. If $c,d$ are distinct and not eigenvalues of $A$, and $r$ is the normal rank of $A$, strong block minimal bases theory gives
+\begin{equation}\label{eq:bar}
+K_{c,d}(A)\sim\bar A\oplus(t-c)I_r\oplus(t-d)I_r .
+\end{equation}
+Use the dual minimal bases $[I,\ -(t-d)I]$ and $[(t-d)I;\ I]$ and the corresponding pair at $c$ in Theorems~3.3 and~3.6 of Dopico, Lawrence, P\'erez and Van Dooren~\cite{DLPV18}. The resulting strong linearization of $(t-c)(t-d)A$ in grade three shifts both lists of minimal indices by one and, at the two anchors outside the spectrum, adds $r$ simple elementary divisors each. Reversal in grade three multiplies $\operatorname{rev}_1A$ by $(1-cs)(1-ds)$ and so preserves the infinite elementary divisors. This proves \eqref{eq:bar} from the cited theorem.
+
+For pencils $B$ and $C$ of normal ranks $n+\rho$ and $n$ as in~\cite{DS25}, and $x\ge\rho$, the right side of \eqref{eq:main} becomes
+\[
+\bar B\oplus(t-c)I_{n+\rho}\oplus(t-d)I_{n+\rho}\ \cmp\ \bar C\oplus(t-c)I_n\oplus(t-d)I_{n+x}.
+\]
+Cancelling the common summand $(t-c)I_n\oplus(t-d)I_{n+\rho}$ by Lemma~\ref{lem:cancel} gives
+\[
+\delta(B,C)\le x\quad\Longleftrightarrow\quad \bar B\oplus(t-c)I_\rho\ \cmp\ \bar C\oplus(t-d)I_{x-\rho},
+\]
+which is the substantive assertion of Conjecture~1 of~\cite{DS25}, equations~(5.38)--(5.39). Dodig and Sto\v{s}i\'c proved it when the rank bound is one, for pencils of full row rank, and when the bound equals the rank distance~\cite{DS25}.
+
+\begin{corollary}
+The equivalence (5.38)--(5.39) conjectured by Dodig and Sto\v{s}i\'c~\cite[Conjecture~1]{DS25} holds over every algebraically closed field.
+\end{corollary}
+
+The corollary rests on Theorem~\ref{thm:main}, Lemma~\ref{lem:cancel} and the cited identification~\eqref{eq:bar}; the latter is not formalized here. Theorem~\ref{thm:main} also covers infinite fields that are not algebraically closed and anchors in the spectrum. There \eqref{eq:bar} cannot be used: for $A=t-c$ the dilation $K(A)$ has Smith form $\operatorname{diag}\bigl(1,1,(t-c)^2(t-d)\bigr)$, whereas $A\oplus(t-c)\oplus(t-d)$ has a second determinantal divisor divisible by $t-c$. The proof of the converse avoids this through the direct recovery~\eqref{eq:recover}.
+
+\section{Formal verification}\label{sec:lean}
+
+The package contains two Lean projects that pin Lean~4.35.0-rc3 and the Mathlib commit
+\begin{center}\code{0db6cb99b412983de54b59ecc1b0b2747542cda3}.\end{center}
+ The project \code{lean_p1} proves the cancellation of Lemma~\ref{lem:cancel} for rectangular matrix families over an infinite field (\code{MatCP1.matrix_common_summand_cancellation}). The project \code{lean_p1_converse} depends on it and proves Theorem~\ref{thm:main}. Its endpoint \code{MatCP1Converse.dilation_rank_distance_iff} states, for an infinite field, arbitrary finite index types, distinct $c,d$ and every natural number $k$, that \code{Pencil.orbitDistance} of the two pencils is at most $k$ if and only if there are matrices $P$ and $Q$ with \code{P.mulVec} surjective, \code{Q.mulVec} injective and the two literal coefficient equations for $K_{c,d}(A)$ and $K_{c,d}(B)\oplus(t-d)I_k$. Here \code{Pencil.normalRank} is the rank over \code{RatFunc F} of $A_0+XA_1$, \code{Pencil.orbitDistance} is the least $x$ for which representatives of both strict-equivalence classes have normal-rank difference at most $x$, and strict equivalence uses constant matrices with two-sided inverses. The equivalent family forms are \code{matrix_dilation_completion_iff} and \code{matrix_dilation_completion_iff_nat}.
+
+Every step of Sections~\ref{sec:basic}--\ref{sec:converse} is proved inside the formal development; no canonical form, rank factorization, chart or complement is assumed as a hypothesis of the endpoint. The identification~\eqref{eq:bar} with barred pencils and the corollary are not formalized. Each project's script \code{verify.sh} rebuilds the project, rejects \code{sorry}, \code{admit}, axioms and \code{native_decide} in the sources and prints the axioms of every exported theorem; only \code{propext}, \code{Classical.choice} and \code{Quot.sound} occur. The package README gives the commands. Lean verification establishes only the formal statements described here.
+
+\section{Prior work and limits}\label{sec:novelty}
+
+The dilation $K_{c,d}$ belongs to the block minimal bases linearizations of Dopico, Lawrence, P\'erez and Van Dooren~\cite{DLPV18}; the complementary construction of Section~\ref{sec:complement} is the observation/control reduction of Verdier~\cite{Ver17}, with related dualities in Noferini and Poloni~\cite{NP15}; the decomposition of Lemma~\ref{lem:decomp}, generic-rank arguments and principal pivoting are standard. Sz\'ant\'o and Sz\"oll\H{o}si~\cite{SS13} treat subpencils and one-sided criteria. These ingredients are not claimed. What is offered is their combination into Theorem~\ref{thm:main}: the anchor interchange~\eqref{eq:swap}, the cancellation of Lemma~\ref{lem:cancel} in this generality, the fixed-factor extraction, the contraction estimate~\eqref{eq:contract} and the recovery~\eqref{eq:recover}.
+
+The novelty assessment is provisional. Three directly relevant articles could not be read in full during the literature comparison: Dodig and Sto\v{s}i\'c on minimal rank perturbations~\cite{DS25b}, Dodig on completions of size two~\cite{Dod26} and Sz\'ant\'o on submodules of Kronecker modules~\cite{Sza18}. Some of their results may overlap with parts of the argument, in particular with the cancellation lemma. Searches in October 2026 found no general proof of the conjecture, but a search cannot establish that none exists. No priority is claimed, and no expert has reviewed the result.
+
+\section*{Research process and AI disclosure}
+This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
+
+The theorem, its proof, the Lean formalization, the literature searches and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session state that two of its novelty reviews used GPT-6.1 Terra and GPT-6.1 Sol; they do not name the system used for the proof and the formalization.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It compared the Lean definitions of the dilation, the compression relation, normal rank and the orbit distance with the statement of Theorem~\ref{thm:main}, read the complete argument, ran the fresh Lean replay described in Section~\ref{sec:lean}, and rewrote the note in this form. Searches it ran in October 2026 found no published proof of the conjecture; it could not open the arXiv records or the three articles listed in Section~\ref{sec:novelty}, so the comparison with them relies on the earlier session's audit. AI checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:lean}.
+
+\begin{thebibliography}{99}\small
+\bibitem{DS25} M.~Dodig and M.~Sto\v{s}i\'c, Is the bounded rank perturbations problem for matrix pencils just a completion problem?, \emph{Electron.\ J. Linear Algebra} \textbf{41} (2025), 491--510. \href{https://doi.org/10.13001/ela.2025.9593}{doi:10.13001/ela.2025.9593}.
+\bibitem{DS25b} M.~Dodig and M.~Sto\v{s}i\'c, Minimal rank perturbations of matrix pencils, \emph{Linear Algebra Appl.} \textbf{721} (2025), 81--101. \href{https://doi.org/10.1016/j.laa.2025.03.002}{doi:10.1016/j.laa.2025.03.002}.
+\bibitem{Dod26} M.~Dodig, Matrix pencils completions of size two, \emph{Linear Algebra Appl.} \textbf{737} (2026), 119--145. \href{https://doi.org/10.1016/j.laa.2026.02.005}{doi:10.1016/j.laa.2026.02.005}.
+\bibitem{DLPV18} F.~M.~Dopico, P.~W.~Lawrence, J.~P\'erez and P.~Van Dooren, Block Kronecker linearizations of matrix polynomials and their backward errors, \emph{Numer.\ Math.} \textbf{140} (2018), 373--426. \href{https://doi.org/10.1007/s00211-018-0969-z}{doi:10.1007/s00211-018-0969-z}.
+\bibitem{NP15} V.~Noferini and F.~Poloni, Duality of matrix pencils, Wong chains and linearizations, \emph{Linear Algebra Appl.} \textbf{471} (2015), 730--767. \href{https://doi.org/10.1016/j.laa.2015.01.015}{doi:10.1016/j.laa.2015.01.015}.
+\bibitem{SS13} C.~Sz\'ant\'o and I.~Sz\"oll\H{o}si, Preinjective subfactors of preinjective Kronecker modules, preprint (2013). \href{https://arxiv.org/abs/1309.4710}{arXiv:1309.4710}.
+\bibitem{Sza18} C.~Sz\'ant\'o, Submodules of Kronecker modules via extension monoid products, \emph{J. Pure Appl.\ Algebra} \textbf{222} (2018), 3360--3378. \href{https://doi.org/10.1016/j.jpaa.2017.12.012}{doi:10.1016/j.jpaa.2017.12.012}.
+\bibitem{Ver17} O.~Verdier, Extension of matrix pencil reduction to abelian categories, preprint, revised 2017. \href{https://arxiv.org/abs/1604.00272}{arXiv:1604.00272}.
+\end{thebibliography}
+
+\end{document}

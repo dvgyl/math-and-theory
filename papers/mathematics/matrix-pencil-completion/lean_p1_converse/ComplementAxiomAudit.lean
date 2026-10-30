@@ -1,0 +1,25 @@
+import MatCP1Converse.ComplementReindex
+
+#check @MatCP1Converse.complement_chart_coefficients
+#check @MatCP1Converse.complement_factorization_invariance
+#check @MatCP1Converse.exists_common_complement_completed_chart
+#check @MatCP1Converse.complement_common_coefficient_contraction_general
+#check @MatCP1Converse.complement_orbitDistance_contraction
+
+#print axioms MatCP1Converse.complement_chartK_range
+#print axioms MatCP1Converse.complement_chartQ_kernel
+#print axioms MatCP1Converse.complement_chart_coefficients
+#print axioms MatCP1Converse.complement_chart_recover_quotient
+#print axioms MatCP1Converse.complement_chart_recover_kernel
+#print axioms MatCP1Converse.complement_chart_contraction
+#print axioms MatCP1Converse.exists_full_rank_matrix_factorization_equivalence
+#print axioms MatCP1Converse.complement_factorization_invariance
+#print axioms MatCP1Converse.complement_transport_factorization
+#print axioms MatCP1Converse.matrix_block_completed_of_rank
+#print axioms MatCP1Converse.exists_common_complement_completed_chart
+#print axioms MatCP1Converse.ComplementPresentation.ambient
+#print axioms MatCP1Converse.complement_presentation_chart_coordinates
+#print axioms MatCP1Converse.complement_common_coefficient_contraction
+#print axioms MatCP1Converse.ComplementPresentation.reindex
+#print axioms MatCP1Converse.complement_common_coefficient_contraction_general
+#print axioms MatCP1Converse.complement_orbitDistance_contraction

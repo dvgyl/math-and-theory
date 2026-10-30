@@ -1,0 +1,199 @@
+✔ [2565/2602] Built MatCP1Converse.NearbyEmbedding (5.0s)
+✔ [2566/2612] Built MatCP1.GenericRank (4.9s)
+✔ [2567/2612] Built MatCP1Converse.PrincipalPivot (5.2s)
+✔ [2569/2629] Built MatCP1Converse.Pencil (6.1s)
+✔ [2570/2629] Built MatCP1Converse.NearbySurjection (2.0s)
+✔ [2571/2629] Built MatCP1.Compression (3.2s)
+✔ [2572/2629] Built MatCP1Converse.CompletionNormalization (4.5s)
+✔ [2573/2629] Built MatCP1Converse.ParameterChange (4.5s)
+✔ [2574/2629] Built MatCP1Converse.CommonChart (3.3s)
+✔ [2575/2629] Built MatCP1Converse.MatrixExtension (3.7s)
+✔ [2576/2629] Built MatCP1Converse.CompressionCompletion (2.8s)
+✔ [2577/2629] Built MatCP1.MatrixCompression (3.2s)
+✔ [2578/2629] Built MatCP1Converse.ForwardDilation (6.7s)
+✔ [2579/2629] Built MatCP1.Cancellation (5.3s)
+✔ [2580/2629] Built MatCP1Converse.CompletionDerivative (5.4s)
+✔ [2581/2629] Built MatCP1Converse.OrbitDistance (5.5s)
+✔ [2582/2629] Built MatCP1Converse.RankDecomposition (7.8s)
+✔ [2583/2629] Built MatCP1Converse.RankChart (5.2s)
+✔ [2584/2629] Built MatCP1Converse.CompressionCoordinates (4.6s)
+✔ [2585/2629] Built MatCP1Converse.CoordinateEquivalence (4.8s)
+✔ [2586/2629] Built MatCP1Converse.BorderGraph (6.5s)
+✔ [2587/2629] Built MatCP1Converse.StaticFactor (4.9s)
+✔ [2588/2629] Built MatCP1Converse.ForwardAnchorSwap (4.8s)
+✔ [2589/2629] Built MatCP1.MatrixCancellation (4.4s)
+✔ [2590/2629] Built MatCP1Converse.ForwardDilationRecovery (7.0s)
+✔ [2591/2629] Built MatCP1Converse.ForwardDilationMatrix (8.3s)
+✔ [2592/2629] Built MatCP1Converse.LinearStrictCancellation (4.1s)
+✔ [2593/2629] Built MatCP1Converse.TransformRank (4.1s)
+⚠ [2594/2629] Built MatCP1Converse.RankNormalization (4.7s)
+warning: MatCP1Converse/RankNormalization.lean:24:0: automatically included section variable(s) unused in theorem `MatCP1Converse.exists_matrix_full_rank_factorization`:
+  [Fintype r]
+  [DecidableEq r]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype r] [DecidableEq r] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [2595/2629] Built MatCP1Converse.CompletionGraph (5.7s)
+✔ [2596/2629] Built MatCP1Converse.ReachableFactorization (9.5s)
+⚠ [2597/2629] Built MatCP1Converse.StaticCompression (7.6s)
+warning: MatCP1Converse/StaticCompression.lean:82:0: automatically included section variable(s) unused in theorem `MatCP1Converse.exists_valid_static_compression_bound`:
+  [Fintype a]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype a] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [2598/2629] Built MatCP1Converse.ForwardCombination (4.8s)
+✔ [2599/2629] Built MatCP1Converse.StrictCancellation (3.3s)
+✔ [2600/2629] Built MatCP1Converse.CompletionRank (4.1s)
+✔ [2601/2629] Built MatCP1Converse.ForwardPadding (5.3s)
+✔ [2602/2629] Built MatCP1Converse.CompletionSchur (4.8s)
+✔ [2603/2629] Built MatCP1Converse.RankSpecialization (5.3s)
+✔ [2604/2629] Built MatCP1Converse.StaticEquivalence (3.6s)
+✔ [2605/2629] Built MatCP1Converse.ForwardAnchorSwapMatrix (2.8s)
+✔ [2606/2629] Built MatCP1Converse.ForwardDilationPencil (4.5s)
+✔ [2607/2629] Built MatCP1Converse.ForwardCombinationMatrix (4.8s)
+✔ [2608/2629] Built MatCP1Converse.CompletionExtraction (3.2s)
+✔ [2609/2629] Built MatCP1Converse.PencilMixedFactors (3.6s)
+✔ [2610/2629] Built MatCP1Converse.PivotCompression (3.2s)
+ℹ [2611/2629] Built MatCP1Converse.RankDecompositionAudit (2.0s)
+info: MatCP1Converse/RankDecompositionAudit.lean:5:0: MatCP1Converse.normalized_pencil_all_moments.{u_1, u_2, u_3, u_4} {F : Type u_1} {n : Type u_2} {p : Type u_3}
+  {q : Type u_4} [Field F] [Fintype n] [Fintype q] [DecidableEq n] (A : Matrix n n F) (B : Matrix n q F)
+  (C : Matrix p n F) (D : Matrix p q F)
+  (hRank : (MatCP1Converse.rankNormalizedPencil A B C D).normalRank ≤ Fintype.card n) :
+  D = 0 ∧ ∀ (j : ℕ), C * A ^ j * B = 0
+info: MatCP1Converse/RankDecompositionAudit.lean:6:0: MatCP1Converse.normalized_pencil_mixed_factorization.{u_1, u_2, u_3, u_4} {F : Type u_1} {n : Type u_2} {p : Type u_3}
+  {q : Type u_4} [Field F] [Fintype n] [Fintype q] [DecidableEq n] [DecidableEq q] (A : Matrix n n F) (B : Matrix n q F)
+  (C : Matrix p n F) (D : Matrix p q F)
+  (hRank : (MatCP1Converse.rankNormalizedPencil A B C D).normalRank ≤ Fintype.card n) :
+  ∃ a b U V R0 R1 L0 L1,
+    a + b = Fintype.card n ∧
+      Function.Injective U.mulVec ∧
+        Function.Surjective V.mulVec ∧
+          Matrix.fromBlocks 1 0 0 0 = U * R0 + L0 * V ∧ Matrix.fromBlocks A B C D = U * R1 + L1 * V
+info: MatCP1Converse/RankDecompositionAudit.lean:7:0: MatCP1Converse.Pencil.exists_rank_mixed_factorization.{u_1, u_2, u_3} {F : Type u_1} {m : Type u_2} {n : Type u_3}
+  [Field F] [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] [Infinite F] (A : MatCP1Converse.Pencil F m n) :
+  ∃ a b U V R0 R1 L0 L1, a + b = A.normalRank ∧ A.1 = U * R0 + L0 * V ∧ A.2 = U * R1 + L1 * V
+info: MatCP1Converse/RankDecompositionAudit.lean:9:0: 'MatCP1Converse.normalized_pencil_all_moments' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MatCP1Converse/RankDecompositionAudit.lean:10:0: 'MatCP1Converse.normalized_pencil_mixed_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MatCP1Converse/RankDecompositionAudit.lean:11:0: 'MatCP1Converse.Pencil.exists_rank_mixed_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [2612/2629] Built MatCP1Converse.CompletionShift (3.4s)
+✔ [2613/2629] Built MatCP1Converse.ComplementChart (4.8s)
+✔ [2614/2629] Built MatCP1Converse.CompletionMatrix (6.3s)
+✔ [2615/2629] Built MatCP1Converse.ComplementCoordinates (3.7s)
+✔ [2616/2629] Built MatCP1Converse.ComplementInvariance (3.0s)
+✔ [2617/2629] Built MatCP1Converse.CompletionSubpencil (4.7s)
+⚠ [2618/2629] Built MatCP1Converse.ComplementNormalization (2.6s)
+warning: MatCP1Converse/ComplementNormalization.lean:18:0: automatically included section variable(s) unused in theorem `MatCP1Converse.matrix_block_completed_of_rank`:
+  [Fintype p]
+  [DecidableEq p]
+  [DecidableEq m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype p] [DecidableEq p] [DecidableEq m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MatCP1Converse/ComplementNormalization.lean:59:0: automatically included section variable(s) unused in theorem `MatCP1Converse.complement_chartB_injective_of_joint`:
+  [Fintype p]
+  [DecidableEq p]
+  [DecidableEq m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype p] [DecidableEq p] [DecidableEq m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MatCP1Converse/ComplementNormalization.lean:74:0: automatically included section variable(s) unused in theorem `MatCP1Converse.complement_chartC_surjective_of_joint`:
+  [Fintype p]
+  [DecidableEq p]
+  [DecidableEq m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype p] [DecidableEq p] [DecidableEq m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2619/2629] Built MatCP1Converse.ComplementAmbient (2.7s)
+warning: MatCP1Converse/ComplementAmbient.lean:31:0: automatically included section variable(s) unused in theorem `MatCP1Converse.complement_ambient_data`:
+  [Fintype a]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype a] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2620/2629] Built MatCP1Converse.ComplementPresentation (3.1s)
+warning: MatCP1Converse/ComplementPresentation.lean:88:0: automatically included section variable(s) unused in theorem `MatCP1Converse.complement_presentation_chart_coordinates`:
+  [Fintype a]
+  [Fintype p]
+  [DecidableEq p]
+  [DecidableEq m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype a] [Fintype p] [DecidableEq p] [DecidableEq m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2621/2629] Built MatCP1Converse.ComplementCommonChart (3.5s)
+warning: MatCP1Converse/ComplementCommonChart.lean:21:0: automatically included section variable(s) unused in theorem `MatCP1Converse.complementBlockMap_apply`:
+  [Fintype p]
+  [DecidableEq n]
+  [DecidableEq p]
+  [DecidableEq m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype p] [DecidableEq n] [DecidableEq p] [DecidableEq m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MatCP1Converse/ComplementCommonChart.lean:28:0: automatically included section variable(s) unused in theorem `MatCP1Converse.exists_common_complement_graph`:
+  [DecidableEq m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MatCP1Converse/ComplementCommonChart.lean:63:26: This simp argument is unused:
+  complementBlockMap_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [← Matrix.mulVec_mulVec, fromCols_mulVec, fromRows_mulVec, Matrix.one_mulVec, hu, hv,
+    LinearMap.comp_apply, LinearMap.prod_apply, LinearMap.id_apply, LinearMap.coprod_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+✔ [2622/2629] Built MatCP1Converse.ComplementContraction (3.3s)
+✔ [2623/2629] Built MatCP1Converse.ForwardDilationRecoveryMatrix (6.5s)
+⚠ [2624/2629] Built MatCP1Converse.ComplementReindex (3.0s)
+warning: MatCP1Converse/ComplementReindex.lean:17:0: automatically included section variable(s) unused in theorem `MatCP1Converse.complement_submatrix_injective`:
+  [Fintype o]
+  [Fintype o']
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype o] [Fintype o'] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MatCP1Converse/ComplementReindex.lean:31:0: automatically included section variable(s) unused in theorem `MatCP1Converse.complement_submatrix_surjective`:
+  [Fintype o]
+  [Fintype o']
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype o] [Fintype o'] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MatCP1Converse/ComplementReindex.lean:44:0: automatically included section variable(s) unused in theorem `MatCP1Converse.complement_submatrix_range`:
+  [Fintype o]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype o] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MatCP1Converse/ComplementReindex.lean:59:0: automatically included section variable(s) unused in theorem `MatCP1Converse.complement_submatrix_kernel`:
+  [Fintype o]
+  [Fintype o']
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype o] [Fintype o'] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MatCP1Converse/ComplementReindex.lean:129:0: automatically included section variable(s) unused in theorem `MatCP1Converse.complement_common_coefficient_contraction_general`:
+  [DecidableEq o]
+  [DecidableEq i]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq o] [DecidableEq i] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2625/2629] Built MatCP1Converse.RawDilationConverse (3.4s)
+warning: MatCP1Converse/RawDilationConverse.lean:32:0: automatically included section variable(s) unused in theorem `MatCP1Converse.raw_dilation_rank_smul_le`:
+  [DecidableEq i]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq i] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [2626/2629] Built MatCP1Converse.RawDilationForward (118s)
+✔ [2627/2629] Built MatCP1Converse.DilationTheorem (3.4s)
+✔ [2628/2629] Built MatCP1Converse (2.6s)
+Build completed successfully (2629 jobs).

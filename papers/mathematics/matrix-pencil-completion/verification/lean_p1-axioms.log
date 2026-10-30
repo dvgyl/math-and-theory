@@ -1,0 +1,28 @@
+theorem MatCP1.matrix_common_summand_cancellation.{u_1, u_2, u_3, u_4, u_5, u_6, u_7, u_8} : ∀ {F : Type u_1}
+  {I : Type u_2} {m : Type u_3} {n : Type u_4} {p : Type u_5} {q : Type u_6} {u : Type u_7} {v : Type u_8}
+  [inst : Field F] [Infinite F] [Fintype m] [inst_3 : Fintype n] [inst_4 : Fintype p] [inst_5 : Fintype q]
+  [inst_6 : Fintype u] [inst_7 : Fintype v] (A : I → Matrix m n F) (B : I → Matrix p q F) (S : I → Matrix u v F)
+  (P : Matrix (m ⊕ u) (p ⊕ u) F) (Q : Matrix (q ⊕ v) (n ⊕ v) F),
+  Function.Surjective P.mulVec →
+    Function.Injective Q.mulVec →
+      (∀ (i : I), P * Matrix.fromBlocks (B i) 0 0 (S i) * Q = Matrix.fromBlocks (A i) 0 0 (S i)) →
+        ∃ P' Q', Function.Surjective P'.mulVec ∧ Function.Injective Q'.mulVec ∧ ∀ (i : I), P' * B i * Q' = A i :=
+<not imported>
+theorem MatCP1.matrixJointCompression_common_summand_iff.{u_1, u_2, u_3, u_4, u_5, u_6, u_7, u_8} : ∀ {F : Type u_1}
+  {I : Type u_2} {m : Type u_3} {n : Type u_4} {p : Type u_5} {q : Type u_6} {u : Type u_7} {v : Type u_8}
+  [inst : Field F] [Infinite F] [Fintype m] [inst_3 : Fintype n] [inst_4 : Fintype p] [inst_5 : Fintype q]
+  [inst_6 : Fintype u] [inst_7 : Fintype v] (A : I → Matrix m n F) (B : I → Matrix p q F) (S : I → Matrix u v F),
+  (MatCP1.MatrixJointCompression (fun i => Matrix.fromBlocks (A i) 0 0 (S i)) fun i =>
+      Matrix.fromBlocks (B i) 0 0 (S i)) ↔
+    MatCP1.MatrixJointCompression A B :=
+<not imported>
+'MatCP1.eventually_bijective_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1.eventually_injective_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1.eventually_surjective_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1.jointCompression_of_subquotient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1.jointCompression_of_common_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1.jointCompression_of_common_summand_diagram' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1.jointCompression_cancel_common_summand' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1.jointCompression_common_summand_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1.matrixJointCompression_common_summand_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1.matrix_common_summand_cancellation' depends on axioms: [propext, Classical.choice, Quot.sound]

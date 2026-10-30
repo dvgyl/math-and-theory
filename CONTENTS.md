@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**41 manuscripts and research notes across 40 result families in mathematics, theoretical computer science, and mathematical physics.**
+**42 manuscripts and research notes across 41 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -53,6 +53,18 @@ Three rank-one orthogonal projections in dimension three violate the symmetrized
 **Formal scope.** Lean verifies a rational three-projection matrix obstruction and a parameterized obstruction for every real multiplier in dimension three; rank-one, positive-definite mean, rational all-multiplier choices, and the standard minimal-factor observation have complete conventional proofs.
 
 [Paper PDF](papers/mathematics/projection-amgm/paper.pdf) · [LaTeX](papers/mathematics/projection-amgm/paper.tex) · [Citation](papers/mathematics/projection-amgm/CITATION.bib) · [Proof and reproduction](papers/mathematics/projection-amgm/README.md)
+
+#### [Matrix-pencil rank distance as an explicit completion problem](papers/mathematics/matrix-pencil-completion/manuscript.pdf)
+
+**Family:** `matrix-pencil-completion`.
+
+Let A and B be m × n matrix pencils over an infinite field and δ(A, B) the least normal rank of A′ − B′ over pencils A′, B′ strictly equivalent to A, B. For distinct c, d and every x ≥ 0, δ(A, B) ≤ x exactly when an explicit (2m+n) × (2n+m) dilation K_{c,d}(A) is obtained from K_{c,d}(B) ⊕ (t − d)I_x by one constant full-row-rank and one constant full-column-rank matrix. No regularity, rank or spectral condition is imposed, and the anchors may be eigenvalues. Over an algebraically closed field and at anchors outside the spectra, a known block minimal bases theorem turns this into Conjecture 1 of Dodig and Stošić: the bounded rank perturbation problem for matrix pencils is a completion problem.
+
+**Formal scope.** The explicit equivalence over every infinite field, for arbitrary rectangular pencils, every border size and distinct anchors including eigenvalues, and the common-summand cancellation are formalized in two Lean projects. The identification with the barred pencils of the conjecture uses a published linearization theorem and is not formalized.
+
+**Prior work.** [Dodig and Stošić, 2025.](https://doi.org/10.13001/ela.2025.9593)
+
+[Paper PDF](papers/mathematics/matrix-pencil-completion/manuscript.pdf) · [LaTeX](papers/mathematics/matrix-pencil-completion/manuscript.tex) · [Proof and reproduction](papers/mathematics/matrix-pencil-completion/README.md) · [Citation](papers/mathematics/matrix-pencil-completion/CITATION.bib)
 
 ### Graph theory and graph polynomials
 

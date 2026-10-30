@@ -1,0 +1,8 @@
+module
+
+import MatCP1Converse.LinearStrictCancellation
+
+set_option pp.deepTerms true
+
+#print MatCP1Converse.linear_strict_common_summand_cancellation
+#print axioms MatCP1Converse.linear_strict_common_summand_cancellation

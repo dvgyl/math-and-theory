@@ -1,0 +1,1543 @@
+{
+  "recorded_utc": "2026-10-30T18:42:17.857119+00:00",
+  "build_started_utc": "2026-10-30T18:39:07Z",
+  "fresh_build_exit_code": 0,
+  "axiom_audit_exit_code": 0,
+  "scope": "Complete explicit dilation rank-distance/completion equivalence over every infinite field, arbitrary rectangular pencils and border sizes, distinct anchors without spectral avoidance; all structural inputs derived internally. Original barred/Kronecker correspondence remains ordinary mathematics, not Lean formalized.",
+  "full_raw_dilation_theorem_formalized": true,
+  "full_P1_barred_formulation_formalized": false,
+  "novelty_verdict": "unresolved",
+  "lean": "4.35.0-rc3",
+  "lean_commit": "470d5ce1400764999581fd26d5d72b00d990b0f4",
+  "mathlib": "0db6cb99b412983de54b59ecc1b0b2747542cda3",
+  "reproduction_command": "bash verify.sh",
+  "freshly_built_modules": [
+    "MatCP1Converse",
+    "MatCP1Converse.BorderGraph",
+    "MatCP1Converse.CommonChart",
+    "MatCP1Converse.ComplementAmbient",
+    "MatCP1Converse.ComplementChart",
+    "MatCP1Converse.ComplementCommonChart",
+    "MatCP1Converse.ComplementContraction",
+    "MatCP1Converse.ComplementCoordinates",
+    "MatCP1Converse.ComplementInvariance",
+    "MatCP1Converse.ComplementNormalization",
+    "MatCP1Converse.ComplementPresentation",
+    "MatCP1Converse.ComplementReindex",
+    "MatCP1Converse.CompletionDerivative",
+    "MatCP1Converse.CompletionExtraction",
+    "MatCP1Converse.CompletionGraph",
+    "MatCP1Converse.CompletionMatrix",
+    "MatCP1Converse.CompletionNormalization",
+    "MatCP1Converse.CompletionRank",
+    "MatCP1Converse.CompletionSchur",
+    "MatCP1Converse.CompletionShift",
+    "MatCP1Converse.CompletionSubpencil",
+    "MatCP1Converse.CompressionCompletion",
+    "MatCP1Converse.CompressionCoordinates",
+    "MatCP1Converse.CoordinateEquivalence",
+    "MatCP1Converse.DilationTheorem",
+    "MatCP1Converse.ForwardAnchorSwap",
+    "MatCP1Converse.ForwardAnchorSwapMatrix",
+    "MatCP1Converse.ForwardCombination",
+    "MatCP1Converse.ForwardCombinationMatrix",
+    "MatCP1Converse.ForwardDilation",
+    "MatCP1Converse.ForwardDilationMatrix",
+    "MatCP1Converse.ForwardDilationPencil",
+    "MatCP1Converse.ForwardDilationRecovery",
+    "MatCP1Converse.ForwardDilationRecoveryMatrix",
+    "MatCP1Converse.ForwardPadding",
+    "MatCP1Converse.LinearStrictCancellation",
+    "MatCP1Converse.MatrixExtension",
+    "MatCP1Converse.NearbyEmbedding",
+    "MatCP1Converse.NearbySurjection",
+    "MatCP1Converse.OrbitDistance",
+    "MatCP1Converse.ParameterChange",
+    "MatCP1Converse.Pencil",
+    "MatCP1Converse.PencilMixedFactors",
+    "MatCP1Converse.PivotCompression",
+    "MatCP1Converse.PrincipalPivot",
+    "MatCP1Converse.RankChart",
+    "MatCP1Converse.RankDecomposition",
+    "MatCP1Converse.RankDecompositionAudit",
+    "MatCP1Converse.RankNormalization",
+    "MatCP1Converse.RankSpecialization",
+    "MatCP1Converse.RawDilationConverse",
+    "MatCP1Converse.RawDilationForward",
+    "MatCP1Converse.ReachableFactorization",
+    "MatCP1Converse.StaticCompression",
+    "MatCP1Converse.StaticEquivalence",
+    "MatCP1Converse.StaticFactor",
+    "MatCP1Converse.StrictCancellation",
+    "MatCP1Converse.TransformRank"
+  ],
+  "unexported_source_modules": [],
+  "printed_actual_statements": [
+    "MatCP1Converse.Pencil.generic",
+    "MatCP1Converse.Pencil.normalRank",
+    "MatCP1Converse.Pencil.StrictEquivalent",
+    "MatCP1Converse.Pencil.BoundedDistance",
+    "MatCP1Converse.Pencil.orbitDistance_le_iff",
+    "MatCP1.MatrixJointCompression",
+    "MatCP1Converse.matrixDilationConstant",
+    "MatCP1Converse.matrixDilationLinear",
+    "MatCP1Converse.Pencil.dilate",
+    "MatCP1Converse.matrix_dilation_completion_iff",
+    "MatCP1Converse.matrix_dilation_completion_iff_nat",
+    "MatCP1Converse.dilation_rank_distance_iff",
+    "MatCP1Converse.matrix_dilation_completion_forward",
+    "MatCP1Converse.matrix_dilation_completion_converse",
+    "MatCP1Converse.Pencil.exists_rank_mixed_factorization",
+    "MatCP1Converse.Pencil.exists_rank_evaluation_eq",
+    "MatCP1Converse.normalized_pencil_all_moments",
+    "MatCP1Converse.normalized_pencil_mixed_factorization",
+    "MatCP1Converse.Pencil.normalRank_coefficientChange",
+    "MatCP1Converse.Pencil.orbitDistance_coefficientChange",
+    "MatCP1Converse.matrix_subpencil_extract_fixed_factor",
+    "MatCP1Converse.complement_common_coefficient_contraction_general",
+    "MatCP1Converse.complement_orbitDistance_contraction",
+    "MatCP1Converse.matrix_dilation_complement_presentation",
+    "MatCP1Converse.ComplementPresentation",
+    "MatCP1Converse.static_compression_strict_equivalence_bound",
+    "MatCP1Converse.principalPivot_sub_rank",
+    "MatCP1.matrix_common_summand_cancellation"
+  ],
+  "audited_declarations": 276,
+  "allowed_foundational_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "axiom_audits": {
+    "MatCP1Converse.Pencil.MixedFactorizationAt.submatrix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.MixedFactorizationAt.transform": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.MixedFactorizationAt.unshift": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.boundedDistance_coefficientChange_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.boundedDistance_mono": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.coefficientChange_adjugate": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.coefficientChange_injective": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.coefficientChange_sub": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.coefficientChange_surjective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.coefficientChange_transform": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.const_add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.const_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.const_rank_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.const_sub": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.const_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.dilate_family_strictEquivalence": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.exists_boundedDistance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.exists_rank_evaluation_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.exists_rank_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.exists_rank_mixed_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.generic_add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.generic_coefficientChange": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.generic_left_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.generic_right_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.generic_sub": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.generic_transform": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.generic_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.matrix_rank_add_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.mixedFactorizationAt_of_rank_constant": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.normalRank_add_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.normalRank_coefficientChange": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.normalRank_coefficientChange_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.normalRank_eq_of_strictEquivalent": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.normalRank_left_factor_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.normalRank_right_factor_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.normalRank_scale": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.normalRank_submatrix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.normalRank_transform": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.normalRank_transform_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.normalRank_two_anchor_change": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.normalRank_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.orbitDistance_coefficientChange": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.orbitDistance_le_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.parameterHom_C": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.parameterHom_X": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.parameter_denominator_ne_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.polynomialMatrix_eval": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.polynomialMatrix_generic": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.strictEquivalent_coefficientChange_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.strictEquivalent_dilate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.strictEquivalent_refl": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.strictEquivalent_symm": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.Pencil.strictEquivalent_trans": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.all_moments_zero_of_adjugate_transfer_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.block_schur_eq_of_rank_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complementBlockMap_apply": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_ambient_data": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_chartB_injective_of_joint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_chartC_surjective_of_joint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_chartK_injective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_chartK_range": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_chartQ_kernel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_chartQ_surjective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_chartS_surjective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_chartT_injective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_chart_coefficients": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_chart_contraction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_chart_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_chart_recover_kernel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_chart_recover_quotient": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_common_coefficient_contraction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_common_coefficient_contraction_general": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_coordinate_invariance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_factorization_invariance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_internal_transport_coefficients": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_joint_injective_transport": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_joint_surjective_transport": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_matrix_inverse_of_bijective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_mulVec_injective_of_inverse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_mulVec_surjective_of_inverse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_normalized_coefficient_contraction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_orbitDistance_contraction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_presentation_chart_coordinates": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_rank_constant_equivalence": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_submatrix_injective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_submatrix_kernel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_submatrix_range": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_submatrix_surjective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.complement_transport_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completionLowerShear_apply": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completionUpperShear_apply": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completion_border_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completion_decompose": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completion_derivative_rank_ge_scalar_summand": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completion_derivative_rank_le_border": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completion_extract_centered": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completion_extract_fixed_factor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completion_finrank_range_comp_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completion_finrank_range_equiv": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completion_finrank_range_prod_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completion_graph_shear_pair": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completion_invertible_normalized_border": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completion_matrix_blocks_conj": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completion_matrix_compression_to_product": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completion_normalize_pair": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.completion_schur_split": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.compression_difference_identity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationCompression_apply": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationCompression_surjective": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationConstant_apply": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationELeft_apply": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationELeft_injective": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationERight_apply": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationERight_surjective": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationEmbedding_apply": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationEmbedding_injective": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationEval_apply": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationHLeft_apply": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationHLeft_injective": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationHRight_apply": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationHRight_surjective": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationKernelLift_apply": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationKernelLift_injective": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationKernelLift_range": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationLinear_apply": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationQuotient_apply": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationQuotient_ker": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationQuotient_surjective": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationSwapSource_apply": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationSwapSource_comp_reverse": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationSwapTarget_apply": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilationSwapTarget_comp_reverse": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_anchor_coprod_surjective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_anchor_ker_inf": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_anchor_pair_injective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_anchor_range_sup": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_anchor_swap_coefficients": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_complement_constant": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_complement_linear": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_compression_coefficients": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_evaluation": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_factor_E": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_factor_H": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_factors_coprod_surjective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_factors_prod_injective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_rank_at_c": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_rank_at_d": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.dilation_rank_distance_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.eventually_polynomial_rank_eq_generic": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_automorphism_fixed_subspace": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_automorphism_map_embeddings": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_common_complement_completed_chart": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_common_complement_graph": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_common_invertible_cograph": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_common_invertible_graph": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_common_rank_chart": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_embedding_matrix_extension": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_equiv_same_kernel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_equiv_same_range": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_extend_compression_maps": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_factor_of_ker_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_full_rank_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_full_rank_matrix_factorization_equivalence": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_invertible_border_graph": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_invertible_graph": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_kernel_matrix_equivalence": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_lift_of_range_mem": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_matrix_full_rank_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_nearby_automorphism": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_nearby_embedding_factor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_nearby_surjection_factor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_normalized_linear_mixed_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_polynomial_matrix_multiple": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_polynomial_rank_compression": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_polynomial_rank_eq_generic": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_polynomial_rank_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_quotient_matrix_equivalence": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_rank_identity_compression": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_rectangular_rank_normalization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_static_compression_rank_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_surjection_matrix_extension": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.exists_valid_static_compression_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.familyStrictEquivalence_common_summand_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.familyStrictEquivalence_iff_matrixCompression": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.forward_jointCompression_remove_unique_middle": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.forward_jointCompression_remove_unique_right": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.forward_jointCompression_trans": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.generic_rankNormalizedPencil": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.injective_of_identity_mod_subspace": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.jointCompression_dilation_anchor_swap": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.jointCompression_dilation_constant_left": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.jointCompression_dilation_constant_right": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.jointCompression_dilation_of_factorized_difference": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.jointCompression_dilation_same_anchor": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.jointCompression_exists_strict_completion": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.linear_strict_common_summand_cancellation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrixDilationConstant_conj": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrixDilationEval_conj": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrixDilationEval_eq_conjMatrix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrixDilationFamily_conj": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrixDilationFamily_unconj": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrixDilationLinear_conj": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrixJointCompression_prodMap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrixJointCompression_submatrix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrixJointCompression_trans": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_block_completed_of_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_completion_extract_fixed_factor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_dilation_anchor_swap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_dilation_completion_converse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_dilation_completion_forward": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_dilation_completion_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_dilation_completion_iff_nat": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_dilation_completion_of_rank_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_dilation_compression_of_factorized_difference": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_dilation_constant_transform": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_dilation_joint_injective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_dilation_joint_surjective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_dilation_linear_transform": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_dilation_rank_at_c": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_dilation_rank_at_d": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_dilation_same_anchor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_map_smul_ring": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_rank_factor_normalize": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_rank_map_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_scalar_sum_padding": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_subpencil_extract_fixed_factor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.matrix_transport_quotient_kernel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.normalized_pencil_all_moments": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.normalized_pencil_mixed_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.pencilReachable_contains_range": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.pencilReachable_invariant": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.pencilReachable_le_kernel": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.pivot_compression_strict_equivalence_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.pivot_left_product": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.pivot_right_product": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.polynomial_matrix_map_injective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.principalPivot_sub_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.principalPivot_sub_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.rankPolynomialAdjugate_eval_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.rankPolynomialConst_eval": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.rankPolynomialConst_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.rankPolynomialConst_rat_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.rankPolynomialConst_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.rankPolynomialDet_eval_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.rankPolynomialResolvent_eval_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.rankPolynomialResolvent_rat_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.rank_blocks_product_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.rank_matrix_map_smul": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.rank_product_to_blocks": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.raw_dilation_rank_smul_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.raw_dilation_rank_transport": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.recoveryConjMatrix_comp": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.recoveryConjMatrix_coprod": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.recoveryConjMatrix_id": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.recoveryConjMatrix_injective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.recoveryConjMatrix_kernel_range": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.recoveryConjMatrix_mulVec": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.recoveryConjMatrix_prod": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.recoveryConjMatrix_prodMap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.recoveryConjMatrix_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.recoveryConjMatrix_surjective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.recoveryConjMatrix_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.scalarMatrixDilationFamily_toLin": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.square_injective_inverse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.square_surjective_inverse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.static_compression_strict_equivalence_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.static_displacement_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.static_shift_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.static_shift_rank_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.strict_common_summand_cancellation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.subpencil_extract_fixed_factor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.toMatrix_equiv_mul_symm": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.transcendental_affine_ne_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.transcendental_fractional_linear": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.transport_quotient_kernel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCP1Converse.twoBorder_matrix_conj": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "sha256": {
+    "AxiomAudit.lean": "5bc42dcde1e0250553156c383aeee21395562048e3cb419188aae9677cf962ee",
+    "BridgeAxiomAudit.lean": "e1381aeaa8b6ea5511bf5922ce5f6f0fbb4d682c415363ad816905806bab3d48",
+    "ComplementAxiomAudit.lean": "6b3f2e26c3879596e364d455353693121463c3c678a3921e337a1c9c907c89ed",
+    "CompletionAxiomAudit.lean": "4aee695afd2fa93829b9525988d123898ed1676d484c1dc9a98dbaa0576e1a4a",
+    "CompressionCompletionAudit.lean": "85efb1dd0c688ae5c4da81bb7b7a3eaf12a8cf9975dca2059798a53a4a079947",
+    "DILATION_CORRESPONDENCE.md": "7d4b6d070712c843a7be7cc5537c115467aa427969655f137db31b9e7a43149b",
+    "ForwardFinishAxiomAudit.lean": "8b7468a900bf594843076161a302b80d8e42ba46f0c833033a2f01865103b468",
+    "LinearStrictCancellationAudit.lean": "ac49f58ed767decbfc1d7a98e9929cf695661ff671645c1870e5bdbb41bd3587",
+    "MatCP1Converse/BorderGraph.lean": "d8841cb9bb944a3009ad390a58f43f6d4e661250cda92674dbc0647f76ea3171",
+    "MatCP1Converse/CommonChart.lean": "3e361d1ab210424881b6a111aa11ecefa551b5660fd732deb3078b00da470945",
+    "MatCP1Converse/ComplementAmbient.lean": "477143c953eba11398a01d56be57194a1e70eab878e4a5ea6398b57f001e4980",
+    "MatCP1Converse/ComplementChart.lean": "873c4bd995765f919e62f251604ed0c674db26b1d66c175c7058df38d7a4d3f4",
+    "MatCP1Converse/ComplementCommonChart.lean": "7c86ea30abe4964a5b5b9422ed8132d8ec6b74c74fc465e0b9505d21f8793958",
+    "MatCP1Converse/ComplementContraction.lean": "edd24b273ab0648416370a86c37ad52e5a0358eef36a9d5a6401cd7e19b0fac4",
+    "MatCP1Converse/ComplementCoordinates.lean": "e37268664c8a93353f42d8f726e63204531e18bfb78037a3f0afc1f898760308",
+    "MatCP1Converse/ComplementInvariance.lean": "1e93dfc173cf150f1db4bd8fa00976da0dc48ca211b87ca6cb8490ac9b622f4d",
+    "MatCP1Converse/ComplementNormalization.lean": "ca08233cdb9c658cd803d1a91042fa47b5432b10338096ceeedb28a12e1fa914",
+    "MatCP1Converse/ComplementPresentation.lean": "d9e021e72bdb3ca4fba0cc7a334e8a9ba0a65f477a981d59aaccc51206cf4aee",
+    "MatCP1Converse/ComplementReindex.lean": "1231c8c695e9928affd384a6fab3fdf54df68833e8bc61fe19d725ba738f1ef3",
+    "MatCP1Converse/CompletionDerivative.lean": "9664178a7d0823c34e207f613a5a748d1ac8e345ea61877367bb737161c8d7e5",
+    "MatCP1Converse/CompletionExtraction.lean": "bcadab7bbdc40d6d7d6a62c2bab2d3dab86bb347c6101e9591022478dc48d4e5",
+    "MatCP1Converse/CompletionGraph.lean": "179a6d997ea29f322f553f852e7e51ab726dd68e6636da3f16564539c5ff702a",
+    "MatCP1Converse/CompletionMatrix.lean": "c75b61ff227d66bebad74b932d8f53ad2d41d605aacf07539f49be896db37046",
+    "MatCP1Converse/CompletionNormalization.lean": "b1884f8930638031f0433a4e924ffdd384456f76436c3c41837aec129da562f9",
+    "MatCP1Converse/CompletionRank.lean": "31d481ff063321833db72c1aae3f558ff60e2b8e7a256ea6f90f9204f3a6293b",
+    "MatCP1Converse/CompletionSchur.lean": "253c5bfda497865fbe4c12f1614ab9b00da2849bc1a742c0eeb160e78bd3c595",
+    "MatCP1Converse/CompletionShift.lean": "586cd81ca9e235c39e829d475a1acb030c9094cad0ec5c9bfea5f42df0230b53",
+    "MatCP1Converse/CompletionSubpencil.lean": "96628fb9ad800fee8c1c2f60021d57250c8368ee2ad9b1301c147d4863d93542",
+    "MatCP1Converse/CompressionCompletion.lean": "28c4e1f1d29681c99bebfbba309685a8fb29e051cfc6eb8b5f82da8b13e2cecc",
+    "MatCP1Converse/CompressionCoordinates.lean": "5b7e89dfe4ed099dbba2344118dddb0c557e0bb2df5520a4e6902621451d0865",
+    "MatCP1Converse/CoordinateEquivalence.lean": "a761412f4977f710885aed3a46ad3fd39d050e10db730ca8ff4e73642db8be03",
+    "MatCP1Converse/DilationTheorem.lean": "5371f656a3e41bcc0d1598058b88aff168e50fe7ef8167970ae12705593e4920",
+    "MatCP1Converse/ForwardAnchorSwap.lean": "1719b23f13228d47c589341335b84efef0d5a15a28cda378e158f0f805197bcd",
+    "MatCP1Converse/ForwardAnchorSwapMatrix.lean": "b0fcf18792d6b8e0ad2e461e6ea052b4dba09d0090793f979358d0346d6917f7",
+    "MatCP1Converse/ForwardCombination.lean": "6a017879c9d03fc095628b5f0cc22224488e280323b5a18180f49476e489cc37",
+    "MatCP1Converse/ForwardCombinationMatrix.lean": "90d459adec09b48fc25210641df1ee1674362c6a0905cc1fe5e1a487854ea8fe",
+    "MatCP1Converse/ForwardDilation.lean": "dfbde2b365ec25f2ef979a0c6d7d4bcddf873c0b371aa3ce6e2d6af6421acfb2",
+    "MatCP1Converse/ForwardDilationMatrix.lean": "caa9ab7c48116f2d82b9d1493abe1a995646ee6af33de108f6917b5ba8eef38f",
+    "MatCP1Converse/ForwardDilationPencil.lean": "1c42897da64fae22e71abe62252f0b0464bf206a2ca5001d21d58c6e3c5856a8",
+    "MatCP1Converse/ForwardDilationRecovery.lean": "63252d4171f000ea1b94579bf118aa8a7e48afd9255517f1efa5f8ed5ec4713b",
+    "MatCP1Converse/ForwardDilationRecoveryMatrix.lean": "44cfea22e25f219a456139ffa341fdd574cc61c6285f5a44f8e84399631c91f1",
+    "MatCP1Converse/ForwardPadding.lean": "c8a2df66e961edb5a0c5f2b2a24db73edbd654c6b73089933e420c24ddf69410",
+    "MatCP1Converse/LinearStrictCancellation.lean": "110331b1792e4638787ac19e41e2ce96b9dd7743939bf10d01108622c3f89add",
+    "MatCP1Converse/MatrixExtension.lean": "8d211d4c7c3eed3a2ca5aaff8c8044f75108ebe89a58c9e39a17edf80a99806a",
+    "MatCP1Converse/NearbyEmbedding.lean": "66ffcbc2d38c1242f4d5227fe66538fa2eefbe89d17d4430c93717c67edba95e",
+    "MatCP1Converse/NearbySurjection.lean": "4da4dfe75401658241b064fd5ce1b528a3d4d411639337c9f1bfaf13613bcb16",
+    "MatCP1Converse/OrbitDistance.lean": "988468786d0187f5db0d3dabcd02c5d190f482c14e897286d849b43c50441beb",
+    "MatCP1Converse/ParameterChange.lean": "229509d8210f1abf918f139532f5dc8226d98a0a327497c963b9552d1c5f3895",
+    "MatCP1Converse/Pencil.lean": "d7f6f65917421f4619a8a943ec6fb94b1f1be51d20aea942f3f425cd1cc9bf1b",
+    "MatCP1Converse/PencilMixedFactors.lean": "c4ab160f0c556fed6780873a177aef3099d4309dcf6729ad10a5139c2446647c",
+    "MatCP1Converse/PivotCompression.lean": "e2732e1cdac03442d52436104e2e6e9424f938f23f81a774c4ecb6a35505b04f",
+    "MatCP1Converse/PrincipalPivot.lean": "0e862a3f25a7880736a1a2222c197011088c4bbf39f852d8eb608160e0bd59c1",
+    "MatCP1Converse/RankChart.lean": "6a335a9926f340d53a4ac6b07d94a65609316f34f1a3fecffd065fcbd671ca2d",
+    "MatCP1Converse/RankDecomposition.lean": "d1e3498ff32fff655071e98012a2226ef2e7cce8f677eddad741e7146e363d98",
+    "MatCP1Converse/RankDecompositionAudit.lean": "a26c827e01c3aeaa7b3f5f9f607ea36d8bfc1abf6776e002ea9948725fe6188d",
+    "MatCP1Converse/RankNormalization.lean": "f75bb4d49a1a2c348b15990308dddbf9bc76fd5d176aa2f2db0445e8e9c1b8e6",
+    "MatCP1Converse/RankSpecialization.lean": "9bb410d48c47d6f040bc7426a7642eed1d97169e03873f4b36ec2b948df9c117",
+    "MatCP1Converse/RawDilationConverse.lean": "08fd7472fa161ff0411f8869cf50929675551d9bec3876dc10c792cb48c1e2a8",
+    "MatCP1Converse/RawDilationForward.lean": "18472cb6bc191321b9e8e30ec33fa089813591a7d6ac53e139a3769144399eda",
+    "MatCP1Converse/ReachableFactorization.lean": "641af94db79cefa39e8ae245c1dfc005c2a2d983f1155c113b13075b06baaa8d",
+    "MatCP1Converse/StaticCompression.lean": "cf52f42108b39484fed28d93fd19b953caef3dea14e326c8028f30bcb91faa5f",
+    "MatCP1Converse/StaticEquivalence.lean": "10988efdccdbe15f8929a38903e039a9c7c87bf092bbbd3efb4269d22cf613cf",
+    "MatCP1Converse/StaticFactor.lean": "c63833347f8ee9e6c04e1e536ff8c4a3f4f31deeeb7c24688eb53f7cad10cb6b",
+    "MatCP1Converse/StrictCancellation.lean": "b00d042fb6feba61c16605e0e7785c44bd0971ec5dd47afc6e4ce71de229b72a",
+    "MatCP1Converse/TransformRank.lean": "6714f3359c15d4a60eb5aa19793b8ef83f09bb9d1573bc0bba0fc3657909dacd",
+    "MatCP1Converse.lean": "81f9ba9c1a97a680f8f5a694507e03da2e4ae4b03a85d65bffccfa157fd2dfd1",
+    "README.md": "7b757f478ed267627a9fd4c7c8fe5149f80a4b7cb7a802968c269aad665d83c4",
+    "RankChartAudit.lean": "10eb2d0d07b3bf68c9f9b490bbb79eadbbefdab10a343be1367d698959053dec",
+    "RawDilationConverseAudit.lean": "75f1e562777303eae1b9a0b336e0437a3818576bdc7d8ff02bec40c672f60c1c",
+    "StaticAxiomAudit.lean": "7dfec4f8476cffe532f86bba34b75b999f7118c22373f1bab4f0641341e97e73",
+    "StrictCancellationAudit.lean": "523b2dd916f8d777a13523d6c6ef8bd346abc61e04ff44f0bd6ede4df9100fd3",
+    "lake-manifest.json": "8f341c9f75520352062d034e888343cc967614db057cff87d6cc12c9c90e4209",
+    "lakefile.toml": "264e572d7ccce06767e97bdbcacdb2352a61bc06dc282bad32fbc1573feb627b",
+    "lean-toolchain": "bc84812c94489d1e3e191baa1dc10d5eb684382d7fe9d2a5ab085e72c1c67e47",
+    "make_verification_record.py": "e7b967f0d4b6f92dc18e94b7274f0bd11cf03388c43cc30ecaa94db3e53b8544",
+    "verification/axioms.log": "00a817a2f21dfefac1259604ff4184c1564aea4c31827409a29438ab926a3dd8",
+    "verification/build.log": "3c1b6046b3ae1ec6f6cc6d00a97c4c8c613534aa03e8e148c02e4182f86502ec",
+    "verification/environment.log": "26d98a8abf046abcc8b5d6b1a64a4e279f9ce4c39ea2662aaee8000f63c56c87",
+    "verify.sh": "1cc6be59e6a3f577f3ad30f8baa61c31da671394a8a2a604ab3c531055d25c20"
+  },
+  "local_dependency": {
+    "path": "../lean_p1",
+    "preserved_without_cleaning": true,
+    "sha256": {
+      "AxiomAudit.lean": "572e494e0f1965ccf1181ae166e837b365e2ed0a85e253a3b04be9e2f856e2f7",
+      "MatCP1/Cancellation.lean": "9a961983abfee806b3350627acb69e58d4b6ec22ad8dbb573e229ad590e595e5",
+      "MatCP1/Compression.lean": "250b6da931f8fe33a60169220589d4613344ed27d9f93ba0ff5b7fefa0088f5a",
+      "MatCP1/GenericRank.lean": "954ada1672d941e3345af70104f40517b8386e8fa813f278a77c1a40657d21f5",
+      "MatCP1/MatrixCancellation.lean": "6105cdc9aa6190f174e51227a3c729a4b82e5749bad690713f533fa0589eebda",
+      "MatCP1/MatrixCompression.lean": "6dbe6114c861b86ad1cbced611621f331ef916bd08513561b25478a2408b674b",
+      "MatCP1.lean": "cb7252aa3a5a91de4bccab399ff0fbc193e69129167d8263e8c87de80345e11d",
+      "lake-manifest.json": "073b2fbe1f68e44a6f9f4a666786666c13c5327fdbd0a22edd7f76d1bfd18ccb",
+      "lakefile.toml": "ab471e93586c8a73f7cb5dd73d852a3f769f69249f67d48e5e20df65dbac3f5b",
+      "lean-toolchain": "bc84812c94489d1e3e191baa1dc10d5eb684382d7fe9d2a5ab085e72c1c67e47"
+    }
+  },
+  "hash_exclusion": "VERIFICATION.json is self-referential; verification/final_root_run.log is the still-active duplicate outer transcript. Stable environment, build and axiom logs are all hashed.",
+  "evidence": "Generated after successful pinned environment checks, a clean rebuild of this package, exact-statement printing, the complete exported-theorem axiom audit, and proof-construct scans. The source, stable logs and dependency hashes are recorded. Dependency caches and the separately freshly verified cancellation package were preserved."
+}

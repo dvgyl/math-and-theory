@@ -1,0 +1,10 @@
+module
+
+import MatCP1Converse.CompressionCompletion
+
+set_option pp.deepTerms true
+set_option pp.maxSteps 100000
+
+#print MatCP1Converse.jointCompression_exists_strict_completion
+#print axioms MatCP1Converse.exists_extend_compression_maps
+#print axioms MatCP1Converse.jointCompression_exists_strict_completion

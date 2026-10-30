@@ -325,6 +325,9 @@ jobs:
           - package: upper-ppt-hierarchy
             root: papers/physics/upper-ppt-hierarchy
             project: lean
+          - package: matrix-pencil-completion
+            root: papers/mathematics/matrix-pencil-completion
+            project: lean_p1_converse
     env:
       LEAN_NUM_THREADS: '1'
     steps:
@@ -374,6 +377,13 @@ jobs:
             python3 scripts/verify_cached.py --mathlib-cache .lake/packages/mathlib --lean-bin "$(lean --print-prefix)/bin/lean" --packages-root .lake/packages --output "${RUNNER_TEMP}/unit-squareclasses-verification"
           elif [[ '${{ matrix.package }}' == 'keller-klein' ]]; then
             python3 verify.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib
+          elif [[ '${{ matrix.package }}' == 'matrix-pencil-completion' ]]; then
+            command -v rg >/dev/null || { sudo apt-get update && sudo apt-get install --yes ripgrep; }
+            bash verify.sh
+            lake build MatCP1
+            lake env lean ../lean_p1/AxiomAudit.lean | tee "${RUNNER_TEMP}/matrix-pencil-cancellation-axioms.log"
+            python3 -c "import re,sys; t=open(sys.argv[1]).read(); bad=[a for a in re.findall(r'depends on axioms: \\[([^\\]]*)\\]', t) for a in [s.strip() for s in a.split(',')] if a not in ('propext','Classical.choice','Quot.sound')]; sys.exit(1 if bad or 'error:' in t or 'depends on axioms' not in t else 0)" "${RUNNER_TEMP}/matrix-pencil-cancellation-axioms.log"
+            if rg -n '\b(sorry|admit|axiom|native_decide)\b' ../lean_p1/MatCP1.lean ../lean_p1/MatCP1; then exit 1; fi
           elif [[ '${{ matrix.package }}' == 'upper-ppt-hierarchy' ]]; then
             python3 verify_release.py --lean-home "$(lean --print-prefix)" --mathlib .lake/packages/mathlib --packages-dir .lake/packages --out "${RUNNER_TEMP}/upper-ppt-hierarchy-verification"
           elif [[ '${{ matrix.package }}' == 'binary-spectral-tile' ]]; then

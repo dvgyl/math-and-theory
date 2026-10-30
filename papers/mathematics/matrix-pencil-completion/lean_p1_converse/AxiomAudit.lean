@@ -1,0 +1,312 @@
+module
+
+import MatCP1Converse
+
+set_option pp.deepTerms true
+set_option pp.maxSteps 100000
+
+#print MatCP1Converse.Pencil.generic
+#print MatCP1Converse.Pencil.normalRank
+#print MatCP1Converse.Pencil.StrictEquivalent
+#print MatCP1Converse.Pencil.BoundedDistance
+#print MatCP1Converse.Pencil.orbitDistance_le_iff
+#print MatCP1.MatrixJointCompression
+#print MatCP1Converse.matrixDilationConstant
+#print MatCP1Converse.matrixDilationLinear
+#print MatCP1Converse.Pencil.dilate
+#print MatCP1Converse.matrix_dilation_completion_iff
+#print MatCP1Converse.matrix_dilation_completion_iff_nat
+#print MatCP1Converse.dilation_rank_distance_iff
+#print MatCP1Converse.matrix_dilation_completion_forward
+#print MatCP1Converse.matrix_dilation_completion_converse
+#print MatCP1Converse.Pencil.exists_rank_mixed_factorization
+#print MatCP1Converse.Pencil.exists_rank_evaluation_eq
+#print MatCP1Converse.normalized_pencil_all_moments
+#print MatCP1Converse.normalized_pencil_mixed_factorization
+#print MatCP1Converse.Pencil.normalRank_coefficientChange
+#print MatCP1Converse.Pencil.orbitDistance_coefficientChange
+#print MatCP1Converse.matrix_subpencil_extract_fixed_factor
+#print MatCP1Converse.complement_common_coefficient_contraction_general
+#print MatCP1Converse.complement_orbitDistance_contraction
+#check @MatCP1Converse.matrix_dilation_complement_presentation
+#print MatCP1Converse.ComplementPresentation
+#print MatCP1Converse.static_compression_strict_equivalence_bound
+#print MatCP1Converse.principalPivot_sub_rank
+#print MatCP1.matrix_common_summand_cancellation
+
+#print axioms MatCP1Converse.Pencil.MixedFactorizationAt.submatrix
+#print axioms MatCP1Converse.Pencil.MixedFactorizationAt.transform
+#print axioms MatCP1Converse.Pencil.MixedFactorizationAt.unshift
+#print axioms MatCP1Converse.Pencil.boundedDistance_coefficientChange_iff
+#print axioms MatCP1Converse.Pencil.boundedDistance_mono
+#print axioms MatCP1Converse.Pencil.coefficientChange_adjugate
+#print axioms MatCP1Converse.Pencil.coefficientChange_injective
+#print axioms MatCP1Converse.Pencil.coefficientChange_sub
+#print axioms MatCP1Converse.Pencil.coefficientChange_surjective
+#print axioms MatCP1Converse.Pencil.coefficientChange_transform
+#print axioms MatCP1Converse.Pencil.const_add
+#print axioms MatCP1Converse.Pencil.const_mul
+#print axioms MatCP1Converse.Pencil.const_rank_le
+#print axioms MatCP1Converse.Pencil.const_sub
+#print axioms MatCP1Converse.Pencil.const_zero
+#print axioms MatCP1Converse.Pencil.dilate_family_strictEquivalence
+#print axioms MatCP1Converse.Pencil.exists_boundedDistance
+#print axioms MatCP1Converse.Pencil.exists_rank_evaluation_eq
+#print axioms MatCP1Converse.Pencil.exists_rank_factorization
+#print axioms MatCP1Converse.Pencil.exists_rank_mixed_factorization
+#print axioms MatCP1Converse.Pencil.generic_add
+#print axioms MatCP1Converse.Pencil.generic_coefficientChange
+#print axioms MatCP1Converse.Pencil.generic_left_mul
+#print axioms MatCP1Converse.Pencil.generic_right_mul
+#print axioms MatCP1Converse.Pencil.generic_sub
+#print axioms MatCP1Converse.Pencil.generic_transform
+#print axioms MatCP1Converse.Pencil.generic_zero
+#print axioms MatCP1Converse.Pencil.matrix_rank_add_le
+#print axioms MatCP1Converse.Pencil.mixedFactorizationAt_of_rank_constant
+#print axioms MatCP1Converse.Pencil.normalRank_add_le
+#print axioms MatCP1Converse.Pencil.normalRank_coefficientChange
+#print axioms MatCP1Converse.Pencil.normalRank_coefficientChange_le
+#print axioms MatCP1Converse.Pencil.normalRank_eq_of_strictEquivalent
+#print axioms MatCP1Converse.Pencil.normalRank_left_factor_le
+#print axioms MatCP1Converse.Pencil.normalRank_right_factor_le
+#print axioms MatCP1Converse.Pencil.normalRank_scale
+#print axioms MatCP1Converse.Pencil.normalRank_submatrix
+#print axioms MatCP1Converse.Pencil.normalRank_transform
+#print axioms MatCP1Converse.Pencil.normalRank_transform_le
+#print axioms MatCP1Converse.Pencil.normalRank_two_anchor_change
+#print axioms MatCP1Converse.Pencil.normalRank_zero
+#print axioms MatCP1Converse.Pencil.orbitDistance_coefficientChange
+#print axioms MatCP1Converse.Pencil.orbitDistance_le_iff
+#print axioms MatCP1Converse.Pencil.parameterHom_C
+#print axioms MatCP1Converse.Pencil.parameterHom_X
+#print axioms MatCP1Converse.Pencil.parameter_denominator_ne_zero
+#print axioms MatCP1Converse.Pencil.polynomialMatrix_eval
+#print axioms MatCP1Converse.Pencil.polynomialMatrix_generic
+#print axioms MatCP1Converse.Pencil.strictEquivalent_coefficientChange_iff
+#print axioms MatCP1Converse.Pencil.strictEquivalent_dilate
+#print axioms MatCP1Converse.Pencil.strictEquivalent_refl
+#print axioms MatCP1Converse.Pencil.strictEquivalent_symm
+#print axioms MatCP1Converse.Pencil.strictEquivalent_trans
+#print axioms MatCP1Converse.all_moments_zero_of_adjugate_transfer_zero
+#print axioms MatCP1Converse.block_schur_eq_of_rank_le
+#print axioms MatCP1Converse.complementBlockMap_apply
+#print axioms MatCP1Converse.complement_ambient_data
+#print axioms MatCP1Converse.complement_chartB_injective_of_joint
+#print axioms MatCP1Converse.complement_chartC_surjective_of_joint
+#print axioms MatCP1Converse.complement_chartK_injective
+#print axioms MatCP1Converse.complement_chartK_range
+#print axioms MatCP1Converse.complement_chartQ_kernel
+#print axioms MatCP1Converse.complement_chartQ_surjective
+#print axioms MatCP1Converse.complement_chartS_surjective
+#print axioms MatCP1Converse.complement_chartT_injective
+#print axioms MatCP1Converse.complement_chart_coefficients
+#print axioms MatCP1Converse.complement_chart_contraction
+#print axioms MatCP1Converse.complement_chart_factorization
+#print axioms MatCP1Converse.complement_chart_recover_kernel
+#print axioms MatCP1Converse.complement_chart_recover_quotient
+#print axioms MatCP1Converse.complement_common_coefficient_contraction
+#print axioms MatCP1Converse.complement_common_coefficient_contraction_general
+#print axioms MatCP1Converse.complement_coordinate_invariance
+#print axioms MatCP1Converse.complement_factorization_invariance
+#print axioms MatCP1Converse.complement_internal_transport_coefficients
+#print axioms MatCP1Converse.complement_joint_injective_transport
+#print axioms MatCP1Converse.complement_joint_surjective_transport
+#print axioms MatCP1Converse.complement_matrix_inverse_of_bijective
+#print axioms MatCP1Converse.complement_mulVec_injective_of_inverse
+#print axioms MatCP1Converse.complement_mulVec_surjective_of_inverse
+#print axioms MatCP1Converse.complement_normalized_coefficient_contraction
+#print axioms MatCP1Converse.complement_orbitDistance_contraction
+#print axioms MatCP1Converse.complement_presentation_chart_coordinates
+#print axioms MatCP1Converse.complement_rank_constant_equivalence
+#print axioms MatCP1Converse.complement_submatrix_injective
+#print axioms MatCP1Converse.complement_submatrix_kernel
+#print axioms MatCP1Converse.complement_submatrix_range
+#print axioms MatCP1Converse.complement_submatrix_surjective
+#print axioms MatCP1Converse.complement_transport_factorization
+#print axioms MatCP1Converse.completionLowerShear_apply
+#print axioms MatCP1Converse.completionUpperShear_apply
+#print axioms MatCP1Converse.completion_border_factorization
+#print axioms MatCP1Converse.completion_decompose
+#print axioms MatCP1Converse.completion_derivative_rank_ge_scalar_summand
+#print axioms MatCP1Converse.completion_derivative_rank_le_border
+#print axioms MatCP1Converse.completion_extract_centered
+#print axioms MatCP1Converse.completion_extract_fixed_factor
+#print axioms MatCP1Converse.completion_finrank_range_comp_le
+#print axioms MatCP1Converse.completion_finrank_range_equiv
+#print axioms MatCP1Converse.completion_finrank_range_prod_zero
+#print axioms MatCP1Converse.completion_graph_shear_pair
+#print axioms MatCP1Converse.completion_invertible_normalized_border
+#print axioms MatCP1Converse.completion_matrix_blocks_conj
+#print axioms MatCP1Converse.completion_matrix_compression_to_product
+#print axioms MatCP1Converse.completion_normalize_pair
+#print axioms MatCP1Converse.completion_schur_split
+#print axioms MatCP1Converse.compression_difference_identity
+#print axioms MatCP1Converse.dilationCompression_apply
+#print axioms MatCP1Converse.dilationCompression_surjective
+#print axioms MatCP1Converse.dilationConstant_apply
+#print axioms MatCP1Converse.dilationELeft_apply
+#print axioms MatCP1Converse.dilationELeft_injective
+#print axioms MatCP1Converse.dilationERight_apply
+#print axioms MatCP1Converse.dilationERight_surjective
+#print axioms MatCP1Converse.dilationEmbedding_apply
+#print axioms MatCP1Converse.dilationEmbedding_injective
+#print axioms MatCP1Converse.dilationEval_apply
+#print axioms MatCP1Converse.dilationHLeft_apply
+#print axioms MatCP1Converse.dilationHLeft_injective
+#print axioms MatCP1Converse.dilationHRight_apply
+#print axioms MatCP1Converse.dilationHRight_surjective
+#print axioms MatCP1Converse.dilationKernelLift_apply
+#print axioms MatCP1Converse.dilationKernelLift_injective
+#print axioms MatCP1Converse.dilationKernelLift_range
+#print axioms MatCP1Converse.dilationLinear_apply
+#print axioms MatCP1Converse.dilationQuotient_apply
+#print axioms MatCP1Converse.dilationQuotient_ker
+#print axioms MatCP1Converse.dilationQuotient_surjective
+#print axioms MatCP1Converse.dilationSwapSource_apply
+#print axioms MatCP1Converse.dilationSwapSource_comp_reverse
+#print axioms MatCP1Converse.dilationSwapTarget_apply
+#print axioms MatCP1Converse.dilationSwapTarget_comp_reverse
+#print axioms MatCP1Converse.dilation_anchor_coprod_surjective
+#print axioms MatCP1Converse.dilation_anchor_ker_inf
+#print axioms MatCP1Converse.dilation_anchor_pair_injective
+#print axioms MatCP1Converse.dilation_anchor_range_sup
+#print axioms MatCP1Converse.dilation_anchor_swap_coefficients
+#print axioms MatCP1Converse.dilation_complement_constant
+#print axioms MatCP1Converse.dilation_complement_linear
+#print axioms MatCP1Converse.dilation_compression_coefficients
+#print axioms MatCP1Converse.dilation_evaluation
+#print axioms MatCP1Converse.dilation_factor_E
+#print axioms MatCP1Converse.dilation_factor_H
+#print axioms MatCP1Converse.dilation_factors_coprod_surjective
+#print axioms MatCP1Converse.dilation_factors_prod_injective
+#print axioms MatCP1Converse.dilation_rank_at_c
+#print axioms MatCP1Converse.dilation_rank_at_d
+#print axioms MatCP1Converse.dilation_rank_distance_iff
+#print axioms MatCP1Converse.eventually_polynomial_rank_eq_generic
+#print axioms MatCP1Converse.exists_automorphism_fixed_subspace
+#print axioms MatCP1Converse.exists_automorphism_map_embeddings
+#print axioms MatCP1Converse.exists_common_complement_completed_chart
+#print axioms MatCP1Converse.exists_common_complement_graph
+#print axioms MatCP1Converse.exists_common_invertible_cograph
+#print axioms MatCP1Converse.exists_common_invertible_graph
+#print axioms MatCP1Converse.exists_common_rank_chart
+#print axioms MatCP1Converse.exists_embedding_matrix_extension
+#print axioms MatCP1Converse.exists_equiv_same_kernel
+#print axioms MatCP1Converse.exists_equiv_same_range
+#print axioms MatCP1Converse.exists_extend_compression_maps
+#print axioms MatCP1Converse.exists_factor_of_ker_le
+#print axioms MatCP1Converse.exists_full_rank_factorization
+#print axioms MatCP1Converse.exists_full_rank_matrix_factorization_equivalence
+#print axioms MatCP1Converse.exists_invertible_border_graph
+#print axioms MatCP1Converse.exists_invertible_graph
+#print axioms MatCP1Converse.exists_kernel_matrix_equivalence
+#print axioms MatCP1Converse.exists_lift_of_range_mem
+#print axioms MatCP1Converse.exists_matrix_full_rank_factorization
+#print axioms MatCP1Converse.exists_nearby_automorphism
+#print axioms MatCP1Converse.exists_nearby_embedding_factor
+#print axioms MatCP1Converse.exists_nearby_surjection_factor
+#print axioms MatCP1Converse.exists_normalized_linear_mixed_factorization
+#print axioms MatCP1Converse.exists_polynomial_matrix_multiple
+#print axioms MatCP1Converse.exists_polynomial_rank_compression
+#print axioms MatCP1Converse.exists_polynomial_rank_eq_generic
+#print axioms MatCP1Converse.exists_polynomial_rank_factorization
+#print axioms MatCP1Converse.exists_quotient_matrix_equivalence
+#print axioms MatCP1Converse.exists_rank_identity_compression
+#print axioms MatCP1Converse.exists_rectangular_rank_normalization
+#print axioms MatCP1Converse.exists_static_compression_rank_bound
+#print axioms MatCP1Converse.exists_surjection_matrix_extension
+#print axioms MatCP1Converse.exists_valid_static_compression_bound
+#print axioms MatCP1Converse.familyStrictEquivalence_common_summand_iff
+#print axioms MatCP1Converse.familyStrictEquivalence_iff_matrixCompression
+#print axioms MatCP1Converse.forward_jointCompression_remove_unique_middle
+#print axioms MatCP1Converse.forward_jointCompression_remove_unique_right
+#print axioms MatCP1Converse.forward_jointCompression_trans
+#print axioms MatCP1Converse.generic_rankNormalizedPencil
+#print axioms MatCP1Converse.injective_of_identity_mod_subspace
+#print axioms MatCP1Converse.jointCompression_dilation_anchor_swap
+#print axioms MatCP1Converse.jointCompression_dilation_constant_left
+#print axioms MatCP1Converse.jointCompression_dilation_constant_right
+#print axioms MatCP1Converse.jointCompression_dilation_of_factorized_difference
+#print axioms MatCP1Converse.jointCompression_dilation_same_anchor
+#print axioms MatCP1Converse.jointCompression_exists_strict_completion
+#print axioms MatCP1Converse.linear_strict_common_summand_cancellation
+#print axioms MatCP1Converse.matrixDilationConstant_conj
+#print axioms MatCP1Converse.matrixDilationEval_conj
+#print axioms MatCP1Converse.matrixDilationEval_eq_conjMatrix
+#print axioms MatCP1Converse.matrixDilationFamily_conj
+#print axioms MatCP1Converse.matrixDilationFamily_unconj
+#print axioms MatCP1Converse.matrixDilationLinear_conj
+#print axioms MatCP1Converse.matrixJointCompression_prodMap
+#print axioms MatCP1Converse.matrixJointCompression_submatrix
+#print axioms MatCP1Converse.matrixJointCompression_trans
+#print axioms MatCP1Converse.matrix_block_completed_of_rank
+#print axioms MatCP1Converse.matrix_completion_extract_fixed_factor
+#print axioms MatCP1Converse.matrix_dilation_anchor_swap
+#print axioms MatCP1Converse.matrix_dilation_completion_converse
+#print axioms MatCP1Converse.matrix_dilation_completion_forward
+#print axioms MatCP1Converse.matrix_dilation_completion_iff
+#print axioms MatCP1Converse.matrix_dilation_completion_iff_nat
+#print axioms MatCP1Converse.matrix_dilation_completion_of_rank_bound
+#print axioms MatCP1Converse.matrix_dilation_compression_of_factorized_difference
+#print axioms MatCP1Converse.matrix_dilation_constant_transform
+#print axioms MatCP1Converse.matrix_dilation_joint_injective
+#print axioms MatCP1Converse.matrix_dilation_joint_surjective
+#print axioms MatCP1Converse.matrix_dilation_linear_transform
+#print axioms MatCP1Converse.matrix_dilation_rank_at_c
+#print axioms MatCP1Converse.matrix_dilation_rank_at_d
+#print axioms MatCP1Converse.matrix_dilation_same_anchor
+#print axioms MatCP1Converse.matrix_map_smul_ring
+#print axioms MatCP1Converse.matrix_rank_factor_normalize
+#print axioms MatCP1Converse.matrix_rank_map_le
+#print axioms MatCP1Converse.matrix_scalar_sum_padding
+#print axioms MatCP1Converse.matrix_subpencil_extract_fixed_factor
+#print axioms MatCP1Converse.matrix_transport_quotient_kernel
+#print axioms MatCP1Converse.normalized_pencil_all_moments
+#print axioms MatCP1Converse.normalized_pencil_mixed_factorization
+#print axioms MatCP1Converse.pencilReachable_contains_range
+#print axioms MatCP1Converse.pencilReachable_invariant
+#print axioms MatCP1Converse.pencilReachable_le_kernel
+#print axioms MatCP1Converse.pivot_compression_strict_equivalence_bound
+#print axioms MatCP1Converse.pivot_left_product
+#print axioms MatCP1Converse.pivot_right_product
+#print axioms MatCP1Converse.polynomial_matrix_map_injective
+#print axioms MatCP1Converse.principalPivot_sub_factorization
+#print axioms MatCP1Converse.principalPivot_sub_rank
+#print axioms MatCP1Converse.rankPolynomialAdjugate_eval_zero
+#print axioms MatCP1Converse.rankPolynomialConst_eval
+#print axioms MatCP1Converse.rankPolynomialConst_mul
+#print axioms MatCP1Converse.rankPolynomialConst_rat_map
+#print axioms MatCP1Converse.rankPolynomialConst_zero
+#print axioms MatCP1Converse.rankPolynomialDet_eval_zero
+#print axioms MatCP1Converse.rankPolynomialResolvent_eval_zero
+#print axioms MatCP1Converse.rankPolynomialResolvent_rat_map
+#print axioms MatCP1Converse.rank_blocks_product_map
+#print axioms MatCP1Converse.rank_matrix_map_smul
+#print axioms MatCP1Converse.rank_product_to_blocks
+#print axioms MatCP1Converse.raw_dilation_rank_smul_le
+#print axioms MatCP1Converse.raw_dilation_rank_transport
+#print axioms MatCP1Converse.recoveryConjMatrix_comp
+#print axioms MatCP1Converse.recoveryConjMatrix_coprod
+#print axioms MatCP1Converse.recoveryConjMatrix_id
+#print axioms MatCP1Converse.recoveryConjMatrix_injective
+#print axioms MatCP1Converse.recoveryConjMatrix_kernel_range
+#print axioms MatCP1Converse.recoveryConjMatrix_mulVec
+#print axioms MatCP1Converse.recoveryConjMatrix_prod
+#print axioms MatCP1Converse.recoveryConjMatrix_prodMap
+#print axioms MatCP1Converse.recoveryConjMatrix_rank
+#print axioms MatCP1Converse.recoveryConjMatrix_surjective
+#print axioms MatCP1Converse.recoveryConjMatrix_zero
+#print axioms MatCP1Converse.scalarMatrixDilationFamily_toLin
+#print axioms MatCP1Converse.square_injective_inverse
+#print axioms MatCP1Converse.square_surjective_inverse
+#print axioms MatCP1Converse.static_compression_strict_equivalence_bound
+#print axioms MatCP1Converse.static_displacement_factorization
+#print axioms MatCP1Converse.static_shift_factorization
+#print axioms MatCP1Converse.static_shift_rank_le
+#print axioms MatCP1Converse.strict_common_summand_cancellation
+#print axioms MatCP1Converse.subpencil_extract_fixed_factor
+#print axioms MatCP1Converse.toMatrix_equiv_mul_symm
+#print axioms MatCP1Converse.transcendental_affine_ne_zero
+#print axioms MatCP1Converse.transcendental_fractional_linear
+#print axioms MatCP1Converse.transport_quotient_kernel
+#print axioms MatCP1Converse.twoBorder_matrix_conj

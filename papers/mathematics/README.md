@@ -8,6 +8,7 @@ Each family directory contains its manuscripts, proof sources or shared-library 
 | [Gyires's permanent inequality for structured matrices](gyires/) | [PDF](gyires/paper.pdf) |
 | [A polygon enclosure fails for sums of normal matrices](kovacec/) | [PDF](kovacec/manuscript/manuscript.pdf) |
 | [An unbounded obstruction to projection AM–GM in Loewner order](projection-amgm/) | [PDF](projection-amgm/paper.pdf) |
+| [Matrix-pencil rank distance as an explicit completion problem](matrix-pencil-completion/) | [PDF](matrix-pencil-completion/manuscript.pdf) |
 | [An entropy increase for a structurally disassortative DomiRank graph](domirank-entropy/) | [PDF](domirank-entropy/paper.pdf) |
 | [Ultra-log-concavity of domination sequences of powers of paths and cycles](galvin-zhang/) | [PDF](galvin-zhang/manuscript.pdf) |
 | [Sharp escape of complex domination roots in square flowers](graph-roots/) | [PDF](graph-roots/manuscript.pdf) |

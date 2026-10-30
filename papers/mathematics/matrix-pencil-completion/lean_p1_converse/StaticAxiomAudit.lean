@@ -1,0 +1,16 @@
+module
+
+import MatCP1Converse.StaticEquivalence
+
+#print MatCP1Converse.exists_nearby_automorphism
+#print MatCP1Converse.exists_nearby_surjection_factor
+#print MatCP1Converse.exists_valid_static_compression_bound
+#print MatCP1Converse.static_compression_strict_equivalence_bound
+#print axioms MatCP1Converse.exists_nearby_automorphism
+#print axioms MatCP1Converse.exists_nearby_surjection_factor
+#print axioms MatCP1Converse.exists_embedding_matrix_extension
+#print axioms MatCP1Converse.exists_surjection_matrix_extension
+#print axioms MatCP1Converse.static_displacement_factorization
+#print axioms MatCP1Converse.exists_static_compression_rank_bound
+#print axioms MatCP1Converse.exists_valid_static_compression_bound
+#print axioms MatCP1Converse.static_compression_strict_equivalence_bound

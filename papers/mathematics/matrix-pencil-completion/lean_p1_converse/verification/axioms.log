@@ -1,0 +1,583 @@
+def MatCP1Converse.Pencil.generic.{u_1, u_2, u_3} : {F : Type u_1} →
+  {m : Type u_2} → {n : Type u_3} → [inst : Field F] → MatCP1Converse.Pencil F m n → Matrix m n (RatFunc F) :=
+fun {F} {m} {n} [Field F] A => MatCP1Converse.Pencil.const A.1 + RatFunc.X • MatCP1Converse.Pencil.const A.2
+def MatCP1Converse.Pencil.normalRank.{u_1, u_2, u_3} : {F : Type u_1} →
+  {m : Type u_2} → {n : Type u_3} → [Field F] → [Fintype n] → MatCP1Converse.Pencil F m n → ℕ :=
+fun {F} {m} {n} [Field F] [Fintype n] A => A.generic.rank
+def MatCP1Converse.Pencil.StrictEquivalent.{u_1, u_2, u_3} : {F : Type u_1} →
+  {m : Type u_2} →
+    {n : Type u_3} →
+      [Field F] →
+        [Fintype m] →
+          [Fintype n] →
+            [DecidableEq m] → [DecidableEq n] → MatCP1Converse.Pencil F m n → MatCP1Converse.Pencil F m n → Prop :=
+fun {F} {m} {n} [Field F] [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] A B =>
+  ∃ P Pi Q Qi, P * Pi = 1 ∧ Pi * P = 1 ∧ Q * Qi = 1 ∧ Qi * Q = 1 ∧ MatCP1Converse.Pencil.transform P Q B = A
+def MatCP1Converse.Pencil.BoundedDistance.{u_1, u_2, u_3} : {F : Type u_1} →
+  {m : Type u_2} →
+    {n : Type u_3} →
+      [Field F] →
+        [Fintype m] →
+          [Fintype n] →
+            [DecidableEq m] → [DecidableEq n] → MatCP1Converse.Pencil F m n → MatCP1Converse.Pencil F m n → ℕ → Prop :=
+fun {F} {m} {n} [Field F] [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] A B x =>
+  ∃ A' B', A'.StrictEquivalent A ∧ B'.StrictEquivalent B ∧ (A' - B').normalRank ≤ x
+theorem MatCP1Converse.Pencil.orbitDistance_le_iff.{u_1, u_2, u_3} : ∀ {F : Type u_1} {m : Type u_2} {n : Type u_3}
+  [inst : Field F] [inst_1 : Fintype m] [inst_2 : Fintype n] [inst_3 : DecidableEq m] [inst_4 : DecidableEq n]
+  (A B : MatCP1Converse.Pencil F m n) (x : ℕ), A.orbitDistance B ≤ x ↔ A.BoundedDistance B x :=
+<not imported>
+def MatCP1.MatrixJointCompression.{u_1, u_2, u_3, u_4, u_5, u_6} : {F : Type u_1} →
+  {I : Type u_2} →
+    {m : Type u_3} →
+      {n : Type u_4} →
+        {p : Type u_5} →
+          {q : Type u_6} →
+            [Field F] → [Fintype n] → [Fintype p] → [Fintype q] → (I → Matrix m n F) → (I → Matrix p q F) → Prop :=
+fun {F} {I} {m} {n} {p} {q} [Field F] [Fintype n] [Fintype p] [Fintype q] A B =>
+  ∃ P Q, Function.Surjective P.mulVec ∧ Function.Injective Q.mulVec ∧ ∀ (i : I), P * B i * Q = A i
+def MatCP1Converse.matrixDilationConstant.{u_1, u_2, u_3} : {F : Type u_1} →
+  {m : Type u_2} →
+    {n : Type u_3} →
+      [Field F] → [DecidableEq m] → [DecidableEq n] → Matrix m n F → F → F → Matrix (m ⊕ m ⊕ n) (n ⊕ n ⊕ m) F :=
+fun {F} {m} {n} [Field F] [DecidableEq m] [DecidableEq n] A c d =>
+  Matrix.fromBlocks A (Matrix.fromCols 0 1) (Matrix.fromRows 0 1) (Matrix.fromBlocks 0 (c • 1) (d • 1) 0)
+def MatCP1Converse.matrixDilationLinear.{u_1, u_2, u_3} : {F : Type u_1} →
+  {m : Type u_2} →
+    {n : Type u_3} → [Field F] → [DecidableEq m] → [DecidableEq n] → Matrix m n F → Matrix (m ⊕ m ⊕ n) (n ⊕ n ⊕ m) F :=
+fun {F} {m} {n} [Field F] [DecidableEq m] [DecidableEq n] A => Matrix.fromBlocks A 0 0 (Matrix.fromBlocks 0 (-1) (-1) 0)
+def MatCP1Converse.Pencil.dilate.{u_1, u_2, u_3} : {F : Type u_1} →
+  {m : Type u_2} →
+    {n : Type u_3} →
+      [Field F] →
+        [DecidableEq m] →
+          [DecidableEq n] → F → F → MatCP1Converse.Pencil F m n → MatCP1Converse.Pencil F (m ⊕ m ⊕ n) (n ⊕ n ⊕ m) :=
+fun {F} {m} {n} [Field F] [DecidableEq m] [DecidableEq n] c d A =>
+  (MatCP1Converse.matrixDilationConstant A.1 c d, MatCP1Converse.matrixDilationLinear A.2)
+theorem MatCP1Converse.matrix_dilation_completion_iff.{u_1, u_2, u_3, u_4} : ∀ {F : Type u_1} {m : Type u_2}
+  {n : Type u_3} {x : Type u_4} [inst : Field F] [Infinite F] [inst_2 : Fintype m] [inst_3 : Fintype n]
+  [inst_4 : Fintype x] [inst_5 : DecidableEq m] [inst_6 : DecidableEq n] [inst_7 : DecidableEq x]
+  (A0 A1 B0 B1 : Matrix m n F) (c d : F),
+  c ≠ d →
+    (MatCP1Converse.Pencil.orbitDistance (A0, A1) (B0, B1) ≤ Fintype.card x ↔
+      MatCP1.MatrixJointCompression (MatCP1Converse.matrixDilationFamily A0 A1 c d) fun j =>
+        Matrix.fromBlocks (MatCP1Converse.matrixDilationFamily B0 B1 c d j) 0 0 (if j = true then 1 else -d • 1)) :=
+<not imported>
+theorem MatCP1Converse.matrix_dilation_completion_iff_nat.{u_1, u_2, u_3} : ∀ {F : Type u_1} {m : Type u_2}
+  {n : Type u_3} [inst : Field F] [Infinite F] [inst_2 : Fintype m] [inst_3 : Fintype n] [inst_4 : DecidableEq m]
+  [inst_5 : DecidableEq n] (A0 A1 B0 B1 : Matrix m n F) (c d : F),
+  c ≠ d →
+    ∀ (k : ℕ),
+      MatCP1Converse.Pencil.orbitDistance (A0, A1) (B0, B1) ≤ k ↔
+        MatCP1.MatrixJointCompression (MatCP1Converse.matrixDilationFamily A0 A1 c d) fun j =>
+          Matrix.fromBlocks (MatCP1Converse.matrixDilationFamily B0 B1 c d j) 0 0 (if j = true then 1 else -d • 1) :=
+<not imported>
+theorem MatCP1Converse.dilation_rank_distance_iff.{u_1, u_2, u_3} : ∀ {F : Type u_1} {m : Type u_2} {n : Type u_3}
+  [inst : Field F] [Infinite F] [inst_2 : Fintype m] [inst_3 : Fintype n] [inst_4 : DecidableEq m]
+  [inst_5 : DecidableEq n] (A0 A1 B0 B1 : Matrix m n F) (c d : F),
+  c ≠ d →
+    ∀ (k : ℕ),
+      MatCP1Converse.Pencil.orbitDistance (A0, A1) (B0, B1) ≤ k ↔
+        ∃ P Q,
+          Function.Surjective P.mulVec ∧
+            Function.Injective Q.mulVec ∧
+              P * Matrix.fromBlocks (MatCP1Converse.matrixDilationConstant B0 c d) 0 0 (-d • 1) * Q =
+                  MatCP1Converse.matrixDilationConstant A0 c d ∧
+                P * Matrix.fromBlocks (MatCP1Converse.matrixDilationLinear B1) 0 0 1 * Q =
+                  MatCP1Converse.matrixDilationLinear A1 :=
+<not imported>
+theorem MatCP1Converse.matrix_dilation_completion_forward.{u_1, u_2, u_3, u_4} : ∀ {F : Type u_1} {m : Type u_2}
+  {n : Type u_3} {x : Type u_4} [inst : Field F] [Infinite F] [inst_2 : Fintype m] [inst_3 : Fintype n]
+  [inst_4 : Fintype x] [inst_5 : DecidableEq m] [inst_6 : DecidableEq n] [inst_7 : DecidableEq x]
+  (A0 A1 B0 B1 : Matrix m n F) (c d : F),
+  MatCP1Converse.Pencil.orbitDistance (A0, A1) (B0, B1) ≤ Fintype.card x →
+    MatCP1.MatrixJointCompression (MatCP1Converse.matrixDilationFamily A0 A1 c d) fun j =>
+      Matrix.fromBlocks (MatCP1Converse.matrixDilationFamily B0 B1 c d j) 0 0 (if j = true then 1 else -d • 1) :=
+<not imported>
+theorem MatCP1Converse.matrix_dilation_completion_converse.{u_1, u_2, u_3, u_4} : ∀ {F : Type u_1} {m : Type u_2}
+  {n : Type u_3} {x : Type u_4} [inst : Field F] [Infinite F] [inst_2 : Fintype m] [inst_3 : Fintype n]
+  [inst_4 : Fintype x] [inst_5 : DecidableEq m] [inst_6 : DecidableEq n] [inst_7 : DecidableEq x]
+  (A0 A1 B0 B1 : Matrix m n F) (c d : F),
+  c ≠ d →
+    (MatCP1.MatrixJointCompression (MatCP1Converse.matrixDilationFamily A0 A1 c d) fun j =>
+        Matrix.fromBlocks (MatCP1Converse.matrixDilationFamily B0 B1 c d j) 0 0 (if j = true then 1 else -d • 1)) →
+      MatCP1Converse.Pencil.orbitDistance (A0, A1) (B0, B1) ≤ Fintype.card x :=
+<not imported>
+theorem MatCP1Converse.Pencil.exists_rank_mixed_factorization.{u_1, u_2, u_3} : ∀ {F : Type u_1} {m : Type u_2}
+  {n : Type u_3} [inst : Field F] [Fintype m] [inst_2 : Fintype n] [DecidableEq m] [DecidableEq n] [Infinite F]
+  (A : MatCP1Converse.Pencil F m n),
+  ∃ a b U V R0 R1 L0 L1, a + b = A.normalRank ∧ A.1 = U * R0 + L0 * V ∧ A.2 = U * R1 + L1 * V :=
+<not imported>
+theorem MatCP1Converse.Pencil.exists_rank_evaluation_eq.{u_1, u_2, u_3} : ∀ {F : Type u_1} {m : Type u_2} {n : Type u_3}
+  [inst : Field F] [Infinite F] [Fintype m] [inst_3 : Fintype n] [DecidableEq m] [DecidableEq n]
+  (A : MatCP1Converse.Pencil F m n), ∃ c, (A.1 + c • A.2).rank = A.normalRank :=
+<not imported>
+theorem MatCP1Converse.normalized_pencil_all_moments.{u_1, u_2, u_3, u_4} : ∀ {F : Type u_1} {n : Type u_2}
+  {p : Type u_3} {q : Type u_4} [inst : Field F] [inst_1 : Fintype n] [inst_2 : Fintype q] [inst_3 : DecidableEq n]
+  (A : Matrix n n F) (B : Matrix n q F) (C : Matrix p n F) (D : Matrix p q F),
+  (MatCP1Converse.rankNormalizedPencil A B C D).normalRank ≤ Fintype.card n → D = 0 ∧ ∀ (j : ℕ), C * A ^ j * B = 0 :=
+<not imported>
+theorem MatCP1Converse.normalized_pencil_mixed_factorization.{u_1, u_2, u_3, u_4} : ∀ {F : Type u_1} {n : Type u_2}
+  {p : Type u_3} {q : Type u_4} [inst : Field F] [inst_1 : Fintype n] [inst_2 : Fintype q] [inst_3 : DecidableEq n]
+  [DecidableEq q] (A : Matrix n n F) (B : Matrix n q F) (C : Matrix p n F) (D : Matrix p q F),
+  (MatCP1Converse.rankNormalizedPencil A B C D).normalRank ≤ Fintype.card n →
+    ∃ a b U V R0 R1 L0 L1,
+      a + b = Fintype.card n ∧
+        Function.Injective U.mulVec ∧
+          Function.Surjective V.mulVec ∧
+            Matrix.fromBlocks 1 0 0 0 = U * R0 + L0 * V ∧ Matrix.fromBlocks A B C D = U * R1 + L1 * V :=
+<not imported>
+theorem MatCP1Converse.Pencil.normalRank_coefficientChange.{u_1, u_2, u_3} : ∀ {F : Type u_1} {m : Type u_2}
+  {n : Type u_3} [inst : Field F] [Fintype m] [inst_2 : Fintype n] (a b c d : F),
+  a * d - b * c ≠ 0 →
+    ∀ (A : MatCP1Converse.Pencil F m n),
+      (MatCP1Converse.Pencil.coefficientChange a b c d A).normalRank = A.normalRank :=
+<not imported>
+theorem MatCP1Converse.Pencil.orbitDistance_coefficientChange.{u_1, u_2, u_3} : ∀ {F : Type u_1} {m : Type u_2}
+  {n : Type u_3} [inst : Field F] [inst_1 : Fintype m] [inst_2 : Fintype n] [inst_3 : DecidableEq m]
+  [inst_4 : DecidableEq n] (a b c d : F),
+  a * d - b * c ≠ 0 →
+    ∀ (A B : MatCP1Converse.Pencil F m n),
+      (MatCP1Converse.Pencil.coefficientChange a b c d A).orbitDistance
+          (MatCP1Converse.Pencil.coefficientChange a b c d B) =
+        A.orbitDistance B :=
+<not imported>
+theorem MatCP1Converse.matrix_subpencil_extract_fixed_factor.{u_1, u_3, u_4, u_5} : ∀ {F : Type u_1} {m : Type u_3}
+  {n : Type u_4} {x : Type u_5} [inst : Field F] [inst_1 : Fintype m] [inst_2 : Fintype n] [inst_3 : Fintype x]
+  [inst_4 : DecidableEq m] [inst_5 : DecidableEq n] [inst_6 : DecidableEq x] [Infinite F] (d : F)
+  (A0 A1 B0 B1 : Matrix m n F) (P : Matrix m (m ⊕ x) F) (Q : Matrix (n ⊕ x) n F),
+  Function.Surjective P.mulVec →
+    Function.Injective Q.mulVec →
+      P * Matrix.fromBlocks B0 0 0 (-d • 1) * Q = A0 →
+        P * Matrix.fromBlocks B1 0 0 1 * Q = A1 →
+          (A0 + d • A1).rank = (B0 + d • B1).rank →
+            ∃ E p pi q qi,
+              E.rank ≤ Fintype.card x ∧
+                p * pi = 1 ∧
+                  pi * p = 1 ∧
+                    q * qi = 1 ∧
+                      qi * q = 1 ∧
+                        A0 + d • E = p * B0 * q ∧
+                          A1 - E = p * B1 * q ∧ ∀ (t : F), A0 + t • A1 - (t - d) • E = p * (B0 + t • B1) * q :=
+<not imported>
+theorem MatCP1Converse.complement_common_coefficient_contraction_general.{u_1, u_2, u_3, u_4, u_5, u_6} : ∀
+  {F : Type u_1} {o : Type u_2} {i : Type u_3} {n : Type u_4} {a : Type u_5} {b : Type u_6} [inst : Field F]
+  [Infinite F] [Fintype o] [inst_3 : Fintype i] [inst_4 : Fintype n] [inst_5 : Fintype a] [inst_6 : Fintype b]
+  [DecidableEq o] [DecidableEq i] [inst_9 : DecidableEq n] [inst_10 : DecidableEq a] [inst_11 : DecidableEq b]
+  (E H0 H1 : Matrix o i F),
+  E.rank = Fintype.card n →
+    H0.rank = Fintype.card n →
+      H1.rank = Fintype.card n →
+        Function.Injective (E.fromRows H0).mulVec →
+          Function.Injective (E.fromRows H1).mulVec →
+            Function.Surjective (E.fromCols H0).mulVec →
+              Function.Surjective (E.fromCols H1).mulVec →
+                ∀ (A0 A1 : MatCP1Converse.Pencil F a b) (w0 : MatCP1Converse.ComplementPresentation n n E H0 A0)
+                  (w1 : MatCP1Converse.ComplementPresentation n n E H1 A1),
+                  ∃ L Li R Ri,
+                    L * Li = 1 ∧
+                      Li * L = 1 ∧
+                        R * Ri = 1 ∧
+                          Ri * R = 1 ∧
+                            MatCP1Converse.Pencil.normalRank ((L * A1.1 * R, L * A1.2 * R) - A0) ≤ (H1 - H0).rank :=
+<not imported>
+theorem MatCP1Converse.complement_orbitDistance_contraction.{u_1, u_2, u_3, u_4, u_5, u_6} : ∀ {F : Type u_1}
+  {o : Type u_2} {i : Type u_3} {n : Type u_4} {a : Type u_5} {b : Type u_6} [inst : Field F] [Infinite F] [Fintype o]
+  [inst_3 : Fintype i] [inst_4 : Fintype n] [inst_5 : Fintype a] [inst_6 : Fintype b] [DecidableEq o] [DecidableEq i]
+  [inst_9 : DecidableEq n] [inst_10 : DecidableEq a] [inst_11 : DecidableEq b] (E H0 H1 : Matrix o i F),
+  E.rank = Fintype.card n →
+    H0.rank = Fintype.card n →
+      H1.rank = Fintype.card n →
+        Function.Injective (E.fromRows H0).mulVec →
+          Function.Injective (E.fromRows H1).mulVec →
+            Function.Surjective (E.fromCols H0).mulVec →
+              Function.Surjective (E.fromCols H1).mulVec →
+                ∀ (A0 A1 : MatCP1Converse.Pencil F a b) (w0 : MatCP1Converse.ComplementPresentation n n E H0 A0)
+                  (w1 : MatCP1Converse.ComplementPresentation n n E H1 A1), A1.orbitDistance A0 ≤ (H1 - H0).rank :=
+<not imported>
+@MatCP1Converse.matrix_dilation_complement_presentation : {F : Type u_1} →
+  {m : Type u_2} →
+    {n : Type u_3} →
+      [inst : Field F] →
+        [inst_1 : Fintype m] →
+          [inst_2 : Fintype n] →
+            [inst_3 : DecidableEq m] →
+              [inst_4 : DecidableEq n] →
+                (A0 A1 : Matrix m n F) →
+                  (c d : F) →
+                    c ≠ d →
+                      MatCP1Converse.ComplementPresentation (n ⊕ m) (n ⊕ m)
+                        (MatCP1Converse.matrixDilationEval A0 A1 c d d) (MatCP1Converse.matrixDilationEval A0 A1 c d c)
+                        (A0 + d • A1, A0 + c • A1)
+structure MatCP1Converse.ComplementPresentation.{u_1, u_2, u_3, u_4, u_5, u_6, u_7} {F : Type u_1} {o : Type u_2}
+  {i : Type u_3} {a : Type u_4} {b : Type u_5} [Field F] [Fintype i] [Fintype b] (r : Type u_6) (s : Type u_7)
+  [Fintype r] [Fintype s] [DecidableEq r] [DecidableEq s] (E H : Matrix o i F) (A : MatCP1Converse.Pencil F a b) :
+  Type (max (max (max (max (max (max u_1 u_2) u_3) u_4) u_5) u_6) u_7)
+number of parameters: 17
+fields:
+  MatCP1Converse.ComplementPresentation.leftE : Matrix o r F
+  MatCP1Converse.ComplementPresentation.rightE : Matrix r i F
+  MatCP1Converse.ComplementPresentation.leftH : Matrix o s F
+  MatCP1Converse.ComplementPresentation.rightH : Matrix s i F
+  MatCP1Converse.ComplementPresentation.leftE_injective : Function.Injective self.leftE.mulVec
+  MatCP1Converse.ComplementPresentation.rightE_surjective : Function.Surjective self.rightE.mulVec
+  MatCP1Converse.ComplementPresentation.leftH_injective : Function.Injective self.leftH.mulVec
+  MatCP1Converse.ComplementPresentation.rightH_surjective : Function.Surjective self.rightH.mulVec
+  MatCP1Converse.ComplementPresentation.factorE : self.leftE * self.rightE = E
+  MatCP1Converse.ComplementPresentation.factorH : self.leftH * self.rightH = H
+  MatCP1Converse.ComplementPresentation.quotient : Matrix a (r ⊕ s) F
+  MatCP1Converse.ComplementPresentation.kernel : Matrix (r ⊕ s) b F
+  MatCP1Converse.ComplementPresentation.quotient_surjective : Function.Surjective self.quotient.mulVec
+  MatCP1Converse.ComplementPresentation.kernel_injective : Function.Injective self.kernel.mulVec
+  MatCP1Converse.ComplementPresentation.quotient_kernel : self.quotient.mulVecLin.ker =
+      (self.rightE.fromRows self.rightH).mulVecLin.range
+  MatCP1Converse.ComplementPresentation.kernel_range : self.kernel.mulVecLin.range =
+      (self.leftE.fromCols self.leftH).mulVecLin.ker
+  MatCP1Converse.ComplementPresentation.coefficients : MatCP1Converse.complementPencil self.quotient self.kernel = A
+constructor:
+  MatCP1Converse.ComplementPresentation.mk.{u_1, u_2, u_3, u_4, u_5, u_6, u_7} {F : Type u_1} {o : Type u_2}
+    {i : Type u_3} {a : Type u_4} {b : Type u_5} [Field F] [Fintype i] [Fintype b] {r : Type u_6} {s : Type u_7}
+    [Fintype r] [Fintype s] [DecidableEq r] [DecidableEq s] {E H : Matrix o i F} {A : MatCP1Converse.Pencil F a b}
+    (leftE : Matrix o r F) (rightE : Matrix r i F) (leftH : Matrix o s F) (rightH : Matrix s i F)
+    (leftE_injective : Function.Injective leftE.mulVec) (rightE_surjective : Function.Surjective rightE.mulVec)
+    (leftH_injective : Function.Injective leftH.mulVec) (rightH_surjective : Function.Surjective rightH.mulVec)
+    (factorE : leftE * rightE = E) (factorH : leftH * rightH = H) (quotient : Matrix a (r ⊕ s) F)
+    (kernel : Matrix (r ⊕ s) b F) (quotient_surjective : Function.Surjective quotient.mulVec)
+    (kernel_injective : Function.Injective kernel.mulVec)
+    (quotient_kernel : quotient.mulVecLin.ker = (rightE.fromRows rightH).mulVecLin.range)
+    (kernel_range : kernel.mulVecLin.range = (leftE.fromCols leftH).mulVecLin.ker)
+    (coefficients : MatCP1Converse.complementPencil quotient kernel = A) :
+    MatCP1Converse.ComplementPresentation r s E H A
+theorem MatCP1Converse.static_compression_strict_equivalence_bound.{u_1, u_2, u_3, u_4, u_5, u_6} : ∀ {F : Type u_1}
+  {n : Type u_2} {m : Type u_3} {p : Type u_4} {a : Type u_5} {b : Type u_6} [inst : Field F] [inst_1 : Fintype n]
+  [inst_2 : Fintype m] [Fintype p] [inst_4 : Fintype a] [inst_5 : Fintype b] [DecidableEq n] [inst_7 : DecidableEq a]
+  [inst_8 : DecidableEq b] (A0 A1 : Matrix n n F) (X0 X1 : Matrix n m F) (Y0 Y1 : Matrix p n F),
+  Function.Injective X0.mulVec →
+    Function.Injective X1.mulVec →
+      Function.Surjective Y0.mulVec →
+        Function.Surjective Y1.mulVec →
+          ∀ (Q0 Q1 : Matrix a n F) (K0 K1 : Matrix n b F),
+            Function.Surjective Q0.mulVec →
+              Function.Surjective Q1.mulVec →
+                Function.Injective K0.mulVec →
+                  Function.Injective K1.mulVec →
+                    Q0.mulVecLin.ker = X0.mulVecLin.range →
+                      Q1.mulVecLin.ker = X1.mulVecLin.range →
+                        K0.mulVecLin.range = Y0.mulVecLin.ker →
+                          K1.mulVecLin.range = Y1.mulVecLin.ker →
+                            ∃ L Linv R Rinv,
+                              L * Linv = 1 ∧
+                                Linv * L = 1 ∧
+                                  R * Rinv = 1 ∧
+                                    Rinv * R = 1 ∧
+                                      MatCP1Converse.Pencil.normalRank
+                                          ((L * Q1 * A1 * K1 * R, L * Q1 * K1 * R) - (Q0 * A0 * K0, Q0 * K0)) ≤
+                                        (Matrix.fromBlocks (A1 - A0) (X1 - X0) (Y1 - Y0) 0).rank :=
+<not imported>
+theorem MatCP1Converse.principalPivot_sub_rank.{u_1, u_2, u_3, u_4} : ∀ {F : Type u_1} {n : Type u_2} {p : Type u_3}
+  {m : Type u_4} [inst : Field F] [inst_1 : Fintype n] [Fintype p] [inst_3 : Fintype m] [inst_4 : DecidableEq n]
+  [DecidableEq p] [DecidableEq m] (G0 G0inv G1 G1inv : Matrix n n F) (B0 B1 : Matrix n m F) (C0 C1 : Matrix p n F),
+  G0inv * G0 = 1 →
+    G0 * G0inv = 1 →
+      G1inv * G1 = 1 →
+        G1 * G1inv = 1 →
+          (MatCP1Converse.principalPivot G1inv B1 C1 - MatCP1Converse.principalPivot G0inv B0 C0).rank =
+            (MatCP1Converse.completedBlock G1 G1inv B1 C1 - MatCP1Converse.completedBlock G0 G0inv B0 C0).rank :=
+<not imported>
+theorem MatCP1.matrix_common_summand_cancellation.{u_1, u_2, u_3, u_4, u_5, u_6, u_7, u_8} : ∀ {F : Type u_1}
+  {I : Type u_2} {m : Type u_3} {n : Type u_4} {p : Type u_5} {q : Type u_6} {u : Type u_7} {v : Type u_8}
+  [inst : Field F] [Infinite F] [Fintype m] [inst_3 : Fintype n] [inst_4 : Fintype p] [inst_5 : Fintype q]
+  [inst_6 : Fintype u] [inst_7 : Fintype v] (A : I → Matrix m n F) (B : I → Matrix p q F) (S : I → Matrix u v F)
+  (P : Matrix (m ⊕ u) (p ⊕ u) F) (Q : Matrix (q ⊕ v) (n ⊕ v) F),
+  Function.Surjective P.mulVec →
+    Function.Injective Q.mulVec →
+      (∀ (i : I), P * Matrix.fromBlocks (B i) 0 0 (S i) * Q = Matrix.fromBlocks (A i) 0 0 (S i)) →
+        ∃ P' Q', Function.Surjective P'.mulVec ∧ Function.Injective Q'.mulVec ∧ ∀ (i : I), P' * B i * Q' = A i :=
+<not imported>
+'MatCP1Converse.Pencil.MixedFactorizationAt.submatrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.MixedFactorizationAt.transform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.MixedFactorizationAt.unshift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.boundedDistance_coefficientChange_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.boundedDistance_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.coefficientChange_adjugate' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.Pencil.coefficientChange_injective' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.Pencil.coefficientChange_sub' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.Pencil.coefficientChange_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.coefficientChange_transform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.const_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.const_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.const_rank_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.const_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.const_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.dilate_family_strictEquivalence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.exists_boundedDistance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.exists_rank_evaluation_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.exists_rank_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.exists_rank_mixed_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.generic_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.generic_coefficientChange' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.generic_left_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.generic_right_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.generic_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.generic_transform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.generic_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.matrix_rank_add_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.mixedFactorizationAt_of_rank_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.normalRank_add_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.normalRank_coefficientChange' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.normalRank_coefficientChange_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.normalRank_eq_of_strictEquivalent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.normalRank_left_factor_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.normalRank_right_factor_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.normalRank_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.normalRank_submatrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.normalRank_transform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.normalRank_transform_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.normalRank_two_anchor_change' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.normalRank_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.orbitDistance_coefficientChange' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.orbitDistance_le_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.parameterHom_C' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.parameterHom_X' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.parameter_denominator_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.polynomialMatrix_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.polynomialMatrix_generic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.strictEquivalent_coefficientChange_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'MatCP1Converse.Pencil.strictEquivalent_dilate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.strictEquivalent_refl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.strictEquivalent_symm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.Pencil.strictEquivalent_trans' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.all_moments_zero_of_adjugate_transfer_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.block_schur_eq_of_rank_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complementBlockMap_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_ambient_data' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_chartB_injective_of_joint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_chartC_surjective_of_joint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_chartK_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_chartK_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_chartQ_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_chartQ_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_chartS_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_chartT_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_chart_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_chart_contraction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_chart_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_chart_recover_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_chart_recover_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_common_coefficient_contraction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_common_coefficient_contraction_general' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'MatCP1Converse.complement_coordinate_invariance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_factorization_invariance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_internal_transport_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_joint_injective_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_joint_surjective_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_matrix_inverse_of_bijective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_mulVec_injective_of_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_mulVec_surjective_of_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_normalized_coefficient_contraction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'MatCP1Converse.complement_orbitDistance_contraction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_presentation_chart_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_rank_constant_equivalence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_submatrix_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_submatrix_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_submatrix_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_submatrix_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.complement_transport_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.completionLowerShear_apply' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.completionUpperShear_apply' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.completion_border_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.completion_decompose' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.completion_derivative_rank_ge_scalar_summand' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.completion_derivative_rank_le_border' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.completion_extract_centered' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.completion_extract_fixed_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.completion_finrank_range_comp_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.completion_finrank_range_equiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.completion_finrank_range_prod_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.completion_graph_shear_pair' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.completion_invertible_normalized_border' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.completion_matrix_blocks_conj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.completion_matrix_compression_to_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.completion_normalize_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.completion_schur_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.compression_difference_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.dilationCompression_apply' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationCompression_surjective' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationConstant_apply' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationELeft_apply' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationELeft_injective' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationERight_apply' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationERight_surjective' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationEmbedding_apply' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationEmbedding_injective' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationEval_apply' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationHLeft_apply' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationHLeft_injective' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationHRight_apply' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationHRight_surjective' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationKernelLift_apply' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationKernelLift_injective' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationKernelLift_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.dilationLinear_apply' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationQuotient_apply' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationQuotient_ker' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.dilationQuotient_surjective' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationSwapSource_apply' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationSwapSource_comp_reverse' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationSwapTarget_apply' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilationSwapTarget_comp_reverse' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilation_anchor_coprod_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.dilation_anchor_ker_inf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.dilation_anchor_pair_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.dilation_anchor_range_sup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.dilation_anchor_swap_coefficients' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilation_complement_constant' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilation_complement_linear' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilation_compression_coefficients' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilation_evaluation' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilation_factor_E' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilation_factor_H' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.dilation_factors_coprod_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.dilation_factors_prod_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.dilation_rank_at_c' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.dilation_rank_at_d' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.dilation_rank_distance_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.eventually_polynomial_rank_eq_generic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_automorphism_fixed_subspace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_automorphism_map_embeddings' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_common_complement_completed_chart' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_common_complement_graph' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_common_invertible_cograph' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_common_invertible_graph' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_common_rank_chart' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_embedding_matrix_extension' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_equiv_same_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_equiv_same_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_extend_compression_maps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_factor_of_ker_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_full_rank_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_full_rank_matrix_factorization_equivalence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'MatCP1Converse.exists_invertible_border_graph' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_invertible_graph' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_kernel_matrix_equivalence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_lift_of_range_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_matrix_full_rank_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_nearby_automorphism' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_nearby_embedding_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_nearby_surjection_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_normalized_linear_mixed_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_polynomial_matrix_multiple' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_polynomial_rank_compression' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_polynomial_rank_eq_generic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_polynomial_rank_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_quotient_matrix_equivalence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_rank_identity_compression' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_rectangular_rank_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_static_compression_rank_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_surjection_matrix_extension' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.exists_valid_static_compression_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.familyStrictEquivalence_common_summand_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.familyStrictEquivalence_iff_matrixCompression' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'MatCP1Converse.forward_jointCompression_remove_unique_middle' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.forward_jointCompression_remove_unique_right' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.forward_jointCompression_trans' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.generic_rankNormalizedPencil' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.injective_of_identity_mod_subspace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.jointCompression_dilation_anchor_swap' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.jointCompression_dilation_constant_left' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.jointCompression_dilation_constant_right' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.jointCompression_dilation_of_factorized_difference' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.jointCompression_dilation_same_anchor' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.jointCompression_exists_strict_completion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.linear_strict_common_summand_cancellation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrixDilationConstant_conj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrixDilationEval_conj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrixDilationEval_eq_conjMatrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrixDilationFamily_conj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrixDilationFamily_unconj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrixDilationLinear_conj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrixJointCompression_prodMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrixJointCompression_submatrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrixJointCompression_trans' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_block_completed_of_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_completion_extract_fixed_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_dilation_anchor_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_dilation_completion_converse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_dilation_completion_forward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_dilation_completion_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_dilation_completion_iff_nat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_dilation_completion_of_rank_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_dilation_compression_of_factorized_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'MatCP1Converse.matrix_dilation_constant_transform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_dilation_joint_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_dilation_joint_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_dilation_linear_transform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_dilation_rank_at_c' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_dilation_rank_at_d' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_dilation_same_anchor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_map_smul_ring' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.matrix_rank_factor_normalize' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_rank_map_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_scalar_sum_padding' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_subpencil_extract_fixed_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.matrix_transport_quotient_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.normalized_pencil_all_moments' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.normalized_pencil_mixed_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.pencilReachable_contains_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.pencilReachable_invariant' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.pencilReachable_le_kernel' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.pivot_compression_strict_equivalence_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.pivot_left_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.pivot_right_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.polynomial_matrix_map_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.principalPivot_sub_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.principalPivot_sub_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.rankPolynomialAdjugate_eval_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.rankPolynomialConst_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.rankPolynomialConst_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.rankPolynomialConst_rat_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.rankPolynomialConst_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.rankPolynomialDet_eval_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.rankPolynomialResolvent_eval_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.rankPolynomialResolvent_rat_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.rank_blocks_product_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.rank_matrix_map_smul' depends on axioms: [propext, Quot.sound]
+'MatCP1Converse.rank_product_to_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.raw_dilation_rank_smul_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.raw_dilation_rank_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.recoveryConjMatrix_comp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.recoveryConjMatrix_coprod' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.recoveryConjMatrix_id' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.recoveryConjMatrix_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.recoveryConjMatrix_kernel_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.recoveryConjMatrix_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.recoveryConjMatrix_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.recoveryConjMatrix_prodMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.recoveryConjMatrix_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.recoveryConjMatrix_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.recoveryConjMatrix_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.scalarMatrixDilationFamily_toLin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.square_injective_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.square_surjective_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.static_compression_strict_equivalence_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.static_displacement_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.static_shift_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.static_shift_rank_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.strict_common_summand_cancellation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.subpencil_extract_fixed_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.toMatrix_equiv_mul_symm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.transcendental_affine_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.transcendental_fractional_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.transport_quotient_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MatCP1Converse.twoBorder_matrix_conj' depends on axioms: [propext, Classical.choice, Quot.sound]
