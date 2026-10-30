@@ -1,0 +1,238 @@
+{
+  "format_version": 1,
+  "package_id": "unit-squareclasses",
+  "formal_scope": "The bound for every algebraic totally real field, including infinite extensions, every O_K-submodule with integral norms in a finite-dimensional totally positive definite space, and actual units of the ring of integers is formalized in 11 Lean modules. The derivation from finite reflection groups, sharpness and the universality corollary are conventional.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.toml",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/AxiomAudit.lean": "c2c6f2da83397f904ad5013517f942b412943fcb6e2df908434432f084e4c442",
+    "lean/UnitSquareclass.lean": "0a43164409ea5e4a42ea27d9f3709d463a7af0ee54b2ac4f94f27949b54590b7",
+    "lean/UnitSquareclass/AlgebraicRank.lean": "0da725380fcb39a4f9eaf80c20fd7651f20557d8e7b29ecb7e70b60da33f660f",
+    "lean/UnitSquareclass/Arithmetic.lean": "537afc3c20a105c3e2aab88d5c73d09c67224c7cda14d30b2b0e3914c7495bea",
+    "lean/UnitSquareclass/Descent.lean": "28769b44425552b8bebb459e65352241915b3f4918960b17abfd55fa927bfbdc",
+    "lean/UnitSquareclass/DescentUnits.lean": "086f115ddb541cc511afaf2aeb399d00390513606d07dbaa77ba32d09c00e41d",
+    "lean/UnitSquareclass/FieldDescent.lean": "3930e290af3727b5245ceb3aff764f698839fd70f396e86645bdef64e90e78bd",
+    "lean/UnitSquareclass/Geometry.lean": "a0c4521bb9e841ed3d29e934c1e38a4f852118f2eb68b6515de3de1f59cde708",
+    "lean/UnitSquareclass/Helpers.lean": "553b490d794d1d748ed9efe2102a8d6526dc2acbed4a378e0cd804ec812bb19b",
+    "lean/UnitSquareclass/IntegralReflections.lean": "7140aab7e7ce771b8e0e323e3ffb9fe73f3fcd5721e8db0888fb347d766a90c7",
+    "lean/UnitSquareclass/Main.lean": "7768402be432ee6d97e6e7c4eb820a74aaaa7777bca6ef85e86ade9441bdaeed"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 1520,
+      "sha256": "d744f0982361db8c42da425398f0b37f6c004cf89005ca7c4ace627332e5abb9"
+    },
+    "CITATION.bib": {
+      "bytes": 371,
+      "sha256": "44e4839f157fefd846c63b610735cbcc08534d9ff7a26f8541df0925e41d82f2"
+    },
+    "CITATION.cff": {
+      "bytes": 1509,
+      "sha256": "3e1aa9815c92dbf4e04b14928bbe70a4dd0e50fd22232a2bf395e4232c7e3807"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 2289,
+      "sha256": "a94e0488c694193bd1a1c334d75223f9748e6fec46f99dfb67fac90abab99f13"
+    },
+    "VERIFICATION.md": {
+      "bytes": 1796,
+      "sha256": "ca57ae3210710755080d4553be46887cf63b68e24a33afe4c0658a6628849205"
+    },
+    "lean/AxiomAudit.lean": {
+      "bytes": 2088,
+      "sha256": "c2c6f2da83397f904ad5013517f942b412943fcb6e2df908434432f084e4c442"
+    },
+    "lean/MANUSCRIPT_CORRESPONDENCE.md": {
+      "bytes": 9228,
+      "sha256": "8e6c0e8ab5cb8d2608c3db2ee8697f8d825ca6e3e994c8caf6367b2aa2c465a1"
+    },
+    "lean/README.md": {
+      "bytes": 5376,
+      "sha256": "3f6b00d94935823b54356507324f7fc876cfd1ccd5b12b5d58fe815f4454b0e4"
+    },
+    "lean/UnitSquareclass.lean": {
+      "bytes": 364,
+      "sha256": "0a43164409ea5e4a42ea27d9f3709d463a7af0ee54b2ac4f94f27949b54590b7"
+    },
+    "lean/UnitSquareclass/AlgebraicRank.lean": {
+      "bytes": 2372,
+      "sha256": "0da725380fcb39a4f9eaf80c20fd7651f20557d8e7b29ecb7e70b60da33f660f"
+    },
+    "lean/UnitSquareclass/Arithmetic.lean": {
+      "bytes": 5847,
+      "sha256": "537afc3c20a105c3e2aab88d5c73d09c67224c7cda14d30b2b0e3914c7495bea"
+    },
+    "lean/UnitSquareclass/Descent.lean": {
+      "bytes": 10923,
+      "sha256": "28769b44425552b8bebb459e65352241915b3f4918960b17abfd55fa927bfbdc"
+    },
+    "lean/UnitSquareclass/DescentUnits.lean": {
+      "bytes": 2008,
+      "sha256": "086f115ddb541cc511afaf2aeb399d00390513606d07dbaa77ba32d09c00e41d"
+    },
+    "lean/UnitSquareclass/FieldDescent.lean": {
+      "bytes": 2999,
+      "sha256": "3930e290af3727b5245ceb3aff764f698839fd70f396e86645bdef64e90e78bd"
+    },
+    "lean/UnitSquareclass/Geometry.lean": {
+      "bytes": 11877,
+      "sha256": "a0c4521bb9e841ed3d29e934c1e38a4f852118f2eb68b6515de3de1f59cde708"
+    },
+    "lean/UnitSquareclass/Helpers.lean": {
+      "bytes": 754,
+      "sha256": "553b490d794d1d748ed9efe2102a8d6526dc2acbed4a378e0cd804ec812bb19b"
+    },
+    "lean/UnitSquareclass/IntegralReflections.lean": {
+      "bytes": 6988,
+      "sha256": "7140aab7e7ce771b8e0e323e3ffb9fe73f3fcd5721e8db0888fb347d766a90c7"
+    },
+    "lean/UnitSquareclass/Main.lean": {
+      "bytes": 10352,
+      "sha256": "7768402be432ee6d97e6e7c4eb820a74aaaa7777bca6ef85e86ade9441bdaeed"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3528,
+      "sha256": "639321ddb0dca3161b2a5ccc93e00cd5a13a60d2259b32fad5e1a15224bee923"
+    },
+    "lean/lakefile.toml": {
+      "bytes": 313,
+      "sha256": "1280fd0423d09848513b8d7864a185334b2890fc9309a59f714c49304134fd52"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    "lean/scripts/verify_cached.py": {
+      "bytes": 13993,
+      "sha256": "2105193124a0fa3222bfc0c154a69408a79e21551b37f622c77a72903f919bdc"
+    },
+    "manuscript.pdf": {
+      "bytes": 286599,
+      "sha256": "8b2768b2ae59b9615a882a6483ede9c36e8df83e0bd1512c56ea47a5a4579709"
+    },
+    "manuscript.tex": {
+      "bytes": 19187,
+      "sha256": "d319048b2056302a7318dad7fec32cd41a5bbb71540257c245d33a440c3fdb7e"
+    },
+    "verification/README.md": {
+      "bytes": 1044,
+      "sha256": "ffa834d60eaad878e596faf46b7252b960da5c90a06dfd6daf41a2618c486087"
+    },
+    "verification/complete_build.log": {
+      "bytes": 10911,
+      "sha256": "88c4b48e71c44d6e09e10e1c4040d2a1624c5ce9529a4003c0d8e8804a48fe94"
+    },
+    "verification/logs/AxiomAudit.log": {
+      "bytes": 7036,
+      "sha256": "fa0d8425aef411c9d9395d9b13e498202b0d8828d3cbf4c22aa646d00652dc0d"
+    },
+    "verification/logs/UnitSquareclass.AlgebraicRank.log": {
+      "bytes": 141,
+      "sha256": "f13d7abdda8ae6e00d073e21395f749415e7a8481a310ac8a37e8e9baf6996fd"
+    },
+    "verification/logs/UnitSquareclass.Arithmetic.log": {
+      "bytes": 1328,
+      "sha256": "1f76a7ef9858ecd0b3511189dc3d8fba0038c9c7e1a0605ee8396640b2ec2c4e"
+    },
+    "verification/logs/UnitSquareclass.Descent.log": {
+      "bytes": 136,
+      "sha256": "68717ad673aafeda364f253a8b157b026aa8eecb333f30a5f695d524e0176dd1"
+    },
+    "verification/logs/UnitSquareclass.DescentUnits.log": {
+      "bytes": 222,
+      "sha256": "cf478b8c65a479a31597519d1c648ff55823ded4f869e31d1ed9143c2d6f066b"
+    },
+    "verification/logs/UnitSquareclass.FieldDescent.log": {
+      "bytes": 516,
+      "sha256": "35c5da240c2d5636d9c662d93cdf3e13a1af9f935dcdb76ee538e7c95e56ed7c"
+    },
+    "verification/logs/UnitSquareclass.Geometry.log": {
+      "bytes": 437,
+      "sha256": "c92b6c0b0f9ac9a5df941d0ef965c5b57a030cdad50963f8c51c190cbf59b5cf"
+    },
+    "verification/logs/UnitSquareclass.Helpers.log": {
+      "bytes": 108,
+      "sha256": "c9b8261ee1ba5a722329ba76e3f159411ff0983bdbf588f2b70929922cd9025c"
+    },
+    "verification/logs/UnitSquareclass.IntegralReflections.log": {
+      "bytes": 431,
+      "sha256": "44da59d5ad7d1a3f07176f013309d8844f84cef5fa733e6feb4f74970674d2e8"
+    },
+    "verification/logs/UnitSquareclass.Main.log": {
+      "bytes": 546,
+      "sha256": "ab22611d0efadc4021c51cf611d66bf5ec8a27425c296c44bf3322e12bddb058"
+    },
+    "verification/logs/UnitSquareclass.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/trust-0/README.md": {
+      "bytes": 1069,
+      "sha256": "76b3fe4164206e14e98564ba6def4562b090868282d08e3cd2047da96b5ae7cc"
+    },
+    "verification/trust-0/logs/AxiomAudit.log": {
+      "bytes": 7036,
+      "sha256": "fa0d8425aef411c9d9395d9b13e498202b0d8828d3cbf4c22aa646d00652dc0d"
+    },
+    "verification/trust-0/logs/UnitSquareclass.AlgebraicRank.log": {
+      "bytes": 141,
+      "sha256": "f13d7abdda8ae6e00d073e21395f749415e7a8481a310ac8a37e8e9baf6996fd"
+    },
+    "verification/trust-0/logs/UnitSquareclass.Arithmetic.log": {
+      "bytes": 1331,
+      "sha256": "b7a19d6483222ef870fdde5a57695b4318f995f69f15f90d2155e820d368d1ac"
+    },
+    "verification/trust-0/logs/UnitSquareclass.Descent.log": {
+      "bytes": 136,
+      "sha256": "68717ad673aafeda364f253a8b157b026aa8eecb333f30a5f695d524e0176dd1"
+    },
+    "verification/trust-0/logs/UnitSquareclass.DescentUnits.log": {
+      "bytes": 222,
+      "sha256": "cf478b8c65a479a31597519d1c648ff55823ded4f869e31d1ed9143c2d6f066b"
+    },
+    "verification/trust-0/logs/UnitSquareclass.FieldDescent.log": {
+      "bytes": 516,
+      "sha256": "35c5da240c2d5636d9c662d93cdf3e13a1af9f935dcdb76ee538e7c95e56ed7c"
+    },
+    "verification/trust-0/logs/UnitSquareclass.Geometry.log": {
+      "bytes": 437,
+      "sha256": "c92b6c0b0f9ac9a5df941d0ef965c5b57a030cdad50963f8c51c190cbf59b5cf"
+    },
+    "verification/trust-0/logs/UnitSquareclass.Helpers.log": {
+      "bytes": 108,
+      "sha256": "c9b8261ee1ba5a722329ba76e3f159411ff0983bdbf588f2b70929922cd9025c"
+    },
+    "verification/trust-0/logs/UnitSquareclass.IntegralReflections.log": {
+      "bytes": 431,
+      "sha256": "44da59d5ad7d1a3f07176f013309d8844f84cef5fa733e6feb4f74970674d2e8"
+    },
+    "verification/trust-0/logs/UnitSquareclass.Main.log": {
+      "bytes": 546,
+      "sha256": "ab22611d0efadc4021c51cf611d66bf5ec8a27425c296c44bf3322e12bddb058"
+    },
+    "verification/trust-0/logs/UnitSquareclass.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/trust-0/trust0_report.json": {
+      "bytes": 2340,
+      "sha256": "e2f60d88fa11e95a3fd03da67fd3d3aea1a022661d0d9604b54b4b8f6359985f"
+    },
+    "verification/verification_report.json": {
+      "bytes": 15329,
+      "sha256": "a3802752baec1113de6125ea7ce31d1f3241003902712f4e5523f6f8bf3f9541"
+    }
+  }
+}

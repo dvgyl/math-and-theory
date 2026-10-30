@@ -1,0 +1,218 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,urlcolor=MidnightBlue,citecolor=MidnightBlue]{hyperref}
+\usepackage{enumitem,fancyhdr}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Represented unit squareclasses}\fancyhead[R]{\small Dev D. Goyal}\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parskip}{4pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\OK}{\mathcal O_K}
+\newcommand{\OF}{\mathcal O_F}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\U}{\mathcal U}
+\hypersetup{pdftitle={A rank bound for represented totally positive unit squareclasses},pdfauthor={Dev D. Goyal},
+pdfsubject={Fully autonomous agentic research},
+pdfkeywords={quadratic lattices, totally real fields, unit square classes, universal quadratic forms, reflection groups, Lean 4}}
+\title{A rank bound for represented\protect\\totally positive unit squareclasses}
+\author{Dev D. Goyal}
+\date{30 October 2026}
+\begin{document}
+\maketitle
+
+\section*{Research process and AI disclosure}
+This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
+
+The theorem, its proof, the Lean formalization and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session describe three agents working in one system on discovery, proof, formalization and review; their tool logs indicate an OpenAI Codex environment, and the model version is not recorded.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It coordinated an independent AI referee check, which read the proof and the Lean statements, compared the theorem with Daans, Kala, Man, Widmer and Yatsyna's Question~3.4, and tested the bound by exact computation on lattices over real quadratic and totally real quartic fields, where it is attained in ranks two to four. The referee observed that the theorem is a short consequence of standard facts on finite reflection groups. Opus 5.5 ran the fresh Lean replays described in Section~\ref{sec:formal} and revised this note: it added that derivation (Section~\ref{sec:coxeter}), the credit for the classical case, and the universality corollary, and removed references to working files that are not published. AI referee checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:formal}.
+
+\begin{abstract}
+We give a reflection argument bounding the number of totally positive unit squareclasses represented by a positive definite integral quadratic lattice by its rank. The argument allows nonclassical cross terms and nonfree lattices. Over number fields, fixed-value representation sets are finite. Minimizing a generic linear functional in each such set produces pairwise nonpositively paired representatives lying in one open halfspace, hence a linearly independent family. A finite-data descent proves the result over arbitrary algebraic totally real fields. The accompanying Lean development verifies the full embedded-module theorem, including infinite fields. The bound answers Question~3.4 of Daans, Kala, Man, Widmer and Yatsyna negatively. It is also a short consequence of standard facts on finite reflection groups (Section~\ref{sec:coxeter}); the contribution is the arithmetic statement and its application to that question, not the method.
+\end{abstract}
+
+\section{The arithmetic statement}
+Let $K/\Q$ be an algebraic totally real extension and let $\OK$ denote the ring of algebraic integers in $K$. An integral quadratic lattice is a finitely generated torsion-free $\OK$-module $L$, embedded in a finite-dimensional $K$-space $V$, together with a symmetric $K$-bilinear form $B$ such that
+\[
+ Q(x):=B(x,x)\in\OK \quad (x\in L).
+\]
+We take $V=K L$, so $n=\dim_K V$ is the lattice rank. Total positive definiteness means that $Q(x)$ is positive at every real embedding whenever $x\ne0$. The identity
+\[
+ 2B(x,y)=Q(x+y)-Q(x)-Q(y)
+\]
+gives $2B(L,L)\subseteq\OK$. We do not impose $B(L,L)\subseteq\OK$.
+
+Write $\U_K=\OK^{\times,+}/(\OK^\times)^2$. A class is represented if some vector of $L$ has quadratic value in that class.
+
+\begin{theorem}\label{thm:main}
+Every positive definite integral quadratic lattice of rank $n$ over a totally real number field represents at most $n$ classes in $\U_K$.
+\end{theorem}
+
+The result is understood in the finite-family sense: every finite family of pairwise distinct represented classes has cardinality at most $n$. A larger or infinite represented-class set would supply a forbidden family of size $n+1$, so this is the full cardinal bound. It includes $n=0,1$ and imposes no freeness or classicality condition on $L$.
+
+The closest opened arithmetic source is Daans--Kala--Man--Widmer--Yatsyna~\cite{DKMWY}, Theorem 3.2 and Question 3.4. It gives $2n-2$ generally and $n$ under an additional squareclass condition, and asks whether $n+1$ represented classes can occur. For classical lattices, where $B(L,L)\subseteq\OK$, the bound $n$ was already known: a unit-valued vector then splits off orthogonally (Daans, Kala and Man~\cite[Propositions~4.1--4.2]{DKM}). The question concerns nonclassical lattices, and the contribution here is the unconditional bound $n$ for them.
+
+\section{Arithmetic preparation}
+\begin{lemma}\label{lem:unit}
+If $u\in\OK^\times$ and $a\in K$ satisfy $a^2=u$, then $a\in\OK^\times$. Consequently two integral units have the same unit squareclass if and only if their ratio is a square in $K$.
+\end{lemma}
+\begin{proof}
+The element $a$ is integral over $\OK$, being a root of $X^2-u$. Integrality is transitive over $\Z$, so $a\in\OK$. The same argument applied to $a^{-1}$ and $u^{-1}$ shows that $a^{-1}\in\OK$.
+\end{proof}
+
+\begin{lemma}\label{lem:shell}
+If $K$ is a number field and $\varepsilon\in K$ is totally positive, then
+\[
+ S_\varepsilon=\{x\in L:Q(x)=\varepsilon\}
+\]
+is finite.
+\end{lemma}
+\begin{proof}
+Choose finitely many generators $e_1,\ldots,e_r$ of $L$ over $\OK$. For $x\in S_\varepsilon$, each polar coordinate
+\[
+ c_j(x)=2B(x,e_j)
+\]
+is an algebraic integer. For every real embedding $\sigma$ of $K$, positivity of $Q(x+e_j)$ and $Q(x-e_j)$ gives
+\[
+ |\sigma(c_j(x))|\leq \sigma(\varepsilon)+\sigma(Q(e_j)).
+\]
+There are finitely many embeddings, so all conjugates of each $c_j(x)$ satisfy a bound depending only on $\varepsilon$ and $e_j$. Only finitely many algebraic integers in a fixed number field have all conjugates bounded: the degree and the integral coefficients of their minimal polynomials are bounded. Thus the tuple $(c_j(x))_j$ has finitely many possibilities.
+
+This tuple determines $x$. Indeed, if all $B(x-y,e_j)$ vanish, bilinearity and $x-y\in\operatorname{span}_K\{e_j\}$ imply $Q(x-y)=0$, hence $x=y$. No integral basis or freeness of $L$ is needed.
+\end{proof}
+
+\begin{lemma}\label{lem:reflection}
+If $v\in L$ and $Q(v)=\varepsilon\in\OK^\times$, then
+\[
+ r_v(x)=x-\frac{2B(v,x)}{\varepsilon}v
+\]
+is an involutive lattice isometry and preserves every fixed-value representation set.
+\end{lemma}
+\begin{proof}
+The coefficient $2B(v,x)/\varepsilon$ is integral for $x\in L$, so $r_v(L)\subseteq L$. Expanding $Q(r_v(x))$ gives $Q(x)$, and $r_v^2=1$. This uses integrality of $2B$, not integrality of $B$.
+\end{proof}
+
+\section{The counting argument}
+Suppose $\varepsilon_1,\ldots,\varepsilon_m$ are represented units with pairwise distinct unit squareclasses. Fix one real embedding of $K$ and use its ordering. By Lemma~\ref{lem:shell}, the sets $S_i=S_{\varepsilon_i}$ are finite, nonempty and stable under negation. Their elements are nonzero.
+
+Choose a linear functional $h$ which vanishes on none of $\bigcup_i S_i$. Such a functional exists because finitely many proper hyperplanes cannot cover the dual of a finite-dimensional vector space over an infinite field. In each $S_i$, choose $v_i$ minimizing the positive value
+\[
+ h_i=h(v_i)>0.
+\]
+Negation ensures that a positive value exists. The same construction can be made with $K$-linear functionals and the chosen ordering of $K$.
+
+\begin{lemma}\label{lem:obtuse}
+For $i\ne j$, one has $B(v_i,v_j)\leq0$.
+\end{lemma}
+\begin{proof}
+Suppose $b=B(v_i,v_j)>0$. By Lemma~\ref{lem:reflection}, $r_{v_i}(v_j)\in S_j$ and
+\[
+ h(r_{v_i}(v_j))=h_j-\frac{2b}{\varepsilon_i}h_i<h_j.
+\]
+This value is nonzero. Minimality of $h_j$ forces it to be negative. Negating the reflected vector and applying minimality again gives
+\[
+ \frac{2b}{\varepsilon_i}h_i-h_j\geq h_j,
+ \qquad\text{hence}\qquad
+ \frac{2b}{\varepsilon_i}h_i\geq2h_j.
+\]
+Interchanging $i$ and $j$ gives
+\[
+ \frac{2b}{\varepsilon_j}h_j\geq2h_i.
+\]
+Multiplication and cancellation of positive quantities yield $b^2\geq\varepsilon_i\varepsilon_j$.
+
+The vectors are not $K$-collinear: if $v_j=a v_i$, then $\varepsilon_j=a^2\varepsilon_i$, contradicting Lemma~\ref{lem:unit} and distinctness of the classes. Strict Cauchy--Schwarz over the ordered field therefore gives
+\[
+ b^2<Q(v_i)Q(v_j)=\varepsilon_i\varepsilon_j,
+\]
+a contradiction. Equivalently one may work after real scalar extension; real collinearity of vectors with $K$-coordinates would imply $K$-collinearity.
+\end{proof}
+
+\begin{lemma}\label{lem:independent}
+If vectors $v_i$ satisfy $B(v_i,v_j)\leq0$ for $i\ne j$ and $h(v_i)>0$ for one linear functional $h$, then they are linearly independent.
+\end{lemma}
+\begin{proof}
+Given a relation $\sum_i a_i v_i=0$, split positive and negative coefficients:
+\[
+ u=\sum_{a_i>0}a_i v_i
+   =\sum_{a_j<0}(-a_j)v_j=w.
+\]
+The supports are disjoint, so
+\[
+ Q(u)=B(u,w)=\sum_{a_i>0,\,a_j<0}a_i(-a_j)B(v_i,v_j)\leq0.
+\]
+Positive definiteness gives $u=0$. Any positive coefficient would then give $h(u)>0$, a contradiction. Applying $h$ to the original relation rules out any remaining negative coefficient. Thus all coefficients vanish.
+\end{proof}
+
+Lemmas~\ref{lem:obtuse} and~\ref{lem:independent} show that $m\leq\dim_K V=n$, proving Theorem~\ref{thm:main}.
+
+\section{Relation to finite reflection groups}\label{sec:coxeter}
+Theorem~\ref{thm:main} is also a short consequence of standard facts on finite reflection groups, and the argument above is the classical construction of a simple system in this setting. Over a number field, the isometry group $O(L)$ is finite, because $\operatorname{Tr}_{K/\Q}\circ Q$ is a positive definite integral quadratic form on the free $\Z$-module $L$. By Lemma~\ref{lem:reflection}, every $v\in L$ with $Q(v)\in\OK^\times$ gives a reflection $r_v\in O(L)$, and these reflections generate a finite group $W$. Through a real embedding of $K$, $W$ acts on an $n$-dimensional real inner-product space as a finite reflection group. Every reflection in $W$ is conjugate in $W$ to one of its simple reflections, of which there are at most $n$~\cite[Sections~1.5 and~1.14]{Hum}, \cite[Chapter~V]{Bou}.
+
+If $g r_v g^{-1}=r_w$ with $g\in W$, then $r_{g(v)}=r_w$, so $g(v)=cw$ for some $c\in K$. Then $c^2=Q(v)/Q(w)$ is a unit, so $c$ is a unit by Lemma~\ref{lem:unit}, and $Q(v)$ and $Q(w)$ lie in the same class. Hence the represented classes number at most the conjugacy classes of reflections in $W$, which is at most $n$.
+
+The generic-functional argument above is the same mechanism as Proposition~4.12 of Scharlau and Blaschke~\cite{SB}. What is specific to the arithmetic setting is the use of a single real embedding, rather than the trace form, whose dimension $n[K:\Q]$ is too large, and the integrality of square roots of units in Lemma~\ref{lem:unit}.
+
+\section{Extension to algebraic totally real fields}
+\begin{corollary}\label{cor:infinite}
+The same bound holds for every algebraic totally real extension $K/\Q$, including extensions of infinite degree. More generally, it holds for any integral $\OK$-submodule $L$ in a finite-dimensional positive-definite $K$-space, with $n=\dim_K\operatorname{span}_K L$; finite generation of $L$ is unnecessary.
+\end{corollary}
+\begin{proof}
+If the bound failed, choose $n+1$ represented distinct unit classes, represented by vectors $v_i$. Work in $\operatorname{span}_K L$ and choose a $K$-basis $e_1,\ldots,e_n$ in $L$. Let $F\subseteq K$ be a number field containing all Gram entries $B(e_j,e_k)$ and all coordinates of the $v_i$ in this basis. Only finitely many algebraic elements are needed, irrespective of finite generation of $L$.
+
+Inside the $F$-span of the $e_j$, put
+\[
+ M=\sum_j\OF e_j+\sum_i\OF v_i.
+\]
+This is a finitely generated torsion-free integral quadratic $\OF$-lattice of rank $n$: its quadratic values lie in $F\cap\OK=\OF$. Total positive definiteness descends since every embedding of $F$ into $\mathbb C$ extends to $K$, whose image is real. The units $Q(v_i)$ and their inverses are integral and belong to $F$, so they are units in $\OF$. Their classes remain distinct over $F$, since an equality over $F$ would remain an equality over $K$. Theorem~\ref{thm:main} gives the contradiction $n+1\leq n$.
+\end{proof}
+
+It would be incorrect to assume that norm shells over an arbitrary infinite field are finite. The proof applies finiteness only after descending a finite proposed counterexample.
+
+\section{Sharpness, consequence and limitations}
+If a field $K$ has $n$ distinct totally positive unit classes with representatives $\varepsilon_i$, the diagonal lattice
+\[
+ \varepsilon_1X_1^2+\cdots+\varepsilon_nX_n^2
+\]
+represents all of them. The bound is therefore attained whenever the field has sufficiently many classes. More generally the maximal number in rank $n$ is the smaller of $n$ and the number of available classes, with the evident interpretation if that group is infinite.
+
+In particular, a field with infinitely many classes attains the bound in every rank.
+
+A universal lattice must represent every totally positive unit class. Its rank is consequently at least their number. For classical lattices this is Proposition~4.2 of~\cite{DKM}; the bound here removes the classicality assumption. In particular, four such classes obstruct ternary universality. This does not prove Kitaoka's finiteness conjecture or classify universal forms.
+
+The integral-reflection fact and the obtuse-vector mechanism are established ingredients. Peters--Sterk~\cite{PS}, Lemma 7.1.1, records unit reflections; Scharlau--Blaschke~\cite{SB}, Proposition 4.12, uses a closely related generic-functional/reflection argument. The contribution here is the arithmetic count and its application to the published question. Root lattices over the rings of integers of totally real fields, whose reflection groups underlie Section~\ref{sec:coxeter}, have been classified by Sakamoto, Suzuki and Tamori~\cite{SST}; we have seen only the abstract of that work, which does not state the present count. A literature search found no earlier answer to Question~3.4, but historical priority is not certified.
+
+\clearpage
+\section{Formal companion and reproducibility}\label{sec:formal}
+The project pins Lean 4.19.0 and mathlib revision
+\begin{center}\small\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.\end{center}
+The final endpoint is
+\begin{flushleft}\small\ttfamily
+UnitSquareclass.algebraic\_represented\_unit\_\\
+squareclasses\_card\_le\_lattice\_rank
+\end{flushleft}
+It quantifies over every finite type $I$ and every represented family of actual $\OK$-units, with pairwise inequivalence modulo squares of actual units. It concludes $|I|\leq\dim_K\operatorname{span}_K L$. Reality and positivity are quantified over every complex embedding. Integrality is required only on diagonal values.
+
+Fresh replays on 30 October 2026 compiled all eleven modules from source into new object directories against a Mathlib checkout built from source at the pinned revision, once with the package verifier and once with \texttt{--trust=0}, which also rechecks imported declarations. Both passed, and all twenty-two audited declarations depend only on \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. Their records are in \texttt{verification/}. No \texttt{sorry}, \texttt{admit}, or custom axiom occurs in production source.
+
+There are two explicit presentation interfaces. The formalization states the theorem for embedded submodules with symmetric bilinear forms. An abstract torsion-free quadratic lattice embeds in its field localization, and its polarization extends to its span; this standard transport is not a separate Lean endpoint. The formal theorem uses the universal finite-family formulation rather than defining a literal quotient-cardinality object. Neither changes the arithmetic bound.
+
+The proof follows the same structure as the manuscript. For shell finiteness, Lean uses a sufficient Cauchy-derived bound on polar coordinates rather than the $Q(x\pm e_j)$ bound above. For descent, Lean uses a coordinate space and the integral span of the witness vectors, so a rank-at-most-$n$ lattice suffices; the manuscript includes basis vectors to obtain rank exactly $n$. Sharpness and universality are stated as conventional consequences, not additional separately audited Lean endpoints. \texttt{lean/MANUSCRIPT\_CORRESPONDENCE.md} gives the module-by-module correspondence. Formal correctness does not establish novelty.
+
+\begin{thebibliography}{9}\small
+\bibitem{DKMWY} N. Daans, V. Kala, S. H. Man, M. Widmer and P. Yatsyna, \emph{Most totally real fields do not have universal forms or the Northcott property}, PNAS 122(20), e2419414122 (2025). \href{https://arxiv.org/abs/2409.11082v2}{arXiv:2409.11082v2}, 28 May 2025; Theorem 3.2 and Question 3.4.
+\bibitem{DKM} N. Daans, V. Kala and S. H. Man, \emph{Universal quadratic forms and Northcott property of infinite number fields}, J. London Math. Soc. (2024). \href{https://doi.org/10.1112/jlms.70022}{doi:10.1112/jlms.70022}; \href{https://arxiv.org/abs/2308.16721}{arXiv:2308.16721}; Propositions 4.1--4.2.
+\bibitem{Hum} J. E. Humphreys, \emph{Reflection Groups and Coxeter Groups}, Cambridge Studies in Advanced Mathematics 29, Cambridge University Press, 1990.
+\bibitem{Bou} N. Bourbaki, \emph{Lie Groups and Lie Algebras, Chapters 4--6}, Springer, 2002.
+\bibitem{SST} R. Sakamoto, M. Suzuki and H. Tamori, \emph{Root lattices over totally real fields}, \href{https://arxiv.org/abs/2603.27545}{arXiv:2603.27545} (2026).
+\bibitem{PS} C. Peters and H. Sterk, \emph{Symmetric and Quadratic Forms, with Applications to Coding Theory, Algebraic Geometry and Topology}, June 2024 version, dated September 16, 2024; Lemma 7.1.1. \href{https://www-fourier.univ-grenoble-alpes.fr/~peters/Books/QuadraticForms/QuadForms.pdf}{Author-hosted text}.
+\bibitem{SB} R. Scharlau and B. Blaschke, \emph{Reflective integral lattices}, Bielefeld preprint 95-014 (1995), Proposition 4.12; J. Algebra 181 (1996), 934--961. \href{https://www.math.uni-bielefeld.de/sfb343/preprints/index95.html}{Official preprint catalogue}.
+\end{thebibliography}
+\end{document}

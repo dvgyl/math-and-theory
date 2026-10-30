@@ -1,0 +1,411 @@
+{
+  "started_utc": "2026-10-30T12:27:03.881553+00:00",
+  "status": "passed",
+  "project": "$REPLAY/usq",
+  "output": "$REPLAY/usq-out",
+  "method": "fresh isolated compilation of every production module",
+  "dependency_policy": "pinned cached mathlib/dependency oleans; dependencies not rebuilt",
+  "standard_axioms_allowed": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "modules": [
+    {
+      "name": "UnitSquareclass.Geometry",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--root=$REPLAY/usq-out/source",
+        "-o",
+        "$REPLAY/usq-out/lib/UnitSquareclass/Geometry.olean",
+        "$REPLAY/usq-out/source/UnitSquareclass/Geometry.lean"
+      ],
+      "exit_code": 0,
+      "log": "logs/UnitSquareclass.Geometry.log",
+      "source_sha256": "a0c4521bb9e841ed3d29e934c1e38a4f852118f2eb68b6515de3de1f59cde708",
+      "olean_sha256": "361abbf95e947b65a43caa406165d869894601f65fb79984051ce7abca0553f3"
+    },
+    {
+      "name": "UnitSquareclass.Helpers",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--root=$REPLAY/usq-out/source",
+        "-o",
+        "$REPLAY/usq-out/lib/UnitSquareclass/Helpers.olean",
+        "$REPLAY/usq-out/source/UnitSquareclass/Helpers.lean"
+      ],
+      "exit_code": 0,
+      "log": "logs/UnitSquareclass.Helpers.log",
+      "source_sha256": "553b490d794d1d748ed9efe2102a8d6526dc2acbed4a378e0cd804ec812bb19b",
+      "olean_sha256": "292404159715608a4b6ef4dcbbb3a9f3b528608d66213ba5693275280731a45a"
+    },
+    {
+      "name": "UnitSquareclass.Arithmetic",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--root=$REPLAY/usq-out/source",
+        "-o",
+        "$REPLAY/usq-out/lib/UnitSquareclass/Arithmetic.olean",
+        "$REPLAY/usq-out/source/UnitSquareclass/Arithmetic.lean"
+      ],
+      "exit_code": 0,
+      "log": "logs/UnitSquareclass.Arithmetic.log",
+      "source_sha256": "537afc3c20a105c3e2aab88d5c73d09c67224c7cda14d30b2b0e3914c7495bea",
+      "olean_sha256": "bfb27a3a1aa8448181269bba94f87151b8e3b24e2fd288fb34506a60487406f2"
+    },
+    {
+      "name": "UnitSquareclass.IntegralReflections",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--root=$REPLAY/usq-out/source",
+        "-o",
+        "$REPLAY/usq-out/lib/UnitSquareclass/IntegralReflections.olean",
+        "$REPLAY/usq-out/source/UnitSquareclass/IntegralReflections.lean"
+      ],
+      "exit_code": 0,
+      "log": "logs/UnitSquareclass.IntegralReflections.log",
+      "source_sha256": "7140aab7e7ce771b8e0e323e3ffb9fe73f3fcd5721e8db0888fb347d766a90c7",
+      "olean_sha256": "f70b2296cf323c9343a5baab0f853c5f917d037ef3812f6ba371f15637063173"
+    },
+    {
+      "name": "UnitSquareclass.Main",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--root=$REPLAY/usq-out/source",
+        "-o",
+        "$REPLAY/usq-out/lib/UnitSquareclass/Main.olean",
+        "$REPLAY/usq-out/source/UnitSquareclass/Main.lean"
+      ],
+      "exit_code": 0,
+      "log": "logs/UnitSquareclass.Main.log",
+      "source_sha256": "7768402be432ee6d97e6e7c4eb820a74aaaa7777bca6ef85e86ade9441bdaeed",
+      "olean_sha256": "06abbad28d79f64790fad746610751a07bc4393ccfee21d9210e434a59b7dc9a"
+    },
+    {
+      "name": "UnitSquareclass.DescentUnits",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--root=$REPLAY/usq-out/source",
+        "-o",
+        "$REPLAY/usq-out/lib/UnitSquareclass/DescentUnits.olean",
+        "$REPLAY/usq-out/source/UnitSquareclass/DescentUnits.lean"
+      ],
+      "exit_code": 0,
+      "log": "logs/UnitSquareclass.DescentUnits.log",
+      "source_sha256": "086f115ddb541cc511afaf2aeb399d00390513606d07dbaa77ba32d09c00e41d",
+      "olean_sha256": "c4060595d4cd0791e0e36cf2e98f24c1e4c98a21e02186206e5a520d02eda79a"
+    },
+    {
+      "name": "UnitSquareclass.FieldDescent",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--root=$REPLAY/usq-out/source",
+        "-o",
+        "$REPLAY/usq-out/lib/UnitSquareclass/FieldDescent.olean",
+        "$REPLAY/usq-out/source/UnitSquareclass/FieldDescent.lean"
+      ],
+      "exit_code": 0,
+      "log": "logs/UnitSquareclass.FieldDescent.log",
+      "source_sha256": "3930e290af3727b5245ceb3aff764f698839fd70f396e86645bdef64e90e78bd",
+      "olean_sha256": "9094300fe509dfedfb87577e663d64d40f55208b9bced415e78718b203a1211d"
+    },
+    {
+      "name": "UnitSquareclass.Descent",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--root=$REPLAY/usq-out/source",
+        "-o",
+        "$REPLAY/usq-out/lib/UnitSquareclass/Descent.olean",
+        "$REPLAY/usq-out/source/UnitSquareclass/Descent.lean"
+      ],
+      "exit_code": 0,
+      "log": "logs/UnitSquareclass.Descent.log",
+      "source_sha256": "28769b44425552b8bebb459e65352241915b3f4918960b17abfd55fa927bfbdc",
+      "olean_sha256": "ae6e206c0e0c8e01e4e25fb738b7242214924a7c1411c50bfc5d2ad086e4aa93"
+    },
+    {
+      "name": "UnitSquareclass.AlgebraicRank",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--root=$REPLAY/usq-out/source",
+        "-o",
+        "$REPLAY/usq-out/lib/UnitSquareclass/AlgebraicRank.olean",
+        "$REPLAY/usq-out/source/UnitSquareclass/AlgebraicRank.lean"
+      ],
+      "exit_code": 0,
+      "log": "logs/UnitSquareclass.AlgebraicRank.log",
+      "source_sha256": "0da725380fcb39a4f9eaf80c20fd7651f20557d8e7b29ecb7e70b60da33f660f",
+      "olean_sha256": "55de01d828c2be72de5090c6c332318ed7bbdb494a074854bbabeb73582ee417"
+    },
+    {
+      "name": "UnitSquareclass",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--root=$REPLAY/usq-out/source",
+        "-o",
+        "$REPLAY/usq-out/lib/UnitSquareclass.olean",
+        "$REPLAY/usq-out/source/UnitSquareclass.lean"
+      ],
+      "exit_code": 0,
+      "log": "logs/UnitSquareclass.log",
+      "source_sha256": "0a43164409ea5e4a42ea27d9f3709d463a7af0ee54b2ac4f94f27949b54590b7",
+      "olean_sha256": "558ed0620e362ce162c0f084aea41febd12e38455691f3687eaf19f2901f713d"
+    },
+    {
+      "name": "AxiomAudit",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "--root=$REPLAY/usq-out/source",
+        "-o",
+        "$REPLAY/usq-out/lib/AxiomAudit.olean",
+        "$REPLAY/usq-out/source/AxiomAudit.lean"
+      ],
+      "exit_code": 0,
+      "log": "logs/AxiomAudit.log",
+      "source_sha256": "c2c6f2da83397f904ad5013517f942b412943fcb6e2df908434432f084e4c442",
+      "olean_sha256": "1d8770a2189724078158e478c2e2ab562ca7e92d80c216330277d2f07935b510"
+    }
+  ],
+  "lean": {
+    "executable": "$LEAN_HOME/bin/lean",
+    "version": "Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)",
+    "commit": "6caaee842e9495688c1567e78c0e68dbb96942aa",
+    "sha256": "92c3d35b5bfaa5e0fea413a775d504cf46cd95e1345df61c2274f76779e7e023"
+  },
+  "mathlib": {
+    "path": "$MATHLIB",
+    "revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+    "tracked_source_clean": "true"
+  },
+  "mathlib_manifest_sha256": "5c6421b650bc87a2427a892a39e5522dc44543ca4ac1bd6e9f08d536c044a752",
+  "dependencies": [
+    {
+      "name": "plausible",
+      "path": "$MATHLIB/.lake/packages/plausible",
+      "revision": "77e08eddc486491d7b9e470926b3dbe50319451a",
+      "tracked_source_clean": "true",
+      "compiled_library_present": true
+    },
+    {
+      "name": "LeanSearchClient",
+      "path": "$MATHLIB/.lake/packages/LeanSearchClient",
+      "revision": "25078369972d295301f5a1e53c3e5850cf6d9d4c",
+      "tracked_source_clean": "true",
+      "compiled_library_present": true
+    },
+    {
+      "name": "importGraph",
+      "path": "$MATHLIB/.lake/packages/importGraph",
+      "revision": "e6a9f0f5ee3ccf7443a0070f92b62f8db12ae82b",
+      "tracked_source_clean": "true",
+      "compiled_library_present": true
+    },
+    {
+      "name": "proofwidgets",
+      "path": "$MATHLIB/.lake/packages/proofwidgets",
+      "revision": "c4919189477c3221e6a204008998b0d724f49904",
+      "tracked_source_clean": "true",
+      "compiled_library_present": true
+    },
+    {
+      "name": "aesop",
+      "path": "$MATHLIB/.lake/packages/aesop",
+      "revision": "5d50b08dedd7d69b3d9b3176e0d58a23af228884",
+      "tracked_source_clean": "true",
+      "compiled_library_present": true
+    },
+    {
+      "name": "Qq",
+      "path": "$MATHLIB/.lake/packages/Qq",
+      "revision": "fa4f7f15d97591a9cf3aa7724ba371c7fc6dda02",
+      "tracked_source_clean": "true",
+      "compiled_library_present": true
+    },
+    {
+      "name": "batteries",
+      "path": "$MATHLIB/.lake/packages/batteries",
+      "revision": "f5d04a9c4973d401c8c92500711518f7c656f034",
+      "tracked_source_clean": "true",
+      "compiled_library_present": true
+    },
+    {
+      "name": "Cli",
+      "path": "$MATHLIB/.lake/packages/Cli",
+      "revision": "02dbd02bc00ec4916e99b04b2245b30200e200d0",
+      "tracked_source_clean": "true",
+      "compiled_library_present": false
+    }
+  ],
+  "source_scan": {
+    "forbidden_tokens": [],
+    "source_sha256": {
+      "UnitSquareclass": "0a43164409ea5e4a42ea27d9f3709d463a7af0ee54b2ac4f94f27949b54590b7",
+      "AxiomAudit": "c2c6f2da83397f904ad5013517f942b412943fcb6e2df908434432f084e4c442",
+      "UnitSquareclass.AlgebraicRank": "0da725380fcb39a4f9eaf80c20fd7651f20557d8e7b29ecb7e70b60da33f660f",
+      "UnitSquareclass.Arithmetic": "537afc3c20a105c3e2aab88d5c73d09c67224c7cda14d30b2b0e3914c7495bea",
+      "UnitSquareclass.Descent": "28769b44425552b8bebb459e65352241915b3f4918960b17abfd55fa927bfbdc",
+      "UnitSquareclass.DescentUnits": "086f115ddb541cc511afaf2aeb399d00390513606d07dbaa77ba32d09c00e41d",
+      "UnitSquareclass.FieldDescent": "3930e290af3727b5245ceb3aff764f698839fd70f396e86645bdef64e90e78bd",
+      "UnitSquareclass.Geometry": "a0c4521bb9e841ed3d29e934c1e38a4f852118f2eb68b6515de3de1f59cde708",
+      "UnitSquareclass.Helpers": "553b490d794d1d748ed9efe2102a8d6526dc2acbed4a378e0cd804ec812bb19b",
+      "UnitSquareclass.IntegralReflections": "7140aab7e7ce771b8e0e323e3ffb9fe73f3fcd5721e8db0888fb347d766a90c7",
+      "UnitSquareclass.Main": "7768402be432ee6d97e6e7c4eb820a74aaaa7777bca6ef85e86ade9441bdaeed"
+    }
+  },
+  "module_order": [
+    "UnitSquareclass.Geometry",
+    "UnitSquareclass.Helpers",
+    "UnitSquareclass.Arithmetic",
+    "UnitSquareclass.IntegralReflections",
+    "UnitSquareclass.Main",
+    "UnitSquareclass.DescentUnits",
+    "UnitSquareclass.FieldDescent",
+    "UnitSquareclass.Descent",
+    "UnitSquareclass.AlgebraicRank",
+    "UnitSquareclass",
+    "AxiomAudit"
+  ],
+  "lean_path": "$REPLAY/usq-out/lib:$MATHLIB/.lake/build/lib/lean:$MATHLIB/.lake/packages/plausible/.lake/build/lib/lean:$MATHLIB/.lake/packages/LeanSearchClient/.lake/build/lib/lean:$MATHLIB/.lake/packages/importGraph/.lake/build/lib/lean:$MATHLIB/.lake/packages/proofwidgets/.lake/build/lib/lean:$MATHLIB/.lake/packages/aesop/.lake/build/lib/lean:$MATHLIB/.lake/packages/Qq/.lake/build/lib/lean:$MATHLIB/.lake/packages/batteries/.lake/build/lib/lean:$MATHLIB/.lake/packages/Cli/.lake/build/lib/lean:$LEAN_HOME/lib/lean",
+  "axiom_audit": {
+    "UnitSquareclass.algebraic_represented_unit_squareclasses_card_le_finrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.algebraic_represented_unit_squareclasses_card_le_lattice_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.card_le_finrank_of_reflection_minima": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.collinear_unit_values_same_squareclass": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.distinct_unit_squareclasses_descend": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.exists_integral_unit_of_ratio_sq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.exists_numberField_containing": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.extend_complex_embedding": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.finite_arithmetic_shell": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.finite_reflection_shells_card_le_finrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.integralReflect_mem_shell": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.integral_span_maps_into_lattice": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.isIntegral_intermediate_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.linearIndependent_of_pairwise_nonpos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.positive_intermediate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.realEmbeddingStrictOrderedRing": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.represented_unit_squareclasses_card_le_finrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.represented_unit_squareclasses_card_le_finrank_of_real_embeddings": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.represented_unit_squareclasses_card_le_lattice_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.strict_cauchy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.totally_real_intermediate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.totally_real_represented_unit_squareclasses_card_le_lattice_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitSquareclass.two_mul_bilin_isIntegral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "audited_endpoints": [
+    "UnitSquareclass.algebraic_represented_unit_squareclasses_card_le_finrank",
+    "UnitSquareclass.algebraic_represented_unit_squareclasses_card_le_lattice_rank",
+    "UnitSquareclass.collinear_unit_values_same_squareclass",
+    "UnitSquareclass.distinct_unit_squareclasses_descend",
+    "UnitSquareclass.exists_integral_unit_of_ratio_sq",
+    "UnitSquareclass.exists_numberField_containing",
+    "UnitSquareclass.extend_complex_embedding",
+    "UnitSquareclass.finite_arithmetic_shell",
+    "UnitSquareclass.finite_reflection_shells_card_le_finrank",
+    "UnitSquareclass.integralReflect_mem_shell",
+    "UnitSquareclass.integral_span_maps_into_lattice",
+    "UnitSquareclass.isIntegral_intermediate_iff",
+    "UnitSquareclass.linearIndependent_of_pairwise_nonpos",
+    "UnitSquareclass.positive_intermediate",
+    "UnitSquareclass.realEmbeddingStrictOrderedRing",
+    "UnitSquareclass.represented_unit_squareclasses_card_le_finrank",
+    "UnitSquareclass.represented_unit_squareclasses_card_le_finrank_of_real_embeddings",
+    "UnitSquareclass.represented_unit_squareclasses_card_le_lattice_rank",
+    "UnitSquareclass.strict_cauchy",
+    "UnitSquareclass.totally_real_intermediate",
+    "UnitSquareclass.totally_real_represented_unit_squareclasses_card_le_lattice_rank",
+    "UnitSquareclass.two_mul_bilin_isIntegral"
+  ],
+  "finished_utc": "2026-10-30T12:35:10.346240+00:00"
+}

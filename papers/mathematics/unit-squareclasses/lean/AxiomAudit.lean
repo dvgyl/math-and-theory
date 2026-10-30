@@ -1,0 +1,36 @@
+import UnitSquareclass
+
+/-!
+The audit names actual arithmetic endpoints and their indispensable ingredients.
+Only Lean's standard axioms `propext`, `Classical.choice`, and `Quot.sound`
+are permitted by the external verification script.
+-/
+
+#check @UnitSquareclass.finite_reflection_shells_card_le_finrank
+#check @UnitSquareclass.finite_arithmetic_shell
+#check @UnitSquareclass.totally_real_represented_unit_squareclasses_card_le_lattice_rank
+#check @UnitSquareclass.algebraic_represented_unit_squareclasses_card_le_finrank
+#check @UnitSquareclass.algebraic_represented_unit_squareclasses_card_le_lattice_rank
+
+#print axioms UnitSquareclass.strict_cauchy
+#print axioms UnitSquareclass.linearIndependent_of_pairwise_nonpos
+#print axioms UnitSquareclass.finite_reflection_shells_card_le_finrank
+#print axioms UnitSquareclass.realEmbeddingStrictOrderedRing
+#print axioms UnitSquareclass.finite_arithmetic_shell
+#print axioms UnitSquareclass.exists_integral_unit_of_ratio_sq
+#print axioms UnitSquareclass.two_mul_bilin_isIntegral
+#print axioms UnitSquareclass.integralReflect_mem_shell
+#print axioms UnitSquareclass.collinear_unit_values_same_squareclass
+#print axioms UnitSquareclass.represented_unit_squareclasses_card_le_finrank
+#print axioms UnitSquareclass.represented_unit_squareclasses_card_le_lattice_rank
+#print axioms UnitSquareclass.represented_unit_squareclasses_card_le_finrank_of_real_embeddings
+#print axioms UnitSquareclass.totally_real_represented_unit_squareclasses_card_le_lattice_rank
+#print axioms UnitSquareclass.distinct_unit_squareclasses_descend
+#print axioms UnitSquareclass.integral_span_maps_into_lattice
+#print axioms UnitSquareclass.extend_complex_embedding
+#print axioms UnitSquareclass.totally_real_intermediate
+#print axioms UnitSquareclass.positive_intermediate
+#print axioms UnitSquareclass.exists_numberField_containing
+#print axioms UnitSquareclass.isIntegral_intermediate_iff
+#print axioms UnitSquareclass.algebraic_represented_unit_squareclasses_card_le_finrank
+#print axioms UnitSquareclass.algebraic_represented_unit_squareclasses_card_le_lattice_rank

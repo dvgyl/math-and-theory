@@ -17,6 +17,7 @@ Each family directory contains its manuscripts, proof sources or shared-library 
 | [Sharp log-concavity for alternating Motzkin sums](motzkin/bounded-forcing/) | [PDF](motzkin/bounded-forcing/manuscript.pdf) |
 | [Counterexamples to a late-iterate ordering conjecture for generalized Hofstadter functions](hofstadter-iteration/) | [PDF](hofstadter-iteration/paper.pdf) |
 | [A positive constant-recursive sequence with nonquasipolynomial power ranks](power-rank/) | [PDF](power-rank/manuscript.pdf) |
+| [A rank bound for represented totally positive unit squareclasses](unit-squareclasses/) | [PDF](unit-squareclasses/manuscript.pdf) |
 | [The sharp level-one Fourier weight at density one eighth](sharp-eighth/) | [PDF](sharp-eighth/manuscript.pdf) |
 | [A quartic entropy deficit for random rankings](quartic-rankings/) | [PDF](quartic-rankings/manuscript.pdf) |
 | [Sharp universal Rényi threshold for iid sums on finite Sidon sets](sidon-renyi/) | [PDF](sidon-renyi/manuscript.pdf) |

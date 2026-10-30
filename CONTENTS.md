@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**38 manuscripts and research notes across 37 result families in mathematics, theoretical computer science, and mathematical physics.**
+**39 manuscripts and research notes across 38 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -155,6 +155,18 @@ Exact minimal recurrences for every power of a rank-thirteen sequence, nonquasip
 **Priority and subsequent correspondence.** On 29 October 2026, through correspondence with Professor Eric Rowland, I learned that he had independently obtained an infinite family of rank sequences for rank-three recurrences while experimenting with an LLM. The constructions have not been compared. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#power-ranks-of-a-constant-recursive-sequence).
 
 [Paper PDF](papers/mathematics/power-rank/manuscript.pdf) · [LaTeX](papers/mathematics/power-rank/manuscript.tex) · [Reproduction and source context](papers/mathematics/power-rank/README.md) · [Citation](papers/mathematics/power-rank/CITATION.bib)
+
+### Quadratic forms and number theory
+
+#### [A rank bound for represented totally positive unit squareclasses](papers/mathematics/unit-squareclasses/manuscript.pdf)
+
+**Family:** `unit-squareclasses`.
+
+Let K be a totally real algebraic field, possibly of infinite degree, and L a totally positive definite quadratic lattice over its ring of integers with Q(L) ⊆ O_K, not necessarily classical. Then every family of pairwise distinct classes of totally positive units modulo squares of units represented by L has at most rank L members, and the bound is attained when the field has enough classes. This answers negatively Question 3.4 of Daans, Kala, Man, Widmer and Yatsyna, who proved the bound 2n − 2 and asked whether n + 1 classes can occur. The bound is a short consequence of standard facts on finite reflection groups: unit-valued vectors give integral reflections, and conjugate reflections carry the same unit class. As a corollary, a universal lattice has rank at least the number of totally positive unit classes.
+
+**Formal scope.** The bound for every algebraic totally real field, including infinite extensions, every O_K-submodule with integral norms in a finite-dimensional totally positive definite space, and actual units of the ring of integers is formalized in 11 Lean modules. The derivation from finite reflection groups, sharpness and the universality corollary are conventional.
+
+[Paper PDF](papers/mathematics/unit-squareclasses/manuscript.pdf) · [LaTeX](papers/mathematics/unit-squareclasses/manuscript.tex) · [Proof and reproduction](papers/mathematics/unit-squareclasses/README.md) · [Citation](papers/mathematics/unit-squareclasses/CITATION.bib)
 
 ### Discrete analysis, tilings, probability and entropy
 

@@ -1,0 +1,94 @@
+@UnitSquareclass.finite_reflection_shells_card_le_finrank : ∀ {K : Type u_1} {V : Type u_2} {I : Type u_3}
+  [inst : Field K] [inst_1 : LinearOrder K] [inst_2 : IsStrictOrderedRing K] [inst_3 : AddCommGroup V]
+  [inst_4 : Module K V] [inst_5 : Fintype I] [inst_6 : FiniteDimensional K V] (B : LinearMap.BilinForm K V),
+  B.IsSymm →
+    (∀ (z : V), z ≠ 0 → 0 < (B z) z) →
+      ∀ (S : I → Finset V),
+        (∀ (i : I), (S i).Nonempty) →
+          (∀ (i : I), ∀ x ∈ S i, x ≠ 0) →
+            (∀ (i : I), ∀ x ∈ S i, -x ∈ S i) →
+              (∀ (i j : I), ∀ x ∈ S i, ∀ y ∈ S j, UnitSquareclass.reflect B x y ∈ S j) →
+                (∀ (i j : I), i ≠ j → ∀ x ∈ S i, ∀ y ∈ S j, ∀ (a : K), y ≠ a • x) → Fintype.card I ≤ Module.finrank K V
+@UnitSquareclass.finite_arithmetic_shell : ∀ {K : Type u_1} {V : Type u_2} [inst : Field K] [inst_1 : AddCommGroup V]
+  [inst_2 : Module K V] [inst_3 : NumberField K] {J : Type u_3} [inst_4 : Fintype J] (B : LinearMap.BilinForm K V),
+  B.IsSymm →
+    (∀ (v : V), (B v) v = 0 → v = 0) →
+      (∀ (φ : K →+* ℂ) (a : K), (φ a).im = 0) →
+        (∀ (φ : K →+* ℂ) (v : V), v ≠ 0 → 0 < (φ ((B v) v)).re) →
+          ∀ (M : Set V) (e : J → V),
+            (∀ x ∈ M, x ∈ Submodule.span K (Set.range e)) →
+              (∀ x ∈ M, ∀ (j : J), IsIntegral ℤ (2 * (B x) (e j))) → ∀ (ε : K), {x | x ∈ M ∧ (B x) x = ε}.Finite
+@UnitSquareclass.totally_real_represented_unit_squareclasses_card_le_lattice_rank : ∀ {K : Type u_1} {V : Type u_2}
+  {I : Type u_3} [inst : Field K] [inst_1 : NumberField K] [inst_2 : AddCommGroup V] [inst_3 : Module K V]
+  [inst_4 : FiniteDimensional K V] [inst_5 : Module (NumberField.RingOfIntegers K) V]
+  [inst_6 : IsScalarTower (NumberField.RingOfIntegers K) K V] [inst_7 : Fintype I]
+  [inst_8 : NumberField.IsTotallyReal K] (L : Submodule (NumberField.RingOfIntegers K) V),
+  L.FG →
+    ∀ (B : LinearMap.BilinForm K V),
+      B.IsSymm →
+        (∀ (φ : K →+* ℝ) (z : V), z ≠ 0 → 0 < φ ((B z) z)) →
+          (∀ x ∈ L, IsIntegral ℤ ((B x) x)) →
+            ∀ (u : I → (NumberField.RingOfIntegers K)ˣ),
+              (∀ (i : I), ∃ x ∈ L, (B x) x = ↑↑(u i)) →
+                (∀ (i j : I), i ≠ j → ∀ (w : (NumberField.RingOfIntegers K)ˣ), u j ≠ w ^ 2 * u i) →
+                  Fintype.card I ≤ Module.finrank K ↥(Submodule.span K ↑L)
+@UnitSquareclass.algebraic_represented_unit_squareclasses_card_le_finrank : ∀ {K : Type u_1} {V : Type u_2}
+  [inst : Field K] [inst_1 : CharZero K] [inst_2 : AddCommGroup V] [inst_3 : Module K V] {I : Type u_3}
+  [inst_4 : Module (NumberField.RingOfIntegers K) V] [inst_5 : IsScalarTower (NumberField.RingOfIntegers K) K V]
+  [inst_6 : Algebra.IsAlgebraic ℚ K] [inst_7 : FiniteDimensional K V] [inst_8 : Fintype I]
+  (L : Submodule (NumberField.RingOfIntegers K) V) (B : LinearMap.BilinForm K V),
+  B.IsSymm →
+    (∀ (φ : K →+* ℂ) (a : K), (φ a).im = 0) →
+      (∀ (φ : K →+* ℂ) (z : V), z ≠ 0 → 0 < (φ ((B z) z)).re) →
+        (∀ x ∈ L, IsIntegral ℤ ((B x) x)) →
+          ∀ (u : I → (NumberField.RingOfIntegers K)ˣ),
+            (∀ (i : I), ∃ x ∈ L, (B x) x = ↑↑(u i)) →
+              (∀ (i j : I), i ≠ j → ∀ (w : (NumberField.RingOfIntegers K)ˣ), u j ≠ w ^ 2 * u i) →
+                Fintype.card I ≤ Module.finrank K V
+@UnitSquareclass.algebraic_represented_unit_squareclasses_card_le_lattice_rank : ∀ {K : Type u_1} {V : Type u_2}
+  {I : Type u_3} [inst : Field K] [inst_1 : CharZero K] [inst_2 : Algebra.IsAlgebraic ℚ K] [inst_3 : AddCommGroup V]
+  [inst_4 : Module K V] [inst_5 : FiniteDimensional K V] [inst_6 : Module (NumberField.RingOfIntegers K) V]
+  [inst_7 : IsScalarTower (NumberField.RingOfIntegers K) K V] [inst_8 : Fintype I]
+  (L : Submodule (NumberField.RingOfIntegers K) V) (B : LinearMap.BilinForm K V),
+  B.IsSymm →
+    (∀ (φ : K →+* ℂ) (a : K), (φ a).im = 0) →
+      (∀ (φ : K →+* ℂ) (z : V), z ≠ 0 → 0 < (φ ((B z) z)).re) →
+        (∀ x ∈ L, IsIntegral ℤ ((B x) x)) →
+          ∀ (u : I → (NumberField.RingOfIntegers K)ˣ),
+            (∀ (i : I), ∃ x ∈ L, (B x) x = ↑↑(u i)) →
+              (∀ (i j : I), i ≠ j → ∀ (w : (NumberField.RingOfIntegers K)ˣ), u j ≠ w ^ 2 * u i) →
+                Fintype.card I ≤ Module.finrank K ↥(Submodule.span K ↑L)
+'UnitSquareclass.strict_cauchy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.linearIndependent_of_pairwise_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.finite_reflection_shells_card_le_finrank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.realEmbeddingStrictOrderedRing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.finite_arithmetic_shell' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.exists_integral_unit_of_ratio_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.two_mul_bilin_isIntegral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.integralReflect_mem_shell' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.collinear_unit_values_same_squareclass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.represented_unit_squareclasses_card_le_finrank' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UnitSquareclass.represented_unit_squareclasses_card_le_lattice_rank' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UnitSquareclass.represented_unit_squareclasses_card_le_finrank_of_real_embeddings' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UnitSquareclass.totally_real_represented_unit_squareclasses_card_le_lattice_rank' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UnitSquareclass.distinct_unit_squareclasses_descend' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.integral_span_maps_into_lattice' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.extend_complex_embedding' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.totally_real_intermediate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.positive_intermediate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.exists_numberField_containing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.isIntegral_intermediate_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitSquareclass.algebraic_represented_unit_squareclasses_card_le_finrank' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UnitSquareclass.algebraic_represented_unit_squareclasses_card_le_lattice_rank' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
