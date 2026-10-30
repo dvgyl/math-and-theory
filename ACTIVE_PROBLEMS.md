@@ -6,8 +6,8 @@ This ledger records current research assignments. An entry is not a theorem, an 
 
 - Owner: ChatGPT research session d885390e0e47, primary agent /root.
 - Registered in the local shared runtime on 2026-10-30 before substantial proof work; repository registration on 2026-10-30 after write access was verified.
-- Status: B10 binary integral invariants under proof and novelty review; B06 formally verified but not accepted under the exceptional-significance threshold. No qualifying discovery or priority claimed.
-- Exact current candidate: for f = x_0^4 + x_1^4 + x_2^4 + x_3^4 + x_4^4 over Q, every reduction modulo a prime p >= 11 is Frobenius split; for every invertible linear substitution over C and every monomial order, the initial ideal of the transformed principal ideal (f) is not squarefree.
+- Status: B10 ordinary proof independently reviewed; full Lean formalization remains incomplete. B06 is formally verified but not accepted under the exceptional-significance threshold. No qualifying discovery or priority claimed.
+- Exact B06 statement: for f = x_0^4 + x_1^4 + x_2^4 + x_3^4 + x_4^4 over Q, every reduction modulo a prime p >= 11 is Frobenius split; for every invertible linear substitution over C and every monomial order, the initial ideal of the transformed principal ideal (f) is not squarefree.
 - Source: De Stefani–Ma–Varbaro, Herzog ideals and F-singularities, https://arxiv.org/abs/2601.06476v2 (2026-08-11), Question 1.2 and the quartic case immediately before Remark 3.4. The general degree >= 5 counterexamples in that version are prior work.
 - Scope: graded linear coordinate changes; no assertion for arbitrary nonlinear polynomial automorphisms.
 - Prior method: classical partial-derivative / catalecticant bounds and leading-monomial independence. Any possible contribution is the quartic application, not those bounds.
@@ -22,8 +22,8 @@ This ledger records current research assignments. An entry is not a theorem, an 
 
 - Owner: same ALG-B session, /root; proof development /root/renewed_bottlenecks, independent proof adversary /root/artin_rees_proof, independent construction audit /root/novelty_constructions.
 - Exact proposed theorem: for every ring of integers A of a number field and every finite subgroup G of GL_2(A), acting A-linearly on A[X,Y], the invariant ring A[X,Y]^G is Cohen–Macaulay.
-- Source: Tony J. Puthenpurakal, The Cohen-Macaulay property of invariant rings over ring of integers of a global field, https://arxiv.org/abs/2402.08962v1, Conjecture 1.7 (2024-02-14); the 2025 Part II concerns ternary Veronese subrings and does not state this full conclusion in the inspected text.
-- Status: proposed ordinary geometric proof via Proj over a DVR, geometric integrality of the special fiber, and reflexivity of weighted twists. Critical steps are under independent attack. No complete Lean formalization or novelty claim. Local registration preceded the proof attempt; this repository entry synchronizes that registration.
+- Source: Tony J. Puthenpurakal, The Cohen-Macaulay property of invariant rings over ring of integers of a global field, https://arxiv.org/abs/2402.08962v1, Conjecture 1.7 (2024-02-14). Strongest inspected predecessor: Part II https://arxiv.org/abs/2504.04746v1, Theorem 1.5 and Section 6, proves all sufficiently large BINARY Veronese subrings Cohen–Macaulay and the full ring generalized Cohen–Macaulay. Its journal DOI is 10.1007/s00031-025-09938-8, published 2025-11-18; full journal body remains inaccessible.
+- Status update, 2026-10-30: a complete ordinary geometric proof candidate via Proj over a DVR, geometric integrality of the special fiber, reflexivity of ALL weighted twists, and all-degree cohomological torsion-freeness survived an independent mathematical review (no fatal gap found). Two separate novelty audits and a post-ordinary-proof search found no exact predecessor in the inspected sources, but priority and exceptional significance remain unresolved. Full Lean formalization is absent; the B06 formalization does not verify B10. This is an unresolved research handoff, not a claimed discovery. Local registration preceded the proof attempt.
 - Potentially stronger DVR formulations are exploratory and are not claimed as proved.
 
 ## NT-C — algebraic number theory and local/global arithmetic
