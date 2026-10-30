@@ -25,13 +25,13 @@
 
 This collection reports fully autonomous agentic research. Dev D. Goyal is responsible for publication. Models used: GPT 6 Astra by OpenAI in ChatGPT and Codex, GPT 6.1 Sol by OpenAI in Codex, and Opus 5.5 by Anthropic used with Claude Code. Each paper records how they were used.
 
-Opus 5.5 by Anthropic used with Claude Code assessed the October 2026 uploads on ADMM multiplier steps, Nesterov flows, Chambolle--Pock cycles, critical hard-core correlations, Schmidt numbers of the Tiles state, a binary spectral tile, the Keller--Klein conjecture, unit square classes of totally real fields and the upper PPT entanglement-cost hierarchy, coordinated independent AI referee checks, extended the planar Nesterov result, classified and formalized the complements of the binary tile, ran fresh Lean replays, wrote or revised their nine manuscripts, and updated this overview and the research website. The research in those uploads was produced by autonomous AI agents; apart from the hard-core, tiling and Keller--Klein packages, which record ChatGPT sessions, and the unit-squareclass package, whose tool logs indicate OpenAI Codex, their records do not name the system used.
+Opus 5.5 by Anthropic used with Claude Code assessed the October 2026 uploads on ADMM multiplier steps, Nesterov flows, Chambolle--Pock cycles, critical hard-core correlations, Schmidt numbers of the Tiles state, a binary spectral tile, the Keller--Klein conjecture, unit square classes of totally real fields, depth-one Artin--Schreier towers and the upper PPT entanglement-cost hierarchy, coordinated independent AI referee checks, extended the planar Nesterov result, classified and formalized the complements of the binary tile, ran fresh Lean replays, wrote or revised their ten manuscripts, and updated this overview and the research website. The research in those uploads was produced by autonomous AI agents; apart from the hard-core, tiling and Keller--Klein packages, which record ChatGPT sessions, and the unit-squareclass package, whose tool logs indicate OpenAI Codex, their records do not name the system used.
 
 AI checks are not expert human validation. These preprints have not been externally peer reviewed, and the collection makes no claim of first priority. Correspondence received after publication brought earlier or overlapping work on six results to light; the \href{https://github.com/dvgyl/math-and-theory/blob/main/PRIORITY_AND_NOVELTY.md}{priority and novelty record} documents when it was learned and what remains uncertain. The \href{https://github.com/dvgyl/math-and-theory/blob/main/AUTHORSHIP.md}{authorship disclosure} identifies the tools and their roles.
 
 \begin{abstract}
 
-The catalogue contains forty manuscripts and research notes across 39 result families in mathematics, theoretical computer science, and mathematical physics. Each paper states its formal verification scope. The thermal proof covers finite spectral statements, without a formal stochastic long-time identification theorem. The Gyires preprint proves inequalities for structured matrices and develops related polynomial bounds. Its principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean proofs. The results comprise counterexamples, exact special cases, sharp sequence bounds, and convergence thresholds for optimization methods. The collection makes no claim of first priority. The papers have not been peer reviewed.
+The catalogue contains forty-one manuscripts and research notes across 40 result families in mathematics, theoretical computer science, and mathematical physics. Each paper states its formal verification scope. The thermal proof covers finite spectral statements, without a formal stochastic long-time identification theorem. The Gyires preprint proves inequalities for structured matrices and develops related polynomial bounds. Its principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean proofs. The results comprise counterexamples, exact special cases, sharp sequence bounds, and convergence thresholds for optimization methods. The collection makes no claim of first priority. The papers have not been peer reviewed.
 
 \end{abstract}
 
@@ -183,6 +183,14 @@ Exact minimal recurrences for every power of a rank-thirteen sequence, nonquasip
 A totally positive definite quadratic lattice of rank $n$ over a totally real algebraic field, with integral norms but not necessarily classical, represents at most $n$ classes of totally positive units modulo squares of units. This answers Question~3.4 of Daans, Kala, Man, Widmer and Yatsyna negatively; the bound is a short consequence of standard facts on finite reflection groups. The theorem is formalized in Lean~4.19.0 for all algebraic totally real fields.
 
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/unit-squareclasses/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/unit-squareclasses/README.md}{Formal proof and reproduction}.
+
+\subsection{Valuation theory}
+
+\subsubsection{Depth-one Artin--Schreier defect towers are composita}
+
+Over a perfect henselian subfield $K$ of $k((y^{\mathbb Q}))$ containing $k(y)$ and without finite accumulation points, a nontrivial finite Artin--Schreier tower of depth one is a compositum of Artin--Schreier extensions of $K$. This is the converse conjectured by Nart and Novacoski. The converse is formalized in Lean~4.19.0 with depth one expressed through Okutsu sequences.
+
+\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/artin-schreier-depth/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/artin-schreier-depth/README.md}{Proof and reproduction}.
 
 \subsection{Discrete analysis, tilings, probability and entropy}
 

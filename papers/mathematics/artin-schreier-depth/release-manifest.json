@@ -1,0 +1,262 @@
+{
+  "format_version": 1,
+  "package_id": "artin-schreier-depth",
+  "formal_scope": "The converse is formalized in 18 Lean modules for Artin–Schreier towers inside the Hahn field, with depth one stated as the least length of an Okutsu sequence in an algebraic closure and henselianity as unique extension of the valuation to algebraic extensions. The identification with Mac Lane–Vaquié depth, the valuation-ring form of henselianity and the forward implication rest on published results and are not formalized.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.toml",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/AdditiveGalois.lean": "5e92e21740b3f7a9c1a28a0dca3ca73ef170092e948412f8104fbfdeca6bf7b2",
+    "lean/AxiomAudit.lean": "b42a14a3577b98f20dad6f4b55cea37c146c53871276e60914cf6e3cf49087ec",
+    "lean/ClosureTransport.lean": "7a88e20f16fdf27ef5b964810203ad4e54aa363004c7a08dad419e6283d4631d",
+    "lean/FirstAccumulation.lean": "10f6e31fca6e9d31d72e5b7f7b903895b29e23f972a6b9163d56446407330241",
+    "lean/FirstBlock.lean": "e6dd9fd5f42807b7b1591421339a6b238dc5c1f7afd8fecc7e79e92057cf97cf",
+    "lean/FirstBlockContainment.lean": "b22d937a406f577f785906eeeac01678b1643f984f1dd2fa1443114daadfe9d8",
+    "lean/HahnASRoot.lean": "0590c4a576660d03a3895f4151c19d12cc2569cf6cfae9b1c7f06b2c3dfe55e3",
+    "lean/HahnBoundary.lean": "985cf68dfeea87a7efb8f200e520ac5941bc3701a9c4c25c6cadb4a7ac33174d",
+    "lean/HahnFinite.lean": "9d4eeb8d6e0256d6e04f8d73ac11579a71e16990f3ff7d0d12424f8fc0cdde56",
+    "lean/HahnFrobenius.lean": "85301cff3972392b59acce2dc1b8248346d2dce81c9e9ae2dac4a67f4ad9cd45",
+    "lean/HahnSupport.lean": "85df22416529f5add6a4dff84e383700334355eca9a89ab8c2a7e11164a8bd19",
+    "lean/HenselianKrasner.lean": "1f286beeda229c121b36ab8992ce5dd90d9ba477f3f223672e44723145d2a74b",
+    "lean/OkutsuDepth.lean": "06b30aa08a87b164098b04286940ad6aa8220b0cee10968a8b001ae98402cf30",
+    "lean/OreFace.lean": "b1a8fd60127e86cf60c5041f6e634a8886e9e8371a1826cef05c6bec86f8556d",
+    "lean/SupportAssembly.lean": "aa5f12b5ef7d21bc4caf4424c9f61819f6e1b5ad3b32ed5041a61b6dc02bed63",
+    "lean/SupportClosure.lean": "561e7e886da8d23862781eed98307eb54e9d1d41534124be455e65cdf09b4bd4",
+    "lean/TowerClosureConverse.lean": "e2766e04e713625354f95216399853d45c59992a1ea5da96bfcba9009cffc609",
+    "lean/TowerDepthObstruction.lean": "9f6f19a739a7fe818a770fa6aa2caf70f813971cd8e20436df53dcc2820aab28",
+    "lean/TowerFirstBlock.lean": "0f754089c526c9cea659815e0ac626f8445357df3c1a2861bf4a9fa51344d80a"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 1277,
+      "sha256": "5d69eceaafdaae831be2d7e0a737982641c1baef7b86fb179fe05e8d18feb42d"
+    },
+    "CITATION.bib": {
+      "bytes": 362,
+      "sha256": "749a7a00e1fb659f53ac97767008f6b3135486318e9d89a1064202a8b5942c43"
+    },
+    "CITATION.cff": {
+      "bytes": 1537,
+      "sha256": "db46ff2c3bed32f9b223351825e562e5d443ce38c0695ba93ccdaf79b253e03e"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 3180,
+      "sha256": "ddf91d0561d5c1634319066d9edb70283f8ebafdddf7485965290c59c35394d2"
+    },
+    "VERIFICATION.md": {
+      "bytes": 2173,
+      "sha256": "4a1b38914686c9072261a4fa8bf7c393e9c49dfdc37fcde08c1718d11eb0759e"
+    },
+    "lean/AdditiveGalois.lean": {
+      "bytes": 18159,
+      "sha256": "5e92e21740b3f7a9c1a28a0dca3ca73ef170092e948412f8104fbfdeca6bf7b2"
+    },
+    "lean/AxiomAudit.lean": {
+      "bytes": 3880,
+      "sha256": "b42a14a3577b98f20dad6f4b55cea37c146c53871276e60914cf6e3cf49087ec"
+    },
+    "lean/ClosureTransport.lean": {
+      "bytes": 11336,
+      "sha256": "7a88e20f16fdf27ef5b964810203ad4e54aa363004c7a08dad419e6283d4631d"
+    },
+    "lean/FirstAccumulation.lean": {
+      "bytes": 7530,
+      "sha256": "10f6e31fca6e9d31d72e5b7f7b903895b29e23f972a6b9163d56446407330241"
+    },
+    "lean/FirstBlock.lean": {
+      "bytes": 14849,
+      "sha256": "e6dd9fd5f42807b7b1591421339a6b238dc5c1f7afd8fecc7e79e92057cf97cf"
+    },
+    "lean/FirstBlockContainment.lean": {
+      "bytes": 3743,
+      "sha256": "b22d937a406f577f785906eeeac01678b1643f984f1dd2fa1443114daadfe9d8"
+    },
+    "lean/HahnASRoot.lean": {
+      "bytes": 26781,
+      "sha256": "0590c4a576660d03a3895f4151c19d12cc2569cf6cfae9b1c7f06b2c3dfe55e3"
+    },
+    "lean/HahnBoundary.lean": {
+      "bytes": 5691,
+      "sha256": "985cf68dfeea87a7efb8f200e520ac5941bc3701a9c4c25c6cadb4a7ac33174d"
+    },
+    "lean/HahnFinite.lean": {
+      "bytes": 7518,
+      "sha256": "9d4eeb8d6e0256d6e04f8d73ac11579a71e16990f3ff7d0d12424f8fc0cdde56"
+    },
+    "lean/HahnFrobenius.lean": {
+      "bytes": 13749,
+      "sha256": "85301cff3972392b59acce2dc1b8248346d2dce81c9e9ae2dac4a67f4ad9cd45"
+    },
+    "lean/HahnSupport.lean": {
+      "bytes": 10026,
+      "sha256": "85df22416529f5add6a4dff84e383700334355eca9a89ab8c2a7e11164a8bd19"
+    },
+    "lean/HenselianKrasner.lean": {
+      "bytes": 30912,
+      "sha256": "1f286beeda229c121b36ab8992ce5dd90d9ba477f3f223672e44723145d2a74b"
+    },
+    "lean/OkutsuDepth.lean": {
+      "bytes": 28077,
+      "sha256": "06b30aa08a87b164098b04286940ad6aa8220b0cee10968a8b001ae98402cf30"
+    },
+    "lean/OreFace.lean": {
+      "bytes": 7625,
+      "sha256": "b1a8fd60127e86cf60c5041f6e634a8886e9e8371a1826cef05c6bec86f8556d"
+    },
+    "lean/SupportAssembly.lean": {
+      "bytes": 16288,
+      "sha256": "aa5f12b5ef7d21bc4caf4424c9f61819f6e1b5ad3b32ed5041a61b6dc02bed63"
+    },
+    "lean/SupportClosure.lean": {
+      "bytes": 9753,
+      "sha256": "561e7e886da8d23862781eed98307eb54e9d1d41534124be455e65cdf09b4bd4"
+    },
+    "lean/THIRD_PARTY.md": {
+      "bytes": 4846,
+      "sha256": "704ba0a8e58adec62d555891b3ce7d07bb3cc145e852525241397e2594eec44c"
+    },
+    "lean/TowerClosureConverse.lean": {
+      "bytes": 8659,
+      "sha256": "e2766e04e713625354f95216399853d45c59992a1ea5da96bfcba9009cffc609"
+    },
+    "lean/TowerDepthObstruction.lean": {
+      "bytes": 4880,
+      "sha256": "9f6f19a739a7fe818a770fa6aa2caf70f813971cd8e20436df53dcc2820aab28"
+    },
+    "lean/TowerFirstBlock.lean": {
+      "bytes": 3951,
+      "sha256": "0f754089c526c9cea659815e0ac626f8445357df3c1a2861bf4a9fa51344d80a"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3524,
+      "sha256": "c9e03515e977b14da21d42789a561fd5e7895065ed6b3a2a105735f9fa370afe"
+    },
+    "lean/lakefile.toml": {
+      "bytes": 1391,
+      "sha256": "6de534ee33e9506c27f452fb73a08882439f90b2dd50dda0a6522b744765b61a"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    "lean/scripts/generate_audit.py": {
+      "bytes": 6507,
+      "sha256": "76cce63fe918ef40b44adbc1369e5b14c7b10dafe49726cfc97f4e29952a3d82"
+    },
+    "lean/scripts/verify_cached.py": {
+      "bytes": 24491,
+      "sha256": "dd63e52e8b15aa74f58732e70918b4e0b2dab0dd6e0f02907e16ac3b027cf14e"
+    },
+    "lean/third_party/LICENSE-APACHE-2.0.txt": {
+      "bytes": 11358,
+      "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    "manuscript.pdf": {
+      "bytes": 290590,
+      "sha256": "363a2f73ec32c15e899979710e540a78cec12f6a7435251e546f6610e704608f"
+    },
+    "manuscript.tex": {
+      "bytes": 21265,
+      "sha256": "ef1f8a1b7eb97ec61c896466fd98747582ab00aa1e320bc7ebd7ce432e85a4a5"
+    },
+    "verification/README.md": {
+      "bytes": 919,
+      "sha256": "ad6ee19f1b85043a41c900cf9beac95659d51beea3fb4a88c531009ca829b3b8"
+    },
+    "verification/complete_build.log": {
+      "bytes": 66392,
+      "sha256": "71b39636b7ceaef9f78a07aa071f6ac367d6e1d1950c173d54fc7900662f7250"
+    },
+    "verification/logs/AdditiveGalois.log": {
+      "bytes": 496,
+      "sha256": "be3affcf4317a4dc776a5d56fe048c2375d58d0a966ec286d680f1f42e07042f"
+    },
+    "verification/logs/AxiomAudit.log": {
+      "bytes": 61061,
+      "sha256": "ce6e005e806429346bd33c35e810d1c3e1b43049768de778c4d41fa80dc76eef"
+    },
+    "verification/logs/ClosureTransport.log": {
+      "bytes": 910,
+      "sha256": "2613a02f19b6f3cd01d212eed507dee724b55bbcd6bc3002a6b97a6c9f260a98"
+    },
+    "verification/logs/FirstAccumulation.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/FirstBlock.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/FirstBlockContainment.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/HahnASRoot.log": {
+      "bytes": 2987,
+      "sha256": "48e294a738868e193abd4bcc0a00a53e68b8e4ac030571c3abf414fe6c38903b"
+    },
+    "verification/logs/HahnBoundary.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/HahnFinite.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/HahnFrobenius.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/HahnSupport.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/HenselianKrasner.log": {
+      "bytes": 920,
+      "sha256": "720bd592fbdae5160e3a4b7566ae8d9a7daeb44461f23203b21e29c2af1e4f29"
+    },
+    "verification/logs/OkutsuDepth.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/OreFace.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/SupportAssembly.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/SupportClosure.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/TowerClosureConverse.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/TowerDepthObstruction.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/logs/TowerFirstBlock.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/verification_report.json": {
+      "bytes": 205318,
+      "sha256": "a6a772ad913d1e6b7270a6ed1ab0b40e7a5fd7bcc983af8db3945ec247cc6c38"
+    }
+  }
+}

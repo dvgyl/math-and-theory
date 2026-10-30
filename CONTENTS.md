@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**40 manuscripts and research notes across 39 result families in mathematics, theoretical computer science, and mathematical physics.**
+**41 manuscripts and research notes across 40 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -167,6 +167,20 @@ Let K be a totally real algebraic field, possibly of infinite degree, and L a to
 **Formal scope.** The bound for every algebraic totally real field, including infinite extensions, every O_K-submodule with integral norms in a finite-dimensional totally positive definite space, and actual units of the ring of integers is formalized in 11 Lean modules. The derivation from finite reflection groups, sharpness and the universality corollary are conventional.
 
 [Paper PDF](papers/mathematics/unit-squareclasses/manuscript.pdf) · [LaTeX](papers/mathematics/unit-squareclasses/manuscript.tex) · [Proof and reproduction](papers/mathematics/unit-squareclasses/README.md) · [Citation](papers/mathematics/unit-squareclasses/CITATION.bib)
+
+### Valuation theory
+
+#### [Depth-one Artin–Schreier defect towers are composita](papers/mathematics/artin-schreier-depth/manuscript.pdf)
+
+**Family:** `artin-schreier-depth`.
+
+Let k be algebraically closed of characteristic p > 0 and K a perfect henselian subfield of the Hahn field k((y^ℚ)) that contains k(y) and whose elements have no finite accumulation points in their supports. If a nontrivial finite Artin–Schreier tower M/K has depth one, then M is a compositum of Artin–Schreier extensions of K. Nart and Novacoski proved the reverse implication and conjectured this one. For every θ in M outside K, the truncation of θ at the first finite accumulation point of its support generates a nontrivial elementary abelian subextension of K(θ)/K; the extraction adapts an Ore-relation argument of Kedlaya.
+
+**Formal scope.** The converse is formalized in 18 Lean modules for Artin–Schreier towers inside the Hahn field, with depth one stated as the least length of an Okutsu sequence in an algebraic closure and henselianity as unique extension of the valuation to algebraic extensions. The identification with Mac Lane–Vaquié depth, the valuation-ring form of henselianity and the forward implication rest on published results and are not formalized.
+
+**Prior work.** [Nart and Novacoski, 2026.](https://doi.org/10.1016/j.jpaa.2026.108184)
+
+[Paper PDF](papers/mathematics/artin-schreier-depth/manuscript.pdf) · [LaTeX](papers/mathematics/artin-schreier-depth/manuscript.tex) · [Proof and reproduction](papers/mathematics/artin-schreier-depth/README.md) · [Citation](papers/mathematics/artin-schreier-depth/CITATION.bib)
 
 ### Discrete analysis, tilings, probability and entropy
 

@@ -10,7 +10,7 @@ The collection contains results with different formal verification scopes. Each 
 
 ## Navigating the collection
 
-The current catalogue contains 40 manuscripts and research notes across 39 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
+The current catalogue contains 41 manuscripts and research notes across 40 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
 
 - Start with the [overview](overview.pdf) for descriptions of the result families.
 - Use the [manuscript map](CONTENTS.md) to find individual papers, abstracts and supporting materials.
@@ -62,6 +62,7 @@ The results I consider the strongest, in order of significance.
 - [Inequalities and real analysis](CONTENTS.md#inequalities-and-real-analysis): diagonal concavity.
 - [Integer sequences and combinatorics](CONTENTS.md#integer-sequences-and-combinatorics): Motzkin root log-concavity, bounded-forcing Motzkin bounds, Hofstadter iteration, nonquasipolynomial power ranks.
 - [Quadratic forms and number theory](CONTENTS.md#quadratic-forms-and-number-theory): unit square classes represented by totally positive lattices.
+- [Valuation theory](CONTENTS.md#valuation-theory): depth-one Artin–Schreier defect towers.
 - [Discrete analysis, tilings, probability and entropy](CONTENTS.md#discrete-analysis-tilings-probability-and-entropy): the sharp one-eighth Fourier bound, a spectral tile in F₂⁹ with no periodic complement, the small-coefficient Keller–Klein bound, ranking entropy, Sidon-set Rényi thresholds.
 - [Matroid theory](CONTENTS.md#matroid-theory): the asymmetric Merino–Welsh region.
 - [Optimization](CONTENTS.md#optimization): the ADMM multiplier-step interval, an ADMM five-cycle, escaping subcritical Nesterov flows, Chambolle–Pock cycles, the exact strong-convexity gradient bound.
@@ -95,6 +96,7 @@ I use the names below to connect common search terms to each result and its file
 | ADMM convergence counterexample, period-five orbit | [Rational period-five ADMM orbit](papers/mathematics/admm-counterexample/) |
 | Keller–Klein conjecture, Rademacher sums, Berry–Esseen bound, normal approximation | [Keller–Klein small-coefficient bound](papers/mathematics/keller-klein/) |
 | Quadratic lattices, totally real fields, unit square classes, universal quadratic forms | [Unit squareclass rank bound](papers/mathematics/unit-squareclasses/) |
+| Artin–Schreier extensions, defect, depth of valuations, Okutsu sequences, Hahn series | [Artin–Schreier depth](papers/mathematics/artin-schreier-depth/) |
 | Nesterov accelerated gradient flow and iteration, vanishing damping, subcritical damping, unbounded trajectories | [Escaping subcritical Nesterov flows](papers/mathematics/nesterov-subcritical/) |
 | Hard-core model, spectral independence, uniqueness threshold, Glauber dynamics | [Critical hard-core influence bounds](papers/theoretical-computer-science/critical-hardcore/) |
 | Unextendible product bases, UPB, Schmidt number, bound entanglement, Tiles state | [Minimum-rank multiplicativity and the Tiles state](papers/physics/upb-tensor-rank/) |
