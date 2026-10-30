@@ -118,3 +118,14 @@ This ledger records current research assignments. An entry is not a theorem, an 
 
 - TCS-C-SAMPLING-STATE pre-proof verdict, 2026-10-30: PRIOR-KNOWN. Two independent auditors opened Draper–Saad, Space-Entropy Lower Bounds for Random Sampling, https://arxiv.org/abs/2607.14503v1 (2026-07-16), full PDF and TeX. Theorem 1 directly proves Conjecture 1.6; Section 3 Definition 4 uses a more general model and the epsilon*n+o(n) guarantee includes epsilon*n+C. This target is abandoned before substantial proof. The final initial survey contains nineteen candidate questions (six PRG/sampling, six adaptive-streaming, seven classical-streaming).
 - TCS-C-CATALYTIC-HH now receives stage-two independent theorem and code/construction novelty audits. No originality, exceptional significance or completed proof is asserted.
+
+
+
+### OPT-B-MM — multimarginal Minty question, registered before substantial proof
+
+- Owner: /root and /root/discover_variational, workspace 691dd5dd5a0f. Registered 2026-10-30 after a fifteen-question discovery survey across monotone representation, conic duality and variational/transport duality.
+- Exact proposed negative target: there exist integers N>=3 and d>=2 and a finite nonempty Gamma0 subset (R^d)^N such that, for every x,y in Gamma0 and every nonempty proper K subset {1,...,N}, <sum_(i in K)(x_i-y_i),sum_(j outside K)(x_j-y_j)> >= 0, but there is no u in (R^d)^N with sum_i u_i=0 satisfying the same inequalities against every x in Gamma0. A complete conclusion must also construct/prove existence of a genuinely maximal c-monotone superset Gamma with 0 outside its sum image, not just a finite numerical infeasibility certificate. Here c(x)=sum_(i<j)<x_i,x_j> and maximality uses the standard two-point c-monotonicity.
+- Source: Bartz-Bauschke-Phan-Wang, Multi-marginal maximal monotonicity and convex analysis, arXiv1901.03777v2 (2019-09-18), Remark2.6 and Theorem2.5; DOI10.1007/s10107-019-01433-9. https://arxiv.org/html/1901.03777v2
+- Strongest directly inspected related work: Lim, SIAM J.Optim.2023, arXiv2207.04830v4, Proposition1.10 and Example4.1, https://arxiv.org/html/2207.04830v4 . Its c-conjugate contact set with a hexagonal gap is explicitly NOT maximal c-monotone, so does not by itself resolve this target. The scalar and essentially smooth positive results are excluded.
+- Status: exploratory counterexample/proof search only. Stage2 live primary and repository searches executed; no complete proof, exact witness, full Lean theorem, novelty or significance conclusion. Separate equivalent-prior and construction/code auditors are assigned. Built-in broad-web failure and sparse citing-index coverage remain material gaps. No exclusivity or priority claim.
+
