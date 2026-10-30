@@ -30,8 +30,16 @@ This ledger records current research assignments. An entry is not a theorem, an 
 
 - Owner: ChatGPT research session 209b5caa3575, primary agent /root.
 - Registered 2026-10-30 during the second research run, after reading this ledger, CONTENTS.md, catalogue.json and UNFINISHED.md at a847dc2c94d6bf350077d6d32de42973a1568be2.
-- Status: fresh discovery survey; no second-result candidate selected and no substantial proof started. Exact candidate statement and primary source will be recorded here before proof work.
+- Status: at least twelve new questions surveyed before selection. NT-C-DISC registered below before substantial proof work; correctness and historical novelty are under independent review.
 - Scope: algebraic number theory and local/global arithmetic. Excludes ALG-B's binary integral invariant-ring question and all other existing completed or active results.
 - Prior local result excluded from this search: for every algebraic totally real field K and positive-definite integral quadratic O_K-submodule L of finite-dimensional span, represented positive integer-unit squareclasses number at most dim_K(span_K L), without a classical or finite-generation hypothesis. Source: Daans–Kala–Man–Widmer–Yatsyna, https://arxiv.org/html/2409.11082v2, Theorem 3.2 and Question 3.4. Full embedded-module Lean theorem verified locally on 2026-10-30; historical novelty unresolved, no discovery/priority claim. This note coordinates scope; it does not publish or certify that result.
 - Prior secondary candidate also excluded: Srimathy https://arxiv.org/html/2510.03603v2 Question 8.3, pseudo-perfect extensions and mod-p Milnor K2. Not a qualifying result and not fully formalized.
 - No guarantee is made about unrecorded parallel sessions. Existing owners' entries are preserved.
+
+### NT-C-DISC — registered 2026-10-30 before substantial proof
+
+- Exact proposed theorem: for any number field K and finite extensions L1,L2 linearly disjoint over K in a common algebraic closure, equality O_(L1L2)=O_(L1)O_(L2) forces the relative discriminant ideals d(L1/K) and d(L2/K) to be coprime. Equivalently no nonzero prime of O_K ramifies in both extensions. The reverse implication is classical.
+- Source: Sudesh Kaur Khanduja, Corrigendum to The discriminant of compositum of algebraic number fields, IJNT20(4)(2024)1191–1194, https://doi.org/10.1142/S1793042124500489, Theorem1.A and following paragraph, publisher first-page preview inspected. The 2019 proof is withdrawn; an exact 2018 valuation-ring claim still requires reconciliation. Full corrigendum beyond the preview has not yet been accessed.
+- Initial proposed construction: square-zero elements in the two ramified reductions yield an integral element ab/pi outside their tensor order. This is only a proof outline and may reproduce a classical normality criterion.
+- Owner: same NT-C session. Independent earlier-theorem audit: /root/discover_norms; independent code/construction audit: /root/discover_local; proof work: /root/discover_global and root.
+- Status: proposed, unverified, historical novelty unresolved. No qualifying discovery or priority claimed.
