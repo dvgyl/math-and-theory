@@ -27,7 +27,7 @@ def lean_code(text):
         else:out.append(text[i]);i+=1
     require(depth==0,'Unclosed Lean comment')
     return ''.join(out)
-files=[p for p in root.rglob('*') if p.is_file() and not any(x in p.relative_to(root).parts for x in ['.git','.lake','__pycache__'])]
+files=[p for p in root.rglob('*') if p.is_file() and not any(x in p.relative_to(root).parts for x in ['.claude','.git','.lake','__pycache__'])]
 lean=[p for p in files if p.suffix=='.lean']
 for p in lean:
     rel=p.relative_to(root);code=lean_code(p.read_text());challenge=rel.parts[:2]==('lean','Challenges')

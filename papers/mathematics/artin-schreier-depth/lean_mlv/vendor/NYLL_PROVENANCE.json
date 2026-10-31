@@ -1,0 +1,15 @@
+{
+  "repository": "n-yamaguchi-0729/NYLL",
+  "commit": "8c1b16d10afaca09e0dc72753c6575e230d31a55",
+  "commit_utc": "2026-10-19T18:19:32Z",
+  "license_source": "https://github.com/n-yamaguchi-0729/NYLL/blob/8c1b16d10afaca09e0dc72753c6575e230d31a55/LICENSE",
+  "license_git_blob_sha": "8dada3edaf50dbc082c9a125058f25def75e625a",
+  "author_notice": "Naganori Yamaguchi (assisted by OpenAI Codex)",
+  "source_closures": [
+    "../../audits/complete_henselian.nyll_closure.json",
+    "../../audits/complete_henselian.nyll_norm_closure.json"
+  ],
+  "original_git_blob_checks": "54 original source contents checked against fetched Git blob SHA values; the pruned NormFormula source has separate original and compile_content records.",
+  "local_modifications": "In NormFormula.lean, replace the broad DiscreteValuationField.FiniteExtension.Core import by the direct Mathlib.FieldTheory.Minpoly.IsIntegrallyClosed and Mathlib.RingTheory.Valuation.Extension imports, and add a dated local notice. The whole declaration/proof body is byte-identical to the pinned source. No other vendor source changed.",
+  "verification_status": "All 54 vendored modules freshly compiled in the final combined project; all defining-module declarations audited transitively with only propext, Classical.choice and Quot.sound. Earlier separate vendor audit covered 1,225 declarations. See the final machine report."
+}

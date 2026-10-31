@@ -1,0 +1,290 @@
+import OreFace
+import OkutsuDepth
+
+/-!
+# First-block extraction from algebraicity
+
+The Ore relation here is derived from actual algebraicity by passing to the
+finite simple extension. The output equation has coefficients in the constant
+field. This is a component of the proposed depth theorem, not that theorem.
+-/
+
+noncomputable section
+attribute [local instance 2000] HahnSeries.instAlgebra
+open scoped BigOperators Polynomial IntermediateField
+open HahnSeries Polynomial IntermediateField
+namespace NTCThird
+
+theorem ore_relation_of_isAlgebraic {K E : Type*} [Field K] [Field E]
+    [Algebra K E] (p : ℕ) (x : E) (hx : IsAlgebraic K x) :
+    ∃ s : Finset ℕ, ∃ a : ℕ → K,
+      (∑ i ∈ s, algebraMap K E (a i) * x ^ (p ^ i) = 0) ∧
+      ∃ i ∈ s, a i ≠ 0 := by
+  let L := IntermediateField.adjoin K ({x} : Set E)
+  letI : FiniteDimensional K L := IntermediateField.adjoin.finiteDimensional hx.isIntegral
+  let z : L := ⟨x, IntermediateField.mem_adjoin_simple_self K x⟩
+  obtain ⟨s, a, hrel, hn⟩ := ore_relation (K := K) p z
+  refine ⟨s, a, ?_, hn⟩
+  have h := congrArg (fun t : L => (t : E)) hrel
+  simpa [z] using h
+
+variable {k : Type*} [Field k]
+
+/-- A genuine nonzero constant-coefficient equation makes its root integral
+over any compatible base field. -/
+theorem isIntegral_of_linearized_equation
+    {K F : Type*} [Field K] [Field F] [Algebra k K] [Algebra K F]
+    [Algebra k F] [IsScalarTower k K F]
+    (p : ℕ) (hp : 2 ≤ p) (s : Finset ℕ) (b : ℕ → k)
+    (hb : ∃ i ∈ s, b i ≠ 0) (z : F) (d : K)
+    (hz : aeval z (linearized p s b) = algebraMap K F d) : IsIntegral K z := by
+  have hbK : ∃ i ∈ s, algebraMap k K (b i) ≠ 0 := by
+    obtain ⟨i, hi, hbi⟩ := hb
+    exact ⟨i, hi, (map_ne_zero_iff _ (algebraMap k K).injective).mpr hbi⟩
+  have hnonzero : linearized p s (fun i => algebraMap k K (b i)) - Polynomial.C d ≠ 0 :=
+    linearized_sub_C_ne_zero_of_nonzero p hp s _ hbK d
+  have hroot : aeval z (linearized p s (fun i => algebraMap k K (b i)) - Polynomial.C d) = 0 := by
+    rw [map_sub, aeval_C, sub_eq_zero]
+    simpa only [aeval_linearized, ← IsScalarTower.algebraMap_apply k K F] using hz
+  exact (show IsAlgebraic K z from ⟨_, hnonzero, hroot⟩).isIntegral
+
+/-- Actual conjugate distances for an additive equation over trivially valued
+algebraically closed constants. Every moved root has distance exactly zero. -/
+theorem linearized_aut_distance_zero
+    {K F V : Type*} [Field K] [Field F] [Algebra k K] [Algebra K F]
+    [Algebra k F] [IsScalarTower k K F] [IsAlgClosed k]
+    [LinearOrderedAddCommMonoidWithTop V]
+    (p : ℕ) [Fact p.Prime] [CharP F p]
+    (s : Finset ℕ) (b : ℕ → k) (hb : linearized p s b ≠ 0)
+    (z : F) (d : K) (hz : aeval z (linearized p s b) = algebraMap K F d)
+    (v : AddValuation F V)
+    (hconst : ∀ c : k, c ≠ 0 → v (algebraMap k F c) = 0)
+    (σ : F ≃ₐ[K] F) (hσ : σ z ≠ z) : v (z - σ z) = 0 := by
+  obtain ⟨c, hc⟩ := linearized_aut_difference p s b hb z d hz σ
+  have hc0 : c ≠ 0 := by
+    intro h0
+    rw [h0, map_zero] at hc
+    exact hσ (sub_eq_zero.mp hc.symm)
+  rw [← neg_sub, v.map_neg, ← hc, hconst c hc0]
+
+/-- The distance bound on the actual generated subfield, measured by the
+valuation of its arbitrary ambient field. -/
+theorem linearized_adjoin_aut_distance_zero
+    {K F V : Type*} [Field K] [Field F] [Algebra k K] [Algebra K F]
+    [Algebra k F] [IsScalarTower k K F] [IsAlgClosed k]
+    [LinearOrderedAddCommMonoidWithTop V]
+    (p : ℕ) [Fact p.Prime] [CharP F p]
+    (s : Finset ℕ) (b : ℕ → k) (hb : linearized p s b ≠ 0)
+    (z : F) (d : K) (hz : aeval z (linearized p s b) = algebraMap K F d)
+    (v : AddValuation F V)
+    (hconst : ∀ c : k, c ≠ 0 → v (algebraMap k F c) = 0)
+    (σ : K⟮z⟯ ≃ₐ[K] K⟮z⟯) (hσ : σ (AdjoinSimple.gen K z) ≠ AdjoinSimple.gen K z) :
+    v (z - (σ (AdjoinSimple.gen K z) : F)) = 0 := by
+  let S : IntermediateField K F := K⟮z⟯
+  let zS : S := AdjoinSimple.gen K z
+  letI : Algebra k S := ((algebraMap K S).comp (algebraMap k K)).toAlgebra
+  letI : IsScalarTower k K S := IsScalarTower.of_algebraMap_eq' rfl
+  letI : IsScalarTower k S F := IsScalarTower.of_algebraMap_eq fun c => by
+    change algebraMap k F c = algebraMap K F (algebraMap k K c)
+    exact IsScalarTower.algebraMap_apply k K F c
+  have hzS : aeval zS (linearized p s b) = algebraMap K S d := by
+    apply (algebraMap S F).injective
+    simp only [aeval_linearized, map_sum, map_mul, map_pow,
+      ← IsScalarTower.algebraMap_apply k S F, ← IsScalarTower.algebraMap_apply K S F]
+    change (∑ i ∈ s, algebraMap k F (b i) * z ^ (p ^ i)) = algebraMap K F d
+    simpa only [aeval_linearized] using hz
+  let vS : AddValuation S V := v.comap S.val.toRingHom
+  have hconstS : ∀ c : k, c ≠ 0 → vS (algebraMap k S c) = 0 := by
+    intro c hc
+    change v (algebraMap S F (algebraMap k S c)) = 0
+    rw [← IsScalarTower.algebraMap_apply k S F]
+    exact hconst c hc
+  exact linearized_aut_distance_zero p s b hb zS d hzS vS hconstS σ hσ
+
+/-- The actual field generated by a root of a constant-coefficient additive
+equation is finite Galois and has abelian automorphism group of exponent p.
+Perfectness of K handles a possible initial Frobenius factor. -/
+theorem linearized_adjoin_galois_elementary
+    {K F : Type*} [Field K] [Field F] [Algebra k K] [Algebra K F]
+    [Algebra k F] [IsScalarTower k K F] [IsAlgClosed k] [PerfectField K]
+    (p : ℕ) [Fact p.Prime] [CharP F p]
+    (s : Finset ℕ) (b : ℕ → k) (hb : ∃ i ∈ s, b i ≠ 0)
+    (z : F) (d : K) (hz : aeval z (linearized p s b) = algebraMap K F d) :
+    IsGalois K K⟮z⟯ ∧ FiniteDimensional K K⟮z⟯ ∧
+      (∀ σ τ : K⟮z⟯ ≃ₐ[K] K⟮z⟯, σ * τ = τ * σ) ∧
+      (∀ σ : K⟮z⟯ ≃ₐ[K] K⟮z⟯, σ ^ p = 1) := by
+  let S : IntermediateField K F := K⟮z⟯
+  let zS : S := AdjoinSimple.gen K z
+  have hbK : ∃ i ∈ s, algebraMap k K (b i) ≠ 0 := by
+    obtain ⟨i, hi, hbi⟩ := hb
+    exact ⟨i, hi, (map_ne_zero_iff _ (algebraMap k K).injective).mpr hbi⟩
+  have hnonzero : linearized p s (fun i => algebraMap k K (b i)) - Polynomial.C d ≠ 0 :=
+    linearized_sub_C_ne_zero_of_nonzero p (Fact.out : p.Prime).two_le s _ hbK d
+  have hroot : aeval z (linearized p s (fun i => algebraMap k K (b i)) - Polynomial.C d) = 0 := by
+    rw [map_sub, aeval_C, sub_eq_zero]
+    simpa only [aeval_linearized, ← IsScalarTower.algebraMap_apply k K F] using hz
+  have hint : IsIntegral K z := (show IsAlgebraic K z from ⟨_, hnonzero, hroot⟩).isIntegral
+  letI : Algebra k S := ((algebraMap K S).comp (algebraMap k K)).toAlgebra
+  letI : IsScalarTower k K S := IsScalarTower.of_algebraMap_eq' rfl
+  letI : IsScalarTower k S F := IsScalarTower.of_algebraMap_eq fun c => by
+    change algebraMap k F c = algebraMap K F (algebraMap k K c)
+    exact IsScalarTower.algebraMap_apply k K F c
+  have hgen : K⟮zS⟯ = ⊤ := IntermediateField.adjoin_eq_top_of_algebra K _
+    (IntermediateField.adjoin.powerBasis hint).adjoin_gen_eq_top
+  have hzS : aeval zS (linearized p s b) = algebraMap K S d := by
+    apply (algebraMap S F).injective
+    simp only [aeval_linearized, map_sum, map_mul, map_pow,
+      ← IsScalarTower.algebraMap_apply k S F, ← IsScalarTower.algebraMap_apply K S F]
+    change (∑ i ∈ s, algebraMap k F (b i) * z ^ (p ^ i)) = algebraMap K F d
+    simpa only [aeval_linearized] using hz
+  exact linearized_galois_elementary_of_perfect p s b hb zS d hzS hgen
+
+/-- For an algebraic Hahn series with a cut satisfying the actual support
+hypotheses, the normalized first block satisfies a nonzero linearized equation
+over the constant field, whose value belongs to the base field. -/
+theorem first_block_equation_of_isAlgebraic (p : ℕ) [Fact p.Prime] [CharP k p]
+    (K : Subfield (HahnSeries ℚ k)) (Γ : AddSubgroup ℚ)
+    (hmon : ∀ q ∈ Γ, ∀ d : k, single q d ∈ K)
+    (hKfinite : ∀ a ∈ K, LeftFinite a)
+    (hKΓ : ∀ a ∈ K, SupportedIn Γ a)
+    (θ : HahnSeries ℚ k) (hθalg : IsAlgebraic K θ)
+    (δ : ℚ) (hδ : δ ∈ Γ) (hθ : SupportedIn Γ θ)
+    (hfinite : ∀ r < δ, (θ.support ∩ Set.Iio r).Finite) :
+    ∃ s : Finset ℕ, ∃ b : ℕ → k,
+      (∃ i ∈ s, b i ≠ 0) ∧ linearized p s b ≠ 0 ∧
+      aeval (single (-δ) (1 : k) * truncLT δ θ) (linearized p s b) ∈ K := by
+  classical
+  obtain ⟨s, a, hrel, j, hj, haj⟩ := ore_relation_of_isAlgebraic p θ hθalg
+  let t := s.filter (fun i => a i ≠ 0)
+  have ht : t.Nonempty := ⟨j, Finset.mem_filter.mpr ⟨hj, haj⟩⟩
+  let aH : ℕ → HahnSeries ℚ k := fun i => (a i : HahnSeries ℚ k)
+  have ht0 : ∀ i ∈ t, aH i ≠ 0 := by
+    intro i hi h0
+    apply (Finset.mem_filter.mp hi).2
+    exact Subtype.ext h0
+  have hrel' : ∑ i ∈ t, aH i * θ ^ (p ^ i) = 0 := by
+    change ∑ i ∈ s.filter (fun i => a i ≠ 0), aH i * θ ^ (p ^ i) = 0
+    rw [Finset.sum_filter]
+    convert hrel using 1
+    apply Finset.sum_congr rfl
+    intro i hi
+    by_cases ha : a i = 0
+    · simp [ha, aH]
+    · rw [if_pos ha]
+      rfl
+  obtain ⟨b, hb, heq⟩ := ore_first_block_equation p K Γ hmon θ δ hδ hθ hfinite
+    t ht aH ht0 (fun i _ => hKfinite _ (a i).property)
+    (fun i _ => hKΓ _ (a i).property) hrel'
+  exact ⟨t, b, hb, linearized_ne_zero p (Fact.out : p.Prime).two_le t b hb, heq⟩
+
+section EmbeddedBase
+
+variable {K : Type*} [Field K] [Algebra K (HahnSeries ℚ k)]
+
+/-- Normalizing by a value-group monomial does not change the actual field
+generated by the first block. Both directions use explicit base monomials. -/
+theorem first_block_adjoin_eq_normalized (Γ : AddSubgroup ℚ)
+    (hmon : ∀ q ∈ Γ, ∀ d : k,
+      single q d ∈ (algebraMap K (HahnSeries ℚ k)).fieldRange)
+    (θ : HahnSeries ℚ k) (δ : ℚ) (hδ : δ ∈ Γ) :
+    K⟮truncLT δ θ⟯ = K⟮single (-δ) (1 : k) * truncLT δ θ⟯ := by
+  let α := truncLT δ θ
+  let z := single (-δ) (1 : k) * α
+  have hid : single δ (1 : k) * single (-δ) (1 : k) = 1 := by
+    rw [single_mul_single]
+    simp
+  apply le_antisymm
+  · apply IntermediateField.adjoin_simple_le_iff.mpr
+    have hfactor : single δ (1 : k) ∈ K⟮z⟯ :=
+      (K⟮z⟯).fieldRange_le (hmon δ hδ 1)
+    have hprod := (K⟮z⟯).mul_mem hfactor (IntermediateField.mem_adjoin_simple_self K z)
+    simpa only [z, ← mul_assoc, hid, one_mul] using hprod
+  · apply IntermediateField.adjoin_simple_le_iff.mpr
+    exact (K⟮α⟯).mul_mem ((K⟮α⟯).fieldRange_le (hmon (-δ) (Γ.neg_mem hδ) 1))
+      (IntermediateField.mem_adjoin_simple_self K α)
+
+/-- The same extraction for a base field embedded through its algebra map. -/
+theorem first_block_equation_over_base (p : ℕ) [Fact p.Prime] [CharP k p]
+    (Γ : AddSubgroup ℚ)
+    (hmon : ∀ q ∈ Γ, ∀ d : k,
+      single q d ∈ (algebraMap K (HahnSeries ℚ k)).fieldRange)
+    (hKfinite : ∀ a : K, LeftFinite (algebraMap K (HahnSeries ℚ k) a))
+    (hKΓ : ∀ a : K, SupportedIn Γ (algebraMap K (HahnSeries ℚ k) a))
+    (θ : HahnSeries ℚ k) (hθalg : IsAlgebraic K θ)
+    (δ : ℚ) (hδ : δ ∈ Γ) (hθ : SupportedIn Γ θ)
+    (hfinite : ∀ r < δ, (θ.support ∩ Set.Iio r).Finite) :
+    ∃ s : Finset ℕ, ∃ b : ℕ → k, ∃ d : K,
+      (∃ i ∈ s, b i ≠ 0) ∧ linearized p s b ≠ 0 ∧
+      aeval (single (-δ) (1 : k) * truncLT δ θ) (linearized p s b) =
+        algebraMap K (HahnSeries ℚ k) d := by
+  let B : IntermediateField K (HahnSeries ℚ k) := ⊥
+  have hθB : IsAlgebraic B θ := hθalg.tower_top B
+  have hBfinite : ∀ a ∈ B.toSubfield, LeftFinite a := by
+    intro a ha
+    obtain ⟨d, rfl⟩ := ha
+    exact hKfinite d
+  have hBΓ : ∀ a ∈ B.toSubfield, SupportedIn Γ a := by
+    intro a ha
+    obtain ⟨d, rfl⟩ := ha
+    exact hKΓ d
+  obtain ⟨s, b, hb, hn, heq⟩ := first_block_equation_of_isAlgebraic p
+    B.toSubfield Γ hmon hBfinite hBΓ θ hθB δ hδ hθ hfinite
+  obtain ⟨d, hd⟩ := heq
+  exact ⟨s, b, d, hb, hn, hd.symm⟩
+
+/-- The actual normalized first-block field is elementary abelian Galois.
+The input is algebraicity of the original series, not an assumed additive
+equation for the first block. The support and monomial hypotheses are explicit. -/
+theorem first_block_galois_elementary (p : ℕ) [Fact p.Prime] [CharP k p]
+    [Algebra k K] [IsScalarTower k K (HahnSeries ℚ k)]
+    [IsAlgClosed k] [PerfectField K]
+    (Γ : AddSubgroup ℚ)
+    (hmon : ∀ q ∈ Γ, ∀ d : k,
+      single q d ∈ (algebraMap K (HahnSeries ℚ k)).fieldRange)
+    (hKfinite : ∀ a : K, LeftFinite (algebraMap K (HahnSeries ℚ k) a))
+    (hKΓ : ∀ a : K, SupportedIn Γ (algebraMap K (HahnSeries ℚ k) a))
+    (θ : HahnSeries ℚ k) (hθalg : IsAlgebraic K θ)
+    (δ : ℚ) (hδ : δ ∈ Γ) (hθ : SupportedIn Γ θ)
+    (hfinite : ∀ r < δ, (θ.support ∩ Set.Iio r).Finite) :
+    let z := single (-δ) (1 : k) * truncLT δ θ
+    IsGalois K K⟮z⟯ ∧ FiniteDimensional K K⟮z⟯ ∧
+      (∀ σ τ : K⟮z⟯ ≃ₐ[K] K⟮z⟯, σ * τ = τ * σ) ∧
+      (∀ σ : K⟮z⟯ ≃ₐ[K] K⟮z⟯, σ ^ p = 1) := by
+  obtain ⟨s, b, d, hb, _, heq⟩ := first_block_equation_over_base p Γ hmon hKfinite
+    hKΓ θ hθalg δ hδ hθ hfinite
+  exact linearized_adjoin_galois_elementary (k := k) (K := K)
+    (F := HahnSeries ℚ k) p s b hb (single (-δ) (1 : k) * truncLT δ θ) d heq
+
+/-- The normalized first-block field is generated by a genuine finite set of
+nontrivial Artin--Schreier roots over K. This composes the actual extraction
+and Galois proofs with the prime-character/fixed-field argument. -/
+theorem first_block_finite_artinSchreier_generators
+    (p : ℕ) [Fact p.Prime] [CharP k p]
+    [Algebra k K] [IsScalarTower k K (HahnSeries ℚ k)]
+    [IsAlgClosed k] [PerfectField K]
+    (Γ : AddSubgroup ℚ)
+    (hmon : ∀ q ∈ Γ, ∀ d : k,
+      single q d ∈ (algebraMap K (HahnSeries ℚ k)).fieldRange)
+    (hKfinite : ∀ a : K, LeftFinite (algebraMap K (HahnSeries ℚ k) a))
+    (hKΓ : ∀ a : K, SupportedIn Γ (algebraMap K (HahnSeries ℚ k) a))
+    (θ : HahnSeries ℚ k) (hθalg : IsAlgebraic K θ)
+    (δ : ℚ) (hδ : δ ∈ Γ) (hθ : SupportedIn Γ θ)
+    (hfinite : ∀ r < δ, (θ.support ∩ Set.Iio r).Finite) :
+    let z := single (-δ) (1 : k) * truncLT δ θ
+    let E := K⟮z⟯
+    ∃ s : Finset E, IntermediateField.adjoin K (s : Set E) = ⊤ ∧
+      ∀ x ∈ s, x ∉ (algebraMap K E).range ∧
+        ∃ a : K, x ^ p - x = algebraMap K E a := by
+  let z := single (-δ) (1 : k) * truncLT δ θ
+  let E : IntermediateField K (HahnSeries ℚ k) := K⟮z⟯
+  have h := first_block_galois_elementary (K := K) p Γ hmon hKfinite hKΓ
+    θ hθalg δ hδ hθ hfinite
+  letI : IsGalois K E := h.1
+  letI : FiniteDimensional K E := h.2.1
+  letI : CharP K p := (algebraMap K (HahnSeries ℚ k)).charP
+    (algebraMap K (HahnSeries ℚ k)).injective p
+  exact exists_finite_nontrivial_artinSchreier_generators p h.2.2.1 h.2.2.2
+
+end EmbeddedBase
+
+end NTCThird

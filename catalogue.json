@@ -987,7 +987,7 @@
         "Nart–Novacoski conjecture"
       ],
       "summary": "Over a perfect henselian subfield K of k((y^ℚ)) containing k(y) and without finite accumulation points, with k algebraically closed of characteristic p, a nontrivial finite Artin–Schreier tower has depth one if and only if it is a compositum of Artin–Schreier extensions of K. Nart and Novacoski proved the forward implication and conjectured the converse, which is proved here.",
-      "formal_scope": "Both implications are formalized in 20 Lean modules in the source's setting: the algebraic closure of K inside the Hahn field with the Hahn valuation, depth one stated as the least Okutsu length over all primitive generators, and henselianity as unique extension of the valuation to algebraic extensions. The identification of that minimum with Mac Lane–Vaquié depth is the source's Theorem 1.3 and is not formalized.",
+      "formal_scope": "Both implications are formalized in two Lean projects. The Lean 4.35 project states the conjecture for every finite Artin–Schreier tower over a base whose valuation ring is henselian in Mathlib's sense, with depth one defined as the least length of a complete Mac Lane–Vaquié chain over all primitive generators; it compares these chains with Okutsu sequences at length one only. The Lean 4.19 project states depth one through Okutsu sequences in the algebraic closure of K inside the Hahn field.",
       "source": "Nart and Novacoski (JPAA 2026; arXiv:2503.18827v2) stated the converse as Conjecture 4.1 and proved the forward implication. The minimal-face extraction is Kedlaya's (2017, Lemma 9.3). Historical priority is not certified.",
       "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/artin-schreier-depth/README.md",
       "paper": "papers/mathematics/artin-schreier-depth/manuscript.pdf",
@@ -1004,7 +1004,7 @@
         "status": "Proved",
         "claim": "Over a perfect henselian K ⊆ k((y^ℚ)) containing k(y) without finite accumulation points (k algebraically closed, char. p), each nontrivial finite Artin–Schreier tower of depth one is a compositum of Artin–Schreier extensions.",
         "title_tag": "Nart–Novacoski Conjecture: Depth-One Artin–Schreier Towers",
-        "description": "Preprint proving Nart–Novacoski Conjecture 4.1: depth-one Artin–Schreier defect towers over their Hahn-field setting are composita; both directions in Lean 4.",
+        "description": "Preprint proving Nart–Novacoski Conjecture 4.1: depth-one Artin–Schreier towers over their Hahn base are composita, with Mac Lane–Vaquié depth in Lean 4.",
         "queries": [
           "Nart–Novacoski conjecture",
           "Nart-Novacoski conjecture",
@@ -1021,7 +1021,7 @@
           ],
           [
             "Is the proof formally verified?",
-            "Both implications are formalized in 20 Lean 4 modules, with depth one stated as least Okutsu length one over all primitive generators. The identification of that minimum with Mac Lane–Vaquié depth is the source's Theorem 1.3 and is not formalized, nor is the equivalence of the unique-extension definition of henselianity with other forms."
+            "Yes. Both implications are formalized in two Lean 4 projects. The Lean 4.35 project, with 100 freshly compiled modules, defines depth by genuine Mac Lane–Vaquié chains, uses ordinary henselianity and proves the comparison with Okutsu sequences at length one, which is all the conjecture needs; no comparison at other lengths is formalized."
           ],
           [
             "What prior work does the proof rely on?",

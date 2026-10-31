@@ -1,0 +1,24 @@
+--- NYLL@8c1b16d10afaca09e0dc72753c6575e230d31a55/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/AlgebraicExtension/NormFormula.lean
++++ NT-C-AS-DEPTH/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/AlgebraicExtension/NormFormula.lean
+@@ -2,12 +2,20 @@
+ Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+ Released under Apache 2.0 license as described in the file LICENSE.
+ Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
++
++Local NT-C-AS-DEPTH change (2026-10-31): replaced the broad import
++Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.FiniteExtension.Core
++with direct imports of Mathlib.FieldTheory.Minpoly.IsIntegrallyClosed and
++Mathlib.RingTheory.Valuation.Extension.
++All declarations and proofs below are unchanged from NYLL commit
++8c1b16d10afaca09e0dc72753c6575e230d31a55.
+ -/
+ 
+ import Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.ValuationSubring
+-import Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.FiniteExtension.Core
+ import Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.Completeness
++import Mathlib.FieldTheory.Minpoly.IsIntegrallyClosed
+ import Mathlib.RingTheory.Norm.Transitivity
++import Mathlib.RingTheory.Valuation.Extension
+ 
+ /-!
+ # the finite norm-formula theorem

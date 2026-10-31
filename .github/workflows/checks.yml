@@ -322,6 +322,9 @@ jobs:
           - package: artin-schreier-depth
             root: papers/mathematics/artin-schreier-depth
             project: lean
+          - package: artin-schreier-depth-mlv
+            root: papers/mathematics/artin-schreier-depth
+            project: lean_mlv
           - package: upper-ppt-hierarchy
             root: papers/physics/upper-ppt-hierarchy
             project: lean
@@ -382,6 +385,9 @@ jobs:
           elif [[ '${{ matrix.package }}' == 'artin-schreier-depth' ]]; then
             lake build Cli
             python3 scripts/verify_cached.py --mathlib-cache .lake/packages/mathlib --lean-bin "$(lean --print-prefix)/bin/lean" --packages-root .lake/packages --output "${RUNNER_TEMP}/artin-schreier-depth-verification"
+          elif [[ '${{ matrix.package }}' == 'artin-schreier-depth-mlv' ]]; then
+            lake build Cli
+            python3 scripts/verify_cached.py --mathlib-cache .lake/packages/mathlib --lean-bin "$(lean --print-prefix)/bin/lean" --packages-root .lake/packages --output "${RUNNER_TEMP}/artin-schreier-depth-mlv-verification" --module-timeout 900
           elif [[ '${{ matrix.package }}' == 'unit-squareclasses' ]]; then
             python3 scripts/verify_cached.py --mathlib-cache .lake/packages/mathlib --lean-bin "$(lean --print-prefix)/bin/lean" --packages-root .lake/packages --output "${RUNNER_TEMP}/unit-squareclasses-verification"
           elif [[ '${{ matrix.package }}' == 'keller-klein' ]]; then

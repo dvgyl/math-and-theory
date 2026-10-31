@@ -4,7 +4,7 @@ import json
 
 MANIFEST = "publication-files.json"
 HASHES = "verification/records/source-hashes.json"
-EXCLUDED_DIRS = {".git", ".lake", ".venv", "__pycache__"}
+EXCLUDED_DIRS = {".claude", ".git", ".lake", ".venv", "__pycache__"}
 BUILD_SUFFIXES = {".aux", ".bbl", ".blg", ".out", ".toc", ".pyc"}
 
 

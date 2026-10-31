@@ -200,7 +200,7 @@ Let K be a totally real algebraic field, possibly of infinite degree, and L a to
 
 Let k be algebraically closed of characteristic p > 0 and K a perfect henselian subfield of the Hahn field k((y^ℚ)) that contains k(y) and whose elements have no finite accumulation points in their supports. If a nontrivial finite Artin–Schreier tower M/K has depth one, then M is a compositum of Artin–Schreier extensions of K. Nart and Novacoski proved the reverse implication and conjectured this one. For every θ in M outside K, the truncation of θ at the first finite accumulation point of its support generates a nontrivial elementary abelian subextension of K(θ)/K; the extraction adapts an Ore-relation argument of Kedlaya.
 
-**Formal scope.** Both implications are formalized in 20 Lean modules in the source's setting: the algebraic closure of K inside the Hahn field with the Hahn valuation, depth one stated as the least Okutsu length over all primitive generators, and henselianity as unique extension of the valuation to algebraic extensions. The identification of that minimum with Mac Lane–Vaquié depth is the source's Theorem 1.3 and is not formalized.
+**Formal scope.** Both implications are formalized in two Lean projects. The Lean 4.35 project states the conjecture for every finite Artin–Schreier tower over a base whose valuation ring is henselian in Mathlib's sense, with depth one defined as the least length of a complete Mac Lane–Vaquié chain over all primitive generators; it compares these chains with Okutsu sequences at length one only. The Lean 4.19 project states depth one through Okutsu sequences in the algebraic closure of K inside the Hahn field.
 
 **Prior work.** [Nart and Novacoski, 2026.](https://doi.org/10.1016/j.jpaa.2026.108184)
 

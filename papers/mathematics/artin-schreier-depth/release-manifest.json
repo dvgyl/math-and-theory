@@ -1,12 +1,19 @@
 {
   "format_version": 1,
   "package_id": "artin-schreier-depth",
-  "formal_scope": "Both implications are formalized in 20 Lean modules in the source's setting: the algebraic closure of K inside the Hahn field with the Hahn valuation, depth one stated as the least Okutsu length over all primitive generators, and henselianity as unique extension of the valuation to algebraic extensions. The identification of that minimum with Mac Lane–Vaquié depth is the source's Theorem 1.3 and is not formalized.",
+  "formal_scope": "Both implications are formalized in two Lean projects. The Lean 4.35 project states the conjecture for every finite Artin–Schreier tower over a base whose valuation ring is henselian in Mathlib's sense, with depth one defined as the least length of a complete Mac Lane–Vaquié chain over all primitive generators; it compares these chains with Okutsu sequences at length one only. The Lean 4.19 project states depth one through Okutsu sequences in the algebraic closure of K inside the Hahn field.",
   "proof_roots": [
     {
       "path": "lean",
       "lean_version": "4.19.0",
       "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.toml",
+      "lockfile": "lake-manifest.json"
+    },
+    {
+      "path": "lean_mlv",
+      "lean_version": "4.35.0-rc2",
+      "mathlib_revision": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
       "lakefile": "lakefile.toml",
       "lockfile": "lake-manifest.json"
     }
@@ -32,13 +39,114 @@
     "lean/SupportClosure.lean": "561e7e886da8d23862781eed98307eb54e9d1d41534124be455e65cdf09b4bd4",
     "lean/TowerClosureConverse.lean": "e2766e04e713625354f95216399853d45c59992a1ea5da96bfcba9009cffc609",
     "lean/TowerDepthObstruction.lean": "9f6f19a739a7fe818a770fa6aa2caf70f813971cd8e20436df53dcc2820aab28",
-    "lean/TowerFirstBlock.lean": "0f754089c526c9cea659815e0ac626f8445357df3c1a2861bf4a9fa51344d80a"
+    "lean/TowerFirstBlock.lean": "0f754089c526c9cea659815e0ac626f8445357df3c1a2861bf4a9fa51344d80a",
+    "lean_mlv/ASDepthTheorem.lean": "b6485f5b5376425bf8288a3b1b31ec091c79fe881550056ab4a45fe7c4dcb037",
+    "lean_mlv/AdditiveGalois.lean": "ce47a7168b39e57b25006ca72c42812106a80105ec9a87ac5b81d1066947c9d2",
+    "lean_mlv/AlgebraicResidue.lean": "ead822367cb9ad8000fe20a89b65c6456269947b653104acbf17a1b627819592",
+    "lean_mlv/AxiomAudit.lean": "2bcde062db6b76bf435fe73c41ea98cc488be19b3b828c1398ccf1759bec6a43",
+    "lean_mlv/ClosureTransport.lean": "7a88e20f16fdf27ef5b964810203ad4e54aa363004c7a08dad419e6283d4631d",
+    "lean_mlv/FirstAccumulation.lean": "efce187832b123d1cfdc6f61cf6ef1f1a133eb742204c434af79860871d728c6",
+    "lean_mlv/FirstBlock.lean": "048ba2372e1485c8ac9521d63f51360f59518a13194a28407e5ecdbfff308def",
+    "lean_mlv/FirstBlockContainment.lean": "b22d937a406f577f785906eeeac01678b1643f984f1dd2fa1443114daadfe9d8",
+    "lean_mlv/HahnASRoot.lean": "1ed56f9b60c3f15079b8c66cd944c2a67f082a4b0bf3beca96446254b56424b1",
+    "lean_mlv/HahnApproximation.lean": "e40e8c82315eb66e122ee31cc21df024fee15ec0a91929f1b766f5b654bf468c",
+    "lean_mlv/HahnBoundary.lean": "985cf68dfeea87a7efb8f200e520ac5941bc3701a9c4c25c6cadb4a7ac33174d",
+    "lean_mlv/HahnFinite.lean": "aebe901ed15e25efe9d451a8c1ac9e5edaa7e90f522cc1f8425fc7d1a58927b2",
+    "lean_mlv/HahnFrobenius.lean": "3384987f88d1984d669075ab5bcd64ab260acf67eed90952c603470c5ad33178",
+    "lean_mlv/HahnSupport.lean": "3829ea55544021437c5f104787aa03c72ef0cfd15797c2d205c40cbd9b2fcf70",
+    "lean_mlv/HenselianAlgebraicGlue.lean": "1812c2c593cd3bfde243c982423a03fe4979bfeb739cbdf57dfaebb99bed4f0d",
+    "lean_mlv/HenselianBridge.lean": "b3bcbd591c2ecae2e2e0982c1b2c6f86afebf35051ff5626340641292b1cbdaa",
+    "lean_mlv/HenselianKrasner.lean": "4801dd70047bd36741ff9704438183f8fce31a5c807a77abe6a3fd1c9575385f",
+    "lean_mlv/HenselianRationalNorm.lean": "d0eabea7c767a399ca57a486d7924e1ecd28f66d12f585bef307b0bece880880",
+    "lean_mlv/HenselianStandardBridge.lean": "7757a4711a38300cebb7838f76dea38302ae244cb2e6f6186496197ec3b5cfbd",
+    "lean_mlv/LegacyCompat.lean": "37a9a9af0e0441542c2b862d9fb94632c9bbcc25b6f8a7211cbaa371b0831f2b",
+    "lean_mlv/MLVChains.lean": "75c09203c8071a3a5df2341bd59a053679764cfd1a75039e428ca12504d0e59b",
+    "lean_mlv/MLVComparison.lean": "4c5c7820be0a60f5361975cb9f46785ef76b10390458b7ea37d262f84ec7c6cb",
+    "lean_mlv/MLVCorrespondence.lean": "ff99452147121cd8500ba69f6546eb14d035585e3ceb6e0f1c68df8d3b2533e9",
+    "lean_mlv/MLVDepth.lean": "78dd9f6bd2785e59bc16c10d6470847210301fa1d431d5a8d161d29a057da0a6",
+    "lean_mlv/MLVDepthOne.lean": "3f94b9b0fe53fde0ddd003f8fd6171331208b4e84364fd1437e4cbf716ee868e",
+    "lean_mlv/MLVGauss.lean": "78ccd4ba6b6273580b459a641bfc63fe5e74ef043b4883bb2ff6a2ed6f609769",
+    "lean_mlv/MLVIntrinsic.lean": "96f2185ca4cc8713402a13d1593ec85da4335f105dec82122fac5bb203fa762b",
+    "lean_mlv/MLVLinearNormalForm.lean": "d0f057ba84d79cd7bca7a2b28489f1c3966a73a2b2cae4cdd3f989ee436d694b",
+    "lean_mlv/MLVReverse.lean": "4fdc15de3ea4e0c3a71a0aa36641cbd309694fb83d10dbe1f0e938ef0a0c7642",
+    "lean_mlv/MLVSource2024.lean": "8aead888a03591a11878695d60280648f7252894935785b6707e5b87cd4101dd",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/AlgebraicExtension/NormFormula.lean": "60c2fbb5d4f49d3fa7a373d0635221ec2d3618833d8957c5010cecd796b80f30",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/AlgebraicExtension/NormFormulaAbsoluteValue.lean": "a230c532060383870f9112d9f74d69c8e1a20c7471623114d138a1a5cf649b3d",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/AlgebraicExtension/NormFormulaCoefficients.lean": "1d20a8ab401d5246299ef6bf405151b244e8935a693c04fd76380e5ba5c96625",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/AlgebraicExtension/NormFormulaIntegralClosure.lean": "da3a74b04db9eb76f6f76b9b7168a514d42b1b59ce216b90249f4fbe5dbdef00",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/AlgebraicExtension/UniqueValuationSubring.lean": "7a027394fe62339c52ec0b732edf8361675191bb81e269e4ad129aeda9561623",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/Completeness.lean": "e551f1f96dca5210a528f3d6a852f2a926914dbfadf89344a1d515d382124246",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/PrincipalAdicCompleteness.lean": "d461f8d44e588743267f55ca18c6ecb9e009b75f9a951e4deb01322faab64a71",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/Theory/AbsoluteValues.lean": "5e03d7826fb2f61638973427d6d30bb2c63dff241873c38d463f0e7fd81beb56",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/Theory/Core.lean": "172d66c308759e77716647c368b6a3a1ae1ba3a8b1b92b620b2b503a614332d5",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/Theory/ExponentialValuations.lean": "fc37d65fe727c0952d2c026f4f083414f2dab9d029d1d2622de4c4e51609e16c",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/ValuationSubring.lean": "079ea67e2b75aa90ae4a7c31bb88ce7e8a581b5b5b99a9b7e25a694e332f6379",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/AdicPower.lean": "df1f92c6b85a87ad4a27c319302f267a717b7f82c1cce10167c56b1c4793232d",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/Basic.lean": "abda99fd0b28655e1317ae832e8c94c7431b7229d99cf07138d89c4a5c953493",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/ChevalleyExtension.lean": "8f2d21dcbef11b6354d840a350ea2ddf775b670d74581bf9469d499afbe34dad",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/Complete.lean": "509cbb37745761cf3689a905512378e430932d5e8e13988470cbf072d84e46b9",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/Extensions.lean": "e8999a99fc7ff6c38bd68742b9c7779decfbb2d042f60779bd2386d7950232b5",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/Henselian.lean": "cce4a6ecfed6076732a5041ad23935a638de6eb5c3c35287d289c8b1717e0cf2",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/HenselianFinite.lean": "ba8c98a9f27133d8ba9637baf667805e783a3999654b1711e5f72601e749aab1",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/HenselianValuationExtension.lean": "a9c7ae93e18cc60ea6c9ff2899ce0cfcea0b4d20cb15fc415f7c4b486e259526",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/ResidueField.lean": "a432b1eaccf449c71758e49ac2607203e152dfd75300316511488ee2cf0979e0",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/ValuationExtension.lean": "63e3badbcec9715329fdf2a16627e8a0e7b7cbdfc9002ea69b5ada13be28e7bd",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/ValuationTransport.lean": "173bac49cc97f73e78074fce0bd629dc212ad06dd0ead5f0348e76be9a045890",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/HenselLemma.lean": "4e7a959496e020624678f6cec0158d6abc67476011788e4b0b2662d8fee47461",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/AlgebraicExtensionUniqueness.lean": "79769df1721cebb63a4eb6c589481d83b6991957cea07058c7acc7609025b287",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/AlgebraicIntegralClosure.lean": "ffbb7b2423cf75306f37bc1f6715ec86aa5a827b3ee4500a0bd7cb3a7df60b10",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/CoprimeFactorLifting.lean": "6afc4212c8fca88c430819ecdd07db7df08052b274a8215cc3f398405db400d9",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Core.lean": "710754e49ab4eeff78404feef16d84de44116fa5f32a3015518ef4ca1d66cd12",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/EtaleLifting.lean": "c14baa1d46db48f1fd0ca794c2a23cb96f407ce9349be281b99f010fcffbbb79",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/AdicLimits.lean": "d8e3f092bb47841ff655fb434136ab2c3d90077f01386fb54180a23e765edbe2",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/Assembly.lean": "95a6d75e60ec1e5a4b92ef40703e0d35dbd3154559dabc9a4485238e2855afb4",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/Basic.lean": "d19c83f5b106ff64d7e8328e3ae4f75cd4321e929c2cdb79f0defbe9b985bf1a",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/CoefficientMinimum.lean": "11e84090200a3defe46baf4f0f3d7d000d4957c9cc8793f6335a068b7954ba70",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/Complete.lean": "ce3671f47fbf97d3a02c303f0fe7416e511064a18865027fe21ab0af29ec40b7",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/DegreeBounds.lean": "a31edf8811273b8929d7480834ee33ce3714117893458b7ec9d3c9433b73afd4",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/DivisionBounds.lean": "19bcc930979d4be2908a15478a40027133ae002aa62576694b8f10c36d01e57c",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/ErrorPowers.lean": "e0aea87bf9797fb29e8605a4ec358a1126f7487b047d13646d829f719b2ac995",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/FiniteApproximation.lean": "7281065ffe87576a1726dd8b2831e57df00b27f41d241a381b0a3d9ba1f71a03",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/InfiniteApproximation.lean": "98e8cc1e5d0a38e478ca3f4ba41ced268a8782d2aaaf02f48239f89fdeebb632",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/Iteration.lean": "a355308a290600549155d410d0137cd65713ccfc140ca926e8f5c6bc4621038c",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/PrincipalLimits.lean": "06ace77edc6a529091c211ea21bbbf760a99227163dd284d08cf8b4edf4ddf61",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/Step.lean": "96370756790c60ddd05caf90e22cc17f0d29b096a23510a7e3fb66c5843f9731",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/Truncation.lean": "a5259799406b59b78ceadadaee62106b8e26bbcd0de666bc998c786c3bcadcdc",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/WeakLimits.lean": "95b0ce16370a2785745d19731b565aa991c9c5608444bdbf904b100d8d306005",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/IrreduciblePolynomialBounds.lean": "d0e94c7a3fd601d464b618e2a646f42c3f666bc884281be0f813353563348bc6",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/IrreduciblePolynomialLifting.lean": "df994141323a2db97f74ebed35b64704dda22019835629b7983ac9aaf00aabd6",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/MonicFactorization.lean": "4c232b490506209ef28797ed162c858200593044505fca733ed4d232e674dc27",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/NonmonicReduction.lean": "d9b4733507ccdad3cbbb721089b3be1739b225ce399204d95e82d020622543e7",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/PrimitiveFactorization.lean": "4d8744eddb3344713e0fbfe6000b2dd0a8134d71e4e2e2ac1f70bf3c8e64d56f",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/PrimitiveReduction.lean": "cb58d3acda79a5fcf32061a3ffa6fa5db3127f57d425e47abe03d6dea3b0248a",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/SimpleRootFactorization.lean": "f54b05b83abf1797173a4170646cbaaa62d355454b25ff712d54e0549cc29ba1",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/StandardEtaleLifting.lean": "aa4affd6c5d572fb42398e660ca62c026728864a404fad750c147fe16872da3f",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/UniqueExtensionReduction.lean": "620d866163e4e8c538dfa4a8fe5eebb68d1f300e3cb7431f8709f9fed1b230ad",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/ValuationExtensionCriterion.lean": "f6e54e90aa38b226689c43a77bdc3079637966c2be1e4b123da0751b1f2cfa0c",
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/UniqueRing.lean": "9c8bd2ae0938bd168587ceab0d31a3573a7cf5ec143a609f6079c6b63a3d51d6",
+    "lean_mlv/OkutsuDepth.lean": "24b768305d837ecb654413988f4b1715d57cacd8ed1946990fb9960adc3e8b61",
+    "lean_mlv/OreFace.lean": "1c8829c7a77f2007dac85b6ce81897a7bee01c5238c4545ba547429424e4195e",
+    "lean_mlv/StandardTowerCriterion.lean": "7757f4154fea90ab49cd8598305bd37f47dccff1d93ecf55433853c9869303c4",
+    "lean_mlv/SupportAssembly.lean": "898150e6308045088a55a05afd8f277221951aa46d1ddf65e58890c777c2f408",
+    "lean_mlv/SupportClosure.lean": "9561a87bce1fe2c0488160c4dee3e3bd05abe53f10b167e0ad5e8f9c371e1e66",
+    "lean_mlv/TowerApproximation.lean": "8907a1ba1092f542a26fc819d99f68f891b9d5e4275a6f0411d264e3e827d98e",
+    "lean_mlv/TowerClosureConverse.lean": "a26184384b5b8fcc468435276e2f650373d454f716f297b91ebe0a5765237640",
+    "lean_mlv/TowerDepthObstruction.lean": "8b7054dab36d7b016419f35cc30a41d2a7794c60a51c0cde8d7761b9382e7c69",
+    "lean_mlv/TowerFirstBlock.lean": "0f754089c526c9cea659815e0ac626f8445357df3c1a2861bf4a9fa51344d80a",
+    "lean_mlv/TowerForward.lean": "ce331fd7a0e2a31daf460f104dac8c6eb9a11a95756adfbf8bf02b82d3bc060c",
+    "lean_mlv/TowerForwardAbstract.lean": "191f2d6f9aeb0d57ed71481f13841140929cb530fda5b2afcd70b22d161d43dd",
+    "lean_mlv/TowerForwardAssembly.lean": "4e6f99ab5835f48ebb19d9b2444665f8d1c93a0672138135edc1d0c545a9d73b",
+    "lean_mlv/TowerForwardEmbedding.lean": "0b5c2cc55300f1e1d8563b91f819d4a12fe355a32ca5680de24f8c48a601052d",
+    "lean_mlv/TowerForwardFinite.lean": "02def4fbcabdd2ea1da0bc59dfc42cec8e9752ea304dae9ad72c43e21e35895b",
+    "lean_mlv/TowerForwardPrimitive.lean": "51fc9f09b80e0fe911f3994a40bf5af628cb55a75cb54b4704eef7d6d338fd74",
+    "lean_mlv/TowerForwardRoots.lean": "e58127ab6af1a6f0634689cb8ff26fb6ea135f687070bf874300d72cc4887075",
+    "lean_mlv/TowerMLVCriterion.lean": "8b4dc7faf5f332c1e3beb3821dcc3dddb558532520a4c4eec3916cc40ba4d406"
   },
   "integrity_manifests": [],
   "files": {
     "AUTHORSHIP.md": {
-      "bytes": 1450,
-      "sha256": "ad1bf319448ff55e1bb3c64981cf958febb46cc29438ee8a54994538332e8823"
+      "bytes": 2530,
+      "sha256": "47ba93880226eeace78cbcb21d6f7e29f07c455cc63795ce0fa4901461d61f0b"
     },
     "CITATION.bib": {
       "bytes": 362,
@@ -53,12 +161,12 @@
       "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
     },
     "README.md": {
-      "bytes": 3836,
-      "sha256": "49c781b22c77d3a779ab3204dd1ec35e30b6e5c5c89ca7f4033edff2c649b546"
+      "bytes": 4779,
+      "sha256": "4a8cec6daa8f357f99ff08fdd3c00b4d696bbff707df9132d6b1d2b6de1a9a5e"
     },
     "VERIFICATION.md": {
-      "bytes": 2504,
-      "sha256": "46e93e40668308a11455e79c409da89b1343b01b6e0ba614a4d59751857f4d3d"
+      "bytes": 3858,
+      "sha256": "e210ca3eee936faf7f9a611b503ff115b9ecfc9a4c7cb5859cabb702b1f390d1"
     },
     "lean/AdditiveGalois.lean": {
       "bytes": 18159,
@@ -172,13 +280,461 @@
       "bytes": 11358,
       "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
     },
+    "lean_mlv/ASDepthTheorem.lean": {
+      "bytes": 8257,
+      "sha256": "b6485f5b5376425bf8288a3b1b31ec091c79fe881550056ab4a45fe7c4dcb037"
+    },
+    "lean_mlv/AdditiveGalois.lean": {
+      "bytes": 18064,
+      "sha256": "ce47a7168b39e57b25006ca72c42812106a80105ec9a87ac5b81d1066947c9d2"
+    },
+    "lean_mlv/AlgebraicResidue.lean": {
+      "bytes": 7804,
+      "sha256": "ead822367cb9ad8000fe20a89b65c6456269947b653104acbf17a1b627819592"
+    },
+    "lean_mlv/AxiomAudit.lean": {
+      "bytes": 13031,
+      "sha256": "2bcde062db6b76bf435fe73c41ea98cc488be19b3b828c1398ccf1759bec6a43"
+    },
+    "lean_mlv/ClosureTransport.lean": {
+      "bytes": 11336,
+      "sha256": "7a88e20f16fdf27ef5b964810203ad4e54aa363004c7a08dad419e6283d4631d"
+    },
+    "lean_mlv/FirstAccumulation.lean": {
+      "bytes": 7573,
+      "sha256": "efce187832b123d1cfdc6f61cf6ef1f1a133eb742204c434af79860871d728c6"
+    },
+    "lean_mlv/FirstBlock.lean": {
+      "bytes": 15009,
+      "sha256": "048ba2372e1485c8ac9521d63f51360f59518a13194a28407e5ecdbfff308def"
+    },
+    "lean_mlv/FirstBlockContainment.lean": {
+      "bytes": 3743,
+      "sha256": "b22d937a406f577f785906eeeac01678b1643f984f1dd2fa1443114daadfe9d8"
+    },
+    "lean_mlv/HahnASRoot.lean": {
+      "bytes": 27123,
+      "sha256": "1ed56f9b60c3f15079b8c66cd944c2a67f082a4b0bf3beca96446254b56424b1"
+    },
+    "lean_mlv/HahnApproximation.lean": {
+      "bytes": 1816,
+      "sha256": "e40e8c82315eb66e122ee31cc21df024fee15ec0a91929f1b766f5b654bf468c"
+    },
+    "lean_mlv/HahnBoundary.lean": {
+      "bytes": 5691,
+      "sha256": "985cf68dfeea87a7efb8f200e520ac5941bc3701a9c4c25c6cadb4a7ac33174d"
+    },
+    "lean_mlv/HahnFinite.lean": {
+      "bytes": 7495,
+      "sha256": "aebe901ed15e25efe9d451a8c1ac9e5edaa7e90f522cc1f8425fc7d1a58927b2"
+    },
+    "lean_mlv/HahnFrobenius.lean": {
+      "bytes": 13723,
+      "sha256": "3384987f88d1984d669075ab5bcd64ab260acf67eed90952c603470c5ad33178"
+    },
+    "lean_mlv/HahnSupport.lean": {
+      "bytes": 10072,
+      "sha256": "3829ea55544021437c5f104787aa03c72ef0cfd15797c2d205c40cbd9b2fcf70"
+    },
+    "lean_mlv/HenselianAlgebraicGlue.lean": {
+      "bytes": 4171,
+      "sha256": "1812c2c593cd3bfde243c982423a03fe4979bfeb739cbdf57dfaebb99bed4f0d"
+    },
+    "lean_mlv/HenselianBridge.lean": {
+      "bytes": 3682,
+      "sha256": "b3bcbd591c2ecae2e2e0982c1b2c6f86afebf35051ff5626340641292b1cbdaa"
+    },
+    "lean_mlv/HenselianKrasner.lean": {
+      "bytes": 30897,
+      "sha256": "4801dd70047bd36741ff9704438183f8fce31a5c807a77abe6a3fd1c9575385f"
+    },
+    "lean_mlv/HenselianRationalNorm.lean": {
+      "bytes": 8355,
+      "sha256": "d0eabea7c767a399ca57a486d7924e1ecd28f66d12f585bef307b0bece880880"
+    },
+    "lean_mlv/HenselianStandardBridge.lean": {
+      "bytes": 7040,
+      "sha256": "7757a4711a38300cebb7838f76dea38302ae244cb2e6f6186496197ec3b5cfbd"
+    },
+    "lean_mlv/LegacyCompat.lean": {
+      "bytes": 555,
+      "sha256": "37a9a9af0e0441542c2b862d9fb94632c9bbcc25b6f8a7211cbaa371b0831f2b"
+    },
+    "lean_mlv/MLVChains.lean": {
+      "bytes": 13030,
+      "sha256": "75c09203c8071a3a5df2341bd59a053679764cfd1a75039e428ca12504d0e59b"
+    },
+    "lean_mlv/MLVComparison.lean": {
+      "bytes": 19010,
+      "sha256": "4c5c7820be0a60f5361975cb9f46785ef76b10390458b7ea37d262f84ec7c6cb"
+    },
+    "lean_mlv/MLVCorrespondence.lean": {
+      "bytes": 16593,
+      "sha256": "ff99452147121cd8500ba69f6546eb14d035585e3ceb6e0f1c68df8d3b2533e9"
+    },
+    "lean_mlv/MLVDepth.lean": {
+      "bytes": 10569,
+      "sha256": "78dd9f6bd2785e59bc16c10d6470847210301fa1d431d5a8d161d29a057da0a6"
+    },
+    "lean_mlv/MLVDepthOne.lean": {
+      "bytes": 16922,
+      "sha256": "3f94b9b0fe53fde0ddd003f8fd6171331208b4e84364fd1437e4cbf716ee868e"
+    },
+    "lean_mlv/MLVGauss.lean": {
+      "bytes": 12326,
+      "sha256": "78ccd4ba6b6273580b459a641bfc63fe5e74ef043b4883bb2ff6a2ed6f609769"
+    },
+    "lean_mlv/MLVIntrinsic.lean": {
+      "bytes": 4119,
+      "sha256": "96f2185ca4cc8713402a13d1593ec85da4335f105dec82122fac5bb203fa762b"
+    },
+    "lean_mlv/MLVLinearNormalForm.lean": {
+      "bytes": 6645,
+      "sha256": "d0f057ba84d79cd7bca7a2b28489f1c3966a73a2b2cae4cdd3f989ee436d694b"
+    },
+    "lean_mlv/MLVReverse.lean": {
+      "bytes": 8371,
+      "sha256": "4fdc15de3ea4e0c3a71a0aa36641cbd309694fb83d10dbe1f0e938ef0a0c7642"
+    },
+    "lean_mlv/MLVSource2024.lean": {
+      "bytes": 18435,
+      "sha256": "8aead888a03591a11878695d60280648f7252894935785b6707e5b87cd4101dd"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/AlgebraicExtension/NormFormula.lean": {
+      "bytes": 12549,
+      "sha256": "60c2fbb5d4f49d3fa7a373d0635221ec2d3618833d8957c5010cecd796b80f30"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/AlgebraicExtension/NormFormulaAbsoluteValue.lean": {
+      "bytes": 11385,
+      "sha256": "a230c532060383870f9112d9f74d69c8e1a20c7471623114d138a1a5cf649b3d"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/AlgebraicExtension/NormFormulaCoefficients.lean": {
+      "bytes": 7850,
+      "sha256": "1d20a8ab401d5246299ef6bf405151b244e8935a693c04fd76380e5ba5c96625"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/AlgebraicExtension/NormFormulaIntegralClosure.lean": {
+      "bytes": 6566,
+      "sha256": "da3a74b04db9eb76f6f76b9b7168a514d42b1b59ce216b90249f4fbe5dbdef00"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/AlgebraicExtension/UniqueValuationSubring.lean": {
+      "bytes": 4942,
+      "sha256": "7a027394fe62339c52ec0b732edf8361675191bb81e269e4ad129aeda9561623"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/Completeness.lean": {
+      "bytes": 4980,
+      "sha256": "e551f1f96dca5210a528f3d6a852f2a926914dbfadf89344a1d515d382124246"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/PrincipalAdicCompleteness.lean": {
+      "bytes": 11772,
+      "sha256": "d461f8d44e588743267f55ca18c6ecb9e009b75f9a951e4deb01322faab64a71"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/Theory/AbsoluteValues.lean": {
+      "bytes": 32120,
+      "sha256": "5e03d7826fb2f61638973427d6d30bb2c63dff241873c38d463f0e7fd81beb56"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/Theory/Core.lean": {
+      "bytes": 38329,
+      "sha256": "172d66c308759e77716647c368b6a3a1ae1ba3a8b1b92b620b2b503a614332d5"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/Theory/ExponentialValuations.lean": {
+      "bytes": 66788,
+      "sha256": "fc37d65fe727c0952d2c026f4f083414f2dab9d029d1d2622de4c4e51609e16c"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/AbsoluteValue/ValuationSubring.lean": {
+      "bytes": 12875,
+      "sha256": "079ea67e2b75aa90ae4a7c31bb88ce7e8a581b5b5b99a9b7e25a694e332f6379"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/AdicPower.lean": {
+      "bytes": 11538,
+      "sha256": "df1f92c6b85a87ad4a27c319302f267a717b7f82c1cce10167c56b1c4793232d"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/Basic.lean": {
+      "bytes": 28130,
+      "sha256": "abda99fd0b28655e1317ae832e8c94c7431b7229d99cf07138d89c4a5c953493"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/ChevalleyExtension.lean": {
+      "bytes": 62832,
+      "sha256": "8f2d21dcbef11b6354d840a350ea2ddf775b670d74581bf9469d499afbe34dad"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/Complete.lean": {
+      "bytes": 16515,
+      "sha256": "509cbb37745761cf3689a905512378e430932d5e8e13988470cbf072d84e46b9"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/Extensions.lean": {
+      "bytes": 21404,
+      "sha256": "e8999a99fc7ff6c38bd68742b9c7779decfbb2d042f60779bd2386d7950232b5"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/Henselian.lean": {
+      "bytes": 10731,
+      "sha256": "cce4a6ecfed6076732a5041ad23935a638de6eb5c3c35287d289c8b1717e0cf2"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/HenselianFinite.lean": {
+      "bytes": 13809,
+      "sha256": "ba8c98a9f27133d8ba9637baf667805e783a3999654b1711e5f72601e749aab1"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/HenselianValuationExtension.lean": {
+      "bytes": 7158,
+      "sha256": "a9c7ae93e18cc60ea6c9ff2899ce0cfcea0b4d20cb15fc415f7c4b486e259526"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/ResidueField.lean": {
+      "bytes": 12739,
+      "sha256": "a432b1eaccf449c71758e49ac2607203e152dfd75300316511488ee2cf0979e0"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/ValuationExtension.lean": {
+      "bytes": 10084,
+      "sha256": "63e3badbcec9715329fdf2a16627e8a0e7b7cbdfc9002ea69b5ada13be28e7bd"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/DiscreteValuationField/ValuationTransport.lean": {
+      "bytes": 6860,
+      "sha256": "173bac49cc97f73e78074fce0bd629dc212ad06dd0ead5f0348e76be9a045890"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/HenselLemma.lean": {
+      "bytes": 14927,
+      "sha256": "4e7a959496e020624678f6cec0158d6abc67476011788e4b0b2662d8fee47461"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/AlgebraicExtensionUniqueness.lean": {
+      "bytes": 2537,
+      "sha256": "79769df1721cebb63a4eb6c589481d83b6991957cea07058c7acc7609025b287"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/AlgebraicIntegralClosure.lean": {
+      "bytes": 5195,
+      "sha256": "ffbb7b2423cf75306f37bc1f6715ec86aa5a827b3ee4500a0bd7cb3a7df60b10"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/CoprimeFactorLifting.lean": {
+      "bytes": 4137,
+      "sha256": "6afc4212c8fca88c430819ecdd07db7df08052b274a8215cc3f398405db400d9"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Core.lean": {
+      "bytes": 7212,
+      "sha256": "710754e49ab4eeff78404feef16d84de44116fa5f32a3015518ef4ca1d66cd12"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/EtaleLifting.lean": {
+      "bytes": 1980,
+      "sha256": "c14baa1d46db48f1fd0ca794c2a23cb96f407ce9349be281b99f010fcffbbb79"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/AdicLimits.lean": {
+      "bytes": 11520,
+      "sha256": "d8e3f092bb47841ff655fb434136ab2c3d90077f01386fb54180a23e765edbe2"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/Assembly.lean": {
+      "bytes": 12239,
+      "sha256": "95a6d75e60ec1e5a4b92ef40703e0d35dbd3154559dabc9a4485238e2855afb4"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/Basic.lean": {
+      "bytes": 19798,
+      "sha256": "d19c83f5b106ff64d7e8328e3ae4f75cd4321e929c2cdb79f0defbe9b985bf1a"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/CoefficientMinimum.lean": {
+      "bytes": 12247,
+      "sha256": "11e84090200a3defe46baf4f0f3d7d000d4957c9cc8793f6335a068b7954ba70"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/Complete.lean": {
+      "bytes": 2923,
+      "sha256": "ce3671f47fbf97d3a02c303f0fe7416e511064a18865027fe21ab0af29ec40b7"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/DegreeBounds.lean": {
+      "bytes": 5227,
+      "sha256": "a31edf8811273b8929d7480834ee33ce3714117893458b7ec9d3c9433b73afd4"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/DivisionBounds.lean": {
+      "bytes": 1852,
+      "sha256": "19bcc930979d4be2908a15478a40027133ae002aa62576694b8f10c36d01e57c"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/ErrorPowers.lean": {
+      "bytes": 10011,
+      "sha256": "e0aea87bf9797fb29e8605a4ec358a1126f7487b047d13646d829f719b2ac995"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/FiniteApproximation.lean": {
+      "bytes": 6135,
+      "sha256": "7281065ffe87576a1726dd8b2831e57df00b27f41d241a381b0a3d9ba1f71a03"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/InfiniteApproximation.lean": {
+      "bytes": 44672,
+      "sha256": "98e8cc1e5d0a38e478ca3f4ba41ced268a8782d2aaaf02f48239f89fdeebb632"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/Iteration.lean": {
+      "bytes": 15111,
+      "sha256": "a355308a290600549155d410d0137cd65713ccfc140ca926e8f5c6bc4621038c"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/PrincipalLimits.lean": {
+      "bytes": 18545,
+      "sha256": "06ace77edc6a529091c211ea21bbbf760a99227163dd284d08cf8b4edf4ddf61"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/Step.lean": {
+      "bytes": 22747,
+      "sha256": "96370756790c60ddd05caf90e22cc17f0d29b096a23510a7e3fb66c5843f9731"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/Truncation.lean": {
+      "bytes": 36205,
+      "sha256": "a5259799406b59b78ceadadaee62106b8e26bbcd0de666bc998c786c3bcadcdc"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/Factorization/WeakLimits.lean": {
+      "bytes": 15605,
+      "sha256": "95b0ce16370a2785745d19731b565aa991c9c5608444bdbf904b100d8d306005"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/IrreduciblePolynomialBounds.lean": {
+      "bytes": 35151,
+      "sha256": "d0e94c7a3fd601d464b618e2a646f42c3f666bc884281be0f813353563348bc6"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/IrreduciblePolynomialLifting.lean": {
+      "bytes": 16282,
+      "sha256": "df994141323a2db97f74ebed35b64704dda22019835629b7983ac9aaf00aabd6"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/MonicFactorization.lean": {
+      "bytes": 50594,
+      "sha256": "4c232b490506209ef28797ed162c858200593044505fca733ed4d232e674dc27"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/NonmonicReduction.lean": {
+      "bytes": 7282,
+      "sha256": "d9b4733507ccdad3cbbb721089b3be1739b225ce399204d95e82d020622543e7"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/PrimitiveFactorization.lean": {
+      "bytes": 15593,
+      "sha256": "4d8744eddb3344713e0fbfe6000b2dd0a8134d71e4e2e2ac1f70bf3c8e64d56f"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/PrimitiveReduction.lean": {
+      "bytes": 14090,
+      "sha256": "cb58d3acda79a5fcf32061a3ffa6fa5db3127f57d425e47abe03d6dea3b0248a"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/SimpleRootFactorization.lean": {
+      "bytes": 1664,
+      "sha256": "f54b05b83abf1797173a4170646cbaaa62d355454b25ff712d54e0549cc29ba1"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/StandardEtaleLifting.lean": {
+      "bytes": 3254,
+      "sha256": "aa4affd6c5d572fb42398e660ca62c026728864a404fad750c147fe16872da3f"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/UniqueExtensionReduction.lean": {
+      "bytes": 22893,
+      "sha256": "620d866163e4e8c538dfa4a8fe5eebb68d1f300e3cb7431f8709f9fed1b230ad"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/Henselian/ValuationExtensionCriterion.lean": {
+      "bytes": 9349,
+      "sha256": "f6e54e90aa38b226689c43a77bdc3079637966c2be1e4b123da0751b1f2cfa0c"
+    },
+    "lean_mlv/Nyll/ValuedFieldTheory/Valuation/UniqueRing.lean": {
+      "bytes": 12037,
+      "sha256": "9c8bd2ae0938bd168587ceab0d31a3573a7cf5ec143a609f6079c6b63a3d51d6"
+    },
+    "lean_mlv/OkutsuDepth.lean": {
+      "bytes": 27939,
+      "sha256": "24b768305d837ecb654413988f4b1715d57cacd8ed1946990fb9960adc3e8b61"
+    },
+    "lean_mlv/OreFace.lean": {
+      "bytes": 7690,
+      "sha256": "1c8829c7a77f2007dac85b6ce81897a7bee01c5238c4545ba547429424e4195e"
+    },
+    "lean_mlv/StandardTowerCriterion.lean": {
+      "bytes": 5551,
+      "sha256": "7757f4154fea90ab49cd8598305bd37f47dccff1d93ecf55433853c9869303c4"
+    },
+    "lean_mlv/SupportAssembly.lean": {
+      "bytes": 16347,
+      "sha256": "898150e6308045088a55a05afd8f277221951aa46d1ddf65e58890c777c2f408"
+    },
+    "lean_mlv/SupportClosure.lean": {
+      "bytes": 9797,
+      "sha256": "9561a87bce1fe2c0488160c4dee3e3bd05abe53f10b167e0ad5e8f9c371e1e66"
+    },
+    "lean_mlv/THIRD_PARTY.md": {
+      "bytes": 10752,
+      "sha256": "97690798dc1cdd51ea19e555891986e0bbb84114c9ac9615032476230d1ec979"
+    },
+    "lean_mlv/TowerApproximation.lean": {
+      "bytes": 4561,
+      "sha256": "8907a1ba1092f542a26fc819d99f68f891b9d5e4275a6f0411d264e3e827d98e"
+    },
+    "lean_mlv/TowerClosureConverse.lean": {
+      "bytes": 8796,
+      "sha256": "a26184384b5b8fcc468435276e2f650373d454f716f297b91ebe0a5765237640"
+    },
+    "lean_mlv/TowerDepthObstruction.lean": {
+      "bytes": 4970,
+      "sha256": "8b7054dab36d7b016419f35cc30a41d2a7794c60a51c0cde8d7761b9382e7c69"
+    },
+    "lean_mlv/TowerFirstBlock.lean": {
+      "bytes": 3951,
+      "sha256": "0f754089c526c9cea659815e0ac626f8445357df3c1a2861bf4a9fa51344d80a"
+    },
+    "lean_mlv/TowerForward.lean": {
+      "bytes": 4508,
+      "sha256": "ce331fd7a0e2a31daf460f104dac8c6eb9a11a95756adfbf8bf02b82d3bc060c"
+    },
+    "lean_mlv/TowerForwardAbstract.lean": {
+      "bytes": 11158,
+      "sha256": "191f2d6f9aeb0d57ed71481f13841140929cb530fda5b2afcd70b22d161d43dd"
+    },
+    "lean_mlv/TowerForwardAssembly.lean": {
+      "bytes": 12320,
+      "sha256": "4e6f99ab5835f48ebb19d9b2444665f8d1c93a0672138135edc1d0c545a9d73b"
+    },
+    "lean_mlv/TowerForwardEmbedding.lean": {
+      "bytes": 6608,
+      "sha256": "0b5c2cc55300f1e1d8563b91f819d4a12fe355a32ca5680de24f8c48a601052d"
+    },
+    "lean_mlv/TowerForwardFinite.lean": {
+      "bytes": 3817,
+      "sha256": "02def4fbcabdd2ea1da0bc59dfc42cec8e9752ea304dae9ad72c43e21e35895b"
+    },
+    "lean_mlv/TowerForwardPrimitive.lean": {
+      "bytes": 5597,
+      "sha256": "51fc9f09b80e0fe911f3994a40bf5af628cb55a75cb54b4704eef7d6d338fd74"
+    },
+    "lean_mlv/TowerForwardRoots.lean": {
+      "bytes": 15057,
+      "sha256": "e58127ab6af1a6f0634689cb8ff26fb6ea135f687070bf874300d72cc4887075"
+    },
+    "lean_mlv/TowerMLVCriterion.lean": {
+      "bytes": 4529,
+      "sha256": "8b4dc7faf5f332c1e3beb3821dcc3dddb558532520a4c4eec3916cc40ba4d406"
+    },
+    "lean_mlv/lake-manifest.json": {
+      "bytes": 3554,
+      "sha256": "78e9647ff5be4937094062f6400c1e39246e861d0838dd1ed41099259a9ad3d0"
+    },
+    "lean_mlv/lakefile.toml": {
+      "bytes": 6997,
+      "sha256": "28b38d4a2ac9fff4d98849f89020b84e7f609a7c502e120b421325d741b665e8"
+    },
+    "lean_mlv/lean-toolchain": {
+      "bytes": 29,
+      "sha256": "8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a"
+    },
+    "lean_mlv/scripts/generate_audit.py": {
+      "bytes": 7102,
+      "sha256": "bdf4d4e99c76818e352ce27c0931865ee588a20edc1f58a7d929d66b9f027a21"
+    },
+    "lean_mlv/scripts/verify_cached.py": {
+      "bytes": 24914,
+      "sha256": "f2e8963a3c791d103c6340de92ccfb88acd622f3f2c668e48768f2170a2d77cf"
+    },
+    "lean_mlv/third_party/LICENSE-APACHE-2.0.txt": {
+      "bytes": 11358,
+      "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    "lean_mlv/vendor/NYLL_LICENSE": {
+      "bytes": 11358,
+      "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    "lean_mlv/vendor/NYLL_PROVENANCE.json": {
+      "bytes": 1389,
+      "sha256": "ab9820e514270beee16e02708993f4781cc2dacc6143d4c7a35a3d81608f0064"
+    },
+    "lean_mlv/vendor/NormFormula.patch": {
+      "bytes": 1269,
+      "sha256": "c80407e851411dc85d585c1580477fa70a303e4492d5faf2e3197f148f0d5664"
+    },
+    "lean_mlv/vendor/source_manifest.json": {
+      "bytes": 31055,
+      "sha256": "df0deaf80fe91c9040632a06c93882c11792368601933ad69b590c1d18be74f2"
+    },
     "manuscript.pdf": {
-      "bytes": 292814,
-      "sha256": "1218bb4cc50334e792351433ebee9db02f3828222edabf267a1c61f8e172bdf0"
+      "bytes": 301424,
+      "sha256": "089fabddf058cf3b2463d0a927284893465b53cb5151c210c0675cf9a723dbe4"
     },
     "manuscript.tex": {
-      "bytes": 22699,
-      "sha256": "14cd799e699a9c3857af5a6a1da350f2503d8b3026d148ace5954338a9e49d02"
+      "bytes": 25842,
+      "sha256": "45d9d134934f07dc7bb6adbf2dcbe5bf52424ca424418455695be483cb2f67b2"
     },
     "verification/README.md": {
       "bytes": 919,
@@ -271,6 +827,422 @@
     "verification/logs/TowerFirstBlock.log": {
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/README.md": {
+      "bytes": 1367,
+      "sha256": "e0e8ca19520e8dd6876d39b33b4d4968310185fdfc8470c6b3e0923a0058f6ad"
+    },
+    "verification/mlv/complete_build.log": {
+      "bytes": 522103,
+      "sha256": "4caa4a61cd5e2170fd50e66a303603b88a1d214b3464ea5f8c29ff52da253082"
+    },
+    "verification/mlv/logs/ASDepthTheorem.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/AdditiveGalois.log": {
+      "bytes": 3580,
+      "sha256": "8b2925dc97450a3c88ff4e86eb410f88757850a52201fa10b2ad0b5dd329bb6b"
+    },
+    "verification/mlv/logs/AlgebraicResidue.log": {
+      "bytes": 1243,
+      "sha256": "12ac99bef791812a7a393a2523b4f2f62da7075fa64ac2cc6beba77587e6391d"
+    },
+    "verification/mlv/logs/AxiomAudit.log": {
+      "bytes": 465511,
+      "sha256": "cd904f33dcfb539a5353e5b519cc84c955af06319069a0c7623f0607263c6c8a"
+    },
+    "verification/mlv/logs/ClosureTransport.log": {
+      "bytes": 888,
+      "sha256": "ab2f53d8e3823878861613fe3d475f446e9552cc5c762facf982dbcfb76081ba"
+    },
+    "verification/mlv/logs/FirstAccumulation.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/FirstBlock.log": {
+      "bytes": 3938,
+      "sha256": "b4806eb067cf64acbdf2835952fb3661d3987e01fd081b54072e3ac22f473397"
+    },
+    "verification/mlv/logs/FirstBlockContainment.log": {
+      "bytes": 1086,
+      "sha256": "3fe42ac186c87dce482d4e06cd036f63bf17a2e92e40d2bf02507280ab70a16b"
+    },
+    "verification/mlv/logs/HahnASRoot.log": {
+      "bytes": 4275,
+      "sha256": "5d8d463ffdc155be42e9e241617c363b517a636e79c054a3993f1c58f6c9cd91"
+    },
+    "verification/mlv/logs/HahnApproximation.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/HahnBoundary.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/HahnFinite.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/HahnFrobenius.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/HahnSupport.log": {
+      "bytes": 844,
+      "sha256": "bd12fc73e053c9b825cbff9a28d4c4e2786094da3310491fe079c3b2d08e75b1"
+    },
+    "verification/mlv/logs/HenselianAlgebraicGlue.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/HenselianBridge.log": {
+      "bytes": 672,
+      "sha256": "6e6415365f9cc05db02e86d0fd973b1b842bb95b87725bb7eed65fdedff8831f"
+    },
+    "verification/mlv/logs/HenselianKrasner.log": {
+      "bytes": 6130,
+      "sha256": "a00ff851e2ef0d0ff88a24b7adc3ddfef91a0fb627fdcb36144ca54d5e2babba"
+    },
+    "verification/mlv/logs/HenselianRationalNorm.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/HenselianStandardBridge.log": {
+      "bytes": 1459,
+      "sha256": "785955abfa11142542c70fac9aaabf7edb235f0266d7f3b5d8d907fa53c0ee94"
+    },
+    "verification/mlv/logs/LegacyCompat.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/MLVChains.log": {
+      "bytes": 1349,
+      "sha256": "1e8ed227b1dfe31592379eedc98eef7eaa1aaa00010e0db99ad04b46f4c3641b"
+    },
+    "verification/mlv/logs/MLVComparison.log": {
+      "bytes": 708,
+      "sha256": "c7b22b19938e3d394199921a15745d31804e8ebb40706023be92e48f34876376"
+    },
+    "verification/mlv/logs/MLVCorrespondence.log": {
+      "bytes": 4305,
+      "sha256": "ac1de8a2e47c48d80e35c43fd48deeefc27113f4719a10ecb332bd4fc8f0995b"
+    },
+    "verification/mlv/logs/MLVDepth.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/MLVDepthOne.log": {
+      "bytes": 2275,
+      "sha256": "31ded056072c8a18d345faaa9ce55a76ccedd95b3a01849f2d35b48f9cecdf2f"
+    },
+    "verification/mlv/logs/MLVGauss.log": {
+      "bytes": 759,
+      "sha256": "ee35dbccdc7f926b0afa191426b265388bb816f8e64480d4c3e83cf142485a26"
+    },
+    "verification/mlv/logs/MLVIntrinsic.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/MLVLinearNormalForm.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/MLVReverse.log": {
+      "bytes": 1396,
+      "sha256": "d9763c02ddd0db3b190b7747996cfabbf6157a5c15aa500acbfd1116a02aeeb4"
+    },
+    "verification/mlv/logs/MLVSource2024.log": {
+      "bytes": 1274,
+      "sha256": "dbc8e25fd4b823c42d82854efea6a88ffae8a0df89ac08da11ec122a3b67d6a5"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.AlgebraicExtension.NormFormula.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.AlgebraicExtension.NormFormulaAbsoluteValue.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.AlgebraicExtension.NormFormulaCoefficients.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.AlgebraicExtension.NormFormulaIntegralClosure.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.AlgebraicExtension.UniqueValuationSubring.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.Completeness.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.PrincipalAdicCompleteness.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.Theory.AbsoluteValues.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.Theory.Core.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.Theory.ExponentialValuations.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.ValuationSubring.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.AdicPower.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.Basic.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.ChevalleyExtension.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.Complete.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.Extensions.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.Henselian.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.HenselianFinite.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.HenselianValuationExtension.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.ResidueField.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.ValuationExtension.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.ValuationTransport.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.HenselLemma.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.AlgebraicExtensionUniqueness.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.AlgebraicIntegralClosure.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.CoprimeFactorLifting.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Core.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.EtaleLifting.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Factorization.AdicLimits.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Factorization.Assembly.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Factorization.Basic.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Factorization.CoefficientMinimum.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Factorization.Complete.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Factorization.DegreeBounds.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Factorization.DivisionBounds.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Factorization.ErrorPowers.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Factorization.FiniteApproximation.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Factorization.InfiniteApproximation.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Factorization.Iteration.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Factorization.PrincipalLimits.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Factorization.Step.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Factorization.Truncation.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.Factorization.WeakLimits.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.IrreduciblePolynomialBounds.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.IrreduciblePolynomialLifting.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.MonicFactorization.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.NonmonicReduction.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.PrimitiveFactorization.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.PrimitiveReduction.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.SimpleRootFactorization.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.StandardEtaleLifting.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.UniqueExtensionReduction.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.Henselian.ValuationExtensionCriterion.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/Nyll.ValuedFieldTheory.Valuation.UniqueRing.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/OkutsuDepth.log": {
+      "bytes": 1418,
+      "sha256": "258f8b126e5ce10faf347d91cbb10a3abe5f9a431d34b518ff616f7af6d220ba"
+    },
+    "verification/mlv/logs/OreFace.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/StandardTowerCriterion.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/SupportAssembly.log": {
+      "bytes": 1632,
+      "sha256": "81636efd70491d082bf98bdec6d108a9d0a1181e6626b81341114f312ba34469"
+    },
+    "verification/mlv/logs/SupportClosure.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/TowerApproximation.log": {
+      "bytes": 1077,
+      "sha256": "45624e967c7566a1cd53589cc52d21634af399e0eb50152884184eeca7f98ac6"
+    },
+    "verification/mlv/logs/TowerClosureConverse.log": {
+      "bytes": 1084,
+      "sha256": "41ade468ef6805c9ae470270fd96cc908fd9507382371ab8099bcf805da4a244"
+    },
+    "verification/mlv/logs/TowerDepthObstruction.log": {
+      "bytes": 1810,
+      "sha256": "8f037baccbb80e20041f2b723bf344c34d90777bcc7b904b0685990358b9cca5"
+    },
+    "verification/mlv/logs/TowerFirstBlock.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/TowerForward.log": {
+      "bytes": 353,
+      "sha256": "e9a6272ecd9420fe85d41d7c705571bd82670dd184c5e17591040ef8a0b27272"
+    },
+    "verification/mlv/logs/TowerForwardAbstract.log": {
+      "bytes": 3258,
+      "sha256": "b0452331118063d2f68ea604329ad0c1a3d03988d0aecde0788b68c9b209c9cc"
+    },
+    "verification/mlv/logs/TowerForwardAssembly.log": {
+      "bytes": 5419,
+      "sha256": "d8d4308c50ec3f74a2c12733cc92fe164e7179fc47f267b6d2141052d4ba4a43"
+    },
+    "verification/mlv/logs/TowerForwardEmbedding.log": {
+      "bytes": 1811,
+      "sha256": "533ce247c8d4179f7ea3675618280bb429664e8305f708efb7621569c48e79ce"
+    },
+    "verification/mlv/logs/TowerForwardFinite.log": {
+      "bytes": 730,
+      "sha256": "dcdb093f4d6007fcea3b2e4e39719b74bdaf4e5641ce713118921cc329035217"
+    },
+    "verification/mlv/logs/TowerForwardPrimitive.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/logs/TowerForwardRoots.log": {
+      "bytes": 1719,
+      "sha256": "2426f213a06db859585e67f3ab31bb760bd067eb38dd0a44147f69cdfdff0177"
+    },
+    "verification/mlv/logs/TowerMLVCriterion.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verification/mlv/verification_report.json": {
+      "bytes": 1502904,
+      "sha256": "ad1db493e4182c403b45977ff2e5ba9df34a31821551e5613f9708269613d711"
     },
     "verification/verification_report.json": {
       "bytes": 228555,
