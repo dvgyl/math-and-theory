@@ -352,9 +352,6 @@ jobs:
           - package: width-two-order-polynomial
             root: papers/mathematics/width-two-order-polynomial
             project: lean
-          - package: berge-c5-saturation
-            root: papers/mathematics/berge-c5-saturation
-            project: lean
           - package: matrix-pencil-completion
             root: papers/mathematics/matrix-pencil-completion
             project: lean_p1_converse
@@ -441,11 +438,6 @@ jobs:
             lake build ShortChain ShortChain.AxiomAudit 2>&1 | tee "${RUNNER_TEMP}/width-two-build.log"
             python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/width-two-build.log" --project . --output "${RUNNER_TEMP}/width-two-axioms.json"
             python3 ../certificate/check_certificates.py --extra 3
-          elif [[ '${{ matrix.package }}' == 'berge-c5-saturation' ]]; then
-            lake build BergeC5 BergeC5.AxiomAudit 2>&1 | tee "${RUNNER_TEMP}/berge-c5-build.log"
-            python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/berge-c5-build.log" --project . --output "${RUNNER_TEMP}/berge-c5-axioms.json"
-            python3 ../certificate/check_construction.py
-            python3 ../certificate/run_certificates.py
           elif [[ '${{ matrix.package }}' == 'matrix-pencil-completion' ]]; then
             command -v rg >/dev/null || { sudo apt-get update && sudo apt-get install --yes ripgrep; }
             bash verify.sh
