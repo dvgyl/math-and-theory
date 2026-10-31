@@ -215,6 +215,25 @@ class SiteTests(unittest.TestCase):
         spots = [home.index('papers/' + self.builder.paper_slug(f['title']) + '/') for f in selected]
         self.assertEqual(spots, sorted(spots), 'selected results must appear in order of significance')
 
+    def test_every_result_names_its_problem_for_search(self):
+        problems = (self.out / 'problems' / 'index.html').read_text()
+        for family in self.families:
+            data = family.get('seo')
+            self.assertIsInstance(data, dict, f'{family["id"]}: missing seo block')
+            name = 'papers/' + self.builder.paper_slug(family['title']) + '/index.html'
+            text, meta = (self.out / name).read_text(), self.pages[name].meta
+            self.assertLessEqual(len(data['title_tag']), 70, family['id'])
+            self.assertLessEqual(len(data['description']), 170, family['id'])
+            self.assertIn('<title>' + self.builder.esc(data['title_tag']) + ' | ', text)
+            self.assertEqual(meta.get('description'), [data['description']])
+            self.assertIn('id="problem"', text)
+            self.assertIn(self.builder.typeset(data['claim']), text)
+            graph = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', text, re.S).group(1))['@graph']
+            self.assertEqual(graph[0]['about'][0]['name'], data['problem'])
+            faq = [node for node in graph if node['@type'] == 'FAQPage']
+            self.assertEqual(len(faq), 1 if data.get('faq') else 0, family['id'])
+            self.assertIn(self.builder.typeset(data['problem']), problems)
+
     def test_incomplete_entries_and_missing_paths_fail(self):
         builder = load_builder()
         with tempfile.TemporaryDirectory() as temp:

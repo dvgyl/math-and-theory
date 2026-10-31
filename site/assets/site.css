@@ -86,7 +86,7 @@ i, em { font-style: italic; }
 
 /* Top line and colophon */
 .topline { border-bottom: 1px solid var(--rule); }
-.topline .sheet { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 1.5rem; padding-block: .55rem; }
+.topline .sheet { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 1.5rem; padding-block: .55rem; }
 .topline .name { color: var(--ink); text-decoration: none; font-size: 1.05rem; padding-block: .3rem; }
 .topline ul { display: flex; flex-wrap: wrap; gap: 0 1rem; margin: 0 0 0 -.2rem; padding: 0; list-style: none; }
 .topline nav a {
@@ -184,6 +184,11 @@ p.entry-meta { margin: 0 0 .35rem; }
 .contents { margin: 1.1rem 0 0; font-size: .9em; }
 .contents p { margin: 0; }
 .abstract { margin-top: 2rem; }
+.claim { margin-top: 1.6rem; padding: .85rem 1.1rem; border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; background: var(--tint); }
+.claim-facts { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: .35rem 1rem; }
+.claim-facts dt { color: var(--muted); font-variant: small-caps; letter-spacing: .05em; }
+.claim-facts dd { margin: 0; }
+@media (max-width: 30rem) { .claim-facts { grid-template-columns: minmax(0, 1fr); gap: 0; } .claim-facts dd { margin-bottom: .45rem; } }
 .runin { float: left; margin: 0 .55em 0 0; font-size: 1em; line-height: inherit; font-weight: 600; letter-spacing: .07em; }
 .part { margin-top: 2.4rem; padding-top: .8rem; border-top: 1px solid var(--rule); }
 .part > h2 { font-size: 1.2rem; letter-spacing: .08em; margin-bottom: .8rem; }
@@ -236,3 +241,50 @@ p.entry-meta { margin: 0 0 .35rem; }
 .models { margin: .4rem 0 .9rem; padding-left: 1.2rem; }
 .models li { margin-bottom: .45rem; }
 .models b { font-weight: 600; }
+
+/* Status chips, cards and the home figures */
+:root { --proved: #2f6140; --partial: #8a5a12; --card: #f8f4ec; --tint: #efe6da; --shadow: rgba(40, 30, 15, .18); }
+@media (prefers-color-scheme: dark) {
+  :root { --proved: #9ccaa6; --partial: #e2b66e; --card: #211e1a; --tint: #26201b; --shadow: rgba(0, 0, 0, .5); }
+}
+.topline .name { display: inline-flex; align-items: center; gap: .55rem; }
+.topline .name img { width: 1.4rem; height: 1.4rem; border-radius: 4px; flex: none; }
+.masthead h1::after { content: ""; display: block; width: 3.5rem; height: 3px; margin-top: .85rem; background: var(--accent); }
+.outcome {
+  display: inline-block; margin-right: .5em; padding: 0 .6em; border: 1px solid currentColor; border-radius: 999px;
+  font-size: .8em; line-height: 1.55; white-space: nowrap; vertical-align: .06em;
+  font-variant-caps: all-small-caps; letter-spacing: .07em; font-variant-numeric: lining-nums; font-style: normal;
+  color: var(--muted); background: color-mix(in srgb, currentColor 8%, transparent);
+}
+.outcome[data-tone="proved"] { color: var(--proved); }
+.outcome[data-tone="refuted"] { color: var(--accent); }
+.outcome[data-tone="partial"] { color: var(--partial); }
+.problem-line { margin: .1rem 0 .45rem; font-size: .95em; line-height: 1.45; }
+.problem-line .problem-name { color: var(--muted); font-style: italic; }
+.claim-facts dd .outcome { margin-right: 0; }
+.cards > li {
+  padding: 1rem 1.2rem .95rem; border: 1px solid var(--rule); border-radius: 8px; background: var(--card);
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.cards > li:hover { border-color: color-mix(in srgb, var(--accent) 40%, var(--rule)); box-shadow: 0 10px 24px -18px var(--shadow); }
+.numbered.cards > li { margin-bottom: 1rem; }
+.numbered.cards > li::before { top: 1.08rem; }
+.cards .title { margin-bottom: .2rem; }
+.cards .title a { text-decoration-color: transparent; }
+.cards .title a:hover { text-decoration-color: currentColor; }
+.figures {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr)); gap: .75rem;
+  margin: 1.6rem 0 0; padding: 0; list-style: none;
+}
+.figures a {
+  display: flex; flex-direction: column; height: 100%; padding: .75rem .9rem .7rem; border: 1px solid var(--rule);
+  border-radius: 8px; background: var(--card); color: var(--ink); text-decoration: none; transition: border-color .15s ease;
+}
+.figures a:hover { border-color: var(--accent); }
+.figures .n { font-size: 1.9rem; line-height: 1; font-variant-numeric: lining-nums tabular-nums; color: var(--accent); }
+.figures .l { margin-top: .35rem; color: var(--muted); font-size: .92em; line-height: 1.25; font-variant-caps: all-small-caps; letter-spacing: .06em; }
+.toc .entry-meta .outcome { font-size: .85em; }
+@media print {
+  .cards > li, .figures a { border-color: #999; background: none; box-shadow: none; }
+  .outcome { background: none; }
+}

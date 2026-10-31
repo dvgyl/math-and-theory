@@ -33,7 +33,40 @@
       "formalization": {
         "kind": "comparator"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Da Fonseca's q-permanent (μ-permanent) monotonicity conjecture",
+        "posed_by": "Da Fonseca (2010), Conjecture 1; restated as Conjecture 2 in Da Fonseca (2018)",
+        "problem_url": "https://doi.org/10.1016/j.laa.2009.10.036",
+        "status": "Disproved",
+        "claim": "A real symmetric positive-definite 5×5 matrix has q-permanent 8,968,822,249 at q = 14 and 7,441,960,000 at q = 15; for each real q₀ > 1 a positive-definite matrix (size depending on q₀) has negative derivative at q₀.",
+        "title_tag": "Da Fonseca q-Permanent Monotonicity Conjecture Disproved",
+        "description": "A 5×5 positive-definite matrix whose q-permanent decreases from q = 14 to q = 15 disproves Da Fonseca's monotonicity conjecture; Lean 4 formal proof included.",
+        "queries": [
+          "q-permanent monotonicity conjecture",
+          "Da Fonseca q-permanent conjecture counterexample",
+          "da Fonseca mu-permanent conjecture",
+          "μ-permanent positive definite matrix monotone",
+          "q-permanent positive definite matrix decreasing",
+          "inversion-weighted permanent monotonicity",
+          "Bapat-Lal q-permanent conjecture",
+          "q-permanent correlation matrix counterexample"
+        ],
+        "faq": [
+          [
+            "Is Da Fonseca's q-permanent monotonicity conjecture true?",
+            "No, for real symmetric positive-definite matrices: an explicit order-five matrix has P₁₄(A) > P₁₅(A), refuting the 2010 Conjecture 1 and the 2018 Conjecture 2. For every real q₀ > 1 there is a counterexample with negative derivative at q₀, though the dimension may depend on q₀."
+          ],
+          [
+            "Does this settle the Bapat–Lal question on [−1,1]?",
+            "No. Real-symmetric monotonicity on [−1,1] remains outside the result. Kitamura's public Lean formalization gives an order-144 complex Hermitian disproof on that interval, and Mitchell (2020) discussed positive semidefinite rank-one failures at negative parameters."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Yes. Lean 4 proves the order-five example, the theorem for every parameter above one, and the dense correlation-matrix and integer-entry consequences. The witness dimension is not claimed to be minimal."
+          ]
+        ]
+      }
     },
     {
       "id": "gyires-circulant-five",
@@ -81,7 +114,40 @@
       "formalization": {
         "kind": "comparator"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Gyires's permanent inequality for doubly stochastic matrices (Cheon–Wanless Conjecture 20)",
+        "posed_by": "Gyires (1978); listed as Conjecture 20 in Cheon and Wanless (2005)",
+        "problem_url": "https://doi.org/10.1016/j.laa.2005.02.030",
+        "status": "Partially resolved",
+        "claim": "Proves Gyires's permanent inequality for nonnegative circulants of orders 5, 6 and 7, permutation polynomials aI+bQ+cQ² and four-block matrices in all orders, one-exceptional-column/row matrices, and rank ≤ 2 through order 15.",
+        "title_tag": "Gyires's Permanent Inequality Proved for Structured Matrices",
+        "description": "Gyires's permanent conjecture (Cheon–Wanless Conjecture 20) proved for order 5–7 circulants and other structured classes; partly in Lean 4; general case open.",
+        "queries": [
+          "Gyires conjecture permanent",
+          "Gyires permanent inequality doubly stochastic matrices",
+          "Cheon Wanless Conjecture 20 permanent",
+          "Minc's list Conjecture 20 Gyires",
+          "permanent inequality per(A)^2 per(AA^T) per(A^2)",
+          "permanent of circulant doubly stochastic matrix inequality",
+          "Gyires ratio inequality special cases proof",
+          "permanent conjectures doubly stochastic Lean formalization"
+        ],
+        "faq": [
+          [
+            "Is Gyires's permanent conjecture proved?",
+            "No. This preprint proves the inequality 4per(A)² ≥ c_n[per(AAᵀ) + per(AᵀA) + 2per(A²)], c_n = n!/nⁿ, only for structured classes: nonnegative circulants of orders five, six and seven, all-order permutation polynomials aI+bQ+cQ², all-order four-block matrices, matrices with one exceptional column or row, and rank-at-most-two doubly stochastic matrices through order fifteen. The unrestricted conjecture remains open."
+          ],
+          [
+            "Which parts are verified in Lean?",
+            "The order-five and order-six circulant theorems, the all-order permutation-polynomial, four-block and exceptional-vector theorems, and the rank-two theorem for orders 2 through 8 have complete Lean 4 proofs. The order-seven circulant theorem and rank-two orders 9 through 15 have conventional proofs with exact certificates but remain incomplete in Lean."
+          ],
+          [
+            "What was known before?",
+            "Chang proved the order-three case, and Ozols proved and formalized the full order-four case together with a stronger Gram-permanent bound. The literature comparison for the broader results is incomplete, so no priority claim is made."
+          ]
+        ]
+      }
     },
     {
       "id": "kovacec",
@@ -107,7 +173,39 @@
         "kind": "standalone",
         "root": "papers/mathematics/kovacec"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Kovačec's polygon enclosure conjecture for determinants of sums of normal matrices",
+        "posed_by": "Kovačec, Universidade de Coimbra preprint 26-11 (April 2026), Conjecture 7; literal statement unverified",
+        "problem_url": null,
+        "status": "Counterexample",
+        "claim": "Normal 3×3 matrices with spectra (0, 1, i) and (−1−i, 1, −1+i) give det(A+B) = 2/3 + 2i/9, outside every bounded component closure of ℂ∖Γ, Γ the exterior boundary of the transposition graph, yet inside the permutation-value hull.",
+        "title_tag": "Kovačec Polygon Enclosure for Normal Matrices: Counterexample",
+        "description": "Two normal 3×3 matrices give det(A+B) = 2/3 + 2i/9 outside a Kovačec-type polygon enclosure yet inside the Marcus–de Oliveira hull; Lean 4 formal proof.",
+        "queries": [
+          "Kovačec conjecture normal matrices",
+          "Kovacec conjecture determinant sum of normal matrices",
+          "Marcus–de Oliveira conjecture",
+          "Marcus-de Oliveira conjecture determinant normal matrices",
+          "a conjecture more precise and stronger than the one by Marcus and de Oliveira",
+          "determinant of sum of normal matrices permutation values",
+          "Kovacec polygon enclosure counterexample"
+        ],
+        "faq": [
+          [
+            "Is Kovačec's polygon enclosure conjecture false?",
+            "For the enclosure defined in this preprint, yes: spectra (0, 1, i) and (−1−i, 1, −1+i) give det(A+B) = 2/3 + 2i/9 outside every bounded component closure of the Jordan polygon. Correspondence with the literal Conjecture 7 of Kovačec's April 2026 report is unverified, and the example satisfies the Marcus–de Oliveira convex-hull inclusion."
+          ],
+          [
+            "Did anyone find a counterexample earlier?",
+            "Yes. Professor Kovačec found a counterexample to his own conjecture in June 2026, documented in an unpublished preprint, and Wenlin Zhang independently sent him another. Whether either is equivalent to this construction is not established, and no priority is claimed."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Lean 4 checks the actual normal matrices, the determinant, the straight-segment exterior and its Jordan boundary, and exclusion from every bounded component closure. Identification with the external conjecture is not formalized."
+          ]
+        ]
+      }
     },
     {
       "id": "projection-amgm",
@@ -132,7 +230,39 @@
         "kind": "standalone",
         "root": "papers/mathematics/projection-amgm"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Projection AM–GM inequality in Loewner order for symmetrized products of projections",
+        "posed_by": "Motivated by Sun, Luo and Ye, Math. Oper. Res. 45(1) (2020); exact match with their published conjecture is conditional",
+        "problem_url": "https://doi.org/10.1287/moor.2019.0990",
+        "status": "Counterexample",
+        "claim": "Three rational rank-one orthogonal projections in ℝ³ have symmetrized product G ⋠ M³, M their mean (quadratic form −8/243), and for every real C some such triple with positive-definite mean has G ⋠ C·M³.",
+        "title_tag": "Projection AM–GM in Loewner Order Fails for Every Constant",
+        "description": "Three rank-one projections in dimension three break the Loewner-order projection AM–GM bound, and no real multiplier repairs it; Lean 4 checks the matrices.",
+        "queries": [
+          "matrix AM-GM inequality orthogonal projections",
+          "noncommutative arithmetic-geometric mean inequality Loewner order",
+          "projection AM-GM conjecture counterexample",
+          "symmetrized product of projections Loewner order",
+          "Sun Luo Ye random permutation coordinate descent AM-GM",
+          "Recht-Re noncommutative AM-GM conjecture projections",
+          "matrix AM–GM Loewner order three projections"
+        ],
+        "faq": [
+          [
+            "Does the projection AM–GM inequality hold in Loewner order?",
+            "Not in the unrestricted form G ⪯ Mⁿ: three rational rank-one projections in dimension three violate it with quadratic form −8/243, and for every real C another triple violates G ⪯ C·M³. It holds for one or two projections, and the weaker G ⪯ M is consistent with the examples."
+          ],
+          [
+            "Does this disprove the Sun–Luo–Ye coordinate-descent conjecture?",
+            "That is not established. Exact correspondence with the published conjecture remains conditional, the examples lack the nonsingular block structure of the coordinate-descent application, and no convergence-rate claim is refuted. The Recht–Ré norm conjecture was refuted earlier by Lai–Lim and De Sa (2020)."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Lean 4 verifies the rational three-projection obstruction and the parameterized obstruction for every real multiplier. The rank-one, positive-definite-mean, rational-choice and two-factor statements have conventional proofs only."
+          ]
+        ]
+      }
     },
     {
       "id": "matrix-pencil-completion",
@@ -161,7 +291,39 @@
         "kind": "standalone",
         "root": "papers/mathematics/matrix-pencil-completion"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Dodig–Stošić conjecture on bounded rank perturbations of matrix pencils",
+        "posed_by": "Dodig and Stošić, 'Is the bounded rank perturbations problem for matrix pencils just a completion problem?', Electron. J. Linear Algebra 41 (2025), 491–510, Conjecture 1",
+        "problem_url": "https://doi.org/10.13001/ela.2025.9593",
+        "status": "Proved",
+        "claim": "Over any infinite field, pencils A, B have δ(A,B) ≤ x exactly when K_{c,d}(A) is a constant full-rank compression of K_{c,d}(B) ⊕ (t − d)I_x; a cited linearization theorem then gives Conjecture 1 over algebraically closed fields.",
+        "title_tag": "Dodig–Stošić Conjecture on Matrix Pencils: Proof via Dilations",
+        "description": "Preprint proving Dodig–Stošić Conjecture 1: bounded rank perturbation of matrix pencils is a completion problem; the core theorem is formalized in Lean 4.",
+        "queries": [
+          "Dodig–Stošić conjecture",
+          "Dodig-Stosic conjecture",
+          "bounded rank perturbations matrix pencils completion problem",
+          "matrix pencil completion problem",
+          "is the bounded rank perturbations problem for matrix pencils just a completion problem",
+          "rank perturbation matrix pencils Kronecker canonical form",
+          "strict equivalence matrix pencils normal rank distance"
+        ],
+        "faq": [
+          [
+            "Is the Dodig–Stošić conjecture true?",
+            "This preprint proves it over every algebraically closed field: the bounded rank perturbation problem for matrix pencils is a completion problem. The final identification with the conjecture's barred pencils uses a published block minimal bases theorem of Dopico, Lawrence, Pérez and Van Dooren (2018). Dodig and Stošić had proved it when the rank bound is one, for full-row-rank pencils, and when the bound equals the rank distance."
+          ],
+          [
+            "What is the main theorem?",
+            "For distinct anchors c, d over any infinite field, δ(A, B) ≤ x exactly when the explicit (2m+n) × (2n+m) dilation K_{c,d}(A) is obtained from K_{c,d}(B) ⊕ (t − d)I_x by one constant full-row-rank matrix on the left and one constant full-column-rank matrix on the right. No regularity, rank or spectral condition is imposed, and the anchors may be eigenvalues."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The explicit equivalence over every infinite field and the common-summand cancellation are formalized in two Lean 4 projects. The identification with barred pencils is cited and not formalized; three directly relevant articles were not read in full, and historical priority is not certified."
+          ]
+        ]
+      }
     },
     {
       "id": "nonnegative-rank-kronecker",
@@ -188,7 +350,39 @@
         "kind": "standalone",
         "root": "papers/mathematics/nonnegative-rank-kronecker"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Vandaele–Gillis–Glineur–Tuyttens conjecture rank₊(M ⊗ M) ≥ rank₊(M) rank(M)",
+        "posed_by": "Vandaele, Gillis, Glineur and Tuyttens, 'Heuristics for exact nonnegative matrix factorization', J. Global Optim. 65 (2016), 369–400, Conjecture 1 (Section 6.1)",
+        "problem_url": "https://doi.org/10.1007/s10898-015-0350-z",
+        "status": "Disproved",
+        "claim": "For every k ≥ 0 an explicit rational nonnegative matrix C of order k + 11, rank k + 10 and nonnegative rank k + 11 has rank₊(C ⊗ C) ≤ (k + 10)² + 9, at least k + 1 below the conjectured bound rank₊(C) rank(C).",
+        "title_tag": "Kronecker-Square Nonnegative Rank Conjecture: Counterexamples",
+        "description": "Preprint disproving rank₊(M ⊗ M) ≥ rank₊(M) rank(M): an order-11 nonnegative matrix has a width-109 factorization against the bound 110; Lean 4 proof.",
+        "queries": [
+          "Vandaele Gillis Glineur Tuyttens conjecture",
+          "Vandaele-Gillis-Glineur-Tuyttens conjecture counterexample",
+          "nonnegative rank Kronecker product conjecture",
+          "nonnegative rank tensor product lower bound",
+          "rank+(M kron M) >= rank+(M) rank(M)",
+          "exact nonnegative matrix factorization Kronecker product",
+          "nonnegative rank multiplicativity Kronecker counterexample"
+        ],
+        "faq": [
+          [
+            "Is the bound rank₊(M ⊗ M) ≥ rank₊(M) rank(M) true for every nonnegative matrix?",
+            "No. For every k ≥ 0 this preprint gives a rational nonnegative matrix C of order k + 11 with rank k + 10 and nonnegative rank k + 11 for which rank₊(C ⊗ C) ≤ (k + 10)² + 9, so the conjectured bound fails by at least k + 1; at k = 0 an exact width-109 factorization beats the conjectured 110."
+          ],
+          [
+            "What remains open?",
+            "The exact nonnegative rank of the squares is not determined, nor is the least order of a counterexample. The witnesses are direct sums, so irreducible, symmetric or strictly positive counterexamples are not addressed; Chauhan and Choudhury (2026) proved the bound for matrices with at most three rows or columns."
+          ],
+          [
+            "Is the counterexample formally verified?",
+            "The whole family and a literal negation of the conjecture over all finite rectangular nonnegative real matrices are formalized in Lean 4, with nonnegative rank minimized over all real nonnegative factorizations; the width-109 factorization is also checked in exact rational arithmetic. Historical priority is not certified, and the paper is an unrefereed preprint."
+          ]
+        ]
+      }
     },
     {
       "id": "domirank-entropy",
@@ -217,7 +411,35 @@
       "formalization": {
         "kind": "comparator"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Zhang–Zhao DomiRank entropy monotonicity conjecture for disassortative graphs",
+        "posed_by": "Zhang and Zhao, arXiv:2610.00107v4, Conjecture 4.9",
+        "problem_url": "https://arxiv.org/abs/2610.00107v4",
+        "status": "Disproved",
+        "claim": "A connected graph with 14 vertices and 32 edges has negative degree–log-degree edge covariance and positive DomiRank scores on [251/1000, 63/250], yet its entropy increases by more than 1/10000 nats across that interval.",
+        "title_tag": "DomiRank Entropy Conjecture 4.9 Disproved by a 14-Vertex Graph",
+        "description": "A 14-vertex disassortative graph whose DomiRank entropy increases on a positive-score interval disproves Zhang–Zhao Conjecture 4.9; Lean 4 formal proof.",
+        "queries": [
+          "DomiRank centrality entropy conjecture",
+          "DomiRank entropy monotonicity disassortative graph",
+          "Zhang Zhao DomiRank Conjecture 4.9 counterexample",
+          "Zhang-Zhao DomiRank conjecture",
+          "structural properties of DomiRank centrality",
+          "DomiRank resolvent centrality entropy",
+          "degree log-degree covariance disassortative entropy"
+        ],
+        "faq": [
+          [
+            "Is the DomiRank entropy conjecture of Zhang and Zhao true?",
+            "No. Conjecture 4.9 asserts that entropy decreases on every interval of positive scores for a structurally disassortative graph; the 14-vertex, 32-edge graph has strictly negative covariance yet h(251/1000) + 1/10000 < h(63/250). The narrower question restricted to the initial component of the positive-score set is not settled."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Yes. Lean 4 proves the graph properties, the covariance sign, stability and score positivity on the whole interval, and the entropy increase. The result makes no claim about empirical behaviour on real networks."
+          ]
+        ]
+      }
     },
     {
       "id": "galvin-zhang",
@@ -242,6 +464,38 @@
       "formalization": {
         "kind": "standalone",
         "root": "papers/mathematics/galvin-zhang"
+      },
+      "seo": {
+        "problem": "Galvin–Zhang conjecture on ultra-log-concave domination sequences of path and cycle powers",
+        "posed_by": "Galvin and Zhang, arXiv:2408.12731, Conjecture 1.8; also Zhang's 2025 dissertation, Conjecture 4.1.8",
+        "problem_url": "https://arxiv.org/abs/2408.12731",
+        "status": "Proved",
+        "claim": "For every n ≥ 0 and power ℓ ≥ 1, the number d_k of size-k dominating sets of P_n^ℓ and of C_n^ℓ satisfies (k+1)(n−k+1)d_{k−1}d_{k+1} ≤ k(n−k)d_k², so d_k/binom(n,k) is log-concave.",
+        "title_tag": "Galvin–Zhang Conjecture Proved for Powers of Paths and Cycles",
+        "description": "Proof of Galvin–Zhang Conjecture 1.8: domination sequences of all powers of paths and cycles are ultra-log-concave, with a complete Lean 4 proof.",
+        "queries": [
+          "Galvin Zhang conjecture domination polynomial",
+          "Galvin-Zhang conjecture 1.8 ultra-log-concave",
+          "domination polynomial powers of paths and cycles log-concave",
+          "ultra-log-concavity domination sequence",
+          "domination polynomial unimodal powers of cycles",
+          "number of dominating sets log-concave path power",
+          "Galvin–Zhang domination polynomial proof"
+        ],
+        "faq": [
+          [
+            "Is the Galvin–Zhang conjecture on domination sequences true?",
+            "Yes, for the statement of Conjecture 1.8: this preprint proves that for every n ≥ 0 and ℓ ≥ 1 the domination sequences of P_n^ℓ and C_n^ℓ are ultra-log-concave, meaning d_k/binom(n,k) is log-concave. Galvin and Zhang had proved unimodality for both families."
+          ],
+          [
+            "Does the result apply to other graphs or give real-rootedness?",
+            "No. The theorem concerns only powers of paths and cycles; it makes no real-rootedness claim and gives no conclusion for arbitrary graphs or all trees."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Yes. The Lean 4 theorem DominationULC.galvin_zhang_conjecture is stated for cardinalities of actual dominating vertex subsets, for all orders and powers (including ℓ = 0), with no finite cutoff; the audit permits only propext, Classical.choice and Quot.sound."
+          ]
+        ]
       }
     },
     {
@@ -267,7 +521,39 @@
         "kind": "standalone",
         "root": "papers/mathematics/graph-roots"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Largest complex domination roots of square flowers (n four-cycles sharing one vertex)",
+        "posed_by": null,
+        "problem_url": null,
+        "status": "New theorem",
+        "claim": "For the square flower F_{4,n} of n four-cycles sharing one vertex, the largest domination-root modulus R_n satisfies R_n < 2 + √(4n/W(4n)) for all n ≥ 1 and 4n/R_n² = log(4n) − log log(4n) + o(1).",
+        "title_tag": "Sharp Escape of Complex Domination Roots in Square Flowers",
+        "description": "The largest domination root of the square flower satisfies R_n < 2 + √(4n/W(4n)) and R_n ~ 2√(n/log n), with real-root classifications and a Lean 4 proof.",
+        "queries": [
+          "domination polynomial roots",
+          "complex domination roots unbounded modulus",
+          "domination roots friendship graph square flower",
+          "domination polynomial book graph real roots",
+          "largest root of domination polynomial Lambert W",
+          "domination polynomial generalized friendship graphs roots",
+          "zeros of domination polynomial asymptotics"
+        ],
+        "faq": [
+          [
+            "How large can domination roots of square flowers be?",
+            "For the graph F_{4,n} of n four-cycles sharing one vertex, the preprint proves R_n < 2 + √(4n/W(4n)) for every n ≥ 1, with W the positive real Lambert function, and constructs actual complex roots giving 4n/R_n² = log(4n) − log log(4n) + o(1), so R_n ~ 2√(n/log n). This describes only the extremal root modulus, not a limiting curve for the whole zero set."
+          ],
+          [
+            "Is this related to earlier work on friendship and book graphs?",
+            "Domination polynomials of generalized friendship and book graphs were studied by Jahari and Alikhani and by Rather; the square flower differs from triangular friendship graphs and from book graphs, whose squares share an edge. The literature comparison is incomplete, so no conjecture-resolution or priority claim is made."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Yes. The conclusions of all numbered results, including the escape theorem and the complete square-flower and book-graph real-root classifications, are formalized in 70 Lean 4 modules with 258 explicit statement checks; finite and numerical checks support but do not replace the proofs."
+          ]
+        ]
+      }
     },
     {
       "id": "leaf-deletion",
@@ -292,7 +578,39 @@
         "kind": "standalone",
         "root": "papers/mathematics/leaf-deletion"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Burcroff–O'Brien leaf-deletion mode question for tree domination polynomials",
+        "posed_by": "Attributed to Burcroff and O'Brien, Discrete Math. 346 (2023), 113508, Question 8.1 (arXiv version), and Zhang, arXiv:2111.00641v2, Conjecture 4.1; numbering unverified",
+        "problem_url": "https://arxiv.org/abs/2110.00709",
+        "status": "Counterexample",
+        "claim": "A tree on 7284 vertices has a unimodal domination polynomial with unique mode 3978, while deleting one specified leaf gives a 7283-vertex tree whose domination polynomial is unimodal with unique mode 3976.",
+        "title_tag": "Tree Domination Polynomial: Leaf Deletion Moves Mode by Two",
+        "description": "Deleting one leaf of a 7284-vertex tree moves the unique mode of its unimodal domination polynomial from 3978 to 3976; Lean 4 formal proof of the witness.",
+        "queries": [
+          "domination polynomial unimodal trees",
+          "domination polynomial mode leaf deletion",
+          "Burcroff O'Brien Question 8.1 domination polynomial",
+          "Burcroff-O'Brien leaf deletion question",
+          "unimodality and monotonic portions of certain domination polynomials",
+          "Zhang conjecture domination polynomial modes",
+          "mode of domination polynomial of a tree"
+        ],
+        "faq": [
+          [
+            "Can deleting a leaf move the mode of a tree's domination polynomial by more than one?",
+            "Yes. An explicit tree on 7284 vertices has unique mode 3978, and deleting one specified leaf gives a tree with unique mode 3976, both polynomials being unimodal. This answers Burcroff–O'Brien Question 8.1 or Zhang's Conjecture 4.1 only if their definitions match the stated proximity assertion, which is unverified."
+          ],
+          [
+            "Does this settle unimodality of domination polynomials of trees?",
+            "No. No all-tree unimodality result, unbounded mode jump or smallest witness is claimed; the result concerns local mode stability under leaf deletion."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Yes. Lean 4 formalizes the fixed tree, the induced leaf deletion, the actual dominating-set counts, unimodality and both unique modes. External question identity and historical priority remain provisional."
+          ]
+        ]
+      }
     },
     {
       "id": "diagonal-concavity",
@@ -320,6 +638,38 @@
       "paper": "papers/mathematics/diagonal-concavity/paper.pdf",
       "formalization": {
         "kind": "comparator"
+      },
+      "seo": {
+        "problem": "Lachaume's diagonal concavity conjecture for sums of elementary symmetric polynomials",
+        "posed_by": "Lachaume, arXiv:1712.10327v1, Conjecture 1",
+        "problem_url": "https://arxiv.org/abs/1712.10327v1",
+        "status": "Disproved",
+        "claim": "For f = 1 + Mσ₁ + σ₂ + Mσ₃ + σ₄ in four variables with M > 0, f^(1/4) is concave on the positive diagonal exactly when M ≥ 1 and on the whole positive orthant exactly when M = 1, so every M > 1 is a counterexample.",
+        "title_tag": "Lachaume's Diagonal Concavity Conjecture Disproved",
+        "description": "Counterexample to Lachaume's Conjecture 1: (1+Mσ₁+σ₂+Mσ₃+σ₄)^(1/4) is concave on the diagonal for M ≥ 1 but on the orthant only at M = 1. Lean 4 proof.",
+        "queries": [
+          "Lachaume conjecture elementary symmetric polynomials concavity",
+          "Lachaume diagonal concavity conjecture counterexample",
+          "concavity of p-th root of sum of elementary symmetric polynomials",
+          "fourth root elementary symmetric polynomials concave positive orthant",
+          "diagonal criterion concavity symmetric functions",
+          "arXiv 1712.10327 Conjecture 1",
+          "concavity of hyperbolic polynomials elementary symmetric sums"
+        ],
+        "faq": [
+          [
+            "Is Lachaume's diagonal concavity conjecture true?",
+            "No. Conjecture 1 of Lachaume (arXiv:1712.10327v1) asserts that concavity of (Σ aⱼσⱼ)^(1/p), aⱼ ≥ 0, on the positive orthant is equivalent to concavity on its positive diagonal; for n = p = 4 and coefficients (1, M, 1, M, 1), the fourth root is diagonally concave for every M ≥ 1 but concave on the orthant only at M = 1. For example, (1, 2, 1, 2, 1) is a counterexample with all coefficients positive."
+          ],
+          [
+            "How general is the classification?",
+            "It is a complete classification for this one-parameter family in four variables with M > 0; it does not classify arbitrary coefficient vectors or other dimensions. The case M = 1 follows from concavity of the geometric mean."
+          ],
+          [
+            "Is the result formally verified?",
+            "Yes. Both equivalences are proved in Lean 4 with Mathlib's ConcaveOn predicate and elementary symmetric functions, checked against an independent Comparator challenge statement, using only the axioms propext, Classical.choice and Quot.sound."
+          ]
+        ]
       }
     },
     {
@@ -349,7 +699,39 @@
       "formalization": {
         "kind": "comparator"
       },
-      "family_group": "alternating-motzkin"
+      "family_group": "alternating-motzkin",
+      "seo": {
+        "problem": "Zhao's root log-concavity conjecture for alternating sums of Motzkin numbers",
+        "posed_by": "Feng-Zhen Zhao, INTEGERS 26 (2026), A55, Conjecture 1",
+        "problem_url": "https://doi.org/10.5281/zenodo.19949645",
+        "status": "Proved",
+        "claim": "With Tₙ the alternating sum of the Motzkin numbers M₀,…,Mₙ, the sequence Tₙ^(1/n) is strictly log-concave from n = 5 and the inequality reverses at center 5, so 5 is optimal; this contains Zhao's tail from n = 9.",
+        "title_tag": "Zhao's Alternating Motzkin Sum Conjecture Proved, Sharp at 5",
+        "description": "Proof that the root sequence of alternating Motzkin sums is strictly log-concave from n = 5, sharpening Zhao's conjectured index 9; Lean 4 formal proof.",
+        "queries": [
+          "alternating sums of Motzkin numbers log-concave",
+          "Zhao conjecture Motzkin root log-concavity",
+          "log-balancedness alternating sums of Motzkin numbers",
+          "Motzkin numbers alternating sum nth root log-concave",
+          "OEIS A187306 log-concavity",
+          "root log-concavity Motzkin conjecture proof",
+          "Tn^(1/n) log-concave Motzkin"
+        ],
+        "faq": [
+          [
+            "Is Zhao's Conjecture 1 on alternating Motzkin sums true?",
+            "Yes. The preprint proves that (Tₙ^(1/n)) is strictly log-concave on the tail starting at n = 5, which contains Zhao's tail from 9, and shows the inequality fails at center 5, so no earlier tail works. The separate claim that the roots increase to three is outside the formal theorem."
+          ],
+          [
+            "Has anyone else claimed this result?",
+            "Yes. A public manuscript added on 17 October 2026 to the xzwwwwww/math repository claims strict root log-concavity at centers n ≥ 10, i.e. Zhao's tail. No priority is claimed here, and the method builds on Došlić–Veljan, Zhao, Chen–Guo–Wang and Hou–Li."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Yes. Lean 4 proves strict log-concavity from 5 and the sharp failure at center 5, and links the source recurrence and finite sum to the sequence used in the proof; no lattice-path correspondence is formalized."
+          ]
+        ]
+      }
     },
     {
       "id": "motzkin-bounded-forcing",
@@ -375,7 +757,39 @@
         "root": "papers/mathematics/motzkin/bounded-forcing"
       },
       "manuscript_engine": "pdflatex",
-      "family_group": "alternating-motzkin"
+      "family_group": "alternating-motzkin",
+      "seo": {
+        "problem": "Bounded-forcing log-concavity for Motzkin-type recurrences and alternating Motzkin sums",
+        "posed_by": "Motivated by Zhao, INTEGERS 26 (2026), A55, Conjecture 1 (p. 8); the extensions answer no posed question",
+        "problem_url": "https://doi.org/10.5281/zenodo.19949645",
+        "status": "New theorem",
+        "claim": "Real aₙ with (m+2)aₘ = m(2aₘ₋₁+3aₘ₋₂)+εₘ, |εₘ| ≤ 2 for m ≥ 14, a₁₂ > 1800 and L₁₂ < a₁₃/a₁₂ < U₁₂ satisfy aₙ > 8(n+3)² and a ratio log-concavity margin 800aₙ⁴/(n+3)³ for all n ≥ 12.",
+        "title_tag": "Bounded-Forcing Log-Concavity for Alternating Motzkin Sums",
+        "description": "A bounded-forcing theorem, proved in Lean 4, gives ratio log-concavity for perturbed Motzkin recurrences; alternating Motzkin sums get sharp tails 10 and 5.",
+        "queries": [
+          "log-concavity perturbed linear recurrence bounded error",
+          "alternating Motzkin sums ratio log-concave",
+          "Motzkin recurrence bounded forcing",
+          "Riordan numbers root log-concavity threshold",
+          "shifted Riordan numbers log-concave",
+          "log-concavity inhomogeneous P-recursive sequence",
+          "Zhao alternating Motzkin conjecture sharp threshold"
+        ],
+        "faq": [
+          [
+            "What does this paper prove?",
+            "Real sequences satisfying the Motzkin-type recurrence up to errors |εₘ| ≤ 2 (scaled version: ≤ B), with the stated seed at n = 12, grow, keep a strict ratio interval and are ratio log-concave with margin 800aₙ⁴/(n+3)³ for n ≥ 12. Applications give optimal quotient-tail start 10 and root-tail start 5 for alternating Motzkin sums and classify sharp thresholds for Aₙ(s) = Rₙ₊₁ + s(−1)ⁿ, 0 ≤ s ≤ 1."
+          ],
+          [
+            "Is it formally verified?",
+            "Lean 4 proves the bounded-forcing theorem and the scaled corollary, including B = 0, for arbitrary real sequences. The concrete-sequence applications, uniform family, root transfer and threshold classifications have conventional proofs only."
+          ],
+          [
+            "Is there prior work on the original conjecture?",
+            "Yes. A public manuscript dated 17 October 2026 already claims Zhao's root-log-concavity conjecture, and ratio-to-root transfer is prior methodology (Chen, Guo and Wang). No priority is claimed, and the novelty of the extensions is unresolved."
+          ]
+        ]
+      }
     },
     {
       "id": "hofstadter-iteration",
@@ -403,6 +817,38 @@
       "paper": "papers/mathematics/hofstadter-iteration/paper.pdf",
       "formalization": {
         "kind": "comparator"
+      },
+      "seo": {
+        "problem": "Letouzey–Li–Steiner late-iterate ordering conjecture for generalized Hofstadter functions",
+        "posed_by": "Letouzey, Li and Steiner, Journal of Integer Sequences 29 (2026), Article 26.3.3, conjecture before Lemma 7.6",
+        "problem_url": "https://arxiv.org/abs/2410.00529v2",
+        "status": "Disproved",
+        "claim": "For every k ≥ 4 some input n has Fₖ^(2k+1)(n) > Fₖ₊₁^(2k+2)(n), contradicting the conjectured order Fₖ^j ≤ Fₖ₊₁^(j+1) for j > 2k; an explicit witness is F₄⁹(132) = 8 > 7 = F₅¹⁰(132).",
+        "title_tag": "Hofstadter Function Iterate Ordering Conjecture Disproved",
+        "description": "Generalized Hofstadter functions violate the conjectured iterate order for every k ≥ 4, e.g. F₄⁹(132) = 8 > 7 = F₅¹⁰(132); a Lean 4 formal proof is included.",
+        "queries": [
+          "generalized Hofstadter functions pointwise order",
+          "Hofstadter G H functions iterate conjecture counterexample",
+          "Letouzey Li Steiner conjecture",
+          "Letouzey-Li-Steiner Hofstadter conjecture Lemma 7.6",
+          "pointwise order of generalized Hofstadter functions G, H, and beyond",
+          "nested recursion F_k(n) = n - F_k^k(n-1)",
+          "Hofstadter G function iterates ordering"
+        ],
+        "faq": [
+          [
+            "Is the Letouzey–Li–Steiner ordering conjecture for Hofstadter iterates true?",
+            "No. It asserts Fₖ^j(n) ≤ Fₖ₊₁^(j+1)(n) for all k ≥ 1, j > 2k and n; the preprint gives F₄⁹(132) = 8 > 7 = F₅¹⁰(132) and a violating input for every k ≥ 4 at j = 2k + 1. It does not claim infinitely many violating inputs for each fixed k or classify all iteration indices."
+          ],
+          [
+            "How does it relate to earlier comparisons?",
+            "The inverse relations and earlier comparisons are due to Letouzey, Li and Steiner, and Letouzey's Rocq development gives witnesses in this direction only for j ≤ 2k. No priority is claimed."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Yes. Lean 4 constructs the functions on all natural numbers from their recurrence and proves both the finite witness and the family for every k ≥ 4."
+          ]
+        ]
       }
     },
     {
@@ -430,7 +876,39 @@
         "kind": "standalone",
         "root": "papers/mathematics/power-rank"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Power ranks of constant-recursive sequences: Rowland–Sistos Barrón finiteness conjecture",
+        "posed_by": "Rowland and Sistos Barrón, 'Complexity of powers of a constant-recursive sequence' (arXiv:2501.14643), unnumbered fixed-rank finiteness conjecture on page 2 of the author-hosted preprint",
+        "problem_url": "https://arxiv.org/abs/2501.14643",
+        "status": "Counterexample",
+        "claim": "s(n) = 1 + 2^n + 3^n(1 − 2^n)² + n9^n(1 + 2^n)³ has rank 13 and power ranks P(M) − 2Q(M), not eventually quasipolynomial; a companion family gives infinitely many power-rank sequences at each rank r ≥ 3.",
+        "title_tag": "Power Ranks of C-Finite Sequences: Nonquasipolynomial Example",
+        "description": "Preprint: a rank-13 integer recurrence with power ranks not eventually quasipolynomial, plus infinitely many power-rank sequences per rank ≥ 3; Lean 4.",
+        "queries": [
+          "power ranks constant-recursive sequence",
+          "rank of powers of C-finite sequence",
+          "Rowland Sistos Barron conjecture",
+          "Rowland-Sistos Barron finiteness conjecture counterexample",
+          "complexity of powers of a constant-recursive sequence",
+          "minimal recurrence order of termwise powers of linear recurrence",
+          "C-finite sequence powers recurrence order quasipolynomial"
+        ],
+        "faq": [
+          [
+            "What does this paper prove about power ranks of constant-recursive sequences?",
+            "It determines the minimal characteristic polynomial of every power of an explicit positive integer sequence of rank 13, whose power ranks equal P(M) − 2Q(M) with P cubic and Q a parity-restricted square count, so they are not eventually quasipolynomial. A companion family gives infinitely many distinct power-rank sequences at each initial rank r ≥ 3. Rank 13 is not claimed minimal."
+          ],
+          [
+            "Does this contradict a conjecture of Rowland and Sistos Barrón?",
+            "The companion family contradicts, as written, the unnumbered fixed-rank finiteness conjecture on page 2 of their author-hosted preprint, for every r ≥ 3. Eric Rowland has independently obtained an infinite family of rank sequences for rank-three recurrences; the constructions have not been compared. Their Conjecture 5.3 is not claimed refuted, since its term 'pseudo-polynomial' is undefined there."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The main rank-13 theorem and the companion family theorem for all r ≥ 3, d ≥ 2 and M ≥ 0 are formalized in Lean 4. The generating function, eventual polynomial degree and leading coefficient, and rank-three examples keep conventional proofs, and the paper is an unrefereed preprint."
+          ]
+        ]
+      }
     },
     {
       "id": "unit-squareclasses",
@@ -457,7 +935,39 @@
         "kind": "standalone",
         "root": "papers/mathematics/unit-squareclasses"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Daans–Kala–Man–Widmer–Yatsyna Question 3.4 on represented unit square classes",
+        "posed_by": "Daans, Kala, Man, Widmer and Yatsyna, PNAS 122(20), e2419414122 (2025), Question 3.4",
+        "problem_url": "https://arxiv.org/abs/2409.11082v2",
+        "status": "Answered negatively",
+        "claim": "A totally positive definite quadratic lattice of rank n over any totally real algebraic field, with integral norms but not necessarily classical, represents at most n totally positive unit square classes, so n + 1 cannot occur.",
+        "title_tag": "Question 3.4 Answered: Unit Squareclasses at Most Lattice Rank",
+        "description": "A rank-n totally positive quadratic lattice over a totally real field represents at most n unit square classes, answering Daans et al.'s Question 3.4; Lean 4.",
+        "queries": [
+          "totally positive unit square classes quadratic lattice",
+          "Daans Kala Man Widmer Yatsyna Question 3.4",
+          "most totally real fields do not have universal forms or the Northcott property",
+          "universal quadratic forms totally real fields unit square classes",
+          "nonclassical quadratic lattice represented units",
+          "rank of universal lattice totally positive units",
+          "unit squareclasses represented by quadratic form"
+        ],
+        "faq": [
+          [
+            "Can a rank-n lattice represent n + 1 totally positive unit square classes?",
+            "No. The preprint proves that a totally positive definite lattice of rank n with integral norms, classical or not, over any totally real algebraic field represents at most n classes of totally positive units modulo squares of units, improving the bound 2n − 2 of Daans, Kala, Man, Widmer and Yatsyna. The bound is attained when the field has enough classes."
+          ],
+          [
+            "Was part of this already known?",
+            "Yes. For classical lattices the bound n was already known from Daans, Kala and Man, and the reflection mechanism is classical (Scharlau–Blaschke). The bound is a short consequence of standard facts on finite reflection groups; historical priority is not certified."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The bound for every algebraic totally real field, including infinite extensions, is formalized in 11 Lean 4 modules. The finite-reflection-group derivation, sharpness and the universality corollary have conventional proofs."
+          ]
+        ]
+      }
     },
     {
       "id": "artin-schreier-depth",
@@ -486,7 +996,39 @@
         "root": "papers/mathematics/artin-schreier-depth"
       },
       "manuscript_engine": "pdflatex",
-      "standout": true
+      "standout": true,
+      "seo": {
+        "problem": "Nart–Novacoski conjecture on depth-one Artin–Schreier defect towers",
+        "posed_by": "Nart and Novacoski, 'Depth of Artin–Schreier defect towers', J. Pure Appl. Algebra 230 (2026), 108184 (arXiv:2503.18827), Conjecture 4.1",
+        "problem_url": "https://doi.org/10.1016/j.jpaa.2026.108184",
+        "status": "Proved",
+        "claim": "Over a perfect henselian K ⊆ k((y^ℚ)) containing k(y) without finite accumulation points (k algebraically closed, char. p), each nontrivial finite Artin–Schreier tower of depth one is a compositum of Artin–Schreier extensions.",
+        "title_tag": "Nart–Novacoski Conjecture: Depth-One Artin–Schreier Towers",
+        "description": "Preprint proving Nart–Novacoski Conjecture 4.1: depth-one Artin–Schreier defect towers over their Hahn-field setting are composita; both directions in Lean 4.",
+        "queries": [
+          "Nart–Novacoski conjecture",
+          "Nart-Novacoski conjecture",
+          "depth of Artin-Schreier defect towers",
+          "Artin-Schreier defect extension depth one compositum",
+          "Mac Lane-Vaquie depth defect extensions",
+          "Okutsu sequences depth Artin-Schreier",
+          "Hahn series Artin-Schreier tower henselian field"
+        ],
+        "faq": [
+          [
+            "Is the Nart–Novacoski conjecture proved?",
+            "This preprint proves Conjecture 4.1 in its stated setting: over a perfect henselian subfield K of k((y^ℚ)) containing k(y) whose elements have no finite accumulation points, with k algebraically closed of characteristic p, a nontrivial finite Artin–Schreier tower of depth one is a compositum of Artin–Schreier extensions of K. Nart and Novacoski proved the reverse implication."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Both implications are formalized in 20 Lean 4 modules, with depth one stated as least Okutsu length one over all primitive generators. The identification of that minimum with Mac Lane–Vaquié depth is the source's Theorem 1.3 and is not formalized, nor is the equivalence of the unique-extension definition of henselianity with other forms."
+          ],
+          [
+            "What prior work does the proof rely on?",
+            "The extraction step adapts an Ore-relation argument of Kedlaya (2017, Lemma 9.3), and the root formula, support estimates and Krasner's lemma are standard. It is an unrefereed preprint, the journal version of the source could not be opened, and historical priority is not certified."
+          ]
+        ]
+      }
     },
     {
       "id": "sharp-eighth",
@@ -512,7 +1054,39 @@
         "kind": "standalone",
         "root": "papers/mathematics/sharp-eighth"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Lei Yu's problem on the level-1 Fourier weight W(1/8) of Boolean functions of density 1/8",
+        "posed_by": "Lei Yu, 'On Average Distance, Level-1 Fourier Weight, and Chang's Lemma', arXiv:2504.02593 (v2, 2026 revision), Section VII, Problem 2",
+        "problem_url": "https://arxiv.org/abs/2504.02593",
+        "status": "Determined exactly",
+        "claim": "Every Boolean function of mean 1/8 on {−1,1}^n has level-one Fourier weight at most 3/64, attained by a codimension-three subcube for n ≥ 3; equivalently, density-1/8 sets have average Hamming distance ≥ (n − 3)/2.",
+        "title_tag": "Level-1 Fourier Weight at Density 1/8: The Sharp 3/64 Bound",
+        "description": "Independent certificate proof, checked in Lean 4, that Boolean functions of mean 1/8 have level-1 Fourier weight ≤ 3/64; Fang and Huang proved it earlier.",
+        "queries": [
+          "level-1 Fourier weight density 1/8",
+          "level one Fourier weight Boolean function mean 1/8 3/64",
+          "Lei Yu problem W(1/8) level-1 Fourier weight",
+          "average Hamming distance subset density 1/8 hypercube",
+          "minimum average distance binary code size 2^(n-3)",
+          "level-1 inequality Chang's lemma sharp constant",
+          "Fang Huang average pairwise Hamming distance hypercube"
+        ],
+        "faq": [
+          [
+            "What is the maximal level-one Fourier weight at density 1/8?",
+            "It is 3/64 in every dimension n ≥ 3: every Boolean indicator of mean 1/8 has level-one Fourier weight at most 3/64, and a codimension-three subcube attains it. Equivalently, a subset of density 1/8 of the Boolean cube has average pairwise Hamming distance at least (n − 3)/2."
+          ],
+          [
+            "Was this bound proved before?",
+            "Yes. Yijia Fang and Hao Huang proved it earlier, together with a characterization of the equality cases (arXiv:2610.40486, submitted 29 October 2026; reported to have circulated privately about a month before). This note gives an independent certificate-based proof, does not classify equality cases and makes no originality or priority claim."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The Lean 4 formalization covers arbitrary dimensions, the exact moment identities, the Fourier and Hamming-distance bounds and the sharpness witnesses, and a separate Python checker verifies the rational certificate in exact arithmetic. The note is an unrefereed preprint."
+          ]
+        ]
+      }
     },
     {
       "id": "quartic-rankings",
@@ -536,6 +1110,38 @@
       "formalization": {
         "kind": "standalone",
         "root": "papers/mathematics/quartic-rankings"
+      },
+      "seo": {
+        "problem": "Leighton–Moitra entropy conjecture for rankings: an explicit quartic ε⁴ entropy deficit",
+        "posed_by": "Leighton and Moitra (qualitative conjecture, proved by Acan, Devlin and Kahn); a Cε⁴ deficit is proposed in Devlin's research statement",
+        "problem_url": null,
+        "status": "Sharpened",
+        "claim": "Every probability distribution on rankings of n labels in which each pairwise comparison has probability at distance at least ε > 0 from 1/2 has entropy at most (1 − ε⁴/144) log(n!), for every n.",
+        "title_tag": "Leighton–Moitra Entropy Bound Sharpened to an ε⁴ Deficit",
+        "description": "Random rankings with every pairwise comparison ε-biased have entropy at most (1 − ε⁴/144) log(n!), an explicit Leighton–Moitra bound with a Lean 4 proof.",
+        "queries": [
+          "Leighton Moitra entropy conjecture",
+          "Leighton-Moitra conjecture rankings entropy",
+          "Acan Devlin Kahn proof of an entropy conjecture of Leighton and Moitra",
+          "entropy of random permutations with biased pairwise comparisons",
+          "permutation entropy bound pairwise comparison bias",
+          "entropy of linear extensions posets quantitative bound",
+          "ranking distribution entropy log n! deficit epsilon^4"
+        ],
+        "faq": [
+          [
+            "What does this paper prove about the Leighton–Moitra entropy conjecture?",
+            "It gives an explicit quantitative version: if every pairwise comparison of a random ranking of n labels has probability at least ε away from 1/2, the entropy is at most (1 − ε⁴/144) log(n!), for every n ≥ 0 and without independence or transitivity assumptions. The constant and the exponent 4 are not claimed to be optimal, and no matching lower construction is given."
+          ],
+          [
+            "Was the conjecture already proved?",
+            "Yes, qualitatively. Acan, Devlin and Kahn proved the general theorem (J. Combin. Theory Ser. A, 2019) with a coefficient of order exp[−ε^(−O(1))], Leighton and Moitra had proved a quartic bound when the preferred comparisons are consistent with a total order, and Devlin's research statement proposed a deficit of the form Cε⁴. The contribution here is the explicit general quartic bound and its proof."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Yes. The main theorem is formalized in Lean 4 for finite probability distributions on actual rankings of every finite size, with the literal pairwise comparison events; the axiom audit permits only propext, Classical.choice and Quot.sound."
+          ]
+        ]
       }
     },
     {
@@ -562,7 +1168,39 @@
         "kind": "standalone",
         "root": "papers/mathematics/sidon-renyi"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Rényi entropy of iid sums on Sidon sets: for which orders is uniform input optimal?",
+        "posed_by": null,
+        "problem_url": null,
+        "status": "Determined exactly",
+        "claim": "For Rényi order α > 1, the uniform law maximizes H_α(X+X') for iid X, X' on every nonempty finite strong Sidon (B₂) set exactly when 2^(α−1) ≤ 2α − 1, i.e. α ≤ α_c ≈ 3.65986.",
+        "title_tag": "Sharp Rényi Threshold for iid Sums on Finite Sidon Sets",
+        "description": "Uniform input maximizes the Rényi entropy of iid sums on every finite Sidon set exactly when 2^(α−1) ≤ 2α − 1, i.e. α ≤ α_c ≈ 3.65986. Lean 4 proof.",
+        "queries": [
+          "Renyi entropy sum of independent random variables Sidon set",
+          "Rényi entropy iid sum uniform distribution optimal",
+          "Sidon set entropy maximization uniform input",
+          "B2 set Renyi entropy sum of two iid draws",
+          "2^(alpha-1) = 2 alpha - 1 Renyi threshold",
+          "zero-error adder MAC Renyi entropy Sidon",
+          "entropy of X+X' on a Sidon set"
+        ],
+        "faq": [
+          [
+            "For which Rényi orders is uniform input optimal for iid sums on Sidon sets?",
+            "For α > 1, uniform input maximizes H_α(X+X') for two iid draws on every nonempty finite strong-B₂ Sidon set if and only if 2^(α−1) ≤ 2α − 1, i.e. 1 < α ≤ α_c with α_c ≈ 3.65986 strictly between 3 and 4. Above α_c a nonuniform law on {0,1} beats uniform input; the result does not classify optimizers for larger fixed supports, and makes no Shannon-entropy or different-input-law claim."
+          ],
+          [
+            "Was this threshold known before?",
+            "Partly. Gu (arXiv:1809.07364) is credited, in the supplied source context, with an earlier sufficient bound, the threshold equation and a binary obstruction, and Hillion and Johnson with related methods. These attributions and the source definitions have not been verified against the primary texts, so the theorem is presented as a self-contained classification with no priority or gap-closing claim."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Yes. The finite-support iid classification, including zero probabilities and the critical endpoint, is formalized in Lean 4 with twelve axiom-audited declarations; its correspondence with the unverified source definitions is conditional."
+          ]
+        ]
+      }
     },
     {
       "id": "binary-spectral-tile",
@@ -590,7 +1228,40 @@
         "kind": "standalone",
         "root": "papers/mathematics/binary-spectral-tile"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Ferguson–Iosevich Question 8.1: subspace tiling complements of spectral sets in F₂⁹",
+        "posed_by": "Ferguson and Iosevich, arXiv:2610.36417, Question 8.1 (subspace-complement part) and its equivalent Question 8.2",
+        "problem_url": "https://arxiv.org/abs/2610.36417",
+        "status": "Counterexample",
+        "claim": "An explicit 64-point set E ⊂ F₂⁹ is spectral and tiles F₂⁹, but its tiling complements are exactly the 512 translates of one aperiodic 8-point set, so no subspace complements E and F₂⁹ fails the periodic tiling property.",
+        "title_tag": "64-Point Spectral Tile in F₂⁹ With No Periodic Complement",
+        "description": "A 64-point spectral tile in F₂⁹ with no subspace or periodic tiling complement, a counterexample to the Ferguson–Iosevich subspace question; Lean 4 proof.",
+        "queries": [
+          "Fuglede conjecture F_2^9 spectral set",
+          "Ferguson Iosevich Question 8.1 counterexample",
+          "Ferguson-Iosevich Fuglede conjecture eight dimensions field with two elements",
+          "spectral set without subspace tiling complement binary vector space",
+          "periodic tiling property finite abelian groups F2^9",
+          "Fan Zhang periodic tiling property counterexample",
+          "Fuglede conjecture finite abelian groups binary dimension nine",
+          "aperiodic spectral tile Z_2^9"
+        ],
+        "faq": [
+          [
+            "Does every spectral 64-point set in F₂⁹ have a subspace tiling complement?",
+            "No. The preprint gives an explicit 64-point spectral set E ⊂ F₂⁹ (spectrum C × F₂³) that tiles with complement T = C × {0}, and proves that its tiling complements are exactly the 512 translates of T, none of which is periodic, so no linear subspace complements E. This answers the subspace-complement part of Ferguson–Iosevich Question 8.1, and via their stated equivalence Question 8.2, negatively."
+          ],
+          [
+            "Were counterexamples already known?",
+            "Yes. Ferguson and Iosevich reported in correspondence that they had become aware of counterexamples to the stronger subspace-complement statement shortly after submitting their paper, so no priority is claimed. Whether their examples are equivalent to this construction is not established; an AI-generated comparison suggesting they are not affinely equivalent is unverified."
+          ],
+          [
+            "Does this settle Fuglede's conjecture in F₂⁹, and is it formally verified?",
+            "No; whether every spectral 64-point subset of F₂⁹ tiles remains open, and this set does tile. Spectrality, the tiling, aperiodicity, the classification of all complements and the failure of the periodic tiling property are formalized in 16 Lean 4 modules; minimality of dimension nine depends on Ferguson and Iosevich's dimension-eight theorem and is not formalized."
+          ]
+        ]
+      }
     },
     {
       "id": "keller-klein",
@@ -619,7 +1290,40 @@
         "kind": "standalone",
         "root": "papers/mathematics/keller-klein"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Keller–Klein conjecture on Berry–Esseen bounds for Rademacher sums",
+        "posed_by": "Keller and Klein, Advances in Mathematics 407 (2022), 108558, Conjecture 9.3 (in their proof of Tomaszewski's conjecture)",
+        "problem_url": "https://doi.org/10.1016/j.aim.2022.108558",
+        "status": "Partially resolved",
+        "claim": "For X = Σ vᵢεᵢ with independent uniform signs, Σ vᵢ² = 1 and |vᵢ| ≤ a ≤ 7/100, P(X ≤ x) − Φ(x) ≤ Φ(a) − 1/2 for every x ≥ 0: the upper half of the Keller–Klein conjecture in this small-coefficient range.",
+        "title_tag": "Keller–Klein Conjecture: Small-Coefficient Upper Half Proved",
+        "description": "Preprint proving the upper half of the Keller–Klein conjecture for Rademacher sums with all coefficients at most 7/100; the theorem is formalized in Lean 4.",
+        "queries": [
+          "Keller–Klein conjecture",
+          "Keller-Klein conjecture",
+          "Keller-Klein conjecture proof",
+          "Berry-Esseen bound Rademacher sums Phi(a) - 1/2",
+          "Kolmogorov distance Rademacher sum normal approximation",
+          "randomly signed sums normal approximation conjecture",
+          "Tomaszewski conjecture Keller Klein Berry-Esseen",
+          "Ivanisvili Keller-Klein conjecture small coefficients"
+        ],
+        "faq": [
+          [
+            "Is the Keller–Klein conjecture now proved?",
+            "This preprint proves the upper half of the conjecture when every coefficient is at most a ≤ 7/100, the range left open by Ivanisvili's computer-assisted manuscript of 21 October 2026, which proves the lower half and the case a ≥ 0.07 and proposed the analytic route used here. Together with his Theorems 1.1 and 10.9 it implies the full conjecture, but only conditionally on those unrefereed external results."
+          ],
+          [
+            "What exactly does the paper prove?",
+            "For X = Σ vᵢεᵢ with independent uniform signs, real coefficients, Σ vᵢ² = 1 and |vᵢ| ≤ a with 0 < a ≤ 7/100, it proves P(|X| ≤ x) ≤ 2Φ(x) + 2Φ(a) − 2 for every x ≥ 0, equivalently P(X ≤ x) − Φ(x) ≤ Φ(a) − 1/2. Coefficients may be unequal and the number of terms is unrestricted."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The stated theorem is formalized in 62 Lean 4 modules, with the exact count of sign vectors and Mathlib's standard normal distribution function. Ivanisvili's results needed for the full conjecture are not formalized, and the work is an unrefereed preprint."
+          ]
+        ]
+      }
     },
     {
       "id": "structural-selfadhesivity",
@@ -647,7 +1351,40 @@
         "kind": "standalone",
         "root": "papers/mathematics/structural-selfadhesivity"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Boege's selfadhesivity question: structural vs numerical selfadhesive polymatroids",
+        "posed_by": "Boege, IJAR 2023 (arXiv:2205.07667), Question 4.18 (4.14 in the PDF version)",
+        "problem_url": "https://doi.org/10.1016/j.ijar.2023.109027",
+        "status": "Answered negatively",
+        "claim": "An explicit five-variable conditional-independence model with 26 of the 80 elementary CI statements is structurally selfadhesive at every overlap, yet no real polymatroid inducing it is selfadhesive in Matúš's numerical sense.",
+        "title_tag": "Boege's Selfadhesivity Question Answered Negatively",
+        "description": "A five-variable CI model is structurally selfadhesive yet has no numerically selfadhesive polymatroid, answering Boege's Question 4.18 negatively; in Lean 4.",
+        "queries": [
+          "structural selfadhesivity numerical selfadhesivity",
+          "selfadhesive polymatroid conditional independence",
+          "Boege selfadhesivity Question 4.18",
+          "selfadhesivity in Gaussian conditional independence structures",
+          "self-adhesive polymatroid five variables counterexample",
+          "Matúš selfadhesivity polymatroid",
+          "Matus selfadhesive polymatroid copy lemma",
+          "structural semigraphoid selfadhesive realization"
+        ],
+        "faq": [
+          [
+            "Does structural selfadhesivity imply a numerically selfadhesive realization?",
+            "No. The preprint gives a five-variable CI model, with 26 of the 80 elementary statements, that has an adhesive gluing at all 32 overlaps but no selfadhesive inducing polymatroid, answering Boege's Question 4.18 negatively. Boege's computation gave a positive answer for four variables; the result does not characterize the five-variable entropy cone."
+          ],
+          [
+            "Is there earlier related work?",
+            "Yes. Boege, Bolt and Studený (DAM 2025) proved that numerical selfadhesivity implies the structural notion, and a neighbouring five-variable counterexample to their Open Problem 3 appeared in the ScaleMath repository in August 2026; its face-search and exact-identity methods are credited. Historical priority is not certified."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Both parts are formalized in Lean 4 for arbitrary real polymatroids, with all 32 overlap witnesses and the exact separating identity. Minimality relative to Boege's four-variable computation is a literature consequence and is not formalized."
+          ]
+        ]
+      }
     },
     {
       "id": "asymmetric-tutte",
@@ -674,7 +1411,40 @@
         "kind": "standalone",
         "root": "papers/mathematics/asymmetric-tutte"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Asymmetric multiplicative Merino–Welsh inequality T_M(x,0)T_M(0,y) ≥ T_M(1,1)²",
+        "posed_by": null,
+        "problem_url": null,
+        "status": "Determined exactly",
+        "claim": "T_M(x,0)T_M(0,y) ≥ T_M(1,1)² for every finite matroid without loops or coloops exactly when x > 1, y > 1, xy^k ≥ (√(x−1) + k√(y−1))² and yx^k ≥ (√(y−1) + k√(x−1))² for every integer k ≥ 2.",
+        "title_tag": "Asymmetric Merino–Welsh Inequality: Exact Region for Matroids",
+        "description": "Preprint: the exact set of nonnegative (x,y) with T_M(x,0)T_M(0,y) ≥ T_M(1,1)² for all loopless, coloopless matroids, proved in Lean 4 on Mathlib matroids.",
+        "queries": [
+          "Merino–Welsh conjecture matroids",
+          "Merino-Welsh conjecture",
+          "asymmetric Merino-Welsh inequality",
+          "multiplicative Merino-Welsh inequality threshold",
+          "Tutte polynomial T(x,0)T(0,y) >= T(1,1)^2",
+          "Merino-Welsh conjecture false for matroids",
+          "Tutte polynomial forests orientations inequality matroid",
+          "Merino-Welsh sharp threshold matroids"
+        ],
+        "faq": [
+          [
+            "What does this paper prove about the Merino–Welsh inequality?",
+            "It characterizes all nonnegative pairs (x,y) for which T_M(x,0)T_M(0,y) ≥ T_M(1,1)² holds for every finite matroid without loops or coloops: exactly x > 1, y > 1 and two scalar conditions for every integer k ≥ 2. It does not classify negative parameters or equality cases, and the graph Merino–Welsh problem at (2,2) is unchanged."
+          ],
+          [
+            "How does this relate to earlier work?",
+            "The diagonal case x = y was settled by Liu, with threshold the largest real root of c³ = 9(c − 1), and Chen and Xie gave a direct inductive proof; the structural induction here follows Chen and Xie, and the obstruction from parallel thickenings of uniform matroids is due to Beke, Csáji, Csikvári and Pituk. The new part is the full asymmetric region."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The equivalence is stated and proved in Lean 4 for actual Mathlib matroids with finite ground sets and the literal subset rank sum, using Liu's proof library as a dependency. The paper is an unrefereed preprint."
+          ]
+        ]
+      }
     },
     {
       "id": "admm-counterexample",
@@ -700,7 +1470,40 @@
         "kind": "standalone",
         "root": "papers/mathematics/admm-counterexample"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Convergence of two-block ADMM with multiplier (dual) step size τ in (0, 2)",
+        "posed_by": "Question commonly associated with Glowinski; discussed by Tao and Yuan, J. Optim. Theory Appl. 179 (2018)",
+        "problem_url": null,
+        "status": "Counterexample",
+        "claim": "For two-block ADMM with penalty one and multiplier-only step τ = 199/100, two explicit compact convex polytopes in ℝ⁴ give a nonconstant period-five orbit with squared primal residual at least 500000, so ADMM fails to converge.",
+        "title_tag": "ADMM Dual Step Size Below 2: Exact Five-Cycle Counterexample",
+        "description": "Exact period-five ADMM orbit at multiplier step 199/100 on two polytopes in ℝ⁴ refutes universal convergence of two-block ADMM for τ in (0, 2). Lean 4 proof.",
+        "queries": [
+          "ADMM dual step size golden ratio counterexample",
+          "Glowinski open question ADMM step size",
+          "ADMM multiplier step length (0,2) convergence",
+          "two-block ADMM divergence counterexample",
+          "ADMM periodic orbit nonconvergence",
+          "ADMM dual step size larger than 1.618",
+          "alternating direction method of multipliers tau 1.99 counterexample",
+          "Tao Yuan Glowinski ADMM question"
+        ],
+        "faq": [
+          [
+            "Does two-block ADMM converge for every dual step size τ in (0, 2)?",
+            "Not universally. For the update that scales only the multiplier step, with penalty one, the preprint gives two explicit compact convex polytopes in ℝ⁴, both containing the origin, on which ADMM with τ = 199/100 has a nonconstant five-periodic trajectory whose squared primal residual stays at least 500000. A further exact check, outside the core Lean theorem, gives the same cycle for every τ in [140111/70637, 2)."
+          ],
+          [
+            "Does this determine the largest convergent step size?",
+            "No. The classical sufficient range 0 < τ < (1+√5)/2 is unaffected, and the result does not show that the golden ratio is the sharp boundary. It concerns only the multiplier-only update, not other overrelaxed ADMM variants, and its relation to the question associated with Glowinski (discussed by Tao and Yuan) is stated with literature limits and no priority claim."
+          ],
+          [
+            "Is the counterexample formally verified?",
+            "Yes for the core claims: seven Lean 4 modules with eleven axiom-audited endpoints certify the orbit, the unique projection minimizers over the full convex hulls, the nonvanishing residual and a finite-objective extension with a unique optimizer. The strong convexity, C² regularity and Lipschitz-gradient properties of the smooth extension are proved in the text only."
+          ]
+        ]
+      }
     },
     {
       "id": "admm-multiplier-step",
@@ -728,7 +1531,40 @@
         "kind": "standalone",
         "root": "papers/mathematics/admm-multiplier-step"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Glowinski's open question on the ADMM dual step size beyond the golden ratio",
+        "posed_by": "Fortin and Glowinski proved convergence for 0 < τ < (1+√5)/2 (1983); Tao and Yuan, J. Optim. Theory Appl. 179 (2018), 163–196, call the general convex case Glowinski's open question",
+        "problem_url": "https://doi.org/10.1007/s10957-018-1338-x",
+        "status": "Partially resolved",
+        "claim": "Two-block ADMM with multiplier step τ converges for every 0 < τ ≤ 1.886 on finite-dimensional convex problems with attained proximal steps and a saddle point; fixed polytopes in R^128 cycle for every τ ≥ 1.8868954…",
+        "title_tag": "Glowinski's ADMM Question: Step Threshold in [1.886, 1.887]",
+        "description": "Preprint: two-block ADMM converges for multiplier steps 0 < τ ≤ 1.886 and has a periodic orbit for every τ ≥ 1.8868954 on polytopes; checked in Lean 4.",
+        "queries": [
+          "Glowinski open question ADMM",
+          "ADMM dual step size golden ratio",
+          "ADMM dual step size larger than 1.618 convergence",
+          "ADMM multiplier step tau up to 2 counterexample",
+          "alternating direction method of multipliers dual step length",
+          "Fortin Glowinski golden ratio step ADMM",
+          "ADMM periodic orbit nonconvergence convex polytopes",
+          "relaxed multiplier update ADMM convergence threshold"
+        ],
+        "faq": [
+          [
+            "Does ADMM converge for dual step sizes beyond the golden ratio?",
+            "For finite-dimensional convex problems whose proximal subproblems attain their minima and which have a saddle point, this preprint proves convergence for every constant multiplier step 0 < τ ≤ 1.886 = 943/500. Fixed compact polytopes in R^128 with zero objectives have a nonconstant periodic orbit for every τ ≥ 1.8868954…, so the exact universal threshold lies in an interval of width below 0.0009 and remains open."
+          ],
+          [
+            "Does multiplier-step ADMM converge for every τ up to 2?",
+            "Not in the general convex class: the periodic orbit contradicts the range 1 < τ ≤ 2 asserted by Gao et al. (2022). The obstruction uses indicator objectives, so thresholds for smooth or strongly convex subclasses are not addressed."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The consensus convergence theorem for 0 < τ ≤ 943/500, the affine-constraint versions, both finite-memory certificates and the periodic orbit in R^128 are formalized in 168 Lean 4 modules. Individual objective-value limits, the reduction from proper closed convex functions to proximal attainment and penalty rescaling are conventional arguments, and the paper is an unrefereed preprint."
+          ]
+        ]
+      }
     },
     {
       "id": "nesterov-subcritical",
@@ -756,7 +1592,39 @@
         "kind": "standalone",
         "root": "papers/mathematics/nesterov-subcritical"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Boundedness of Nesterov ODE trajectories and iterates below critical damping r < 3",
+        "posed_by": "Recorded as open by Jang and Ryu, 'Point convergence of Nesterov's accelerated gradient method: an AI-assisted proof', arXiv:2510.23513 (version 2, 2026); the equation is due to Su, Boyd and Candès",
+        "problem_url": "https://arxiv.org/abs/2510.23513",
+        "status": "Partially resolved",
+        "claim": "On ℓ²(ℕ;ℝ²), Nesterov flows from rest and iterates with momentum k/(k+r) stay bounded for all convex objectives with 1-Lipschitz gradient and attained minimum exactly when r ≥ 3; a planar potential escapes for 0 < r ≤ 2.",
+        "title_tag": "Nesterov ODE Below Critical Damping: Escaping Trajectories",
+        "description": "Preprint: r ≥ 3 is sharp for bounded Nesterov flows and iterates on Hilbert space, with a planar escape for 0 < r ≤ 2; main cases formalized in Lean 4.",
+        "queries": [
+          "Nesterov ODE subcritical damping bounded trajectories",
+          "Su Boyd Candes ODE r < 3 trajectory unbounded",
+          "Su-Boyd-Candes differential equation subcritical",
+          "vanishing damping r/t convex unbounded trajectory",
+          "Nesterov accelerated gradient momentum k/(k+r) unbounded iterates",
+          "Chambolle-Dossal momentum alpha < 3 iterates diverge",
+          "Nesterov flow alpha less than 3 counterexample"
+        ],
+        "faq": [
+          [
+            "Are Nesterov ODE trajectories bounded when the damping parameter r is below 3?",
+            "Not in general: on the Hilbert space ℓ²(ℕ;ℝ²), for every 0 < r < 3 there are convex objectives with 1-Lipschitz gradient and attained minimum whose flow from rest, and others whose Nesterov iterates with momentum k/(k+r), have norm tending to infinity. In the plane, h(√(x²+y²)) − x with the Huber function h has an escaping trajectory from (2,1) for every 0 < r ≤ 2, and bounded trajectories for r > 2."
+          ],
+          [
+            "Is the finite-dimensional case settled?",
+            "No. Whether a finite-dimensional objective has an unbounded zero-velocity trajectory for some 2 < r < 3 is open, as is a finite-dimensional unbounded discrete orbit for 1 < r < 3. In every example the minimizer set is unbounded, which is necessary in finite dimension."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The continuous-time and discrete Hilbert-space thresholds and the planar escape for 1 < r ≤ 2 are formalized in Lean 4. The planar escape for 0 < r ≤ 1, boundedness of the planar flows for r > 2 and existence of solutions for r ≤ 1 are conventional proofs, and the paper is an unrefereed preprint."
+          ]
+        ]
+      }
     },
     {
       "id": "chambolle-pock-cycles",
@@ -782,7 +1650,40 @@
         "kind": "standalone",
         "root": "papers/mathematics/chambolle-pock-cycles"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Small-extrapolation convergence region of the Chambolle–Pock (PDHG) method",
+        "posed_by": "Left open in the conclusion of Upadhyaya, arXiv:2604.06423v2 (improving the small-θ region)",
+        "problem_url": "https://arxiv.org/abs/2604.06423",
+        "status": "Counterexample",
+        "claim": "For unmodified Chambolle–Pock, every step product κ = τσ‖L‖² > 2 admits polytopes in ℝ⁴ with periodic nonconvergent iterates for all small θ ≥ 0, so any universal condition κ < c(θ) has limsup c(θ) ≤ 2 as θ ↓ 0.",
+        "title_tag": "Chambolle–Pock Counterexamples at Small θ and Step Product > 2",
+        "description": "Periodic nonconvergent Chambolle–Pock (PDHG) orbits for every step product κ > 2 at small extrapolation θ, plus an exact three-cycle threshold. Lean 4 proof.",
+        "queries": [
+          "Chambolle–Pock convergence small extrapolation theta",
+          "Chambolle-Pock theta less than 1/2 convergence",
+          "PDHG step size condition tau sigma ||L||^2 counterexample",
+          "Chambolle-Pock nonconvergence periodic orbit",
+          "primal-dual hybrid gradient extrapolation parameter counterexample",
+          "Chambolle-Pock 4/(1+2 theta) step size bound",
+          "Banert Upadhyaya Giselsson Chambolle-Pock converges weakly",
+          "PDHG three-cycle counterexample"
+        ],
+        "faq": [
+          [
+            "Does Chambolle–Pock converge at small extrapolation θ for all step products below 4/(1+2θ)?",
+            "Not for all convex problems. For every fixed κ = τσ‖L‖² > 2 the preprint builds compact polytopes in ℝ⁴ on which the unmodified Chambolle–Pock iteration has a nonconstant periodic, nonconvergent orbit for all 0 ≤ θ ≤ ε, so any universal sufficient condition κ < c(θ) must satisfy limsup c(θ) ≤ 2 as θ ↓ 0. The obstructing θ-intervals are very small, and the bound 2 is not shown to be sharp."
+          ],
+          [
+            "What else is proved, and how does it relate to known convergence results?",
+            "A nonconstant three-cycle of actual proximal updates exists exactly when κ²(1+θ)² − 2κ(1+3θ) − 3 ≥ 0, and a rational seven-cycle on 2.499 ≤ κ ≤ 2.501, 0 ≤ θ ≤ 1/400 has an open set of nonconvergent starts. These results do not contradict the convergence theorems of Banert, Upadhyaya and Giselsson (θ > 1/2, κ < 4/(1+2θ)) or Upadhyaya's small-θ sufficient condition; the full small-θ convergence region remains open."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The three-cycle threshold and its attainment, the seven-cycle with its open basin, the four-dimensional family for every κ > 2 and the quadratic eigenmode comparison are formalized in 21 Lean 4 modules. The limsup consequence and the numerical observations of larger θ-intervals and basin sizes are conventional or observational."
+          ]
+        ]
+      }
     },
     {
       "id": "strong-gradient",
@@ -809,7 +1710,39 @@
         "kind": "standalone",
         "root": "papers/mathematics/strong-gradient"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Taylor–Hendrickx–Glineur Conjecture 3: last-iterate gradient norm of gradient descent",
+        "posed_by": "Taylor, Hendrickx and Glineur, Mathematical Programming 161 (2017), 307–345, Conjecture 3 (Section 4.1.3)",
+        "problem_url": "https://doi.org/10.1007/s10107-016-1009-3",
+        "status": "Proved",
+        "claim": "Gradient descent with step h/L, 0 ≤ h ≤ 2, on L-smooth μ-strongly convex f on any real Hilbert space satisfies ‖∇f(x_N)‖ ≤ L‖x₀ − x*‖ max{p_N(μ/L, h), |1 − h|^N} for every N, with equality attained in one dimension.",
+        "title_tag": "Taylor–Hendrickx–Glineur Conjecture 3: Last-Gradient Bound",
+        "description": "Preprint proving the exact last-iterate gradient bound of constant-step gradient descent on smooth strongly convex functions; sharp, with a Lean 4 proof.",
+        "queries": [
+          "Taylor Hendrickx Glineur conjecture 3",
+          "Taylor-Hendrickx-Glineur conjecture gradient norm",
+          "exact worst-case gradient norm gradient descent strongly convex",
+          "last iterate gradient norm gradient descent tight bound",
+          "performance estimation gradient descent strongly convex exact rate",
+          "gradient descent final gradient initial distance worst case",
+          "gradient descent step size 2/L last iterate gradient bound"
+        ],
+        "faq": [
+          [
+            "Is the Taylor–Hendrickx–Glineur conjecture on the final gradient norm proved?",
+            "This preprint proves the conjectured bound ‖∇f(x_N)‖ ≤ L‖x₀ − x*‖ max{p_N(μ/L, h), |1 − h|^N} for every 0 ≤ μ ≤ L, normalized step 0 ≤ h ≤ 2 and horizon N on any real Hilbert space, and shows one-dimensional Huber and quadratic functions attain it. Its stated contribution is the positive strong-convexity case: the formula and sharp examples are credited to Taylor, Hendrickx and Glineur, and the complete μ = 0 curve to Jones."
+          ],
+          [
+            "Does this follow from earlier exact rates for gradient descent?",
+            "According to the manuscript, no: converting the exact initial-function-gap rates of Rotaru, Glineur and Patrinos or Kim through f(x₀) − f* ≤ LR²/2 gives a weaker progress factor. The literature review is bounded by the sources cited through 29 October 2026, and the paper is an unrefereed preprint."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The actual-function upper bound and normalized attainment are checked in Lean 4.19.0, including every horizon and closed parameter boundary. Sharpness for arbitrary L > 0 and radius R > 0 follows by a rescaling written in the manuscript, not a separate Lean theorem."
+          ]
+        ]
+      }
     },
     {
       "id": "multimarginal-minty",
@@ -836,7 +1769,40 @@
         "kind": "standalone",
         "root": "papers/mathematics/multimarginal-minty"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Multi-marginal converse of Minty's theorem (Bartz–Bauschke–Phan–Wang, Remark 2.6)",
+        "posed_by": "Bartz, Bauschke, Phan and Wang, Math. Program. 185 (2021), Remark 2.6",
+        "problem_url": "https://doi.org/10.1007/s10107-019-01433-9",
+        "status": "Answered negatively",
+        "claim": "For three marginals on ℝ² with cost Σ⟨xᵢ, xⱼ⟩, an explicit three-point c-monotone set admits no compatible zero-sum tuple, so every maximally c-monotone set containing it has a nonconvex sum image omitting 0.",
+        "title_tag": "Multi-Marginal Converse of Minty's Theorem Fails in the Plane",
+        "description": "Maximal c-monotonicity does not force a full sum image for three marginals on ℝ², answering Bartz–Bauschke–Phan–Wang Remark 2.6 negatively. Lean 4 proof.",
+        "queries": [
+          "multi-marginal Minty theorem",
+          "multi-marginal maximal monotonicity and convex analysis",
+          "Bartz Bauschke Phan Wang Remark 2.6",
+          "maximally c-monotone set sum image not surjective",
+          "Minty theorem converse multi-marginal counterexample",
+          "c-monotonicity multi-marginal optimal transport cost sum of inner products",
+          "partition of the identity firmly nonexpansive maps extension",
+          "Bartz-Bauschke-Phan-Wang multimarginal Minty question"
+        ],
+        "faq": [
+          [
+            "Does maximal c-monotonicity imply that the sum image is the whole space for several marginals?",
+            "No. For three marginals on ℝ² with cost c(x) = Σ_{i<j}⟨xᵢ, xⱼ⟩ and the two-point swap notion of c-monotonicity, the preprint gives a three-point c-monotone set to which no zero-sum tuple can be added, so every maximal extension (which exists by Zorn's lemma) has a sum image that omits 0 and is not convex. This answers the question of Remark 2.6 of Bartz, Bauschke, Phan and Wang negatively; other numbers of marginals, other dimensions and cyclic c-monotonicity are not addressed."
+          ],
+          [
+            "How does this relate to Lim's example?",
+            "Lim (SIAM J. Optim. 2023) gave a two-dimensional contact set whose sum image has a hexagonal hole, but that set is not maximally c-monotone and can be enlarged by the zero tuple, so it does not answer Remark 2.6. Searches found no earlier answer, but historical priority is not certified."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Yes. The finite obstruction over arbitrary real tuples, the Zorn extension and the nonconvexity of the sum image are formalized in Lean 4 for the actual swap condition and maximality among all subsets of (ℝ²)³; the reformulation through firmly nonexpansive maps is proved in the text only."
+          ]
+        ]
+      }
     },
     {
       "id": "critical-hardcore",
@@ -862,7 +1828,40 @@
         "kind": "standalone",
         "root": "papers/theoretical-computer-science/critical-hardcore"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Spectral independence of the hard-core model at the uniqueness threshold λ_c(Δ)",
+        "posed_by": "Bencs, Goldberg, Jenssen, Jerrum, Pete, Regts and Yin, arXiv:2608.09729, Section 5 (critical two-spin question)",
+        "problem_url": "https://arxiv.org/abs/2608.09729",
+        "status": "Partially resolved",
+        "claim": "For every Δ ≥ 3, every n-vertex graph of maximum degree at most Δ, every activity 0 < λ ≤ λ_c(Δ) and every feasible pinning, each absolute row sum of the hard-core influence matrix is O_Δ(√n log n), with an explicit constant.",
+        "title_tag": "Critical Hard-Core Model: O(√n log n) Spectral Independence",
+        "description": "Explicit O_Δ(√n log n) ℓ∞-spectral-independence bound for the hard-core model at the uniqueness threshold on all max-degree-Δ graphs, proved in Lean 4.",
+        "queries": [
+          "hard-core model spectral independence uniqueness threshold",
+          "critical hardcore model Glauber dynamics mixing",
+          "hardcore model at criticality influence matrix bound",
+          "spectral independence critical two-spin systems sqrt n",
+          "Chen Jiang improved mixing of critical hardcore model",
+          "nonbacktracking random walk self-intersection spectral independence",
+          "independent sets Glauber dynamics critical fugacity mixing time",
+          "hard-core model lambda_c total influence sqrt(n) log n"
+        ],
+        "faq": [
+          [
+            "Does the hard-core model have Õ(√n) spectral independence at the uniqueness threshold?",
+            "This preprint proves that for each fixed Δ ≥ 3, every row of the hard-core influence matrix has absolute sum at most 1 + 12Δ(Δ−1)[λ/(1+λ)] r⌈log_{Δ−1} r⌉ with r = ⌊√(2Δn)⌋ + 1, on every n-vertex graph of maximum degree at most Δ, for all 0 < λ ≤ λ_c(Δ) and every feasible pinning. This addresses the hard-core case of the critical two-spin question of Bencs et al.; the general two-spin question and an O(√n) bound without the logarithm remain open. The constant is large: the bound beats the trivial bound n only for n ≥ 3.4·10⁶ when Δ = 3."
+          ],
+          [
+            "Wasn't an O(√n) critical bound already claimed?",
+            "Yes. Chen and Jiang stated an O(√n) critical hard-core influence bound in their APPROX/RANDOM 2025 paper and withdrew that claim in their 7 January 2026 arXiv revision. This preprint avoids the truncated-tree comparison of the withdrawn route and recovers that bound up to a logarithm; its ingredients, including the nonbacktracking collision argument of Bencs et al. and the self-avoiding-walk method of Sinclair, Srivastava, Štefankovič and Yin, are credited prior work."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The influence bound for the actual hard-core Gibbs measure, all activities up to λ_c(Δ) and all feasible pinnings is formalized in 32 Lean 4 modules. The Glauber-dynamics mixing-time consequence is not formalized and is conditional on a published proposition of Chen and Jiang."
+          ]
+        ]
+      }
     },
     {
       "id": "best-of-n",
@@ -891,6 +1890,38 @@
       "paper": "papers/theoretical-computer-science/best-of-n/paper.pdf",
       "formalization": {
         "kind": "comparator"
+      },
+      "seo": {
+        "problem": "Beirami et al.'s best-of-n win-rate versus KL divergence conjecture (Conjecture 7.2)",
+        "posed_by": "Beirami et al., ICML 2025 (PMLR 267), Conjecture 7.2 and Eq. (28)",
+        "problem_url": "https://arxiv.org/abs/2401.01879v3",
+        "status": "Disproved",
+        "claim": "For every budget n ≥ 2 and cap δ > 0, a finite reference law with all probabilities ≤ δ has a best-of-n policy with D < ℓ(W), violating W ≤ ℓ⁻¹(D); for n = 2, p = (2/5,1/5,1/5,1/5) gives W = 163/250.",
+        "title_tag": "Best-of-n Win-Rate Conjecture 7.2 Disproved at Every Budget",
+        "description": "Counterexamples to Beirami et al.'s best-of-n win-rate–KL conjecture for every n ≥ 2, including a four-response case with W = 163/250; Lean 4 formal proof.",
+        "queries": [
+          "best-of-n win rate KL divergence conjecture",
+          "Beirami best-of-n conjecture 7.2 counterexample",
+          "theoretical guarantees on the best-of-n alignment policy",
+          "best-of-n sampling KL divergence win rate tradeoff",
+          "best of n alignment policy win rate bound",
+          "BoN sampling KL bound log n - (n-1)/n",
+          "best-of-n win rate curve counterexample"
+        ],
+        "faq": [
+          [
+            "Is the best-of-n win-rate conjecture of Beirami et al. true?",
+            "No. This preprint shows that Conjecture 7.2, W ≤ ℓ⁻¹(D) with ℓ(w) = log(w/(1−w)) + 1/w − 2, fails for every budget n ≥ 2, even when every reference probability is at most any prescribed δ > 0. The source's proved upper bounds on divergence and win rate remain valid."
+          ],
+          [
+            "What is the simplest counterexample?",
+            "Best-of-two with reference probabilities (2/5, 1/5, 1/5, 1/5) gives the selected law (4/25, 5/25, 7/25, 9/25), win rate 163/250 and ℓ(W) − D > 1/2445. The paper does not determine the sharp replacement curve."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Yes. Lean 4 proves the four-response counterexample, its inverse-curve consequence and the every-budget theorem with arbitrarily small atoms. The preprint itself has not been refereed."
+          ]
+        ]
       }
     },
     {
@@ -914,6 +1945,38 @@
       "formalization": {
         "kind": "standalone",
         "root": "papers/theoretical-computer-science/readk-covariance"
+      },
+      "seo": {
+        "problem": "Wan–Wright–Wu log₂ k variance bound for read-k decision-tree covariance",
+        "posed_by": "Wan, Wright and Wu, ITCS 2014, Section 2.4; called a conjecture by Shalev, arXiv:1806.03646v2, Section 6.2",
+        "problem_url": "https://doi.org/10.1145/2554797.2554806",
+        "status": "Disproved",
+        "claim": "Read-k decision trees with no repeated coordinate on a path have tree covariance at most I(f) log₂ k, sharp for k = 2^d, while exact read-3 trees refute the proposed bound Var(f) log₂ k.",
+        "title_tag": "Wan–Wright–Wu Variance Bound for Read-k Trees Disproved",
+        "description": "Read-k decision-tree covariance is at most I(f) log₂ k (sharp), while explicit read-3 trees disprove the Wan–Wright–Wu Var(f) log₂ k proposal. Lean 4 proof.",
+        "queries": [
+          "Wan Wright Wu decision tree covariance conjecture",
+          "Wan-Wright-Wu logarithmic variance bound counterexample",
+          "read-k decision tree Fourier entropy influence covariance",
+          "Shalev Fourier entropy influence conjecture extremal classes read-k",
+          "decision tree covariance log k variance counterexample",
+          "Boolean decision tree covariance influence bound log2 k",
+          "Fourier entropy-influence conjecture read-k decision trees"
+        ],
+        "faq": [
+          [
+            "Is the Wan–Wright–Wu logarithmic variance bound for read-k decision trees true?",
+            "No, as a statement about every given read-k tree. A four-variable read-3 tree computing two-variable AND has tree covariance 5/4 and variance 3/4, exceeding Var(f) log₂ 3, and a nine-variable read-3 tree in which every query is relevant (covariance 4863/4096, variance 3007/4096) also violates it. This does not rule out a statement that every function has some efficient tree obeying a logarithmic variance bound."
+          ],
+          [
+            "What positive bound is proved?",
+            "For a finite Boolean decision tree with no coordinate repeated on a root-to-leaf path, the weighted sum of absolute child covariances is at most Σᵢ Iᵢ(f) log₂ max(1, kᵢ), so a read-k tree has covariance at most I(f) log₂ k, improving Shalev's 2√k I(f). The logarithmic potential was proposed by Shalev, and the equality family at k = 2^d is the dummy-prefix construction of Wan, Wright and Wu."
+          ],
+          [
+            "Does this resolve the Fourier entropy–influence conjecture, and is it formally verified?",
+            "It does not resolve the Fourier entropy–influence conjecture. The Lean 4 formalization covers the covariance inequalities, the equality family and the finite counterexamples, and contains no Fourier transform or entropy theorem."
+          ]
+        ]
       }
     },
     {
@@ -940,7 +2003,39 @@
         "kind": "standalone",
         "root": "papers/theoretical-computer-science/ordered-allocation"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Ordered-instance reduction for allocating indivisible goods with extra copies",
+        "posed_by": "Attributed to Akrami et al., arXiv:2502.09377v3; source conventions unverified",
+        "problem_url": "https://arxiv.org/abs/2502.09377v3",
+        "status": "New theorem",
+        "claim": "Any set-valued ordered allocation under nonnegative additive valuations transfers to named goods with every agent's utility weakly higher, the same total number of extra copies, the same per-good cap, and every good allocated.",
+        "title_tag": "Ordered-Instance Allocation Transfer Preserving Extra Copies",
+        "description": "A Hall-matching proof that ordered allocations transfer to named goods without utility loss, preserving the extra-copy count and per-good caps; Lean 4.",
+        "queries": [
+          "ordered instance reduction fair division",
+          "ordered instances additive valuations indivisible goods",
+          "maximin share allocation with copies of goods",
+          "fair allocation extra copies indivisible goods",
+          "MMS ordered instance reduction Hall's theorem",
+          "Akrami fair division copies ordered instance",
+          "reduction to ordered instances maximin share"
+        ],
+        "faq": [
+          [
+            "What does this paper prove?",
+            "For finite goods, a nonempty finite set of agents and nonnegative additive real values, every set-valued ordered allocation can be transferred to named goods so that every utility weakly increases, the total extra-copy count is preserved exactly, the per-good cap is respected and every good is allocated. Bundle sizes and the identity of copied goods need not be preserved."
+          ],
+          [
+            "Does it prove that one extra copy suffices for exact maximin-share fairness?",
+            "No. It transfers achieved utility thresholds but does not establish existence of a fair allocation, and the comparison with the motivating question attributed to Akrami et al. (arXiv:2502.09377v3) is provisional."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Lean 4 formalizes the transfer theorem and its budget and utility-threshold corollaries. The polynomial-size matching construction and its runtime are a conventional argument, not formalized."
+          ]
+        ]
+      }
     },
     {
       "id": "kunisky",
@@ -965,7 +2060,39 @@
         "kind": "standalone",
         "root": "papers/theoretical-computer-science/kunisky"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Coalesced clause-mass certificate for resolution trees (Kunisky's Komlós approach)",
+        "posed_by": "Attributed to Kunisky, arXiv:2111.02974v1, Conjecture 4.4 and Eq. (41); literal correspondence unverified",
+        "problem_url": "https://arxiv.org/abs/2111.02974",
+        "status": "Determined exactly",
+        "claim": "For every n ≥ 3, the coalesced clause-mass certificate over finite unrestricted resolution refutations of the formula of all 2ⁿ full signed clauses has exact supremum n + 1; a three-variable witness exceeds 61/25 > 1 + √2.",
+        "title_tag": "Resolution-Tree Clause-Mass Certificate: Exact Supremum n+1",
+        "description": "The coalesced clause-mass certificate on resolution refutations of the full n-variable formula has supremum n + 1, exceeding 1 + √2; Lean 4 formal proof.",
+        "queries": [
+          "Kunisky Komlós conjecture resolution",
+          "Kunisky Komlos conjecture resolution trees",
+          "discrepancy of unsatisfiable matrices Komlós constant",
+          "Kunisky Conjecture 4.4 resolution certificate",
+          "resolution refutation clause mass certificate",
+          "Komlos conjecture lower bound resolution proofs",
+          "unbounded certificate resolution trees 1+sqrt(2)"
+        ],
+        "faq": [
+          [
+            "What does this paper prove about the resolution certificate attributed to Kunisky?",
+            "For the explicitly defined functional, which coalesces dyadic leaf masses by clause label before square roots, the supremum over unrestricted (including nonregular) resolution refutations of the full n-variable formula is exactly n + 1 for n ≥ 3. If Kunisky's Conjecture 4.4 uses exactly this functional and proof class, this contradicts a universal bound 1 + √2; that correspondence is unverified."
+          ],
+          [
+            "Does it give a lower bound for the Komlós constant?",
+            "No. It gives no discrepancy bound and does not exclude choosing a suitable proof for each formula: the same formula has a balanced read-once refutation whose certificate is only (n+1)/2^(n/2)."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Lean 4 formalizes the internally defined functional and proof class, the exact supremum n + 1 and unboundedness. It does not authenticate the external conjecture."
+          ]
+        ]
+      }
     },
     {
       "id": "thermal-kurtosis-counterexample",
@@ -989,6 +2116,38 @@
       "formalization": {
         "kind": "standalone",
         "root": "papers/physics/thermal-kurtosis-counterexample"
+      },
+      "seo": {
+        "problem": "Ptaszyński's heat-current kurtosis bound C₄/C₂ ≥ 0 for thermal Markov systems",
+        "posed_by": "Ptaszyński, Physical Review E 106, 024119 (2022), Eq. (19)",
+        "problem_url": "https://doi.org/10.1103/PhysRevE.106.024119",
+        "status": "Counterexample",
+        "claim": "An explicit three-state, two-bath thermal rate model with local detailed balance has spectral heat-cumulant ratio C₄/C₂ = −3470947982622836/176627429595846691 < 0, contradicting Eq. (19) in its tilted-generator form.",
+        "title_tag": "Ptaszyński Kurtosis Bound C₄/C₂ ≥ 0: Thermal Counterexample",
+        "description": "A three-state thermal Markov model with local detailed balance has C₄/C₂ ≈ −0.01965, contradicting Ptaszyński's Eq. (19); Lean 4 checks the spectral proof.",
+        "queries": [
+          "Ptaszyński kurtosis bound counterexample",
+          "Ptaszynski bounds on skewness and kurtosis of steady-state currents",
+          "heat current kurtosis conjecture thermal Markov",
+          "negative fourth cumulant heat current local detailed balance",
+          "heat current full counting statistics fourth cumulant sign",
+          "three-level thermal model negative kurtosis heat current",
+          "tilted generator fourth cumulant counterexample"
+        ],
+        "faq": [
+          [
+            "Is Ptaszyński's heat-current kurtosis conjecture true?",
+            "Not in the finite tilted-generator formulation of Phys. Rev. E 106, 024119 (2022): this preprint gives a three-state, two-temperature model with local detailed balance whose spectral ratio is C₄/C₂ = −3470947982622836/176627429595846691. It does not refute the separate skewness conjecture, Eq. (20), and gives no minimal-state result or optimal negative bound."
+          ],
+          [
+            "Were negative fourth cumulants of currents known before?",
+            "Yes. Negative fourth cumulants of general driven Markov currents (for example Gerry and Segal, 2023) and three-level thermal models (Segal, 2018) are prior work; the contribution here is an explicit thermal witness with two positive-temperature baths satisfying local detailed balance."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Lean 4 verifies the finite matrices, local detailed balance, the complex spectrum, a smooth strictly dominant eigenvalue branch and its exact derivatives. It does not formalize the standard long-time stochastic theorem that identifies this branch with the cumulant generating function."
+          ]
+        ]
       }
     },
     {
@@ -1016,7 +2175,40 @@
         "kind": "standalone",
         "root": "papers/physics/unicyclic-skewness"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Ptaszyński's conjectured interval −1/16 ≤ C₃/C₁ ≤ 1 for unicyclic Markov currents",
+        "posed_by": "K. Ptaszyński, Phys. Rev. E 106, 024119 (2022), Eq. (21)",
+        "problem_url": "https://doi.org/10.1103/PhysRevE.106.024119",
+        "status": "Proved",
+        "claim": "For the net crossing count of a marked edge on every finite bidirectional Markov ring with n ≥ 3 states, positive rates and unequal forward and reverse rate products, −1/16 ≤ C₃/C₁ ≤ 1, and both constants are sharp.",
+        "title_tag": "Ptaszyński Current Bound −1/16 ≤ C₃/C₁ ≤ 1 Proved for Rings",
+        "description": "Proof of Ptaszyński's conjectured sharp interval −1/16 ≤ C₃/C₁ ≤ 1 for marked-edge currents on Markov rings, with a Lean 4 proof of the matrix form.",
+        "queries": [
+          "Ptaszyński skewness bound unicyclic currents",
+          "Ptaszynski conjecture C3/C1 -1/16",
+          "bounds on skewness and kurtosis of steady-state currents proof",
+          "third cumulant bound Markov ring current",
+          "unicyclic network current fluctuations skewness bound",
+          "normalized third cumulant winding current Markov chain",
+          "thermodynamic uncertainty relation higher cumulants unicyclic",
+          "stochastic thermodynamics cumulant ratio bound Lean proof"
+        ],
+        "faq": [
+          [
+            "Is Ptaszyński's skewness conjecture for unicyclic currents proved?",
+            "This preprint proves the interval −1/16 ≤ C₃/C₁ ≤ 1 proposed in Eq. (21) of Ptaszyński (2022) for the net crossing count of one edge of a bidirectional Markov ring with at least three states, strictly positive rates and nonzero affinity, and shows that both constants are sharp. It does not settle that paper's separate kurtosis, joint-cumulant or fixed-ring-size questions, and C₃/C₁ is a ratio of cumulants per unit time, not standardized skewness."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Lean 4 verifies the interval for the derivatives of the actual tilted-generator eigenvalue branch, including existence of that local branch. The identification of these derivatives with long-time stochastic cumulants and the sharpness argument are conventional proofs in the manuscript and are not formalized."
+          ],
+          [
+            "What earlier results does the proof rely on?",
+            "The positive midpoint spectrum is due to Pietzonka, Barato and Seifert, the thermodynamic uncertainty relation is established prior work, and the extremizing family was already identified by Ptaszyński. The new ingredient is an exact two-variable polynomial inequality certified with integer coefficients; bibliographic priority is not established."
+          ]
+        ]
+      }
     },
     {
       "id": "universal-embezzlement",
@@ -1042,7 +2234,39 @@
         "kind": "standalone",
         "root": "papers/physics/universal-embezzlement"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Leung–Wang question on the rate of general universal entanglement embezzling families",
+        "posed_by": "Leung and Wang, 'Characteristics of universal embezzling families', Physical Review A 90, 042331 (2014), Section 6",
+        "problem_url": "https://arxiv.org/abs/1311.6842",
+        "status": "Answered positively",
+        "claim": "For each L ≥ 1 one target-independent catalyst of local dimension n = 2^(4L) lets local basis permutations reach root fidelity at least 1 − 125m/L² = 1 − 2000m/(log₂ n)² for every Schmidt probability vector on m entries.",
+        "title_tag": "Universal Embezzlement With Inverse-Quadratic Log Infidelity",
+        "description": "Preprint: one target-independent embezzling catalyst of local dimension 2^(4L) gives root infidelity ≤ 125m/L² for every m-entry target; checked in Lean 4.",
+        "queries": [
+          "universal embezzling family rate",
+          "entanglement embezzlement universal catalyst",
+          "van Dam-Hayden embezzling state fidelity",
+          "Leung Wang universal embezzling families",
+          "embezzlement of entanglement 1/log^2 n infidelity",
+          "embezzling states convergence rate",
+          "universal entanglement transformations without communication"
+        ],
+        "faq": [
+          [
+            "Can a universal embezzling family reach root infidelity of order 1/(log n)²?",
+            "For general families, yes: this preprint gives target-independent catalysts of local dimension n = 2^(4L) for which local basis permutations achieve root fidelity at least 1 − 125m/L² = 1 − 2000m/(log₂ n)² for every Schmidt probability vector on m entries. The catalyst envelope depends on L, so it is a nonregular family and the regular-family version of Leung and Wang's question is not addressed."
+          ],
+          [
+            "How does this compare with the van Dam–Hayden catalyst?",
+            "The harmonic van Dam–Hayden family gives universal root infidelity of order 1/log n, and a target-dependent construction with the quadratic rate was already known. The constant 125m and its dependence on m are not claimed optimal, the local permutation depends on the target, and only the dimensions 16^L are covered."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The coefficient bound and its finite complex Hilbert-space interpretation with separate local basis permutations are formalized in Lean 4. A change from an arbitrary bipartite basis to Schmidt form is not separately formalized, and the paper is an unrefereed preprint."
+          ]
+        ]
+      }
     },
     {
       "id": "higuchi-sudbery",
@@ -1069,7 +2293,40 @@
         "kind": "standalone",
         "root": "papers/physics/higuchi-sudbery"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Higuchi–Sudbery problem: maximal average two-qubit marginal entropy of four qubits",
+        "posed_by": "Higuchi and Sudbery, 'How entangled can two couples get?', Physics Letters A 273 (2000), 213–217, which proposed the candidate maximizing state",
+        "problem_url": "https://arxiv.org/abs/quant-ph/0005013",
+        "status": "Proved",
+        "claim": "For every pure four-qubit state the average von Neumann entropy of the three two-qubit marginals ρ_AB, ρ_AC, ρ_AD is at most log 2 + (1/2) log 3 (natural logarithms), and the Higuchi–Sudbery state attains it.",
+        "title_tag": "Higuchi–Sudbery Four-Qubit Entropy Bound: Sum-of-Squares Proof",
+        "description": "Sum-of-squares proof that pure four-qubit states have average two-qubit marginal entropy ≤ log 2 + ½ log 3, attained by the Higuchi–Sudbery state; in Lean 4.",
+        "queries": [
+          "Higuchi–Sudbery state",
+          "Higuchi-Sudbery state maximally entangled",
+          "Higuchi-Sudbery conjecture proof",
+          "maximally entangled four qubits average entropy",
+          "four-qubit state maximal two-qubit marginal entropy",
+          "how entangled can two couples get",
+          "four qubit marginal entropy log 2 + log 3/2",
+          "sum of squares proof four-qubit entanglement bound"
+        ],
+        "faq": [
+          [
+            "Is the Higuchi–Sudbery state the global maximizer of average two-qubit entropy?",
+            "This preprint proves that the average von Neumann entropy of the three two-qubit marginals of any pure four-qubit state is at most log 2 + (1/2) log 3, about 1.79248 bits, and that the Higuchi–Sudbery state attains it, with no restriction on the one-qubit marginals. It does not classify all maximizers."
+          ],
+          [
+            "Has this bound appeared in earlier work?",
+            "Yes. The Omega Institute publicly registered this problem on 5 October 2026 and committed a claimed Lean proof on 7 October 2026, before this preprint's release on 27 October 2026, and the two 272-term sum-of-squares certificates are algebraically equivalent; the author makes no originality or priority claim. Gour and Wallach had proved the bound on the restricted family with maximally mixed one-qubit marginals."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The Lean 4 formalization covers all sixteen complex amplitudes, the actual reduced-matrix eigenvalues, the exact sum-of-squares identity and an explicit maximizing state. The Omega Institute's Lean proof has not been independently checked, and this work is an unrefereed preprint."
+          ]
+        ]
+      }
     },
     {
       "id": "pure-ecqc",
@@ -1095,7 +2352,39 @@
         "kind": "standalone",
         "root": "papers/physics/pure-ecqc"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Pure-state ECQC: matched-basis mutual-information inequality with mutually unbiased bases",
+        "posed_by": "Attributed to Iqbal, Quantum Information Processing 25 (2026), Article 250, Conjecture 3.1; correspondence unverified",
+        "problem_url": "https://doi.org/10.1007/s11128-026-05258-2",
+        "status": "Counterexample",
+        "claim": "A normalized pure state in local dimension 5 with six fixed mutually unbiased bases, used identically by both parties, has five-setting classical information sum 5 log 5 versus quantum mutual information 2 log 5 (ratio 5/2).",
+        "title_tag": "Pure-State ECQC Inequality Violated in Dimension Five",
+        "description": "A dimension-five pure state with six matched mutually unbiased bases gives classical sum 5 log 5 > quantum 2 log 5, violating an ECQC-type bound; Lean 4.",
+        "queries": [
+          "ECQC conjecture pure state counterexample",
+          "complementary quantum correlations conjecture",
+          "CQC conjecture mutually unbiased bases mutual information",
+          "Iqbal CQC conjecture extension",
+          "classical mutual information mutually unbiased bases quantum mutual information bound",
+          "complementary measurements mutual information inequality pure states",
+          "ECQC dimension five MUB counterexample"
+        ],
+        "faq": [
+          [
+            "Is the pure-state ECQC inequality true?",
+            "Not in the displayed fixed-family, identical-basis formulation: the state 5^(−1/2) Σₓ |x⟩|2x⟩ with six specified mutually unbiased bases gives 5 log 5 against quantum mutual information 2 log 5, an excess of 3 log 5. It refutes Iqbal's published statement only if the definitions agree, and optimizing over other bases or local basis changes is outside the result."
+          ],
+          [
+            "Were there earlier ECQC counterexamples?",
+            "Yes. Wang, Wang and Chen (arXiv:2608.03828) gave earlier mixed-state ECQC counterexamples, so no priority for disproving ECQC is claimed; the original two-basis CQC question is separate."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Lean 4 verifies the dimension-five state, the six bases, the Born tables, the reduced states and the entropies. The all-prime extension (p ≡ 1 mod 4, ratio p/2) has only a conventional proof."
+          ]
+        ]
+      }
     },
     {
       "id": "steering-bounds",
@@ -1122,7 +2411,40 @@
         "kind": "standalone",
         "root": "papers/physics/steering-bounds"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Maximum CJWR three-setting steering value at fixed steering-ellipsoid centre (two qubits)",
+        "posed_by": null,
+        "problem_url": null,
+        "status": "Determined exactly",
+        "claim": "For two-qubit states with steering-ellipsoid centre length c, the exact supremum of F₃² = ‖T‖²_F is 1 + (2−3c)²/(2−2c−c²) for c ≤ 2/3 and 1 for c > 2/3, so F₃ > 1 is possible exactly when c < 2/3.",
+        "title_tag": "Exact Two-Qubit CJWR Steering Envelope at Fixed Centre Length",
+        "description": "Exact upper envelope of the optimized CJWR three-setting steering value for two qubits at fixed steering-ellipsoid centre; F₃ > 1 iff c < 2/3. Lean 4 proof.",
+        "queries": [
+          "CJWR steering inequality two qubits maximum violation",
+          "steering ellipsoid centre length bound",
+          "three-setting linear steering inequality bound",
+          "quantum steering ellipsoid maximally obese states",
+          "two-qubit correlation matrix Frobenius norm steering bound",
+          "fully entangled fraction steering ellipsoid centre",
+          "Costa-Angelo steering criterion bound",
+          "two-qubit steering threshold c < 2/3"
+        ],
+        "faq": [
+          [
+            "What does this paper prove about CJWR steering at a fixed steering-ellipsoid centre?",
+            "It determines the exact least upper bound G(c) of F₃² = ‖T‖²_F over all two-qubit states with centre length c: G(c) = 1 + (2−3c)²/(2−2c−c²) for 0 ≤ c ≤ 2/3 and G(c) = 1 for 2/3 < c ≤ 1. The bound is attained for c < 2/3, approached but never attained for 2/3 ≤ c < 1, and attained by a pure product state at c = 1; the maximum fully entangled fraction at fixed centre length is shown to be 1 − c/2."
+          ],
+          [
+            "Does the threshold c < 2/3 characterize steerable two-qubit states?",
+            "No. It concerns only violation of the specific optimized three-setting CJWR inequality, F₃ > 1; general steerability under all measurements is outside the result, and no published conjecture is claimed to be resolved. Canonical filtering and the maximally obese state family are credited to the steering-ellipsoid literature (Milne et al.)."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The matrix statements are proved in Lean 4 for actual 4×4 density matrices: canonical filters, Pauli correlations, the exact least upper bound, attainment and nonattainment, and the fully entangled fraction. The identification with the physical steering-ellipsoid centre and with the optimized CJWR measurement expression uses cited external correspondences that are not formalized."
+          ]
+        ]
+      }
     },
     {
       "id": "fidelity-three-state",
@@ -1148,7 +2470,39 @@
         "kind": "standalone",
         "root": "papers/physics/fidelity-three-state"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Fannes–de Melo–Roga–Życzkowski conjecture: root-fidelity matrix entropy bounds Holevo χ",
+        "posed_by": "Fannes, de Melo, Roga and Życzkowski, 'Matrices of fidelities for ensembles of quantum states and the Holevo quantity', Quantum Inf. Comput. 12 (2012), 472–489, Conjecture 1, eq. (18)",
+        "problem_url": "https://doi.org/10.26421/QIC12.5-6-8",
+        "status": "Proved",
+        "claim": "For any three density matrices ρᵢ of finite dimension and probabilities pᵢ, the Holevo quantity S(Σ pᵢρᵢ) − Σ pᵢS(ρᵢ) is at most the entropy of the 3 × 3 matrix C_ij = √(pᵢpⱼ) ‖√ρᵢ √ρⱼ‖₁.",
+        "title_tag": "Fannes–de Melo–Roga–Życzkowski Conjecture: Three-State Proof",
+        "description": "Preprint proving the three-state Fannes–de Melo–Roga–Życzkowski conjecture: the entropy of the root-fidelity matrix bounds the Holevo quantity; Lean 4 proof.",
+        "queries": [
+          "Fannes de Melo Roga Zyczkowski conjecture",
+          "Fannes-de Melo-Roga-Zyczkowski conjecture",
+          "matrices of fidelities Holevo quantity conjecture",
+          "Holevo quantity bound fidelity matrix entropy",
+          "root fidelity matrix entropy Holevo bound three states",
+          "Holevo information upper bound Gram matrix of fidelities",
+          "Roga Zyczkowski fidelity matrix conjecture proof"
+        ],
+        "faq": [
+          [
+            "Is the Fannes–de Melo–Roga–Życzkowski fidelity conjecture proved?",
+            "This preprint proves the unrestricted three-state inequality stated as Conjecture 1, eq. (18): for three density matrices of any finite dimension and probabilities pᵢ, the Holevo quantity is at most the entropy of C_ij = √(pᵢpⱼ) ‖√ρᵢ √ρⱼ‖₁, including mixed and singular states and zero probabilities. It does not establish an analogous statement for an arbitrary number of states."
+          ],
+          [
+            "Has anyone else claimed a solution?",
+            "Yes. Wojciech Roga reported that another group had contacted him several days before 29 October 2026 claiming a solution of the same conjecture using AI and Lean; that claim has not been seen or compared, and neither equivalence nor priority is established. Zhang, Wu and Fei had earlier proved the bound under a compatibility condition on three polar unitaries."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The theorem is formalized in Lean 4 for positive semidefinite complex trace-one matrices, nonnegative weights summing to one, spectral entropy and nuclear-norm root fidelity, building on credited QICLean foundations. The paper is an unrefereed preprint."
+          ]
+        ]
+      }
     },
     {
       "id": "quantum-exact-contraction",
@@ -1175,7 +2529,39 @@
         "kind": "standalone",
         "root": "papers/physics/quantum-exact-contraction"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Exact conditional hockey-stick contraction coefficients of Pauli and depolarizing channels",
+        "posed_by": null,
+        "problem_url": null,
+        "status": "Determined exactly",
+        "claim": "For every γ ≥ 1 the conditional hockey-stick contraction coefficient is 1 − 8ab/(a+b) for a Pauli channel with smallest weights a ≤ b, and s[1+(d²−1)s]/[1−(d²−3)s] for depolarization λ = −s, 0 ≤ s ≤ 1/(d²−1), in dimension d.",
+        "title_tag": "Pauli and Depolarizing Channels: Exact Conditional Contraction",
+        "description": "Preprint giving the exact conditional hockey-stick contraction coefficients of all Pauli qubit channels and depolarization in every dimension; in Lean 4.",
+        "queries": [
+          "conditional contraction coefficient quantum channel",
+          "hockey-stick divergence contraction coefficient",
+          "Pauli channel trace distance contraction coefficient exact",
+          "depolarizing channel contraction coefficient quantum side information",
+          "quantum Doeblin coefficient depolarizing channel",
+          "strong data processing inequality quantum reference system",
+          "conditional contraction coefficients Hirche George Nuradha Wilde"
+        ],
+        "faq": [
+          [
+            "What is the conditional contraction coefficient of a Pauli channel?",
+            "If a ≤ b are the two smallest Pauli probabilities, the conditional hockey-stick contraction coefficient equals 1 − 8ab/(a+b) for every γ ≥ 1, with value 1 when a = b = 0, over arbitrary finite quantum references. The extension to all unital qubit channels uses the cited Choi–Li normal form, which is not part of the Lean project."
+          ],
+          [
+            "What is the value for the depolarizing channel?",
+            "For D_λ in dimension d ≥ 2 it is λ when 0 ≤ λ ≤ 1 and s[1+(d²−1)s]/[1−(d²−3)s] when λ = −s with 0 ≤ s ≤ 1/(d²−1), for every γ ≥ 1. The conditional framework and positive-Doeblin upper bound are due to Hirche, George, Nuradha and Wilde; historical priority is not certified."
+          ],
+          [
+            "Is the result formally verified?",
+            "The exact coefficients are formalized in Lean 4 for actual finite-reference density states, every stochastic Pauli qubit channel and the full signed depolarizing family in every dimension d ≥ 2, including matching supremum witnesses. Erasure-simulation and ensemble-guessing consequences keep conventional proofs, and the paper is an unrefereed preprint."
+          ]
+        ]
+      }
     },
     {
       "id": "upb-tensor-rank",
@@ -1203,7 +2589,40 @@
         "kind": "standalone",
         "root": "papers/physics/upb-tensor-rank"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Schmidt number of tensor powers of the Tiles UPB bound entangled state",
+        "posed_by": null,
+        "problem_url": null,
+        "status": "Determined exactly",
+        "claim": "If a complex matrix subspace S is annihilated by an unextendible family of product functionals, every nonzero element of S ⊗ T has rank at least 2m(T); for the Tiles bound entangled state ρ, SN(ρ^⊗N) = 2^N for all N ≥ 1.",
+        "title_tag": "Tiles UPB State: Schmidt Number of N Copies Is Exactly 2^N",
+        "description": "UPB-annihilated subspaces double minimum rank under tensor products; the Tiles bound entangled state has Schmidt number exactly 2^N on N copies. Lean 4 proof.",
+        "queries": [
+          "Schmidt number tensor power bound entangled state",
+          "Tiles UPB bound entangled state Schmidt number",
+          "unextendible product basis minimum rank tensor product",
+          "Schmidt number multiplicativity PPT entangled states",
+          "zero-error entanglement cost Tiles state",
+          "minimum Schmidt rank of UPB complement subspace",
+          "rank-four two-qutrit PPT entangled state Schmidt number",
+          "Schmidt number of N copies 2^N"
+        ],
+        "faq": [
+          [
+            "What is the Schmidt number of many copies of the Tiles bound entangled state?",
+            "For the Tiles UPB projector P and ρ = P/4, the preprint proves SN(ρ^⊗N) = m(range P^⊗N) = 2^N for every N ≥ 1 across the bipartition A₁⋯A_N : B₁⋯B_N. Combined with the published operational meaning of the Schmidt number, N copies cost exactly N ebits to prepare by LOCC with zero error. The general theorem does not claim that minimum rank is multiplicative for arbitrary pairs of subspaces."
+          ],
+          [
+            "Was this known before?",
+            "Partly. Chen, Yang and Tang (2017) proved the two-copy case, Vidal and Cirac (2001) implies nonsharp exponential growth, and the Tiles UPB is due to Bennett et al. (1999). The sharp all-copy law and the general theorem with an arbitrary partner are the contribution; no established conjecture asking for this law was found, and originality remains provisional."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The rank-doubling theorem with an arbitrary partner, strong minimum-rank multiplicativity and the exact all-copy Schmidt-number formula for the Tiles state are formalized in 22 Lean 4 modules. The zero-error LOCC cost, the rank-four two-qutrit PPT class and the channel interpretation combine the formal theorem with published results that are not formalized."
+          ]
+        ]
+      }
     },
     {
       "id": "upper-ppt-hierarchy",
@@ -1231,7 +2650,39 @@
         "kind": "standalone",
         "root": "papers/physics/upper-ppt-hierarchy"
       },
-      "manuscript_engine": "pdflatex"
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Finite collapse of the Lami–Mele–Regula upper PPT entanglement-cost hierarchy",
+        "posed_by": "Lami, Mele and Regula, Physical Review Letters 134, 090202 (2025), Supplemental Material (the finite-collapse question accompanying Conjecture S33); left open for the upper κ hierarchy by Brinster, Kondra, Kampermann, Bruß and Wyderka (arXiv:2609.20698)",
+        "problem_url": "https://arxiv.org/abs/2405.09613",
+        "status": "Answered negatively",
+        "claim": "For every q ≥ 1 a full-rank product-Bell-diagonal state in local dimension 2^((2q+4)4^q) has κ_{q+1}(ρ) < κ_q(ρ), so no fixed finite level of the upper PPT entanglement-cost hierarchy is exact for all states.",
+        "title_tag": "Upper PPT Entanglement-Cost Hierarchy Has No Finite Collapse",
+        "description": "Preprint: at every level q a full-rank state separates κ_q from κ_{q+1} in the Lami–Mele–Regula PPT entanglement-cost hierarchy; formalized in Lean 4.",
+        "queries": [
+          "Lami Mele Regula hierarchy collapse",
+          "Lami-Mele-Regula PPT entanglement cost hierarchy",
+          "exact PPT entanglement cost single-letter formula",
+          "computable entanglement cost under PPT operations hierarchy",
+          "kappa hierarchy entanglement cost noncollapse",
+          "PPT entanglement cost semidefinite hierarchy finite level",
+          "multinegativity upper hierarchy open question Brinster"
+        ],
+        "faq": [
+          [
+            "Does the Lami–Mele–Regula upper hierarchy collapse at a finite level?",
+            "No fixed level works for all states: for every q ≥ 1 there is a full-rank product-Bell-diagonal state ρ with κ_{q+1}(ρ) < κ_q(ρ). The witness dimension 2^((2q+4)4^q) grows with q, so the result does not give one fixed state or dimension with infinitely many strict levels, and it does not rule out other single-letter formulas for exact PPT cost."
+          ],
+          [
+            "What was known before this result?",
+            "Brinster, Kondra, Kampermann, Bruß and Wyderka (arXiv:2609.20698, September 2026) proved all-depth noncollapse of the lower χ hierarchy and left the upper κ question open; their Bell-transform formalism and telescoping dual identity are used here. Historical priority is not certified."
+          ],
+          [
+            "Is the proof formally verified?",
+            "The strict separation at every adjacent level, for the actual semidefinite programs with unrestricted complex auxiliaries, is formalized in 17 Lean 4 modules. The operational consequences for exact PPT cost and tensor multiplicativity rely on published theorems of Lami, Mele and Regula and are not formalized."
+          ]
+        ]
+      }
     }
   ],
   "research_notes": [

@@ -33,6 +33,13 @@ SITE = 'Math and Theory'
 VERIFICATION = 'NAktRbwKcmbmFIOAWo9LK0u604BLcZz-oXCwt3h3908'
 IGNORED = {'.git', '.lake', '__pycache__'}
 PROOF = {'comparator': 'Shared Lean library', 'standalone': 'Standalone Lean package'}
+# Optional catalogue block naming the problem a result addresses, its claim and the search phrases for it.
+SEO_TEXTS = ('problem', 'status', 'claim', 'title_tag', 'description')
+SEO_FIELDS = set(SEO_TEXTS) | {'posed_by', 'problem_url', 'queries', 'faq'}
+# The colour of a status chip: established by proof, refuted, or partly resolved.
+TONES = {'Proved': 'proved', 'Determined exactly': 'proved', 'Answered positively': 'proved', 'Sharpened': 'proved',
+         'New theorem': 'proved', 'Disproved': 'refuted', 'Counterexample': 'refuted', 'Answered negatively': 'refuted',
+         'Partially resolved': 'partial'}
 DOCS = [('README.md', 'README'), ('verification/README.md', 'Verification guide'),
         ('VERIFICATION.md', 'Verification record'), ('FORMALIZATION.md', 'Formalization notes'),
         ('PROOF_MAP.md', 'Proof map'), ('RELATED_WORK.md', 'Related work'),
@@ -227,6 +234,30 @@ def keywords(family):
     return out
 
 
+def seo(family):
+    """Return the validated search block of a family, or None if it has none."""
+    data, name = family.get('seo'), family.get('id', '?')
+    if data is None:
+        return None
+    if not (isinstance(data, dict) and set(data) <= SEO_FIELDS
+            and all(isinstance(data.get(k), str) and data[k].strip() for k in SEO_TEXTS)):
+        raise BuildError(f'{name}: seo needs the text fields {", ".join(SEO_TEXTS)} and no others than {sorted(SEO_FIELDS)}.')
+    if len(data['title_tag']) > 70 or len(data['description']) > 170:
+        raise BuildError(f'{name}: the seo title_tag must have at most 70 characters and the description at most 170.')
+    for key in ('posed_by', 'problem_url'):
+        if data.get(key) is not None and not (isinstance(data[key], str) and data[key].strip()):
+            raise BuildError(f'{name}: seo {key} must be a nonempty string or null.')
+    if data.get('problem_url') and not data['problem_url'].startswith('https://'):
+        raise BuildError(f'{name}: seo problem_url must be an https address.')
+    queries, faq = data.get('queries', []), data.get('faq', [])
+    if not (isinstance(queries, list) and all(isinstance(q, str) and q.strip() for q in queries)):
+        raise BuildError(f'{name}: seo queries must be a list of phrases.')
+    if not (isinstance(faq, list) and all(isinstance(pair, list) and len(pair) == 2 and all(
+            isinstance(s, str) and s.strip() for s in pair) for pair in faq)):
+        raise BuildError(f'{name}: seo faq must be a list of [question, answer] pairs.')
+    return dict(data, queries=list(dict.fromkeys(q.strip() for q in queries)), faq=faq)
+
+
 def lean_sources(root):
     """Find the Lean projects in a standalone package and their library roots."""
     projects = []
@@ -303,17 +334,19 @@ def load_items():
             raise BuildError(f'{f["id"]}: the title gives an empty or repeated page address.')
         abstract = ' '.join(plain(p) for p in parts['abstract'])
         kind = f['formalization']['kind']
-        keys = keywords(f)
+        keys, s = keywords(f), seo(f)
+        about = [s['problem'], s['status'], s['claim'], s.get('posed_by') or '', *s['queries']] if s else []
         search = [f['title'], abstract, f['discipline'], f['area'], entry['subject'], f['id'], f.get('family_group', ''),
-                  f['kind'], PROOF[kind], *keys, 'standout' if f.get('standout') else '']
+                  f['kind'], PROOF[kind], *keys, *about, 'standout' if f.get('standout') else '']
         root = f['formalization'].get('root') or str(Path(f['paper']).parent)
         items.append(dict(
             updated=git_date(str(Path(f['paper']).parent), root, f.get('comparator') or root, citations[0]),
             f=f, id=f['id'], title=f['title'], slug=slug, path=f'papers/{slug}/', url=f'{BASE}papers/{slug}/',
             discipline=f['discipline'], area=f['area'], subject=entry['subject'], kind=kind,
             standout=f.get('standout', False), parts=parts, abstract=abstract, teaser=clip(abstract, 300),
-            description=clip(abstract, 158), citation=citations[0], authors=authors, year=year, bibtex=bibtex,
-            keywords=keys, search=norm(' '.join(search))))
+            description=s['description'] if s else clip(abstract, 158), citation=citations[0], authors=authors,
+            year=year, bibtex=bibtex, keywords=keys, seo=s,
+            terms=list(dict.fromkeys(keys + ([s['problem'], *s['queries']] if s else []))), search=norm(' '.join(search))))
     ranks = [f.get('significance_rank') for f in families if 'significance_rank' in f]
     if any(type(r) is not int or r < 1 for r in ranks) or len(set(ranks)) != len(ranks):
         raise BuildError('significance_rank values must be distinct positive integers.')
@@ -324,7 +357,7 @@ def load_items():
 
 def page(path, title, description, body, schema, *, head='', current='', kind='website', index=True):
     url = BASE + path
-    nav = [('Index', PATH + '#index', ''), ('Selected', PATH + 'standout/', 'standout'),
+    nav = [('Index', PATH + '#index', ''), ('Selected', PATH + 'standout/', 'standout'), ('Problems', PATH + 'problems/', 'problems'),
            ('Subjects', PATH + 'subjects/', 'subjects'), ('Lean proofs', PATH + 'formal-proofs/', 'formal-proofs'),
            ('About', PATH + 'about/', 'about'), ('GitHub', REPO, '')]
     here = ' aria-current="page"'
@@ -366,7 +399,7 @@ def page(path, title, description, body, schema, *, head='', current='', kind='w
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
-<header class="topline"><div class="sheet"><a class="name" href="{PATH}">{SITE}</a><nav aria-label="Main"><ul>{nav}</ul></nav></div></header>
+<header class="topline"><div class="sheet"><a class="name" href="{PATH}"><img src="{PATH}assets/favicon.svg" alt="" width="22" height="22">{SITE}</a><nav aria-label="Main"><ul>{nav}</ul></nav></div></header>
 <main id="main" tabindex="-1"><div class="sheet">
 {body}
 </div></main>
@@ -414,12 +447,25 @@ def links_line(x):
 def statement_entry(x, level, marked=True, meta=True, scope=False):
     """A result with its one- or two-sentence statement from the catalogue summary."""
     out = f'<li>{mark(x) if marked else ""}<h{level} class="title"><a href="{PATH}{x["path"]}">{esc(x["title"])}</a></h{level}>'
+    out += problem_line(x)
     if meta:
         out += f'<p class="entry-meta">{esc(x["discipline"])} · {esc(x["area"])} · {proof_phrase(x)}</p>'
-    out += f'<p class="statement">{typeset(clip(" ".join(SENTENCE.split(x["f"]["summary"])[:2]), 330))}</p>'
+    statement = x['seo']['claim'] if x['seo'] else clip(' '.join(SENTENCE.split(x['f']['summary'])[:2]), 330)
+    out += f'<p class="statement">{typeset(statement)}</p>'
     if scope and x['f'].get('formal_scope'):
         out += f'<p class="scope"><i>Formal scope.</i> {typeset(x["f"]["formal_scope"])}</p>'
     return out + links_line(x) + '</li>'
+
+
+def outcome(x):
+    """A chip naming the status of the problem a result addresses."""
+    s = x['seo']
+    return f'<span class="outcome" data-tone="{TONES.get(s["status"], "other")}">{esc(s["status"])}</span>' if s else ''
+
+
+def problem_line(x):
+    """The status and name of the problem a result addresses, for lists of results."""
+    return f'<p class="problem-line">{outcome(x)}<span class="problem-name">{typeset(x["seo"]["problem"])}</span></p>' if x['seo'] else ''
 
 
 def toc_entry(x, searchable=False, note=None):
@@ -427,7 +473,7 @@ def toc_entry(x, searchable=False, note=None):
     attrs = (f' data-search="{esc(x["search"])}" data-discipline="{subject_slug(x["discipline"])}" '
              f'data-proof="{x["kind"]}" data-standout="{str(x["standout"]).lower()}"') if searchable else ''
     return (f'<li class="entry"{attrs}>{mark(x)}<a href="{PATH}{x["path"]}">{esc(x["title"])}</a>'
-            f'<span class="entry-meta">{esc(note or x["area"])} · {proof_phrase(x)}</span></li>')
+            f'<span class="entry-meta">{outcome(x)}{esc(note or x["area"])} · {proof_phrase(x)}</span></li>')
 
 
 def files(rows, extra=''):
@@ -589,17 +635,33 @@ def paper_page(x, items, subject_paths):
             f'collection, use <a href="{gh("CITATION.cff")}">CITATION.cff</a> or <a href="{gh("CITATION.bib")}">CITATION.bib</a>.</p>'
             f'<pre id="bibtex" class="wrap"><code>{esc(x["bibtex"])}</code></pre><p class="copy-row"><button type="button" '
             f'class="textbutton" data-copy="bibtex">Copy BibTeX</button><span class="copy-status" role="status"></span></p>')
+    s = x['seo']
+    problem = ''
+    if s:
+        posed = typeset(s['posed_by']) if s.get('posed_by') else ''
+        if posed and s.get('problem_url'):
+            posed = f'<a href="{esc(s["problem_url"])}">{posed}</a>'
+        rows = [('Problem', typeset(s['problem'])), *([('Posed in', posed)] if posed else []),
+                ('Status', outcome(x)), ('Result', typeset(s['claim']))]
+        problem = ('<section id="problem" class="claim" aria-labelledby="problem-title"><h2 id="problem-title" class="vh">'
+                   'Problem and result</h2><dl class="claim-facts">'
+                   + ''.join(f'<dt>{k}</dt><dd>{v}</dd>' for k, v in rows) + '</dl></section>')
     group = f.get('family_group')
     related = [y for y in items if y is not x and group and y['f'].get('family_group') == group]
     related += [y for y in items if y is not x and y not in related and y['subject'] == x['subject']]
     sections = [('scope', 'Statement and scope', scope), ('manuscript', 'Manuscript', files(r['manuscript'])),
                 ('formal-proof', 'Formal proof', formal), ('reproduce', 'Reproduce', reproduce),
-                ('source', 'Source and prior work', source), ('cite', 'Cite', cite)]
+                ('source', 'Source and prior work', source)]
+    if s and s['faq']:
+        sections.append(('questions', 'Questions and answers', ''.join(
+            f'<h3>{typeset(q)}</h3><p>{typeset(a)}</p>' for q, a in s['faq'])))
+    sections.append(('cite', 'Cite', cite))
     if related:
         sections.append(('related', 'Related results', '<ul class="toc">' + ''.join(
             toc_entry(y, note='Same result family' if group and y['f'].get('family_group') == group else None)
             for y in related) + '</ul>'))
-    contents = SEP.join(f'<a href="#{key}">{title}</a>' for key, title, _ in [('abstract', 'Abstract', '')] + sections)
+    contents = SEP.join(f'<a href="#{key}">{title}</a>' for key, title, _ in
+                        ([('problem', 'Problem', '')] if s else []) + [('abstract', 'Abstract', '')] + sections)
     facts = [('Year', x['year']), ('Discipline', esc(x['discipline'])), ('Area', esc(x['area'])),
              ('Subject', f'<a href="{PATH}{subject_paths[x["subject"]]}">{esc(x["subject"])}</a>'),
              ('Result type', esc(f['kind'])), ('Formal proof', PROOF[x['kind']]), ('Family', f'<code>{esc(x["id"])}</code>'),
@@ -609,7 +671,7 @@ def paper_page(x, items, subject_paths):
                     (x['subject'], PATH + subject_paths[x['subject']])])
     body = (f'<article class="paper"><header class="paper-head">{trail}<h1>{esc(x["title"])}</h1>'
             f'<p class="byline">{esc(authors)} · {x["year"]} · Research preprint, not externally peer reviewed</p>{flag}'
-            f'<nav class="contents" aria-label="Contents"><p>{contents}</p></nav></header>'
+            f'<nav class="contents" aria-label="Contents"><p>{contents}</p></nav></header>{problem}'
             f'<section id="abstract" class="abstract" aria-labelledby="abstract-title"><h2 id="abstract-title" class="runin">'
             f'Abstract</h2>' + ''.join(f'<p>{inline(p)}</p>' for p in x['parts']['abstract']) + '</section>'
             '<div class="margin"><h2 class="vh">Details</h2><dl class="facts">'
@@ -620,18 +682,27 @@ def paper_page(x, items, subject_paths):
         ('citation_title', x['title']), *[('citation_author', a) for a in x['authors']],
         ('citation_publication_date', x['year']), ('citation_pdf_url', x['url'] + 'manuscript.pdf'),
         ('citation_abstract_html_url', x['url']), ('citation_language', 'en'),
-        ('citation_keywords', '; '.join(x['keywords'])),
+        ('citation_keywords', '; '.join(x['terms'])),
         *([('citation_online_date', x['updated'].replace('-', '/'))] if x['updated'] else [])]) + '\n'
+    head += ''.join(f'<meta property="{k}" content="{esc(v)}">' for k, v in [
+        ('article:section', x['subject']), *[('article:tag', k) for k in x['terms'][:12]],
+        *([('article:modified_time', x['updated'])] if x['updated'] else [])]) + '\n'
     head += f'<link rel="alternate" type="application/pdf" href="{x["url"]}manuscript.pdf" title="Manuscript PDF">\n'
     article = {'@type': 'ScholarlyArticle', '@id': x['url'] + '#article', 'headline': x['title'], 'name': x['title'],
                'url': x['url'], 'mainEntityOfPage': x['url'], 'abstract': x['abstract'], 'description': x['description'],
                'author': [person(a) for a in x['authors']], 'datePublished': x['year'], 'inLanguage': 'en',
-               'genre': 'Research preprint', 'keywords': x['keywords'], 'isAccessibleForFree': True,
+               'genre': 'Research preprint', 'keywords': x['terms'], 'isAccessibleForFree': True,
                'publisher': person(AUTHOR), 'copyrightHolder': person(AUTHOR),
                'license': 'https://www.apache.org/licenses/LICENSE-2.0',
                **({'dateModified': x['updated']} if x['updated'] else {}),
-               'about': [{'@type': 'Thing', 'name': x['discipline']}, {'@type': 'Thing', 'name': x['area']},
-                         {'@type': 'Thing', 'name': x['subject']}],
+               'about': ([{'@type': 'Thing', 'name': s['problem'], **({'description': 'Posed by ' + s['posed_by']}
+                                                                       if s.get('posed_by') else {}),
+                           **({'url': s['problem_url']} if s.get('problem_url') else {})}] if s else [])
+                        + [{'@type': 'Thing', 'name': x['discipline']}, {'@type': 'Thing', 'name': x['area']},
+                           {'@type': 'Thing', 'name': x['subject']}],
+               **({'alternativeHeadline': s['title_tag'], 'disambiguatingDescription': s['claim']} if s else {}),
+               **({'citation': [{'@type': 'CreativeWork', 'name': s['posed_by'], 'url': s['problem_url']}]}
+                  if s and s.get('posed_by') and s.get('problem_url') else {}),
                'hasPart': {'@type': 'SoftwareSourceCode', 'name': f'Lean 4 formalization: {x["title"]}',
                            'codeRepository': r['lean_url'], 'programmingLanguage': 'Lean 4',
                            'description': scope_text(x)[0]},
@@ -639,8 +710,13 @@ def paper_page(x, items, subject_paths):
                'encoding': {'@type': 'MediaObject', 'contentUrl': x['url'] + 'manuscript.pdf',
                             'encodingFormat': 'application/pdf'}}
     trail = crumbs([('Home', ''), (x['subject'], subject_paths[x['subject']]), (x['title'], None)])
-    return page(x['path'], f'{x["title"]} | {SITE}', x['description'], body,
-                {'@context': 'https://schema.org', '@graph': [article, trail]}, head=head, kind='article')
+    graph = [article, trail]
+    if s and s['faq']:
+        graph.append({'@type': 'FAQPage', '@id': x['url'] + '#questions', 'url': x['url'], 'mainEntity': [
+            {'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a}} for q, a in s['faq']]})
+    title = s['title_tag'] if s else x['title']
+    return page(x['path'], f'{title} | {SITE}', x['description'], body,
+                {'@context': 'https://schema.org', '@graph': graph}, head=head, kind='article')
 
 
 def item_list(selection):
@@ -693,8 +769,9 @@ def build(out):
         areas = '; '.join(dict.fromkeys(x['area'] for x in selection))
         fields = series(dict.fromkeys(x['discipline'] for x in selection))
         n = len(selection)
-        description = (f'{n} research manuscript{"s" if n != 1 else ""} in {s} ({fields}), with abstracts, Lean '
-                       f'formalization links and stated proof limits. Catalogue areas: {areas}.')
+        named = [x['seo']['problem'] for x in selection if x['seo']]
+        description = clip(f'{s}: {n} research result{"s" if n != 1 else ""} with Lean 4 proofs'
+                           + (', on ' + '; '.join(named) if named else f'. Catalogue areas: {areas}') + '.', 158)
         others = SEP.join(f'<a href="{PATH}{subject_paths[t]}">{esc(t)}</a>' for t in subjects if t != s)
         body = (f'<header class="page-head">{kicker(home + [("Subjects", PATH + "subjects/")])}<h1>{esc(s)}</h1>'
                 f'<p class="intro">{n} research manuscript{"s" if n != 1 else ""} in {esc(fields.lower())}. Catalogue '
@@ -733,12 +810,42 @@ def build(out):
             f'results I consider the strongest of the {len(items)} in the collection. Each entry states the result and '
             f'the scope of its formal proof, with links to the manuscript, the Lean proof and the verification steps.</p>'
             f'<p class="disclosure">The selection is my own, not an external assessment. The papers have not been '
-            f'externally peer reviewed, and their formal checks apply only to the stated scope.</p></header><ol class="numbered">'
+            f'externally peer reviewed, and their formal checks apply only to the stated scope.</p></header><ol class="numbered cards">'
             + ''.join(statement_entry(x, 2, marked=False, scope=True) for x in standout) + '</ol>')
     pages['standout/'] = page('standout/', f'Selected results | {SITE}', description, body, {
         '@context': 'https://schema.org', '@graph': [{'@type': 'CollectionPage', 'name': 'Selected results',
         'url': BASE + 'standout/', 'description': description, 'mainEntity': item_list(standout)},
         crumbs([('Home', ''), ('Selected results', None)])]}, current='standout')
+
+    def problem_entry(x):
+        s = x['seo']
+        return (f'<li><h3 class="title"><a href="{PATH}{x["path"]}">{typeset(s["problem"])}</a></h3><p class="entry-meta">'
+                f'{outcome(x)}' + (typeset(s['posed_by']) if s.get('posed_by') else '')
+                + f'</p><p class="statement">{typeset(s["claim"])}</p><p class="caveat">{esc(x["title"])}</p>'
+                + links_line(x) + '</li>')
+    posed = [x for x in items if x['seo']]
+    named = [x for x in posed if x['seo'].get('posed_by')]
+    other = [x for x in posed if not x['seo'].get('posed_by')]
+    description = clip(f'The {len(named)} problems, conjectures and questions from the literature addressed in {SITE}, with '
+                       f'the status of each: ' + '; '.join(x['seo']['problem'] for x in named), 158)
+    body = (f'<header class="page-head">{kicker(home)}<h1>Problems and conjectures</h1><p class="intro">The {len(named)} '
+            f'problems, conjectures and questions from the literature that results in this collection address, in order of '
+            f'significance, each with its source, its status and the result, followed by {len(other)} further questions that '
+            f'the results study without a published source.</p><p class="disclosure">A status describes what the linked '
+            f'preprint claims. The papers have not been externally peer reviewed, no priority is claimed, and each formal '
+            f'check applies only to the stated scope.</p></header>'
+            f'<section class="block" aria-labelledby="named-title"><h2 id="named-title" class="section-title">Problems from '
+            f'the literature</h2><ul class="entries">' + ''.join(problem_entry(x) for x in named) + '</ul></section>'
+            + (f'<section class="block" aria-labelledby="other-problems-title"><h2 id="other-problems-title" '
+               f'class="section-title">Other questions studied</h2><ul class="entries">'
+               + ''.join(problem_entry(x) for x in other) + '</ul></section>' if other else ''))
+    pages['problems/'] = page('problems/', f'Open problems and conjectures addressed | {SITE}', description, body, {
+        '@context': 'https://schema.org', '@graph': [{'@type': 'CollectionPage', 'name': 'Problems and conjectures',
+        'url': BASE + 'problems/', 'description': description, 'mainEntity': {
+            '@type': 'ItemList', 'numberOfItems': len(posed), 'itemListElement': [
+                {'@type': 'ListItem', 'position': i + 1, 'name': x['seo']['problem'], 'url': x['url']}
+                for i, x in enumerate(named + other)]}}, crumbs([('Home', ''), ('Problems and conjectures', None)])]},
+        current='problems')
 
     def toggle(name, value, label, kind='radio', checked=False):
         return (f'<label class="toggle"><input type="{kind}" name="{name}" value="{value}"{" checked" if checked else ""}>'
@@ -770,29 +877,34 @@ def build(out):
                       f'{subject_paths[s]}">{esc(s)}</a></h4><ul class="toc">' + ''.join(
                           toc_entry(x, searchable=True) for x in in_subject[s] if x['discipline'] == d) + '</ul></section>')
         index += '</section>'
-    description = (f'Research manuscripts and Lean 4 formal proofs in {topics} by {AUTHOR}, with abstracts, source '
-                   f'files and stated proof limits.')
+    description = (f'Counterexamples, sharp bounds and proofs for open problems and conjectures in {topics} by {AUTHOR}, '
+                   f'with Lean 4 formal proofs.')
+    figures = [(len(items), 'results', PATH + '#index'), (len(named), 'problems from the literature', PATH + 'problems/'),
+               (len(standout), 'selected results', PATH + 'standout/'), (len(subjects), 'subjects', PATH + 'subjects/')]
     body = (f'<header class="masthead"><h1>{SITE}</h1><p class="subtitle">Research manuscripts and Lean 4 proofs\u00a0· '
             f'{esc(AUTHOR)}</p></header><p class="intro">This is a collection of fully autonomous agentic research. I have '
             f'been experimenting with large language models working as autonomous research agents on open problems in '
             f'{esc(topics)}, and these {len(items)} manuscripts are the results: counterexamples, sharp bounds and exact '
-            f'thresholds, each with Lean 4 proofs of its stated formal scope.</p><p>Every result has its own page with the '
-            f'theorem, what Lean checks and what rests on a conventional proof, the manuscript and its LaTeX source, the '
-            f'Lean files, and the commands for reproducing the checks.</p><p class="disclosure">None of these papers has '
+            f'thresholds, each with Lean 4 proofs of its stated formal scope.</p><ul class="figures" aria-label="The collection '
+            f'in figures">' + ''.join(f'<li><a href="{href}"><span class="n">{n}</span><span class="l">{label}</span></a></li>'
+                                       for n, label, href in figures)
+            + f'</ul><p class="disclosure">None of these papers has '
             f'been externally peer reviewed, and I make no claim of priority. A formal check covers only the statement it '
             f'checks. The <a href="{gh("AUTHORSHIP.md")}">authorship record</a> explains how each result was produced, and '
             f'<a href="{gh("UNFINISHED.md")}">UNFINISHED.md</a> lists the remaining formalization gaps.</p>'
-            f'<section class="block" id="models" aria-labelledby="models-title"><h2 id="models-title" '
-            f'class="section-title">Models used</h2>{MODELS}</section>'
             f'<section class="block" id="selected" aria-labelledby="selected-title"><h2 id="selected-title" '
             f'class="section-title">Selected results</h2><p class="section-note">The {len(standout)} results I consider '
             f'the strongest; my own selection, not an external assessment. <a href="{PATH}standout/">The same results '
             f'with their formal scope</a>.</p>'
-            f'<ol class="numbered">' + ''.join(statement_entry(x, 3, marked=False, meta=False) for x in standout)
+            f'<ol class="numbered cards">' + ''.join(statement_entry(x, 3, marked=False, meta=False) for x in standout)
             + f'</ol></section><section class="block" id="index" aria-labelledby="index-title"><h2 id="index-title" '
             f'class="section-title">Index of results</h2><p class="section-note">All {len(items)} manuscripts, by '
-            f'discipline and subject. <a href="{PATH}subjects/">Subjects</a> gives an overview of the subjects.</p>'
-            f'{finder}{index}</section>')
+            f'discipline and subject. Every result has its own page with the theorem, what Lean checks and what rests on a '
+            f'conventional proof, the manuscript and its LaTeX source, the Lean files, and the commands for reproducing the '
+            f'checks. <a href="{PATH}problems/">Problems and conjectures</a> names the problem each result addresses and its '
+            f'status, and <a href="{PATH}subjects/">Subjects</a> gives an overview of the subjects.</p>'
+            f'{finder}{index}</section><section class="block" id="models" aria-labelledby="models-title"><h2 '
+            f'id="models-title" class="section-title">Models used</h2>{MODELS}</section>')
     schema = {'@context': 'https://schema.org', '@graph': [
         {'@type': 'WebSite', '@id': BASE + '#website', 'url': BASE, 'name': SITE, 'inLanguage': 'en',
          'author': person(AUTHOR), 'potentialAction': {'@type': 'SearchAction', 'target': {
@@ -802,7 +914,7 @@ def build(out):
         {'@type': 'CollectionPage', 'url': BASE, 'name': f'{SITE}: mathematical research and Lean 4 proofs',
          'description': description, 'isPartOf': {'@id': BASE + '#website'}, 'about': {'@id': BASE + '#collection'},
          'mainEntity': item_list(items)}]}
-    pages[''] = page('', f'{SITE}: mathematical research and Lean 4 proofs by {AUTHOR}', description, body, schema)
+    pages[''] = page('', f'{SITE}: open problems, conjectures and Lean 4 proofs by {AUTHOR}', description, body, schema)
 
     comparator = sum(x['kind'] == 'comparator' for x in items)
     description = (f'How the {SITE} research collection was produced, which models were used, how its Lean 4 proofs are checked, '
@@ -899,7 +1011,9 @@ def build(out):
         {'id': x['id'], 'title': x['title'], 'url': x['url'], 'pdf': x['url'] + 'manuscript.pdf',
          'discipline': x['discipline'], 'area': x['area'], 'subject': x['subject'], 'subject_url': BASE + subject_paths[x['subject']],
          'result_type': x['f']['kind'], 'formal_proof': x['kind'], 'standout': x['standout'], 'year': x['year'],
-         'keywords': x['keywords'], 'abstract': x['abstract'], 'scope': scope_text(x)[0]} for x in items]}
+         'keywords': x['terms'], 'abstract': x['abstract'], 'scope': scope_text(x)[0],
+         **({k: x['seo'].get(k) for k in ('problem', 'posed_by', 'problem_url', 'status', 'claim')} if x['seo'] else {})}
+        for x in items]}
     (out / 'search-index.json').write_text(json.dumps(index, ensure_ascii=False, indent=1) + '\n')
     dated = {x['path']: x['updated'] for x in items}
     latest = max((d for d in dated.values() if d), default=None)
@@ -914,7 +1028,9 @@ def build(out):
     feed = ''.join(f'<entry><title>{esc(x["title"])}</title><id>{x["url"]}</id><link rel="alternate" href="{x["url"]}"/>'
                    f'<link rel="enclosure" type="application/pdf" href="{x["url"]}manuscript.pdf"/>'
                    f'<updated>{stamp(x["updated"])}</updated><published>{x["year"]}-01-01T00:00:00Z</published>'
-                   f'<category term="{esc(x["subject"])}"/><summary>{esc(x["abstract"])}</summary></entry>\n'
+                   f'<category term="{esc(x["subject"])}"/>'
+                   + (f'<category term="{esc(x["seo"]["problem"])}"/>' if x['seo'] else '')
+                   + f'<summary>{esc(x["abstract"])}</summary></entry>\n'
                    for x in sorted(items, key=lambda x: x['updated'] or '', reverse=True))
     (out / 'feed.xml').write_text(f'<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">'
                                   f'<title>{SITE}</title><subtitle>Research manuscripts and Lean 4 proofs</subtitle>'
@@ -927,9 +1043,16 @@ def build(out):
             'Models used: GPT 6 Astra by OpenAI, in ChatGPT and Codex; GPT 6.1 Sol by OpenAI, in Codex; Opus 5.5 by '
             f'Anthropic, in Claude Code. Each manuscript states how they were used. {gh("AUTHORSHIP.md")}', '',
             '## Results, in order of significance', '']
-    llms += [f'- [{x["title"]}]({x["url"]}): {clip(x["abstract"], 240)} PDF: {x["url"]}manuscript.pdf; Lean: '
+    def summary(x):
+        s = x['seo']
+        if not s:
+            return clip(x['abstract'], 240)
+        posed = f' (posed by {s["posed_by"]})' if s.get('posed_by') else ''
+        return f'{s["status"]}: {s["problem"]}{posed}. {s["claim"]}'
+    llms += [f'- [{x["title"]}]({x["url"]}): {summary(x)} PDF: {x["url"]}manuscript.pdf; Lean: '
              f'{x["res"]["lean_url"]}' for x in items]
-    llms += ['', '## More', '', f'- [Selected results]({BASE}standout/)', f'- [Lean proofs]({BASE}formal-proofs/)',
+    llms += ['', '## More', '', f'- [Selected results]({BASE}standout/)', f'- [Problems and conjectures]({BASE}problems/)',
+             f'- [Lean proofs]({BASE}formal-proofs/)',
              f'- [Subjects]({BASE}subjects/)', f'- [Source repository]({REPO})', f'- [Verification guide]({gh("verification/README.md")})']
     (out / 'llms.txt').write_text('\n'.join(llms) + '\n')
     (out / 'robots.txt').write_text(f'User-agent: *\nAllow: /\n\nSitemap: {BASE}sitemap.xml\n')
