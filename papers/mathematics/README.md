@@ -15,6 +15,7 @@ Each family directory contains its manuscripts, proof sources or shared-library 
 | [Sharp escape of complex domination roots in square flowers](graph-roots/) | [PDF](graph-roots/manuscript.pdf) |
 | [Leaf deletion can move the unique mode of a tree domination polynomial by two](leaf-deletion/) | [PDF](leaf-deletion/manuscript/manuscript.pdf) |
 | [The upper saturation spectrum of Berge triangles in triple systems](berge-triangle-spectrum/) | [PDF](berge-triangle-spectrum/manuscript.pdf) |
+| [Exact three-uniform Berge-path saturation numbers and a counterexample to a conjectured formula](berge-path-saturation/) | [PDF](berge-path-saturation/manuscript.pdf) |
 | [Diagonal concavity does not imply concavity for sums of elementary symmetric polynomials](diagonal-concavity/) | [PDF](diagonal-concavity/paper.pdf) |
 | [Sharp root log-concavity of alternating Motzkin sums](motzkin/) | [PDF](motzkin/paper.pdf) |
 | [Sharp log-concavity for alternating Motzkin sums](motzkin/bounded-forcing/) | [PDF](motzkin/bounded-forcing/manuscript.pdf) |

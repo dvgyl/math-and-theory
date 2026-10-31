@@ -339,6 +339,8 @@ jobs:
             project: lean
           - package: berge-triangle-spectrum
             root: papers/mathematics/berge-triangle-spectrum
+          - package: berge-path-saturation
+            root: papers/mathematics/berge-path-saturation
             project: lean
           - package: matrix-pencil-completion
             root: papers/mathematics/matrix-pencil-completion
@@ -410,6 +412,10 @@ jobs:
             python3 ../certificate/verify_minty_exact.py
           elif [[ '${{ matrix.package }}' == 'berge-triangle-spectrum' ]]; then
             python3 ../verify.py --output "${RUNNER_TEMP}/berge-triangle-spectrum-verification"
+          elif [[ '${{ matrix.package }}' == 'berge-path-saturation' ]]; then
+            lake build BergePath BergePath.AxiomAudit 2>&1 | tee "${RUNNER_TEMP}/berge-path-build.log"
+            python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/berge-path-build.log" --project . --output "${RUNNER_TEMP}/berge-path-axioms.json"
+            python3 ../certificate/check_witness.py
           elif [[ '${{ matrix.package }}' == 'matrix-pencil-completion' ]]; then
             command -v rg >/dev/null || { sudo apt-get update && sudo apt-get install --yes ripgrep; }
             bash verify.sh

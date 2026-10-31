@@ -1,0 +1,430 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Three-uniform Berge-path saturation}
+\fancyhead[R]{\small Dev D. Goyal}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\hypersetup{pdftitle={Exact three-uniform Berge-path saturation numbers and a counterexample to a conjectured formula},
+pdfauthor={Dev D. Goyal},
+pdfsubject={Fully autonomous agentic research},
+pdfkeywords={Berge hypergraphs, Berge paths, saturation numbers, three-uniform hypergraphs, loose cycles, Lean 4}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\sat}{\operatorname{sat}}
+\newcommand{\BP}{\text{Berge-}P}
+\title{\textbf{Exact three-uniform Berge-path saturation numbers\\and a counterexample to a conjectured formula}}
+\author{Dev D. Goyal}
+\date{31 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For $m\ge 10$ write $m=4s+r$ with $1\le r\le 4$, and put $d=m-2$,
+$a=(3+r)2^s-5$ and $b=2a+1$. English, Graber, Kirkpatrick, Methuku and
+Sullivan conjectured that the three-uniform saturation number of the
+Berge path $P_m$ equals $U(n)=\lceil (n-\lfloor n/b\rfloor)/2\rceil$ for every
+$n\ge b$. Two disjoint loose $8$-cycles together with two isolated
+vertices form a Berge-$P_{10}$-saturated three-uniform hypergraph on $34$
+vertices with $16$ hyperedges, one fewer than the conjectured value $17$.
+We determine the saturation number exactly on the whole conjectured range:
+for all $m\ge10$ and $n\ge b$, $\sat_3(n,\BP_m)=U(n)-1$ when $b<n<2b$ and
+$n\equiv 2\pmod{2d}$, and $\sat_3(n,\BP_m)=U(n)$ otherwise. At every
+exceptional order the extremal hypergraph is unique: disjoint loose
+$d$-cycles and two isolated vertices. The lower bound uses two results of
+the source paper, the minimum size of a saturated linear tree and the
+general upper construction. Lean~4 verifies, for actual hypergraphs, Berge
+paths and unrestricted saturation, that disjoint loose $d$-cycles with two
+isolated vertices are Berge-$P_{d+2}$-saturated for every $d\ge3$, that the
+explicit $34$-vertex hypergraph is Berge-$P_{10}$-saturated with $16$
+hyperedges, and that the three-uniform case of the conjecture fails for
+every $m\ge10$. The matching lower bound and the uniqueness statement have
+conventional proofs.
+\end{abstract}
+
+\section{The conjecture and the result}
+
+All hypergraphs are finite and three-uniform; the vertex set includes
+isolated vertices. A \emph{Berge path of length $L$} in a hypergraph $H$
+consists of distinct vertices $v_0,\dots,v_L$ and distinct hyperedges
+$e_1,\dots,e_L$ of $H$ with $\{v_{i-1},v_i\}\subseteq e_i$ for every $i$.
+The graph path $P_m$ has $m$ vertices, so a Berge-$P_m$ is a Berge path of
+length $m-1$. A hypergraph $H$ is \emph{Berge-$P_m$-saturated} if it
+contains no Berge-$P_m$ but $H+f$ contains one for every three-element set
+$f\notin E(H)$; no condition such as linearity is imposed on $f$. The
+saturation number $\sat_3(n,\BP_m)$ is the least number of hyperedges of a
+Berge-$P_m$-saturated hypergraph on $n$ vertices~\cite{EGKMS}.
+
+A \emph{linear tree} is a connected hypergraph whose incidence graph is a
+tree; it has $2e+1$ vertices when it has $e$ hyperedges. Fix $m\ge 10$,
+write $m=4s+r$ with $1\le r\le4$ and put
+\[
+d=m-2,\qquad a=(3+r)2^s-5,\qquad b=2a+1,\qquad
+U(n)=\left\lceil\frac{n-\lfloor n/b\rfloor}{2}\right\rceil .
+\]
+We use two results of~\cite{EGKMS} for $k=3$.
+\begin{itemize}
+\item[(T)] (Theorem~2.2.) Every Berge-$P_m$-saturated linear tree on at
+least four vertices has at least $a$ hyperedges, and one with exactly $a$
+hyperedges exists.
+\item[(C)] (Construction~3.8, Observation~3.9 and Lemma~3.10.) For every
+$n\ge b$ there is a Berge-$P_m$-saturated hypergraph on $n$ vertices with
+$U(n)$ hyperedges.
+\end{itemize}
+Theorem~2.3 of~\cite{EGKMS} gives a lower bound that differs from $U(n)$ by
+at most one, and Conjecture~2.4 of~\cite{EGKMS} asserts, for $k=3$, that
+$\sat_3(n,\BP_m)=U(n)$ for all $m\ge10$ and $n\ge b$. The authors note that
+the bounds would agree if a minimal saturated hypergraph could be shown to
+have no isolated vertices. Isolated vertices are exactly what breaks the
+formula.
+
+\begin{theorem}\label{thm:main}
+Let $m\ge10$ and $n\ge b$. Then
+\[
+\sat_3(n,\BP_m)=
+\begin{cases}
+U(n)-1, & \text{if } b<n<2b \text{ and } n\equiv 2 \pmod{2d},\\
+U(n), & \text{otherwise.}
+\end{cases}
+\]
+At an exceptional order $n=2td+2$ every extremal hypergraph is isomorphic
+to $t$ disjoint loose $d$-cycles together with two isolated vertices.
+\end{theorem}
+
+\begin{corollary}\label{cor:counter}
+The three-uniform case of Conjecture~2.4 of~\cite{EGKMS} is false for every
+$m\ge10$. For $m=10$ and $n=34$ the conjectured value is $17$, while two
+disjoint loose $8$-cycles with two isolated vertices give a
+Berge-$P_{10}$-saturated hypergraph with $16$ hyperedges.
+\end{corollary}
+
+The novel parts are the exceptional construction, the treatment of
+isolated vertices and the resulting matching lower bound; results~(T)
+and~(C) are inherited. Corollary~\ref{cor:counter} needs only
+Proposition~\ref{prop:cycles} below and arithmetic, and it is verified in
+Lean (Section~\ref{sec:lean}).
+
+\section{Loose cycles with two isolated vertices}
+
+For $d\ge3$, a \emph{loose $d$-cycle} has core vertices $c_0,\dots,c_{d-1}$,
+pendant vertices $p_0,\dots,p_{d-1}$ and hyperedges
+$e_i=\{c_i,c_{i+1},p_i\}$, indices modulo~$d$. Let $\mathcal C_{d,t}$
+consist of $t$ disjoint loose $d$-cycles and two isolated vertices
+$z_1,z_2$; it has $2td+2$ vertices and $td$ hyperedges.
+
+\begin{proposition}\label{prop:cycles}
+For $d\ge3$ and $t\ge0$, $\mathcal C_{d,t}$ is Berge-$P_{d+2}$-saturated.
+\end{proposition}
+
+\begin{proof}
+A Berge path is connected through its hyperedges, so all its hyperedges
+lie in one component; each component has at most $d$ hyperedges, while a
+Berge-$P_{d+2}$ needs $d+1$. Hence $\mathcal C_{d,t}$ is Berge-$P_{d+2}$-free.
+
+Every vertex of a cycle starts a Berge path through all $d$ hyperedges of
+its cycle: from $c_i$ use $c_i,c_{i+1},\dots,c_{i+d-1},p_{i+d-1}$ with
+$e_i,\dots,e_{i+d-1}$, and from $p_i$ use the reverse of the path
+$c_{i+1},\dots,c_{i+d},p_{i+d}=p_i$. Let $f$ be an absent triple.
+
+If $f$ contains a vertex $u$ of some cycle and a vertex $w$ outside that
+cycle, prepend $w,f$ to the $d$-edge path from $u$. Since there are only
+two isolated vertices, this covers every $f$ that is not contained in a
+single cycle.
+
+If $f$ lies in one cycle, two of its vertices have the same type. If
+$p_i,p_j\in f$ with $i\ne j$, prepend $p_j,f$ to the $d$-edge path from
+$p_i$, which contains no other pendant vertex. If $c_x,c_y\in f$, let
+$k\in\{1,\dots,d-1\}$ with $y\equiv x+k$. Take
+\[
+p_{x+k-1},\,c_{x+k-1},\,c_{x+k-2},\dots,c_x,\;\;c_y,\,c_{y+1},\dots,c_{y+d-k-1},\,p_{y+d-k-1}
+\]
+with the hyperedges $e_{x+k-1},\dots,e_x$, then $f$, then
+$e_y,\dots,e_{y+d-k-1}$. The two runs of cores occupy the disjoint
+offset ranges $[0,k-1]$ and $[k,d-1]$ from $x$, the pendants $p_{x+k-1}$
+and $p_{x-1}$ are distinct, and every old hyperedge occurs once. This is a
+Berge path with $k+1+(d-k)=d+1$ hyperedges.
+\end{proof}
+
+\section{Incidence counting and isolated hyperedges}
+
+For a component with $v$ vertices and $e$ hyperedges, the incidence graph
+has $v+e$ nodes and $3e$ edges, hence cyclomatic number $2e-v+1$. A linear
+tree has $v=2e+1$; every other component has $v\le2e$, with equality
+exactly for incidence-unicyclic components. Berge paths correspond to
+paths of the incidence graph between vertex nodes.
+
+Let $H$ be Berge-$P_m$-saturated on $n\ge b$ vertices. It has at most two
+isolated vertices, since a triple of isolated vertices could be added
+without creating a path of length $d+1\ge9$.
+
+\begin{lemma}\label{lem:edge}
+If $H$ has a component consisting of one hyperedge, then
+$|E(H)|\ge\lceil (n-1)/2\rceil\ge U(n)$.
+\end{lemma}
+
+\begin{proof}
+Let $\{x,y,w\}$ be that component and suppose that $T$ is another linear
+tree component, possibly a single vertex. Since $H$ is
+Berge-$P_m$-free, Berge paths in $T$ have length at most $d$, so its
+incidence tree has diameter at most $2d$. A centre of this tree, replaced by
+an adjacent vertex node if it is a hyperedge node, gives a vertex $v$ of
+$T$ from which every Berge path in $T$ has length at most $\lceil d/2\rceil$.
+A Berge path in $H+\{x,y,v\}$ that uses the new hyperedge uses at most one
+hyperedge of $\{x,y,w\}$ and at most $\lceil d/2\rceil$ of $T$, so it has
+length at most $\lceil d/2\rceil+2\le d$, contradicting saturation. Hence every
+other component has $v\le2e$, and $|E(H)|\ge 1+(n-3)/2$. Since
+$\lfloor n/b\rfloor\ge1$, the bound is at least $U(n)$.
+\end{proof}
+
+\section{One isolated vertex}
+
+\begin{lemma}\label{lem:height}
+Let $z$ be an isolated vertex of $H$, let $T$ be a linear tree component
+with at least one hyperedge and let $e=\{x,y,w\}$ be a hyperedge of $T$.
+Removing $e$ splits $T$ into three branches containing $x$, $y$ and $w$;
+let $h_x,h_y,h_w$ be the largest lengths of Berge paths in these branches
+starting at $x$, $y$, $w$, labelled so that $h_x\ge h_y\ge h_w$. Then
+$h_y=h_w$ and $h_x+h_y=d-1$.
+\end{lemma}
+
+\begin{proof}
+Joining longest paths in the $x$- and $y$-branches through $e$ gives a
+path of length $h_x+h_y+1$, so $h_x+h_y\le d-1$. Add $f=\{z,x,y\}$. A new
+path uses $f$. If it avoids $e$, it either joins the $x$- and $y$-branches
+through $f$ or ends at $z$, and has length at most $h_x+h_y+1\le d$. If it
+uses $e$ and $f$, these must be consecutive with a common vertex
+$c\in\{x,y\}$ between them, because the branches are joined only through
+$e$ and $f$. The remaining ends are then one of $w$ or the other element of
+$\{x,y\}$ on the side of $e$, and one of $z$ or the other element of
+$\{x,y\}$ on the side of $f$; checking the four possibilities gives length
+at most $h_x+h_w+2$. Saturation forces $h_x+h_w\ge d-1$, and with
+$h_w\le h_y$ both equalities follow.
+\end{proof}
+
+In particular every such $T$ has Berge diameter exactly $d$.
+
+\begin{lemma}\label{lem:tree}
+Under the hypotheses of Lemma~\ref{lem:height}, $T$ has at least $B_m$
+hyperedges, where $B_m=2(2^h-1)$ if $d=2h$ and $B_m=3\cdot2^h-2$ if
+$d=2h+1$. Moreover $B_m\ge 2a$ for all $m\ge10$.
+\end{lemma}
+
+\begin{proof}
+The incidence tree has diameter $2d$, and its centre is a vertex node when
+$d$ is even and a hyperedge node when $d$ is odd.
+
+Let $d=2h$ with centre $c$. Root the tree at $c$; at least two branches at
+$c$ reach Berge depth $h$, and no vertex has depth more than $h$. For a
+hyperedge whose parent vertex has depth $j$, the parent side has height
+exactly $h+j$ (through another deep branch at $c$), and both child sides
+have height at most $h-j-1$. Lemma~\ref{lem:height} forces both child
+heights to equal $h-j-1$. Hence every child vertex of depth less than $h$
+has a child hyperedge, and a deep branch at $c$ contains at least
+$1+2+\dots+2^{h-1}=2^h-1$ hyperedges. Two deep branches give $2(2^h-1)$.
+
+Let $d=2h+1$ with central hyperedge $e_0$. Its three branches have height
+at most $h$, and Lemma~\ref{lem:height} applied to $e_0$ makes all three
+equal to $h$. Below a vertex of $e_0$, a hyperedge whose parent is $j$
+steps from that vertex has parent side of height $h+j+1$ and child sides of
+height at most $h-j-1$, which Lemma~\ref{lem:height} again makes equal.
+Each branch therefore has at least $2^h-1$ hyperedges, and $T$ has at least
+$1+3(2^h-1)$.
+
+For $m=10,11,12,13$ the values $(a,B_m)$ are $(15,30)$, $(19,46)$, $(23,62)$
+and $(27,94)$. Moreover $a_{m+4}=2a_m+5$ and $B_{m+4}=4B_m+6$, so
+$B_m\ge2a_m$ implies $B_{m+4}-2a_{m+4}=4(B_m-a_m-1)\ge0$.
+\end{proof}
+
+\begin{corollary}\label{cor:one}
+If $H$ has exactly one isolated vertex, then $|E(H)|\ge U(n)$.
+\end{corollary}
+
+\begin{proof}
+By Lemma~\ref{lem:edge} we may assume that no component is a single
+hyperedge. Let $t$ be the number of linear tree components with a
+hyperedge; by Lemma~\ref{lem:tree} each has at least $2B_m+1\ge 2b-1$
+vertices, so $n\ge 1+t(2b-1)\ge(t+1)b$ when $t\ge1$, and
+$\lfloor n/b\rfloor\ge t+1$ in all cases. Counting vertices over the
+non-isolated components gives $2|E(H)|\ge n-1-t\ge n-\lfloor n/b\rfloor$.
+\end{proof}
+
+\section{Two isolated vertices}
+
+\begin{lemma}\label{lem:long}
+If $H$ has two isolated vertices $z_1,z_2$, then every non-isolated vertex
+$v$ starts a Berge path of length $d$, and no vertex node is a cut node of
+the incidence graph of its component.
+\end{lemma}
+
+\begin{proof}
+A path created by adding $\{z_1,z_2,v\}$ must end with this hyperedge at
+an isolated vertex, so it consists of a path of length $d$ from $v$ and one
+more step. If a vertex node $v$ were a cut node, a longest path from $v$
+would lie in one part after deleting $v$, and a hyperedge at $v$ in another
+part, together with one of its other vertices, would extend it to length
+$d+1$.
+\end{proof}
+
+\begin{lemma}\label{lem:rigid}
+Under the hypotheses of Lemma~\ref{lem:long}, every incidence-unicyclic
+component is a loose $d$-cycle.
+\end{lemma}
+
+\begin{proof}
+Let $Q$ be the cycle of the incidence graph. A hyperedge node off $Q$ would
+lie in a tree hanging from $Q$, and the first vertex node on the way from
+it to the rest of the component, which is either the attachment node or the
+node following a hyperedge attachment node, would be a cut node separating
+two parts that contain hyperedges. So every hyperedge lies on $Q$; its
+third vertex is a pendant vertex, since a chord would create a second
+cycle, and every vertex on $Q$ has degree two. The component is a loose
+cycle with $L$ hyperedges, its longest Berge paths have length $L$, and
+every vertex starts one; Lemma~\ref{lem:long} gives $L=d$.
+\end{proof}
+
+With two isolated vertices there is no linear tree component with a
+hyperedge: one with at least two hyperedges has a vertex cut node, and a
+single hyperedge has longest path length one. Hence
+$|E(H)|\ge\lceil(n-2)/2\rceil$, and if $n$ is even and equality holds then
+every non-isolated component is incidence-unicyclic, hence a loose
+$d$-cycle, and $n=2td+2$.
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Let $H$ be Berge-$P_m$-saturated on $n\ge b$ vertices and $q=\lfloor n/b\rfloor$.
+If a component is a single hyperedge, Lemma~\ref{lem:edge} applies. With no
+isolated vertex, each linear tree component is itself Berge-$P_m$-saturated
+on its vertex set and has at least four vertices, so by~(T) it has at least
+$a$ hyperedges and at least $b$ vertices; there are at most $q$ of them, and
+counting gives $2|E(H)|\ge n-q$. With one isolated vertex,
+Corollary~\ref{cor:one} applies. With two isolated vertices
+$|E(H)|\ge\lceil(n-2)/2\rceil$, which is at least $U(n)$ when $q\ge2$ and equals
+$U(n)$ when $q=1$ and $n$ is odd. If $q=1$ and $n$ is even, so that
+$b<n<2b$, then $U(n)=n/2$, and $|E(H)|=n/2-1$ forces disjoint loose
+$d$-cycles and two isolated vertices, hence $n\equiv2\pmod{2d}$ and the
+stated uniqueness. Conversely $\mathcal C_{d,t}$ attains $n/2-1$ at
+$n=2td+2$ by Proposition~\ref{prop:cycles}, and~(C) supplies $U(n)$ hyperedges
+at every other order. \qed
+
+Exceptional orders exist for every $m\ge10$: one checks $a\ge d$, and
+$t=\lceil a/d\rceil$ gives $a\le td\le 2a-1$, so $b<2td+2<2b$. They are the
+orders $2td+2$ with $\lceil a/d\rceil\le t\le\lfloor (2a-1)/d\rfloor$.
+
+\begin{center}
+\begin{tabular}{rrrrll}
+\toprule
+$m$ & $d$ & $a$ & $b$ & exceptional $n$ & $\sat_3(n,\BP_m)$ versus $U(n)$\\
+\midrule
+10 & 8 & 15 & 31 & 34, 50 & 16, 24 versus 17, 25\\
+11 & 9 & 19 & 39 & 56, 74 & 27, 36 versus 28, 37\\
+12 & 10 & 23 & 47 & 62, 82 & 30, 40 versus 31, 41\\
+13 & 11 & 27 & 55 & 68, 90 & 33, 44 versus 34, 45\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Formal verification}\label{sec:lean}
+\sloppy
+
+The Lean~4.35.0 project in \texttt{lean/} uses Mathlib revision
+\texttt{56a005855ea17e0b0958f73ec801ae140b0a1679}. A hypergraph is a
+\texttt{Finset} of vertex sets; \texttt{IsBergePath} requires distinct
+vertices, distinct hyperedges of the hypergraph and the linking condition
+above; \texttt{ContainsBergePath H m} asks for one of length $m-1$; and
+\texttt{IsBergePathSaturated} requires three-uniformity, freeness and a
+Berge-$P_m$ after adding any absent three-element set. The saturation number
+\texttt{satNumber n m} is the infimum of the sizes of saturated hypergraphs
+on \texttt{Fin n}, and \texttt{Conjecture24ThreeUniform} states the
+conjectured equality with $a$ and $U(n)$ written as above. The project
+proves:
+\begin{itemize}
+\item \texttt{looseCycles\_saturated}: Proposition~\ref{prop:cycles} for
+every $d\ge3$ and every $t$;
+\item \texttt{witness34\_saturated} and \texttt{witness34\_card}: the
+hypergraph on \texttt{Fin 34} with the triples
+$\{16j+i,\,16j+((i+1)\bmod 8),\,16j+8+i\}$, $j\in\{0,1\}$, $0\le i\le7$, is
+Berge-$P_{10}$-saturated and has $16$ hyperedges, while
+\texttt{conjecturedSat 10 34 = 17};
+\item \texttt{not\_conjecture24ThreeUniform},
+\texttt{satNumber\_lt\_conjecturedSat} and
+\texttt{conjecture24\_fails\_for\_every\_m}: the conjecture fails, the
+saturation number is below $U(n)$ at every order $2t(m-2)+2$ strictly
+between $b$ and $2b$, and every $m\ge10$ has such an order.
+\end{itemize}
+A module audit lists the transitive axioms of all 191 declarations of the
+three proof modules, including generated ones; all depend only on
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. The
+lower bound of Theorem~\ref{thm:main}, the uniqueness statement and the
+inherited results~(T) and~(C) are not formalized. A standard-library
+Python program checks Proposition~\ref{prop:cycles} independently by
+exhaustive search for $(m,n)=(10,34)$, $(10,50)$ and $(11,56)$.
+
+\fussy
+\section{Prior work and limitations}
+
+The definitions, results~(T) and~(C), the lower bound of Theorem~2.3 and
+Conjecture~2.4 are from the arXiv version of~\cite{EGKMS}; the journal
+version~\cite{EGKMS-J} could not be accessed for this release, so whether
+its wording of the conjecture differs has not been checked. Linearity of
+Berge saturation numbers for small uniformities is due to English,
+Gerbner, Methuku and Tait~\cite{EGMT}, and graph path saturation to
+K\'aszonyi and Tuza~\cite{KT}. Searches in October 2026 of arXiv, journal
+records and general web indexes did not find the loose-cycle construction,
+a counterexample to Conjecture~2.4 or an exact formula; this does not
+establish priority. Theorem~\ref{thm:main} covers only uniformity three,
+$m\ge10$ and $n\ge b$.
+
+\section*{Research process and AI disclosure}
+
+This is fully autonomous agentic research. Dev D. Goyal is responsible
+for publication. No expert validation or external peer review is
+claimed, and the novelty assessment is provisional.
+
+The question selection, the counterexample, the proof of
+Theorem~\ref{thm:main}, the literature search and exhaustive computer
+checks were produced by autonomous AI research agents in an earlier
+session. Its records attribute the work, including an internal AI review
+that rederived the formula and audited the proof, to an Astra agent
+workflow, and they state that no Lean formalization was attempted.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this
+release. It read the relevant statements of~\cite{EGKMS}, checked the
+written proof, rechecked the witnesses with its own exhaustive search,
+wrote and ran the Lean formalization described in
+Section~\ref{sec:lean}, and wrote this note. AI checks are not human peer
+review.
+
+\begin{thebibliography}{9}
+\bibitem{EGKMS}
+S.~English, N.~Graber, P.~Kirkpatrick, A.~Methuku and E.~C.~Sullivan,
+\emph{Saturation of Berge hypergraphs},
+\href{https://arxiv.org/abs/1710.03735v1}{arXiv:1710.03735v1} (2017).
+
+\bibitem{EGKMS-J}
+S.~English, P.~Gordon, N.~Graber, A.~Methuku and E.~C.~Sullivan,
+\emph{Saturation of Berge hypergraphs}, Discrete Mathematics
+\textbf{342} (2019), 1738--1761.
+\href{https://doi.org/10.1016/j.disc.2019.01.031}{doi:10.1016/j.disc.2019.01.031}.
+
+\bibitem{EGMT}
+S.~English, D.~Gerbner, A.~Methuku and M.~Tait,
+\emph{Linearity of saturation for Berge hypergraphs}, European Journal of
+Combinatorics \textbf{78} (2019), 205--213.
+\href{https://arxiv.org/abs/1807.06947}{arXiv:1807.06947}.
+
+\bibitem{KT}
+L.~K\'aszonyi and Zs.~Tuza, \emph{Saturated graphs with minimal number of
+edges}, Journal of Graph Theory \textbf{10} (1986), 203--210.
+\end{thebibliography}
+\end{document}

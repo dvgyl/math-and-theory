@@ -1,0 +1,120 @@
+{
+  "format_version": 1,
+  "package_id": "berge-path-saturation",
+  "formal_scope": "Lean 4.35.0 proves, for actual three-uniform hypergraphs, Berge paths and saturation under every absent triple, that t disjoint loose d-cycles with two isolated vertices are Berge-P_{d+2}-saturated for every d ≥ 3, that the explicit 34-vertex hypergraph is Berge-P₁₀-saturated with 16 hyperedges, and that the three-uniform case of the conjecture fails for every m ≥ 10. The matching lower bound, the exact formula and the uniqueness of extremal hypergraphs have conventional proofs that use two results of the source paper.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.35.0",
+      "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile": "lakefile.toml",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/BergePath.lean": "f1474ee985ac0cfc907a16b115dbc1c858f14ab885ffcef548e2d67d6696b3f2",
+    "lean/BergePath/AxiomAudit.lean": "a018667781d3ed1468fa57e8c6db35503a0cea4a6f76efd7615dc4ea5bc016cd",
+    "lean/BergePath/Basic.lean": "2ca173feece9c18680c1d11f8ab0ffa535971c772d655b33c1bd9b1feafd5964",
+    "lean/BergePath/Counterexample.lean": "c48c96cf1e236a50627759f1c01f1aaad3bb1a11185047ffedde1cbfbca7eb05",
+    "lean/BergePath/LooseCycles.lean": "b339f56429f901300f460054bff662f7b97975f9cfa60192ee54f800ffc6bd30"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 1384,
+      "sha256": "9ad9d6a8328379ff49267ad49ff4443a2a64df5ea25621f4cd8adb30d38b8980"
+    },
+    "CITATION.bib": {
+      "bytes": 409,
+      "sha256": "bc4e24d9999b508fdc6e742eaacb39a071a1408b22609eada434521c90eb04cc"
+    },
+    "CITATION.cff": {
+      "bytes": 1686,
+      "sha256": "861a75dfc14c8c9b2a8eefbb633e9817624f599a6e995c507b9bb07414459865"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 4344,
+      "sha256": "748dd13d855960167a7cbffddceb6b2d7f94bfb2871478dbd5f86a54fd08a6dc"
+    },
+    "VERIFICATION.md": {
+      "bytes": 1854,
+      "sha256": "6ecc36b53dbe470424bdd06355c1c08d8928824aa232c3270ad47c598c2f5c90"
+    },
+    "certificate/check_witness.py": {
+      "bytes": 4352,
+      "sha256": "308b01f7cf5e1222e8100facab46447384560c93691d97a706016444027a2b7c"
+    },
+    "lean/BergePath.lean": {
+      "bytes": 32,
+      "sha256": "f1474ee985ac0cfc907a16b115dbc1c858f14ab885ffcef548e2d67d6696b3f2"
+    },
+    "lean/BergePath/AxiomAudit.lean": {
+      "bytes": 3487,
+      "sha256": "a018667781d3ed1468fa57e8c6db35503a0cea4a6f76efd7615dc4ea5bc016cd"
+    },
+    "lean/BergePath/Basic.lean": {
+      "bytes": 7853,
+      "sha256": "2ca173feece9c18680c1d11f8ab0ffa535971c772d655b33c1bd9b1feafd5964"
+    },
+    "lean/BergePath/Counterexample.lean": {
+      "bytes": 8555,
+      "sha256": "c48c96cf1e236a50627759f1c01f1aaad3bb1a11185047ffedde1cbfbca7eb05"
+    },
+    "lean/BergePath/LooseCycles.lean": {
+      "bytes": 18966,
+      "sha256": "b339f56429f901300f460054bff662f7b97975f9cfa60192ee54f800ffc6bd30"
+    },
+    "lean/CORRESPONDENCE.md": {
+      "bytes": 3810,
+      "sha256": "dbbc52e2c5d7c0a5cb9f701b3745174bd399bd9579c192eeae0f5d2f145a8195"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3240,
+      "sha256": "50bf23d14cbdf9c38ad145229e04b0c4445fab29a042e5d1ed753c508218e7f1"
+    },
+    "lean/lakefile.toml": {
+      "bytes": 299,
+      "sha256": "5dd4cb26a1e760131bac262fb1ae0e640e52f267c1f9fe8fe52c5b7812181eee"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c"
+    },
+    "manuscript.pdf": {
+      "bytes": 281425,
+      "sha256": "1f654f841ea695632e23ce32c4f90419408e9c012eb365517b98618876036a49"
+    },
+    "manuscript.tex": {
+      "bytes": 20688,
+      "sha256": "f9e4179af0fc898eca433f41c0a37f6287b0ed5b537d99ef289dd57c4c6af206"
+    },
+    "scripts/check_axiom_audit.py": {
+      "bytes": 3173,
+      "sha256": "02686ca4d6ba5cf64ede7690c6acac06030a6e65e67753f275bef21d88fffb4f"
+    },
+    "scripts/verify.sh": {
+      "bytes": 678,
+      "sha256": "8b03281ece52c81ae1327e59fd007ff604dbbab88a82082e130d509a3f909e99"
+    },
+    "verification/README.md": {
+      "bytes": 1091,
+      "sha256": "ef227812b256d3b33f707cbe4edcf700398216dcb87838b4cd933808b840b1e9"
+    },
+    "verification/axiom-inventory.json": {
+      "bytes": 38284,
+      "sha256": "f984f07efab0bcbf1bb6237742c94d15ec9824abeaf2028412323388f9466e5c"
+    },
+    "verification/build.log": {
+      "bytes": 38818,
+      "sha256": "a674cd34c29264c45ac5e9e74e0be877574d30eae56281d5605388fe9efa81af"
+    },
+    "verification/witness-check.json": {
+      "bytes": 765,
+      "sha256": "92dba4714396c5b40407c1e9a3cb0c5a47ea13dfca5421706cec113ae3556690"
+    }
+  }
+}

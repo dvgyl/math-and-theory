@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**46 manuscripts and research notes across 45 result families in mathematics, theoretical computer science, and mathematical physics.**
+**47 manuscripts and research notes across 46 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -139,6 +139,17 @@ For every n ≥ 8, a Berge-triangle-free triple system on n vertices with more t
 **Prior work.** [Bushaw, English, Heath, Johnston and Rombach, 2025.](https://arxiv.org/abs/2502.17686) · [Frankl, Füredi, Goorevitch, Holzman and Simonyi, 2026.](https://doi.org/10.37236/14115)
 
 [Paper PDF](papers/mathematics/berge-triangle-spectrum/manuscript.pdf) · [LaTeX](papers/mathematics/berge-triangle-spectrum/manuscript.tex) · [Proof and reproduction](papers/mathematics/berge-triangle-spectrum/README.md) · [Citation](papers/mathematics/berge-triangle-spectrum/CITATION.bib)
+#### [Exact three-uniform Berge-path saturation numbers and a counterexample to a conjectured formula](papers/mathematics/berge-path-saturation/manuscript.pdf)
+
+**Family:** `berge-path-saturation`.
+
+English, Graber, Kirkpatrick, Methuku and Sullivan conjectured that the three-uniform Berge-P_m saturation number is ⌈(n − ⌊n/b⌋)/2⌉ for all m ≥ 10 and n ≥ b = 2a_m + 1. Two disjoint loose 8-cycles with two isolated vertices form a Berge-P₁₀-saturated hypergraph on 34 vertices with 16 hyperedges, one below the conjectured 17. The preprint determines the saturation number on the whole conjectured range: it is one less than the conjectured value exactly when b < n < 2b and n ≡ 2 (mod 2(m − 2)), and the extremal hypergraph at those orders is unique.
+
+**Formal scope.** Lean 4.35.0 proves, for actual three-uniform hypergraphs, Berge paths and saturation under every absent triple, that t disjoint loose d-cycles with two isolated vertices are Berge-P_{d+2}-saturated for every d ≥ 3, that the explicit 34-vertex hypergraph is Berge-P₁₀-saturated with 16 hyperedges, and that the three-uniform case of the conjecture fails for every m ≥ 10. The matching lower bound, the exact formula and the uniqueness of extremal hypergraphs have conventional proofs that use two results of the source paper.
+
+**Prior work.** [English, Graber, Kirkpatrick, Methuku and Sullivan, arXiv:1710.03735v1, Conjecture 2.4.](https://arxiv.org/abs/1710.03735v1)
+
+[Paper PDF](papers/mathematics/berge-path-saturation/manuscript.pdf) · [LaTeX](papers/mathematics/berge-path-saturation/manuscript.tex) · [Proof and reproduction](papers/mathematics/berge-path-saturation/README.md) · [Citation](papers/mathematics/berge-path-saturation/CITATION.bib)
 
 ### Inequalities and real analysis
 

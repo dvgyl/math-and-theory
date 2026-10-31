@@ -1549,6 +1549,28 @@
         "lean/BergeTriangle.lean": "97f0aa6367895bc557d022da3f3138144c9c832b68b4744ca7f96d2009189266"
       },
       "integrity_manifests": []
+    },
+    "berge-path-saturation": {
+      "root": "papers/mathematics/berge-path-saturation",
+      "release_manifest_sha256": "3d24ea078021c373dd73c22c6be7d0e709c19a60a0ca5ba80f16bc29171ca906",
+      "formal_scope": "Lean 4.35.0 proves, for actual three-uniform hypergraphs, Berge paths and saturation under every absent triple, that t disjoint loose d-cycles with two isolated vertices are Berge-P_{d+2}-saturated for every d ≥ 3, that the explicit 34-vertex hypergraph is Berge-P₁₀-saturated with 16 hyperedges, and that the three-uniform case of the conjecture fails for every m ≥ 10. The matching lower bound, the exact formula and the uniqueness of extremal hypergraphs have conventional proofs that use two results of the source paper.",
+      "proof_roots": [
+        {
+          "path": "lean",
+          "lean_version": "4.35.0",
+          "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "lean/BergePath.lean": "f1474ee985ac0cfc907a16b115dbc1c858f14ab885ffcef548e2d67d6696b3f2",
+        "lean/BergePath/AxiomAudit.lean": "a018667781d3ed1468fa57e8c6db35503a0cea4a6f76efd7615dc4ea5bc016cd",
+        "lean/BergePath/Basic.lean": "2ca173feece9c18680c1d11f8ab0ffa535971c772d655b33c1bd9b1feafd5964",
+        "lean/BergePath/Counterexample.lean": "c48c96cf1e236a50627759f1c01f1aaad3bb1a11185047ffedde1cbfbca7eb05",
+        "lean/BergePath/LooseCycles.lean": "b339f56429f901300f460054bff662f7b97975f9cfa60192ee54f800ffc6bd30"
+      },
+      "integrity_manifests": []
     }
   }
 }

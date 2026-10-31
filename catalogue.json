@@ -625,6 +625,66 @@
       }
     },
     {
+      "id": "berge-path-saturation",
+      "discipline": "Mathematics",
+      "area": "Extremal hypergraph theory",
+      "title": "Exact three-uniform Berge-path saturation numbers and a counterexample to a conjectured formula",
+      "kind": "Counterexample to a published conjecture and exact formula with reproducible proof package",
+      "significance_rank": 115,
+      "keywords": [
+        "Berge hypergraphs",
+        "Berge paths",
+        "saturation numbers",
+        "three-uniform hypergraphs",
+        "loose cycles",
+        "isolated vertices",
+        "extremal hypergraph theory"
+      ],
+      "summary": "Two disjoint loose 8-cycles with two isolated vertices form a Berge-P₁₀-saturated three-uniform hypergraph on 34 vertices with 16 hyperedges, below the value 17 conjectured by English, Graber, Kirkpatrick, Methuku and Sullivan (arXiv:1710.03735v1, Conjecture 2.4). For all m ≥ 10 and n ≥ b = 2a_m + 1 the three-uniform saturation number is ⌈(n − ⌊n/b⌋)/2⌉ − 1 when b < n < 2b and n ≡ 2 (mod 2(m − 2)), and ⌈(n − ⌊n/b⌋)/2⌉ otherwise; at every exceptional order the extremal hypergraph is unique.",
+      "formal_scope": "Lean 4.35.0 proves, for actual three-uniform hypergraphs, Berge paths and saturation under every absent triple, that t disjoint loose d-cycles with two isolated vertices are Berge-P_{d+2}-saturated for every d ≥ 3, that the explicit 34-vertex hypergraph is Berge-P₁₀-saturated with 16 hyperedges, and that the three-uniform case of the conjecture fails for every m ≥ 10. The matching lower bound, the exact formula and the uniqueness of extremal hypergraphs have conventional proofs that use two results of the source paper.",
+      "source": "English, Graber, Kirkpatrick, Methuku and Sullivan stated the conjecture (Saturation of Berge hypergraphs, arXiv:1710.03735v1, Conjecture 2.4) and proved the tree-size theorem and upper construction used here. The wording of the 2019 Discrete Mathematics version was not checked. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/berge-path-saturation/README.md",
+      "paper": "papers/mathematics/berge-path-saturation/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/mathematics/berge-path-saturation"
+      },
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Berge-path saturation conjecture (English–Graber–Kirkpatrick–Methuku–Sullivan, Conjecture 2.4)",
+        "posed_by": "English, Graber, Kirkpatrick, Methuku and Sullivan, Saturation of Berge hypergraphs, arXiv:1710.03735v1, Conjecture 2.4",
+        "problem_url": "https://arxiv.org/abs/1710.03735v1",
+        "status": "Disproved for three-uniform hypergraphs; exact formula given",
+        "claim": "Two loose 8-cycles plus two isolated vertices give a Berge-P₁₀-saturated 3-graph on 34 vertices with 16 edges, not 17; the exact 3-uniform formula holds for all m ≥ 10, n ≥ 2a_m + 1.",
+        "title_tag": "Berge-Path Saturation Conjecture Fails: Exact Three-Uniform Formula",
+        "description": "A 34-vertex counterexample to the Berge-path saturation conjecture of English et al., the exact three-uniform saturation number and unique extremizers. Lean 4 proof.",
+        "queries": [
+          "Berge path saturation number",
+          "saturation of Berge hypergraphs conjecture 2.4",
+          "sat_3(n, Berge P_m)",
+          "Berge-P_m saturated three-uniform hypergraph",
+          "English Graber Kirkpatrick Methuku Sullivan Berge saturation",
+          "Berge path saturation counterexample loose cycles isolated vertices",
+          "exact saturation number Berge paths 3-uniform",
+          "hypergraph saturation Berge path conjecture"
+        ],
+        "faq": [
+          [
+            "Is the conjectured saturation number of Berge paths correct?",
+            "Not for three-uniform hypergraphs. For m = 10 the conjecture predicts 17 hyperedges at n = 34, but two disjoint loose 8-cycles with two isolated vertices are Berge-P₁₀-saturated with 16. For every m ≥ 10 the conjecture fails exactly at the orders n = 2t(m − 2) + 2 with b < n < 2b, where b = 2a_m + 1."
+          ],
+          [
+            "What is the exact three-uniform Berge-path saturation number?",
+            "For m ≥ 10 and n ≥ b it equals ⌈(n − ⌊n/b⌋)/2⌉ minus one at the exceptional orders and equals ⌈(n − ⌊n/b⌋)/2⌉ otherwise; at each exceptional order the unique extremal hypergraph is a disjoint union of loose (m − 2)-cycles with two isolated vertices. The lower bound uses the source paper's tree-size theorem and upper construction. Uniformities above three and n < b are not addressed."
+          ],
+          [
+            "Is the result formally verified?",
+            "Partly. Lean 4 proves that the loose-cycle hypergraphs are saturated for every cycle length, that the explicit 34-vertex hypergraph is saturated with 16 hyperedges, and that the three-uniform conjecture fails for every m ≥ 10. The matching lower bound and uniqueness have conventional proofs."
+          ]
+        ]
+      }
+    },
+    {
       "id": "berge-triangle-spectrum",
       "discipline": "Mathematics",
       "area": "Graph theory",
