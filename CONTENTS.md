@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**49 manuscripts and research notes across 48 result families in mathematics, theoretical computer science, and mathematical physics.**
+**50 manuscripts and research notes across 49 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -221,6 +221,17 @@ Exact minimal recurrences for every power of a rank-thirteen sequence, nonquasip
 
 [Paper PDF](papers/mathematics/power-rank/manuscript.pdf) · [LaTeX](papers/mathematics/power-rank/manuscript.tex) · [Reproduction and source context](papers/mathematics/power-rank/README.md) · [Citation](papers/mathematics/power-rank/CITATION.bib)
 
+#### [Order-polynomial positivity for width-two posets with a chain of at most five elements](papers/mathematics/width-two-order-polynomial/manuscript.pdf)
+
+**Family:** `width-two-order-polynomial`.
+
+For every finite poset P that is the union of two chains A and B with |A| ≤ 5, the chain B being arbitrarily long and the comparabilities between the chains arbitrary, every coefficient of |P|! Ω_P(t) is a nonnegative integer, where Ω_P is the order polynomial; this is a case of Conjecture 7.1 of Ferroni, Morales and Panova. The linear coefficient is at least (a − 1)!(b − 1)! m/(a + b)!, with m the number of elements of B comparable with some element of A, so it is positive exactly when the comparability graph is connected. The proof reduces the linear coefficient on each of 64 chambers to a polynomial in the gaps between boundaries, certified nonnegative by exact square certificates and 194,112 point identities, and lifts it to all coefficients by the ideal–filter reduction of Ferroni, Morales and Panova.
+
+**Formal scope.** Lean 4.35.0 checks the square certificates and proves nonnegativity and the linear lower bound for the 22 chamber polynomials with a short chain of size at most four. The link between the chamber polynomials and the order polynomial, the size-five chambers and the reduction to the linear coefficient have conventional proofs or certificates checked by an independent program.
+
+**Prior work.** [Ferroni, Morales and Panova, arXiv:2503.16403v3, Conjecture 7.1.](https://arxiv.org/abs/2503.16403v3) · [Alexandersson and Jal, arXiv:2410.00127v3.](https://arxiv.org/abs/2410.00127v3) Public partial results on the same conjecture, for ordinal sums of one- and two-element antichains ([10m-u/open-problems-catalog](https://github.com/10m-u/open-problems-catalog/tree/ca8d4d44ba3db527f19f28928c240168f545ecfe)) and for single cross-link factors ([chris-hadad/lr-stretching-results](https://github.com/chris-hadad/lr-stretching-results/blob/0677a8b4bda0db770ad690824c236222783eeb95/results/overlap-families/proofs/A58-COUPLED-PROOF.md)), cover classes that neither contain nor are contained in this one.
+
+[Paper PDF](papers/mathematics/width-two-order-polynomial/manuscript.pdf) · [LaTeX](papers/mathematics/width-two-order-polynomial/manuscript.tex) · [Proof and reproduction](papers/mathematics/width-two-order-polynomial/README.md) · [Citation](papers/mathematics/width-two-order-polynomial/CITATION.bib)
 ### Finite geometry
 
 #### [Blocking sets of PG(2,13) invariant under a fixed-point-free Singer subgroup meet some line in five points](papers/mathematics/singer-orbit-blocking/manuscript.pdf)

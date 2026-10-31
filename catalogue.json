@@ -1165,6 +1165,67 @@
       }
     },
     {
+      "id": "width-two-order-polynomial",
+      "discipline": "Mathematics",
+      "area": "Integer sequences and combinatorics",
+      "title": "Order-polynomial positivity for width-two posets with a chain of at most five elements",
+      "kind": "Partial resolution of a conjecture for an infinite family, with exact certificates and reproducible proof package",
+      "significance_rank": 135,
+      "keywords": [
+        "order polynomial",
+        "width-two posets",
+        "Ferroni–Morales–Panova conjecture",
+        "Ehrhart positivity",
+        "order polytope",
+        "non-nesting rook placements",
+        "sum-of-squares certificate",
+        "posets"
+      ],
+      "summary": "For every finite poset that is the disjoint union of two chains A and B with |A| ≤ 5, with B arbitrarily long and arbitrary comparabilities between the chains, every coefficient of |P|! Ω_P(t) in the monomial basis is a nonnegative integer, where Ω_P is the order polynomial. This is a case of Conjecture 7.1 of Ferroni, Morales and Panova, who reported computer checks when both chains have at most five elements. For a = |A| ≥ 1 and b = |B| ≥ 1 the linear coefficient is at least (a − 1)!(b − 1)! m/(a + b)!, where m counts the elements of B comparable with some element of A, so it is positive exactly when the comparability graph is connected. On each of 64 chambers the normalized linear coefficient is a polynomial of degree at most a in the gaps between boundaries; exact square certificates and 194,112 point identities prove these polynomials nonnegative.",
+      "formal_scope": "Lean 4.35.0 checks the chamber certificates for a short chain of size at most four: for each of the 22 chambers the kernel (decide +kernel, no native_decide) verifies that squares and a nonnegative remainder add up exactly to the certified gap polynomial, and Lean proves that each such polynomial is nonnegative on the closed orthant of any linearly ordered field and dominates (a − 1)! times the sum of the comparable gaps, and that the chambers are exactly the Dyck words. The identification of the gap polynomials with the linear coefficient of the order polynomial (descent–rook correspondence, degree bound, determining set and point identities), the 42 chambers for a = 5 and the reduction to the linear coefficient have conventional proofs or certificates checked by an independent standard-library program.",
+      "source": "Ferroni, Morales and Panova posed the conjecture and proved the reduction to the linear coefficient (Skew shapes, Ehrhart positivity and beyond, arXiv:2503.16403v3, Conjecture 7.1, Theorem 3.4; Proc. London Math. Soc. 2026). The descent–rook correspondence is due to Alexandersson and Jal. Public partial results on the same conjecture (ordinal sums of one- and two-element antichains; single cross-link factors) are credited in the manuscript; neither class contains the other. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/width-two-order-polynomial/README.md",
+      "paper": "papers/mathematics/width-two-order-polynomial/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/mathematics/width-two-order-polynomial"
+      },
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Ferroni–Morales–Panova conjecture on positivity of order polynomials of width-two posets",
+        "posed_by": "Ferroni, Morales and Panova, Skew shapes, Ehrhart positivity and beyond, arXiv:2503.16403v3, Conjecture 7.1; Proceedings of the London Mathematical Society 133 (2026), e70204",
+        "problem_url": "https://arxiv.org/abs/2503.16403v3",
+        "status": "Partially resolved",
+        "claim": "If a finite poset P is the union of two chains, one with at most five elements and the other arbitrary, then |P|! Ω_P(t) has nonnegative coefficients, and [t]Ω_P(t) ≥ (a − 1)!(b − 1)! m/(a + b)!.",
+        "title_tag": "Width-Two Order Polynomial Positivity with a Five-Element Chain",
+        "description": "Proof that order polynomials of two-chain posets with one chain of at most five elements have nonnegative coefficients, a case of the Ferroni–Morales–Panova conjecture.",
+        "queries": [
+          "Ferroni Morales Panova conjecture width two",
+          "order polynomial positive coefficients width two poset",
+          "order polynomial nonnegative coefficients two chains",
+          "Ehrhart positivity order polytope width two",
+          "weak order polynomial positivity",
+          "linear coefficient order polynomial lower bound",
+          "non-nesting rook placements descents width two poset",
+          "Skew shapes Ehrhart positivity and beyond Conjecture 7.1"
+        ],
+        "faq": [
+          [
+            "What does the Ferroni–Morales–Panova conjecture say?",
+            "Conjecture 7.1 of Ferroni, Morales and Panova states that for every finite poset P of width at most two, |P|! times the order polynomial Ω_P(t), which counts weakly order-preserving maps to {1, …, m} at t = m, has nonnegative coefficients in the monomial basis. They reported computer checks when both chains of a two-chain cover have at most five elements."
+          ],
+          [
+            "What is proved here?",
+            "The conjecture holds whenever P is the union of two chains one of which has at most five elements; the other chain may be arbitrarily long and the comparabilities between the chains are arbitrary. The linear coefficient is at least (a − 1)!(b − 1)! m/(a + b)!, so it is positive exactly when the comparability graph is connected. The unrestricted conjecture remains open. Public partial results on ordinal sums of one- and two-element antichains and on single cross-link factors cover different classes."
+          ],
+          [
+            "Is the result formally verified?",
+            "Partly. Lean 4 checks the square certificates and proves nonnegativity of the chamber polynomials for a short chain of size at most four. The link between these polynomials and the order polynomial, the size-five chambers and the reduction to the linear coefficient have conventional proofs or certificates checked by an independent program."
+          ]
+        ]
+      }
+    },
+    {
       "id": "unit-squareclasses",
       "discipline": "Mathematics",
       "area": "Quadratic forms and number theory",

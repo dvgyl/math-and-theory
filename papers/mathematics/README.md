@@ -23,6 +23,7 @@ Each family directory contains its manuscripts, proof sources or shared-library 
 | [Counterexamples to a late-iterate ordering conjecture for generalized Hofstadter functions](hofstadter-iteration/) | [PDF](hofstadter-iteration/paper.pdf) |
 | [A positive constant-recursive sequence with nonquasipolynomial power ranks](power-rank/) | [PDF](power-rank/manuscript.pdf) |
 | [Blocking sets of PG(2,13) invariant under a fixed-point-free Singer subgroup meet some line in five points](singer-orbit-blocking/) | [PDF](singer-orbit-blocking/manuscript.pdf) |
+| [Order-polynomial positivity for width-two posets with a chain of at most five elements](width-two-order-polynomial/) | [PDF](width-two-order-polynomial/manuscript.pdf) |
 | [A rank bound for represented totally positive unit squareclasses](unit-squareclasses/) | [PDF](unit-squareclasses/manuscript.pdf) |
 | [Depth-one Artin–Schreier defect towers are composita](artin-schreier-depth/) | [PDF](artin-schreier-depth/manuscript.pdf) |
 | [Structural selfadhesivity does not imply a numerically selfadhesive realization](structural-selfadhesivity/) | [PDF](structural-selfadhesivity/manuscript.pdf) |

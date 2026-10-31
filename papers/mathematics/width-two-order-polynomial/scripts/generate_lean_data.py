@@ -1,0 +1,149 @@
+#!/usr/bin/env python3
+"""Generate ShortChain/Data.lean from the chamber certificates for a <= 4.
+
+Standard library only.  Every chamber becomes integer data scaled by a common
+denominator D:  D*F = rest + lin + sum of square triples, where `lin` is the
+degree-one part of the nonnegative remainder and `rest` the remainder of
+degree at least two.  A square  w*x^m*(r*x^u - x^v)^2  becomes the triple
+(alpha, beta, gamma) = (D*w*r^2, 2*D*w*r, D*w) on x^(m+2u), x^(m+u+v),
+x^(m+2v) with middle sign minus.  For a <= 3 the certificate polynomial has
+positive integer coefficients and no squares.
+
+Usage: generate_lean_data.py SHORT3 GAP_A4 OUTPUT.lean [--check]
+With --check the output file must already exist with identical contents.
+"""
+import argparse
+import gzip
+import json
+import lzma
+import math
+import sys
+from fractions import Fraction
+
+
+def load(path):
+    opener = lzma.open if path.endswith('.xz') else gzip.open if path.endswith('.gz') else open
+    with opener(path, 'rt', encoding='utf-8') as handle:
+        return json.load(handle)
+
+
+def lcm_all(values):
+    result = 1
+    for value in values:
+        result = result * value // math.gcd(result, value)
+    return result
+
+
+def term_list(terms):
+    return '[' + ',\n    '.join('([%s], %d)' % (','.join(map(str, e)), c) for e, c in terms) + ']'
+
+
+def chamber_block(name, a, word, scale, poly, lin, rest, squares):
+    bools = ', '.join('true' if ch == 'L' else 'false' for ch in word)
+    sq = ',\n    '.join('⟨[%s], [%s], [%s], %d, %d, %d⟩' % (
+        ','.join(map(str, m)), ','.join(map(str, u)), ','.join(map(str, v)), al, be, ga)
+        for m, u, v, al, be, ga in squares)
+    return (f'/-- Chamber `{word}` (short chain of size {a}). -/\n'
+            f'def {name} : Chamber where\n'
+            f'  a := {a}\n'
+            f'  word := [{bools}]\n'
+            f'  scale := {scale}\n'
+            f'  poly := {term_list(poly)}\n'
+            f'  lin := {term_list(lin)}\n'
+            f'  rest := {term_list(rest)}\n'
+            f'  squares := [{sq}]\n\n'
+            f'theorem {name}_valid : {name}.valid = true := by decide +kernel\n')
+
+
+def expected_lin_order(a, word):
+    """Indices j with fewer than a active rows, in the order used by Lean."""
+    heights, opened, closed = [], 0, 0
+    for ch in word:
+        heights.append(opened - closed)
+        if ch == 'L':
+            opened += 1
+        else:
+            closed += 1
+    heights.append(opened - closed)
+    return [j for j, h in enumerate(heights) if h < a]
+
+
+def build(short_path, gap4_path):
+    blocks, names = [], []
+    short = load(short_path)
+    for cert in short['certificates']:
+        a, word = cert['a'], cert['endpoint_word']
+        dim = 2 * a + 1
+        terms = sorted((tuple(t['exponents']), int(t['coefficient'])) for t in cert['coefficients'])
+        assert all(c > 0 for _, c in terms) and all(len(e) == dim for e, _ in terms)
+        lin = [(e, c) for e, c in terms if sum(e) == 1]
+        rest = [(e, c) for e, c in terms if sum(e) != 1]
+        order = expected_lin_order(a, word)
+        lin_map = {e.index(1): c for e, c in lin}
+        assert sorted(lin_map) == sorted(order)
+        lin = [(tuple(1 if i == j else 0 for i in range(dim)), lin_map[j]) for j in order]
+        name = f'c{a}_{word}'
+        names.append(name)
+        blocks.append(chamber_block(name, a, word, 1, terms, lin, rest, []))
+    gap = load(gap4_path)
+    a = gap['a']
+    assert a == 4
+    dim = 2 * a + 1
+    for record in gap['records']:
+        word = record['endpoint_word']
+        poly = {tuple(t['exponents']): Fraction(t['coefficient']) for t in record['polynomial']}
+        resid = {tuple(t['exponents']): Fraction(t['coefficient']) for t in record['residual']}
+        sqs = []
+        for s in record['squares']:
+            w, r = Fraction(s['weight']), Fraction(s['ratio'])
+            sqs.append((tuple(s['multiplier']), tuple(s['u']), tuple(s['v']), w * r * r, 2 * w * r, w))
+        values = list(poly.values()) + list(resid.values()) + [q for s in sqs for q in s[3:]]
+        scale = lcm_all(v.denominator for v in values)
+        to_int = lambda q: int(q * scale)
+        assert all((q * scale).denominator == 1 for q in values)
+        poly_terms = sorted((e, to_int(c)) for e, c in poly.items())
+        order = expected_lin_order(a, word)
+        lin_map = {e.index(1): to_int(c) for e, c in resid.items() if sum(e) == 1}
+        assert sorted(lin_map) == sorted(order)
+        lin = [(tuple(1 if i == j else 0 for i in range(dim)), lin_map[j]) for j in order]
+        rest = sorted((e, to_int(c)) for e, c in resid.items() if sum(e) != 1)
+        squares = [(m, u, v, to_int(al), to_int(be), to_int(ga)) for m, u, v, al, be, ga in sqs]
+        name = f'c{a}_{word}'
+        names.append(name)
+        blocks.append(chamber_block(name, a, word, scale, poly_terms, lin, rest, squares))
+    header = ('/-\nGenerated by scripts/generate_lean_data.py from\n'
+              'certificate/SHORT_CHAIN_CERTIFICATE.json.xz and certificate/GAP_SOS_A4.json.xz.\n'
+              'Do not edit by hand.\n-/\n'
+              'import ShortChain.Poly\n\nnamespace ShortChain\n\n')
+    footer = ('/-- All chambers for short-chain sizes one to four. -/\n'
+              'def chambers : List Chamber :=\n  [' + ', '.join(names) + ']\n\n'
+              '/-- Every chamber certificate passes the kernel check. -/\n'
+              'theorem chambers_valid : chambers.all Chamber.valid = true := by\n'
+              '  simp only [chambers, List.all_cons, List.all_nil, Bool.and_true,\n    '
+              + ', '.join(n + '_valid' for n in names) + ']\n\n'
+              'end ShortChain\n')
+    return header + '\n'.join(blocks) + '\n' + footer
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__,
+                                     formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument('short3')
+    parser.add_argument('gap4')
+    parser.add_argument('output')
+    parser.add_argument('--check', action='store_true')
+    args = parser.parse_args()
+    text = build(args.short3, args.gap4)
+    if args.check:
+        with open(args.output, encoding='utf-8') as handle:
+            if handle.read() != text:
+                print('FAIL: Lean data differs from the certificates')
+                sys.exit(1)
+        print('PASS: Lean data matches the certificates')
+    else:
+        with open(args.output, 'w', encoding='utf-8') as handle:
+            handle.write(text)
+
+
+if __name__ == '__main__':
+    main()

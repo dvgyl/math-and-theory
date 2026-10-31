@@ -1,0 +1,48 @@
+{
+  "paper": "manuscript.tex",
+  "lean_project": "lean",
+  "audited_declarations": [
+    "ShortChain.certified_chambers",
+    "ShortChain.chambers_complete",
+    "ShortChain.chambers_valid"
+  ],
+  "results": [
+    {
+      "paper_label": "Section 5 (certificates), a <= 4",
+      "declarations": [
+        "ShortChain.Chamber",
+        "ShortChain.Chamber.valid",
+        "ShortChain.Chamber.F",
+        "ShortChain.chambers",
+        "ShortChain.chambers_valid",
+        "ShortChain.chambers_complete",
+        "ShortChain.certified_chambers"
+      ],
+      "scope": "For each of the 22 chambers with a short chain of size at most four, the certified polynomial F_{a,w} (data generated from the certificate files) is nonnegative at every gap vector with nonnegative entries in any linearly ordered field; the chamber words for a = 1, ..., 4 are exactly the Dyck words. The kernel evaluates the Boolean certificate test; soundness is proved for arbitrary data."
+    },
+    {
+      "paper_label": "Section 7 (linear lower bound), certificate part, a <= 4",
+      "declarations": [
+        "ShortChain.comparableSegments",
+        "ShortChain.Chamber.lower_bound",
+        "ShortChain.certified_chambers"
+      ],
+      "scope": "F_{a,w}(x) >= (a-1)! times the sum of the gaps x_j with h_j < a, for the same chambers and gap vectors."
+    },
+    {
+      "paper_label": "Section 5 (certificates), a = 5",
+      "declarations": [],
+      "scope": "Certificate checked by certificate/check_certificates.py (positivity of weights and remainders, exact square identities, point identities); not formalized."
+    },
+    {
+      "paper_label": "Lemma 4 (descent-rook correspondence), equation (3), Lemmas 5 and 6, point identities",
+      "declarations": [],
+      "scope": "Conventional proofs (the correspondence is due to Alexandersson and Jal) and the point identities checked by certificate/check_certificates.py; not formalized."
+    },
+    {
+      "paper_label": "Section 6 (Theorem 1), Theorem 2, Corollary 3",
+      "declarations": [],
+      "scope": "Conventional proofs using the ideal-filter reduction of Ferroni, Morales and Panova; not formalized."
+    }
+  ]
+}

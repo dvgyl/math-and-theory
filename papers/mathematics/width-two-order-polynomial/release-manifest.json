@@ -1,0 +1,136 @@
+{
+  "format_version": 1,
+  "package_id": "width-two-order-polynomial",
+  "formal_scope": "Lean 4.35.0 checks the chamber certificates for a short chain of size at most four: for each of the 22 chambers the kernel (decide +kernel, no native_decide) verifies that squares and a nonnegative remainder add up exactly to the certified gap polynomial, and Lean proves that each such polynomial is nonnegative on the closed orthant of any linearly ordered field and dominates (a − 1)! times the sum of the comparable gaps, and that the chambers are exactly the Dyck words. The identification of the gap polynomials with the linear coefficient of the order polynomial (descent–rook correspondence, degree bound, determining set and point identities), the 42 chambers for a = 5 and the reduction to the linear coefficient have conventional proofs or certificates checked by an independent standard-library program.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.35.0",
+      "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile": "lakefile.toml",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/ShortChain.lean": "0543cf7c7849c7cbd45d05152e9a6a9ead8e5d5c97b69b28764687208d57b489",
+    "lean/ShortChain/AxiomAudit.lean": "588415955f2865fcb2e1884ce5ad3c7b47cf3a6c0c870ca52820f59a7a816fe7",
+    "lean/ShortChain/Data.lean": "b8a2c0a15cfaed211aeef35ed53f56fe06bb600b91dbc6275664f077df36bdf5",
+    "lean/ShortChain/Main.lean": "f03ad48dcdb1a88c6f9ad2ab6a4bc5e4b635a9040633007bc644ddd531458546",
+    "lean/ShortChain/Poly.lean": "637be2a049da7a229b3f03bed09f8dbf3fec3f4b21f6cba32a6e670364fd6e92"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 1735,
+      "sha256": "82d9bf325fcdca6cbfb18427b396252e573207e5ab11d1e037e22cace6d2746a"
+    },
+    "CITATION.bib": {
+      "bytes": 407,
+      "sha256": "bab2f65295678a5b25ebd01373ac9f21184d08da77bd171b338a4d8b6ff86797"
+    },
+    "CITATION.cff": {
+      "bytes": 1720,
+      "sha256": "d2ea37d83f2cb78e4441742280ac8c37d2b256ff3b28f3ddda9c21b8eff7732a"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 6386,
+      "sha256": "ab052a4bae1b75a4f2684f5b4e343a34f3eec6c74e06d3caef81a8aea30a4469"
+    },
+    "VERIFICATION.md": {
+      "bytes": 3698,
+      "sha256": "d445b8b153251211369a926e88022825c0d3060bbfd96678a6d62087390b0731"
+    },
+    "certificate/check_certificates.py": {
+      "bytes": 16351,
+      "sha256": "b792c2dff831dee32cc3ef0ef96a000e9c4dd2260c6b5f8f1fd0cfb30a1402c1"
+    },
+    "certificate/data/GAP_SOS_A4.json.xz": {
+      "bytes": 39492,
+      "sha256": "5d1219cb11cd2482c478f085e1149929ac6f0109971e751fc1bc6736bc031ad6"
+    },
+    "certificate/data/GAP_SOS_A5.json.xz": {
+      "bytes": 615252,
+      "sha256": "0e1fa07ea3adfc09dac51eac295257ebcad34884ef1879216de6c4147897e99a"
+    },
+    "certificate/data/SHORT_CHAIN_CERTIFICATE.json.xz": {
+      "bytes": 1688,
+      "sha256": "76e34a15900777fbd2aaf345c83b764a829e3d84e3e801ceb6180c1e766aa603"
+    },
+    "lean/ShortChain.lean": {
+      "bytes": 23,
+      "sha256": "0543cf7c7849c7cbd45d05152e9a6a9ead8e5d5c97b69b28764687208d57b489"
+    },
+    "lean/ShortChain/AxiomAudit.lean": {
+      "bytes": 3288,
+      "sha256": "588415955f2865fcb2e1884ce5ad3c7b47cf3a6c0c870ca52820f59a7a816fe7"
+    },
+    "lean/ShortChain/Data.lean": {
+      "bytes": 633232,
+      "sha256": "b8a2c0a15cfaed211aeef35ed53f56fe06bb600b91dbc6275664f077df36bdf5"
+    },
+    "lean/ShortChain/Main.lean": {
+      "bytes": 1582,
+      "sha256": "f03ad48dcdb1a88c6f9ad2ab6a4bc5e4b635a9040633007bc644ddd531458546"
+    },
+    "lean/ShortChain/Poly.lean": {
+      "bytes": 13238,
+      "sha256": "637be2a049da7a229b3f03bed09f8dbf3fec3f4b21f6cba32a6e670364fd6e92"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3246,
+      "sha256": "c1a2765138d1544d515658567b154a80a2b92c5c9207e922993cf972f9aaa4c3"
+    },
+    "lean/lakefile.toml": {
+      "bytes": 307,
+      "sha256": "543f24ba80998e89f8e821e7a53b44c8e7f4109e190709b6465c21015d1208d7"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c"
+    },
+    "manuscript.pdf": {
+      "bytes": 307591,
+      "sha256": "ec8e69c3906c2a671c99606956e423a7fbece4bdc319788883ced258532cb5ca"
+    },
+    "manuscript.tex": {
+      "bytes": 26228,
+      "sha256": "cd6b576352cdb35d4cd1ab6221b3eca431891be84f5b6b9969ce4c4dee5ac9ce"
+    },
+    "scripts/check_axiom_audit.py": {
+      "bytes": 3167,
+      "sha256": "ca104081a771bb24ca45a131aea38c798f350160d0fc91ca121b16bdcd84f3a0"
+    },
+    "scripts/generate_lean_data.py": {
+      "bytes": 6501,
+      "sha256": "b8c1177312f3460cf93baa4c0b45dabc26769fcc3486bbcf46ce12d5efefc84e"
+    },
+    "scripts/verify.sh": {
+      "bytes": 900,
+      "sha256": "5fb8dd74f7d6d50f67bc41cd30889aff7cdd14afab5b297cc85c726847849adf"
+    },
+    "theorem-map.json": {
+      "bytes": 2165,
+      "sha256": "bcd3fe6bf47adf93f58e770d099e8f4254280443f28be4962b97d7c9a19d4f88"
+    },
+    "verification/README.md": {
+      "bytes": 1516,
+      "sha256": "7714f6109a310c1f431404a064025a9319a6d742493b4b0dd756c1a5d2fb2de6"
+    },
+    "verification/axiom-inventory.json": {
+      "bytes": 35832,
+      "sha256": "3e01b305707edccd9ff1ec6f45eec6335c565f718eb52ab9fe59b43829a297a2"
+    },
+    "verification/build.log": {
+      "bytes": 40924,
+      "sha256": "136488e1225e0c897f5c338ae6510a4e09eca2f922ac1bb7c77e498b2628334a"
+    },
+    "verification/certificate-check.json": {
+      "bytes": 1082,
+      "sha256": "e4233518f50c5fa229e31879c6575224d694946cccae9b4e1703f1c129680ba7"
+    }
+  }
+}

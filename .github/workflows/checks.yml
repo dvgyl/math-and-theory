@@ -349,6 +349,9 @@ jobs:
           - package: singer-orbit-blocking
             root: papers/mathematics/singer-orbit-blocking
             project: lean
+          - package: width-two-order-polynomial
+            root: papers/mathematics/width-two-order-polynomial
+            project: lean
           - package: matrix-pencil-completion
             root: papers/mathematics/matrix-pencil-completion
             project: lean_p1_converse
@@ -430,6 +433,11 @@ jobs:
             python3 ../certificate/run_certificates.py --skip-m7
           elif [[ '${{ matrix.package }}' == 'singer-orbit-blocking' ]]; then
             python3 ../verify.py --output "${RUNNER_TEMP}/singer-orbit-blocking-verification"
+          elif [[ '${{ matrix.package }}' == 'width-two-order-polynomial' ]]; then
+            python3 ../scripts/generate_lean_data.py ../certificate/data/SHORT_CHAIN_CERTIFICATE.json.xz ../certificate/data/GAP_SOS_A4.json.xz ShortChain/Data.lean --check
+            lake build ShortChain ShortChain.AxiomAudit 2>&1 | tee "${RUNNER_TEMP}/width-two-build.log"
+            python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/width-two-build.log" --project . --output "${RUNNER_TEMP}/width-two-axioms.json"
+            python3 ../certificate/check_certificates.py --extra 3
           elif [[ '${{ matrix.package }}' == 'matrix-pencil-completion' ]]; then
             command -v rg >/dev/null || { sudo apt-get update && sudo apt-get install --yes ripgrep; }
             bash verify.sh

@@ -1,0 +1,527 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Order-polynomial positivity with a short chain}
+\fancyhead[R]{\small Dev D. Goyal}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\hypersetup{pdftitle={Order-polynomial positivity for width-two posets with a chain of at most five elements},
+pdfauthor={Dev D. Goyal},
+pdfsubject={Fully autonomous agentic research},
+pdfkeywords={order polynomial, width-two posets, Ehrhart positivity, order polytope, non-nesting rooks, sum of squares, Lean 4}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newcommand{\rise}[2]{#1^{\overline{#2}}}
+\title{\textbf{Order-polynomial positivity for width-two posets\\ with a chain of at most five elements}}
+\author{Dev D. Goyal}
+\date{31 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a finite poset $P$ let $\Omega_P(t)$ be its order polynomial, which
+counts weakly order-preserving maps $P\to\{1,\dots,m\}$ at $t=m$.
+Ferroni, Morales and Panova conjectured that $|P|!\,\Omega_P(t)$ has
+nonnegative coefficients in the monomial basis whenever $P$ has width at
+most two, and reported computer checks when both chains of a two-chain
+cover have at most five elements. We prove the conjecture for every
+finite poset that is the union of two chains $A$ and $B$ with $|A|\le5$,
+the chain $B$ being arbitrarily long and the comparabilities between $A$
+and $B$ arbitrary. For $|A|,|B|\ge1$ we also prove
+$[t]\,\Omega_P(t)\ge(|A|-1)!\,(|B|-1)!\,m/|P|!$, where $m$ is the number of
+elements of $B$ comparable with some element of $A$, so that the linear
+coefficient is positive exactly when the comparability graph is
+connected. Via the descent--rook correspondence of Alexandersson and
+Jal, the normalized linear coefficient is, on each of the $64$ chambers
+of endpoint configurations, a polynomial of degree at most $|A|$ in the
+gaps between endpoints, independent of $|B|$. Exact certificates (sums
+of $1{,}072$ rational squares plus nonnegative remainders, matched with
+an independent order-polynomial evaluation at $194{,}112$ determining
+points) prove these polynomials nonnegative, and the known
+ideal--filter reduction of Ferroni, Morales and Panova lifts the linear
+coefficient to all coefficients. Lean~4 checks the nonnegativity
+certificates of the chamber polynomials for $|A|\le4$; the rest is a
+conventional proof with certificates checked by an independent program.
+\end{abstract}
+
+\section{Introduction and results}
+
+Let $P$ be a finite poset with $n$ elements. For a positive integer $m$
+let $\Omega_P(m)$ be the number of maps $f:P\to\{1,\dots,m\}$ with
+$f(x)\le f(y)$ whenever $x<y$. It is a polynomial in $m$ of degree $n$,
+the \emph{order polynomial}, and $\Omega_P(t+1)$ is the Ehrhart
+polynomial of the order polytope of $P$~\cite{Stanley}. Writing
+$\Omega_P(t)=\sum_k e_k\binom tk$, where $e_k$ counts chains
+$\emptyset=I_0\subsetneq I_1\subsetneq\dots\subsetneq I_k=P$ of order
+ideals, shows that $n!\,\Omega_P(t)\in\mathbb Z[t]$. Nonnegativity of
+the coefficients of $\Omega_P(t)$ implies that of $\Omega_P(t+1)$, hence
+Ehrhart positivity of the order polytope, but it fails in general: the
+star with one minimum and four maximal elements has
+$\Omega(t)=\tfrac{t^5}5+\tfrac{t^4}2+\tfrac{t^3}3-\tfrac t{30}$.
+
+\paragraph{The conjecture.} Ferroni, Morales and Panova~\cite[Section~7.1,
+Conjecture~7.1]{FMP} conjectured that $n!\,\Omega_P(t)$ has nonnegative
+coefficients in the monomial basis for every poset $P$ of width at most
+two. By Dilworth's theorem these are exactly the posets covered by two
+chains. They reported computer verification when both chains have at
+most five elements, proved positivity for the cell posets of skew shapes
+(a different construction of a poset from a shape), and showed that
+for a family closed under order ideals and their complementary filters
+positivity of all coefficients follows from positivity of the linear
+coefficient~\cite[Proposition~3.3, Theorem~3.4]{FMP}.
+
+\begin{theorem}\label{thm:main}
+Let $P$ be a finite poset that is the disjoint union of two chains $A$ and
+$B$ with $|A|\le5$. There is no condition on $|B|$ or on the
+comparabilities between $A$ and $B$. Then every coefficient of
+$|P|!\,\Omega_P(t)$ in the monomial basis is a nonnegative integer.
+\end{theorem}
+
+\begin{theorem}\label{thm:lb}
+In Theorem~\ref{thm:main} let $a=|A|\ge1$, $b=|B|\ge1$ and let $m_A(B)$
+be the number of elements of $B$ comparable with at least one element
+of $A$. Then
+\[
+[t]\,\Omega_P(t)\ \ge\ \frac{(a-1)!\,(b-1)!}{(a+b)!}\,m_A(B).
+\]
+\end{theorem}
+
+\begin{corollary}\label{cor:conn}
+For a nonempty poset $P$ as in Theorem~\ref{thm:main}, the linear
+coefficient of $\Omega_P(t)$ is positive if the comparability graph of
+$P$ is connected and zero otherwise.
+\end{corollary}
+
+The empty poset ($\Omega=1$) and the case of an empty chain are included.
+The hypothesis is a partition into two chains with one of them short;
+the existence of a long chain whose complement has at most five elements
+is weaker, since the complement need not be a chain. The case $a=1$ is
+elementary (Example~\ref{ex:a1}). Five is the limit of the certificates
+we have, not a proven threshold.
+
+\paragraph{Method.} Section~\ref{sec:enc} encodes the comparabilities
+between the chains by two monotone boundary sequences. Using the
+correspondence between descents of linear extensions and non-nesting
+rook placements due to Alexandersson and Jal~\cite{AJ}, Section~\ref{sec:lin}
+writes $n!\,[t]\Omega_P(t)/(b-1)!$ as an alternating combination of rook
+numbers. Section~\ref{sec:chambers} splits the boundary configurations
+into $C_a$ chambers, $C_a$ the Catalan number, and shows that on each
+chamber this functional is a polynomial of degree at most $a$ in the
+$2a+1$ gaps between consecutive endpoints, with no dependence on $b$
+beyond the gaps. Finitely many exact evaluations therefore identify it,
+and Section~\ref{sec:cert} certifies each chamber polynomial nonnegative
+on the orthant. For $a\le3$ all its coefficients are positive; for
+$a=4$, ten of the fourteen chamber polynomials have negative
+coefficients and are written as sums of rational squares plus a
+remainder with nonnegative coefficients. Section~\ref{sec:proof} applies
+the ideal--filter reduction.
+
+\paragraph{Related work.} Section~\ref{sec:related} compares the result
+with two public partial results on the same conjecture: positivity for
+ordinal sums of one- and two-element antichains, and a coefficient
+positivity theorem for lattice-point counts whose order-polynomial
+factors have a single cross-link. Neither class contains the class of
+Theorem~\ref{thm:main}, nor is contained in it.
+
+\section{Boundary encoding}\label{sec:enc}
+
+Write $A_1<\dots<A_a$ and $B_1<\dots<B_b$. For $1\le i\le a$ let $L_i$ be
+the number of elements of $B$ below $A_i$ and $U_i$ be $b$ minus the
+number of elements of $B$ above $A_i$. By transitivity within the chains,
+\begin{equation}\label{eq:mono}
+0\le L_1\le\dots\le L_a\le b,\qquad 0\le U_1\le\dots\le U_a\le b,\qquad
+L_i\le U_i,
+\end{equation}
+and the cross relation is
+\begin{equation}\label{eq:cross}
+B_j<A_i\iff j\le L_i,\qquad A_i<B_j\iff j>U_i,\qquad A_i\parallel
+B_j\iff L_i<j\le U_i.
+\end{equation}
+Conversely, any data satisfying~\eqref{eq:mono}, with~\eqref{eq:cross}
+and the two chain orders, define a partial order. Antisymmetry holds since
+$j\le L_i$ and $j>U_i$ are incompatible. For transitivity through the
+other chain: $A_i<B_j<A_{i'}$ gives $U_i<j\le L_{i'}\le U_{i'}$, hence
+$i<i'$ by monotonicity of $U$; $B_j<A_i<B_{j'}$ gives $j\le L_i\le U_i<j'$;
+the remaining patterns combine one cross relation with a chain relation
+and follow from monotonicity. Every pair $(L,U)$ satisfying~\eqref{eq:mono}
+therefore arises, and the incomparable pairs form the board of cells
+$(i,j)$ with $L_i<j\le U_i$.
+
+\section{The linear coefficient as a rook functional}\label{sec:lin}
+
+A \emph{non-nesting rook placement} of size $k$ is a set of $k$
+incomparable pairs $(A_{i_1},B_{j_1}),\dots,(A_{i_k},B_{j_k})$ with
+$i_1<\dots<i_k$ and $j_1<\dots<j_k$; let $r_k$ be their number, $r_0=1$.
+
+\begin{lemma}[Alexandersson--Jal]\label{lem:rook}
+Label $P$ naturally by a linear extension that, whenever both are
+available, takes an element of $A$ before an element of $B$. Then the
+number of linear extensions of $P$ with $k$ descents is $r_k$.
+\end{lemma}
+
+\begin{proof}
+This is the correspondence of~\cite[Theorem~5.4, Lemma~5.6,
+Corollary~5.8]{AJ}; we give the direct argument covering empty rows,
+columns and coincident endpoints. If $A_i\parallel B_j$ then
+$L_i<j$, and by induction on $i$ every element below $A_i$ precedes $B_j$
+in the labelling, so
+$A_i$ is available before $B_j$ is chosen and receives the smaller
+label. A descent of a linear extension is a pair of adjacent incomparable
+elements in decreasing label order, hence a pair $B_jA_i$ with
+$A_i\parallel B_j$, and the recorded pairs of an extension have
+increasing indices in both chains. Conversely, given a non-nesting
+placement, the prefixes $\{A_1,\dots,A_{i_s-1}\}\cup\{B_1,\dots,B_{j_s-1}\}$
+and $\{A_1,\dots,A_{i_s}\}\cup\{B_1,\dots,B_{j_s}\}$ are order ideals by
+$L_{i_s}<j_s\le U_{i_s}$ and~\eqref{eq:mono}; filling the elements between
+consecutive prescribed pairs in increasing label order gives the unique
+linear extension whose descents are exactly the prescribed pairs.
+\end{proof}
+
+By the standard descent expansion~\cite[Section~3.15]{Stanley}, for a
+natural labelling,
+\begin{equation}\label{eq:desc}
+\Omega_P(t)=\sum_{k=0}^{a}r_k\binom{t+n-1-k}{n},\qquad n=a+b.
+\end{equation}
+Assume $a,b\ge1$. For $0\le k\le n-1$ the binomial
+$\binom{t+n-1-k}{n}$ is $(t+n-1-k)\cdots(t-k)/n!$, whose linear
+coefficient is $(-1)^kk!\,(n-1-k)!/n!$. Since $k\le a\le n-1$,
+\begin{equation}\label{eq:F}
+F:=\frac{n!\,[t]\,\Omega_P(t)}{(b-1)!}=\sum_{k=0}^{a}(-1)^k\,k!\,\rise b{a-k}\,r_k,
+\qquad \rise bd=b(b+1)\cdots(b+d-1).
+\end{equation}
+This is the linear coefficient of the unshifted order polynomial, not of
+the Ehrhart polynomial $\Omega_P(t+1)$.
+
+\section{Chambers and gap polynomials}\label{sec:chambers}
+
+Merge the lists $L_1,\dots,L_a$ and $U_1,\dots,U_a$ into one weakly
+increasing list, placing $L$-endpoints before $U$-endpoints at ties and
+keeping the order within each list. Recording the endpoint types gives a
+word $w$ with $a$ letters $L$ and $a$ letters $U$; since $L_i\le U_i$,
+every prefix has at least as many $L$'s as $U$'s, so $w$ is a Dyck word.
+There are $C_a=\frac1{a+1}\binom{2a}a$ of them: $1,2,5,14,42$ for
+$a=1,\dots,5$, in total $64$ chambers. Let $x_0$ be the first endpoint,
+$x_j$ the distance from the $j$-th to the $(j+1)$-st endpoint for
+$1\le j<2a$, and $x_{2a}=b$ minus the last endpoint. Then
+$x\in\mathbb Z_{\ge0}^{2a+1}$, $b=x_0+\dots+x_{2a}$, and conversely every
+pair $(w,x)$ gives boundary data satisfying~\eqref{eq:mono}, hence a
+poset. Ties are zero gaps; a configuration on a chamber boundary may
+have several encodings, which is harmless.
+
+If after $j$ endpoints $o$ letters $L$ and $c$ letters $U$ have
+occurred, every element $B_{j'}$ in the $j$-th gap segment is
+incomparable exactly with $A_{c+1},\dots,A_o$, by~\eqref{eq:cross}. Write
+$h_j=o-c$ for the number of these rows; $h_0=h_{2a}=0$.
+
+\begin{lemma}\label{lem:poly}
+For fixed $(a,w)$ there is a polynomial $F_{a,w}\in\mathbb Q[x_0,\dots,x_{2a}]$
+of total degree at most $a$, with $F_{a,w}(0)=0$, such that $F$
+in~\eqref{eq:F} equals $F_{a,w}(x)$ for every poset encoded by $(w,x)$
+with $b\ge1$.
+\end{lemma}
+
+\begin{proof}
+A placement of size $k$ selects $k$ rows and assigns them, in increasing
+order, to weakly increasing gap segments in which they are active; if
+segment $j$ receives $d_j$ rows, their columns can be chosen in
+$\binom{x_j}{d_j}$ ways, and the columns are then increasing. Hence
+$r_k=\sum\prod_j\binom{x_j}{d_j}$ over the finitely many such
+assignments, a polynomial of degree at most $k$. Since $b=\sum x_j$,
+each term of~\eqref{eq:F} has degree at most $a$. At $x=0$ every $r_k$
+with $k\ge1$ vanishes and $\rise 0a=0$.
+\end{proof}
+
+\begin{lemma}\label{lem:det}
+A polynomial of total degree at most $a$ in $d$ variables that vanishes on
+$S_{d,a}=\{x\in\mathbb Z_{\ge0}^d:x_0+\dots+x_{d-1}\le a\}$ is zero.
+\end{lemma}
+
+\begin{proof}
+The products $\prod_i\binom{x_i}{\alpha_i}$ with $|\alpha|\le a$ form a
+basis. Evaluating at $x=\beta\in S_{d,a}$ in order of increasing
+$|\beta|$, only $\alpha\le\beta$ contribute, the coefficients with
+$|\alpha|<|\beta|$ are already zero, and among $|\alpha|=|\beta|$ only
+$\alpha=\beta$ survives, with value one.
+\end{proof}
+
+Thus $F_{a,w}$ is determined by its values on $S_{2a+1,a}$, which has
+$\binom{3a+1}{a}$ points: $4,21,120,715,4368$ for $a=1,\dots,5$.
+
+\section{Certificates}\label{sec:cert}
+
+For each of the $64$ chambers the certificate supplies $F_{a,w}$
+explicitly by its monomial coefficients, and a proof that it is
+nonnegative on $\mathbb R_{\ge0}^{2a+1}$:
+\begin{itemize}
+\item for $a\le3$, all coefficients of $F_{a,w}$ are positive integers;
+\item for $a=4,5$, an identity
+\begin{equation}\label{eq:sos}
+F_{a,w}(x)=\sum_s q_s\,x^{\mu_s}\bigl(\rho_s x^{u_s}-x^{v_s}\bigr)^2+\sum_e c_e\,x^e
+\end{equation}
+with rational $q_s\ge0$, $c_e\ge0$, rational $\rho_s$ and exponent vectors
+$\mu_s,u_s,v_s,e\in\mathbb Z_{\ge0}^{2a+1}$; every term is nonnegative on
+the orthant.
+\end{itemize}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{rrrrr}
+\toprule
+$a$ & chambers & points per chamber & determining points & square terms\\
+\midrule
+1 & 1 & 4 & 4 & 0\\
+2 & 2 & 21 & 42 & 0\\
+3 & 5 & 120 & 600 & 0\\
+4 & 14 & 715 & 10{,}010 & 101\\
+5 & 42 & 4{,}368 & 183{,}456 & 971\\
+\midrule
+total & 64 & & 194{,}112 & 1{,}072\\
+\bottomrule
+\end{tabular}
+\caption{Size of the certificate.}\label{tab:cert}
+\end{table}
+
+The checker \texttt{certificate/check\_certificates.py}, which uses only
+the Python standard library and exact rational arithmetic, verifies:
+\begin{enumerate}
+\item the chamber list for each $a\le5$ is exactly the set of Dyck words;
+\item each $F_{a,w}$ has $2a+1$ variables, total degree at most $a$ and
+zero constant term;
+\item positivity of the coefficients for $a\le3$; for $a=4,5$
+nonnegativity of every $q_s$ and $c_e$ and exact coefficientwise
+equality in~\eqref{eq:sos};
+\item at every point $x\in S_{2a+1,a}$, equality of $F_{a,w}(x)$ with the
+value of~\eqref{eq:F} for the poset encoded by $(w,x)$, computed from
+scratch: $\Omega_P(m)$ for $m=0,\dots,n$ by counting multichains of
+order ideals, which are pairs of chain prefixes, and the linear
+coefficient from finite differences; this evaluation does not use rook
+numbers;
+\item the degree-one remainder coefficients needed in
+Section~\ref{sec:lb}.
+\end{enumerate}
+As a sanity check of Lemma~\ref{lem:poly}, the checker also compares
+$F_{a,w}$ with~\eqref{eq:F} at three random gap vectors with $|x|>a$ in
+every chamber, and it rejects corrupted certificates, among them a
+polynomial and remainder shifted by the same monomial, which still
+satisfy~\eqref{eq:sos} and are caught only by the point identities. The certificates and the identities were found
+with the help of a linear-programming search; the search is not part of
+the proof, and the accepted weights are exact rationals. The original
+research package contained two further independent verifications of the
+same identities, which we reran.
+
+By Lemmas~\ref{lem:poly} and~\ref{lem:det} the identities hold as
+polynomial identities, so $F_{a,w}(x)\ge0$ for every $x\ge0$, and
+by~\eqref{eq:F} $[t]\,\Omega_P(t)\ge0$ for every $P$ in
+Theorem~\ref{thm:main} with $a,b\ge1$.
+
+\begin{remark}
+For $a=4$ the coefficientwise argument is not available: ten of the
+fourteen polynomials $F_{4,w}$ have a negative coefficient. A negative
+coefficient of a gap polynomial is not a negative value of an order
+polynomial. For $a=6$ two limited searches for certificates of the
+form~\eqref{eq:sos} failed; this says nothing about the truth of the
+conjecture there.
+\end{remark}
+
+\section{Proof of Theorem~\ref{thm:main}}\label{sec:proof}
+
+The class $\mathcal S_5$ of posets admitting a partition into two chains,
+one of size at most five, is closed under order ideals and their
+complementary filters: intersect the two chains with the ideal or
+filter. For a nonempty poset $P$ write $\Omega_P(t)=\sum_{k\ge1}c_k(P)t^k$;
+$\Omega_P(0)=0$. Splitting a map to $\{1,\dots,x+y\}$ at the largest
+value at most $x$ gives
+$\Omega_P(x+y)=\sum_I\Omega_I(x)\,\Omega_{P\setminus I}(y)$ over order
+ideals $I$; putting $x=y=t$ and comparing coefficients,
+\begin{equation}\label{eq:red}
+(2^k-2)\,c_k(P)=\sum_{\emptyset\ne I\ne P}\ \sum_{i=1}^{k-1}c_i(I)\,c_{k-i}(P\setminus I)\qquad(k\ge2).
+\end{equation}
+This is the argument of~\cite[Proposition~3.3, Theorem~3.4]{FMP}. By
+induction on $|P|$ the right-hand side is nonnegative for $P\in\mathcal
+S_5$, and $c_1(P)\ge0$ by Section~\ref{sec:cert} when both chains are
+nonempty. If a chain is empty, $P$ is a chain and
+$\Omega_P(t)=t(t+1)\cdots(t+n-1)/n!$. Integrality was noted in the
+introduction. \qed
+
+\section{The linear lower bound}\label{sec:lb}
+
+The checker also verifies that in every chamber the degree-one part of
+the nonnegative part of the certificate (the polynomial itself for
+$a\le3$, the remainder in~\eqref{eq:sos} for $a=4,5$) is exactly
+\[
+(a-1)!\sum_{j:\,h_j<a}x_j .
+\]
+All other terms are nonnegative on the orthant, so
+$F_{a,w}(x)\ge(a-1)!\sum_{h_j<a}x_j$. An element of $B$ in gap segment
+$j$ is incomparable with exactly $h_j$ elements of $A$, so it is
+comparable with some element of $A$ if and only if $h_j<a$, and the sum
+equals $m_A(B)$. Multiplying by $(b-1)!/n!$ proves Theorem~\ref{thm:lb}.
+
+For Corollary~\ref{cor:conn}: if $a=0$ or $b=0$ the poset is a nonempty
+chain, which is connected and has linear coefficient $1/n$. Otherwise,
+if some element of $B$ is comparable with some element of $A$ then
+$m_A(B)\ge1$, the comparability graph is connected because each chain
+is, and the linear coefficient is positive. If there is no such
+comparability, $P$ is the disjoint union of two nonempty chains,
+$\Omega_P$ is the product of their order polynomials, each without
+constant term, and the linear coefficient is zero. \qed
+
+\begin{example}\label{ex:a1}
+For $a=1$ with boundaries $L\le U$ there are $U-L$ incomparable elements,
+$r_1=U-L$ and $F=b-(U-L)=m_A(B)$, so Theorem~\ref{thm:lb} is an equality:
+$[t]\,\Omega_P(t)=m_A(B)/(b(b+1))$. For $b=8$, $L=2$, $U=6$ it is $1/18$.
+\end{example}
+
+\begin{example}
+For $a=5$, $b=20$, $L=(0,2,5,5,11)$ and $U=(4,8,12,17,20)$, every element
+of $B$ is comparable with some element of $A$, and Theorem~\ref{thm:lb}
+gives $[t]\,\Omega_P(t)\ge4!\,19!\,20/25!=1/265650$; the exact value is
+$7123/531300$. This poset is outside the range of the computations
+in~\cite{FMP}. For $L=(0,\dots,0)$ and $U=(20,\dots,20)$ there are no
+cross-comparabilities and $\Omega_P(t)=\binom{t+4}5\binom{t+19}{20}$ has
+zero linear coefficient.
+\end{example}
+
+\section{Formal verification}\label{sec:lean}
+
+The Lean~4 project (Lean~4.35.0, Mathlib
+\texttt{56a005855ea17e0b0958f73ec801ae140b0a1679}) checks the chamber
+certificates for $a\le4$. A chamber is a record of the word $w$, a
+scale $D$ and integer data: the polynomial $D\,F_{a,w}$, the degree-one
+part and the rest of $D$ times the nonnegative remainder, and square
+triples $(p,q,r)$ standing for $p\,x^{\mu+2u}-q\,x^{\mu+u+v}+r\,x^{\mu+2v}$.
+The file \texttt{ShortChain/Data.lean} is generated from the certificate
+files by \texttt{scripts/generate\_lean\_data.py}, which also checks
+that it matches them. The Boolean test \texttt{Chamber.valid} is
+evaluated by the kernel (\texttt{decide +kernel}) for all $22$ chambers:
+the remainder and the expanded squares add up to the polynomial, the
+remainder coefficients and $p,r$ are nonnegative and $q^2\le4pr$, and
+the degree-one part is $D\,(a-1)!$ exactly on the segments with
+$h_j<a$. The theorem \texttt{ShortChain.certified\_chambers} states that
+for every chamber in the list and every gap vector $x$ with nonnegative
+entries in any linearly ordered field,
+\[
+0\le F_{a,w}(x)\quad\text{and}\quad (a-1)!\sum_{h_j<a}x_j\le F_{a,w}(x),
+\]
+and \texttt{ShortChain.chambers\_complete} that for $a=1,\dots,4$ the
+chamber words are exactly the Dyck words. No \texttt{native\_decide}
+is used, and a module-level audit shows that every declaration depends
+only on \texttt{propext}, \texttt{Classical.choice} and
+\texttt{Quot.sound}.
+
+Not formalized are the identification of $F_{a,w}$ with the linear
+coefficient of the order polynomial (Lemmas~\ref{lem:rook}
+and~\ref{lem:poly}, the descent expansion~\eqref{eq:desc}, the
+determining-set Lemma~\ref{lem:det} and the point identities), the
+chambers with $a=5$, whose $177{,}176$ polynomial terms are checked only
+by the Python program, and the reduction of Section~\ref{sec:proof}.
+
+\section{Related work and scope}\label{sec:related}
+
+The conjecture, the reduction to the linear coefficient and the
+computations for both chains of size at most five are
+from~\cite{FMP}; the descent--rook correspondence is
+from~\cite{AJ}, and the descent expansion is classical~\cite{Stanley}.
+Liu, Xin and Zhang~\cite{LXZ} proved Ehrhart positivity of order
+polytopes of dimension at most $13$, which concerns $\Omega_P(t+1)$ and
+bounded $|P|$. Jochemko and Menon~\cite{JM} showed that for an
+ideal--filter closed family with nonnegative linear coefficients, marked
+order polynomials have nonnegative coefficients in the marking gaps;
+Theorem~\ref{thm:main} supplies that hypothesis for $\mathcal S_5$.
+Kahane~\cite{Kahane} interprets the coefficients for fences.
+
+Two public partial results on Conjecture~7.1 of~\cite{FMP} were found
+while preparing this note. The repository
+\href{https://github.com/10m-u/open-problems-catalog/tree/ca8d4d44ba3db527f19f28928c240168f545ecfe}{10m-u/open-problems-catalog}
+(commit of 14 October 2026) proves nonnegativity for all ordinal sums of
+antichains of size one or two, by a root-location argument. Such a poset
+lies in $\mathcal S_5$ exactly when it has at most five two-element
+layers, while $\mathcal S_5$ contains posets outside the closure of
+these layers under ordinal and disjoint sums, the smallest being the
+four-element poset with relations $a<b$, $c<b$, $c<d$, whose
+comparability and incomparability graphs are both connected. The
+repository
+\href{https://github.com/chris-hadad/lr-stretching-results/blob/0677a8b4bda0db770ad690824c236222783eeb95/results/overlap-families/proofs/A58-COUPLED-PROOF.md}{chris-hadad/lr-stretching-results}
+(commit of 29 October 2026) proves coefficient positivity for a
+lattice-point count whose order-polynomial factors are two-chain posets
+with a single cross-link; those factors may have both chains longer than
+five, but their cross-relations are far more restricted than in
+$\mathcal S_5$. Neither result implies Theorem~\ref{thm:main}, and
+Theorem~\ref{thm:main} implies neither. The present theorem is not the
+first all-size partial result on the conjecture. Searches in October
+2026 found no statement of Theorem~\ref{thm:main} or~\ref{thm:lb};
+coverage of recent and unpublished work is incomplete and no priority
+is claimed.
+
+The unrestricted conjecture remains open. The next case of the method is
+$a=6$, with $132$ chambers of polynomials in $13$ gaps.
+
+\section*{Research process and AI disclosure}
+
+This is fully autonomous agentic research. Dev D. Goyal is responsible
+for publication. No expert validation or external peer review is
+claimed, and the novelty assessment is provisional.
+
+The theorem, the chamber reduction, the certificates and their
+verifiers were produced by autonomous AI research agents in a GPT-6
+Astra research workflow, according to its records. The workflow's
+internal reviews, including a separate referee reconstruction of the
+rook polynomials, were AI-assisted reviews of the proof and not peer
+review. Its own late audit found the two public partial results
+discussed in Section~\ref{sec:related}.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this
+release. It checked the proof, wrote an independent certificate checker
+with its own order-polynomial evaluation, reran the original
+verifications, compared the statement with the cited sources and the two
+public partial results, wrote and ran the Lean formalization described in
+Section~\ref{sec:lean}, and wrote this note. AI checks are not human peer
+review.
+
+\begin{thebibliography}{9}
+\bibitem{AJ}
+P.~Alexandersson and A.~Jal, \emph{Rook matroids and log-concavity of
+$P$-Eulerian polynomials},
+\href{https://arxiv.org/abs/2410.00127v3}{arXiv:2410.00127v3} (2026).
+
+\bibitem{FMP}
+L.~Ferroni, A.~H.~Morales and G.~Panova, \emph{Skew shapes, Ehrhart
+positivity and beyond},
+\href{https://arxiv.org/abs/2503.16403v3}{arXiv:2503.16403v3} (2026);
+Proceedings of the London Mathematical Society \textbf{133} (2026),
+e70204, \href{https://doi.org/10.1112/plms.70204}{doi:10.1112/plms.70204}.
+
+\bibitem{JM}
+K.~Jochemko and K.~Menon, \emph{Ehrhart positivity for marked order
+polytopes}, \href{https://arxiv.org/abs/2604.08394v2}{arXiv:2604.08394v2}
+(2026).
+
+\bibitem{Kahane}
+Y.~Kahane, \emph{Combinatorial interpretation of the coefficients of the
+order polynomial of fence posets},
+\href{https://arxiv.org/abs/2607.11225v1}{arXiv:2607.11225v1} (2026).
+
+\bibitem{LXZ}
+F.~Liu, G.~Xin and Z.~Zhang, \emph{Order polytopes of dimension $\le13$
+are Ehrhart positive},
+\href{https://arxiv.org/abs/2412.07164v1}{arXiv:2412.07164v1} (2024);
+Discrete Mathematics (2025),
+\href{https://doi.org/10.1016/j.disc.2025.114833}{doi:10.1016/j.disc.2025.114833}.
+
+\bibitem{Stanley}
+R.~P.~Stanley, \emph{Enumerative Combinatorics, Volume~1}, second
+edition, Cambridge University Press, 2012.
+\end{thebibliography}
+\end{document}

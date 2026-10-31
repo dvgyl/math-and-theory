@@ -1642,6 +1642,28 @@
         "lean/SingerC3/Witness.lean": "1a52a25e66e928b6fe1df788499c43d72b5e997ab3c9216e5c3733965d3e37da"
       },
       "integrity_manifests": []
+    },
+    "width-two-order-polynomial": {
+      "root": "papers/mathematics/width-two-order-polynomial",
+      "release_manifest_sha256": "072e8bbf37b3573dce65064a6711dbcea763d7fdfa65844f2e4820c01877a08c",
+      "formal_scope": "Lean 4.35.0 checks the chamber certificates for a short chain of size at most four: for each of the 22 chambers the kernel (decide +kernel, no native_decide) verifies that squares and a nonnegative remainder add up exactly to the certified gap polynomial, and Lean proves that each such polynomial is nonnegative on the closed orthant of any linearly ordered field and dominates (a − 1)! times the sum of the comparable gaps, and that the chambers are exactly the Dyck words. The identification of the gap polynomials with the linear coefficient of the order polynomial (descent–rook correspondence, degree bound, determining set and point identities), the 42 chambers for a = 5 and the reduction to the linear coefficient have conventional proofs or certificates checked by an independent standard-library program.",
+      "proof_roots": [
+        {
+          "path": "lean",
+          "lean_version": "4.35.0",
+          "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "lean/ShortChain.lean": "0543cf7c7849c7cbd45d05152e9a6a9ead8e5d5c97b69b28764687208d57b489",
+        "lean/ShortChain/AxiomAudit.lean": "588415955f2865fcb2e1884ce5ad3c7b47cf3a6c0c870ca52820f59a7a816fe7",
+        "lean/ShortChain/Data.lean": "b8a2c0a15cfaed211aeef35ed53f56fe06bb600b91dbc6275664f077df36bdf5",
+        "lean/ShortChain/Main.lean": "f03ad48dcdb1a88c6f9ad2ab6a4bc5e4b635a9040633007bc644ddd531458546",
+        "lean/ShortChain/Poly.lean": "637be2a049da7a229b3f03bed09f8dbf3fec3f4b21f6cba32a6e670364fd6e92"
+      },
+      "integrity_manifests": []
     }
   }
 }
