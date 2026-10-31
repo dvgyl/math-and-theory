@@ -387,8 +387,8 @@ def page(path, title, description, body, schema, *, head='', current='', kind='w
 <meta name="google-site-verification" content="{VERIFICATION}">
 <meta name="robots" content="{'index,follow' if index else 'noindex'}">
 <meta name="author" content="{esc(AUTHOR)}">
-<meta name="theme-color" content="#f3eee4" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1a1815" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#07080d" media="(prefers-color-scheme: dark)">
 {canonical}<link rel="icon" href="{PATH}assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{PATH}assets/site.css?v={VERSION}">
 <link rel="sitemap" type="application/xml" href="{BASE}sitemap.xml">
@@ -399,10 +399,19 @@ def page(path, title, description, body, schema, *, head='', current='', kind='w
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
-<header class="topline"><div class="sheet"><a class="name" href="{PATH}"><img src="{PATH}assets/favicon.svg" alt="" width="22" height="22">{SITE}</a><nav aria-label="Main"><ul>{nav}</ul></nav></div></header>
+<header class="topline"><div class="sheet"><a class="name" href="{PATH}"><img src="{PATH}assets/favicon.svg" alt="" width="22" height="22">{SITE}</a><nav aria-label="Main"><ul>{nav}</ul></nav><a class="search-trigger" href="{PATH}#index" data-search-open aria-haspopup="dialog"><svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m13 13 4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Search results</span><kbd>/</kbd></a></div></header>
 <main id="main" tabindex="-1"><div class="sheet">
 {body}
 </div></main>
+<dialog id="site-search" class="palette" aria-label="Search the collection" data-index="{PATH}search-index.json">
+<form method="dialog" class="palette-form" role="search"><label class="vh" for="site-search-input">Search results, problems and conjectures</label>
+<input id="site-search-input" type="search" autocomplete="off" spellcheck="false" placeholder="Search results, conjectures, authors…" aria-controls="site-search-results" aria-describedby="site-search-count">
+<button type="submit" class="palette-close" value="close" aria-label="Close search">Esc</button></form>
+<div class="palette-filters" role="group" aria-label="Filter by outcome"><button type="button" data-tone="" aria-pressed="true">All</button><button type="button" data-tone="proved" aria-pressed="false">Proved</button><button type="button" data-tone="refuted" aria-pressed="false">Refuted</button><button type="button" data-tone="partial" aria-pressed="false">Partial</button><button type="button" data-selected aria-pressed="false">Selected only</button></div>
+<p id="site-search-count" class="palette-count" aria-live="polite"></p>
+<ul id="site-search-results" class="palette-results" role="listbox" aria-label="Matching results"></ul>
+<p class="palette-hint"><kbd>↑</kbd><kbd>↓</kbd> move · <kbd>Enter</kbd> open · <kbd>Esc</kbd> close</p>
+</dialog>
 <footer class="colophon"><div class="sheet"><p>I publish this fully autonomous agentic research and am responsible for it. The papers have not been externally peer reviewed, and each formal check applies only to the scope its result states.</p><nav aria-label="Collection documents"><p>{footer}</p></nav></div></footer>
 </body>
 </html>
@@ -466,6 +475,16 @@ def outcome(x):
 def problem_line(x):
     """The status and name of the problem a result addresses, for lists of results."""
     return f'<p class="problem-line">{outcome(x)}<span class="problem-name">{typeset(x["seo"]["problem"])}</span></p>' if x['seo'] else ''
+
+
+def hero_art(selection):
+    """Decorative floating cards for the home hero: one selected result per outcome tone."""
+    picks = []
+    for tone in ('refuted', 'proved', 'partial'):
+        picks += [x for x in selection if x['seo'] and TONES.get(x['seo']['status']) == tone][:1]
+    return ('<div class="hero-art" aria-hidden="true">' + ''.join(
+        f'<div class="float-card f{i}">{outcome(x)}<p>{typeset(x["seo"]["problem"])}</p></div>'
+        for i, x in enumerate(picks)) + '</div>')
 
 
 def toc_entry(x, searchable=False, note=None):
@@ -674,7 +693,10 @@ def paper_page(x, items, subject_paths):
             f'<nav class="contents" aria-label="Contents"><p>{contents}</p></nav></header>{problem}'
             f'<section id="abstract" class="abstract" aria-labelledby="abstract-title"><h2 id="abstract-title" class="runin">'
             f'Abstract</h2>' + ''.join(f'<p>{inline(p)}</p>' for p in x['parts']['abstract']) + '</section>'
-            '<div class="margin"><h2 class="vh">Details</h2><dl class="facts">'
+            f'<div class="margin"><nav class="onpage" aria-label="On this page"><p class="onpage-title">On this page</p><ul>'
+            + ''.join(f'<li><a href="#{key}">{title}</a></li>' for key, title, _ in
+                      ([('problem', 'Problem', '')] if s else []) + [('abstract', 'Abstract', '')] + sections)
+            + '</ul></nav><h2 class="vh">Details</h2><dl class="facts">'
             + ''.join(f'<dt>{k}</dt><dd>{v}</dd>' for k, v in facts) + '</dl></div>'
             + ''.join(f'<section id="{key}" class="part" aria-labelledby="{key}-title"><h2 id="{key}-title">{title}</h2>'
                       f'{content}</section>' for key, title, content in sections) + '</article>')
@@ -881,14 +903,17 @@ def build(out):
                    f'with Lean 4 formal proofs.')
     figures = [(len(items), 'results', PATH + '#index'), (len(named), 'problems from the literature', PATH + 'problems/'),
                (len(standout), 'selected results', PATH + 'standout/'), (len(subjects), 'subjects', PATH + 'subjects/')]
-    body = (f'<header class="masthead"><h1>{SITE}</h1><p class="subtitle">Research manuscripts and Lean 4 proofs\u00a0· '
-            f'{esc(AUTHOR)}</p></header><p class="intro">This is a collection of fully autonomous agentic research. I have '
+    body = (f'<header class="hero"><p class="eyebrow">Research manuscripts and Lean 4 proofs\u00a0· {esc(AUTHOR)}</p>'
+            f'<h1>{SITE.replace("Theory", "<em>Theory</em>")}</h1><p class="intro">This is a collection of fully autonomous agentic research. I have '
             f'been experimenting with large language models working as autonomous research agents on open problems in '
             f'{esc(topics)}, and these {len(items)} manuscripts are the results: counterexamples, sharp bounds and exact '
-            f'thresholds, each with Lean 4 proofs of its stated formal scope.</p><ul class="figures" aria-label="The collection '
+            f'thresholds, each with Lean 4 proofs of its stated formal scope.</p><div class="cta"><a class="btn primary" '
+            f'href="{PATH}#index" data-search-open>Search the collection <kbd>/</kbd></a><a class="btn" href="{PATH}problems/">'
+            f'Problems and conjectures</a><a class="btn ghost" href="{PATH}standout/">Selected results</a></div>'
+            f'<ul class="figures" aria-label="The collection '
             f'in figures">' + ''.join(f'<li><a href="{href}"><span class="n">{n}</span><span class="l">{label}</span></a></li>'
                                        for n, label, href in figures)
-            + f'</ul><p class="disclosure">None of these papers has '
+            + '</ul>' + hero_art(standout) + f'</header><p class="disclosure">None of these papers has '
             f'been externally peer reviewed, and I make no claim of priority. A formal check covers only the statement it '
             f'checks. The <a href="{gh("AUTHORSHIP.md")}">authorship record</a> explains how each result was produced, and '
             f'<a href="{gh("UNFINISHED.md")}">UNFINISHED.md</a> lists the remaining formalization gaps.</p>'
@@ -950,8 +975,8 @@ def build(out):
             + section('colophon', 'Colophon',
                       f'<p>The pages are generated from <a href="{gh("catalogue.json")}">catalogue.json</a> and '
                       f'<a href="{gh("CONTENTS.md")}">CONTENTS.md</a> by <a href="{gh("site/build.py")}">site/build.py</a>. '
-                      f'Text is set in the reader’s own serif, Charter where it is available, with small capitals for '
-                      f'labels. The site loads no web fonts, analytics, cookies, trackers or other external resources. A '
+                      f'Text is set in the reader’s own system fonts, with a serif for display accents. '
+                      f'The site loads no web fonts, analytics, cookies, trackers or other external resources. A '
                       f'machine-readable <a href="{PATH}search-index.json">result index</a> and a '
                       f'<a href="{PATH}sitemap.xml">sitemap</a> list every result.</p>'))
     pages['about/'] = page('about/', f'About the collection | {SITE}', description, body, {
@@ -1010,6 +1035,8 @@ def build(out):
     index = {'name': SITE, 'url': BASE, 'author': AUTHOR, 'sources': ['catalogue.json', 'CONTENTS.md'], 'results': [
         {'id': x['id'], 'title': x['title'], 'url': x['url'], 'pdf': x['url'] + 'manuscript.pdf',
          'discipline': x['discipline'], 'area': x['area'], 'subject': x['subject'], 'subject_url': BASE + subject_paths[x['subject']],
+         'href': PATH + x['path'], 'tone': TONES.get(x['seo']['status'], 'other') if x['seo'] else 'other',
+         'queries': x['seo']['queries'] if x['seo'] else [], 'rank': x['f'].get('significance_rank'),
          'result_type': x['f']['kind'], 'formal_proof': x['kind'], 'standout': x['standout'], 'year': x['year'],
          'keywords': x['terms'], 'abstract': x['abstract'], 'scope': scope_text(x)[0],
          **({k: x['seo'].get(k) for k in ('problem', 'posed_by', 'problem_url', 'status', 'claim')} if x['seo'] else {})}
