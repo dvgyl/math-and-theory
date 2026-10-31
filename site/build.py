@@ -889,7 +889,7 @@ def build(out):
         index += '</section>'
     description = (f'Counterexamples, sharp bounds and proofs for open problems and conjectures in {topics} by {AUTHOR}, '
                    f'with Lean 4 formal proofs.')
-    body = (f'<header class="masthead"><h1>{SITE}</h1><p class="subtitle">Research manuscripts and Lean 4 proofs\u00a0· '
+    body = (f'<header class="masthead"><h1>{SITE}</h1><p class="subtitle">Research manuscripts and Lean 4 proofs by '
             f'{esc(AUTHOR)}</p></header><p class="intro">This is a collection of fully autonomous agentic research. I have '
             f'been experimenting with large language models working as autonomous research agents on open problems in '
             f'{esc(topics)}, and these {len(items)} manuscripts are the results: counterexamples, sharp bounds and exact '

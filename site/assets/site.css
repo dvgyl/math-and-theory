@@ -346,3 +346,41 @@ kbd {
 .cards > li, .cards > li:hover { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
 .numbered.cards > li { margin-bottom: 1.9rem; }
 .numbered.cards > li::before { top: .12rem; }
+
+/* Typeset motion. The site's hairline rules are drawn like ruler strokes: once on load under the title, then as each
+   section arrives. Everything else moves only in answer to the reader. */
+:root { --ease: cubic-bezier(.22, .61, .36, 1); }
+.masthead .subtitle { font-variant-caps: normal; letter-spacing: 0; font-style: italic; font-size: 1.08rem; }
+.links-line { display: flex; flex-wrap: wrap; gap: .15rem 1.1rem; }
+.links-line .sep { display: none; }
+.numbered > li::before { transition: color .25s ease; }
+.numbered > li:hover::before, .numbered > li:focus-within::before { color: var(--accent); }
+.progress { position: fixed; z-index: 50; left: 0; right: 0; top: 0; height: 2px; background: var(--accent); transform-origin: left; transform: scaleX(0); }
+@media (prefers-reduced-motion: no-preference) {
+  .masthead h1 { animation: settle .9s var(--ease) both; }
+  .masthead h1::after { transform-origin: left; animation: stroke .9s .35s var(--ease) both; }
+  .masthead .subtitle, .masthead ~ .intro, .masthead ~ .tally, .masthead ~ .disclosure { animation: appear .8s var(--ease) both; }
+  .masthead .subtitle { animation-delay: .55s; }
+  .masthead ~ .intro { animation-delay: .7s; }
+  .masthead ~ .tally { animation-delay: .85s; }
+  .masthead ~ .disclosure { animation-delay: 1s; }
+  .js .section-title, .js .part { border-top-color: transparent; position: relative; }
+  .js .discipline > h3 { border-bottom-color: transparent; position: relative; }
+  .js .section-title::before, .js .part::before, .js .discipline > h3::after {
+    content: ""; position: absolute; left: 0; right: 0; height: 1px; background: var(--ink);
+    transform: scaleX(0); transform-origin: left; transition: transform 1.2s var(--ease);
+  }
+  .js .section-title::before, .js .part::before { top: -1px; }
+  .js .part::before, .js .discipline > h3::after { background: var(--rule); }
+  .js .discipline > h3::after { bottom: -1px; }
+  .js .drawn::before, .js .discipline > h3.drawn::after { transform: scaleX(1); }
+  .js .numbered.staged > li { opacity: 0; transform: translateY(10px); transition: opacity .7s var(--ease), transform .7s var(--ease); transition-delay: var(--d, 0ms); }
+  .js .numbered.staged > li.in { opacity: 1; transform: none; }
+  #index .entry:not([hidden]) { animation: appear .35s ease-out both; }
+  .palette[open] { animation: lift .2s var(--ease); }
+  .palette::backdrop { animation: appear .2s ease-out; }
+}
+@keyframes settle { from { opacity: 0; transform: translateY(12px); } }
+@keyframes stroke { from { transform: scaleX(0); } }
+@keyframes appear { from { opacity: 0; } }
+@keyframes lift { from { opacity: 0; transform: translateY(8px); } }

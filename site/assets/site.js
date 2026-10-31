@@ -240,3 +240,38 @@
   }
   reveal();
 })();
+
+// Typeset motion: draw rules as sections arrive, stage the selected list once, and show reading progress on result pages.
+(() => {
+  'use strict';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  const once = (elements, enter, margin = '0px 0px -12% 0px') => {
+    const watch = new IntersectionObserver(entries => {
+      for (const entry of entries) if (entry.isIntersecting) { enter(entry.target); watch.unobserve(entry.target); }
+    }, {rootMargin: margin});
+    elements.forEach(el => watch.observe(el));
+  };
+  once(document.querySelectorAll('.section-title, .part, .discipline > h3'), el => el.classList.add('drawn'));
+
+  document.querySelectorAll('.numbered').forEach(list => {
+    if (list.getBoundingClientRect().top < window.innerHeight * .85) return; // already in view: show it as it is
+    list.classList.add('staged');
+    [...list.children].forEach((item, i) => item.style.setProperty('--d', `${Math.min(i, 8) * 70}ms`));
+    once([...list.children], item => item.classList.add('in'), '0px 0px -8% 0px');
+  });
+
+  if (document.querySelector('article.paper')) {
+    const bar = document.createElement('div');
+    bar.className = 'progress';
+    bar.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(bar);
+    let pending = false;
+    const update = () => {
+      pending = false;
+      const span = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = `scaleX(${span > 0 ? Math.min(1, window.scrollY / span) : 0})`;
+    };
+    window.addEventListener('scroll', () => { if (!pending) { pending = true; requestAnimationFrame(update); } }, {passive: true});
+    update();
+  }
+})();
