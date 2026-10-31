@@ -259,7 +259,7 @@ jobs:
     runs-on: ubuntu-24.04
     # The ADMM certificates compile 168 modules one at a time; the Nesterov
     # verifier replays every imported proof at each of its 56 modules.
-    timeout-minutes: ${{ matrix.package == 'admm-multiplier-step' && 180 || matrix.package == 'nesterov-subcritical' && 120 || 60 }}
+    timeout-minutes: ${{ matrix.package == 'admm-multiplier-step' && 180 || (matrix.package == 'nesterov-subcritical' || matrix.package == 'singer-orbit-blocking') && 120 || 60 }}
     strategy:
       fail-fast: false
       max-parallel: 2
@@ -346,6 +346,9 @@ jobs:
           - package: berge-c4-saturation
             root: papers/mathematics/berge-c4-saturation
             project: lean
+          - package: singer-orbit-blocking
+            root: papers/mathematics/singer-orbit-blocking
+            project: lean
           - package: matrix-pencil-completion
             root: papers/mathematics/matrix-pencil-completion
             project: lean_p1_converse
@@ -425,6 +428,8 @@ jobs:
             python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/berge-c4-build.log" --project . --output "${RUNNER_TEMP}/berge-c4-axioms.json"
             python3 ../certificate/check_construction.py
             python3 ../certificate/run_certificates.py --skip-m7
+          elif [[ '${{ matrix.package }}' == 'singer-orbit-blocking' ]]; then
+            python3 ../verify.py --output "${RUNNER_TEMP}/singer-orbit-blocking-verification"
           elif [[ '${{ matrix.package }}' == 'matrix-pencil-completion' ]]; then
             command -v rg >/dev/null || { sudo apt-get update && sudo apt-get install --yes ripgrep; }
             bash verify.sh

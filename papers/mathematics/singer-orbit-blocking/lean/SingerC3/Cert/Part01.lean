@@ -1,0 +1,86 @@
+import SingerC3.Search
+
+/-!
+# Certificate part 1
+
+Kernel-checked searches closing 22 of the partial assignments reached by the top search
+(`SingerC3.Cert.top`). Each pair is `(o, z)`: orbit indices fixed to `true` and to `false`.
+-/
+
+namespace SingerC3.Cert
+
+open SingerC3
+
+theorem p01_00 : search 70643689193473 2093049027405807616 = true := by decide +kernel
+theorem p01_01 : search 562949953437697 2254052714162421760 = true := by decide +kernel
+theorem p01_02 : search 1134697073606657 2092011087355445248 = true := by decide +kernel
+theorem p01_03 : search 1196269724762113 2091940718611267584 = true := by decide +kernel
+theorem p01_04 : search 2251799813750785 2243074244169957376 = true := by decide +kernel
+theorem p01_05 : search 18014398509481987 2236038315652964352 = true := by decide +kernel
+theorem p01_06 : search 29273397577908225 2233785415175766016 = true := by decide +kernel
+theorem p01_07 : search 72057663025840129 1730985894619381760 = true := by decide +kernel
+theorem p01_08 : search 72092778410016769 1730948511492753408 = true := by decide +kernel
+theorem p01_09 : search 72761281479704577 2179742219647320064 = true := by decide +kernel
+theorem p01_10 : search 146366987889541121 2130203388518989960 = true := by decide +kernel
+theorem p01_11 : search 182395784908505089 2094174591500025992 = true := by decide +kernel
+theorem p01_12 : search 288239172311842817 1813280492741459968 = true := by decide +kernel
+theorem p01_13 : search 576460821291335681 1679279985933680640 = true := by decide +kernel
+theorem p01_14 : search 576461851817148417 1617355491342548992 = true := by decide +kernel
+theorem p01_15 : search 577586652478701569 1678154086026838016 = true := by decide +kernel
+theorem p01_16 : search 594475150812905473 1598779397261754368 = true := by decide +kernel
+theorem p01_17 : search 720575940379279361 1516587556903321600 = true := by decide +kernel
+theorem p01_18 : search 720575974739017729 1516587518114398208 = true := by decide +kernel
+theorem p01_19 : search 1152921504607109121 819936744740749312 = true := by decide +kernel
+theorem p01_20 : search 1154047404522078209 837951143240794112 = true := by decide +kernel
+theorem p01_21 : search 1188950301760028673 801922346087628800 = true := by decide +kernel
+
+/-- The partial assignments closed in part 1. -/
+def part01 : List (Nat × Nat) :=
+  [(70643689193473, 2093049027405807616),
+   (562949953437697, 2254052714162421760),
+   (1134697073606657, 2092011087355445248),
+   (1196269724762113, 2091940718611267584),
+   (2251799813750785, 2243074244169957376),
+   (18014398509481987, 2236038315652964352),
+   (29273397577908225, 2233785415175766016),
+   (72057663025840129, 1730985894619381760),
+   (72092778410016769, 1730948511492753408),
+   (72761281479704577, 2179742219647320064),
+   (146366987889541121, 2130203388518989960),
+   (182395784908505089, 2094174591500025992),
+   (288239172311842817, 1813280492741459968),
+   (576460821291335681, 1679279985933680640),
+   (576461851817148417, 1617355491342548992),
+   (577586652478701569, 1678154086026838016),
+   (594475150812905473, 1598779397261754368),
+   (720575940379279361, 1516587556903321600),
+   (720575974739017729, 1516587518114398208),
+   (1152921504607109121, 819936744740749312),
+   (1154047404522078209, 837951143240794112),
+   (1188950301760028673, 801922346087628800)]
+
+theorem part01_ok : AllNoSol part01 :=
+  ⟨search_sound p01_00,
+   search_sound p01_01,
+   search_sound p01_02,
+   search_sound p01_03,
+   search_sound p01_04,
+   search_sound p01_05,
+   search_sound p01_06,
+   search_sound p01_07,
+   search_sound p01_08,
+   search_sound p01_09,
+   search_sound p01_10,
+   search_sound p01_11,
+   search_sound p01_12,
+   search_sound p01_13,
+   search_sound p01_14,
+   search_sound p01_15,
+   search_sound p01_16,
+   search_sound p01_17,
+   search_sound p01_18,
+   search_sound p01_19,
+   search_sound p01_20,
+   search_sound p01_21, trivial⟩
+
+end SingerC3.Cert

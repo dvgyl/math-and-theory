@@ -806,6 +806,67 @@
       }
     },
     {
+      "id": "singer-orbit-blocking",
+      "discipline": "Mathematics",
+      "area": "Finite geometry",
+      "title": "Blocking sets of PG(2,13) invariant under a fixed-point-free Singer subgroup meet some line in five points",
+      "kind": "Exact finite classification and reproducible proof package",
+      "significance_rank": 263,
+      "keywords": [
+        "blocking sets",
+        "projective planes",
+        "PG(2,13)",
+        "Singer cycle",
+        "line intersections",
+        "Erdős problem 1159",
+        "finite geometry",
+        "kernel-checked search"
+      ],
+      "summary": "Let H be the subgroup of order three of a Singer cycle group of PG(2,13); it fixes no point. Every H-invariant blocking set of PG(2,13) meets some line in at least five points, while the 21-point blocking set of Blokhuis, Brouwer and Wilbrink is invariant under a conjugate of H and meets every line in at most five points. So five is the least possible largest line intersection of an H-invariant blocking set, and the same holds for every fixed-point-free collineation of order three. This settles a symmetric case of the plane of order 13 in Erdős Problem 1159 that a public computational campaign had left unresolved; blocking sets without this symmetry are not covered.",
+      "formal_scope": "Lean 4.35.0 models PG(2,13) with Mathlib's projectivization of F₁₃³ and proves that the Singer cycle has order 183, that its subgroup H of order three fixes no point, that the 21-point witness is an H-invariant minimal blocking set with largest line intersection five, the reduction of every H-invariant set to 61 orbit conditions, and the nonexistence of a solution with intersections at most four, by a kernel-checked search with a soundness proof; the main theorem is IsLeast admissibleCaps 5. The conjugacy of all fixed-point-free subgroups of order three is conventional.",
+      "source": "Erdős Problem 1159 asks whether every finite projective plane has a point set meeting each line in between one and C points; Erdős, Silverman and Stein (1983) proved an O(log n) bound. The 21-point example is due to Blokhuis, Brouwer and Wilbrink (Adv. Geom. 2003, Section 5.3), and a public campaign log recorded this Singer-orbit case for q = 13 as unresolved. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/singer-orbit-blocking/README.md",
+      "paper": "papers/mathematics/singer-orbit-blocking/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/mathematics/singer-orbit-blocking"
+      },
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Blocking sets with bounded line intersections in finite projective planes (Erdős Problem #1159), Singer-symmetric case in PG(2,13)",
+        "posed_by": "P. Erdős; Erdős Problem #1159, erdosproblems.com",
+        "problem_url": "https://www.erdosproblems.com/1159",
+        "status": "Determined exactly",
+        "claim": "Every blocking set of PG(2,13) invariant under the fixed-point-free subgroup of order three of a Singer group meets some line in at least five points, and the 21-point Blokhuis–Brouwer–Wilbrink set attains five.",
+        "title_tag": "Singer-Invariant Blocking Sets of PG(2,13) Meet a Line in Five Points",
+        "description": "Blocking sets of PG(2,13) invariant under a fixed-point-free Singer subgroup of order 3 meet some line in ≥5 points; five is attained. Lean-checked.",
+        "queries": [
+          "blocking sets PG(2,13) line intersections",
+          "Erdős problem 1159 blocking set bounded intersection",
+          "Singer cycle invariant blocking set",
+          "blocking set meeting every line in at most C points",
+          "Blokhuis Brouwer Wilbrink 21-point blocking set PG(2,13)",
+          "fixed-point-free collineation order three blocking set",
+          "projective plane order 13 blocking set maximum line intersection",
+          "kernel-checked exhaustive search Lean blocking set"
+        ],
+        "faq": [
+          [
+            "What is the least largest line intersection of a Singer-invariant blocking set in PG(2,13)?",
+            "Five. Let H be the subgroup of order three of a Singer cycle group of PG(2,13), which fixes no point. Every H-invariant blocking set meets some line in at least five points, and the 21-point blocking set of Blokhuis, Brouwer and Wilbrink, which is invariant under a conjugate of H, meets every line in at most five points. Every fixed-point-free collineation of order three generates a conjugate of H, so the answer is the same for all of them."
+          ],
+          [
+            "Does this answer Erdős Problem 1159 for the plane of order 13?",
+            "No. It settles only blocking sets with this symmetry. Whether PG(2,13) has a blocking set meeting every line in at most four points, with no symmetry assumed, is not decided here, and the general problem for all finite projective planes remains open."
+          ],
+          [
+            "How is the result verified?",
+            "The question reduces to 61 weighted line conditions on the orbits of H. A Lean 4 project proves the whole theorem for the specified subgroup, with PG(2,13) modelled by Mathlib's projectivization of F₁₃³; the exhaustive search runs in the Lean kernel with a soundness proof, without native_decide. An independent Python program repeats the geometry, the witness checks and the search. The conjugacy of all fixed-point-free subgroups of order three has a conventional proof. Historical priority is not certified."
+          ]
+        ]
+      }
+    },
+    {
       "id": "diagonal-concavity",
       "discipline": "Mathematics",
       "area": "Inequalities and real analysis",

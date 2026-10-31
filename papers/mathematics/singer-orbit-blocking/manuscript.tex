@@ -1,0 +1,312 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Singer-invariant blocking sets of PG(2,13)}
+\fancyhead[R]{\small Dev D. Goyal}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\hypersetup{pdftitle={Blocking sets of PG(2,13) invariant under a fixed-point-free Singer subgroup meet some line in five points},
+pdfauthor={Dev D. Goyal},
+pdfsubject={Fully autonomous agentic research},
+pdfkeywords={blocking sets, projective planes, PG(2,13), Singer cycle, Erdos problem 1159, line intersections, Lean 4}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\PG}{\mathrm{PG}(2,13)}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Z}{\mathbb{Z}}
+\title{\textbf{Blocking sets of $\mathbf{PG(2,13)}$ invariant under\\a fixed-point-free Singer subgroup\\meet some line in five points}}
+\author{Dev D. Goyal}
+\date{31 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $H$ be the subgroup of order three of a Singer cycle group of the
+projective plane $\PG$; it fixes no point. We show that every $H$-invariant
+blocking set of $\PG$ meets some line in at least five points. The
+$21$-point blocking set of Blokhuis, Brouwer and Wilbrink is invariant under
+a conjugate of $H$ and meets every line in at most five points, so five is
+the least possible largest line intersection of an $H$-invariant blocking
+set. Every fixed-point-free collineation of order three of $\PG$ generates a
+conjugate of $H$, so the statement holds for all of them. This settles one
+symmetric case of the plane of order $13$ in Erd\H{o}s Problem~1159, which
+asks whether every finite projective plane has a point set meeting each line
+in at least one and at most $C$ points; a public computational campaign had
+recorded this case as unresolved. The proof reduces the question to $61$
+weighted line conditions on the orbits of $H$ and shows by exhaustive search
+that they have no solution with intersections at most four. A Lean~4 project
+proves the theorem for the specified subgroup, with $\PG$ modelled by
+Mathlib's projectivization of $\F_{13}^3$; the search runs in the Lean kernel
+and is covered by a soundness proof. An independent Python program repeats
+the geometry, the witness checks and the search.
+\end{abstract}
+
+\section{Introduction and result}
+
+A \emph{blocking set} of a projective plane is a set of points meeting every
+line. Erd\H{o}s asked whether there is a constant $C$ such that every finite
+projective plane has a point set $S$ with $1\le|S\cap\ell|\le C$ for all lines
+$\ell$ \cite{EP1159}; Erd\H{o}s, Silverman and Stein proved that
+$|S\cap\ell|=O(\log n)$ can be achieved in a plane of order $n$
+\cite{ESS}. For a particular plane the question becomes the computation of
+\[
+  c(\Pi)=\min_{B}\ \max_{\ell}\ |B\cap\ell|,
+\]
+the minimum over blocking sets $B$ of the largest line intersection. For the
+Desarguesian plane $\PG$ of order $13$ the $21$-point blocking set of
+Blokhuis, Brouwer and Wilbrink \cite{BBW} shows $c(\PG)\le5$. A public
+computational campaign on this problem \cite{campaign} searched for blocking
+sets of $\PG$ with all line intersections at most four that are invariant
+under various collineation groups; for the subgroup of order three of a
+Singer group, whose $61$ point orbits all have size three, its solver run
+ended with status UNKNOWN after 90 seconds. We settle that case.
+
+Let $\F=\F_{13}[\theta]/(\theta^3+\theta+6)$. The powers of $\theta$ are
+pairwise distinct up to $\theta^{2196}=1$, so $\F$ is the field with $13^3$
+elements and $\theta$ is primitive. We identify the points of $\PG$ with the
+one-dimensional $\F_{13}$-subspaces of $\F$, written in the basis
+$1,\theta,\theta^2$, and the lines with the two-dimensional subspaces.
+Multiplication by $\theta$ induces a collineation $\sigma$ of order
+$183=13^2+13+1$, a \emph{Singer cycle}; let $H=\langle\sigma^{61}\rangle$, of
+order three. Since $\sigma^{61}$ maps the point $\langle\theta^i\rangle$ to
+$\langle\theta^{i+61}\rangle\ne\langle\theta^i\rangle$, $H$ fixes no point.
+
+\begin{theorem}\label{thm:main}
+Every $H$-invariant blocking set of $\PG$ meets some line in at least five
+points. There is an $H$-invariant minimal blocking set of $21$ points that
+meets every line in at most five points. Hence
+\[
+  \min\bigl\{\max_{\ell}|B\cap\ell| : B \text{ an $H$-invariant blocking set of } \PG\bigr\}=5 .
+\]
+\end{theorem}
+
+The lower bound has no size or minimality assumption on $B$. The upper bound
+is the known example of \cite{BBW} (Section~\ref{sec:witness}). Since
+$13$ is prime, every collineation of $\PG$ is a projectivity.
+
+\begin{corollary}\label{cor:all}
+Let $g$ be a collineation of $\PG$ of order three without fixed points. Then
+every $\langle g\rangle$-invariant blocking set meets some line in at least
+five points, and five is attained.
+\end{corollary}
+
+The corollary follows from Theorem~\ref{thm:main} and the conjugacy argument
+of Section~\ref{sec:conj}. It does not decide whether $c(\PG)$ is $4$ or $5$:
+blocking sets without this symmetry are not covered.
+
+\section{The cyclic model and the reduction}
+
+For $i\in\Z_{183}$ let $P_i=\langle\theta^i\rangle$; these are all $183$
+points. The points whose coordinate vector has constant coefficient zero form
+a line,
+\[
+  L_0=\{P_d : d\in D\},\qquad D=\{1,2,4,17,24,29,43,77,83,87,120,138,155,176\},
+\]
+and the lines of $\PG$ are exactly $L_t=\sigma^t(L_0)=\{P_{d+t}:d\in D\}$ for
+$t\in\Z_{183}$; $D$ is a planar difference set modulo $183$. The subgroup $H$
+acts by $i\mapsto i+61$, with the $61$ orbits $O_j=\{P_j,P_{j+61},P_{j+122}\}$,
+$j\in\Z_{61}$. An $H$-invariant set is $B_S=\bigcup_{j\in S}O_j$ for a unique
+$S\subseteq\Z_{61}$, and
+\[
+  |B_S\cap L_t| = r_S(t) := \#\{d\in D : d+t \bmod 61\in S\},
+\]
+which depends only on $t\bmod 61$. Modulo $61$ the elements of $D$ are
+\[
+  1,2,4,16,16,17,22,24,26,29,33,43,54,59,
+\]
+with $16$ twice ($77$ and $138$) and the others once. Thus each of the $61$
+conditions involves twelve orbits with weight one and one orbit, the
+\emph{doubled} orbit $t+16$, with weight two. The $61\times61$ weight matrix
+$M$ is circulant and satisfies $MM^{\mathsf T}=13I+3J$.
+
+\begin{lemma}\label{lem:reduction}
+For $c\ge1$ there is an $H$-invariant blocking set with all line intersections
+at most $c$ if and only if there is $S\subseteq\Z_{61}$ with $0\in S$ and
+$1\le r_S(t)\le c$ for all $t\in\Z_{61}$.
+\end{lemma}
+
+\begin{proof}
+The first condition holds for $B_S$ exactly when $1\le r_S(t)\le c$ for all
+$t$. A blocking set is nonempty, so some $j\in S$. The collineation
+$\sigma^{-j}$ commutes with $H$, maps $B_S$ to $B_{S-j}$ and permutes the
+lines, so $S-j$ is again a solution, and it contains $0$.
+\end{proof}
+
+\begin{remark}
+Since $\sum_t r_S(t)=14|S|$ and, by $M^{\mathsf T}M=13I+3J$,
+$\sum_t r_S(t)^2=3|S|^2+13|S|$, summing $(r_S(t)-1)(r_S(t)-4)\le0$ shows that a
+solution for $c=4$ would have $7\le|S|\le12$. This is not used below.
+\end{remark}
+
+\section{No solution with intersections at most four}\label{sec:search}
+
+\begin{proposition}\label{prop:unsat}
+There is no $S\subseteq\Z_{61}$ with $0\in S$ and $1\le r_S(t)\le4$ for all
+$t\in\Z_{61}$.
+\end{proposition}
+
+\begin{proof}
+We search over partial assignments, which fix some orbits as chosen and some
+as excluded; orbit $0$ is chosen at the start. A node is closed when some
+condition $t$ already has weight at least five on the chosen orbits, or all
+its orbits are excluded. Before branching we apply the forced steps: if a
+condition with no chosen orbit has exactly one orbit that is not excluded,
+that orbit is chosen; if a condition has weight four, its other orbits are
+excluded; if it has weight three, its doubled orbit is excluded. Each step
+is valid for every solution extending the node. If no node is closed and no
+step applies, we pick a condition with no chosen orbit and fewest available
+orbits and branch on which of them is the first chosen one. Every branch of
+this finite search closes, so no solution exists. The Python implementation
+described in Section~\ref{sec:verification} visits $156{,}717$ nodes.
+\end{proof}
+
+The lower bound of Theorem~\ref{thm:main} follows from Lemma~\ref{lem:reduction}
+with $c=4$ and Proposition~\ref{prop:unsat}.
+
+\section{The matching example}\label{sec:witness}
+
+Let $S_0=\{0,1,13,14,47,48,60\}\subseteq\Z_{61}$. The $21$-point set
+$B_{S_0}$ meets $126$ lines in one point, $36$ lines in two points, $9$ lines
+in four points and $12$ lines in five points; every point of $B_{S_0}$ lies on
+a tangent line, so $B_{S_0}$ is a minimal blocking set. This proves the upper
+bound in Theorem~\ref{thm:main}.
+
+The set is the sporadic example of \cite[Section~5.3]{BBW}. In the
+coordinates of that paper it consists of the three vertices of the reference
+triangle, the points $(1,a,0)$, $(0,1,a)$, $(a,0,1)$ with $a^3=-1$, and the
+points $(b,c,1)$ with $b^3=c^3=1$. It is invariant under the projectivity of
+\[
+  A=\begin{pmatrix}0&12&0\\0&0&4\\12&0&0\end{pmatrix},\qquad A^3=4I,
+\]
+which has no fixed point because $4$ is not a cube in $\F_{13}$. With
+\[
+  K=\begin{pmatrix}1&7&8\\0&10&1\\0&4&12\end{pmatrix}
+\]
+one has $K(7A)=TK$, where $T$ is the matrix of multiplication by
+$\theta^{61}$, and $K$ maps the set of \cite{BBW} onto $B_{S_0}$. No new
+construction is claimed.
+
+\section{All fixed-point-free subgroups of order three}\label{sec:conj}
+
+Let $g$ be a collineation of order three without fixed points and let $A$ be
+a matrix inducing it, so $A^3=aI$ with $a\in\F_{13}^\times$. If $a=b^3$, then
+$(b^{-1}A)^3=I$; since $13\equiv1\pmod3$, the polynomial $X^3-1$ splits into
+distinct linear factors over $\F_{13}$, so $b^{-1}A$ is diagonalizable and
+has an eigenvector, a fixed point of $g$. Hence $a$ is not a cube, $X^3-a$ has
+no root and is irreducible, and it is the minimal polynomial of the
+nonscalar matrix $A$. Then $E=\F_{13}[A]$ is a field with $13^3$ elements and
+$\F_{13}^3$ is a one-dimensional $E$-vector space, so $g$ lies in the image of
+$E^\times$ in $\mathrm{PGL}(3,13)$, a Singer group. Any two subfields of the
+matrix algebra isomorphic to $\F_{13^3}$ are conjugate under $\mathrm{GL}(3,13)$
+(identify $\F_{13}^3$ with either field), so all Singer groups are conjugate,
+and a cyclic group of order $183$ has exactly one subgroup of order three.
+Therefore $\langle g\rangle$ is conjugate to $H$. A projectivity carrying $H$
+to $\langle g\rangle$ carries $H$-invariant blocking sets to
+$\langle g\rangle$-invariant ones and preserves line intersections, which
+gives Corollary~\ref{cor:all}. This section is a conventional argument and is
+not part of the Lean proof.
+
+\section{Verification}\label{sec:verification}
+
+\paragraph{Lean.} The package contains a Lean~4.35.0 project using Mathlib
+revision \texttt{56a0058}. Points and lines of $\PG$ are both elements of
+Mathlib's \texttt{Projectivization (ZMod 13) (Fin 3 \(\to\) ZMod 13)}, and a
+point lies on a line when the dot product of representatives vanishes. The
+Singer cycle is the projectivity of the matrix of multiplication by $\theta$,
+and $H$ is generated by its $61$st iterate. The project proves that the cycle
+has order exactly $183$, that its $61$st iterate has order three and fixes no
+point, the properties of the $21$-point witness, the reduction of
+Lemma~\ref{lem:reduction} for arbitrary point sets, Proposition~\ref{prop:unsat},
+and the final statement \texttt{SingerC3.isLeast\_admissibleCaps}: $5$ is the
+least $c$ for which an $H$-invariant blocking set with all line intersections
+at most $c$ exists.
+
+The search of Proposition~\ref{prop:unsat} is a Lean function \texttt{go}
+that is evaluated by the kernel with \texttt{decide +kernel}. It takes only
+five kinds of steps, each checked against the actual line counts $r_S$:
+closing a node, excluding an orbit after checking that choosing it would close
+the node, choosing an orbit after checking that excluding it would close the
+node, excluding the available orbits of a condition of weight four, and
+splitting on an orbit. A separate heuristic on packed line counts decides
+which step to take. The soundness theorem \texttt{go\_sound} holds for every
+value of the heuristic, so its correctness is not needed. The search is split
+into a top search from the root and $342$ subsearches with at most $4{,}961$
+steps each; together they take $771{,}752$ steps. Finite facts about the
+coordinate model are also decided by the kernel. There is no
+\texttt{native\_decide}, no compiled-code evaluation and no added axiom, and
+every declaration of the project depends only on \texttt{propext},
+\texttt{Classical.choice} and \texttt{Quot.sound}. The kernel search takes
+about an hour of processor time in total.
+
+\paragraph{Python.} The program \texttt{certificate/check\_singer.py} uses only
+the Python standard library. It recomputes the field, the $183$ points, all
+lines from their coordinate equations, the difference set $D$, the $61$
+conditions and the identity $MM^{\mathsf T}=13I+3J$; it checks the witness,
+its intersection numbers, its tangents and the conjugacy to the set of
+\cite{BBW}; and it runs the search of Proposition~\ref{prop:unsat}.
+
+\section{Limitations}
+
+The result concerns one conjugacy class of subgroups. Whether $\PG$ has a
+blocking set with all line intersections at most four, without symmetry, is
+not decided here. The identification of $D$ as the line set is checked by
+computation and in Lean; the conjugacy statement of Section~\ref{sec:conj} is
+not formalized. The literature comparison is bounded, and historical priority
+is not certified.
+
+\section*{Research process and AI disclosure}
+
+This is fully autonomous agentic research. Dev D. Goyal is responsible for
+publication. No expert validation or external peer review is claimed, and
+the novelty assessment is provisional.
+
+Autonomous AI research agents selected the question, found the reduction to
+$61$ orbit conditions, identified the witness with the example of
+\cite{BBW}, produced and checked a solver certificate for
+Proposition~\ref{prop:unsat}, wrote their own Lean proof and searched the
+literature in an earlier session, which also ran internal AI-assisted reviews
+that are not peer review. Its records describe the research and review
+agents as Astra agents. The same session proposed a second result, a
+logarithmic lower bound for the number of bounded-degree plane curves whose
+rational points block all lines; it is not part of this paper.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this
+release. It wrote the Lean project used here, including the kernel search and
+its soundness proof, ran its fresh build and axiom audit, wrote the
+independent Python checker and this manuscript, and integrated the package
+into the repository. The solver certificate and the earlier Lean proof are
+not included. AI checks are not human peer review.
+
+\begin{thebibliography}{9}
+\bibitem{BBW}
+A.~Blokhuis, A.~E.~Brouwer and H.~A.~Wilbrink, \emph{Blocking sets in
+PG$(2,p)$ for small $p$, and partial spreads in PG$(3,7)$}, Advances in
+Geometry \textbf{3} (2003), special issue, S245--S253.
+\href{https://doi.org/10.1515/advg.2003.2003.s1.245}{doi:10.1515/advg.2003.2003.s1.245}.
+
+\bibitem{EP1159}
+T.~F.~Bloom, \emph{Erd\H{o}s Problem \#1159},
+\href{https://www.erdosproblems.com/1159}{erdosproblems.com/1159},
+accessed 31 October 2026.
+
+\bibitem{ESS}
+P.~Erd\H{o}s, R.~Silverman and A.~Stein, \emph{Intersection properties of
+families containing sets of nearly the same size}, Ars Combinatoria
+\textbf{15} (1983), 247--259.
+
+\bibitem{campaign}
+Erd\H{o}s problem verification campaign, problem 1159, orbit-search log for
+$q=13$, commit \texttt{7bccace},
+\href{https://github.com/pw/erdosproblemaday-verification/blob/7bccace07c6b555623be274558e463b5ef2c3ea1/1159/1159-klein-blocks-pg2-11-and-the-q13-question/orbitzoo/orbitzoo_q13.log}{github.com/pw/erdosproblemaday-verification},
+accessed 31 October 2026.
+\end{thebibliography}
+\end{document}

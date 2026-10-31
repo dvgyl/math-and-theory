@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**48 manuscripts and research notes across 47 result families in mathematics, theoretical computer science, and mathematical physics.**
+**49 manuscripts and research notes across 48 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -220,6 +220,20 @@ Exact minimal recurrences for every power of a rank-thirteen sequence, nonquasip
 **Priority and subsequent correspondence.** On 29 October 2026, through correspondence with Professor Eric Rowland, I learned that he had independently obtained an infinite family of rank sequences for rank-three recurrences while experimenting with an LLM. The constructions have not been compared. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#power-ranks-of-a-constant-recursive-sequence).
 
 [Paper PDF](papers/mathematics/power-rank/manuscript.pdf) · [LaTeX](papers/mathematics/power-rank/manuscript.tex) · [Reproduction and source context](papers/mathematics/power-rank/README.md) · [Citation](papers/mathematics/power-rank/CITATION.bib)
+
+### Finite geometry
+
+#### [Blocking sets of PG(2,13) invariant under a fixed-point-free Singer subgroup meet some line in five points](papers/mathematics/singer-orbit-blocking/manuscript.pdf)
+
+**Family:** `singer-orbit-blocking`.
+
+Let H be the subgroup of order three of a Singer cycle group of PG(2,13); it fixes no point. Every H-invariant blocking set of PG(2,13) meets some line in at least five points, and the 21-point blocking set of Blokhuis, Brouwer and Wilbrink, invariant under a conjugate of H, meets every line in at most five points. So five is the least possible largest line intersection of an H-invariant blocking set, for every fixed-point-free collineation of order three. This settles a symmetric case of the plane of order 13 in Erdős Problem 1159; blocking sets without this symmetry are not covered.
+
+**Formal scope.** Lean 4.35.0 models PG(2,13) with Mathlib's projectivization of F₁₃³ and proves the order of the Singer cycle, the fixed-point-free subgroup, the 21-point witness, the reduction to 61 orbit conditions and the nonexistence of a solution with intersections at most four, by a kernel-checked search with a soundness proof. The conjugacy of all fixed-point-free subgroups of order three is conventional.
+
+**Prior work.** [Erdős Problem #1159.](https://www.erdosproblems.com/1159) · [Blokhuis, Brouwer and Wilbrink, 2003.](https://doi.org/10.1515/advg.2003.2003.s1.245)
+
+[Paper PDF](papers/mathematics/singer-orbit-blocking/manuscript.pdf) · [LaTeX](papers/mathematics/singer-orbit-blocking/manuscript.tex) · [Proof and reproduction](papers/mathematics/singer-orbit-blocking/README.md) · [Citation](papers/mathematics/singer-orbit-blocking/CITATION.bib)
 
 ### Quadratic forms and number theory
 

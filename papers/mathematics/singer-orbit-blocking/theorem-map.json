@@ -1,0 +1,100 @@
+{
+  "paper": "manuscript.tex",
+  "lean_project": "lean",
+  "audited_declarations": [
+    "SingerC3.singer_iterate_183",
+    "SingerC3.singer_iterate_ne",
+    "SingerC3.hgen_iterate_three",
+    "SingerC3.hgen_no_fixed_point",
+    "SingerC3.exists_ptN",
+    "SingerC3.lineSet_lineVec",
+    "SingerC3.witness_spec",
+    "SingerC3.five_mem_admissibleCaps",
+    "SingerC3.ncard_inter_lineVec",
+    "SingerC3.reduction",
+    "SingerC3.cap_four_reduction",
+    "SingerC3.go_sound",
+    "SingerC3.searchCut_sound",
+    "SingerC3.Cert.noSol_root",
+    "SingerC3.not_systemSolvable",
+    "SingerC3.no_invariant_cap_four",
+    "SingerC3.exists_line_ge_five",
+    "SingerC3.isLeast_admissibleCaps"
+  ],
+  "results": [
+    {
+      "paper_label": "Section 1 (definitions)",
+      "declarations": [
+        "SingerC3.Point",
+        "SingerC3.Line",
+        "SingerC3.lineSet",
+        "SingerC3.singerMatrix",
+        "SingerC3.singer",
+        "SingerC3.hgen",
+        "SingerC3.HInvariant",
+        "SingerC3.IsBlocking",
+        "SingerC3.CapAtMost",
+        "SingerC3.admissibleCaps"
+      ],
+      "scope": "Points and lines of PG(2,13) are both elements of Mathlib's Projectivization (ZMod 13) (Fin 3 -> ZMod 13); a point lies on a line when the dot product of representatives vanishes (Projectivization.orthogonal). singer is the projectivity of the matrix of multiplication by theta on F_13[theta]/(theta^3 + theta + 6) in the basis 1, theta, theta^2, and hgen = singer^[61]. HInvariant B says hgen maps B into B; IsBlocking B says B meets every line; CapAtMost B c says every line meets B in at most c points (Set.ncard). admissibleCaps is the set of c for which an H-invariant blocking set with CapAtMost c exists."
+    },
+    {
+      "paper_label": "Section 1 (the Singer cycle and H)",
+      "declarations": [
+        "SingerC3.singer_iterate_183",
+        "SingerC3.singer_iterate_ne",
+        "SingerC3.hgen_iterate_three",
+        "SingerC3.hgen_no_fixed_point"
+      ],
+      "scope": "The Singer cycle has order exactly 183, hgen^[3] is the identity, and hgen fixes no point of PG(2,13)."
+    },
+    {
+      "paper_label": "lem:reduction",
+      "declarations": [
+        "SingerC3.exists_ptN",
+        "SingerC3.lineSet_lineVec",
+        "SingerC3.ncard_inter_lineVec",
+        "SingerC3.reduction",
+        "SingerC3.cap_four_reduction",
+        "SingerC3.SystemSolvable"
+      ],
+      "scope": "Every point is the point of theta^i for some i < 183; the line lineVec s consists of the points theta^(d+s), d in D. For an arbitrary H-invariant set B the intersection with lineVec s has rowCount points, and an H-invariant blocking set with all intersections at most 4 yields a solution of the 61-variable system with orbit 0 chosen. Only the 61 lines lineVec s, s < 61, are used for the lower bound; no size or minimality assumption is made on B."
+    },
+    {
+      "paper_label": "prop:unsat",
+      "declarations": [
+        "SingerC3.go",
+        "SingerC3.go_sound",
+        "SingerC3.searchCut_sound",
+        "SingerC3.Cert.top",
+        "SingerC3.Cert.cutList_ok",
+        "SingerC3.Cert.noSol_root",
+        "SingerC3.not_systemSolvable"
+      ],
+      "scope": "go is a depth-first search evaluated by the kernel with decide +kernel. Its steps are checked against rowCount; go_sound holds for every value of the heuristic plan and the packed counts. The top search from the root (orbit 0 chosen) is cut at 342 partial assignments, each closed by a separate kernel-checked search in SingerC3.Cert.Part00 to Part15; together they take 771752 steps."
+    },
+    {
+      "paper_label": "Section 4 (the matching example)",
+      "declarations": [
+        "SingerC3.witness",
+        "SingerC3.witness_spec",
+        "SingerC3.five_mem_admissibleCaps"
+      ],
+      "scope": "The 21-point set is H-invariant, blocking, meets every line in at most five points, meets some line in exactly five points, has 21 points and is a minimal blocking set. Its conjugacy to the set of Blokhuis, Brouwer and Wilbrink is checked by certificate/check_singer.py, not in Lean."
+    },
+    {
+      "paper_label": "thm:main",
+      "declarations": [
+        "SingerC3.no_invariant_cap_four",
+        "SingerC3.exists_line_ge_five",
+        "SingerC3.isLeast_admissibleCaps"
+      ],
+      "scope": "No H-invariant blocking set meets every line in at most four points; every H-invariant blocking set meets some line in at least five points; and IsLeast admissibleCaps 5."
+    },
+    {
+      "paper_label": "cor:all",
+      "declarations": [],
+      "scope": "Conventional proof (Section 5): every fixed-point-free collineation of order three generates a conjugate of H. Not formalized."
+    }
+  ]
+}
