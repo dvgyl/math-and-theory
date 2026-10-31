@@ -1,0 +1,98 @@
+{
+ "exact": {
+  "arithmetic_orders": [
+   8,
+   2000
+  ],
+  "certificates": [
+   {
+    "augmentations_independently_checked": 153,
+    "free": true,
+    "m": 12,
+    "n": 11,
+    "saturated": true,
+    "witness": "boundary_n11_e12"
+   },
+   {
+    "augmentations_independently_checked": 532,
+    "free": true,
+    "m": 28,
+    "n": 16,
+    "saturated": true,
+    "witness": "boundary_n16_e28"
+   },
+   {
+    "augmentations_independently_checked": 530,
+    "free": true,
+    "m": 30,
+    "n": 16,
+    "saturated": true,
+    "witness": "product_n16_e30"
+   },
+   {
+    "augmentations_independently_checked": 528,
+    "free": true,
+    "m": 32,
+    "n": 16,
+    "saturated": true,
+    "witness": "product_n16_e32"
+   }
+  ],
+  "constructions_checked": 13,
+  "witnesses": [
+   {
+    "E_n": 15,
+    "L_n": 12,
+    "file": "boundary_n11_e12.json",
+    "free": true,
+    "m": 12,
+    "n": 11,
+    "paired_product": false,
+    "saturated": true
+   },
+   {
+    "E_n": 32,
+    "L_n": 28,
+    "file": "boundary_n16_e28.json",
+    "free": true,
+    "m": 28,
+    "n": 16,
+    "paired_product": false,
+    "saturated": true
+   },
+   {
+    "E_n": 32,
+    "L_n": 28,
+    "file": "product_n16_e30.json",
+    "free": true,
+    "m": 30,
+    "n": 16,
+    "paired_product": true,
+    "saturated": true
+   },
+   {
+    "E_n": 32,
+    "L_n": 28,
+    "file": "product_n16_e32.json",
+    "free": true,
+    "m": 32,
+    "n": 16,
+    "paired_product": true,
+    "saturated": true
+   }
+  ]
+ },
+ "lean": {
+  "audited_declarations": 5,
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ "lean_sources": [
+  "lean/Audit.lean",
+  "lean/BergeTriangle/Defs.lean",
+  "lean/BergeTriangle.lean"
+ ]
+}

@@ -1,0 +1,491 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small The upper saturation spectrum of Berge triangles}
+\fancyhead[R]{\small Dev D. Goyal}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\hypersetup{pdftitle={The upper saturation spectrum of Berge triangles in triple systems},
+pdfauthor={Dev D. Goyal},
+pdfsubject={Fully autonomous agentic research},
+pdfkeywords={Berge triangle, saturation spectrum, triple systems, 3-uniform hypergraphs, extremal combinatorics, stability, Lean 4}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\F}{F}
+\newcommand{\sh}{\partial}
+\title{\textbf{The upper saturation spectrum of Berge triangles\\in triple systems}}
+\author{Dev D. Goyal}
+\date{31 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $E_n=\lfloor n^2/8\rfloor$ be Gy\H{o}ri's maximum number of edges in a
+Berge-triangle-free triple system on $n$ vertices, and let
+$L_n=\lfloor (n-1)^2/8\rfloor$. We show that for every $n\ge 8$ every
+Berge-triangle-free triple system with more than $L_n$ edges is a spanning
+subsystem of a paired product $\F(n,p)$: $p$ disjoint pairs, $n-2p$ further
+vertices, and all triples formed by one pair and one further vertex.
+Consequently every saturated system with more than $L_n$ edges is a paired
+product, and the part of the Berge-triangle saturation spectrum above $L_n$
+is exactly $\{p(n-2p):1\le p<n/2\}\cap(L_n,E_n]$. The threshold is sharp:
+for every $n\ge 8$ there is a saturated system with exactly $L_n$ edges that
+is not a paired product. The upper window has $\lfloor n/4\rfloor$ or
+$\lfloor n/4\rfloor+1$ integers and contains $n/4-O(\sqrt n)$ sizes that are
+not in the spectrum, given explicitly by quadratic deficits. The proof uses
+the own-pair reduction of Frankl, F\"uredi, Goorevitch, Holzman and
+Simonyi, a rigidity lemma for dense bipartite own-pair graphs, and the
+equality case of Erd\H{o}s's bound for nonbipartite triangle-free graphs.
+A Lean~4 project proves the definitions-level facts that every paired
+product is Berge-triangle-free and saturated with $p(n-2p)$ edges; the
+containment theorem has a conventional proof, and exact checkers verify the
+constructions and the arithmetic for small orders.
+\end{abstract}
+
+\section{Definitions and results}
+
+A \emph{triple system} on a vertex set $V$ is a set $H$ of $3$-element
+subsets of $V$, its \emph{edges}. All vertices of $V$ count, including
+isolated ones. $H$ contains a \emph{Berge triangle} if there are distinct
+vertices $x,y,z$ and distinct edges $h_1,h_2,h_3\in H$ with
+$\{x,y\}\subseteq h_1$, $\{y,z\}\subseteq h_2$ and $\{z,x\}\subseteq h_3$;
+copies need not be induced. $H$ is \emph{saturated} if it contains no
+Berge triangle but $H\cup\{T\}$ contains one for every $3$-set $T\notin H$.
+The \emph{saturation spectrum} $\operatorname{ES}_3(n,\text{Berge-}K_3)$ is
+the set of sizes $|H|$ of saturated systems on $n$ vertices.
+
+Gy\H{o}ri~\cite{Gyori} proved that a Berge-triangle-free triple system on
+$n$ vertices has at most $E_n=\lfloor n^2/8\rfloor$ edges, and Frankl,
+F\"uredi, Goorevitch, Holzman and Simonyi~\cite{FFGHS} characterized the
+extremal systems. Saturation numbers of Berge triangles were studied
+in~\cite{EGGMS}. Bushaw, English, Heath, Johnston and
+Rombach~\cite[Section~6]{BEHJR}, after determining spectra of Berge stars,
+proposed the spectrum of the Berge triangle as a further problem, recording
+its minimum $\lceil (n-1)/2\rceil$ and maximum $E_n$, and suspected that
+only finitely many values near the top are missing. Their
+remark is a suspicion rather than a numbered conjecture.
+
+For $1\le p<n/2$ the \emph{paired product} $\F(n,p)$ has vertex set
+$P_1\cup\dots\cup P_p\cup B$, where the $P_i$ are disjoint pairs and
+$|B|=n-2p\ge1$, and edge set $\{P_i\cup\{b\}:1\le i\le p,\ b\in B\}$. It has
+$p(n-2p)$ edges; for suitable $p$ this attains $E_n$. Write
+\[
+E_n=\Big\lfloor\frac{n^2}{8}\Big\rfloor,\qquad
+L_n=\Big\lfloor\frac{(n-1)^2}{8}\Big\rfloor,\qquad W_n=E_n-L_n .
+\]
+
+\begin{theorem}[dense containment]\label{thm:containment}
+Let $n\ge8$. Every Berge-triangle-free triple system $H$ on $n$ vertices with
+$|H|>L_n$ is a spanning subsystem of a paired product $\F(n,p)$.
+\end{theorem}
+
+\begin{theorem}[upper spectrum]\label{thm:spectrum}
+Let $n\ge 8$. A saturated triple system on $n$ vertices with more than $L_n$
+edges is isomorphic to a paired product. Hence
+\[
+\operatorname{ES}_3(n,\text{Berge-}K_3)\cap(L_n,E_n]
+=\{p(n-2p):1\le p<n/2\}\cap(L_n,E_n].
+\]
+\end{theorem}
+
+\begin{theorem}[sharpness]\label{thm:sharp}
+For every $n\ge8$ the largest saturated triple system on $n$ vertices that
+is not isomorphic to a paired product has exactly $L_n$ edges. In
+particular the strict threshold in Theorems~\ref{thm:containment}
+and~\ref{thm:spectrum} cannot be lowered.
+\end{theorem}
+
+\begin{corollary}[explicit deficits]\label{cor:deficits}
+Let $n\ge8$ and $0\le d<W_n$. Then $E_n-d$ belongs to the saturation
+spectrum if and only if
+\begin{itemize}
+\item $d=2j^2$ for some integer $j\ge0$, when $n\equiv0\pmod 4$;
+\item $d=2j(j+1)$ for some integer $j\ge0$, when $n\equiv2\pmod 4$;
+\item $d=j(j+1)/2$ for some integer $j\ge0$, when $n$ is odd.
+\end{itemize}
+Here $W_n=\lfloor n/4\rfloor$, except that $W_n=\lfloor n/4\rfloor+1$ when
+$n\equiv3\pmod4$. The window $(L_n,E_n]$ therefore contains
+$n/4-O(\sqrt n)$ sizes outside the spectrum.
+\end{corollary}
+
+For example, above $L_{16}=28$ only $30$ and $32$ occur, and for $n=400$
+only $8$ of the $100$ sizes $19901,\dots,20000$ occur
+(Table~\ref{tab:examples}). The number of missing sizes is thus unbounded,
+and they are not confined to a bounded distance from the maximum. This
+rules out the natural uniform-in-$n$ reading of the suspicion
+in~\cite{BEHJR}. The spectrum at or below $L_n$ is not determined here.
+
+\paragraph{Prior work.} The paired products, their size, the bound $E_n$
+and the classification of the extremal systems are
+known~\cite{Gyori,FFGHS}. Lemma~\ref{lem:own} below is the own-pair
+reduction of~\cite[Observation~2]{FFGHS}. The nonbipartite bound in
+Lemma~\ref{lem:erdos} is due to Erd\H{o}s~\cite[Lemma~1]{Erdos}; we include
+its proof because we need its equality case. Gerbner~\cite{Gerbner}
+obtained qualitative matching and shadow structure for near-extremal
+Berge-triangle-free systems; such structure may already imply,
+after a saturation argument, that the spectrum misses many sizes near the
+top. What we add is the exact finite threshold $L_n$ for every $n\ge8$,
+the nonproduct construction at the threshold, and the explicit spectrum in
+the whole window. We did not find these statements in the searched
+literature. The full text of a 2026 preprint of Xu, Zeng and Zhang on the
+Tur\'an number of a matching together with a Berge triangle
+(arXiv:2607.12300) could not be inspected, and its structural lemmas may
+bear on Theorem~\ref{thm:containment}. No priority claim is made.
+
+\section{Own pairs}
+
+A pair of vertices is an \emph{own pair} of an edge $h$ if $h$ is the only
+edge containing it. The \emph{shadow} $\sh H$ is the graph of all pairs
+contained in some edge.
+
+\begin{lemma}[{\cite[Observation~2]{FFGHS}}]\label{lem:own}
+Let $H$ be Berge-triangle-free. Every edge has at least two own pairs.
+Choosing exactly two own pairs from each edge gives a triangle-free graph $G$
+with $e(G)=2|H|$. Every triangle of $\sh H$ is an edge of $H$.
+\end{lemma}
+
+\begin{proof}
+If $h=\{a,b,c\}$ had non-own pairs $ab$ and $ac$, pick edges
+$h_1\ne h\ni a,b$ and $h_2\ne h\ni a,c$. They are distinct, since an edge
+containing $ab$ and $ac$ equals $h$, and $h_1,h_2,h$ with the pairs
+$ab,ac,bc$ form a Berge triangle. Own pairs chosen from different edges are
+distinct, so $e(G)=2|H|$. If $abc$ is a triangle of $\sh H$ but not an edge,
+the edges containing $ab$, $bc$, $ca$ are pairwise distinct (a common edge
+of two of them would be $abc$) and form a Berge triangle. Finally, a
+triangle of $G$ is a triangle of $\sh H$, hence an edge $h$; but only two of
+its pairs were chosen from $h$, and the third, being own, cannot be chosen
+from any other edge.
+\end{proof}
+
+Fix such a \emph{selected own-pair graph} $G$, and let $M$ be the set of
+\emph{omitted pairs}, the third pair of each edge. A selected pair is own
+and is selected only from its own edge, where it is not omitted, so
+$M\cap G=\emptyset$ and $\sh H=G\cup M$. Omitted pairs may have codegree one.
+
+\section{Dense bipartite own-pair graphs}
+
+\begin{lemma}[bipartite rigidity]\label{lem:rigid}
+Let $H\neq\emptyset$ be Berge-triangle-free with a selected own-pair graph
+$G$ that is bipartite with parts $A,B$, $a=|A|$, $b=|B|$, and suppose
+$D=ab-e(G)<\min(a,b)$. Then $H$ is a spanning subsystem of a paired product.
+\end{lemma}
+
+\begin{proof}
+The two selected pairs of an edge form a path of length two in $G$, so each
+omitted pair lies inside $A$ or inside $B$.
+
+\emph{$M$ is a matching.} Suppose $xy,xz\in M$ lie in $A$. If some $w\in B$
+were $G$-adjacent to $x,y,z$, then $xyw$ and $xzw$ would be triangles of
+$\sh H$, hence edges by Lemma~\ref{lem:own}, and the selected pair $xw$
+would lie in two edges. So each $w\in B$ misses one of $xw,yw,zw$, and
+$D\ge b$, a contradiction. The same holds inside $B$.
+
+Let $p$ and $q$ be the numbers of pairs of $M$ inside $A$ and $B$, and
+$r=a-2p$, $s=b-2q$ the numbers of unmatched vertices.
+
+\emph{Blocks.} Let $P\subseteq A$ and $Q\subseteq B$ be pairs of $M$. An edge
+supplying a $G$-edge between $P$ and $Q$ has its omitted pair in $M$ meeting
+$P$ or $Q$, so it is $P\cup\{v\}$ with $v\in Q$ or $Q\cup\{u\}$ with $u\in P$,
+and contributes two $G$-edges to this $2\times2$ block. Two such edges of
+opposite kinds share a cross pair, which is selected and own; two of the same
+kind, say $P\cup\{u\}$ and $P\cup\{v\}$ with $Q=\{u,v\}$, together with an
+edge $h\supseteq Q$ (which exists since $Q\in M$) and any $x\in P$, give the
+Berge triangle on $x,u,v$. Hence each block has at most two $G$-edges.
+An unmatched $u\in A$ and an unmatched $v\in B$ are not $G$-adjacent: the
+edge supplying $uv$ would have an omitted pair at $u$ or $v$. Counting
+these disjoint sets of missing cross pairs,
+\[
+D\ge 2pq+rs .
+\]
+If $p,q\ge1$ and $r\le s$ then $rs\ge r$ and $2pq\ge 2p$, so $D\ge a$;
+symmetrically $D\ge b$ if $s\le r$. So $p$ or $q$ is zero, and since
+$M\ne\emptyset$ we may assume $p>0=q$. Then every omitted pair lies in $A$,
+and an unmatched vertex of $A$ would have $G$-degree zero, forcing $D\ge b$.
+So $r=0$: $A$ is partitioned by the pairs of $M$, and every edge is a pair of
+$M$ together with a vertex of $B$. As $b>D\ge0$, this is a paired product
+containing $H$.
+\end{proof}
+
+\section{The nonbipartite threshold and its equality case}
+
+Let $T_n=\lfloor (n-1)^2/4\rfloor+1$.
+
+\begin{lemma}[{Erd\H{o}s~\cite[Lemma~1]{Erdos}}]\label{lem:erdos}
+A nonbipartite triangle-free graph on $n$ vertices has at most $T_n$ edges.
+\end{lemma}
+
+\begin{proof}
+Let $C$ be a shortest odd cycle, of length $2k+1\ge5$; it has no chords. A
+vertex outside $C$ has at most two neighbours on $C$: three neighbours split
+$C$ into gaps of length at least two, one gap is odd and at most $2k-3$, and
+it closes a shorter odd cycle through the vertex. With $m=n-2k-1$ and
+Mantel's theorem outside $C$,
+\[
+e(G)\le (2k+1)+2m+\Big\lfloor\frac{m^2}{4}\Big\rfloor
+=T_n-(k-2)(n-k-1)\le T_n,
+\]
+where the identity uses $\lfloor (m+2k)^2/4\rfloor=\lfloor m^2/4\rfloor+km+k^2$.
+\end{proof}
+
+\begin{lemma}\label{lem:equality}
+Let $n=4t+3\ge11$, and let $G$ be nonbipartite and triangle-free with
+$e(G)=T_n$. Then $V(G)$ is partitioned into $A,D,C,\{u\},\{v\}$ with
+$|C|=2t$, $|A|+|D|=2t+1$, $|A|,|D|\ge1$, and the edges of $G$ are exactly
+those between $C$ and $A\cup D$, those between $u$ and $A$, those between
+$v$ and $D$, and $uv$.
+\end{lemma}
+
+\begin{proof}
+Equality forces $k=2$, two neighbours on the $5$-cycle $c_0\dots c_4$ for
+every outside vertex, and equality in Mantel's theorem outside the cycle;
+so the $4t-2$ outside vertices span a complete bipartite graph with parts
+$U,V$ of size $2t-1$. An outside vertex adjacent to $c_{i-1},c_{i+1}$ has
+\emph{type} $i$. For adjacent $x\in U$, $y\in V$ the neighbourhoods on the
+cycle are disjoint, which happens exactly when their types are adjacent
+indices of the cycle. As the $5$-cycle contains no $K_{2,2}$, one side, say
+$U$, has a single type, which we rotate to $0$. Then $V$ splits into
+$V_1,V_4$ by type, and $C=\{c_0\}\cup U$, $A=\{c_1\}\cup V_1$,
+$D=\{c_4\}\cup V_4$, $u=c_2$, $v=c_3$ have the stated properties.
+\end{proof}
+
+\begin{lemma}[switching]\label{lem:switch}
+If a Berge-triangle-free $H$ has a selected own-pair graph of the form in
+Lemma~\ref{lem:equality}, then another selection of own pairs gives a
+bipartite graph with the same number of edges.
+\end{lemma}
+
+\begin{proof}
+Let $h$ be the edge supplying $uv$. Its other selected pair contains $u$ or
+$v$; by symmetry $h=\{u,v,x\}$ with $ux$ selected, so $x\in A$ and $vx$ is
+omitted. The pair $vx$ is also own: another edge containing $vx$ would have
+$vx$ as its omitted pair and a common $G$-neighbour of $v$ and $x$ as third
+vertex, and $u$ is their only common neighbour. Replacing $uv$ by $vx$
+keeps two own pairs per edge and gives a graph bipartite with parts
+$A\cup D$ and $C\cup\{u,v\}$.
+\end{proof}
+
+\section{Proofs of Theorems~\ref{thm:containment} and~\ref{thm:spectrum}}
+
+\begin{proof}[Proof of Theorem~\ref{thm:containment}]
+Let $|H|>L_n$ and select an own-pair graph $G$; it is triangle-free with
+$e(G)=2|H|$. Comparing residues of $(n-1)^2$ modulo $8$ gives $2|H|\ge
+2L_n+2\ge T_n$, with equality only if $n\equiv3\pmod4$ and $|H|=L_n+1$. If
+$e(G)>T_n$, then $G$ is bipartite by Lemma~\ref{lem:erdos}; if $e(G)=T_n$
+and $G$ is not bipartite, Lemmas~\ref{lem:equality} and~\ref{lem:switch}
+give a bipartite selection with the same number of edges. So some selected
+own-pair graph $G$ is bipartite with $e(G)\ge T_n$. If its parts have sizes
+$a\le b$, then $a(b-1)\le\lfloor (n-1)^2/4\rfloor$, so
+$D=ab-e(G)\le ab-T_n\le a-1<\min(a,b)$, and Lemma~\ref{lem:rigid} applies.
+\end{proof}
+
+\begin{lemma}\label{lem:product}
+Every paired product $\F(n,p)$ is Berge-triangle-free and saturated.
+\end{lemma}
+
+\begin{proof}
+Each edge has exactly one vertex in $B$. A Berge triangle cannot contain two
+vertices of $B$, since one edge would contain both. If it contains none,
+the pair $xy$ forces $x,y$ into one pair $P_i$, and likewise for $yz$, so
+three distinct vertices lie in $P_i$. If it contains one, say $z\in B$, then
+$x,y\in P_i$ and both edges through $z$ equal $P_i\cup\{z\}$. For saturation,
+an absent triple contains two vertices of $B$, which are joined by the
+two-edge Berge path $b,x,b'$ through any $x\in P_1$, or vertices from two
+different pairs, joined through any $b\in B$; the only other triples,
+one pair and one vertex of $B$, are present. Adding the triple closes the
+path into a Berge triangle.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:spectrum}]
+If $H$ is saturated with $|H|>L_n$, then $H\subseteq \F$ for a paired product
+$\F$ by Theorem~\ref{thm:containment}. Adding any triple of $\F\setminus H$
+to $H$ stays inside the Berge-triangle-free $\F$, so saturation forces
+$H=\F$. Conversely every $\F(n,p)$ is saturated by Lemma~\ref{lem:product}.
+\end{proof}
+
+\section{The sharpness construction}
+
+For $p\ge1$ and $q\ge3$ take disjoint pairs $P_1=\{x,y\},P_2,\dots,P_p$, a
+set $S$ of $q-2$ vertices and two further vertices $u,v$, so $n=2p+q$. Let
+$J(p,q)$ consist of
+\[
+P_i\cup\{z\}\ (1\le i\le p,\ z\in S),\qquad
+P_i\cup\{v\}\ (2\le i\le p),\qquad \{x,u,v\}.
+\]
+It has $p(q-2)+(p-1)+1=p(q-1)$ edges.
+
+\begin{lemma}\label{lem:J}
+$J(p,q)$ is saturated. For $p\ge2$ it is not isomorphic to a paired product.
+\end{lemma}
+
+\begin{proof}
+\emph{Freeness.} Without $\{x,u,v\}$ the system is contained in the paired
+product with pairs $P_i$ and base $S\cup\{u,v\}$, so a Berge triangle must
+use $\{x,u,v\}$ for a pair inside it, and the other two edges form a
+two-edge Berge path between the two vertices of that pair. Since $u$ lies
+in no other edge, the pair is $xv$. A first edge at $x$ is $P_1\cup\{z\}$
+with $z\in S$, and neither $y$ nor $z$ lies in an edge with $v$.
+
+\emph{Saturation.} The vertex $u$ has a two-edge Berge path to every vertex
+outside $\{x,u,v\}$: to $y$ or $z\in S$ through $x$, using $\{x,u,v\}$ and
+$P_1\cup\{z\}$, and to a vertex of $P_i$, $i\ge2$, through $v$, using
+$\{x,u,v\}$ and $P_i\cup\{v\}$. An absent triple containing $u$ contains
+such a vertex. For an absent triple avoiding $u$: two vertices in different
+pairs are joined through any $z\in S$; two vertices of $S$ are joined
+through $x$, and so are $v$ and $z\in S$, using $\{x,u,v\}$ and
+$P_1\cup\{z\}$. Otherwise the triple is a pair $P_i$ with one vertex of
+$S\cup\{v\}$; all of these are present except $P_1\cup\{v\}$, whose pair
+$yv$ closes the path $y,x,v$.
+
+\emph{Not a product.} The vertex $u$ has degree one, and for $p\ge2$ the
+edges $P_1\cup\{z\}$ and $P_2\cup\{v\}$ are disjoint. In a paired product a
+vertex of degree one forces $p=1$ or $|B|=1$, and then all edges share a
+vertex.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:sharp}]
+Take $p=\lfloor n/4\rfloor$ and $q=n-2p$. For $n\ge8$ we have $p\ge2$ and
+$q\ge3$, and checking the four residues of $n$ modulo $4$ gives
+$p(q-1)=p(n-2p-1)=L_n$. So $J(p,q)$ is a saturated system with $L_n$ edges
+that is not a paired product. By Theorem~\ref{thm:spectrum} no larger
+nonproduct saturated system exists. Since $J(p,q)$ is saturated, it is not
+contained in any paired product (saturation would force equality), so the
+threshold of Theorem~\ref{thm:containment} is sharp as well.
+\end{proof}
+
+The construction proves the value $L_n$ outside the product class; it does
+not classify the nonproduct saturated systems with $L_n$ edges, and other
+such systems exist, for instance at $n=11$.
+
+\section{Arithmetic of the window}
+
+Write $n=4t+r$. Parametrizing $p$ around $n/4$ gives
+\begin{align*}
+n=4t,\ p=t+j:&\quad E_n-p(n-2p)=2j^2,\\
+n=4t+2,\ p=t+j:&\quad E_n-p(n-2p)=2j(j-1),\\
+n=4t+1,\ p=t+j:&\quad E_n-p(n-2p)=2j^2-j,\\
+n=4t+3,\ p=t+1+j:&\quad E_n-p(n-2p)=2j^2+j,
+\end{align*}
+with $j\in\mathbb Z$. As $j$ ranges over the integers, the nonnegative values
+of $2j(j-1)$ are the numbers $2k(k+1)$, and those of $2j^2\mp j$ are the
+triangular numbers $k(k+1)/2$, $k\ge0$. If $d<W_n$ then $E_n-d>L_n>0$, so a
+solution of $p(n-2p)=E_n-d$ automatically has $0<p<n/2$. With
+Theorem~\ref{thm:spectrum} this proves Corollary~\ref{cor:deficits}. The
+values $E_n$, $L_n$ are $2t^2$, $2t^2-t$ for $n=4t$; $2t^2+t$, $2t^2$ for
+$n=4t+1$; $2t^2+2t$, $2t^2+t$ for $n=4t+2$; and $2t^2+3t+1$, $2t^2+2t$ for
+$n=4t+3$, which gives $W_n$. Each quadratic family meets the window in
+$O(\sqrt{W_n})$ values.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrll}
+\toprule
+$n$ & $L_n$ & $E_n$ & sizes in $(L_n,E_n]$ in the spectrum & missing sizes\\
+\midrule
+8 & 6 & 8 & 8 & 7\\
+11 & 12 & 15 & 14, 15 & 13\\
+16 & 28 & 32 & 30, 32 & 29, 31\\
+40 & 190 & 200 & 192, 198, 200 & 191, 193--197, 199\\
+400 & 19900 & 20000 & 19902, 19928, 19950, 19968, & 92 of the 100 sizes\\
+ & & & 19982, 19992, 19998, 20000 & \\
+\bottomrule
+\end{tabular}
+\caption{The upper window for some orders.}\label{tab:examples}
+\end{table}
+
+\section{Verification}\label{sec:verification}
+
+\paragraph{Exact checks.} The program \texttt{check\_spectrum.py} in
+\texttt{certificate/}, which uses only the Python standard library, builds
+$J(\lfloor n/4\rfloor, n-2\lfloor n/4\rfloor)$ and every paired product above the threshold for
+$8\le n\le 20$, and checks freeness, saturation, sizes and product
+recognition by direct search. It compares the product sizes in
+$(L_n,E_n]$ with Corollary~\ref{cor:deficits} and the formula for $W_n$
+for $8\le n\le 2000$, and recomputes Table~\ref{tab:examples}. It also
+checks four witness systems directly: $J(2,7)$ at $n=11$, $J(4,8)$ at
+$n=16$, and paired products with $30$ and $32$ edges at $n=16$. A separate checker validates the stored
+search-free certificates of these witnesses, listing for every absent
+triple a closing Berge path.
+
+\paragraph{Lean.} The Lean~4.35.0 project in \texttt{lean/}, pinned to
+Mathlib commit \texttt{56a0058}, defines triple systems on an arbitrary
+vertex type, Berge triangles, freeness, saturation and paired products as
+in Section~1. It proves that every paired product is Berge-triangle-free
+and saturated, that its number of edges is the number of pairs times the
+size of the base, and that on a finite vertex type twice the number of
+pairs plus the size of the base is the number of vertices. The audited
+declarations depend only on \texttt{propext}, \texttt{Classical.choice}
+and \texttt{Quot.sound}. Theorem~\ref{thm:containment}, the sharpness
+construction and the arithmetic of the window have conventional proofs
+only in this version.
+
+\section{Limitations and open questions}
+
+The spectrum at or below $L_n$ is open, and the nonproduct saturated
+systems with exactly $L_n$ edges are not classified. For $n\le7$ the
+statements are not claimed. The literature comparison is bounded, as
+described in Section~1.
+
+\section*{Research process and AI disclosure}
+
+This is fully autonomous agentic research. Dev D. Goyal is responsible for
+publication. No expert validation or external peer review is claimed, and
+the novelty assessment is provisional.
+
+The problem selection, the theorems, their proofs, the construction, the
+exact checkers, the witness certificates and the literature search were
+produced by autonomous AI research agents in an earlier session, which also
+ran internal AI-assisted reviews of the proof; these reviews are not peer
+review. Its records do not name the model used for the research; they
+describe the internal reviews as Astra reviews. During that session the
+target threshold was strengthened from $E_n-\lfloor n/4\rfloor$ to $L_n$,
+which differs from it by one edge when $n\equiv3\pmod 4$, and the
+containment statement was extended from saturated to all free systems.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this
+release. It checked each proof step, wrote its own exact checker for the
+constructions and the arithmetic, reran the certificate checker, wrote the
+Lean project and ran its fresh build and axiom audit, and wrote this
+manuscript. AI checks are not human peer review.
+
+\begin{thebibliography}{9}
+\bibitem{BEHJR}
+N.~Bushaw, S.~English, E.~Heath, D.~Johnston and P.~Rombach,
+\emph{The saturation spectrum of Berge stars}, preprint (2025),
+\href{https://arxiv.org/abs/2502.17686}{arXiv:2502.17686}.
+
+\bibitem{EGGMS}
+S.~English, D.~Gordon, N.~Graber, A.~Methuku and E.~C.~Sullivan,
+\emph{Saturation of Berge hypergraphs}, Discrete Mathematics \textbf{342}
+(2019), 1738--1761.
+\href{https://doi.org/10.1016/j.disc.2019.01.031}{doi:10.1016/j.disc.2019.01.031}.
+\href{https://arxiv.org/abs/1710.03735}{arXiv:1710.03735}.
+
+\bibitem{Erdos}
+P.~Erd\H{o}s, \emph{On a theorem of Rademacher--Tur\'an}, Illinois Journal
+of Mathematics \textbf{6} (1962), 122--127.
+
+\bibitem{FFGHS}
+P.~Frankl, Z.~F\"uredi, A.~Goorevitch, R.~Holzman and G.~Simonyi,
+\emph{Triangle-free triple systems}, Electronic Journal of Combinatorics
+\textbf{33}(2) (2026), \#P2.34.
+\href{https://doi.org/10.37236/14115}{doi:10.37236/14115}.
+Preprint \href{https://arxiv.org/abs/2405.16452}{arXiv:2405.16452}.
+
+\bibitem{Gerbner}
+D.~Gerbner, \emph{The Tur\'an number of Berge book hypergraphs}, SIAM
+Journal on Discrete Mathematics \textbf{38} (2024), 2896--2912.
+\href{https://arxiv.org/abs/2111.11162}{arXiv:2111.11162}.
+
+\bibitem{Gyori}
+E.~Gy\H{o}ri, \emph{Triangle-free hypergraphs}, Combinatorics,
+Probability and Computing \textbf{15} (2006), 185--191.
+\end{thebibliography}
+\end{document}

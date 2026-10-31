@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**45 manuscripts and research notes across 44 result families in mathematics, theoretical computer science, and mathematical physics.**
+**46 manuscripts and research notes across 45 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -127,6 +127,18 @@ Deleting a leaf can move the unique mode of an explicit tree domination polynomi
 **Formal scope.** The fixed tree, deletion, actual domination counts and unique-mode movement are formalized. External question identity and historical priority remain provisional.
 
 [Paper PDF](papers/mathematics/leaf-deletion/manuscript/manuscript.pdf) · [LaTeX](papers/mathematics/leaf-deletion/manuscript/manuscript.tex) · [Reproduction and source context](papers/mathematics/leaf-deletion/README.md) · [Citation](papers/mathematics/leaf-deletion/CITATION.bib)
+
+#### [The upper saturation spectrum of Berge triangles in triple systems](papers/mathematics/berge-triangle-spectrum/manuscript.pdf)
+
+**Family:** `berge-triangle-spectrum`.
+
+For every n ≥ 8, a Berge-triangle-free triple system on n vertices with more than ⌊(n−1)²/8⌋ edges lies inside a paired product F(n,p): p disjoint pairs, the other n − 2p vertices, and all triples formed by one pair and one other vertex. Saturated systems above this threshold are therefore paired products, and the saturation spectrum there consists exactly of the sizes p(n − 2p) up to Győri's maximum ⌊n²/8⌋. The threshold is sharp, since a saturated system with exactly ⌊(n−1)²/8⌋ edges that is not a paired product exists for every n ≥ 8. About n/4 sizes lie in the window and n/4 − O(√n) of them are missing, so the missing sizes near the top are not finitely many uniformly in n.
+
+**Formal scope.** Lean 4.35.0 formalizes triple systems, Berge triangles, saturation and paired products, and proves that every paired product is Berge-triangle-free and saturated with #pairs · #base edges. The containment theorem, the sharpness construction and the arithmetic of the window have conventional proofs, checked computationally for small orders.
+
+**Prior work.** [Bushaw, English, Heath, Johnston and Rombach, 2025.](https://arxiv.org/abs/2502.17686) · [Frankl, Füredi, Goorevitch, Holzman and Simonyi, 2026.](https://doi.org/10.37236/14115)
+
+[Paper PDF](papers/mathematics/berge-triangle-spectrum/manuscript.pdf) · [LaTeX](papers/mathematics/berge-triangle-spectrum/manuscript.tex) · [Proof and reproduction](papers/mathematics/berge-triangle-spectrum/README.md) · [Citation](papers/mathematics/berge-triangle-spectrum/CITATION.bib)
 
 ### Inequalities and real analysis
 

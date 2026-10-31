@@ -625,6 +625,67 @@
       }
     },
     {
+      "id": "berge-triangle-spectrum",
+      "discipline": "Mathematics",
+      "area": "Graph theory",
+      "title": "The upper saturation spectrum of Berge triangles in triple systems",
+      "kind": "Sharp structural threshold and reproducible proof package",
+      "significance_rank": 165,
+      "keywords": [
+        "Berge triangle",
+        "saturation spectrum",
+        "triple systems",
+        "3-uniform hypergraphs",
+        "Berge-triangle-free",
+        "paired product",
+        "stability",
+        "extremal hypergraph theory"
+      ],
+      "summary": "For every n ≥ 8, every Berge-triangle-free triple system on n vertices with more than Lₙ = ⌊(n−1)²/8⌋ edges is a spanning subsystem of a paired product F(n,p): p disjoint pairs, the other n−2p vertices, and all triples formed by one pair and one other vertex. Hence the Berge-triangle saturation spectrum meets (Lₙ, ⌊n²/8⌋] exactly in the sizes p(n−2p), and the threshold is sharp: a saturated system that is not a paired product has at most Lₙ edges, and one with exactly Lₙ edges exists. The window contains n/4 − O(√n) missing sizes, given by explicit quadratic deficits, which rules out the uniform reading of a suspicion of Bushaw, English, Heath, Johnston and Rombach that only finitely many sizes near the top are missing.",
+      "formal_scope": "Lean 4.35.0 formalizes triple systems, Berge triangles, saturation and paired products, and proves that every paired product is Berge-triangle-free and saturated with #pairs · #base edges. The containment theorem, the sharpness construction and the arithmetic of the window have conventional proofs, checked computationally for small orders.",
+      "source": "Bushaw, English, Heath, Johnston and Rombach (arXiv:2502.17686, Section 6) proposed the Berge-triangle saturation spectrum. Győri proved the maximum ⌊n²/8⌋, and Frankl, Füredi, Goorevitch, Holzman and Simonyi (Electron. J. Combin. 2026) gave the own-pair reduction and the extremal systems. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/berge-triangle-spectrum/README.md",
+      "paper": "papers/mathematics/berge-triangle-spectrum/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/mathematics/berge-triangle-spectrum"
+      },
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Saturation spectrum of the Berge triangle in triple systems (Bushaw–English–Heath–Johnston–Rombach)",
+        "posed_by": "Bushaw, English, Heath, Johnston and Rombach, The saturation spectrum of Berge stars, arXiv:2502.17686 (2025), Section 6",
+        "problem_url": "https://arxiv.org/abs/2502.17686",
+        "status": "Partially resolved",
+        "claim": "For n ≥ 8 every saturated Berge-triangle-free triple system with more than ⌊(n−1)²/8⌋ edges is a paired product F(n,p), so the spectrum above this sharp threshold is exactly {p(n−2p)}.",
+        "title_tag": "Upper Saturation Spectrum of Berge Triangles in Triple Systems",
+        "description": "Above ⌊(n−1)²/8⌋ edges every Berge-triangle-free triple system lies in a paired product F(n,p), giving the exact upper saturation spectrum, with n/4−O(√n) gaps.",
+        "queries": [
+          "Berge triangle saturation spectrum",
+          "saturation spectrum Berge K3 3-uniform hypergraph",
+          "Berge-triangle-free triple systems stability",
+          "triangle-free triple systems paired product",
+          "Bushaw English Heath Johnston Rombach Berge triangle",
+          "edge spectrum of Berge-triangle-saturated hypergraphs",
+          "Győri n²/8 Berge triangle near-extremal structure",
+          "sharp stability threshold triangle-free 3-graphs (n−1)²/8"
+        ],
+        "faq": [
+          [
+            "What is the saturation spectrum of the Berge triangle near the maximum?",
+            "For n ≥ 8, a Berge-triangle-saturated triple system on n vertices with more than ⌊(n−1)²/8⌋ edges is a paired product F(n,p), so the sizes above this threshold that occur are exactly the numbers p(n−2p) up to Győri's maximum ⌊n²/8⌋. For 0 ≤ d < ⌊n²/8⌋ − ⌊(n−1)²/8⌋, the size ⌊n²/8⌋ − d occurs exactly when d = 2j² (n ≡ 0 mod 4), d = 2j(j+1) (n ≡ 2 mod 4) or d = j(j+1)/2 (n odd). The spectrum at or below the threshold is not determined."
+          ],
+          [
+            "Are only finitely many sizes near the top missing?",
+            "No, not uniformly in n. The window above ⌊(n−1)²/8⌋ has about n/4 integers, of which n/4 − O(√n) are missing; for n = 400 only 8 of the 100 sizes above 19900 occur. This addresses the uniform reading of a suspicion of Bushaw, English, Heath, Johnston and Rombach, which was not stated as a numbered conjecture."
+          ],
+          [
+            "Is the threshold sharp, and what is formally verified?",
+            "Yes. For every n ≥ 8 an explicit saturated system with exactly ⌊(n−1)²/8⌋ edges is not a paired product. Lean 4 proves that every paired product is Berge-triangle-free and saturated with the stated number of edges; the containment theorem and the construction have conventional proofs and exact computer checks for small orders. Historical priority is not certified."
+          ]
+        ]
+      }
+    },
+    {
       "id": "diagonal-concavity",
       "discipline": "Mathematics",
       "area": "Inequalities and real analysis",

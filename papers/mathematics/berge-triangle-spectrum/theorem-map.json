@@ -1,0 +1,46 @@
+{
+  "paper": "manuscript.tex",
+  "lean_project": "lean",
+  "audited_declarations": [
+    "BergeTriangle.PairSystem.free",
+    "BergeTriangle.PairSystem.saturated",
+    "BergeTriangle.PairSystem.card_edges",
+    "BergeTriangle.PairSystem.two_mul_card_pairs_add_card_base",
+    "BergeTriangle.PairedProduct.saturated"
+  ],
+  "results": [
+    {
+      "paper_label": "Section 1 (definitions)",
+      "declarations": [
+        "BergeTriangle.IsThreeUniform",
+        "BergeTriangle.HasBergeTriangle",
+        "BergeTriangle.BergeTriangleFree",
+        "BergeTriangle.IsSaturated",
+        "BergeTriangle.PairedProduct",
+        "BergeTriangle.IsPairedProduct",
+        "BergeTriangle.E",
+        "BergeTriangle.L",
+        "BergeTriangle.W",
+        "BergeTriangle.DenseContainment"
+      ],
+      "scope": "Triple systems are finite families of 3-element sets on an arbitrary vertex type with decidable equality; Berge triangles are non-induced with distinct vertices and distinct edges; saturation quantifies over every absent 3-element set. A paired product has disjoint 2-element pairs and a disjoint base that together cover every vertex, with at least one pair and one base vertex."
+    },
+    {
+      "paper_label": "lem:product",
+      "declarations": [
+        "BergeTriangle.PairSystem.free",
+        "BergeTriangle.PairSystem.saturated",
+        "BergeTriangle.PairedProduct.saturated",
+        "BergeTriangle.PairSystem.card_edges",
+        "BergeTriangle.PairSystem.two_mul_card_pairs_add_card_base"
+      ],
+      "scope": "Every paired product on every vertex type is Berge-triangle-free and saturated; it has #pairs * #base edges, and 2 * #pairs + #base equals the number of vertices of a finite vertex type."
+    }
+  ],
+  "conventional": [
+    "thm:containment (Lemmas own pairs, bipartite rigidity, Erdős bound, equality case and switching)",
+    "thm:spectrum (the containment direction)",
+    "thm:sharp (the construction J(p,q) and its saturation, nonproduct property and size)",
+    "cor:deficits (the arithmetic of the window)"
+  ]
+}
