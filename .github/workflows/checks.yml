@@ -331,6 +331,9 @@ jobs:
           - package: nonnegative-rank-kronecker
             root: papers/mathematics/nonnegative-rank-kronecker
             project: lean
+          - package: multimarginal-minty
+            root: papers/mathematics/multimarginal-minty
+            project: lean
           - package: matrix-pencil-completion
             root: papers/mathematics/matrix-pencil-completion
             project: lean_p1_converse
@@ -392,6 +395,10 @@ jobs:
             bash verify.sh
             python3 ../certificate/exact_certificate.py --verify-only ../certificate/C11_NMF109.json
             python3 ../certificate/check_factorization.py ../certificate/C11_NMF109.json
+          elif [[ '${{ matrix.package }}' == 'multimarginal-minty' ]]; then
+            lake build Minty Minty.AxiomAudit 2>&1 | tee "${RUNNER_TEMP}/minty-build.log"
+            python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/minty-build.log" --project . --output "${RUNNER_TEMP}/minty-axioms.json"
+            python3 ../certificate/verify_minty_exact.py
           elif [[ '${{ matrix.package }}' == 'matrix-pencil-completion' ]]; then
             command -v rg >/dev/null || { sudo apt-get update && sudo apt-get install --yes ripgrep; }
             bash verify.sh

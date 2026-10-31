@@ -33,5 +33,6 @@ Each family directory contains its manuscripts, proof sources or shared-library 
 | [Escaping Nesterov flows and iterates below critical damping](nesterov-subcritical/) | [PDF](nesterov-subcritical/manuscript.pdf) |
 | [Periodic obstructions to small-extrapolation Chambolle–Pock](chambolle-pock-cycles/) | [PDF](chambolle-pock-cycles/manuscript.pdf) |
 | [The exact last-gradient bound for constant-step gradient descent in the strongly convex case](strong-gradient/) | [PDF](strong-gradient/manuscript.pdf) |
+| [The multi-marginal converse of Minty's theorem fails in the plane](multimarginal-minty/) | [PDF](multimarginal-minty/manuscript.pdf) |
 
 [All subjects](../README.md) · [Complete catalogue](../../CONTENTS.md)

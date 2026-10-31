@@ -1,0 +1,338 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small The multi-marginal converse of Minty's theorem}
+\fancyhead[R]{\small Dev D. Goyal}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\hypersetup{pdftitle={The multi-marginal converse of Minty's theorem fails in the plane},
+pdfauthor={Dev D. Goyal},
+pdfsubject={Fully autonomous agentic research},
+pdfkeywords={multi-marginal optimal transport, c-monotonicity, maximal monotone operators, Minty theorem, firmly nonexpansive mappings, Lean 4}}
+\newcommand{\replaystatus}{A fresh replay on 31 October 2026 compiled all six project modules and the audit module against a Mathlib checkout built from source at the pinned revision. All 47 declarations defined in the project modules, including 18 generated or auxiliary declarations, depend only on \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. The exact rational checker also passed; the record is in \texttt{verification/}.}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\title{\textbf{The multi-marginal converse of Minty's theorem\\fails in the plane}}
+\author{Dev D. Goyal}
+\date{31 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For the three-marginal quadratic cost on the real plane, we give three
+integer-coordinate tuples that are $c$-monotone but admit
+no compatible tuple whose coordinate sum is zero. Four necessary
+inequalities have a positive weighted sum bounded below by the exact
+constant $23/26$, as witnessed by a sum of four squares. Every maximal
+$c$-monotone extension of these tuples therefore has a proper, nonconvex
+sum image. This gives a negative answer to the implication asked about in
+Remark~2.6 of Bartz, Bauschke, Phan and Wang, using their two-point
+definition of $c$-monotonicity. The actual finite obstruction, cost-swap
+equivalence, maximal-extension argument and nonconvexity conclusion are
+formalized in Lean~4.
+\end{abstract}
+
+\paragraph{Verification status.} \replaystatus
+
+\section{The question and the precise conclusion}
+
+Let $H=\R^2$ with its ordinary Euclidean inner product, let $X=H^3$, and put
+\[
+ c_3(x_1,x_2,x_3)=\ip{x_1}{x_2}+\ip{x_1}{x_3}+\ip{x_2}{x_3},
+ \qquad S(x)=x_1+x_2+x_3.
+\]
+For $K\subseteq\{1,2,3\}$, let $m_K(x,y)$ take coordinate $i$ from $x$ when
+$i\in K$ and from $y$ otherwise. A set $\Gamma\subset X$ is
+\emph{$c_3$-monotone} if, for every $x,y\in\Gamma$ and every such $K$,
+\begin{equation}\label{eq:swap}
+ c_3(m_K(x,y))+c_3(m_K(y,x))\le c_3(x)+c_3(y).
+\end{equation}
+This is two-point $c$-monotonicity. No claim about full cyclic
+$c$-monotonicity is made. Maximality means maximality by inclusion among
+all subsets of $X$ satisfying~\eqref{eq:swap}.
+
+Writing $d_i=x_i-y_i$, expansion of the four costs gives
+\begin{equation}\label{eq:cut}
+ c_3(x)+c_3(y)-c_3(m_K(x,y))-c_3(m_K(y,x))
+ =\left\langle\sum_{i\in K}d_i,\sum_{i\notin K}d_i\right\rangle.
+\end{equation}
+Consequently, for three marginals it is enough to check the three singleton
+cuts:
+\begin{equation}\label{eq:single}
+ \ip{x_i-y_i}{S(x)-S(y)-(x_i-y_i)}\ge0,\qquad i=1,2,3.
+\end{equation}
+Complementary cuts give the same inner product. The empty and full cuts
+give zero. This agrees with Definition~1.2 and Lemma~2.3 of~\cite{BBPW}.
+
+For a $c_3$-monotone set $\Gamma$, Bartz et al. prove that
+$S(\Gamma)=H$ implies maximal
+$c$-monotonicity, together with several equivalent full-domain resolvent
+conditions~\cite[Theorem~2.5]{BBPW}. Their Remark~2.6 asks whether
+maximality implies this sum-surjectivity. The following theorem negates
+that implication.
+
+\begin{theorem}\label{thm:main}
+There is a three-element $c_3$-monotone set $\Gamma_0\subset(\R^2)^3$ such
+that every $c_3$-monotone set $\Gamma\supseteq\Gamma_0$ satisfies
+\[
+ 0\notin S(\Gamma),\qquad S(\Gamma)\text{ is not convex}.
+\]
+There exists a maximally $c_3$-monotone such $\Gamma$. In particular,
+maximal $c_3$-monotonicity does not imply $S(\Gamma)=\R^2$.
+\end{theorem}
+
+The maximal set in this theorem is obtained by Zorn's lemma. The explicit
+object is the finite obstruction $\Gamma_0$; we do not assert that this
+three-element set is itself maximal.
+
+\section{The integer-coordinate obstruction}
+
+Define $\Gamma_0=\{A,B,C\}$ by the following table.
+\begin{center}
+\begin{tabular}{c@{\quad}ccc@{\quad}c}
+\toprule
+Point & First marginal & Second marginal & Third marginal & Sum\\
+\midrule
+$A$ & $(-1,-2)$ & $(3,-12)$ & $(9,-2)$ & $(11,-16)$\\
+$B$ & $(-2,-5)$ & $(0,-7)$ & $(-14,-2)$ & $(-16,-14)$\\
+$C$ & $(2,0)$ & $(-4,15)$ & $(14,-1)$ & $(12,14)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The three values on the left of~\eqref{eq:single} are as follows.
+\begin{center}
+\begin{tabular}{c@{\qquad}rrr}
+\toprule
+Pair & $i=1$ & $i=2$ & $i=3$\\
+\midrule
+$A,B$ & $11$ & $57$ & $92$\\
+$A,C$ & $50$ & $25$ & $9$\\
+$B,C$ & $211$ & $4$ & $27$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Every entry is strictly positive. Reversing a pair changes both factors
+in the inner product by a sign, and equal pairs give zero. Thus the table
+and~\eqref{eq:cut} prove $c_3$-monotonicity for every pair and every cut.
+
+\begin{lemma}\label{lem:nozero}
+No $U=(u,v,w)\in(\R^2)^3$ with $u+v+w=0$ is $c_3$-monotonically related
+to all three points of $\Gamma_0$.
+\end{lemma}
+\begin{proof}
+Write $u=(a,b)$, $v=(c,d)$ and $w=(e,f)$. Fix a seed point $P$ with sum
+$s=S(P)$ and one marginal $i$. Since $S(U)=0$, the corresponding
+inequality~\eqref{eq:single} is equivalent to
+\begin{equation}\label{eq:qgeneral}
+ \norm{U_i-P_i}^2+\ip{U_i-P_i}{s}\le0.
+\end{equation}
+Using $(P,i)=(A,1),(B,2),(B,3),(C,2)$ respectively, expansion gives the
+four necessary inequalities
+\begin{align*}
+ q_{A1}&=a^2+b^2+13a-12b-16\le0,\\
+ q_{B2}&=c^2+d^2-16c-49\le0,\\
+ q_{B3}&=e^2+f^2+12e-10f-52\le0,\\
+ q_{C2}&=c^2+d^2+20c-16d+79\le0.
+\end{align*}
+The zero-sum hypothesis gives $e=-a-c$ and $f=-b-d$. Direct polynomial
+expansion then establishes the identity
+\begin{align}\label{eq:certificate}
+ 4q_{A1}+3q_{B2}+4q_{B3}+8q_{C2}
+ ={}&8\left(a+\frac c2+\frac14\right)^2
+     +8\left(b+\frac d2-\frac12\right)^2\notag\\
+   &+13\left(c+\frac{31}{13}\right)^2
+     +13\left(d-\frac{42}{13}\right)^2
+     +\frac{23}{26}.
+\end{align}
+The left side is nonpositive, since its four weights are positive.
+The right side is at least $23/26>0$. This contradiction proves the lemma.
+No numerical optimizer or numerical tolerance is used in this argument.
+\end{proof}
+
+\section{Maximality and a nonconvex sum image}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The preceding table proves that $\Gamma_0$ is $c_3$-monotone. If a
+$c_3$-monotone superset $\Gamma$ contained a tuple of sum zero, that tuple
+would be compatible with all of $\Gamma_0$, contradicting
+Lemma~\ref{lem:nozero}. Thus $0\notin S(\Gamma)$ for every such superset.
+
+Consider the family of all $c_3$-monotone supersets of $\Gamma_0$, ordered
+by inclusion. It is nonempty. The union of a nonempty chain belongs to
+the family: any two tuples in the union lie together in one chain member,
+where every inequality~\eqref{eq:swap} holds. Zorn's lemma supplies a
+maximal family member $\Gamma$. Any $c_3$-monotone proper superset of
+$\Gamma$ would still contain $\Gamma_0$, contradicting this maximality.
+Hence $\Gamma$ is maximal among all $c_3$-monotone sets.
+
+Finally, the three sums satisfy the exact relation
+\[
+ 28S(A)+173S(B)+205S(C)=0,
+ \qquad 28+173+205=406.
+\]
+All three weights are positive. If $S(\Gamma)$ were convex, it would
+contain their normalized convex combination zero. This contradicts the
+already established exclusion. The argument applies to every
+$c_3$-monotone superset, including the maximal one.
+\end{proof}
+
+\section{The simultaneous-extension obstruction}
+
+The relation to Minty parametrization is explicit. If $x,y$ belong to a
+$c_3$-monotone set and $S(x)=S(y)$, inequality~\eqref{eq:single} reads
+$-\norm{x_i-y_i}^2\ge0$ for each $i$, hence $x=y$. Thus on
+$D=S(\Gamma)$ there are well-defined component maps
+$J_i(S(x))=x_i$. They satisfy
+\[
+ \sum_{i=1}^3J_i(s)=s,\qquad
+ \norm{J_i(s)-J_i(t)}^2\le
+ \ip{J_i(s)-J_i(t)}{s-t}.
+\]
+These are precisely the firmly nonexpansive inequalities. For the
+three-point domain $D_0=\{S(A),S(B),S(C)\}$, the displayed data therefore
+give a partition of the identity into three firmly nonexpansive maps.
+There is no simultaneous extension of these maps to $D_0\cup\{0\}$ that
+preserves both firm nonexpansiveness and the identity-sum condition.
+Indeed, the three values at zero would form the tuple excluded by
+Lemma~\ref{lem:nozero}. Equivalently, the maps $Q_i=2J_i-\operatorname{Id}$
+are nonexpansive on $D_0$ and sum to $-\operatorname{Id}$, but cannot be
+extended jointly to zero while retaining these properties.
+
+This consequence concerns compatibility of the three extensions. It does
+not assert a failure of the classical extension or Minty theorem for one
+ordinary monotone operator.
+
+\section{Prior work and historical limits}
+
+The target is the implication in~\cite[Remark~2.6]{BBPW}, not the
+different question about contact sets of mutually $c$-conjugate
+potentials. Lim's multidimensional example~\cite[Proposition~1.10 and
+Example~4.1]{Lim} has a hexagonal gap in its sum image, but Lim explicitly
+shows in Step~5 that its contact set is not maximally $c$-monotone and can
+be enlarged by the zero tuple. In the present construction, every
+$c_3$-monotone extension is prevented from adding any zero-sum tuple.
+The distinction is essential to answering the maximality question.
+
+The 2025 survey~\cite{Survey} discusses the multimarginal setting and
+cites~\cite{BBPW}; it does not supply the finite obstruction above.
+Finite incompatibility certificates, constrained Lipschitz extension
+obstructions, and sum-of-squares identities are established techniques.
+For example, Dacorogna and Gangbo~\cite{DG} study finite obstructions for
+bounded-strain extension problems, whose hypotheses differ from the
+simultaneous firmly nonexpansive identity-partition condition here.
+No novelty is claimed for those general mechanisms.
+The simplex/difference-body extremizers of classical Jung geometry also
+give the hexagonal radius ratio $2/3$; see
+\cite[Lemma~2.9 and Corollary~2.10]{JungGeometry}. A separate
+three-dimensional obstruction considered during this work is a short
+lift of that known geometry. Its existence is not evidence of a new
+extension method. Whether earlier constrained-section results already
+yield the present maximality conclusion remains a historical question.
+
+Searches in October 2026 of the arXiv, citing records and code
+repositories found no earlier answer to the question of Remark~2.6;
+Bartz listed a multi-marginal Minty characterization among open questions
+in 2020 and 2021 conference talks. The search is bounded, no external
+expert has assessed the result, and historical priority is not certified.
+
+\section{Formal verification}\label{sec:lean}
+
+The formal development uses Lean~4.19.0 and the following mathlib commit:
+\begin{center}\small
+\nolinkurl{c44e0c8ee63ca166450922a373c7409c5d26b00b}.
+\end{center}
+It defines the real coordinate space, the Euclidean pairing, the actual
+cost-swap predicate and inclusion-maximality. It verifies the table,
+the polynomial identity, exclusion of every real zero-sum tuple,
+equivalence with all cost swaps, the chain-union and Zorn argument, and
+the actual nonconvexity of the sum image. The principal endpoint is
+\begin{center}\small
+\nolinkurl{Minty.exists_maximal_cMonotone_nonconvex_sum}.
+\end{center}
+The module \texttt{Minty.AxiomAudit} enumerates every declaration whose
+defining module is one of the six project modules, including private and
+generated declarations, and rejects any axiom other than
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. The
+script \texttt{scripts/check\_axiom\_audit.py} checks that output, and
+\texttt{lean/CORRESPONDENCE.md} maps each step above to its declarations.
+The standard-library script \texttt{certificate/verify\_minty\_exact.py}
+checks the table and the polynomial identity in exact arithmetic. The
+interpretation through firmly nonexpansive maps in the previous section
+is proved in the text and is not packaged separately in Lean.
+
+\section{Limitations}\label{sec:limits}
+
+The theorem concerns three marginals on the real plane and the two-point
+notion of $c$-monotonicity of~\cite{BBPW}. It does not classify other
+numbers of marginals or dimensions, assert minimality of the dimension,
+or address full cyclic $c$-monotonicity or $c$-splitting potentials. The
+maximal set is obtained by Zorn's lemma and is not described explicitly.
+Lean verification establishes only the formal statements described in
+Section~\ref{sec:lean}, and the literature comparison does not establish
+historical priority.
+
+\section*{Research process and AI disclosure}
+
+This is fully autonomous agentic research. Dev D. Goyal is responsible
+for publication. No expert validation or external peer review is
+claimed, and the novelty assessment is provisional.
+
+The question selection, the counterexample, the proof, the Lean
+formalization, the literature searches and an earlier version of this
+note were produced by autonomous AI research agents in an earlier
+session. The records of that session state that it used an autonomous
+OpenAI GPT-6 Astra workflow with delegated discovery and review roles,
+and that one additional review used GPT-6.1 Sol. A numerical search
+suggested the witness; no solver output enters the proof.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this
+release. It read Remark~2.6 and Definition~1.2 of~\cite{BBPW} and the
+relevant parts of~\cite{Lim}, compared the Lean definitions of the cost,
+the swap condition and maximality with them, rechecked the table, the
+identity and the convex combination in exact arithmetic with its own
+code, ran the fresh Lean replay, and revised this note. AI checks are not
+human peer review.
+
+\begin{thebibliography}{9}
+\bibitem{BBPW}
+S.~Bartz, H.~H.~Bauschke, H.~M.~Phan and X.~Wang,
+\emph{Multi-marginal maximal monotonicity and convex analysis},
+Mathematical Programming \textbf{185} (2021), 385--408;
+published online in 2019.
+\href{https://doi.org/10.1007/s10107-019-01433-9}{doi:10.1007/s10107-019-01433-9}.
+Preprint \href{https://arxiv.org/abs/1901.03777v2}{arXiv:1901.03777v2}.
+
+\bibitem{Lim}
+T.~Lim, \emph{Maximal monotonicity and cyclic involutivity of
+multiconjugate convex functions}, SIAM Journal on Optimization
+\textbf{33} (2023), 2489--2511.
+\href{https://doi.org/10.1137/23M1549201}{doi:10.1137/23M1549201}.
+Preprint \href{https://arxiv.org/abs/2207.04830v4}{arXiv:2207.04830v4}.
+
+\bibitem{Survey}
+L.~De Pascale, A.~Kausamo and K.~Wyczesany,
+\emph{60 years of cyclic monotonicity: a survey},
+\href{https://arxiv.org/abs/2308.07682}{arXiv:2308.07682}.
+
+\bibitem{DG}
+B.~Dacorogna and W.~Gangbo, \emph{Extension theorems for vector valued
+maps}, Journal de Mathematiques Pures et Appliquees (2006).
+\href{https://doi.org/10.1016/j.matpur.2005.04.005}{doi:10.1016/j.matpur.2005.04.005}.
+
+\bibitem{JungGeometry}
+R.~Brandenberg and B.~Gonz\'alez Merino,
+\emph{The asymmetry of complete and constant width bodies in general
+normed spaces and the Jung constant}, 2015 preprint version.
+\href{https://arxiv.org/abs/1412.8693v3}{arXiv:1412.8693v3}.
+\end{thebibliography}
+\end{document}

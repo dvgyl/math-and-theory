@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**44 manuscripts and research notes across 43 result families in mathematics, theoretical computer science, and mathematical physics.**
+**45 manuscripts and research notes across 44 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -331,6 +331,18 @@ For the unmodified primal-first Chambolle–Pock iteration with extrapolation θ
 **Formal scope.** The universal three-cycle threshold and its attainment, the seven-cycle with its open basin, the four-dimensional family for every κ > 2 and the quadratic eigenmode comparison are formalized in 21 Lean modules. The limsup consequence, numerical observations of larger θ-intervals and basin sizes, and the finite-dimensional matrix-convergence bridge are conventional or observational.
 
 [Paper PDF](papers/mathematics/chambolle-pock-cycles/manuscript.pdf) · [LaTeX](papers/mathematics/chambolle-pock-cycles/manuscript.tex) · [Proof and reproduction](papers/mathematics/chambolle-pock-cycles/README.md) · [Citation](papers/mathematics/chambolle-pock-cycles/CITATION.bib)
+
+#### [The multi-marginal converse of Minty's theorem fails in the plane](papers/mathematics/multimarginal-minty/manuscript.pdf)
+
+**Family:** `multimarginal-minty`.
+
+Bartz, Bauschke, Phan and Wang asked whether the converse half of Minty's theorem extends to several marginals: does maximal c-monotonicity for the cost Σ⟨xᵢ, xⱼ⟩ force the sum image to be the whole space? For three marginals on ℝ², three integer points form a c-monotone set to which no tuple with sum zero can be added, because four compatibility inequalities have a positive weighted sum equal to a sum of squares plus 23/26. Every maximal extension, which exists by Zorn's lemma, therefore has a sum image that omits the origin and is not convex.
+
+**Formal scope.** The whole argument is formalized in Lean for the actual two-point swap condition and maximality among all subsets of (ℝ²)³: the finite obstruction over arbitrary real tuples, the Zorn extension and the nonconvexity of the sum image. The reformulation through firmly nonexpansive maps is proved in the text only.
+
+**Prior work.** [Bartz, Bauschke, Phan and Wang, 2021.](https://doi.org/10.1007/s10107-019-01433-9)
+
+[Paper PDF](papers/mathematics/multimarginal-minty/manuscript.pdf) · [LaTeX](papers/mathematics/multimarginal-minty/manuscript.tex) · [Proof and reproduction](papers/mathematics/multimarginal-minty/README.md) · [Citation](papers/mathematics/multimarginal-minty/CITATION.bib)
 
 #### [The exact last-gradient bound for constant-step gradient descent in the strongly convex case](papers/mathematics/strong-gradient/manuscript.pdf)
 
