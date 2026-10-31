@@ -20,7 +20,7 @@ theorem counterexample (τ : ℝ) (hτ : tau0 ≤ τ) :
       (∀ y, IsProx D (fun _ => 0) (X (n + 1) + U τ n) y → y = Z (n + 1))) ∧
     (∀ n, X (n + 128) = X n) ∧ (∀ n, Z (n + 128) = Z n) ∧
     (∀ n, U τ (n + 128) = U τ n) ∧
-    (∀ n, ‖X n - Z n‖ ^ 2 = 16383999960516622876672) ∧
+    (∀ n, ‖X n - Z n‖ ^ 2 = 1638399999999268052811275665408) ∧
     ¬ Tendsto (fun n : ℕ => ‖X n - Z n‖ ^ 2) atTop (𝓝 (0 : ℝ)) ∧
     (∀ l : V, ¬ Tendsto Z atTop (𝓝 l)) :=
   ⟨C_global_unique_prox, D_global_unique_prox,

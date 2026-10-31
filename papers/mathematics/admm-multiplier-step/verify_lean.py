@@ -23,6 +23,11 @@ ROOTS = ["NearSharpFullRank", "CycleCounterexample"]
 CENTRAL = [
     "ADMMNearSharpCertificate.C188.certificate",
     "ADMMNearSharpCertificate.C1886.certificate",
+    "ADMMNearSharpCertificate.C188628.certificate",
+    "ADMMNearSharpCertificate.C188632.certificate",
+    "ADMMNearSharpCertificate.C18865.certificate",
+    "ADMMNearSharpCertificate.C18867.certificate",
+    "ADMMNearSharpCertificate.C1886795.certificate",
     "ADMMNearSharpAllSteps.initialized_admm_objective_converges",
     "ADMMNearSharpAllSteps.rankDeficient_original_admm_converges",
     "ADMMNearSharpAllSteps.fullRank_original_admm_converges",
@@ -263,7 +268,7 @@ def main() -> None:
     if not args.skip_import_recheck and body_rechecks != CENTRAL:
         result["status"] = "audit_failed"
         save()
-        raise RuntimeError("The six explicit kernel body rechecks did not all pass: " + repr(body_rechecks))
+        raise RuntimeError("The explicit kernel body rechecks did not all pass: " + repr(body_rechecks))
     result["central_body_recheck"] = not args.skip_import_recheck
     result["central_body_recheck_names"] = body_rechecks
     if hashes != {str(p.relative_to(base)): sha(p) for p in paths}:

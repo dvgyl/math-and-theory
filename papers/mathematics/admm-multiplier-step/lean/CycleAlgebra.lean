@@ -30,7 +30,7 @@ def u (τ : ℝ) (i : I) : V := τ • v i
 def C : Set V := polytope x
 def D : Set V := polytope z
 
-theorem tau0_bounds : (943 / 500 : ℝ) < tau0 ∧ tau0 < 18869 / 10000 := by
+theorem tau0_bounds : (377359 / 200000 : ℝ) < tau0 ∧ tau0 < 18869 / 10000 := by
   norm_num [tau0, numerator, denominator]
 
 theorem affine_nonneg (a s : ℤ) (τ : ℝ) (hτ : tau0 ≤ τ)
@@ -225,7 +225,7 @@ theorem periodic (τ : ℝ) : (∀ n, X (n + 128) = X n) ∧
   ⟨fun n => congrArg x (phase_add_period n), fun n => congrArg z (phase_add_period n),
     fun n => congrArg (u τ) (phase_add_period n)⟩
 
-theorem residual_exact (n : ℕ) : ‖X n - Z n‖ ^ 2 = 16383999960516622876672 := by
+theorem residual_exact (n : ℕ) : ‖X n - Z n‖ ^ 2 = 1638399999999268052811275665408 := by
   have he : X n - Z n = shift (phase n) (ofInt (xZ - zZ)) := by
     rw [ofInt_sub, shift_sub]
     rfl
@@ -239,7 +239,7 @@ theorem residual_exact (n : ℕ) : ‖X n - Z n‖ ^ 2 = 16383999960516622876672
 theorem residual_not_tendsto_zero :
     ¬ Tendsto (fun n : ℕ => ‖X n - Z n‖ ^ 2) atTop (𝓝 (0 : ℝ)) := by
   intro h
-  have hh : (16383999960516622876672 : ℝ) ≤ 0 :=
+  have hh : (1638399999999268052811275665408 : ℝ) ≤ 0 :=
     ge_of_tendsto' h (fun n => le_of_eq (residual_exact n).symm)
   norm_num at hh
 
@@ -278,7 +278,7 @@ theorem counterexample_of_rows (τ : ℝ) (hτ : tau0 ≤ τ) :
       (∀ y, IsProx D (fun _ => 0) (X (n + 1) + U τ n) y → y = Z (n + 1))) ∧
     (∀ n, X (n + 128) = X n) ∧ (∀ n, Z (n + 128) = Z n) ∧
     (∀ n, U τ (n + 128) = U τ n) ∧
-    (∀ n, ‖X n - Z n‖ ^ 2 = 16383999960516622876672) ∧
+    (∀ n, ‖X n - Z n‖ ^ 2 = 1638399999999268052811275665408) ∧
     ¬ Tendsto (fun n : ℕ => ‖X n - Z n‖ ^ 2) atTop (𝓝 (0 : ℝ)) ∧
     (∀ l : V, ¬ Tendsto Z atTop (𝓝 l)) := by
   exact ⟨C_properties.1, C_properties.2.1, C_properties.2.2.1,

@@ -259,7 +259,7 @@ jobs:
     runs-on: ubuntu-24.04
     # The ADMM certificates compile 168 modules one at a time; the Nesterov
     # verifier replays every imported proof at each of its 56 modules.
-    timeout-minutes: ${{ matrix.package == 'admm-multiplier-step' && 180 || (matrix.package == 'nesterov-subcritical' || matrix.package == 'singer-orbit-blocking') && 120 || 60 }}
+    timeout-minutes: ${{ matrix.package == 'admm-multiplier-step' && 300 || (matrix.package == 'nesterov-subcritical' || matrix.package == 'singer-orbit-blocking') && 120 || 60 }}
     strategy:
       fail-fast: false
       max-parallel: 2

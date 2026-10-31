@@ -5,7 +5,7 @@ import Lean.Elab.Command
 import Lean.Util.CollectAxioms
 
 /-!
-This final audit submits the actual stored types and bodies of the six central
+This final audit submits the actual stored types and bodies of the eleven central
 declarations to the kernel again, under fresh names. It does not merely create
 aliases referring to the imported declarations. The imported dependency
 environment is the one produced by the separate fresh source build.
@@ -53,6 +53,11 @@ elab "#kernel_recheck_body " source:ident " as " target:ident : command => do
 
 #kernel_recheck_body ADMMNearSharpCertificate.C188.certificate as ADMMNearSharpAudit.certificate188
 #kernel_recheck_body ADMMNearSharpCertificate.C1886.certificate as ADMMNearSharpAudit.certificate1886
+#kernel_recheck_body ADMMNearSharpCertificate.C188628.certificate as ADMMNearSharpAudit.certificate188628
+#kernel_recheck_body ADMMNearSharpCertificate.C188632.certificate as ADMMNearSharpAudit.certificate188632
+#kernel_recheck_body ADMMNearSharpCertificate.C18865.certificate as ADMMNearSharpAudit.certificate18865
+#kernel_recheck_body ADMMNearSharpCertificate.C18867.certificate as ADMMNearSharpAudit.certificate18867
+#kernel_recheck_body ADMMNearSharpCertificate.C1886795.certificate as ADMMNearSharpAudit.certificate1886795
 #kernel_recheck_body ADMMNearSharpAllSteps.initialized_admm_objective_converges as ADMMNearSharpAudit.consensus
 #kernel_recheck_body ADMMNearSharpAllSteps.rankDeficient_original_admm_converges as ADMMNearSharpAudit.affine
 #kernel_recheck_body ADMMNearSharpAllSteps.fullRank_original_admm_converges as ADMMNearSharpAudit.fullRank
@@ -60,6 +65,11 @@ elab "#kernel_recheck_body " source:ident " as " target:ident : command => do
 
 #print axioms ADMMNearSharpCertificate.C188.certificate
 #print axioms ADMMNearSharpCertificate.C1886.certificate
+#print axioms ADMMNearSharpCertificate.C188628.certificate
+#print axioms ADMMNearSharpCertificate.C188632.certificate
+#print axioms ADMMNearSharpCertificate.C18865.certificate
+#print axioms ADMMNearSharpCertificate.C18867.certificate
+#print axioms ADMMNearSharpCertificate.C1886795.certificate
 #print axioms ADMMNearSharpAllSteps.initialized_admm_objective_converges
 #print axioms ADMMNearSharpAllSteps.rankDeficient_original_admm_converges
 #print axioms ADMMNearSharpAllSteps.fullRank_original_admm_converges
@@ -67,6 +77,11 @@ elab "#kernel_recheck_body " source:ident " as " target:ident : command => do
 
 #check ADMMNearSharpCertificate.C188.certificate
 #check ADMMNearSharpCertificate.C1886.certificate
+#check ADMMNearSharpCertificate.C188628.certificate
+#check ADMMNearSharpCertificate.C188632.certificate
+#check ADMMNearSharpCertificate.C18865.certificate
+#check ADMMNearSharpCertificate.C18867.certificate
+#check ADMMNearSharpCertificate.C1886795.certificate
 #check ADMMNearSharpAllSteps.initialized_admm_objective_converges
 #check ADMMNearSharpAllSteps.rankDeficient_original_admm_converges
 #check ADMMNearSharpAllSteps.fullRank_original_admm_converges

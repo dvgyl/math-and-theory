@@ -2,10 +2,16 @@ import AllStepsADMM
 import OriginalMemoryADMM
 import NearSharpCertificate188
 import NearSharpCertificate1886
+import NearSharpCertificate188628
+import NearSharpCertificate188632
+import NearSharpCertificate18865
+import NearSharpCertificate18867
+import NearSharpCertificate1886795
 
 /- The objective and initialization arguments below are adapted from the user's
 prior AllStepsADMM.lean (range through 7/4).  The new work is the composition
-with the exact 12-state and 20-state certificates, not a new algorithm. -/
+with the exact finite-memory interval certificates (memories 12, 20 and 32),
+not a new algorithm. -/
 
 set_option autoImplicit false
 set_option maxHeartbeats 0
@@ -19,10 +25,10 @@ open ADMM74 ADMMInterval ADMMNearSharp
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
 /-- Actual convex multiplier-only ADMM converges for every constant step
-0 < τ ≤ 943/500. The earlier range through 7/4 and both new interval certificates are
-all formalized, so this theorem does not assume any external convergence result. -/
+0 < τ ≤ 377359/200000. The earlier range through 7/4 and all seven interval certificates are
+formalized, so this theorem does not assume any external convergence result. -/
 theorem original_admm_primal_dual_converges [FiniteDimensional ℝ E]
-    (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 943/500)
+    (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 377359/200000)
     {C D : Set E} {f g : E → ℝ} {pf pg : E → E}
     (hf : ConvexOn ℝ C f) (hg : ConvexOn ℝ D g)
     (hpf : ∀ c, IsProx C f c (pf c)) (hpg : ∀ c, IsProx D g c (pg c))
@@ -39,15 +45,35 @@ theorem original_admm_primal_dual_converges [FiniteDimensional ℝ E]
   · exact original_converges_of_certificate τ (ne_of_gt htau)
       (ADMMNearSharpCertificate.C188.certificate τ (by linarith) hmid)
       hf hg hpf hpg hex s hs
+  by_cases h1 : τ ≤ 943/500
   · exact original_converges_of_certificate τ (ne_of_gt htau)
-      (ADMMNearSharpCertificate.C1886.certificate τ (by linarith) hhi)
+      (ADMMNearSharpCertificate.C1886.certificate τ (by linarith) h1)
+      hf hg hpf hpg hex s hs
+  by_cases h2 : τ ≤ 47157/25000
+  · exact original_converges_of_certificate τ (ne_of_gt htau)
+      (ADMMNearSharpCertificate.C188628.certificate τ (by linarith) h2)
+      hf hg hpf hpg hex s hs
+  by_cases h3 : τ ≤ 23579/12500
+  · exact original_converges_of_certificate τ (ne_of_gt htau)
+      (ADMMNearSharpCertificate.C188632.certificate τ (by linarith) h3)
+      hf hg hpf hpg hex s hs
+  by_cases h4 : τ ≤ 3773/2000
+  · exact original_converges_of_certificate τ (ne_of_gt htau)
+      (ADMMNearSharpCertificate.C18865.certificate τ (by linarith) h4)
+      hf hg hpf hpg hex s hs
+  by_cases h5 : τ ≤ 18867/10000
+  · exact original_converges_of_certificate τ (ne_of_gt htau)
+      (ADMMNearSharpCertificate.C18867.certificate τ (by linarith) h5)
+      hf hg hpf hpg hex s hs
+  · exact original_converges_of_certificate τ (ne_of_gt htau)
+      (ADMMNearSharpCertificate.C1886795.certificate τ (by linarith) hhi)
       hf hg hpf hpg hex s hs
 
 /-- Objective values at the actual freshly computed primal blocks converge
-throughout the complete range 0 < τ ≤ 943/500, including for nonsmooth functions on proper domains.
+throughout the complete range 0 < τ ≤ 377359/200000, including for nonsmooth functions on proper domains.
 The proof uses supporting inequalities, not continuity of the objectives. -/
 theorem original_admm_objective_converges [FiniteDimensional ℝ E]
-    (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 943/500)
+    (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 377359/200000)
     {C D : Set E} {f g : E → ℝ} {pf pg : E → E}
     (hf : ConvexOn ℝ C f) (hg : ConvexOn ℝ D g)
     (hpf : ∀ c, IsProx C f c (pf c)) (hpg : ∀ c, IsProx D g c (pg c))
@@ -83,7 +109,7 @@ theorem original_admm_objective_converges [FiniteDimensional ℝ E]
 /-- The complete-range theorem with arbitrary initialization, the original recurrence,
 both primal blocks, the original multiplier, optimality, and objective values. -/
 theorem initialized_admm_objective_converges [FiniteDimensional ℝ E]
-    (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 943/500)
+    (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 377359/200000)
     {C D : Set E} {f g : E → ℝ} {pf pg : E → E}
     (hf : ConvexOn ℝ C f) (hg : ConvexOn ℝ D g)
     (hpf : ∀ c, IsProx C f c (pf c)) (hpg : ∀ c, IsProx D g c (pg c))

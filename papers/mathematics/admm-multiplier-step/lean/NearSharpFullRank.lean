@@ -18,14 +18,14 @@ variable {U V E : Type*}
 finite-dimensional full-column-rank affine constraints), the original primal
 variables themselves converge to the same original saddle as the multiplier.
 This is a direct corollary of the arbitrary-rank theorem, with no new algorithm
-or new restriction on the positive constant step up to 943/500. -/
+or new restriction on the positive constant step up to 377359/200000. -/
 theorem fullRank_original_admm_converges [FiniteDimensional ℝ E]
     (C : Set U) (D : Set V) (f : U → ℝ) (g : V → ℝ)
     (A : U →ᵃ[ℝ] E) (B : V →ᵃ[ℝ] E)
     (L : E → U) (R : E → V)
     (hLA : Function.LeftInverse L A) (hRB : Function.LeftInverse R B)
     (hL : Continuous L) (hR : Continuous R)
-    (ρ : ℝ) (hρ : 0 < ρ) (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 943/500)
+    (ρ : ℝ) (hρ : 0 < ρ) (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 377359/200000)
     (hf : ConvexOn ℝ C f) (hg : ConvexOn ℝ D g)
     (hpx : ∀ c, ∃ x, IsAffineProx C f A ρ c x)
     (hpy : ∀ c, ∃ y, IsAffineProx D g B ρ c y)

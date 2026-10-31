@@ -1,11 +1,21 @@
 CENTRAL_BODY_RECHECK_PASS ADMMNearSharpCertificate.C188.certificate
 CENTRAL_BODY_RECHECK_PASS ADMMNearSharpCertificate.C1886.certificate
+CENTRAL_BODY_RECHECK_PASS ADMMNearSharpCertificate.C188628.certificate
+CENTRAL_BODY_RECHECK_PASS ADMMNearSharpCertificate.C188632.certificate
+CENTRAL_BODY_RECHECK_PASS ADMMNearSharpCertificate.C18865.certificate
+CENTRAL_BODY_RECHECK_PASS ADMMNearSharpCertificate.C18867.certificate
+CENTRAL_BODY_RECHECK_PASS ADMMNearSharpCertificate.C1886795.certificate
 CENTRAL_BODY_RECHECK_PASS ADMMNearSharpAllSteps.initialized_admm_objective_converges
 CENTRAL_BODY_RECHECK_PASS ADMMNearSharpAllSteps.rankDeficient_original_admm_converges
 CENTRAL_BODY_RECHECK_PASS ADMMNearSharpAllSteps.fullRank_original_admm_converges
 CENTRAL_BODY_RECHECK_PASS ADMM128Counterexample.counterexample
 'ADMMNearSharpCertificate.C188.certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ADMMNearSharpCertificate.C1886.certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ADMMNearSharpCertificate.C188628.certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ADMMNearSharpCertificate.C188632.certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ADMMNearSharpCertificate.C18865.certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ADMMNearSharpCertificate.C18867.certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ADMMNearSharpCertificate.C1886795.certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ADMMNearSharpAllSteps.initialized_admm_objective_converges' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ADMMNearSharpAllSteps.rankDeficient_original_admm_converges' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ADMMNearSharpAllSteps.fullRank_original_admm_converges' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -14,8 +24,18 @@ ADMMNearSharpCertificate.C188.certificate.{u_1} {E : Type u_1} [NormedAddCommGro
   (hlo : 7 / 4 ≤ τ) (hhi : τ ≤ 47 / 25) : ADMMNearSharp.MemoryCertificate 11 τ E
 ADMMNearSharpCertificate.C1886.certificate.{u_1} {E : Type u_1} [NormedAddCommGroup E] [InnerProductSpace ℝ E] (τ : ℝ)
   (hlo : 47 / 25 ≤ τ) (hhi : τ ≤ 943 / 500) : ADMMNearSharp.MemoryCertificate 19 τ E
+ADMMNearSharpCertificate.C188628.certificate.{u_1} {E : Type u_1} [NormedAddCommGroup E] [InnerProductSpace ℝ E] (τ : ℝ)
+  (hlo : 943 / 500 ≤ τ) (hhi : τ ≤ 47157 / 25000) : ADMMNearSharp.MemoryCertificate 19 τ E
+ADMMNearSharpCertificate.C188632.certificate.{u_1} {E : Type u_1} [NormedAddCommGroup E] [InnerProductSpace ℝ E] (τ : ℝ)
+  (hlo : 47157 / 25000 ≤ τ) (hhi : τ ≤ 23579 / 12500) : ADMMNearSharp.MemoryCertificate 19 τ E
+ADMMNearSharpCertificate.C18865.certificate.{u_1} {E : Type u_1} [NormedAddCommGroup E] [InnerProductSpace ℝ E] (τ : ℝ)
+  (hlo : 23579 / 12500 ≤ τ) (hhi : τ ≤ 3773 / 2000) : ADMMNearSharp.MemoryCertificate 19 τ E
+ADMMNearSharpCertificate.C18867.certificate.{u_1} {E : Type u_1} [NormedAddCommGroup E] [InnerProductSpace ℝ E] (τ : ℝ)
+  (hlo : 3773 / 2000 ≤ τ) (hhi : τ ≤ 18867 / 10000) : ADMMNearSharp.MemoryCertificate 19 τ E
+ADMMNearSharpCertificate.C1886795.certificate.{u_1} {E : Type u_1} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+  (τ : ℝ) (hlo : 18867 / 10000 ≤ τ) (hhi : τ ≤ 377359 / 200000) : ADMMNearSharp.MemoryCertificate 31 τ E
 ADMMNearSharpAllSteps.initialized_admm_objective_converges.{u_1} {E : Type u_1} [NormedAddCommGroup E]
-  [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 943 / 500) {C D : Set E}
+  [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 377359 / 200000) {C D : Set E}
   {f g : E → ℝ} {pf pg : E → E} (hf : ConvexOn ℝ C f) (hg : ConvexOn ℝ D g)
   (hpf : ∀ (c : E), ADMM74.IsProx C f c (pf c)) (hpg : ∀ (c : E), ADMM74.IsProx D g c (pg c))
   (hex : ∃ z u, ADMM74.IsSaddle C D f g z u) (s₀ : E × E) :
@@ -36,7 +56,7 @@ ADMMNearSharpAllSteps.initialized_admm_objective_converges.{u_1} {E : Type u_1} 
 ADMMNearSharpAllSteps.rankDeficient_original_admm_converges.{u_1, u_2, u_3} {U : Type u_1} {V : Type u_2} {E : Type u_3}
   [NormedAddCommGroup U] [NormedSpace ℝ U] [NormedAddCommGroup V] [NormedSpace ℝ V] [NormedAddCommGroup E]
   [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] (C : Set U) (D : Set V) (f : U → ℝ) (g : V → ℝ) (A : U →ᵃ[ℝ] E)
-  (B : V →ᵃ[ℝ] E) (ρ : ℝ) (hρ : 0 < ρ) (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 943 / 500) (hf : ConvexOn ℝ C f)
+  (B : V →ᵃ[ℝ] E) (ρ : ℝ) (hρ : 0 < ρ) (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 377359 / 200000) (hf : ConvexOn ℝ C f)
   (hg : ConvexOn ℝ D g) (hpx : ∀ (c : E), ∃ x, ADMM74.IsAffineProx C f A ρ c x)
   (hpy : ∀ (c : E), ∃ y, ADMM74.IsAffineProx D g B ρ c y) (x : ℕ → U) (y : ℕ → V) (u : ℕ → E)
   (hx : ∀ (n : ℕ), ADMM74.IsAffineProx C f A ρ (B (y n) - u n) (x (n + 1)))
@@ -54,7 +74,7 @@ ADMMNearSharpAllSteps.fullRank_original_admm_converges.{u_1, u_2, u_3} {U : Type
   [NormedAddCommGroup U] [NormedSpace ℝ U] [NormedAddCommGroup V] [NormedSpace ℝ V] [NormedAddCommGroup E]
   [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] (C : Set U) (D : Set V) (f : U → ℝ) (g : V → ℝ) (A : U →ᵃ[ℝ] E)
   (B : V →ᵃ[ℝ] E) (L : E → U) (R : E → V) (hLA : Function.LeftInverse L ⇑A) (hRB : Function.LeftInverse R ⇑B)
-  (hL : Continuous L) (hR : Continuous R) (ρ : ℝ) (hρ : 0 < ρ) (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 943 / 500)
+  (hL : Continuous L) (hR : Continuous R) (ρ : ℝ) (hρ : 0 < ρ) (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 377359 / 200000)
   (hf : ConvexOn ℝ C f) (hg : ConvexOn ℝ D g) (hpx : ∀ (c : E), ∃ x, ADMM74.IsAffineProx C f A ρ c x)
   (hpy : ∀ (c : E), ∃ y, ADMM74.IsAffineProx D g B ρ c y) (x : ℕ → U) (y : ℕ → V) (u : ℕ → E)
   (hx : ∀ (n : ℕ), ADMM74.IsAffineProx C f A ρ (B (y n) - u n) (x (n + 1)))
@@ -99,7 +119,7 @@ ADMM128Counterexample.counterexample (τ : ℝ) (hτ : ADMM128Counterexample.tau
                                 (∀ (n : ℕ), ADMM128Counterexample.U τ (n + 128) = ADMM128Counterexample.U τ n) ∧
                                   (∀ (n : ℕ),
                                       ‖ADMM128Counterexample.X n - ADMM128Counterexample.Z n‖ ^ 2 =
-                                        16383999960516622876672) ∧
+                                        1638399999999268052811275665408) ∧
                                     ¬Filter.Tendsto
                                           (fun n => ‖ADMM128Counterexample.X n - ADMM128Counterexample.Z n‖ ^ 2)
                                           Filter.atTop (nhds 0) ∧

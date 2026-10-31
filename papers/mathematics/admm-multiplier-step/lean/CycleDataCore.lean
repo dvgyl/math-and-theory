@@ -21,190 +21,190 @@ def zZ : I → ℤ := fun i =>
           if i.val < 4 then
             if i.val < 2 then
               if i.val < 1 then
-                3101378045
+                28912073552004
               else
-                -15255423491
+                -160608501067260
             else
               if i.val < 3 then
-                3134412925
+                28696040108676
               else
-                -4886036355
+                -50174884475132
           else
             if i.val < 6 then
               if i.val < 5 then
-                2866773629
+                26123740533636
               else
-                3397089405
+                39103947573252
             else
               if i.val < 7 then
-                1995424125
+                20173615300228
               else
-                3852450813
+                44415700770820
         else
           if i.val < 12 then
             if i.val < 10 then
               if i.val < 9 then
-                1110695549
+                14853196714628
               else
-                2734376573
+                29946952573444
             else
               if i.val < 11 then
-                909711741
+                13320173108868
               else
-                3987755645
+                39845090181380
           else
             if i.val < 14 then
               if i.val < 13 then
-                1230285949
+                13355453411460
               else
-                3903750141
+                38490551995140
             else
               if i.val < 15 then
-                1588614013
+                13420416449156
               else
-                1734533629
+                16316740153988
       else
         if i.val < 24 then
           if i.val < 20 then
             if i.val < 18 then
               if i.val < 17 then
-                1974621181
+                16461920689156
               else
-                2046374525
+                17650914045316
             else
               if i.val < 19 then
-                2386058877
+                22237984876036
               else
-                4084864125
+                36691405055236
           else
             if i.val < 22 then
               if i.val < 21 then
-                2339174781
+                23636980075652
               else
-                1460059133
+                12001475582468
             else
               if i.val < 23 then
-                1672401533
+                17659160485380
               else
-                -5152066179
+                -50101791045244
         else
           if i.val < 28 then
             if i.val < 26 then
               if i.val < 25 then
-                1123690365
+                12260737407236
               else
-                -7217901699
+                -67723262262524
             else
               if i.val < 27 then
-                1252499709
+                14028555531780
               else
-                -2709100675
+                -23238293668220
           else
             if i.val < 30 then
               if i.val < 29 then
-                1478588029
+                16848114359172
               else
-                622175997
+                6759483102980
             else
               if i.val < 31 then
-                1088355837
+                12563811736452
               else
-                -1131804419
+                -13992027521276
     else
       if i.val < 48 then
         if i.val < 40 then
           if i.val < 36 then
             if i.val < 34 then
               if i.val < 33 then
-                508140029
+                5467992473348
               else
-                -2796585219
+                -32276389868540
             else
               if i.val < 35 then
-                545613693
+                4536892382084
               else
-                -1328457219
+                -17761644734332
           else
             if i.val < 38 then
               if i.val < 37 then
-                907067517
+                7042913987716
               else
-                -933981059
+                -12520169160956
             else
               if i.val < 39 then
-                575016445
+                2706164346628
               else
-                -3651158147
+                -36854375215996
         else
           if i.val < 44 then
             if i.val < 42 then
               if i.val < 41 then
-                -610237187
+                -8944346413820
               else
-                -5250251267
+                -49298491548668
             else
               if i.val < 43 then
-                -1698129923
+                -17322649973756
               else
-                -3865354371
+                -32476897466108
           else
             if i.val < 46 then
               if i.val < 45 then
-                -1833483907
+                -15647529536764
               else
-                -3181208579
+                -24383532875004
             else
               if i.val < 47 then
-                -1013374083
+                -7167834110076
               else
-                -4197965955
+                -36637897742332
       else
         if i.val < 56 then
           if i.val < 52 then
             if i.val < 50 then
               if i.val < 49 then
-                194652669
+                2335775623044
               else
-                -3002432387
+                -31048103456252
             else
               if i.val < 51 then
-                1123382269
+                9709476568068
               else
-                733014781
+                -1043508640380
           else
             if i.val < 54 then
               if i.val < 53 then
-                1400112765
+                13248152647428
               else
-                1927998845
+                9620918247812
             else
               if i.val < 55 then
-                1309243261
+                13639103497988
               else
-                -835653891
+                -10168729449340
         else
           if i.val < 60 then
             if i.val < 58 then
               if i.val < 57 then
-                1492860925
+                14848447936644
               else
-                -2744483971
+                -19110060946812
             else
               if i.val < 59 then
-                2017711357
+                18771263887492
               else
-                -1262247683
+                -2644148588412
           else
             if i.val < 62 then
               if i.val < 61 then
-                2240075005
+                21798144520068
               else
-                578521981
+                6604831275268
             else
               if i.val < 63 then
-                1894626557
+                21141970353668
               else
-                776000637
+                -1613495440380
   else
     if i.val < 96 then
       if i.val < 80 then
@@ -212,190 +212,190 @@ def zZ : I → ℤ := fun i =>
           if i.val < 68 then
             if i.val < 66 then
               if i.val < 65 then
-                1615743357
+                19936637725572
               else
-                776000637
+                -1613495440380
             else
               if i.val < 67 then
-                1894626557
+                21141970353668
               else
-                578521981
+                6604831275268
           else
             if i.val < 70 then
               if i.val < 69 then
-                2240075005
+                21798144520068
               else
-                -1262247683
+                -2644148588412
             else
               if i.val < 71 then
-                2017711357
+                18771263887492
               else
-                -2744483971
+                -19110060946812
         else
           if i.val < 76 then
             if i.val < 74 then
               if i.val < 73 then
-                1492860925
+                14848447936644
               else
-                -835653891
+                -10168729449340
             else
               if i.val < 75 then
-                1309243261
+                13639103497988
               else
-                1927998845
+                9620918247812
           else
             if i.val < 78 then
               if i.val < 77 then
-                1400112765
+                13248152647428
               else
-                733014781
+                -1043508640380
             else
               if i.val < 79 then
-                1123382269
+                9709476568068
               else
-                -3002432387
+                -31048103456252
       else
         if i.val < 88 then
           if i.val < 84 then
             if i.val < 82 then
               if i.val < 81 then
-                194652669
+                2335775623044
               else
-                -4197965955
+                -36637897742332
             else
               if i.val < 83 then
-                -1013374083
+                -7167834110076
               else
-                -3181208579
+                -24383532875004
           else
             if i.val < 86 then
               if i.val < 85 then
-                -1833483907
+                -15647529536764
               else
-                -3865354371
+                -32476897466108
             else
               if i.val < 87 then
-                -1698129923
+                -17322649973756
               else
-                -5250251267
+                -49298491548668
         else
           if i.val < 92 then
             if i.val < 90 then
               if i.val < 89 then
-                -610237187
+                -8944346413820
               else
-                -3651158147
+                -36854375215996
             else
               if i.val < 91 then
-                575016445
+                2706164346628
               else
-                -933981059
+                -12520169160956
           else
             if i.val < 94 then
               if i.val < 93 then
-                907067517
+                7042913987716
               else
-                -1328457219
+                -17761644734332
             else
               if i.val < 95 then
-                545613693
+                4536892382084
               else
-                -2796585219
+                -32276389868540
     else
       if i.val < 112 then
         if i.val < 104 then
           if i.val < 100 then
             if i.val < 98 then
               if i.val < 97 then
-                508140029
+                5467992473348
               else
-                -1131804419
+                -13992027521276
             else
               if i.val < 99 then
-                1088355837
+                12563811736452
               else
-                622175997
+                6759483102980
           else
             if i.val < 102 then
               if i.val < 101 then
-                1478588029
+                16848114359172
               else
-                -2709100675
+                -23238293668220
             else
               if i.val < 103 then
-                1252499709
+                14028555531780
               else
-                -7217901699
+                -67723262262524
         else
           if i.val < 108 then
             if i.val < 106 then
               if i.val < 105 then
-                1123690365
+                12260737407236
               else
-                -5152066179
+                -50101791045244
             else
               if i.val < 107 then
-                1672401533
+                17659160485380
               else
-                1460059133
+                12001475582468
           else
             if i.val < 110 then
               if i.val < 109 then
-                2339174781
+                23636980075652
               else
-                4084864125
+                36691405055236
             else
               if i.val < 111 then
-                2386058877
+                22237984876036
               else
-                2046374525
+                17650914045316
       else
         if i.val < 120 then
           if i.val < 116 then
             if i.val < 114 then
               if i.val < 113 then
-                1974621181
+                16461920689156
               else
-                1734533629
+                16316740153988
             else
               if i.val < 115 then
-                1588614013
+                13420416449156
               else
-                3903750141
+                38490551995140
           else
             if i.val < 118 then
               if i.val < 117 then
-                1230285949
+                13355453411460
               else
-                3987755645
+                39845090181380
             else
               if i.val < 119 then
-                909711741
+                13320173108868
               else
-                2734376573
+                29946952573444
         else
           if i.val < 124 then
             if i.val < 122 then
               if i.val < 121 then
-                1110695549
+                14853196714628
               else
-                3852450813
+                44415700770820
             else
               if i.val < 123 then
-                1995424125
+                20173615300228
               else
-                3397089405
+                39103947573252
           else
             if i.val < 126 then
               if i.val < 125 then
-                2866773629
+                26123740533636
               else
-                -4886036355
+                -50174884475132
             else
               if i.val < 127 then
-                3134412925
+                28696040108676
               else
-                -15255423491
+                -160608501067260
 
 def vZ : I → ℤ := fun i =>
   if i.val < 64 then
@@ -405,190 +405,190 @@ def vZ : I → ℤ := fun i =>
           if i.val < 4 then
             if i.val < 2 then
               if i.val < 1 then
-                -47131814916
+                -492340548561414
               else
-                -14357750276
+                -158092459393286
             else
               if i.val < 3 then
-                -33431421444
+                -347452735474950
               else
-                -18626515332
+                -205336021667334
           else
             if i.val < 6 then
               if i.val < 5 then
-                -9693015172
+                -97867658039942
               else
-                -7295622148
+                -82863030300422
             else
               if i.val < 7 then
-                3800333564
+                43122533359610
               else
-                2768709500
+                33396213905018
         else
           if i.val < 12 then
             if i.val < 10 then
               if i.val < 9 then
-                5763901436
+                62971157803258
               else
-                2535391484
+                38522745796602
             else
               if i.val < 11 then
-                6755591292
+                72297957431034
               else
-                1556620540
+                23403094322682
           else
             if i.val < 14 then
               if i.val < 13 then
-                7592333948
+                79789829707642
               else
-                4847730940
+                46661086909946
             else
               if i.val < 15 then
-                3221835388
+                31895885065082
               else
-                4081519996
+                34295979719162
       else
         if i.val < 24 then
           if i.val < 20 then
             if i.val < 18 then
               if i.val < 17 then
-                -2399926148
+                -31778896408838
               else
-                -2419169028
+                -30023358774534
             else
               if i.val < 19 then
-                -3654187140
+                -50103718775174
               else
-                -4483063556
+                -49786717148038
           else
             if i.val < 22 then
               if i.val < 21 then
-                -6696190724
+                -79525980005382
               else
-                -1039550084
+                -16504351385990
             else
               if i.val < 23 then
-                -18292407300
+                -188095592815878
               else
-                -3906016260
+                -45057550509190
         else
           if i.val < 28 then
             if i.val < 26 then
               if i.val < 25 then
-                -29646241796
+                -293997653600134
               else
-                -14576981380
+                -147425598136198
             else
               if i.val < 27 then
-                -28374952580
+                -279291609355654
               else
-                -19031646084
+                -186366082126982
           else
             if i.val < 30 then
               if i.val < 29 then
-                -18891333124
+                -188291214690822
               else
-                -12006318340
+                -115068980064262
             else
               if i.val < 31 then
-                -14247696132
+                -147721768987270
               else
-                -5306229764
+                -52724468411398
     else
       if i.val < 48 then
         if i.val < 40 then
           if i.val < 36 then
             if i.val < 34 then
               if i.val < 33 then
-                -14951742980
+                -159761310642438
               else
-                -5515481604
+                -61045765046790
             else
               if i.val < 35 then
-                -12336890500
+                -136361290753926
               else
-                -4165113604
+                -52378465292038
           else
             if i.val < 38 then
               if i.val < 37 then
-                -6418991876
+                -76242781574150
               else
-                3041277436
+                16116328071930
             else
               if i.val < 39 then
-                -4064164228
+                -48159762231302
               else
-                7334326012
+                58039526087034
         else
           if i.val < 44 then
             if i.val < 42 then
               if i.val < 41 then
-                -4602216964
+                -47971978182918
               else
-                4727950332
+                36424928081018
             else
               if i.val < 43 then
-                -2260059012
+                -19334546817670
               else
-                4116622076
+                38884570236282
           else
             if i.val < 46 then
               if i.val < 45 then
-                1799815164
+                26823209912570
               else
-                10136178428
+                105916996502138
             else
               if i.val < 47 then
-                3300510716
+                44598897739386
               else
-                15155186428
+                157828785037306
       else
         if i.val < 56 then
           if i.val < 52 then
             if i.val < 50 then
               if i.val < 49 then
-                5352127612
+                57644246766458
               else
-                15001991164
+                154067896020090
             else
               if i.val < 51 then
-                12244602364
+                109100801600378
               else
-                16180598396
+                160201316095610
           else
             if i.val < 54 then
               if i.val < 53 then
-                18343921532
+                157437803914490
               else
-                21226642428
+                201307901101306
             else
               if i.val < 55 then
-                15831531260
+                139064841177850
               else
-                22580223356
+                207102051878266
         else
           if i.val < 60 then
             if i.val < 58 then
               if i.val < 57 then
-                8265803260
+                83963039739002
               else
-                16847381116
+                153044065890042
             else
               if i.val < 59 then
-                4600735356
+                59716043081722
               else
-                10740039420
+                107240098492922
           else
             if i.val < 62 then
               if i.val < 61 then
-                4961688188
+                54725014022010
               else
-                8251271804
+                96641559377786
             else
               if i.val < 63 then
-                3359228540
+                20539886357370
               else
-                5546282748
+                68835807678330
   else
     if i.val < 96 then
       if i.val < 80 then
@@ -596,190 +596,190 @@ def vZ : I → ℤ := fun i =>
           if i.val < 68 then
             if i.val < 66 then
               if i.val < 65 then
-                -935737348
+                -28007474651270
               else
-                1550072572
+                14822686420602
             else
               if i.val < 67 then
-                -4951442948
+                -53793142530438
               else
-                1560572
+                -11159098348038
           else
             if i.val < 70 then
               if i.val < 69 then
-                -9180364292
+                -76613278275718
               else
-                -621702532
+                -11412350975494
             else
               if i.val < 71 then
-                -13952484484
+                -119159567471366
               else
-                -5378295812
+                -42965082018182
         else
           if i.val < 76 then
             if i.val < 74 then
               if i.val < 73 then
-                -15022891268
+                -141665852137862
               else
-                -10767364868
+                -89210905628038
             else
               if i.val < 75 then
-                -11148118276
+                -117400850602758
               else
-                -8760939780
+                -77732897361926
           else
             if i.val < 78 then
               if i.val < 77 then
-                -8812658052
+                -97806168036998
               else
-                -2243254404
+                -25318183886214
             else
               if i.val < 79 then
-                -11727813636
+                -119329296134662
               else
-                -1286086532
+                -16894489748358
       else
         if i.val < 88 then
           if i.val < 84 then
             if i.val < 82 then
               if i.val < 81 then
-                -14039384580
+                -130272458816390
               else
-                -5313886980
+                -46739695596678
             else
               if i.val < 83 then
-                -11252695940
+                -91416430542854
               else
-                -4765909892
+                -32091850156934
           else
             if i.val < 86 then
               if i.val < 85 then
-                -8003388676
+                -53317705780358
               else
-                1280337404
+                28525201053050
             else
               if i.val < 87 then
-                -7400233732
+                -50534160823942
               else
-                5538045564
+                65970613825530
         else
           if i.val < 92 then
             if i.val < 90 then
               if i.val < 89 then
-                -3794109060
+                -25201680030982
               else
-                8169452796
+                87769208522874
             else
               if i.val < 91 then
-                5496504572
+                56426015155450
               else
-                14918106876
+                152612081736826
           else
             if i.val < 94 then
               if i.val < 93 then
-                12901899132
+                124108566402682
               else
-                22342406780
+                225527762305402
             else
               if i.val < 95 then
-                13661546364
+                130079522690042
               else
-                22614438012
+                228487131939706
     else
       if i.val < 112 then
         if i.val < 104 then
           if i.val < 100 then
             if i.val < 98 then
               if i.val < 97 then
-                13911771644
+                134434333003258
               else
-                19835169404
+                201972036988794
             else
               if i.val < 99 then
-                17032946172
+                171697818603770
               else
-                23154775036
+                236447230929146
           else
             if i.val < 102 then
               if i.val < 101 then
-                15539843580
+                165328588975098
               else
-                27586375676
+                282645513790202
             else
               if i.val < 103 then
-                6547367932
+                80128194516858
               else
-                21597359868
+                225825037014906
         else
           if i.val < 108 then
             if i.val < 106 then
               if i.val < 105 then
-                1134601596
+                22386961766650
               else
-                9899711612
+                110467543489530
             else
               if i.val < 107 then
-                6766197500
+                70139091467770
               else
-                7257657596
+                80418103712634
           else
             if i.val < 110 then
               if i.val < 109 then
-                13938930812
+                135743898041722
               else
-                12702939132
+                126523354523258
             else
               if i.val < 111 then
-                12264879996
+                118196522898682
               else
-                12053215484
+                112770919161466
       else
         if i.val < 120 then
           if i.val < 116 then
             if i.val < 114 then
               if i.val < 113 then
-                6493149564
+                61338973327866
               else
-                3584886012
+                27614970833914
             else
               if i.val < 115 then
-                4440053244
+                39727842610682
               else
-                -1438223364
+                -16694006967558
           else
             if i.val < 118 then
               if i.val < 117 then
-                2624692988
+                21250402202618
               else
-                -1554693636
+                -11953438176262
             else
               if i.val < 119 then
-                -3523660676
+                -34255484485382
               else
-                -5046637188
+                -46357190216326
         else
           if i.val < 124 then
             if i.val < 122 then
               if i.val < 121 then
-                -9029609220
+                -78995580740614
               else
-                -9134718980
+                -90133738532102
             else
               if i.val < 123 then
-                -11814265220
+                -103609515394950
               else
-                -3763622148
+                -37304447331590
           else
             if i.val < 126 then
               if i.val < 125 then
-                -21014136580
+                -206922269537030
               else
-                4918483068
+                49853041453306
             else
               if i.val < 127 then
-                -38530277636
+                -399342982647814
               else
-                402035452
+                -278099486214
 
 def xZ : I → ℤ := fun i =>
   if i.val < 64 then
@@ -789,190 +789,190 @@ def xZ : I → ℤ := fun i =>
           if i.val < 4 then
             if i.val < 2 then
               if i.val < 1 then
-                -44432472323
+                -463150375523196
               else
-                17518641149
+                173639588100868
             else
               if i.val < 3 then
-                -15939258243
+                -160664235972988
               else
-                9918869757
+                91941829332484
           else
             if i.val < 6 then
               if i.val < 5 then
-                11800273789
+                133592104161028
               else
-                5794482429
+                54108575312772
             else
               if i.val < 7 then
-                13091379837
+                146159178960260
               else
-                2820826749
+                34689381316228
         else
           if i.val < 12 then
             if i.val < 10 then
               if i.val < 9 then
-                4105887485
+                44428140612868
               else
-                -494133379
+                5498540566788
             else
               if i.val < 11 then
-                5129911549
+                47095384743300
               else
-                -1211215107
+                -9049772926972
           else
             if i.val < 14 then
               if i.val < 13 then
-                7265999357
+                69742188796420
               else
-                1159147133
+                5361809197444
             else
               if i.val < 15 then
-                -37281539
+                -1344785395708
               else
-                2594218237
+                18716834808068
       else
         if i.val < 24 then
           if i.val < 20 then
             if i.val < 18 then
               if i.val < 17 then
-                -4506824963
+                -49612955438844
               else
-                2027131645
+                19406451679620
             else
               if i.val < 19 then
-                1151040765
+                2157624875396
               else
-                3255987709
+                37008406682372
           else
             if i.val < 22 then
               if i.val < 21 then
-                126047613
+                -6102282781692
               else
-                7116699773
+                75023104201860
             else
               if i.val < 23 then
-                -15580455683
+                -153932080944508
               else
-                9234324861
+                92936251261444
         else
           if i.val < 28 then
             if i.val < 26 then
               if i.val < 25 then
-                -24616535171
+                -236679365683708
               else
-                7851358717
+                78848793201412
             else
               if i.val < 27 then
-                -12545471491
+                -117837455687676
               else
-                6634205821
+                69687233560452
           else
             if i.val < 30 then
               if i.val < 29 then
-                1618900989
+                14922981795332
               else
-                7507190781
+                79981717729540
             else
               if i.val < 31 then
-                -1153021955
+                -20088977186556
               else
-                7809661949
+                81005273054596
     else
       if i.val < 48 then
         if i.val < 40 then
           if i.val < 36 then
             if i.val < 34 then
               if i.val < 33 then
-                -9137373187
+                -101568849757692
               else
-                6639676157
+                66439155727108
             else
               if i.val < 35 then
-                -6275795203
+                -70778633325052
               else
-                6843319677
+                66221180727556
           else
             if i.val < 38 then
               if i.val < 37 then
-                -1346810755
+                -16821402294396
               else
-                8526288253
+                79838940485124
             else
               if i.val < 39 then
-                -6530425219
+                -61569925956604
               else
-                7747332093
+                69344913102340
         else
           if i.val < 44 then
             if i.val < 42 then
               if i.val < 41 then
-                -12546780163
+                -114955850683772
               else
-                4079916029
+                35098414715268
             else
               if i.val < 43 then
-                -8686139267
+                -73082124872444
               else
-                2511326717
+                25742219587844
           else
             if i.val < 46 then
               if i.val < 45 then
-                -4150290819
+                -27708889860476
               else
-                5155154685
+                54710253714564
             else
               if i.val < 47 then
-                -7849041795
+                -68485932872828
               else
-                7656709757
+                76591989555588
       else
         if i.val < 56 then
           if i.val < 52 then
             if i.val < 50 then
               if i.val < 49 then
-                -9608406147
+                -97848762647804
               else
-                6647431165
+                65375545797380
             else
               if i.val < 51 then
-                -1634006531
+                -35257617851644
               else
-                4669010813
+                50057005854852
           else
             if i.val < 54 then
               if i.val < 53 then
-                3563435901
+                10484640466308
               else
-                4810719741
+                53491015434628
             else
               if i.val < 55 then
-                -4085867907
+                -48603956425468
               else
-                5913038205
+                57868481251076
         else
           if i.val < 60 then
             if i.val < 58 then
               if i.val < 57 then
-                -12821559171
+                -108290564202620
               else
-                5837093885
+                49970965204228
             else
               if i.val < 59 then
-                -10228934403
+                -74556758920828
               else
-                4877056381
+                44879906822788
           else
             if i.val < 62 then
               if i.val < 61 then
-                -3538276227
+                -30716939950844
               else
-                3868105597
+                48521376631044
             else
               if i.val < 63 then
-                -2997416707
+                -54959702666748
               else
-                2963054845
+                46682425880580
   else
     if i.val < 96 then
       if i.val < 80 then
@@ -980,190 +980,190 @@ def xZ : I → ℤ := fun i =>
           if i.val < 68 then
             if i.val < 66 then
               if i.val < 65 then
-                -4866276739
+                -76906644604028
               else
-                3261810557
+                41216665631492
             else
               if i.val < 67 then
-                -4606888963
+                -47473858597372
               else
-                5531525501
+                49238875457668
           else
             if i.val < 70 then
               if i.val < 69 then
-                -6941849859
+                -43656035407612
               else
-                7296414077
+                62556778711812
             else
               if i.val < 71 then
-                -11313070595
+                -88975952608380
               else
-                5829704701
+                57084424506372
         else
           if i.val < 76 then
             if i.val < 74 then
               if i.val < 73 then
-                -8151734531
+                -83852322183036
               else
-                3419872509
+                42286217060484
             else
               if i.val < 75 then
-                928489853
+                -14550841476732
               else
-                4315177341
+                49288871488644
           else
             if i.val < 78 then
               if i.val < 77 then
-                1348394493
+                -6825118027644
               else
-                7302418429
+                71444475510404
             else
               if i.val < 79 then
-                -8361176963
+                -84301635680380
               else
-                7439294717
+                71386702930052
       else
         if i.val < 88 then
           if i.val < 84 then
             if i.val < 82 then
               if i.val < 81 then
-                -12558645379
+                -111042193444988
               else
-                4527531645
+                46894865477380
             else
               if i.val < 83 then
-                -6952183043
+                -51844569056252
               else
-                3305577469
+                34941047510916
           else
             if i.val < 86 then
               if i.val < 85 then
-                -5070962691
+                -36873385160188
               else
-                5418371709
+                49366009367300
             else
               if i.val < 87 then
-                -10378701059
+                -96382011850748
               else
-                7688028029
+                67206283100804
         else
           if i.val < 92 then
             if i.val < 90 then
               if i.val < 89 then
-                -9942391811
+                -100116640270332
               else
-                8312403709
+                76116513337860
             else
               if i.val < 91 then
-                -2097931779
+                -28637029020796
               else
-                8487621245
+                83665897420420
           else
             if i.val < 94 then
               if i.val < 93 then
-                -1109140227
+                -21460601346428
               else
-                8112050429
+                83657551168388
             else
               if i.val < 95 then
-                -8135246723
+                -90911347233276
               else
-                6156306429
+                66131219381124
     else
       if i.val < 112 then
         if i.val < 104 then
           if i.val < 100 then
             if i.val < 98 then
               if i.val < 97 then
-                -8194526339
+                -88584806463100
               else
-                4791593341
+                53545676464260
             else
               if i.val < 99 then
-                -1713867395
+                -17710406648572
               else
-                6744004861
+                71508895428356
           else
             if i.val < 102 then
               if i.val < 101 then
-                -6136343427
+                -54270527594876
               else
-                9337431421
+                94078631146884
             else
               if i.val < 103 then
-                -19786508035
+                -188488763741564
               else
-                7832090237
+                77973580235524
         else
           if i.val < 108 then
             if i.val < 106 then
               if i.val < 105 then
-                -19339067907
+                -191177337841020
               else
-                3613043837
+                37978790677636
             else
               if i.val < 107 then
-                -1461112579
+                -22669291536380
               else
-                1951519229
+                22280487827332
           else
             if i.val < 110 then
               if i.val < 109 then
-                9020447997
+                78962774404740
               else
-                2848872445
+                27470861536772
             else
               if i.val < 111 then
-                1947999741
+                13911153251460
               else
-                1834710013
+                12225310308100
       else
         if i.val < 120 then
           if i.val < 116 then
             if i.val < 114 then
               if i.val < 113 then
-                -3585444739
+                -34970025144444
               else
-                -1173729923
+                -17407262339964
             else
               if i.val < 115 then
-                2443781245
+                25533288225924
               else
-                -1974526467
+                -17931297583100
           else
             if i.val < 118 then
               if i.val < 117 then
-                5293202301
+                51299862581636
               else
-                -191630979
+                6641249802500
             else
               if i.val < 119 then
-                -1059255299
+                -8981873200252
               else
-                1211400061
+                17845246842500
         else
           if i.val < 124 then
             if i.val < 122 then
               if i.val < 121 then
-                -2872276483
+                -17785193809660
               else
-                3747341053
+                33277542979332
             else
               if i.val < 123 then
-                -684122115
+                6697838437380
               else
-                11447732477
+                105409015636612
           else
             if i.val < 126 then
               if i.val < 125 then
-                -14383740803
+                -143494081671804
               else
-                21046583293
+                206600426515204
             else
               if i.val < 127 then
-                -40314347779
+                -420499983992444
               else
-                23676889597
+                238456382094340
 
 def shiftZ (i : I) (a : I → ℤ) : I → ℤ := fun j => a (i + j)
 def dotZ (a b : I → ℤ) : ℤ := ∑ k, a k * b k
@@ -1174,8 +1174,8 @@ def fSlope (j : I) : ℤ := -dotZ vmZ (xZ - shiftZ j xZ)
 def gIntercept (j : I) : ℤ := dotZ (xZ - zZ) (zZ - shiftZ j zZ)
 def gSlope (j : I) : ℤ := dotZ vmZ (zZ - shiftZ j zZ)
 
-def numerator : ℤ := 897744153596994489
-def denominator : ℤ := 475778439151265168
+def numerator : ℤ := 38847831300265103262189027
+def denominator : ℤ := 20588352022933119368900773
 
 theorem denominator_pos : 0 < denominator := by decide
 theorem numerator_pos : 0 < numerator := by decide
@@ -1442,7 +1442,7 @@ theorem xZ_identity (j : I) : xZ j = zZ j + vZ j - vmZ j := by
 theorem sum_zZ : ∑ j, zZ j = 0 := by decide
 theorem sum_vZ : ∑ j, vZ j = 0 := by decide
 theorem sum_xZ : ∑ j, xZ j = 0 := by decide
-theorem residual_squared : dotZ (xZ - zZ) (xZ - zZ) = 16383999960516622876672 := by decide
+theorem residual_squared : dotZ (xZ - zZ) (xZ - zZ) = 1638399999999268052811275665408 := by decide
 
 
 end ADMMCycleData

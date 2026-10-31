@@ -40,13 +40,13 @@
     }
   },
   "build_configuration_sha256": {
-    "lean/lakefile.lean": "194a79977a1076cacdfed32ae3d14e21234ff020d226121f823427579bb6e32b",
+    "lean/lakefile.lean": "fe9867d38cc5a2bc53d7b8d34114bbdfd15fdc9a792444153d2255bf517017c7",
     "lean/lake-manifest.json": "fcf9d40fdd2e08c8bb4a3e7f735145094c2ba45d881b38f912b0df6fa8bacf3f",
     "lean/lean-toolchain": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea",
-    "lean/KernelBodyAudit.lean": "292566ba366dff44804a55266e54cd049d4af4463d552d6dc696d5c65966ce65",
-    "verify_lean.py": "b566adbac76d87aa355961cec5674406b1bb034c42414c7aba259f51995c7fa1"
+    "lean/KernelBodyAudit.lean": "7cc2d2b6147759f62b74d7c38b429d64f010d9b2feb46e3023e1c0da3b74ac39",
+    "verify_lean.py": "333de296a49a64258d42f31b72b37541bf734cdac69f681f326355d6f2315e95"
   },
-  "recorded_utc": "2026-10-30T05:12:56.185620+00:00",
+  "recorded_utc": "2026-10-31T17:44:04.716491+00:00",
   "source_sha256": {
     "lean/ADMMCertificate.lean": "1fcea65ef5338dc1e94a2f482c70ad813ef97428822094763bdd8a241f7b7d45",
     "lean/ProximalModel.lean": "6490b93014ca0eb74d08f60a89a3d5a49329583043aeeb12943731208e98aeba",
@@ -191,12 +191,145 @@
     "lean/NearSharpPSD1886.lean": "e3be96615f17278f78e5e101cbf0760eb91df88fd516615f54d00b6aae4fa224",
     "lean/NearSharpNumeric1886.lean": "8ff52297b1516ba6e35d18694bcefbe5d3b86525026ac97d77a23ac959d224ce",
     "lean/NearSharpCertificate1886.lean": "1ecc967face15c879f9f5591d5e40ec4e5827d66463845501b2fd2675893c419",
-    "lean/NearSharpAllSteps.lean": "34f291760354bfd5dad105a0f20bba44d97a6c93f0f3cdc807aac22058a5b1eb",
-    "lean/NearSharpRankDeficient.lean": "ffd12f80d9d63aa6744804331e1a4cb4b6aaaeb3b35eb1b4be0f099c801fa993",
-    "lean/NearSharpFullRank.lean": "b09e32d32aca12e10cd341d47d0d748a4f5bb3a612e2de6e47076d4ebb30d7f0",
+    "lean/IntegerLists.lean": "63f4fafb69c5e59b16d0728a8b7eba25790d2b74a1d446c417a139ead1f42223",
+    "lean/NearSharpData188628Defs.lean": "fc35e029f9a40469bbbc078f9eabb97e934f26c824463cf4d20ad8bebb7b6c80",
+    "lean/NearSharpData188628_lower_lo_gram.lean": "0c9bfb21d0f6d481255fcacd03a5bdeb24e8e842693b53f7d9355238f2f4c283",
+    "lean/NearSharpData188628_Tlo_gram.lean": "87cdcf6014eb6d903905e0cb49523dc068f6bf74df4e5dc57993513198b1815a",
+    "lean/NearSharpData188628_lower_hi_gram.lean": "f60101ab61122643e5f200415ea6fef3565bbdfaaad11c81c49d6a8527e67e53",
+    "lean/NearSharpData188628_Thi_gram.lean": "7e9665931b02ebcd1a94f35e331375abddbd39b1652f46d2532f1ebcd09df1d8",
+    "lean/NearSharpData188628_endpoint_lo.lean": "6106f34c3f6272126d06a6ba99d078860dcb5c7b86bb1ab223567d87637763ca",
+    "lean/NearSharpData188628_endpoint_hi.lean": "d53923a97aa16949ec4a410a363d3206f934ccb4867052c447f79dfbc203f1b3",
+    "lean/NearSharpData188628_weightedF.lean": "ac00313c23f5fe55ac80c77e649faffcebee79fb41360a11eb054543f611636b",
+    "lean/NearSharpData188628_weightedG.lean": "cdbc895f4116ed4fd9e8ed29fee7f50d3ea1269411935ebf05a46a93f414711f",
+    "lean/NearSharpData188628_A_lo.lean": "c5333f3ca15646756d59318abcbd956803f30121cf8bffd28367993b5cb63e3d",
+    "lean/NearSharpData188628_B_lo.lean": "2a2416e2b9c34f8b61ba12451604150f3cc94a4b891a0eae1fcde7ae7e5ebc7f",
+    "lean/NearSharpData188628_A_hi.lean": "6bc73850a3e439f7482c661e169ff193247c0357b263cb33b1ac4a695951a150",
+    "lean/NearSharpData188628_B_hi.lean": "9725bde8ee96a75906311b79c4f07f94a59dacf8d3d987d13747328a2a53511f",
+    "lean/NearSharpData188628_lower_lo_symmetric.lean": "fb2ad35f059b58cfce3136255dc0cfb6a240503f3a8a553ba6089f4ed340ed8d",
+    "lean/NearSharpData188628_Tlo_symmetric.lean": "08a03bbd10bb4ce73e938e50177cc46df9d89c004b9a0947a95b90c242595a9d",
+    "lean/NearSharpData188628_lower_hi_symmetric.lean": "98d493b4945cef5cfea3275a38e088c1a391962096f8c5119a4fe799ec1172c2",
+    "lean/NearSharpData188628_Thi_symmetric.lean": "2a0e43db067b34f51bb842908e19afecf509197d2de4d7b272bd3f4fc3f273d6",
+    "lean/NearSharpData188628_aux.lean": "a46bea783cec887fbe3c29e26b505c86ef6e4829e3f0b88e53daa82ae97ef803",
+    "lean/NearSharpData188628.lean": "90146a2c42ff960215a813da5ff1f4b691342f9572c16634c207d58734acdc45",
+    "lean/NearSharpPSD188628.lean": "4a61b0005ecd8b62b387395e519be53a79ae921ebc269c70efc413808b633877",
+    "lean/NearSharpNumeric188628.lean": "2834b819961b03036f9ed9afe29d819bf65ef2901ce1bdf2723f7c90464db216",
+    "lean/NearSharpCertificate188628.lean": "af48d4dbb6fe57e42a447a6190ddee0d44028ff06d0c61aa59c58e1e1a39fe63",
+    "lean/NearSharpData188632Defs.lean": "0aeefd3f2f7f36dd9c61cbb064c3044dafd8bbeb578ae1e35713593579a7121a",
+    "lean/NearSharpData188632_lower_lo_gram.lean": "4e62163458a52db684ab888f7a6eda50b44eef539828e13e393d3e447fa09948",
+    "lean/NearSharpData188632_Tlo_gram.lean": "d1d27a6541de8b136cba70dc39a6427adecc278e375696a9151b64183b52d914",
+    "lean/NearSharpData188632_lower_hi_gram.lean": "fda0f5d0278ef77f26a7bed88b7052687512112407d233c7a9fc906a9d51868a",
+    "lean/NearSharpData188632_Thi_gram.lean": "49824b6c26ce1fda941f714a336cc4811522bc6d5ae653bfe56a94498fbc4ab6",
+    "lean/NearSharpData188632_endpoint_lo.lean": "a6a63990d0c9b3869f21df909e88fb8e7d52c53e44371880c9cffc3b30848cbd",
+    "lean/NearSharpData188632_endpoint_hi.lean": "58b4f6f4d2046357d66886973b03686494aed403ccf8ff7bc2fc521e2a10d427",
+    "lean/NearSharpData188632_weightedF.lean": "61701744d57299232e7dd701033e6f3964ad6bf87605df52e96727aed0cc2ab3",
+    "lean/NearSharpData188632_weightedG.lean": "89c136a60d805b28a2ada27bf96117a0be675825d0bd3cf006f4287086f784fc",
+    "lean/NearSharpData188632_A_lo.lean": "ca5ae72ca9775a465ae1f2b66b2fd1537bc04c17bd59c8df5b3d7d91ed7009c8",
+    "lean/NearSharpData188632_B_lo.lean": "dc0993212b36f896d5bc3354502d97a4a187b910304cc64de2ebc869733fe3ac",
+    "lean/NearSharpData188632_A_hi.lean": "135b2db4e28407ddd03fc53c2a28a38904ff1ca5b4ebef982814829bfcbe2f60",
+    "lean/NearSharpData188632_B_hi.lean": "e6fc7f3739f48d291bba9f2512f9f6820412d4d045b48f935cd8eaa4b4bfcb9e",
+    "lean/NearSharpData188632_lower_lo_symmetric.lean": "7003043de866d4ebdcabfc58ea52c553fe7bb9572b592cf6708f4eb4dc84f049",
+    "lean/NearSharpData188632_Tlo_symmetric.lean": "4e8d0a300a947409facef053d28c50ef6d6f5b3bc8357f9e2ff16979c3813389",
+    "lean/NearSharpData188632_lower_hi_symmetric.lean": "5097acb1ba7018e5e590bbef7e6c7d53ef675da385403f5506c6d0669628e305",
+    "lean/NearSharpData188632_Thi_symmetric.lean": "ea62965a2a2823bdd47eeadf97770f32ea47817d51d98979f0a1e903add12f72",
+    "lean/NearSharpData188632_aux.lean": "6cc80bc78c25db59fd459c934448127b5a933ed9cb271e99b05f7a0eec6a2700",
+    "lean/NearSharpData188632.lean": "6dc417c7ab033461f7df6178631869c908c27e873d1a4d2b8b3b6ba5d494c5ec",
+    "lean/NearSharpPSD188632.lean": "2ff5fdffeeb25eaa87fdc9675d35b8838a1f6161f165d2f956301ea5214817be",
+    "lean/NearSharpNumeric188632.lean": "8acb75172ac3d4a3d4c27b2e59eeff5fe1c042fb23036306e231a0596a6d0f1b",
+    "lean/NearSharpCertificate188632.lean": "0bf8880e37c6cdb40dc384bc942b0c2d7413ad5ddb0f4af1e9b44f86e2bb995d",
+    "lean/NearSharpData18865Defs.lean": "213d8f6ffb9107121d4aa815588f6984db980aaac1eedfe220af54182b1c0277",
+    "lean/NearSharpData18865_lower_lo_gram.lean": "0d9b71c02b23e3df7e4d536a635657d39195ec5afa3342c23c81c7bc220a0542",
+    "lean/NearSharpData18865_Tlo_gram.lean": "7ab402cc093894962ebca3764ce1d23115131b71330961ab92c3c9507b870483",
+    "lean/NearSharpData18865_lower_hi_gram.lean": "86400b109d60fb58ce5f6633e23231b0be6b261667c920331576e24aba501ea8",
+    "lean/NearSharpData18865_Thi_gram.lean": "b20f68cb956211cdb9996992270b0f35ddab6d0fcb8970eb44ec539650c55d35",
+    "lean/NearSharpData18865_endpoint_lo.lean": "513a074ec5f9d66c0e0dff618dce5e5cab4a238778bfa0c21abc5c7aab7361be",
+    "lean/NearSharpData18865_endpoint_hi.lean": "f0d9cddf0f3c072d1c8e2f0e60106da3298e4d1ddd0e29ca01d2c0ed3bb00687",
+    "lean/NearSharpData18865_weightedF.lean": "d78264bb3998bcf43bbd4f2d4710e7f9f197b8fb03f78e28f862a4574af7da1a",
+    "lean/NearSharpData18865_weightedG.lean": "f2e7601c64bb56c2161f32370afde64a046b7911980fa29003e384762e586f2c",
+    "lean/NearSharpData18865_A_lo.lean": "d113e58e225cf44855e5918519c2878b890fff11577817f69dcbb047bb5d33aa",
+    "lean/NearSharpData18865_B_lo.lean": "643ce9818c4b99523bac94a1a0b13ecc1e7ad1d1d150c40b722a1508ee63cd26",
+    "lean/NearSharpData18865_A_hi.lean": "93693dc89d917ec44e7daa65a78bd2f06aa2bfd2b1314daf3657b1166d17389e",
+    "lean/NearSharpData18865_B_hi.lean": "213cf4e088369136d188dbc2fe63cce604cab7dfae005679dae2b45e270e12c5",
+    "lean/NearSharpData18865_lower_lo_symmetric.lean": "5350863940c5623c1093f3d6f084c3921a6f5911c7e9f4543ee8de41d1567040",
+    "lean/NearSharpData18865_Tlo_symmetric.lean": "63903d7e0a0ded7b6f1968d27349acf01fee168966d2aa59079fceb790dfd3a2",
+    "lean/NearSharpData18865_lower_hi_symmetric.lean": "11639d3fc71366907ed850b961f13a100cd067476e6062379dea6e0de1e113a5",
+    "lean/NearSharpData18865_Thi_symmetric.lean": "03a061aced769663f1ff8f06e7682468c0e7ae6bd4d83e961b5cb87526fc24e7",
+    "lean/NearSharpData18865_aux.lean": "d3da3a0e4ea2805c3735f5543acf4215a33b089fdd0b3357d1d7612fae16d745",
+    "lean/NearSharpData18865.lean": "b4989a08ab7051832c591dcae39fd4d957d2245c8732111561c4843ae8abbe4c",
+    "lean/NearSharpPSD18865.lean": "09284c651cde960a7e88254fb3b05cd44e947efdba1f510512affc1bda8a16c0",
+    "lean/NearSharpNumeric18865.lean": "8033b96a33832e2c2c861421d604e53fab6a62dabd8cb6aab850cbe432f54cbc",
+    "lean/NearSharpCertificate18865.lean": "2bdb3847dc78a559d1ca197847595292330e7a31690e9359e5cef78e1cceeb11",
+    "lean/NearSharpData18867Defs.lean": "7f86bd5836c57a0e9e1588ce721956d20fcc3707c5d14053cff4ab93d1b68f11",
+    "lean/NearSharpData18867_lower_lo_gram.lean": "c7dfeb154ca644875fc0b8aeb1196984c481159d03374e8016fb15a300ee34e2",
+    "lean/NearSharpData18867_Tlo_gram.lean": "89c59a1d8c51d156df15b2e4d4fd5f814fc94e6727d6e8eb02e277fffdba638c",
+    "lean/NearSharpData18867_lower_hi_gram.lean": "f6813c5e3e498f565506cbb8d3e34d8bbfe7683fc8de368cf175e30b9275ac26",
+    "lean/NearSharpData18867_Thi_gram.lean": "847acdcc4aba89b5b4e873f4521b0d5234cd8eb744eb943eeb2b594f45b86102",
+    "lean/NearSharpData18867_endpoint_lo.lean": "4c49f8880e198782bab099bccb5686a14ca56eebf6b644c8d2604c459e129924",
+    "lean/NearSharpData18867_endpoint_hi.lean": "8855a6513d6ecc016fb37efcf36b97de6dc7e699cfe659559fa498450b9a7ae8",
+    "lean/NearSharpData18867_weightedF.lean": "764fabb49d3f25ce2152df31b333099b756c58a84da02b35d679adc88ebcd20d",
+    "lean/NearSharpData18867_weightedG.lean": "7513d0a3c2327cefe07865fc2c96b7110d68be349514b85a699cf9988b732845",
+    "lean/NearSharpData18867_A_lo.lean": "06ae37ffe23f3af10d064413a85f9caadeddd565054272ee916a73e0877f2265",
+    "lean/NearSharpData18867_B_lo.lean": "79d7f6ea5f4508031ffda4378eca6f92680fdae91bc0bc702bf70a939fca9c56",
+    "lean/NearSharpData18867_A_hi.lean": "22dc8881d0ff5e9278c487487fe650c7a00a5ea80152598db67fe09f7337fc0e",
+    "lean/NearSharpData18867_B_hi.lean": "51ed04b163aaf4e04de28664a29f9f1901b286bc27f00783b301e3fd0c5465f6",
+    "lean/NearSharpData18867_lower_lo_symmetric.lean": "ad0cb001f175ec4e711fcb4760a64ded51e551e1a7aad0dda4271a2b144f3ebc",
+    "lean/NearSharpData18867_Tlo_symmetric.lean": "5e644ccc62e1285f2bf17c85e965397356c1fd29adb72d578baa336ba54d4406",
+    "lean/NearSharpData18867_lower_hi_symmetric.lean": "1da3fae7ecbce612083168cc46ab71612624f9ef445d7373dbfa89e6b8dfb8f0",
+    "lean/NearSharpData18867_Thi_symmetric.lean": "06290f8d42c5248036dba1d2f606975f2b675811d9b7e2a4a01fa1de35877356",
+    "lean/NearSharpData18867_aux.lean": "f56d894a77d843e46e5360b3e34b43f22270161507afaede1a7baa084ff44fe8",
+    "lean/NearSharpData18867.lean": "f763290352906c3dc4684f20273bc025e3d1788d9a53264d8afb7c45017accd5",
+    "lean/NearSharpPSD18867.lean": "a467ebd38fdd50cf4d435aabef43cac001f459b750846ed7ba0dc3ecbb693f57",
+    "lean/NearSharpNumeric18867.lean": "51e2296f0d96c45f11f2018bfa6861fd54b42e76078d0a2e030f131bf7cc762b",
+    "lean/NearSharpCertificate18867.lean": "6a04fc758637a3a426341b60214e4f5ba2794fa2f470bb77892da51e96a49e4b",
+    "lean/NearSharpData1886795Defs.lean": "45f03ed9c517fc443247ff802d908789b44f8f36d4360d6e6bd4340f2eb46a7a",
+    "lean/NearSharpData1886795_lower_lo_gram_0.lean": "8f48bb9d9d8e607ca9cfc7ce291eca1831c317e77b32442012542f7950d9aef2",
+    "lean/NearSharpData1886795_lower_lo_gram_1.lean": "ab076aab5eda8d0fa6129029404ee1e2903c525198d2a4a5aac2a78a105e3692",
+    "lean/NearSharpData1886795_lower_lo_gram_2.lean": "cf19abc60ec21e56e015c74bea85a3b038e3e510b4f39473408e564fbd854689",
+    "lean/NearSharpData1886795_lower_lo_gram_3.lean": "8ce8e1fd5e96dd7ecabaef912f4ae8d413418a104335f2971da7d070ac95d617",
+    "lean/NearSharpData1886795_Tlo_gram_0.lean": "aaa405eb5b1c140a65f1336caac1d7c417edb6419f874f12072be52cfd071307",
+    "lean/NearSharpData1886795_Tlo_gram_1.lean": "d61a9296db724721aad0777ada5cb878f5fb55bacded627cd86d7120ce40371b",
+    "lean/NearSharpData1886795_Tlo_gram_2.lean": "5d5370edcb139893460954a4da7f88d3f482e41a2e3c377dcadf1524e7f524c5",
+    "lean/NearSharpData1886795_Tlo_gram_3.lean": "9b48f9308c2fb0255f80d1c0a190ac7c7d411d1fede637d792dea7de99da79c1",
+    "lean/NearSharpData1886795_lower_hi_gram_0.lean": "2d834adb36b0f9cd36edbb7339a51e6fab3221ba6fcaa73f96328748127ec60f",
+    "lean/NearSharpData1886795_lower_hi_gram_1.lean": "c61944ec728da81bdfd1e31f729e6b67140be521511c787bda10932bedffe5b2",
+    "lean/NearSharpData1886795_lower_hi_gram_2.lean": "26f3fb696ff08721abf9f733fa5028a18bc4fe5735e66bd4daf5d9004031a118",
+    "lean/NearSharpData1886795_lower_hi_gram_3.lean": "55562750178c407251a12777b988c3af0244c3506909ac852ab05c9e02085b35",
+    "lean/NearSharpData1886795_Thi_gram_0.lean": "e9580c94e2e9fe164370ff8893e59a84f35907534657272286831cd3d8644c6c",
+    "lean/NearSharpData1886795_Thi_gram_1.lean": "7afbe4142f523648c525a77e950268f31bf43a1bdf792819f1a28bade92c593d",
+    "lean/NearSharpData1886795_Thi_gram_2.lean": "fb27d43fd9d2332f4f82905bd78a0d4d0ce5de042e54049248bdac9dd259c430",
+    "lean/NearSharpData1886795_Thi_gram_3.lean": "fb08dc4c6391e5f3c490c536cb3847ea2d57863b8d3d52e887bdc64b35c4b35c",
+    "lean/NearSharpData1886795_endpoint_lo_0.lean": "bb992495d098a507f4133e570786c3c63909c73b6c808e7ab5f3953dcf62b67d",
+    "lean/NearSharpData1886795_endpoint_lo_1.lean": "cc7cc90061435231a4a828c113029401d9a6a26e9902e2f6f6bdad32377347e6",
+    "lean/NearSharpData1886795_endpoint_lo_2.lean": "a312399a567be368bab2d4d3a7ec20c27cd4c3ea3bdc7f8a62dedbf1af42e864",
+    "lean/NearSharpData1886795_endpoint_lo_3.lean": "c9bafc73da93bc173e023eb96d37c556b028ede0d2f9d009e5d050b319c4c265",
+    "lean/NearSharpData1886795_endpoint_lo_4.lean": "b2351809167fd7bb8ecfef21b8bdccfccd7324a488775aa80a4f5258ff2be8d1",
+    "lean/NearSharpData1886795_endpoint_hi_0.lean": "478fe5adc25f4168004c0ce90234f341000d5aabeaad18977b39f61dec6a8fd4",
+    "lean/NearSharpData1886795_endpoint_hi_1.lean": "2d77034d535561d098b68b3984fa63e1629c6d5db727a6a1456be05c1fd9105a",
+    "lean/NearSharpData1886795_endpoint_hi_2.lean": "a746590dde10dcb41d7319fd44b1eabbeac512f433fcc956786b4552f5f9c597",
+    "lean/NearSharpData1886795_endpoint_hi_3.lean": "590280d4433dba000b4b2b878a05a2e89cb6da32b5ccd33e856eb451b135612b",
+    "lean/NearSharpData1886795_endpoint_hi_4.lean": "d98009fa72351ac2e63f2482f266100b9f9fc75a7fcb79d970a0781b2b7ee4b0",
+    "lean/NearSharpData1886795_weightedF_0.lean": "54d8776c2fbd868606c8571dcd4de6771ede9b08301d11ece801edd0afe0bea8",
+    "lean/NearSharpData1886795_weightedF_1.lean": "340ddd59d406cd4c654345b330c7e935c37e4978df630ddbefa477898387afb2",
+    "lean/NearSharpData1886795_weightedG_0.lean": "717b1586c5bf84c2da841c986413e03178c9b8b5d5aca75de659ec2f45353d33",
+    "lean/NearSharpData1886795_weightedG_1.lean": "6774be79800c93e2f7cb980a7b06d8a10e12e7e1316c656cb31bf2a7f336b971",
+    "lean/NearSharpData1886795_A_lo.lean": "9cafe1015e2da13a45745da2c1756f75825fddf58fab745e8dc89045bdf3488a",
+    "lean/NearSharpData1886795_B_lo.lean": "437f95f9a2cdfd6db16d523ade03313109d3ceebd861ea9931640c15a516c698",
+    "lean/NearSharpData1886795_A_hi.lean": "3c482c9579de44e78446202e9e1bd533f520b8899111d602db7fe3048d47bcf1",
+    "lean/NearSharpData1886795_B_hi.lean": "5a42e35ef788b2bbbf7ce5568e601ffadd70be2fcd30dbd86b699dc314a5778c",
+    "lean/NearSharpData1886795_lower_lo_symmetric.lean": "af35e701352821807cba53d05394ba4c9b5d3386d9f0fe6ddb861c5254bf9a96",
+    "lean/NearSharpData1886795_Tlo_symmetric.lean": "a4bf885d429fe244640ef66fd1d18f0929cf457968f09abf6c9f20cd41b3e96c",
+    "lean/NearSharpData1886795_lower_hi_symmetric.lean": "cf731b04214cc8c9f6e2ed568cc22462680e2703a88053c875c5f5d955d9b0ca",
+    "lean/NearSharpData1886795_Thi_symmetric.lean": "0691655ef4340731f03ed1f07c31062751a80eb38cc62afdab889cd54cfc7388",
+    "lean/NearSharpData1886795_aux.lean": "8fb838bd509ed8504e9e2ed8a04381eab4f74db97f86678e79921f5463b338d8",
+    "lean/NearSharpData1886795.lean": "ed3e051d8644d68b502a8daff816820700a00dcdfbc29b86b8b62c6c90d434ff",
+    "lean/NearSharpPSD1886795.lean": "8433c361db44b5efdff3101c509fd6b0db418109f0fb01b370faba5ed9788d1e",
+    "lean/NearSharpNumeric1886795.lean": "6a042f90a840857a8803d74d90b81eb976ef8f686d799f35a6d375e245f75753",
+    "lean/NearSharpCertificate1886795.lean": "d2ee3f1e3d1dbef58e9444facb81b5e263e127666f75bbb6a107e15a8334627e",
+    "lean/NearSharpAllSteps.lean": "b734c59d9f255db28567e744bca0ec19fe38496ceeba4d9cb04337064e5ba18e",
+    "lean/NearSharpRankDeficient.lean": "bd4bfe5c1f92eb3041f7939992fc6d86fd8dd402954acfbbe0d83b12856ea269",
+    "lean/NearSharpFullRank.lean": "8a330f9182c8c80c6ddde717cad2daaeeb0f7da7ed859ac5c2606103d02656a4",
     "lean/CycleGeometry.lean": "72d02ee6d188846796185bb7625e91a8e26d25c7dbd5361cea8329dd14866c5e",
-    "lean/CycleDataCore.lean": "b27c3b372bee7ea807d19658b3e6b018410cd20b7aa6f3d1b47ddf530be6f504",
-    "lean/CycleAlgebra.lean": "623774afe51184a23fab7c03021ae6e172b47407d36200ea878fc0e1a07dbb6c",
+    "lean/CycleDataCore.lean": "1a5bd39b07923b5335ba5f0e904a9d04f9568d420b3f3c6500352fcb94f4cd90",
+    "lean/CycleAlgebra.lean": "3fece946718c66ce47091f0bd3ffcb1765d13e71753104fbf2c7a9465d79e72b",
     "lean/CycleWellposed.lean": "8c3c0f07952975f449b194fff695d66e6be0595a3c66a62f1cf3848e8433df03",
     "lean/CycleRows00.lean": "853d7d5309a9a17cfc3964e9590461e6afacbba93ace1c108d10346d798ead33",
     "lean/CycleRows01.lean": "4fba7af96382f2858a562f57cea93e6bdc7ddd50535efbc3f6c8c2191b841441",
@@ -215,18 +348,18 @@
     "lean/CycleRows14.lean": "6ec9050ba67f23f64b1f5d8c28de91714b7f77557cc1340f9d58c90a7e4a7478",
     "lean/CycleRows15.lean": "481f0128d560ebab73e788f51287eb182a75f115470fd65083c34f43f96658d8",
     "lean/CycleData.lean": "02607692dc5c98b06cd51c259bd85ed4f660e1fabec36e7167fe02921594c1aa",
-    "lean/CycleCounterexample.lean": "45e4478a4dbb6f96dafb81712d6d868c5333f3f283bc4e9a1d7a62d7a26cd3aa"
+    "lean/CycleCounterexample.lean": "f45f734bf6a7fca499668946cdb3e6e29843a9c1b30f94bab601c2fa062fbe4c"
   },
   "roots": [
     "NearSharpFullRank",
     "CycleCounterexample"
   ],
-  "lean_path": "$REPLAY/admm-out/objects:$MATHLIB/.lake/packages/Cli/.lake/build/lib/lean:$MATHLIB/.lake/packages/batteries/.lake/build/lib/lean:$MATHLIB/.lake/packages/Qq/.lake/build/lib/lean:$MATHLIB/.lake/packages/aesop/.lake/build/lib/lean:$MATHLIB/.lake/packages/proofwidgets/.lake/build/lib/lean:$MATHLIB/.lake/packages/importGraph/.lake/build/lib/lean:$MATHLIB/.lake/packages/LeanSearchClient/.lake/build/lib/lean:$MATHLIB/.lake/packages/plausible/.lake/build/lib/lean:$MATHLIB/.lake/build/lib/lean:$LEAN_HOME/lib/lean",
+  "lean_path": "$REPLAY/admm-out/objects:$PACKAGES/Cli/.lake/build/lib/lean:$PACKAGES/batteries/.lake/build/lib/lean:$PACKAGES/Qq/.lake/build/lib/lean:$PACKAGES/aesop/.lake/build/lib/lean:$PACKAGES/proofwidgets/.lake/build/lib/lean:$PACKAGES/importGraph/.lake/build/lib/lean:$PACKAGES/LeanSearchClient/.lake/build/lib/lean:$PACKAGES/plausible/.lake/build/lib/lean:$MATHLIB/.lake/build/lib/lean:$DEPS/.lake/build/lib/lean:$LEAN_HOME/lib/lean",
   "builds": [
     {
       "module": "ADMMCertificate",
       "exit_code": 0,
-      "seconds": 19.843946864000827,
+      "seconds": 19.221943124000973,
       "log": "logs/ADMMCertificate.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -243,7 +376,7 @@
     {
       "module": "ProximalModel",
       "exit_code": 0,
-      "seconds": 11.72006842799965,
+      "seconds": 12.755939632999798,
       "log": "logs/ProximalModel.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -260,7 +393,7 @@
     {
       "module": "MemoryConvergence",
       "exit_code": 0,
-      "seconds": 4.482038604999616,
+      "seconds": 4.53025916399929,
       "log": "logs/MemoryConvergence.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -277,7 +410,7 @@
     {
       "module": "ADMMConvergence",
       "exit_code": 0,
-      "seconds": 10.252923639000073,
+      "seconds": 10.043151757001397,
       "log": "logs/ADMMConvergence.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -294,7 +427,7 @@
     {
       "module": "LinearReduction",
       "exit_code": 0,
-      "seconds": 5.780549297000107,
+      "seconds": 5.2518951120000565,
       "log": "logs/LinearReduction.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -311,7 +444,7 @@
     {
       "module": "InfimalImage",
       "exit_code": 0,
-      "seconds": 6.828503352000553,
+      "seconds": 5.957890838999447,
       "log": "logs/InfimalImage.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -328,7 +461,7 @@
     {
       "module": "RankDeficientADMM",
       "exit_code": 0,
-      "seconds": 5.90546835799978,
+      "seconds": 5.8023863100006565,
       "log": "logs/RankDeficientADMM.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -345,7 +478,7 @@
     {
       "module": "SaddleLifting",
       "exit_code": 0,
-      "seconds": 3.854797834999772,
+      "seconds": 5.058776713000043,
       "log": "logs/SaddleLifting.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -362,7 +495,7 @@
     {
       "module": "ADMMIntervalCertificate",
       "exit_code": 0,
-      "seconds": 34.73595171799934,
+      "seconds": 31.566610670000955,
       "log": "logs/ADMMIntervalCertificate.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -379,7 +512,7 @@
     {
       "module": "ScaledProximalModel",
       "exit_code": 0,
-      "seconds": 4.1454996219999884,
+      "seconds": 4.537934432000839,
       "log": "logs/ScaledProximalModel.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -396,7 +529,7 @@
     {
       "module": "ADMMIntervalConvergence",
       "exit_code": 0,
-      "seconds": 16.595530336999218,
+      "seconds": 14.303197937999357,
       "log": "logs/ADMMIntervalConvergence.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -413,7 +546,7 @@
     {
       "module": "ClassicalADMM",
       "exit_code": 0,
-      "seconds": 13.653327423000519,
+      "seconds": 12.500689851000061,
       "log": "logs/ClassicalADMM.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -430,7 +563,7 @@
     {
       "module": "AllStepsADMM",
       "exit_code": 0,
-      "seconds": 6.096411134001755,
+      "seconds": 6.219570991999717,
       "log": "logs/AllStepsADMM.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -447,7 +580,7 @@
     {
       "module": "MemoryCertificate",
       "exit_code": 0,
-      "seconds": 3.6414198790007504,
+      "seconds": 3.8840198249999958,
       "log": "logs/MemoryCertificate.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -464,7 +597,7 @@
     {
       "module": "DelayedMemory",
       "exit_code": 0,
-      "seconds": 4.3253407449992665,
+      "seconds": 3.6869840039998962,
       "log": "logs/DelayedMemory.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -481,7 +614,7 @@
     {
       "module": "FiniteMemoryADMM",
       "exit_code": 0,
-      "seconds": 7.709984999000881,
+      "seconds": 7.020378495999466,
       "log": "logs/FiniteMemoryADMM.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -498,7 +631,7 @@
     {
       "module": "OriginalMemoryADMM",
       "exit_code": 0,
-      "seconds": 4.733107514999574,
+      "seconds": 3.70823931599989,
       "log": "logs/OriginalMemoryADMM.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -515,7 +648,7 @@
     {
       "module": "Quadratic",
       "exit_code": 0,
-      "seconds": 10.264292683999884,
+      "seconds": 9.880991416001052,
       "log": "logs/Quadratic.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -532,7 +665,7 @@
     {
       "module": "IntegerMatrix",
       "exit_code": 0,
-      "seconds": 5.888334512999791,
+      "seconds": 5.053257634999682,
       "log": "logs/IntegerMatrix.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -549,7 +682,7 @@
     {
       "module": "IntegerCross",
       "exit_code": 0,
-      "seconds": 5.7327647089987295,
+      "seconds": 5.408567070999197,
       "log": "logs/IntegerCross.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -566,7 +699,7 @@
     {
       "module": "StandardRows",
       "exit_code": 0,
-      "seconds": 12.204866175999996,
+      "seconds": 10.95091017499908,
       "log": "logs/StandardRows.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -583,7 +716,7 @@
     {
       "module": "IntegerEmbedding",
       "exit_code": 0,
-      "seconds": 6.615273207999053,
+      "seconds": 6.304167272999621,
       "log": "logs/IntegerEmbedding.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -600,7 +733,7 @@
     {
       "module": "IntegerNumerics",
       "exit_code": 0,
-      "seconds": 1.477625937999619,
+      "seconds": 1.3466352289997303,
       "log": "logs/IntegerNumerics.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -617,7 +750,7 @@
     {
       "module": "NearSharpData188Defs",
       "exit_code": 0,
-      "seconds": 33.331055442000434,
+      "seconds": 31.78613361599855,
       "log": "logs/NearSharpData188Defs.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -634,7 +767,7 @@
     {
       "module": "NearSharpData188_lower_lo_gram_identity_0",
       "exit_code": 0,
-      "seconds": 11.517519843999253,
+      "seconds": 12.83580816599897,
       "log": "logs/NearSharpData188_lower_lo_gram_identity_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -651,7 +784,7 @@
     {
       "module": "NearSharpData188_lower_lo_gram_identity_6",
       "exit_code": 0,
-      "seconds": 12.206292064000081,
+      "seconds": 11.175757335999151,
       "log": "logs/NearSharpData188_lower_lo_gram_identity_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -668,7 +801,7 @@
     {
       "module": "NearSharpData188_lower_lo_gram_identity_12",
       "exit_code": 0,
-      "seconds": 11.839398602998699,
+      "seconds": 12.483557993999057,
       "log": "logs/NearSharpData188_lower_lo_gram_identity_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -685,7 +818,7 @@
     {
       "module": "NearSharpData188_lower_lo_gram_identity_18",
       "exit_code": 0,
-      "seconds": 11.543981540000459,
+      "seconds": 11.77217418500004,
       "log": "logs/NearSharpData188_lower_lo_gram_identity_18.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -702,7 +835,7 @@
     {
       "module": "NearSharpData188_Tlo_gram_identity_0",
       "exit_code": 0,
-      "seconds": 10.86420107199956,
+      "seconds": 11.827497717998995,
       "log": "logs/NearSharpData188_Tlo_gram_identity_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -719,7 +852,7 @@
     {
       "module": "NearSharpData188_Tlo_gram_identity_6",
       "exit_code": 0,
-      "seconds": 11.013948505000371,
+      "seconds": 12.23190781500125,
       "log": "logs/NearSharpData188_Tlo_gram_identity_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -736,7 +869,7 @@
     {
       "module": "NearSharpData188_Tlo_gram_identity_12",
       "exit_code": 0,
-      "seconds": 11.252878498000427,
+      "seconds": 12.623183603000143,
       "log": "logs/NearSharpData188_Tlo_gram_identity_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -753,7 +886,7 @@
     {
       "module": "NearSharpData188_Tlo_gram_identity_18",
       "exit_code": 0,
-      "seconds": 11.0624983839989,
+      "seconds": 12.698235634999946,
       "log": "logs/NearSharpData188_Tlo_gram_identity_18.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -770,7 +903,7 @@
     {
       "module": "NearSharpData188_lower_hi_gram_identity_0",
       "exit_code": 0,
-      "seconds": 10.576294673999655,
+      "seconds": 11.00285379900015,
       "log": "logs/NearSharpData188_lower_hi_gram_identity_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -787,7 +920,7 @@
     {
       "module": "NearSharpData188_lower_hi_gram_identity_6",
       "exit_code": 0,
-      "seconds": 11.021895865998886,
+      "seconds": 12.2165039169995,
       "log": "logs/NearSharpData188_lower_hi_gram_identity_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -804,7 +937,7 @@
     {
       "module": "NearSharpData188_lower_hi_gram_identity_12",
       "exit_code": 0,
-      "seconds": 11.428201426999294,
+      "seconds": 12.622872199000994,
       "log": "logs/NearSharpData188_lower_hi_gram_identity_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -821,7 +954,7 @@
     {
       "module": "NearSharpData188_lower_hi_gram_identity_18",
       "exit_code": 0,
-      "seconds": 11.41426654299903,
+      "seconds": 12.636755425999581,
       "log": "logs/NearSharpData188_lower_hi_gram_identity_18.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -838,7 +971,7 @@
     {
       "module": "NearSharpData188_Thi_gram_identity_0",
       "exit_code": 0,
-      "seconds": 10.880605272001048,
+      "seconds": 12.168765362999693,
       "log": "logs/NearSharpData188_Thi_gram_identity_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -855,7 +988,7 @@
     {
       "module": "NearSharpData188_Thi_gram_identity_6",
       "exit_code": 0,
-      "seconds": 10.969437318999553,
+      "seconds": 11.913862153000082,
       "log": "logs/NearSharpData188_Thi_gram_identity_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -872,7 +1005,7 @@
     {
       "module": "NearSharpData188_Thi_gram_identity_12",
       "exit_code": 0,
-      "seconds": 11.615692399000181,
+      "seconds": 12.364738909000152,
       "log": "logs/NearSharpData188_Thi_gram_identity_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -889,7 +1022,7 @@
     {
       "module": "NearSharpData188_Thi_gram_identity_18",
       "exit_code": 0,
-      "seconds": 11.56806153999969,
+      "seconds": 12.567202288000772,
       "log": "logs/NearSharpData188_Thi_gram_identity_18.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -906,7 +1039,7 @@
     {
       "module": "NearSharpData188_weightedFZ_identity_0",
       "exit_code": 0,
-      "seconds": 8.65777295800035,
+      "seconds": 8.891588247999607,
       "log": "logs/NearSharpData188_weightedFZ_identity_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -923,7 +1056,7 @@
     {
       "module": "NearSharpData188_weightedFZ_identity_6",
       "exit_code": 0,
-      "seconds": 8.218782758000089,
+      "seconds": 9.501941328999237,
       "log": "logs/NearSharpData188_weightedFZ_identity_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -940,7 +1073,7 @@
     {
       "module": "NearSharpData188_weightedFZ_identity_12",
       "exit_code": 0,
-      "seconds": 2.4648799869992217,
+      "seconds": 3.1439195580005617,
       "log": "logs/NearSharpData188_weightedFZ_identity_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -957,7 +1090,7 @@
     {
       "module": "NearSharpData188_weightedGZ_identity_0",
       "exit_code": 0,
-      "seconds": 8.680536669000503,
+      "seconds": 8.397375859000022,
       "log": "logs/NearSharpData188_weightedGZ_identity_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -974,7 +1107,7 @@
     {
       "module": "NearSharpData188_weightedGZ_identity_6",
       "exit_code": 0,
-      "seconds": 8.461534172000029,
+      "seconds": 8.351938409001377,
       "log": "logs/NearSharpData188_weightedGZ_identity_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -991,7 +1124,7 @@
     {
       "module": "NearSharpData188_weightedGZ_identity_12",
       "exit_code": 0,
-      "seconds": 2.8115901190012664,
+      "seconds": 3.0869806770006107,
       "log": "logs/NearSharpData188_weightedGZ_identity_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1008,7 +1141,7 @@
     {
       "module": "NearSharpData188_endpoint_fast_lo_0",
       "exit_code": 0,
-      "seconds": 21.613392807999844,
+      "seconds": 23.94205104699904,
       "log": "logs/NearSharpData188_endpoint_fast_lo_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1025,7 +1158,7 @@
     {
       "module": "NearSharpData188_endpoint_fast_lo_6",
       "exit_code": 0,
-      "seconds": 20.530059864000577,
+      "seconds": 22.599650357000428,
       "log": "logs/NearSharpData188_endpoint_fast_lo_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1042,7 +1175,7 @@
     {
       "module": "NearSharpData188_endpoint_fast_lo_12",
       "exit_code": 0,
-      "seconds": 21.374465589000465,
+      "seconds": 22.41868170000089,
       "log": "logs/NearSharpData188_endpoint_fast_lo_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1059,7 +1192,7 @@
     {
       "module": "NearSharpData188_endpoint_fast_lo_18",
       "exit_code": 0,
-      "seconds": 20.609983287000432,
+      "seconds": 21.885796226999446,
       "log": "logs/NearSharpData188_endpoint_fast_lo_18.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1076,7 +1209,7 @@
     {
       "module": "NearSharpData188_endpoint_fast_lo_24",
       "exit_code": 0,
-      "seconds": 8.328292885000337,
+      "seconds": 7.895379690000482,
       "log": "logs/NearSharpData188_endpoint_fast_lo_24.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1093,7 +1226,7 @@
     {
       "module": "NearSharpData188_endpoint_fast_hi_0",
       "exit_code": 0,
-      "seconds": 20.7986149999997,
+      "seconds": 22.54441228199903,
       "log": "logs/NearSharpData188_endpoint_fast_hi_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1110,7 +1243,7 @@
     {
       "module": "NearSharpData188_endpoint_fast_hi_6",
       "exit_code": 0,
-      "seconds": 20.49561573400024,
+      "seconds": 23.675432125999578,
       "log": "logs/NearSharpData188_endpoint_fast_hi_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1127,7 +1260,7 @@
     {
       "module": "NearSharpData188_endpoint_fast_hi_12",
       "exit_code": 0,
-      "seconds": 19.679636541000946,
+      "seconds": 25.163683467999363,
       "log": "logs/NearSharpData188_endpoint_fast_hi_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1144,7 +1277,7 @@
     {
       "module": "NearSharpData188_endpoint_fast_hi_18",
       "exit_code": 0,
-      "seconds": 19.796768046999205,
+      "seconds": 24.938837607000096,
       "log": "logs/NearSharpData188_endpoint_fast_hi_18.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1161,7 +1294,7 @@
     {
       "module": "NearSharpData188_endpoint_fast_hi_24",
       "exit_code": 0,
-      "seconds": 7.578270027999679,
+      "seconds": 8.37130690000049,
       "log": "logs/NearSharpData188_endpoint_fast_hi_24.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1178,7 +1311,7 @@
     {
       "module": "NearSharpData188_Simple0",
       "exit_code": 0,
-      "seconds": 1.8536284109995904,
+      "seconds": 1.9043938609993347,
       "log": "logs/NearSharpData188_Simple0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1195,7 +1328,7 @@
     {
       "module": "NearSharpData188_Simple1",
       "exit_code": 0,
-      "seconds": 1.9320939299996098,
+      "seconds": 2.5536504880001303,
       "log": "logs/NearSharpData188_Simple1.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1212,7 +1345,7 @@
     {
       "module": "NearSharpData188_Simple2",
       "exit_code": 0,
-      "seconds": 2.0065234230005444,
+      "seconds": 2.0887442610001017,
       "log": "logs/NearSharpData188_Simple2.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1229,7 +1362,7 @@
     {
       "module": "NearSharpData188_Simple3",
       "exit_code": 0,
-      "seconds": 2.026352057000622,
+      "seconds": 2.349466375000702,
       "log": "logs/NearSharpData188_Simple3.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1246,7 +1379,7 @@
     {
       "module": "NearSharpData188_Simple4",
       "exit_code": 0,
-      "seconds": 1.783699189998515,
+      "seconds": 1.510092214000906,
       "log": "logs/NearSharpData188_Simple4.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1263,7 +1396,7 @@
     {
       "module": "NearSharpData188_Simple5",
       "exit_code": 0,
-      "seconds": 2.230658518999917,
+      "seconds": 2.404686435998883,
       "log": "logs/NearSharpData188_Simple5.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1280,7 +1413,7 @@
     {
       "module": "NearSharpData188_Simple6",
       "exit_code": 0,
-      "seconds": 2.4128771880004933,
+      "seconds": 2.2101477359992714,
       "log": "logs/NearSharpData188_Simple6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1297,7 +1430,7 @@
     {
       "module": "NearSharpData188_Simple7",
       "exit_code": 0,
-      "seconds": 1.8785853659992426,
+      "seconds": 2.8139129459996184,
       "log": "logs/NearSharpData188_Simple7.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1314,7 +1447,7 @@
     {
       "module": "NearSharpData188_Simple8",
       "exit_code": 0,
-      "seconds": 2.176172741999835,
+      "seconds": 1.8754679929988924,
       "log": "logs/NearSharpData188_Simple8.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1331,7 +1464,7 @@
     {
       "module": "NearSharpData188_Simple9",
       "exit_code": 0,
-      "seconds": 2.3739225670015003,
+      "seconds": 2.0380966659995465,
       "log": "logs/NearSharpData188_Simple9.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1348,7 +1481,7 @@
     {
       "module": "NearSharpData188_Simple10",
       "exit_code": 0,
-      "seconds": 1.6570567409999057,
+      "seconds": 1.5098551570008567,
       "log": "logs/NearSharpData188_Simple10.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1365,7 +1498,7 @@
     {
       "module": "NearSharpData188_Simple11",
       "exit_code": 0,
-      "seconds": 2.1420455259994924,
+      "seconds": 1.4467099840003357,
       "log": "logs/NearSharpData188_Simple11.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1382,7 +1515,7 @@
     {
       "module": "NearSharpData188",
       "exit_code": 0,
-      "seconds": 12.783002964999469,
+      "seconds": 14.231829317999654,
       "log": "logs/NearSharpData188.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1399,7 +1532,7 @@
     {
       "module": "NearSharpPSD188",
       "exit_code": 0,
-      "seconds": 11.60408380499939,
+      "seconds": 13.0564029499983,
       "log": "logs/NearSharpPSD188.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1416,7 +1549,7 @@
     {
       "module": "GapAlgebra",
       "exit_code": 0,
-      "seconds": 8.75032526799987,
+      "seconds": 7.6332306130007055,
       "log": "logs/GapAlgebra.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1433,7 +1566,7 @@
     {
       "module": "IntegerGap",
       "exit_code": 0,
-      "seconds": 6.174523391999173,
+      "seconds": 5.016856354999618,
       "log": "logs/IntegerGap.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1450,7 +1583,7 @@
     {
       "module": "NearSharpNumeric188",
       "exit_code": 0,
-      "seconds": 10.309423885000797,
+      "seconds": 8.953473522999047,
       "log": "logs/NearSharpNumeric188.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1467,7 +1600,7 @@
     {
       "module": "AffineMatrix",
       "exit_code": 0,
-      "seconds": 7.346039803000167,
+      "seconds": 7.973370575000445,
       "log": "logs/AffineMatrix.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1484,7 +1617,7 @@
     {
       "module": "MatrixCertificate",
       "exit_code": 0,
-      "seconds": 6.966758901999128,
+      "seconds": 6.8522112680002465,
       "log": "logs/MatrixCertificate.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1501,7 +1634,7 @@
     {
       "module": "NearSharpCertificate188",
       "exit_code": 0,
-      "seconds": 12.360904012000901,
+      "seconds": 11.227255776000675,
       "log": "logs/NearSharpCertificate188.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1518,7 +1651,7 @@
     {
       "module": "NearSharpData1886Defs",
       "exit_code": 0,
-      "seconds": 79.91030575199875,
+      "seconds": 83.796658321,
       "log": "logs/NearSharpData1886Defs.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1535,7 +1668,7 @@
     {
       "module": "NearSharpData1886_lower_lo_gram_identity_0",
       "exit_code": 0,
-      "seconds": 25.20366995400036,
+      "seconds": 32.12138625099942,
       "log": "logs/NearSharpData1886_lower_lo_gram_identity_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1552,7 +1685,7 @@
     {
       "module": "NearSharpData1886_lower_lo_gram_identity_6",
       "exit_code": 0,
-      "seconds": 26.73179850499946,
+      "seconds": 28.915206134000982,
       "log": "logs/NearSharpData1886_lower_lo_gram_identity_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1569,7 +1702,7 @@
     {
       "module": "NearSharpData1886_lower_lo_gram_identity_12",
       "exit_code": 0,
-      "seconds": 26.776937877999444,
+      "seconds": 27.963305467999817,
       "log": "logs/NearSharpData1886_lower_lo_gram_identity_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1586,7 +1719,7 @@
     {
       "module": "NearSharpData1886_lower_lo_gram_identity_18",
       "exit_code": 0,
-      "seconds": 25.34782988599909,
+      "seconds": 30.056455580999682,
       "log": "logs/NearSharpData1886_lower_lo_gram_identity_18.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1603,7 +1736,7 @@
     {
       "module": "NearSharpData1886_lower_lo_gram_identity_24",
       "exit_code": 0,
-      "seconds": 25.739410747000875,
+      "seconds": 28.02769071200055,
       "log": "logs/NearSharpData1886_lower_lo_gram_identity_24.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1620,7 +1753,7 @@
     {
       "module": "NearSharpData1886_lower_lo_gram_identity_30",
       "exit_code": 0,
-      "seconds": 27.642274564001127,
+      "seconds": 29.804476813998917,
       "log": "logs/NearSharpData1886_lower_lo_gram_identity_30.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1637,7 +1770,7 @@
     {
       "module": "NearSharpData1886_lower_lo_gram_identity_36",
       "exit_code": 0,
-      "seconds": 17.501484050999352,
+      "seconds": 18.801225965000413,
       "log": "logs/NearSharpData1886_lower_lo_gram_identity_36.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1654,7 +1787,7 @@
     {
       "module": "NearSharpData1886_Tlo_gram_identity_0",
       "exit_code": 0,
-      "seconds": 24.572592435000843,
+      "seconds": 28.137783584001227,
       "log": "logs/NearSharpData1886_Tlo_gram_identity_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1671,7 +1804,7 @@
     {
       "module": "NearSharpData1886_Tlo_gram_identity_6",
       "exit_code": 0,
-      "seconds": 25.22145343900047,
+      "seconds": 28.54519066800094,
       "log": "logs/NearSharpData1886_Tlo_gram_identity_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1688,7 +1821,7 @@
     {
       "module": "NearSharpData1886_Tlo_gram_identity_12",
       "exit_code": 0,
-      "seconds": 26.11860080199949,
+      "seconds": 27.98940446599954,
       "log": "logs/NearSharpData1886_Tlo_gram_identity_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1705,7 +1838,7 @@
     {
       "module": "NearSharpData1886_Tlo_gram_identity_18",
       "exit_code": 0,
-      "seconds": 26.278349098000035,
+      "seconds": 27.896572314000878,
       "log": "logs/NearSharpData1886_Tlo_gram_identity_18.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1722,7 +1855,7 @@
     {
       "module": "NearSharpData1886_Tlo_gram_identity_24",
       "exit_code": 0,
-      "seconds": 26.02254101300059,
+      "seconds": 25.81186007799988,
       "log": "logs/NearSharpData1886_Tlo_gram_identity_24.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1739,7 +1872,7 @@
     {
       "module": "NearSharpData1886_Tlo_gram_identity_30",
       "exit_code": 0,
-      "seconds": 26.56941394200112,
+      "seconds": 24.33652768399952,
       "log": "logs/NearSharpData1886_Tlo_gram_identity_30.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1756,7 +1889,7 @@
     {
       "module": "NearSharpData1886_Tlo_gram_identity_36",
       "exit_code": 0,
-      "seconds": 17.719748007999442,
+      "seconds": 16.563909464999597,
       "log": "logs/NearSharpData1886_Tlo_gram_identity_36.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1773,7 +1906,7 @@
     {
       "module": "NearSharpData1886_lower_hi_gram_identity_0",
       "exit_code": 0,
-      "seconds": 25.367755986000702,
+      "seconds": 23.018341188000704,
       "log": "logs/NearSharpData1886_lower_hi_gram_identity_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1790,7 +1923,7 @@
     {
       "module": "NearSharpData1886_lower_hi_gram_identity_6",
       "exit_code": 0,
-      "seconds": 27.092008914998587,
+      "seconds": 23.574073100000533,
       "log": "logs/NearSharpData1886_lower_hi_gram_identity_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1807,7 +1940,7 @@
     {
       "module": "NearSharpData1886_lower_hi_gram_identity_12",
       "exit_code": 0,
-      "seconds": 27.576931972002058,
+      "seconds": 31.977925962999507,
       "log": "logs/NearSharpData1886_lower_hi_gram_identity_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1824,7 +1957,7 @@
     {
       "module": "NearSharpData1886_lower_hi_gram_identity_18",
       "exit_code": 0,
-      "seconds": 26.91881591299898,
+      "seconds": 34.703025709999565,
       "log": "logs/NearSharpData1886_lower_hi_gram_identity_18.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1841,7 +1974,7 @@
     {
       "module": "NearSharpData1886_lower_hi_gram_identity_24",
       "exit_code": 0,
-      "seconds": 26.745333268998365,
+      "seconds": 28.953690448999623,
       "log": "logs/NearSharpData1886_lower_hi_gram_identity_24.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1858,7 +1991,7 @@
     {
       "module": "NearSharpData1886_lower_hi_gram_identity_30",
       "exit_code": 0,
-      "seconds": 27.29276223100169,
+      "seconds": 29.36193604300024,
       "log": "logs/NearSharpData1886_lower_hi_gram_identity_30.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1875,7 +2008,7 @@
     {
       "module": "NearSharpData1886_lower_hi_gram_identity_36",
       "exit_code": 0,
-      "seconds": 19.51910970300014,
+      "seconds": 16.327852858999904,
       "log": "logs/NearSharpData1886_lower_hi_gram_identity_36.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1892,7 +2025,7 @@
     {
       "module": "NearSharpData1886_Thi_gram_identity_0",
       "exit_code": 0,
-      "seconds": 25.77942632200211,
+      "seconds": 22.853209672000958,
       "log": "logs/NearSharpData1886_Thi_gram_identity_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1909,7 +2042,7 @@
     {
       "module": "NearSharpData1886_Thi_gram_identity_6",
       "exit_code": 0,
-      "seconds": 26.700758866001706,
+      "seconds": 23.66207637500156,
       "log": "logs/NearSharpData1886_Thi_gram_identity_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1926,7 +2059,7 @@
     {
       "module": "NearSharpData1886_Thi_gram_identity_12",
       "exit_code": 0,
-      "seconds": 27.143269043001055,
+      "seconds": 23.624815322998984,
       "log": "logs/NearSharpData1886_Thi_gram_identity_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1943,7 +2076,7 @@
     {
       "module": "NearSharpData1886_Thi_gram_identity_18",
       "exit_code": 0,
-      "seconds": 26.87311988199872,
+      "seconds": 25.82689342699996,
       "log": "logs/NearSharpData1886_Thi_gram_identity_18.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1960,7 +2093,7 @@
     {
       "module": "NearSharpData1886_Thi_gram_identity_24",
       "exit_code": 0,
-      "seconds": 28.5784337269979,
+      "seconds": 25.867568542998924,
       "log": "logs/NearSharpData1886_Thi_gram_identity_24.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1977,7 +2110,7 @@
     {
       "module": "NearSharpData1886_Thi_gram_identity_30",
       "exit_code": 0,
-      "seconds": 28.191426461002266,
+      "seconds": 23.67478924199895,
       "log": "logs/NearSharpData1886_Thi_gram_identity_30.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -1994,7 +2127,7 @@
     {
       "module": "NearSharpData1886_Thi_gram_identity_36",
       "exit_code": 0,
-      "seconds": 18.944741324998176,
+      "seconds": 16.773530952999863,
       "log": "logs/NearSharpData1886_Thi_gram_identity_36.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2011,7 +2144,7 @@
     {
       "module": "NearSharpData1886_weightedFZ_identity_0",
       "exit_code": 0,
-      "seconds": 18.55088760400031,
+      "seconds": 15.989914530999158,
       "log": "logs/NearSharpData1886_weightedFZ_identity_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2028,7 +2161,7 @@
     {
       "module": "NearSharpData1886_weightedFZ_identity_6",
       "exit_code": 0,
-      "seconds": 17.703968298999825,
+      "seconds": 14.45614371100055,
       "log": "logs/NearSharpData1886_weightedFZ_identity_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2045,7 +2178,7 @@
     {
       "module": "NearSharpData1886_weightedFZ_identity_12",
       "exit_code": 0,
-      "seconds": 18.020894828001474,
+      "seconds": 14.616210979000243,
       "log": "logs/NearSharpData1886_weightedFZ_identity_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2062,7 +2195,7 @@
     {
       "module": "NearSharpData1886_weightedFZ_identity_18",
       "exit_code": 0,
-      "seconds": 9.002335437999136,
+      "seconds": 8.48814001000028,
       "log": "logs/NearSharpData1886_weightedFZ_identity_18.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2079,7 +2212,7 @@
     {
       "module": "NearSharpData1886_weightedGZ_identity_0",
       "exit_code": 0,
-      "seconds": 19.14437182599795,
+      "seconds": 15.27632102700045,
       "log": "logs/NearSharpData1886_weightedGZ_identity_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2096,7 +2229,7 @@
     {
       "module": "NearSharpData1886_weightedGZ_identity_6",
       "exit_code": 0,
-      "seconds": 18.425232567999046,
+      "seconds": 15.841534008999588,
       "log": "logs/NearSharpData1886_weightedGZ_identity_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2113,7 +2246,7 @@
     {
       "module": "NearSharpData1886_weightedGZ_identity_12",
       "exit_code": 0,
-      "seconds": 17.33916958199916,
+      "seconds": 14.51757612199981,
       "log": "logs/NearSharpData1886_weightedGZ_identity_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2130,7 +2263,7 @@
     {
       "module": "NearSharpData1886_weightedGZ_identity_18",
       "exit_code": 0,
-      "seconds": 8.711291423998773,
+      "seconds": 7.761539113998879,
       "log": "logs/NearSharpData1886_weightedGZ_identity_18.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2147,7 +2280,7 @@
     {
       "module": "NearSharpData1886_endpoint_fast_lo_0",
       "exit_code": 0,
-      "seconds": 55.57689897599994,
+      "seconds": 51.79811150000023,
       "log": "logs/NearSharpData1886_endpoint_fast_lo_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2164,7 +2297,7 @@
     {
       "module": "NearSharpData1886_endpoint_fast_lo_6",
       "exit_code": 0,
-      "seconds": 54.359439617001044,
+      "seconds": 48.95328916299877,
       "log": "logs/NearSharpData1886_endpoint_fast_lo_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2181,7 +2314,7 @@
     {
       "module": "NearSharpData1886_endpoint_fast_lo_12",
       "exit_code": 0,
-      "seconds": 54.64919321900015,
+      "seconds": 51.71597313300117,
       "log": "logs/NearSharpData1886_endpoint_fast_lo_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2198,7 +2331,7 @@
     {
       "module": "NearSharpData1886_endpoint_fast_lo_18",
       "exit_code": 0,
-      "seconds": 54.04587526799878,
+      "seconds": 47.21888598000078,
       "log": "logs/NearSharpData1886_endpoint_fast_lo_18.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2215,7 +2348,7 @@
     {
       "module": "NearSharpData1886_endpoint_fast_lo_24",
       "exit_code": 0,
-      "seconds": 51.90607749400078,
+      "seconds": 49.75621549400057,
       "log": "logs/NearSharpData1886_endpoint_fast_lo_24.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2232,7 +2365,7 @@
     {
       "module": "NearSharpData1886_endpoint_fast_lo_30",
       "exit_code": 0,
-      "seconds": 52.99522079399685,
+      "seconds": 46.99160830300025,
       "log": "logs/NearSharpData1886_endpoint_fast_lo_30.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2249,7 +2382,7 @@
     {
       "module": "NearSharpData1886_endpoint_fast_lo_36",
       "exit_code": 0,
-      "seconds": 52.55377629800205,
+      "seconds": 47.12845928599927,
       "log": "logs/NearSharpData1886_endpoint_fast_lo_36.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2266,7 +2399,7 @@
     {
       "module": "NearSharpData1886_endpoint_fast_hi_0",
       "exit_code": 0,
-      "seconds": 52.06668773799902,
+      "seconds": 46.95325211199997,
       "log": "logs/NearSharpData1886_endpoint_fast_hi_0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2283,7 +2416,7 @@
     {
       "module": "NearSharpData1886_endpoint_fast_hi_6",
       "exit_code": 0,
-      "seconds": 51.56406561300173,
+      "seconds": 48.46279678600149,
       "log": "logs/NearSharpData1886_endpoint_fast_hi_6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2300,7 +2433,7 @@
     {
       "module": "NearSharpData1886_endpoint_fast_hi_12",
       "exit_code": 0,
-      "seconds": 53.57180262399925,
+      "seconds": 47.180036739999196,
       "log": "logs/NearSharpData1886_endpoint_fast_hi_12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2317,7 +2450,7 @@
     {
       "module": "NearSharpData1886_endpoint_fast_hi_18",
       "exit_code": 0,
-      "seconds": 54.03974006899807,
+      "seconds": 48.169242669000596,
       "log": "logs/NearSharpData1886_endpoint_fast_hi_18.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2334,7 +2467,7 @@
     {
       "module": "NearSharpData1886_endpoint_fast_hi_24",
       "exit_code": 0,
-      "seconds": 59.00849095600279,
+      "seconds": 50.02865182700043,
       "log": "logs/NearSharpData1886_endpoint_fast_hi_24.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2351,7 +2484,7 @@
     {
       "module": "NearSharpData1886_endpoint_fast_hi_30",
       "exit_code": 0,
-      "seconds": 55.9888546200018,
+      "seconds": 49.785010091000004,
       "log": "logs/NearSharpData1886_endpoint_fast_hi_30.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2368,7 +2501,7 @@
     {
       "module": "NearSharpData1886_endpoint_fast_hi_36",
       "exit_code": 0,
-      "seconds": 54.46709593000196,
+      "seconds": 48.85060700400027,
       "log": "logs/NearSharpData1886_endpoint_fast_hi_36.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2385,7 +2518,7 @@
     {
       "module": "NearSharpData1886_Simple0",
       "exit_code": 0,
-      "seconds": 2.78479101099947,
+      "seconds": 2.4060138290005852,
       "log": "logs/NearSharpData1886_Simple0.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2402,7 +2535,7 @@
     {
       "module": "NearSharpData1886_Simple1",
       "exit_code": 0,
-      "seconds": 3.2380891790016904,
+      "seconds": 3.080588032999003,
       "log": "logs/NearSharpData1886_Simple1.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2419,7 +2552,7 @@
     {
       "module": "NearSharpData1886_Simple2",
       "exit_code": 0,
-      "seconds": 3.1530787169976975,
+      "seconds": 2.276866770000197,
       "log": "logs/NearSharpData1886_Simple2.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2436,7 +2569,7 @@
     {
       "module": "NearSharpData1886_Simple3",
       "exit_code": 0,
-      "seconds": 3.689800899999682,
+      "seconds": 3.0005742239991378,
       "log": "logs/NearSharpData1886_Simple3.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2453,7 +2586,7 @@
     {
       "module": "NearSharpData1886_Simple4",
       "exit_code": 0,
-      "seconds": 3.15477324099993,
+      "seconds": 2.158731366000211,
       "log": "logs/NearSharpData1886_Simple4.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2470,7 +2603,7 @@
     {
       "module": "NearSharpData1886_Simple5",
       "exit_code": 0,
-      "seconds": 3.4707722239982104,
+      "seconds": 3.318148499000017,
       "log": "logs/NearSharpData1886_Simple5.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2487,7 +2620,7 @@
     {
       "module": "NearSharpData1886_Simple6",
       "exit_code": 0,
-      "seconds": 3.0003537379998306,
+      "seconds": 2.4653095489993575,
       "log": "logs/NearSharpData1886_Simple6.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2504,7 +2637,7 @@
     {
       "module": "NearSharpData1886_Simple7",
       "exit_code": 0,
-      "seconds": 4.391266633003397,
+      "seconds": 3.500222926000788,
       "log": "logs/NearSharpData1886_Simple7.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2521,7 +2654,7 @@
     {
       "module": "NearSharpData1886_Simple8",
       "exit_code": 0,
-      "seconds": 1.7676602190003905,
+      "seconds": 1.4895439199990506,
       "log": "logs/NearSharpData1886_Simple8.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2538,7 +2671,7 @@
     {
       "module": "NearSharpData1886_Simple9",
       "exit_code": 0,
-      "seconds": 2.171476879000693,
+      "seconds": 1.8007263170002261,
       "log": "logs/NearSharpData1886_Simple9.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2555,7 +2688,7 @@
     {
       "module": "NearSharpData1886_Simple10",
       "exit_code": 0,
-      "seconds": 1.7654061629982607,
+      "seconds": 1.4862028019997524,
       "log": "logs/NearSharpData1886_Simple10.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2572,7 +2705,7 @@
     {
       "module": "NearSharpData1886_Simple11",
       "exit_code": 0,
-      "seconds": 2.4259516399979475,
+      "seconds": 2.1189558480000414,
       "log": "logs/NearSharpData1886_Simple11.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2589,7 +2722,7 @@
     {
       "module": "NearSharpData1886",
       "exit_code": 0,
-      "seconds": 17.457070214997657,
+      "seconds": 21.99132390699924,
       "log": "logs/NearSharpData1886.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2606,7 +2739,7 @@
     {
       "module": "NearSharpPSD1886",
       "exit_code": 0,
-      "seconds": 11.214489531001163,
+      "seconds": 10.922932198000126,
       "log": "logs/NearSharpPSD1886.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2623,7 +2756,7 @@
     {
       "module": "NearSharpNumeric1886",
       "exit_code": 0,
-      "seconds": 10.79655684699901,
+      "seconds": 9.494522430999496,
       "log": "logs/NearSharpNumeric1886.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2640,7 +2773,7 @@
     {
       "module": "NearSharpCertificate1886",
       "exit_code": 0,
-      "seconds": 17.722811677998834,
+      "seconds": 16.003418561000217,
       "log": "logs/NearSharpCertificate1886.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2655,9 +2788,2270 @@
       "object_sha256": "16788ec94007ba33de29ce638593b63f8aace39a25a1ff28e6c4c8d61c795673"
     },
     {
+      "module": "IntegerLists",
+      "exit_code": 0,
+      "seconds": 2.3545935909987747,
+      "log": "logs/IntegerLists.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/IntegerLists.olean",
+        "$REPLAY/admm/lean/IntegerLists.lean"
+      ],
+      "object_sha256": "8d85200d198c4e3a07ace4b2fc57021d10d5350073aa59786ea12ccf5ad95fc4"
+    },
+    {
+      "module": "NearSharpData188628Defs",
+      "exit_code": 0,
+      "seconds": 203.18005869100125,
+      "log": "logs/NearSharpData188628Defs.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628Defs.olean",
+        "$REPLAY/admm/lean/NearSharpData188628Defs.lean"
+      ],
+      "object_sha256": "f14c1848aab56ac2222be92eafc11ba3c0de6d968f514c1254176c1e0ab3bb70"
+    },
+    {
+      "module": "NearSharpData188628_lower_lo_gram",
+      "exit_code": 0,
+      "seconds": 35.879153542000495,
+      "log": "logs/NearSharpData188628_lower_lo_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_lower_lo_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_lower_lo_gram.lean"
+      ],
+      "object_sha256": "f6601e566c0c4fa8fd15c7b84a5d5c1c56ab4f6f8d570d2ac303fde8aaa989f4"
+    },
+    {
+      "module": "NearSharpData188628_Tlo_gram",
+      "exit_code": 0,
+      "seconds": 26.125035609000406,
+      "log": "logs/NearSharpData188628_Tlo_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_Tlo_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_Tlo_gram.lean"
+      ],
+      "object_sha256": "3c7a5fba47f16c603fe41c7f6947ea0f69b7dda1d8caaff24fc12d80c14f5607"
+    },
+    {
+      "module": "NearSharpData188628_lower_hi_gram",
+      "exit_code": 0,
+      "seconds": 23.666166251001414,
+      "log": "logs/NearSharpData188628_lower_hi_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_lower_hi_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_lower_hi_gram.lean"
+      ],
+      "object_sha256": "669e15e1eeb6eeaaa5e0fed683f47d569196cac9aed6734f9941535553cdc181"
+    },
+    {
+      "module": "NearSharpData188628_Thi_gram",
+      "exit_code": 0,
+      "seconds": 19.575416063000375,
+      "log": "logs/NearSharpData188628_Thi_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_Thi_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_Thi_gram.lean"
+      ],
+      "object_sha256": "f490a6373010864f07b4d17da35d145782562f051f634c6cd64afa4aecbf810c"
+    },
+    {
+      "module": "NearSharpData188628_endpoint_lo",
+      "exit_code": 0,
+      "seconds": 39.90141413600031,
+      "log": "logs/NearSharpData188628_endpoint_lo.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_endpoint_lo.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_endpoint_lo.lean"
+      ],
+      "object_sha256": "01b4f357f2c4a4a05d075d694cbc02ae835e0842ddc046969d941d27d2cc418a"
+    },
+    {
+      "module": "NearSharpData188628_endpoint_hi",
+      "exit_code": 0,
+      "seconds": 38.73896870200042,
+      "log": "logs/NearSharpData188628_endpoint_hi.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_endpoint_hi.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_endpoint_hi.lean"
+      ],
+      "object_sha256": "4d7c125232545d92647f55610f90c0779950de466a5cbaebbf55c6c24bda39c7"
+    },
+    {
+      "module": "NearSharpData188628_weightedF",
+      "exit_code": 0,
+      "seconds": 9.32295739699839,
+      "log": "logs/NearSharpData188628_weightedF.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_weightedF.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_weightedF.lean"
+      ],
+      "object_sha256": "21073454a5bca9f2a70ba646447d338ddf05d0bd58e259b5a64549c5b9c56601"
+    },
+    {
+      "module": "NearSharpData188628_weightedG",
+      "exit_code": 0,
+      "seconds": 7.917564813998979,
+      "log": "logs/NearSharpData188628_weightedG.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_weightedG.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_weightedG.lean"
+      ],
+      "object_sha256": "721fe18eda6968f31b287d32bca15984c22a053ed6e9eed4b60df77cd8c81e24"
+    },
+    {
+      "module": "NearSharpData188628_A_lo",
+      "exit_code": 0,
+      "seconds": 5.663982433001365,
+      "log": "logs/NearSharpData188628_A_lo.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_A_lo.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_A_lo.lean"
+      ],
+      "object_sha256": "7cf1d7aed8cde415710aec5126267362b7d101a003d09b11feb4a2e7e5ed5c9d"
+    },
+    {
+      "module": "NearSharpData188628_B_lo",
+      "exit_code": 0,
+      "seconds": 5.817967801998748,
+      "log": "logs/NearSharpData188628_B_lo.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_B_lo.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_B_lo.lean"
+      ],
+      "object_sha256": "d773c037bd65c611a1c37abbf2d277e2945b83b04e8682eec4fa9d1853b0e93c"
+    },
+    {
+      "module": "NearSharpData188628_A_hi",
+      "exit_code": 0,
+      "seconds": 5.569934235998517,
+      "log": "logs/NearSharpData188628_A_hi.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_A_hi.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_A_hi.lean"
+      ],
+      "object_sha256": "3b4ab675720a3e46ebd7a07b23e70ea5df6e22a744b7bb937c6a36b384a094bf"
+    },
+    {
+      "module": "NearSharpData188628_B_hi",
+      "exit_code": 0,
+      "seconds": 5.746305468999708,
+      "log": "logs/NearSharpData188628_B_hi.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_B_hi.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_B_hi.lean"
+      ],
+      "object_sha256": "8dee58356adab1ae85be6a9075a431d0e9ea3bc2b9544df2c0f11a93914bacf1"
+    },
+    {
+      "module": "NearSharpData188628_lower_lo_symmetric",
+      "exit_code": 0,
+      "seconds": 8.400045393000255,
+      "log": "logs/NearSharpData188628_lower_lo_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_lower_lo_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_lower_lo_symmetric.lean"
+      ],
+      "object_sha256": "e3a266203fa4e3d51b1b93f16dbe309add232be1f9fb11b7195cc90a82ac7f2c"
+    },
+    {
+      "module": "NearSharpData188628_Tlo_symmetric",
+      "exit_code": 0,
+      "seconds": 8.387585174001288,
+      "log": "logs/NearSharpData188628_Tlo_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_Tlo_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_Tlo_symmetric.lean"
+      ],
+      "object_sha256": "cc23c2fecf44ef83a7255a00b023eb246625fc951e69c9caf7e31300d2b39510"
+    },
+    {
+      "module": "NearSharpData188628_lower_hi_symmetric",
+      "exit_code": 0,
+      "seconds": 8.221556827000313,
+      "log": "logs/NearSharpData188628_lower_hi_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_lower_hi_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_lower_hi_symmetric.lean"
+      ],
+      "object_sha256": "b3cb83045de9989da3a80db130fc7c8ae5313218a5f4ff8f93ed6a17af5c1f22"
+    },
+    {
+      "module": "NearSharpData188628_Thi_symmetric",
+      "exit_code": 0,
+      "seconds": 8.332884764999108,
+      "log": "logs/NearSharpData188628_Thi_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_Thi_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_Thi_symmetric.lean"
+      ],
+      "object_sha256": "0a904b665556ff393daad32cc39addf9227e2ac1f0c8deeaf1b261897dd2ee15"
+    },
+    {
+      "module": "NearSharpData188628_aux",
+      "exit_code": 0,
+      "seconds": 10.531845007000811,
+      "log": "logs/NearSharpData188628_aux.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628_aux.olean",
+        "$REPLAY/admm/lean/NearSharpData188628_aux.lean"
+      ],
+      "object_sha256": "fa5b11a2d222812802c269efcf666e33dd768fa17fc74c70fc1dce0ead0b8613"
+    },
+    {
+      "module": "NearSharpData188628",
+      "exit_code": 0,
+      "seconds": 7.859666518999802,
+      "log": "logs/NearSharpData188628.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188628.olean",
+        "$REPLAY/admm/lean/NearSharpData188628.lean"
+      ],
+      "object_sha256": "1efd0a5f200ffc5ab891eae47c3a57138b9d836067d2abdb5bf73051b4c25641"
+    },
+    {
+      "module": "NearSharpPSD188628",
+      "exit_code": 0,
+      "seconds": 9.863109117000931,
+      "log": "logs/NearSharpPSD188628.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpPSD188628.olean",
+        "$REPLAY/admm/lean/NearSharpPSD188628.lean"
+      ],
+      "object_sha256": "b41d525fe199245a1b5e3bb42642ea1fe2479944371aee094d4904de92e4e62c"
+    },
+    {
+      "module": "NearSharpNumeric188628",
+      "exit_code": 0,
+      "seconds": 8.319669042000896,
+      "log": "logs/NearSharpNumeric188628.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpNumeric188628.olean",
+        "$REPLAY/admm/lean/NearSharpNumeric188628.lean"
+      ],
+      "object_sha256": "f919ef1d491c2e622c39dbb368ab1c49e0bb72d7a2ae631b8b8bd75770713a1e"
+    },
+    {
+      "module": "NearSharpCertificate188628",
+      "exit_code": 0,
+      "seconds": 12.25491972599957,
+      "log": "logs/NearSharpCertificate188628.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpCertificate188628.olean",
+        "$REPLAY/admm/lean/NearSharpCertificate188628.lean"
+      ],
+      "object_sha256": "5c3bddde8f21918629819550a4694ccff1d9c947de1adff915deaf4086c631ee"
+    },
+    {
+      "module": "NearSharpData188632Defs",
+      "exit_code": 0,
+      "seconds": 38.610225525000715,
+      "log": "logs/NearSharpData188632Defs.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632Defs.olean",
+        "$REPLAY/admm/lean/NearSharpData188632Defs.lean"
+      ],
+      "object_sha256": "1aed1ce3d79ab823de582f0f323ae8295f8bf4bf6cb4faecb326e82ac953efde"
+    },
+    {
+      "module": "NearSharpData188632_lower_lo_gram",
+      "exit_code": 0,
+      "seconds": 20.699878249000903,
+      "log": "logs/NearSharpData188632_lower_lo_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_lower_lo_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_lower_lo_gram.lean"
+      ],
+      "object_sha256": "acb1a833d78043e2a3173d9863f4cc3e37fc448d02d87b4ddee64d83610e618f"
+    },
+    {
+      "module": "NearSharpData188632_Tlo_gram",
+      "exit_code": 0,
+      "seconds": 19.223944909999773,
+      "log": "logs/NearSharpData188632_Tlo_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_Tlo_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_Tlo_gram.lean"
+      ],
+      "object_sha256": "e888939f0274d50c1f5daba542f5d2f8b5be6b3031574f44991f9042ba9af2c0"
+    },
+    {
+      "module": "NearSharpData188632_lower_hi_gram",
+      "exit_code": 0,
+      "seconds": 20.002430631000607,
+      "log": "logs/NearSharpData188632_lower_hi_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_lower_hi_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_lower_hi_gram.lean"
+      ],
+      "object_sha256": "a589a4e2d44c1ed8579c2cc15a8754e494e481624f198c8c3aa844838ff43105"
+    },
+    {
+      "module": "NearSharpData188632_Thi_gram",
+      "exit_code": 0,
+      "seconds": 18.84164870099994,
+      "log": "logs/NearSharpData188632_Thi_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_Thi_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_Thi_gram.lean"
+      ],
+      "object_sha256": "75b310c00f7df0ce1c18c13bae449962b4a6c92bd1dec02c6bd9b0f328d147a3"
+    },
+    {
+      "module": "NearSharpData188632_endpoint_lo",
+      "exit_code": 0,
+      "seconds": 39.180081563001295,
+      "log": "logs/NearSharpData188632_endpoint_lo.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_endpoint_lo.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_endpoint_lo.lean"
+      ],
+      "object_sha256": "5e8a9db97a9d613d06a380bd2c3b7755e612af7e0a451e9fc35125f3603d35dc"
+    },
+    {
+      "module": "NearSharpData188632_endpoint_hi",
+      "exit_code": 0,
+      "seconds": 38.425304521000726,
+      "log": "logs/NearSharpData188632_endpoint_hi.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_endpoint_hi.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_endpoint_hi.lean"
+      ],
+      "object_sha256": "2427661874ed3015c634bba5db5ee47b13d0965e780d7088035ddf3a989db200"
+    },
+    {
+      "module": "NearSharpData188632_weightedF",
+      "exit_code": 0,
+      "seconds": 9.454722202000994,
+      "log": "logs/NearSharpData188632_weightedF.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_weightedF.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_weightedF.lean"
+      ],
+      "object_sha256": "22a2269ca035a07b2d5cc45bce71a247b7ad90312f9fdaa565b608741c087185"
+    },
+    {
+      "module": "NearSharpData188632_weightedG",
+      "exit_code": 0,
+      "seconds": 7.910376019000978,
+      "log": "logs/NearSharpData188632_weightedG.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_weightedG.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_weightedG.lean"
+      ],
+      "object_sha256": "237cf64bad589cc82542e36852e9e52334c21848faab7ac15944c080d79775cf"
+    },
+    {
+      "module": "NearSharpData188632_A_lo",
+      "exit_code": 0,
+      "seconds": 5.9628104729999905,
+      "log": "logs/NearSharpData188632_A_lo.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_A_lo.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_A_lo.lean"
+      ],
+      "object_sha256": "774fd3e98449ab8d6dec2e74a36d1f36d2dcfc388f69412beaa83463c1fb5a2e"
+    },
+    {
+      "module": "NearSharpData188632_B_lo",
+      "exit_code": 0,
+      "seconds": 5.36991030200079,
+      "log": "logs/NearSharpData188632_B_lo.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_B_lo.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_B_lo.lean"
+      ],
+      "object_sha256": "1f491920557f97a272b18fdb00ed6405a31172be04577582667206e56c1d98dd"
+    },
+    {
+      "module": "NearSharpData188632_A_hi",
+      "exit_code": 0,
+      "seconds": 6.761315663001369,
+      "log": "logs/NearSharpData188632_A_hi.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_A_hi.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_A_hi.lean"
+      ],
+      "object_sha256": "3f1f75989412c6990ee322f122f642ae71a5852e079e4b8f40dd5dae7bd6c1ec"
+    },
+    {
+      "module": "NearSharpData188632_B_hi",
+      "exit_code": 0,
+      "seconds": 5.66048150899951,
+      "log": "logs/NearSharpData188632_B_hi.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_B_hi.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_B_hi.lean"
+      ],
+      "object_sha256": "0e28da10d2180de2c6d342ededb7dd0d3c0efce1dcd857e015258e2e9349dbdf"
+    },
+    {
+      "module": "NearSharpData188632_lower_lo_symmetric",
+      "exit_code": 0,
+      "seconds": 7.824252885999158,
+      "log": "logs/NearSharpData188632_lower_lo_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_lower_lo_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_lower_lo_symmetric.lean"
+      ],
+      "object_sha256": "4dfe4aaa6761ebcefea0cfcf0b2184a333c3e33814edcf1252fa20dc198c2d38"
+    },
+    {
+      "module": "NearSharpData188632_Tlo_symmetric",
+      "exit_code": 0,
+      "seconds": 7.751725308000459,
+      "log": "logs/NearSharpData188632_Tlo_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_Tlo_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_Tlo_symmetric.lean"
+      ],
+      "object_sha256": "8823f71e8933d6e9e344f88aba13ff6544e0a359bfd7f70e3f54a89898d3d037"
+    },
+    {
+      "module": "NearSharpData188632_lower_hi_symmetric",
+      "exit_code": 0,
+      "seconds": 7.465476958999716,
+      "log": "logs/NearSharpData188632_lower_hi_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_lower_hi_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_lower_hi_symmetric.lean"
+      ],
+      "object_sha256": "3a06d5781c63b8b70728d883710a4c10b50bf4c06612da149a056be29a1bc724"
+    },
+    {
+      "module": "NearSharpData188632_Thi_symmetric",
+      "exit_code": 0,
+      "seconds": 8.139996896001321,
+      "log": "logs/NearSharpData188632_Thi_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_Thi_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_Thi_symmetric.lean"
+      ],
+      "object_sha256": "806468f88ba33efa9b63e8762c14846f799e261bcfb4c4577fb553212be85ac0"
+    },
+    {
+      "module": "NearSharpData188632_aux",
+      "exit_code": 0,
+      "seconds": 10.091370537998955,
+      "log": "logs/NearSharpData188632_aux.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632_aux.olean",
+        "$REPLAY/admm/lean/NearSharpData188632_aux.lean"
+      ],
+      "object_sha256": "546d58032f571ebc1a7ce057d52d1b449cc9005f1bb55e252958eeb25c72fa33"
+    },
+    {
+      "module": "NearSharpData188632",
+      "exit_code": 0,
+      "seconds": 7.8416748299987376,
+      "log": "logs/NearSharpData188632.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData188632.olean",
+        "$REPLAY/admm/lean/NearSharpData188632.lean"
+      ],
+      "object_sha256": "33cc069fd4ee622de935b89c0257e93ec507697afd2ed809c7fb6d5a902d2c1d"
+    },
+    {
+      "module": "NearSharpPSD188632",
+      "exit_code": 0,
+      "seconds": 9.648130876999858,
+      "log": "logs/NearSharpPSD188632.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpPSD188632.olean",
+        "$REPLAY/admm/lean/NearSharpPSD188632.lean"
+      ],
+      "object_sha256": "adc8ed55d287cdf754e2c0f33234677d7319c904f913ef976550dcb5bf4583fa"
+    },
+    {
+      "module": "NearSharpNumeric188632",
+      "exit_code": 0,
+      "seconds": 7.861932988998888,
+      "log": "logs/NearSharpNumeric188632.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpNumeric188632.olean",
+        "$REPLAY/admm/lean/NearSharpNumeric188632.lean"
+      ],
+      "object_sha256": "369af1847dc58fecbfe0f76181e40ff7ed3c24d1a7841b580c336abafb82270a"
+    },
+    {
+      "module": "NearSharpCertificate188632",
+      "exit_code": 0,
+      "seconds": 12.516575491999902,
+      "log": "logs/NearSharpCertificate188632.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpCertificate188632.olean",
+        "$REPLAY/admm/lean/NearSharpCertificate188632.lean"
+      ],
+      "object_sha256": "662625fcc2b26eb6ca7e1f1d317d75dba9b003b5032b3409a3256a9559ade779"
+    },
+    {
+      "module": "NearSharpData18865Defs",
+      "exit_code": 0,
+      "seconds": 40.138109045999954,
+      "log": "logs/NearSharpData18865Defs.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865Defs.olean",
+        "$REPLAY/admm/lean/NearSharpData18865Defs.lean"
+      ],
+      "object_sha256": "30dcf3071c8d33a40c1d0b5a7e3a5dfb066737145cdd161e6c1df9b0ae94871e"
+    },
+    {
+      "module": "NearSharpData18865_lower_lo_gram",
+      "exit_code": 0,
+      "seconds": 20.97159999699943,
+      "log": "logs/NearSharpData18865_lower_lo_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_lower_lo_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_lower_lo_gram.lean"
+      ],
+      "object_sha256": "5d3925bb5a9c4eaaaf91109c6ea86951725098b3189f68d7481eca796c265547"
+    },
+    {
+      "module": "NearSharpData18865_Tlo_gram",
+      "exit_code": 0,
+      "seconds": 19.52728585099976,
+      "log": "logs/NearSharpData18865_Tlo_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_Tlo_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_Tlo_gram.lean"
+      ],
+      "object_sha256": "6ef40c3ded80f349ca284ae973ba3bdaca4d59371f092f4b0d3bd6286a412ffa"
+    },
+    {
+      "module": "NearSharpData18865_lower_hi_gram",
+      "exit_code": 0,
+      "seconds": 20.34847232500033,
+      "log": "logs/NearSharpData18865_lower_hi_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_lower_hi_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_lower_hi_gram.lean"
+      ],
+      "object_sha256": "2fabc51595a749ac8d8fad0a06b508de7166a662887c67951d6a84a451b6405f"
+    },
+    {
+      "module": "NearSharpData18865_Thi_gram",
+      "exit_code": 0,
+      "seconds": 19.397223355001188,
+      "log": "logs/NearSharpData18865_Thi_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_Thi_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_Thi_gram.lean"
+      ],
+      "object_sha256": "b0e104f8c77ceb8ede5a97e40d8c071c80f5403358340d57f50d024623e75d17"
+    },
+    {
+      "module": "NearSharpData18865_endpoint_lo",
+      "exit_code": 0,
+      "seconds": 42.45769230299993,
+      "log": "logs/NearSharpData18865_endpoint_lo.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_endpoint_lo.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_endpoint_lo.lean"
+      ],
+      "object_sha256": "a38c174c1f2ab2c79b142fa665e312518cd1153de64bde7479fedd5ecbc5c42c"
+    },
+    {
+      "module": "NearSharpData18865_endpoint_hi",
+      "exit_code": 0,
+      "seconds": 41.053470327999094,
+      "log": "logs/NearSharpData18865_endpoint_hi.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_endpoint_hi.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_endpoint_hi.lean"
+      ],
+      "object_sha256": "ef5fc9b75a16624f2484ca403a89f36c5518b767dd3aa986482b6966931d9452"
+    },
+    {
+      "module": "NearSharpData18865_weightedF",
+      "exit_code": 0,
+      "seconds": 9.686474714999349,
+      "log": "logs/NearSharpData18865_weightedF.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_weightedF.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_weightedF.lean"
+      ],
+      "object_sha256": "942ca422e96eb18b7ed63d039e623687433c1471e69c3c3fb8daff40ef0a7a98"
+    },
+    {
+      "module": "NearSharpData18865_weightedG",
+      "exit_code": 0,
+      "seconds": 7.947002151999186,
+      "log": "logs/NearSharpData18865_weightedG.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_weightedG.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_weightedG.lean"
+      ],
+      "object_sha256": "bc62663404d76f37fea0e1b3a0bb31d2148808f907ad55968e80211467cb6437"
+    },
+    {
+      "module": "NearSharpData18865_A_lo",
+      "exit_code": 0,
+      "seconds": 5.689021343001514,
+      "log": "logs/NearSharpData18865_A_lo.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_A_lo.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_A_lo.lean"
+      ],
+      "object_sha256": "0951725038e173aa8071923a1fbc476224d54e31e7f5f81c56092f91bfbecdfc"
+    },
+    {
+      "module": "NearSharpData18865_B_lo",
+      "exit_code": 0,
+      "seconds": 5.6727982350003,
+      "log": "logs/NearSharpData18865_B_lo.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_B_lo.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_B_lo.lean"
+      ],
+      "object_sha256": "2e27756f482015fd7a0b4ad8f9a2ebff5415f7471e468b998343a3e5aa4be42b"
+    },
+    {
+      "module": "NearSharpData18865_A_hi",
+      "exit_code": 0,
+      "seconds": 5.601175425999827,
+      "log": "logs/NearSharpData18865_A_hi.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_A_hi.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_A_hi.lean"
+      ],
+      "object_sha256": "31c0aee21f255c71dcf033cd84449e45d922616e71702d36a37cc7999b412886"
+    },
+    {
+      "module": "NearSharpData18865_B_hi",
+      "exit_code": 0,
+      "seconds": 5.746732820000034,
+      "log": "logs/NearSharpData18865_B_hi.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_B_hi.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_B_hi.lean"
+      ],
+      "object_sha256": "60ba396fe96dbf46899ef94eb7a6137ad9ade99b5870eb5f60f7cb625be8b1d9"
+    },
+    {
+      "module": "NearSharpData18865_lower_lo_symmetric",
+      "exit_code": 0,
+      "seconds": 8.359333631999107,
+      "log": "logs/NearSharpData18865_lower_lo_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_lower_lo_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_lower_lo_symmetric.lean"
+      ],
+      "object_sha256": "4ba0d1ba51fd1e1ca05fd997e778b4c3f925b972a1414656dcbcd0eebaed56bf"
+    },
+    {
+      "module": "NearSharpData18865_Tlo_symmetric",
+      "exit_code": 0,
+      "seconds": 8.486452516001009,
+      "log": "logs/NearSharpData18865_Tlo_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_Tlo_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_Tlo_symmetric.lean"
+      ],
+      "object_sha256": "1255711a2fea7770d6d6a77c5d99b7c8a1ec2c467e170b19a8f517fa07a9281b"
+    },
+    {
+      "module": "NearSharpData18865_lower_hi_symmetric",
+      "exit_code": 0,
+      "seconds": 8.083723522000582,
+      "log": "logs/NearSharpData18865_lower_hi_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_lower_hi_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_lower_hi_symmetric.lean"
+      ],
+      "object_sha256": "8706569527ef6e2403eaa440059302ce13265dfb139b3bfc72861802018f8fda"
+    },
+    {
+      "module": "NearSharpData18865_Thi_symmetric",
+      "exit_code": 0,
+      "seconds": 8.15655412399974,
+      "log": "logs/NearSharpData18865_Thi_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_Thi_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_Thi_symmetric.lean"
+      ],
+      "object_sha256": "7ef18aa8d0ae6c5635918f85cc1d2ae82cc6dd043106f5a6fff986658c458339"
+    },
+    {
+      "module": "NearSharpData18865_aux",
+      "exit_code": 0,
+      "seconds": 10.149582813999587,
+      "log": "logs/NearSharpData18865_aux.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865_aux.olean",
+        "$REPLAY/admm/lean/NearSharpData18865_aux.lean"
+      ],
+      "object_sha256": "420ffa1b26ce7f2d690f56156cbd4e286e569a042c4e07bde994cf14f30cdd65"
+    },
+    {
+      "module": "NearSharpData18865",
+      "exit_code": 0,
+      "seconds": 8.14231462600037,
+      "log": "logs/NearSharpData18865.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18865.olean",
+        "$REPLAY/admm/lean/NearSharpData18865.lean"
+      ],
+      "object_sha256": "dd1cd9afc2736213aaa6ebe8a96032a1770ce50019c83a49c1e8b68859109dca"
+    },
+    {
+      "module": "NearSharpPSD18865",
+      "exit_code": 0,
+      "seconds": 9.50418517899925,
+      "log": "logs/NearSharpPSD18865.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpPSD18865.olean",
+        "$REPLAY/admm/lean/NearSharpPSD18865.lean"
+      ],
+      "object_sha256": "f5fd0b730ddc6ba328b516e9bfbceab0d4d4587309cd38bd47e57c67cf90cbe1"
+    },
+    {
+      "module": "NearSharpNumeric18865",
+      "exit_code": 0,
+      "seconds": 7.728235049000432,
+      "log": "logs/NearSharpNumeric18865.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpNumeric18865.olean",
+        "$REPLAY/admm/lean/NearSharpNumeric18865.lean"
+      ],
+      "object_sha256": "2306d5777d11105d18e78f7a58adca88ddce69a44226f42a98756ce997abd67c"
+    },
+    {
+      "module": "NearSharpCertificate18865",
+      "exit_code": 0,
+      "seconds": 12.588479781999922,
+      "log": "logs/NearSharpCertificate18865.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpCertificate18865.olean",
+        "$REPLAY/admm/lean/NearSharpCertificate18865.lean"
+      ],
+      "object_sha256": "2beeb6e022147712e3a4add2b660e7fe95ee1ff101cf7b91e0bd123d43112f5f"
+    },
+    {
+      "module": "NearSharpData18867Defs",
+      "exit_code": 0,
+      "seconds": 40.4000624119999,
+      "log": "logs/NearSharpData18867Defs.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867Defs.olean",
+        "$REPLAY/admm/lean/NearSharpData18867Defs.lean"
+      ],
+      "object_sha256": "0e67aff39e0c8e5443c65d0fc0bc2fe7c468bc87bf6e08135ba05c19c218bb28"
+    },
+    {
+      "module": "NearSharpData18867_lower_lo_gram",
+      "exit_code": 0,
+      "seconds": 20.384382008998728,
+      "log": "logs/NearSharpData18867_lower_lo_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_lower_lo_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_lower_lo_gram.lean"
+      ],
+      "object_sha256": "aeccb6977478b33902ae2caac8efdb06fe6648e88970fb417e614856982ec778"
+    },
+    {
+      "module": "NearSharpData18867_Tlo_gram",
+      "exit_code": 0,
+      "seconds": 20.22335333599949,
+      "log": "logs/NearSharpData18867_Tlo_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_Tlo_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_Tlo_gram.lean"
+      ],
+      "object_sha256": "4eb83a853ab4b4e3b725b9299281c17eb4a550727ccdd8c9c22feebee6789325"
+    },
+    {
+      "module": "NearSharpData18867_lower_hi_gram",
+      "exit_code": 0,
+      "seconds": 21.071501660999274,
+      "log": "logs/NearSharpData18867_lower_hi_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_lower_hi_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_lower_hi_gram.lean"
+      ],
+      "object_sha256": "cd7c406c6aee808b12d5f1c3047738ff5d76a6c6ead6c0ccb8e47cd997fdc6bc"
+    },
+    {
+      "module": "NearSharpData18867_Thi_gram",
+      "exit_code": 0,
+      "seconds": 19.044206282000232,
+      "log": "logs/NearSharpData18867_Thi_gram.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_Thi_gram.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_Thi_gram.lean"
+      ],
+      "object_sha256": "d2bb9ab80ac801dbc64a0ceaf18568d8a570c0cfb277f27936c89d0094e18748"
+    },
+    {
+      "module": "NearSharpData18867_endpoint_lo",
+      "exit_code": 0,
+      "seconds": 41.98809016999985,
+      "log": "logs/NearSharpData18867_endpoint_lo.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_endpoint_lo.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_endpoint_lo.lean"
+      ],
+      "object_sha256": "7ba95cc3a6aa08dd0961e574921c8a0548db4a7b71d82f065deba9ce98dd24cd"
+    },
+    {
+      "module": "NearSharpData18867_endpoint_hi",
+      "exit_code": 0,
+      "seconds": 42.27966127400032,
+      "log": "logs/NearSharpData18867_endpoint_hi.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_endpoint_hi.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_endpoint_hi.lean"
+      ],
+      "object_sha256": "c7bb77c8bf992e69f169b4de1e75fe86f700f05b029771dc9b19d9cb84be2577"
+    },
+    {
+      "module": "NearSharpData18867_weightedF",
+      "exit_code": 0,
+      "seconds": 9.10828724500061,
+      "log": "logs/NearSharpData18867_weightedF.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_weightedF.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_weightedF.lean"
+      ],
+      "object_sha256": "36cf647c53853c81c320fa20a15fda93a0c94e9e34125172355e1c44e830cd71"
+    },
+    {
+      "module": "NearSharpData18867_weightedG",
+      "exit_code": 0,
+      "seconds": 8.167072440000993,
+      "log": "logs/NearSharpData18867_weightedG.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_weightedG.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_weightedG.lean"
+      ],
+      "object_sha256": "d1acff5842f0d9d442f5a25b59faeb6651ce62e5680f344027d21c257da3dcf8"
+    },
+    {
+      "module": "NearSharpData18867_A_lo",
+      "exit_code": 0,
+      "seconds": 5.888437853000141,
+      "log": "logs/NearSharpData18867_A_lo.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_A_lo.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_A_lo.lean"
+      ],
+      "object_sha256": "d69a68a1ee3cde94033000aa31695a8973b1dc281009607eff6120a1c1d3be33"
+    },
+    {
+      "module": "NearSharpData18867_B_lo",
+      "exit_code": 0,
+      "seconds": 5.665488529000868,
+      "log": "logs/NearSharpData18867_B_lo.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_B_lo.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_B_lo.lean"
+      ],
+      "object_sha256": "945ab1fbda126b4558709e151a9648d4c23977a1895871c60fa9f5bb81ae9926"
+    },
+    {
+      "module": "NearSharpData18867_A_hi",
+      "exit_code": 0,
+      "seconds": 5.856137664999551,
+      "log": "logs/NearSharpData18867_A_hi.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_A_hi.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_A_hi.lean"
+      ],
+      "object_sha256": "f80424f05f750a503ab30e8db2cbf388407b9ff8dd66cbf1742e6abb80a2ee12"
+    },
+    {
+      "module": "NearSharpData18867_B_hi",
+      "exit_code": 0,
+      "seconds": 5.597027095000158,
+      "log": "logs/NearSharpData18867_B_hi.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_B_hi.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_B_hi.lean"
+      ],
+      "object_sha256": "83fee93b0cdb268b684bb1fc73c70c9483b69758b99a60eee989889ff12b6723"
+    },
+    {
+      "module": "NearSharpData18867_lower_lo_symmetric",
+      "exit_code": 0,
+      "seconds": 8.640192206999927,
+      "log": "logs/NearSharpData18867_lower_lo_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_lower_lo_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_lower_lo_symmetric.lean"
+      ],
+      "object_sha256": "2e15f25639633fd81b4cbfbb85b12505fbd9f294d98885b295472fe74e846e0a"
+    },
+    {
+      "module": "NearSharpData18867_Tlo_symmetric",
+      "exit_code": 0,
+      "seconds": 8.377738066999882,
+      "log": "logs/NearSharpData18867_Tlo_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_Tlo_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_Tlo_symmetric.lean"
+      ],
+      "object_sha256": "ed7d95523242a9f05382a85579625f276a12036f6f474129c8058b6877627cad"
+    },
+    {
+      "module": "NearSharpData18867_lower_hi_symmetric",
+      "exit_code": 0,
+      "seconds": 8.304011550999348,
+      "log": "logs/NearSharpData18867_lower_hi_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_lower_hi_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_lower_hi_symmetric.lean"
+      ],
+      "object_sha256": "73d1e8a04397674ab97b6a6a8379f6b07b19ddc5deca4bb7186098bea8bcc4fc"
+    },
+    {
+      "module": "NearSharpData18867_Thi_symmetric",
+      "exit_code": 0,
+      "seconds": 8.624587833000987,
+      "log": "logs/NearSharpData18867_Thi_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_Thi_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_Thi_symmetric.lean"
+      ],
+      "object_sha256": "b4a826874a3cde670b1747f110f3bc2e55685a2e8b1155aebcc0393b6c027bb9"
+    },
+    {
+      "module": "NearSharpData18867_aux",
+      "exit_code": 0,
+      "seconds": 10.536469152999416,
+      "log": "logs/NearSharpData18867_aux.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867_aux.olean",
+        "$REPLAY/admm/lean/NearSharpData18867_aux.lean"
+      ],
+      "object_sha256": "655efbfb283845f09cfe78fca68cc922ff03c532b7e0313973d5d250572b270d"
+    },
+    {
+      "module": "NearSharpData18867",
+      "exit_code": 0,
+      "seconds": 8.336386183998911,
+      "log": "logs/NearSharpData18867.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData18867.olean",
+        "$REPLAY/admm/lean/NearSharpData18867.lean"
+      ],
+      "object_sha256": "e2aa0512ccada33f3c3f40ed5f059673312dec8fa85f9857b47ae182dfab3c83"
+    },
+    {
+      "module": "NearSharpPSD18867",
+      "exit_code": 0,
+      "seconds": 10.57538461400145,
+      "log": "logs/NearSharpPSD18867.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpPSD18867.olean",
+        "$REPLAY/admm/lean/NearSharpPSD18867.lean"
+      ],
+      "object_sha256": "f5e620f4417a23c8119e500de6cfa3953c9eb6e34a2ac977de9f1fb89ef0fdae"
+    },
+    {
+      "module": "NearSharpNumeric18867",
+      "exit_code": 0,
+      "seconds": 8.761175679001099,
+      "log": "logs/NearSharpNumeric18867.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpNumeric18867.olean",
+        "$REPLAY/admm/lean/NearSharpNumeric18867.lean"
+      ],
+      "object_sha256": "14a97f609beadcb21c1f8383539d04799e62bcc019663e8c189c3eadc4929dc7"
+    },
+    {
+      "module": "NearSharpCertificate18867",
+      "exit_code": 0,
+      "seconds": 12.74161298800027,
+      "log": "logs/NearSharpCertificate18867.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpCertificate18867.olean",
+        "$REPLAY/admm/lean/NearSharpCertificate18867.lean"
+      ],
+      "object_sha256": "84726bf5f6f7606b8ddf3ab3250367dfa9fef78cbe584da23b834ff238e5d6f1"
+    },
+    {
+      "module": "NearSharpData1886795Defs",
+      "exit_code": 0,
+      "seconds": 193.01800751500014,
+      "log": "logs/NearSharpData1886795Defs.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795Defs.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795Defs.lean"
+      ],
+      "object_sha256": "b3768d902af8997cc76aeb56ddabee422fcebcbb9fd329e83cdf6d3cf325dacf"
+    },
+    {
+      "module": "NearSharpData1886795_lower_lo_gram_0",
+      "exit_code": 0,
+      "seconds": 16.270122316998822,
+      "log": "logs/NearSharpData1886795_lower_lo_gram_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_lower_lo_gram_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_lower_lo_gram_0.lean"
+      ],
+      "object_sha256": "eb63c8616681638e054b2ec2c3f6bcab6b128503f6c866ce68c3db848b872748"
+    },
+    {
+      "module": "NearSharpData1886795_lower_lo_gram_1",
+      "exit_code": 0,
+      "seconds": 21.61161710700071,
+      "log": "logs/NearSharpData1886795_lower_lo_gram_1.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_lower_lo_gram_1.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_lower_lo_gram_1.lean"
+      ],
+      "object_sha256": "a3785ddc5f05f4a09357867409562822db9beb1fb223f47680b24285afdab60a"
+    },
+    {
+      "module": "NearSharpData1886795_lower_lo_gram_2",
+      "exit_code": 0,
+      "seconds": 23.63503873099944,
+      "log": "logs/NearSharpData1886795_lower_lo_gram_2.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_lower_lo_gram_2.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_lower_lo_gram_2.lean"
+      ],
+      "object_sha256": "2625c64e68b10ee48866bf43efd416c20cc27add7252ef81a16c86caa1453ec3"
+    },
+    {
+      "module": "NearSharpData1886795_lower_lo_gram_3",
+      "exit_code": 0,
+      "seconds": 25.736694324999917,
+      "log": "logs/NearSharpData1886795_lower_lo_gram_3.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_lower_lo_gram_3.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_lower_lo_gram_3.lean"
+      ],
+      "object_sha256": "1f9ad4d91e46f24dc45d96ff86a9065cc484bbb767a4a4dd896b97e9df1ad6a9"
+    },
+    {
+      "module": "NearSharpData1886795_Tlo_gram_0",
+      "exit_code": 0,
+      "seconds": 16.223370647001502,
+      "log": "logs/NearSharpData1886795_Tlo_gram_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_Tlo_gram_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_Tlo_gram_0.lean"
+      ],
+      "object_sha256": "b2488c840b93a9ddea618f0654a14849936c459a9347c5a6f50a09618bf761a7"
+    },
+    {
+      "module": "NearSharpData1886795_Tlo_gram_1",
+      "exit_code": 0,
+      "seconds": 20.125913470999876,
+      "log": "logs/NearSharpData1886795_Tlo_gram_1.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_Tlo_gram_1.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_Tlo_gram_1.lean"
+      ],
+      "object_sha256": "7087d10932978bd5d08dc103b136d6df6ad57ee8896ebbdc94d0c7ecca3d9bd0"
+    },
+    {
+      "module": "NearSharpData1886795_Tlo_gram_2",
+      "exit_code": 0,
+      "seconds": 23.86254047500006,
+      "log": "logs/NearSharpData1886795_Tlo_gram_2.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_Tlo_gram_2.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_Tlo_gram_2.lean"
+      ],
+      "object_sha256": "90d18ace3c57eeece2e1064d752b5d3e8abc338454cf5ac139bb68623ff10254"
+    },
+    {
+      "module": "NearSharpData1886795_Tlo_gram_3",
+      "exit_code": 0,
+      "seconds": 24.31077988600009,
+      "log": "logs/NearSharpData1886795_Tlo_gram_3.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_Tlo_gram_3.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_Tlo_gram_3.lean"
+      ],
+      "object_sha256": "1e1ce48a6290507bfded54a6523b4122f89680217afbe725773d984d737501d7"
+    },
+    {
+      "module": "NearSharpData1886795_lower_hi_gram_0",
+      "exit_code": 0,
+      "seconds": 17.214920397000242,
+      "log": "logs/NearSharpData1886795_lower_hi_gram_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_lower_hi_gram_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_lower_hi_gram_0.lean"
+      ],
+      "object_sha256": "bd6b05ba344610c7006110718eff143e17f9267efc9a774dafa10acb047d69a3"
+    },
+    {
+      "module": "NearSharpData1886795_lower_hi_gram_1",
+      "exit_code": 0,
+      "seconds": 21.022034961000827,
+      "log": "logs/NearSharpData1886795_lower_hi_gram_1.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_lower_hi_gram_1.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_lower_hi_gram_1.lean"
+      ],
+      "object_sha256": "83cc5395ea2dfb7b574abb505b4b74b6c1f4ced3989356261ab51034f57a1369"
+    },
+    {
+      "module": "NearSharpData1886795_lower_hi_gram_2",
+      "exit_code": 0,
+      "seconds": 23.944832768000197,
+      "log": "logs/NearSharpData1886795_lower_hi_gram_2.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_lower_hi_gram_2.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_lower_hi_gram_2.lean"
+      ],
+      "object_sha256": "5d76bf3b3cefdd83754a84f4fedd9b643d2dae43fe70ac8a452afedbaa35ef42"
+    },
+    {
+      "module": "NearSharpData1886795_lower_hi_gram_3",
+      "exit_code": 0,
+      "seconds": 25.934054072000436,
+      "log": "logs/NearSharpData1886795_lower_hi_gram_3.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_lower_hi_gram_3.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_lower_hi_gram_3.lean"
+      ],
+      "object_sha256": "937234bae73b9e9c41288e2d22f46fbf85546c97d9372abafe5c089e8935aeb8"
+    },
+    {
+      "module": "NearSharpData1886795_Thi_gram_0",
+      "exit_code": 0,
+      "seconds": 16.187008347998926,
+      "log": "logs/NearSharpData1886795_Thi_gram_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_Thi_gram_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_Thi_gram_0.lean"
+      ],
+      "object_sha256": "a2b12bce518d3e4286a2e56a864a7121497387c5f0f827eeb979e9aacba1747c"
+    },
+    {
+      "module": "NearSharpData1886795_Thi_gram_1",
+      "exit_code": 0,
+      "seconds": 20.078344495999772,
+      "log": "logs/NearSharpData1886795_Thi_gram_1.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_Thi_gram_1.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_Thi_gram_1.lean"
+      ],
+      "object_sha256": "cf9733bdbfee228818a8342ced1239186be58abaccd6ae27da97860e0a62631a"
+    },
+    {
+      "module": "NearSharpData1886795_Thi_gram_2",
+      "exit_code": 0,
+      "seconds": 23.008248973999798,
+      "log": "logs/NearSharpData1886795_Thi_gram_2.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_Thi_gram_2.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_Thi_gram_2.lean"
+      ],
+      "object_sha256": "74d463ed4e3d20215fd5c116ad92bf1804bfa6f20d1d34cd2bce422d6dcb95d0"
+    },
+    {
+      "module": "NearSharpData1886795_Thi_gram_3",
+      "exit_code": 0,
+      "seconds": 24.031400144000145,
+      "log": "logs/NearSharpData1886795_Thi_gram_3.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_Thi_gram_3.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_Thi_gram_3.lean"
+      ],
+      "object_sha256": "9350989abea83f20ed2b3c2332d8172607bc22219b34171211d6b0bd4cabaaa7"
+    },
+    {
+      "module": "NearSharpData1886795_endpoint_lo_0",
+      "exit_code": 0,
+      "seconds": 45.466007406001154,
+      "log": "logs/NearSharpData1886795_endpoint_lo_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_endpoint_lo_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_endpoint_lo_0.lean"
+      ],
+      "object_sha256": "3b0aab695deb80b63ba435f43272a49ca53a0266d6e7590e47b0f6e0fa62f6bb"
+    },
+    {
+      "module": "NearSharpData1886795_endpoint_lo_1",
+      "exit_code": 0,
+      "seconds": 47.546532934000425,
+      "log": "logs/NearSharpData1886795_endpoint_lo_1.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_endpoint_lo_1.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_endpoint_lo_1.lean"
+      ],
+      "object_sha256": "3edac7efe1980ab7243899e169c5c9e635e6ef6876023b3eeccbefd59284ab0b"
+    },
+    {
+      "module": "NearSharpData1886795_endpoint_lo_2",
+      "exit_code": 0,
+      "seconds": 48.95383529599894,
+      "log": "logs/NearSharpData1886795_endpoint_lo_2.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_endpoint_lo_2.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_endpoint_lo_2.lean"
+      ],
+      "object_sha256": "9d8a796dcc2fd14b03d02f7405410448a67c3d4d2572ea53eb366913ded366df"
+    },
+    {
+      "module": "NearSharpData1886795_endpoint_lo_3",
+      "exit_code": 0,
+      "seconds": 50.85816298399914,
+      "log": "logs/NearSharpData1886795_endpoint_lo_3.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_endpoint_lo_3.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_endpoint_lo_3.lean"
+      ],
+      "object_sha256": "1e04cdb930e58d7385bc60f250b8109ac15bb3d55cfee7afe952988d848ba4d3"
+    },
+    {
+      "module": "NearSharpData1886795_endpoint_lo_4",
+      "exit_code": 0,
+      "seconds": 8.675454429001547,
+      "log": "logs/NearSharpData1886795_endpoint_lo_4.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_endpoint_lo_4.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_endpoint_lo_4.lean"
+      ],
+      "object_sha256": "31fb83bfb636ca1deddb9439a886cac8047f5246b6dab5f426a9fe84d8d8ff4b"
+    },
+    {
+      "module": "NearSharpData1886795_endpoint_hi_0",
+      "exit_code": 0,
+      "seconds": 45.312669498000105,
+      "log": "logs/NearSharpData1886795_endpoint_hi_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_endpoint_hi_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_endpoint_hi_0.lean"
+      ],
+      "object_sha256": "582e87be72b1996f20f148b60f2a58ce2fff4959c0663021ab9db07e50c1f0fd"
+    },
+    {
+      "module": "NearSharpData1886795_endpoint_hi_1",
+      "exit_code": 0,
+      "seconds": 48.36055030699936,
+      "log": "logs/NearSharpData1886795_endpoint_hi_1.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_endpoint_hi_1.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_endpoint_hi_1.lean"
+      ],
+      "object_sha256": "863d6b54ba5530b2be4b91c29b5fffe45fcd4890c0b3428110bec09e69bd9833"
+    },
+    {
+      "module": "NearSharpData1886795_endpoint_hi_2",
+      "exit_code": 0,
+      "seconds": 50.39279404099943,
+      "log": "logs/NearSharpData1886795_endpoint_hi_2.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_endpoint_hi_2.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_endpoint_hi_2.lean"
+      ],
+      "object_sha256": "5167c6d1e9c5fa41e6e4ae33f0f183e06b0d2e70c78eb077d256d115cbf341c6"
+    },
+    {
+      "module": "NearSharpData1886795_endpoint_hi_3",
+      "exit_code": 0,
+      "seconds": 50.76360674599891,
+      "log": "logs/NearSharpData1886795_endpoint_hi_3.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_endpoint_hi_3.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_endpoint_hi_3.lean"
+      ],
+      "object_sha256": "851b768d8c84fa17b1b0083110d028fc3e00cf8c3ba0ea913223b326cc4ba5ec"
+    },
+    {
+      "module": "NearSharpData1886795_endpoint_hi_4",
+      "exit_code": 0,
+      "seconds": 9.299957815999733,
+      "log": "logs/NearSharpData1886795_endpoint_hi_4.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_endpoint_hi_4.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_endpoint_hi_4.lean"
+      ],
+      "object_sha256": "f0b7c572c3454191354ba5a1d167c703138da249997a20cf297a4ac4e853d71b"
+    },
+    {
+      "module": "NearSharpData1886795_weightedF_0",
+      "exit_code": 0,
+      "seconds": 24.17852333600058,
+      "log": "logs/NearSharpData1886795_weightedF_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_weightedF_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_weightedF_0.lean"
+      ],
+      "object_sha256": "9451a97b3d9fa87cea2fc53aad61466821d72fd2de46fdc826304f6fc8419912"
+    },
+    {
+      "module": "NearSharpData1886795_weightedF_1",
+      "exit_code": 0,
+      "seconds": 5.843428760999814,
+      "log": "logs/NearSharpData1886795_weightedF_1.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_weightedF_1.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_weightedF_1.lean"
+      ],
+      "object_sha256": "0b40d27f53a72b0156f997da082a5d4d2e6f652a6ea7a61c245110cb49ee36c8"
+    },
+    {
+      "module": "NearSharpData1886795_weightedG_0",
+      "exit_code": 0,
+      "seconds": 19.142086415999074,
+      "log": "logs/NearSharpData1886795_weightedG_0.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_weightedG_0.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_weightedG_0.lean"
+      ],
+      "object_sha256": "b89909fd0d01893e01c405f89d813f7c428846ba92ed6c58e6d390903be52887"
+    },
+    {
+      "module": "NearSharpData1886795_weightedG_1",
+      "exit_code": 0,
+      "seconds": 5.474571470000228,
+      "log": "logs/NearSharpData1886795_weightedG_1.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_weightedG_1.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_weightedG_1.lean"
+      ],
+      "object_sha256": "b7802f544cad516af3581d99a9b39c972b382d91d7f5df9ffcb7b99b27a90070"
+    },
+    {
+      "module": "NearSharpData1886795_A_lo",
+      "exit_code": 0,
+      "seconds": 8.580573102000926,
+      "log": "logs/NearSharpData1886795_A_lo.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_A_lo.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_A_lo.lean"
+      ],
+      "object_sha256": "b74b9d709f03d6941ddffde2854cd677101c6f388096da6cf1120b92ee6725b1"
+    },
+    {
+      "module": "NearSharpData1886795_B_lo",
+      "exit_code": 0,
+      "seconds": 8.636839752000014,
+      "log": "logs/NearSharpData1886795_B_lo.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_B_lo.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_B_lo.lean"
+      ],
+      "object_sha256": "37b12230b092568bc759074576046fdf5103a1ccf0872fcf48165727c1d18f68"
+    },
+    {
+      "module": "NearSharpData1886795_A_hi",
+      "exit_code": 0,
+      "seconds": 9.067874447000577,
+      "log": "logs/NearSharpData1886795_A_hi.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_A_hi.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_A_hi.lean"
+      ],
+      "object_sha256": "b5ca844f2e08dbb543e0627232d9bd49e606b2a5b871faf78fa1ebf96929ac79"
+    },
+    {
+      "module": "NearSharpData1886795_B_hi",
+      "exit_code": 0,
+      "seconds": 8.508670499999425,
+      "log": "logs/NearSharpData1886795_B_hi.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_B_hi.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_B_hi.lean"
+      ],
+      "object_sha256": "30fab602a7a30e0bef892a69639eff9e23c360a8873a89adba6dc28aa54ebd41"
+    },
+    {
+      "module": "NearSharpData1886795_lower_lo_symmetric",
+      "exit_code": 0,
+      "seconds": 19.847096681998664,
+      "log": "logs/NearSharpData1886795_lower_lo_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_lower_lo_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_lower_lo_symmetric.lean"
+      ],
+      "object_sha256": "7d815d6883c73a94df5dad326271996567a8d1a56474fe99c5a6867db9be1f79"
+    },
+    {
+      "module": "NearSharpData1886795_Tlo_symmetric",
+      "exit_code": 0,
+      "seconds": 19.517433138000342,
+      "log": "logs/NearSharpData1886795_Tlo_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_Tlo_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_Tlo_symmetric.lean"
+      ],
+      "object_sha256": "2f4829a46bff834a2f0cd74cd7e8de1c29f2287c6fff6d2e7b47e749948b72f9"
+    },
+    {
+      "module": "NearSharpData1886795_lower_hi_symmetric",
+      "exit_code": 0,
+      "seconds": 19.9665987139997,
+      "log": "logs/NearSharpData1886795_lower_hi_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_lower_hi_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_lower_hi_symmetric.lean"
+      ],
+      "object_sha256": "1d83d091b6cef2245fcd42f7fb74f109d24ce6eb34dace5678769a379997fd91"
+    },
+    {
+      "module": "NearSharpData1886795_Thi_symmetric",
+      "exit_code": 0,
+      "seconds": 20.021610130001136,
+      "log": "logs/NearSharpData1886795_Thi_symmetric.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_Thi_symmetric.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_Thi_symmetric.lean"
+      ],
+      "object_sha256": "8cb7c9d4c75694a00c8f8cd82614c483217fcf21ad17fadf0bd98c80450fbd8b"
+    },
+    {
+      "module": "NearSharpData1886795_aux",
+      "exit_code": 0,
+      "seconds": 23.010493881000002,
+      "log": "logs/NearSharpData1886795_aux.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795_aux.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795_aux.lean"
+      ],
+      "object_sha256": "aa945a9915db36d9f9f60f7abf7e3ac491002ae3f78b4241f57aae7bb5c36199"
+    },
+    {
+      "module": "NearSharpData1886795",
+      "exit_code": 0,
+      "seconds": 17.671693900998434,
+      "log": "logs/NearSharpData1886795.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpData1886795.olean",
+        "$REPLAY/admm/lean/NearSharpData1886795.lean"
+      ],
+      "object_sha256": "e43ddf2e6df120329d6d163f958f667d1f1a7b05c657c613a5fe0ee10396afe5"
+    },
+    {
+      "module": "NearSharpPSD1886795",
+      "exit_code": 0,
+      "seconds": 10.7452284960018,
+      "log": "logs/NearSharpPSD1886795.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpPSD1886795.olean",
+        "$REPLAY/admm/lean/NearSharpPSD1886795.lean"
+      ],
+      "object_sha256": "e01a66f2bf70027f9c031e91a5bbafb18e621c219bb9ed2dfa3a30ef20b410e7"
+    },
+    {
+      "module": "NearSharpNumeric1886795",
+      "exit_code": 0,
+      "seconds": 9.062079549001282,
+      "log": "logs/NearSharpNumeric1886795.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpNumeric1886795.olean",
+        "$REPLAY/admm/lean/NearSharpNumeric1886795.lean"
+      ],
+      "object_sha256": "03372cfce24428c84166a12008404c69a323a7f9ff5430130e0529e8206b4f76"
+    },
+    {
+      "module": "NearSharpCertificate1886795",
+      "exit_code": 0,
+      "seconds": 26.93176684699938,
+      "log": "logs/NearSharpCertificate1886795.log",
+      "command": [
+        "$LEAN_HOME/bin/lean",
+        "-j",
+        "1",
+        "-DautoImplicit=false",
+        "--root=$REPLAY/admm/lean",
+        "-o",
+        "$REPLAY/admm-out/objects/NearSharpCertificate1886795.olean",
+        "$REPLAY/admm/lean/NearSharpCertificate1886795.lean"
+      ],
+      "object_sha256": "9daeee49b7d804d11e61d99ce7f24e2a8fb0851ecbbe1ab06dc60c0406f85e99"
+    },
+    {
       "module": "NearSharpAllSteps",
       "exit_code": 0,
-      "seconds": 11.916380171998753,
+      "seconds": 12.95397394399879,
       "log": "logs/NearSharpAllSteps.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2669,12 +5063,12 @@
         "$REPLAY/admm-out/objects/NearSharpAllSteps.olean",
         "$REPLAY/admm/lean/NearSharpAllSteps.lean"
       ],
-      "object_sha256": "7dbd42f7aa47d1571afccce48f57493e9e64e7d78ca5d27e95e3eaa48b6d9302"
+      "object_sha256": "68767866ea6a57659972071aa40662e54172ed476d820c609a02967a3c4080eb"
     },
     {
       "module": "NearSharpRankDeficient",
       "exit_code": 0,
-      "seconds": 13.03039237899793,
+      "seconds": 12.687439970999549,
       "log": "logs/NearSharpRankDeficient.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2686,12 +5080,12 @@
         "$REPLAY/admm-out/objects/NearSharpRankDeficient.olean",
         "$REPLAY/admm/lean/NearSharpRankDeficient.lean"
       ],
-      "object_sha256": "47288521b5c4e900f34a11b4a21f0169f0a4410578b75b4bd7eebaf9fbd405e2"
+      "object_sha256": "5ea34f36720c76059bca69602119484f8e50e40e1645abb0396c59224a3be204"
     },
     {
       "module": "NearSharpFullRank",
       "exit_code": 0,
-      "seconds": 9.313544628999807,
+      "seconds": 8.221527691999654,
       "log": "logs/NearSharpFullRank.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2703,12 +5097,12 @@
         "$REPLAY/admm-out/objects/NearSharpFullRank.olean",
         "$REPLAY/admm/lean/NearSharpFullRank.lean"
       ],
-      "object_sha256": "efbffce859ac7dda60f5180a654396429c0364848fb0bb836d38f9de5b96af90"
+      "object_sha256": "c981fdf0b2d751c85f2200509b0bfff0a438b3d899e9cf2ee24924ad805e49e1"
     },
     {
       "module": "CycleGeometry",
       "exit_code": 0,
-      "seconds": 5.914905683999677,
+      "seconds": 5.061350497000603,
       "log": "logs/CycleGeometry.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2725,7 +5119,7 @@
     {
       "module": "CycleDataCore",
       "exit_code": 0,
-      "seconds": 14.943207940999855,
+      "seconds": 12.413496389999636,
       "log": "logs/CycleDataCore.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2737,12 +5131,12 @@
         "$REPLAY/admm-out/objects/CycleDataCore.olean",
         "$REPLAY/admm/lean/CycleDataCore.lean"
       ],
-      "object_sha256": "1bc577cd4f9ea6e74f89d0bda57a09b179c364c856653948625c3d9577a65659"
+      "object_sha256": "6bad8c9711c9ed2b435acbce29d55dbe4feafe4cfedd1415922e92f039582a62"
     },
     {
       "module": "CycleAlgebra",
       "exit_code": 0,
-      "seconds": 13.120697042999382,
+      "seconds": 11.486434070999167,
       "log": "logs/CycleAlgebra.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2754,12 +5148,12 @@
         "$REPLAY/admm-out/objects/CycleAlgebra.olean",
         "$REPLAY/admm/lean/CycleAlgebra.lean"
       ],
-      "object_sha256": "3922e0e49de1d3776a7a53d1f13bee74f4a50df9e034065219b5198d6fc40ad5"
+      "object_sha256": "e38cf8b4faa5cc8ec4b82d10553ac1e82cb4ab3ef5bf058ed245ba6160e015df"
     },
     {
       "module": "CycleWellposed",
       "exit_code": 0,
-      "seconds": 3.194957781000994,
+      "seconds": 2.4695594219992927,
       "log": "logs/CycleWellposed.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2776,7 +5170,7 @@
     {
       "module": "CycleRows00",
       "exit_code": 0,
-      "seconds": 20.392265206999582,
+      "seconds": 17.03806604300007,
       "log": "logs/CycleRows00.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2793,7 +5187,7 @@
     {
       "module": "CycleRows01",
       "exit_code": 0,
-      "seconds": 20.01503623100143,
+      "seconds": 17.592222417000812,
       "log": "logs/CycleRows01.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2810,7 +5204,7 @@
     {
       "module": "CycleRows02",
       "exit_code": 0,
-      "seconds": 20.307770376999542,
+      "seconds": 17.47633057999883,
       "log": "logs/CycleRows02.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2827,7 +5221,7 @@
     {
       "module": "CycleRows03",
       "exit_code": 0,
-      "seconds": 19.96293179499844,
+      "seconds": 17.249396686000182,
       "log": "logs/CycleRows03.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2844,7 +5238,7 @@
     {
       "module": "CycleRows04",
       "exit_code": 0,
-      "seconds": 20.889801283999986,
+      "seconds": 16.959345708999535,
       "log": "logs/CycleRows04.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2861,7 +5255,7 @@
     {
       "module": "CycleRows05",
       "exit_code": 0,
-      "seconds": 21.348477846000605,
+      "seconds": 17.211778760000016,
       "log": "logs/CycleRows05.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2878,7 +5272,7 @@
     {
       "module": "CycleRows06",
       "exit_code": 0,
-      "seconds": 20.547672680997493,
+      "seconds": 17.25598932399953,
       "log": "logs/CycleRows06.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2895,7 +5289,7 @@
     {
       "module": "CycleRows07",
       "exit_code": 0,
-      "seconds": 20.976153498999338,
+      "seconds": 16.874479542999325,
       "log": "logs/CycleRows07.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2912,7 +5306,7 @@
     {
       "module": "CycleRows08",
       "exit_code": 0,
-      "seconds": 19.93651729799967,
+      "seconds": 16.823316833999343,
       "log": "logs/CycleRows08.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2929,7 +5323,7 @@
     {
       "module": "CycleRows09",
       "exit_code": 0,
-      "seconds": 20.626937600998644,
+      "seconds": 17.017793954999433,
       "log": "logs/CycleRows09.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2946,7 +5340,7 @@
     {
       "module": "CycleRows10",
       "exit_code": 0,
-      "seconds": 19.609475596000266,
+      "seconds": 16.938565108999683,
       "log": "logs/CycleRows10.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2963,7 +5357,7 @@
     {
       "module": "CycleRows11",
       "exit_code": 0,
-      "seconds": 19.716533724000328,
+      "seconds": 16.93112155200106,
       "log": "logs/CycleRows11.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2980,7 +5374,7 @@
     {
       "module": "CycleRows12",
       "exit_code": 0,
-      "seconds": 20.43964296899867,
+      "seconds": 17.019656410999232,
       "log": "logs/CycleRows12.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -2997,7 +5391,7 @@
     {
       "module": "CycleRows13",
       "exit_code": 0,
-      "seconds": 10.452255771997443,
+      "seconds": 8.984251171999858,
       "log": "logs/CycleRows13.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -3014,7 +5408,7 @@
     {
       "module": "CycleRows14",
       "exit_code": 0,
-      "seconds": 10.226570884999092,
+      "seconds": 9.0145738909996,
       "log": "logs/CycleRows14.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -3031,7 +5425,7 @@
     {
       "module": "CycleRows15",
       "exit_code": 0,
-      "seconds": 10.966556974999548,
+      "seconds": 9.25814511399949,
       "log": "logs/CycleRows15.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -3048,7 +5442,7 @@
     {
       "module": "CycleData",
       "exit_code": 0,
-      "seconds": 9.544985177999479,
+      "seconds": 8.219423165999615,
       "log": "logs/CycleData.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -3065,7 +5459,7 @@
     {
       "module": "CycleCounterexample",
       "exit_code": 0,
-      "seconds": 3.6036777490007808,
+      "seconds": 2.921726930000659,
       "log": "logs/CycleCounterexample.log",
       "command": [
         "$LEAN_HOME/bin/lean",
@@ -3077,7 +5471,7 @@
         "$REPLAY/admm-out/objects/CycleCounterexample.olean",
         "$REPLAY/admm/lean/CycleCounterexample.lean"
       ],
-      "object_sha256": "7edc9d5d9bea1e8f8560b9359b8ce87b67ca4d4005e11c787af5eef93be2bd9f"
+      "object_sha256": "baeeb5996bf810c280ef3123a7e1004857b9a079bbfe28d0718f397e11ce7c53"
     }
   ],
   "status": "passed",
@@ -3087,7 +5481,7 @@
   "resumed_clean_build": false,
   "audit": {
     "exit_code": 0,
-    "seconds": 34.042365725999844,
+    "seconds": 44.74227583500033,
     "command": [
       "$LEAN_HOME/bin/lean",
       "-j",
@@ -3097,11 +5491,16 @@
       "$REPLAY/admm-out/KernelAudit.lean"
     ],
     "log": "logs/KernelAudit.log",
-    "generated_source_sha256": "dd649837fd8e534e9e53455cbd0ceaea47d9fdc263fba14c68cde3306e2223da"
+    "generated_source_sha256": "6c10d013c4983e8483160e68c6d3aed5ebd0dd62584351d8e64d69574978f5b4"
   },
   "central_body_recheck_names": [
     "ADMMNearSharpCertificate.C188.certificate",
     "ADMMNearSharpCertificate.C1886.certificate",
+    "ADMMNearSharpCertificate.C188628.certificate",
+    "ADMMNearSharpCertificate.C188632.certificate",
+    "ADMMNearSharpCertificate.C18865.certificate",
+    "ADMMNearSharpCertificate.C18867.certificate",
+    "ADMMNearSharpCertificate.C1886795.certificate",
     "ADMMNearSharpAllSteps.initialized_admm_objective_converges",
     "ADMMNearSharpAllSteps.rankDeficient_original_admm_converges",
     "ADMMNearSharpAllSteps.fullRank_original_admm_converges",
@@ -3110,12 +5509,17 @@
   "axioms": {
     "ADMMNearSharpCertificate.C188.certificate": "propext, Classical.choice, Quot.sound",
     "ADMMNearSharpCertificate.C1886.certificate": "propext, Classical.choice, Quot.sound",
+    "ADMMNearSharpCertificate.C188628.certificate": "propext, Classical.choice, Quot.sound",
+    "ADMMNearSharpCertificate.C188632.certificate": "propext, Classical.choice, Quot.sound",
+    "ADMMNearSharpCertificate.C18865.certificate": "propext, Classical.choice, Quot.sound",
+    "ADMMNearSharpCertificate.C18867.certificate": "propext, Classical.choice, Quot.sound",
+    "ADMMNearSharpCertificate.C1886795.certificate": "propext, Classical.choice, Quot.sound",
     "ADMMNearSharpAllSteps.initialized_admm_objective_converges": "propext, Classical.choice, Quot.sound",
     "ADMMNearSharpAllSteps.rankDeficient_original_admm_converges": "propext, Classical.choice, Quot.sound",
     "ADMMNearSharpAllSteps.fullRank_original_admm_converges": "propext, Classical.choice, Quot.sound",
     "ADMM128Counterexample.counterexample": "propext, Classical.choice, Quot.sound"
   },
-  "final_module_count": 168,
+  "final_module_count": 301,
   "final_module_exit_codes": {
     "ADMMCertificate": 0,
     "ProximalModel": 0,
@@ -3260,6 +5664,139 @@
     "NearSharpPSD1886": 0,
     "NearSharpNumeric1886": 0,
     "NearSharpCertificate1886": 0,
+    "IntegerLists": 0,
+    "NearSharpData188628Defs": 0,
+    "NearSharpData188628_lower_lo_gram": 0,
+    "NearSharpData188628_Tlo_gram": 0,
+    "NearSharpData188628_lower_hi_gram": 0,
+    "NearSharpData188628_Thi_gram": 0,
+    "NearSharpData188628_endpoint_lo": 0,
+    "NearSharpData188628_endpoint_hi": 0,
+    "NearSharpData188628_weightedF": 0,
+    "NearSharpData188628_weightedG": 0,
+    "NearSharpData188628_A_lo": 0,
+    "NearSharpData188628_B_lo": 0,
+    "NearSharpData188628_A_hi": 0,
+    "NearSharpData188628_B_hi": 0,
+    "NearSharpData188628_lower_lo_symmetric": 0,
+    "NearSharpData188628_Tlo_symmetric": 0,
+    "NearSharpData188628_lower_hi_symmetric": 0,
+    "NearSharpData188628_Thi_symmetric": 0,
+    "NearSharpData188628_aux": 0,
+    "NearSharpData188628": 0,
+    "NearSharpPSD188628": 0,
+    "NearSharpNumeric188628": 0,
+    "NearSharpCertificate188628": 0,
+    "NearSharpData188632Defs": 0,
+    "NearSharpData188632_lower_lo_gram": 0,
+    "NearSharpData188632_Tlo_gram": 0,
+    "NearSharpData188632_lower_hi_gram": 0,
+    "NearSharpData188632_Thi_gram": 0,
+    "NearSharpData188632_endpoint_lo": 0,
+    "NearSharpData188632_endpoint_hi": 0,
+    "NearSharpData188632_weightedF": 0,
+    "NearSharpData188632_weightedG": 0,
+    "NearSharpData188632_A_lo": 0,
+    "NearSharpData188632_B_lo": 0,
+    "NearSharpData188632_A_hi": 0,
+    "NearSharpData188632_B_hi": 0,
+    "NearSharpData188632_lower_lo_symmetric": 0,
+    "NearSharpData188632_Tlo_symmetric": 0,
+    "NearSharpData188632_lower_hi_symmetric": 0,
+    "NearSharpData188632_Thi_symmetric": 0,
+    "NearSharpData188632_aux": 0,
+    "NearSharpData188632": 0,
+    "NearSharpPSD188632": 0,
+    "NearSharpNumeric188632": 0,
+    "NearSharpCertificate188632": 0,
+    "NearSharpData18865Defs": 0,
+    "NearSharpData18865_lower_lo_gram": 0,
+    "NearSharpData18865_Tlo_gram": 0,
+    "NearSharpData18865_lower_hi_gram": 0,
+    "NearSharpData18865_Thi_gram": 0,
+    "NearSharpData18865_endpoint_lo": 0,
+    "NearSharpData18865_endpoint_hi": 0,
+    "NearSharpData18865_weightedF": 0,
+    "NearSharpData18865_weightedG": 0,
+    "NearSharpData18865_A_lo": 0,
+    "NearSharpData18865_B_lo": 0,
+    "NearSharpData18865_A_hi": 0,
+    "NearSharpData18865_B_hi": 0,
+    "NearSharpData18865_lower_lo_symmetric": 0,
+    "NearSharpData18865_Tlo_symmetric": 0,
+    "NearSharpData18865_lower_hi_symmetric": 0,
+    "NearSharpData18865_Thi_symmetric": 0,
+    "NearSharpData18865_aux": 0,
+    "NearSharpData18865": 0,
+    "NearSharpPSD18865": 0,
+    "NearSharpNumeric18865": 0,
+    "NearSharpCertificate18865": 0,
+    "NearSharpData18867Defs": 0,
+    "NearSharpData18867_lower_lo_gram": 0,
+    "NearSharpData18867_Tlo_gram": 0,
+    "NearSharpData18867_lower_hi_gram": 0,
+    "NearSharpData18867_Thi_gram": 0,
+    "NearSharpData18867_endpoint_lo": 0,
+    "NearSharpData18867_endpoint_hi": 0,
+    "NearSharpData18867_weightedF": 0,
+    "NearSharpData18867_weightedG": 0,
+    "NearSharpData18867_A_lo": 0,
+    "NearSharpData18867_B_lo": 0,
+    "NearSharpData18867_A_hi": 0,
+    "NearSharpData18867_B_hi": 0,
+    "NearSharpData18867_lower_lo_symmetric": 0,
+    "NearSharpData18867_Tlo_symmetric": 0,
+    "NearSharpData18867_lower_hi_symmetric": 0,
+    "NearSharpData18867_Thi_symmetric": 0,
+    "NearSharpData18867_aux": 0,
+    "NearSharpData18867": 0,
+    "NearSharpPSD18867": 0,
+    "NearSharpNumeric18867": 0,
+    "NearSharpCertificate18867": 0,
+    "NearSharpData1886795Defs": 0,
+    "NearSharpData1886795_lower_lo_gram_0": 0,
+    "NearSharpData1886795_lower_lo_gram_1": 0,
+    "NearSharpData1886795_lower_lo_gram_2": 0,
+    "NearSharpData1886795_lower_lo_gram_3": 0,
+    "NearSharpData1886795_Tlo_gram_0": 0,
+    "NearSharpData1886795_Tlo_gram_1": 0,
+    "NearSharpData1886795_Tlo_gram_2": 0,
+    "NearSharpData1886795_Tlo_gram_3": 0,
+    "NearSharpData1886795_lower_hi_gram_0": 0,
+    "NearSharpData1886795_lower_hi_gram_1": 0,
+    "NearSharpData1886795_lower_hi_gram_2": 0,
+    "NearSharpData1886795_lower_hi_gram_3": 0,
+    "NearSharpData1886795_Thi_gram_0": 0,
+    "NearSharpData1886795_Thi_gram_1": 0,
+    "NearSharpData1886795_Thi_gram_2": 0,
+    "NearSharpData1886795_Thi_gram_3": 0,
+    "NearSharpData1886795_endpoint_lo_0": 0,
+    "NearSharpData1886795_endpoint_lo_1": 0,
+    "NearSharpData1886795_endpoint_lo_2": 0,
+    "NearSharpData1886795_endpoint_lo_3": 0,
+    "NearSharpData1886795_endpoint_lo_4": 0,
+    "NearSharpData1886795_endpoint_hi_0": 0,
+    "NearSharpData1886795_endpoint_hi_1": 0,
+    "NearSharpData1886795_endpoint_hi_2": 0,
+    "NearSharpData1886795_endpoint_hi_3": 0,
+    "NearSharpData1886795_endpoint_hi_4": 0,
+    "NearSharpData1886795_weightedF_0": 0,
+    "NearSharpData1886795_weightedF_1": 0,
+    "NearSharpData1886795_weightedG_0": 0,
+    "NearSharpData1886795_weightedG_1": 0,
+    "NearSharpData1886795_A_lo": 0,
+    "NearSharpData1886795_B_lo": 0,
+    "NearSharpData1886795_A_hi": 0,
+    "NearSharpData1886795_B_hi": 0,
+    "NearSharpData1886795_lower_lo_symmetric": 0,
+    "NearSharpData1886795_Tlo_symmetric": 0,
+    "NearSharpData1886795_lower_hi_symmetric": 0,
+    "NearSharpData1886795_Thi_symmetric": 0,
+    "NearSharpData1886795_aux": 0,
+    "NearSharpData1886795": 0,
+    "NearSharpPSD1886795": 0,
+    "NearSharpNumeric1886795": 0,
+    "NearSharpCertificate1886795": 0,
     "NearSharpAllSteps": 0,
     "NearSharpRankDeficient": 0,
     "NearSharpFullRank": 0,
@@ -3286,5 +5823,5 @@
     "CycleData": 0,
     "CycleCounterexample": 0
   },
-  "completed_utc": "2026-10-30T06:01:40.077419+00:00"
+  "completed_utc": "2026-10-31T19:15:53.175172+00:00"
 }

@@ -17,13 +17,13 @@ variable {U V E : Type*}
   [NormedAddCommGroup V] [NormedSpace ℝ V]
   [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
-/-- ADMM convergence for every constant step in (0,943/500] for arbitrary affine maps and arbitrary choices
+/-- ADMM convergence for every constant step in (0,377359/200000] for arbitrary affine maps and arbitrary choices
 of original subproblem minimizers. The conclusion concerns constraint images,
 the scaled multiplier, and the actual original objective. -/
 theorem rankDeficient_admm_allsteps_converges [FiniteDimensional ℝ E]
     (C : Set U) (D : Set V) (f : U → ℝ) (g : V → ℝ)
     (A : U →ᵃ[ℝ] E) (B : V →ᵃ[ℝ] E) (ρ : ℝ) (hρ : 0 < ρ)
-    (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 943/500)
+    (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 377359/200000)
     (hf : ConvexOn ℝ C f) (hg : ConvexOn ℝ D g)
     (hpx : ∀ c, ∃ x, IsAffineProx C f A ρ c x)
     (hpy : ∀ c, ∃ y, IsAffineProx D g B ρ c y)
@@ -106,14 +106,14 @@ theorem rankDeficient_admm_allsteps_converges [FiniteDimensional ℝ E]
     affineSaddle_minimizes hsaddle⟩
 
 /-- The original rank-deficient constrained problem and its original multiplier.
-For every constant multiplier step 0 < τ ≤ 943/500, the actual affine-image
+For every constant multiplier step 0 < τ ≤ 377359/200000, the actual affine-image
 iterates converge to those of an original saddle, the unscaled multipliers
 converge to its multiplier, and the actual original objective values converge
 to its globally optimal value. No choice of unique primal minimizers is needed. -/
 theorem rankDeficient_original_admm_converges [FiniteDimensional ℝ E]
     (C : Set U) (D : Set V) (f : U → ℝ) (g : V → ℝ)
     (A : U →ᵃ[ℝ] E) (B : V →ᵃ[ℝ] E) (ρ : ℝ) (hρ : 0 < ρ)
-    (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 943/500)
+    (τ : ℝ) (htau : 0 < τ) (hhi : τ ≤ 377359/200000)
     (hf : ConvexOn ℝ C f) (hg : ConvexOn ℝ D g)
     (hpx : ∀ c, ∃ x, IsAffineProx C f A ρ c x)
     (hpy : ∀ c, ∃ y, IsAffineProx D g B ρ c y)
