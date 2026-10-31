@@ -1532,8 +1532,8 @@
     },
     "berge-triangle-spectrum": {
       "root": "papers/mathematics/berge-triangle-spectrum",
-      "release_manifest_sha256": "1960e1e0ea953e399b966c8047fcb64222a8f583451784d883adf11d12381ffa",
-      "formal_scope": "Lean 4.35.0 formalizes triple systems, Berge triangles, saturation and paired products, and proves that every paired product is Berge-triangle-free and saturated with #pairs · #base edges. The containment theorem, the sharpness construction and the arithmetic of the window have conventional proofs, checked computationally for small orders.",
+      "release_manifest_sha256": "7c45a4d5300421898722a79885334746ba566a192ecd6a5837aea24295474bf4",
+      "formal_scope": "Lean 4.35.0 proves that paired products are Berge-triangle-free and saturated with p(n−2p) edges, that for every n ≥ 8 the explicit system J(⌊n/4⌋, n−2⌊n/4⌋) is saturated, is not a paired product and has exactly ⌊(n−1)²/8⌋ edges, and the arithmetic of the window, including the explicit deficits and at least ⌊n/4⌋ − ⌊√(2n)⌋/2 − 1 sizes there that are not of the form p(n−2p). It derives the upper spectrum and the maximum ⌊(n−1)²/8⌋ for saturated nonproducts from the containment theorem, which enters as a hypothesis and has a conventional proof, checked computationally for small orders.",
       "proof_roots": [
         {
           "path": "lean",
@@ -1544,9 +1544,13 @@
         }
       ],
       "proof_sources": {
-        "lean/Audit.lean": "11135d9d81a327f23c0178ae286feecee5904ca7f5b717b9e1aecbc9a6470b7c",
-        "lean/BergeTriangle/Defs.lean": "5ee0f67c082cf98f1ca1f8911973890e4061c7f6bcd89c242009891e4bb1d524",
-        "lean/BergeTriangle.lean": "97f0aa6367895bc557d022da3f3138144c9c832b68b4744ca7f96d2009189266"
+        "lean/Audit.lean": "4442ab9974b66d4aa89b5d8e74cc435c6611c3726cde627761d0bb4b9f94a951",
+        "lean/BergeTriangle/Defs.lean": "488df158fa7aeb4911b7476948dfa90d66bb187fbfa524c4ccd802878b75104f",
+        "lean/BergeTriangle/FinSystems.lean": "01ed041e95788aec2aa1270c689584b0c430c8f4edd9dc5de8da42c072d6e58d",
+        "lean/BergeTriangle/Sharp.lean": "a90320d16a3328e9234e765ac1a1d86164ad7ef1517950bc4c48d0c5801fbab7",
+        "lean/BergeTriangle/Spectrum.lean": "4236a5c1afb1898784b64772e8f6c2566a3934f092e24319f94e63582b27ce08",
+        "lean/BergeTriangle/Window.lean": "e0480df7a2a3a0f0584b717eb7d8ac39791b40c2bea3622ba56135f6890b143f",
+        "lean/BergeTriangle.lean": "34ebac4938429cac714bb230da3f6d954c723e35d911f49f55ddf40a36d9f418"
       },
       "integrity_manifests": []
     },

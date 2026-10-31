@@ -702,7 +702,7 @@
         "extremal hypergraph theory"
       ],
       "summary": "For every n ≥ 8, every Berge-triangle-free triple system on n vertices with more than Lₙ = ⌊(n−1)²/8⌋ edges is a spanning subsystem of a paired product F(n,p): p disjoint pairs, the other n−2p vertices, and all triples formed by one pair and one other vertex. Hence the Berge-triangle saturation spectrum meets (Lₙ, ⌊n²/8⌋] exactly in the sizes p(n−2p), and the threshold is sharp: a saturated system that is not a paired product has at most Lₙ edges, and one with exactly Lₙ edges exists. The window contains n/4 − O(√n) missing sizes, given by explicit quadratic deficits, which rules out the uniform reading of a suspicion of Bushaw, English, Heath, Johnston and Rombach that only finitely many sizes near the top are missing.",
-      "formal_scope": "Lean 4.35.0 formalizes triple systems, Berge triangles, saturation and paired products, and proves that every paired product is Berge-triangle-free and saturated with #pairs · #base edges. The containment theorem, the sharpness construction and the arithmetic of the window have conventional proofs, checked computationally for small orders.",
+      "formal_scope": "Lean 4.35.0 proves that paired products are Berge-triangle-free and saturated with p(n−2p) edges, that for every n ≥ 8 the explicit system J(⌊n/4⌋, n−2⌊n/4⌋) is saturated, is not a paired product and has exactly ⌊(n−1)²/8⌋ edges, and the arithmetic of the window, including the explicit deficits and at least ⌊n/4⌋ − ⌊√(2n)⌋/2 − 1 sizes there that are not of the form p(n−2p). It derives the upper spectrum and the maximum ⌊(n−1)²/8⌋ for saturated nonproducts from the containment theorem, which enters as a hypothesis and has a conventional proof, checked computationally for small orders.",
       "source": "Bushaw, English, Heath, Johnston and Rombach (arXiv:2502.17686, Section 6) proposed the Berge-triangle saturation spectrum. Győri proved the maximum ⌊n²/8⌋, and Frankl, Füredi, Goorevitch, Holzman and Simonyi (Electron. J. Combin. 2026) gave the own-pair reduction and the extremal systems. Historical priority is not certified.",
       "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/berge-triangle-spectrum/README.md",
       "paper": "papers/mathematics/berge-triangle-spectrum/manuscript.pdf",
@@ -740,7 +740,7 @@
           ],
           [
             "Is the threshold sharp, and what is formally verified?",
-            "Yes. For every n ≥ 8 an explicit saturated system with exactly ⌊(n−1)²/8⌋ edges is not a paired product. Lean 4 proves that every paired product is Berge-triangle-free and saturated with the stated number of edges; the containment theorem and the construction have conventional proofs and exact computer checks for small orders. Historical priority is not certified."
+            "Yes. For every n ≥ 8 an explicit saturated system with exactly ⌊(n−1)²/8⌋ edges is not a paired product. Lean 4 proves this construction for every n ≥ 8, that every paired product is Berge-triangle-free and saturated with the stated number of edges, and the arithmetic of the window. The containment theorem has a conventional proof and exact computer checks for small orders; Lean derives the spectrum statements and the sharp maximum from it as a hypothesis. Historical priority is not certified."
           ]
         ]
       }

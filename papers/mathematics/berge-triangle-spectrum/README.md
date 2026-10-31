@@ -18,7 +18,7 @@ The proof combines the own-pair reduction of Frankl, Füredi, Goorevitch, Holzma
 
 ## Verification scope
 
-- **Lean 4.35.0** ([lean/](lean/)): the definitions of triple systems, Berge triangles, freeness, saturation and paired products, and the theorem that every paired product is Berge-triangle-free and saturated with `#pairs · #base` edges. The containment theorem, the sharpness construction and the arithmetic of the window have conventional proofs in this version. See [theorem-map.json](theorem-map.json).
+- **Lean 4.35.0** ([lean/](lean/)): the definitions of triple systems, Berge triangles, freeness, saturation and paired products; the theorem that every paired product is Berge-triangle-free and saturated with `#pairs · #base` edges; the construction `J(⌊n/4⌋, n − 2⌊n/4⌋)` on `Fin n`, proved saturated, not a paired product and of size exactly `Lₙ` for every `n ≥ 8`; and the arithmetic of the window, including the deficit description and at least `⌊n/4⌋ − ⌊√(2n)⌋/2 − 1` sizes in `(Lₙ, Eₙ]` that are not of the form `p(n−2p)`. Statement 2, the upper bound in statement 3 and the deficit description of the spectrum are derived in Lean from statement 1, which enters as the hypothesis `DenseContainment n`; statement 1 itself has a conventional proof in this version. See [theorem-map.json](theorem-map.json).
 - **Exact checks** ([certificate/](certificate/)): `check_spectrum.py` checks `J(⌊n/4⌋, n − 2⌊n/4⌋)` and every paired product above the threshold for `8 ≤ n ≤ 20` by direct search, the deficit characterization for `8 ≤ n ≤ 2000`, and four witnesses; `certificate_checker.py` validates search-free certificates for the witnesses in [witnesses/](witnesses/).
 
 ## Prior work and priority

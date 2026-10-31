@@ -357,8 +357,8 @@ def InSaturationSpectrum (n m : ℕ) : Prop :=
 
 /-- The statement of the dense-containment theorem (Theorem 1 of the manuscript) at order `n`:
 every Berge-triangle-free triple system on `Fin n` with more than `Lₙ` edges is a spanning
-subsystem of a paired product.  It is a hypothesis of the conditional theorems below; it is
-not proved in Lean. -/
+subsystem of a paired product.  It is the hypothesis of the conditional theorems in
+`BergeTriangle.Spectrum`; it is not proved in Lean. -/
 def DenseContainment (n : ℕ) : Prop :=
   ∀ H : Finset (Finset (Fin n)), IsThreeUniform H → BergeTriangleFree H → L n < H.card →
     ∃ S : PairedProduct (Fin n), H ⊆ S.edges

@@ -1,7 +1,7 @@
 {
   "format_version": 1,
   "package_id": "berge-triangle-spectrum",
-  "formal_scope": "Lean 4.35.0 formalizes triple systems, Berge triangles, saturation and paired products, and proves that every paired product is Berge-triangle-free and saturated with #pairs · #base edges. The containment theorem, the sharpness construction and the arithmetic of the window have conventional proofs, checked computationally for small orders.",
+  "formal_scope": "Lean 4.35.0 proves that paired products are Berge-triangle-free and saturated with p(n−2p) edges, that for every n ≥ 8 the explicit system J(⌊n/4⌋, n−2⌊n/4⌋) is saturated, is not a paired product and has exactly ⌊(n−1)²/8⌋ edges, and the arithmetic of the window, including the explicit deficits and at least ⌊n/4⌋ − ⌊√(2n)⌋/2 − 1 sizes there that are not of the form p(n−2p). It derives the upper spectrum and the maximum ⌊(n−1)²/8⌋ for saturated nonproducts from the containment theorem, which enters as a hypothesis and has a conventional proof, checked computationally for small orders.",
   "proof_roots": [
     {
       "path": "lean",
@@ -12,9 +12,13 @@
     }
   ],
   "proof_sources": {
-    "lean/Audit.lean": "11135d9d81a327f23c0178ae286feecee5904ca7f5b717b9e1aecbc9a6470b7c",
-    "lean/BergeTriangle/Defs.lean": "5ee0f67c082cf98f1ca1f8911973890e4061c7f6bcd89c242009891e4bb1d524",
-    "lean/BergeTriangle.lean": "97f0aa6367895bc557d022da3f3138144c9c832b68b4744ca7f96d2009189266"
+    "lean/Audit.lean": "4442ab9974b66d4aa89b5d8e74cc435c6611c3726cde627761d0bb4b9f94a951",
+    "lean/BergeTriangle/Defs.lean": "488df158fa7aeb4911b7476948dfa90d66bb187fbfa524c4ccd802878b75104f",
+    "lean/BergeTriangle/FinSystems.lean": "01ed041e95788aec2aa1270c689584b0c430c8f4edd9dc5de8da42c072d6e58d",
+    "lean/BergeTriangle/Sharp.lean": "a90320d16a3328e9234e765ac1a1d86164ad7ef1517950bc4c48d0c5801fbab7",
+    "lean/BergeTriangle/Spectrum.lean": "4236a5c1afb1898784b64772e8f6c2566a3934f092e24319f94e63582b27ce08",
+    "lean/BergeTriangle/Window.lean": "e0480df7a2a3a0f0584b717eb7d8ac39791b40c2bea3622ba56135f6890b143f",
+    "lean/BergeTriangle.lean": "34ebac4938429cac714bb230da3f6d954c723e35d911f49f55ddf40a36d9f418"
   },
   "integrity_manifests": [],
   "files": {
@@ -35,12 +39,12 @@
       "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
     },
     "README.md": {
-      "bytes": 4771,
-      "sha256": "afeef7b9b1fb5215b7264e86512d9a4d385f451025241b3e5b76fcbfc8fb8d2d"
+      "bytes": 5210,
+      "sha256": "8f4b30ba4b60476a9984af14f9c14a55a294127cd29641e0b9eea670715f13d2"
     },
     "VERIFICATION.md": {
-      "bytes": 2203,
-      "sha256": "fc708182ab0ef4666916a7dbbd33c73d3ee6b8b9f86c76511b8175e755e0fdcb"
+      "bytes": 3435,
+      "sha256": "b19f295d110dea9eefc9c60fcb0b2a5cd0bb5dcb090a24b9ef7d186e0b7ae4cd"
     },
     "certificate/certificate_checker.py": {
       "bytes": 3548,
@@ -51,16 +55,32 @@
       "sha256": "106ffbf3622c4b9ba781f0d1e267f0394f824a8b0d75f16d6816798f7c542d1f"
     },
     "lean/Audit.lean": {
-      "bytes": 378,
-      "sha256": "11135d9d81a327f23c0178ae286feecee5904ca7f5b717b9e1aecbc9a6470b7c"
+      "bytes": 2191,
+      "sha256": "4442ab9974b66d4aa89b5d8e74cc435c6611c3726cde627761d0bb4b9f94a951"
     },
     "lean/BergeTriangle/Defs.lean": {
-      "bytes": 17082,
-      "sha256": "5ee0f67c082cf98f1ca1f8911973890e4061c7f6bcd89c242009891e4bb1d524"
+      "bytes": 17106,
+      "sha256": "488df158fa7aeb4911b7476948dfa90d66bb187fbfa524c4ccd802878b75104f"
+    },
+    "lean/BergeTriangle/FinSystems.lean": {
+      "bytes": 4850,
+      "sha256": "01ed041e95788aec2aa1270c689584b0c430c8f4edd9dc5de8da42c072d6e58d"
+    },
+    "lean/BergeTriangle/Sharp.lean": {
+      "bytes": 17115,
+      "sha256": "a90320d16a3328e9234e765ac1a1d86164ad7ef1517950bc4c48d0c5801fbab7"
+    },
+    "lean/BergeTriangle/Spectrum.lean": {
+      "bytes": 7069,
+      "sha256": "4236a5c1afb1898784b64772e8f6c2566a3934f092e24319f94e63582b27ce08"
+    },
+    "lean/BergeTriangle/Window.lean": {
+      "bytes": 14223,
+      "sha256": "e0480df7a2a3a0f0584b717eb7d8ac39791b40c2bea3622ba56135f6890b143f"
     },
     "lean/BergeTriangle.lean": {
-      "bytes": 26,
-      "sha256": "97f0aa6367895bc557d022da3f3138144c9c832b68b4744ca7f96d2009189266"
+      "bytes": 143,
+      "sha256": "34ebac4938429cac714bb230da3f6d954c723e35d911f49f55ddf40a36d9f418"
     },
     "lean/lake-manifest.json": {
       "bytes": 3245,
@@ -75,40 +95,40 @@
       "sha256": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c"
     },
     "manuscript.pdf": {
-      "bytes": 285513,
-      "sha256": "40b4c89e69167b3681eaea7f5f739ce27437e89bc22d721289448e6f0c1456ae"
+      "bytes": 287375,
+      "sha256": "966753f977fd2116ce33989789a8562e045e68913840946a23de2c2bd8443fbc"
     },
     "manuscript.tex": {
-      "bytes": 24037,
-      "sha256": "349e13d87fca5534da7b7e2fcafcd6df7c796b4039ad22c21bc391d333e6e14a"
+      "bytes": 24781,
+      "sha256": "7d7fe36d0f0f25a27e845f0d68ec44733f016700418bb76c71b5e39e7033ce81"
     },
     "theorem-map.json": {
-      "bytes": 2053,
-      "sha256": "bb2fc1825984bce8b8b51b43210380b301fcda2c41418a7291807b1b37534d16"
+      "bytes": 7772,
+      "sha256": "327f5f4ce4fd45e52ca27d53f32afe688cc288005f55365d3370a5c7abc56295"
     },
     "verification/README.md": {
-      "bytes": 817,
-      "sha256": "67e121ce0ee65863babc3d779b2f7fae39ccd42b06f5c3a8267d2d6eee6d98b2"
+      "bytes": 1090,
+      "sha256": "abbc4762fc1071ca1f240cf3d8b474276096b9e8285e3b44e6cb3103cc16382b"
     },
     "verification/axioms.log": {
-      "bytes": 502,
-      "sha256": "060311a52a016a7dbde888e9694a350a817ecc410190c2fd8836b5f4aef5ed9a"
+      "bytes": 3400,
+      "sha256": "adec24a86584b47a48400f7aa7955fc66cfc1954c9c29eb698424746a6b0fee3"
     },
     "verification/build.log": {
-      "bytes": 1305,
-      "sha256": "c47395769cbb29aa17ee735ce8d7118af95e0dc59dad646cf40b82075d26bc21"
+      "bytes": 2117,
+      "sha256": "8f4e7ab09f68e2602052f389c739a35e8b05a0c126fa91d30683bb01a3ba7f45"
     },
     "verification/check_spectrum.json": {
       "bytes": 2716,
       "sha256": "60c789b8ce470d95255462615e39ac10e1d9c0508b1dd01e98838f8549a76051"
     },
     "verification/report.json": {
-      "bytes": 1685,
-      "sha256": "1813ead06946c45825b93161e5f25de1b18184abfd5dc5ec7ccdd6a6d0a999a3"
+      "bytes": 1835,
+      "sha256": "f6072763d7acd35811cefaee0b26a879d6b0c080504b87ea3ae96052b5b0cbbc"
     },
     "verify.py": {
-      "bytes": 5969,
-      "sha256": "a3a9de1fe2d6d70bf850eb773615a71cf2a12a13fd1e88cb63460e1255c2fa22"
+      "bytes": 5967,
+      "sha256": "45f4b76a5ab8d91cb87acf1db79ff6b1a03a4e0c164104b9726b4f905af684bc"
     },
     "witnesses/boundary_n11_e12.json": {
       "bytes": 558,

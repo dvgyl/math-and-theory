@@ -6,7 +6,35 @@
     "BergeTriangle.PairSystem.saturated",
     "BergeTriangle.PairSystem.card_edges",
     "BergeTriangle.PairSystem.two_mul_card_pairs_add_card_base",
-    "BergeTriangle.PairedProduct.saturated"
+    "BergeTriangle.PairedProduct.saturated",
+    "BergeTriangle.PairedProduct.isProductSize",
+    "BergeTriangle.finProduct_card_edges",
+    "BergeTriangle.inSaturationSpectrum_of_isProductSize",
+    "BergeTriangle.IsSaturated.eq_of_subset",
+    "BergeTriangle.mem_sharpSystem_iff",
+    "BergeTriangle.sharpSystem_free",
+    "BergeTriangle.sharpSystem_saturated",
+    "BergeTriangle.card_sharpSystem",
+    "BergeTriangle.sharpSystem_not_product",
+    "BergeTriangle.div_four_mul_eq_L",
+    "BergeTriangle.thresholdSystem_saturated",
+    "BergeTriangle.thresholdSystem_not_isPairedProduct",
+    "BergeTriangle.card_thresholdSystem",
+    "BergeTriangle.exists_saturated_not_isPairedProduct_card_eq_L",
+    "BergeTriangle.exists_free_card_eq_L_not_subset_product",
+    "BergeTriangle.mul_sub_le_E",
+    "BergeTriangle.W_eq",
+    "BergeTriangle.isProductSize_E_sub_iff",
+    "BergeTriangle.card_window_productSizes_le",
+    "BergeTriangle.window_not_productSize_count",
+    "BergeTriangle.DenseContainment.isPairedProduct",
+    "BergeTriangle.DenseContainment.inSaturationSpectrum_iff",
+    "BergeTriangle.DenseContainment.spectrum_inter_window",
+    "BergeTriangle.DenseContainment.card_le_L_of_not_isPairedProduct",
+    "BergeTriangle.DenseContainment.isGreatest_not_isPairedProduct",
+    "BergeTriangle.DenseContainment.card_le_E",
+    "BergeTriangle.DenseContainment.inSaturationSpectrum_E_sub_iff",
+    "BergeTriangle.DenseContainment.window_missing_count"
   ],
   "results": [
     {
@@ -21,9 +49,11 @@
         "BergeTriangle.E",
         "BergeTriangle.L",
         "BergeTriangle.W",
+        "BergeTriangle.IsProductSize",
+        "BergeTriangle.InSaturationSpectrum",
         "BergeTriangle.DenseContainment"
       ],
-      "scope": "Triple systems are finite families of 3-element sets on an arbitrary vertex type with decidable equality; Berge triangles are non-induced with distinct vertices and distinct edges; saturation quantifies over every absent 3-element set. A paired product has disjoint 2-element pairs and a disjoint base that together cover every vertex, with at least one pair and one base vertex."
+      "scope": "Triple systems are finite families of 3-element sets on an arbitrary vertex type with decidable equality; Berge triangles are non-induced with distinct vertices and distinct edges; saturation quantifies over every absent 3-element set. A paired product has disjoint 2-element pairs and a disjoint base that together cover every vertex, with at least one pair and one base vertex. IsProductSize n m says m = p(n-2p) with 1 <= p and 2p < n; InSaturationSpectrum n m says some saturated system on Fin n has m edges. DenseContainment n is the statement of Theorem 1 at order n on Fin n; it is a hypothesis of the conditional results below and is not proved in Lean."
     },
     {
       "paper_label": "lem:product",
@@ -32,15 +62,70 @@
         "BergeTriangle.PairSystem.saturated",
         "BergeTriangle.PairedProduct.saturated",
         "BergeTriangle.PairSystem.card_edges",
-        "BergeTriangle.PairSystem.two_mul_card_pairs_add_card_base"
+        "BergeTriangle.PairSystem.two_mul_card_pairs_add_card_base",
+        "BergeTriangle.PairedProduct.isProductSize",
+        "BergeTriangle.finProduct",
+        "BergeTriangle.finProduct_card_edges",
+        "BergeTriangle.inSaturationSpectrum_of_isProductSize",
+        "BergeTriangle.IsSaturated.eq_of_subset"
       ],
-      "scope": "Every paired product on every vertex type is Berge-triangle-free and saturated; it has #pairs * #base edges, and 2 * #pairs + #base equals the number of vertices of a finite vertex type."
+      "scope": "Every paired product on every vertex type is Berge-triangle-free and saturated; it has #pairs * #base edges, and 2 * #pairs + #base equals the number of vertices of a finite vertex type, so a paired product on Fin n has p(n-2p) edges with 1 <= p < n/2. The explicit product F(n,p) on Fin n, with pairs {2i, 2i+1} and base {2p, ..., n-1}, shows that every such size is in the saturation spectrum. A saturated system equals every free 3-uniform system containing it."
+    },
+    {
+      "paper_label": "lem:J",
+      "declarations": [
+        "BergeTriangle.sharpSystem",
+        "BergeTriangle.mem_sharpSystem_iff",
+        "BergeTriangle.sharpSystem_free",
+        "BergeTriangle.sharpSystem_saturated",
+        "BergeTriangle.card_sharpSystem",
+        "BergeTriangle.sharpSystem_not_product"
+      ],
+      "scope": "sharpSystem n p h is J(p, n-2p) on Fin n for 2p+3 <= n, with P_i = {2i, 2i+1} (i < p), x = 0, y = 1, u = 2p, v = 2p+1 and S = {2p+2, ..., n-1}; mem_sharpSystem_iff lists its edges as {x,u,v}, P_i with a vertex of S, and P_i with v for P_i other than {x,y}. It is Berge-triangle-free for every p, saturated with p(n-2p-1) edges for p >= 1, and for p >= 2 it is not the edge set of any paired product on Fin n."
+    },
+    {
+      "paper_label": "thm:sharp",
+      "declarations": [
+        "BergeTriangle.div_four_mul_eq_L",
+        "BergeTriangle.thresholdSystem",
+        "BergeTriangle.thresholdSystem_saturated",
+        "BergeTriangle.thresholdSystem_not_isPairedProduct",
+        "BergeTriangle.card_thresholdSystem",
+        "BergeTriangle.exists_saturated_not_isPairedProduct_card_eq_L",
+        "BergeTriangle.exists_free_card_eq_L_not_subset_product",
+        "BergeTriangle.DenseContainment.card_le_L_of_not_isPairedProduct",
+        "BergeTriangle.DenseContainment.isGreatest_not_isPairedProduct"
+      ],
+      "scope": "Unconditionally, for every n >= 8 the system J(floor(n/4), n - 2 floor(n/4)) on Fin n is saturated, is not a paired product and has exactly L_n edges, so no threshold below L_n works in Theorem 1. Assuming DenseContainment n, a saturated system on Fin n that is not a paired product has at most L_n edges, and L_n is the greatest such size."
+    },
+    {
+      "paper_label": "thm:spectrum",
+      "declarations": [
+        "BergeTriangle.DenseContainment.isPairedProduct",
+        "BergeTriangle.DenseContainment.inSaturationSpectrum_iff",
+        "BergeTriangle.DenseContainment.spectrum_inter_window",
+        "BergeTriangle.DenseContainment.card_le_E"
+      ],
+      "scope": "Assuming DenseContainment n: every saturated system on Fin n with more than L_n edges is a paired product; for m > L_n, m is in the saturation spectrum exactly when m = p(n-2p) with 1 <= p < n/2; the spectrum meets (L_n, E_n] exactly in these sizes; and every free triple system has at most E_n edges."
+    },
+    {
+      "paper_label": "cor:deficits",
+      "declarations": [
+        "BergeTriangle.mul_sub_le_E",
+        "BergeTriangle.W_eq",
+        "BergeTriangle.AllowedDeficit",
+        "BergeTriangle.isProductSize_E_sub_iff",
+        "BergeTriangle.card_window_productSizes_le",
+        "BergeTriangle.window_not_productSize_count",
+        "BergeTriangle.DenseContainment.inSaturationSpectrum_E_sub_iff",
+        "BergeTriangle.DenseContainment.window_missing_count"
+      ],
+      "scope": "Unconditional arithmetic for every n: p(n-2p) <= E_n; W_n = floor(n/4), plus 1 when n = 3 mod 4; for d < W_n, E_n - d is a product size exactly for d = 2j^2 (n = 0 mod 4), 2j(j+1) (n = 2 mod 4) or j(j+1)/2 (n odd); at most floor(sqrt(2n))/2 + 1 sizes in (L_n, E_n] are product sizes, so at least floor(n/4) - floor(sqrt(2n))/2 - 1 are not. Assuming DenseContainment n, the same statements hold for the saturation spectrum."
     }
   ],
   "conventional": [
-    "thm:containment (Lemmas own pairs, bipartite rigidity, Erdős bound, equality case and switching)",
-    "thm:spectrum (the containment direction)",
-    "thm:sharp (the construction J(p,q) and its saturation, nonproduct property and size)",
-    "cor:deficits (the arithmetic of the window)"
+    "thm:containment (Lemmas own pairs, bipartite rigidity, Erdős bound, equality case and switching); in Lean its statement at order n is the hypothesis DenseContainment n",
+    "thm:spectrum and the upper bound in thm:sharp are formal only as consequences of DenseContainment n, hence conditional on thm:containment",
+    "cor:deficits for the spectrum is conditional in the same way; its arithmetic is formal"
   ]
 }

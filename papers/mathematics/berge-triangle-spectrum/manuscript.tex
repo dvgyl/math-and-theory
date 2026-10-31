@@ -44,10 +44,11 @@ not in the spectrum, given explicitly by quadratic deficits. The proof uses
 the own-pair reduction of Frankl, F\"uredi, Goorevitch, Holzman and
 Simonyi, a rigidity lemma for dense bipartite own-pair graphs, and the
 equality case of Erd\H{o}s's bound for nonbipartite triangle-free graphs.
-A Lean~4 project proves the definitions-level facts that every paired
-product is Berge-triangle-free and saturated with $p(n-2p)$ edges; the
-containment theorem has a conventional proof, and exact checkers verify the
-constructions and the arithmetic for small orders.
+A Lean~4 project proves that every paired product is Berge-triangle-free
+and saturated with $p(n-2p)$ edges, proves the sharpness construction for
+every $n\ge8$ and the arithmetic of the window, and derives the other
+statements from the containment theorem, whose proof is conventional; exact
+checkers verify the constructions and the arithmetic for small orders.
 \end{abstract}
 
 \section{Definitions and results}
@@ -417,14 +418,23 @@ triple a closing Berge path.
 \paragraph{Lean.} The Lean~4.35.0 project in \texttt{lean/}, pinned to
 Mathlib commit \texttt{56a0058}, defines triple systems on an arbitrary
 vertex type, Berge triangles, freeness, saturation and paired products as
-in Section~1. It proves that every paired product is Berge-triangle-free
-and saturated, that its number of edges is the number of pairs times the
-size of the base, and that on a finite vertex type twice the number of
-pairs plus the size of the base is the number of vertices. The audited
-declarations depend only on \texttt{propext}, \texttt{Classical.choice}
-and \texttt{Quot.sound}. Theorem~\ref{thm:containment}, the sharpness
-construction and the arithmetic of the window have conventional proofs
-only in this version.
+in Section~1. It proves Lemma~\ref{lem:product} on every vertex type, with
+$p(n-2p)$ edges on $n$ vertices. It defines $J(p,n-2p)$ on the vertex set
+$\{0,\dots,n-1\}$, with $P_i=\{2i-2,2i-1\}$, $u=2p$, $v=2p+1$ and
+$S=\{2p+2,\dots,n-1\}$, and proves Lemma~\ref{lem:J} together with the size
+$p(n-2p-1)$. With $p=\lfloor n/4\rfloor$ this gives, for every $n\ge8$, the
+lower bound of Theorem~\ref{thm:sharp} and a free system with $L_n$ edges
+in no paired product. For every $n$ the project proves the formula for
+$W_n$, the description in Corollary~\ref{cor:deficits} of the product sizes
+$E_n-d$ with $d<W_n$, and that at most $\lfloor\sqrt{2n}\rfloor/2+1$
+sizes in $(L_n,E_n]$ have the form $p(n-2p)$, so that at least
+$\lfloor n/4\rfloor-\lfloor\sqrt{2n}\rfloor/2-1$ do not.
+Theorem~\ref{thm:containment} is not proved in Lean. Its statement at
+order $n$ enters as a hypothesis, from which the project derives
+Theorem~\ref{thm:spectrum}, the upper bound of Theorem~\ref{thm:sharp},
+Corollary~\ref{cor:deficits} for the spectrum and Gy\H{o}ri's bound $E_n$.
+The 33 audited declarations depend only on \texttt{propext},
+\texttt{Classical.choice} and \texttt{Quot.sound}.
 
 \section{Limitations and open questions}
 

@@ -23,7 +23,7 @@ ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
 WITNESSES = ["boundary_n11_e12", "boundary_n16_e28", "product_n16_e30", "product_n16_e32"]
 FORBIDDEN = re.compile(r"\b(?:sorry|sorryAx|admit|axiom|native_decide|implemented_by|unsafe|"
                        r"extern|skipKernelTC|skipCheck)\b|Lean\.ofReduce[A-Z]\w*")
-REPORT = re.compile(r"^'([^'\n]+)' (?:depends on axioms: \[([^\]\n]*)\]|"
+REPORT = re.compile(r"^'([^'\n]+)' (?:depends on axioms: \[([^\]]*)\]|"
                     r"does not depend on any axioms)$", re.M)
 
 
