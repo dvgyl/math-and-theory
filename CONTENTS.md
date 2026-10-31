@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**50 manuscripts and research notes across 49 result families in mathematics, theoretical computer science, and mathematical physics.**
+**51 manuscripts and research notes across 50 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -162,6 +162,18 @@ The three-uniform Berge-C₄ saturation number s(n), in which any absent triple 
 **Prior work.** [English, Graber, Kirkpatrick, Methuku and Sullivan, arXiv:1710.03735v1, Theorem 5.7.](https://arxiv.org/abs/1710.03735v1) · [English, Gerbner, Methuku and Tait, 2019.](https://arxiv.org/abs/1807.06947)
 
 [Paper PDF](papers/mathematics/berge-c4-saturation/manuscript.pdf) · [LaTeX](papers/mathematics/berge-c4-saturation/manuscript.tex) · [Proof and reproduction](papers/mathematics/berge-c4-saturation/README.md) · [Citation](papers/mathematics/berge-c4-saturation/CITATION.bib)
+
+#### [Three-uniform Berge-C₅ saturation: a two-thirds upper bound, the cone spectrum and exact small values](papers/mathematics/berge-c5-saturation/manuscript.pdf)
+
+**Family:** `berge-c5-saturation`.
+
+For every n ≥ 47 every integer from ⌈(2n − 8)/3⌉ to n − 2 is the size of a three-uniform Berge-C₅-saturated hypergraph on n vertices, in which any absent triple may be added, so s(n) = sat₃(n, Berge-C₅) ≤ ⌈(2n − 8)/3⌉; the previous explicit upper bound had leading coefficient 4/3, and the simplest new construction glues seven-vertex blocks with four hyperedges at one vertex. No lower bound beyond small orders is proved. The preprint classifies the saturated cones for n ≥ 5, whose sizes are exactly the integers from ⌈6(n − 1)/7⌉ to n − 2 together with n − 1 when 4 divides n − 1 (for n ≥ 8), characterises the saturated loose expansions of bipartite graphs with a degree-two side, and gives s(n) for n ≤ 11 from exhaustive certificates.
+
+**Formal scope.** Lean 4.35.0 proves, for actual three-uniform hypergraphs, Berge-C₅s with distinct vertices and hyperedges, and saturation under every absent triple, that every size from ⌈2(n − 1)/3⌉ to n − 2 is realized for n ≥ 14, that s(n) ≤ ⌈2(n − 1)/3⌉ for n ≥ 7, and the exact values for n ≤ 7. The two lowest endpoints for n ≥ 47, the cone classification and the expansion theorems are conventional, with exhaustive construction checks; the values for 8 ≤ n ≤ 11 rest on certificates checked by an independent C++ verifier.
+
+**Prior work.** [English, Graber, Kirkpatrick, Methuku and Sullivan, arXiv:1710.03735v1, Theorem 5.7(2).](https://arxiv.org/abs/1710.03735v1) · [English, Gerbner, Methuku and Tait, 2019.](https://arxiv.org/abs/1807.06947)
+
+[Paper PDF](papers/mathematics/berge-c5-saturation/manuscript.pdf) · [LaTeX](papers/mathematics/berge-c5-saturation/manuscript.tex) · [Proof and reproduction](papers/mathematics/berge-c5-saturation/README.md) · [Citation](papers/mathematics/berge-c5-saturation/CITATION.bib)
 
 ### Inequalities and real analysis
 

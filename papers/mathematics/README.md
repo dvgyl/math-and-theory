@@ -17,6 +17,7 @@ Each family directory contains its manuscripts, proof sources or shared-library 
 | [The upper saturation spectrum of Berge triangles in triple systems](berge-triangle-spectrum/) | [PDF](berge-triangle-spectrum/manuscript.pdf) |
 | [Exact three-uniform Berge-path saturation numbers and a counterexample to a conjectured formula](berge-path-saturation/) | [PDF](berge-path-saturation/manuscript.pdf) |
 | [Three-uniform Berge-C₄ saturation: linear bounds with coefficients 5/8 and 3/4, the cone spectrum and exact small values](berge-c4-saturation/) | [PDF](berge-c4-saturation/manuscript.pdf) |
+| [Three-uniform Berge-C₅ saturation: a two-thirds upper bound, the cone spectrum and exact small values](berge-c5-saturation/) | [PDF](berge-c5-saturation/manuscript.pdf) |
 | [Diagonal concavity does not imply concavity for sums of elementary symmetric polynomials](diagonal-concavity/) | [PDF](diagonal-concavity/paper.pdf) |
 | [Sharp root log-concavity of alternating Motzkin sums](motzkin/) | [PDF](motzkin/paper.pdf) |
 | [Sharp log-concavity for alternating Motzkin sums](motzkin/bounded-forcing/) | [PDF](motzkin/bounded-forcing/manuscript.pdf) |

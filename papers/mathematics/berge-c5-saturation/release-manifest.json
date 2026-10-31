@@ -1,0 +1,157 @@
+{
+  "format_version": 1,
+  "package_id": "berge-c5-saturation",
+  "formal_scope": "Lean 4.35.0 proves, for actual three-uniform hypergraphs on Fin n, Berge-C₅s with distinct vertices and distinct hyperedges, and saturation under every absent triple, that every m with ⌈2(n − 1)/3⌉ ≤ m ≤ n − 2 is the size of a saturated hypergraph for n ≥ 14, that sat₃(n, Berge-C₅) ≤ ⌈2(n − 1)/3⌉ for n ≥ 7, that n − 1 is a saturated size when 4 divides n − 1, and the exact values for n ≤ 7, through a general rooted-gluing theorem and nine kernel-checked pieces without native_decide. The endpoints ⌈(2n − 8)/3⌉ and ⌈(2n − 8)/3⌉ + 1 for n ≥ 47, the cone classification and the expansion theorems have conventional proofs and exhaustive construction checks, and the values for 8 ≤ n ≤ 11 rest on exhaustive certificates checked by an independent C++ verifier.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.35.0",
+      "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile": "lakefile.toml",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/BergeC5/AxiomAudit.lean": "ed0b818730333a6379343e14d341de069290440bc6111e1620df36bd6147a128",
+    "lean/BergeC5/Basic.lean": "2c261cd455f786c24e3d628e68a8a01fb5bf318b7367e6cb5ada1c7d78d5af16",
+    "lean/BergeC5/Check.lean": "a085b172da188667cc58ea0fd9684425c895237c2e1064d399a1cd3bba5d78ce",
+    "lean/BergeC5/Glue.lean": "753035360fcb51000bec8ffa52bfe1a0afba65e22ac977187175d229dd9d4552",
+    "lean/BergeC5/Main.lean": "b78dee4632fe3ce1e329105e5d7f8c9d60232aa31c253aa5d6d99881ac2f06f7",
+    "lean/BergeC5.lean": "2b5b31ccc79b0abe6d80fd4b76471efa04c422f0c24d0596ba39eeeb2c912d00"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 1522,
+      "sha256": "1d239bf7482e5bc3097533592d4bc846461c8f408a42fc1b7c43413ce6867326"
+    },
+    "CITATION.bib": {
+      "bytes": 419,
+      "sha256": "0b5a918703fd094a97a8102ee6052882352683a30424cbf7a0fe823ff53f225d"
+    },
+    "CITATION.cff": {
+      "bytes": 1883,
+      "sha256": "15a03bfffa339a6484bea8fc838510760f74fa707e9bc5f732c821fa882fde45"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 6754,
+      "sha256": "8bf42ea83d23eaae48e40f1cd7703a4d43417dcb5c112151457e93fe7e437979"
+    },
+    "VERIFICATION.md": {
+      "bytes": 5111,
+      "sha256": "7c2d57c66e5d07a7ecdb13f6ba0b235157f03c7b6eb74dd2086425c490db8934"
+    },
+    "certificate/check_construction.py": {
+      "bytes": 13005,
+      "sha256": "ff985e3036a45eddc0892eebb5bfe722827272deee61eedb8bf4249973995d99"
+    },
+    "certificate/data/m4_all.cert.xz": {
+      "bytes": 1068,
+      "sha256": "4b654fab1ebde008ce85bb87919c4b35623a0d92a172ad759bc538236ea15639"
+    },
+    "certificate/data/m4_classes.txt": {
+      "bytes": 231,
+      "sha256": "77311dee9d88cd54d6f34cdfac292820b941a7f60b5cac790f76b808b1b4c082"
+    },
+    "certificate/data/m5_all.cert.xz": {
+      "bytes": 35900,
+      "sha256": "b3cb8799ee595b8df82537ab2bc5f5554c550f9d884121efd26fdb8b39a33ee2"
+    },
+    "certificate/data/m5_classes.txt": {
+      "bytes": 725,
+      "sha256": "6d656c77e87d085b97811a0eb1fdd261bde165d54697a158d693260df2667b75"
+    },
+    "certificate/data/m6_n11plus.cert.xz": {
+      "bytes": 196640,
+      "sha256": "0031d79c5a153705110daac250f133be756f276107bf4390685c188f487b1394"
+    },
+    "certificate/run_certificates.py": {
+      "bytes": 2953,
+      "sha256": "e0e161131325f9e1546ae5ef3e94b0f54bc0d158ec2596642b62d6ff2951b57a"
+    },
+    "certificate/verify_profiles.cpp": {
+      "bytes": 7259,
+      "sha256": "55279befb6ff7927d15329ff130ef3729ea1af16cf4277feba11c7a77cf5d716"
+    },
+    "lean/BergeC5/AxiomAudit.lean": {
+      "bytes": 3527,
+      "sha256": "ed0b818730333a6379343e14d341de069290440bc6111e1620df36bd6147a128"
+    },
+    "lean/BergeC5/Basic.lean": {
+      "bytes": 15348,
+      "sha256": "2c261cd455f786c24e3d628e68a8a01fb5bf318b7367e6cb5ada1c7d78d5af16"
+    },
+    "lean/BergeC5/Check.lean": {
+      "bytes": 12395,
+      "sha256": "a085b172da188667cc58ea0fd9684425c895237c2e1064d399a1cd3bba5d78ce"
+    },
+    "lean/BergeC5/Glue.lean": {
+      "bytes": 17779,
+      "sha256": "753035360fcb51000bec8ffa52bfe1a0afba65e22ac977187175d229dd9d4552"
+    },
+    "lean/BergeC5/Main.lean": {
+      "bytes": 13713,
+      "sha256": "b78dee4632fe3ce1e329105e5d7f8c9d60232aa31c253aa5d6d99881ac2f06f7"
+    },
+    "lean/BergeC5.lean": {
+      "bytes": 20,
+      "sha256": "2b5b31ccc79b0abe6d80fd4b76471efa04c422f0c24d0596ba39eeeb2c912d00"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3238,
+      "sha256": "880e66329c28d09d1aefc1b89182cb48aea0e7342c8c215c7ecd8c70db7b1ec4"
+    },
+    "lean/lakefile.toml": {
+      "bytes": 293,
+      "sha256": "24be08ad34ab714257ce5b26de675664360def75ad1d5a491621453c31632ddf"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c"
+    },
+    "manuscript.pdf": {
+      "bytes": 333641,
+      "sha256": "11bf06c37b5833b08a43eec76d0e398967999297a9a9f407a020734f59dd3712"
+    },
+    "manuscript.tex": {
+      "bytes": 41106,
+      "sha256": "6bd6e4363ea9ba82be19c987ebb290305fef6b70fd531e85c0b634926a384a79"
+    },
+    "scripts/check_axiom_audit.py": {
+      "bytes": 3155,
+      "sha256": "3c0311e759b04f55c66c73705689627c9068f51625641366cfca8e317d1033be"
+    },
+    "scripts/verify.sh": {
+      "bytes": 782,
+      "sha256": "30aeda45499d2f6de050c91c9da2c7ceb571ec830b7866e927af76d60d67a8e8"
+    },
+    "theorem-map.json": {
+      "bytes": 4080,
+      "sha256": "5f015b96a80a2cda44a53da0a43d0fbb762c7e5d16c1d77f30fb5557b5616ec1"
+    },
+    "verification/README.md": {
+      "bytes": 1386,
+      "sha256": "0374972e4cad27397e2fd3978d503ad93cf1a417d889fafb398e37a73a5b55bc"
+    },
+    "verification/axiom-inventory.json": {
+      "bytes": 62372,
+      "sha256": "1b79535113a0bf2b00e1bf99f91e4dd60578fb0f35a02954d8d4989b65a45262"
+    },
+    "verification/build.log": {
+      "bytes": 62494,
+      "sha256": "db2a3a6cb8c741dbee08d4ca12f2e410cc592405f56ad63652963e0cd7391491"
+    },
+    "verification/certificate-check.json": {
+      "bytes": 1101,
+      "sha256": "ee0e5785d14e7cca38de914123e47e3f115b2728731d195f51c432725d5df629"
+    },
+    "verification/construction-check.json": {
+      "bytes": 17261,
+      "sha256": "93a6aa7ed24c20991e3d30ea40640636f69139d536ae66cfe4868dab61070323"
+    }
+  }
+}

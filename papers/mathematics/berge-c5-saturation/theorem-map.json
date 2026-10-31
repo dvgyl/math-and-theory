@@ -1,0 +1,90 @@
+{
+  "paper": "manuscript.tex",
+  "lean_project": "lean",
+  "audited_declarations": [
+    "BergeC5.exists_saturated_interval",
+    "BergeC5.exists_saturated_lower",
+    "BergeC5.satNumber_le_lower",
+    "BergeC5.exists_saturated_cone",
+    "BergeC5.satNumber_small",
+    "BergeC5.Realizable.add"
+  ],
+  "results": [
+    {
+      "paper_label": "Section 1 (definitions)",
+      "declarations": [
+        "BergeC5.IsBergeC5",
+        "BergeC5.ContainsBergeC5",
+        "BergeC5.IsThreeUniform",
+        "BergeC5.IsBergeC5Saturated",
+        "BergeC5.satNumber"
+      ],
+      "scope": "Hypergraphs are finite families of finite sets on an arbitrary vertex type; a Berge-C5 has an injective vertex map and an injective hyperedge map from Fin 5 with v i, v (i + 1) in e i, and no inducedness or linearity condition; saturation quantifies over every absent three-element set; satNumber n is the least size of a saturated hypergraph on Fin n, isolated vertices included."
+    },
+    {
+      "paper_label": "lem:closing (one direction) and lem:basic (size bound)",
+      "declarations": [
+        "BergeC5.Path4",
+        "BergeC5.containsBergeC5_insert_of_path4",
+        "BergeC5.PathSaturated",
+        "BergeC5.isBergeC5Saturated_of_pathSaturated",
+        "BergeC5.ContainsBergeC5.five_le_card",
+        "BergeC5.card_ge_of_saturated"
+      ],
+      "scope": "Closing a four-edge Berge path by an absent set containing its ends gives a Berge-C5; a Berge-C5 uses five distinct hyperedges, so a saturated hypergraph on at least four vertices has at least four hyperedges."
+    },
+    {
+      "paper_label": "lem:glue",
+      "declarations": [
+        "BergeC5.cycle_in_piece",
+        "BergeC5.path4_of_reach2",
+        "BergeC5.IsRootedPiece",
+        "BergeC5.Realizable",
+        "BergeC5.glue",
+        "BergeC5.not_containsBergeC5_glue",
+        "BergeC5.pathSaturated_glue",
+        "BergeC5.Realizable.add"
+      ],
+      "scope": "Two rooted pieces on arbitrary finite vertex types glued at their roots form a rooted piece whose non-root orders and sizes add; a Berge-C5 cannot cross the cut vertex."
+    },
+    {
+      "paper_label": "prop:interval and thm:main (the range from ceil(2(n-1)/3) to n-2, and n-1 when 4 divides n-1)",
+      "declarations": [
+        "BergeC5.k4L",
+        "BergeC5.coneL",
+        "BergeC5.b110L",
+        "BergeC5.b210L",
+        "BergeC5.b310L",
+        "BergeC5.b410L",
+        "BergeC5.b111L",
+        "BergeC5.b211L",
+        "BergeC5.b311L",
+        "BergeC5.not_containsBergeC5_of_cycleB",
+        "BergeC5.realizable_range",
+        "BergeC5.exists_saturated_interval",
+        "BergeC5.exists_saturated_lower",
+        "BergeC5.satNumber_le_lower",
+        "BergeC5.exists_saturated_cone"
+      ],
+      "scope": "For every n >= 14 and every m with 2(n - 1) <= 3m and m <= n - 2 a saturated hypergraph on Fin n with m hyperedges; for every n >= 7 one with 2n/3 = ceil(2(n - 1)/3) hyperedges (natural-number division), hence satNumber n <= 2n/3; and one with n - 1 hyperedges when n >= 5 and 4 divides n - 1. The pieces are glued at the root; the families B(p,q,t) with unbounded parameters are not formalized."
+    },
+    {
+      "paper_label": "thm:small (n <= 7)",
+      "declarations": [
+        "BergeC5.small6L",
+        "BergeC5.satNumber_small"
+      ],
+      "scope": "satNumber n = 0, 0, 0, 1, 4, 4, 4, 4 for n = 0..7."
+    }
+  ],
+  "conventional": [
+    "thm:main (the endpoints ceil((2n-4)/3), ceil((2n-6)/3) and ceil((2n-8)/3): prop:ht, prop:three, thm:support, lem:expansion, lem:clone)",
+    "thm:cone (classification and size spectrum of saturated cones)",
+    "thm:hubs (saturated expansions of bipartite graphs with a degree-two side)",
+    "thm:support (apex expansions over C3, C4, C5 and 2C3)"
+  ],
+  "certificates": [
+    "thm:small (lower bounds for 8 <= n <= 11 and the classifications with four and five hyperedges): certificate/data, checked by certificate/verify_profiles.cpp",
+    "thm:main, thm:cone, thm:hubs, thm:support (all claimed constructions for 7 <= n <= 60): certificate/check_construction.py"
+  ]
+}

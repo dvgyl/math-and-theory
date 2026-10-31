@@ -745,6 +745,66 @@
       }
     },
     {
+      "id": "berge-c5-saturation",
+      "discipline": "Mathematics",
+      "area": "Extremal hypergraph theory",
+      "title": "Three-uniform Berge-C₅ saturation: a two-thirds upper bound, the cone spectrum and exact small values",
+      "kind": "Upper bound with realized size interval, structural classifications and exact small values with reproducible proof package",
+      "significance_rank": 168,
+      "keywords": [
+        "Berge hypergraphs",
+        "Berge cycles",
+        "Berge-C5",
+        "saturation numbers",
+        "three-uniform hypergraphs",
+        "saturation spectrum",
+        "extremal hypergraph theory"
+      ],
+      "summary": "For every n ≥ 47 every integer from ⌈(2n − 8)/3⌉ to n − 2 is the size of a three-uniform Berge-C₅-saturated hypergraph on n vertices, where any absent triple may be added, so sat₃(n, Berge-C₅) ≤ ⌈(2n − 8)/3⌉; the previous explicit upper bound, 4⌊(n − 1)/3⌋ + ((n − 1) mod 3) (English, Graber, Kirkpatrick, Methuku and Sullivan), has leading coefficient 4/3, and the simplest new construction glues seven-vertex blocks with four hyperedges at one vertex. No lower bound beyond small orders is proved. Saturated cones are classified for n ≥ 5 and their sizes are exactly the integers from ⌈6(n − 1)/7⌉ to n − 2, together with n − 1 when 4 divides n − 1, for n ≥ 8. Saturated loose expansions of bipartite graphs with a degree-two side are characterised. Exhaustive certificates give the values 0, 0, 0, 1, 4, 4, 4, 4, 5, 6, 6, 7 for n = 0, …, 11.",
+      "formal_scope": "Lean 4.35.0 proves, for actual three-uniform hypergraphs on Fin n, Berge-C₅s with distinct vertices and distinct hyperedges, and saturation under every absent triple, that every m with ⌈2(n − 1)/3⌉ ≤ m ≤ n − 2 is the size of a saturated hypergraph for n ≥ 14, that sat₃(n, Berge-C₅) ≤ ⌈2(n − 1)/3⌉ for n ≥ 7, that n − 1 is a saturated size when 4 divides n − 1, and the exact values for n ≤ 7, through a general rooted-gluing theorem and nine kernel-checked pieces without native_decide. The endpoints ⌈(2n − 8)/3⌉ and ⌈(2n − 8)/3⌉ + 1 for n ≥ 47, the cone classification and the expansion theorems have conventional proofs and exhaustive construction checks, and the values for 8 ≤ n ≤ 11 rest on exhaustive certificates checked by an independent C++ verifier.",
+      "source": "English, Graber, Kirkpatrick, Methuku and Sullivan gave the definitions and the bound with coefficient 4/3 (Saturation of Berge hypergraphs, arXiv:1710.03735v1, Theorem 5.7(2)); English, Gerbner, Methuku and Tait proved linear growth. The 2019 Discrete Mathematics version was not checked. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/berge-c5-saturation/README.md",
+      "paper": "papers/mathematics/berge-c5-saturation/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/mathematics/berge-c5-saturation"
+      },
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Three-uniform Berge-C₅ saturation number (English–Graber–Kirkpatrick–Methuku–Sullivan)",
+        "posed_by": "English, Graber, Kirkpatrick, Methuku and Sullivan, Saturation of Berge hypergraphs, arXiv:1710.03735v1, Theorem 5.7(2) (upper bound with coefficient 4/3)",
+        "problem_url": "https://arxiv.org/abs/1710.03735v1",
+        "status": "Upper bound with coefficient 2/3 and a realized size interval; exact values for n ≤ 11; lower bound open",
+        "claim": "For n ≥ 47 every m from ⌈(2n − 8)/3⌉ to n − 2 is the size of a Berge-C₅-saturated 3-graph, so sat₃(n, Berge-C₅) ≤ ⌈(2n − 8)/3⌉; cones are classified and n ≤ 11 is exact.",
+        "title_tag": "Berge-C5 Saturation of 3-Uniform Hypergraphs: Upper Bound 2n/3",
+        "description": "The three-uniform Berge-C5 saturation number is at most ⌈(2n−8)/3⌉ for n ≥ 47, improving 4n/3; saturated cones, exact values for n ≤ 11 and a Lean 4 proof.",
+        "queries": [
+          "Berge C5 saturation number",
+          "sat_3(n, Berge C5)",
+          "saturation number of Berge cycles in 3-uniform hypergraphs",
+          "Berge-C5-saturated hypergraph",
+          "unrestricted Berge five-cycle saturation",
+          "saturation of Berge hypergraphs English Graber Kirkpatrick Methuku Sullivan",
+          "Berge C5 saturation spectrum cones",
+          "Berge pentagon saturation upper bound"
+        ],
+        "faq": [
+          [
+            "What is the three-uniform Berge-C5 saturation number?",
+            "It is the least number of hyperedges of a three-uniform hypergraph on n vertices with no Berge five-cycle in which adding any absent triple creates one. For n ≥ 47 it is at most ⌈(2n − 8)/3⌉, and every size from that value to n − 2 occurs. The values for n ≤ 11 are 0, 0, 0, 1, 4, 4, 4, 4, 5, 6, 6, 7; the asymptotic coefficient is open."
+          ],
+          [
+            "How does this compare with earlier bounds?",
+            "English, Graber, Kirkpatrick, Methuku and Sullivan gave the upper bound 4⌊(n − 1)/3⌋ + ((n − 1) mod 3) for n ≥ 25, with leading coefficient 4/3, and English, Gerbner, Methuku and Tait proved linear growth. The new constructions halve the coefficient. No matching lower bound is proved: the only general one is the trivial 3s(n) ≥ n − 1. Searches in October 2026 did not find the coefficient 2/3; priority is not certified."
+          ],
+          [
+            "Is the result formally verified?",
+            "Partly. Lean 4 proves that every size from ⌈2(n − 1)/3⌉ to n − 2 is realized for n ≥ 14, the bound ⌈2(n − 1)/3⌉ for n ≥ 7 and the exact values for n ≤ 7, with explicit pieces checked by the kernel. The two lowest endpoints for n ≥ 47, the cone classification and the expansion theorems have conventional proofs and exhaustive construction checks, and the values for 8 ≤ n ≤ 11 rest on certificates checked by an independent verifier."
+          ]
+        ]
+      }
+    },
+    {
       "id": "berge-triangle-spectrum",
       "discipline": "Mathematics",
       "area": "Graph theory",
