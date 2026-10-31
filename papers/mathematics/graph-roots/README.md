@@ -12,6 +12,10 @@ I prove a sharp largest-root law for the graph formed by n squares sharing one v
 
 The matching lower estimate constructs actual complex roots. Complete real-root classifications for square flowers and book graphs, and the motion of the real flower roots, are companion results. Counting formulas and standard analytic tools are supporting mathematics. I make no claim of first priority or resolution of a specifically numbered source conjecture.
 
+## Earlier public work
+
+On 31 October 2026, a check of public problem records found that the Omega Institute's public repository [the-omega-institute/trureturing](https://github.com/the-omega-institute/trureturing) records a refutation of Rather's Conjecture 5.4 on book-graph domination roots at its n = 1 instance (issue #23025), committed on 28 October 2026 at 07:40 UTC, about 17 hours before my first commit on 29 October 2026. My companion book-graph proposition agrees at n = 1 and also classifies every n ≥ 2; my main square-flower theorem is a different question. I acknowledge the earlier public refutation and make no priority claim for it. The proof, Lean formalization and verification record here are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#omega-book-graph-domination-roots) gives the dates and sources; a commit date does not by itself establish when it became public.
+
 ## Files
 
 - [manuscript.pdf](manuscript.pdf), [manuscript.tex](manuscript.tex), and [references.bib](references.bib): complete conventional proofs and related references.

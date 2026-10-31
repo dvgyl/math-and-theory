@@ -6,6 +6,10 @@ I give three rational rank-one orthogonal projections in dimension three for whi
 
 The result concerns the explicit unrestricted matrix comparison in [the paper](paper.pdf). It does not establish a counterexample to a coordinate-descent convergence rate or to the additional nonsingular block class in that application. I make no unconditional priority claim.
 
+## Earlier public work
+
+On 31 October 2026, a check of public problem records found that the Omega Institute's public repository [the-omega-institute/trureturing](https://github.com/the-omega-institute/trureturing) records a refutation of Conjecture 3.1 of Sun, Luo and Ye with the same three rank-one projections and the same quadratic form −8/243 (issue #15647), committed on 12 October 2026 at 07:26 UTC, about 17 days before my first commit on 29 October 2026. A later addition there also refutes the block-structured target that my note leaves aside (issue #17674). My theorem that no real multiplier repairs the inequality does not appear in that record. I acknowledge the earlier public refutation and make no priority claim for the three-projection counterexample. The proof, Lean formalization and verification record here are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#omega-projection-amgm) gives the dates and sources; a commit date does not by itself establish when it became public.
+
 ## Files and proof coverage
 
 - [paper.pdf](paper.pdf) and [paper.tex](paper.tex): complete conventional proofs, source context, and limits.

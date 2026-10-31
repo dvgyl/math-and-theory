@@ -12,6 +12,10 @@ for the net crossing count of one marked edge of a finite bidirectional Markov r
 
 The main result proves the interval proposed by K. Ptaszyński, *Physical Review E* **106**, 024119 (2022), Eq. (21), [doi:10.1103/PhysRevE.106.024119](https://doi.org/10.1103/PhysRevE.106.024119). The proof combines known midpoint-spectrum and uncertainty results with an exact polynomial inequality. Those supporting results and the known limiting family receive credit in the manuscript. Bibliographic priority remains subject to further literature comparison.
 
+## Earlier public work
+
+On 31 October 2026, a check of public problem records found that the Omega Institute's public repository [the-omega-institute/trureturing](https://github.com/the-omega-institute/trureturing) records a proof of Ptaszyński's conjectured minimum skewness for unidirectional cycles (issue #22468), committed on 26 October 2026 at 20:22 UTC, about 31 hours before my first commit on 29 October 2026. It gives −1/16 as the infimum over all state counts in that unidirectional case. My theorem concerns bidirectional rings and proves both sides of the interval, so the questions differ, but the lower constant agrees. I acknowledge this earlier result on the unidirectional case. The proof, Lean formalization and verification record here are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#omega-unicyclic-skewness) gives the dates and sources; a commit date does not by itself establish when it became public.
+
 ## Read and reproduce
 
 - [Manuscript](manuscript.pdf) and [LaTeX source](manuscript.tex).

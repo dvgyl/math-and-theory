@@ -222,7 +222,7 @@
         "operator inequalities"
       ],
       "summary": "Three rank-one orthogonal projections in dimension three violate the symmetrized-product Loewner AM–GM bound. No finite real multiplier repairs it, even with a positive-definite mean. The examples do not satisfy the additional nonsingular block structure of the motivating coordinate-descent application.",
-      "source": "The manuscript credits the motivating Sun–Luo–Ye projection comparison and distinguishes nearby norm inequalities. Exact correspondence with the published conjecture and historical priority remain conditional.",
+      "source": "The manuscript credits the motivating Sun–Luo–Ye projection comparison and distinguishes nearby norm inequalities. Exact correspondence with the published conjecture and historical priority remain conditional. The Omega Institute's public repository records a refutation with the same three projections and form −8/243, committed on 12 October 2026 (issue #15647), and a block-structured counterexample (issue #17674); no priority is claimed for the three-projection counterexample.",
       "source_url": "https://doi.org/10.1287/moor.2019.0990",
       "paper": "papers/mathematics/projection-amgm/paper.pdf",
       "formal_scope": "Lean verifies a rational three-projection matrix obstruction and a parameterized obstruction for every real multiplier in dimension three; rank-one, positive-definite mean, rational all-multiplier choices, and the standard minimal-factor observation have complete conventional proofs.",
@@ -260,6 +260,10 @@
           [
             "Is the proof formally verified?",
             "Lean 4 verifies the rational three-projection obstruction and the parameterized obstruction for every real multiplier. The rank-one, positive-definite-mean, rational-choice and two-factor statements have conventional proofs only."
+          ],
+          [
+            "Was the three-projection counterexample known before?",
+            "Yes. The Omega Institute's public repository records the same projections and the same value −8/243, committed on 12 October 2026 (issue #15647), about 17 days before this result was first committed here; it also gives a block-structured counterexample (issue #17674). The unbounded-multiplier theorem does not appear there. No priority is claimed for the counterexample."
           ]
         ]
       }
@@ -437,6 +441,10 @@
           [
             "Is the proof formally verified?",
             "Yes. Lean 4 proves the graph properties, the covariance sign, stability and score positivity on the whole interval, and the entropy increase. The result makes no claim about empirical behaviour on real networks."
+          ],
+          [
+            "Was DomiRank entropy monotonicity refuted before?",
+            "The broader unconditional assertion of version 1 was refuted earlier with a six-vertex graph of positive covariance, in the Omega Institute's public repository on 5 October 2026 (issue #13267). That graph does not satisfy the disassortativity hypothesis of Conjecture 4.9, which this counterexample refutes."
           ]
         ]
       }
@@ -513,7 +521,7 @@
         "book graphs"
       ],
       "summary": "Sharp complex-root escape for square flowers, with complete flower and book real-root classifications and multiplicities.",
-      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
+      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified. The Omega Institute's public repository records a refutation of Rather's book-graph Conjecture 5.4 at n = 1, committed on 28 October 2026 (issue #23025), about 17 hours before my first commit; no priority is claimed for it.",
       "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/graph-roots/README.md",
       "paper": "papers/mathematics/graph-roots/manuscript.pdf",
       "formal_scope": "All numbered manuscript conclusions are formalized in seventy modules with 258 endpoint audits. Historical novelty and exact external-source correspondence remain provisional.",
@@ -551,6 +559,10 @@
           [
             "Is the proof formally verified?",
             "Yes. The conclusions of all numbered results, including the escape theorem and the complete square-flower and book-graph real-root classifications, are formalized in 70 Lean 4 modules with 258 explicit statement checks; finite and numerical checks support but do not replace the proofs."
+          ],
+          [
+            "Does this settle Rather's book-graph root conjecture?",
+            "The companion proposition shows that the conjecture fails only at n = 1 and holds for every n ≥ 2. The n = 1 failure was recorded earlier in the Omega Institute's public repository, committed on 28 October 2026 (issue #23025); no priority is claimed for it."
           ]
         ]
       }
@@ -2146,6 +2158,10 @@
           [
             "Is the proof formally verified?",
             "Lean 4 verifies the finite matrices, local detailed balance, the complex spectrum, a smooth strictly dominant eigenvalue branch and its exact derivatives. It does not formalize the standard long-time stochastic theorem that identifies this branch with the cumulant generating function."
+          ],
+          [
+            "Has anyone else refuted this kurtosis sign conjecture?",
+            "Yes. A Zenodo record (10.5281/zenodo.23689958), created on 27 October 2026 at 12:29 UTC, gives three-state counterexamples to the signs of both C₃/C₁ and C₄/C₂ with both ratios unbounded below. This result was first committed here about six and a half hours earlier; no priority is claimed."
           ]
         ]
       }
@@ -2206,6 +2222,10 @@
           [
             "What earlier results does the proof rely on?",
             "The positive midpoint spectrum is due to Pietzonka, Barato and Seifert, the thermodynamic uncertainty relation is established prior work, and the extremizing family was already identified by Ptaszyński. The new ingredient is an exact two-variable polynomial inequality certified with integer coefficients; bibliographic priority is not established."
+          ],
+          [
+            "Was any part of this bound proved earlier?",
+            "The unidirectional special case of the lower side was proved earlier: the Omega Institute's public repository records the exact minimum skewness for unidirectional cycles, with infimum −1/16, committed on 26 October 2026 (issue #22468). The bidirectional two-sided interval here is a different question."
           ]
         ]
       }
@@ -2344,7 +2364,7 @@
         "counterexample"
       ],
       "summary": "A dimension-five pure-state matched-basis information inequality violation, with a conventional all-prime companion.",
-      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
+      "source": "Related work and source-comparison limits are stated in the manuscript. Historical priority is not certified. The Omega Institute's public repository records the same dimension-five counterexample, first committed on 4 October 2026 (issue #12896), about 25 days before my first commit on 29 October 2026; no priority is claimed.",
       "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/physics/pure-ecqc/README.md",
       "paper": "papers/physics/pure-ecqc/manuscript/manuscript.pdf",
       "formal_scope": "The dimension-five identical-local-basis theorem is formalized. The prime-family extension is conventional; arbitrary or independently optimized basis choices are outside the result.",
@@ -2382,6 +2402,10 @@
           [
             "Is the proof formally verified?",
             "Lean 4 verifies the dimension-five state, the six bases, the Born tables, the reduced states and the entropies. The all-prime extension (p ≡ 1 mod 4, ratio p/2) has only a conventional proof."
+          ],
+          [
+            "Was this pure-state counterexample known before?",
+            "Yes. The Omega Institute's public repository records the same state and bases, with the same values 5 log 5 and 2 log 5, first committed on 4 October 2026 (issue #12896), about 25 days before this result was first committed here. No priority is claimed; the all-prime companion does not appear in that record."
           ]
         ]
       }
@@ -2405,7 +2429,7 @@
         "Pauli correlations"
       ],
       "standout": true,
-      "source": "Prior results and source-comparison limits are stated in the manuscript. Historical priority is not certified.",
+      "source": "Prior results and source-comparison limits are stated in the manuscript. Historical priority is not certified. The fully-entangled-fraction companion bound is Conjecture 2 of Milne et al.; the Omega Institute's public repository records a claimed Lean proof of it committed on 8 October 2026 (issue #14206), and no priority is claimed for it.",
       "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/physics/steering-bounds/README.md",
       "formalization": {
         "kind": "standalone",
@@ -2442,6 +2466,10 @@
           [
             "Is the proof formally verified?",
             "The matrix statements are proved in Lean 4 for actual 4×4 density matrices: canonical filters, Pauli correlations, the exact least upper bound, attainment and nonattainment, and the fully entangled fraction. The identification with the physical steering-ellipsoid centre and with the optimized CJWR measurement expression uses cited external correspondences that are not formalized."
+          ],
+          [
+            "Was the fully-entangled-fraction bound known before?",
+            "The companion bound f(ρ) ≤ 1 − c/2 is Conjecture 2 of Milne, Jennings, Jevtic and Rudolph, and the Omega Institute's public repository records a claimed Lean proof of it committed on 8 October 2026 (issue #14206), before this result was first committed here on 29 October 2026. No priority is claimed for it. The exact three-setting supremum is not in that record."
           ]
         ]
       }
@@ -2464,7 +2492,7 @@
         "fidelity matrix"
       ],
       "standout": true,
-      "source": "Prior results and source-comparison limits are stated in the manuscript. Historical priority is not certified. Another group has claimed a solution of the same conjecture using AI and Lean; the proofs have not been compared, and neither equivalence nor priority has been established. See PRIORITY_AND_NOVELTY.md.",
+      "source": "Prior results and source-comparison limits are stated in the manuscript. Historical priority is not certified. Another group has claimed a solution of the same conjecture using AI and Lean; the proofs have not been compared, and neither equivalence nor priority has been established. See PRIORITY_AND_NOVELTY.md. The Omega Institute's public repository records a claimed Lean proof of the same conjecture, first committed on 19 October 2026 (issue #19184), about nine days before my first commit on 29 October 2026; the proofs have not been compared and no priority is claimed.",
       "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/physics/fidelity-three-state/README.md",
       "formalization": {
         "kind": "standalone",
@@ -2500,6 +2528,10 @@
           [
             "Is the proof formally verified?",
             "The theorem is formalized in Lean 4 for positive semidefinite complex trace-one matrices, nonnegative weights summing to one, spectral entropy and nuclear-norm root fidelity, building on credited QICLean foundations. The paper is an unrefereed preprint."
+          ],
+          [
+            "Did anyone prove this conjecture before this note?",
+            "A claimed Lean proof of the same three-state bound appears in the Omega Institute's public repository, first committed on 19 October 2026 (issue #19184), about nine days before this result was first committed here on 29 October 2026. The proofs have not been compared, and no priority is claimed."
           ]
         ]
       }
@@ -2559,6 +2591,10 @@
           [
             "Is the result formally verified?",
             "The exact coefficients are formalized in Lean 4 for actual finite-reference density states, every stochastic Pauli qubit channel and the full signed depolarizing family in every dimension d ≥ 2, including matching supremum witnesses. Erasure-simulation and ensemble-guessing consequences keep conventional proofs, and the paper is an unrefereed preprint."
+          ],
+          [
+            "Was the γ-independence known before?",
+            "Yes, in general: the Omega Institute's public repository records a claimed proof, committed on 16 October 2026 (issue #17637), that the conditional hockey-stick coefficient of every finite channel equals its trace-distance value for all γ ≥ 1. The exact Pauli and depolarizing values here are not in that record."
           ]
         ]
       }

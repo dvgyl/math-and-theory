@@ -52,6 +52,8 @@ Three rank-one orthogonal projections in dimension three violate the symmetrized
 
 **Formal scope.** Lean verifies a rational three-projection matrix obstruction and a parameterized obstruction for every real multiplier in dimension three; rank-one, positive-definite mean, rational all-multiplier choices, and the standard minimal-factor observation have complete conventional proofs.
 
+**Prior work.** The Omega Institute's public repository records a refutation with the same three projections and form −8/243, committed on 12 October 2026 (issue #15647), and a block-structured counterexample (issue #17674). No priority is claimed for the three-projection counterexample; the unbounded-multiplier theorem is not in that record. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-projection-amgm).
+
 [Paper PDF](papers/mathematics/projection-amgm/paper.pdf) · [LaTeX](papers/mathematics/projection-amgm/paper.tex) · [Citation](papers/mathematics/projection-amgm/CITATION.bib) · [Proof and reproduction](papers/mathematics/projection-amgm/README.md)
 
 #### [Matrix-pencil rank distance as an explicit completion problem](papers/mathematics/matrix-pencil-completion/manuscript.pdf)
@@ -88,6 +90,8 @@ Vandaele, Gillis, Glineur and Tuyttens conjectured in 2016 that every nonnegativ
 
 **Original problem.** [Zhang and Zhao, arXiv:2610.00107v4, Conjecture 4.9.](https://arxiv.org/html/2610.00107v4)
 
+**Prior work.** The Omega Institute's public repository records a refutation of the broader unconditional assertion of version 1, committed on 5 October 2026 (issue #13267), with a graph that does not satisfy the hypothesis of Conjecture 4.9. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-domirank-entropy).
+
 [Paper PDF](papers/mathematics/domirank-entropy/paper.pdf) · [LaTeX](papers/mathematics/domirank-entropy/paper.tex) · [Bibliography](papers/mathematics/domirank-entropy/references.bib) · [Citation](papers/mathematics/domirank-entropy/citation.bib) · [Formal statement and prior work](lean/docs/mathematics/domirank-entropy.md) · [Reproduction](papers/mathematics/domirank-entropy/verification/README.md)
 
 #### [Ultra-log-concavity of domination sequences of powers of paths and cycles](papers/mathematics/galvin-zhang/manuscript.pdf)
@@ -109,6 +113,8 @@ The domination counts of every natural power of a path or cycle form an ultra-lo
 Sharp complex-root escape for square flowers, with complete flower and book real-root classifications and multiplicities.
 
 **Formal scope.** All numbered manuscript conclusions are formalized in seventy modules with 258 endpoint audits. Historical novelty and exact external-source correspondence remain provisional.
+
+**Prior work.** The Omega Institute's public repository records a refutation of Rather's book-graph Conjecture 5.4 at n = 1, committed on 28 October 2026 (issue #23025), about 17 hours before my first commit. No priority is claimed for it. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-book-graph-domination-roots).
 
 [Paper PDF](papers/mathematics/graph-roots/manuscript.pdf) · [LaTeX](papers/mathematics/graph-roots/manuscript.tex) · [Reproduction and source context](papers/mathematics/graph-roots/README.md) · [Citation](papers/mathematics/graph-roots/CITATION.bib)
 
@@ -430,6 +436,8 @@ A coalesced dyadic clause-mass functional has exact supremum n+1 on the stated u
 
 **Formal scope.** The standalone package uses Lean 4.19.0. It does not formalize the stochastic long-time theorem that identifies the eigenvalue branch with a cumulant generating function. The witness does not refute the separate skewness conjecture or establish a minimal number of states.
 
+**Prior work.** A Zenodo record (10.5281/zenodo.23689958), created on 27 October 2026 at 12:29 UTC, refutes the signs of both C₃/C₁ and C₄/C₂; my first commit of this result is about six and a half hours earlier. No priority is claimed. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#zenodo-thermal-heat-current-kurtosis).
+
 [Paper PDF](papers/physics/thermal-kurtosis-counterexample/report.pdf) · [LaTeX](papers/physics/thermal-kurtosis-counterexample/report.tex) · [Citation](papers/physics/thermal-kurtosis-counterexample/CITATION.bib) · [Related work](papers/physics/thermal-kurtosis-counterexample/RELATED_WORK.md) · [Reproduction](papers/physics/thermal-kurtosis-counterexample/README.md)
 
 #### [A sharp universal skewness bound for unicyclic currents](papers/physics/unicyclic-skewness/manuscript.pdf)
@@ -439,6 +447,8 @@ A coalesced dyadic clause-mass functional has exact supremum n+1 on the stated u
 The net marked-edge current on every finite bidirectional Markov ring with at least three states, positive rates and unequal forward and reverse rate products satisfies −1/16 ≤ C₃/C₁ ≤ 1. The two-channel two-state case has the stronger interval [1/4,1]. This ratio is not standardized skewness.
 
 **Formal scope.** The interval for actual tilted-matrix derivatives and a local branch is formalized. Identification with long-time stochastic cumulants and sharpness have conventional proofs. Lean does not construct a continuous-time sample-path probability space or a separate optimizing-sequence theorem.
+
+**Prior work.** The Omega Institute's public repository records the minimum skewness for unidirectional cycles, with infimum −1/16, committed on 26 October 2026 (issue #22468). The bidirectional two-sided interval here is a different question. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-unicyclic-skewness).
 
 [Paper PDF](papers/physics/unicyclic-skewness/manuscript.pdf) · [LaTeX](papers/physics/unicyclic-skewness/manuscript.tex) · [Citation](papers/physics/unicyclic-skewness/CITATION.bib) · [Proof and reproduction](papers/physics/unicyclic-skewness/README.md)
 
@@ -476,6 +486,8 @@ A dimension-five pure-state matched-basis information inequality violation, with
 
 **Formal scope.** The dimension-five identical-local-basis theorem is formalized. The prime-family extension is conventional; arbitrary or independently optimized basis choices are outside the result.
 
+**Prior work.** The Omega Institute's public repository records the same dimension-five counterexample, with the same state and bases, first committed on 4 October 2026 (issue #12896), about 25 days before my first commit. No priority is claimed for it. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-pure-state-ecqc-in-dimension-five).
+
 [Paper PDF](papers/physics/pure-ecqc/manuscript/manuscript.pdf) · [LaTeX](papers/physics/pure-ecqc/manuscript/manuscript.tex) · [Reproduction and source context](papers/physics/pure-ecqc/README.md) · [Citation](papers/physics/pure-ecqc/CITATION.bib)
 
 #### [Exact three-setting correlation bounds at fixed steering centre](papers/physics/steering-bounds/paper/steering_bounds.pdf)
@@ -485,6 +497,8 @@ A dimension-five pure-state matched-basis information inequality violation, with
 The exact least upper bound of the optimized three-setting squared correlation value is determined for every two-qubit steering-centre length. The threshold for a value greater than one is c < 2/3. Attainment, nonattainment and the singular marginal boundary are included.
 
 **Formal scope.** Actual two-qubit density matrices, canonical filters, Pauli correlations, the exact least upper bound, attainment and nonattainment, and fully entangled fraction are formalized. The steering-ellipsoid and optimized CJWR measurement interpretations use cited external correspondences; general steerability is outside the result.
+
+**Prior work.** The fully-entangled-fraction companion bound is Conjecture 2 of Milne et al.; the Omega Institute's public repository records a claimed Lean proof committed on 8 October 2026 (issue #14206), and a CHSH bound at fixed centre (issue #16558). No priority is claimed for the companion bound. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-steering-centre-bounds).
 
 [Paper PDF](papers/physics/steering-bounds/paper/steering_bounds.pdf) · [LaTeX](papers/physics/steering-bounds/paper/steering_bounds.tex) · [Citation](papers/physics/steering-bounds/CITATION.bib) · [Proof and reproduction](papers/physics/steering-bounds/README.md)
 
@@ -498,6 +512,8 @@ The entropy of the weighted three-by-three root-fidelity matrix bounds the Holev
 
 **Priority and subsequent correspondence.** On 29 October 2026, through correspondence with Dr. Wojciech Roga, I learned that another group had contacted him several days earlier claiming a solution of the same conjecture using AI and Lean. The two proofs have not been compared, and neither mathematical equivalence nor priority has been conclusively established. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#three-state-root-fidelity-entropy-bound).
 
+**Prior work.** On 31 October 2026, a check of public records found a claimed Lean proof of the same conjecture in the Omega Institute's public repository, first committed on 19 October 2026 (issue #19184), about nine days before my first commit. The proofs have not been compared; no priority is claimed. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-root-fidelity-entropy-bound).
+
 [Paper PDF](papers/physics/fidelity-three-state/manuscript.pdf) · [LaTeX](papers/physics/fidelity-three-state/manuscript.tex) · [Citation](papers/physics/fidelity-three-state/CITATION.bib) · [Proof and reproduction](papers/physics/fidelity-three-state/README.md)
 
 
@@ -508,6 +524,8 @@ The entropy of the weighted three-by-three root-fidelity matrix bounds the Holev
 The conditional hockey-stick contraction coefficient is determined exactly for every stochastic Pauli qubit channel and for depolarization throughout its physical parameter interval in every dimension. The formulas include all boundary cases and every hockey-stick parameter γ ≥ 1, with arbitrary finite quantum references.
 
 **Formal scope.** The exact conditional hockey-stick contraction coefficients are formalized for actual finite-reference density states, every stochastic Pauli qubit channel, the full physical signed depolarizing family in every dimension d ≥ 2, and every γ ≥ 1. Channel constructors, unrestricted upper bounds and matching supremum witnesses are included. Unital-qubit normal-form existence is cited; erasure-simulation and ensemble-guessing consequences retain conventional proofs.
+
+**Prior work.** The Omega Institute's public repository records a claimed general proof that the conditional hockey-stick coefficient does not depend on γ ≥ 1, committed on 16 October 2026 (issue #17637). The exact Pauli and depolarizing values here are not in that record. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-conditional-hockey-stick-contraction).
 
 [Paper PDF](papers/physics/quantum-exact-contraction/quantum_exact_contraction.pdf) · [LaTeX](papers/physics/quantum-exact-contraction/quantum_exact_contraction.tex) · [Citation](papers/physics/quantum-exact-contraction/CITATION.bib) · [Proof and reproduction](papers/physics/quantum-exact-contraction/README.md)
 

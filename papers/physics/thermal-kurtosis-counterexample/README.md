@@ -4,6 +4,10 @@ I publish an exact thermal current counterexample and its finite spectral proof 
 
 The complete result, proof, assumptions, and formal scope are in [the manuscript](report.pdf). The machine-checkable source is the single file `ThermalKurtosis.lean`.
 
+## Related public work
+
+On 31 October 2026, a check of public records found the Zenodo record [10.5281/zenodo.23689958](https://doi.org/10.5281/zenodo.23689958), created on 27 October 2026 at 12:29 UTC by an anonymous creator. It gives three-state, two-bath counterexamples to the signs of both C₃/C₁ and C₄/C₂ in Ptaszyński's conjecture, with both ratios unbounded below, so it goes further than this single counterexample. My first commit of this result is dated 27 October 2026 at 05:49 UTC, about 6 hours 40 minutes earlier. This is a chronological note, not a priority claim. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#zenodo-thermal-heat-current-kurtosis) gives the details.
+
 ## Result
 
 The two-temperature rate model with row generator

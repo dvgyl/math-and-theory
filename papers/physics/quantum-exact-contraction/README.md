@@ -4,6 +4,10 @@ I present in the [manuscript](quantum_exact_contraction.pdf) exact values of the
 
 For the two smallest Pauli probabilities a,b, the value is 1 − 8ab/(a+b), with value 1 when a=b=0. For negative depolarization λ=−s, it is s[1+(d²−1)s]/[1−(d²−3)s]; for λ≥0 it is λ. These formulas hold for every hockey-stick parameter γ≥1, including all ties and parameter boundaries.
 
+## Earlier public work
+
+On 31 October 2026, a check of public problem records found that the Omega Institute's public repository [the-omega-institute/trureturing](https://github.com/the-omega-institute/trureturing) records a claimed proof that, for every channel between finite systems, the conditional hockey-stick coefficient is optimized by orthogonal states and does not depend on γ ≥ 1 (issue #17637), committed on 16 October 2026 at 11:10 UTC. This general theorem covers the γ-independence of my formulas; it does not compute the exact Pauli and depolarizing values. I acknowledge this earlier general result. The proof, Lean formalization and verification record here are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#omega-conditional-hockey-stick-contraction) gives the dates and sources; a commit date does not by itself establish when it became public.
+
 ## Proof scope
 
 The Lean project constructs the actual channels, proves the upper bounds for arbitrary finite references, and supplies matching normalized density witnesses and the passage to the supremum. The Pauli theorem uses `PauliConditionalExact.every_pauli_channel`; the all-dimensional signed depolarizing theorem uses `DepolarizingExact.actual_full_channel`. The audit requests 42 transitive axiom reports. The standard foundations permitted are `propext`, `Classical.choice` and `Quot.sound`.

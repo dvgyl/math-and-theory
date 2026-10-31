@@ -21,6 +21,10 @@ I also prove that the maximum fully entangled fraction at fixed centre length is
 
 The formal objects are positive semidefinite complex matrices of size four with trace one. The partial traces, positive canonical filter, Pauli observables, actual witness matrices, least upper bound, and fully entangled fraction are explicit. The physical interpretation of the canonical centre and the measurement optimization for the CJWR expression use the cited external correspondences.
 
+## Earlier public work
+
+On 31 October 2026, a check of public problem records found that the Omega Institute's public repository [the-omega-institute/trureturing](https://github.com/the-omega-institute/trureturing) records a claimed Lean proof of my companion bound f(ρ) ≤ 1 − c/2, which is Conjecture 2 of Milne, Jennings, Jevtic and Rudolph, committed on 8 October 2026 at 12:27 UTC (issue #14206), and a proof of their Conjecture 1 on the CHSH value at fixed centre, committed on 14 October 2026 (issue #16558). My first commit is dated 29 October 2026. The CHSH bound concerns a different quantity from my three-setting theorem, which appears in neither record. I acknowledge the earlier public record and make no priority claim for the fully-entangled-fraction bound. The proof, Lean formalization and verification record here are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#omega-steering-centre-bounds) gives the dates and sources; a commit date does not by itself establish when it became public.
+
 ## Reproduction
 
 The project pins Lean 4.19.0 and Mathlib revision `c44e0c8ee63ca166450922a373c7409c5d26b00b`. All dependency revisions are in `dependency-pins.json` and `lake-manifest.json`.

@@ -31,3 +31,7 @@ bash build.sh
 ```
 
 To check package integrity from this directory, run `sha256sum -c SHA256SUMS`.
+
+## Earlier public work
+
+On 31 October 2026, a check of public problem records found that the Omega Institute's public repository [the-omega-institute/trureturing](https://github.com/the-omega-institute/trureturing) records the same counterexample: the state 5^(−1/2) Σₓ |x⟩|2x mod 5⟩ with the same six mutually unbiased bases, preregistered as issue #12896 and first committed on 4 October 2026 at 12:18 UTC, about 25 days before my first commit on 29 October 2026. I acknowledge this earlier public record and make no priority claim for the counterexample. The proof, Lean formalization and verification record here are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#omega-pure-state-ecqc-in-dimension-five) gives the dates and sources; a commit date does not by itself establish when it became public.

@@ -12,6 +12,8 @@ On 29 October 2026, following my correspondence with Dr. Wojciech Roga, one of t
 
 I acknowledge this competing claimed solution. I have not seen it, the two proofs have not been compared, and neither mathematical equivalence nor priority has been conclusively established. The proof, Lean formalization and verification record here are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#three-state-root-fidelity-entropy-bound) gives the details.
 
+On 31 October 2026, a check of public problem records found that the Omega Institute's public repository [the-omega-institute/trureturing](https://github.com/the-omega-institute/trureturing) records a claimed Lean proof of the same conjecture, first committed on 19 October 2026 at 23:57 UTC under issue #19184, about nine days before my first commit on 29 October 2026. The statements agree; the proofs have not been compared. I do not know whether this record is the competing claim Dr. Roga described. I acknowledge the earlier public record and make no priority claim. The proof, Lean formalization and verification record here are unchanged. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#omega-root-fidelity-entropy-bound) gives the dates and sources; a commit date does not by itself establish when it became public.
+
 ## Read and reproduce
 
 - Read the [manuscript PDF](manuscript.pdf) or [TeX source](manuscript.tex) for the complete mathematical argument.
