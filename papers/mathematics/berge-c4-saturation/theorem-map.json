@@ -1,0 +1,80 @@
+{
+  "paper": "manuscript.tex",
+  "lean_project": "lean",
+  "audited_declarations": [
+    "BergeC4.exists_saturated",
+    "BergeC4.satNumber_le_upper",
+    "BergeC4.glued_saturated",
+    "BergeC4.satNumber_small",
+    "BergeC4.satNumber_le_small"
+  ],
+  "results": [
+    {
+      "paper_label": "Section 1 (definitions)",
+      "declarations": [
+        "BergeC4.IsBergeC4",
+        "BergeC4.ContainsBergeC4",
+        "BergeC4.IsThreeUniform",
+        "BergeC4.IsBergeC4Saturated",
+        "BergeC4.satNumber"
+      ],
+      "scope": "Hypergraphs are finite families of finite sets on an arbitrary vertex type; a Berge-C4 has an injective vertex map and an injective hyperedge map from Fin 4 with v i, v (i + 1) in e i, and no inducedness or linearity condition; saturation quantifies over every absent three-element set; satNumber n is the least size of a saturated hypergraph on Fin n, isolated vertices included."
+    },
+    {
+      "paper_label": "lem:path (one direction) and Section 4 counting",
+      "declarations": [
+        "BergeC4.Path3",
+        "BergeC4.containsBergeC4_insert_of_path3",
+        "BergeC4.PathSaturated",
+        "BergeC4.isBergeC4Saturated_of_pathSaturated",
+        "BergeC4.ContainsBergeC4.four_le_card",
+        "BergeC4.not_containsBergeC4_of_hubs"
+      ],
+      "scope": "Closing a three-edge Berge path by an absent set containing its ends gives a Berge-C4; a Berge-C4 uses four distinct hyperedges and four vertices each lying in two distinct hyperedges."
+    },
+    {
+      "paper_label": "lem:base, lem:glue",
+      "declarations": [
+        "BergeC4.not_containsBergeC4_of_pieces",
+        "BergeC4.path3_of_reach",
+        "BergeC4.pathSaturated_of_pieces",
+        "BergeC4.glued",
+        "BergeC4.glued_saturated",
+        "BergeC4.exists_saturated_of_base"
+      ],
+      "scope": "General rooted gluing for any base on Fin n0 and any three-edge block on Fin 5 satisfying the stated hypotheses; Lemma lem:base is used only for the four explicit bases and the block, whose hypotheses are kernel-checked."
+    },
+    {
+      "paper_label": "thm:main (upper bound)",
+      "declarations": [
+        "BergeC4.base9L",
+        "BergeC4.base10L",
+        "BergeC4.base11L",
+        "BergeC4.base12L",
+        "BergeC4.blockL",
+        "BergeC4.exists_saturated",
+        "BergeC4.satNumber_le_upper"
+      ],
+      "scope": "For every n >= 9 a saturated hypergraph on Fin n with (3n - 6)/4 = ceil((3n - 9)/4) hyperedges (natural-number division)."
+    },
+    {
+      "paper_label": "thm:small (n <= 5) and the upper bounds for n = 6, 7, 8",
+      "declarations": [
+        "BergeC4.three_le_card_of_saturated",
+        "BergeC4.one_le_card_of_saturated",
+        "BergeC4.satNumber_small",
+        "BergeC4.satNumber_le_small"
+      ],
+      "scope": "satNumber n = 0, 0, 0, 1, 3, 3 for n = 0..5 and satNumber 6 <= 4, satNumber 7 <= 4, satNumber 8 <= 5."
+    }
+  ],
+  "conventional": [
+    "thm:main (lower bound: lem:basic, lem:shadow, lem:pendant, lem:local, lem:sqrt, lem:cycle, lem:degree)",
+    "thm:cone (classification and size spectrum of saturated cones)",
+    "cor:interval",
+    "thm:root"
+  ],
+  "certificates": [
+    "thm:small (lower bounds for 6 <= n <= 13 and the two classes at n = 11): certificate/data, checked by certificate/verify_profiles.cpp"
+  ]
+}

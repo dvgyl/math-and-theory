@@ -339,8 +339,12 @@ jobs:
             project: lean
           - package: berge-triangle-spectrum
             root: papers/mathematics/berge-triangle-spectrum
+            project: lean
           - package: berge-path-saturation
             root: papers/mathematics/berge-path-saturation
+            project: lean
+          - package: berge-c4-saturation
+            root: papers/mathematics/berge-c4-saturation
             project: lean
           - package: matrix-pencil-completion
             root: papers/mathematics/matrix-pencil-completion
@@ -416,6 +420,11 @@ jobs:
             lake build BergePath BergePath.AxiomAudit 2>&1 | tee "${RUNNER_TEMP}/berge-path-build.log"
             python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/berge-path-build.log" --project . --output "${RUNNER_TEMP}/berge-path-axioms.json"
             python3 ../certificate/check_witness.py
+          elif [[ '${{ matrix.package }}' == 'berge-c4-saturation' ]]; then
+            lake build BergeC4 BergeC4.AxiomAudit 2>&1 | tee "${RUNNER_TEMP}/berge-c4-build.log"
+            python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/berge-c4-build.log" --project . --output "${RUNNER_TEMP}/berge-c4-axioms.json"
+            python3 ../certificate/check_construction.py
+            python3 ../certificate/run_certificates.py --skip-m7
           elif [[ '${{ matrix.package }}' == 'matrix-pencil-completion' ]]; then
             command -v rg >/dev/null || { sudo apt-get update && sudo apt-get install --yes ripgrep; }
             bash verify.sh

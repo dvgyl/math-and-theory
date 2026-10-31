@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**47 manuscripts and research notes across 46 result families in mathematics, theoretical computer science, and mathematical physics.**
+**48 manuscripts and research notes across 47 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -150,6 +150,18 @@ English, Graber, Kirkpatrick, Methuku and Sullivan conjectured that the three-un
 **Prior work.** [English, Graber, Kirkpatrick, Methuku and Sullivan, arXiv:1710.03735v1, Conjecture 2.4.](https://arxiv.org/abs/1710.03735v1)
 
 [Paper PDF](papers/mathematics/berge-path-saturation/manuscript.pdf) · [LaTeX](papers/mathematics/berge-path-saturation/manuscript.tex) · [Proof and reproduction](papers/mathematics/berge-path-saturation/README.md) · [Citation](papers/mathematics/berge-path-saturation/CITATION.bib)
+
+#### [Three-uniform Berge-C₄ saturation: linear bounds with coefficients 5/8 and 3/4, the cone spectrum and exact small values](papers/mathematics/berge-c4-saturation/manuscript.pdf)
+
+**Family:** `berge-c4-saturation`.
+
+The three-uniform Berge-C₄ saturation number s(n), in which any absent triple may be added, satisfies max(⌈(n − 1)/2⌉, ⌈(5n − 3623)/8⌉, ⌈(5n + 89)/8 − √(270n + 1891)/4⌉) ≤ s(n) ≤ ⌈(3n − 9)/4⌉ for every n ≥ 9, so 5/8 ≤ liminf s(n)/n ≤ limsup s(n)/n ≤ 3/4; the previous explicit upper bound was n − 2. The preprint classifies the saturated cones for n ≥ 5, whose sizes are exactly the integers from ⌈(3n − 5)/4⌉ to n − 2 together with n − 1 when n ≡ 1 (mod 3), proves that a vertex reached from every other vertex by paths of lengths one and two forces 3(n − 1)/4 hyperedges, and gives s(n) for n ≤ 13 from exhaustive certificates.
+
+**Formal scope.** Lean 4.35.0 proves, for actual three-uniform hypergraphs, Berge-C₄s with distinct vertices and hyperedges, and saturation under every absent triple, that a saturated hypergraph with ⌈(3n − 9)/4⌉ hyperedges exists for every n ≥ 9, together with the exact values for n ≤ 5. The lower bound, the cone results and the flexible-root theorem are conventional; the values for 6 ≤ n ≤ 13 rest on certificates checked by an independent C++ verifier.
+
+**Prior work.** [English, Graber, Kirkpatrick, Methuku and Sullivan, arXiv:1710.03735v1, Theorem 5.7.](https://arxiv.org/abs/1710.03735v1) · [English, Gerbner, Methuku and Tait, 2019.](https://arxiv.org/abs/1807.06947)
+
+[Paper PDF](papers/mathematics/berge-c4-saturation/manuscript.pdf) · [LaTeX](papers/mathematics/berge-c4-saturation/manuscript.tex) · [Proof and reproduction](papers/mathematics/berge-c4-saturation/README.md) · [Citation](papers/mathematics/berge-c4-saturation/CITATION.bib)
 
 ### Inequalities and real analysis
 

@@ -1,0 +1,645 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Three-uniform Berge-$C_4$ saturation}
+\fancyhead[R]{\small Dev D. Goyal}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\hypersetup{pdftitle={Three-uniform Berge-C4 saturation: linear bounds with coefficients 5/8 and 3/4, the cone spectrum and exact small values},
+pdfauthor={Dev D. Goyal},
+pdfsubject={Fully autonomous agentic research},
+pdfkeywords={Berge hypergraphs, Berge cycles, saturation numbers, three-uniform hypergraphs, saturation spectrum, Lean 4}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\sat}{\operatorname{sat}}
+\newcommand{\codeg}{\operatorname{codeg}}
+\title{\textbf{Three-uniform Berge-$C_4$ saturation:\\ linear bounds with coefficients $5/8$ and $3/4$,\\ the cone spectrum and exact small values}}
+\author{Dev D. Goyal}
+\date{31 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $s(n)=\sat_3(n,\text{Berge-}C_4)$ be the least number of hyperedges of
+a three-uniform hypergraph on $n$ vertices that contains no Berge
+four-cycle but contains one after any absent triple is added. Neither the
+hypergraph nor the added triple is required to be linear. English,
+Graber, Kirkpatrick, Methuku and Sullivan showed $s(n)\le n-2$ for
+$n\ge7$, and English, Gerbner, Methuku and Tait showed that $s(n)$ grows
+linearly. We prove that for every $n\ge9$
+\[
+\max\Bigl(\Bigl\lceil\tfrac{n-1}{2}\Bigr\rceil,\Bigl\lceil\tfrac{5n-3623}{8}\Bigr\rceil,
+\Bigl\lceil\tfrac{5n+89}{8}-\tfrac{\sqrt{270n+1891}}{4}\Bigr\rceil\Bigr)
+\le s(n)\le\Bigl\lceil\tfrac{3n-9}{4}\Bigr\rceil ,
+\]
+so that $5/8\le\liminf s(n)/n\le\limsup s(n)/n\le3/4$. We also classify
+the saturated hypergraphs in which one vertex lies in every hyperedge
+(cones) for $n\ge5$ and determine their sizes: exactly the integers from
+$\lceil(3n-5)/4\rceil$ to $n-2$, together with $n-1$ when $n\equiv1\pmod
+3$. Hence every integer in $[\lceil(3n-9)/4\rceil,n-2]$ is the size of a
+saturated hypergraph. A vertex $r$ such that every other vertex has both
+a one-edge and a two-edge Berge path to $r$ forces at least $3(n-1)/4$
+hyperedges, with equality exactly for bouquets of three-edge blocks.
+Exhaustive certificates give $s(n)$ for $n\le13$. Lean~4 proves the upper
+bound for every $n\ge9$, for actual hypergraphs, Berge cycles and
+saturation under every absent triple, and the values $s(n)$ for $n\le5$;
+the lower bound, the cone results and the values for $6\le n\le13$ have
+conventional proofs or checked certificates.
+\end{abstract}
+
+\section{Definitions and results}
+
+All hypergraphs are simple and three-uniform, and the vertex set may
+contain isolated vertices. A \emph{Berge-$C_4$} in $H$ consists of four
+distinct vertices $v_0,v_1,v_2,v_3$ and four distinct hyperedges
+$e_0,e_1,e_2,e_3$ of $H$ with $\{v_i,v_{i+1}\}\subseteq e_i$, indices
+modulo~$4$; a hyperedge may contain further cycle vertices. A \emph{Berge
+path of length $\ell$} has distinct vertices $v_0,\dots,v_\ell$ and
+distinct hyperedges $e_1,\dots,e_\ell$ with $\{v_{i-1},v_i\}\subseteq e_i$.
+A hypergraph $H$ is \emph{saturated} if it contains no Berge-$C_4$ but
+$H+f$ contains one for every three-element set $f\notin E(H)$. This is
+the unrestricted notion of~\cite{EGKMS}: $f$ may share two vertices with
+a hyperedge of $H$. We write $s(n)$ for the least number of hyperedges of
+a saturated hypergraph on $n$ vertices.
+
+English, Graber, Kirkpatrick, Methuku and Sullivan~\cite[Theorem~5.7]{EGKMS}
+gave the upper bound $s(n)\le n-2$ for $n\ge7$, and English, Gerbner,
+Methuku and Tait~\cite{EGMT} proved $\sat_k(n,\text{Berge-}F)=O(n)$ for
+every graph $F$ and $3\le k\le5$. The elementary lower bound
+$s(n)\ge\lceil(n-1)/2\rceil$ follows from connectivity
+(Lemma~\ref{lem:basic}). Wang and Zhang~\cite{WZ} studied the different
+\emph{linear} saturation problem, in which $H$ is linear and only additions
+preserving linearity are tested.
+
+\begin{theorem}\label{thm:main}
+For every $n\ge4$,
+\begin{equation}\label{eq:lower}
+5n\le 8s(n)+3623\qquad\text{and}\qquad 5n\le 8s(n)+2\sqrt{432\,s(n)+1}+19,
+\end{equation}
+and $s(n)\ge\lceil(n-1)/2\rceil$. For every $n\ge9$,
+$s(n)\le\lceil(3n-9)/4\rceil$. Consequently, for $n\ge9$, $s(n)$ lies
+between the maximum displayed in the abstract and $\lceil(3n-9)/4\rceil$,
+and $5/8\le\liminf s(n)/n\le\limsup s(n)/n\le 3/4$.
+\end{theorem}
+
+The square-root form of~\eqref{eq:lower} inverts to the third term of the
+abstract (Section~\ref{sec:lower}); it is the better of the two for
+$n\le12751$. We do not know whether $s(n)/n$ converges.
+The constants in~\eqref{eq:lower} are not optimized.
+
+A \emph{cone} is a hypergraph with a vertex $r$ in every hyperedge. Its
+\emph{link} is the graph $G$ on $V\setminus\{r\}$ with $xy\in E(G)$ when
+$rxy\in E(H)$. Write $D(p,q)$ for the double star with adjacent centres
+carrying $p\ge1$ and $q\ge1$ leaves, $K_{1,t}$ for the star with $t$
+edges and $K_3$ for the triangle.
+
+\begin{theorem}\label{thm:cone}
+Let $n\ge5$ and let $H$ be a cone on $n$ vertices with link $G$. Then $H$
+is saturated if and only if either $G$ has no isolated vertex and its
+components are double stars, triangles and at most one star $K_{1,t}$ with
+$t=1$ or $t\ge3$, or $G$ has exactly one isolated vertex and all other
+components are triangles. The sizes of saturated cones on $n$ vertices
+are exactly the integers in $[\lceil(3n-5)/4\rceil,\,n-2]$, together with
+$n-1$ when $n\equiv1\pmod3$.
+\end{theorem}
+
+\begin{corollary}\label{cor:interval}
+For $n\ge9$ every integer in $[\lceil(3n-9)/4\rceil,\,n-2]$, a set of
+$\lfloor(n+5)/4\rfloor$ integers, is the size of a saturated hypergraph on
+$n$ vertices. The construction of Theorem~\ref{thm:main} has one hyperedge
+fewer than the smallest saturated cone.
+\end{corollary}
+
+\begin{theorem}\label{thm:root}
+Let $H$ be a three-uniform hypergraph on $n$ vertices with a vertex $r$
+such that every other vertex has a one-edge and a two-edge Berge path to
+$r$. Then $|E(H)|\ge3(n-1)/4$, with equality exactly when $H$ is a union of
+blocks $\{r,b,c\},\{r,b,x\},\{r,c,y\}$ that are pairwise disjoint outside
+$r$.
+\end{theorem}
+
+Theorem~\ref{thm:root} needs neither freeness nor saturation. It shows
+that the gluing interface of Section~\ref{sec:upper} cannot beat the
+coefficient $3/4$; it is not a lower bound for $s(n)$.
+
+\begin{theorem}\label{thm:small}
+For $n=0,1,\dots,13$,
+\[
+s(n)=0,0,0,1,3,3,4,4,5,5,6,6,7,8 .
+\]
+At $n=11$ there are exactly two saturated hypergraphs with six hyperedges
+up to isomorphism, $\{023,034,123,156,278,\{3,9,10\}\}$ and
+$\{012,023,045,126,178,\{2,9,10\}\}$.
+\end{theorem}
+
+The values agree with $\lceil(3n-9)/4\rceil$ for $9\le n\le13$; whether
+$s(n)=\lceil(3n-9)/4\rceil$ for all $n\ge9$ is open.
+
+\section{Basic facts}\label{sec:basic}
+
+\begin{lemma}[path criterion]\label{lem:path}
+Let $H$ contain no Berge-$C_4$ and let $f\notin E(H)$ be a triple. Then
+$H+f$ contains a Berge-$C_4$ if and only if two vertices of $f$ are the
+ends of a Berge path of length three in $H$.
+\end{lemma}
+
+\begin{proof}
+A Berge-$C_4$ in $H+f$ uses $f$; deleting $f$ from it leaves a path of
+length three whose ends lie in $f$. Conversely, closing such a path by $f$
+gives a Berge-$C_4$, since $f$ differs from the hyperedges of $H$; the
+third vertex of $f$ may lie on the path.
+\end{proof}
+
+A \emph{leaf} is a vertex of degree one. For a saturated $H$ on $n\ge4$
+vertices no hyperedge has three leaves: two of them with an outside vertex
+form an absent triple, and no Berge path of length three can end at a leaf
+of such a hyperedge and at a vertex outside it, nor join two of its
+leaves. A hyperedge with exactly two leaves is \emph{pendant}; $t$ denotes
+the number of pendant hyperedges.
+
+\begin{lemma}\label{lem:basic}
+Let $H$ be saturated on $n\ge4$ vertices with $m$ hyperedges. Then $H$ has
+at most one isolated vertex and at most two components. If $H$ is
+disconnected, it has no leaf and $3m\ge2(n-1)$. In all cases
+$m\ge\lceil(n-1)/2\rceil$.
+\end{lemma}
+
+\begin{proof}
+If $x,y,z$ lie in three different components (isolated vertices
+included), the triple $xyz$ is absent and no path joins two of its
+vertices, contradicting Lemma~\ref{lem:path}. Suppose $H$ has two
+components, and let $u,v$ lie in one of them and $w$ in the other. The
+triple $uvw$ is absent and only $u,v$ can be joined, so every pair of
+vertices in a common component is joined by a path of length three.
+Then no component contains a leaf $x$ with hyperedge $xab$: a path of
+length three from $a$ to $b$ cannot use $xab$ (at an end it would continue
+from the leaf $x$, in the middle it would need two internal vertices in
+$\{x\}$), and a path avoiding $xab$ closes with $xab$ to a Berge-$C_4$ in
+$H$. So at most one vertex (an isolated one) has degree below two, and
+$3m\ge2(n-1)$. If $H$ is connected, its incidence graph is connected,
+so $n+m-1\le 3m$, that is, $m\ge(n-1)/2$.
+\end{proof}
+
+\begin{lemma}\label{lem:shadow}
+If $H$ contains no Berge-$C_4$, its shadow (the graph of pairs covered by
+hyperedges) contains no $K_5$.
+\end{lemma}
+
+\begin{proof}
+First, four distinct triples $J$ inside a five-set $S$ always contain a
+Berge-$C_4$. The degrees sum to $12$. If a vertex $r$ has degree four, its
+link has four edges on four vertices, hence contains a path $abcd$; the
+fourth link edge is $ac$, $ad$ or $bd$, and the triples for $ac$ (or $ad$),
+$ab$, $bc$, $cd$ give the cycle $r,a,b,c$, while for $bd$ the reversed path
+gives $r,d,c,b$. If some vertex has degree zero, all four triples on the
+other four vertices are present and contain a Berge-$C_4$. If $z$ has
+degree one, the other three triples are, up to renaming, $abc,abd,acd$, and
+$z$'s triple contains $ab$ or $bc$; the cores $a,b,c,d$ and $b,c,a,d$ use
+$z$'s triple, $abc$, $acd$, $abd$ in that order. The remaining degree
+sequence is $(3,3,2,2,2)$; the complements of the four triples in $S$ form
+a graph with degrees $(1,1,2,2,2)$, which is $P_5$ or a triangle plus a
+disjoint edge. For $P_5=12345$ the triples are $345,145,125,123$ and the
+core $1,2,3,4$ uses $125,123,345,145$; for the triangle $123$ and edge
+$45$ the triples are $345,145,245,123$ and the core $1,2,4,5$ uses
+$123,245,345,145$.
+
+Now let the shadow contain $K_5$ on $S=\{1,\dots,5\}$, let $T$ be the set
+of hyperedges inside $S$, and assume $|T|\le3$. Every pair of $S$ not
+covered by $T$ is covered by a hyperedge meeting $S$ in exactly that pair,
+and distinct pairs give distinct hyperedges. Up to relabelling, the
+following cases exhaust $T$; each row gives a core and four distinct
+covering hyperedges in cyclic order, where a two-digit entry is the
+hyperedge chosen for that pair:
+\begin{center}\small
+\begin{tabular}{lll}
+\toprule
+$T$ & core & hyperedges\\
+\midrule
+$\emptyset$ & $1,2,3,4$ & $12;23;34;14$\\
+$123$ & $1,2,4,5$ & $123;24;45;15$\\
+$123,124$ & $1,2,3,5$ & $124;123;35;15$\\
+$123,145$ & $2,3,4,5$ & $123;34;145;25$\\
+$123,124,125$ & $1,2,3,4$ & $125;123;34;124$\\
+$123,124,134$ & $1,2,3,5$ & $124;123;35;15$\\
+$123,124,135$ & $1,2,4,3$ & $123;124;34;135$\\
+$123,124,345$ & $1,2,3,5$ & $124;123;345;15$\\
+\bottomrule
+\end{tabular}
+\end{center}
+(For $|T|=3$ the complements of the triples form a triangle, a star, a
+path $P_4$ or a path $P_3$ plus an edge.) Each case contains a Berge-$C_4$.
+\end{proof}
+
+\begin{lemma}\label{lem:pendant}
+A saturated hypergraph on $n\ge4$ vertices has at most four pendant
+hyperedges.
+\end{lemma}
+
+\begin{proof}
+Let $axy$ be pendant with leaves $x,y$. No path of length three joins $x$
+and $y$. For $z\notin\{a,x,y\}$ the absent triple $xyz$ therefore needs a
+path of length three from $x$ or $y$ to $z$, which starts with $axy$ and
+passes to $a$. If $z$ is a leaf of a second pendant hyperedge $bzw$, this
+path ends with $bzw$, so its middle hyperedge contains $a$ and $b$, and
+$a\ne b$. The attachment vertices of pendant hyperedges are therefore
+distinct and pairwise covered in the shadow, so Lemma~\ref{lem:shadow}
+allows at most four.
+\end{proof}
+
+Four is attained: the triples $012,013,023$ with one pendant triple at each
+of $0,1,2,3$ form a saturated hypergraph on $12$ vertices.
+
+\section{The upper construction}\label{sec:upper}
+
+Let $r,b,c$ be vertices and $X,Y$ disjoint nonempty sets of further
+vertices. For $Q\subseteq\{r,b,c\}$ let $H(X,Y,Q)$ have the hyperedges
+$E_0=rbc$, $E_x=rbx$ ($x\in X$), $F_y=rcy$ ($y\in Y$) and, for each $u\in Q$,
+one pendant triple $u\,p_u\,q_u$ with two new vertices. The \emph{block}
+is $B=H(\{x\},\{y\},\emptyset)=\{rbc,rbx,rcy\}$.
+
+\begin{lemma}\label{lem:base}
+$H(X,Y,Q)$ is saturated. Every non-root vertex of $H(X,Y,Q)$ has a
+one-edge or a two-edge path to $r$, and every non-root vertex of $B$ has
+both.
+\end{lemma}
+
+\begin{proof}
+Only $r,b,c$ have degree at least two, and the four vertices of a
+Berge-$C_4$ have degree at least two, so there is none. Call the other
+vertices leaves. Two leaves in different hyperedges are joined through
+$E_0$ by choosing distinct core vertices in their own hyperedges (two
+pendant hyperedges have different attachments). A vertex $x\in X$ reaches
+the three core vertices by $x,E_x,b,E_0,c,F_y,r$; $x,E_x,r,F_y,c,E_0,b$;
+$x,E_x,b,E_0,r,F_y,c$, and symmetrically for $Y$. A pendant leaf at $u$
+reaches each other core vertex $z$ through $u,w,z$ with $w$ the third core
+vertex, using $E_0$ for one step and $E_x$ or $F_y$ for the other. Every
+absent triple contains one of these pairs, or consists of a pendant leaf,
+its sibling and its attachment (a present hyperedge), or is $rbc$ (present).
+Lemma~\ref{lem:path} applies. The path statements are immediate: $b,c,X,Y$
+and leaves at $r$ are adjacent to $r$; a leaf at $b$ or $c$ reaches $r$
+through its attachment and $E_0$; in $B$ the two-edge paths are
+$b,c,r$; $c,b,r$; $x,b,r$; $y,c,r$.
+\end{proof}
+
+\begin{lemma}[rooted gluing]\label{lem:glue}
+Glue one $H(X,Y,Q)$ and any number of copies of $B$ at $r$, disjointly
+otherwise. The result is saturated.
+\end{lemma}
+
+\begin{proof}
+Every hyperedge has its non-root vertices in one piece. Around a
+Berge-$C_4$ at most one vertex is $r$, and each other cycle vertex lies
+in two consecutive cycle hyperedges, so all four hyperedges lie in one
+piece; pieces are free (a block has only three hyperedges). An absent
+triple inside one piece and $r$ is handled by that piece. Otherwise it
+contains non-root vertices $u,w$ of different pieces; one of them lies in
+a block, so one has a one-edge and the other a two-edge path to $r$, and
+the concatenation is a path of length three because the pieces share only
+$r$.
+\end{proof}
+
+\begin{proof}[Proof of the upper bound in Theorem~\ref{thm:main}]
+For $n\ge9$ let $n_0\in\{9,10,11,12\}$ with $n_0\equiv n\pmod4$ and take
+$|X|,|Y|,|Q|=(1,1,2),(2,1,2),(1,1,3),(2,1,3)$, a base with $n_0$ vertices
+and $5,6,6,7$ hyperedges. Gluing $(n-n_0)/4$ blocks adds four vertices and
+three hyperedges each, which gives $\lceil(3n-9)/4\rceil$ hyperedges.
+\end{proof}
+
+The construction is formalized for every $n\ge9$
+(Section~\ref{sec:lean}). The four bases used there are
+$\{012,013,024,056,178\}$,
+$\{012,013,014,025,067,189\}$,
+$\{012,013,024,056,178,\{2,9,10\}\}$ and
+$\{012,013,014,025,067,\{1,8,9\},\{2,10,11\}\}$ with root $0$.
+
+\section{The lower bound}\label{sec:lower}
+
+Let $H$ be saturated on $n\ge4$ vertices with $m$ hyperedges. A
+\emph{one-leaf hyperedge} $abx$ has a leaf $x$ and $\deg a,\deg b\ge2$.
+Call $x$ \emph{bad} if $\codeg(a,b)=1$ and \emph{good} otherwise; $q$
+counts bad leaves. A good leaf is \emph{supported} if some hyperedge
+containing $a,b$ has no leaf, and \emph{unsupported} otherwise; $A$ and
+$B$ count supported and unsupported good leaves. There are $A+B+q+2t$
+leaves.
+
+\begin{lemma}\label{lem:local}
+Each vertex $a$ lies in at most six hyperedges $ab_ix_i$ with $x_i$ a bad
+leaf.
+\end{lemma}
+
+\begin{proof}
+The $b_i$ are distinct. Join $b_i$ and $b_j$ in an auxiliary graph $T$
+when some hyperedge contains both. If $b_ib_j,b_jb_k\in T$ through
+different hyperedges $f,g$, then $a,b_i,b_j,b_k$ with $ab_ix_i,f,g,ab_kx_k$
+is a Berge-$C_4$ (the hyperedge $ab_ix_i$ contains no other $b_j$). So $f=g=
+b_ib_jb_k$, and no further vertex is adjacent to this triangle: the
+components of $T$ have at most three vertices. A path of length three
+from $x_i$ to $x_j$ starts with $ab_ix_i$, ends with $ab_jx_j$, and its
+middle hyperedge must contain $b_ib_j$ (a middle hyperedge through $a$
+and $b_i$ or $b_j$ would repeat an end hyperedge because the codegrees are
+one); conversely $b_ib_j\in T$ gives such a path. Bad leaves from three
+components of $T$ would form an absent triple with no joined pair. So $T$
+has at most two components and at most six vertices.
+\end{proof}
+
+\begin{lemma}\label{lem:sqrt}
+$q(q-2)\le432m$ and $q\le1803$.
+\end{lemma}
+
+\begin{proof}
+Let $P$ be the graph on bad leaves joined by paths of length three. Any
+three bad leaves form an absent triple, so the complement of $P$ is
+triangle-free and Mantel's theorem gives $|E(P)|\ge\binom q2-\lfloor
+q^2/4\rfloor\ge q(q-2)/4$. A joined pair has a middle hyperedge $g$ and
+internal vertices $a,b\in g$, and each end leaf lies in a bad-leaf
+hyperedge through $a$ or $b$. By Lemma~\ref{lem:local} a pair $a,b$
+accounts for at most $36$ pairs of leaves, a hyperedge for at most
+$108$, so $|E(P)|\le108m$ and $q(q-2)\le432m$.
+
+For the absolute bound, let $w_a\in[1,6]$ be the number of bad-leaf
+hyperedges through a core endpoint $a$; then $D=\sum w_a=2q$. Process the
+shadow pairs among core endpoints in order of decreasing weight $w_aw_b$,
+assigning each to a still unused hyperedge containing it when one exists.
+The graph $F$ of assigned pairs has no four-cycle (its assigned hyperedges
+would form a Berge-$C_4$). An unassigned pair $p$ lies only in hyperedges
+already assigned to pairs of weight at least that of $p$, and a
+hyperedge contains three pairs; hence the total shadow weight is at most
+$3W$ with $W=\sum_{ab\in F}w_aw_b$. With $z_v=\sum_{u\sim v}w_u$, the
+weighted Cauchy--Schwarz inequality gives $\sum_vw_vz_v^2\ge4W^2/D$. Two
+vertices of $F$ have at most one common neighbour, of weight at most six,
+so $\sum_vw_v(z_v^2-\sum_{u\sim v}w_u^2)\le 12\sum_{a<b}w_aw_b\le6D^2$,
+while $\sum_vw_v\sum_{u\sim v}w_u^2=\sum_{ab\in F}w_aw_b(w_a+w_b)\le12W$.
+Thus $W^2-6qW-12q^3\le0$ and $W\le3q+q\sqrt{9+12q}$. Every edge of $P$ has
+its middle pair in the shadow of the core endpoints, and a pair $ab$
+accounts for at most $w_aw_b$ edges of $P$, so $q(q-2)/4\le3W$. Dividing
+by $q$ gives $q\le38+12\sqrt{12q+9}$, and for $q>38$ squaring gives
+$q^2-1804q+148\le0$, which fails for every integer $q\ge1804$.
+\end{proof}
+
+For connected $H$ let $\beta=2m-n+1$ be the cycle rank of the incidence
+graph over $\mathbb F_2$, and $\Delta=\sum_{\deg v\ge2}(\deg v-2)$.
+
+\begin{lemma}\label{lem:cycle}
+If $H$ is connected, $\beta\ge A+2B/3$.
+\end{lemma}
+
+\begin{proof}
+Group good-leaf hyperedges by their pair $ab$. In a supported group fix a
+leafless hyperedge on $ab$ as reference; in an unsupported group (all
+hyperedges on $ab$ are good-leaf hyperedges, at least two) fix one of them.
+Delete all non-reference good-leaf hyperedges with their leaves. Each
+deletion removes two nodes and three edges of the incidence graph without
+disconnecting it, so it lowers the cycle rank by one: with $g$ unsupported
+groups and reduced hypergraph $R$, $\beta(H)=\beta(R)+A+B-g$.
+
+For an unsupported group $abx,aby$ of size two, the triple $axy$ is
+absent, $x$ and $y$ are not joined (the middle hyperedge would contain
+$ab$), so $a$ is joined to $x$ or $y$; removing the leaf's hyperedge gives
+a two-edge path from $a$ to $b$ avoiding the group. Replacing deleted
+hyperedges on this path by their references keeps a genuine two-edge path
+(a common reference would be a leafless hyperedge on $ab$). With the
+retained reference on $ab$ it forms a cycle of $R$ through three
+hyperedges. Project the cycle space of $R$ onto one incidence coordinate
+of each of the $g_2$ references of size-two groups. Each chosen cycle
+contains its own coordinate and at most three coordinates, so the span has
+dimension at least $g_2/3$. Hence $\beta(H)\ge A+\sum(k-1)+g_2/3$ over
+unsupported groups of sizes $k$, and $k-1+[k=2]/3\ge2k/3$.
+\end{proof}
+
+\begin{lemma}\label{lem:degree}
+$\Delta\ge A/2+2B/3$.
+\end{lemma}
+
+\begin{proof}
+Let $E=abx$ be a good-leaf hyperedge and $F=aby$ another hyperedge on $ab$.
+If $a$ and $b$ both have degree two, no pair of the absent triple $axy$ is
+joined: a path of length three from $x$ starts with $E$ and continues with
+$F$ through $a$ or $b$, after which only $y$ or a vertex of $E$ remains and
+no third hyperedge is available; a path between $a$ and $y$ starts with
+$E$ or $F$, passes through $b$ and then through the other of $E,F$, and
+again stops. So one of $a,b$ has degree at least three. In an unsupported
+group $abx,aby$ of size two, if $a$ had degree two, again $axy$ would have
+no joined pair: $x$ and $y$ are not joined because a third hyperedge on $ab$
+is missing, and a path from $x$ to $a$ would run $x,b$ and end with $aby$,
+needing a middle hyperedge from $b$ to the leaf $y$; similarly for $y$.
+Larger unsupported groups give degree at least three directly. Charge each supported good leaf $1/2$ to
+its endpoints of degree at least three (split equally) and each
+unsupported good leaf $1/3$ to each endpoint. A vertex of degree $d\ge4$
+receives at most $d/2\le d-2$. A vertex of degree three in at most two
+good-leaf hyperedges receives at most one; if all three of its hyperedges
+are good-leaf hyperedges, they form one unsupported group of size three
+and it receives exactly one. So no vertex receives more than $\deg v-2$.
+\end{proof}
+
+\begin{proof}[Proof of the lower bound in Theorem~\ref{thm:main}]
+If $H$ is disconnected, Lemma~\ref{lem:basic} gives $m\ge2(n-1)/3$, which
+implies~\eqref{eq:lower}. If $H$ is connected, it has no isolated vertex
+and counting incidences gives $2n=3m+A+B+q+2t-\Delta$. With
+Lemma~\ref{lem:degree} this gives $2n\le3m+A/2+B/3+q+2t$, and
+Lemma~\ref{lem:cycle} gives $n\le2m+1-A-2B/3$. Adding twice the first to
+the second,
+\[
+5n\le8m+2q+4t+1 .
+\]
+Lemma~\ref{lem:pendant} gives $t\le4$, and Lemma~\ref{lem:sqrt} gives
+$q\le1803$ and $q\le1+\sqrt{432m+1}$, which yield the two inequalities.
+For the third term of the abstract put $x=\sqrt{432m+1}$; the second
+inequality becomes $(x+54)^2\ge270n+1891$, so
+$x\ge\sqrt{270n+1891}-54>0$, and squaring and substituting
+$m=(x^2-1)/432$ gives $m\ge(5n+89)/8-\sqrt{270n+1891}/4$.
+\end{proof}
+
+\section{Cones}\label{sec:cones}
+
+\begin{proof}[Proof of Theorem~\ref{thm:cone}]
+A Berge-$C_4$ in a cone with root $r$ either avoids $r$ (a $C_4$ in $G$)
+or has core $r,a,b,c$ and link edges $ax,ab,bc,cy$ with $x,y\ne b$; then
+$x=c$ or $y=a$ gives a paw, $x=y$ a $C_4$ and $x\ne y$ a $P_5$. Conversely
+$P_5$, $C_4$ and the paw give Berge-$C_4$s. So $H$ is free if and only if
+$G$ contains no $P_5$, $C_4$ or paw, that is, every component is a star,
+a double star, a triangle or an isolated vertex. A Berge path whose ends
+lie in $\{r\}$ and one component stays in that component.
+
+A component $K_{1,2}$ with leaves $x,y$ fails at the triple $rxy$. A star
+centre has no path of length two or three to $r$, so two star components
+fail at $ruv$ for their centres. An isolated vertex $z$ requires every pair
+of other vertices to be joined; this fails for a star centre and $r$, for
+a double-star centre and $r$, and for a second isolated vertex. These
+cases give necessity. For sufficiency, each allowed component with $r$ is
+saturated: $K_{1,1}$ trivially, $K_{1,t}$ ($t\ge3$) through a third leaf,
+$K_3$ because the cone is $K_4^{(3)}$ minus one triple, and $D(p,q)$ by
+Lemma~\ref{lem:base} with $Q=\emptyset$. Every vertex of a double star or
+triangle has paths of lengths one and two to $r$, every vertex of a star
+one of length one, so triples meeting two components are closed through
+$r$; with an isolated vertex all pairs in the triangles are joined.
+
+For the sizes, put $N=n-1$. Without an isolated vertex let $\tau$ be the
+number of tree components; then $m=N-\tau$, every tree has at least four
+vertices except at most one $K_{1,1}$, so $N\ge4\tau-2$, and $\tau=0$
+needs $3\mid N$. With an isolated vertex $m=N-1$. Conversely, for $1\le
+\tau\le\lfloor(N+2)/4\rfloor$ take $\tau-1$ paths $P_4$ and one double
+star on the remaining $N-4(\tau-1)\ge4$ vertices, or, when $N\in\{4\tau-2,
+4\tau-1\}$, one $K_{1,1}$, $\tau-2$ paths $P_4$ and a double star on four
+or five vertices; $N/3$ triangles give $m=N$. The minimum is
+$N-\lfloor(N+2)/4\rfloor=\lceil(3n-5)/4\rceil$.
+\end{proof}
+
+Corollary~\ref{cor:interval} follows, since
+$\lceil(3n-5)/4\rceil=\lceil(3n-9)/4\rceil+1$ and the smallest value is
+realized by Section~\ref{sec:upper}.
+
+\section{The cost of a flexible root}\label{sec:root}
+
+\begin{proof}[Proof of Theorem~\ref{thm:root}]
+Let $G$ be the link of $r$ on $N=n-1$ vertices, $a=|E(G)|$, and $b$ the
+number of hyperedges avoiding $r$. One-edge paths mean $G$ has no isolated
+vertex. Let $t_2$ count components $K_2$ and $t_3$ components $P_3$; every
+other component $C$ has at least $3|C|/4$ edges, so $a\ge3N/4-t_2/2-t_3/4$.
+A vertex all of whose neighbours in $G$ have degree one, and which lies
+only in hyperedges through $r$, has no two-edge path to $r$; so both
+vertices of each $K_2$ and the centre of each $P_3$ lie in hyperedges
+avoiding $r$, and $3b\ge2t_2+t_3$. Hence $m=a+b\ge3N/4+t_2/6+t_3/12$.
+Equality forces $t_2=t_3=0$, $b=0$ and components with exactly $3|C|/4$
+edges, that is trees on four vertices; a star $K_{1,3}$ has a centre
+without a two-edge path, so every component is $P_4$, which is the block.
+\end{proof}
+
+\section{Exact small values}\label{sec:small}
+
+For $n\le2$ the empty hypergraph is vacuously saturated. For $n\ge3$ a
+saturated hypergraph is nonempty, and for $n\ge4$ it has at least three
+hyperedges, since adding a triple to at most two hyperedges leaves fewer
+than four. The witnesses $\{012\}$, $\{012,013,023\}$ and the block show
+$s(3)=1$ and $s(4)=s(5)=3$. Cones over the double star $D(1,2)$, over
+$K_{1,1}\cup P_4$ and over $K_{1,1}\cup D(1,2)$ give $s(6)\le4$, $s(7)\le4$
+and $s(8)\le5$, and Section~\ref{sec:upper} gives the upper bounds for
+$9\le n\le13$.
+
+The remaining lower bounds exclude saturated hypergraphs with $m$
+hyperedges on $n$ vertices for $m=3$, $n\ge6$; $m=4$, $n\ge8$; $m=5$,
+$n\ge10$; $m=6$, $n\ge12$; and $m=7$, $n\ge13$. By
+Lemma~\ref{lem:basic}, an isolated vertex forces $3m\ge2(n-1)$, which fails
+in each range, and without isolated vertices $n\le3m$. It therefore
+suffices to treat hypergraphs without isolated vertices on $n\le3m$
+vertices. Each is encoded, after labelling its hyperedges, by the multiset
+of incidence masks of its vertices; masks with at least two bits are
+listed in nondecreasing order and the remaining incidences are filled by
+degree-one vertices. Every hypergraph appears (possibly several times).
+The certificate gives, for every profile in the enumeration order, an
+exclusion: three vertices in different components, an explicit Berge-$C_4$
+of $H$, or an absent triple whose addition leaves the hypergraph free. The
+verifier regenerates the enumeration independently, rejects missing or
+surplus records, and checks freeness of $H+f$ by testing all four-sets of
+hyperedges and all injective choices of cycle vertices. The record counts
+are $21$, $261$, $4664$, $107740$ and $10592111$. A sixth certificate
+covers all $203895$ profiles with $m=6$, $n=11$; it excludes all but
+$1080$, each of which is matched, under an explicit permutation of the
+hyperedge labels, to one of the two hypergraphs of Theorem~\ref{thm:small}.
+The two are not isomorphic, having degree sequences
+$(4,3,2,2,1^7)$ and $(4,3,3,1^8)$.
+
+\section{Formal verification}\label{sec:lean}
+
+The Lean~4 project (Lean~4.35.0, Mathlib
+\texttt{56a005855ea17e0b0958f73ec801ae140b0a1679}) defines a hypergraph
+on a vertex type $V$ as a finite set of finite subsets of $V$. A
+Berge-$C_4$ is given by an injective map $v:\mathrm{Fin}\,4\to V$ and an
+injective map $e$ to hyperedges of $H$ with $v_i,v_{i+1}\in e_i$;
+\texttt{IsBergeC4Saturated} requires three-uniformity, freeness and a
+Berge-$C_4$ after inserting any absent three-element set; and
+\texttt{satNumber n} is the least size of a saturated hypergraph on
+$\mathrm{Fin}\,n$. The project proves:
+\begin{itemize}
+\item \texttt{exists\_saturated}: for every $n\ge9$ there is a saturated
+hypergraph on $\mathrm{Fin}\,n$ with $(3n-6)/4=\lceil(3n-9)/4\rceil$
+hyperedges, and hence \texttt{satNumber\_le\_upper};
+\item \texttt{glued\_saturated}: the rooted gluing theorem for an
+arbitrary base and block satisfying the hypotheses of
+Lemmas~\ref{lem:base} and~\ref{lem:glue}, with the freeness argument
+around the root formalized in general;
+\item \texttt{satNumber\_small}: $s(n)=0,0,0,1,3,3$ for $n\le5$, and
+\texttt{satNumber\_le\_small}: $s(6)\le4$, $s(7)\le4$, $s(8)\le5$.
+\end{itemize}
+The properties of the explicit bases and the block (uniformity, the
+three vertices of degree at least two, paths for every absent triple and
+paths to the root) are Boolean searches evaluated by the kernel with
+\texttt{decide +kernel}, each with a soundness theorem. No
+\texttt{native\_decide} is used, and a module-level audit shows that every
+declaration depends only on \texttt{propext}, \texttt{Classical.choice}
+and \texttt{Quot.sound}. The lower bound, Theorems~\ref{thm:cone}
+and~\ref{thm:root}, Corollary~\ref{cor:interval} and the values
+$s(n)$ for $6\le n\le13$ are not formalized.
+
+\section{Related work and scope}
+
+The definitions and the bound $s(n)\le n-2$ are from~\cite{EGKMS}, whose
+journal version is~\cite{EGKMS-J}; the inspected statement is that of the
+preprint, as the journal text could not be accessed. Linear growth of
+$\sat_k(n,\text{Berge-}F)$ for $3\le k\le5$ is due to~\cite{EGMT}, and
+gluing at a vertex is used in~\cite{EGKMS}. Wang and Zhang~\cite{WZ} bound the
+linear saturation number of Berge-$C_4$, a different problem. The ordinary
+path saturation numbers are due to K\'aszonyi and Tuza~\cite{KT}. Searches
+in October 2026 of arXiv, journal records and general web indexes did not
+find the coefficients $5/8$ or $3/4$, the cone classification or the
+values of Theorem~\ref{thm:small}; some recent full texts were
+inaccessible, and this does not establish priority.
+
+\section*{Research process and AI disclosure}
+
+This is fully autonomous agentic research. Dev D. Goyal is responsible
+for publication. No expert validation or external peer review is
+claimed, and the novelty assessment is provisional.
+
+The upper construction was found by autonomous AI research agents in an
+earlier session. In a later session the agents proved the lower bound,
+the cone classification and spectrum and the root-cost theorem, built and
+independently verified the finite certificates and searched the
+literature. Their records do not name the system used; the research
+contract specifies Astra referees for the internal reviews, which were
+AI-assisted reviews of the proofs and not peer review, and the records
+state that no Lean formalization was attempted.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this
+release. It checked the written proofs and the arithmetic of the lower
+bound, compared the statements with~\cite{EGKMS,EGMT,WZ}, rechecked the
+construction with its own exhaustive checker, reran the six certificates,
+wrote and ran the Lean formalization described in Section~\ref{sec:lean},
+and wrote this note. AI checks are not human peer review.
+
+\begin{thebibliography}{9}
+\bibitem{EGKMS}
+S.~English, N.~Graber, P.~Kirkpatrick, A.~Methuku and E.~C.~Sullivan,
+\emph{Saturation of Berge hypergraphs},
+\href{https://arxiv.org/abs/1710.03735v1}{arXiv:1710.03735v1} (2017).
+
+\bibitem{EGKMS-J}
+S.~English, P.~Gordon, N.~Graber, A.~Methuku and E.~C.~Sullivan,
+\emph{Saturation of Berge hypergraphs}, Discrete Mathematics
+\textbf{342} (2019), 1738--1761.
+\href{https://doi.org/10.1016/j.disc.2019.01.031}{doi:10.1016/j.disc.2019.01.031}.
+
+\bibitem{EGMT}
+S.~English, D.~Gerbner, A.~Methuku and M.~Tait,
+\emph{Linearity of saturation for Berge hypergraphs}, European Journal of
+Combinatorics \textbf{78} (2019), 205--213.
+\href{https://arxiv.org/abs/1807.06947}{arXiv:1807.06947}.
+
+\bibitem{KT}
+L.~K\'aszonyi and Zs.~Tuza, \emph{Saturated graphs with minimal number of
+edges}, Journal of Graph Theory \textbf{10} (1986), 203--210.
+
+\bibitem{WZ}
+C.~Wang and J.~Zhang, \emph{Linear saturation numbers of Berge-$C_3$ and
+Berge-$C_4$}, \href{https://arxiv.org/abs/2306.06435}{arXiv:2306.06435}
+(2023); Applied Mathematics and Computation \textbf{474} (2024).
+\end{thebibliography}
+\end{document}

@@ -10,7 +10,7 @@ The collection contains results with different formal verification scopes. Each 
 
 ## Navigating the collection
 
-The current catalogue contains 47 manuscripts and research notes across 46 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
+The current catalogue contains 48 manuscripts and research notes across 47 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
 
 - Start with the [overview](overview.pdf) for descriptions of the result families.
 - Use the [manuscript map](CONTENTS.md) to find individual papers, abstracts and supporting materials.
@@ -64,7 +64,7 @@ The results I consider the strongest, in order of significance.
 ### Mathematics
 
 - [Matrix theory](CONTENTS.md#matrix-theory): q-permanent counterexamples, Gyires structured permanent inequalities, a normal-matrix polygon counterexample, projection AM–GM obstruction, matrix-pencil rank distance as a completion problem, counterexamples to the Kronecker-square bound for nonnegative rank.
-- [Graph theory and graph polynomials](CONTENTS.md#graph-theory-and-graph-polynomials): DomiRank entropy, domination-sequence ultra-log-concavity, domination-root escape, leaf-deletion mode movement, the upper Berge-triangle saturation spectrum of triple systems, exact three-uniform Berge-path saturation numbers.
+- [Graph theory and graph polynomials](CONTENTS.md#graph-theory-and-graph-polynomials): DomiRank entropy, domination-sequence ultra-log-concavity, domination-root escape, leaf-deletion mode movement, the upper Berge-triangle saturation spectrum of triple systems, exact three-uniform Berge-path saturation numbers, three-uniform Berge-C₄ saturation bounds.
 - [Inequalities and real analysis](CONTENTS.md#inequalities-and-real-analysis): diagonal concavity.
 - [Integer sequences and combinatorics](CONTENTS.md#integer-sequences-and-combinatorics): Motzkin root log-concavity, bounded-forcing Motzkin bounds, Hofstadter iteration, nonquasipolynomial power ranks.
 - [Quadratic forms and number theory](CONTENTS.md#quadratic-forms-and-number-theory): unit square classes represented by totally positive lattices.
@@ -110,6 +110,7 @@ I use the names below to connect common search terms to each result and its file
 | Unextendible product bases, UPB, Schmidt number, bound entanglement, Tiles state | [Minimum-rank multiplicativity and the Tiles state](papers/physics/upb-tensor-rank/) |
 | Berge triangle, saturation spectrum, triple systems, 3-uniform hypergraphs, Berge-triangle-free | [Upper Berge-triangle saturation spectrum](papers/mathematics/berge-triangle-spectrum/) |
 | Berge hypergraphs, Berge paths, hypergraph saturation numbers, loose cycles | [Berge-path saturation counterexample and exact formula](papers/mathematics/berge-path-saturation/) |
+| Berge-C4, Berge cycles, hypergraph saturation numbers, saturation spectrum, cones | [Three-uniform Berge-C₄ saturation bounds](papers/mathematics/berge-c4-saturation/) |
 | Minty's theorem, multi-marginal optimal transport, c-monotonicity, maximal monotone operators, firmly nonexpansive maps | [Multi-marginal Minty counterexample](papers/mathematics/multimarginal-minty/) |
 | Chambolle–Pock, Chambolle-Pock, PDHG, primal-dual hybrid gradient, extrapolation, periodic orbits | [Chambolle–Pock periodic obstructions](papers/mathematics/chambolle-pock-cycles/) |
 | C-finite sequences, constant-recursive sequences, power ranks, nonquasipolynomial | [Power-rank sequence and companion results](papers/mathematics/power-rank/) |
