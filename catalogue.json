@@ -1595,9 +1595,9 @@
         "convergence threshold",
         "Lyapunov certificate"
       ],
-      "summary": "Two-block ADMM with relaxation only in the multiplier update converges for every constant step 0 < τ ≤ 943/500 = 1.886 on finite-dimensional convex problems whose proximal subproblems attain their minima and which have a saddle point; both primal blocks, the multiplier and the objective values converge. Fixed compact polytopes in R^128 with zero objectives have a nonconstant periodic orbit for every τ ≥ 897744153596994489/475778439151265168 ≈ 1.8868954. The largest step with universal convergence therefore lies in an interval of width below 0.0009; its exact value is open.",
-      "formal_scope": "The consensus convergence theorem for 0 < τ ≤ 943/500, the arbitrary-rank and full-rank affine-constraint theorems, both finite-memory certificates and the periodic orbit in R^128 are formalized in 168 Lean modules. Individual objective-value limits, the reduction from proper closed convex functions to proximal attainment, and penalty rescaling are conventional.",
-      "source": "Fortin and Glowinski proved convergence for steps below the golden ratio; Tao and Yuan call the general convex case Glowinski's open question. Gao et al. (2022) asserted the range 1 < τ ≤ 2, which the periodic orbit contradicts. Related work and limits are stated in the manuscript. Historical priority is not certified.",
+      "summary": "Two-block ADMM with relaxation only in the multiplier update converges for every constant step 0 < τ ≤ 377359/200000 = 1.886795 on finite-dimensional convex problems whose proximal subproblems attain their minima and which have a saddle point; both primal blocks, the multiplier and the objective values converge. Fixed compact polytopes in R^128 with zero objectives have a nonconstant periodic orbit for every τ ≥ 38847831300265103262189027/20588352022933119368900773 ≈ 1.8868840. The largest step with universal convergence therefore lies in an interval of width below 0.00009; its exact value is open. For scalar problems the universal range is exactly 0 < τ < 2. Version 1.1 narrows the version 1.0 bracket [1.886, 1.8868954] about tenfold.",
+      "formal_scope": "The consensus convergence theorem for 0 < τ ≤ 943/500, the arbitrary-rank and full-rank affine-constraint theorems, the two finite-memory certificates up to 943/500 and the version 1.0 periodic orbit in R^128 for τ ≥ 1.8868954… are formalized in 168 Lean modules. The extension of convergence to 377359/200000 and the orbit for τ ≥ 1.8868840… rest on exact rational certificates and conventional proofs; the scalar theorem, individual objective-value limits, the reduction from proper closed convex functions to proximal attainment, and penalty rescaling are conventional.",
+      "source": "Fortin and Glowinski proved convergence for steps below the golden ratio; Tao and Yuan call the general convex case Glowinski's open question and settle quadratic objectives. Gao et al. (2022) asserted the range 1 < τ ≤ 2, which the periodic orbit contradicts. Related work and limits are stated in the manuscript. Historical priority is not certified.",
       "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/admm-multiplier-step/README.md",
       "paper": "papers/mathematics/admm-multiplier-step/manuscript.pdf",
       "formalization": {
@@ -1610,9 +1610,9 @@
         "posed_by": "Fortin and Glowinski proved convergence for 0 < τ < (1+√5)/2 (1983); Tao and Yuan, J. Optim. Theory Appl. 179 (2018), 163–196, call the general convex case Glowinski's open question",
         "problem_url": "https://doi.org/10.1007/s10957-018-1338-x",
         "status": "Partially resolved",
-        "claim": "Two-block ADMM with multiplier step τ converges for every 0 < τ ≤ 1.886 on finite-dimensional convex problems with attained proximal steps and a saddle point; fixed polytopes in R^128 cycle for every τ ≥ 1.8868954…",
-        "title_tag": "Glowinski's ADMM Question: Step Threshold in [1.886, 1.887]",
-        "description": "Preprint: two-block ADMM converges for multiplier steps 0 < τ ≤ 1.886 and has a periodic orbit for every τ ≥ 1.8868954 on polytopes; checked in Lean 4.",
+        "claim": "Two-block ADMM with multiplier step τ converges for every 0 < τ ≤ 1.886795 on finite-dimensional convex problems with attained proximal steps and a saddle point; fixed polytopes in R^128 cycle for every τ ≥ 1.8868840…; scalar problems converge exactly for 0 < τ < 2",
+        "title_tag": "Glowinski's ADMM Question: Step Threshold in [1.886795, 1.886884]",
+        "description": "Preprint: two-block ADMM converges for multiplier steps 0 < τ ≤ 1.886795, polytopes in R^128 cycle for τ ≥ 1.886884, and scalar problems converge exactly for τ < 2.",
         "queries": [
           "Glowinski open question ADMM",
           "ADMM dual step size golden ratio",
@@ -1621,20 +1621,22 @@
           "alternating direction method of multipliers dual step length",
           "Fortin Glowinski golden ratio step ADMM",
           "ADMM periodic orbit nonconvergence convex polytopes",
-          "relaxed multiplier update ADMM convergence threshold"
+          "relaxed multiplier update ADMM convergence threshold",
+          "ADMM dual step size scalar convex problems 0 < tau < 2",
+          "ADMM step size threshold 1.8868"
         ],
         "faq": [
           [
             "Does ADMM converge for dual step sizes beyond the golden ratio?",
-            "For finite-dimensional convex problems whose proximal subproblems attain their minima and which have a saddle point, this preprint proves convergence for every constant multiplier step 0 < τ ≤ 1.886 = 943/500. Fixed compact polytopes in R^128 with zero objectives have a nonconstant periodic orbit for every τ ≥ 1.8868954…, so the exact universal threshold lies in an interval of width below 0.0009 and remains open."
+            "For finite-dimensional convex problems whose proximal subproblems attain their minima and which have a saddle point, this preprint proves convergence for every constant multiplier step 0 < τ ≤ 1.886795 = 377359/200000. Fixed compact polytopes in R^128 with zero objectives have a nonconstant periodic orbit for every τ ≥ 1.8868840…, so the exact universal threshold lies in an interval of width below 0.00009 and remains open."
           ],
           [
             "Does multiplier-step ADMM converge for every τ up to 2?",
-            "Not in the general convex class: the periodic orbit contradicts the range 1 < τ ≤ 2 asserted by Gao et al. (2022). The obstruction uses indicator objectives, so thresholds for smooth or strongly convex subclasses are not addressed."
+            "Not in the general convex class: the periodic orbit contradicts the range 1 < τ ≤ 2 asserted by Gao et al. (2022). For scalar problems, however, the preprint proves convergence for every 0 < τ < 2, and τ = 2 fails already for zero objectives. The obstruction uses indicator objectives, so thresholds for smooth or strongly convex subclasses are not addressed."
           ],
           [
             "Is the proof formally verified?",
-            "The consensus convergence theorem for 0 < τ ≤ 943/500, the affine-constraint versions, both finite-memory certificates and the periodic orbit in R^128 are formalized in 168 Lean 4 modules. Individual objective-value limits, the reduction from proper closed convex functions to proximal attainment and penalty rescaling are conventional arguments, and the paper is an unrefereed preprint."
+            "Partly. Lean 4 proves the consensus convergence theorem for 0 < τ ≤ 943/500, the affine-constraint versions, the two finite-memory certificates up to 943/500 and an earlier periodic orbit valid for τ ≥ 1.8868954…. The extension to 1.886795 and the orbit from 1.8868840… rest on exact rational certificates checked by standard-library Python and on conventional proofs; the scalar theorem is conventional. The paper is an unrefereed preprint."
           ]
         ]
       }

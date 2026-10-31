@@ -1,7 +1,7 @@
 {
   "format_version": 1,
   "package_id": "admm-multiplier-step",
-  "formal_scope": "The consensus convergence theorem for 0 < τ ≤ 943/500, the arbitrary-rank and full-rank affine-constraint theorems, both finite-memory certificates and the periodic orbit in R^128 are formalized in 168 Lean modules. Individual objective-value limits, the reduction from proper closed convex functions to proximal attainment, and penalty rescaling are conventional.",
+  "formal_scope": "The consensus convergence theorem for 0 < τ ≤ 943/500, the arbitrary-rank and full-rank affine-constraint theorems, the two finite-memory certificates up to 943/500 and the version 1.0 periodic orbit in R^128 for τ ≥ 1.8868954… are formalized in 168 Lean modules. The extension of convergence to 377359/200000 and the orbit for τ ≥ 1.8868840… rest on exact rational certificates and conventional proofs; the scalar theorem, individual objective-value limits, the reduction from proper closed convex functions to proximal attainment, and penalty rescaling are conventional.",
   "proof_roots": [
     {
       "path": "lean",
@@ -185,36 +185,60 @@
   "integrity_manifests": [],
   "files": {
     "AUTHORSHIP.md": {
-      "bytes": 1484,
-      "sha256": "ccc7dce7748b5ad909aa81a25b6d460c216703d14bf28eba09b494c3f87e305d"
+      "bytes": 2458,
+      "sha256": "ac869b86d2115c5e47a32f5a6052f66273fb66557568bf679b9cbc58900715fe"
     },
     "CITATION.bib": {
-      "bytes": 381,
-      "sha256": "3fcca996163818a8b95fd5dd76739017f6005422c69a9e8997e8fd7d8ee576d6"
+      "bytes": 394,
+      "sha256": "92194527fc6bbc1f0b2add4626c56b41dca4dca06a68058a0fe0a134a4992227"
     },
     "CITATION.cff": {
-      "bytes": 1496,
-      "sha256": "3159771a9f1006862796ba27a74c0b33062dede0f337c7df179a25812ecd7448"
+      "bytes": 1625,
+      "sha256": "7f493f17e116f08b2e251dd792eb89c0e23dd3072649b7180915b575410792fe"
     },
     "LICENSE": {
       "bytes": 11357,
       "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
     },
     "README.md": {
-      "bytes": 3431,
-      "sha256": "84694803e562eceea0cf5812a9de00e52a8e2e04799c32b5fee0cd91fb67292e"
+      "bytes": 4467,
+      "sha256": "bc5adc085799bda4a57220591967127c0f58374db3bcbc55c4a3ba1b7dc06294"
     },
     "VERIFICATION.md": {
-      "bytes": 2781,
-      "sha256": "e7e89f455f87129b4ee55a4f20d5a00450ad8996fc10b785da7af5730ecb7854"
+      "bytes": 5181,
+      "sha256": "fb273fb253a91e7561c04bfe073fe535ee4cdebf89b7446a0cb83e4a517ac57f"
     },
     "certificates/exact_175_188_m12.json": {
       "bytes": 314060,
       "sha256": "81547b2bfa34f1159ba9958948e36daaf07fb2e1dbfb032e45615a560a73f769"
     },
+    "certificates/exact_188628_188632_m20.json": {
+      "bytes": 1761801,
+      "sha256": "f021a2238ce4f66d0237b1585654d94ec1a535d661d7ea3d0a47736cd859d612"
+    },
+    "certificates/exact_188632_18865_m20.json": {
+      "bytes": 1997397,
+      "sha256": "1e93fd3b7e7d0e2cfc992b65134dcffdcb1c6cf8aa17b7668718c42c0ca19386"
+    },
+    "certificates/exact_18865_18867_m20.json": {
+      "bytes": 2219615,
+      "sha256": "9fcac161e4cf98d810ea4bb834998489c0f22cec75a5ee3557852df16704317d"
+    },
+    "certificates/exact_18867_1886795_m32.json": {
+      "bytes": 9089180,
+      "sha256": "7372f3f40c1c75cd3a8d6dfd30bb8f86ee7ac2f581e1297f372e6d26c4aaff6f"
+    },
+    "certificates/exact_1886_188628_m20.json": {
+      "bytes": 1402988,
+      "sha256": "a9c8afd1ea6adb8e50553ef4fe6d694d6a8fd49fed4a872b8d091b6e249a1e96"
+    },
     "certificates/exact_188_1886_m20.json": {
       "bytes": 1452237,
       "sha256": "b3c4c44621cd9f133b988b0e0d1f8af0a6e4b637e197382dcf3ffb11484951d9"
+    },
+    "certificates/exact_cycle_1886884_K128.json": {
+      "bytes": 16567,
+      "sha256": "9ba7e9d9611693e869713176cf2b2a89897ca9ba10c55d12c46ac1a70d2b22f6"
     },
     "certificates/exact_cycle_18869_10000_K128.json": {
       "bytes": 13336,
@@ -981,12 +1005,12 @@
       "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
     },
     "manuscript.pdf": {
-      "bytes": 372821,
-      "sha256": "0f04af152637c85577d501cf0e9cb9ce0b937c2d9ea682afdf5ad85c3f7576e4"
+      "bytes": 398478,
+      "sha256": "bcec0fb2986c8d793af6db3ed4480610759b846d2d80586bfdc27b8a26b421f4"
     },
     "manuscript.tex": {
-      "bytes": 34283,
-      "sha256": "d703bffe2af2f72e4f734d5e50f41d4142d1b8756ad5026cae891c1b409dec8f"
+      "bytes": 45870,
+      "sha256": "10d48e2acb313f62c6d672ac2ba2a525eb9c45c2b8c876fc2093035311d6bde9"
     },
     "verification/KernelAudit.lean.txt": {
       "bytes": 3772,
