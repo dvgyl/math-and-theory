@@ -111,7 +111,7 @@
         + `<span class="palette-title">${mark(r.title, tokens)}</span>`
         + (r.problem ? `<span class="palette-problem"><span class="outcome" data-tone="${esc(r.tone)}">${esc(r.status || '')}</span>${mark(r.problem, tokens)}</span>` : '')
         + `<span class="palette-claim">${mark(r.claim || r.abstract.slice(0, 220), tokens)}</span>`
-        + `<span class="palette-meta">${esc(r.subject)}${r.standout ? ' · Selected' : ''}</span></a></li>`;
+        + `<span class="palette-meta">${esc(r.subject)}${r.standout ? '. Selected result.' : ''}</span></a></li>`;
     }).join('');
     const n = results.length;
     count.textContent = n ? `${n} result${n === 1 ? '' : 's'}${n > shown.length ? `, showing the first ${shown.length}` : ''}.`

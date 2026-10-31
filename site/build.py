@@ -889,16 +889,14 @@ def build(out):
         index += '</section>'
     description = (f'Counterexamples, sharp bounds and proofs for open problems and conjectures in {topics} by {AUTHOR}, '
                    f'with Lean 4 formal proofs.')
-    figures = [(len(items), 'results', PATH + '#index'), (len(named), 'problems from the literature', PATH + 'problems/'),
-               (len(standout), 'selected results', PATH + 'standout/'), (len(subjects), 'subjects', PATH + 'subjects/')]
     body = (f'<header class="masthead"><h1>{SITE}</h1><p class="subtitle">Research manuscripts and Lean 4 proofs\u00a0· '
             f'{esc(AUTHOR)}</p></header><p class="intro">This is a collection of fully autonomous agentic research. I have '
             f'been experimenting with large language models working as autonomous research agents on open problems in '
             f'{esc(topics)}, and these {len(items)} manuscripts are the results: counterexamples, sharp bounds and exact '
-            f'thresholds, each with Lean 4 proofs of its stated formal scope.</p><ul class="figures" aria-label="The collection '
-            f'in figures">' + ''.join(f'<li><a href="{href}"><span class="n">{n}</span><span class="l">{label}</span></a></li>'
-                                       for n, label, href in figures)
-            + f'</ul><p class="disclosure">None of these papers has '
+            f'thresholds, each with Lean 4 proofs of its stated formal scope.</p><p class="tally"><a href="{PATH}#index">'
+            f'{len(items)} results</a>, <a href="{PATH}problems/">{len(named)} of them on problems posed in the literature</a>, '
+            f'across <a href="{PATH}subjects/">{len(subjects)} subjects</a>. I consider <a href="{PATH}standout/">{len(standout)} '
+            f'of them</a> the strongest.</p><p class="disclosure">None of these papers has '
             f'been externally peer reviewed, and I make no claim of priority. A formal check covers only the statement it '
             f'checks. The <a href="{gh("AUTHORSHIP.md")}">authorship record</a> explains how each result was produced, and '
             f'<a href="{gh("UNFINISHED.md")}">UNFINISHED.md</a> lists the remaining formalization gaps.</p>'
