@@ -2,24 +2,25 @@
 \usepackage[a4paper,margin=25mm]{geometry}
 \usepackage{amsmath,amssymb,amsthm,booktabs,array}
 \usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Real positive-definite counterexamples to extended q-permanent monotonicity},pdfauthor={Dev D. Goyal}}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,microtype}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newcommand{\inv}{\operatorname{inv}}
-\title{Real positive-definite counterexamples to\newline extended $q$-permanent monotonicity}
+\title{Real positive-definite counterexamples to\\ extended $q$-permanent monotonicity}
 \author{Dev D. Goyal}
-\date{26 October 2026}
+\date{26 October 2026; revised 1 November 2026}
 \usepackage[numbers]{natbib}
 \usepackage{xurl}
 \begin{document}
 \maketitle
 \begin{abstract}
-An explicit real symmetric positive-definite matrix of order five has an inversion-weighted $q$-permanent that decreases between $q=14$ and $q=15$. Exactly nine permutations contribute nonzero terms. This refutes the real positive-definite monotonicity conjecture in da Fonseca's 2010 paper. A sparse family gives a counterexample at every prescribed real $q_0>1$. For each such parameter, a real symmetric positive-definite matrix has a strictly negative $q$-permanent derivative at $q_0$. The dimension may depend on $q_0$. Lean 4 formalizations establish the finite example, the theorem for every prescribed parameter, and the correlation and integer-entry consequences. The result does not address real-symmetric monotonicity on $[-1,1]$.
+An explicit real symmetric positive-definite matrix of order five has an inversion-weighted $q$-permanent that decreases between $q=14$ and $q=15$. Exactly nine permutations contribute nonzero terms. This refutes the real positive-definite monotonicity conjecture of da Fonseca \cite[Conjecture~1]{fonseca2010}, together with its later restatement \cite[Conjecture~2]{fonseca2018}. A sparse family gives a counterexample at every prescribed real $q_0>1$. For each such parameter, a real symmetric positive-definite matrix has a strictly negative $q$-permanent derivative at $q_0$. The dimension may depend on $q_0$. Lean 4 formalizations establish the finite example, the theorem for every prescribed parameter, and the correlation and integer-entry consequences. The result does not address real-symmetric monotonicity on $[-1,1]$.
 \end{abstract}
 
-\section{The monotonicity conjecture}
+\section{The monotonicity conjecture}\label{sec:intro}
 The ordinary permanent sums one entry product for each permutation. The $q$-permanent assigns an additional weight to each product. For an $n\times n$ matrix $A=(a_{ij})$, define
 \[
  P_q(A)=\sum_{\sigma\in S_n}q^{\inv(\sigma)}\prod_{i=1}^n a_{i,\sigma(i)},\qquad
@@ -41,6 +42,14 @@ That result does not supply the real positive-definite examples above one
 proved here. De S\'a's earlier counterexamples concern incorrect tree
 expansion formulas \cite{desa}; the present proof uses a direct permutation
 sum and does not use those formulas.
+
+Theorem~\ref{thm:five} gives an exact five-dimensional counterexample.
+Theorem~\ref{thm:allq} gives, for every prescribed $r>1$, a real symmetric
+positive-definite matrix whose $q$-permanent has a negative derivative at
+$q=r$; Corollaries~\ref{cor:correlations} and~\ref{cor:integer} give
+correlation-matrix and integer-entry versions. Lean proves each of these
+statements (Section~\ref{sec:formal}). An independent program also checks
+the finite examples by exhaustive enumeration.
 
 \section{A five-dimensional exact counterexample}
 \begin{theorem}\label{thm:five}
@@ -216,7 +225,7 @@ For every real $r>1$, a real symmetric positive-definite matrix with integer ent
 Positive definiteness and the strict inequality $P'_r(A)<0$ are open conditions in the real vector space of symmetric matrices. Approximate the matrix of Theorem~\ref{thm:allq} by a sufficiently close rational symmetric matrix $B$ preserving both conditions. Multiplication by a positive common denominator $c$ gives an integer matrix, and $P'_r(cB)=c^nP'_r(B)<0$.
 \end{proof}
 
-\section{Formal verification and independent checks}
+\section{Formal verification and independent checks}\label{sec:formal}
 The Lean formalization is in
 \path{lean/MathAndTheory/Mathematics/QPermanent/}.
 Its namespace is \texttt{MathAndTheory.QPermanent}.
@@ -262,7 +271,7 @@ recorded results. The Challenge file states the permutation definition
 directly and does not import the proof modules. Comparator checks that the
 Solution file proves the same statements.
 
-\section{Scope and prior work}
+\section{Scope and prior work}\label{sec:scope}
 The construction bounds the dimension of a counterexample. It does not
 determine the smallest possible dimension. The integer-entry and correlation
 conclusions are separate. They do not assert an integer correlation matrix. The results do not settle the
@@ -270,8 +279,12 @@ real Bapat--Lal assertion on $[-1,1]$.
 
 No claim of first priority is made.
 
-\section*{Autonomous AI research}
-This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication. This preprint has not been peer reviewed.
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. Autonomous AI research agents produced the research, proofs, computations, formalization and drafts. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT, and GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The author checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review.
+
+Opus 5.5 by Anthropic used with Claude Code revised this manuscript editorially on 1~November 2026: it revised the abstract and this disclosure and added a summary of the results to Section~\ref{sec:intro}. It did not change the mathematics.
+
+Dev D. Goyal is responsible for publication. The work has not been externally peer reviewed. Section~\ref{sec:formal} states the formal scope, and Section~\ref{sec:scope} states the limits of the result.
 
 \bibliographystyle{plainnat}
 \bibliography{references}

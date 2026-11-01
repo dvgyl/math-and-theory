@@ -3,13 +3,14 @@
 \usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,array,microtype}
 \usepackage[margin=25mm]{geometry}
 \usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={An entropy increase for a structurally disassortative DomiRank graph},pdfauthor={Dev D. Goyal}}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \newcommand{\R}{\mathbb R}
 \newcommand{\one}{\mathbf 1}
 \title{An entropy increase for a structurally disassortative DomiRank graph}
 \author{Dev D. Goyal}
-\date{26 October 2026}
+\date{26 October 2026; revised 1 November 2026}
 \usepackage[numbers]{natbib}
 \usepackage{xurl}
 \begin{document}
@@ -17,7 +18,7 @@
 \begin{abstract}
 A connected graph with 14 vertices and 32 edges disproves the interval
 monotonicity assertion in Conjecture 4.9 of Zhang and Zhao,
-arXiv:2610.00107v4. Its degree--log-degree edge covariance is strictly
+arXiv:2610.00107v4~\cite{zhangzhao}. Its degree--log-degree edge covariance is strictly
 negative. All DomiRank scores are positive on the closed parameter interval
 $[251/1000,63/250]$, which lies inside the stable spectral domain.
 The entropy increases between the two endpoints by more than $1/10000$
@@ -25,6 +26,9 @@ in natural-logarithm units.
 The proof uses exact rational formulas and finite logarithm bounds.
 The Lean formalization proves the claims about the graph, resolvent scores,
 interval positivity, covariance, and entropy comparison.
+A broader, unconditional entropy-decrease assertion in an earlier version of
+the source had already been refuted publicly by a graph that does not satisfy
+the covariance hypothesis of Conjecture 4.9.
 \end{abstract}
 
 \section{Problem and definitions}
@@ -62,6 +66,20 @@ The interval can lie in any component of the positive-score set.
 The authors also give an example with positive covariance.
 That example does not satisfy the covariance hypothesis of Conjecture 4.9.
 The graph below has negative covariance and refutes this refined conjecture.
+Section~\ref{sec:formal} lists the Lean statements that check every claim of
+the main theorem.
+
+\paragraph{Earlier public work (note added 1 November 2026).}
+On 31 October 2026 a check of public problem records found that the Omega
+Institute's public repository records, in a dossier committed on 5 October
+2026 (issue \#13267), a refutation with a six-vertex graph of the broader
+unconditional assertion in Remark~4.6 of version~1 of Zhang and Zhao's
+paper, that entropy decreases for every connected nonregular
+graph~\cite{omega13267}. That graph has positive degree--log-degree
+covariance, so it does not satisfy the hypothesis of Conjecture~4.9 of
+version~4, which the graph below refutes. The two results are consistent.
+No originality or priority claim is made for the refutation of the broader
+assertion.
 
 \section{The graph and the main result}
 Use vertices $0,1,\ldots,13$. The edges are exactly the following unordered pairs:
@@ -239,7 +257,7 @@ The entropy difference therefore exceeds $135/10^6>1/10000$. This completes the 
 of Theorem~\ref{thm:main}. Dividing by $\log2>0$ proves the entropy increase
 in bits. Dividing by $\log14>0$ also proves an increase for normalized entropy.
 
-\section{Formal verification and reproducibility}
+\section{Formal verification and reproducibility}\label{sec:formal}
 The Lean sources are in
 \path{lean/MathAndTheory/Mathematics/DomiRank/}.
 Their namespace is \texttt{MathAndTheory.DomiRank}.
@@ -282,8 +300,18 @@ It does not assess empirical performance on networks or settle a conjecture
 restricted to the first component of the positive-score set.
 No claim of first priority is made.
 
-\section*{Autonomous AI research}
-This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication. This preprint has not been peer reviewed.
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. The initial research and
+proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT.
+GPT 6 Astra in Codex autonomously produced the formalizations and
+corrections. The author checked the proofs to the best of their mathematical
+abilities; this check is not expert validation or peer review. Opus~5.5 by
+Anthropic used with Claude Code revised the presentation of the paper on
+1 November 2026: it updated the front matter and abstract, added the note on
+earlier public work and renamed this section. The revision does not change
+the mathematics. Dev D. Goyal is responsible for publication. This preprint
+has not been peer reviewed. The formal scope and the limits of
+the result are stated in Section~\ref{sec:formal}.
 
 \bibliographystyle{plainnat}
 \bibliography{references}

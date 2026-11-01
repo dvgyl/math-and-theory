@@ -6,17 +6,14 @@
 \usepackage[colorlinks=true,linkcolor=MidnightBlue,urlcolor=MidnightBlue,citecolor=MidnightBlue]{hyperref}
 \hypersetup{pdftitle={Unbounded coalesced-mass certificates for resolution trees},pdfauthor={Dev D. Goyal},pdfsubject={Resolution-tree certificates and a sharp supremum}}
 \usepackage{fancyhdr}
-\pagestyle{fancy}\fancyhf{}\lhead{Resolution-tree certificates}\rhead{28 October 2026}\cfoot{\thepage}
+\pagestyle{fancy}\fancyhf{}\lhead{Resolution-tree certificates}\rhead{28 October 2026; revised 1 November 2026}\cfoot{\thepage}
 \setlength{\headheight}{14pt}
 \newtheorem{theorem}{Theorem}\newtheorem{lemma}[theorem]{Lemma}\newtheorem{corollary}[theorem]{Corollary}
 \newcommand{\Q}{\mathcal Q}\newcommand{\F}{\mathcal F}
 \title{Unbounded coalesced-mass certificates\\for resolution trees}
 \author{Dev D. Goyal}
-\date{28 October 2026}
+\date{28 October 2026; revised 1 November 2026}
 \begin{document}\maketitle
-
-\paragraph{Autonomous AI research disclosure.}
-This work is fully autonomous agentic research. Automated systems produced the research, proofs, formalization, and manuscript preparation. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed.
 
 \begin{abstract}
 For a finite ordinary resolution tree, coalesce the dyadic leaf masses
@@ -29,7 +26,7 @@ clauses is exactly $n+1$. Thus the certificate is unbounded. The construction
 uses nonregular trees. The formulas are minimally unsatisfiable, and an exact
 three-variable witness has value greater than $61/25>1+\sqrt2$.
 A Lean formalization covers the sharp supremum and unboundedness.
-The comparison with a certificate attributed to Kunisky is conditional on
+The comparison with a certificate attributed to Kunisky~\cite{kunisky} is conditional on
 unverified source definitions and proof-class restrictions. No claim about
 the optimal Koml\'os constant, existential proof selection, or first
 priority is made.
@@ -53,12 +50,18 @@ Repeated occurrences with the same clause label are coalesced in $p_C(T)$
 are permitted; no regularity condition is imposed. These choices are
 essential to the theorem.
 
-The supplied attribution points to Kunisky [1], Conjecture 4.4 and equation
+The supplied attribution points to Kunisky~\cite{kunisky}, Conjecture 4.4 and equation
 (41). The literal effective-depth definition, quantifiers, proof-class
 restrictions, and current version were not verified here. If that source
 uses exactly this functional on every tree in this proof class, the theorem
 below contradicts a universal bound $1+\sqrt2$ in those conventions.
 This is a conditional comparison, not an authenticated source refutation.
+
+Theorem~\ref{thm:main} below determines the supremum of the certificate on
+the formulas of all full signed clauses exactly. Lean proves the theorem,
+its corollary and the minimal unsatisfiability of these formulas
+(Section~\ref{sec:formal}). An independent exact Python audit checks the
+explicit three-variable witness of Section~\ref{sec:witness}.
 
 \section{Main result}
 For $n\ge1$, let
@@ -143,7 +146,7 @@ Substitution into \eqref{eq:complete} proves Theorem \ref{thm:main}. Taking $\et
 The mechanism is specific: many occurrences of one leaf clause can acquire almost all the fair-branch mass in a nonregular resolution tree. Coalescing those occurrences and then taking square roots makes the denominator close to one, while every variable still contributes one to the numerator.
 
 \clearpage
-\section{A fully explicit three-variable witness}
+\section{A fully explicit three-variable witness}\label{sec:witness}
 The finite certificate file specifies 224 distinct nodes with child references to earlier nodes. Unfolding shared references yields an ordinary binary tree of depth 25 and 2,492,606 leaves. The compressed representation is only a storage format; every repeated reference becomes a distinct subtree in the resolution refutation.
 
 Let $D=33\,554\,432=2^{25}$. In the order shown below, the exact coalesced leaf masses are $p_C=N_C/D$.
@@ -170,7 +173,7 @@ The eight numerators sum to $D$. Every square-root bound is verified by squaring
 \]
 The last inequality follows from $(71/50)^2>2$. For orientation only, direct decimal evaluation gives $\Q(\F_3,T)\approx2.4473189092$; no floating-point comparison is used in the proof.
 
-\section{Meaning and limits of the result}
+\section{Meaning and limits of the result}\label{sec:limits}
 A universal constant bound on the explicitly defined functional over \emph{every} finite ordinary resolution proof is false. The stronger theorem identifies the precise supremum on a natural formula family and proves that no larger universal constant can restore this particular certificate rule.
 
 The result does not establish a new lower bound for the Koml\'os constant. An implication for a discrepancy bound would require a separate proof of the relevant dual-feasibility correspondence. A large value of this functional alone gives no lower bound on the optimal discrepancy constant. In fact, $\F_n$ has a standard balanced read-once refutation with uniform masses $p_C=2^{-n}$. Its prescribed certificate is only $(n+1)/2^{n/2}$. The same formula can therefore have both a small certificate from one proof and arbitrarily near-maximal certificates from other proofs.
@@ -178,7 +181,7 @@ The result does not establish a new lower bound for the Koml\'os constant. An im
 Accordingly, a possibility of selecting \emph{some} suitable proof for each formula is not excluded here. The validity of the new theorem and the scope of its implication are separate from the historical priority of the observation.
 
 \clearpage
-\section{Formal verification and reproducibility}
+\section{Formal verification and reproducibility}\label{sec:formal}
 The accompanying Lean project fixes Lean 4.19.0 and the following mathlib commit:
 \begin{center}\small\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}\end{center}
 Its formal statement uses actual finite binary trees, finite clause sets, and the ordinary syntactic resolution rule. Leaf masses are defined recursively by averaging at internal nodes, with a proved mass-conservation theorem.
@@ -196,7 +199,7 @@ A fresh Lean 4.19.0 build of the import-only variant and a separate \texttt{-{}-
 The Python check is an additional independent audit of the finite witness. It reconstructs every resolvent, checks all child references, accumulates all masses using rational arithmetic, and proves the displayed rational gap by integer comparisons. It is not a replacement for Lean and is not the logical foundation of the general theorem.
 
 \paragraph{Relation to the source.}
-Kunisky receives credit for the attributed source context [1]. Agreement
+Kunisky receives credit for the attributed source context~\cite{kunisky}. Agreement
 between the manuscript and formal definitions verifies the theorem stated
 here; it does not verify that the external source uses those definitions.
 Any Conjecture 4.4 comparison requires literal agreement on coalescing,
@@ -204,8 +207,23 @@ effective depth, universal quantifiers, and unrestricted nonregular trees.
 The journal-version correspondence and later work remain unverified.
 No first-priority claim is made.
 
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. Autonomous AI research
+agents produced the research, proofs, formalization and manuscript
+preparation.
+
+Opus 5.5 by Anthropic used with Claude Code revised this manuscript
+editorially on 1~November 2026: it moved this disclosure from the title
+page into its own section, added a summary of the results to the first
+section and linked the citations. It did not change the mathematics.
+
+Dev D. Goyal is responsible for publication. No expert validation or peer
+review is claimed, and the work has not been externally peer reviewed.
+Section~\ref{sec:formal} states the formal scope, and
+Section~\ref{sec:limits} states the limits of the result.
+
 \begin{thebibliography}{9}
-\bibitem{kunisky} D. Kunisky, \emph{The discrepancy of unsatisfiable matrices and a lower bound for the Koml\'os conjecture constant}, arXiv:2111.02974v1 (2021), Supplied source attribution; primary definitions, exact numbering, and current-version correspondence not verified here.\newline
+\bibitem{kunisky} D. Kunisky, \emph{The discrepancy of unsatisfiable matrices and a lower bound for the Koml\'os conjecture constant}, arXiv:2111.02974v1 (2021). Supplied source attribution; primary definitions, exact numbering, and current-version correspondence not verified here.\newline
 \url{https://arxiv.org/abs/2111.02974}
 \end{thebibliography}
 \end{document}

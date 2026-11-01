@@ -32,17 +32,10 @@ pdfkeywords={Keller-Klein conjecture, Rademacher sums, Berry-Esseen, normal appr
 \title{\textbf{The small-coefficient upper half\\of the Keller--Klein conjecture}\\[6pt]
 \large Analytic completion and Lean 4 formalization}
 \author{Dev D. Goyal}
-\date{30 October 2026}
+\date{30 October 2026; revised 1 November 2026}
 
 \begin{document}
 \maketitle
-
-\section*{Research process and AI disclosure}
-This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
-
-The proof, the Lean formalization and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session state that the note was prepared with ChatGPT; the model version is not recorded.
-
-Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It coordinated an independent AI referee check, which re-derived the main chain of estimates by hand, compared the theorem with Ivanisvili's manuscript and with the Lean statements, recomputed exact sign-vector counts for several hundred coefficient vectors (comparing them with floating-point values of $\Phi$) and found no violation, and ran the exact rational constant checks. It ran the fresh Lean replays described in Section~\ref{sec:verification} and revised this manuscript: it made the dependence of the full conjecture on unrefereed external results explicit, credited the strategy and lemmas taken from Ivanisvili's manuscript, and removed claims that rested on files not included here. AI referee checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:verification}.
 
 \begin{abstract}
 Let $X=\sum_{i=1}^n v_i\varepsilon_i$, where the signs are independent and uniform,
@@ -52,31 +45,40 @@ $\sum_i v_i^2=1$, and $|v_i|\le a\le7/100$. For every $x\ge0$ we prove
  \qquad
  \Pp(X\le x)-\Phi(x)\le\Phi(a)-\tfrac12.
 \]
-Here $a>0$ and $\Phi$ is the standard-normal distribution function. The proof
-handles arbitrary unequal real coefficients and atoms at both endpoints.
-It completes the small-coefficient upper-discrepancy regime explicitly left
-open in the recent manuscript of Ivanisvili. We give an analytic proof using
-Prawitz smoothing, coefficient profiles, and a compensated alias estimate.
-The formal development proves the actual finite probability theorem, including
-the characteristic function, smoothing inequality, analytic estimates, and
-identification with Mathlib's normal CDF.
-
-The proposed original contribution is this analytic completion. It carries
-out the route proposed in Section~11 of Ivanisvili's manuscript, a small-$a$
-analytic upper bound mirroring its Section~8. Prawitz's method, Ivanisvili's
-envelopes, Hölder profile reduction and oscillation inequality, and the
-previously treated coefficient ranges are credited to their sources. Together
-with Theorems~1.1 and~10.9 of Ivanisvili's manuscript, the theorem implies the
-full Keller--Klein conjecture. Those external results are computer-assisted,
-have not been refereed, and are not part of this Lean development, so the full
-conjecture is settled here only conditionally on them. Public literature
-searches support novelty of the stated completion, but do not establish
-priority against unpublished or simultaneous work.
+Here $a>0$ and $\Phi$ is the standard normal distribution function. This is
+the upper half of Conjecture~9.3 of Keller and Klein~\cite{KK} in the
+small-coefficient regime that the recent manuscript of Ivanisvili~\cite{I}
+explicitly leaves open. The proof handles arbitrary unequal real coefficients
+and atoms at both endpoints. It is analytic, using Prawitz smoothing,
+coefficient profiles and a compensated alias estimate, and it carries out the
+route proposed in Section~11 of~\cite{I}: a small-$a$ analytic upper bound
+mirroring its Section~8. Prawitz's method, Ivanisvili's envelopes, Hölder
+profile reduction and oscillation inequality, and the previously treated
+coefficient ranges are credited to their sources. Together with Theorems~1.1
+and~10.9 of~\cite{I}, the theorem implies the full Keller--Klein conjecture;
+those external results are computer-assisted, have not been refereed and are
+not part of the Lean development, so the full conjecture follows here only
+conditionally on them. A Lean~4 formalization proves the theorem itself for
+the actual finite sign distribution, including the characteristic function,
+the smoothing inequality, the analytic estimates and the identification with
+Mathlib's normal distribution function. Public literature searches support
+the novelty of this completion, but do not establish priority against
+unpublished or simultaneous work.
 \end{abstract}
 
-\section{The theorem and its precise scope}
+\section{Introduction and main theorem}\label{sec:intro}
 
-Write
+In their proof of Tomaszewski's conjecture, Keller and Klein conjectured that
+a normalized Rademacher sum whose largest coefficient magnitude is $a$ lies
+within Kolmogorov distance $\Phi(a)-\tfrac12$ of the standard normal
+law~\cite[Conjecture~9.3]{KK}. Ivanisvili's computer-assisted manuscript of
+21 October 2026~\cite{I} asserts the lower half of this inequality for every
+coefficient vector and the full inequality for $a\ge0.07$, and leaves the
+upper half for $a<0.07$ open. Theorem~\ref{thm:main} below supplies that upper half.
+Section~\ref{sec:relation} gives the precise relation to the conjecture and to
+prior work.
+
+Throughout we write
 \[
  \phz=(2\pi)^{-1/2},\quad g(t)=e^{-t^2/2},\quad
  \ph(t)=\phz g(t),\quad c(t)=\int_0^t\ph(s)\,ds=\Phi(t)-\tfrac12,
@@ -117,7 +119,20 @@ identity, including atoms,
 Thus \eqref{eq:main} and \eqref{eq:cdf} are equivalent. The proof below does
 not replace either event by a strict event without accounting for its endpoint.
 
-\section{Relation to the established open problem}
+\paragraph{What is new and what is checked.} The proposed original
+contribution is the analytic completion of the upper half for every
+coefficient vector with $a\le7/100$. Prawitz smoothing~\cite{P} is
+classical, and the symmetric smoothing bound, the characteristic-function
+envelopes, the Hölder profile covering and the oscillation inequality are
+taken from or modelled on Ivanisvili's manuscript~\cite{I}; each is credited
+where it is used. The
+Lean development described in Section~\ref{sec:verification} proves
+Theorem~\ref{thm:main} for the actual finite law of $X$, with no analytic step
+left as a hypothesis. The consequence for the full conjecture,
+Corollary~\ref{cor:external}, is a conventional implication from Ivanisvili's
+computer-assisted theorems, which are not formalized.
+
+\section{Relation to the established open problem}\label{sec:relation}
 
 Keller and Klein's Conjecture 9.3 asks, for a normalized Rademacher sum and
 $a=\max_i|v_i|$, whether
@@ -798,7 +813,7 @@ Its code was not copied.
 The exact probability reduction and the analytic completion are local
 proofs. Their mathematical ingredients are not all claimed to be novel.
 
-\subsection*{The external prior results}
+\subsection{The external prior results}
 
 The full-conjecture corollary rests on Ivanisvili's Theorems~1.1 and~10.9,
 whose proofs combine analysis with interval-arithmetic certificates. A
@@ -808,7 +823,7 @@ selection of profile maxima; it reported no failure. That replay is not part
 of this package, and it does not bring the external results inside the Lean
 trust boundary.
 
-\section{Novelty assessment}
+\section{Novelty assessment}\label{sec:novelty}
 
 The searches used the conjecture name and alternative formulations:
 Rademacher Kolmogorov distance, the $\Phi(a)-1/2$ bound, closed symmetric
@@ -865,6 +880,36 @@ the host operating system.
 Numerically, the bound is tightest for even equal weights at $x=0$, where the
 relative slack $1-\sup_x(\Pp(X\le x)-\Phi(x))/c(a)$ is about $a^2/12$; the
 upper half is therefore not attained in the range $a\le7/100$.
+
+\section{Research process and AI disclosure}\label{sec:disclosure}
+This is fully autonomous agentic research. Dev D. Goyal is responsible for
+publication. The work has not been externally peer reviewed, no expert
+validation is claimed, and the novelty assessment is provisional.
+
+Autonomous AI research agents produced the proof, the Lean formalization and
+an earlier version of this note in an earlier session. The records of that
+session state that the note was prepared with ChatGPT; the model version is
+not recorded.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this
+release. It coordinated an independent AI referee check, which re-derived the
+main chain of estimates by hand, compared the theorem with Ivanisvili's
+manuscript and with the Lean statements, recomputed exact sign-vector counts
+for several hundred coefficient vectors (comparing them with floating-point
+values of $\Phi$) and found no violation, and ran the exact rational constant
+checks. It ran the fresh Lean replays described in
+Section~\ref{sec:verification} and revised this manuscript: it made the
+dependence of the full conjecture on unrefereed external results explicit,
+credited the strategy and lemmas taken from Ivanisvili's manuscript, and
+removed claims that rested on files not included here. On 1 November 2026 it
+also revised the presentation (front matter, abstract, introduction and this
+section) without changing the mathematics. AI referee checks are not human
+peer review.
+
+Lean verification establishes only the formal statements described in
+Section~\ref{sec:verification}. The remaining limits, including the
+conditional status of the full conjecture, are listed in
+Section~\ref{sec:novelty}.
 
 \begin{thebibliography}{9}
 \bibitem{KK} Nathan Keller and Ohad Klein.

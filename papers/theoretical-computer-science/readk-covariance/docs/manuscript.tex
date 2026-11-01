@@ -124,7 +124,7 @@
 \title{Logarithmic influence bounds and variance counterexamples for
 Boolean decision-tree covariance}
 \author{Dev D. Goyal}
-\date{27 October 2026}
+\date{27 October 2026; revised 1 November 2026}
 
 \begin{document}
 \maketitle
@@ -133,9 +133,7 @@ Boolean decision-tree covariance}
 \small ORCID: \href{https://orcid.org/0009-0009-9132-744X}{0009-0009-9132-744X}
 \end{center}
 
-\section*{Abstract}\label{abstract}
-\addcontentsline{toc}{section}{Abstract}
-
+\begin{abstract}
 For a Boolean decision tree \(T\), let \(k_i(T)\) count the internal
 nodes querying coordinate \(i\), and let \(I_i(f)\) be its coordinate
 influence under uniform independent bits. The weighted bound is \[
@@ -147,12 +145,12 @@ influence under uniform independent bits. The weighted bound is \[
 
 The standard assumption is that no coordinate is queried twice on a
 single root-to-leaf path. In particular, the signed tree covariance of
-Wan, Wright and Wu is at most \(I(f)\log_2 k\) for a read-\(k\) tree.
+Wan, Wright and Wu~\cite{WWW} is at most \(I(f)\log_2 k\) for a read-\(k\) tree.
 The logarithmic factor has the exact coefficient one along the family
 \(k=2^d\): the dummy-prefix construction of Wan, Wright and Wu, with a
 dictator at its base, attains equality.
 
-Shalev proved the earlier covariance bound \(2\sqrt{k}I(f)\). The
+Shalev~\cite{Shalev} proved the earlier covariance bound \(2\sqrt{k}I(f)\). The
 inequality above replaces the square-root dependence on the read number
 by a logarithm, with an optimal coefficient for this covariance
 quantity. The logarithmic potential itself was previously suggested by
@@ -166,7 +164,11 @@ proposed bound. Since \(\log_2 3<5/3\), this refutes the proposed
 universal bound \(\mathcal C(T)\leq\operatorname{Var}(f)\log_2 k\). The
 four-variable tree uses the original convention, which permits dummy
 queries. The unrestricted Fourier entropy-influence conjecture remains
-unresolved by this work.
+unresolved by this work. A Lean~4 formalization proves the covariance
+inequalities, the equality family and both counterexamples in a finite
+model of Boolean functions and decision trees; it contains no Fourier
+transform or entropy, which serve only as motivation.
+\end{abstract}
 
 \section{Definitions and scope}\label{definitions-and-scope}
 
@@ -392,8 +394,8 @@ cancellations.
 \section{Sharpness of the covariance
 factor}\label{sharpness-of-the-covariance-factor}
 
-The following family is the dummy-prefix example of Wan, Wright and Wu,
-Section 2.4, specialized to a dictator. It is included to verify the
+The following family is the dummy-prefix example of Wan, Wright and
+Wu~\cite[Section~2.4]{WWW}, specialized to a dictator. It is included to verify the
 exact constant; the construction itself is prior work.
 
 \subsection*{Proposition 4}\label{proposition-4}
@@ -516,8 +518,8 @@ which is true. Multiplication by \(3/4\) proves (13). \(\square\)
 \subsection{Scope of the refutation}\label{scope-of-the-refutation}
 
 The proposal appears immediately after Theorem 2.8 in Section 2.4 of
-Wan, Wright and Wu (2013/2014), and is explicitly called a conjecture in
-Section 6.2 of Shalev (2018/2019). It concerns the covariance of the
+Wan, Wright and Wu~\cite{WWW}, and is explicitly called a conjecture in
+Section 6.2 of Shalev~\cite{Shalev}. It concerns the covariance of the
 given read-\(k\) representation. The original paper's decision-tree
 convention in Section 2.1 rules out repeated queries along a path; it
 does not require the tree to have minimum size, to have minimum expected
@@ -618,7 +620,7 @@ not asserted to be a tree of minimum size or minimum expected depth.
 
 \section{Relation to previous work}\label{relation-to-previous-work}
 
-Wan, Wright and Wu introduced tree covariance to bound the expected
+Wan, Wright and Wu~\cite{WWW} introduced tree covariance to bound the expected
 length of a protocol for encoding a function's Fourier spectrum. Their
 Lemmas 1.5 and 1.7 connect this protocol to Fourier entropy. Their
 covariance estimate is \(\mathcal C(T)\leq(k-1)\operatorname{Var}(f)\).
@@ -627,7 +629,7 @@ Section 2.4 of their paper proposes the stronger bound
 dummy-prefix equality construction used in Proposition 4. Propositions 5
 and 6 refute that stronger bound for a given tree.
 
-Shalev's Section 6.2, Theorem 31, proves
+Shalev~\cite[Section~6.2, Theorem~31]{Shalev} proves
 \(\mathcal C(T)\leq2\sqrt{k}I(f)\). The same section proposes the
 Fourier weight \(\ell_T(S)=\sum_{i\in S}\log_2 k_i(T)\). After
 interchanging finite sums, this gives the potential in Theorem 3, since
@@ -639,10 +641,10 @@ absolute node covariances.
 \subsection{Distinct read parameters and selector
 hypotheses}\label{distinct-read-parameters-and-selector-hypotheses}
 
-Arunachalam et al.~prove a logarithmic read-number bound for Fourier
+Arunachalam et al.~\cite{ACKSW} prove a logarithmic read-number bound for Fourier
 min-entropy of disjunctive normal form (DNF) formulas. A DNF is a
 disjunction of conjunctions of literals. Its read number counts terms
-that contain a variable. Shmalo's Theorem 5.1 gives Fourier-entropy
+that contain a variable. Shmalo~\cite[Theorem~5.1]{Shmalo} gives Fourier-entropy
 bounds for unions and intersections of structured gates. Its read
 parameter counts constituent gates that depend on a coordinate. These
 parameters differ from the query-node count in a decision tree.
@@ -661,9 +663,9 @@ example, both children can be the same dictator and thus have the same
 nonempty Fourier support. The general identities alone do not give the
 covariance estimate (8).
 
-González, MacManus and Pereyra obtain Fourier entropy-influence bounds
-for further function classes through a restriction inequality. Han
-bounds Fourier entropy in terms of total influence and coordinate
+González, MacManus and Pereyra~\cite{GMP} obtain Fourier entropy-influence bounds
+for further function classes through a restriction inequality.
+Han~\cite{Han} bounds Fourier entropy in terms of total influence and coordinate
 influences with reciprocal-logarithm weights. These results concern
 Fourier entropy; neither is a statement of the representation-dependent
 covariance bound proved here.
@@ -770,45 +772,52 @@ work in \texttt{docs/related-work.md}. Formal verification establishes
 the statements in the specified finite model. It does not establish
 literature priority.
 
-\section*{Research and publication}\label{authorship-and-assistance}
-\addcontentsline{toc}{section}{Research and publication}
+\section{Research process and AI disclosure}\label{research-process-and-ai-disclosure}
 
-This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication.
+This work is fully autonomous agentic research. The initial research and
+proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT.
+GPT 6 Astra in Codex autonomously produced the formalizations and
+corrections. The author checked the proofs to the best of their
+mathematical abilities; this check is not expert validation or peer review.
+Dev D. Goyal is responsible for publication. The work has not been
+externally peer reviewed.
 
-\section*{References}\label{references}
-\addcontentsline{toc}{section}{References}
+Opus 5.5 by Anthropic used with Claude Code made the editorial revision of
+1 November 2026 to the front matter, the abstract, this section and the
+citations and references; it did not change the mathematics.
+Section~\ref{lean-verification-and-reproducibility} states the formal
+scope, and Sections~\ref{scope-of-the-refutation}
+and~\ref{consequences-and-limits} state the remaining limits.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Andrew Wan, John Wright, and Chenggang Wu. \emph{Decision Trees,
-  Protocols, and the Fourier Entropy-Influence Conjecture}. ITCS 2014,
-  pp.~67--80. DOI: \url{https://doi.org/10.1145/2554797.2554806}.
-  Preprint: \url{https://arxiv.org/abs/1312.3003}.
-\item
-  Guy Shalev. \emph{On the Fourier Entropy Influence Conjecture for
-  Extremal Classes}. arXiv:1806.03646, v2, 24 January 2019.
-  \url{https://arxiv.org/abs/1806.03646v2}.
-\item
-  Srinivasan Arunachalam, Sourav Chakraborty, Michal Koucký, Nitin
-  Saurabh, and Ronald de Wolf. \emph{Improved Bounds on Fourier Entropy
-  and Min-entropy}. ACM Transactions on Computation Theory 13(4),
-  Article 22, 2021. DOI: \url{https://doi.org/10.1145/3470860}.
-  Preprint: \url{https://arxiv.org/abs/1809.09819}.
-\item
-  María José González, Paul MacManus, and María Cristina Pereyra.
-  \emph{Further evidence towards the Fourier Entropy-Influence
-  conjecture}. arXiv:2606.00246v2, 9 June 2026.
-  \url{https://arxiv.org/abs/2606.00246v2}.
-\item
-  Yitzchak Shmalo. \emph{Fourier entropy of threshold functions and
-  their compositions}. arXiv:2610.16069v1, 12 October 2026.
-  \url{https://arxiv.org/abs/2610.16069v1}.
-\item
-  Xiao Han. \emph{A New Bound for the Fourier-Entropy-Influence
-  Conjecture}. Combinatorica 45, Article 4, 2025.
-  \url{https://doi.org/10.1007/s00493-024-00133-z}.
-\end{enumerate}
+\begin{thebibliography}{9}
+\bibitem{WWW}
+  A.~Wan, J.~Wright and C.~Wu, \emph{Decision trees, protocols, and the
+  Fourier entropy-influence conjecture}, Proceedings of ITCS 2014,
+  67--80.
+  \href{https://doi.org/10.1145/2554797.2554806}{doi:10.1145/2554797.2554806}.
+  Preprint \href{https://arxiv.org/abs/1312.3003}{arXiv:1312.3003}.
+\bibitem{Shalev}
+  G.~Shalev, \emph{On the Fourier entropy influence conjecture for
+  extremal classes}, preprint (version~2, 24 January 2019),
+  \href{https://arxiv.org/abs/1806.03646v2}{arXiv:1806.03646v2}.
+\bibitem{ACKSW}
+  S.~Arunachalam, S.~Chakraborty, M.~Koucký, N.~Saurabh and R.~de Wolf,
+  \emph{Improved bounds on Fourier entropy and min-entropy}, ACM
+  Transactions on Computation Theory \textbf{13}(4) (2021), article~22.
+  \href{https://doi.org/10.1145/3470860}{doi:10.1145/3470860}.
+  Preprint \href{https://arxiv.org/abs/1809.09819}{arXiv:1809.09819}.
+\bibitem{GMP}
+  M.~J.~González, P.~MacManus and M.~C.~Pereyra, \emph{Further evidence
+  towards the Fourier entropy-influence conjecture}, preprint (version~2,
+  9 June 2026), \href{https://arxiv.org/abs/2606.00246v2}{arXiv:2606.00246v2}.
+\bibitem{Shmalo}
+  Y.~Shmalo, \emph{Fourier entropy of threshold functions and their
+  compositions}, preprint (12 October 2026),
+  \href{https://arxiv.org/abs/2610.16069v1}{arXiv:2610.16069v1}.
+\bibitem{Han}
+  X.~Han, \emph{A new bound for the Fourier-entropy-influence conjecture},
+  Combinatorica \textbf{45} (2025), article~4.
+  \href{https://doi.org/10.1007/s00493-024-00133-z}{doi:10.1007/s00493-024-00133-z}.
+\end{thebibliography}
 
 \end{document}

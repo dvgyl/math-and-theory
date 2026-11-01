@@ -18,14 +18,14 @@ from check_curated_packages import load_registry, check as check_curated
 
 
 EXPECTED_MANIFESTS = {
-    "asymmetric-tutte": "05d56b54d039f7f47040add53bcb9f0e75501f97d0adeccb9906fca38529996d",
-    "galvin-zhang": "1e8e5c56f9ea7d8bbd14c4dadeeb93a9a346c351ebcb5a35e17b552b6a886276",
-    "higuchi-sudbery": "c20bfa67bb9600a3f3fe5f952226c287925a04292ebfe702dc97ec1a112d8357",
-    "quartic-rankings": "bcfffa2f54209add3b357e5260eb28683c53908e24c8c34704d550977b6e08a3",
-    "readk-covariance": "3d124f4af104bbf61275fcc838d356a874541869a995b7fa6368c01f74ef1b6a",
-    "sharp-eighth": "57b819386378ee3f342b677069d62ce5fd44e2595efa492788395733556dd812",
-    "thermal-kurtosis-counterexample": "a476a967fb17bca552a0f9a7bf809354f2ed38804e65604e20b7e68beeafd70e",
-    "universal-embezzlement": "01f0f4f45fc69996b183e2cae54f04f417c0b270a7b308a4512f3e35d781d6b7"
+    "asymmetric-tutte": "551f6c5e3dcbf87ef386e93e26f1ee2a3e3800e65937da24b89dda2260b6267e",
+    "galvin-zhang": "eac3ebcd62bec2fe94b4e0947aadda8f6e5217a7d2822068f2695b55d67b01e1",
+    "higuchi-sudbery": "b9bdf8ad5abbae10eb9b715173c605023144d46225faae58efc77695e1533892",
+    "quartic-rankings": "20eb7c52793234bd3b57b7150258a27516f6465822da87fea3e0866bc29f39de",
+    "readk-covariance": "9693fddc6864fc76f3e8696550bfbd69daae8d9561291bdf7d2a65d0856fd08b",
+    "sharp-eighth": "77ac87658f5ee242a98e5f14d5cb858268858a1d6d04149395c74c5b735e26fe",
+    "thermal-kurtosis-counterexample": "ce2c8ed829aebceb811c15fbd4b5326f9160807661be4dda84f9892e464388dc",
+    "universal-embezzlement": "08a9087611cc6023d03aec9039b730c78f3199f54f9ece3b5452d529bcef85b7"
 }
 MATHLIB = "c44e0c8ee63ca166450922a373c7409c5d26b00b"
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}

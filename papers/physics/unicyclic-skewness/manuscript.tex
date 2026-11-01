@@ -9,6 +9,7 @@
 \usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage{hyperref}
+\usepackage{xurl}
 \usepackage{bookmark}
 \usepackage{tcolorbox}
 \usepackage{fvextra}
@@ -52,16 +53,9 @@
   {\color{ink}\LARGE\bfseries A sharp universal skewness bound\par
   for unicyclic currents}\par\vspace{10pt}
   {\small Dev D. Goyal}\par\vspace{5pt}
-  {\small 29 October 2026}
+  {\small 29 October 2026; revised 1 November 2026}
 \end{center}
 \vspace{4pt}
-\begin{tcolorbox}[colback=pale,colframe=accent,boxrule=0.5pt,arc=0pt,
-  left=9pt,right=9pt,top=7pt,bottom=7pt]
-\textbf{Authorship and responsibility.} This work is fully autonomous
-agentic research. AI systems autonomously generated and developed the research,
-proofs, formalizations, corrections, and manuscript. Dev D. Goyal is responsible
-for publication. No expert human validation or peer review is claimed.
-\end{tcolorbox}
 \begin{tcolorbox}[colback=pale,colframe=accent,boxrule=0.5pt,arc=0pt,
   left=9pt,right=9pt,top=7pt,bottom=7pt]
 \textbf{\VerificationHeading.} \VerificationText
@@ -69,18 +63,19 @@ for publication. No expert human validation or peer review is claimed.
 \begin{abstract}
 For a finite continuous-time Markov chain on a bidirectional ring, let $C_k$
 denote the $k$th cumulant per unit time of the net crossing count of a fixed
-edge. The conjectured dimension-independent interval
-$-1/16\le C_3/C_1\le1$ is proved for arbitrary strictly positive rates and
-nonzero affinity. Both constants are sharp. The proof combines the known positive
-midpoint spectrum of the tilted generator with a finite-ring proof of the
-thermodynamic uncertainty relation. The lower bound then reduces to a
+edge. Ptaszy\'nski~\cite{Ptaszynski2022} proposed the dimension-independent
+interval $-1/16\le C_3/C_1\le1$ for such winding currents. We prove it for
+every ring with at least three states, arbitrary strictly positive rates and
+nonzero affinity; both constants are sharp. The proof combines the known
+positive midpoint spectrum of the tilted generator with a finite-ring proof
+of the thermodynamic uncertainty relation. The lower bound then reduces to a
 two-variable polynomial inequality, certified by exact positive integer
-coefficients on three rational intervals. The accompanying Lean 4
-development verifies the actual finite-rate tilted-matrix theorem, including
-existence of its local eigenvalue branch. The stochastic interpretation,
-formal scope, prior work, and complete integer certificate are stated
-explicitly. The conventional two-state and one-state cases are included
-as supplements.
+coefficients on three rational intervals, which are listed in full. The
+conventional two-state and one-state cases are included as supplements.
+A Lean~4 development verifies the interval for the actual finite-rate
+tilted matrix, including existence of its local eigenvalue branch; the
+identification with long-time stochastic cumulants and the sharpness of the
+constants rest on conventional proofs given here.
 \end{abstract}
 \noindent\textbf{Keywords.} Markov currents; unicyclic networks; cumulant
 bounds; thermodynamic uncertainty; exact positivity certificate; Lean 4.
@@ -118,6 +113,24 @@ The proposed contribution is a proof of \eqref{eq:target}. Bibliographic
 priority is not established by the formal proof. First-passage skewness bounds
 \cite{Barato2015,Wampler2022} concern different normalizations and do not
 directly supply this result. The novelty assessment remains subject to further literature comparison.
+
+The Lean development checks the finite-matrix form of the theorem
+(Theorem~\ref{thm:matrix}); the identification with stochastic cumulants
+(Section~\ref{sec:stochastic}) and sharpness (Section~\ref{sec:upper}) are
+conventional proofs. Section~\ref{sec:formal} states the formal scope
+exactly.
+
+\paragraph{Earlier public work (note added 1 November 2026).}
+On 31 October 2026 a check of public problem records found that the Omega
+Institute's public repository records a proof of Ptaszy\'nski's numerically
+conjectured minimum skewness for \emph{unidirectional} cycles (issue
+\#22468), committed on 26 October 2026, before the first version of this
+manuscript~\cite{OmegaUnicyclic}. It gives the exact minimum for every
+number of states and $-1/16$ as the infimum over all state counts. That is a
+different question: the theorem here concerns bidirectional rings with
+positive forward and reverse rates and proves both sides of
+\eqref{eq:target}. The two results agree on the lower constant $-1/16$. No
+originality or priority claim is made for the unidirectional case.
 
 \section{Statement and conventions}\label{sec:statement}
 
@@ -648,7 +661,7 @@ The independent certificate check uses Python and SymPy. It expands every
 integer certificate and checks the polynomial reduction identities. The Lean
 proof checks these identities independently with kernel-checked tactics.
 
-\section{Assessment and limitations}
+\section{Assessment and limitations}\label{sec:assessment}
 
 The result resolves the dimension-independent interval proposed in
 \cite{Ptaszynski2022}, within its positive-rate ring model and for the
@@ -659,6 +672,20 @@ cumulant conjectures or the optimal bounds at each fixed ring size.
 The argument does not settle the separate kurtosis, joint-cumulant, or
 fixed-size optimization questions. Extending the method to other higher
 cumulants remains an open direction.
+
+\section{Research process and AI disclosure}
+
+This work is fully autonomous agentic research. AI systems autonomously
+generated and developed the research, proofs, exact certificate,
+formalization, corrections and earlier versions of this manuscript.
+Opus~5.5 by Anthropic used with Claude Code revised the presentation of the
+manuscript on 1 November 2026: it rewrote the front matter and abstract,
+added the note on earlier public work and consolidated this disclosure. The
+revision does not change the mathematics. Dev D. Goyal is responsible for
+publication. No expert human validation or peer review is
+claimed; the work has not been externally peer reviewed. The formal scope is stated in
+Section~\ref{sec:formal} and the remaining limits in
+Section~\ref{sec:assessment}.
 
 \clearpage
 \begin{thebibliography}{9}
@@ -694,6 +721,13 @@ P.~Pietzonka, A.~C.~Barato, and U.~Seifert,
 Physical Review E \textbf{93}, 052145 (2016), Appendix~C.
 \href{https://doi.org/10.1103/PhysRevE.93.052145}{doi:10.1103/PhysRevE.93.052145}.
 \href{https://arxiv.org/abs/1512.01221}{arXiv:1512.01221}.
+
+\bibitem{OmegaUnicyclic}
+The Omega Institute,
+problem dossier on the minimum skewness of unidirectional cycles (issue
+\#22468), public repository \nolinkurl{the-omega-institute/trureturing},
+committed 26 October 2026.
+\url{https://github.com/the-omega-institute/trureturing/blob/036cdd4840c6bd823af165fa3c6db3ea6a790929/Problems/ptaszynski-2022-unicyclic-skewness-minimum.md}.
 \end{thebibliography}
 
 \appendix

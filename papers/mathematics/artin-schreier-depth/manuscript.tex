@@ -31,21 +31,33 @@
 pdfauthor={Dev D. Goyal},
 pdfsubject={Fully autonomous agentic research},
 pdfkeywords={Artin-Schreier extensions, defect, depth, Okutsu sequences, Hahn series, Krasner lemma, Lean 4}}
-\newcommand{\replaystatus}{Fresh replays on 30 and 31 October 2026 compiled both Lean projects one module at a time into new directories, against Mathlib checkouts at the pinned revisions: the 20 modules of the Lean~4.19 project and the 100 modules of the Lean~4.35 project, 54 of them vendored, each with a regenerated audit. All 435 and 2127 declarations defined in them, including generated and private ones, depend only on \code{propext}, \code{Classical.choice} and \code{Quot.sound}. Both implications are formalized, with depth one defined by Mac Lane--Vaquié chains in the second project; Section~\ref{sec:lean} states the formal scope.}
+\newcommand{\replaystatus}{Fresh replays on 30 and 31 October 2026 compiled both Lean projects one module at a time into new directories, against Mathlib checkouts at the pinned revisions: the 20 modules of the Lean~4.19 project and the 100 modules of the Lean~4.35 project, 54 of them vendored, each with a regenerated audit. All 435 and 2127 declarations defined in them, including generated and private ones, depend only on \code{propext}, \code{Classical.choice} and \code{Quot.sound}.}
 \title{\textbf{Depth-one Artin--Schreier defect towers are composita}}
 \author{Dev D. Goyal}
-\date{30 October 2026}
+\date{30 October 2026; revised 1 November 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Let $k$ be an algebraically closed field of characteristic $p>0$ and let $K$ be a perfect henselian subfield of the Hahn field $k((y^\Q))$ that contains $k(y)$ and whose elements have no finite accumulation points in their supports. Nart and Novacoski proved that every finite compositum of Artin--Schreier extensions of $K$ has depth one, and conjectured the converse. We prove the converse: a finite Artin--Schreier tower $M/K$ of depth one is a compositum of Artin--Schreier extensions of $K$. More precisely, for every $\theta\in M\setminus K$ the truncation of $\theta$ at the first finite accumulation point of its support generates a nontrivial elementary abelian subextension of $K(\theta)/K$, and depth one forces this subextension to be all of $M$. The extraction step adapts an Ore-relation argument of Kedlaya. Both implications are formalized in Lean~4 for actual Artin--Schreier towers over a base whose valuation ring is henselian, with depth one defined as the least length of a complete Mac Lane--Vaquié chain over all primitive generators.
+Let $k$ be an algebraically closed field of characteristic $p>0$ and let $K$ be a perfect henselian subfield of the Hahn field $k((y^\Q))$ that contains $k(y)$ and whose elements have no finite accumulation points in their supports. Nart and Novacoski proved that every finite compositum of Artin--Schreier extensions of $K$ has depth one, and conjectured the converse~\cite[Conjecture~4.1]{NN}. We prove the converse: a finite Artin--Schreier tower $M/K$ of depth one is a compositum of Artin--Schreier extensions of $K$. More precisely, for every $\theta\in M\setminus K$ the truncation of $\theta$ at the first finite accumulation point of its support generates a nontrivial elementary abelian subextension of $K(\theta)/K$, and depth one forces this subextension to be all of $M$. The extraction step adapts an Ore-relation argument of Kedlaya~\cite{Ked}. Both implications are formalized in Lean~4 for actual Artin--Schreier towers over a base whose valuation ring is henselian, with depth one defined as the least length of a complete Mac Lane--Vaquié chain over all primitive generators.
 \end{abstract}
 
-\paragraph{Verification status.} \replaystatus
+\section{Introduction and main theorem}\label{sec:theorem}
 
-\section{The theorem}\label{sec:theorem}
+Nart and Novacoski introduced the depth of a defect extension, proved that
+finite composita of Artin--Schreier extensions of the bases described below
+have depth one, and conjectured the converse~\cite[Theorem~3.15,
+Conjecture~4.1]{NN}. This note proves that converse (Theorem~\ref{thm:main}).
+The Artin--Schreier root formula, the support estimates, Krasner's lemma and
+the Ore relation are standard, and the extraction step is Kedlaya's; what is
+new is the first-block statement of Proposition~\ref{prop:block} and its
+application to all towers and all primitive generators
+(Section~\ref{sec:novelty}). Both implications of the resulting equivalence
+are formalized in Lean~4 (Section~\ref{sec:lean}): one project expresses depth
+one through Okutsu sequences and cites the identification of the Okutsu
+minimum with depth from~\cite{NN}, and the other defines depth through Mac
+Lane--Vaquié chains.
 
 Let $k$ be an algebraically closed field of characteristic $p>0$ and let $H=k((y^\Q))$ be the field of Hahn series with well-ordered rational support. Write $v$ for the valuation by least exponent. Suppose
 \[
@@ -193,6 +205,8 @@ The argument uses only one primitive generator realizing depth one, not a partic
 
 \section{Formal verification}\label{sec:lean}
 
+\replaystatus
+
 Two Lean projects are included. The second states the theorem with depth as Nart and Novacoski define it; the first expresses depth one through Okutsu sequences.
 
 \paragraph{The Okutsu formulation.} The project in \code{lean/} pins Lean~4.19.0 and the Mathlib commit
@@ -213,12 +227,14 @@ This project compares Mac Lane--Vaquié chains with the Okutsu criterion only at
 
 Nart and Novacoski introduced depth for defect extensions, proved that composita of Artin--Schreier extensions have depth one and stated Theorem~\ref{thm:main} as Conjecture~4.1 of~\cite{NN}, supporting it with a cyclic tower of depth two. The Artin--Schreier root formula, the support estimates, Krasner's lemma and the Ore relation are standard, and the minimal-face extraction is Kedlaya's~\cite[Lemma~9.3]{Ked}. What is offered is the first-block statement, Proposition~\ref{prop:block}, over these bases and its application to all towers and all primitive generators. Searches in October 2026 found no other proof of the conjecture, but a search cannot establish that none exists, and the published journal version of~\cite{NN} could not be opened. No priority is claimed, and no expert has reviewed the result.
 
-\section*{Research process and AI disclosure}
-This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
+\section{Research process and AI disclosure}\label{sec:disclosure}
+This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. The work has not been externally peer reviewed, no expert validation is claimed, and the novelty assessment is provisional.
 
 The theorem, its proof, the Lean formalization, the literature searches and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session do not name the AI system used. A later session of autonomous agents, continuing the same project, produced the Lean~4.35 project: it formalized Mac Lane--Vaquié chains and their comparison at length one, replaced the unique-extension hypothesis by henselianity of the valuation ring and proved the result for abstract towers. Its records do not name the AI system used either. That project adapts Lean sources of the Tau Ceti project and of Y.~Yuan's TrustworthyKedlaya and vendors NYLL, whose author credits assistance by OpenAI Codex; the credits are in \code{lean\_mlv/THIRD\_PARTY.md}.
 
-Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It checked the argument step by step, read the arXiv source of~\cite{NN} (version~2) and checked the depth criterion~\eqref{eq:depthone}, Theorem~1.3, Theorem~3.15 and Conjecture~4.1 against the statements used here, and compared the Lean endpoints and their hypotheses with Theorem~\ref{thm:main}. It formalized the converse in the source's ambient field, the forward implication and their equivalence (the modules \code{HahnClosureDepth} and \code{HahnClosureForward}), ran the fresh Lean replay described in Section~\ref{sec:lean}, and rewrote the note in this form. For the Lean~4.35 project it compared the endpoints and the chain definitions with Theorem~\ref{thm:main} and~\cite{N21}, ran its fresh replay and revised this note. AI checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:lean}.
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It checked the argument step by step, read the arXiv source of~\cite{NN} (version~2) and checked the depth criterion~\eqref{eq:depthone}, Theorem~1.3, Theorem~3.15 and Conjecture~4.1 against the statements used here, and compared the Lean endpoints and their hypotheses with Theorem~\ref{thm:main}. It formalized the converse in the source's ambient field, the forward implication and their equivalence (the modules \code{HahnClosureDepth} and \code{HahnClosureForward}), ran the fresh Lean replay described in Section~\ref{sec:lean}, and rewrote the note in this form. For the Lean~4.35 project it compared the endpoints and the chain definitions with Theorem~\ref{thm:main} and~\cite{N21}, ran its fresh replay and revised this note. On 1 November 2026 it also revised the presentation (front matter, abstract, introduction and this section) without changing the mathematics. AI checks are not human peer review.
+
+Lean verification establishes only the formal statements described in Section~\ref{sec:lean}; the limits of the literature comparison are stated in Section~\ref{sec:novelty}.
 
 \begin{thebibliography}{9}\small
 \bibitem{EP} A.~J.~Engler and A.~Prestel, \emph{Valued Fields}, Springer, 2005.

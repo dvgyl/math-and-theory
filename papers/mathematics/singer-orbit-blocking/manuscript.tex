@@ -26,22 +26,22 @@ pdfkeywords={blocking sets, projective planes, PG(2,13), Singer cycle, Erdos pro
 \newcommand{\Z}{\mathbb{Z}}
 \title{\textbf{Blocking sets of $\mathbf{PG(2,13)}$ invariant under\\a fixed-point-free Singer subgroup\\meet some line in five points}}
 \author{Dev D. Goyal}
-\date{31 October 2026}
+\date{31 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
 Let $H$ be the subgroup of order three of a Singer cycle group of the
 projective plane $\PG$; it fixes no point. We show that every $H$-invariant
 blocking set of $\PG$ meets some line in at least five points. The
-$21$-point blocking set of Blokhuis, Brouwer and Wilbrink is invariant under
+$21$-point blocking set of Blokhuis, Brouwer and Wilbrink~\cite{BBW} is invariant under
 a conjugate of $H$ and meets every line in at most five points, so five is
 the least possible largest line intersection of an $H$-invariant blocking
 set. Every fixed-point-free collineation of order three of $\PG$ generates a
 conjugate of $H$, so the statement holds for all of them. This settles one
-symmetric case of the plane of order $13$ in Erd\H{o}s Problem~1159, which
-asks whether every finite projective plane has a point set meeting each line
-in at least one and at most $C$ points; a public computational campaign had
-recorded this case as unresolved. The proof reduces the question to $61$
+symmetric case of the plane of order $13$ in Erd\H{o}s Problem~1159~\cite{EP1159},
+which asks whether every finite projective plane has a point set meeting each
+line in at least one and at most $C$ points; a public computational
+campaign~\cite{campaign} had recorded this case as unresolved. The proof reduces the question to $61$
 weighted line conditions on the orbits of $H$ and shows by exhaustive search
 that they have no solution with intersections at most four. A Lean~4 project
 proves the theorem for the specified subgroup, with $\PG$ modelled by
@@ -254,7 +254,7 @@ conditions and the identity $MM^{\mathsf T}=13I+3J$; it checks the witness,
 its intersection numbers, its tangents and the conjugacy to the set of
 \cite{BBW}; and it runs the search of Proposition~\ref{prop:unsat}.
 
-\section{Limitations}
+\section{Limitations}\label{sec:limits}
 
 The result concerns one conjugacy class of subgroups. Whether $\PG$ has a
 blocking set with all line intersections at most four, without symmetry, is
@@ -263,11 +263,11 @@ computation and in Lean; the conjugacy statement of Section~\ref{sec:conj} is
 not formalized. The literature comparison is bounded, and historical priority
 is not certified.
 
-\section*{Research process and AI disclosure}
+\section{Research process and AI disclosure}\label{sec:disclosure}
 
 This is fully autonomous agentic research. Dev D. Goyal is responsible for
-publication. No expert validation or external peer review is claimed, and
-the novelty assessment is provisional.
+publication. The work has not been externally peer reviewed, no expert
+validation is claimed, and the novelty assessment is provisional.
 
 Autonomous AI research agents selected the question, found the reduction to
 $61$ orbit conditions, identified the witness with the example of
@@ -283,8 +283,11 @@ Opus 5.5 by Anthropic used with Claude Code assessed the package for this
 release. It wrote the Lean project used here, including the kernel search and
 its soundness proof, ran its fresh build and axiom audit, wrote the
 independent Python checker and this manuscript, and integrated the package
-into the repository. The solver certificate and the earlier Lean proof are
-not included. AI checks are not human peer review.
+into the repository. It also made the editorial revision of 1 November
+2026, which did not change the mathematics. The solver certificate and the
+earlier Lean proof are not included. AI checks are not human peer review.
+Section~\ref{sec:verification} states the formal scope and
+Section~\ref{sec:limits} the remaining limits.
 
 \begin{thebibliography}{9}
 \bibitem{BBW}

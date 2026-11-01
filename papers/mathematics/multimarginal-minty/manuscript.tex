@@ -24,7 +24,7 @@ pdfkeywords={multi-marginal optimal transport, c-monotonicity, maximal monotone 
 \newcommand{\norm}[1]{\lVert #1\rVert}
 \title{\textbf{The multi-marginal converse of Minty's theorem\\fails in the plane}}
 \author{Dev D. Goyal}
-\date{31 October 2026}
+\date{31 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -35,10 +35,12 @@ inequalities have a positive weighted sum bounded below by the exact
 constant $23/26$, as witnessed by a sum of four squares. Every maximal
 $c$-monotone extension of these tuples therefore has a proper, nonconvex
 sum image. This gives a negative answer to the implication asked about in
-Remark~2.6 of Bartz, Bauschke, Phan and Wang, using their two-point
-definition of $c$-monotonicity. The actual finite obstruction, cost-swap
-equivalence, maximal-extension argument and nonconvexity conclusion are
-formalized in Lean~4.
+Remark~2.6 of Bartz, Bauschke, Phan and Wang~\cite{BBPW}: maximal
+$c$-monotonicity does not imply surjectivity of the sum map. We use their
+two-point definition of $c$-monotonicity. The finite obstruction, the
+cost-swap equivalence, the maximal-extension argument and the nonconvexity
+conclusion are formalized in Lean~4; the interpretation through firmly
+nonexpansive maps is proved only in the text.
 \end{abstract}
 
 \paragraph{Verification status.} \replaystatus
@@ -281,11 +283,11 @@ Lean verification establishes only the formal statements described in
 Section~\ref{sec:lean}, and the literature comparison does not establish
 historical priority.
 
-\section*{Research process and AI disclosure}
+\section{Research process and AI disclosure}\label{sec:disclosure}
 
 This is fully autonomous agentic research. Dev D. Goyal is responsible
-for publication. No expert validation or external peer review is
-claimed, and the novelty assessment is provisional.
+for publication. The work has not been externally peer reviewed, no
+expert validation is claimed, and the novelty assessment is provisional.
 
 The question selection, the counterexample, the proof, the Lean
 formalization, the literature searches and an earlier version of this
@@ -300,8 +302,10 @@ release. It read Remark~2.6 and Definition~1.2 of~\cite{BBPW} and the
 relevant parts of~\cite{Lim}, compared the Lean definitions of the cost,
 the swap condition and maximality with them, rechecked the table, the
 identity and the convex combination in exact arithmetic with its own
-code, ran the fresh Lean replay, and revised this note. AI checks are not
-human peer review.
+code, ran the fresh Lean replay, and revised this note, including the
+editorial revision of 1 November 2026, which did not change the
+mathematics. AI checks are not human peer review. Section~\ref{sec:lean}
+states the formal scope and Section~\ref{sec:limits} the remaining limits.
 
 \begin{thebibliography}{9}
 \bibitem{BBPW}
@@ -321,12 +325,15 @@ Preprint \href{https://arxiv.org/abs/2207.04830v4}{arXiv:2207.04830v4}.
 
 \bibitem{Survey}
 L.~De Pascale, A.~Kausamo and K.~Wyczesany,
-\emph{60 years of cyclic monotonicity: a survey},
-\href{https://arxiv.org/abs/2308.07682}{arXiv:2308.07682}.
+\emph{60 years of cyclic monotonicity: a survey}, Journal of Convex
+Analysis \textbf{32} (2025), 399--430.
+\href{https://doi.org/10.68381/jca32020}{doi:10.68381/jca32020}.
+Preprint \href{https://arxiv.org/abs/2308.07682}{arXiv:2308.07682}.
 
 \bibitem{DG}
 B.~Dacorogna and W.~Gangbo, \emph{Extension theorems for vector valued
-maps}, Journal de Mathematiques Pures et Appliquees (2006).
+maps}, Journal de Math\'ematiques Pures et Appliqu\'ees \textbf{85} (2006),
+313--344.
 \href{https://doi.org/10.1016/j.matpur.2005.04.005}{doi:10.1016/j.matpur.2005.04.005}.
 
 \bibitem{JungGeometry}

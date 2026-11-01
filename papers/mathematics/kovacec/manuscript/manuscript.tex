@@ -9,14 +9,11 @@
 \newtheorem{theorem}{Theorem}
 \title{A polygon enclosure fails for sums of normal matrices}
 \author{Dev D. Goyal}
-\date{28 October 2026; priority note added 30 October 2026}
+\date{28 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
-\paragraph{Autonomous AI research disclosure.}
-This work is fully autonomous agentic research. Automated systems produced the research, proofs, formalization, and manuscript preparation. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed.
-
 \begin{abstract}
-This note defines a polygon enclosure using segments between permutation values for sums of normal matrices. An explicit pair of normal $3\times3$ matrices gives a determinant outside this region. For spectra $(0,1,i)$ and $(-1-i,1,-1+i)$, a real orthogonal change of basis gives the exact determinant $2/3+2i/9$. The boundary defined by arbitrarily long straight segments that avoid the permutation graph is a simple closed polygon. The determinant lies outside the closure of every bounded component of its complement, and a nonempty bounded component exists. The proof identifies the entire graph, its straight-segment exterior, and a Jordan parametrization. The same determinant is an explicit convex combination of permutation values, so the example respects the ordinary convex-hull inclusion. A companion Lean development verifies the matrix and topological statements. Identification with an external enclosure proposal and historical novelty remain unverified.
+This note defines a polygon enclosure using segments between permutation values for sums of normal matrices, motivated by Kova\v{c}ec's proposed strengthening of the Marcus--de Oliveira conjecture~\cite{kovacec2026}. An explicit pair of normal $3\times3$ matrices gives a determinant outside this region. For spectra $(0,1,i)$ and $(-1-i,1,-1+i)$, a real orthogonal change of basis gives the exact determinant $2/3+2i/9$. The boundary defined by arbitrarily long straight segments that avoid the permutation graph is a simple closed polygon. The determinant lies outside the closure of every bounded component of its complement, and a nonempty bounded component exists. The proof identifies the entire graph, its straight-segment exterior, and a Jordan parametrization. The same determinant is an explicit convex combination of permutation values, so the example respects the ordinary convex-hull inclusion. A companion Lean development verifies the matrix and topological statements. Identification with an external enclosure proposal and historical novelty remain unverified. Professor Kova\v{c}ec found a counterexample to his conjecture in June 2026, and Wenlin Zhang independently sent him another (see the priority note); no priority is claimed.
 \end{abstract}
 
 \section*{Priority and subsequent correspondence}
@@ -35,7 +32,7 @@ The boundary $\Gamma$ of the straight-segment exterior of their full transpositi
 There is a nonempty bounded connected component of $\mathbb C\setminus\Gamma$, and $p$ lies outside the closure of every bounded connected component. Nevertheless, $p$ lies in the convex hull of the six permutation values.
 \end{theorem}
 
-The definitions and proof follow. The gap is visible at height $2/9$: the left boundary has real coordinate $8/9$, while $\operatorname{Re}p=2/3$. The argument must also identify that polygon as the boundary specified by the straight-segment exterior; choosing a cycle in the graph alone would not suffice.
+The definitions and proof follow, and Section~\ref{sec:formal} maps them to the Lean development. The gap is visible at height $2/9$: the left boundary has real coordinate $8/9$, while $\operatorname{Re}p=2/3$. The argument must also identify that polygon as the boundary specified by the straight-segment exterior; choosing a cycle in the graph alone would not suffice.
 
 \section{The precise problem}\label{the-precise-problem}
 
@@ -349,7 +346,7 @@ KovacecResolution.ordinary_convex_combination
 \end{verbatim}
 
 
-\section{Formal verification and scope}
+\section{Formal verification and scope}\label{sec:formal}
 The proof above establishes Theorem~\ref{thm:main} without a computer calculation. Its formal counterpart consists of eight proof modules and a root import file. The matrix certificate verifies the actual matrices, unitarity, normality, determinant, all six permutations and all nine transposition edges. The geometric modules define the boundary functions, prove the exact frontier and loop image, and verify injectivity. The exterior and component modules prove equality with the straight-segment exterior and exclusion from all bounded component closures.
 
 The endpoint \texttt{KovacecResolution.completed\_counterexample} includes the two normality identities, exact determinant, Jordan condition, existence of a nonempty bounded component, and exclusion from every bounded component closure. The package-defined predicate \texttt{Conjecture7} asks for a bounded component closure containing the determinant under the displayed hypotheses. The theorem \texttt{conjecture7\_false} refutes that formal predicate. These names do not authenticate an external Conjecture 7 or its definitions. No general Jordan-curve uniqueness theorem is needed. The separate theorem \texttt{ordinary\_convex\_combination} verifies the convex identity.
@@ -357,6 +354,9 @@ The endpoint \texttt{KovacecResolution.completed\_counterexample} includes the t
 The checked endpoint dependencies are exactly \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. The formalization map identifies the declarations and reproduction commands. Formal verification checks these stated objects and assumptions; it does not establish novelty, external source identity, or publication priority.
 
 The result concerns the stated polygon enclosure. It does not refute the Marcus--de Oliveira convex-hull conjecture or resolve that conjecture in general. Its scope is an exact obstruction in dimension three, with a real orthogonal mixing matrix and the full geometric hypotheses verified.
+
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. Automated systems produced the research, proofs, formalization, and earlier versions of this manuscript. Opus~5.5 by Anthropic used with Claude Code revised the presentation of the manuscript on 1 November 2026: it rewrote the front matter and abstract and consolidated this disclosure. The revision does not change the mathematics. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed; the work has not been externally peer reviewed. The formal scope and its limits are stated in Section~\ref{sec:formal}, and the earlier counterexamples in the priority note.
 
 \bibliographystyle{plain}
 \bibliography{references}

@@ -4,6 +4,10 @@
 \usepackage[margin=0.9in]{geometry}
 \usepackage{xcolor,fancyvrb}
 \usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={A five-variable separation between structural and numerical selfadhesivity},
+pdfauthor={Dev D. Goyal},
+pdfsubject={Fully autonomous agentic research},
+pdfkeywords={conditional independence, polymatroids, selfadhesivity, entropy, Lean 4}}
 \usepackage{fancyhdr}
 \pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Structural and numerical selfadhesivity}\fancyhead[R]{\small Dev D. Goyal}\fancyfoot[C]{\thepage}
 \setlength{\headheight}{14pt}
@@ -13,8 +17,8 @@
 \newcommand{\sg}{\mathfrak{sg}}\newcommand{\R}{\mathbb R}
 \newcommand{\Ih}[2]{I_h(#1\mid #2)}
 \title{A five-variable separation between structural and numerical selfadhesivity}
-\author{Dev D. Goyal\thanks{Fully autonomous agentic research; see the disclosure at the end. No expert validation or external peer review is claimed.}}
-\date{30 October 2026}
+\author{Dev D. Goyal}
+\date{30 October 2026; revised 1 November 2026}
 \begin{document}\maketitle
 \begin{abstract}
 We give an explicit five-variable conditional-independence model that admits a
@@ -26,7 +30,8 @@ informations and two substantive copied extensions. It excludes every real
 inducing profile, not merely the profiles used in the positive certificates.
 This gives a negative answer to Question~4.18 (4.14 in the PDF version) of Boege's 2023 paper on
 selfadhesivity~\cite{Boege}. The complete theorem, its powerset semantics, and
-the exact certificates are formalized in Lean 4. Formal correctness and
+the exact certificates are formalized in Lean 4 for arbitrary real
+polymatroids. Formal correctness and
 historical novelty are separate claims, and the novelty assessment is
 provisional.
 \end{abstract}
@@ -59,6 +64,7 @@ $U_L=N\cup N'_L$ is adhesive at this overlap when
  A_L(g):=g(N)+g(N'_L)-g(U_L)-g(L)=0.
 \end{equation}
 This is the group conditional independence of the two complements given $L$.
+Adhesivity of polymatroids in this sense was studied by Mat\'u\v{s}~\cite{Matus}.
 The implication from adhesion to all required elementary crossing CIs is proved below.
 
 A CI model is \emph{structurally selfadhesive} if, for every $L$, such a $g_L$
@@ -112,7 +118,7 @@ $4,5$ &$\varnothing;\ 3;\ 12;\ 23$\\\bottomrule
 \caption{The complete CI model. All remaining 54 elementary CMIs are strictly
 positive in an inducing polymatroid.}\label{tab:model}
 \end{table}
-The CInet encoding is
+The encoding in the format of CInet~\cite{CInet} is
 \begin{center}\small\ttfamily
 01111101110000011101001111010011011111010111111101111110111101011111010101100101.
 \end{center}
@@ -370,7 +376,7 @@ option to the last command:
 Discovery used floating-point LPs to propose witnesses, followed by exact
 reconstruction. Rechecking the theorem requires no optimization solver.
 
-\section{Limitations}
+\section{Limitations}\label{sec:limits}
 The literature comparison covered primary arXiv versions and sources, journal
 versions, theses, MathOverflow, scholarly and code repositories, including
 other AI research repositories, and Lean libraries. Some services and
@@ -381,10 +387,10 @@ entropy regions should assess novelty and significance before any priority
 claim. The theorem and its formal verification stand regardless; an earlier
 equivalent result would change only the novelty assessment.
 
-\section*{Research process and AI disclosure}
+\section{Research process and AI disclosure}\label{sec:disclosure}
 This is fully autonomous agentic research. Dev D. Goyal is responsible for
-publication. No expert validation or external peer review is claimed, and the
-novelty assessment is provisional.
+publication. The work has not been externally peer reviewed, no expert
+validation is claimed, and the novelty assessment is provisional.
 
 The question, the construction, the certificates, the Lean formalization, the
 literature searches and an earlier version of this note were produced by
@@ -397,9 +403,13 @@ release. It compared the Lean definitions of polymatroids, copies, adhesion,
 the CI catalogue and both selfadhesivity notions with the statements above and
 with Question~4.18 and Definition~4.3 of~\cite{Boege}, which it read in the
 arXiv version; it reran the exact positive and negative checkers and the fresh
-Lean replay described in Section~\ref{sec:lean}, and it revised this note. AI
-checks are not human peer review. Lean verification establishes only the
-formal statements described in Section~\ref{sec:lean}.
+Lean replay described in Section~\ref{sec:lean}, and it revised this note. On
+1 November 2026 it also revised the front matter and references without
+changing the mathematics. AI checks are not human peer review.
+
+Lean verification establishes only the formal statements described in
+Section~\ref{sec:lean}; the limits of the literature comparison are stated in
+Section~\ref{sec:limits}.
 
 \appendix
 \section{Complete separating identity data}\label{app:negative}

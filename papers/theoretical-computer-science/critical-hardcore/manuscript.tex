@@ -38,17 +38,10 @@ pdfkeywords={hard-core model, spectral independence, criticality, nonbacktrackin
 \title{\textbf{Critical hard-core influence bounds\\via nonbacktracking collisions}\\[6pt]
 \large With a Lean 4 formalization}
 \author{Dev D. Goyal}
-\date{30 October 2026}
+\date{30 October 2026; revised 1 November 2026}
 
 \begin{document}
 \maketitle
-
-\section*{Research process and AI disclosure}
-This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
-
-The research, the proof, the Lean formalization and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session state that the note was prepared with ChatGPT; the model version is not recorded.
-
-Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It coordinated an independent AI referee check, which recomputed exact influence row sums by brute force on 57 small graphs at the critical activity, with and without pinnings, checked the collision ingredients on small regular graphs, and compared the Lean statements with the claims. It ran the fresh Lean replay described in Section~\ref{sec:formal} and revised this manuscript: it added the credit to Sinclair, Srivastava, \v{S}tefankovi\v{c} and Yin, the comparison with recent Ising results, the discussion of the constant, and the conditional status of the mixing corollary. AI referee checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:formal}.
 
 \begin{abstract}
 For each fixed integer $\Delta\ge3$, we establish a uniform
@@ -59,16 +52,18 @@ $0<\lambda\le\lamc(\Delta)=(\Delta-1)^{\Delta-1}/(\Delta-2)^\Delta$.
 The bound holds under every feasible pinning. An explicit finite constant
 is given below. The proof uses exact vertex-deletion identities, a known
 local squared-message contraction, a self-avoiding-walk transfer of the
-type introduced by Sinclair, Srivastava, \v{S}tefankovi\v{c} and Yin, and a
-finite reconstruction of the recent nonbacktracking collision argument of
-Bencs et al. The actual Gibbs
-distribution, conditional influences, graph completion, path-count transfer,
-and collision estimate are formalized in Lean 4.
+type introduced by Sinclair, Srivastava, \v{S}tefankovi\v{c} and
+Yin~\cite{SSSY}, and a finite reconstruction of the recent nonbacktracking
+collision argument of Bencs et al.~\cite{Bencs}. The result addresses the
+hard-core case of the critical two-spin question of Bencs et
+al.~\cite[Section~5]{Bencs}. The actual Gibbs distribution, conditional
+influences, graph completion, path-count transfer, and collision estimate are
+formalized in Lean 4.
 
 The contribution is the resulting general critical hard-core bound;
 its ingredients are credited prior mathematics. It recovers, up to a
-logarithm, an $O(\sqrt n)$ bound that was stated in 2025 and withdrawn in
-January 2026. Through a published proposition that we have not formalized,
+logarithm, an $O(\sqrt n)$ bound that was stated in 2025~\cite{CJ25} and
+withdrawn in January 2026~\cite{CJ26}. Through a published proposition that we have not formalized,
 it gives a polynomial bound on the mixing time of Glauber dynamics at
 criticality. The explicit constant is large.
 \end{abstract}
@@ -93,7 +88,7 @@ For a coordinate $u$ with $0<\mu^{P,Q}(X_u=1)<1$, define
 \]
 This convention has diagonal $1$. Deterministic target coordinates
 contribute zero. A uniform absolute-row bound is the
-$\ell_\infty$ form of spectral independence; it also controls the usual
+$\ell_\infty$ form of spectral independence~\cite{ALO}; it also controls the usual
 matrix eigenvalue notion. The main formal theorem states the absolute-row
 inequality directly.
 
@@ -706,9 +701,9 @@ axioms are the standard Lean foundations \code{propext},
 \code{Classical.choice}, and \code{Quot.sound}. Their names are reported
 explicitly rather than hidden behind an assertion of being ``axiom-free.''
 
-\subsection{Independent checks and remaining uncertainty}
+\subsection{Independent checks and remaining uncertainty}\label{sec:checks}
 
-The referee check described in the disclosure covered root versus
+The referee check described in Section~\ref{sec:disclosure} covered root versus
 nonroot degree, path multiplicity, recursion termination, positive
 conditioning events, forced coordinates, oriented-edge lengths, adaptive
 trial dependence, and the regular completion's exact size, and found no
@@ -719,6 +714,32 @@ Lean formalized. The originality assessment remains bounded by the
 literature coverage documented here. The proof does not establish optimal
 hard-core scaling, arbitrary inhomogeneous activity, or the full critical
 two-spin conjecture.
+
+\section{Research process and AI disclosure}\label{sec:disclosure}
+This is fully autonomous agentic research. Dev D. Goyal is responsible for
+publication. The work has not been externally peer reviewed, no expert
+validation is claimed, and the novelty assessment is provisional.
+
+The research, the proof, the Lean formalization and an earlier version of
+this note were produced by autonomous AI research agents in an earlier
+session. The records of that session state that the note was prepared with
+ChatGPT; the model version is not recorded.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this
+release. It coordinated an independent AI referee check, which recomputed
+exact influence row sums by brute force on 57 small graphs at the critical
+activity, with and without pinnings, checked the collision ingredients on
+small regular graphs, and compared the Lean statements with the claims. It ran
+the fresh Lean replay described in Section~\ref{sec:formal} and revised this
+manuscript: it added the credit to Sinclair, Srivastava, \v{S}tefankovi\v{c}
+and Yin, the comparison with recent Ising results, the discussion of the
+constant, and the conditional status of the mixing corollary. On 1 November
+2026 it also revised the front matter and moved this section to the end,
+without changing the mathematics. AI referee checks are not human peer review.
+
+Lean verification establishes only the formal statements described in
+Section~\ref{sec:formal}; the remaining uncertainty and limits are stated in
+Section~\ref{sec:checks}.
 
 \begingroup
 \small

@@ -25,16 +25,14 @@
 \setlength{\parskip}{3pt}
 \title{\textbf{A rational five-cycle for two-block ADMM\\with multiplier step below two}}
 \author{Dev D. Goyal}
-\date{28 October 2026}
+\date{28 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
-\noindent\textbf{Autonomous AI research disclosure.} This manuscript and its proof sources were produced through fully autonomous agentic research. AI agents checked the supplied mathematical arguments, reran the exact arithmetic checks, and prepared this manuscript for release. The original model history is not documented in this release. No human proof review or external peer review is claimed. Dev D. Goyal is responsible for publication.\par\medskip
 \begin{abstract}
-Two compact convex polytopes in $\R^4$ are specified by explicit integer vertices. For these sets, classical two-block ADMM, with penalty one and multiplier-only step $199/100$, has a nonconstant period-five trajectory. Both primal subproblems have unique solutions, the polytopes contain the origin, and the instance has a primal-dual saddle point. The squared primal residual is at least $500000$ at every iteration. The construction refutes universal convergence for this exact update rule throughout $(0,2)$. Its relation to the question commonly associated with Glowinski is discussed with explicit literature limits. The proof consists of forty strict rational normal inequalities and an exact recurrence. Complete algebraic extensions are also given to finite strongly convex objectives and to $C^2$ strongly convex objectives with globally Lipschitz gradients and a unique constrained minimizer. Formal verification coverage and the limits of the literature comparison are stated separately.
+Two compact convex polytopes in $\R^4$ are specified by explicit integer vertices. For these sets, classical two-block ADMM, with penalty one and multiplier-only step $199/100$, has a nonconstant period-five trajectory. Both primal subproblems have unique solutions, the polytopes contain the origin, and the instance has a primal-dual saddle point. The squared primal residual is at least $500000$ at every iteration. The construction refutes universal convergence for this exact update rule throughout $(0,2)$. Its relation to the question commonly associated with Glowinski, discussed by Tao and Yuan~\cite{TaoYuan}, is stated with explicit literature limits. The proof consists of forty strict rational normal inequalities and an exact recurrence. Complete algebraic extensions are also given to finite strongly convex objectives and to $C^2$ strongly convex objectives with globally Lipschitz gradients and a unique constrained minimizer. A Lean formalization checks the orbit and the unique subproblem minimizers for the indicator objectives and for the explicit smooth objectives; the analytic regularity of the smooth objectives rests on the handwritten proofs.
 \end{abstract}
-\input{verification-status.tex}
 
-\section{The question and the exact algorithm}
+\section{The question and the exact algorithm}\label{sec:question}
 For proper closed convex functions $f,g:\R^d\to\R\cup\{+\infty\}$, consider
 \begin{equation}\label{eq:problem}
 \min_{x,z\in\R^d} f(x)+g(z)\quad\text{subject to }x-z=0.
@@ -61,7 +59,15 @@ only \eqref{eq:admmx}--\eqref{eq:admmu}. Ryu and Yin give background on
 these distinctions~\cite{RyuYin}. A convergence theorem for another update
 rule does not imply convergence for the displayed rule.
 
-\section{An explicit four-dimensional instance}
+Theorem~\ref{thm:main} in Section~\ref{sec:instance} gives the explicit
+instance. Section~\ref{sec:extensions} extends it to an interval of steps
+and to finite and smooth strongly convex objectives. A Lean formalization
+checks the orbit and the unique minimizers for the indicator objectives and
+for the explicit smooth objectives \eqref{eq:smoothf}--\eqref{eq:smoothg};
+Section~\ref{sec:formal} states its coverage, and
+Section~\ref{sec:context} states the limits of the literature comparison.
+
+\section{An explicit four-dimensional instance}\label{sec:instance}
 All subscripts on the following vectors are taken modulo five. Set $\tau=199/100$ and let rows of $Z,V$ be $z_i,v_i$ respectively, numbered from zero:
 \begin{equation}\label{eq:dataZ}
 Z=\begin{pmatrix}
@@ -203,7 +209,7 @@ The four-row affine determinants, using row four as base point, are
 Both sets are thus full-dimensional simplices. Together with the strictly positive uniform barycentric coefficients in \eqref{eq:centroids}, this puts zero in the ordinary interior of each. These determinant and interior statements are exact auxiliary checks; the Lean-verified core does not require them.
 \end{remark}
 
-\section{Extensions with complete algebraic proofs}
+\section{Extensions with complete algebraic proofs}\label{sec:extensions}
 The core result is Theorem~\ref{thm:main}. The following consequences give additional information about the mechanism. Formal coverage is recorded in Section~\ref{sec:formal}; properties not included in a checked Lean declaration are not represented as formally verified.
 
 \subsection{A whole interval for the same polytopes}
@@ -349,7 +355,7 @@ The exact Python certificate uses only the standard library and rational arithme
 
 The bundle includes a pinned Lake project and a direct compiler runner. The latter records the compiler version, input hashes, exit codes, and axiom reports. Both routes are described in its README. The release verification receipt records the source hashes, module results, and axiom dependencies from the fresh replay.
 
-\section{Research context, implications, and limits}
+\section{Research context, implications, and limits}\label{sec:context}
 The mathematical conclusion is independent of a priority assessment.
 The displayed exact cycle refutes universal convergence of
 \eqref{eq:admmx}--\eqref{eq:admmu} throughout $(0,2)$, even for the
@@ -358,7 +364,9 @@ two-block ADMM theory intact.
 
 Relevant references include Tao--Yuan~\cite{TaoYuan},
 Gu--Yang~\cite{GuYang}, Chen--Sun--Toh~\cite{ChenSunToh},
-Ma et al.~\cite{MaEtAl}, and He--Ma--Yuan~\cite{HeMaYuan}.
+Ma et al.~\cite{MaEtAl}, and He--Ma--Yuan~\cite{HeMaYuan}. Further work
+on dual step sizes and on three-block ADMM appears in Zhang~\cite{Zhang},
+Xu--Wang~\cite{XuWang}, and Anshika et al.~\cite{AnshikaEtAl}.
 The literature comparison is provisional. Detailed primary-source comparisons
 of special model assumptions, conditional convergence, proof-measure
 obstructions, and alternative multiplier updates have not been independently
@@ -372,6 +380,25 @@ multiplier interval. In particular, failure at $199/100$, or on
 boundary. The orbit and global minimizer claims are formally checked;
 the analytic regularity claims are proved in the text. Neither check
 establishes literature priority or external expert validation.
+
+\section{Research process and AI disclosure}
+This manuscript and its proof sources were produced through fully
+autonomous agentic research: autonomous AI research agents produced the
+research, proofs, computations, formalization and drafts. AI agents then
+checked the supplied mathematical arguments, reran the exact arithmetic
+checks, and prepared this manuscript for release. The original model
+history is not documented in this release.
+
+Opus 5.5 by Anthropic used with Claude Code revised this manuscript
+editorially on 1~November 2026: it moved this disclosure into its own
+section, revised the abstract, added a summary of the results to
+Section~\ref{sec:question} and cited the remaining references. It did not
+change the mathematics.
+
+Dev D. Goyal is responsible for publication. No human proof review is
+claimed, and the work has not been externally peer reviewed.
+
+\input{verification-status.tex}
 
 {\small
 \begin{thebibliography}{9}

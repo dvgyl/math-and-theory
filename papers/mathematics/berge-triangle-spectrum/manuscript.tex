@@ -24,12 +24,12 @@ pdfkeywords={Berge triangle, saturation spectrum, triple systems, 3-uniform hype
 \newcommand{\sh}{\partial}
 \title{\textbf{The upper saturation spectrum of Berge triangles\\in triple systems}}
 \author{Dev D. Goyal}
-\date{31 October 2026}
+\date{31 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
 Let $E_n=\lfloor n^2/8\rfloor$ be Gy\H{o}ri's maximum number of edges in a
-Berge-triangle-free triple system on $n$ vertices, and let
+Berge-triangle-free triple system on $n$ vertices~\cite{Gyori}, and let
 $L_n=\lfloor (n-1)^2/8\rfloor$. We show that for every $n\ge 8$ every
 Berge-triangle-free triple system with more than $L_n$ edges is a spanning
 subsystem of a paired product $\F(n,p)$: $p$ disjoint pairs, $n-2p$ further
@@ -40,10 +40,14 @@ is exactly $\{p(n-2p):1\le p<n/2\}\cap(L_n,E_n]$. The threshold is sharp:
 for every $n\ge 8$ there is a saturated system with exactly $L_n$ edges that
 is not a paired product. The upper window has $\lfloor n/4\rfloor$ or
 $\lfloor n/4\rfloor+1$ integers and contains $n/4-O(\sqrt n)$ sizes that are
-not in the spectrum, given explicitly by quadratic deficits. The proof uses
+not in the spectrum, given explicitly by quadratic deficits. Bushaw,
+English, Heath, Johnston and Rombach~\cite{BEHJR} proposed the study of this
+spectrum; the result determines it above $L_n$ and shows that the number
+of sizes missing near the maximum is unbounded. The proof uses
 the own-pair reduction of Frankl, F\"uredi, Goorevitch, Holzman and
-Simonyi, a rigidity lemma for dense bipartite own-pair graphs, and the
-equality case of Erd\H{o}s's bound for nonbipartite triangle-free graphs.
+Simonyi~\cite{FFGHS}, a rigidity lemma for dense bipartite own-pair graphs,
+and the equality case of Erd\H{o}s's bound for nonbipartite triangle-free
+graphs~\cite{Erdos}.
 A Lean~4 project proves that every paired product is Berge-triangle-free
 and saturated with $p(n-2p)$ edges, proves the sharpness construction for
 every $n\ge8$ and the arithmetic of the window, and derives the other
@@ -436,18 +440,18 @@ Corollary~\ref{cor:deficits} for the spectrum and Gy\H{o}ri's bound $E_n$.
 The 33 audited declarations depend only on \texttt{propext},
 \texttt{Classical.choice} and \texttt{Quot.sound}.
 
-\section{Limitations and open questions}
+\section{Limitations and open questions}\label{sec:limits}
 
 The spectrum at or below $L_n$ is open, and the nonproduct saturated
 systems with exactly $L_n$ edges are not classified. For $n\le7$ the
 statements are not claimed. The literature comparison is bounded, as
 described in Section~1.
 
-\section*{Research process and AI disclosure}
+\section{Research process and AI disclosure}\label{sec:disclosure}
 
 This is fully autonomous agentic research. Dev D. Goyal is responsible for
-publication. No expert validation or external peer review is claimed, and
-the novelty assessment is provisional.
+publication. The work has not been externally peer reviewed, no expert
+validation is claimed, and the novelty assessment is provisional.
 
 The problem selection, the theorems, their proofs, the construction, the
 exact checkers, the witness certificates and the literature search were
@@ -463,7 +467,10 @@ Opus 5.5 by Anthropic used with Claude Code assessed the package for this
 release. It checked each proof step, wrote its own exact checker for the
 constructions and the arithmetic, reran the certificate checker, wrote the
 Lean project and ran its fresh build and axiom audit, and wrote this
-manuscript. AI checks are not human peer review.
+manuscript. It also made the editorial revision of 1 November 2026, which
+did not change the mathematics. AI checks are not human peer review.
+Section~\ref{sec:verification} states the formal scope and
+Section~\ref{sec:limits} the remaining limits.
 
 \begin{thebibliography}{9}
 \bibitem{BEHJR}
@@ -472,7 +479,7 @@ N.~Bushaw, S.~English, E.~Heath, D.~Johnston and P.~Rombach,
 \href{https://arxiv.org/abs/2502.17686}{arXiv:2502.17686}.
 
 \bibitem{EGGMS}
-S.~English, D.~Gordon, N.~Graber, A.~Methuku and E.~C.~Sullivan,
+S.~English, P.~Gordon, N.~Graber, A.~Methuku and E.~C.~Sullivan,
 \emph{Saturation of Berge hypergraphs}, Discrete Mathematics \textbf{342}
 (2019), 1738--1761.
 \href{https://doi.org/10.1016/j.disc.2019.01.031}{doi:10.1016/j.disc.2019.01.031}.

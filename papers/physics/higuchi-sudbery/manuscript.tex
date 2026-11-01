@@ -31,15 +31,13 @@
 \title{A sum-of-squares proof of the four-qubit\newline
 Higuchi--Sudbery entropy bound}
 \author{Dev D. Goyal}
-\date{27 October 2026; priority note added 30 October 2026}
+\date{27 October 2026; revised 1 November 2026}
 
 \begin{document}
 \maketitle
 
-\par\noindent{\normalsize\bfseries This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication.\par}
-
 \begin{abstract}
-For a pure state of four qubits, the Higuchi--Sudbery problem asks for the largest average von Neumann entropy across the three partitions into pairs. The proof shows that this average is at most $\log2+\tfrac12\log3$, with natural logarithms. The Higuchi--Sudbery state attains the bound. The proof gives an exact polynomial identity that bounds the sum of the third elementary symmetric functions of the three marginal spectra by $5/36$. Its right side is a sum of 272 squared mixed cubics with positive integer weights. The identity holds for all sixteen complex amplitudes. A purity lower bound and a cubic majorant for $-x\log x$ then give the entropy inequality. The argument places no restriction on the one-qubit marginals. A companion Lean formalization includes the polynomial identity, the actual reduced-matrix eigenvalues, and an explicit state that attains the bound.
+For a pure state of four qubits, the Higuchi--Sudbery problem~\cite{HS00} asks for the largest average von Neumann entropy across the three partitions into pairs. The proof shows that this average is at most $\log2+\tfrac12\log3$, with natural logarithms. The Higuchi--Sudbery state attains the bound. The proof gives an exact polynomial identity that bounds the sum of the third elementary symmetric functions of the three marginal spectra by $5/36$. Its right side is a sum of 272 squared mixed cubics with positive integer weights. The identity holds for all sixteen complex amplitudes. A purity lower bound and a cubic majorant for $-x\log x$ then give the entropy inequality. The argument places no restriction on the one-qubit marginals. A companion Lean formalization includes the polynomial identity, the actual reduced-matrix eigenvalues, and an explicit state that attains the bound. The Omega Institute publicly committed a claimed Lean proof of the same bound, with an algebraically equivalent certificate, on 7 October 2026~\cite{OMEGA}; no originality or priority claim is made for the result.
 \end{abstract}
 
 \section*{Priority and subsequent correspondence}
@@ -87,7 +85,7 @@ Section~\ref{sec:sharpness}.
 
 In base-two units the value is $1+\tfrac12\log_2 3$, approximately
 $1.79248$ bits. The proof uses the unrestricted degree-six inequality in Theorem~\ref{thm:e3}, together with
-its explicit certificate. The purity lower bound is known. A direct algebraic proof makes its normalization and use explicit. The maximizing state, its marginal spectra, and the restricted result are due to prior work.
+its explicit certificate. The purity lower bound is known. A direct algebraic proof makes its normalization and use explicit. The maximizing state, its marginal spectra, and the restricted result are due to prior work, and the unrestricted bound with an equivalent certificate was claimed earlier by the Omega Institute (see the priority note above). The Lean formalization described in Section~\ref{sec:verification} checks the polynomial identity, the bound for the eigenvalues of the actual reduced matrices, and the attaining state.
 
 \section{Coordinates and reduced matrices}
 
@@ -537,6 +535,9 @@ The coefficient data can also be checked with integer arithmetic. One program re
 
 The result applies to pure states of four distinguishable two-dimensional systems. It uses the equally weighted average of the three balanced cuts. Other local dimensions, mixed states, other entanglement measures, and different cut weights require separate results. The proof gives an attaining state but does not classify all maximizers.
 
+\section{Research process and AI disclosure}
+
+This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The author checked the proofs to the best of their mathematical abilities; this check is not expert validation or peer review. Opus~5.5 by Anthropic used with Claude Code revised the presentation of the manuscript on 1 November 2026: it rewrote the front matter and abstract and consolidated this disclosure. The revision does not change the mathematics. Dev D. Goyal is responsible for publication. The work has not been externally peer reviewed. The formal scope and the limits of the result are stated in Section~\ref{sec:verification}, and the earlier public work in the priority note.
 
 \begin{thebibliography}{9}
 

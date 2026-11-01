@@ -65,7 +65,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small Alternating Motzkin sums}
-\fancyhead[R]{\small Research note | 28 October 2026}
+\fancyhead[R]{\small Research note | 28 October 2026; revised 1 November 2026}
 \fancyfoot[C]{\thepage}
 \setlength{\headheight}{14pt}
 \renewcommand{\headrulewidth}{0.3pt}
@@ -96,23 +96,34 @@
 \subtitle{A bounded-forcing theorem, exact parameter thresholds, and an
 auditable proof package}
 \author{Dev D. Goyal}
-\date{28 October 2026}
+\date{28 October 2026; revised 1 November 2026}
 
 \begin{document}
 \maketitle
 
-\par\noindent{\normalsize\bfseries This work is fully autonomous agentic research. GPT 6.1 Sol in Codex
-produced formal proofs and verification software for the accompanying
-package. Dev D. Goyal is responsible for publication.\par}
-
-\textbf{Status.} The bounded-forcing Theorem 2 and its corrected
-scaled-forcing corollary have complete Lean proofs. The
-concrete-sequence, uniform-family, root-transfer and
-threshold-classification claims have conventional proofs and are outside
-that formalization. A public manuscript dated 17 October 2026 already
-claims the original root-log-concavity conjecture. No first-priority
-claim is made for its resolution or for the extensions below. A broader
-novelty assessment remains open.
+\begin{abstract}
+Zhao asked whether the root sequence of the alternating sums \(T_n\) of
+the Motzkin numbers is log-concave from index nine
+\cite[Conjecture~1, p.~8]{Z}. This note proves a bounded-forcing theorem:
+real sequences that satisfy the Motzkin-type recurrence
+\((m+2)a_m=m(2a_{m-1}+3a_{m-2})+\varepsilon_m\) with errors
+\(|\varepsilon_m|\le2\), and a suitable seed at \(n=12\), grow, stay in an
+explicit quotient interval and are ratio log-concave with margin
+\(800a_n^4/(n+3)^3\) for all \(n\ge12\). A corrected scaled-forcing
+corollary covers errors bounded by any \(B\ge0\). As applications, the
+alternating Motzkin sums have optimal quotient-tail start 10 and optimal
+root-tail start 5, and the sharp tail starts are classified for every
+member of the family \(R_{n+1}+s(-1)^n\), \(0\le s\le1\), which joins the
+shifted Riordan numbers to the alternating Motzkin sums. The bounded-forcing
+theorem (Theorem~2) and the scaled-forcing corollary have complete Lean
+proofs for arbitrary real sequences. The concrete-sequence, uniform-family,
+root-transfer and threshold-classification claims have conventional proofs,
+supported by exact arithmetic checks, and are outside that formalization.
+A public manuscript dated 17 October 2026 already claims the original
+root-log-concavity conjecture \cite{P}. No first-priority claim is made for
+its resolution or for the extensions below, and a broader novelty
+assessment remains open.
+\end{abstract}
 
 \section{1. Definitions and results}\label{definitions-and-results}
 
@@ -120,12 +131,12 @@ Define the Motzkin numbers by \(M_0=M_1=1\) and \[
 (n+3)M_{n+1}=(2n+3)M_n+3nM_{n-1}\qquad(n\ge1),
 \] and put \[
 T_n=\sum_{k=0}^n(-1)^{n-k}M_k.
-\] Zhao {[}Z, Conjecture 1, p.~8{]} asks whether \((T_n^{1/n})_{n\ge9}\)
-is log-concave. A prior public manuscript {[}P{]} claims strict
+\] This is OEIS A187306 \cite{O2}. Zhao \cite[Conjecture~1, p.~8]{Z} asks whether \((T_n^{1/n})_{n\ge9}\)
+is log-concave. A prior public manuscript \cite{P} claims strict
 log-concavity on that tail. The argument here instead uses a rational
 invariant interval and exact polynomial identities. The general passage
 from ratio log-concavity to root log-concavity is established prior
-methodology {[}CGW{]}; the elementary multiplicative identity is
+methodology \cite{CGW}; the elementary multiplicative identity is
 included to make the argument self-contained, without claiming that
 principle as new.
 
@@ -192,7 +203,7 @@ scale gives (8).
 For the family extension, define the Riordan numbers by \(R_0=1\),
 \(R_1=0\), and \[
 (n+1)R_n=(n-1)(2R_{n-1}+3R_{n-2})\qquad(n\ge2).
-\] This is the standard sequence {[}O1{]}. Put \[
+\] This is the standard sequence \cite{O1}. Put \[
 A_n(s)=R_{n+1}+s(-1)^n=T_n+(s-1)(-1)^n,
 \qquad 0\le s\le1.
 \tag{9}
@@ -623,6 +634,63 @@ significance of the extensions and parameter classifications remain
 unresolved. No certified first solution is claimed.
 
 
+\section{Research process and AI disclosure}\label{research-process-and-ai-disclosure}
+
+This work is fully autonomous agentic research. Autonomous AI research
+agents produced the research, proofs, computations, formalization and
+drafts. GPT 6.1 Sol in Codex produced formal proofs and verification
+software for the accompanying package.
+
+Opus 5.5 by Anthropic used with Claude Code revised this manuscript
+editorially on 1~November 2026: it added the abstract, moved this
+disclosure from the title page into its own section, converted the
+reference list into a bibliography with resolved citations, and placed the
+appendices after it. It did not change the mathematics.
+
+Dev D. Goyal is responsible for publication. No new human or expert proof
+review is claimed, and the work has not been externally peer reviewed.
+Section~7 states the formal scope and the remaining work. All literature
+status statements refer to the sources inspected on 28 October 2026. A
+negative search result is not proof of novelty. Third-party full-text
+papers and manuscripts are not redistributed in this package.
+
+\begin{thebibliography}{CGW}
+
+\bibitem[Z]{Z} Feng-Zhen Zhao, \emph{The Log-Balancedness of the Sequence for
+the Alternating Sums of Motzkin Numbers}, INTEGERS \textbf{26} (2026),
+A55. Published 1 May 2026. DOI: 10.5281/zenodo.19949645.
+\href{https://math.colgate.edu/~integers/aa55/aa55.pdf}{Journal-hosted
+paper}. Conjecture 1 on page 8 is the original target; the paper's other
+results are not claimed here as new.
+
+\bibitem[CGW]{CGW} William Y. C. Chen, Jeremy J. F. Guo, and Larry X. W. Wang,
+\emph{Infinitely log-monotonic combinatorial sequences}, Advances in
+Applied Mathematics \textbf{52} (2014), 99--120. DOI:
+10.1016/j.aam.2013.08.003.
+\href{https://www.sciencedirect.com/science/article/pii/S0196885813000973}{Publisher
+page}. Ratio-to-root transfer is prior methodology.
+
+\bibitem[P]{P} Public manuscript, \emph{Motzkin alternating sums: strict
+log-concavity of the root sequence} (Chinese title; English description
+here), in the \texttt{xzwwwwww/math} repository. The relevant source was
+added on 17 October 2026 in commit
+\texttt{2e173134a5da24512ff9d2fbf1504b5634d29af8}.
+\href{https://github.com/xzwwwwww/math/blob/2e173134a5da24512ff9d2fbf1504b5634d29af8/Motzkin\%E7\%8C\%9C\%E6\%83\%B3/motzkin_root_log_concavity.tex}{Pinned
+source}. It claims strict root log-concavity at centers \(n\ge10\) by an
+integral method. This package records that public claim and does not
+independently certify every step of that manuscript or its publication
+status.
+
+\bibitem[O1]{O1} OEIS Foundation, \href{https://oeis.org/A005043}{A005043:
+Riordan numbers}. Used to identify the standard homogeneous sequence;
+the necessary recurrence connection is proved in Section 2.
+
+\bibitem[O2]{O2} OEIS Foundation, \href{https://oeis.org/A187306}{A187306:
+alternating sum of Motzkin numbers}. Sequence identification, not a
+source of the infinite inequalities.
+
+\end{thebibliography}
+
 \section{Appendix A. Integer polynomial
 certificates}\label{appendix-a.-integer-polynomial-certificates}
 
@@ -699,45 +767,5 @@ Boundary & Lower numerator & Upper numerator \\
 \(\tau_3\) & 407203 & 407204 \\
 \(\tau_5\) & 530571 & 530572 \\
 \end{longtable}
-
-\section{References and provenance}\label{references-and-provenance}
-
-{[}Z{]} Feng-Zhen Zhao, \emph{The Log-Balancedness of the Sequence for
-the Alternating Sums of Motzkin Numbers}, INTEGERS \textbf{26} (2026),
-A55. Published 1 May 2026. DOI: 10.5281/zenodo.19949645.
-\href{https://math.colgate.edu/~integers/aa55/aa55.pdf}{Journal-hosted
-paper}. Conjecture 1 on page 8 is the original target; the paper's other
-results are not claimed here as new.
-
-{[}CGW{]} William Y. C. Chen, Jeremy J. F. Guo, and Larry X. W. Wang,
-\emph{Infinitely log-monotonic combinatorial sequences}, Advances in
-Applied Mathematics \textbf{52} (2014), 99--120. DOI:
-10.1016/j.aam.2013.08.003.
-\href{https://www.sciencedirect.com/science/article/pii/S0196885813000973}{Publisher
-page}. Ratio-to-root transfer is prior methodology.
-
-{[}P{]} Public manuscript, \emph{Motzkin alternating sums: strict
-log-concavity of the root sequence} (Chinese title; English description
-here), in the \texttt{xzwwwwww/math} repository. The relevant source was
-added on 17 October 2026 in commit
-\texttt{2e173134a5da24512ff9d2fbf1504b5634d29af8}.
-\href{https://github.com/xzwwwwww/math/blob/2e173134a5da24512ff9d2fbf1504b5634d29af8/Motzkin\%E7\%8C\%9C\%E6\%83\%B3/motzkin_root_log_concavity.tex}{Pinned
-source}. It claims strict root log-concavity at centers \(n\ge10\) by an
-integral method. This package records that public claim and does not
-independently certify every step of that manuscript or its publication
-status.
-
-{[}O1{]} OEIS Foundation, \href{https://oeis.org/A005043}{A005043:
-Riordan numbers}. Used to identify the standard homogeneous sequence;
-the necessary recurrence connection is proved in Section 2.
-
-{[}O2{]} OEIS Foundation, \href{https://oeis.org/A187306}{A187306:
-alternating sum of Motzkin numbers}. Sequence identification, not a
-source of the infinite inequalities.
-
-All literature status statements refer to the sources inspected on 28
-October 2026. A negative search result is not proof of novelty.
-Third-party full-text papers and manuscripts are not redistributed in
-this package.
 
 \end{document}

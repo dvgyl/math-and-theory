@@ -23,14 +23,10 @@
 \newcommand{\code}[1]{\texttt{\small #1}}
 \title{Sharp universal R\'enyi threshold\\for iid sums on finite Sidon sets}
 \author{Dev D. Goyal}
-\date{28 October 2026}
+\date{28 October 2026; revised 1 November 2026}
 
 \begin{document}
 \maketitle
-
-\paragraph{Autonomous AI research disclosure.}
-This work is fully autonomous agentic research. Automated systems produced the research, proofs, formalization, and manuscript preparation. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed.
-
 
 \begin{abstract}
 Let $X,X'$ be independent random variables with the same probability law on a
@@ -43,6 +39,9 @@ $\crit\in(3,4)$ is the unique nontrivial solution of
 $2^\alpha-4\alpha+2=0$ and is approximately $3.65986$.
 The sufficient direction follows from a sharp two-coordinate power inequality
 and a gradient comparison. A binary obstruction proves necessity. The proof includes zero input probabilities and the critical endpoint.
+The supplied source context credits Gu~\cite{Gu} with an earlier sufficient
+bound, the threshold equation and the binary obstruction; that attribution
+has not been verified against the primary text, and no priority is claimed.
 A Lean formalization covers the classification and its convolution-law bridge.
 \end{abstract}
 
@@ -87,6 +86,8 @@ matching sufficient bound in this model. It is presented as a self-contained
 classification, without a claim to close a verified published gap or to have
 first priority. The theorem concerns identical iid input laws and orders
 strictly above one; it makes no Shannon-entropy or different-input-law claim.
+The Lean formalization described in Section~\ref{sec:lean} proves
+Theorem~\ref{thm:main} for every order above one.
 
 \section{Complete classification}
 
@@ -315,7 +316,7 @@ Together with the preceding sufficient and necessary directions, this
 completes Theorem~\ref{thm:main}. The familiar decimal $3.65986$ is only a
 readable approximation; the formal statement uses the exact root.
 
-\section{Lean verification and reproducibility}
+\section{Lean verification and reproducibility}\label{sec:lean}
 
 The accompanying formalization targets Lean 4.19.0~\cite{Lean} and the following
 pinned mathlib commit:
@@ -372,7 +373,7 @@ The verified classification is for orders $a>1$. Lower orders are outside
 the stated formal classification. The expression
 $\log F_a/(1-a)$ is not used to claim a Shannon-entropy theorem at $a=1$.
 
-\section{Scope and attribution}
+\section{Scope and attribution}\label{sec:scope}
 
 The theorem identifies the exact universal threshold for orders above one.
 It applies to every finite cardinality and the whole probability simplex.
@@ -385,6 +386,22 @@ it does not establish historical priority.
 The problem of classifying maximizing laws for each fixed cardinality
 above the universal threshold is outside this theorem. So is the
 mixed-input Shannon-entropy question at order one.
+
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. Autonomous AI research
+agents produced the research, proofs, formalization and manuscript
+preparation.
+
+Opus 5.5 by Anthropic used with Claude Code revised this manuscript
+editorially on 1~November 2026: it moved this disclosure from the title
+page into its own section and revised the abstract and introduction. It
+did not change the mathematics.
+
+Dev D. Goyal is responsible for publication. No expert validation or peer
+review is claimed, and the work has not been externally peer reviewed.
+Section~\ref{sec:lean} states the formal scope, and
+Section~\ref{sec:scope} states the limits of the result and of the source
+attributions.
 
 \bibliographystyle{plain}
 \bibliography{references}

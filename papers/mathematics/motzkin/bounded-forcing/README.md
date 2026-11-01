@@ -34,7 +34,7 @@ Install the pinned optional SymPy dependency in `verification/requirements-optio
 
 ## Build the manuscript
 
-Run `tectonic manuscript.tex` or run `pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex` twice. The TeX source includes its preamble. The submitted PDF places the existing autonomous AI disclosure in normal-size bold after the title. Its mathematical text is unchanged from the reviewed revision.
+Run `tectonic manuscript.tex` or run `pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex` twice. The TeX source includes its preamble. The PDF ends with a "Research process and AI disclosure" section. The revision of 1 November 2026 was editorial; its mathematical text is unchanged.
 
 ## Authorship and license
 

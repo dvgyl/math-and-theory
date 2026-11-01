@@ -17,7 +17,7 @@
 \DeclareMathOperator{\Ent}{H}
 \title{A quartic entropy deficit for random rankings}
 \author{Dev D. Goyal}
-\date{27 October 2026}
+\date{27 October 2026; revised 1 November 2026}
 \setlength{\emergencystretch}{2em}
 \begin{document}
 \maketitle
@@ -32,8 +32,12 @@ The bound holds for every $n\geq0$, without a transitivity or independence
 assumption. The proof combines the squared energy of the mean comparison
 matrix, a normalized cut obtained from balanced splitting, and an exact
 entropy bound for binary interleavings. Factorial induction removes any
-large-size threshold. The accompanying Lean formalization uses finite probability distributions
-and the actual comparison events of complete rankings.
+large-size threshold. This gives an explicit quartic deficit in the general
+qualitative theorem of Acan, Devlin and Kahn~\cite{ADK}, which proved an
+entropy conjecture of Leighton and Moitra~\cite{LM}; Devlin proposed a
+deficit of the form $C\eps^4$~\cite{Devlin}. A Lean~4 formalization proves
+the theorem for every $n$, using finite probability distributions and the
+actual comparison events of complete rankings.
 \end{abstract}
 
 \section{Statement and relation to prior work}
@@ -323,7 +327,7 @@ side of \eqref{eq:induct} is at most
 This closes the induction. Finally $b=2\eps$ gives
 $b^4/2304=\eps^4/144$, proving Theorem~\ref{thm:main}.\hfill$\square$
 
-\section{Formal model and reproduction}
+\section{Formal model and reproduction}\label{sec:formal}
 
 The Lean model represents a finite probability distribution by nonnegative
 real masses whose sum is one. Entropy is the finite sum of
@@ -345,7 +349,7 @@ The package pins Lean 4.19.0 and the Mathlib revision in
 commands. The audit permits only \texttt{propext},
 \texttt{Classical.choice}, and \texttt{Quot.sound}.
 
-\section{Scope and limitations}
+\section{Scope and limitations}\label{sec:limits}
 
 The hypothesis concerns every unordered pair, with a common positive lower
 bound on absolute bias. The preferred directions may contain cycles. The
@@ -366,8 +370,19 @@ subadditivity, and the exponential estimate are standard tools. The
 quartic bound combines these tools with the mean comparison energy,
 normalized cuts, and exact factorial induction.
 
-\section*{Autonomous AI research}
-This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication.
+\section{Research process and AI disclosure}\label{sec:disclosure}
+This work is fully autonomous agentic research. The initial research and
+proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT.
+GPT 6 Astra in Codex autonomously produced the formalizations and
+corrections. The author checked the proofs to the best of their
+mathematical abilities; this check is not expert validation or peer review.
+Dev D. Goyal is responsible for publication. The work has not been
+externally peer reviewed.
+
+Opus 5.5 by Anthropic used with Claude Code made the editorial revision of
+1 November 2026 to the front matter, the abstract, this section and the
+references; it did not change the mathematics. Section~\ref{sec:formal}
+states the formal scope and Section~\ref{sec:limits} the remaining limits.
 
 \begin{thebibliography}{9}
 \bibitem{LM}

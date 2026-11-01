@@ -15,14 +15,9 @@
 \hypersetup{pdftitle={Sharp escape of complex domination roots in square flowers},pdfauthor={Dev D. Goyal}}
 \title{Sharp escape of complex domination roots in square flowers}
 \author{Dev D. Goyal}
-\date{29 October 2026}
+\date{29 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
-\begin{center}
-\begin{minipage}{0.94\textwidth}
-\small This work is fully autonomous agentic research. GPT 6.1 Sol in Codex contributed formal proofs and verification software. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed.
-\end{minipage}
-\end{center}
 \begin{abstract}
 Let $F_{4,n}$ be the graph formed by $n$ squares sharing exactly one vertex,
 and let $R_n$ be the largest modulus of a zero of its domination polynomial.
@@ -33,10 +28,12 @@ $4n/R_n^2=\log(4n)-\log\log(4n)+o(1)$.
 Thus $R_n\sim2\sqrt{n/\log n}$.
 The proof uses a contraction argument for a complex Lambert equation and
 Rouch\'e's theorem in a reciprocal coordinate.
-Companion results classify all real roots of square flowers and book graphs,
-and give the motion and first-order asymptotics of the nonzero real flower roots.
+Companion results classify all real roots of square flowers and of the book
+graphs studied by Rather~\cite{rather2026}, and give the motion and
+first-order asymptotics of the nonzero real flower roots.
 The conclusions of all numbered results also have Lean formalizations.
-No claim of first priority is made.
+No claim of first priority is made; in particular, the failure of Rather's
+book-graph Conjecture~5.4 at $n=1$ was recorded publicly before this work.
 \end{abstract}
 
 \section{The graph family and the extremal root}
@@ -57,7 +54,21 @@ no identification of an ambiguously indexed source question is needed for
 the statements below. The counting formulas are supporting identities.
 The principal result is the sharp growth law for the largest complex root.
 The literature comparison remains incomplete, so no conjecture-resolution or
-priority claim is made.
+priority claim is made. Section~\ref{sec:verification} describes the Lean
+formalization, which covers the conclusions of all numbered results.
+
+\paragraph{Earlier public work (note added 1 November 2026).}
+On 31 October 2026 a check of public problem records found that the Omega
+Institute's public repository records a refutation of Conjecture~5.4
+of~\cite{rather2026}, on the real domination roots of book graphs, at its
+$n=1$ instance, committed on 28 October 2026 (issue \#23025)~\cite{omega23025}.
+There $B_1$ is the four-cycle, whose domination polynomial
+$6x^2+4x^3+x^4$ has zero as its only real root. This is about 17 hours before
+this result was first committed to the author's repository. The book-graph
+companion, Proposition~\ref{prop:book}, agrees at $n=1$ and also classifies
+the real roots for every $n\ge2$; the main square-flower theorem is a
+different question. No originality or priority claim is made for the
+refutation at $n=1$.
 
 Put
 \[
@@ -446,7 +457,7 @@ Finally,
 which has no nonzero real root. This also checks the exceptional endpoint $n=1$.
 \end{proof}
 
-\section{Verification scope and remaining questions}
+\section{Verification scope and remaining questions}\label{sec:verification}
 The preceding arguments prove the statements for all indicated integers.
 The accompanying finite checks enumerate dominating sets independently of
 the formulas for flowers with $1\le n\le6$ and books with $1\le n\le8$.
@@ -479,10 +490,16 @@ real-root classifications concern the precise graph models defined above.
 A complete current-literature comparison, including equivalent general root
 asymptotics, remains necessary before any novelty or conjecture-resolution claim.
 
-\section*{Authorship and disclosure}
-This work is fully autonomous agentic research. GPT 6.1 Sol in Codex
-contributed formal proofs and verification software.
-Dev D. Goyal is responsible for publication.
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. Automated systems produced
+the research, mathematical arguments and earlier versions of this
+manuscript. GPT 6.1 Sol in Codex contributed formal proofs and verification
+software. Opus~5.5 by Anthropic used with Claude Code revised the
+presentation of the manuscript on 1 November 2026: it rewrote the front
+matter and abstract, added the note on earlier public work and consolidated
+this disclosure. The revision does not change the mathematics. Dev D. Goyal
+is responsible for publication. No expert validation or peer review is claimed; the work has not been externally peer reviewed. The formal scope and the
+remaining questions are stated in Section~\ref{sec:verification}.
 
 \bibliographystyle{plainnat}
 \bibliography{references}

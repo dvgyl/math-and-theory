@@ -3,18 +3,19 @@
 \usepackage{lmodern,amsmath,amssymb,amsthm,microtype,booktabs}
 \usepackage[margin=25mm]{geometry}
 \usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\hypersetup{pdftitle={Diagonal concavity does not imply concavity for sums of elementary symmetric polynomials},pdfauthor={Dev D. Goyal}}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
 \newcommand{\R}{\mathbb R}
 \title{Diagonal concavity does not imply concavity for sums of elementary symmetric polynomials}
 \author{Dev D. Goyal}
-\date{26 October 2026}
+\date{26 October 2026; revised 1 November 2026}
 \usepackage[numbers]{natbib}
 \usepackage{xurl}
 \begin{document}
 \maketitle
 \begin{abstract}
-An explicit family disproves Lachaume's diagonal concavity conjecture in four variables with strictly positive coefficients. For the family $f_M=1+M\sigma_1+\sigma_2+M\sigma_3+\sigma_4$, where $M>0$, the fourth root is concave on the positive diagonal exactly when $M\geq1$. It is concave on the full positive orthant exactly when $M=1$. Two polynomial identities prove the failure of concavity. Concavity at $M=1$ follows from the arithmetic--geometric mean inequality. The Lean formalization proves both classifications with Mathlib's concavity predicate and elementary symmetric functions.
+An explicit family disproves Lachaume's diagonal concavity conjecture~\cite{lachaume} (Conjecture~1), which asserts that the $p$th root of a nonnegative combination of elementary symmetric polynomials is concave on the positive orthant if and only if it is concave on the positive diagonal. The counterexample has four variables and strictly positive coefficients. For the family $f_M=1+M\sigma_1+\sigma_2+M\sigma_3+\sigma_4$, where $M>0$, the fourth root is concave on the positive diagonal exactly when $M\geq1$. It is concave on the full positive orthant exactly when $M=1$. Two polynomial identities prove the failure of concavity. Concavity at $M=1$ follows from the arithmetic--geometric mean inequality. A Lean~4 formalization proves both classifications and a rational midpoint certificate with Mathlib's concavity predicate and elementary symmetric functions.
 \end{abstract}
 
 \section{The diagonal concavity conjecture}
@@ -131,7 +132,7 @@ give
 \]
 This is the strict reverse of the required midpoint inequality.
 
-\section{Formal verification and scope}
+\section{Formal verification and scope}\label{sec:formal}
 The Lean namespace \texttt{MathAndTheory.DiagonalConcavity} proves the polynomial identities, derivative formulas, and concavity statements. The declaration \path{complete_classification} proves Theorem~\ref{thm:classification}. The definition \texttt{elementary} uses Mathlib's \texttt{Multiset.esymm}. The theorem \path{family_eq_elementary} proves that this definition equals the coordinate formulas. The declaration \path{elementary_symmetric_counterexample} states the counterexample with these elementary symmetric functions. The declaration \path{midpoint_strict_violation} proves the midpoint certificate.
 
 The result disproves Conjecture 1. It does not classify arbitrary coefficient vectors.
@@ -140,8 +141,10 @@ Lachaume's separate sufficient condition requires a real-rooted diagonal polynom
 
 The Walsh-convolution note \cite{walsh} concerns Conjectures 4 and 5. It makes no claim for Conjectures 1 and 3. No claim of first priority is made.
 
-\section*{Autonomous AI research}
-This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication. This preprint has not been peer reviewed.
+\section{Research process and AI disclosure}\label{sec:disclosure}
+This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The author checked the proofs to the best of their mathematical abilities; this check is not expert validation or peer review. Dev D. Goyal is responsible for publication. This preprint has not been externally peer reviewed.
+
+Opus 5.5 by Anthropic used with Claude Code made the editorial revision of 1 November 2026 to the front matter, the abstract and this section; it did not change the mathematics. Section~\ref{sec:formal} states the formal scope and the limits of the result.
 
 \bibliographystyle{plainnat}
 \bibliography{references}

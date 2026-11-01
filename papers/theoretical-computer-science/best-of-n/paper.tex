@@ -3,20 +3,21 @@
 \usepackage{lmodern,amsmath,amssymb,amsthm,microtype,booktabs}
 \usepackage[margin=25mm]{geometry}
 \usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\hypersetup{pdftitle={Counterexamples to a best-of-n win-rate bound at every budget},pdfauthor={Dev D. Goyal}}
 \newtheorem{theorem}{Theorem}
 \newcommand{\R}{\mathbb R}
 \title{Counterexamples to a best-of-$n$ win-rate bound at every budget}
 \author{Dev D. Goyal}
-\date{26 October 2026}
+\date{26 October 2026; revised 1 November 2026}
 \usepackage[numbers]{natbib}
 \usepackage{xurl}
 \begin{document}
 \maketitle
 \begin{abstract}
-A proposed bound relates the win rate of best-of-$n$ sampling to its Kullback--Leibler divergence from the reference distribution. A reference distribution on four responses disproves the bound with two independent draws. The reference probabilities are $(2/5,1/5,1/5,1/5)$. The selected distribution has win rate $163/250$, which lies strictly above the proposed curve. An exact rational certificate proves a positive gap between two expressions involving real logarithms. Finite counterexamples also exist for every integer sampling budget at least two. Their largest reference probability can be arbitrarily small. The Lean formalization proves the finite counterexample, its inverse-curve consequence, and the theorem for every budget.
+Beirami et al.\ conjectured an upper bound on the win rate of best-of-$n$ sampling in terms of its Kullback--Leibler divergence from the reference distribution \cite[Conjecture~7.2]{beirami}. This note shows that the bound fails at every sampling budget. With two independent draws, the reference distribution $(2/5,1/5,1/5,1/5)$ on four responses yields a selected distribution with win rate $163/250$, which lies strictly above the conjectured curve. An exact rational certificate proves the positive gap between the two expressions, which involve real logarithms. For every integer budget $n\geq2$ there are also finite counterexamples whose largest reference probability is arbitrarily small. A Lean formalization proves the finite counterexample, its inverse-curve consequence and the theorem for every budget.
 \end{abstract}
 
-\section{The proposed bound}
+\section{The proposed bound}\label{sec:bound}
 Fix a prompt and responses $1,\ldots,k$ with strictly increasing rewards. Let $p_i>0$ be the reference probabilities, with $\sum_i p_i=1$. Put
 \[
  F_0=0,\qquad F_i=\sum_{j=1}^i p_j.
@@ -45,6 +46,8 @@ Differentiation gives
  \ell'(w)=\frac{2w-1}{w^2(1-w)}.
 \]
 Hence $\ell$ is strictly increasing on $[1/2,1)$. Also $\ell(1/2)=0$ and $\ell(w)\to\infty$ as $w\uparrow1$. Its inverse is therefore defined on $[0,\infty)$.
+
+Theorem~\ref{thm:finite} below gives an exact counterexample to \eqref{eq:conjecture} with $n=2$. Theorem~\ref{thm:every} gives counterexamples at every budget $n\geq2$, with every reference probability below any prescribed positive cap. The proved bounds of \cite{beirami} are unaffected; Section~\ref{sec:prior} discusses prior work. The Lean formalization described in Section~\ref{sec:formal} proves both theorems.
 
 \section{An exact counterexample}
 \begin{theorem}\label{thm:finite}
@@ -197,18 +200,22 @@ The parameter choices give $Lca\leq1/16$ and $Lh/2\leq a^n/96$. Consequently
 This proves the theorem.
 \end{proof}
 
-\section{Scope and formal verification}
+\section{Scope and formal verification}\label{sec:formal}
 The result refutes the universal conjecture but does not determine the sharp replacement curve. The proved bounds $D\leq\log n-(n-1)/n$ and $W\leq n/(n+1)$ in \cite{beirami} remain valid. The example uses distinct rewards. Equality in a comparison occurs when the selected response and the independent reference draw are the same response.
 
 The Lean namespace \texttt{MathAndTheory.BestOfN} defines the cumulative probabilities and both quantities in \eqref{eq:metrics}. The theorem \path{selected_equals_independent_sampling} proves that \eqref{eq:q} agrees with direct enumeration of all 16 independent sample pairs. Theorems \path{gap_positive} and \path{explicit_counterexample} prove \eqref{eq:gap}. The theorem \path{inverse_curve_exists} proves the inverse-point conclusion without an existence assumption. The theorem \path{universal_curve_false} states the resulting disproof.
 
 The namespace \texttt{MathAndTheory.BestOfNExtension} proves Theorem~\ref{thm:every}. The theorem \path{every_budget_small_atoms} includes every quantifier and conclusion in the paper's statement. It proves positivity, normalization, the probability cap, the win-rate domain, and the strict gap. The proof establishes the cumulative probabilities, the two interval bounds, the telescoping estimates, and each parameter bound. It uses the same distribution and integer condition as the proof above. The constants are not claimed to be optimal.
 
-\section{Prior work}
+\section{Prior work}\label{sec:prior}
 The cited source states the proposed curve as a conjecture. Related work on soft best-of-$n$ sampling \cite{aminian} studies different divergence and regret bounds. No claim of first priority is made.
 
-\section*{Autonomous AI research}
-This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication. This preprint has not been peer reviewed.
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. Autonomous AI research agents produced the research, proofs, formalization and drafts. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT, and GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The author checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review.
+
+Opus 5.5 by Anthropic used with Claude Code revised this manuscript editorially on 1~November 2026: it rewrote the abstract and this disclosure, added a summary of the results to Section~\ref{sec:bound} and completed the references. It did not change the mathematics.
+
+Dev D. Goyal is responsible for publication. The work has not been externally peer reviewed. Section~\ref{sec:formal} states the formal scope and the limits of the result, and Section~\ref{sec:prior} states its relation to prior work.
 
 \bibliographystyle{plainnat}
 \bibliography{references}

@@ -23,19 +23,12 @@ pdfsubject={Fully autonomous agentic research},
 pdfkeywords={quadratic lattices, totally real fields, unit square classes, universal quadratic forms, reflection groups, Lean 4}}
 \title{A rank bound for represented\protect\\totally positive unit squareclasses}
 \author{Dev D. Goyal}
-\date{30 October 2026}
+\date{30 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
 
-\section*{Research process and AI disclosure}
-This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
-
-The theorem, its proof, the Lean formalization and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session describe three agents working in one system on discovery, proof, formalization and review; their tool logs indicate an OpenAI Codex environment, and the model version is not recorded.
-
-Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It coordinated an independent AI referee check, which read the proof and the Lean statements, compared the theorem with Daans, Kala, Man, Widmer and Yatsyna's Question~3.4, and tested the bound by exact computation on lattices over real quadratic and totally real quartic fields, where it is attained in ranks two to four. The referee observed that the theorem is a short consequence of standard facts on finite reflection groups. Opus 5.5 ran the fresh Lean replays described in Section~\ref{sec:formal} and revised this note: it added that derivation (Section~\ref{sec:coxeter}), the credit for the classical case, and the universality corollary, and removed references to working files that are not published. AI referee checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:formal}.
-
 \begin{abstract}
-We give a reflection argument bounding the number of totally positive unit squareclasses represented by a positive definite integral quadratic lattice by its rank. The argument allows nonclassical cross terms and nonfree lattices. Over number fields, fixed-value representation sets are finite. Minimizing a generic linear functional in each such set produces pairwise nonpositively paired representatives lying in one open halfspace, hence a linearly independent family. A finite-data descent proves the result over arbitrary algebraic totally real fields. The accompanying Lean development verifies the full embedded-module theorem, including infinite fields. The bound answers Question~3.4 of Daans, Kala, Man, Widmer and Yatsyna negatively. It is also a short consequence of standard facts on finite reflection groups (Section~\ref{sec:coxeter}); the contribution is the arithmetic statement and its application to that question, not the method.
+We prove by a reflection argument that a positive definite integral quadratic lattice of rank $n$ over a totally real number field represents at most $n$ totally positive unit squareclasses. The argument allows nonclassical cross terms and nonfree lattices. Over number fields, fixed-value representation sets are finite. Minimizing a generic linear functional in each such set produces pairwise nonpositively paired representatives lying in one open halfspace, hence a linearly independent family. A finite-data descent extends the bound to arbitrary algebraic totally real fields. The bound answers negatively Question~3.4 of Daans, Kala, Man, Widmer and Yatsyna~\cite{DKMWY}, who asked whether $n+1$ represented classes can occur; for classical lattices the bound was already known~\cite{DKM}. It is also a short consequence of standard facts on finite reflection groups (Section~\ref{sec:coxeter}); the contribution is the arithmetic statement and its application to that question, not the method. The accompanying Lean development verifies the full embedded-module theorem, including infinite fields; the sharpness and universality consequences are conventional.
 \end{abstract}
 
 \section{The arithmetic statement}
@@ -176,7 +169,7 @@ This is a finitely generated torsion-free integral quadratic $\OF$-lattice of ra
 
 It would be incorrect to assume that norm shells over an arbitrary infinite field are finite. The proof applies finiteness only after descending a finite proposed counterexample.
 
-\section{Sharpness, consequence and limitations}
+\section{Sharpness, consequence and limitations}\label{sec:limits}
 If a field $K$ has $n$ distinct totally positive unit classes with representatives $\varepsilon_i$, the diagonal lattice
 \[
  \varepsilon_1X_1^2+\cdots+\varepsilon_nX_n^2
@@ -206,9 +199,16 @@ There are two explicit presentation interfaces. The formalization states the the
 
 The proof follows the same structure as the manuscript. For shell finiteness, Lean uses a sufficient Cauchy-derived bound on polar coordinates rather than the $Q(x\pm e_j)$ bound above. For descent, Lean uses a coordinate space and the integral span of the witness vectors, so a rank-at-most-$n$ lattice suffices; the manuscript includes basis vectors to obtain rank exactly $n$. Sharpness and universality are stated as conventional consequences, not additional separately audited Lean endpoints. \texttt{lean/MANUSCRIPT\_CORRESPONDENCE.md} gives the module-by-module correspondence. Formal correctness does not establish novelty.
 
+\section{Research process and AI disclosure}\label{sec:disclosure}
+This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. The work has not been externally peer reviewed, no expert validation is claimed, and the novelty assessment is provisional.
+
+The theorem, its proof, the Lean formalization and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session describe three agents working in one system on discovery, proof, formalization and review; their tool logs indicate an OpenAI Codex environment, and the model version is not recorded.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It coordinated an independent AI referee check, which read the proof and the Lean statements, compared the theorem with Daans, Kala, Man, Widmer and Yatsyna's Question~3.4, and tested the bound by exact computation on lattices over real quadratic and totally real quartic fields, where it is attained in ranks two to four. The referee observed that the theorem is a short consequence of standard facts on finite reflection groups. Opus 5.5 ran the fresh Lean replays described in Section~\ref{sec:formal} and revised this note: it added that derivation (Section~\ref{sec:coxeter}), the credit for the classical case, and the universality corollary, and removed references to working files that are not published. It also made the editorial revision of 1 November 2026, which moved this section to the end and did not change the mathematics. AI referee checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:formal}; the sharpness, universality and literature limits are stated in Section~\ref{sec:limits}.
+
 \begin{thebibliography}{9}\small
 \bibitem{DKMWY} N. Daans, V. Kala, S. H. Man, M. Widmer and P. Yatsyna, \emph{Most totally real fields do not have universal forms or the Northcott property}, PNAS 122(20), e2419414122 (2025). \href{https://arxiv.org/abs/2409.11082v2}{arXiv:2409.11082v2}, 28 May 2025; Theorem 3.2 and Question 3.4.
-\bibitem{DKM} N. Daans, V. Kala and S. H. Man, \emph{Universal quadratic forms and Northcott property of infinite number fields}, J. London Math. Soc. (2024). \href{https://doi.org/10.1112/jlms.70022}{doi:10.1112/jlms.70022}; \href{https://arxiv.org/abs/2308.16721}{arXiv:2308.16721}; Propositions 4.1--4.2.
+\bibitem{DKM} N. Daans, V. Kala and S. H. Man, \emph{Universal quadratic forms and Northcott property of infinite number fields}, J. London Math. Soc. 110(5), e70022 (2024). \href{https://doi.org/10.1112/jlms.70022}{doi:10.1112/jlms.70022}; \href{https://arxiv.org/abs/2308.16721}{arXiv:2308.16721}; Propositions 4.1--4.2.
 \bibitem{Hum} J. E. Humphreys, \emph{Reflection Groups and Coxeter Groups}, Cambridge Studies in Advanced Mathematics 29, Cambridge University Press, 1990.
 \bibitem{Bou} N. Bourbaki, \emph{Lie Groups and Lie Algebras, Chapters 4--6}, Springer, 2002.
 \bibitem{SST} R. Sakamoto, M. Suzuki and H. Tamori, \emph{Root lattices over totally real fields}, \href{https://arxiv.org/abs/2603.27545}{arXiv:2603.27545} (2026).

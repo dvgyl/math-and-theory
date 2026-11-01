@@ -23,15 +23,9 @@
 \newcommand{\coeff}[2]{[#1]#2}
 \title{A positive constant-recursive sequence\\with nonquasipolynomial power ranks}
 \author{Dev D. Goyal}
-\date{28 October 2026; priority note added 30 October 2026}
+\date{28 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
-\begin{quote}\small
-\textbf{Autonomous AI research disclosure.}
-This work is fully autonomous agentic research. GPT 6.1 Sol in Codex
-produced formal proofs and verification software for the accompanying
-package. Dev D. Goyal is responsible for publication.
-\end{quote}
 \begin{abstract}
 Termwise powers of a constant-recursive sequence again satisfy constant-coefficient
 recurrences, but the minimal orders can depend on cancellations in the power
@@ -40,12 +34,18 @@ equal to a cubic polynomial minus twice a parity-restricted square count.
 The correction is $(\sqrt3-1)\sqrt M+O(1)$ at power $M$, so these ranks are
 not eventually quasipolynomial. The proof determines every characteristic-root
 multiplicity for every positive power. A companion construction gives infinitely
-many distinct power-rank sequences at each fixed initial rank $r\ge3$.
-The recurrence conventions and the standard algebraic tools are stated explicitly.
+many distinct power-rank sequences at each fixed initial rank $r\ge3$,
+contradicting as written the fixed-rank finiteness conjecture of Rowland and
+Sistos Barr\'on~\cite{RowlandSistos}; at rank three, Rowland has independently
+obtained an infinite family. The recurrence conventions and the standard
+algebraic tools are stated explicitly. A Lean formalization covers the main
+theorem and the arbitrary-rank companion theorem; the companion generating
+function, its eventual polynomial degree and leading coefficient, and the
+simplified rank-three examples retain conventional proofs.
 \end{abstract}
 
 \section*{Priority and subsequent correspondence}
-\emph{Added 30 October 2026.} On 29 October 2026, following my correspondence with Professor Eric Rowland, he informed me that he had recently been experimenting with an LLM and had independently obtained an infinite family of rank sequences for rank-three recurrences. That family also challenges the fixed-rank finiteness assertion of~\cite{RowlandSistos} discussed at the end of this paper. I had not known of this work, and the novelty searches carried out by my research agents had not found it. I acknowledge this independently discovered, overlapping result. I do not suggest that his construction duplicates the rank-thirteen example or the other companion theorems; the constructions have not been compared. The proofs and the formalization are unchanged.
+\emph{Added 30 October 2026.} On 29 October 2026, following my correspondence with Professor Eric Rowland, he informed me that he had recently been experimenting with an LLM and had independently obtained an infinite family of rank sequences for rank-three recurrences. That family also challenges the fixed-rank finiteness assertion of~\cite{RowlandSistos} discussed at the end of this paper. I had not known of this work, and the novelty searches carried out by my research agents had not found it. His family was reported to me in correspondence, and I have not seen its construction. At rank three, his family and the companion family of Theorem~\ref{thm:family} both give infinitely many power-rank sequences, so that part of the present result overlaps with independent work. I acknowledge this independently discovered, overlapping result. I do not suggest that his construction duplicates the rank-thirteen example or the other companion theorems; the constructions have not been compared. The proofs and the formalization are unchanged.
 
 \section{The question and the main result}
 Taking a termwise power of a sequence can increase the order of its shortest
@@ -59,6 +59,8 @@ The main example below has a different cancellation pattern at square indices.
 These losses are small compared with the total rank, but they prevent every
 eventual quasipolynomial description. The characteristic polynomial is determined
 explicitly, so a loss in one coefficient is not mistaken for a larger hidden loss.
+Section~\ref{sec:verification} states what the accompanying Lean package
+formalizes and which corollaries retain conventional proofs.
 
 \paragraph{Recurrence conventions.}
 All sequences are indexed by $n\in\NN=\{0,1,2,\ldots\}$.
@@ -479,7 +481,7 @@ The same normal form gives the monomial basis with exponent of $X_1$ less
 than $d$, and hence the series $(1-z^d)/(1-z)^r$.
 This is the familiar principal-relation mechanism, not a new Hilbert-series principle.
 
-\section{Verification, attribution, and limits}
+\section{Verification, attribution, and limits}\label{sec:verification}
 The arguments above prove the infinite statements. Exact finite checks
 provide additional checks of the expansions and indexing.
 The accompanying integer-arithmetic programs check canonical supports,
@@ -531,10 +533,17 @@ Conjecture~6.2 is claimed. The citation identifies the author-hosted text;
 its correspondence with a specific arXiv version, subsequent corrections,
 and historical priority remain separate questions.
 
-\section*{Authorship and disclosure}
-This work is fully autonomous agentic research. GPT 6.1 Sol in Codex
-produced formal proofs and verification software for the accompanying
-package. Dev D. Goyal is responsible for publication.
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. Automated systems produced
+the research, mathematical arguments, finite checks and earlier versions of
+this manuscript. GPT 6.1 Sol in Codex produced formal proofs and verification
+software for the accompanying package. Opus~5.5 by Anthropic used with Claude
+Code revised the presentation of the manuscript on 1 November 2026: it
+rewrote the front matter and abstract, clarified the priority note against
+the repository's priority record and consolidated this disclosure. The
+revision does not change the mathematics. Dev D. Goyal is responsible for
+publication. The work has not been externally peer reviewed. The formal scope
+and the remaining limits are stated in Section~\ref{sec:verification}.
 
 \bibliographystyle{plain}
 \bibliography{references}

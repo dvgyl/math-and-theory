@@ -6,67 +6,94 @@
 \usepackage{longtable,booktabs,array}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \setlength{\emergencystretch}{3em}
-\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newtheorem{theorem}{Theorem}
+\newcommand{\lean}[1]{{\urlstyle{tt}\nolinkurl{#1}}}
 \hypersetup{pdftitle={The sharp level-one Fourier weight at density one eighth},pdfauthor={Dev D. Goyal}}
 \title{The sharp level-one Fourier weight at density one eighth}
 \author{Dev D. Goyal}
-\date{27 October 2026; priority note added 30 October 2026}
+\date{27 October 2026; priority note added 30 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
-The level-one Fourier weight measures the total squared correlation of a Boolean function with the individual coordinates. The proof shows that its maximum at mean $1/8$ is $3/64$ in every dimension at least three. A codimension-three subcube attains this value. Equivalently, a subset of the Boolean cube with density $1/8$ has average Hamming distance at least $(n-3)/2$. The proof establishes a sharp positive-part inequality for Rademacher sums. An even polynomial of degree eighteen bounds the positive part. An exact symmetric moment certificate then bounds the expectation of that polynomial in every dimension. The certificate uses rational coefficients and nonnegative terms. A companion Lean formalization includes the moment identities, the Fourier and distance bounds, and their sharpness witnesses.
+The level-one Fourier weight of a Boolean function is the total squared correlation of the function with the individual coordinates. Yu asks for the largest level-one weight of a Boolean function of mean $1/8$ (Problem~2 in Section~VII of~\cite{Y26}). This note proves that the maximum is $3/64$ in every dimension at least three, attained by the indicator of a codimension-three subcube. Equivalently, a subset of the Boolean cube with density $1/8$ has average Hamming distance at least $(n-3)/2$. Fang and Huang proved this bound first, together with a characterization of the equality cases~\cite{FH26}; the present proof is independent, and no priority is claimed (see the dated note below). The proof establishes a sharp positive-part inequality for Rademacher sums. An even polynomial of degree eighteen bounds the positive part, and an exact symmetric moment certificate, with rational coefficients and nonnegative terms, bounds the expectation of that polynomial in every dimension. A companion Lean formalization proves the moment identities, the Fourier and distance bounds in every dimension, and their sharpness witnesses.
 \end{abstract}
 
 \section*{Priority and subsequent correspondence}
-\emph{Added 30 October 2026.} On 30 October 2026, Professor Lei Yu informed me that Yijia Fang and Hao Huang had already proved the same density-$1/8$ Fourier-weight bound. He told me that their manuscript had been shared privately approximately one month earlier; it was submitted to arXiv on 29 October 2026~\cite{FH26}. Their result also characterizes the equality cases. I was previously unaware of their work, and the novelty searches carried out by my research agents had not found it. I confirmed the public arXiv record, whose summary states the same bound in its average-distance form together with the equality cases; I have not compared the two proofs. I acknowledge Fang and Huang's earlier work and make no originality or priority claim for the bound. I have withdrawn the statements below that presented the bound as the contribution of this note. The proof, its certificates and its formalization are unchanged.
+\emph{Added 30 October 2026.} This note was first published in this repository on 27 October 2026. On 30 October 2026, Professor Lei Yu informed me that Yijia Fang and Hao Huang had already proved the same density-$1/8$ Fourier-weight bound, and that their result also characterizes the equality cases. He told me that their manuscript had been shared privately approximately one month earlier; I have not seen that version. Their proof was submitted to arXiv on 29 October 2026~\cite{FH26}. I was previously unaware of their work, and the novelty searches carried out by my research agents had not found it. I confirmed the public arXiv record, whose summary states the same bound in its average-distance form together with the equality cases; I have not compared the two proofs. Fang and Huang proved the bound before I did. I acknowledge their earlier work and make no originality or priority claim for the bound. I have withdrawn the statements of the original version that presented the bound as the contribution of this note. The proof, its certificates and its formalization are unchanged; they remain available as an independent derivation and formal check.
 
-\hypertarget{result-and-scope}{%
-\section{Result and scope}\label{result-and-scope}}
+\section{Introduction}\label{result-and-scope}
 
 Let \(X=(X_1,\ldots,X_n)\) be uniform on \(\{-1,1\}^n\), and let
 \(f:\{-1,1\}^n\to\{0,1\}\). Write
 
 \[a=\mathbb E f(X),\qquad b_i=\mathbb E[X_i f(X)],\qquad W_1(f)=\sum_{i=1}^n b_i^2.\]
 
+Let \(W(1/8)\) be the dimension-free supremum of \(W_1(f)\) over all
+such \(f\) with \(a=1/8\). Yu asks for the value of \(W(1/8)\) in
+Problem~2 of Section~VII of~\cite{Y26}. Section~III-C of that paper
+gives an upper bound of approximately \(0.0495142\), and the
+codimension-three subcube gives the lower bound \(3/64=0.046875\). The
+following theorem shows that the lower bound is the answer.
+
+\begin{theorem}\label{thm:main}
 The following bound holds:
 
 \[\boxed{a=\frac18\quad\Longrightarrow\quad W_1(f)\le\frac3{64}.} \tag{1}\]
 
 For every \(n\ge3\), equality is attained by the indicator of the
-subcube \(X_1=X_2=X_3=1\). Consequently the maximum is exactly \(3/64\)
-in every admissible dimension, and the dimension-free supremum
-\(W(1/8)\) is \(3/64\).
-
-In the average-distance formulation, if \(A\subseteq\{-1,1\}^n\) and
-\(|A|=2^{n-3}\), then
+subcube \(X_1=X_2=X_3=1\). In the average-distance formulation, if
+\(A\subseteq\{-1,1\}^n\) and \(|A|=2^{n-3}\), then
 
 \[\boxed{\frac1{|A|^2}\sum_{x,y\in A}d_H(x,y)\ge\frac{n-3}{2}.} \tag{2}\]
 
-Equality holds for a codimension-three subcube. Pairs in this formula
-are ordered, sampled independently, and may coincide.
+Equality holds in (2) for a codimension-three subcube.
+\end{theorem}
+
+Consequently the maximum of \(W_1\) at mean \(1/8\) is exactly
+\(3/64\) in every admissible dimension, and \(W(1/8)=3/64\). Pairs in
+(2) are ordered, sampled independently, and may coincide.
 
 The result concerns exactly the density \(1/8\). It does not determine
 the optimum at every density or the full noise stability of a subcube.
 No classification of all equality cases is claimed in this note; Fang and Huang~\cite{FH26} give one.
 
-\section{Relation to previous bounds}
+Theorem~\ref{thm:main} was first proved by Fang and Huang~\cite{FH26}.
+What this note offers is an independent proof through an explicit
+rational certificate (a polynomial majorant combined with a
+dimension-independent moment identity) and a Lean formalization of
+that proof; the techniques themselves are established
+(Section~\ref{sec:prior}). The Lean development
+(Section~\ref{sec:formal}) proves the polynomial and moment identities,
+their interpretation on the uniform cube in every dimension,
+inequalities (1)--(3) and the sharpness witnesses. A separate Python
+checker rechecks the certificate in exact rational arithmetic. The
+relation to Yu's problem and to earlier bounds rests on the cited
+literature.
 
-The minimum-average-distance problem in Hamming space goes back to Ahlswede and Katona \cite{AK77}. Fu, Wei, and Yeung obtained linear-programming bounds and solved several cases, including quarter-cube size \cite{FWY01}. Yu and Tan later characterized the asymptotically best bounds from that linear program \cite{YT19}.
+Section~\ref{the-auxiliary-sharp-rademacher-inequality} reduces the
+theorem to an inequality for Rademacher sums,
+Sections~\ref{global-verification-of-the-one-variable-majorant}
+and~\ref{the-dimension-independent-moment-certificate} give its two
+certificates, and
+Sections~\ref{proof-of-the-sharp-fourier-bound}
+and~\ref{average-distance} derive the Fourier and distance bounds.
 
-Yu explicitly asks for $W(1/8)$ in Section VII, Problem 2, of \cite{Y26}. Section III-C gives an upper bound of approximately $0.0495142$. The codimension-three subcube gives the lower bound $3/64=0.046875$. Fang and Huang~\cite{FH26} closed this gap before this note, proving that the subcube value is an upper bound and characterizing the equality cases. This note gives an independent proof of the bound.
+\section{Relation to previous bounds}\label{sec:prior}
 
-The proof combines a polynomial majorant with a dimension-independent moment identity. Its coefficients are rational. Nonnegative Bernstein coefficients establish the one-variable inequalities. A sum of nonnegative symmetric terms establishes the moment inequality. These are established methods. The bound itself is due to Fang and Huang~\cite{FH26}; this note gives a proof through an explicit certificate, with a Lean formalization, and makes no originality or priority claim for the bound.
+The minimum-average-distance problem in Hamming space goes back to Ahlswede and Katona \cite{AK77}. Fu, Wei, and Yeung obtained linear-programming bounds and solved several cases, including quarter-cube size \cite{FWY01}. Yu and Tan later characterized the asymptotically best bounds from that linear program \cite{YT19}. In the Fourier formulation, Yu~\cite{Y26} gives the upper bound quoted above for \(W(1/8)\).
 
-\hypertarget{the-auxiliary-sharp-rademacher-inequality}{%
-\section{The auxiliary sharp Rademacher
-inequality}\label{the-auxiliary-sharp-rademacher-inequality}}
+Fang and Huang~\cite{FH26} closed the gap between \(3/64\) and Yu's upper bound before this note, proving that the subcube value is an upper bound and characterizing the equality cases. This note gives an independent proof of the bound.
+
+The proof combines a polynomial majorant with a dimension-independent moment identity. Its coefficients are rational. Nonnegative Bernstein coefficients establish the one-variable inequalities, and a sum of nonnegative symmetric terms establishes the moment inequality. These are established methods. The bound itself is due to Fang and Huang~\cite{FH26}; this note gives a proof through an explicit certificate, with a Lean formalization, and makes no originality or priority claim for the bound.
+
+\section{The auxiliary sharp Rademacher inequality}\label{the-auxiliary-sharp-rademacher-inequality}
 
 For any real coefficients \(c_1,\ldots,c_n\) with \(\sum_i c_i^2=1\),
 put
 
 \[S=\sum_i c_iX_i.\]
 
-The stronger auxiliary estimate is
+The proof rests on the following stronger auxiliary estimate:
 
 \[\mathbb E\bigl(|\sqrt3 S|-9/4\bigr)_+\le3/16,\qquad t_+=\max(0,t). \tag{3}\]
 
@@ -78,7 +105,7 @@ The proof uses a degree-eighteen even polynomial
 
 \[P(t)=\sum_{j=0}^9p_jt^{2j} \tag{4}\]
 
-with rational coefficients, given in Appendix A. The two properties
+with rational coefficients, given in Appendix~\ref{appendix-a.-exact-polynomial}. The two properties
 required are
 
 \[P(t)\ge\max(0,|t|-9/4)\quad\text{for all }t\in\mathbb R, \tag{5}\]
@@ -89,12 +116,12 @@ and
 
 The exact contacts \(P(1)=0\) and \(P(3)=3/4\)
 explain why equality can occur at the three-coordinate Rademacher sum.
-Contacts alone do not prove either global inequality; Sections 4--5
-provide their certificates.
+Contacts alone do not prove either global inequality;
+Sections~\ref{global-verification-of-the-one-variable-majorant}
+and~\ref{the-dimension-independent-moment-certificate} provide their
+certificates.
 
-\hypertarget{global-verification-of-the-one-variable-majorant}{%
-\section{Global verification of the one-variable
-majorant}\label{global-verification-of-the-one-variable-majorant}}
+\section{Global verification of the one-variable majorant}\label{global-verification-of-the-one-variable-majorant}
 
 Set \(p(u)=\sum_{j=0}^9p_ju^j\). Exact polynomial division gives
 
@@ -104,8 +131,9 @@ and
 
 \[P(t)-t+9/4=(t-3)^2T(t),\qquad \deg T=16. \tag{8}\]
 
-Both \(R\) and \(T\) are nonnegative on \([0,\infty)\). Here is a finite
-rational certificate of that assertion, including how it is checked.
+Both \(R\) and \(T\) are nonnegative on \([0,\infty)\). We now give a
+finite rational certificate of this assertion and explain how it is
+checked.
 
 For a degree-\(d\) polynomial \(Q\) on a rational interval \([L,H]\),
 use the Bernstein representation
@@ -145,12 +173,9 @@ Equation (7), applied to \(u=t^2\), proves \(P(t)\ge0\) for every real
 \(t\). Equation (8) proves \(P(t)\ge t-9/4\) for \(t\ge0\). Since \(P\)
 is even, apply the latter inequality to \(|t|\) to obtain (5).
 
-\hypertarget{the-dimension-independent-moment-certificate}{%
-\section{The dimension-independent moment
-certificate}\label{the-dimension-independent-moment-certificate}}
+\section{The dimension-independent moment certificate}\label{the-dimension-independent-moment-certificate}
 
-\hypertarget{ordered-orbit-sums}{%
-\subsection{Ordered orbit sums}\label{ordered-orbit-sums}}
+\subsection{Ordered orbit sums}\label{ordered-orbit-sums}
 
 Let \(z_i=c_i^2\) and \(V=\sum_i z_i\). For a finite list of nonnegative
 integers \(\lambda=(\lambda_1,\ldots,\lambda_\ell)\), define
@@ -184,8 +209,7 @@ whether it avoids the new coordinate or uses it at its unique position
 \(O_{\lambda\setminus r}(z)\). No division by \(z_i\) is used, so zero
 coordinates and every dimension are covered.
 
-\hypertarget{rademacher-moments}{%
-\subsection{Rademacher moments}\label{rademacher-moments}}
+\subsection{Rademacher moments}\label{rademacher-moments}
 
 For integers \(0\le j\le9\), define
 
@@ -216,8 +240,7 @@ and \(0\) otherwise. Induction on dimension, using (12) and (15), proves
 (14) for every needed \(0\le j\le9\). Thus this step is not a check only
 in a fixed number of variables.
 
-\hypertarget{weighted-squares}{%
-\subsection{Weighted squares}\label{weighted-squares}}
+\subsection{Weighted squares}\label{weighted-squares}
 
 For a list \(\lambda\), real vector \(a=(a_1,\ldots,a_\ell)\), and
 scalar \(b\), define
@@ -233,12 +256,13 @@ positions of \(\lambda\): the two marked exponents are incremented
 before sorting the resulting list. This convention matters when equal
 exponents occur.
 
-The decisive exact identity is
+The key exact identity is
 
 \[\frac3{16}V^9-\sum_{j=0}^9p_j3^jM_j(z)V^{9-j}
    =\sum_{r=1}^{28}w_rH_r(z), \qquad w_r>0, \tag{17}\]
 
-where the \(H_r\) and weights are given in Appendix B. The first five
+where the \(H_r\) and weights are given in
+Appendix~\ref{appendix-b.-exact-nonnegative-symmetric-identity}. The first five
 terms are ordered-orbit monomials of degree nine; the other twenty-three
 are weighted squares with \(|\lambda|=7\). Thus every term is
 homogeneous of degree nine.
@@ -261,9 +285,7 @@ Now take \(z_i=c_i^2\), so \(z_i\ge0\) and \(V=1\). The right side of
 \(3/16-\mathbb EP(\sqrt3S)\). This proves (6). Combining (5) with (6)
 proves (3).
 
-\hypertarget{proof-of-the-sharp-fourier-bound}{%
-\section{Proof of the sharp Fourier
-bound}\label{proof-of-the-sharp-fourier-bound}}
+\section{Proof of the sharp Fourier bound}\label{proof-of-the-sharp-fourier-bound}
 
 Let \(W=W_1(f)\). If \(W=0\), inequality (1) is immediate. Otherwise put
 \(c_i=b_i/\sqrt W\) and \(S=\sum_i c_iX_i\). Then
@@ -296,8 +318,7 @@ three coefficients \(b_i\) are \(1/8\), and all remaining coefficients
 vanish by independence and zero mean of the unused sign. Hence
 \(W_1(f)=3/64\), proving attainment in every \(n\ge3\).
 
-\hypertarget{average-distance}{%
-\section{Average distance}\label{average-distance}}
+\section{Average distance}\label{average-distance}
 
 Let \(A\) have density \(a>0\) and \(f=\mathbf1_A\). For a uniform point
 of \(A\), its \(i\)th coordinate mean is \(b_i/a\). If \(U,V\) are
@@ -313,16 +334,23 @@ development defines the weighted average as the double uniform-cube
 average of \(f(x)f(y)d_H(x,y)\), divided by \((\mathbb Ef)^2\); for an
 indicator this is exactly the ordered-pair average over \(A\).
 
-\section{Formalization and exact certificates}
+\section{Formalization and exact certificates}\label{sec:formal}
 
-The companion formalization uses Lean~4.19.0 and a pinned mathlib revision. It includes the finite rational identities and their interpretation for every cube dimension. Polynomial identities use \texttt{ring}. Finite rational table equalities use \texttt{decide +kernel}. The moment recurrence then connects these identities to the uniform probability measure on the Boolean cube.
+The companion formalization \texttt{SharpEighth.lean} uses Lean~4.19.0 and Mathlib revision \texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}. It includes the finite rational identities and their interpretation for every cube dimension. Polynomial identities use \texttt{ring}. Finite rational table equalities use \texttt{decide +kernel}. The moment recurrence then connects these identities to the uniform probability measure on the Boolean cube.
 
-A separate Python checker uses exact rational arithmetic. It checks all thirty symmetric coefficients, all twenty-eight positive weights, sixteen Bernstein intervals, both polynomial factorizations, both tail expansions, interval coverage, and the contact values. The reproduction package gives the commands and dependency versions. These checks use the stated certificate. They do not depend on a numerical optimization solver.
+The main statements are \lean{SharpEighth.sharp_rademacher_hinge}, which is inequality (3); \lean{SharpEighth.sharp_eighth_fourier_bound}, which is inequality (1) for real-valued functions on \texttt{Fin n -> Bool} taking only the values \(0\) and \(1\); \lean{SharpEighth.average_distance_eighth}, which is inequality (2) in the weighted form of Section~\ref{average-distance}; and \lean{SharpEighth.exact_eighth_fourier_optimum} and \lean{SharpEighth.exact_eighth_distance_optimum}, which state that \(3/64\) and \((n-3)/2\) are the attained optimum values in every dimension \(n\ge3\). The file \texttt{Audit.lean} prints the axioms on which these and the certificate statements depend; the README gives the build commands and permits only \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
+
+A separate Python checker, \texttt{verify\_certificate.py}, uses exact rational arithmetic. It checks all thirty symmetric coefficients, all twenty-eight positive weights, sixteen Bernstein intervals, both polynomial factorizations, both tail expansions, interval coverage, and the contact values. The README gives the commands and dependency versions. These checks use the stated certificate. They do not depend on a numerical optimization solver.
+
+\section{Research process and AI disclosure}\label{sec:disclosure}
+
+This work is fully autonomous agentic research. As recorded for this result, the initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT, and GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The author checked the proofs to the best of their mathematical abilities; this check is not expert validation or peer review. The priority note of 30 October 2026 records later correspondence. The editorial revision of 1 November 2026 was made with Opus 5.5 by Anthropic used with Claude Code; it changed the presentation only, not the mathematics, the certificates or the formalization.
+
+Dev D. Goyal is responsible for publication. The work has not been externally peer reviewed. Section~\ref{sec:formal} states the scope of the formal and exact checks, and Section~\ref{result-and-scope} states the limits of the result.
 
 \appendix
 
-\hypertarget{appendix-a.-exact-polynomial}{%
-\section{Exact polynomial}\label{appendix-a.-exact-polynomial}}
+\section{Exact polynomial}\label{appendix-a.-exact-polynomial}
 
 In \(P(t)=\sum_{j=0}^9p_jt^{2j}\), use:
 
@@ -351,8 +379,7 @@ $j$ & $p_j$ \\
 
 \clearpage
 
-\hypertarget{appendix-b.-exact-nonnegative-symmetric-identity}{%
-\section{Exact nonnegative symmetric identity}\label{appendix-b.-exact-nonnegative-symmetric-identity}}
+\section{Exact nonnegative symmetric identity}\label{appendix-b.-exact-nonnegative-symmetric-identity}
 
 Use (17) with the following terms. The monomial weights below are in the
 \textbf{ordered-orbit} convention of (10), matching the CertificateData
@@ -363,7 +390,7 @@ square terms use the same ordered-injection convention in both
 representations.
 
 Every numerator and denominator in the final column is positive. This
-table and Appendix A completely determine identity (17).
+table and Appendix~\ref{appendix-a.-exact-polynomial} completely determine identity (17).
 
 \begingroup
 \small
@@ -406,14 +433,11 @@ $r$ & $H_r$ & $a$ & $b$ & $w_r$ \\
 \end{longtable}
 \endgroup
 
-\section*{Research and publication}
-This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication.
-
 \begin{thebibliography}{9}
 \bibitem{AK77} R. Ahlswede and G. O. H. Katona. Contributions to the geometry of Hamming spaces. \emph{Discrete Mathematics} \textbf{17} (1977), 1--22. \href{https://doi.org/10.1016/0012-365X(77)90017-6}{doi:10.1016/0012-365X(77)90017-6}.
-\bibitem{FWY01} F.-W. Fu, V. K. Wei, and R. W. Yeung. On the minimum average distance of binary codes: Linear programming approach. \emph{Discrete Applied Mathematics} \textbf{111} (2001), 263--281. \href{https://doi.org/10.1016/S0166-218X(00)00284-5}{doi:10.1016/S0166-218X(00)00284-5}.
-\bibitem{YT19} L. Yu and V. Y. F. Tan. An Improved Linear Programming Bound on the Average Distance of a Binary Code. \href{https://arxiv.org/abs/1910.09416}{arXiv:1910.09416} (2019).
-\bibitem{FH26} Y. Fang and H. Huang. Average pairwise Hamming distance of a subset in a hypercube. \href{https://arxiv.org/abs/2610.40486}{arXiv:2610.40486} (29 October 2026).
-\bibitem{Y26} L. Yu. On Average Distance, Level-1 Fourier Weight, and Chang's Lemma. \href{https://arxiv.org/abs/2504.02593v2}{arXiv:2504.02593v2} (2026 revision).
+\bibitem{FH26} Y. Fang and H. Huang. Average pairwise Hamming distance of a subset in a hypercube. Preprint, \href{https://arxiv.org/abs/2610.40486}{arXiv:2610.40486} (29 October 2026).
+\bibitem{FWY01} F.-W. Fu, V. K. Wei, and R. W. Yeung. On the minimum average distance of binary codes: linear programming approach. \emph{Discrete Applied Mathematics} \textbf{111} (2001), 263--281. \href{https://doi.org/10.1016/S0166-218X(00)00284-5}{doi:10.1016/S0166-218X(00)00284-5}.
+\bibitem{Y26} L. Yu. On average distance, level-1 Fourier weight, and Chang's lemma. Preprint, \href{https://arxiv.org/abs/2504.02593v2}{arXiv:2504.02593v2} (2026 revision).
+\bibitem{YT19} L. Yu and V. Y. F. Tan. An improved linear programming bound on the average distance of a binary code. Preprint, \href{https://arxiv.org/abs/1910.09416}{arXiv:1910.09416} (2019).
 \end{thebibliography}
 \end{document}

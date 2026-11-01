@@ -39,17 +39,10 @@
 unextendible product constraints\newline
 \large Exact Schmidt numbers of every tensor power of the Tiles state}
 \author{Dev D. Goyal}
-\date{30 October 2026}
+\date{30 October 2026; revised 1 November 2026}
 
 \begin{document}
 \maketitle
-\section*{Research process and AI disclosure}
-This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
-
-The research, the proofs, the Lean formalization and an earlier version of this note were produced by autonomous AI research agents in an earlier session whose records do not name the model or system used.
-
-Opus 5.5 by Anthropic used with Claude Code assessed the package for this release, checked the rank-doubling argument, the Tiles computations and the passage from support rank to Schmidt number, ran the fresh Lean replay described in Section~\ref{sec:lean}, and revised this manuscript. AI checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:lean}.
-
 \begin{abstract}
 Let $S\subset A\otimes B$ be annihilated by an unextendible family of product
 functionals. If every nonzero element of $T\subset C\otimes D$ has Schmidt
@@ -58,12 +51,16 @@ $AC:BD$, has Schmidt rank at least $2r$. When $S$ contains a rank-two vector,
 this gives the exact identity $\minrank(S\otimes T)=2\minrank(T)$ for every
 nonzero partner $T$. The proof uses a rank-nullity inequality for two local
 compressions and the unextendibility condition. For the canonical Tiles
-projector $P$ and state $\rho=P/4$, it yields
+projector $P$ of Bennett et al.~\cite{bennett1999} and state $\rho=P/4$, it yields
 $\minrank(\ran P^{\otimes N})=\SN(\rho^{\otimes N})=2^N$ for all $N\ge1$.
-A nine-column decomposition supplies the exact upper bound. We give the full
-proof, a stronger partial-transpose cone exclusion, carefully separated
-operational and classification consequences, a formal correspondence audit,
-and a skeptical assessment of the literature.
+A nine-column decomposition supplies the exact upper bound. The case $N=2$
+is due to Chen, Yang and Tang~\cite{chen2017}. We give the full proof, a
+stronger partial-transpose cone exclusion, operational and classification
+consequences, and a comparison with the literature. The rank-doubling
+theorem, strong multiplicativity and the exact all-copy Tiles formula are
+formalized in Lean~4; the zero-error cost, the rank-four two-qutrit class and
+the channel interpretation combine the formal theorem with published
+results.
 \end{abstract}
 
 \section{Definitions and the precise result}
@@ -515,7 +512,8 @@ databases, and relevant public repositories. Alternative formulations included U
 support Schmidt rank, minimum output rank, strong additivity at R\'enyi
 order zero, rank-one-spanned annihilators, transitive operator spaces, and
 regularized zero-error entanglement cost. Searches were repeated after the
-proof emerged, including recent-year searches as of the session date.
+proof emerged, including searches of recent years up to the preparation of
+this note.
 
 In particular,
 Cheng--Winter--Yu's Proposition~22 has different content in different
@@ -526,7 +524,7 @@ Corollary~\ref{cor:strong}, or the full all-copy Tiles formula. This is not
 a completeness certificate for the literature, and a missing search result
 is not evidence of originality.
 
-\subsection{Skeptical contribution assessment}
+\subsection{Assessment of the contribution}
 
 The strongest defensible interpretation is a candidate structural theorem
 with an exact application to a canonical bound-entangled state and, using
@@ -538,9 +536,9 @@ numerical instance or a formalization of the known two-copy equality.
 Nevertheless, the literature search did not locate an established major conjecture
 specifically asking for this sharp law. The state itself, single-copy
 Schmidt number, two-copy case, nonsharp exponential growth, and general
-high-Schmidt-number PPT existence are all prior art. A claim of a major
-field-wide breakthrough, or of guaranteed suitability for a leading venue,
-would exceed the evidence. Mathematical correctness is now supported by
+high-Schmidt-number PPT existence are all prior art. The evidence does not
+support describing the result as the resolution of a major open problem or
+as suited to any particular venue. Mathematical correctness is now supported by
 formal verification; originality remains provisional and specialist
 priority review is still needed.
 
@@ -574,6 +572,13 @@ then parses the printed dependencies of the central theorems against the
 explicit foundational allowlist. The release hashes cover the proofs,
 manifest, and reproduction scripts; the build report separately records the
 exact sources checked in the fresh build.
+
+\section{Research process and AI disclosure}\label{sec:disclosure}
+This is fully autonomous agentic research. The research, the proofs, the Lean formalization and an earlier version of this note were produced by autonomous AI research agents in an earlier session whose records do not name the model or system used.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this release, checked the rank-doubling argument, the Tiles computations and the passage from support rank to Schmidt number, ran the fresh Lean replay described in Section~\ref{sec:lean}, and revised this manuscript. The editorial revision of 1 November 2026, also made with Opus 5.5 by Anthropic used with Claude Code, changed the presentation only, not the mathematics or the formalization.
+
+Dev D. Goyal is responsible for publication. The work has not been externally peer reviewed; no expert validation is claimed, AI checks are not human peer review, and the novelty assessment is provisional. Lean verification establishes only the formal statements described in Section~\ref{sec:lean}; Section~\ref{sec:prior} states the remaining limits.
 
 \begin{thebibliography}{99}\small
 

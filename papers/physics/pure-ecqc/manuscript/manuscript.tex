@@ -16,14 +16,12 @@
 \newtheorem{theorem}{Theorem}
 \title{A pure-state matched-basis information\\inequality violation in dimension five}
 \author{Dev D. Goyal}
-\date{28 October 2026}
+\date{28 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
-\paragraph{Autonomous AI research disclosure.}
-This work is fully autonomous agentic research. Automated systems produced the research, proofs, formalization, and manuscript preparation. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed.
-
 \begin{abstract}
-This note defines a matched-identical-basis information comparison: the
+This note defines a matched-identical-basis information comparison,
+motivated by the ECQC proposal of Iqbal~\cite{Iqbal}: the
 minimum sum from five of six mutually unbiased local settings is compared
 with the quantum mutual information of the state. In local dimension five,
 the normalized pure state
@@ -35,9 +33,13 @@ Every selection of five settings therefore has sum $5\log5$, exceeding
 the quantum-information budget by $3\log5$, with ratio $5/2$.
 The proof verifies all six orthonormal bases, mutual unbiasedness, the
 actual Born probabilities, purity, and both reduced states. The basis
-family and identical-local-basis convention are explicit. Prior mixed-state
+family and identical-local-basis convention are explicit. A Lean
+formalization checks the dimension-five theorem for the actual state,
+bases, Born probabilities and entropies. Prior mixed-state
 ECQC counterexamples receive separate credit. Correspondence with an
-external ECQC proposal and historical novelty remain unverified.
+external ECQC proposal and historical novelty remain unverified. The same
+dimension-five counterexample was recorded publicly earlier, and no priority
+is claimed for it.
 \end{abstract}
 
 \section{The question and prior work}
@@ -94,6 +96,21 @@ model below. No unrestricted ECQC priority claim is made.
 The theorem below violates (1) using identical local basis vectors on
 both parties. Bob uses the same basis vectors as Alice in each setting.
 Replacing his basis by a separately conjugated family changes the model.
+Section~\ref{sec:formal} describes the Lean formalization of the
+dimension-five theorem.
+
+\paragraph{Earlier public work (note added 1 November 2026).}
+On 31 October 2026 a check of public problem records found that the Omega
+Institute's public repository records the same counterexample: the state
+$5^{-1/2}\sum_x|x\rangle|2x \bmod 5\rangle$ with the same six mutually
+unbiased bases, used identically by both parties, giving the classical sum
+$5\log5$ against the quantum mutual information
+$2\log5$~\cite{OmegaECQC}. That record, preregistered as issue \#12896, was
+first committed on 4 October 2026, with a claimed Lean proof frozen the
+same day, about 25 days before this result was first committed to the
+author's repository. The conventional all-prime companion mentioned in
+Section~\ref{sec:formal} does not appear in that record. No originality or
+priority claim is made for the dimension-five counterexample.
 
 \section{Exact construction and theorem}
 
@@ -377,7 +394,7 @@ quantum capacity, cryptographic security, experimental implementation,
 or a classification of all dimensions or measurement families.
 
 \Needspace{10\baselineskip}
-\section{Formal verification and reproducibility}
+\section{Formal verification and reproducibility}\label{sec:formal}
 The formal project uses Lean 4.19.0 and mathlib revision
 \begin{center}
 \texttt{\small c44e0c8ee63ca166450922a373c7409c5d26b00b}.
@@ -414,6 +431,17 @@ state. These are finite exact checks. They support the explicit arithmetic
 and do not replace the formal density-matrix and entropy proof.
 The all-prime companion note proves an unbounded-ratio extension by a
 conventional argument. The Lean package covers dimension five only.
+
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. Automated systems produced
+the research, proofs, formalization, and earlier versions of this
+manuscript. Opus~5.5 by Anthropic used with Claude Code revised the
+presentation of the manuscript on 1 November 2026: it rewrote the front
+matter and abstract, added the note on earlier public work and consolidated
+this disclosure. The revision does not change the mathematics. Dev D. Goyal
+is responsible for publication. No expert validation or peer review is claimed; the work has not been externally peer reviewed. The formal scope is stated
+in Section~\ref{sec:formal}, and the limits of the source comparison in the
+section on scope and attribution.
 
 \bibliographystyle{plain}
 \bibliography{references}

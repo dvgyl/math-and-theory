@@ -37,20 +37,13 @@
 \title{\vspace{-15mm}\textbf{Periodic obstructions to small-extrapolation\\Chambolle--Pock}\\[5pt]
 \large An exact three-cycle threshold, robust seven-cycles,\\and a four-dimensional Fourier construction}
 \author{Dev D. Goyal}
-\date{30 October 2026}
+\date{30 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
 \thispagestyle{empty}
 
-\section*{Research process and AI disclosure}
-This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
-
-The research, the constructions and certificates, the Lean formalization and an earlier report were produced by autonomous AI research agents in an earlier session whose records do not name the model or system used.
-
-Opus 5.5 by Anthropic used with Claude Code assessed that package for this release. It coordinated an independent AI referee check, which recomputed the three-cycle identity and the seven-cycle certificate with new exact-arithmetic code and simulated the Fourier family. It ran the fresh Lean replay described in Section~\ref{sec:verification} and rewrote this manuscript, adding the scope and limitations in Section~\ref{sec:limits}. AI referee checks are not human peer review. Lean verification establishes only the formal statements listed in Section~\ref{sec:verification}.
-
 \begin{abstract}
-We investigate necessary restrictions on the convergence region of the unchanged Chambolle--Pock method at small positive extrapolation. A dimension-independent sum-of-squares identity gives the exact universal step-product threshold for a nonconstant three-cycle, and compact triangles attain that threshold. An independent pair of integer-coordinate polytopes in $\R^4$ yields a seven-cycle on a full parameter rectangle near step product $5/2$, below the three-cycle threshold. Every sufficiently close initial state is captured by that seven-cycle after one update. A mixed-frequency construction gives a further family: for every fixed step product greater than $2$, suitable compact polytopes in $\R^4$ cycle for all sufficiently small positive extrapolation. The constructions have a saddle point and use actual global proximal minimizers. We give mathematical proofs, exact certificates and Lean 4 proofs. These are necessary obstructions, not a determination of the full convergence region, and the obstructing extrapolation intervals are very small. No matching antecedent was located in the inspected literature; priority is provisional.
+We investigate necessary restrictions on the convergence region of the unchanged Chambolle--Pock method at small positive extrapolation $\theta$. Weak convergence is known for $\theta>1/2$ and $\tau\sigma\norm{L}^2<4/(1+2\theta)$~\cite{BUG}, and under an explicit sufficient condition for $0<\theta\le1/2$ whose improvement is left open~\cite{U26}. A dimension-independent sum-of-squares identity gives the exact universal step-product threshold for a nonconstant three-cycle, and compact triangles attain that threshold. An independent pair of integer-coordinate polytopes in $\R^4$ yields a seven-cycle on a full parameter rectangle near step product $5/2$, below the three-cycle threshold. Every sufficiently close initial state is captured by that seven-cycle after one update. A mixed-frequency construction gives a further family: for every fixed step product greater than $2$, suitable compact polytopes in $\R^4$ cycle for all sufficiently small positive extrapolation. The constructions have a saddle point and use actual global proximal minimizers. The three theorems and the comparison with quadratic eigenmodes are proved conventionally and formalized in Lean 4, and the exact certificates are also rechecked independently; numerical observations on larger extrapolation intervals and basin sizes are not formalized. These are necessary obstructions, not a determination of the full convergence region, and the obstructing extrapolation intervals are very small. No matching antecedent was located in the inspected literature; priority is provisional.
 \end{abstract}
 \tableofcontents
 \newpage
@@ -468,7 +461,7 @@ The distinction in the counterexamples is therefore precise: convex nonlinear pr
 
 \subsection{Literature comparison}
 
-The search covered the algorithm's CP, PDHG and Arrow--Hurwicz names; three-cycles, longer periodic orbits, nonlinear instability, quadratic stability and phase boundaries; related ADMM and Douglas--Rachford formulations; delayed-gradient equivalents; current preprints, journal versions, a doctoral thesis, and relevant public code. Principal claims were compared against primary sources where they were accessible. The earlier results of this collection were checked to avoid rediscovering them.
+The search covered the algorithm's CP, PDHG and Arrow--Hurwicz names; three-cycles, longer periodic orbits, nonlinear instability, quadratic stability and phase boundaries; related ADMM and Douglas--Rachford formulations; delayed-gradient equivalents; current preprints, journal versions, a doctoral thesis~\cite{Thesis}, and relevant public code. Principal claims were compared against primary sources where they were accessible. The earlier results of this collection were checked to avoid rediscovering them.
 
 The following distinctions are material:
 \begin{itemize}
@@ -548,6 +541,15 @@ The Python verifier accepts explicit compiler and mathlib paths. It creates a ne
 \section{Open questions}
 
 The unresolved questions are the sharp small-$\theta$ convergence boundary, the behavior at step product two, and the extent to which other cycle lengths or nonperiodic dynamics impose stronger restrictions.
+
+\section{Research process and AI disclosure}\label{sec:disclosure}
+This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. The work has not been externally peer reviewed, no expert validation is claimed, and the novelty assessment is provisional.
+
+The research, the constructions and certificates, the Lean formalization and an earlier report were produced by autonomous AI research agents in an earlier session whose records do not name the model or system used.
+
+Opus 5.5 by Anthropic used with Claude Code assessed that package for this release. It coordinated an independent AI referee check, which recomputed the three-cycle identity and the seven-cycle certificate with new exact-arithmetic code and simulated the Fourier family. It ran the fresh Lean replay described in Section~\ref{sec:verification} and rewrote this manuscript, adding the scope and limitations in Section~\ref{sec:limits}. On 1 November 2026 it also revised the front matter and moved this section to the end, without changing the mathematics. AI referee checks are not human peer review.
+
+Lean verification establishes only the formal statements listed in Section~\ref{sec:verification}; the scope and limitations of the results are stated in Section~\ref{sec:limits}.
 
 \begin{thebibliography}{12}
 \small

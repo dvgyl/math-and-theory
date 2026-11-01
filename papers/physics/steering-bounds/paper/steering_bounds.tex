@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \graphicspath{{research/}{./}}
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{xurl}
 \hypersetup{pdftitle={The exact CJWR three-setting steering envelope at fixed steering-ellipsoid centre},pdfauthor={Dev D. Goyal},pdfsubject={Sharp two-qubit correlation bounds and formal matrix proofs}}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -19,14 +20,11 @@
 \newcommand{\R}{\mathbb{R}}
 \title{The exact CJWR three-setting steering envelope\newline at fixed steering-ellipsoid centre}
 \author{Dev D. Goyal}
-\date{29 October 2026}
+\date{29 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
-\begin{quote}\small
-This work is fully autonomous agentic research. Automated systems produced the mathematical arguments and formal proofs. Codex contributed mathematical checks, verification software, and manuscript preparation. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed.
-\end{quote}
 \begin{abstract}
-For a two-qubit density matrix, let $c$ be the length of the centre of Alice's steering ellipsoid and let $F_3$ be the optimized CJWR three-setting linear steering value, whose bound for local hidden-state models is one. The sharp upper envelope is
+For a two-qubit density matrix, let $c$ be the length of the centre of Alice's steering ellipsoid~\cite{Milne} and let $F_3$ be the optimized CJWR three-setting linear steering value~\cite{Costa,Ducuara}, whose bound for local hidden-state models is one. We determine the largest possible value of $F_3$ at each fixed centre length. The sharp upper envelope is
 \[
  F_3^2\leq G(c):=
  \begin{cases}
@@ -34,7 +32,7 @@ For a two-qubit density matrix, let $c$ be the length of the centre of Alice's s
   1,&2/3<c\leq1.
  \end{cases}
 \]
-The first branch is attained for $c<2/3$ by explicitly filtered maximally obese states. For $2/3\leq c<1$ the bound is a supremum that is never attained; at $c=1$ a pure product state attains it. The argument combines a canonical-state spectral bound, an exact determinant covariance of a difference of global and marginal purities, and positivity of qubit conditional states. It also gives a short proof of a sharp fully entangled-fraction bound. The spectral estimate is a supporting ingredient, without a separate priority claim.
+The first branch is attained for $c<2/3$ by explicitly filtered maximally obese states. For $2/3\leq c<1$ the bound is a supremum that is never attained; at $c=1$ a pure product state attains it. The argument combines a canonical-state spectral bound, an exact determinant covariance of a difference of global and marginal purities, and positivity of qubit conditional states. It also gives a short proof of the sharp fully entangled-fraction bound $f(\rho)\leq1-c/2$, which is Conjecture~2 of Milne, Jennings, Jevtic and Rudolph~\cite{Milne}; a claimed proof of that bound was public earlier, and no priority is claimed for it. The spectral estimate is a supporting ingredient, without a separate priority claim. A Lean~4 formalization checks the envelope, its attainment and nonattainment, and the fully entangled-fraction bound for actual two-qubit density matrices; the steering-ellipsoid and CJWR measurement interpretations rest on cited correspondences.
 \end{abstract}
 
 \section{Problem, conventions, and prior work}
@@ -64,7 +62,10 @@ For a pure Bob marginal the state is a product, the steering ellipsoid is a poin
 
 Milne, Jennings, Jevtic, and Rudolph \cite{Milne} study correlations of states with one maximally mixed marginal. Ducuara, Susa, and Skrzypczyk \cite{Ducuara} study hidden correlations under local filtering. These works provide context for the following extremal question: at a fixed centre length $c$, what is the largest possible $F_3$ value? The answer below is the exact envelope $G$, with the threshold $2/3$ and a distinction between attainment and approximation.
 
-Canonical filtering and the maximally obese state family are credited ingredients from the steering-ellipsoid literature \cite{Milne}. The spectral estimate below is also related to established quantum-marginal bounds \cite{Bravyi}; its proof is included and does not require such a bound as an assumption. The result combines this estimate with a determinant identity and optimizes the resulting quadratic. No priority claim or claim to resolve a published conjecture is made here. Those historical questions require a separate comparison with the primary literature.
+Canonical filtering and the maximally obese state family are credited ingredients from the steering-ellipsoid literature \cite{Milne}. The spectral estimate below is also related to established quantum-marginal bounds \cite{Bravyi}; its proof is included and does not require such a bound as an assumption. The result combines this estimate with a determinant identity and optimizes the resulting quadratic. No priority claim or claim to resolve a published conjecture is made here. Those historical questions require a separate comparison with the primary literature. Section~\ref{sec:formal} states what the Lean formalization checks; the identification with the physical steering-ellipsoid centre and with the optimized CJWR measurement expression uses the cited correspondences.
+
+\paragraph{Earlier public work (note added 1 November 2026).}
+On 31 October 2026 a check of public problem records found two earlier entries in the Omega Institute's public repository. First, the companion bound of Theorem~\ref{thm:fef}, $f(\rho)\leq1-c/2$, sharp at every centre length, is Conjecture~2 of Milne, Jennings, Jevtic and Rudolph~\cite{Milne}; the Omega repository records a claimed Lean proof of it, with attainment for every centre length, committed on 8 October 2026 (issue \#14206)~\cite{OmegaFEF}. This manuscript proves the same statement; no originality or priority claim is made for it. Second, a dossier committed on 14 October 2026 (issue \#16558) proves Conjecture~1 of the same paper, a sharp bound on the CHSH value at fixed centre length~\cite{OmegaCHSH}. That is a different quantity from the three-setting value $F_3^2=\norm{T}_{\mathrm F}^2$ studied here, and the two results have not been compared. Both records predate the first version of this manuscript. The exact three-setting envelope does not appear in either record.
 
 \section{Canonical spectrum and purity}
 \begin{lemma}\label{lem:spectral}
@@ -283,7 +284,7 @@ Sharpness is attained by
 For $c<1$ this is \eqref{eq:extremal} at $r=c/(2-c)$ and has centre length $c$. Its overlap with $(\ket{01}+\ket{10})/\sqrt2$ is exactly $1-c/2$. At $c=1$ it is a pure product state with fraction $1/2$.
 \end{proof}
 
-\section{Formal verification and reproduction}
+\section{Formal verification and reproduction}\label{sec:formal}
 The formalization uses Lean~4.19.0 and Mathlib commit
 \begin{center}\small\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.\end{center}
 Its 18 modules prove statements about positive semidefinite complex $4\times4$ matrices with trace one. The partial traces, positive canonicalizing filter, Pauli correlations, and witness states are explicit matrix constructions. The verification script rebuilds every local module with compiler trust level zero and warnings treated as errors. It checks the types and transitive axioms of all 23 principal declarations. The permitted axioms are \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
@@ -309,6 +310,9 @@ The script requires Python~3.9 or later, Git, and Lean/Lake~4.19.0. It records s
 
 The exact envelope and its attainment distinction are the central result. Canonical filtering, the spectral estimate, and the maximally obese states are established ingredients. The fully entangled-fraction bound is a short secondary consequence. No priority claim follows from the formal verification.
 
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. Automated systems produced the mathematical arguments and formal proofs. Codex contributed mathematical checks, verification software, and manuscript preparation. Opus~5.5 by Anthropic used with Claude Code revised the presentation of the manuscript on 1 November 2026: it rewrote the front matter and abstract, added the note on earlier public work and consolidated this disclosure. The revision does not change the mathematics. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed; the work has not been externally peer reviewed. The formal scope and its limits are stated in Section~\ref{sec:formal}.
+
 \begin{thebibliography}{9}
 \bibitem{Milne} A.~Milne, D.~Jennings, S.~Jevtic, and T.~Rudolph,
 ``Quantum correlations of two-qubit states with one maximally mixed marginal,''
@@ -328,5 +332,9 @@ The exact envelope and its attainment distinction are the central result. Canoni
 \emph{Physical Review A} \textbf{93}, 020103(R) (2016).
 \href{https://doi.org/10.1103/PhysRevA.93.020103}{doi:10.1103/PhysRevA.93.020103};
 \href{https://arxiv.org/abs/1510.08030}{arXiv:1510.08030}.
+\bibitem{OmegaFEF} The Omega Institute, problem dossier on the fully entangled fraction at fixed steering centre (issue \#14206), public repository \nolinkurl{the-omega-institute/trureturing}, committed 8 October 2026.
+\url{https://github.com/the-omega-institute/trureturing/blob/49e63cc2124d91dc82b3e463c6a0fe9b2cc2a6dc/Problems/milne-jennings-jevtic-rudolph-2014-fully-entangled-fraction.md}.
+\bibitem{OmegaCHSH} The Omega Institute, problem dossier on the CHSH value at fixed steering centre (issue \#16558), public repository \nolinkurl{the-omega-institute/trureturing}, committed 14 October 2026.
+\url{https://github.com/the-omega-institute/trureturing/blob/af41108edc85c119837189f120c6d2d9aa3f5a25/Problems/milne-jennings-jevtic-rudolph-2014-chsh-centre-bound.md}.
 \end{thebibliography}
 \end{document}

@@ -6,6 +6,7 @@
 \usepackage{microtype}
 \usepackage{xcolor}
 \usepackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black,citecolor=blue!55!black]{hyperref}
+\usepackage{xurl}
 \hypersetup{pdftitle={An unbounded obstruction to projection AM-GM in Loewner order},pdfauthor={Dev D. Goyal},pdfsubject={Exact counterexamples and Lean verification}}
 \usepackage{enumitem}
 \setlist{itemsep=3pt,topsep=5pt}
@@ -19,14 +20,12 @@
 \title{An unbounded obstruction to projection AM--GM in Loewner order\\[4pt]
 \large A rational counterexample and an unbounded obstruction}
 \author{Dev D. Goyal}
-\date{29 October 2026}
+\date{29 October 2026; revised 1 November 2026}
 
 \begin{document}
 \maketitle
-\noindent\textbf{Research disclosure.} This work is fully autonomous agentic research. Artificial intelligence systems generated the research, proofs, formalization, and manuscript. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed.
-
 \begin{abstract}
-Can the symmetrized product of orthogonal projections be bounded in Loewner order by the corresponding power of their arithmetic mean? A counterexample is given consisting of three rational rank-one projections in dimension three. More strongly, for every real constant $C$, three such projections can be chosen so that their symmetrized product is not bounded above by $C$ times the cube of their mean. The mean in these examples is positive definite. The proofs are elementary exact matrix computations. The accompanying Lean 4 development checks the actual matrix statements, including projection identities and failure of positive semidefiniteness. This note concerns the projection Loewner-order conjecture, not a disproof of an optimal coordinate-descent convergence rate. The relation to prior work is stated in Section~\ref{sec:prior}.
+Can the symmetrized product of orthogonal projections be bounded in Loewner order by the corresponding power of their arithmetic mean? This comparison is motivated by the analysis of random-permutation coordinate descent by Sun, Luo and Ye~\cite{sun}. A counterexample is given consisting of three rational rank-one projections in dimension three. More strongly, for every real constant $C$, three such projections can be chosen so that their symmetrized product is not bounded above by $C$ times the cube of their mean. The mean in these examples is positive definite. The proofs are elementary exact matrix computations. The accompanying Lean 4 development checks the actual matrix statements, including projection identities and failure of positive semidefiniteness, for the rational example and for every real multiplier; the rank-one property, the positive-definite mean and the rational choices have conventional proofs. This note concerns the projection Loewner-order conjecture, not a disproof of an optimal coordinate-descent convergence rate. The same three projections were used earlier in a public refutation, and no priority is claimed for the three-projection counterexample. The relation to prior work is stated in Section~\ref{sec:prior}.
 \end{abstract}
 
 \section{The original problem}
@@ -44,7 +43,10 @@ The projection arithmetic--geometric mean question is motivated by the work of S
 \begin{equation}\label{eq:conjecture}
  \G(P_1,\ldots,P_n)\preceq\M(P_1,\ldots,P_n)^n
 \end{equation}
-for arbitrary real orthogonal projections. The theorems below concern this explicit unrestricted formulation. The additional block structure in coordinate-descent applications is discussed in Section~\ref{sec:prior}. The weaker comparison $\G\preceq\M$ is consistent with the examples.
+for arbitrary real orthogonal projections. The theorems below concern this explicit unrestricted formulation. The additional block structure in coordinate-descent applications is discussed in Section~\ref{sec:prior}. The weaker comparison $\G\preceq\M$ is consistent with the examples. Section~\ref{sec:formal} states which parts of the two theorems are checked in Lean.
+
+\paragraph{Earlier public work (note added 1 November 2026).}
+On 31 October 2026 a check of public problem records found that the Omega Institute's public repository records a refutation of Conjecture~3.1 of Sun, Luo and Ye (issue \#15647), with a claimed Lean proof committed on 12 October 2026, about 17 days before this result was first committed to the author's repository~\cite{omega15647}. It uses the same rank-one projections onto $(-1,1,1)^T$, $(1,-1,1)^T$ and $(1,1,-1)^T$ and the same quadratic form value $-8/243$ as Theorem~\ref{thm:finite}. A later addition to that record, first committed on 20 October 2026, gives a six-dimensional counterexample for the block-structured target of issue \#17674, which keeps the nonsingular block structure that this note leaves aside. Theorem~\ref{thm:unbounded}, that no real multiplier repairs the inequality even with a positive-definite mean, does not appear in that record. No originality or priority claim is made for the three-projection counterexample.
 
 \section{A complete rational counterexample}
 
@@ -172,7 +174,7 @@ The closest results above concern different matrix hypotheses or different compa
 
 The motivating block-coordinate application imposes additional structure: $P_i=I-A_iA_i^T$, $A_i^TA_i=I$, and a square nonsingular concatenation $[A_1,\ldots,A_n]$. The three-dimensional rank-one family does not satisfy that additional block structure. The result establishes the failure of the unrestricted projection comparison~\eqref{eq:conjecture} and the absence of a finite multiplicative correction. These results do not refute the scalar-coordinate specialization or establish a reversal of the algorithms' convergence comparison. The known weak inequality $\G\preceq\M$ is consistent with the examples.
 
-\section{Formal verification and reproducibility}
+\section{Formal verification and reproducibility}\label{sec:formal}
 
 The accompanying project uses Lean~4.19.0 and the following Mathlib commit:
 \begin{center}\small\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.\end{center}
@@ -188,6 +190,9 @@ The rank-one property, positive-definite mean, rational choice, and two-factor s
 
 \section*{Source availability and license}
 The mathematical source and formal verification files accompany this note. They are licensed under Apache-2.0. Lean and Mathlib retain their own licenses. Public reproducibility instructions and a declaration map are in the accompanying README.
+
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. Artificial intelligence systems generated the research, proofs, formalization, and earlier versions of this manuscript. Opus~5.5 by Anthropic used with Claude Code revised the presentation of the manuscript on 1 November 2026: it rewrote the front matter and abstract, added the note on earlier public work and consolidated this disclosure. The revision does not change the mathematics. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed; the work has not been externally peer reviewed. The formal scope is stated in Section~\ref{sec:formal}, and the scope relative to prior work and to the coordinate-descent application in Section~\ref{sec:prior}.
 
 \clearpage
 \begin{thebibliography}{9}
@@ -212,5 +217,8 @@ Advances in Neural Information Processing Systems 33, 2020.
 \emph{Provable Benefit of Random Permutations over Uniform Sampling in Stochastic Coordinate Descent}.
 ICML, PMLR 267, 30480--30547, 2025.
 \url{https://proceedings.mlr.press/v267/kim25x.html}.
+\bibitem{omega15647} The Omega Institute.
+Problem dossier on the Sun--Luo--Ye projection-matrix AM--GM conjecture (issues \#15647 and \#17674), public repository \nolinkurl{the-omega-institute/trureturing}; claimed Lean refutation committed 12 October 2026.
+\url{https://github.com/the-omega-institute/trureturing/blob/b0a8d9a413a6aefee1b1aeb9fb084ddbe2798388/Problems/sun-luo-ye-2020-projection-matrix-amgm.md}.
 \end{thebibliography}
 \end{document}

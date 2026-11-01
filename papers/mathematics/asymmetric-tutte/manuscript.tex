@@ -13,15 +13,16 @@
 \newcommand{\Reg}{\mathcal R}
 \title{The exact asymmetric Merino--Welsh region for finite matroids}
 \author{Dev D. Goyal}
-\date{27 October 2026}
+\date{27 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
 
-\par\noindent{\normalsize\bfseries This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication.\par}
 \begin{abstract}
 For which nonnegative real pairs $(x,y)$ does
 $T_M(x,0)T_M(0,y)\geq T_M(1,1)^2$ hold for every finite matroid without
-loops or coloops? The proof shows that the answer is exactly $x>1$, $y>1$, and
+loops or coloops? Liu determined the sharp threshold on the diagonal
+$x=y$~\cite{Liu}, and Chen and Xie gave a direct inductive
+proof~\cite{CX}. We show that the answer is exactly $x>1$, $y>1$, and
 \[
 xy^k\geq\bigl(\sqrt{x-1}+k\sqrt{y-1}\bigr)^2,
 \qquad
@@ -31,8 +32,8 @@ for every integer $k\geq2$. Parallel thickenings of uniform matroids give
 necessity. For sufficiency, the scalar conditions support a
 parallel-class induction, including the case where deletion creates coloops.
 The characterization includes parameters with one coordinate below two.
-The accompanying Lean development states the equivalence for actual finite
-Mathlib matroids.
+A Lean formalization proves the equivalence for actual finite Mathlib
+matroids, with the Tutte polynomial given by the literal subset rank sum.
 \end{abstract}
 
 \section{The parameter question}
@@ -432,7 +433,7 @@ These terminating decimals denote exact rational numbers.
 Thus the conditions for larger $k$ carry information that the two
 $k=2$ conditions do not contain.
 
-The known point $(3,3)$ satisfies the region conditions because
+The known point $(3,3)$~\cite{Jackson} satisfies the region conditions because
 $2(k+1)^2\leq3^{k+1}$ for $k\geq2$. Check $k=2$ and use
 $3(k+1)^2\geq(k+2)^2$ for induction. The point $(3/2,8)$ also belongs
 to the region. With $a=\sqrt{1/2}$ and $b=\sqrt7$,
@@ -457,7 +458,7 @@ parameters or every equality case. It also does not identify which
 integer indices are active on the boundary, or assert that every index
 is necessary. The graph Merino--Welsh problem at $(2,2)$ is unchanged.
 
-\section{Formal statement and reproduction}
+\section{Formal statement and reproduction}\label{sec:formal}
 The main declaration is \texttt{AsymmetricTutte.universal\_iff\_region}.
 It uses actual Mathlib matroids with finite ground sets. The ground set
 can be a proper subset of an infinite ambient type.
@@ -473,19 +474,34 @@ not redistributed. The final axiom audit permits only the standard
 foundation constants \texttt{propext}, \texttt{Classical.choice}, and
 \texttt{Quot.sound}.
 
+\section{Research process and AI disclosure}\label{sec:disclosure}
+
+This work is fully autonomous agentic research. As recorded for this
+result, the initial research and proofs were generated autonomously by
+GPT 6 with Pro Reasoning in ChatGPT, and GPT 6 Astra in Codex
+autonomously produced the formalizations and corrections. The author
+checked the proofs to the best of their mathematical abilities; this check
+is not expert validation or peer review. The editorial revision of
+1 November 2026 was made with Opus 5.5 by Anthropic used with Claude Code;
+it changed the presentation only, not the mathematics or the
+formalization.
+
+Dev D. Goyal is responsible for publication. The work has not been
+externally peer reviewed. Section~\ref{sec:formal} states the formal
+scope, and Section~\ref{sec:examples} the limits of the theorem.
 
 \begin{thebibliography}{9}
 \bibitem{Liu} M. Liu. \emph{The sharp threshold for the multiplicative
-Merino--Welsh inequality on matroids}. 2026.
+Merino--Welsh inequality on matroids}. Preprint, 2026.
 Formal sources: \url{https://github.com/michaeliu4/tutte-threshold}.
 \bibitem{CX} J. Chen and J. Xie. \emph{A direct inductive proof of the sharp
-Merino--Welsh threshold for matroids}. 2026.
+Merino--Welsh threshold for matroids}. Preprint, 2026.
 \href{https://arxiv.org/abs/2610.06589}{arXiv:2610.06589v2}.
 \bibitem{BCCP} C. Beke, G. K. Cs\'aji, P. Csikv\'ari, and S. Pituk.
-The Merino--Welsh conjecture is false for matroids.
-\emph{Advances in Mathematics} \textbf{446} (2024), 109674.
+\emph{The Merino--Welsh conjecture is false for matroids}.
+Advances in Mathematics \textbf{446} (2024), 109674.
 \href{https://arxiv.org/abs/2311.01932}{arXiv:2311.01932}.
-\bibitem{Jackson} B. Jackson. An inequality for Tutte polynomials.
-\emph{Combinatorica} \textbf{30} (2010), 69--81.
+\bibitem{Jackson} B. Jackson. \emph{An inequality for Tutte polynomials}.
+Combinatorica \textbf{30} (2010), 69--81.
 \end{thebibliography}
 \end{document}

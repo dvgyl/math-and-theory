@@ -25,7 +25,7 @@ pdfkeywords={Berge hypergraphs, Berge cycles, saturation numbers, three-uniform 
 \newcommand{\codeg}{\operatorname{codeg}}
 \title{\textbf{Three-uniform Berge-$C_4$ saturation:\\ linear bounds with coefficients $5/8$ and $3/4$,\\ the cone spectrum and exact small values}}
 \author{Dev D. Goyal}
-\date{31 October 2026}
+\date{31 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -33,9 +33,9 @@ Let $s(n)=\sat_3(n,\text{Berge-}C_4)$ be the least number of hyperedges of
 a three-uniform hypergraph on $n$ vertices that contains no Berge
 four-cycle but contains one after any absent triple is added. Neither the
 hypergraph nor the added triple is required to be linear. English,
-Graber, Kirkpatrick, Methuku and Sullivan showed $s(n)\le n-2$ for
-$n\ge7$, and English, Gerbner, Methuku and Tait showed that $s(n)$ grows
-linearly. We prove that for every $n\ge9$
+Graber, Kirkpatrick, Methuku and Sullivan~\cite{EGKMS} showed $s(n)\le n-2$
+for $n\ge7$, and English, Gerbner, Methuku and Tait~\cite{EGMT} showed that
+$s(n)$ grows linearly. We prove that for every $n\ge9$
 \[
 \max\Bigl(\Bigl\lceil\tfrac{n-1}{2}\Bigr\rceil,\Bigl\lceil\tfrac{5n-3623}{8}\Bigr\rceil,
 \Bigl\lceil\tfrac{5n+89}{8}-\tfrac{\sqrt{270n+1891}}{4}\Bigr\rceil\Bigr)
@@ -579,7 +579,7 @@ and \texttt{Quot.sound}. The lower bound, Theorems~\ref{thm:cone}
 and~\ref{thm:root}, Corollary~\ref{cor:interval} and the values
 $s(n)$ for $6\le n\le13$ are not formalized.
 
-\section{Related work and scope}
+\section{Related work and scope}\label{sec:related}
 
 The definitions and the bound $s(n)\le n-2$ are from~\cite{EGKMS}, whose
 journal version is~\cite{EGKMS-J}; the inspected statement is that of the
@@ -593,11 +593,11 @@ find the coefficients $5/8$ or $3/4$, the cone classification or the
 values of Theorem~\ref{thm:small}; some recent full texts were
 inaccessible, and this does not establish priority.
 
-\section*{Research process and AI disclosure}
+\section{Research process and AI disclosure}\label{sec:disclosure}
 
 This is fully autonomous agentic research. Dev D. Goyal is responsible
-for publication. No expert validation or external peer review is
-claimed, and the novelty assessment is provisional.
+for publication. The work has not been externally peer reviewed, no
+expert validation is claimed, and the novelty assessment is provisional.
 
 The upper construction was found by autonomous AI research agents in an
 earlier session. In a later session the agents proved the lower bound,
@@ -613,7 +613,10 @@ release. It checked the written proofs and the arithmetic of the lower
 bound, compared the statements with~\cite{EGKMS,EGMT,WZ}, rechecked the
 construction with its own exhaustive checker, reran the six certificates,
 wrote and ran the Lean formalization described in Section~\ref{sec:lean},
-and wrote this note. AI checks are not human peer review.
+and wrote this note. It also made the editorial revision of 1 November
+2026, which did not change the mathematics. AI checks are not human peer
+review. Section~\ref{sec:lean} states the formal scope and
+Section~\ref{sec:related} the limits of the literature comparison.
 
 \begin{thebibliography}{9}
 \bibitem{EGKMS}

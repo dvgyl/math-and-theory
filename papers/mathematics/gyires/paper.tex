@@ -37,11 +37,11 @@
 \hypersetup{pdftitle={Gyires's permanent inequality for structured matrices},pdfauthor={Dev D. Goyal},pdfsubject={Structured permanent inequalities, scalar reductions, and exact certificates}}
 \title{Gyires's permanent inequality for structured matrices}
 \author{Dev D. Goyal}
-\date{October 2026}
+\date{October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
-Gyires's conjecture compares the square of a permanent with three permanents of matrix products.
+Gyires's conjecture~\cite{gyires}, listed as Conjecture~20 by Cheon and Wanless~\cite{cw}, compares the square of the permanent of a doubly stochastic matrix with three permanents of matrix products.
 This paper proves the inequality for several structured classes of matrices.
 These classes include nonnegative circulants of orders five, six, and seven;
 all-order permutation polynomials $aI+bQ+cQ^2$ with nonnegative coefficients;
@@ -52,9 +52,7 @@ Further results treat sparse perturbations, direct sums, positive-semidefinite m
 The supporting arguments include scalar norm inequalities, polynomial deletion, balanced limits,
 local stable and Lorentzian inequalities, and exact configuration-model identities.
 Exact counterexamples identify the limits of proposed extensions.
-The principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean~4 proofs.
-General permanent comparisons and direct-sum closure also have Lean proofs.
-The rank-two theorem has a complete Lean proof for orders 2 through 8. The order-seven circulant theorem and rank-two orders 9 through 15 remain incomplete in Lean.
+In Lean~4, the principal order-five and order-six claims, the all-order permutation-polynomial, four-block and exceptional-vector theorems, and the rank-two theorem for orders 2 through 8 have complete proofs, and the general permanent comparisons and direct-sum closure also have Lean proofs; the order-seven circulant theorem and rank-two orders 9 through 15 rest on conventional proofs with exact certificates and remain incomplete in Lean.
 The unrestricted conjecture is not resolved.
 \end{abstract}
 
@@ -6866,7 +6864,7 @@ The ratio inequality reduces to $s\ge t$, which is $(2a-1)^2\ge0$.
 Equality holds only at $a=1/2$.
 This elementary case is also covered by the four-block theorem.
 
-\subsection{What remains outside the proofs}
+\subsection{What remains outside the proofs}\label{sec:outside}
 
 For a general nonnegative circulant, normality gives $CC^\T=C^\T C$.
 The permanent comparison still gives $\per(C^2)\le\per(CC^\T)$.
@@ -6881,10 +6879,14 @@ The general order-seven circulant result and rank-two orders 9 through 15 still 
 Each proof must connect its polynomial identities and coefficient bounds to the actual matrix theorem.
 The permutation-polynomial proof includes this connection in every dimension.
 
-\section{Authorship and disclosure}\label{sec:about}
+\section{Research process and AI disclosure}\label{sec:about}
 
-This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication.
-This preprint has not been peer reviewed. No priority claim is made for the broader results.
+This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. Earlier source records also identify the order-five formalization as work done in Claude Code. GPT 6.1 Sol in Codex generated the order-eight rank-two certificate modules and matrix extension on 29 October 2026.
+The author checked the proofs to the best of their mathematical abilities; this check is not expert validation or peer review. Dev D. Goyal is responsible for publication.
+This preprint has not been externally peer reviewed. No priority claim is made for the broader results.
+
+Opus 5.5 by Anthropic used with Claude Code made the editorial revision of 1 November 2026 to the front matter, the abstract and this section; it did not change the mathematics.
+Section~\ref{sec:checks} states the formal scope and the reproduction commands, and Section~\ref{sec:outside} states what remains outside the proofs.
 
 \section*{Acknowledgements}
 

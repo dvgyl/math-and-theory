@@ -30,16 +30,14 @@ pdfkeywords={nonnegative rank, nonnegative matrix factorization, Kronecker produ
 \newcommand{\replaystatus}{A fresh replay on 30 October 2026 rebuilt all 14 modules of the Lean project from source against the pinned Mathlib revision and audited all 130 declarations defined in them, 96 of which are theorems; each depends only on \code{propext}, \code{Classical.choice} and \code{Quot.sound}. Two exact rational checks of the order-11 factorization also passed. The record is in \code{verification/} and \code{lean/verification/}.}
 \title{\textbf{Counterexamples to the Kronecker-square lower bound\\for nonnegative rank}}
 \author{Dev D. Goyal}
-\date{30 October 2026}
+\date{30 October 2026; revised 1 November 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Vandaele, Gillis, Glineur and Tuyttens conjectured in 2016 that every entrywise nonnegative matrix $M$ satisfies $\rp(M\otimes M)\ge\rp(M)\rk(M)$, where $\rp$ is the nonnegative rank. We show that this fails. For every integer $k\ge0$ there is an entrywise nonnegative rational matrix $C$ of order $k+11$ with $\rk C=k+10$, $\rp C=k+11$ and $\rp(C\otimes C)\le(k+10)^2+9$, so that $\rp(C\otimes C)\le\rp(C)\rk(C)-(k+1)$. The matrix is the direct sum of a classical $4\times4$ matrix of rank three and nonnegative rank four with a small diagonal perturbation of an all-ones matrix. The saving comes from the two mixed Kronecker blocks: a positive rank-one term can absorb a small real perturbation of rank $q$ using only $q+1$ nonnegative rank-one terms. At $k=0$ an explicit rational factorization of width $109$ of the $121\times121$ square has been checked in exact arithmetic, against the conjectured bound $110$. The whole family, with nonnegative rank minimized over all real factorizations, is formalized in Lean~4.
+Vandaele, Gillis, Glineur and Tuyttens conjectured in 2016~\cite{VGGT} that every entrywise nonnegative matrix $M$ satisfies $\rp(M\otimes M)\ge\rp(M)\rk(M)$, where $\rp$ is the nonnegative rank. We show that this fails. For every integer $k\ge0$ there is an entrywise nonnegative rational matrix $C$ of order $k+11$ with $\rk C=k+10$, $\rp C=k+11$ and $\rp(C\otimes C)\le(k+10)^2+9$, so that $\rp(C\otimes C)\le\rp(C)\rk(C)-(k+1)$. The matrix is the direct sum of a classical $4\times4$ matrix of rank three and nonnegative rank four with a small diagonal perturbation of an all-ones matrix. The saving comes from the two mixed Kronecker blocks: a positive rank-one term can absorb a small real perturbation of rank $q$ using only $q+1$ nonnegative rank-one terms. At $k=0$ an explicit rational factorization of width $109$ of the $121\times121$ square has been checked in exact arithmetic, against the conjectured bound $110$. The whole family, with nonnegative rank minimized over all real factorizations, is formalized in Lean~4.
 \end{abstract}
-
-\paragraph{Verification status.} \replaystatus
 
 \section{The conjecture and the result}\label{sec:result}
 
@@ -70,6 +68,10 @@ Writing $t=k+6$, Theorem~\ref{thm:main} gives the family of the abstract: order 
 C_6=A\oplus\Bigl(J_7+\tfrac{1}{11491200}I_7\Bigr),\qquad \rk C_6=10,\quad \rp C_6=11,\quad \rp(C_6\otimes C_6)\le109<110 .
 \]
 The value $109$ is an upper bound; we do not determine $\rp(C_6\otimes C_6)$ and make no claim about the least order of a counterexample or about optimal constants.
+
+The seed matrix $A$, the direct-sum identity for nonnegative rank and the factorization rules are known. What is new is the use of a simplex factorization (Lemma~\ref{lem:simplex}) in the two mixed Kronecker blocks $A\otimes B_t$ and $B_t\otimes A$; Section~\ref{sec:prior} gives the comparison with prior work.
+
+\paragraph{Formal verification.} The whole family, with nonnegative rank minimized over all real nonnegative factorizations, and the negation of~\eqref{eq:conj} are proved in Lean~4, and the width-$109$ factorization of the $k=0$ member is also checked in exact rational arithmetic (Section~\ref{sec:lean}). \replaystatus
 
 \section{Factorization facts}\label{sec:facts}
 
@@ -178,20 +180,20 @@ The conjecture and the seed matrix are from~\cite{VGGT}; the seed also appears i
 
 The theorem gives upper bounds for $\rp(C_t\otimes C_t)$; its exact value is not determined for any $t$, nor is the least order of a counterexample. The witness is a direct sum; the theorem says nothing about irreducible, symmetric or strictly positive counterexamples, which the conjecture does not exclude. Lean verification establishes only the formal statements described in Section~\ref{sec:lean}.
 
-\section*{Research process and AI disclosure}
+\section{Research process and AI disclosure}\label{sec:disclosure}
 
-This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
+This is fully autonomous agentic research. The construction, the proof, the Lean formalization, the exact certificate, the literature searches and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session state that two of its novelty reviews used GPT-6.1 Terra and GPT-6.1 Sol; they do not name the system used for the construction and the formalization.
 
-The construction, the proof, the Lean formalization, the exact certificate, the literature searches and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session state that two of its novelty reviews used GPT-6.1 Terra and GPT-6.1 Sol; they do not name the system used for the construction and the formalization.
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It checked the argument line by line, read Conjecture~1 in~\cite{VGGT} and the statements of~\cite{CC}, compared the Lean definitions of nonnegativity, factorization, nonnegative rank and the conjecture with the statements above, ran the fresh Lean replay, reran the exact certificate, wrote the independent check \code{certificate/check\_factorization.py}, and wrote this manuscript. The editorial revision of 1 November 2026, also made with Opus 5.5 by Anthropic used with Claude Code, changed the presentation only, not the mathematics, the certificate or the formalization.
 
-Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It checked the argument line by line, read Conjecture~1 in~\cite{VGGT} and the statements of~\cite{CC}, compared the Lean definitions of nonnegativity, factorization, nonnegative rank and the conjecture with the statements above, ran the fresh Lean replay, reran the exact certificate, wrote the independent check \code{certificate/check\_factorization.py}, and wrote this manuscript. AI checks are not human peer review.
+Dev D. Goyal is responsible for publication. The work has not been externally peer reviewed; no expert validation is claimed, AI checks are not human peer review, and the novelty assessment is provisional. Section~\ref{sec:lean} states the formal scope, and Sections~\ref{sec:prior} and~\ref{sec:limits} the remaining limits.
 
 \begin{thebibliography}{9}
-\bibitem{BCR} C.~Bocci, E.~Carlini and F.~Rapallo, Perturbation of matrices and non-negative rank with a view toward statistical models, arXiv:1010.3566, 2010.
-\bibitem{CC} B.~P.~Chauhan and P.~N.~Choudhury, SNT-rank: Kronecker products and Euclidean distance matrices, arXiv:2607.27037, 2026.
-\bibitem{CR} J.~E.~Cohen and U.~G.~Rothblum, Nonnegative ranks, decompositions, and factorizations of nonnegative matrices, \emph{Linear Algebra Appl.} 190 (1993), 149--168.
-\bibitem{QCL} Y.~Qi, P.~Comon and L.-H.~Lim, Semialgebraic geometry of nonnegative tensor rank, \emph{SIAM J. Matrix Anal. Appl.} 37 (2016), 1556--1580; arXiv:1601.05351.
-\bibitem{VGGT} A.~Vandaele, N.~Gillis, F.~Glineur and D.~Tuyttens, Heuristics for exact nonnegative matrix factorization, \emph{J. Global Optim.} 65 (2016), 369--400; arXiv:1411.7245.
+\bibitem{BCR} C.~Bocci, E.~Carlini and F.~Rapallo, Perturbation of matrices and non-negative rank with a view toward statistical models, preprint (2010). \href{https://arxiv.org/abs/1010.3566}{arXiv:1010.3566}.
+\bibitem{CC} B.~P.~Chauhan and P.~N.~Choudhury, SNT-rank: Kronecker products and Euclidean distance matrices, preprint (2026). \href{https://arxiv.org/abs/2607.27037}{arXiv:2607.27037}.
+\bibitem{CR} J.~E.~Cohen and U.~G.~Rothblum, Nonnegative ranks, decompositions, and factorizations of nonnegative matrices, \emph{Linear Algebra Appl.} \textbf{190} (1993), 149--168.
+\bibitem{QCL} Y.~Qi, P.~Comon and L.-H.~Lim, Semialgebraic geometry of nonnegative tensor rank, \emph{SIAM J. Matrix Anal.\ Appl.} \textbf{37} (2016), 1556--1580. \href{https://arxiv.org/abs/1601.05351}{arXiv:1601.05351}.
+\bibitem{VGGT} A.~Vandaele, N.~Gillis, F.~Glineur and D.~Tuyttens, Heuristics for exact nonnegative matrix factorization, \emph{J. Global Optim.} \textbf{65} (2016), 369--400. \href{https://arxiv.org/abs/1411.7245}{arXiv:1411.7245}.
 \end{thebibliography}
 
 \end{document}

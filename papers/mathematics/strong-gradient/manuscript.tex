@@ -25,38 +25,45 @@
 \newcommand{\status}{Complete upper bound and normalized sharpness checked in Lean}
 \title{The exact last-gradient bound for constant-step gradient descent\\ in the strongly convex case}
 \author{Dev D. Goyal}
-\date{29 October 2026}
+\date{29 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
-\begin{center}
-\fbox{\parbox{0.9\textwidth}{\textbf{Fully autonomous agentic research.}
-Automated systems produced the research, proofs, formalization, and manuscript
-preparation. Dev D. Goyal is responsible for publication. No expert validation
-or peer review is claimed.}}
-\end{center}
 
 \begin{abstract}
-Taylor, Hendrickx, and Glineur conjectured the exact final-gradient norm
-of constant-step gradient descent on smooth strongly convex functions,
-under a bound on the initial distance to a minimizer. An explicit
-finite interpolation certificate for the balanced step, together with two reductions,
-covers every normalized step in $[0,2]$, every finite horizon, and every
-condition ratio in $[0,1]$. The certificate retains a joint terminal
-potential. On the progress branch, scaling the objective preserves a
-weighted interpolation surplus. On the oscillation branch, decreasing
-an auxiliary curvature parameter, sometimes below zero, brings the
-given step to balance. The scalar factors remain nonnegative throughout
-this auxiliary extension. The familiar one-dimensional strongly convex
-Huber spline and quadratic attain the two branches. The previously
-established smooth-convex curve is prior work; the contribution is the
-complete positive strong-curvature case. The actual-function upper bound
-and normalized attainment, including every closed parameter boundary,
-have been checked in Lean~4.19.0. The literature review is bounded by
+Taylor, Hendrickx and Glineur conjectured the exact worst-case final-gradient
+norm of constant-step gradient descent on smooth strongly convex functions,
+normalized by the initial distance to a minimizer~\cite[Conjecture~3]{THG17}.
+We prove the conjectured formula for every normalized step in $[0,2]$, every
+finite horizon and every condition ratio in $[0,1]$, and show that it is
+attained. The proof combines an explicit finite interpolation certificate for
+the balanced step, which retains a joint terminal potential, with two
+reductions. On the progress branch, scaling the objective preserves a weighted
+interpolation surplus. On the oscillation branch, decreasing an auxiliary
+curvature parameter, sometimes below zero, brings the given step to balance;
+the scalar factors remain nonnegative throughout this auxiliary extension. The
+familiar one-dimensional strongly convex Huber spline and quadratic attain the
+two branches. The smooth-convex curve was established earlier~\cite{Jones26};
+the contribution is the complete positive strong-curvature case. The
+actual-function upper bound and normalized attainment, including every closed
+parameter boundary, are verified in Lean~4.19.0, and sharpness at general
+scale follows by an explicit rescaling. The literature review is bounded by
 the sources and versions cited here.
 \end{abstract}
 \tableofcontents
 
-\section{Problem, statement, and prior work}
+\section{Introduction}
+
+This paper determines the exact worst case of the last gradient of
+constant-step gradient descent on smooth strongly convex functions, measured
+against the initial distance to a minimizer. The formula was conjectured by
+Taylor, Hendrickx and Glineur~\cite[Conjecture~3]{THG17}, who also supplied
+the sharp examples. Theorem~\ref{thm:main} proves it for all parameters, and
+Section~\ref{sec:source} explains which part of the conjecture this is and how
+the result relates to prior work. The case of zero strong convexity is due to
+Jones~\cite{Jones26}; the contribution here is the positive strong-curvature
+case. The upper bound and the normalized attaining examples are formalized in
+Lean (Section~\ref{sec:formal}); only the rescaling of the examples to general
+$L$ and $R$ is a conventional argument.
 
 Let $E$ be a real Hilbert space, $L>0$, and $0\leq\mu\leq L$.
 Let $f:E\to\R$ be differentiable with an $L$-Lipschitz gradient and
@@ -116,7 +123,7 @@ is $1/(1+Nh)$: with $a=1-\kappa h$, the finite geometric identity gives
 \label{eq:continuous-rate}
 \end{equation}
 
-\subsection{Which conjecture is being addressed}
+\subsection{Source of the problem and prior work}\label{sec:source}
 
 Theorem~\ref{thm:main} is the final-gradient, initial-distance problem
 in Conjecture~3, Section~4.1.3, of Taylor--Hendrickx--Glineur
@@ -144,7 +151,7 @@ factorized interpolation certificate. The full curve away from
 that optimum is expressly left open there.
 \item Jones \cite{Jones26} subsequently establishes the complete
 $\kappa=0$ curve, equality trajectories, and related proximal results.
-The current repository expressly excludes positive strong convexity
+That repository expressly excludes positive strong convexity
 from its established claim. The factorized-certificate approach and
 the retained interpolation surplus under scaling are prior ingredients
 and are credited accordingly.
@@ -1045,13 +1052,12 @@ The axiom reports of the three public declarations contain only
 \]
 These are the standard foundational principles used by Lean and Mathlib.
 There is no \texttt{sorryAx} or added mathematical postulate.
-The distribution includes all proof sources, dependency pins,
-and a portable verifier that rebuilds a source-only snapshot, excludes
-earlier project objects from its search path, and records source hashes,
-compiler exits, and a separate final theorem-type and axiom audit.
-The reproduction package rebuilds all 20 local modules and runs a separate
-theorem-type and axiom audit. Compiler warnings cause failure. Every compiler
-process uses \texttt{--trust=0}. The accompanying verification record identifies
+The distribution includes all proof sources, dependency pins and a portable
+verifier. The verifier rebuilds all 20 local modules from a source-only
+snapshot, excluding earlier project objects from its search path; every
+compiler process uses \texttt{--trust=0}, and compiler warnings cause failure.
+It then runs a separate theorem-type and axiom audit and records source
+hashes and compiler exits. The accompanying verification record identifies
 the checked source hashes, dependency revision, compiler results, and the
 three axiom reports.
 
@@ -1065,6 +1071,22 @@ certificate with an unrestricted lower curvature parameter and its
 use in both reductions. The theorem gives a sharp worst-case guarantee for a standard first-order
 method. The bibliographic comparison is bounded by the cited sources and
 does not establish worldwide priority.
+
+\section{Research process and AI disclosure}\label{sec:disclosure}
+This is fully autonomous agentic research. Automated systems produced the
+research, the proofs, the Lean formalization and the preparation of the
+manuscript. Dev D. Goyal is responsible for publication. The work has not been
+externally peer reviewed, and no expert validation is claimed.
+
+Selected analytic, finite-sum and clipped-gradient infrastructure in the Lean
+development is adapted from the MIT-licensed project of Jones~\cite{Jones26},
+whose notice accompanies the source distribution. On 1 November 2026, Opus 5.5
+by Anthropic used with Claude Code revised the presentation of this manuscript
+(front matter, abstract, introduction and this section) without changing its
+mathematics or its formal statements.
+
+The formal scope is stated in Section~\ref{sec:formal}, and the limits of the
+literature comparison in Section~\ref{sec:source}.
 
 \begin{thebibliography}{9}
 

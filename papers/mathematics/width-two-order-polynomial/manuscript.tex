@@ -27,13 +27,13 @@ pdfkeywords={order polynomial, width-two posets, Ehrhart positivity, order polyt
 \newcommand{\rise}[2]{#1^{\overline{#2}}}
 \title{\textbf{Order-polynomial positivity for width-two posets\\ with a chain of at most five elements}}
 \author{Dev D. Goyal}
-\date{31 October 2026}
+\date{31 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
 For a finite poset $P$ let $\Omega_P(t)$ be its order polynomial, which
 counts weakly order-preserving maps $P\to\{1,\dots,m\}$ at $t=m$.
-Ferroni, Morales and Panova conjectured that $|P|!\,\Omega_P(t)$ has
+Ferroni, Morales and Panova~\cite{FMP} conjectured that $|P|!\,\Omega_P(t)$ has
 nonnegative coefficients in the monomial basis whenever $P$ has width at
 most two, and reported computer checks when both chains of a two-chain
 cover have at most five elements. We prove the conjecture for every
@@ -44,7 +44,7 @@ $[t]\,\Omega_P(t)\ge(|A|-1)!\,(|B|-1)!\,m/|P|!$, where $m$ is the number of
 elements of $B$ comparable with some element of $A$, so that the linear
 coefficient is positive exactly when the comparability graph is
 connected. Via the descent--rook correspondence of Alexandersson and
-Jal, the normalized linear coefficient is, on each of the $64$ chambers
+Jal~\cite{AJ}, the normalized linear coefficient is, on each of the $64$ chambers
 of endpoint configurations, a polynomial of degree at most $|A|$ in the
 gaps between endpoints, independent of $|B|$. Exact certificates (sums
 of $1{,}072$ rational squares plus nonnegative remainders, matched with
@@ -468,11 +468,11 @@ is claimed.
 The unrestricted conjecture remains open. The next case of the method is
 $a=6$, with $132$ chambers of polynomials in $13$ gaps.
 
-\section*{Research process and AI disclosure}
+\section{Research process and AI disclosure}\label{sec:disclosure}
 
 This is fully autonomous agentic research. Dev D. Goyal is responsible
-for publication. No expert validation or external peer review is
-claimed, and the novelty assessment is provisional.
+for publication. The work has not been externally peer reviewed, no
+expert validation is claimed, and the novelty assessment is provisional.
 
 The theorem, the chamber reduction, the certificates and their
 verifiers were produced by autonomous AI research agents in a GPT-6
@@ -487,8 +487,10 @@ release. It checked the proof, wrote an independent certificate checker
 with its own order-polynomial evaluation, reran the original
 verifications, compared the statement with the cited sources and the two
 public partial results, wrote and ran the Lean formalization described in
-Section~\ref{sec:lean}, and wrote this note. AI checks are not human peer
-review.
+Section~\ref{sec:lean}, and wrote this note. It also made the editorial
+revision of 1 November 2026, which did not change the mathematics. AI
+checks are not human peer review. Section~\ref{sec:lean} states the formal
+scope and Section~\ref{sec:related} the remaining limits.
 
 \begin{thebibliography}{9}
 \bibitem{AJ}
@@ -517,7 +519,7 @@ order polynomial of fence posets},
 F.~Liu, G.~Xin and Z.~Zhang, \emph{Order polytopes of dimension $\le13$
 are Ehrhart positive},
 \href{https://arxiv.org/abs/2412.07164v1}{arXiv:2412.07164v1} (2024);
-Discrete Mathematics (2025),
+Discrete Mathematics \textbf{349} (2026), article~114833.
 \href{https://doi.org/10.1016/j.disc.2025.114833}{doi:10.1016/j.disc.2025.114833}.
 
 \bibitem{Stanley}

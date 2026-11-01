@@ -24,12 +24,9 @@
 \newcommand{\ranks}{[m]}
 \title{Ordered-instance allocation transfer\\with exact extra-copy preservation}
 \author{Dev D. Goyal}
-\date{28 October 2026}
+\date{28 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
-
-\paragraph{Autonomous AI research disclosure.}
-This work is fully autonomous agentic research. Automated systems produced the research, proofs, formalization, and manuscript preparation. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed.
 
 \begin{abstract}
 An ordered allocation assigns ranks in each agent's decreasing list of good
@@ -39,7 +36,10 @@ goods, every nonempty finite agent set, and nonnegative additive real
 valuations, an arbitrary set-valued ordered allocation admits a transfer
 that weakly increases every agent's utility, preserves the total number of
 extra copies exactly, respects the same uniform per-good extra-copy cap,
-and allocates every good. Unused input ranks are permitted. The proof
+and allocates every good. Unused input ranks are permitted. The question
+is motivated by an ordered-instance reduction attributed to Akrami
+et al.~\cite{Akrami}, whose source conventions have not been verified
+here. The proof
 completes the input and uses a balanced bipartite matching graph. Incidence
 ports prevent repeated goods within an agent's bundle, and primary copy
 vertices force coverage. The explicit graph also gives a polynomial-time
@@ -70,7 +70,12 @@ must receive each good at most once, each good has a multiplicity cap, and
 all goods must be used to preserve the extra-copy count exactly after
 completion. The matching graph enforces these conditions together.
 
-\section{Definitions and the main theorem}
+Theorem~\ref{thm:main} in Section~\ref{sec:main} states the result.
+Lean proves the theorem and its two consequences in
+Corollary~\ref{cor:threshold} (Section~\ref{sec:formal}); the algorithmic
+consequence in Proposition~\ref{prop:algorithm} has a conventional proof.
+
+\section{Definitions and the main theorem}\label{sec:main}
 Let $N$ be a nonempty finite set of agents, with $n=|N|\ge1$. Let $M$ be a
 finite set of goods, with $m=|M|\ge0$, and write
 $\ranks=\{1,\ldots,m\}$, with $[0]=\varnothing$.
@@ -313,7 +318,7 @@ Summing over agent $i$'s distinct slots yields
 $u_i(B_i)\ge U_i(C_i)\ge U_i(A_i)$. This proves all four conclusions.
 \end{proof}
 
-\section{Algorithmic consequence and scope}
+\section{Algorithmic consequence and scope}\label{sec:scope}
 \begin{proposition}\label{prop:algorithm}
 Given the rankings, a suitable allocation can be obtained by bipartite
 matching on a graph with at most $2nm$ vertices on each side. For positive
@@ -348,7 +353,7 @@ prove that one extra copy suffices for exact maximin-share fairness, the
 separate fair-division question discussed in the source context.
 
 \Needspace{12\baselineskip}
-\section{Formal statement map and reproducibility}
+\section{Formal statement map and reproducibility}\label{sec:formal}
 The accompanying source targets Lean~4.19.0 and mathlib revision
 \begin{center}
 \texttt{\small c44e0c8ee63ca166450922a373c7409c5d26b00b}.
@@ -380,6 +385,21 @@ All four reports contain only the standard foundational axioms
 \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
 A formal proof checks the stated proposition, not historical novelty or
 external expert validation.
+
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. Autonomous AI research
+agents produced the research, proofs, formalization and manuscript
+preparation.
+
+Opus 5.5 by Anthropic used with Claude Code revised this manuscript
+editorially on 1~November 2026: it moved this disclosure from the title
+page into its own section, revised the abstract and the first section, and
+completed the reference entry. It did not change the mathematics.
+
+Dev D. Goyal is responsible for publication. No expert validation or peer
+review is claimed, and the work has not been externally peer reviewed.
+Section~\ref{sec:formal} states the formal scope, and
+Section~\ref{sec:scope} states the limits of the result.
 
 \bibliographystyle{plain}
 \bibliography{references}

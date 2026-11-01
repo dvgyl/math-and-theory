@@ -27,13 +27,13 @@ pdfkeywords={Berge hypergraphs, Berge paths, saturation numbers, three-uniform h
 \newcommand{\BP}{\text{Berge-}P}
 \title{\textbf{Exact three-uniform Berge-path saturation numbers\\and a counterexample to a conjectured formula}}
 \author{Dev D. Goyal}
-\date{31 October 2026}
+\date{31 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
 For $m\ge 10$ write $m=4s+r$ with $1\le r\le 4$, and put $d=m-2$,
 $a=(3+r)2^s-5$ and $b=2a+1$. English, Graber, Kirkpatrick, Methuku and
-Sullivan conjectured that the three-uniform saturation number of the
+Sullivan conjectured~\cite{EGKMS} that the three-uniform saturation number of the
 Berge path $P_m$ equals $U(n)=\lceil (n-\lfloor n/b\rfloor)/2\rceil$ for every
 $n\ge b$. Two disjoint loose $8$-cycles together with two isolated
 vertices form a Berge-$P_{10}$-saturated three-uniform hypergraph on $34$
@@ -371,7 +371,7 @@ Python program checks Proposition~\ref{prop:cycles} independently by
 exhaustive search for $(m,n)=(10,34)$, $(10,50)$ and $(11,56)$.
 
 \fussy
-\section{Prior work and limitations}
+\section{Prior work and limitations}\label{sec:prior}
 
 The definitions, results~(T) and~(C), the lower bound of Theorem~2.3 and
 Conjecture~2.4 are from the arXiv version of~\cite{EGKMS}; the journal
@@ -385,13 +385,9 @@ a counterexample to Conjecture~2.4 or an exact formula; this does not
 establish priority. Theorem~\ref{thm:main} covers only uniformity three,
 $m\ge10$ and $n\ge b$.
 
-\section*{Research process and AI disclosure}
+\section{Research process and AI disclosure}\label{sec:disclosure}
 
-This is fully autonomous agentic research. Dev D. Goyal is responsible
-for publication. No expert validation or external peer review is
-claimed, and the novelty assessment is provisional.
-
-The question selection, the counterexample, the proof of
+This is fully autonomous agentic research. The question selection, the counterexample, the proof of
 Theorem~\ref{thm:main}, the literature search and exhaustive computer
 checks were produced by autonomous AI research agents in an earlier
 session. Its records attribute the work, including an internal AI review
@@ -402,8 +398,16 @@ Opus 5.5 by Anthropic used with Claude Code assessed the package for this
 release. It read the relevant statements of~\cite{EGKMS}, checked the
 written proof, rechecked the witnesses with its own exhaustive search,
 wrote and ran the Lean formalization described in
-Section~\ref{sec:lean}, and wrote this note. AI checks are not human peer
-review.
+Section~\ref{sec:lean}, and wrote this note. The editorial revision of
+1 November 2026, also made with Opus 5.5 by Anthropic used with Claude
+Code, changed the presentation only, not the mathematics or the
+formalization.
+
+Dev D. Goyal is responsible for publication. The work has not been
+externally peer reviewed; no expert validation is claimed, AI checks are
+not human peer review, and the novelty assessment is provisional.
+Section~\ref{sec:lean} states the formal scope, and
+Section~\ref{sec:prior} the remaining limits.
 
 \begin{thebibliography}{9}
 \bibitem{EGKMS}

@@ -4,6 +4,7 @@
 \usepackage{lmodern}
 \usepackage{amsmath,amssymb,amsthm,booktabs,array}
 \usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Sharp root log-concavity of alternating Motzkin sums},pdfauthor={Dev D. Goyal}}
 \usepackage{microtype}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -13,7 +14,7 @@
 \newcommand{\N}{\mathbb N}
 \title{Sharp root log-concavity of alternating Motzkin sums}
 \author{Dev D. Goyal}
-\date{26 October 2026}
+\date{26 October 2026; revised 1 November 2026}
 \usepackage[numbers]{natbib}
 \usepackage{xurl}
 \begin{document}
@@ -24,13 +25,14 @@ Let $M_n$ be the Motzkin numbers and let
 $T_n=\sum_{j=0}^n(-1)^{n-j}M_j$.
 The sequence $T_n^{1/n}$ is strictly log-concave on its tail
 starting at $n=5$. The inequality is reversed at center $n=5$, so no earlier
-tail is log-concave. This proves Conjecture~1 of Zhao, which asks for
-log-concavity from index nine. The argument combines established ratio
-bounds with a size estimate. These estimates prove the infinite range.
-Exact integer comparisons cover the remaining 25 centers. The Lean
-formalization proves the real-root inequality and its sharp threshold.
-It also proves that the recursive sequence in the analytic proof equals
-the finite sum in the conjecture.
+tail is log-concave. This proves Conjecture~1 of Zhao \cite{Zhao}, which
+asks for log-concavity from index nine, with the sharper starting index
+five. The argument combines established ratio bounds with a size estimate.
+These estimates prove the infinite range, and exact integer comparisons
+cover the remaining 25 centers. The Lean formalization proves the
+real-root inequality and its sharp threshold, and it proves that the
+recursive sequence in the analytic proof equals the finite sum in the
+conjecture.
 \end{abstract}
 
 \section{The problem and the result}
@@ -85,10 +87,15 @@ General methods for root log-concavity also appear in
 Chen, Guo, and Wang \cite{CGW} and in Hou and Li \cite{HL}.
 The contribution is the alternating-sum inequality with its sharp
 threshold. The general method is due to the cited authors.
+A public manuscript added on 17 October 2026, before this paper, already
+claims strict root log-concavity at centers $n\ge10$, that is, on Zhao's
+tail \cite{P}. No claim of first priority is made.
 
 The proof first bounds the logarithm of the ratio between the two sides
 of \eqref{eq:main}. The bound is positive for $n\ge31$.
 Exact integer comparisons then establish the inequality for $6\le n\le30$.
+The Lean formalization proves Theorem~\ref{thm:main}, including the finite
+range and the sharp threshold; Section~\ref{sec:formal} states its scope.
 
 \section{Ratio and size estimates}
 
@@ -320,7 +327,7 @@ Every tail starting at an index at most four contains center five.
 The infinite argument and the finite comparisons prove
 Theorem~\ref{thm:main}.
 
-\section{Formal verification and reproducibility}
+\section{Formal verification and reproducibility}\label{sec:formal}
 
 The Lean formalization defines rational Motzkin numbers through adjacent
 pairs. It defines the alternating sequence by \eqref{eq:Trec}.
@@ -379,8 +386,12 @@ checks support the result. They do not prove the infinite range.
 The Lean statement uses the recurrence characterization. A formal proof
 of the lattice-path interpretation is outside its scope.
 
-\section*{Autonomous AI research}
-This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication. This preprint has not been peer reviewed. No claim of first priority is made.
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. Autonomous AI research agents produced the research, proofs, computations, formalization and drafts. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT, and GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The author checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review.
+
+Opus 5.5 by Anthropic used with Claude Code revised this manuscript editorially on 1~November 2026: it revised the abstract and this disclosure, added the earlier public claim \cite{P} to the discussion of prior work, and completed the references. It did not change the mathematics.
+
+Dev D. Goyal is responsible for publication. The work has not been externally peer reviewed. No claim of first priority is made. Section~\ref{sec:formal} states the formal scope; the lattice-path interpretation of the Motzkin numbers is outside it.
 
 \bibliographystyle{plainnat}
 \bibliography{references}

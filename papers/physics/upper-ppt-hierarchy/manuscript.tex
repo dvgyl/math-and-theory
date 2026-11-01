@@ -9,7 +9,7 @@
 \setlength{\headheight}{14pt}
 \pagestyle{fancy}\fancyhf{}
 \fancyhead[L]{Noncollapse of the upper PPT hierarchy}
-\fancyhead[R]{30 October 2026}
+\fancyhead[R]{Dev D. Goyal}
 \fancyfoot[C]{\thepage}
 \setlength{\parskip}{5pt}\setlength{\parindent}{0pt}
 \setlist{itemsep=2pt,topsep=4pt}
@@ -24,18 +24,23 @@
 \newcommand{\E}{\mathbb E}
 \newcommand{\diag}{\operatorname{diag}}
 \title{No universal finite collapse of the\\upper PPT entanglement-cost hierarchy}
-\author{Dev D. Goyal\thanks{Fully autonomous agentic research; see the disclosure at the end. No expert validation or external peer review is claimed.}}
-\date{30 October 2026}
+\author{Dev D. Goyal}
+\date{30 October 2026; revised 1 November 2026}
 
 \begin{document}
 \maketitle
 \begin{abstract}
-For every integer $q\ge1$, there is a bipartite density matrix $\rho_q$ for which
-$\kappa_{q+1}(\rho_q)<\kappa_q(\rho_q)$ in the original upper hierarchy of
-Lami, Mele, and Regula. The witnesses can be chosen as full-rank product-Bell
-diagonal states on $\C^{d_q}\otimes\C^{d_q}$, where
-$d_q=2^{(2q+4)4^q}$. Consequently, no fixed finite upper level is exact for
-all bipartite states.
+Lami, Mele and Regula introduced converging upper and lower semidefinite
+hierarchies for the exact PPT entanglement cost, conjectured that the lower
+one collapses at a finite level and asked the analogous question for the
+upper one~\cite{LMR}; Brinster et al.\ proved arbitrary-depth
+noncollapse of the lower $\chi$ hierarchy and explicitly left the upper
+$\kappa$ question open~\cite{Brinster}. We answer the upper question: for
+every integer $q\ge1$, there is a bipartite density matrix $\rho_q$ for which
+$\kappa_{q+1}(\rho_q)<\kappa_q(\rho_q)$ in the original upper hierarchy. The
+witnesses can be chosen as full-rank product-Bell diagonal states on
+$\C^{d_q}\otimes\C^{d_q}$, where $d_q=2^{(2q+4)4^q}$. Consequently, no fixed
+finite upper level is exact for all bipartite states.
 
 The proof constructs arbitrarily long strictly positive reverse orbits of
 absolute partial transposition. A finite weighted-sign argument extends an
@@ -44,24 +49,38 @@ known telescoping dual identity into a quantitative obstruction for every
 shorter feasible upper chain. Bell expectations transfer the obstruction to
 unrestricted complex auxiliary matrices. The central all-depth theorem,
 including its physical state assumptions and the original SDP constraints,
-is formalized in Lean 4 with pinned dependencies.
+is formalized in Lean 4 with pinned dependencies; its operational
+consequences rest on cited published theorems.
 
-The located primary literature already proves arbitrary-depth noncollapse of
-the lower $\chi$ hierarchy and explicitly leaves this upper $\kappa$ question
-open. The originality assessment concerns the positive inverse-orbit
-construction and the resulting all-depth upper separation. It is supported
-by targeted searches before and after the proof, but historical priority
-remains qualified. The dimension bound is deliberately generous; the result
-does not claim efficient small witnesses, noncollapse in one fixed dimension,
-or impossibility of other single-letter formulas.
+The originality assessment concerns the positive inverse-orbit construction
+and the resulting all-depth upper separation. It is supported by targeted
+searches before and after the proof, but historical priority remains
+qualified. The dimension bound is deliberately generous; the result does not
+claim efficient small witnesses, noncollapse in one fixed dimension, or
+impossibility of other single-letter formulas.
 \end{abstract}
-\paragraph{Verification status.} The all-depth theorem and the full-rank state statement were replayed from source for this release with the Lean kernel at trust zero. All 17 mathematical modules and the complete 256-declaration axiom audit succeeded, and every audited declaration depends only on \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
 
 \clearpage
 \tableofcontents
 \newpage
 
-\section{The theorem and its precise scope}
+\section{Introduction and main theorem}
+Lami, Mele and Regula expressed the exact PPT entanglement cost through two
+converging hierarchies of semidefinite programs, an upper hierarchy
+$\kappa_q$ and a lower hierarchy $\chi_q$. They conjectured finite collapse of
+the lower hierarchy at a specific level and asked the analogous
+finite-collapse question for the upper hierarchy~\cite{LMR}. Brinster et al.\ showed that the lower hierarchy
+does not collapse at any finite depth and explicitly left the upper question
+open~\cite{Brinster}. Theorem~\ref{thm:main} answers it: every adjacent pair of
+upper levels is separated by a full-rank state. The new ingredient is a
+positive inverse-orbit construction for absolute partial transposition
+(Sections~\ref{sec:inverse}--\ref{sec:orbits}); the Bell transform formalism
+and the telescoping dual identity are due to Brinster et al.\ and are credited
+where used (Section~\ref{sec:novelty}). The Lean development of
+Section~\ref{sec:lean} proves the all-depth theorem for the actual
+semidefinite programs, while the operational consequences below rest on
+published theorems of Lami, Mele and Regula that are cited, not formalized.
+
 For partial transposition $\Gamma$ on the second local system, define
 \begin{equation}\label{eq:kappa}
 \kappa_q(\rho)=\inf\left\{\Tr S_{q-1}:\begin{array}{l}
@@ -177,7 +196,7 @@ The manuscript uses the convenient chain indexing $s_0=x$ and $s_q$ terminal.
 It matches \eqref{eq:kappa} by $s_i=\mathcal E(S_{i-1})$. The Lean definitions
 and compatibility lemmas make this shift explicit.
 
-\section{A positive reverse-step lemma}
+\section{A positive reverse-step lemma}\label{sec:inverse}
 Define the absolute-transform map
 \[
 F(x)=|Tx|,
@@ -267,7 +286,7 @@ two-point moments, product factorization, exponential estimates, and
 existence of a successful sign vector directly. It does not invoke an
 unproved concentration inequality or a numerical random search.
 
-\section{Explicit parameters and arbitrarily long positive orbits}
+\section{Explicit parameters and arbitrarily long positive orbits}\label{sec:orbits}
 Fix $q\ge1$ and put
 \begin{equation}\label{eq:params}
 p=4^q,\qquad h=16p=2^{2q+4},\qquad d=h^p=2^{(2q+4)4^q},\qquad N=d^2.
@@ -281,7 +300,7 @@ t_k=\frac{(h^{4^k})^3}{8}.
 The subscript $k$ records the number of remaining error contractions, so
 inverse steps use $k=q-1,q-2,\ldots,0$.
 
-\begin{lemma}[All concentration gates hold]\label{lem:parameters}
+\begin{lemma}[The concentration conditions hold]\label{lem:parameters}
 For $0\le k<q$, Lemma~\ref{lem:inverse} applies with
 $\varepsilon=\varepsilon_{k+1}$, $a=a_k$, and $t=t_k$.
 Moreover,
@@ -324,7 +343,7 @@ F(v_1)=v_0,\quad Tv_1=\one-2e_j,\quad
 \]
 In particular $v_1>0$ and its partial-transpose coefficient at $j$ is $-1$.
 
-Starting from $v_1$, apply the inverse lemma $q$ times, with the gates
+Starting from $v_1$, apply the inverse lemma $q$ times, with the conditions
 provided by Lemma~\ref{lem:parameters}. This produces
 \begin{equation}\label{eq:orbit}
 v_0,v_1,\ldots,v_{q+1},\qquad
@@ -462,7 +481,7 @@ assumed optimizer, an unproved duality theorem, or an artificial restriction
 on the auxiliary matrices. The sandwich constraints also prove that the
 real-trace formal objective agrees with the usual Hermitian SDP objective.
 
-\section{Novelty assessment and significance}
+\section{Novelty assessment and significance}\label{sec:novelty}
 \subsection{What was already known}
 Lami, Mele, and Regula introduced converging upper and lower SDP hierarchies
 and proved their relation to exact PPT cost~\cite{LMR}. Their Supplemental
@@ -512,15 +531,17 @@ finite collapse, multinegativity, full-rank and dense examples, inverse
 absolute partial transposition, positive signed-Hadamard orbits, and related
 entanglement-cost additivity formulations. The normalized upper bodies
 $\widetilde{\mathrm{PPT}}_q=\{X\ge0:\kappa_q(X)\le1\}$ were distinguished
-from the lower bodies used in earlier contraction results.
+from the lower bodies used in earlier contraction results. Computable lower
+bounds on entanglement cost, such as that of Wang, Jing and Zhu~\cite{WJZ},
+are related background.
 
 Repository checks included the index and priority disclosures of this
 collection,
 \href{https://github.com/OpenAI/math}{OpenAI/math}, and the public
 \href{https://github.com/the-omega-institute/trureturing}{trureturing}
-problem/proof registry. The relevant quantum subtrees in the registry were
-compared by tree identity with the preceding detailed audit; issue and PR
-queries were refreshed. The located first-level $2\times3$ problem
+problem/proof registry. The relevant quantum subtrees of the registry were
+compared with an earlier detailed audit, and searches of its issues and pull
+requests were refreshed. The located first-level $2\times3$ problem
 \href{https://github.com/the-omega-institute/trureturing/issues/17758}{\#17758}
 concerns a distinct $\kappa_1$ versus logarithmic-negativity question and
 does not supply the present arbitrary-depth upper theorem.
@@ -561,7 +582,7 @@ Module & Mathematical role\\\midrule
 \texttt{FoldSystem} & Flat symmetric involution; norm, trace, and dual-pairing identities.\\
 \texttt{SignConcentration} & Two-point weights and moments; finite product exponential bound.\\
 \texttt{InverseSign} & Simultaneous coordinate control and an exact positive inverse step.\\
-\texttt{ParameterBounds} & Explicit dimension, error, tilt, and strict exponential gates.\\
+\texttt{ParameterBounds} & Explicit dimension, error, tilt, and strict exponential conditions.\\
 \texttt{ReverseOrbit} & Initial defect and the complete finite reverse-orbit induction.\\
 \texttt{BellFoldSystem} & Actual product-Bell partial transposition satisfies every abstract assumption.\\
 \texttt{ChainGap} & Positive lower bound for every shorter feasible coefficient chain.\\
@@ -584,7 +605,7 @@ decision oracle. Only the usual Lean foundations \texttt{propext},
 \texttt{Classical.choice}, and \texttt{Quot.sound} are allowed by the audit.
 
 \subsection{Pinned clean replay}
-The release pins Lean 4.19.0, commit \texttt{6caaee842e94}, and mathlib at
+The release pins Lean 4.19.0, commit \texttt{6caaee842e94}, and mathlib~\cite{Lean} at
 \begin{center}\small\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.\end{center}
 Every transitive dependency is pinned by full git commit. The verifier
 rejects dirty dependency checkouts, changed frozen sources, unlisted project
@@ -593,6 +614,10 @@ audit output.
 
 The replay freshly compiles 17 mathematical modules and
 the generated axiom audit, checking 256 public source declarations.
+For this release, the all-depth theorem and the full-rank state statement
+were replayed from source in this way, with the kernel at trust zero: all 17 modules and the complete 256-declaration
+axiom audit succeeded, and every audited declaration depends only on
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
 Each compiler invocation checks the kernel at trust zero and disables
 automatic implicit parameters. The exact flags are
 \begin{center}\small\verb|-j1 --trust=0 -DwarningAsError=true -DautoImplicit=false|\end{center}
@@ -625,7 +650,7 @@ revisions, and timing. The receipt and logs of the replay for this release are
 in the package's \texttt{verification/} directory, and the continuous
 integration workflow repeats the replay on every change.
 
-\section{Independent scrutiny and remaining limitations}
+\section{Independent scrutiny and remaining limitations}\label{sec:limits}
 In the research process, AI reviewers challenged the proof on four points: whether the inverse
 sign distribution is genuinely defined and normalized; whether its variance
 and simultaneous bounds have the correct dimension factors; whether full
@@ -636,8 +661,8 @@ lemmas, and the final theorem discharges the conditional orbit hypotheses.
 The development explored finite reverse-mask searches, dual exposed faces,
 and fixed-dimension nonpolyhedral possibilities before the general weighted
 sign argument. Those explorations did not establish the all-depth theorem
-and are not used as proof evidence. The old flag-padding, face-extraction,
-and greedy-depth shortcuts were not revived as assumptions. The successful
+and are not used as proof evidence. Earlier shortcut approaches, namely flag
+padding, face extraction and greedy depth, are not used as assumptions. The successful
 proof proceeds through the complete inverse lemma and quantitative slack
 estimate given above.
 
@@ -649,12 +674,32 @@ questions are much smaller witness dimensions, useful normalized gaps,
 and simple successful sign patterns. These are future questions rather
 than qualifications to the proved all-depth existence theorem.
 
-\section*{Research process and AI disclosure}
-This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
+\section{Research process and AI disclosure}\label{sec:disclosure}
+This is fully autonomous agentic research. Dev D. Goyal is responsible for
+publication. The work has not been externally peer reviewed, no expert
+validation is claimed, and the novelty assessment is provisional.
 
-The theorem, its proof, the Lean formalization, the literature searches and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session do not name the AI system used.
+The theorem, its proof, the Lean formalization, the literature searches and
+an earlier version of this note were produced by autonomous AI research agents
+in an earlier session. The records of that session do not name the AI system
+used.
 
-Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It checked the definition of $\kappa_q$ in the Lean sources against the hierarchy stated in Section~1, including the partial transpose on the second system, the terminal PPT condition and the unrestricted complex auxiliaries; rederived by hand the inverse-sign lemma, the parameter inequalities, the initial defect and the quantitative chain gap; ran the fresh Lean replay described above; and revised this manuscript. The primary arXiv records could not be opened from its environment, so the comparison with the cited literature relies on the earlier session's audit. AI checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:lean}.
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this
+release. It checked the definition of $\kappa_q$ in the Lean sources against
+the hierarchy stated in Section~1, including the partial transpose on the
+second system, the terminal PPT condition and the unrestricted complex
+auxiliaries; rederived by hand the inverse-sign lemma, the parameter
+inequalities, the initial defect and the quantitative chain gap; ran the fresh
+Lean replay described in Section~\ref{sec:lean}; and revised this manuscript.
+On 1 November 2026 it also revised the presentation (front matter, abstract,
+introduction and this section) without changing the mathematics. The primary
+arXiv records could not be opened from its environment, so the comparison with
+the cited literature relies on the earlier session's audit. AI checks are not
+human peer review.
+
+Lean verification establishes only the formal statements described in
+Section~\ref{sec:lean}. The remaining limitations are stated in
+Sections~\ref{sec:novelty} and~\ref{sec:limits}.
 
 \begingroup
 \interlinepenalty=10000

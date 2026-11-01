@@ -26,16 +26,17 @@
 \newcommand{\Prob}{\mathbb{P}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\ind}{\mathbf{1}}
+\hypersetup{pdftitle={Ultra-log-concavity of domination sequences of powers of paths and cycles},pdfauthor={Dev D. Goyal}}
 
 \title{Ultra-log-concavity of domination sequences\newline of powers of paths and cycles}
 \author{Dev D. Goyal}
-\date{27 October 2026}
+\date{27 October 2026; revised 1 November 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-A dominating set of a graph covers every vertex through membership or adjacency. Let $d_k(G)$ count the dominating sets of size $k$ in an $n$-vertex graph. The proof shows that the normalized sequence $d_k(G)/\binom nk$ is log-concave for every power of a path or cycle. The result holds for all $n\geq0$ and all powers $\ell\geq1$. It establishes Conjecture~1.8 of Galvin and Zhang. The proof encodes dominating sets by positive gaps with upper bounds. A finite Toeplitz-matrix argument shows how these gaps change when the number of selected vertices increases. It follows that the probability of deleting a selected vertex while retaining domination is nondecreasing. A separate coefficient comparison accounts for the endpoints of a path. A companion Lean formalization includes the correspondence between the gap counts and actual graph-theoretic dominating sets.
+A dominating set of a graph covers every vertex through membership or adjacency. Let $d_k(G)$ count the dominating sets of size $k$ in an $n$-vertex graph. We prove that the normalized sequence $d_k(G)/\binom nk$ is log-concave for every power of a path or cycle. The result holds for all $n\geq0$ and all powers $\ell\geq1$. It establishes Conjecture~1.8 of Galvin and Zhang~\cite{GZ}, who proved unimodality for both families. The proof encodes dominating sets by positive gaps with upper bounds. A finite Toeplitz-matrix argument shows how these gaps change when the number of selected vertices increases. It follows that the probability of deleting a selected vertex while retaining domination is nondecreasing. A separate coefficient comparison accounts for the endpoints of a path. A Lean~4 formalization proves the theorem, including the correspondence between the gap counts and actual graph-theoretic dominating sets.
 \end{abstract}
 
 \section{Statement and context}
@@ -434,7 +435,7 @@ The formal argument uses finite cross-products instead of probability spaces. In
 \]
 and $\mathcal TB_b=t_b$. The product rule gives the version with two endpoint factors. These identities avoid division by a potentially zero counting coefficient. The reproduction package gives the dependency versions, build commands, and axiom checks.
 
-\section{Relation to previous results}
+\section{Relation to previous results}\label{sec:previous}
 
 Theorem~\ref{thm:main} proves the two-family statement in \cite[Conjecture~1.8]{GZ}. The same statement appears in \cite[Conjecture~4.1.8, p.~57]{Zhang}. The proof combines bounded gaps with conditional deletion probabilities. The path case also needs the endpoint comparison \eqref{eq:endpoint}. The gap encoding, convolution closure, and Toeplitz-matrix methods are established tools.
 
@@ -442,8 +443,19 @@ Consecutive-$k$-out-of-$n$:F reliability systems also use configurations with bo
 
 The theorem applies to every order and power of the two stated graph families. It makes no real-rootedness assertion and gives no corresponding conclusion for arbitrary graphs or all trees.
 
-\section*{Research and publication}
-This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication.
+\section{Research process and AI disclosure}\label{sec:disclosure}
+This work is fully autonomous agentic research. The initial research and
+proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT.
+GPT 6 Astra in Codex autonomously produced the formalizations and
+corrections. The author checked the proofs to the best of their
+mathematical abilities; this check is not expert validation or peer review.
+Dev D. Goyal is responsible for publication. The work has not been
+externally peer reviewed.
+
+Opus 5.5 by Anthropic used with Claude Code made the editorial revision of
+1 November 2026 to the front matter, the abstract and this section; it did
+not change the mathematics. Section~\ref{sec:formal} states the formal
+scope and Section~\ref{sec:previous} the limits of the result.
 
 \begin{thebibliography}{9}
 

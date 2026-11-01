@@ -29,18 +29,18 @@ pdfkeywords={matrix pencils, bounded rank perturbations, matrix pencil completio
 \newcommand{\replaystatus}{A fresh replay on 30 October 2026 rebuilt both Lean projects against a Mathlib checkout compiled from source at the pinned revision. All 58 modules of the main project were rebuilt, and its 276 exported theorems and the ten cancellation endpoints depend only on \code{propext}, \code{Classical.choice} and \code{Quot.sound}. The identification with the conjecture's barred pencils is cited, not formalized; Section~\ref{sec:lean} states the formal scope.}
 \title{\textbf{Matrix-pencil rank distance\\as an explicit completion problem}}
 \author{Dev D. Goyal}
-\date{30 October 2026}
+\date{30 October 2026; revised 1 November 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Let $A(t)=A_0+tA_1$ and $B(t)=B_0+tB_1$ be $m\times n$ matrix pencils over an infinite field $F$, and let $\delta(A,B)$ be the least normal rank of $A'-B'$ over all pencils $A'$ and $B'$ strictly equivalent to $A$ and $B$. For distinct $c,d\in F$ and every integer $x\ge0$ we prove that $\delta(A,B)\le x$ if and only if an explicit $(2m+n)\times(2n+m)$ dilation $K_{c,d}(A)$ is obtained from $K_{c,d}(B)\oplus(t-d)I_x$ by one constant full-row-rank matrix on the left and one constant full-column-rank matrix on the right. No regularity, rank or spectral condition is imposed, and $c$ or $d$ may be eigenvalues. Over an algebraically closed field and at anchors outside the spectra, a known theorem on strong block minimal bases linearizations turns this statement into Conjecture~1 of Dodig and Sto\v{s}i\'c, which asserts that the bounded rank perturbation problem for matrix pencils is a completion problem. The explicit theorem is formalized in Lean~4; the identification with the barred pencils of the conjecture is not.
+Let $A(t)=A_0+tA_1$ and $B(t)=B_0+tB_1$ be $m\times n$ matrix pencils over an infinite field $F$, and let $\delta(A,B)$ be the least normal rank of $A'-B'$ over all pencils $A'$ and $B'$ strictly equivalent to $A$ and $B$. For distinct $c,d\in F$ and every integer $x\ge0$ we prove that $\delta(A,B)\le x$ if and only if an explicit $(2m+n)\times(2n+m)$ dilation $K_{c,d}(A)$ is obtained from $K_{c,d}(B)\oplus(t-d)I_x$ by one constant full-row-rank matrix on the left and one constant full-column-rank matrix on the right. No regularity, rank or spectral condition is imposed, and $c$ or $d$ may be eigenvalues. Over an algebraically closed field and at anchors outside the spectra, a known theorem on strong block minimal bases linearizations~\cite{DLPV18} turns this statement into Conjecture~1 of Dodig and Sto\v{s}i\'c~\cite{DS25}, which asserts that the bounded rank perturbation problem for matrix pencils is a completion problem. The explicit theorem is formalized in Lean~4; the identification with the barred pencils of the conjecture is not.
 \end{abstract}
 
-\paragraph{Verification status.} \replaystatus
+\section{Introduction and main theorem}\label{sec:theorem}
 
-\section{The theorem}\label{sec:theorem}
+Dodig and Sto\v{s}i\'c asked whether the bounded rank perturbation problem for matrix pencils is just a completion problem, and made the question precise as Conjecture~1 of~\cite{DS25}. This note proves an explicit form of that equivalence over every infinite field (Theorem~\ref{thm:main}) and derives the conjecture over algebraically closed fields from it and a cited linearization theorem (Section~\ref{sec:conjecture}).
 
 Let $F$ be an infinite field, let $A(t)=A_0+tA_1$ and $B(t)=B_0+tB_1$ be $m\times n$ pencils over $F$, and let $x\ge0$ be an integer. The dimensions $m$, $n$ and $x$ may be zero. Two pencils are \emph{strictly equivalent}, $A\sim A'$, when $A'=PAQ$ for constant invertible matrices $P,Q$ over $F$. The normal rank of a pencil is its rank over the rational-function field $\Ft$. Put
 \[
@@ -67,7 +67,9 @@ For every infinite field $F$, all $m\times n$ pencils $A,B$ over $F$, every inte
 \end{equation}
 \end{theorem}
 
-No spectral avoidance, regularity, prescribed normal rank, nonzero dimension or canonical form is assumed. The forward implication also holds when $c=d$; distinctness is used only in the converse. Section~\ref{sec:conjecture} explains the relation to the conjecture of Dodig and Sto\v{s}i\'c~\cite{DS25}. The dilation $K_{c,d}$ is established block minimal bases machinery~\cite{DLPV18}, and the complementary construction of Section~\ref{sec:complement} has antecedents in matrix pencil reduction~\cite{Ver17,NP15}. Neither construction is claimed here.
+No spectral avoidance, regularity, prescribed normal rank, nonzero dimension or canonical form is assumed. The forward implication also holds when $c=d$; distinctness is used only in the converse. Section~\ref{sec:conjecture} explains the relation to the conjecture of Dodig and Sto\v{s}i\'c~\cite{DS25}. The dilation $K_{c,d}$ is established block minimal bases machinery~\cite{DLPV18}, and the complementary construction of Section~\ref{sec:complement} has antecedents in matrix pencil reduction~\cite{Ver17,NP15}. Neither construction is claimed here. What is new is the argument that combines them into Theorem~\ref{thm:main}; Section~\ref{sec:novelty} lists its new steps and states the limits of the literature comparison.
+
+\paragraph{Formal verification.} Theorem~\ref{thm:main} and the cancellation of Lemma~\ref{lem:cancel} are proved in Lean~4. \replaystatus
 
 \section{Constant equivalence, changes of parameter and cancellation}\label{sec:basic}
 
@@ -294,12 +296,12 @@ The dilation $K_{c,d}$ belongs to the block minimal bases linearizations of Dopi
 
 The novelty assessment is provisional. Three directly relevant articles could not be read in full during the literature comparison: Dodig and Sto\v{s}i\'c on minimal rank perturbations~\cite{DS25b}, Dodig on completions of size two~\cite{Dod26} and Sz\'ant\'o on submodules of Kronecker modules~\cite{Sza18}. Some of their results may overlap with parts of the argument, in particular with the cancellation lemma. Searches in October 2026 found no general proof of the conjecture, but a search cannot establish that none exists. No priority is claimed, and no expert has reviewed the result.
 
-\section*{Research process and AI disclosure}
-This is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed, and the novelty assessment is provisional.
+\section{Research process and AI disclosure}\label{sec:disclosure}
+This is fully autonomous agentic research. The theorem, its proof, the Lean formalization, the literature searches and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session state that two of its novelty reviews used GPT-6.1 Terra and GPT-6.1 Sol; they do not name the system used for the proof and the formalization.
 
-The theorem, its proof, the Lean formalization, the literature searches and an earlier version of this note were produced by autonomous AI research agents in an earlier session. The records of that session state that two of its novelty reviews used GPT-6.1 Terra and GPT-6.1 Sol; they do not name the system used for the proof and the formalization.
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It compared the Lean definitions of the dilation, the compression relation, normal rank and the orbit distance with the statement of Theorem~\ref{thm:main}, read the complete argument, ran the fresh Lean replay described in Section~\ref{sec:lean}, and rewrote the note in this form. Searches it ran in October 2026 found no published proof of the conjecture; it could not open the arXiv records or the three articles listed in Section~\ref{sec:novelty}, so the comparison with them relies on the earlier session's audit. The editorial revision of 1 November 2026, also made with Opus 5.5 by Anthropic used with Claude Code, changed the presentation only, not the mathematics or the formalization.
 
-Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It compared the Lean definitions of the dilation, the compression relation, normal rank and the orbit distance with the statement of Theorem~\ref{thm:main}, read the complete argument, ran the fresh Lean replay described in Section~\ref{sec:lean}, and rewrote the note in this form. Searches it ran in October 2026 found no published proof of the conjecture; it could not open the arXiv records or the three articles listed in Section~\ref{sec:novelty}, so the comparison with them relies on the earlier session's audit. AI checks are not human peer review. Lean verification establishes only the formal statements described in Section~\ref{sec:lean}.
+Dev D. Goyal is responsible for publication. The work has not been externally peer reviewed; no expert validation is claimed, AI checks are not human peer review, and the novelty assessment is provisional. Section~\ref{sec:lean} states the formal scope, and Section~\ref{sec:novelty} the remaining limits.
 
 \begin{thebibliography}{99}\small
 \bibitem{DS25} M.~Dodig and M.~Sto\v{s}i\'c, Is the bounded rank perturbations problem for matrix pencils just a completion problem?, \emph{Electron.\ J. Linear Algebra} \textbf{41} (2025), 491--510. \href{https://doi.org/10.13001/ela.2025.9593}{doi:10.13001/ela.2025.9593}.

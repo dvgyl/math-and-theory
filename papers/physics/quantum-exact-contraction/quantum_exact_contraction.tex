@@ -3,6 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,booktabs,array,longtable,graphicx}
 \usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
 \usepackage{xcolor,fancyhdr}
 \hypersetup{pdftitle={Exact conditional contraction for Pauli channels and depolarization in every dimension},pdfauthor={Dev D. Goyal},pdfsubject={Exact channel coefficients with Lean 4 verification},pdfkeywords={quantum information, conditional contraction, depolarization, Pauli channels, Lean 4}}
 \definecolor{ink}{HTML}{17334D}
@@ -28,11 +29,10 @@
 \newcommand{\etac}{\eta^{c}_T}
 \title{\vspace{-1cm}\color{ink}\textbf{Exact conditional contraction for Pauli channels\\and depolarization in every dimension}}
 \author{Dev D. Goyal}
-\date{29 October 2026}
+\date{29 October 2026; revised 1 November 2026}
 \begin{document}\maketitle
-\noindent\textbf{Autonomous AI research disclosure.} The research, proofs, manuscript and formalization were produced through fully autonomous agentic AI research. Dev D. Goyal is responsible for publication. No expert human validation or external peer review is claimed.\par\medskip
 \begin{abstract}
-This paper determines the conditional trace-distance contraction coefficient of every stochastic Pauli qubit channel and of the full physical depolarizing family in every dimension. If $a,b$ are the two smallest Pauli probabilities, the answer is $1-8ab/(a+b)$, with value one when both vanish. For $d\ge2$ and negative depolarization $\cN_s(X)=(1+s)\Tr(X)I_d/d-sX$, $0\le s\le1/(d^2-1)$, the answer is $s[1+(d^2-1)s]/[1-(d^2-3)s]$. The positive-multiplier branch has its standard value $\lambda$. All conditional hockey-stick parameters $\gamma\ge1$ have these same values. The negative-parameter upper bound holds for every Hermitian input with every finite quantum reference; a balanced tight frame encoded in a genuine Bell basis supplies matching normalized density witnesses. An explicit nonlinear decomposition of binary effects proves the upper without asserting a physical degrading channel. The resulting sharp binary-comparison threshold can be of order $d^{-2}$ while the physical erasure-simulation threshold remains constant. Priority is not certified, and the paper has not been externally peer reviewed. The final verification status is recorded in Section~\ref{sec:formal}.
+This paper determines the conditional trace-distance contraction coefficient, in the framework of Hirche, George, Nuradha and Wilde~\cite{Conditional}, of every stochastic Pauli qubit channel and of the full physical depolarizing family in every dimension. If $a,b$ are the two smallest Pauli probabilities, the answer is $1-8ab/(a+b)$, with value one when both vanish. For $d\ge2$ and negative depolarization $\cN_s(X)=(1+s)\Tr(X)I_d/d-sX$, $0\le s\le1/(d^2-1)$, the answer is $s[1+(d^2-1)s]/[1-(d^2-3)s]$. The positive-multiplier branch has its standard value $\lambda$. All conditional hockey-stick parameters $\gamma\ge1$ have these same values. The negative-parameter upper bound holds for every Hermitian input with every finite quantum reference; a balanced tight frame encoded in a genuine Bell basis supplies matching normalized density witnesses. An explicit nonlinear decomposition of binary effects proves the upper bound without asserting a physical degrading channel. The resulting sharp binary-comparison threshold can be of order $d^{-2}$ while the physical erasure-simulation threshold remains constant. A Lean~4 formalization verifies the exact coefficients for actual finite-reference density states, every stochastic Pauli qubit channel and the full depolarizing family; the existence of the unital-qubit normal form is cited, and the operational corollaries have conventional proofs (Section~\ref{sec:formal}).
 \end{abstract}
 
 \section{The research problem and its scope}
@@ -40,7 +40,10 @@ The quantity studied here measures how much distinguishability survives a channe
 
 The framework and general positive-Doeblin upper bound are established in Hirche, George, Nuradha and Wilde~\cite{Conditional}, building on the quantum Doeblin theory of George, Hirche, Nuradha and Wilde~\cite{Doeblin}. The present problem is quantitative: determine the exact coefficient, with an unrestricted upper bound and matching actual states, for the entire Pauli family and for depolarization in every dimension. Theorems below give full parameter ranges, all ties and boundary cases, rather than a numerical estimate or a selected special parameter.
 
-The proof combines a reference-flag identity, a sharp qubit effect bound and an all-dimensional matching lower witness with its arbitrary-effect upper bound. Harmonic interpolation, Bell bases, standard qubit channel normal forms and the cited support-vector constructions are credited ingredients.
+The proof combines a reference-flag identity, a sharp qubit effect bound and an all-dimensional matching lower witness with its arbitrary-effect upper bound. Harmonic interpolation, Bell bases, standard qubit channel normal forms and the cited support-vector constructions are credited ingredients. Section~\ref{sec:related} compares the result with prior work. The Lean formalization covers Theorems~\ref{thm:pauli} and~\ref{thm:depol} for actual density states and finite references; the unital-qubit normal form is cited, and the corollaries of Section~\ref{sec:operational} are conventional proofs (Section~\ref{sec:formal}).
+
+\paragraph{Earlier public work (note added 1 November 2026).}
+On 31 October 2026 a check of public problem records found that the Omega Institute's public repository records a claimed answer to the question in Section~9 of~\cite{Conditional} (issue \#17637), committed on 16 October 2026, before the first version of this manuscript~\cite{OmegaContraction}. It claims that, for every channel between finite systems, the conditional hockey-stick coefficient is optimized by orthogonal states and equals the conditional trace-distance coefficient for every $\gamma\ge1$. That general theorem covers the $\gamma$-independence of the formulas here (Section~\ref{sec:gamma}); it does not compute the exact Pauli and depolarizing values. No originality or priority claim is made for the $\gamma$-independence.
 
 \section{Definitions and exact statements}
 Let $\cN:A\to B$ be a finite-dimensional CPTP map and $\cN_R=\id_R\otimes\cN$. For density operators define
@@ -115,7 +118,7 @@ In the strict physical interior,
 The denominator is positive throughout the closed interval: it equals
 $1-(n-1)s+2s$, and at the upper endpoint it is $2/(n-1)$. The formal negative-branch theorem uses the explicit canonical $d$-dimensional basis indexed by $\mathbb Z/d\mathbb Z$; $d$ is arbitrary. This is a theorem in every dimension, not an assertion that arbitrary index-type reindexing has separately been formalized.
 
-\section{Why all conditional hockey-stick parameters agree}
+\section{Why all conditional hockey-stick parameters agree}\label{sec:gamma}
 The flag argument fixes the precise meaning of the $\gamma$ extension. Add one orthogonal basis vector to the \emph{reference} and choose any density matrix $\omega$ on $A$. Given $\rho,\sigma$ and $\gamma\ge1$, set
 \[
  P=\gamma^{-1}\rho\oplus(1-\gamma^{-1})\omega,
@@ -327,7 +330,7 @@ For the negative branch, the scalar replacer $P=[1-(n-1)s]I_d/d$ is feasible. Co
 Testing $J_{\cN_s}-I\otimes P\succeq0$ against $\Omega$ gives $\Tr P\le1-(n-1)s$. This proves the claimed $\alpha_+$, including the endpoints. These comparison values are supporting calculations, not independently claimed discoveries.
 
 \section{Proof of the full Pauli formula}
-\subsection{Symmetries and a convex upper}
+\subsection{Symmetries and a convex upper bound}
 Input and output unitary conjugation preserve the full admissible ratio sets. Pauli translations and single-qubit Clifford rotations realize every needed relabeling of the four weights. It therefore suffices to put the two smallest weights in positions $0,3$, with $w_0=a$, $w_3=b$ and $w_1,w_2\ge b$.
 
 The coefficient is convex in the channel. For a mixture $\cN=\sum_jt_j\cN_j$, joint convexity of the trace norm, followed by subtraction of the same reference norm, gives
@@ -385,7 +388,7 @@ Letting $u=1/(m+1)\to0$ proves the matching supremum lower. If $A=0$, use $u=1,t
 
 For the supporting Doeblin value, the scalar replacer $2aI_2$ is feasible because the unnormalized Pauli Choi eigenvalues are $2w_i$. Conversely, a Bell eigenvector for the least eigenvalue bounds $\Tr P\le4a$. Hence $\alpha_+=4a$. The Doeblin upper is exact precisely when $a=0$ or $a=b$; otherwise its excess is $4a(b-a)/(a+b)>0$.
 
-\section{Sharp operational consequences and their limits}
+\section{Sharp operational consequences and their limits}\label{sec:operational}
 The following corollaries have complete mathematical proofs here. The formal archive checks the channel coefficients and comparison values; it does not introduce separate Lean definitions for erasure-channel degradation or multi-hypothesis guessing probability.
 
 \subsection{Binary comparison versus physical simulation}
@@ -441,8 +444,8 @@ For the erasure channel, successful transmission gives optimal guessing probabil
 \]
 The first exceeds the second exactly when $q<(n-1)s$, detecting the entire failure-of-degradation interval, including the region where every binary reference-assisted test is dominated. This is a concrete consequence of the exact thresholds, not an asserted new general comparison theorem.
 
-\section{Related work and scope}
-The closest inspected primary results are separated by their actual optimization domains. The conditional framework and Doeblin upper are prior~\cite{Conditional,Doeblin}. Hiai and Ruskai~\cite{HiaiRuskai} give ordinary unital-qubit trace contraction through the Bloch operator norm; their metric contractions concern another functional and do not subtract an arbitrary unequal reference marginal. Choi and Li~\cite{ChoiLi} supply the standard unital-qubit normal form.
+\section{Related work and scope}\label{sec:related}
+The closest inspected primary results are separated by their actual optimization domains. The conditional framework and the Doeblin upper bound are prior~\cite{Conditional,Doeblin}. Hiai and Ruskai~\cite{HiaiRuskai} give ordinary unital-qubit trace contraction through the Bloch operator norm; their metric contractions concern another functional and do not subtract an arbitrary unequal reference marginal. Choi and Li~\cite{ChoiLi} supply the standard unital-qubit normal form.
 
 Eriksson's unital-qubit manuscript~\cite{ErikssonUnital} determines equal-reference SLD, quadratic chi-square and triangular Petz quantities through a four-weight harmonic expression. It already contains the qubit--qutrit support geometry used above and dimension-dependent depolarizing Fisher/Petz laws. Its functionals and matching bounds differ from the trace-gap problem here. The common-support manuscript~\cite{ErikssonCQ} is also prior; its simplex/support machinery and qualitative strictness results are credited prior ingredients.
 
@@ -452,7 +455,7 @@ The literature comparison is incomplete and does not establish first priority. T
 \textbf{Verification passed on 29 October 2026.}
 All 56 included local proof modules were rebuilt from source with zero compiler errors. The final audit checked 42 essential exported declarations; every reported axiom belonged to the standard foundation set specified below. The actual full signed depolarizing-channel constructor and the final concrete Fourier/Bell coefficient theorem are included in this successful build.
 
-The formalization represents a quantum channel as a complex-linear map with proved complete positivity and trace preservation. Density matrices have PSD and trace-one proofs. The trace norm is the sum of absolute values of actual Hermitian eigenvalues. Partial traces are explicit matrix sums, and the coefficient is a real supremum of actual positive-denominator ratios over all finite references. The code proves the channels, witnesses, normalization, norm bounds, ratio membership, limiting passage and matching upper; a scalar identity alone is not treated as verification of a contraction theorem.
+The formalization represents a quantum channel as a complex-linear map with proved complete positivity and trace preservation. Density matrices have PSD and trace-one proofs. The trace norm is the sum of absolute values of actual Hermitian eigenvalues. Partial traces are explicit matrix sums, and the coefficient is a real supremum of actual positive-denominator ratios over all finite references. The code proves the channels, witnesses, normalization, norm bounds, ratio membership, limiting passage and matching upper bound; a scalar identity alone is not treated as verification of a contraction theorem.
 
 The pinned environment is Lean 4.19.0 with Mathlib commit
 \begin{center}\small\ttfamily c44e0c8ee63ca166450922a373c7409c5d26b00b\end{center}
@@ -471,6 +474,9 @@ python3 verify.py --lean /path/to/lean \
   --mathlib /path/to/pinned/mathlib4
 \end{verbatim}
 The source package includes no local compiled proof objects. The formal verification certifies the stated mathematics in its definitions; it does not establish novelty, significance, peer review, or correspondence of every additional prose corollary to a separate formal theorem.
+
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. Autonomous AI research agents produced the research, proofs, formalization and earlier versions of this manuscript. Opus~5.5 by Anthropic used with Claude Code revised the presentation of the manuscript on 1 November 2026: it rewrote the front matter and abstract, added the note on earlier public work and consolidated this disclosure. The revision does not change the mathematics. Dev D. Goyal is responsible for publication. The work has not been externally peer reviewed, and no expert human validation is claimed. The formal scope is stated in Section~\ref{sec:formal}, and the limits of the literature comparison in Section~\ref{sec:related}.
 
 \begin{thebibliography}{9}
 \bibitem{Conditional} C. Hirche, I. George, T. Nuradha and M. M. Wilde.
@@ -496,5 +502,8 @@ AIRR working paper ARR-2026-564FZ70CSN83KACD-v3, 28 October 2026.
 \bibitem{Jencova} A. Jen\v{c}ov\'a.
 \emph{Comparison of quantum channels and statistical experiments.}
 2015 preprint, revised 2016, arXiv:1512.07016v2. \url{https://arxiv.org/abs/1512.07016v2}.
+\bibitem{OmegaContraction} The Omega Institute.
+Problem dossier on the orthogonal reduction of conditional hockey-stick contraction (issue \#17637), public repository \nolinkurl{the-omega-institute/trureturing}, committed 16 October 2026.
+\url{https://github.com/the-omega-institute/trureturing/blob/f348745a18aa2378c90384044b5d5b4d79744e20/Problems/hirche-george-nuradha-wilde-2026-conditional-hockey-stick-orthogonal-reduction.md}.
 \end{thebibliography}
 \end{document}

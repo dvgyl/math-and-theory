@@ -7,7 +7,7 @@
 \usepackage{xcolor,hyperref,fancyhdr,enumitem}
 \definecolor{navy}{RGB}{28,49,75}
 \hypersetup{colorlinks=true,linkcolor=navy,urlcolor=navy,citecolor=navy,pdftitle={A three-state thermal counterexample to a heat-current kurtosis conjecture},pdfauthor={Dev D. Goyal},pdfsubject={An exact thermal spectral counterexample with a Lean formalization}}
-\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Thermal heat-current kurtosis}\fancyhead[R]{\small 27 October 2026}\fancyfoot[C]{\thepage}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Thermal heat-current kurtosis}\fancyhead[R]{\small Revised 1 November 2026}\fancyfoot[C]{\thepage}
 \setlength{\headheight}{14pt}
 \setlength{\parskip}{5pt}\setlength{\parindent}{0pt}
 \setlist{nosep,leftmargin=*}
@@ -17,7 +17,7 @@
 \newcommand{\K}{\mathcal K}
 \title{\color{navy}A three-state thermal counterexample\protect\\to a heat-current kurtosis conjecture}
 \author{Dev D. Goyal\\[3pt]\small\href{https://orcid.org/0009-0009-9132-744X}{ORCID: 0009-0009-9132-744X}}
-\date{27 October 2026}
+\date{27 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -25,10 +25,10 @@ An explicit three-state, two-bath thermal rate model has a strictly negative fou
 \[
 \K^h=-\frac{3470947982622836}{176627429595846691}<0.
 \]
-This contradicts the proposed thermal nonnegativity bound, Eq.~(19) of Ptaszy\'nski, Physical Review E \textbf{106}, 024119 (2022), in the finite tilted-generator formulation used in that paper. The proof constructs a $C^4$ local eigenvalue branch, proves that it has the largest real part, and computes its derivatives. Lean~4 verifies these finite spectral statements with no admitted proofs or additional axioms. The formal development does not include the long-time stochastic theorem that identifies this branch with a cumulant generating function.
+This contradicts the proposed thermal nonnegativity bound, Eq.~(19) of Ptaszy\'nski, Physical Review E \textbf{106}, 024119 (2022)~\cite{ptaszynski2022}, in the finite tilted-generator formulation used in that paper. The proof constructs a $C^4$ local eigenvalue branch, proves that it has the largest real part, and computes its derivatives. Lean~4 verifies these finite spectral statements with no admitted proofs or additional axioms. The formal development does not include the long-time stochastic theorem that identifies this branch with a cumulant generating function.
 \end{abstract}
 
-\section{Target, definitions, and scope}
+\section{Target, definitions, and scope}\label{sec:scope}
 Ptaszy\'nski~\cite{ptaszynski2022} proposes $\K^h=C_4^h/C_2^h\geq0$ for classical Markov systems driven only by temperature differences. The relevant model has fixed state energies, bath-resolved transition rates obeying local detailed balance, and an exponential heat-counting tilt. Its steady-state cumulants are computed as derivatives at zero of the dominant eigenvalue of the tilted generator. This paper uses that spectral formulation.
 
 A tilted generator multiplies each off-diagonal transition rate by an exponential that records the heat transferred on that transition. Its dominant eigenvalue is the eigenvalue with largest real part. The derivatives at zero of this eigenvalue branch are called spectral cumulants.
@@ -36,6 +36,8 @@ A tilted generator multiplies each off-diagonal transition rate by an exponentia
 Here $C_4/C_2$ is the paper's normalized cumulant ratio. It differs from the ordinary fourth central moment divided by the square of the variance. The row-generator convention is used: $q_{ij}$ is the transition rate from state $i$ to state $j$. Ptaszy\'nski uses the transposed, column-generator convention. Transposition preserves the eigenvalues and hence the spectral cumulants.
 
 \textbf{Formal scope.} The verified theorem is about the finite rate matrices, thermal detailed balance, their complex eigenvalues, and real derivatives of a local dominant eigenvalue branch. It does not construct a trajectory probability space or formalize the standard theorem identifying the spectral function with the long-time cumulant generating function of a continuous-time Markov process. It makes no empirical claim about a physical device. This scope is sufficient to contradict the explicitly specified spectral inequality.
+
+\textbf{Related public record (note added 1 November 2026).} On 31 October 2026 a check of public records found the Zenodo record~\cite{zenodo2026}, created by an anonymous creator on 27 October 2026, about 6 hours 40 minutes after this result was first committed to the author's repository. It gives three-state, two-bath counterexamples to the signs of both $C_3/C_1$ and $C_4/C_2$ in Ptaszy\'nski's conjecture, with both ratios unbounded below, so it goes further than the single counterexample here. This is a chronological note, not a priority claim; a commit date does not by itself establish when a commit became publicly accessible.
 
 \section{Explicit thermal model and result}
 Let the state set be $\{0,1,2\}$, with energies and inverse temperatures
@@ -181,7 +183,7 @@ The nonzero coefficient $2387$ makes this a triangular system. Exact rational el
 
 \textbf{What is checked formally in the differentiation step.} The source proves formulas for the first four \texttt{iteratedDeriv} values of $P\circ\chi$. It obtains their equality with the corresponding derivatives of $g$ from equality of the functions on a neighborhood of zero. Thus~\eqref{eq:recurrence} is derived from ordinary differentiable functions; no formal-series coefficients or derivative identities are postulated.
 
-\section{Lean verification and reproduction}
+\section{Lean verification and reproduction}\label{sec:lean}
 The development uses Lean~4.19.0 and Mathlib revision
 \begin{center}
 \texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}
@@ -217,7 +219,7 @@ The proof is checked against the displayed definitions, real numbers, derivative
 
 The optional \texttt{model\_check.py} uses only Python's standard library and exact integer/fraction arithmetic. It expands the characteristic determinant as a Laurent polynomial and also differentiates the directly tilted eigenvector equation, using the normalization $\pi r_n=0$ for $n\geq1$. Both methods agree on all four fractions. This independent arithmetic calculation is a cross-check; Lean supplies the proof of existence, spectral identification, and differentiation.
 
-\section{Relation to previous work and limits}
+\section{Relation to previous work and limits}\label{sec:limits}
 Three-level thermal models, selective bath couplings, and characteristic-polynomial methods are established. Segal~\cite{segal2018} derives a tilted generator and its cubic characteristic equation for a three-level thermal refrigerator. That work gives explicit mean-current and noise formulas. The model and calculation method used here belong to this established framework.
 
 Negative fourth cumulants of general driven Markov currents are also known. Gerry and Segal~\cite{gerry2023} obtain them in biased modular chains. Their uniform directional bias does not supply the static-energy, bath-resolved thermal realization required by Eq.~(19). The target paper also permits negative fourth cumulants for general unicyclic networks. The result here supplies an explicit thermal model with this sign.
@@ -230,8 +232,8 @@ The negative ratio shows that a negative fourth spectral heat cumulant alone can
 
 The result concerns an exact finite model. Formal verification covers the matrix spectrum and derivatives. The identification with long-time stochastic cumulants remains outside the formalization, as specified in Section~1. No claim of empirical validation or priority is made.
 
-\section*{Research and publication}
-This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The authors checked the proofs to the best of their mathematical abilities. This check is not expert validation or peer review. Dev D. Goyal is responsible for publication.
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. The author checked the proofs to the best of their mathematical abilities; this check is not expert validation or peer review. Opus~5.5 by Anthropic used with Claude Code revised the presentation of this report on 1 November 2026: it updated the front matter, added the note on the related public record and renamed this section. The revision does not change the mathematics. Dev D. Goyal is responsible for publication. The work has not been externally peer reviewed. The formal scope is stated in Sections~\ref{sec:scope} and~\ref{sec:lean}, and the limits of the result in Section~\ref{sec:limits}.
 
 \clearpage
 \begingroup\setlength{\parskip}{3pt}
@@ -244,6 +246,7 @@ This work is fully autonomous agentic research. The initial research and proofs 
 \bibitem{ptaszynski2025} K. Ptaszy\'nski and M. Esposito, ``Critical heat current fluctuations in Curie-Weiss model in and out of equilibrium,'' \emph{Phys. Rev. E} \textbf{111}, 034125 (2025). \href{https://doi.org/10.1103/PhysRevE.111.034125}{doi:10.1103/PhysRevE.111.034125}; \href{https://arxiv.org/abs/2411.19643}{arXiv:2411.19643}.
 \bibitem{salazar2022} D. S. P. Salazar, ``Thermodynamic Skewness Relation From Detailed Fluctuation Theorem,'' \emph{Phys. Rev. E} \textbf{106}, L042101 (2022). \href{https://doi.org/10.1103/PhysRevE.106.L042101}{doi:10.1103/PhysRevE.106.L042101}; \href{https://arxiv.org/abs/2208.11206}{arXiv:2208.11206}.
 \bibitem{delvenne2024} J.-C. Delvenne and L. Van Brandt, ``Moments of Entropy Production in Dissipative Devices,'' \emph{Phys. Rev. Lett.} \textbf{134}, 237101 (2025). \href{https://doi.org/10.1103/jqsx-ycjv}{doi:10.1103/jqsx-ycjv}; \href{https://arxiv.org/abs/2404.00422}{arXiv:2404.00422}.
+\bibitem{zenodo2026} Anonymous creator, Zenodo record created 27 October 2026, giving three-state, two-bath counterexamples to the signs of $C_3/C_1$ and $C_4/C_2$. \href{https://doi.org/10.5281/zenodo.23689958}{doi:10.5281/zenodo.23689958}.
 \end{thebibliography}
 \endgroup
 \end{document}

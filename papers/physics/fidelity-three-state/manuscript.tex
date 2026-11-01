@@ -4,6 +4,7 @@
 \usepackage[margin=25mm,headheight=15pt]{geometry}
 \usepackage{amsmath,amssymb,amsthm,booktabs,longtable,array}
 \usepackage{xcolor,hyperref,fancyhdr,microtype}
+\usepackage{xurl}
 \hypersetup{pdftitle={The three-state root-fidelity entropy bound},pdfauthor={Dev D. Goyal},pdfsubject={Fully autonomous agentic AI research},pdfkeywords={quantum information, Holevo quantity, root fidelity, entropy, Lean},colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black,citecolor=blue!45!black}
 \pagestyle{fancy}
 \fancyhf{}
@@ -21,15 +22,9 @@
 \newcommand{\diag}{\operatorname{diag}}
 \newcommand{\normone}[1]{\left\lVert #1\right\rVert_1}
 \newcommand{\code}[1]{\texttt{\detokenize{#1}}}
-\title{The three-state root-fidelity entropy bound}\author{Dev D. Goyal}\date{29 October 2026; priority note added 30 October 2026}
+\title{The three-state root-fidelity entropy bound}\author{Dev D. Goyal}\date{29 October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
-\noindent\textbf{Autonomous AI research disclosure.}
-This work is fully autonomous agentic AI research. AI systems developed the
-mathematical argument, formal proofs, and manuscript. Dev D. Goyal is
-responsible for the public release. No expert validation or peer review is
-claimed.
-
 \begin{abstract}
 For an ensemble of three finite-dimensional quantum states, its pairwise
 root fidelities form a positive matrix after weighting by the ensemble
@@ -40,12 +35,19 @@ trace-norm comparison for entropy deficits. A simultaneous diagonal
 attainment construction, the scalar three-by-three absolute-value entropy
 comparison, and joint convexity of relative entropy give this comparison.
 A weighted-root Gram matrix then gives the ensemble bound. The result is
-the unrestricted inequality stated by Fannes, de Melo, Roga, and
-\.{Z}yczkowski. A complete Lean formalization accompanies the proof.
+the unrestricted inequality stated as Conjecture~1 by Fannes, de Melo, Roga,
+and \.{Z}yczkowski~\cite{fmrz}. A Lean formalization proves the theorem for
+actual positive semidefinite complex matrices of trace one, with spectral
+entropy and nuclear-norm root fidelity; it builds on credited QICLean
+foundations. A claimed Lean proof of the same conjecture was public earlier,
+and another group has reported a solution; the proofs have not been compared,
+and no priority is claimed.
 \end{abstract}
 
 \section*{Priority and subsequent correspondence}
 \emph{Added 30 October 2026.} On 29 October 2026, following my correspondence with Dr.~Wojciech Roga, one of the authors of the conjecture, he informed me that another group had contacted him several days earlier claiming to have solved the same conjecture using AI and Lean. I had been unaware of this parallel effort, and the novelty searches carried out by my research agents had not found it. I acknowledge this competing claimed solution. I have not seen it; the two proofs have not been compared, and neither mathematical equivalence nor priority has been conclusively established. The proof below and its formalization are unchanged.
+
+\emph{Added 1 November 2026.} On 31 October 2026, a check of public problem records found that the Omega Institute's public repository records a claimed Lean proof of the same conjecture, for three states of arbitrary dimension including singular states and zero weights, first committed on 19 October 2026 under issue \#19184~\cite{omega}. This is about nine days before this result was first committed to the author's repository on 29 October 2026. The statements agree; the proofs have not been compared. I do not know whether this record is the competing claim that Dr.~Roga described, and I do not assume so. I acknowledge this earlier public record and make no priority claim.
 
 \section{The ensemble bound}
 
@@ -61,6 +63,8 @@ For a finite-dimensional positive semidefinite matrix $T$, use
 This definition also applies to matrices whose trace is not one. All
 logarithms are natural. Changing to any logarithm base greater than one
 multiplies every entropy in the result by the same positive constant.
+Section~\ref{sec:lean} describes the Lean formalization of the theorem, and
+Section~\ref{sec:prior} compares the result with prior work.
 
 \begin{theorem}[Three-state root-fidelity entropy inequality]\label{thm:main}
 Let $\rho_1,\rho_2,\rho_3$ be density matrices on any finite-dimensional
@@ -387,7 +391,7 @@ The companion sources, dependency pins, verifier, and licenses are
 distributed in the Math and Theory collection:
 \url{https://github.com/dvgyl/math-and-theory}.
 
-\section{Relation to prior work}
+\section{Relation to prior work}\label{sec:prior}
 
 The inequality is Conjecture~1, equation~(18), of
 Fannes, de Melo, Roga, and \.{Z}yczkowski~\cite{fmrz}.
@@ -415,6 +419,18 @@ particular, the complete texts of~\cite{km,sll,gy} were not available
 for comparison. An accessible-information bound alone does not imply
 a bound on the Holevo quantity. These access limits leave possible
 overlap unresolved; they do not change the theorem proved here.
+
+\section{Research process and AI disclosure}
+
+This work is fully autonomous agentic AI research. AI systems developed the
+mathematical argument, formal proofs, and earlier versions of this
+manuscript. Opus~5.5 by Anthropic used with Claude Code revised the
+presentation of the manuscript on 1 November 2026: it rewrote the front
+matter and abstract, added the dated note on the Omega Institute record and
+consolidated this disclosure. The revision does not change the mathematics.
+Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed; the work has not been externally peer reviewed. The formal
+scope is stated in Section~\ref{sec:lean}; credited prior work and the
+limits of the literature comparison are stated in Section~\ref{sec:prior}.
 
 \begin{thebibliography}{9}
 \bibitem{fmrz}
@@ -467,6 +483,13 @@ Entanglement Cost of the Amplitude Damping Channel}, 2026 preprint.
 QICLean contributors, \emph{QICLean}, source repository.
 \href{https://github.com/LionSR/QICLean/tree/acda92aa70e69b37507e422bceb5414036859fe6}{Pinned source tree}.
 The source retains its Apache 2.0 license and individual copyright notices.
+
+\bibitem{omega}
+The Omega Institute, problem dossier on the Fannes--de Melo--Roga--\.{Z}yczkowski
+root-fidelity Holevo bound (issue \#19184), public repository
+\nolinkurl{the-omega-institute/trureturing}; claimed Lean proof first committed
+19 October 2026.
+\url{https://github.com/the-omega-institute/trureturing/blob/81743e5d0ee1b300b9b36a2c3dbe15d05d39c993/Problems/fannes-demelo-roga-zyczkowski-2012-root-fidelity-holevo-bound.md}.
 
 \end{thebibliography}
 \end{document}

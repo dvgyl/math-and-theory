@@ -13,14 +13,11 @@
 \lstset{language=Python,basicstyle=\ttfamily\scriptsize,columns=fullflexible,keepspaces=true,showstringspaces=false,breaklines=true,frame=single,aboveskip=8pt,belowskip=8pt}
 \title{Leaf deletion can move the unique mode\\of a tree domination polynomial by two}
 \author{Dev D. Goyal}
-\date{}
+\date{October 2026; revised 1 November 2026}
 \begin{document}
 \maketitle
-\paragraph{Autonomous AI research disclosure.}
-This work is fully autonomous agentic research. Automated systems produced the research, proofs, formalization, and manuscript preparation. Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed.
-
 \begin{abstract}
-Deleting one leaf of a tree need not move a mode of its domination polynomial by at most one, even when both coefficient sequences are unimodal. An explicit tree on $7284$ vertices has a unique mode at $3978$, while deleting a specified leaf produces a tree on $7283$ vertices with a unique mode at $3976$. The proof counts actual dominating subsets by conditioning on the central vertex, then checks a finite set of exact integer coefficient inequalities. A differential recurrence gives a short, reproducible arithmetic certificate. The graph semantics, polynomial identities, unimodality, unique modes, and actual induced leaf deletion are also formalized in Lean. The result concerns local mode stability; both witness polynomials are unimodal.
+Deleting one leaf of a tree need not move a mode of its domination polynomial by at most one, even when both coefficient sequences are unimodal. An explicit tree on $7284$ vertices has a unique mode at $3978$, while deleting a specified leaf produces a tree on $7283$ vertices with a unique mode at $3976$. The proof counts actual dominating subsets by conditioning on the central vertex, then checks a finite set of exact integer coefficient inequalities. A differential recurrence gives a short, reproducible arithmetic certificate. The motivating leaf-deletion question is attributed to Burcroff and O'Brien~\cite{burcroff} and a related proximity conjecture to Zhang~\cite{zhang}; the witness refutes the proximity assertion stated here, and it resolves those questions only if their definitions and quantifiers agree with it. The graph semantics, polynomial identities, unimodality, unique modes, and actual induced leaf deletion are also formalized in Lean. The result concerns local mode stability; both witness polynomials are unimodal.
 \end{abstract}
 
 \section{The question and the witness}
@@ -59,6 +56,8 @@ Let $T=T_{662,9}$, let $z$ be its additional root leaf, and let $R=T-z=R_{662,9}
 \end{theorem}
 
 Every vertex has a path to $r$. Every nonroot vertex has exactly one parent at a smaller depth, and the edges in~\eqref{eq:edges}, together with $rz$ when present, are exactly these parent edges. There is one edge per nonroot vertex, so the connected graphs are trees. Their orders are $1+n(k+2)$ and $2+n(k+2)$. The new vertex has the sole neighbor $r$, and its induced deletion is precisely $R_{n,k}$. It remains to establish the polynomial claims.
+
+Lean proves Theorem~\ref{thm:main} in full, including the coefficient certificate (Section~\ref{sec:formal}). The independent Python program in Appendix~\ref{app:code} repeats the integer check.
 
 \section{Counting the dominating subsets}
 The enumeration works for every $n\ge0$ and $k\ge1$. Introduce
@@ -175,6 +174,13 @@ On 28 October 2026 a fresh build of the 18 scientific proof/data modules succeed
 The assembled theorem \texttt{LeafMode.Result.counterexample} includes the actual tree, its degree-one vertex, both unimodality statements, both unique modes, and exclusion of every pair of modes at distance at most one. The existential endpoint is \texttt{LeafMode.Result.question\_8\_1}. Its name refers to the package-defined statement and does not authenticate an external question number. Formal verification establishes these mathematical claims. It does not establish historical priority or the current status of the cited questions.
 
 The witness shows why leaf-by-leaf induction cannot assume a mode shift of at most one under unimodality. It neither proves nor refutes unimodality of domination polynomials for all trees. No smallest witness, unbounded mode jump, or log-concavity theorem is asserted. Root-state enumeration is established counting machinery; no novelty of that method is claimed. Source comparisons and historical priority remain provisional.
+
+\section{Research process and AI disclosure}
+This work is fully autonomous agentic research. Autonomous AI research agents produced the research, proofs, computations, formalization and manuscript preparation. Historical model identities and personal human proof checking are not asserted.
+
+Opus 5.5 by Anthropic used with Claude Code revised this manuscript editorially on 1~November 2026: it added the date line, moved this disclosure from the title page into its own section, and revised the abstract and the first section. It did not change the mathematics.
+
+Dev D. Goyal is responsible for publication. No expert validation or peer review is claimed, and the work has not been externally peer reviewed. Section~\ref{sec:formal} states the formal scope and the limits of the result.
 
 \bibliographystyle{plain}
 \bibliography{references}

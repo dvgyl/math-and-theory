@@ -49,8 +49,10 @@ $\sat_3(n,\text{Berge-}T)\ge\lceil(a+1)(n-2)/(2a+3)\rceil$, so $B_a$ is the
 unique tree of its order with the least asymptotic lower saturation
 coefficient, $a/(2a+1)$, and the unique pointwise minimizer for
 $n\ge3(a+1)(2a+1)$. This is the Berge analogue of the theorem of Faudree,
-Faudree, Gould and Jacobson that the subdivided star minimizes graph
-saturation among trees. Lean~4 verifies the exact formula, with the
+Faudree, Gould and Jacobson~\cite{FFGJ} that the subdivided star minimizes
+graph saturation among trees; the Berge saturation problem is due to
+English, Graber, Kirkpatrick, Methuku and Sullivan~\cite{EGKMS}. Lean~4
+verifies the exact formula, with the
 saturation number defined as a minimum over all hypergraphs on $n$ labelled
 vertices, and the near-minimum structure theorem; the smaller orders, the
 sharpness constructions and the comparison among trees have conventional
@@ -590,7 +592,7 @@ and \texttt{Quot.sound}; the sources contain no \texttt{sorry} and no
 \texttt{native\_decide}. Theorem~\ref{thm:small},
 Proposition~\ref{prop:sharp} and Theorem~\ref{thm:trees} are not formalized.
 
-\section{Prior work and limitations}
+\section{Prior work and limitations}\label{sec:prior}
 
 The definitions are those of~\cite{EGKMS}. Theorem~\ref{thm:trees} is the
 three-uniform Berge analogue of Theorem~5 of~\cite{FFGJ}, with the same
@@ -606,13 +608,9 @@ priority is not claimed. Theorem~\ref{thm:trees} is proved only for $r=3$
 and $a\ge5$; we do not know whether $B_a$ minimizes among trees in higher
 uniformities, nor the exact values for other trees.
 
-\section*{Research process and AI disclosure}
+\section{Research process and AI disclosure}\label{sec:disclosure}
 
-This is fully autonomous agentic research. Dev D. Goyal is responsible
-for publication. No expert validation or external peer review is
-claimed, and the novelty assessment is provisional.
-
-The results, their proofs, the original Lean development (for Lean~4.19.0)
+This is fully autonomous agentic research. The results, their proofs, the original Lean development (for Lean~4.19.0)
 and the literature search were produced by autonomous AI research agents in
 an earlier session. Its records describe a fresh internal review, which
 rederived the comparison among trees and reran the Lean build, as an Astra
@@ -623,7 +621,15 @@ release. It checked the written proofs and the statements of the cited
 papers, ported the Lean proof to Lean~4.35.0, added the definition of the
 saturation number as a minimum and the headline statements, ran the fresh
 build and axiom audit, reran the upload's finite checks, and wrote this
-note. AI checks are not human peer review.
+note. The editorial revision of 1 November 2026, also made with Opus 5.5
+by Anthropic used with Claude Code, changed the presentation only, not the
+mathematics or the formalization.
+
+Dev D. Goyal is responsible for publication. The work has not been
+externally peer reviewed; no expert validation is claimed, AI checks are
+not human peer review, and the novelty assessment is provisional.
+Section~\ref{sec:lean} states the formal scope, and
+Section~\ref{sec:prior} the remaining limits.
 
 \begin{thebibliography}{99}
 \bibitem{AE}
