@@ -375,7 +375,8 @@ def page(path, title, description, body, schema, *, head='', current='', kind='w
     footer = SEP.join(f'<a href="{href}">{label}</a>' for label, href in [
         ('Authorship disclosure', gh('AUTHORSHIP.md')), ('Unfinished formal proofs', gh('UNFINISHED.md')),
         ('License', gh('LICENSE')), ('Third-party notices', gh('NOTICE')), ('CITATION.cff', gh('CITATION.cff')),
-        ('Source repository', REPO), ('About', PATH + 'about/'), ('Lean proofs', PATH + 'formal-proofs/'),
+        ('Source repository', REPO), ('About', PATH + 'about/'), ('Correspondence', PATH + 'correspondence/'),
+        ('Lean proofs', PATH + 'formal-proofs/'),
         ('Atom feed', PATH + 'feed.xml'), ('Sitemap', PATH + 'sitemap.xml')])
     return f'''<!doctype html>
 <html lang="en">
@@ -949,7 +950,10 @@ def build(out):
             + section('selection', 'Selected results',
                       f'<p>I mark {len(standout)} results as selected: the ones I consider the strongest in the '
                       f'collection. This is my own selection, not an external assessment, and the same scope statements and '
-                      f'limits apply.</p>')
+                      f'limits apply. Results with earlier or overlapping work recorded in the <a href="{gh("PRIORITY_AND_NOVELTY.md")}">'
+                      f'priority and novelty record</a> are not selected, with one exception explained there and in the '
+                      f'README. Exchanges with researchers are listed under <a href="{PATH}correspondence/">research '
+                      f'correspondence</a>; they do not imply verification or endorsement.</p>')
             + section('citing', 'Citation and license',
                       f'<p>Cite an individual result with the citation file linked from its page. Cite the collection with '
                       f'<a href="{gh("CITATION.cff")}">CITATION.cff</a> or <a href="{gh("CITATION.bib")}">CITATION.bib</a>. '
@@ -965,6 +969,31 @@ def build(out):
     pages['about/'] = page('about/', f'About the collection | {SITE}', description, body, {
         '@context': 'https://schema.org', '@graph': [{'@type': 'AboutPage', 'name': f'About {SITE}',
         'url': BASE + 'about/', 'description': description}, crumbs([('Home', ''), ('About', None)])]}, current='about')
+
+    text = (ROOT / 'CORRESPONDENCE.md').read_text()
+    blocks = [b.strip() for b in re.split(r'\n(?=## )', text.split('\n', 1)[1].strip())]
+    intro, entries = blocks[0], blocks[1:]
+    closing = ''
+    if entries and '\n\n' in entries[-1].split('\n', 2)[-1]:
+        last, closing = entries[-1].rsplit('\n\n', 1)
+        entries[-1] = last
+    sections = ''
+    for n, entry in enumerate(entries, 1):
+        heading, rest = entry.split('\n', 1)
+        dates, para = (rest.strip().split('\n', 1) + [''])[:2]
+        key = f'c-{n}'
+        sections += (f'<section class="part" aria-labelledby="{key}"><h3 id="{key}">{inline(heading[3:].strip())}'
+                     f'</h3><p class="section-note">{inline(dates.strip().strip("*"))}</p><p>{inline(para.strip())}</p>'
+                     f'</section>')
+    description = (f'Selected exchanges with researchers about results in {SITE}: mathematical feedback, prior work and '
+                   f'possible collaborations. Correspondence does not imply verification or endorsement.')
+    body = (f'<header class="page-head">{kicker(home)}<h1>Research correspondence</h1><p class="intro">{inline(intro)}'
+            f'</p></header><section class="block" aria-labelledby="exchanges"><h2 id="exchanges" class="section-title">'
+            f'Exchanges</h2>{sections}' + (f'<p>{inline(closing.strip())}</p>' if closing.strip() else '') + '</section>')
+    pages['correspondence/'] = page('correspondence/', f'Research correspondence | {SITE}', description, body, {
+        '@context': 'https://schema.org', '@graph': [{'@type': 'WebPage', 'name': 'Research correspondence',
+        'url': BASE + 'correspondence/', 'description': description},
+        crumbs([('Home', ''), ('Research correspondence', None)])]})
 
     body = (f'<header class="page-head">{kicker(home)}<h1>Page not found</h1><p class="intro">This address does not '
             f'match a page in the collection. Result pages have addresses of the form <code>{PATH}papers/…/</code>.</p>'

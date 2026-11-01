@@ -6,7 +6,7 @@ I am Dev D. Goyal. I publish mathematical research papers, proofs, counterexampl
 
 The collection contains results with different formal verification scopes. Each paper states its checked claims, conventional proofs and remaining limits. The papers have not been externally peer reviewed. I make no claim of first priority.
 
-[Browse papers and abstracts](CONTENTS.md) · [Standout results](#standout-results) · [Find a result](#find-a-result) · [Check the proofs](verification/README.md) · [Cite the collection](CITATION.cff)
+[Browse papers and abstracts](CONTENTS.md) · [Standout results](#standout-results) · [Research correspondence](CORRESPONDENCE.md) · [Find a result](#find-a-result) · [Check the proofs](verification/README.md) · [Cite the collection](CITATION.cff)
 
 ## Navigating the collection
 
@@ -21,43 +21,27 @@ The current catalogue contains 50 manuscripts and research notes across 49 resul
 
 ## Standout results
 
-The results I consider the strongest, in order of significance.
+The ten results I consider the strongest, in order of significance. This is my own selection, not an external assessment. Results for which earlier or overlapping work is recorded in [PRIORITY_AND_NOVELTY.md](PRIORITY_AND_NOVELTY.md) are not selected, with one exception: the density-one-eighth bound, which was publicly committed here before the first public appearance of the independent proof by Fang and Huang.
 
-### Mathematics
+1. **[The small-coefficient upper half of the Keller–Klein conjecture](papers/mathematics/keller-klein/manuscript.pdf).** For a Rademacher sum with unit variance and every coefficient at most 7/100 in absolute value, P(|X| ≤ x) ≤ 2Φ(x) + 2Φ(a) − 2 for every x ≥ 0. This closes the range of the Keller–Klein conjecture left open by Ivanisvili's computer-assisted results; with them it implies the full conjecture, conditionally on those unrefereed results. The theorem, including Prawitz smoothing and both analytic zones, is formalized in Lean.
 
-**[A narrow interval for the universal multiplier step of two-block ADMM](papers/mathematics/admm-multiplier-step/manuscript.pdf).** Two-block ADMM with relaxation only in the multiplier update converges for every constant step 0 < τ ≤ 1.886795 on finite-dimensional convex problems with attained proximal steps and a saddle point. Fixed compact polytopes in R¹²⁸ have a nonconstant periodic orbit for every τ ≥ 1.8868840…, so the universal threshold lies in an interval of width below 0.00009; for scalar problems the exact range is 0 < τ < 2. The convergence theorem with all its certificates and the periodic orbit are formalized in Lean; the scalar theorem has a conventional proof.
+2. **[The exact last-gradient bound for constant-step gradient descent in the strongly convex case](papers/mathematics/strong-gradient/manuscript.pdf).** The exact final-gradient guarantee for constant-step gradient descent holds on every real Hilbert space, for every natural horizon and all normalized steps in [0,2], including positive strong convexity. This proves Conjecture 3 of Taylor, Hendrickx and Glineur (Math. Program. 2017). The actual-function bound and normalized attaining functions are formalized; sharpness at arbitrary scale follows by conventional rescaling.
 
-**[The small-coefficient upper half of the Keller–Klein conjecture](papers/mathematics/keller-klein/manuscript.pdf).** For a Rademacher sum with unit variance and every coefficient at most 7/100 in absolute value, P(|X| ≤ x) ≤ 2Φ(x) + 2Φ(a) − 2 for every x ≥ 0. This closes the range of the Keller–Klein conjecture left open by Ivanisvili's computer-assisted results; with them it implies the full conjecture, conditionally on those unrefereed results. The theorem, including Prawitz smoothing and both analytic zones, is formalized in Lean.
+3. **[A narrow interval for the universal multiplier step of two-block ADMM](papers/mathematics/admm-multiplier-step/manuscript.pdf).** Two-block ADMM with relaxation only in the multiplier update converges for every constant step 0 < τ ≤ 1.886795 on finite-dimensional convex problems with attained proximal steps and a saddle point. Fixed compact polytopes in R¹²⁸ have a nonconstant periodic orbit for every τ ≥ 1.8868840…, so the universal threshold lies in an interval of width below 0.00009; for scalar problems the exact range is 0 < τ < 2. The convergence theorem with all its certificates and the periodic orbit are formalized in Lean; the scalar theorem has a conventional proof.
 
-**[The exact last-gradient bound for constant-step gradient descent in the strongly convex case](papers/mathematics/strong-gradient/manuscript.pdf).** The exact final-gradient guarantee for constant-step gradient descent holds on every real Hilbert space, for every natural horizon and all normalized steps in [0,2], including positive strong convexity. The actual-function bound and normalized attaining functions are formalized; sharpness at arbitrary scale follows by conventional rescaling.
+4. **[No universal finite collapse of the upper PPT entanglement-cost hierarchy](papers/physics/upper-ppt-hierarchy/manuscript.pdf).** For every q ≥ 1 there is a full-rank Bell-diagonal state, in local dimension 2^((2q+4)4^q), whose level-(q+1) value in the upper PPT entanglement-cost hierarchy of Lami, Mele and Regula is strictly below its level-q value, so no fixed finite upper level is exact for all states. This answers the upper-hierarchy question that Brinster et al. left open after proving the lower case. The strict separation for the actual semidefinite programs is formalized in Lean.
 
-**[Escaping Nesterov flows and iterates below critical damping](papers/mathematics/nesterov-subcritical/manuscript.pdf).** For X″ + (r/t)X′ + ∇F(X) = 0 from rest and for the Nesterov iteration with momentum k/(k+r), universal boundedness over convex objectives with 1-Lipschitz gradient and attained minimum holds on the Hilbert space ℓ² exactly when r ≥ 3. An explicit convex planar potential has an escaping trajectory for every 0 < r ≤ 2. The Hilbert-space and discrete thresholds and the planar escape for 1 < r ≤ 2 are formalized; the finite-dimensional range 2 < r < 3 remains open.
+5. **[Depth-one Artin–Schreier defect towers are composita](papers/mathematics/artin-schreier-depth/manuscript.pdf).** Over a perfect henselian subfield K of the Hahn field k((y^ℚ)) containing k(y) and without finite accumulation points, a nontrivial finite Artin–Schreier tower has depth one exactly when it is a compositum of Artin–Schreier extensions of K. This proves Conjecture 4.1 of Nart and Novacoski. Both implications are formalized in Lean, with depth one defined by genuine Mac Lane–Vaquié chains and ordinary henselianity of the base.
 
-**[Matrix-pencil rank distance as an explicit completion problem](papers/mathematics/matrix-pencil-completion/manuscript.pdf).** Over every infinite field, two matrix pencils have strict-equivalence classes at normal-rank distance at most x exactly when an explicit dilation of the first is a constant full-rank compression of the dilation of the second plus x scalar blocks. With a cited linearization theorem this proves the conjecture of Dodig and Stošić that the bounded rank perturbation problem for matrix pencils is a completion problem. The explicit theorem is formalized in Lean; three directly relevant articles have not been compared in full.
+6. **[Matrix-pencil rank distance as an explicit completion problem](papers/mathematics/matrix-pencil-completion/manuscript.pdf).** Over every infinite field, two matrix pencils have strict-equivalence classes at normal-rank distance at most x exactly when an explicit dilation of the first is a constant full-rank compression of the dilation of the second plus x scalar blocks. With a cited linearization theorem this proves the conjecture of Dodig and Stošić that the bounded rank perturbation problem for matrix pencils is a completion problem. The explicit theorem is formalized in Lean; three directly relevant articles have not been compared in full.
 
-**[The exact asymmetric Merino–Welsh region for finite matroids](papers/mathematics/asymmetric-tutte/manuscript.pdf).** The exact nonnegative parameter region for T_M(x,0) T_M(0,y) ≥ T_M(1,1)² is characterized uniformly over all finite matroids without loops or coloops. The formal statement uses actual matroids and their subset-rank Tutte sum, including the empty ground set.
+7. **[Counterexamples to the Kronecker-square lower bound for nonnegative rank](papers/mathematics/nonnegative-rank-kronecker/manuscript.pdf).** For every k ≥ 0 an explicit rational nonnegative matrix C of order k + 11, rank k + 10 and nonnegative rank k + 11 has a Kronecker square of nonnegative rank at most (k + 10)² + 9. This disproves the conjecture of Vandaele, Gillis, Glineur and Tuyttens that rank₊(M ⊗ M) ≥ rank₊(M) rank(M); the smallest witness has an exact width-109 factorization against the conjectured 110. The whole family is formalized in Lean with nonnegative rank minimized over all real factorizations.
 
-**[Depth-one Artin–Schreier defect towers are composita](papers/mathematics/artin-schreier-depth/manuscript.pdf).** Over a perfect henselian subfield K of the Hahn field k((y^ℚ)) containing k(y) and without finite accumulation points, a nontrivial finite Artin–Schreier tower has depth one exactly when it is a compositum of Artin–Schreier extensions of K. This proves Conjecture 4.1 of Nart and Novacoski. Both implications are formalized in Lean, with depth one defined by genuine Mac Lane–Vaquié chains and ordinary henselianity of the base.
+8. **[The sharp level-one Fourier weight at density one eighth](papers/mathematics/sharp-eighth/manuscript.pdf).** For every Boolean function of mean 1/8 on the n-dimensional cube, the level-one Fourier weight is at most 3/64, and a codimension-three subcube attains it in every dimension n ≥ 3. This answers Problem 2 of Lei Yu (arXiv:2504.02593). The bound, the exact moment identities and the sharpness witnesses are formalized in Lean for every dimension. I first committed this result publicly on 27 October 2026; Yijia Fang and Hao Huang independently proved the same bound, with its equality cases, in a manuscript that had circulated privately about a month earlier and appeared on arXiv on 29 October 2026 ([priority note](PRIORITY_AND_NOVELTY.md#sharp-level-one-fourier-weight-at-density-one-eighth)).
 
-**[Counterexamples to the Kronecker-square lower bound for nonnegative rank](papers/mathematics/nonnegative-rank-kronecker/manuscript.pdf).** For every k ≥ 0 an explicit rational nonnegative matrix C of order k + 11, rank k + 10 and nonnegative rank k + 11 has a Kronecker square of nonnegative rank at most (k + 10)² + 9. This disproves the conjecture of Vandaele, Gillis, Glineur and Tuyttens that rank₊(M ⊗ M) ≥ rank₊(M) rank(M); the smallest witness has an exact width-109 factorization against the conjectured 110. The whole family is formalized in Lean with nonnegative rank minimized over all real factorizations.
+9. **[Escaping Nesterov flows and iterates below critical damping](papers/mathematics/nesterov-subcritical/manuscript.pdf).** For X″ + (r/t)X′ + ∇F(X) = 0 from rest and for the Nesterov iteration with momentum k/(k+r), universal boundedness over convex objectives with 1-Lipschitz gradient and attained minimum holds on the Hilbert space ℓ² exactly when r ≥ 3, settling in ℓ² the subcritical case that Jang and Ryu record as open. An explicit convex planar potential has an escaping trajectory for every 0 < r ≤ 2. The Hilbert-space and discrete thresholds and the planar escape for 1 < r ≤ 2 are formalized; the finite-dimensional range 2 < r < 3 remains open.
 
-**[A positive constant-recursive sequence with nonquasipolynomial power ranks](papers/mathematics/power-rank/manuscript.pdf).** A positive constant-recursive sequence of rank thirteen has explicit minimal recurrences for all its powers and nonquasipolynomial power ranks. The main theorem and arbitrary-rank companions are formalized; generating-function and polynomial corollaries have conventional proofs. Eric Rowland has independently obtained an infinite family of rank sequences at rank three ([priority note](PRIORITY_AND_NOVELTY.md#power-ranks-of-a-constant-recursive-sequence)).
-
-### Mathematical physics
-
-**[No universal finite collapse of the upper PPT entanglement-cost hierarchy](papers/physics/upper-ppt-hierarchy/manuscript.pdf).** For every q ≥ 1 there is a full-rank Bell-diagonal state, in local dimension 2^((2q+4)4^q), whose level-(q+1) value in the upper PPT entanglement-cost hierarchy of Lami, Mele and Regula is strictly below its level-q value, so no fixed finite upper level is exact for all states. This answers the upper-hierarchy question that Brinster et al. left open after proving the lower case. The strict separation for the actual semidefinite programs is formalized in Lean.
-
-**[A sum-of-squares proof of the four-qubit Higuchi–Sudbery entropy bound](papers/physics/higuchi-sudbery/manuscript.pdf).** Every pure four-qubit state has average two-qubit marginal entropy at most log(2) + log(3)/2. The Higuchi–Sudbery state attains the bound, and the actual-state inequality and attainment are formalized. The Omega Institute published an algebraically equivalent certificate earlier, and I make no originality or priority claim ([priority note](PRIORITY_AND_NOVELTY.md#higuchisudbery-four-qubit-entropy-bound)).
-
-**[Universal entanglement embezzlement with inverse-quadratic logarithmic infidelity](papers/physics/universal-embezzlement/manuscript.pdf).** A target-independent catalyst of local dimension 2^(4L) gives root infidelity at most 125m/L² for every Schmidt probability vector with m entries. The formal proof constructs local basis permutations and their finite complex Hilbert-space interpretation.
-
-**[Exact conditional contraction for Pauli channels and depolarization in every dimension](papers/physics/quantum-exact-contraction/quantum_exact_contraction.pdf).** The conditional hockey-stick contraction coefficient is exact for every stochastic Pauli qubit channel and the full physical depolarizing family in every dimension d ≥ 2. The formal proof covers every γ ≥ 1, arbitrary finite quantum references, all boundary cases, and matching density-state witnesses.
-
-**[The three-state root-fidelity entropy bound](papers/physics/fidelity-three-state/manuscript.pdf).** The weighted three-by-three root-fidelity matrix has entropy at least the Holevo quantity of every three-state ensemble in arbitrary finite dimension. The formal theorem includes mixed and singular states and zero probabilities. Another group has claimed a solution of the same conjecture; the proofs have not been compared ([priority note](PRIORITY_AND_NOVELTY.md#three-state-root-fidelity-entropy-bound)).
-
-**[A sharp universal skewness bound for unicyclic currents](papers/physics/unicyclic-skewness/manuscript.pdf).** The net marked-edge current on every finite bidirectional Markov ring with at least three states, positive rates and unequal forward and reverse rate products satisfies −1/16 ≤ C₃/C₁ ≤ 1. The matrix-derivative bound is formalized; stochastic identification and sharpness have conventional proofs.
-
-**[Exact three-setting correlation bounds at fixed steering centre](papers/physics/steering-bounds/paper/steering_bounds.pdf).** The exact upper envelope of the three-setting squared correlation value is determined at every two-qubit steering-centre length, including attainment and nonattainment. A value greater than one is possible exactly when c < 2/3; the formal proof uses actual density matrices and the stated canonical centre.
+10. **[Universal entanglement embezzlement with inverse-quadratic logarithmic infidelity](papers/physics/universal-embezzlement/manuscript.pdf).** A target-independent catalyst of local dimension 2^(4L) gives root infidelity at most 125m/L² for every Schmidt probability vector with m entries, answering positively a question of Leung and Wang (Phys. Rev. A 2014) on universal embezzling families. The formal proof constructs local basis permutations and their finite complex Hilbert-space interpretation.
 
 ## Result families
 
@@ -131,6 +115,42 @@ The Gyires family has complete Lean proofs for order-five and order-six circulan
 ## Priority and novelty disclosures
 
 After publication, correspondence with researchers in the field brought earlier or overlapping work on six results to my attention: the Higuchi–Sudbery entropy bound, the density-one-eighth Fourier-weight bound, the Kovačec polygon enclosure, the root-fidelity entropy bound, the power-rank sequences and the binary spectral tile. My agents' original novelty searches had not found this work. [PRIORITY_AND_NOVELTY.md](PRIORITY_AND_NOVELTY.md) records when and how I learned of it, the public sources, and what remains uncertain. Each affected README and manuscript carries a dated note. On 31 October 2026, a check against public problem records, mainly the Omega Institute's public repository, found earlier or related public work for eight further results and a later related Zenodo record for a ninth; the same file lists them with dates. The same record lists two offers to review results, for the Keller–Klein and gradient-descent bounds; neither is an endorsement.
+
+## Research correspondence
+
+Selected exchanges with researchers concerning results from my autonomous AI-assisted mathematical research experiments. These discussions range from mathematical feedback and identification of prior work to potential collaborations. Correspondence does not imply independent verification or endorsement.
+
+### Paata Ivanisvili — Keller–Klein Conjecture
+*30–31 October 2026*
+
+Discussed complementary approaches to the Keller–Klein Berry–Esseen conjecture. Ivanisvili proposed combining the results into a unified manuscript and Lean formalization. The correspondence developed into a collaborative effort to check and consolidate the candidate proof, with formal statement verification remaining essential.
+
+### Carlos Martins da Fonseca — q-Permanent Conjectures
+*29–31 October 2026*
+
+Shared an AI-generated counterexample to extended q-permanent monotonicity. After examining the manuscript, da Fonseca provided mathematical and bibliographic feedback and offered to collaborate on reviewing, refining, and extending the work, with transparent acknowledgment of AI involvement.
+
+### Yair Lavi — Gyires's Permanent Inequality
+*25–27 October 2026*
+
+Discussed a proposed proof of Gyires's inequality for order-five circulant matrices. Lavi considered the result potentially new and independently examined the manuscript's analytic arguments, reporting no errors in the portions reviewed. The computational certificates and Lean formalization were outside the scope of his review.
+
+### Pierre Letouzey — Generalized Hofstadter Functions
+*29 October 2026*
+
+Shared explicit counterexamples to a conjectured ordering of generalized Hofstadter iterates. Letouzey confirmed the failure of the proposed universal inequality and explained how the counterexample, together with known asymptotic behavior, establishes incomparability between the relevant iterated functions.
+
+### Eric Rowland — Power Ranks of Recursive Sequences
+*29 October 2026*
+
+Discussed candidate counterexamples concerning power ranks of recursive sequences. Rowland described related independent experiments using an LLM that produced infinite families of rank-three recurrences, supporting the failure of a finiteness assertion. He also mentioned an ongoing revision of the original paper.
+
+### Sam Ferguson — Spectral Tiles and Aperiodic Complements
+*30 October 2026*
+
+Exchanged findings concerning spectral tiles in finite binary vector spaces without periodic tiling complements. Ferguson discussed related counterexamples already known to him and his coauthor and shared a preliminary AI-assisted comparison of the constructions. The exchange highlighted mathematical overlap and differences without establishing independent verification of the candidate proof.
+
+Priority questions raised in correspondence, including the exchanges with Eric Rowland and Sam Ferguson, are recorded in detail in [PRIORITY_AND_NOVELTY.md](PRIORITY_AND_NOVELTY.md).
 
 ## Versions and citations
 

@@ -205,7 +205,7 @@ Result: [A three-state thermal counterexample to a heat-current kurtosis conject
 
 ## Other correspondence
 
-These exchanges concern review, not priority. I record them so that they are not mistaken for endorsement.
+These exchanges concern review, not priority. I record them so that they are not mistaken for endorsement. A broader list of exchanges with researchers, including the ones below, is in [CORRESPONDENCE.md](CORRESPONDENCE.md).
 
 - **Keller–Klein small-coefficient bound** ([`keller-klein`](papers/mathematics/keller-klein/)). On 30 October 2026, Nathan Keller expressed interest in reviewing this work. He has not reviewed or validated the proof, and his interest is not an endorsement of it.
 - **Last-gradient bound for gradient descent** ([`strong-gradient`](papers/mathematics/strong-gradient/)). On 30 October 2026, Salah Chikhi offered to examine this result. He has not validated the proof, and his offer is not an endorsement of it.
