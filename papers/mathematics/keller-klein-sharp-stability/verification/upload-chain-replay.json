@@ -1,0 +1,99 @@
+{
+  "description": "Summary of the fresh replay of the upload's own chained Lean verifiers (replay_formal_suite.py), run on 1 November 2026 with Lean 4.19.0 (commit 6caaee842e94) and the official Mathlib cache for revision c44e0c8ee63ca166450922a373c7409c5d26b00b. Each stage compiled every module into a fresh output directory with --trust=0 and kernel checking enabled and bound the certificates of the preceding stages by hash. The verifiers and the 40 modules of the preceding extension that the new development does not import are not part of this package.",
+  "status": "PASS",
+  "stages": [
+    {
+      "stage": "original 62-module keller-klein project (its verify.py)",
+      "status": "PASS",
+      "modules": 62,
+      "import_trust_level": 0,
+      "central_axiom_audits": 14,
+      "compile_seconds": 502.1,
+      "date_utc": "2026-11-01T21:23:42.091006+00:00"
+    },
+    {
+      "stage": "preceding 49-module extension (verify_new_formal.py)",
+      "status": "PASS",
+      "modules": 49,
+      "import_trust_level": 0,
+      "kernel_typechecking_skipped": false,
+      "axiom_audits": 190,
+      "axioms_used": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "compile_seconds": 646.1,
+      "date_utc": "2026-11-01T21:34:29.878803+00:00"
+    },
+    {
+      "stage": "15 new stability modules (verify_breakthrough_formal.py)",
+      "status": "PASS",
+      "modules": 15,
+      "import_trust_level": 0,
+      "kernel_typechecking_skipped": false,
+      "axiom_audits": 67,
+      "axioms_used": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "compile_seconds": 167.7,
+      "date_utc": "2026-11-01T21:37:18.597526+00:00",
+      "source_sha256": {
+        "HypersimplexSharp": "527f4d2c6ab75074737cf646be30c0fbdbdeb5932d2a2abc36e295d04c8ed4f6",
+        "RootSharpTail": "f157ecc79e363d02ce95c88b8a912ba45c4625601d891a8973462d08b9270d38",
+        "GapMajoritySlice": "114334fb341baf5358455c7cb352a7179a13aaaad5f8b3bced7833935239197a",
+        "RootTailModulus": "557125b8cbeaf7f4444c0d4eff6b49184766c552aa2c939a5a1463da0dea7e75",
+        "GlobalGapRigidity": "1e8446b389db56ba7b45c3a7aca61a02a20925ea18ba3bfad476f3b318060696",
+        "RootModulusAlgebra": "5414564c42ae5da5dbb7cf21aedd67efef00dcbca8fda4cc5f52ea6c0859071a",
+        "GapFlatStability": "164ce29acccae2a48244f1d310f7d23110d35ceed7c75700c83cc173970c234c",
+        "GapPhaseStability": "78669e4d5005d5669f56c87f6955731f7caae46fb167a1c9b698a820d9cc7800",
+        "GapRigidityExamples": "46263e73d5dccb3a20bdf4fbea6346639c6f8fc3c548f7abff5eb191d99ba233",
+        "SharpStabilityExamples": "9377475d2895d209adec244a0c899e634f059a06ee88e52bed67698db7768b67",
+        "AllCapGapStability": "8fbaf5825335f1178d2c27b0640d584767a41017bae5317caa04551dfb530c49",
+        "FixedFlatTradeoff": "b7a2f27afce739fc7731877056a729d1882d0e59ad32e4c4b1708bf6e322d6d6",
+        "ActualGlobalGapStability": "d2c07906018d677f3625777bc59b9446786bbee63e7e11fe8824ce7108da4f28",
+        "ExactSaturatedModulus": "2eb944e22c94232b9e73f711c889872f388c9936b4c3eeff32316bbc1e8041d1",
+        "ActualSaturatedModulus": "c157555e87fe7c9c1c1537e53bfb5d3b7fccaca27eaf00cfc436e02188ddf421"
+      }
+    },
+    {
+      "stage": "2-module conditional probability bridge (verify_breakthrough_formal.py)",
+      "status": "PASS",
+      "modules": 2,
+      "import_trust_level": 0,
+      "kernel_typechecking_skipped": false,
+      "axiom_audits": 15,
+      "axioms_used": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "compile_seconds": 26.8,
+      "date_utc": "2026-11-01T21:37:46.496706+00:00",
+      "source_sha256": {
+        "FourShiftLaw": "f191bca5c5f1000120a18b806dbcdc1d2b42c8be1e037cd62821f8f674a30324",
+        "FourShiftEnvelope": "bed99952dd0a76f844e86e1eb4fb2b1e3bf16b74e3672991fdebc239b9f6fe83"
+      }
+    },
+    {
+      "stage": "1-module attainment family (verify_additional_formal.py)",
+      "status": "PASS",
+      "modules": 1,
+      "import_trust_level": 0,
+      "kernel_typechecking_skipped": false,
+      "axiom_audits": 2,
+      "axioms_used": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "compile_seconds": 14.7,
+      "date_utc": "2026-11-01T21:38:02.616064+00:00",
+      "source_sha256": {
+        "ExactModulusAttainment": "c4e2d7ffc0aadd82e79d94694384c00ce96a4b26c1b3a3762926c4ac42514a4d"
+      }
+    }
+  ]
+}

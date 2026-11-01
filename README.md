@@ -10,7 +10,7 @@ The collection contains results with different formal verification scopes. Each 
 
 ## Navigating the collection
 
-The current catalogue contains 51 manuscripts and research notes across 50 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
+The current catalogue contains 52 manuscripts and research notes across 51 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
 
 - Start with the [overview](overview.pdf) for descriptions of the result families.
 - Use the [manuscript map](CONTENTS.md) to find individual papers, abstracts and supporting materials.
@@ -54,7 +54,7 @@ The ten results I consider the strongest, in order of significance. This is my o
 - [Finite geometry](CONTENTS.md#finite-geometry): Singer-invariant blocking sets of PG(2,13) meet some line in five points.
 - [Quadratic forms and number theory](CONTENTS.md#quadratic-forms-and-number-theory): unit square classes represented by totally positive lattices.
 - [Valuation theory](CONTENTS.md#valuation-theory): depth-one Artin–Schreier defect towers.
-- [Discrete analysis, tilings, probability and entropy](CONTENTS.md#discrete-analysis-tilings-probability-and-entropy): the sharp one-eighth Fourier bound, a spectral tile in F₂⁹ with no periodic complement, the small-coefficient Keller–Klein bound, ranking entropy, Sidon-set Rényi thresholds, structural versus numerical selfadhesivity of polymatroids.
+- [Discrete analysis, tilings, probability and entropy](CONTENTS.md#discrete-analysis-tilings-probability-and-entropy): the sharp one-eighth Fourier bound, a spectral tile in F₂⁹ with no periodic complement, the small-coefficient Keller–Klein bound, sharp support-gap stability and exact Kolmogorov cap optima for Rademacher sums, ranking entropy, Sidon-set Rényi thresholds, structural versus numerical selfadhesivity of polymatroids.
 - [Matroid theory](CONTENTS.md#matroid-theory): the asymmetric Merino–Welsh region.
 - [Optimization](CONTENTS.md#optimization): the ADMM multiplier-step interval, an ADMM five-cycle, escaping subcritical Nesterov flows, Chambolle–Pock cycles, the exact strong-convexity gradient bound, failure of the multi-marginal converse of Minty's theorem.
 
@@ -86,6 +86,7 @@ I use the names below to connect common search terms to each result and its file
 | Alternating direction method of multipliers, ADMM dual step size, Glowinski golden ratio, multiplier relaxation | [ADMM multiplier-step interval](papers/mathematics/admm-multiplier-step/) |
 | ADMM convergence counterexample, period-five orbit | [Rational period-five ADMM orbit](papers/mathematics/admm-counterexample/) |
 | Keller–Klein conjecture, Rademacher sums, Berry–Esseen bound, normal approximation | [Keller–Klein small-coefficient bound](papers/mathematics/keller-klein/) |
+| Minimum signed sums, support gap, stability, Kolmogorov distance, capped Rademacher sums, Hollom–Portier | [Sharp stability and exact cap optima for Rademacher sums](papers/mathematics/keller-klein-sharp-stability/) |
 | Quadratic lattices, totally real fields, unit square classes, universal quadratic forms | [Unit squareclass rank bound](papers/mathematics/unit-squareclasses/) |
 | Artin–Schreier extensions, defect, depth of valuations, Okutsu sequences, Hahn series | [Artin–Schreier depth](papers/mathematics/artin-schreier-depth/) |
 | Nonnegative rank, nonnegative matrix factorization, Kronecker product, Vandaele–Gillis–Glineur–Tuyttens conjecture | [Kronecker-square counterexamples](papers/mathematics/nonnegative-rank-kronecker/) |

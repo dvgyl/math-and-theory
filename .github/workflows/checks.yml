@@ -316,6 +316,9 @@ jobs:
           - package: keller-klein
             root: papers/mathematics/keller-klein
             project: lean
+          - package: keller-klein-sharp-stability
+            root: papers/mathematics/keller-klein-sharp-stability
+            project: lean
           - package: unit-squareclasses
             root: papers/mathematics/unit-squareclasses
             project: lean
@@ -410,6 +413,15 @@ jobs:
             python3 scripts/verify_cached.py --mathlib-cache .lake/packages/mathlib --lean-bin "$(lean --print-prefix)/bin/lean" --packages-root .lake/packages --output "${RUNNER_TEMP}/unit-squareclasses-verification"
           elif [[ '${{ matrix.package }}' == 'keller-klein' ]]; then
             python3 verify.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib
+          elif [[ '${{ matrix.package }}' == 'keller-klein-sharp-stability' ]]; then
+            python3 verify.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib --output "${RUNNER_TEMP}/keller-klein-sharp-stability-verification"
+            python3 ../certificates/check_two_core_upper.py
+            python3 ../certificates/check_four_core_upper.py
+            python3 -m venv "${RUNNER_TEMP}/flint"
+            "${RUNNER_TEMP}/flint/bin/pip" install --quiet -r ../certificates/requirements.txt
+            "${RUNNER_TEMP}/flint/bin/python" ../certificates/verify_lower_exact_gap_arb.py 128
+            "${RUNNER_TEMP}/flint/bin/python" ../certificates/verify_lower_five_flat_arb.py B 128
+            "${RUNNER_TEMP}/flint/bin/python" ../certificates/verify_lower_five_flat_arb.py C 128
           elif [[ '${{ matrix.package }}' == 'structural-selfadhesivity' ]]; then
             python3 ../verify_E3.py --lake lake --reuse-packages "$PWD/.lake/packages" --output "${RUNNER_TEMP}/structural-selfadhesivity-verification"
             python3 ../E3_all_overlap_check.py ../E3_all_overlap_polymatroids.json --output "${RUNNER_TEMP}/e3-positive-check.json"

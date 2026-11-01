@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**51 manuscripts and research notes across 50 result families in mathematics, theoretical computer science, and mathematical physics.**
+**52 manuscripts and research notes across 51 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -341,6 +341,16 @@ Let X = Σ vᵢεᵢ with independent uniform signs, real coefficients, Σ vᵢ�
 **Formal scope.** The theorem for every finite vector of real coefficients, with the exact count of sign vectors and Mathlib's standard normal distribution function, is formalized in 62 Lean modules, including Prawitz smoothing, the characteristic-function envelopes and both analytic zones. Ivanisvili's Theorems 1.1 and 10.9, needed for the full conjecture, are external computer-assisted results and are not formalized.
 
 [Paper PDF](papers/mathematics/keller-klein/manuscript.pdf) · [LaTeX](papers/mathematics/keller-klein/manuscript.tex) · [Proof and reproduction](papers/mathematics/keller-klein/README.md) · [Citation](papers/mathematics/keller-klein/CITATION.bib)
+
+#### [Sharp stability and exact cap optima for Rademacher sums](papers/mathematics/keller-klein-sharp-stability/manuscript.pdf)
+
+**Family:** `keller-klein-sharp-stability`.
+
+For normalized Rademacher sums X = Σ bᵢεᵢ with |bᵢ| ≤ a, if every signed sum has magnitude at least x > a/2, the core {i : |bᵢ| ≥ x} is odd and the coefficients lie within squared distance 2 − 2√(1 − (a − x)²) of the flat vector on it, with equality exactly for a saturated core and one residual. At every cap, near-maximizers of the exact support-gap optimum lie within √(2+√2) times the deficit of an admissible vector of one of the two optimal shapes, with an optimal constant, and the exact nonlinear modulus on the saturated branch is determined. Conditionally on the completed Keller–Klein comparison, the maximal Kolmogorov distance K(a) is determined with all optimizers for 1/√5 ≤ a ≤ 1/√3, extending an earlier formula for a ≥ 1/√3.
+
+**Formal scope.** Lean 4.19.0 proves, for actual finite signed coefficient vectors and their actual minimum signed sum, the inverse theorem with its equality classification, stability at every cap with an explicit admissible comparison vector and its optimality, the exact saturated modulus with its equality cases and attainment, the fixed-flat inequalities and the sharpness witnesses: 67 audited statements in 15 new modules, replayed with nine inherited modules and the 62 earlier modules. A conditional Lean bridge derives the four-shift envelope with the analytic tail inputs as hypotheses. The probability optima have conventional proofs using the Keller–Klein, Hollom–Portier and Tomaszewski inputs and validated interval certificates on 27,972 rational boxes.
+
+[Paper PDF](papers/mathematics/keller-klein-sharp-stability/manuscript.pdf) · [LaTeX](papers/mathematics/keller-klein-sharp-stability/manuscript.tex) · [Proof and reproduction](papers/mathematics/keller-klein-sharp-stability/README.md) · [Citation](papers/mathematics/keller-klein-sharp-stability/CITATION.bib)
 
 #### [Structural selfadhesivity does not imply a numerically selfadhesive realization](papers/mathematics/structural-selfadhesivity/manuscript.pdf)
 

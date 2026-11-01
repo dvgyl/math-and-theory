@@ -1,0 +1,342 @@
+-- KellerKlein.Audit
+'KellerKlein.small_coefficient_upper_concentration' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.small_coefficient_upper_concentration_normal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.small_coefficient_upper_cdf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.rademacher_concentration_small_max' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.rademacherCDF_small_max_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.rademacher_concentration_zoneA' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.rademacher_concentration_zoneB' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.prawitz_indicator_majorant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.ZoneA.holderProfile_le_c_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.JUpper_le_c_pair_of_zoneB' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.actual_characteristic_envelopes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.zoneBAliasIntegral_compensated' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.one_le_H_add_H_of_large' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KellerKlein.central_hypotheses_nonvacuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+KellerKlein.small_coefficient_upper_concentration {n : ℕ} (coeff : Fin n → ℝ) {a x : ℝ} (ha : 0 < a)
+  (haMax : a ≤ 7 / 100) (hca : ∀ (i : Fin n), |coeff i| ≤ a) (hvar : ∑ i, coeff i ^ 2 = 1) (hx : 0 ≤ x) :
+  KellerKlein.rademacherConcentration coeff x ≤ KellerKlein.H a + KellerKlein.H x
+KellerKlein.small_coefficient_upper_cdf {n : ℕ} (coeff : Fin n → ℝ) {a x : ℝ} (ha : 0 < a) (haMax : a ≤ 7 / 100)
+  (hca : ∀ (i : Fin n), |coeff i| ≤ a) (hvar : ∑ i, coeff i ^ 2 = 1) (hx : 0 ≤ x) :
+  KellerKlein.rademacherCDF coeff x - ↑(ProbabilityTheory.cdf (ProbabilityTheory.gaussianReal 0 1)) x ≤
+    ↑(ProbabilityTheory.cdf (ProbabilityTheory.gaussianReal 0 1)) a - 1 / 2
+def KellerKlein.rademacherConcentration : {n : ℕ} → (Fin n → ℝ) → ℝ → ℝ :=
+fun {n} c x => KellerKlein.cubeProbability fun ω => |KellerKlein.rademacherSum c ω| ≤ x
+def KellerKlein.rademacherCDF : {n : ℕ} → (Fin n → ℝ) → ℝ → ℝ :=
+fun {n} c x => KellerKlein.cubeProbability fun ω => KellerKlein.rademacherSum c ω ≤ x
+def KellerKlein.cubeProbability : {n : ℕ} → (KellerKlein.BoolCube n → Prop) → ℝ :=
+fun {n} p => ↑(Finset.filter p Finset.univ).card / 2 ^ n
+def KellerKlein.rademacherSum : {n : ℕ} → (Fin n → ℝ) → KellerKlein.BoolCube n → ℝ :=
+fun {n} c ω => ∑ i, c i * KellerKlein.rademacherSign (ω i)
+def KellerKlein.H : ℝ → ℝ :=
+fun a => 2 * KellerKlein.c a
+def KellerKlein.c : ℝ → ℝ :=
+fun a => ∫ (x : ℝ) in 0 ..a, KellerKlein.phi x
+def KellerKlein.phi : ℝ → ℝ :=
+fun x => KellerKlein.gaussian x * KellerKlein.phi0
+def KellerKlein.phi0 : ℝ :=
+1 / √(2 * Real.pi)
+
+-- KellerKlein.ZoneAAudit
+'KellerKlein.ZoneA.holderProfile_le_c_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+KellerKlein.ZoneA.holderProfile_le_c_pair {a b ξ : ℝ} (ha : 0 < a) (ha1 : a ≤ 7 / 100) (hb : 0 < b) (hba : b ≤ a)
+  (hξ : 0 ≤ ξ) (hξ1 : ξ ≤ 1 / 2) : KellerKlein.ZoneA.holderProfile a b ξ ≤ KellerKlein.c a + KellerKlein.c (ξ * a)
+
+-- AdversarialCentralGap
+'Breakthrough.AdversarialCentralGap.exists_balanced_signs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.AdversarialCentralGap.exists_strictly_balanced_signs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.AdversarialCentralGap.flat_of_no_central_outcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.AdversarialCentralGap.flat_sum_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.AdversarialCentralGap.no_central_outcome_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- AdversarialFiniteMoments
+'Breakthrough.AdversarialFiniteMoments.tailSecond_sq_le_fourth_mul_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.AdversarialFiniteMoments.second_le_threshold_add_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.AdversarialFiniteMoments.second_absorption' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.AdversarialFiniteMoments.second_le_two_threshold_sq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.AdversarialFiniteMoments.second_le_two_threshold_sq_twelve' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+-- AdversarialRademacherMoments
+'Breakthrough.AdversarialRademacherMoments.cubeExpectation_split_coordinate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.AdversarialRademacherMoments.rademacherSum_insertNth' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.AdversarialRademacherMoments.rademacher_second_moment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.AdversarialRademacherMoments.rademacher_fourth_moment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.AdversarialRademacherMoments.rademacher_fourth_moment_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+-- ExactSupportGapAlgebra
+ExactSupportGapAlgebra.lean:19:44: warning: unused variable `hV`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+ExactSupportGapAlgebra.lean:182:18: warning: unused variable `hr`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+ExactSupportGapAlgebra.lean:226:5: warning: unused variable `ha`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+'Breakthrough.ExactSupportGap.variance_cap_closure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.variance_cap_equality' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.supportGap_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.supportGap_flat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.supportGap_saturated' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.cap_formula_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- RootGapFibers
+RootGapFibers.lean:17:39: warning: unused variable `hr`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+RootGapFibers.lean:37:13: warning: unused variable `hx`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+'Breakthrough.GapFibers.finite_small_fiber_radius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapFibers.core_gap_add_tail_l1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapFibers.actual_gap_core_radius' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- GapLayerRigidity
+'Breakthrough.GapLayerRigidity.erase_pair_preserves_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapLayerRigidity.finset_high_gap_odd_and_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapLayerRigidity.high_gap_odd_and_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapLayerRigidity.high_gap_odd_and_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapLayerRigidity.high_gap_odd_and_variance' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- RootGapCore
+'Breakthrough.GapCore.actual_core_reindexed_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapCore.actual_core_variance_data' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapCore.actual_high_gap_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapCore.actual_high_gap_data' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- ExactSupportGap
+'Breakthrough.ExactSupportGap.signed_gap_le_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.supportGap_le_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.capGapFormula_isGreatest' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.maximalSupportGap_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- ExactSupportGapEquality
+'Breakthrough.ExactSupportGap.sum_sq_eq_sq_sum_iff_single' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.flat_shape_gap_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.saturated_shape_gap_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.next_core_forces_flat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.active_core_forces_saturated' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.supportGap_equality_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.oddBandIndex_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.maximalSupportGap_all_caps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSupportGap.supportGap_maximal_iff_all_caps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+-- HypersimplexSharp
+'Breakthrough.HypersimplexSharp.fractional_sum_le_subset_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.HypersimplexSharp.centered_coordinate_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.HypersimplexSharp.subset_bound_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.HypersimplexSharp.centered_half_slice_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.HypersimplexSharp.centered_max_variance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.HypersimplexSharp.centered_max_and_half_slice' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- GapMajoritySlice
+GapMajoritySlice.lean:27:54: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Breakthrough.GapMajoritySlice.signed_subset_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapMajoritySlice.majority_subset_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapMajoritySlice.centered_core_subset_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- GlobalGapRigidity
+GlobalGapRigidity.lean:77:53: warning: unused variable `j`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+'Breakthrough.GlobalGapRigidity.actual_core_spread_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GlobalGapRigidity.flat_distance_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GlobalGapRigidity.actual_global_energy_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GlobalGapRigidity.actual_energy_equality_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GlobalGapRigidity.actual_flat_distance_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GlobalGapRigidity.actual_flat_distance_equality_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.GlobalGapRigidity.flatDistanceSq_eq_original_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.GlobalGapRigidity.signed_supportGap_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GlobalGapRigidity.signed_supportGap_inverse_equality_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+-- RootSharpTail
+RootSharpTail.lean:95:12: warning: this tactic is never executed
+note: this linter can be disabled with `set_option linter.unreachableTactic false`
+RootSharpTail.lean:95:12: warning: 'ring' tactic does nothing
+note: this linter can be disabled with `set_option linter.unusedTactic false`
+RootSharpTail.lean:102:40: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Breakthrough.SharpTail.normalized_tail_scalar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.SharpTail.tail_scalar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.SharpTail.sharp_tail_squared' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.SharpTail.sharp_tail_distance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.SharpTail.two_equal_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- GapPhaseStability
+'Breakthrough.GapPhaseStability.actual_cap_repair_data' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapPhaseStability.finite_tail_scalar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapPhaseStability.saturated_distance_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapPhaseStability.actual_saturated_stability' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- GapFlatStability
+'Breakthrough.GapFlatStability.flat_distance_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapFlatStability.actual_core_slice_variance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapFlatStability.actual_flat_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- AllCapGapStability
+'Breakthrough.AllCapGapStability.actual_core_two_phases' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.AllCapGapStability.flatComparison_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.AllCapGapStability.saturatedComparison_normalized' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.AllCapGapStability.actual_flat_squared_stability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+-- ActualGlobalGapStability
+ActualGlobalGapStability.lean:186:6: warning: try 'simp' instead of 'simpa'
+note: this linter can be disabled with `set_option linter.unnecessarySimpa false`
+'Breakthrough.ActualGlobalGapStability.phase_shape_optimal_of_separation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.ActualGlobalGapStability.actual_nonnegative_phase_stability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.ActualGlobalGapStability.zeroPaddedAbs_supportGap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.ActualGlobalGapStability.signed_supportGap_phase_stability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.ActualGlobalGapStability.all_caps_supportGap_stability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+-- RootTailModulus
+'Breakthrough.SharpTail.tail_modulus_scalar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.SharpTail.exact_tail_modulus_squared' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- RootModulusAlgebra
+RootModulusAlgebra.lean:159:20: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+RootModulusAlgebra.lean:159:32: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Breakthrough.SharpTail.modulusRatio_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.SharpTail.modulusRatio_strictMono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.SharpTail.gapModulus_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.SharpTail.gapModulus_scale_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.SharpTail.gapModulus_increment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.SharpTail.gapModulus_increment_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.SharpTail.exact_tail_modulus_distance' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- ExactSaturatedModulus
+'Breakthrough.ExactSaturatedModulus.finite_tail_modulus_squared' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.ExactSaturatedModulus.actual_saturated_modulus_chain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.ExactSaturatedModulus.actual_saturated_modulus' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSaturatedModulus.gapModulus_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactSaturatedModulus.actual_saturated_modulus_equality_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+-- ActualSaturatedModulus
+ActualSaturatedModulus.lean:57:6: warning: try 'simp' instead of 'simpa'
+note: this linter can be disabled with `set_option linter.unnecessarySimpa false`
+'Breakthrough.ActualSaturatedModulus.zeroPaddedAbs_core_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ActualSaturatedModulus.signed_supportGap_saturated_modulus' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.ActualSaturatedModulus.signed_global_saturated_modulus' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.ActualSaturatedModulus.all_caps_exact_saturated_modulus' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+-- FixedFlatTradeoff
+'Breakthrough.FixedFlatTradeoff.actual_total_spread_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.FixedFlatTradeoff.actual_fixed_flat_tradeoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.FixedFlatTradeoff.actual_fixed_flat_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.FixedFlatTradeoff.signed_supportGap_fixed_flat' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- GapRigidityExamples
+GapRigidityExamples.lean:24:42: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+GapRigidityExamples.lean:25:42: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Try this: ring_nf
+GapRigidityExamples.lean:90:23: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Breakthrough.GapRigidityExamples.saturated_inverse_equality' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.GapRigidityExamples.halfThreshold_normalized_counterexample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+-- SharpStabilityExamples
+SharpStabilityExamples.lean:69:38: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+SharpStabilityExamples.lean:70:38: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Breakthrough.SharpStabilityExamples.nearest_saturated_lower_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.SharpStabilityExamples.actual_sharp_stability_witness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.SharpStabilityExamples.actual_witness_phase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.SharpStabilityExamples.concrete_sharp_parameters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+-- ExactModulusAttainment
+'Breakthrough.ExactModulusAttainment.twoResidual_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.ExactModulusAttainment.actual_exact_modulus_family' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+-- FourShiftLaw
+'Breakthrough.FourShiftLaw.three_heads_four_symmetric_shifts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.FourShiftLaw.strictCentral_four_shifts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.FourShiftLaw.openInterval_eq_openTail_sub_closedTail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.FourShiftLaw.shiftedStrictCentral_eq_openInterval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.FourShiftLaw.shiftedStrictCentral_scaled_tails' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+-- FourShiftEnvelope
+'Breakthrough.FourShiftEnvelope.closedTail_le_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.FourShiftEnvelope.closedTail_second_moment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.FourShiftEnvelope.openTail_reflection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.FourShiftEnvelope.lowerDiscrepancy_eq_closedTail_sub_Q' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.FourShiftEnvelope.actual_residual_normalization_and_cap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Breakthrough.FourShiftEnvelope.closedEnvelope_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.FourShiftEnvelope.openEnvelope_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.FourShiftEnvelope.shiftMassLower_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.FourShiftEnvelope.finite_four_shift_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Breakthrough.FourShiftEnvelope.actual_four_shift_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]

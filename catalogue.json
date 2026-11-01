@@ -1707,6 +1707,68 @@
       }
     },
     {
+      "id": "keller-klein-sharp-stability",
+      "discipline": "Mathematics",
+      "area": "Probability and normal approximation",
+      "title": "Sharp stability and exact cap optima for Rademacher sums",
+      "kind": "Sharp inverse and stability theorems, exact cap optima and reproducible proof package",
+      "significance_rank": 105,
+      "keywords": [
+        "Rademacher sums",
+        "support gap",
+        "minimum signed sum",
+        "stability",
+        "inverse theorem",
+        "Kolmogorov distance",
+        "Keller–Klein conjecture",
+        "Berry–Esseen",
+        "normal approximation",
+        "Hollom–Portier"
+      ],
+      "summary": "For normalized Rademacher sums X = Σ bᵢεᵢ with |bᵢ| ≤ a, if every signed sum has magnitude at least x > a/2, the core {i : |bᵢ| ≥ x} is odd and the coefficients lie within squared distance 2 − 2√(1 − (a − x)²) of the flat vector on it, with equality exactly for a saturated core and one residual. At every cap, near-maximizers of the exact support-gap optimum lie within √(2+√2) times the deficit of an admissible vector of one of the two optimal shapes, with an optimal constant, and the exact nonlinear modulus on the saturated branch is determined. Conditionally on the completed Keller–Klein comparison, the maximal Kolmogorov distance K(a) is determined with all optimizers for 1/√5 ≤ a ≤ 1/√3, extending an earlier formula for a ≥ 1/√3.",
+      "formal_scope": "Lean 4.19.0 proves, for actual finite signed coefficient vectors and their actual minimum signed sum, the inverse theorem with its equality classification, stability at every cap with an explicit admissible comparison vector and its optimality, the exact saturated modulus with its equality cases and attainment, the fixed-flat inequalities and the sharpness witnesses: 67 audited statements in 15 new modules, replayed with nine inherited modules and the 62 earlier modules. A conditional Lean bridge derives the four-shift envelope with the analytic tail inputs as hypotheses. The probability optima have conventional proofs using the Keller–Klein, Hollom–Portier and Tomaszewski inputs and validated interval certificates on 27,972 rational boxes.",
+      "source": "Keller and Klein (Adv. Math. 2022) posed the normal-approximation problem for Rademacher sums in their proof of Tomaszewski's conjecture. The probability results use the completed Keller–Klein comparison (the earlier keller-klein package together with Ivanisvili's computer-assisted results of 21 October 2026), the Hollom–Portier strict-tail profile and Tomaszewski's theorem. The support-gap optimum and the formula for a ≥ 1/√3 come from an unpublished preceding package. Stability results of De–Diakonikolas–Servedio, Fang–Wang and Xie are compared in the manuscript. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/keller-klein-sharp-stability/README.md",
+      "paper": "papers/mathematics/keller-klein-sharp-stability/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/mathematics/keller-klein-sharp-stability"
+      },
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Exact Kolmogorov-distance cap optimum and support-gap stability for Rademacher sums",
+        "posed_by": null,
+        "problem_url": null,
+        "status": "Determined exactly",
+        "claim": "A large support gap forces an odd flat core with the sharp distance bound 2 − 2√(1 − (a − x)²); support-gap near-optimizers are stable with optimal constant √(2+√2) at every cap; and, conditionally on the completed Keller–Klein comparison, the maximal Kolmogorov distance is exact for 1/√5 ≤ a ≤ 1/√3.",
+        "title_tag": "Rademacher Sums: Sharp Support-Gap Stability and Exact Cap Optima",
+        "description": "Preprint with a sharp inverse theorem and optimal-constant stability for minimum signed sums, formalized in Lean 4, and exact Kolmogorov cap optima on two new intervals.",
+        "queries": [
+          "Rademacher sum minimum signed sum stability",
+          "support gap Rademacher sum inverse theorem",
+          "Kolmogorov distance Rademacher sum coefficient cap",
+          "Keller-Klein Berry-Esseen exact optimum large coefficients",
+          "Hollom-Portier anti-concentration Rademacher application",
+          "sqrt(2+sqrt(2)) stability constant signed sums",
+          "capped Rademacher sums normal approximation extremizers"
+        ],
+        "faq": [
+          [
+            "What does the inverse theorem say?",
+            "If every coefficient of a normalized Rademacher sum is at most a in absolute value and every signed sum has magnitude at least x > a/2, the coefficients at least x form an odd core, and the squared distance to the flat vector on that core is at most 2 − 2√(1 − (a − x)²). Equality holds exactly for k coefficients a and one residual a − x."
+          ],
+          [
+            "Which parts are formally verified?",
+            "The inverse theorem, the all-cap stability theorem with its optimal constant √(2+√2), the exact saturated modulus with attainment, the fixed-flat inequalities and the sharpness examples are proved in Lean 4 for actual finite coefficient vectors. The probability optima are written proofs with interval-arithmetic certificates, and a Lean bridge checks their finite-law interface with the analytic inputs as hypotheses."
+          ],
+          [
+            "On what do the Kolmogorov-distance formulas depend?",
+            "They use the completed Keller–Klein comparison, which combines the earlier small-coefficient package with Ivanisvili's unrefereed computer-assisted results, the published Hollom–Portier tail profile and Tomaszewski's theorem. The work is an unrefereed preprint."
+          ]
+        ]
+      }
+    },
+    {
       "id": "structural-selfadhesivity",
       "discipline": "Mathematics",
       "area": "Entropy and conditional independence",

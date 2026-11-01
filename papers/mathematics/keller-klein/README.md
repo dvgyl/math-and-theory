@@ -16,6 +16,10 @@ Keller and Klein conjectured that `|P(X ≤ x) − Φ(x)| ≤ Φ(a₁) − 1/2` 
 
 On 30 October 2026, Nathan Keller expressed interest in reviewing this work. He has not reviewed or validated the proof, and his interest should not be read as an endorsement. The [priority and novelty record](../../../PRIORITY_AND_NOVELTY.md#other-correspondence) lists this exchange.
 
+## Extension
+
+On 1 November 2026 a separate package, [Sharp stability and exact cap optima for Rademacher sums](../keller-klein-sharp-stability/), was added. It proves a sharp inverse theorem and all-cap stability for the minimum signed sum of capped Rademacher sums and, conditionally on the completed Keller–Klein comparison, determines the maximal Kolmogorov distance for coefficient caps from 1/√5 to 1/√3. The manuscript and Lean project of this package are unchanged.
+
 ## Files
 
 - [Manuscript](manuscript.pdf) and [LaTeX source](manuscript.tex).
