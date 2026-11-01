@@ -1,0 +1,5560 @@
+{
+  "verified": true,
+  "all_environment_declarations": 570,
+  "source_named_declarations": 238,
+  "modules": [
+    "BergeBroom.Arithmetic",
+    "BergeBroom.ComponentClasses",
+    "BergeBroom.Components",
+    "BergeBroom.Construction",
+    "BergeBroom.Definitions",
+    "BergeBroom.Exact",
+    "BergeBroom.Exceptional",
+    "BergeBroom.Formula",
+    "BergeBroom.Incidence",
+    "BergeBroom.Leaves",
+    "BergeBroom.Lower",
+    "BergeBroom.Main",
+    "BergeBroom.Relabel",
+    "BergeBroom.Stability"
+  ],
+  "counts": {
+    "BergeBroom.Arithmetic": 5,
+    "BergeBroom.ComponentClasses": 19,
+    "BergeBroom.Components": 78,
+    "BergeBroom.Construction": 94,
+    "BergeBroom.Definitions": 130,
+    "BergeBroom.Exact": 16,
+    "BergeBroom.Exceptional": 54,
+    "BergeBroom.Formula": 14,
+    "BergeBroom.Incidence": 50,
+    "BergeBroom.Leaves": 25,
+    "BergeBroom.Lower": 20,
+    "BergeBroom.Main": 7,
+    "BergeBroom.Relabel": 17,
+    "BergeBroom.Stability": 41
+  },
+  "observed_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "declarations": [
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "inductive",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomFree"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Components",
+      "name": "Berge.Component"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Components",
+      "name": "Berge.ComponentEdge"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Components",
+      "name": "Berge.ComponentVertex"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.ContainsBroom"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.IsLooseStar"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.IsSaturationNumber"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.Saturated"
+    },
+    {
+      "axioms": [],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.StandardSpoke"
+    },
+    {
+      "axioms": [],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.StandardVertex"
+    },
+    {
+      "axioms": [],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.StarVertex"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "inductive",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph"
+    },
+    {
+      "axioms": [],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.UpperVertex"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.acyclic_edge_intersection"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.acyclic_free_neighbor_degree"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.acyclic_tail_avoids_spokes"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.avoidLeaf"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.avoidLeaf_ne"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.broomLeft"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.broomLeft_centerIndex"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.broomOfArms"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.broomRight"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.broom_endpoints_ne"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.centerIndex"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.centerIndex_injective"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.complete"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentDecidableEq"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentEdge"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentEdgeEquiv"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentEdgeEquiv_apply_val"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentEdgeEquiv_symm_val"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentEdge_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentEdge_image_val"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentEdge_injective"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentEdges"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentFinite"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentFintype"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentHypergraph"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentHypergraph_connected"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentHypergraph_degree"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentHypergraph_edge_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentHypergraph_free"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentHypergraph_saturated"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentIncidenceIso"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentLiftSet"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentLiftSet_image_val"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentLiftSet_project"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentNodeEquiv"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.component_edge_one_isolated"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.component_edge_one_of_isolated"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.component_edge_zero_of_degree_zero"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.component_mass_bound"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.component_missing_projects"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.component_project_edge_mem"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.component_project_label"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.component_vertex_bound"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.component_vertex_card_of_edge_one"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.component_vertex_card_of_edge_zero"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.cone_of_connected_acyclic_free"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.connected_all_leaf_edge_card_le_one"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.connected_degree_pos"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.connected_not_tree_vertex_bound"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.connected_vertex_bound"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.contains_mapped_iff"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.contains_mono"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.contains_of_acyclic_neighbor"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.contains_of_new_leaf"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.contains_of_two_roots"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Arithmetic",
+      "name": "Berge.counting_lower_arithmetic"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.degree"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.degreeOneVertices"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.degree_insert_le"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.degree_insert_of_not_mem"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.degree_le_edge_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.degree_one_edge_unique"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.degree_pos_of_mem"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.edgePart"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.exact_saturation"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Formula",
+      "name": "Berge.exact_saturation_ceiling"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Formula",
+      "name": "Berge.exact_saturation_floor"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.exact_saturation_three"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Formula",
+      "name": "Berge.exact_saturation_three_floor"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.exact_saturation_uniform"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Formula",
+      "name": "Berge.exact_saturation_uniform_floor"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Main",
+      "name": "Berge.exact_statement_expanded"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.exceptional_sum_bounds"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.exists_saturated_upper"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.free_insert_at_looseRoot"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.free_insert_low_neighbors"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.free_of_degrees_lt"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.free_of_edge_card_le"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.free_of_one_high_degree_vertex"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.free_of_subset"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.free_of_vertex_card_le"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.high_degree_is_root"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph_adj_edge_vertex"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph_adj_vertex_edge"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph_decidableAdj"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph_not_adj_edge_edge"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph_not_adj_vertex_vertex"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidenceNeighborEquiv"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidence_bipartite"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidence_degree_edge"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidence_degree_vertex"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidence_edge_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidence_edge_natCard"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidence_isTree_iff"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidence_neighborFinset_edge"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.incidence_tree_leaf_count"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.incidence_tree_many_leaves"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidence_vertex_natCard"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidentEdges"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.inserted_edge_left_degree"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.isLooseStarDecidable"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.isolate_degree_eq_zero"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.isolate_not_mem_spoke"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.isolatedEdges"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.isolatedVertices"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.isolated_edge_forbids_low_vertex"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.isolated_edge_neighbors"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.isolated_edge_reachable_eq"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.largeTreeComponents"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.largeTreeCount"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.largeTree_component_order"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.largeTree_global_looseRoot"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.largeTree_mass_bound"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.leaf_degree_le"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.leaf_injective_spoke"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.leaf_mem_spoke"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.leaf_sum_bound"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.mapEquiv_edges_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.mappedEdges"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.mappedEdges_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.mappedEdges_insert"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.mappedEdges_symm"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.mem_complete"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.mem_componentEdge"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.mem_componentLiftSet"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.mem_component_project"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.mem_degreeOneVertices"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.mem_incidentEdges"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.mem_isolatedEdges"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.mem_isolatedVertices"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.mem_largeTreeComponents"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.mem_largeTreeComponents_iff_looseStar"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.mem_mappedEdges"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.mem_spokeFiber"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.mem_starForest"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.near_minimum_has_large_tree"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Main",
+      "name": "Berge.near_minimum_structure"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.one_component_count"
+    },
+    {
+      "axioms": [],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.property_of_reachable"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.reachable_eq_of_degree_zero"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.remainderOrder"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.remainderOrder_eq_not_looseStar"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.remainder_mass_bound"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.remainder_weighted_bound"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.root_mem_spoke"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.roots_of_no_leaf"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Main",
+      "name": "Berge.satNumber"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Main",
+      "name": "Berge.satNumber_eq"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_exceptional_component_budgets"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_isolatedEdge_no_isolates"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_isolatedEdges_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_isolatedVertices_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_largeTree_isolates_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_looseRoot_isolates_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.saturated_lower_bound"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.saturated_minimum_remainder"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.saturated_near_minimum_stability"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.saturated_small_iff_complete"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.saturated_tree_edges_ge"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.saturated_tree_has_high_degree"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.saturated_tree_is_loose"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.singleComponentCount"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.singleComponentCount_eq_isolatedEdges"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.spoke"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.spokeFiber"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.spoke_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.spoke_injective"
+    },
+    {
+      "axioms": [],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.standardCenter"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.standardFiber_lower"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.standardForest"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.standardForest_edges"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.standardForest_saturated"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.standardVertex_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starForest"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starForest_edge_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starForest_free"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starForest_saturated"
+    },
+    {
+      "axioms": [],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starIsolate"
+    },
+    {
+      "axioms": [],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starLeaf"
+    },
+    {
+      "axioms": [],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starRoot"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starVertex_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.stemVertex"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.sum_componentHypergraph_edge_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.sum_component_edge_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.sum_component_vertex_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.sum_degrees"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.support"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.upperConstruction"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.upperConstruction_spec"
+    },
+    {
+      "axioms": [],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.upperValue"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Formula",
+      "name": "Berge.upperValue_eq_floor"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.upperVertex_card"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.upper_quotient_pos"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.upper_rounding_bound"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.vertexPart"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.vertex_component_of_mem"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.zeroComponentCount"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.zeroComponentCount_eq_isolates"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.zero_component_count"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.zero_degree_not_mem"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy._sizeOf_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy._sizeOf_inst"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.casesOn"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.center_degree_le"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.center_ne_stem"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.BroomCopy.center_reachable_core"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.BroomCopy.center_reachable_edge"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.BroomCopy.center_reachable_stem"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.core"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.BroomCopy.core_component_eq"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.ctorIdx"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.edge"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.edge_card_le"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.BroomCopy.edge_component_eq"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.BroomCopy.labels_eq_center"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.left_mem"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.BroomCopy.mapEquiv"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.mapVerticesInto"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "constructor",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.mk"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.mono"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.noConfusion"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.noConfusionType"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "recursor",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.rec"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.recOn"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.restrictEdges"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.right_mem"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.stem_degree_le"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.uses_inserted_edge"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.vertex_card_le"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.ForestGeometry.common_neighbor_unique"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.ForestGeometry.no_shortcut"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.IsLooseStar.isTree"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Main",
+      "name": "Berge.IsSaturationNumber.satNumber_eq"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.Saturated.mapEquiv"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph._sizeOf_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph._sizeOf_inst"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.addEdge"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.casesOn"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.ctorIdx"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.edges"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.UniformHypergraph.mapEquiv"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "constructor",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.mk"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.noConfusion"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.noConfusionType"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "recursor",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.rec"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.recOn"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.uniform"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.acyclic_free_neighbor_degree._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.acyclic_tail_avoids_spokes._simp_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.avoidLeaf._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.avoidLeaf._proof_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.avoidLeaf._proof_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.avoidLeaf._proof_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.avoidLeaf.congr_simp"
+    },
+    {
+      "axioms": [
+        "propext"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.avoidLeaf_ne._simp_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.broomLeft._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.broomLeft._proof_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.broomLeft._proof_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.broomLeft.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.broomLeft_centerIndex._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.broomOfArms._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.broomOfArms._proof_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.broomOfArms._proof_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.broomOfArms._proof_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.broomOfArms._proof_5"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.broomRight._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.broomRight._proof_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.broomRight.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.broom_endpoints_ne._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.centerIndex._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.centerIndex._proof_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.centerIndex._proof_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.centerIndex.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.centerIndex_injective._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.centerIndex_injective._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.complete._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.complete.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentEdge._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentEdge._proof_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentEdge.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentEdgeEquiv._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentEdgeEquiv._proof_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentHypergraph._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentHypergraph_saturated._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentIncidenceIso._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentLiftSet.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentNodeEquiv._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentNodeEquiv._proof_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentNodeEquiv._proof_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentNodeEquiv._proof_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentNodeEquiv._proof_5"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentNodeEquiv._proof_6"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentNodeEquiv._proof_7"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Components",
+      "name": "Berge.componentNodeEquiv.match_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.component_edge_one_isolated._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.component_edge_one_of_isolated._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.component_mass_bound._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.component_mass_bound._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.component_mass_bound._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.component_mass_bound._simp_1_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.component_vertex_card_of_edge_one._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.component_vertex_card_of_edge_one._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.component_vertex_card_of_edge_zero._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.cone_of_connected_acyclic_free.match_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.connected_all_leaf_edge_card_le_one.match_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.connected_not_tree_vertex_bound._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.connected_vertex_bound._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.contains_of_acyclic_neighbor._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.contains_of_acyclic_neighbor._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.contains_of_acyclic_neighbor._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.contains_of_new_leaf._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.contains_of_new_leaf._proof_1_5"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.contains_of_new_leaf._proof_1_6"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.contains_of_two_roots._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.contains_of_two_roots._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Arithmetic",
+      "name": "Berge.counting_lower_arithmetic._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Arithmetic",
+      "name": "Berge.counting_lower_arithmetic._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Arithmetic",
+      "name": "Berge.counting_lower_arithmetic._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Arithmetic",
+      "name": "Berge.counting_lower_arithmetic._proof_1_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.degree.congr_simp"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.degree.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.degreeOneVertices.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.edgePart._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.edgePart.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.exact_saturation._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Formula",
+      "name": "Berge.exact_saturation_ceiling._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Formula",
+      "name": "Berge.exact_saturation_floor._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.exact_saturation_three._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Formula",
+      "name": "Berge.exact_saturation_three_floor._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.exact_saturation_uniform._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.exact_saturation_uniform._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Formula",
+      "name": "Berge.exact_saturation_uniform_floor._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Formula",
+      "name": "Berge.exact_saturation_uniform_floor._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.exceptional_sum_bounds._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.exceptional_sum_bounds._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.exceptional_sum_bounds._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.exceptional_sum_bounds._proof_1_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.exceptional_sum_bounds._proof_1_5"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.free_insert_at_looseRoot._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.free_insert_at_looseRoot._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.free_insert_at_looseRoot._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.free_insert_at_looseRoot._proof_1_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.free_insert_at_looseRoot._proof_1_5"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.free_insert_low_neighbors._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.free_insert_low_neighbors._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.free_insert_low_neighbors._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.free_of_edge_card_le._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.free_of_one_high_degree_vertex._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.free_of_one_high_degree_vertex._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.free_of_one_high_degree_vertex._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.free_of_vertex_card_le._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.high_degree_is_root._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.high_degree_is_root._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph._proof_2"
+    },
+    {
+      "axioms": [
+        "propext"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph._sparseCasesOn_1"
+    },
+    {
+      "axioms": [
+        "propext"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph._sparseCasesOn_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidenceGraph.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph.match_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph_adj_edge_vertex._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph_adj_vertex_edge._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph_decidableAdj._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph_decidableAdj._proof_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph_decidableAdj._proof_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph_not_adj_edge_edge._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidenceGraph_not_adj_vertex_vertex._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidenceNeighborEquiv._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidenceNeighborEquiv._proof_10"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidenceNeighborEquiv._proof_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidenceNeighborEquiv._proof_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidenceNeighborEquiv._proof_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidenceNeighborEquiv._proof_5"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidenceNeighborEquiv._proof_6"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidenceNeighborEquiv._proof_7"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidenceNeighborEquiv._proof_8"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidenceNeighborEquiv._proof_9"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidence_isTree_iff._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidence_isTree_iff._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidence_neighborFinset_edge._simp_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.incidence_tree_leaf_count._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.incidence_tree_leaf_count._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.incidence_tree_leaf_count._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.incidence_tree_leaf_count._proof_1_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.incidence_tree_many_leaves._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.incidence_tree_many_leaves._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.incidence_tree_many_leaves._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.incidence_tree_many_leaves._proof_1_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.incidentEdges.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.inserted_edge_left_degree._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.isolate_not_mem_spoke._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.isolatedEdges.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.isolatedVertices.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.isolated_edge_forbids_low_vertex._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.isolated_edge_forbids_low_vertex._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.isolated_edge_forbids_low_vertex._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Components",
+      "name": "Berge.isolated_edge_reachable_eq.match_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.largeTreeComponents.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.largeTreeCount.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.largeTree_component_order._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.largeTree_global_looseRoot._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.largeTree_mass_bound._simp_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.leaf_mem_spoke._simp_1"
+    },
+    {
+      "axioms": [
+        "propext"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.leaf_mem_spoke._simp_1_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.leaf_sum_bound._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.leaf_sum_bound._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.mappedEdges.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.mem_complete._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.mem_complete._simp_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.mem_componentEdge._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.mem_componentLiftSet._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.mem_component_project._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.mem_degreeOneVertices._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.mem_incidentEdges._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.mem_isolatedEdges._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.mem_isolatedVertices._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.mem_largeTreeComponents._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.mem_largeTreeComponents_iff_looseStar._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.mem_largeTreeComponents_iff_looseStar._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.mem_largeTreeComponents_iff_looseStar._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.mem_largeTreeComponents_iff_looseStar._proof_1_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.mem_mappedEdges._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.mem_spokeFiber._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.mem_starForest._simp_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.near_minimum_has_large_tree._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.near_minimum_has_large_tree._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.near_minimum_has_large_tree._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Main",
+      "name": "Berge.near_minimum_structure._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Main",
+      "name": "Berge.near_minimum_structure._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.one_component_count._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.reachable_eq_of_degree_zero._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.remainderOrder.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.remainderOrder_eq_not_looseStar._simp_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.remainderOrder_eq_not_looseStar._simp_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.remainder_mass_bound._simp_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.remainder_weighted_bound._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.remainder_weighted_bound._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.remainder_weighted_bound._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.root_mem_spoke._simp_1"
+    },
+    {
+      "axioms": [
+        "propext"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.root_mem_spoke._simp_1_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.roots_of_no_leaf._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_exceptional_component_budgets._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_exceptional_component_budgets._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_exceptional_component_budgets._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_isolatedEdge_no_isolates._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_isolatedEdges_card._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_isolatedVertices_card._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_isolatedVertices_card._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_isolatedVertices_card._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_largeTree_isolates_card._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_largeTree_isolates_card._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_looseRoot_isolates_card._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_looseRoot_isolates_card._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_looseRoot_isolates_card._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_looseRoot_isolates_card._proof_1_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.saturated_looseRoot_isolates_card._proof_1_5"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.saturated_lower_bound._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.saturated_lower_bound._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.saturated_lower_bound._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.saturated_lower_bound._proof_1_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.saturated_lower_bound._proof_1_5"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.saturated_lower_bound._proof_1_6"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.saturated_minimum_remainder._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.saturated_near_minimum_stability._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.saturated_near_minimum_stability._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.saturated_tree_has_high_degree._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.saturated_tree_has_high_degree._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.saturated_tree_has_high_degree._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Leaves",
+      "name": "Berge.saturated_tree_has_high_degree._proof_1_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.saturated_tree_is_loose._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.saturated_tree_is_loose._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.singleComponentCount.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.spoke.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.spokeFiber.congr_simp"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.spokeFiber.eq_1"
+    },
+    {
+      "axioms": [],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.standardCenter.congr_simp"
+    },
+    {
+      "axioms": [],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.standardCenter.eq_1"
+    },
+    {
+      "axioms": [],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.standardCenter.eq_2"
+    },
+    {
+      "axioms": [],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.standardCenter.match_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.standardForest.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.standardForest_saturated._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.standardForest_saturated._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starForest._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starForest.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starForest_free._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starForest_saturated._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starForest_saturated._proof_1_2"
+    },
+    {
+      "axioms": [],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starIsolate.eq_1"
+    },
+    {
+      "axioms": [],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starLeaf.eq_1"
+    },
+    {
+      "axioms": [],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.starRoot.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.stemVertex._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.stemVertex._proof_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.stemVertex.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.upperConstruction_spec._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.upperConstruction_spec._proof_1_2"
+    },
+    {
+      "axioms": [],
+      "kind": "theorem",
+      "module": "BergeBroom.Exact",
+      "name": "Berge.upperValue.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Formula",
+      "name": "Berge.upperValue_eq_floor._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Formula",
+      "name": "Berge.upperValue_eq_floor._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Formula",
+      "name": "Berge.upperValue_eq_floor._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Formula",
+      "name": "Berge.upperValue_eq_floor._proof_1_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.upperVertex_card._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "Berge.upper_quotient_pos._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.upper_rounding_bound._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.upper_rounding_bound._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.vertexPart._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.vertexPart.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.ComponentClasses",
+      "name": "Berge.zeroComponentCount.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.zero_component_count._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.zero_component_count._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Exceptional",
+      "name": "Berge.zero_degree_not_mem._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.BroomCopy.center_reachable_core._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.BroomCopy.center_reachable_core._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.BroomCopy.labels_eq_center._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Components",
+      "name": "Berge.BroomCopy.labels_eq_center._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.BroomCopy.mapEquiv._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.BroomCopy.mapEquiv._proof_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.BroomCopy.mapEquiv._proof_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.BroomCopy.mapEquiv._proof_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.mapVerticesInto._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.mapVerticesInto._proof_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.mapVerticesInto._proof_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.mapVerticesInto._proof_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.mk._flat_ctor"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.mk.inj"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.mk.injEq"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.mk.noConfusion"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.mk.sizeOf_spec"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.mono._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.mono._proof_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.restrictEdges._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.BroomCopy.stem_degree_le._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.ForestGeometry.common_neighbor_unique._simp_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Lower",
+      "name": "Berge.ForestGeometry.no_shortcut._simp_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.IsLooseStar.isTree._proof_1_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.IsLooseStar.isTree._proof_1_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.IsLooseStar.isTree._proof_1_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Stability",
+      "name": "Berge.IsLooseStar.isTree._proof_1_4"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.addEdge._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Relabel",
+      "name": "Berge.UniformHypergraph.mapEquiv._proof_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.mk._flat_ctor"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.mk.congr_simp"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.mk.inj"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.mk.injEq"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.mk.noConfusion"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Definitions",
+      "name": "Berge.UniformHypergraph.mk.sizeOf_spec"
+    },
+    {
+      "axioms": [
+        "propext"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidenceGraph._sparseCasesOn_1.else_eq"
+    },
+    {
+      "axioms": [
+        "propext"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "Berge.incidenceGraph._sparseCasesOn_2.else_eq"
+    },
+    {
+      "axioms": [],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "_private.BergeBroom.Construction.0.Berge.standardCenter.match_1.eq_1"
+    },
+    {
+      "axioms": [],
+      "kind": "theorem",
+      "module": "BergeBroom.Construction",
+      "name": "_private.BergeBroom.Construction.0.Berge.standardCenter.match_1.eq_2"
+    },
+    {
+      "axioms": [],
+      "kind": "definition",
+      "module": "BergeBroom.Construction",
+      "name": "_private.BergeBroom.Construction.0.Berge.standardCenter.match_1.splitter"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "_private.BergeBroom.Incidence.0.Berge.incidenceGraph.match_1.eq_1"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "_private.BergeBroom.Incidence.0.Berge.incidenceGraph.match_1.eq_2"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "theorem",
+      "module": "BergeBroom.Incidence",
+      "name": "_private.BergeBroom.Incidence.0.Berge.incidenceGraph.match_1.eq_3"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Incidence",
+      "name": "_private.BergeBroom.Incidence.0.Berge.incidenceGraph.match_1.splitter"
+    },
+    {
+      "axioms": [
+        "propext"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Incidence",
+      "name": "_private.BergeBroom.Incidence.0.Berge.incidenceGraph.match_1.splitter._sparseCasesOn_3"
+    },
+    {
+      "axioms": [
+        "propext"
+      ],
+      "kind": "definition",
+      "module": "BergeBroom.Incidence",
+      "name": "_private.BergeBroom.Incidence.0.Berge.incidenceGraph.match_1.splitter._sparseCasesOn_5"
+    }
+  ]
+}

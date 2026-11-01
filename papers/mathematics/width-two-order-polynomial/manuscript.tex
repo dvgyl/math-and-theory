@@ -397,19 +397,19 @@ zero linear coefficient.
 \section{Formal verification}\label{sec:lean}
 
 The Lean~4 project (Lean~4.35.0, Mathlib
-\texttt{56a005855ea17e0b0958f73ec801ae140b0a1679}) checks the chamber
+\texttt{56a005855ea17e0b0958}\allowbreak\texttt{f73ec801ae140b0a1679}) checks the chamber
 certificates for $a\le4$. A chamber is a record of the word $w$, a
 scale $D$ and integer data: the polynomial $D\,F_{a,w}$, the degree-one
 part and the rest of $D$ times the nonnegative remainder, and square
 triples $(p,q,r)$ standing for $p\,x^{\mu+2u}-q\,x^{\mu+u+v}+r\,x^{\mu+2v}$.
 The file \texttt{ShortChain/Data.lean} is generated from the certificate
-files by \texttt{scripts/generate\_lean\_data.py}, which also checks
+files by \texttt{scripts/}\allowbreak\texttt{generate\_}\allowbreak\texttt{lean\_}\allowbreak\texttt{data.py}, which also checks
 that it matches them. The Boolean test \texttt{Chamber.valid} is
 evaluated by the kernel (\texttt{decide +kernel}) for all $22$ chambers:
 the remainder and the expanded squares add up to the polynomial, the
 remainder coefficients and $p,r$ are nonnegative and $q^2\le4pr$, and
 the degree-one part is $D\,(a-1)!$ exactly on the segments with
-$h_j<a$. The theorem \texttt{ShortChain.certified\_chambers} states that
+$h_j<a$. The theorem \texttt{ShortChain.}\allowbreak\texttt{certified\_chambers} states that
 for every chamber in the list and every gap vector $x$ with nonnegative
 entries in any linearly ordered field,
 \[

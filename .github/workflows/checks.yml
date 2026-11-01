@@ -346,6 +346,9 @@ jobs:
           - package: berge-c4-saturation
             root: papers/mathematics/berge-c4-saturation
             project: lean
+          - package: berge-subdivided-star
+            root: papers/mathematics/berge-subdivided-star
+            project: lean
           - package: singer-orbit-blocking
             root: papers/mathematics/singer-orbit-blocking
             project: lean
@@ -431,6 +434,9 @@ jobs:
             python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/berge-c4-build.log" --project . --output "${RUNNER_TEMP}/berge-c4-axioms.json"
             python3 ../certificate/check_construction.py
             python3 ../certificate/run_certificates.py --skip-m7
+          elif [[ '${{ matrix.package }}' == 'berge-subdivided-star' ]]; then
+            lake build BergeBroom BergeBroom.AxiomAudit 2>&1 | tee "${RUNNER_TEMP}/berge-subdivided-star-build.log"
+            python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/berge-subdivided-star-build.log" --project . --output "${RUNNER_TEMP}/berge-subdivided-star-axioms.json"
           elif [[ '${{ matrix.package }}' == 'singer-orbit-blocking' ]]; then
             python3 ../verify.py --output "${RUNNER_TEMP}/singer-orbit-blocking-verification"
           elif [[ '${{ matrix.package }}' == 'width-two-order-polynomial' ]]; then

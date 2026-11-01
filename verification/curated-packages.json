@@ -1778,7 +1778,7 @@
     },
     "width-two-order-polynomial": {
       "root": "papers/mathematics/width-two-order-polynomial",
-      "release_manifest_sha256": "072e8bbf37b3573dce65064a6711dbcea763d7fdfa65844f2e4820c01877a08c",
+      "release_manifest_sha256": "b8f6a98adc626fdb8ce064a3ad8636b79886712ad905bb6ed5759e44938c743c",
       "formal_scope": "Lean 4.35.0 checks the chamber certificates for a short chain of size at most four: for each of the 22 chambers the kernel (decide +kernel, no native_decide) verifies that squares and a nonnegative remainder add up exactly to the certified gap polynomial, and Lean proves that each such polynomial is nonnegative on the closed orthant of any linearly ordered field and dominates (a − 1)! times the sum of the comparable gaps, and that the chambers are exactly the Dyck words. The identification of the gap polynomials with the linear coefficient of the order polynomial (descent–rook correspondence, degree bound, determining set and point identities), the 42 chambers for a = 5 and the reduction to the linear coefficient have conventional proofs or certificates checked by an independent standard-library program.",
       "proof_roots": [
         {
@@ -1795,6 +1795,39 @@
         "lean/ShortChain/Data.lean": "b8a2c0a15cfaed211aeef35ed53f56fe06bb600b91dbc6275664f077df36bdf5",
         "lean/ShortChain/Main.lean": "f03ad48dcdb1a88c6f9ad2ab6a4bc5e4b635a9040633007bc644ddd531458546",
         "lean/ShortChain/Poly.lean": "637be2a049da7a229b3f03bed09f8dbf3fec3f4b21f6cba32a6e670364fd6e92"
+      },
+      "integrity_manifests": []
+    },
+    "berge-subdivided-star": {
+      "root": "papers/mathematics/berge-subdivided-star",
+      "release_manifest_sha256": "2df6dc2a7b9ef4cd7f634aebbcd93c79e4473be4d414b491f845cf31b5ec1726",
+      "formal_scope": "Lean 4.35.0 proves, for actual r-uniform hypergraphs on Fin n, Berge copies of B_a with injective vertex and hyperedge maps, and saturation under every absent r-set, that the saturation number, defined as the least size of a saturated hypergraph on Fin n, equals ⌊a(n + 1)/((r − 1)a + 1)⌋ for all a, r ≥ 3 and n ≥ (r − 1)a + 1, together with the near-minimum structure theorem; a strict audit covers all 570 project declarations. The smaller orders, the sharpness constructions and the minimality among trees have conventional proofs.",
+      "proof_roots": [
+        {
+          "path": "lean",
+          "lean_version": "4.35.0",
+          "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "lean/BergeBroom.lean": "6dea372363a3409ea12f80f46012e9524175ab21faa65257f054ea958317496d",
+        "lean/BergeBroom/Arithmetic.lean": "0af56846e2f713aac136d1653286f0b8308a548dd1d8b2d78559931443e137de",
+        "lean/BergeBroom/AxiomAudit.lean": "75ee131aab33fbefdd35938f47875478fc6c33877a3ead9f92a69c14b9420bf8",
+        "lean/BergeBroom/ComponentClasses.lean": "5046efd92375519fc718e3b34c1f735bbd72fbc81ac9d84694158d0f18ac4b68",
+        "lean/BergeBroom/Components.lean": "8b792ad3253f832207054e02223d78fec1ddc472522ed6966b7c9b2a8fa84c81",
+        "lean/BergeBroom/Construction.lean": "8a47d36ff41727abcc3371fed0091e0b228a914892b0aec26d08376a009cd7fe",
+        "lean/BergeBroom/Definitions.lean": "bf8958a8cb73bc88532fa66d76e6c9f45680d142ea4171561d697d789e1475d6",
+        "lean/BergeBroom/Exact.lean": "66bf7bb09e183f3977d3f6bb98630949eca5664ce5f9b6c8235fa85363607ca2",
+        "lean/BergeBroom/Exceptional.lean": "7f145f41a3e5c25e79c464773881a4ee128386de91fdb190653089213a7beaa4",
+        "lean/BergeBroom/Formula.lean": "c0c647092d4f9a5a18be86756fdfcbf8979e0c320e128b0e7c7ece0ffb48359c",
+        "lean/BergeBroom/Incidence.lean": "89a46d9f8ca26c2943cc0eb499107839220780abd5a8dd9c94c9275352031b04",
+        "lean/BergeBroom/Leaves.lean": "1c83e14a23a760efa8bdbcf03774b4de8e86c93cd62f4d48721a587c76cafb01",
+        "lean/BergeBroom/Lower.lean": "ae35176199e5c03a18a2fc42797c89f941d0862f99cead12ed52f64f8212815c",
+        "lean/BergeBroom/Main.lean": "b228ef0518876a2a3edbf3a9d39e55275022ac01ff3ccff91a62db464cc0f138",
+        "lean/BergeBroom/Relabel.lean": "942e5488dc059ac2e1a55fb288eff867288d53801eb57f727ae5ecc7c0120d52",
+        "lean/BergeBroom/Stability.lean": "1dc8e0ac1b13265733a2c49dd46f87c3e9a03e4dc2fb3dfe4b718d10c24872d9"
       },
       "integrity_manifests": []
     }

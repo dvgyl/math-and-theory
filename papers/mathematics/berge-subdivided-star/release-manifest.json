@@ -1,0 +1,167 @@
+{
+  "format_version": 1,
+  "package_id": "berge-subdivided-star",
+  "formal_scope": "Lean 4.35.0 proves, for actual r-uniform hypergraphs on Fin n, Berge copies of B_a with injective vertex and hyperedge maps, and saturation under every absent r-set, that the saturation number, defined as the least size of a saturated hypergraph on Fin n, equals ⌊a(n + 1)/((r − 1)a + 1)⌋ for all a, r ≥ 3 and n ≥ (r − 1)a + 1, together with the near-minimum structure theorem; a strict audit covers all 570 project declarations. The smaller orders, the sharpness constructions and the minimality among trees have conventional proofs.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.35.0",
+      "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile": "lakefile.toml",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/BergeBroom.lean": "6dea372363a3409ea12f80f46012e9524175ab21faa65257f054ea958317496d",
+    "lean/BergeBroom/Arithmetic.lean": "0af56846e2f713aac136d1653286f0b8308a548dd1d8b2d78559931443e137de",
+    "lean/BergeBroom/AxiomAudit.lean": "75ee131aab33fbefdd35938f47875478fc6c33877a3ead9f92a69c14b9420bf8",
+    "lean/BergeBroom/ComponentClasses.lean": "5046efd92375519fc718e3b34c1f735bbd72fbc81ac9d84694158d0f18ac4b68",
+    "lean/BergeBroom/Components.lean": "8b792ad3253f832207054e02223d78fec1ddc472522ed6966b7c9b2a8fa84c81",
+    "lean/BergeBroom/Construction.lean": "8a47d36ff41727abcc3371fed0091e0b228a914892b0aec26d08376a009cd7fe",
+    "lean/BergeBroom/Definitions.lean": "bf8958a8cb73bc88532fa66d76e6c9f45680d142ea4171561d697d789e1475d6",
+    "lean/BergeBroom/Exact.lean": "66bf7bb09e183f3977d3f6bb98630949eca5664ce5f9b6c8235fa85363607ca2",
+    "lean/BergeBroom/Exceptional.lean": "7f145f41a3e5c25e79c464773881a4ee128386de91fdb190653089213a7beaa4",
+    "lean/BergeBroom/Formula.lean": "c0c647092d4f9a5a18be86756fdfcbf8979e0c320e128b0e7c7ece0ffb48359c",
+    "lean/BergeBroom/Incidence.lean": "89a46d9f8ca26c2943cc0eb499107839220780abd5a8dd9c94c9275352031b04",
+    "lean/BergeBroom/Leaves.lean": "1c83e14a23a760efa8bdbcf03774b4de8e86c93cd62f4d48721a587c76cafb01",
+    "lean/BergeBroom/Lower.lean": "ae35176199e5c03a18a2fc42797c89f941d0862f99cead12ed52f64f8212815c",
+    "lean/BergeBroom/Main.lean": "b228ef0518876a2a3edbf3a9d39e55275022ac01ff3ccff91a62db464cc0f138",
+    "lean/BergeBroom/Relabel.lean": "942e5488dc059ac2e1a55fb288eff867288d53801eb57f727ae5ecc7c0120d52",
+    "lean/BergeBroom/Stability.lean": "1dc8e0ac1b13265733a2c49dd46f87c3e9a03e4dc2fb3dfe4b718d10c24872d9"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 1516,
+      "sha256": "94a8b75b7e23851c2dae9708497122f256880aeddf22c42e4ab099ce862b954e"
+    },
+    "CITATION.bib": {
+      "bytes": 418,
+      "sha256": "2c9c70a81c469a5d71f451c63e0d917df1df8ad531a5b52b932f092baa548287"
+    },
+    "CITATION.cff": {
+      "bytes": 1789,
+      "sha256": "3004e87f7ec4c043c0e1212a3bec41759ce64e21a02e68664177d1040fa693d8"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 4970,
+      "sha256": "4a57716f91cc8d8930681ac8d1c6da9191ce48a7eb41fc7995917ef029ad52a4"
+    },
+    "VERIFICATION.md": {
+      "bytes": 1972,
+      "sha256": "631aef15710565650b38c7afb2977d3eab3ff8b9c95592fc7b611d35c391b89e"
+    },
+    "lean/BergeBroom.lean": {
+      "bytes": 23,
+      "sha256": "6dea372363a3409ea12f80f46012e9524175ab21faa65257f054ea958317496d"
+    },
+    "lean/BergeBroom/Arithmetic.lean": {
+      "bytes": 1323,
+      "sha256": "0af56846e2f713aac136d1653286f0b8308a548dd1d8b2d78559931443e137de"
+    },
+    "lean/BergeBroom/AxiomAudit.lean": {
+      "bytes": 3690,
+      "sha256": "75ee131aab33fbefdd35938f47875478fc6c33877a3ead9f92a69c14b9420bf8"
+    },
+    "lean/BergeBroom/ComponentClasses.lean": {
+      "bytes": 4452,
+      "sha256": "5046efd92375519fc718e3b34c1f735bbd72fbc81ac9d84694158d0f18ac4b68"
+    },
+    "lean/BergeBroom/Components.lean": {
+      "bytes": 26003,
+      "sha256": "8b792ad3253f832207054e02223d78fec1ddc472522ed6966b7c9b2a8fa84c81"
+    },
+    "lean/BergeBroom/Construction.lean": {
+      "bytes": 19965,
+      "sha256": "8a47d36ff41727abcc3371fed0091e0b228a914892b0aec26d08376a009cd7fe"
+    },
+    "lean/BergeBroom/Definitions.lean": {
+      "bytes": 12281,
+      "sha256": "bf8958a8cb73bc88532fa66d76e6c9f45680d142ea4171561d697d789e1475d6"
+    },
+    "lean/BergeBroom/Exact.lean": {
+      "bytes": 2300,
+      "sha256": "66bf7bb09e183f3977d3f6bb98630949eca5664ce5f9b6c8235fa85363607ca2"
+    },
+    "lean/BergeBroom/Exceptional.lean": {
+      "bytes": 14173,
+      "sha256": "7f145f41a3e5c25e79c464773881a4ee128386de91fdb190653089213a7beaa4"
+    },
+    "lean/BergeBroom/Formula.lean": {
+      "bytes": 2842,
+      "sha256": "c0c647092d4f9a5a18be86756fdfcbf8979e0c320e128b0e7c7ece0ffb48359c"
+    },
+    "lean/BergeBroom/Incidence.lean": {
+      "bytes": 7566,
+      "sha256": "89a46d9f8ca26c2943cc0eb499107839220780abd5a8dd9c94c9275352031b04"
+    },
+    "lean/BergeBroom/Leaves.lean": {
+      "bytes": 5081,
+      "sha256": "1c83e14a23a760efa8bdbcf03774b4de8e86c93cd62f4d48721a587c76cafb01"
+    },
+    "lean/BergeBroom/Lower.lean": {
+      "bytes": 9794,
+      "sha256": "ae35176199e5c03a18a2fc42797c89f941d0862f99cead12ed52f64f8212815c"
+    },
+    "lean/BergeBroom/Main.lean": {
+      "bytes": 4086,
+      "sha256": "b228ef0518876a2a3edbf3a9d39e55275022ac01ff3ccff91a62db464cc0f138"
+    },
+    "lean/BergeBroom/Relabel.lean": {
+      "bytes": 3580,
+      "sha256": "942e5488dc059ac2e1a55fb288eff867288d53801eb57f727ae5ecc7c0120d52"
+    },
+    "lean/BergeBroom/Stability.lean": {
+      "bytes": 9853,
+      "sha256": "1dc8e0ac1b13265733a2c49dd46f87c3e9a03e4dc2fb3dfe4b718d10c24872d9"
+    },
+    "lean/CORRESPONDENCE.md": {
+      "bytes": 3481,
+      "sha256": "ffaf708834da0b198db042dc5886ec378643907594e1a974c11097b6121f1233"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3241,
+      "sha256": "a8bd31aefbb771139c84c48c8ab8edf9d18e11efb95eb36c353a2290ad92699b"
+    },
+    "lean/lakefile.toml": {
+      "bytes": 302,
+      "sha256": "3eaf3ae55b8d71caba2431158b47692cd0c09adb845e7a8cd999eb0cdd9643f8"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c"
+    },
+    "manuscript.pdf": {
+      "bytes": 313207,
+      "sha256": "11055a1bb773c3c98416988a5b78dfcee126546715ba8aeab777e505e2167851"
+    },
+    "manuscript.tex": {
+      "bytes": 34288,
+      "sha256": "97da5ddfe571ecf62b9d2760447f9692b0395a76035ad24e0f302514277c278a"
+    },
+    "scripts/check_axiom_audit.py": {
+      "bytes": 3570,
+      "sha256": "af9d391acfabe3669e20f3dec74e726e29ad3bcf3158b734c6f179b5b4a6bc5c"
+    },
+    "scripts/verify.sh": {
+      "bytes": 574,
+      "sha256": "7c86432f799647b216ab3bb847b2a8293954d1e4eadad336b95ada0c991417d1"
+    },
+    "verification/README.md": {
+      "bytes": 937,
+      "sha256": "9ca43b770e1e06c1b66d0d807e950fb847c02202446317966980ae76e683e331"
+    },
+    "verification/axiom-inventory.json": {
+      "bytes": 124491,
+      "sha256": "9c18ec7edc6e63ee4cfd95b56f2f25796e8c80ffd0403960a23ff0ba6190b988"
+    },
+    "verification/build.log": {
+      "bytes": 120256,
+      "sha256": "0b6497bdfbaebe05ba3c81192634b7d1a31c53daf46e67272195020dfab6e2b6"
+    }
+  }
+}

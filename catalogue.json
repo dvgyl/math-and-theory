@@ -745,6 +745,66 @@
       }
     },
     {
+      "id": "berge-subdivided-star",
+      "discipline": "Mathematics",
+      "area": "Extremal hypergraph theory",
+      "title": "Exact Berge saturation numbers of the subdivided star in every uniformity and its minimality among trees",
+      "kind": "Exact formula with a complete Lean proof and a minimality theorem among trees",
+      "significance_rank": 165,
+      "keywords": [
+        "Berge hypergraphs",
+        "saturation numbers",
+        "trees",
+        "subdivided star",
+        "loose stars",
+        "uniform hypergraphs",
+        "extremal hypergraph theory"
+      ],
+      "summary": "For the star K_{1,a} with one edge subdivided, B_a, and all a, r ≥ 3 and n ≥ (r − 1)a + 1, the r-uniform Berge saturation number is ⌊a(n + 1)/((r − 1)a + 1)⌋, attained by disjoint loose stars; the smaller orders are also determined, and saturated hypergraphs within k hyperedges of the minimum consist of loose stars and a bounded number of further vertices. For a ≥ 5 every other tree T on a + 2 vertices has sat₃(n, Berge-T) ≥ ⌈(a + 1)(n − 2)/(2a + 3)⌉, so B_a is the unique tree of its order with the least asymptotic lower three-uniform saturation coefficient, a/(2a + 1): the Berge analogue of a theorem of Faudree, Faudree, Gould and Jacobson.",
+      "formal_scope": "Lean 4.35.0 proves, for actual r-uniform hypergraphs on Fin n, Berge copies of B_a with injective vertex and hyperedge maps, and saturation under every absent r-set, that the saturation number, defined as the least size of a saturated hypergraph on Fin n, equals ⌊a(n + 1)/((r − 1)a + 1)⌋ for all a, r ≥ 3 and n ≥ (r − 1)a + 1, together with the near-minimum structure theorem; a strict audit covers all 570 project declarations. The smaller orders, the sharpness constructions and the minimality among trees have conventional proofs.",
+      "source": "The Berge saturation problem and its conventions are due to English, Graber, Kirkpatrick, Methuku and Sullivan (Saturation of Berge hypergraphs, arXiv:1710.03735; Discrete Math. 342 (2019)), and linearity for graphs with a tree component to English, Gerbner, Methuku and Tait. The minimality theorem among trees is the Berge analogue of Theorem 5 of Faudree, Faudree, Gould and Jacobson (Saturation numbers for trees, Electron. J. Combin. 16 (2009), R91), with the same minimizer. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/berge-subdivided-star/README.md",
+      "paper": "papers/mathematics/berge-subdivided-star/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/mathematics/berge-subdivided-star"
+      },
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Berge saturation numbers of trees and the Berge analogue of the minimum-tree theorem of Faudree, Faudree, Gould and Jacobson",
+        "posed_by": "English, Graber, Kirkpatrick, Methuku and Sullivan, Saturation of Berge hypergraphs, arXiv:1710.03735; graph case: Faudree, Faudree, Gould and Jacobson, Saturation numbers for trees, Electron. J. Combin. 16 (2009), R91",
+        "problem_url": "https://arxiv.org/abs/1710.03735",
+        "status": "Exact formula proved in every uniformity; minimality among trees proved for three-uniform hypergraphs",
+        "claim": "sat_r(n, Berge-B_a) = ⌊a(n + 1)/((r − 1)a + 1)⌋ for a, r ≥ 3 and n ≥ (r − 1)a + 1; for a ≥ 5, B_a is the unique tree on a + 2 vertices with the least three-uniform saturation coefficient.",
+        "title_tag": "Berge Saturation of the Subdivided Star: Exact Value and Minimum Tree",
+        "description": "Exact r-uniform Berge saturation numbers of the star with one edge subdivided, the near-minimum structure and its minimality among trees. Lean 4 proof.",
+        "queries": [
+          "Berge saturation number of trees",
+          "sat_r(n, Berge-T)",
+          "Berge saturation subdivided star",
+          "Berge-saturated hypergraph loose stars",
+          "minimum saturation number among trees hypergraph",
+          "Faudree Gould Jacobson saturation numbers for trees Berge analogue",
+          "exact Berge saturation number uniform hypergraph",
+          "saturation of Berge hypergraphs trees"
+        ],
+        "faq": [
+          [
+            "What is the Berge saturation number of the subdivided star?",
+            "For B_a, the star K_{1,a} with one edge subdivided, and all a, r ≥ 3 and n ≥ (r − 1)a + 1, the least number of hyperedges of an r-uniform Berge-B_a-saturated hypergraph on n vertices is ⌊a(n + 1)/((r − 1)a + 1)⌋. Disjoint loose stars with at least a spokes and fewer than r − 1 isolated vertices attain it; for smaller n the value is a or the number of all r-sets."
+          ],
+          [
+            "Which tree has the smallest Berge saturation number?",
+            "In three-uniform hypergraphs, for every a ≥ 5 the subdivided star B_a is the unique tree on a + 2 vertices with the least asymptotic lower saturation coefficient, a/(2a + 1); every other tree has coefficient at least (a + 1)/(2a + 3), and B_a is the unique minimizer for n ≥ 3(a + 1)(2a + 1). Faudree, Faudree, Gould and Jacobson proved the corresponding statement for graphs in 2009."
+          ],
+          [
+            "Is the result formally verified?",
+            "Partly. Lean 4 proves the exact formula in every uniformity, with the saturation number defined as a minimum over all hypergraphs on n labelled vertices, and the near-minimum structure theorem. The smaller orders, the sharpness constructions and the minimality among trees have conventional proofs in the manuscript."
+          ]
+        ]
+      }
+    },
+    {
       "id": "berge-triangle-spectrum",
       "discipline": "Mathematics",
       "area": "Graph theory",

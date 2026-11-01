@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**50 manuscripts and research notes across 49 result families in mathematics, theoretical computer science, and mathematical physics.**
+**51 manuscripts and research notes across 50 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -162,6 +162,18 @@ The three-uniform Berge-C₄ saturation number s(n), in which any absent triple 
 **Prior work.** [English, Graber, Kirkpatrick, Methuku and Sullivan, arXiv:1710.03735v1, Theorem 5.7.](https://arxiv.org/abs/1710.03735v1) · [English, Gerbner, Methuku and Tait, 2019.](https://arxiv.org/abs/1807.06947)
 
 [Paper PDF](papers/mathematics/berge-c4-saturation/manuscript.pdf) · [LaTeX](papers/mathematics/berge-c4-saturation/manuscript.tex) · [Proof and reproduction](papers/mathematics/berge-c4-saturation/README.md) · [Citation](papers/mathematics/berge-c4-saturation/CITATION.bib)
+
+#### [Exact Berge saturation numbers of the subdivided star in every uniformity and its minimality among trees](papers/mathematics/berge-subdivided-star/manuscript.pdf)
+
+**Family:** `berge-subdivided-star`.
+
+Let B_a be the star K_{1,a} with one edge subdivided. For all a, r ≥ 3 and n ≥ (r − 1)a + 1 the r-uniform Berge saturation number, in which any absent r-set may be added, is sat_r(n, Berge-B_a) = ⌊a(n + 1)/((r − 1)a + 1)⌋, attained by disjoint loose stars; it is a for max(a + 2, r + 1) ≤ n < (r − 1)a + 1. Saturated hypergraphs within k hyperedges of the minimum consist of loose stars with at least a spokes and at most (r − 1)((r − 1)a + 1)(k + 1) − 1 further vertices once n ≥ ((r − 1)a + 1)((r − 1)(k + 1) + 1), sharply for k = 0. For a ≥ 5 every tree T ≇ B_a on a + 2 vertices has sat₃(n, Berge-T) ≥ ⌈(a + 1)(n − 2)/(2a + 3)⌉, so B_a is the unique tree of its order with the least asymptotic lower three-uniform saturation coefficient, a/(2a + 1), and the unique minimizer for n ≥ 3(a + 1)(2a + 1); this is the Berge analogue of the theorem of Faudree, Faudree, Gould and Jacobson for graphs.
+
+**Formal scope.** Lean 4.35.0 proves, for actual r-uniform hypergraphs on Fin n, Berge copies of B_a with injective vertex and hyperedge maps, and saturation under every absent r-set, that the saturation number, defined as the least size of a saturated hypergraph on Fin n, equals ⌊a(n + 1)/((r − 1)a + 1)⌋ for all a, r ≥ 3 and n ≥ (r − 1)a + 1, together with the near-minimum structure theorem; a strict audit covers all 570 project declarations. The smaller orders, the sharpness constructions and the minimality among trees have conventional proofs.
+
+**Prior work.** [English, Graber, Kirkpatrick, Methuku and Sullivan, arXiv:1710.03735.](https://arxiv.org/abs/1710.03735) · [Faudree, Faudree, Gould and Jacobson, Saturation numbers for trees, 2009.](https://doi.org/10.37236/180) · [English, Gerbner, Methuku and Tait, 2019.](https://arxiv.org/abs/1807.06947)
+
+[Paper PDF](papers/mathematics/berge-subdivided-star/manuscript.pdf) · [LaTeX](papers/mathematics/berge-subdivided-star/manuscript.tex) · [Proof and reproduction](papers/mathematics/berge-subdivided-star/README.md) · [Citation](papers/mathematics/berge-subdivided-star/CITATION.bib)
 
 ### Inequalities and real analysis
 
