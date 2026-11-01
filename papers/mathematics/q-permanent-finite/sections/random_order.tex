@@ -1,0 +1,115 @@
+% Input-ready conventional-proof component. Labels use the prefix ro:.
+% Requires mean_field.tex and the bibliography entry Azuma1967.
+
+\section{Exponential rarity of negative endpoint orders}
+\label{ro:section}
+
+The product-limit calculation in Corollary~\ref{mf:product-limit} has
+a probabilistic consequence for uniformly permuted deterministic row
+clouds. It uses standard bounded-difference concentration in addition
+to the full mean-field criterion.
+
+\begin{corollary}[Uniform random orders]\label{ro:random-order}
+Fix \(t>0\), \(r\ge1\), and deterministic rows
+\(v_{1,N},\ldots,v_{N,N}\in\overline B(0,L)\). Suppose
+\[
+ \nu_N=\frac1N\sum_{j=1}^N\delta_{v_{j,N}}\Longrightarrow\nu,
+ \qquad
+ \Sigma=\int vv^T\,d\nu(v),\qquad t\lambda_{\max}(\Sigma)>1.
+\]
+Let \(\pi_N\) be a uniformly distributed permutation of the \(N\)
+row labels, and set
+\[
+ A_N^{\pi_N}=I_N+(t/N)V_N^{\pi_N}(V_N^{\pi_N})^T.
+\]
+There exist constants \(\eta,c,C>0\) and
+\(N_0\) such that, for \(N\ge N_0\),
+\begin{equation}\label{ro:exponential}
+ \mathbb P\left\{
+ \frac{D_1(A_N^{\pi_N})}{N(N-1)\per A_N^{\pi_N}}<\eta
+ \right\}\le Ce^{-cN}.
+\end{equation}
+In particular the fraction of labelled permutations with nonpositive
+endpoint derivative is at most \(Ce^{-cN}\).
+Under any joint coupling of the uniform permutations across orders,
+the displayed normalized derivative is at least \(\eta\) almost
+surely for all sufficiently large \(N\). Independence across orders
+is not required.
+\end{corollary}
+\begin{proof}
+Set \(\rho=dx\,\nu(dv)\). For this product ordered limit,
+Corollary~\ref{mf:product-limit} gives the strictly positive number
+\[
+ c_* =\min_{h\in K_\rho}\frac{m_h(4-m_h)}{12}>0.
+\]
+Take \(\eta=c_*/2\). There is a weak neighborhood \(U\) of
+\(\rho\) and an order \(N_1\) such that every bounded-row array
+of order \(N\ge N_1\) with ordered empirical measure in \(U\)
+has normalized derivative at least \(\eta\). Otherwise, choose
+successively smaller neighborhoods of \(\rho\) and increasing
+orders to obtain empirical measures converging to \(\rho\), each
+with normalized derivative below \(c_*/2\). This contradicts the
+liminf bound \(c_*\) from Theorem~\ref{mf:criterion} and
+Corollary~\ref{mf:product-limit}.
+
+By the definition of the weak topology on the compact row-position
+space, choose finitely many real continuous functions
+\(f_1,\ldots,f_J\), \(\epsilon>0\), and
+\(B=\max(1,\max_j\|f_j\|_\infty)\) such that
+\[
+ \left\{\mu:
+  \left|\int f_j\,d\mu-\int f_j\,d\rho\right|<\epsilon
+                 \text{ for }1\le j\le J\right\}\subseteq U.
+\]
+For a uniform permutation \(\pi\), define
+\[
+ X_{j,N}=\frac1N\sum_{i=1}^N f_j(i/N,v_{\pi(i),N}).
+\]
+Its expectation is
+\[
+ \mathbb EX_{j,N}
+ =\frac1{N^2}\sum_{i,a=1}^N f_j(i/N,v_{a,N})
+ \longrightarrow\int f_j\,d\rho.
+\]
+Indeed the deterministic position-grid measures converge to Lebesgue
+measure and \(\nu_N\Longrightarrow\nu\), so their product measures
+converge weakly. For large enough \(N\), every expectation above is
+within \(\epsilon/2\) of its limit.
+
+Swapping two assigned row labels changes \(X_{j,N}\) by at most
+\(4B/N\). Reveal the permutation one position at a time. Conditional
+on the already exposed labels, completions for any two choices of
+the next label can be coupled by exchanging just those two labels.
+Thus the conditional expectations for the two choices differ by at
+most \(4B/N\), and each increment of the associated Doob martingale
+has absolute value at most \(4B/N\).
+
+The bounded-increment martingale inequality of Azuma
+\cite{Azuma1967} now gives
+\begin{equation}\label{ro:test-concentration}
+ \mathbb P\{|X_{j,N}-\mathbb EX_{j,N}|\ge\epsilon/2\}
+ \le2\exp\left(-\frac{\epsilon^2N}{128B^2}\right).
+\end{equation}
+For clarity, this version follows directly by applying conditional
+convexity to a centered increment \(Z\) with \(|Z|\le a\):
+\(\mathbb E(e^{sZ}\mid\mathcal F)\le\cosh(sa)
+\le e^{s^2a^2/2}\). Iteration and Markov's inequality give the
+two-sided bound \(2e^{-u^2/(2Na^2)}\); substitute
+\(a=4B/N\) and \(u=\epsilon/2\).
+
+The event in \eqref{ro:exponential} forces the ordered empirical
+measure outside \(U\). The union bound in
+\eqref{ro:test-concentration} proves the assertion with
+\(C=2J\), \(c=\epsilon^2/(128B^2)\), and a sufficiently large
+\(N_0\). Finally \(\sum_NCe^{-cN}<\infty\), so the first
+Borel--Cantelli lemma gives the almost-sure conclusion under any
+joint coupling.
+\end{proof}
+
+The constants and the sufficient order in this corollary are
+existential: the weak-neighborhood argument does not supply explicit
+finite rates for the mean-field approximation. When a deterministic
+cloud admits an ordered endpoint counterexample, the corollary shows
+that such negative endpoint orders occupy an exponentially small
+fraction of its labelled permutations. It makes no assertion of
+monotonicity over the full \(q\)-interval for the other orders.

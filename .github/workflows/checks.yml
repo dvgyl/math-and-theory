@@ -340,6 +340,9 @@ jobs:
           - package: multimarginal-minty
             root: papers/mathematics/multimarginal-minty
             project: lean
+          - package: q-permanent-finite
+            root: papers/mathematics/q-permanent-finite
+            project: lean
           - package: berge-triangle-spectrum
             root: papers/mathematics/berge-triangle-spectrum
             project: lean
@@ -435,6 +438,10 @@ jobs:
             lake build Minty Minty.AxiomAudit 2>&1 | tee "${RUNNER_TEMP}/minty-build.log"
             python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/minty-build.log" --project . --output "${RUNNER_TEMP}/minty-axioms.json"
             python3 ../certificate/verify_minty_exact.py
+          elif [[ '${{ matrix.package }}' == 'q-permanent-finite' ]]; then
+            lake build QPermanentResearch QPermanentResearch.AxiomAudit 2>&1 | tee "${RUNNER_TEMP}/q-permanent-finite-build.log"
+            python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/q-permanent-finite-build.log" --project . --output "${RUNNER_TEMP}/q-permanent-finite-axioms.json"
+            python3 ../certificate/verify_certificate.py --recompute --primes 4
           elif [[ '${{ matrix.package }}' == 'berge-triangle-spectrum' ]]; then
             python3 ../verify.py --output "${RUNNER_TEMP}/berge-triangle-spectrum-verification"
           elif [[ '${{ matrix.package }}' == 'berge-path-saturation' ]]; then

@@ -1,0 +1,296 @@
+% Input-ready conventional-proof component.  Labels use the prefix sp:.
+% Requires the mean_field.tex component and its mf: labels.
+
+\section{A spectral obstruction with an explicit positive margin}
+\label{sp:section}
+
+The full score in Theorem~\ref{mf:criterion} admits an operator
+factorization that gives an obstruction in every fixed latent dimension.
+Throughout this section the rows and empirical measures satisfy the
+bounded-row hypotheses of Section~\ref{mf:setup}. Eigenvalues of the
+limiting covariance \(\Sigma\) are listed in decreasing order, with
+missing eigenvalues interpreted as zero. All analytic arguments in
+this section are conventional proofs.
+
+\begin{theorem}[At most two supercritical covariance directions]
+\label{sp:main}
+Let \(r\ge1\), \(t>0\), and \(\|v_{i,N}\|\le L\), and suppose
+\[
+ \Sigma_N=\frac1N V_N^TV_N\longrightarrow\Sigma,\qquad
+ t\lambda_1(\Sigma)>1,\qquad t\lambda_3(\Sigma)\le1.
+\]
+For \(A_N=I_N+(t/N)V_NV_N^T\), every sequence of row orders satisfies
+\begin{equation}\label{sp:positive-margin}
+ \liminf_{N\to\infty}
+ \frac{D_1(A_N)}{N(N-1)\per A_N}
+ \ge
+ \frac{\bigl(t\lambda_1(\Sigma)-1\bigr)^2}{64r\,t^2L^4}>0.
+\end{equation}
+In particular the endpoint derivative is eventually positive.
+The hypothesis includes the boundary \(t\lambda_3(\Sigma)=1\).
+\end{theorem}
+
+The nontrivial eigenvalues of \(A_N\) converge to
+\(1+t\lambda_j(\Sigma)\). Thus the theorem permits at most two
+limiting eigenvalues strictly above two, while requiring the largest
+one to exceed two. This is a statement about the specified bounded-row,
+fixed-rank mean-field families. Its conclusion does not assert a
+spectral criterion for unrestricted finite matrices.
+
+\subsection{The full score as a Hilbert--Schmidt norm}
+
+Fix an ordered limit \(\mu\) as in \eqref{mf:empirical} and a point
+\(h\in\mathbb C^r\). Use \(p=p_h\), \(q=q_h\), and \(m=m_h\)
+from \eqref{mf:p}--\eqref{mf:q}, and define the real symmetric matrix
+\begin{equation}\label{sp:covariance-resolvent}
+ S_h=t\int\frac{vv^T}{1+t|v\cdot h|^2}\,d\mu(x,v).
+\end{equation}
+Let \(H=L^2(\mu;\mathbb C)\). On this space define
+\[
+ (\mathsf Kf)(x,v)=\int\operatorname{sgn}(y-x)f(y,w)\,d\mu(y,w),
+ \qquad \mathsf Qf=\int qf\,d\mu\in\mathbb C^r,
+\]
+and set
+\[
+ \mathsf D=M_{\sqrt{1-p}},\qquad
+ \mathsf T:H\longrightarrow\mathbb C^r\oplus H,
+ \qquad \mathsf Tf=(\mathsf Qf,\mathsf Df).
+\]
+For an operator between these complex Hilbert spaces, write
+\(\mathsf T^{\mathrm{tr}}=J_H\mathsf T^*J_{\mathbb C^r\oplus H}\),
+where \(J\) is coordinatewise conjugation. This transpose has the same
+operator norm as \(\mathsf T\).
+
+\begin{lemma}[Exact factorization]\label{sp:factorization}
+The sign-kernel operator satisfies \(\|\mathsf K\|_{\mathrm{HS}}^2=1\),
+and the full score \eqref{mf:score} is
+\begin{equation}\label{sp:factorization-eq}
+ \mathcal R(h)=
+ \|\mathsf T\mathsf K\mathsf T^{\mathrm{tr}}\|_{\mathrm{HS}}^2.
+\end{equation}
+If \(S_h\preceq I_r\), then \(\mathsf T^*\mathsf T\preceq I_H\).
+\end{lemma}
+\begin{proof}
+The diagonal set \(x=y\) has \(\mu\otimes\mu\)-measure zero because
+the position marginal is Lebesgue. Squaring the sign kernel therefore
+gives Hilbert--Schmidt norm squared one.
+
+The old--old block \(\mathsf Q\mathsf K\mathsf Q^{\mathrm{tr}}\)
+has entries
+\[
+ \iint\operatorname{sgn}(y-x)q_a(x,v)q_b(y,w)\,d\mu(x,v)d\mu(y,w).
+\]
+It is the antisymmetric matrix of the ordered wedge \(W_h\). Its
+matrix Hilbert--Schmidt norm squared is \(2\|W_h\|^2\).
+Each of the two mixed blocks has squared norm
+\[
+ \int(1-p(v))\|2Q_h(x)-Q_h\|^2\,d\mu(x,v).
+\]
+The noise--noise block has kernel
+\(\sqrt{1-p(v)}\operatorname{sgn}(y-x)\sqrt{1-p(w)}\), so its
+squared norm is \((1-m)^2\). Adding the four block norms proves
+\eqref{sp:factorization-eq}, including the factor two in the mixed term.
+
+For the contraction assertion, put \(b=q/\sqrt p\) on \(\{p>0\}\)
+and \(b=0\) elsewhere. Since \(q=0\) on \(\{p=0\}\),
+\[
+ \int bb^*\,d\mu
+ =t\int_{\{p>0\}}(1-p)vv^T\,d\mu\preceq S_h.
+\]
+This is an inequality: rows with zero projection on \(h\) can still
+contribute to \(S_h\). Weighted Cauchy--Schwarz consequently gives
+\[
+ \|\mathsf Qf\|^2
+ =\left\|\int b\sqrt p\,f\,d\mu\right\|^2
+ \le\|S_h\|\int p|f|^2\,d\mu
+ \le\int p|f|^2\,d\mu.
+\]
+Adding \(\|\mathsf Df\|^2=\int(1-p)|f|^2\,d\mu\) proves the claim.
+\end{proof}
+
+\begin{lemma}[Quantitative contraction loss]\label{sp:gap}
+If \(S_h\preceq I_r\), then
+\begin{equation}\label{sp:gap-eq}
+ \mathcal R(h)\le1-\frac{m_h^2}{16r}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Put
+\(\mathsf P=I_H-\mathsf T^*\mathsf T=M_p-\mathsf Q^*\mathsf Q\succeq0\).
+The Hilbert--Schmidt ideal inequality and
+Lemma~\ref{sp:factorization} imply
+\begin{equation}\label{sp:trace-loss}
+ \mathcal R(h)
+ \le\|\mathsf T\mathsf K\|_{\mathrm{HS}}^2
+ =1-\operatorname{Tr}(\mathsf K^*\mathsf P\mathsf K).
+\end{equation}
+The conclusion follows immediately when \(m=0\), so assume \(m>0\).
+Choose an integer \(d>r\) and write \(w=m/d\). The cumulative
+\(p\)-mass is continuous, and \(0\le p\le1\). Hence \([0,1]\)
+can be partitioned into \(d\) consecutive intervals of \(p\)-mass
+exactly \(w\), each of length at least \(w\).
+
+On interval \(j\), let \(g_j\) rise linearly from zero to one over
+its first segment of length \(w/4\), remain one, and fall linearly to
+zero over its last segment of length \(w/4\). Extend it by zero and
+put \(f_j=-g'_j/2\). Values at the finitely many corners do not matter.
+Integration and the Lebesgue position marginal give
+\begin{equation}\label{sp:hats}
+ \mathsf Kf_j=g_j,\qquad
+ \|f_j\|^2=\frac2w,\qquad
+ \int p|g_j|^2\,d\mu\ge\frac w2.
+\end{equation}
+For the last bound, discard the two edge strips. Their total length
+is \(w/2\), so they contain at most \(w/2\) of \(p\)-mass; the
+remaining mass lies on the plateau.
+
+The disjoint supports make the \(f_j\) orthogonal. Their span \(E\)
+has dimension \(d\), and \eqref{sp:hats} gives, for every \(f\in E\),
+\[
+ \int p|\mathsf Kf|^2\,d\mu\ge\frac{w^2}{4}\|f\|^2.
+\]
+The subspace \(E\cap\ker(\mathsf Q\mathsf K)\) has dimension at
+least \(d-r\). Each unit vector in that subspace satisfies
+\[
+ \langle\mathsf K^*\mathsf P\mathsf Kf,f\rangle
+ =\int p|\mathsf Kf|^2\,d\mu-\|\mathsf Q\mathsf Kf\|^2
+ \ge\frac{w^2}{4}.
+\]
+Summing over \(d-r\) orthonormal vectors and using positivity of the
+trace-class operator gives
+\[
+ \operatorname{Tr}(\mathsf K^*\mathsf P\mathsf K)
+ \ge\frac{(d-r)m^2}{4d^2}.
+\]
+Take \(d=2r\) in \eqref{sp:trace-loss} to obtain
+\eqref{sp:gap-eq}.
+\end{proof}
+
+\subsection{Stationarity and the third covariance eigenvalue}
+
+\begin{lemma}[An inertia bound]\label{sp:inertia}
+Suppose \(h\) is a stationary point of \(\Phi\) and
+\(\operatorname{Re}h,\operatorname{Im}h\) are linearly independent.
+If \(S_h\) has \(u\) eigenvalues strictly greater than one, counted
+with multiplicity, then \(t\Sigma\) has at least \(u+2\) eigenvalues
+strictly greater than one.
+\end{lemma}
+\begin{proof}
+Differentiation gives \(S_hh=h\). Since \(S_h\) is real symmetric,
+it fixes the two-dimensional real space
+\(E=\operatorname{span}_{\mathbb R}(\operatorname{Re}h,
+\operatorname{Im}h)\) pointwise. Let \(U\) be the sum of its
+eigenspaces with eigenvalue greater than one. Then
+\(\dim U=u\) and \(U\perp E\).
+
+The covariance correction
+\begin{equation}\label{sp:correction}
+ C=t\Sigma-S_h=t\int p_h(v)vv^T\,d\mu\succeq0
+\end{equation}
+is strictly positive on every nonzero vector \(x\in E\). Indeed,
+\(x^TS_hx=\|x\|^2>0\) implies positive measure for
+\(\{v:v\cdot x\ne0\}\). On this set \(v\cdot h\ne0\), since
+\(x\) is a real linear combination of the real and imaginary parts
+of \(h\). Thus \(p_h(v)>0\) there and \(x^TCx>0\).
+
+For a nonzero \(x\in E\oplus U\), a nonzero \(U\)-component gives
+\(x^T(S_h-I)x>0\), while \(x^TCx\ge0\). If that component
+vanishes, \(x\in E\setminus\{0\}\) and the strict positivity
+comes from \(C\). Hence \(t\Sigma-I\) is positive definite on
+the \((u+2)\)-dimensional space \(E\oplus U\). The min--max
+principle proves the claimed strict eigenvalue count.
+\end{proof}
+
+\begin{lemma}\label{sp:maximizer-contraction}
+If \(t\lambda_3(\Sigma)\le1\), then \(S_h\preceq I_r\) at
+every global maximizer \(h\) of \(\Phi\).
+\end{lemma}
+\begin{proof}
+If \(h\) is real up to a global phase, rotate that phase to make it
+real. For every real vector \(z\), the imaginary variation gives
+\[
+ \frac12\left.\frac{d^2}{d\epsilon^2}
+       \Phi(h+i\epsilon z)\right|_{\epsilon=0}
+ =z^T(S_h-I)z\le0.
+\]
+Therefore \(S_h\preceq I\); this also covers \(h=0\).
+Otherwise the real and imaginary parts are independent. An eigenvalue
+of \(S_h\) above one would, by Lemma~\ref{sp:inertia}, force
+\(t\lambda_3(\Sigma)>1\), a contradiction.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{sp:main}]
+First suppose an ordered empirical limit exists. At every maximizer,
+Lemma~\ref{sp:maximizer-contraction} gives \(S_h\preceq I\).
+For a real unit top eigenvector \(z\) of \(\Sigma\),
+\[
+ 1\ge z^TS_hz
+ =t\lambda_1(\Sigma)-t\int p_h(v)(v\cdot z)^2\,d\mu
+ \ge t\lambda_1(\Sigma)-tL^2m_h.
+\]
+Consequently
+\(m_h\ge(t\lambda_1(\Sigma)-1)/(tL^2)>0\), uniformly over the
+maximizing set. Lemma~\ref{sp:gap}, Theorem~\ref{mf:criterion}, and
+the endpoint identity \eqref{mf:ratio} now give
+\eqref{sp:positive-margin}.
+
+For arbitrary changing orders, every subsequence has a further
+subsequence along which the ordered empirical measures converge
+weakly on the compact set \([0,1]\times\overline B(0,L)\).
+The limit has Lebesgue position marginal and covariance \(\Sigma\).
+The lower bound just proved is the same for every such limit, because
+it depends only on \(t,L,r,\lambda_1(\Sigma)\). A subsequence
+violating \eqref{sp:positive-margin} would contradict its own
+ordered-limit bound.
+\end{proof}
+
+\begin{corollary}[A necessary three-eigenvalue condition]
+\label{sp:negative-necessity}
+Under the bounded-row and covariance-convergence assumptions, if
+\[
+ \liminf_{N\to\infty}
+ \frac{D_1(A_N)}{N(N-1)\per A_N}<0,
+\]
+then \(t\lambda_3(\Sigma)>1\). Thus a negative leading normalized
+endpoint derivative requires at least three limiting nontrivial
+eigenvalues of \(A_N\) strictly above two.
+\end{corollary}
+\begin{proof}
+If \(t\lambda_1(\Sigma)>1\), this is the contrapositive of
+Theorem~\ref{sp:main}. If \(t\lambda_1(\Sigma)\le1\), then
+\(\log(1+s)\le s\), with strict inequality for \(s>0\), shows
+\(\Phi(h)<0\) for every \(h\ne0\). If the row projection vanishes
+almost everywhere, the same conclusion follows from
+\(\Phi(h)=-\|h\|^2\). Thus the maximizing set is \(\{0\}\) and
+\(\mathcal R(0)=1\). Theorem~\ref{mf:criterion} gives convergence
+of the displayed normalized derivative to zero, including the first
+critical boundary \(t\lambda_1(\Sigma)=1\). Compactness of ordered
+empirical subsequences gives the same conclusion for changing orders.
+\end{proof}
+
+\begin{corollary}[Latent rank at most two]\label{sp:rank-two}
+For real rows in \(\mathbb R^2\), if \(t\lambda_1(\Sigma)>1\),
+then every sequence of orders satisfies
+\[
+ \liminf_{N\to\infty}
+ \frac{D_1(A_N)}{N(N-1)\per A_N}
+ \ge\frac{\bigl(t\lambda_1(\Sigma)-1\bigr)^2}{128t^2L^4}>0.
+\]
+Together with Theorem~\ref{mf:subcritical} and
+Corollary~\ref{mf:arbitrary-orders}, this proves eventual endpoint
+increase in both noncritical regimes when \(\Sigma\ne0\).
+\end{corollary}
+
+\subsection{Scope and the rank-two literature}\label{sp:prior}
+
+The first critical boundary can still leave derivatives of smaller
+order than \(N^2\per A_N\); the sign of such derivatives is not
+decided here. A public manuscript of liqsweep
+\cite{Liqsweep2026} claims permanent-on-top for all real PSD matrices
+of rank at most two. If that claim is accepted, its hereditary form,
+closure under nonnegative diagonal addition, and the endpoint
+sign-Gram identity already imply finite-order endpoint nonnegativity
+for that class plus a nonnegative diagonal. The proofs above use no
+result from that manuscript. They give an explicit strict asymptotic
+margin and apply in arbitrary latent dimension through the number of
+supercritical covariance eigenvalues.

@@ -1,0 +1,97 @@
+\subsection{What the Lean development proves}
+
+The accompanying Lean project pins Lean~4.19.0 and Mathlib revision
+\begin{center}\small\nolinkurl{c44e0c8ee63ca166450922a373c7409c5d26b00b}.\end{center}
+It has $32$ proof modules. A separate audit module enumerates
+all $2068$ declarations whose defining module is one of them, including
+private and generated declarations, and computes their transitive axioms.
+Of these, $1319$ are auxiliary declarations that the Lean~4.19 code
+generator stores for executable definitions; beyond the standard axioms
+they may refer only to its placeholder \texttt{lcProof} and to one another,
+and no other declaration depends on them through an axiom. Each of the other $749$
+declarations is a theorem, definition or inductive construction, not an
+axiom, and depends only on
+\[
+ \{\texttt{propext},\ \texttt{Classical.choice},\ \texttt{Quot.sound}\}.
+\]
+There is no \texttt{sorry}, no added axiom and no native evaluation;
+in particular \texttt{Lean.ofReduceBool} does not occur.
+
+The development defines the inversion-weighted polynomial $P_q$ of an
+ordered matrix by its permutation sum, exactly as in
+Section~\ref{sec:endpoint}, and proves that $D_q$ is its derivative.
+It proves, for every real matrix $V$ with three columns, the identity
+$2D_1(VV^T)=\binom n2\|f\|_{\F}^2-\|G\|_{\F}^2$ of
+Lemma~\ref{lem:endpoint}, with both Fischer norms written as
+factorial-weighted coefficient sums of the actual product and wedge
+polynomials. It proves the four-row recurrence of
+Lemma~\ref{lem:recurrence}, the parity decomposition
+\eqref{eq:certP}--\eqref{eq:certT}, the semantics of an executable
+sparse integer implementation of the recurrence, and certificate
+soundness: for every list $L$ of integer types, if the integer test
+$T_U>\binom n2P$ computed from $L$ succeeds, then the Gram matrix of the
+row word of $L$ has $D_1<0$, and there are a rational matrix of the same
+order that is positive definite and rationals $0<q_1<q_2<1$ with
+$P_{q_2}<P_{q_1}$. The last step is a general reduction: a real
+positive-semidefinite matrix with negative endpoint derivative yields a
+rational positive-definite matrix and a rational interior decreasing
+pair. Identity padding is proved for the actual polynomial, together
+with preservation of positive definiteness and rationality; one fixed
+rational pair therefore serves every larger order.
+
+For the frozen input, the development defines the $\WitnessN$ ordered rows
+from the reversed type list, proves that the Gram matrix is positive
+semidefinite, and proves that the row matrix and the Gram matrix have
+rank exactly three. The rank proof uses the rows with zero-based indices
+$0,1,894$, whose matrix is
+\[
+ \begin{pmatrix}-3&2&20\\-3&-2&20\\3&2&20\end{pmatrix},
+ \qquad \det=480,
+\]
+through a lemma about the outermost type that avoids expanding all
+$224$ nested row constructors. This is a different minor from the one
+in Table~\ref{tab:witness}; both certify the same rank. Finally it
+proves that each of the following hypotheses implies the all-orders
+statement
+\[
+ \exists q_1,q_2\in\mathbb Q,\ 0<q_1<q_2<1,\quad
+ \forall N\ge\WitnessN\ \exists A_N\in\mathbb Q^{N\times N},\quad
+ A_N\succ0,\quad P_{q_2}(A_N)<P_{q_1}(A_N):
+\]
+the integer test above for the frozen type list, and the Fischer-norm
+inequality $\binom{\WitnessN}2\|f\|_{\F}^2<\|G\|_{\F}^2$ for the frozen rows.
+
+The project also contains scalar lemmas used by the asymptotic
+sections: bounds for the spherical Gini gain, logarithmic and radial
+errors, rational score margins and condition-number arithmetic for the
+families of Theorems~\ref{mf:20002}, \ref{mf:257} and~\ref{rf:228}, and
+two finite matrix steps of Section~\ref{sp:section}. These lemmas
+formalize the indicated inequalities only; they do not formalize the
+probabilistic constructions or limits that supply their hypotheses.
+
+\subsection{What is checked outside Lean}
+
+The evaluation of the integer test on the frozen input is not carried
+out in Lean. Kernel reduction of the $224$-step recurrence, whose
+polynomials have up to about $10^5$ coefficients of several thousand
+digits, is far beyond practical limits. An earlier stage of this work
+evaluated it with Lean's native code generator through
+\texttt{native\_decide}, which adds \texttt{Lean.ofReduceBool} and hence
+the compiler and runtime to the trusted base \cite{LeanNativeDocumentation};
+that module is not part of the present development. Instead, the
+hypothesis of the conditional theorems is checked by the two exact
+programs of Section~\ref{sec:certificate}: the integer implementation of
+the four-row recurrence, and the independent row-by-row modular
+computation, which determines $P$, $T_U$ and $T$ through the Chinese
+remainder theorem. The finite counterexample is therefore a formal
+reduction together with an exact computation; it is not a closed
+Lean theorem.
+
+The explicit matrix $A=MB+I_n$ and the explicit pair $q_1=1-2/Q$,
+$q_2=1-1/Q$ of Section~\ref{fr:section} have conventional proofs; the
+formal positive-definite conclusion is existential. The mean-field
+endpoint functional, Gaussian concentration, subcritical asymptotic,
+spherical saddle analysis, algebraic grids, operator factorization,
+spectral obstruction, random-order theorem and coherent-ordering
+theorem are conventional proofs as well. Their finite matrix and
+scalar ingredients are formalized only where stated above.

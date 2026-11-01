@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**52 manuscripts and research notes across 51 result families in mathematics, theoretical computer science, and mathematical physics.**
+**53 manuscripts and research notes across 52 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -21,6 +21,18 @@ Each family description links directly to its manuscripts and supporting materia
 **Original problem.** [Da Fonseca, 2010, Conjecture 1; 2018, Conjecture 2.](https://arxiv.org/abs/1804.02231)
 
 [Paper PDF](papers/mathematics/q-permanent/paper.pdf) · [LaTeX](papers/mathematics/q-permanent/paper.tex) · [Bibliography](papers/mathematics/q-permanent/references.bib) · [Citation](papers/mathematics/q-permanent/citation.bib) · [Formal statement and prior work](lean/docs/mathematics/q-permanent.md) · [Reproduction](papers/mathematics/q-permanent/verification/README.md)
+
+#### [Finite real counterexamples and spectral obstructions for q-permanent monotonicity](papers/mathematics/q-permanent-finite/manuscript.pdf)
+
+**Family:** `q-permanent-finite`.
+
+An explicit integer Gram matrix B of order 896 and rank three, with row coordinates at most 32 in absolute value, has a negative derivative of its inversion-weighted q-permanent at q = 1, by the exact integer comparison 1000U > 1001·C(896,2)·per(B). The integer matrix A = MB + I is positive definite, its q-permanent decreases between explicit rationals 0 < q₁ < q₂ < 1, and identity padding gives such counterexamples in every order N ≥ 896. This answers the real-symmetric case of the Bapat–Lal monotonicity conjecture on [−1,1] negatively and refutes da Fonseca's conjectures inside the original interval. For bounded-row fixed-rank perturbations I + (t/N)VVᵀ the endpoint derivative is eventually positive for every ordering when tλ_max(Σ) < 1 or tλ₃(Σ) ≤ 1 < tλ₁(Σ), and correlation counterexamples exist with condition number tending to 227.
+
+**Formal scope.** Lean 4.19.0 proves the endpoint identity for every real n × 3 matrix, soundness of the four-row integer certificate for every type list, the reduction of a negative endpoint to a rational positive-definite matrix with rational 0 < q₁ < q₂ < 1, identity padding, rank three of the frozen witness and the all-orders statement from its certificate inequality; a strict audit covers all 749 project declarations other than code-generation auxiliaries, with no native evaluation. The finite comparison for the 896-row witness is checked outside Lean by two independent exact programs. The explicit regularization and the asymptotic and spectral theorems are conventional.
+
+**Prior work.** [Bapat and Lal, Inequalities for the q-permanent, 1994.](https://doi.org/10.1016/0024-3795(94)90497-9) · [da Fonseca, 2010, Conjecture 1.](https://doi.org/10.1016/j.laa.2009.10.036) · [da Fonseca, 2018, Conjecture 2.](https://arxiv.org/abs/1804.02231) · [Kitamura, Lean disproof of the complex Hermitian case.](https://github.com/KitaKen1/bapat-lal-q-permanent-lean/tree/4200da4fc1a132d69c23fb877795b5b72089544b) · [MI-18 problem record.](https://github.com/ajt60gaibb/OpenProblemsInNLA/blob/main/matrix-inequalities-and-norms/MI-18/README.md)
+
+[Paper PDF](papers/mathematics/q-permanent-finite/manuscript.pdf) · [LaTeX](papers/mathematics/q-permanent-finite/manuscript.tex) · [Proof and reproduction](papers/mathematics/q-permanent-finite/README.md) · [Citation](papers/mathematics/q-permanent-finite/CITATION.bib)
 
 #### [Gyires's permanent inequality for structured matrices](papers/mathematics/gyires/paper.pdf)
 

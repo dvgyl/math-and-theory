@@ -1936,6 +1936,57 @@
         "lean/support-gap/RootGapFibers.lean": "696cdbcda192d59e46ea51d7158b26deb719263aa38ae94ccf3c4123085ecbdb"
       },
       "integrity_manifests": []
+    },
+    "q-permanent-finite": {
+      "root": "papers/mathematics/q-permanent-finite",
+      "release_manifest_sha256": "48df625ce124ac00a459e933654e4ac8fe166f83779d869ed54a1ce5455803c8",
+      "formal_scope": "Lean 4.19.0 proves, for the inversion-weighted q-permanent of ordered real matrices, the endpoint identity 2D₁(VVᵀ) = C(n,2)‖f‖² − ‖G‖² for every real n × 3 matrix, soundness of the four-row integer certificate for every type list, the reduction of a negative endpoint to a rational positive-definite matrix with rational 0 < q₁ < q₂ < 1, identity padding, rank three of the frozen witness and the all-orders statement from its certificate inequality; a strict audit covers all 749 project declarations other than code-generation auxiliaries, with no native evaluation. The finite comparison for the 896-row witness is checked outside Lean by two independent exact programs, one of which determines per(B) and the wedge norms through the Chinese remainder theorem. The explicit regularization and the asymptotic and spectral theorems are conventional.",
+      "proof_roots": [
+        {
+          "path": "lean",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "lean/QPermanentResearch.lean": "0379244e83e40b253b6d888fe8ca40065876fc0addb22edc45fea32e31bd49de",
+        "lean/QPermanentResearch/Algebra.lean": "4270875c8e7d9e6cc74480d275bdf0e5ad0fbbf61120494099241939b374c7ac",
+        "lean/QPermanentResearch/AxiomAudit.lean": "e8a2938c67ad4b60d9272c796af86b865bfe1d957c952b1ed7384c196ef9817d",
+        "lean/QPermanentResearch/Basic.lean": "63e8e153c58b8ed93c521fc61f92daa6bda0508583ffdda10c11b24ec25b5390",
+        "lean/QPermanentResearch/BlockConvexity.lean": "c20225a0a96c527e00cee048f44cbc7545e939784f2156c71c68b609a763f4c2",
+        "lean/QPermanentResearch/Complement.lean": "c777decb4d3c760e689355e342a4d891a6fad31b2d790423f9292a717e5eeecd",
+        "lean/QPermanentResearch/ComplexPotentialGap.lean": "0c26584a5029b95b6767e783966b44e8fe35ca1e5918e6c3d17b4f079f643e6f",
+        "lean/QPermanentResearch/D2Compressed.lean": "1e4b67448a54129403636736364ec007588dbefb68951d9659b8672c4e134a75",
+        "lean/QPermanentResearch/D2Orbit.lean": "c168da3a43aacf8845d400ba1b1ff2ff9096668491208eec295561fc14802d8b",
+        "lean/QPermanentResearch/D2Parity.lean": "9af8e0e473c8f566dd16ce527cb7dff8c9d4c0c264fa4683bc0ba1a20b32f8ca",
+        "lean/QPermanentResearch/EndpointReduction.lean": "0bd33a376511b6631114b64c120fdc9427288641020db08a15a513dc7bd7fe3a",
+        "lean/QPermanentResearch/ExplicitConstants.lean": "bdc9fe19cde5a180c78c5e186fe88e1ada1bbf12616581d65356858bb3494542",
+        "lean/QPermanentResearch/Fischer.lean": "f3e253cb7b99a32837c0ec89a550d7d79bfe4ecd5464ff37f1de441992508ace",
+        "lean/QPermanentResearch/FixedPlaneGeometry.lean": "6a119cc791471c8a722d5387aadf26ea8e7f019b36fa917e3f7b40b70d76db80",
+        "lean/QPermanentResearch/FourSphereConstants.lean": "29a783f08242d42b8e65175b0216ecb343380cd3f5656842263beeef49d0f4fd",
+        "lean/QPermanentResearch/FourSphereRefinement.lean": "6900db57448214eea085012c90904fbc2a86745e6e92509202f2aed5ee056335",
+        "lean/QPermanentResearch/IdentityPadding.lean": "d0f7409d6910d32d3166366da047656ae7438308925e72ba8ffeeabd46982060",
+        "lean/QPermanentResearch/IntegerCertificate.lean": "aadcfadf29e03fe3b7b6e11a73338dbe8af6be052e1ed851e3d48ab691903b68",
+        "lean/QPermanentResearch/IntegerD2.lean": "cc8527a01bc41260b429e1585380c332287e5220b6f5df427ddccdf492d7321f",
+        "lean/QPermanentResearch/IntegerNorm.lean": "e3927d2a9a03004df07d0e4d9b1db2e5c6aa278fc3b31ea5e2d4e00670287361",
+        "lean/QPermanentResearch/IntegerPolynomial.lean": "d2d74c3600887edb576b4c5287ba04a3ad5fc73b49f9684b14bfecc89762a49e",
+        "lean/QPermanentResearch/JensenGap.lean": "cb5a14a9b6c7e292e79a91528572db2287538d2d85c8945edcb9716c04650090",
+        "lean/QPermanentResearch/KernelExamples.lean": "1f422bd120857f3366db865152879866d51e5027fd2ea8fc644c3b26f8d78426",
+        "lean/QPermanentResearch/MeanFieldConstants.lean": "2b3cfff1bd97f245a1ee096ac621ea79b3cd4902d844609c7081fc5741ea9ede",
+        "lean/QPermanentResearch/Normalization.lean": "4576d97aacdf07cb31de1fc7fb0585ec353f3dd1ff93e8ff90ab78b80d107bb1",
+        "lean/QPermanentResearch/PairMinorIdentity.lean": "a76f0ee76fa68c401275effe531a690d8da4de312db0ebf35fc661cdb759993c",
+        "lean/QPermanentResearch/PolynomialBridge.lean": "1e9e8b709523273481ffc80d16105fdb09294c4bf112fb67bb24ad045e2daae5",
+        "lean/QPermanentResearch/PotentialGap.lean": "ad0dee1a6a1682c2ed0ca703348ca8da7eab1bb6f3a27fc55232eec160a6385f",
+        "lean/QPermanentResearch/PrincipalBlockLift.lean": "ad476e56024f6c80eacc9b68f885914aa0b39f192aa409d17ac4a461d33dd4bc",
+        "lean/QPermanentResearch/RationalReduction.lean": "2adb37e764ab7ad59162e0a6a1063c1592c8b19a911b4f24f1fadcfcfa285b1d",
+        "lean/QPermanentResearch/RowMinorRank.lean": "4c859c7c0be5bbd733383f706da32248c5cc319f05265ec96311b1aaafe343c9",
+        "lean/QPermanentResearch/WedgeNorm.lean": "df9e8d368c1579da4f61a579213ece904a327115f2a5e80c8eb6ae73995d60e4",
+        "lean/QPermanentResearch/WedgePolynomial.lean": "b1a2316759efe29793f5c6a5ce36a5d716fae6710efac877c4cdb93e62cb31ca",
+        "lean/QPermanentResearch/Witness896.lean": "fb3c5f7db291933cc3e0f3487d4f7d9f151193b0308f3b90f102d6173a980db0"
+      },
+      "integrity_manifests": []
     }
   }
 }

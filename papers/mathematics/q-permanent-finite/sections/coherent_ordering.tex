@@ -1,0 +1,181 @@
+% Input after finite_regularization.tex and before mean_field.tex.
+% Conventional proof; labels use co:. No later-section dependencies.
+
+\section{A one-parameter reduction for coherent ordering}
+\label{co:section}
+
+The four-row symmetry also permits an exact ordering theorem for a
+single coherent evaluation. This theorem concerns the actual exterior
+polynomial, including its correction terms.
+
+Take \(m\) triples \((a_j,b_j,c_j)\) of nonnegative real numbers,
+with \(a_j^2+b_j^2>0\) for each triple, and assume that at least one
+triple has \(a_jb_jc_j>0\). An order of the triples defines a word
+of \(4m\) rows by starting with the empty word and successively
+prepending \((-a_j,b_j,c_j),(-a_j,-b_j,c_j)\) and appending
+\((a_j,b_j,c_j),(a_j,-b_j,c_j)\). Indices \(j=0,\ldots,m-1\)
+refer to this inner-to-outer order. For its rows \(v_i\), set
+\[
+ f(z)=\prod_i(v_i\cdot z),\qquad
+ G_{ab}(z)=\sum_{i<j}(v_{ia}v_{jb}-v_{ib}v_{ja})
+                         \prod_{h\ne i,j}(v_h\cdot z),
+ \quad 0\le a<b\le2.
+\]
+
+Fix \(s>0\), put \(z_s=(1,is,0)\), and define
+\begin{align*}
+ S_j&=a_j^2+s^2b_j^2,&
+ t_j&=\frac{a_jc_j}{S_j},&
+ d_j&=\frac{a_j^2-s^2b_j^2}{S_j},&
+ K_s&=\sum_j\frac{b_jc_j}{S_j},\\
+ A&=\sum_j(2j+1)t_j,&
+ B&=\sum_jt_j\left(d_j+2\sum_{\ell<j}d_\ell\right).
+\end{align*}
+The quantities \(A,B\) depend on the order; \(K_s\) does not.
+
+\begin{proposition}[Exact coherent evaluation]\label{co:evaluation}
+One has \(f(z_s)=\prod_jS_j^2>0\), and
+\begin{equation}\label{co:components}
+ \frac{G_{01}(z_s)}{f(z_s)}=0,\qquad
+ \frac{G_{02}(z_s)}{f(z_s)}=4(A+B),\qquad
+ \frac{G_{12}(z_s)}{f(z_s)}=4K_s+\frac{4i}{s}(B-A).
+\end{equation}
+Consequently
+\begin{equation}\label{co:score}
+ \mathcal E_s:=
+ \frac{\sum_{a<b}|G_{ab}(z_s)|^2}{|f(z_s)|^2}
+ =16\left((A+B)^2+\frac{(B-A)^2}{s^2}+K_s^2\right).
+\end{equation}
+At the unit point \(z_s/\sqrt{1+s^2}\), the corresponding ratio is
+\((1+s^2)^2\mathcal E_s\).
+\end{proposition}
+\begin{proof}
+The polynomial identities in the four-row recurrence hold for real
+inputs as well as integers. Evaluate the squared variables at
+\((X,Y,Z)=(1,-s^2,0)\). For the orbit factor \(p_j\),
+\[
+ p_j=S_j^2,\qquad
+ \frac{(p_j)_X-s^2(p_j)_Y}{p_j}=2,\qquad
+ \frac{(p_j)_X+s^2(p_j)_Y}{p_j}=2d_j.
+\]
+Thus, for the product \(F\) of the first \(j\) orbit factors,
+\[
+ \frac{F_X-s^2F_Y}{F}=2j,\qquad
+ \frac{F_X+s^2F_Y}{F}=2\sum_{\ell<j}d_\ell.
+\]
+Substituting in \eqref{eq:rec02}--\eqref{eq:rec12} gives the
+increments of the normalized ratios
+\begin{align*}
+ \Delta\frac{U_{02}-s^2U_{12}}F&=8(2j+1)t_j,\\
+ \Delta\frac{U_{02}+s^2U_{12}}F
+ &=8t_j\left(d_j+2\sum_{\ell<j}d_\ell\right).
+\end{align*}
+Equation~\eqref{eq:recV12} gives
+\(\Delta(V_{12}/F)=4b_jc_j/S_j\).
+Summing from the zero initial exterior polynomials and using
+\(G_{02}=U_{02}\), \(G_{12}=xyU_{12}+V_{12}\), and
+\(G_{01}=yzU_{01}+xzV_{01}\) proves \eqref{co:components}.
+Its real and imaginary parts give \eqref{co:score}. Finally \(G\)
+has degree two less than \(f\), which proves the unit-point scaling.
+\end{proof}
+
+\begin{theorem}[One-parameter sorting]\label{co:sorting}
+For every fixed \(s>0\), an ordering maximizing \(\mathcal E_s\)
+is obtained by sorting the triples in nondecreasing order of
+\begin{equation}\label{co:keys}
+ \frac{a_jc_j}{a_j^2+\kappa b_j^2}
+\end{equation}
+for some \(\kappa>0\), with suitable ordering among ties. The
+family of sorts is independent of \(s\); its maximizing parameter
+may depend on \(s\).
+\end{theorem}
+\begin{proof}
+Since \(t_j\ge0\) and \(|d_j|\le1\), one has \(|B|\le A\).
+The triple with all entries positive has \(t_j>0\) and
+\(|d_j|<1\), so its contribution makes \(|B|<A\) in every order.
+The order-independent term \(K_s^2\) can be dropped when maximizing.
+Write
+\[
+ Q(A,B)=(A+B)^2+s^{-2}(B-A)^2
+       =D(A^2+B^2)+2CAB,
+ \qquad D=1+s^{-2},\quad C=1-s^{-2}.
+\]
+Here \(D>|C|\), so \(Q\) is positive definite.
+
+Choose an order maximizing \(Q\), and denote its pair by \((A,B)\).
+It also maximizes the linear functional \(A'+\lambda B'\), where
+\begin{equation}\label{co:lambda}
+ \lambda=\frac{CA+DB}{DA+CB}\in(-1,1).
+\end{equation}
+Indeed, \(DA+CB>0\), and a strict increase in this functional
+would strictly increase \(Q\) by its quadratic expansion.
+Moreover
+\[
+ (DA+CB)\mathbin\pm(CA+DB)=(D\pm C)(A\pm B)>0,
+\]
+which proves the strict parameter bounds in \eqref{co:lambda}.
+
+If adjacent types \(i,j\) occur in that order, swapping them changes
+\(A+\lambda B\) by
+\[
+ 2\bigl((1+\lambda d_j)t_i-(1+\lambda d_i)t_j\bigr).
+\]
+Both factors \(1+\lambda d_j\) are positive. A strict inversion
+in the keys \(t_j/(1+\lambda d_j)\) would therefore improve the
+functional, contradicting maximality. The order is sorted in those
+keys, and
+\[
+ \frac{t_j}{1+\lambda d_j}
+ =\frac1{1+\lambda}
+   \frac{a_jc_j}
+        {a_j^2+s^2\frac{1-\lambda}{1+\lambda}b_j^2}.
+\]
+Taking \(\kappa=s^2(1-\lambda)/(1+\lambda)>0\) proves the theorem.
+\end{proof}
+
+\begin{corollary}[A finite sweep, including ties]\label{co:sweep}
+At most \(\binom m2+1\) interval sorts suffice to attain the global
+maximum in Theorem~\ref{co:sorting}. If the row coordinates and \(s^2\)
+are rational, the sweep and the score comparisons can be carried out
+with exact rational arithmetic.
+\end{corollary}
+\begin{proof}
+Put \(u_j=a_jc_j\). Two keys that are not identical as functions
+of \(\kappa\) cross at most once for \(\kappa>0\), at
+\[
+ \kappa=\frac{u_j a_i^2-u_i a_j^2}
+                  {u_i b_j^2-u_j b_i^2},
+\]
+provided the denominator is nonzero and the quotient is positive.
+These crossings partition \((0,\infty)\) into at most
+\(\binom m2+1\) open intervals. Sort once at any parameter in
+each interval.
+
+To check that crossing ties cannot hide a larger value, let \(X=(A,B)\)
+be a global maximizer and use its gradient functional from
+\eqref{co:lambda}. Any other ordering \(Y\) tied for that functional
+must have \(Y=X\): otherwise the quadratic expansion gives
+\(Q(Y)=Q(X)+Q(Y-X)>Q(X)\).
+There are finitely many orders. A sufficiently small one-sided
+perturbation of the parameter cannot promote an order whose supporting
+value was strictly smaller, so it selects a tied maximizer with the
+same \((A,B)\). This covers simultaneous crossings as well.
+Keys identical for all parameters have zero adjacent-swap increment
+in both \(A\) and \(B\), so arbitrary tie-breaking within those
+classes does not change the score. All crossing parameters, keys, and
+values of \(Q\) are rational under the stated assumptions.
+\end{proof}
+
+Individual zero values of \(a_j\), \(b_j\), or \(c_j\) are permitted;
+the assumption of one strictly positive triple ensures \(A>|B|\) and
+keeps the supporting parameter interior. If all \(t_j=0\), then
+\(A=B=0\) and \(\mathcal E_s=16K_s^2\) is order-independent; this
+trivial case does not need a supporting parameter. Boundary-only
+systems with \(A>0\) but no strictly positive triple are outside the
+sorting theorem as stated.
+
+The optimization proved here is at one specified complex point.
+A larger value of \(\mathcal E_s\) does not by itself imply a larger
+coefficient-square Fischer norm or a negative endpoint derivative.
+The finite signs elsewhere in this paper are certified separately by
+their exact integer Fischer-norm computations.

@@ -1,0 +1,196 @@
+% Input-ready conventional-proof component.
+% Requires amsmath, amssymb, amsthm and theorem/lemma/corollary environments.
+% This component is independent of the version of the finite witness data.
+% All labels in this file have the prefix fr:.
+\providecommand{\per}{\operatorname{per}}
+
+\section{An explicit integer positive-definite counterexample from a finite certificate}
+\label{fr:section}
+
+This section converts a finite positive-semidefinite endpoint certificate
+with a specified margin into an integer positive-definite matrix and
+two specified rational parameters in \((0,1)\). The estimates below are
+conventional proofs; their explicit numerical regularization is separate
+from the scope of the Lean certificates reported elsewhere.
+
+For an ordered \(k\)-by-\(k\) positive-semidefinite matrix \(C\), write
+\(D_1(C)=P'_1(C)\), \(c_k=\binom{k}{2}\), and
+\[
+ T(C)=\left\|\sum_{i<j}(v_i\wedge v_j)
+                    \prod_{a\ne i,j}(v_a\cdot z)\right\|_{\mathrm F}^2,
+ \qquad C=(v_i\cdot v_j)_{i,j}.
+\]
+Thus \(2D_1(C)=c_k\per C-T(C)\). The empty permanent is one.
+For \(I\subseteq[n]\), let \(D_{\rm emb}(B[I])\) denote the derivative
+obtained by allowing permutations on \(I\) and fixing every index in
+\([n]\setminus I\), with inversions counted in the original order on
+\([n]\).
+
+\begin{lemma}[A uniform bound for embedded principal derivatives]
+\label{fr:embedded-bound}
+Let \(B\) be a real positive-semidefinite matrix of order \(n\ge2\),
+let \(I\subseteq[n]\), and put \(k=|I|\), \(j=n-k\). Then
+\begin{equation}\label{fr:embedded-estimate}
+ |D_{\rm emb}(B[I])|
+ \le \left\{\frac{c_k+c_k^2}{2}+\frac{jk^2}{2}\right\}\per B[I]
+ \le n^4\per B[I].
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For \(C=B[I]\), define the permanental cofactor matrix
+\[
+ F_{ab}(C)=c_{ab}\per C(a\mid b),
+\]
+where \(C(a\mid b)\) deletes row \(a\) and column \(b\).
+The matrix \((\per C(a\mid b))_{a,b}\) is a Gram matrix of the
+products of all but one row form, in the Fischer inner product.
+The Schur product theorem therefore shows that \(F(C)\) is positive
+semidefinite. The singleton case of Lieb's permanent inequality
+\cite{Lieb1966} gives
+\(F_{aa}(C)\le\per C\), and hence
+\begin{equation}\label{fr:F-bound}
+ |F_{ab}(C)|\le\per C.
+\end{equation}
+For each fixed index \(u\notin I\), write
+\[
+ \operatorname{cut}_{u}F(C)
+   =\sum_{\substack{a,b\in I\\a<u<b}}F_{ab}(C),
+\]
+with the labels on \(I\) inherited from \([n]\). Inserting the fixed
+index \(u\) contributes twice the number of active indices mapped from
+its left to its right. Summing over permutations gives the exact identity
+\begin{equation}\label{fr:padding}
+ D_{\rm emb}(C)=D_1(C)+2\sum_{u\notin I}\operatorname{cut}_{u}F(C).
+\end{equation}
+There are at most \(k^2/4\) pairs crossing each cut. Thus
+\eqref{fr:F-bound} bounds the second term in \eqref{fr:padding} in
+absolute value by \(jk^2\per C/2\).
+
+Each of the \(c_k\) summands in the exterior polynomial defining
+\(T(C)\) has squared Fischer norm
+\[
+ (c_{aa}c_{bb}-c_{ab}^2)\per C[\{a,b\}^c]
+ \le c_{aa}c_{bb}\per C[\{a,b\}^c]\le\per C.
+\]
+The final inequality follows by applying the singleton form of Lieb's
+inequality twice. The triangle inequality, or Cauchy--Schwarz, now gives
+\(T(C)\le c_k^2\per C\). Therefore
+\[
+ |D_1(C)|\le\frac{c_k+c_k^2}{2}\per C.
+\]
+The same statement holds for \(k=0,1\), when both sides involving the
+derivative vanish. These estimates prove the first inequality in
+\eqref{fr:embedded-estimate}. For \(k\ge1\),
+\((c_k+c_k^2)/2\le k^4/2\), while
+\(jk^2/2\le n^3/2\le n^4/2\). This proves the second inequality;
+the case \(k=0\) is immediate.
+\end{proof}
+
+\begin{theorem}[Explicit integer regularization]
+\label{fr:integer-regularization}
+Let \(n\ge6\), and let \(B\) be an integer real positive-semidefinite
+matrix of order \(n\) whose diagonal entries are at least one. Suppose
+that
+\begin{equation}\label{fr:input-margin}
+ T(B)>\frac{1001}{1000}\binom n2\per B.
+\end{equation}
+Set
+\begin{equation}\label{fr:explicit-matrix}
+ M=10^4n^3,\qquad A=MB+I_n,\qquad
+ H_0=\max_i b_{ii},\qquad H=MH_0+1.
+\end{equation}
+Then \(A\) is an integer positive-definite matrix, its entries have
+absolute value at most \(H\), and
+\begin{equation}\label{fr:retained-margin}
+ D_1(A)<-M^n\frac{n(n-5)}{20000}\per B<0.
+\end{equation}
+Its least eigenvalue is at least one, and is exactly one when \(B\)
+is singular. If \(B\) has rank \(r<n\), then precisely \(n-r\)
+eigenvalues of \(A\) equal one.
+\end{theorem}
+
+\begin{proof}
+Put \(\eta=M^{-1}\). Expansion in the diagonal additions gives
+\begin{equation}\label{fr:diagonal-expansion}
+ D_1(B+\eta I_n)
+ =D_1(B)+\sum_{\varnothing\ne J\subseteq[n]}
+       \eta^{|J|}D_{\rm emb}(B[J^c]).
+\end{equation}
+The diagonal assumptions and the iterated singleton form of Lieb's
+inequality imply
+\(\per B[J^c]\le\per B\) for every \(J\). They also imply
+\(\per B\ge\prod_i b_{ii}\ge1\). By
+Lemma~\ref{fr:embedded-bound}, the sum in
+\eqref{fr:diagonal-expansion} has absolute value at most
+\[
+ n^4\per B\bigl((1+\eta)^n-1\bigr).
+\]
+Since \(n\eta\le1/2\), the inequalities
+\(\binom nj\le n^j\) and the geometric-series formula give
+\[
+ (1+\eta)^n-1
+ \le\sum_{j=1}^\infty(n\eta)^j
+ =\frac{n\eta}{1-n\eta}\le2n\eta.
+\]
+The perturbation in the derivative is consequently at most
+\(2n^5\eta\per B=n^2\per B/5000\). On the other hand,
+\eqref{fr:input-margin} and the endpoint identity imply
+\[
+ D_1(B)<-\frac{n(n-1)}{4000}\per B.
+\]
+Combining the last two estimates yields
+\[
+ D_1(B+\eta I_n)
+ <-\left(\frac{n(n-1)}{4000}-\frac{n^2}{5000}\right)\per B
+ =-\frac{n(n-5)}{20000}\per B<0.
+\]
+The derivative is homogeneous of degree \(n\) in the matrix entries,
+so multiplication by \(M^n\) gives \eqref{fr:retained-margin}.
+The remaining assertions follow from \(A=MB+I_n\), from the spectral
+theorem, and from
+\(|b_{ij}|\le\sqrt{b_{ii}b_{jj}}\le H_0\).
+\end{proof}
+
+A certificate may establish \eqref{fr:input-margin} by computing any
+explicit lower bound \(U\le T(B)\) and checking the integer inequality
+\(1000U>1001\binom n2\per B\). In particular, a sum of selected mutually
+orthogonal parity-component norms is sufficient. The values of \(n\)
+and \(H_0\) are read from the particular frozen row file; none of the
+preceding estimates depends on a choice between witness versions.
+
+\begin{corollary}[Specified rational points of strict decrease]
+\label{fr:rational-interior}
+Under the hypotheses of Theorem~\ref{fr:integer-regularization}, define
+the positive integer
+\begin{equation}\label{fr:Q}
+ Q=4n!\,n^4H^n,
+ \qquad q_1=1-\frac2Q,\qquad q_2=1-\frac1Q.
+\end{equation}
+Then \(0<q_1<q_2<1\), and
+\begin{equation}\label{fr:strict-interior}
+ P'_{q}(A)\le-\frac12\quad(q_1\le q\le1),
+ \qquad P_{q_1}(A)>P_{q_2}(A).
+\end{equation}
+Thus the integer matrix \(A\) and the two rational parameters in
+\eqref{fr:Q} form a fully specified positive-definite counterexample.
+\end{corollary}
+
+\begin{proof}
+The polynomial \(P_q(A)\) has integer coefficients. Since
+\(D_1(A)<0\), it follows that \(D_1(A)\le-1\).
+For \(0\le q\le1\), termwise differentiation of the permutation
+expansion and \(\operatorname{inv}(\sigma)\le\binom n2\le n^2\)
+give
+\[
+ |P''_q(A)|\le n!\,n^4H^n=\frac Q4.
+\]
+Terms with fewer than two inversions contribute zero, so this bound
+also holds at \(q=0\). For \(q\in[1-2/Q,1]\), the fundamental
+theorem of calculus gives
+\[
+ P'_q(A)\le P'_1(A)+\frac Q4(1-q)\le-1+\frac12=-\frac12.
+\]
+Since \(Q>2\), the indicated interval lies in \((0,1]\), and
+integration between \(q_1\) and \(q_2\) proves the strict inequality.
+\end{proof}

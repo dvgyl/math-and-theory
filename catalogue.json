@@ -69,6 +69,67 @@
       }
     },
     {
+      "id": "q-permanent-finite",
+      "discipline": "Mathematics",
+      "area": "Matrix theory",
+      "title": "Finite real counterexamples and spectral obstructions for q-permanent monotonicity",
+      "kind": "Real-symmetric counterexample with an exact certificate, a Lean reduction and asymptotic obstructions",
+      "significance_rank": 75,
+      "keywords": [
+        "q-permanent",
+        "Bapat–Lal conjecture",
+        "permanent monotonicity",
+        "positive definite matrices",
+        "Da Fonseca conjecture",
+        "exact certificate",
+        "matrix permanents"
+      ],
+      "summary": "An explicit integer Gram matrix B of order 896 and rank three, with row coordinates at most 32 in absolute value, has a negative derivative of its inversion-weighted q-permanent at q = 1, by the exact integer comparison 1000U > 1001·C(896,2)·per(B). The integer matrix A = MB + I is positive definite, its q-permanent decreases between explicit rationals 0 < q₁ < q₂ < 1, and identity padding gives such counterexamples in every order N ≥ 896. This answers the real-symmetric case of the Bapat–Lal monotonicity conjecture on [−1,1] negatively and refutes da Fonseca's conjectures inside the original interval. For bounded-row fixed-rank perturbations I + (t/N)VVᵀ the endpoint derivative is eventually positive for every ordering when tλ_max(Σ) < 1 or tλ₃(Σ) ≤ 1 < tλ₁(Σ), and correlation counterexamples exist with condition number tending to 227.",
+      "formal_scope": "Lean 4.19.0 proves, for the inversion-weighted q-permanent of ordered real matrices, the endpoint identity 2D₁(VVᵀ) = C(n,2)‖f‖² − ‖G‖² for every real n × 3 matrix, soundness of the four-row integer certificate for every type list, the reduction of a negative endpoint to a rational positive-definite matrix with rational 0 < q₁ < q₂ < 1, identity padding, rank three of the frozen witness and the all-orders statement from its certificate inequality; a strict audit covers all 749 project declarations other than code-generation auxiliaries, with no native evaluation. The finite comparison for the 896-row witness is checked outside Lean by two independent exact programs, one of which determines per(B) and the wedge norms through the Chinese remainder theorem. The explicit regularization and the asymptotic and spectral theorems are conventional.",
+      "source": "Bapat and Lal, Inequalities for the q-permanent, Linear Algebra Appl. 197–198 (1994); da Fonseca, Linear Algebra Appl. 432 (2010), Conjecture 1, and arXiv:1804.02231 (2018), Conjecture 2. Kitamura's Lean formalization disproved the complex Hermitian case; the public problem record MI-18 lists the real-symmetric case as unsettled. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/q-permanent-finite/README.md",
+      "paper": "papers/mathematics/q-permanent-finite/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/mathematics/q-permanent-finite"
+      },
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Real-symmetric case of the Bapat–Lal q-permanent monotonicity conjecture on [−1,1]",
+        "posed_by": "Bapat and Lal, Linear Algebra Appl. 197–198 (1994); extended by da Fonseca (2010, Conjecture 1; 2018, Conjecture 2)",
+        "problem_url": "https://doi.org/10.1016/0024-3795(94)90497-9",
+        "status": "Disproved for real symmetric positive-definite matrices",
+        "claim": "An explicit integer positive-definite matrix of order 896 has a q-permanent that strictly decreases between two explicit rationals in (0,1); counterexamples exist in every order N ≥ 896.",
+        "title_tag": "Bapat–Lal q-Permanent Conjecture: A Real Symmetric Counterexample",
+        "description": "An explicit 896×896 integer positive-definite matrix whose q-permanent decreases inside (0,1) settles the real-symmetric Bapat–Lal conjecture negatively.",
+        "queries": [
+          "Bapat-Lal q-permanent conjecture real symmetric",
+          "q-permanent monotonicity real counterexample",
+          "MI-18 Bapat q-permanent monotonicity",
+          "q-permanent decreasing positive definite matrix (0,1)",
+          "inversion-weighted permanent derivative at q = 1",
+          "da Fonseca mu-permanent conjecture interval [-1,1]",
+          "Bapat q-permanent conjecture counterexample real matrix",
+          "q-permanent Gram matrix rank three counterexample"
+        ],
+        "faq": [
+          [
+            "Is the Bapat–Lal q-permanent conjecture true for real symmetric matrices?",
+            "No. An explicit integer Gram matrix B of order 896 and rank three has a negative q-permanent derivative at q = 1 by an exact integer comparison; A = MB + I is positive definite and P_{q₂}(A) < P_{q₁}(A) for explicit rationals 0 < q₁ < q₂ < 1. Adding an identity block gives counterexamples in every order N ≥ 896. Kitamura had earlier disproved the complex Hermitian case with a matrix of order 144."
+          ],
+          [
+            "How does this relate to da Fonseca's conjectures?",
+            "Da Fonseca's 2010 Conjecture 1 and 2018 Conjecture 2 assert monotonicity for real symmetric positive-definite matrices on intervals that contain [−1, ∞). The companion preprint refuted them for q > 1; this result gives failures inside (0,1). The minimum counterexample order and the negative half-interval remain open."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Partly. Lean 4 proves the endpoint identity, the soundness of the integer certificate, the reduction to rational positive-definite counterexamples, identity padding and rank three, using only the standard axioms and no native evaluation. The final integer comparison for the 896-row input is checked by two independent exact programs, not in Lean; the explicit regularization and the asymptotic theorems are conventional."
+          ]
+        ]
+      },
+      "standout": true
+    },
+    {
       "id": "gyires-circulant-five",
       "discipline": "Mathematics",
       "area": "Matrix theory",

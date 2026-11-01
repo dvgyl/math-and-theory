@@ -5,6 +5,7 @@ Each family directory contains its manuscripts, proof sources or shared-library 
 | Result family | Manuscript |
 |---|---|
 | [Real positive-definite counterexamples to extended q-permanent monotonicity](q-permanent/) | [PDF](q-permanent/paper.pdf) |
+| [Finite real counterexamples and spectral obstructions for q-permanent monotonicity](q-permanent-finite/) | [PDF](q-permanent-finite/manuscript.pdf) |
 | [Gyires's permanent inequality for structured matrices](gyires/) | [PDF](gyires/paper.pdf) |
 | [A polygon enclosure fails for sums of normal matrices](kovacec/) | [PDF](kovacec/manuscript/manuscript.pdf) |
 | [An unbounded obstruction to projection AM–GM in Loewner order](projection-amgm/) | [PDF](projection-amgm/paper.pdf) |

@@ -1,0 +1,86 @@
+% Input immediately after mean_field.tex, before spectral_obstruction.tex.
+% A scalar refinement; the original mf:257 family remains unchanged.
+
+\subsection{A refinement to limiting condition number 227}
+\label{rf:subsection}
+
+A different choice of the two scalar parameters improves the conditioning
+bound using the same spherical law, ordering, and sector estimates.
+
+\begin{theorem}[An eventual family with condition number below \(228\)]
+\label{rf:228}
+There is an explicit algebraic sequence of real positive-definite
+correlation matrices \(\widetilde E_N\), defined in every sufficiently
+large order, such that
+\[
+ \lim_{N\to\infty}
+ \frac{D_1(\widetilde E_N)}{N(N-1)\per\widetilde E_N}
+ <-\frac1{40000},\qquad
+ |(\widetilde E_N)_{ij}|\le\frac{904}{N}\quad(i\ne j).
+\]
+Its least eigenvalue tends to one, and its condition number tends to
+\(227\), so it is eventually below \(228\). Before correlation
+normalization it is a mean-field perturbation with latent rank four.
+No explicit sufficient order is asserted.
+\end{theorem}
+\begin{proof}
+Use the construction of Theorem~\ref{mf:257}, replacing its parameters
+by \(\tau=9999/10000\) and \(t=904\). Write
+\(m(k)=1-\log(1+k)/k\) and \(t(k)=2k/m(k)\).
+The elementary bounds \(5/2<e<11/4\),
+\((11/4)^6<445\), and \((5/2)^7>447\) give
+\(6<\log445<\log447<7\). Consequently
+\[
+ t(444)<\frac{2\cdot444^2}{437}
+       =\frac{394272}{437}<904,
+ \qquad
+ t(446)>\frac{2\cdot446^2}{440}
+       =\frac{49729}{55}>904.
+\]
+Strict monotonicity of \(t(k)\) proves \(444<k<446\).
+With \(K=1+k\) and \(\delta=1-m\), this implies
+\[
+ \frac6{446}<\delta<\frac7{444},\qquad
+ \frac{2109}{100}<\sqrt K<\frac{423}{20}.
+\]
+The square-root inequalities follow by squaring:
+\((2109/100)^2<445\) and \((423/20)^2>447\).
+Using \(\pi>31415/10000\) in Lemma~\ref{mf:four-bounds} gives
+\begin{align*}
+ \Gamma_k
+ &>\frac{31415/40000-2(423/20)/444}{1-6/446}
+   =\frac{45552433}{65120000}=:g>0,\\
+ \rho_k
+ &>\frac12-\frac7{888}-\frac{100}{2209}
+   =\frac{876533}{1961592}=:r>0.
+\end{align*}
+As in \eqref{mf:four-rational-margin}, use \(1/m>1\) and
+\(\delta^2\ge\tau^2\delta^2\) in the full score. Exact rational
+arithmetic yields
+\begin{align}
+ \mathcal R_*
+ &>\left(\frac{9999}{10000}\right)^2
+  \left[2g^2+8\frac3{223}r^2+
+                     \left(\frac3{223}\right)^2\right]\notag\\
+ &=\frac{425269160832679340834525001397641}
+         {425220873828711680000000000000000}
+ >1+\frac1{10000}.\label{rf:rational-margin}
+\end{align}
+Theorem~\ref{mf:criterion} and \eqref{mf:ratio} give the stated
+derivative limit.
+
+Use the same algebraic sphere grid, padding, and sorting as in
+Theorem~\ref{mf:257}, with the new \(\tau\), and set
+\(\widetilde A_N=I_N+(904/N)V_NV_N^T\). The row norms are at most
+one, and the limiting covariance is
+\(\operatorname{diag}(1/4,1/4,\tau^2/4,\tau^2/4)\).
+The condition number therefore tends to \(1+904/4=227\).
+Correlation normalization preserves the normalized derivative, changes
+the operator by \(o(1)\), and gives the off-diagonal bound \(904/N\)
+and the least-eigenvalue limit as before.
+\end{proof}
+
+The family in Theorem~\ref{mf:257} retains the larger proved derivative
+margin \(1/1000\). The present theorem improves its condition-number
+bound with a smaller proved margin; it is a scalar refinement of the
+same analytic construction.

@@ -1,0 +1,517 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,longtable,array,multicol}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Finite real counterexamples and spectral obstructions for q-permanent monotonicity},pdfauthor={Dev D. Goyal}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\per}{\operatorname{per}}
+\newcommand{\inv}{\operatorname{inv}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\F}{\mathrm F}
+\newcommand{\NN}[2]{\mathcal N_{#1}(#2)}
+\input{sections/witness_parameters}
+\title{Finite real counterexamples and spectral obstructions\protect\\
+for $q$-permanent monotonicity}
+\author{Dev D. Goyal}
+\date{1 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For an ordered real matrix, write
+$P_q(A)=\sum_{\sigma}q^{\inv(\sigma)}\prod_i a_{i,\sigma(i)}$.
+We give an explicit integer Gram matrix of order $\WitnessN$ and rank three
+whose derivative at $q=1$ is strictly negative. Its certificate uses a
+four-row symmetry and exact integer polynomial arithmetic; all input
+vectors are listed. An explicit scalar multiple plus the identity is an
+integer positive-definite counterexample, with a fully specified rational
+decreasing pair in $(0,1)$, and identity padding gives real
+positive-definite counterexamples in every order $N\ge\WitnessN$. This
+answers the real-symmetric case of the Bapat--Lal monotonicity
+conjecture on $[-1,1]$ negatively, and refutes da Fonseca's extended
+conjectures inside the original interval. We also derive the complete limiting endpoint
+functional for bounded fixed-rank perturbations $I+(t/N)VV^T$.
+For nonzero limiting covariance, below $t\lambda_{\max}(\Sigma)=1$ the
+endpoint derivative is eventually positive for every ordering. Convergence
+of the ordered empirical measure gives an explicit positive first-order limit.
+An operator factorization of the complete endpoint score yields a stronger
+spectral obstruction: a negative limit at scale $N^2\per(A_N)$ requires
+at least three covariance eigenvalues strictly larger than $1/t$.
+If $t\lambda_1(\Sigma)>1\ge t\lambda_3(\Sigma)$, the normalized
+derivative instead has an explicit strictly positive lower bound, for
+every ordering; this includes every supercritical real perturbation of
+latent rank two.
+For a convergent supercritical row cloud, uniformly random orders have a
+fixed positive normalized derivative except on an exponentially small
+fraction of labelled permutations.
+Above the threshold, anisotropic spherical families yield correlation
+counterexamples with off-diagonal entries $O(N^{-1})$, least eigenvalue
+tending to one, and condition number tending to $227$ in latent rank four
+or $20001$ in latent rank three. A Lean~4 development proves the
+endpoint identity, the soundness of the integer certificate and the
+reductions to rational positive-definite counterexamples in every order
+$N\ge\WitnessN$; the finite integer comparison itself is checked by two
+independent exact programs, and the analytic asymptotic proofs are
+conventional.
+\end{abstract}
+
+\section{Results and context}
+
+For $\sigma\in S_n$, let
+\[
+\inv(\sigma)=\#\{(i,j):i<j,\ \sigma(i)>\sigma(j)\},\qquad
+P_q(A)=\sum_{\sigma\in S_n}q^{\inv(\sigma)}\prod_{i=1}^n a_{i,\sigma(i)}.
+\]
+The convention is $0^0=1$, and $D_q(A)=\frac{d}{dq}P_q(A)$.
+The fixed order matters. A simultaneous relabelling by an arbitrary
+permutation generally changes this polynomial.
+At $q=-1,0,1$ it gives the determinant, the diagonal product, and the
+permanent, respectively. Bapat and Lal's monotonicity conjecture asks
+whether a non-diagonal positive-definite matrix has strictly increasing
+$q$-permanent on $[-1,1]$ \cite{Bapat1992,BapatLal1994}.
+Mitchell proved the equivalence with a positive-semidefinite formulation
+with positive diagonal, and established rank-one and order-three cases
+\cite{Mitchell2020}.
+
+Da Fonseca conjectured strict monotonicity of the $q$-permanent of a
+real symmetric positive-definite matrix on an interval with left
+endpoint at or below $-1$ and right endpoint $+\infty$
+\cite[Conjecture~1]{daFonseca2010}, and restated it with left endpoint
+strictly below $-1$ \cite[Conjecture~2]{daFonseca2018}; both contain the
+real-symmetric case of the Bapat--Lal assertion on $[-1,1]$.
+
+Kitamura's public Lean proof supplies a complex Hermitian order-144
+counterexample by a negative derivative at one \cite{Kitamura2026}.
+The public problem record, consulted on 1 November 2026, explicitly
+distinguishes that result from the real-symmetric case, which it lists
+as unsettled \cite{OpenProblemsMI18}.
+A companion paper gave real positive-definite counterexamples to da
+Fonseca's conjectures in the extended range $q>1$
+\cite{GoyalExtended2026}; it left the real-symmetric question on
+$[-1,1]$ open. The present paper concerns that original interval,
+with a negative derivative at its positive endpoint and strict decrease
+at two parameters in $(0,1)$. The real-symmetric case of the Bapat--Lal
+conjecture is therefore false, and da Fonseca's conjectures fail inside
+the original interval as well as above it.
+The mean-field theory below additionally explains an obstruction
+to arbitrarily weak perturbations within the fixed-rank mechanism.
+
+\begin{theorem}[A finite real endpoint counterexample]\label{thm:finite}
+The ordered integer rows in Appendix~\ref{app:data}, interpreted by the
+four-row rule in Section~\ref{sec:certificate}, define a Gram matrix
+$B\in\Z^{\WitnessN\times\WitnessN}$ of rank exactly three, with positive
+diagonal, such that
+\[
+ D_1(B)<0.
+\]
+The stronger exact certificate margin is recorded in
+Table~\ref{tab:witness}. In particular there are a real positive-definite
+matrix of this same order and rational $0<q_1<q_2<1$ with
+$P_{q_2}(A)<P_{q_1}(A)$.
+\end{theorem}
+
+The positive-definite and rational-parameter conclusion is elementary:
+the endpoint derivative is continuous in the entries and in $q$; adding
+a sufficiently small positive diagonal preserves its strict negative
+sign, and a small interval immediately to the left of one contains a
+rational decreasing pair. Section~\ref{fr:section} strengthens this to a
+specific integer positive-definite matrix and a specified pair.
+It follows immediately that real positive-definite counterexamples
+exist in every order $N\ge896$: use $A\oplus I_{N-896}$.
+Every nonzero permutation term fixes the trailing identity coordinates,
+and these coordinates introduce no inversions, so
+$P_q(A\oplus I_{N-896})=P_q(A)$ for every real $q$.
+
+\begin{theorem}[Bounded-condition asymptotic families]\label{thm:families}
+There are explicit real algebraic positive-definite correlation matrices
+$C_N$ in every sufficiently large order such that
+\[
+ \limsup_{N\to\infty}\frac{D_1(C_N)}{N(N-1)\per C_N}<-\frac1{40000},
+ \qquad |(C_N)_{ij}|\le\frac{904}{N}\quad(i\ne j),
+\]
+and
+\[
+ \lambda_{\min}(C_N)\longrightarrow1,\qquad
+ \kappa_2(C_N)\longrightarrow227.
+\]
+In particular $\kappa_2(C_N)<228$ eventually. Before diagonal
+normalization, the matrices are $I_N+(904/N)V_NV_N^T$ with four real
+columns in $V_N$.
+
+A second four-column family has limiting condition number $256$ and
+the larger normalized derivative margin $-1/1000$.
+
+With three columns instead, another explicit family has off-diagonal
+bound $60000/N$, limiting condition number $20001$, and normalized
+endpoint derivative limit less than $-1/800$.
+\end{theorem}
+
+These are eventual-order conclusions, with no new explicit sufficient
+order claimed. They are not assertions of convergence to the identity
+in operator norm: finitely many eigenvalues remain separated from one.
+They are also different families from the finite certificate.
+The full proofs, including the algebraic grids and all constants, are
+Theorems~\ref{mf:20002}, \ref{mf:257}, and~\ref{rf:228}.
+
+\begin{theorem}[A strict fixed-rank obstruction]\label{thm:obstruction-intro}
+Let uniformly bounded real rows of a fixed latent dimension satisfy
+$N^{-1}V_N^TV_N\to\Sigma\ne0$. For fixed $t>0$, if
+$t\lambda_{\max}(\Sigma)<1$, then
+\[
+ D_1\bigl(I_N+(t/N)V_NV_N^T\bigr)>0
+\]
+for all sufficiently large $N$, for every sequence of row orderings.
+The same holds after correlation normalization. With convergence of the
+ordered empirical measure, an explicit strictly positive limit of
+$D_1/(N\per)$ is given in Theorem~\ref{mf:subcritical}.
+\end{theorem}
+
+Thus limiting condition number below two is an obstruction for this
+bounded-row, fixed-rank scaling. This theorem does not extend its
+conclusion to every positive-definite matrix of condition number below
+two. Nor is the coherent-saddle transition automatically the transition
+in the sign of $D_1$.
+Indeed, Corollary~\ref{mf:product-limit} shows that a limiting row law
+independent of position gives a strictly positive leading endpoint
+derivative even above that threshold. The complete ordered functional
+therefore distinguishes these positive configurations from the
+counterexample orderings.
+
+\begin{theorem}[A third-eigenvalue obstruction]\label{thm:third-intro}
+Let $r\ge1$ be fixed, $\|v_{i,N}\|\le L$, and
+$N^{-1}V_N^TV_N\to\Sigma$. List the covariance eigenvalues in
+decreasing order, setting $\lambda_3(\Sigma)=0$ when $r<3$.
+For fixed $t>0$, if
+\[
+ t\lambda_1(\Sigma)>1\qquad\hbox{and}\qquad
+ t\lambda_3(\Sigma)\le1,
+\]
+then, for every sequence of row orderings,
+\[
+ \liminf_{N\to\infty}
+ \frac{D_1(I_N+(t/N)V_NV_N^T)}
+ {N(N-1)\per(I_N+(t/N)V_NV_N^T)}
+ \ge\frac{(t\lambda_1(\Sigma)-1)^2}{64r\,t^2L^4}>0.
+\]
+The same normalized ratio is unchanged by correlation normalization.
+\end{theorem}
+
+Thus a large largest eigenvalue alone is insufficient for the negative
+endpoint mechanism. For a strictly negative $N^2$-scale normalized
+liminf, at least three covariance modes must exceed the
+threshold $1/t$. The theorem allows equality for the third eigenvalue
+and places no upper bound on the first two eigenvalues. In latent rank
+two its explicit lower bound has denominator $128t^2L^4$; together with
+Theorem~\ref{thm:obstruction-intro}, this gives eventual positivity at
+every noncritical strength. Section~\ref{sp:section} proves the stronger
+inertia statement behind this obstruction and treats its exact scope.
+
+\paragraph{Contribution and verification scope.}
+The Gaussian representation of a permanent is standard; applications
+to spatial permutations and related asymptotics appear, for example,
+in Fyodorov and Muirhead \cite{FyodorovMuirhead2021}. The new results here
+are the finite real certificate, its symmetry reduction, the complete
+ordered endpoint functional, the strict subcritical asymptotic, and
+the stated bounded-condition counterexamples, together with the full-score
+operator factorization, quantitative contraction gap, and third-eigenvalue
+obstruction. Literature searches
+before and after the derivations found no matching prior results in
+the primary sources examined. This is a bounded novelty assessment,
+not a certification of priority.
+The ordinary permanent-on-top and subset-preserving $q$-permanent
+inequalities are different statements; counterexamples to them are
+not used as counterexamples to monotonicity.
+A public manuscript of liqsweep claims permanent-on-top for real
+positive-semidefinite matrices of rank at most two \cite{Liqsweep2026}.
+As discussed in Section~\ref{sp:prior}, this has a qualitative endpoint
+consequence after diagonal addition. We do not claim priority for that
+rank-two qualitative sign. The proof of Theorem~\ref{thm:third-intro}
+is independent of that manuscript and gives an explicit asymptotic
+margin in arbitrary fixed latent dimension.
+Corollary~\ref{ro:random-order} further shows that negative endpoint
+orders occupy an exponentially small fraction of labelled permutations
+of a convergent supercritical row cloud. This is a consequence of the
+product-limit formula and bounded-difference concentration, not a claim
+that the counterexample orders have disappeared.
+
+\section{The endpoint identity}\label{sec:endpoint}
+
+Let $v_1,\ldots,v_n\in\R^r$ be ordered rows, $B_{ij}=v_i\cdot v_j$,
+and $\ell_i(z)=v_i\cdot z$. For a polynomial $p=\sum_\alpha c_\alpha z^\alpha$,
+its Fischer norm is
+\[
+ \|p\|_{\F}^2=\sum_\alpha\alpha!|c_\alpha|^2.
+\]
+For an exterior-vector-valued polynomial, sum these norms over an
+orthonormal exterior basis. Put
+\[
+ f=\prod_i\ell_i,\qquad
+ G=\sum_{i<j}(v_i\wedge v_j)\prod_{a\ne i,j}\ell_a.
+\]
+
+\begin{lemma}[Gram and ordered wedge identities]\label{lem:endpoint}
+One has
+\[
+ \per B=\|f\|_{\F}^2,
+ \qquad
+ 2D_1(B)=\binom n2\|f\|_{\F}^2-\|G\|_{\F}^2.
+\]
+\end{lemma}
+\begin{proof}
+Expanding the product polynomial, a monomial exponent records the number
+of rows assigned to each coordinate. Pairing two assignments with the
+same exponent gives $\alpha!$ bijections of equal colors, exactly the
+terms in the permanent expansion. This proves the first identity,
+and the same argument applies to complementary row and column lists.
+
+Expand $\|G\|_{\F}^2$ and use
+\[
+ \langle v_i\wedge v_j,v_k\wedge v_l\rangle
+   =b_{ik}b_{jl}-b_{il}b_{jk}.
+\]
+For a fixed permutation monomial $\prod_i b_{i,\sigma(i)}$ and a fixed
+row pair $i<j$, the contribution is $+1$ if
+$\sigma(i)<\sigma(j)$ and $-1$ if $\sigma(i)>\sigma(j)$.
+Summing over row pairs gives $\binom n2-2\inv(\sigma)$.
+Thus
+\[
+ \|G\|_{\F}^2
+ =\sum_\sigma\left(\binom n2-2\inv(\sigma)\right)
+                         \prod_i b_{i,\sigma(i)},
+\]
+which is the second identity. This is the ordered-wedge formulation
+used in \cite{Kitamura2026}; our real-rank-three coefficient and
+polynomial versions are included in the formal development.
+\end{proof}
+
+For nonzero rows $f\ne0$, so its norm and the permanent are positive.
+Consequently the dimensionless score
+\[
+ R(B)=\frac{\|G\|_{\F}^2}{\binom n2\per B}
+\]
+exceeds one exactly when $D_1(B)<0$, and
+\begin{equation}\label{eq:normalized}
+ \frac{D_1(B)}{n(n-1)\per B}=\frac{1-R(B)}4.
+\end{equation}
+Both sides are unchanged by scaling each row by an arbitrary nonzero
+real number. This follows since every permutation monomial is
+multiplied by the same positive product of squared row scales.
+
+\section{A four-row integer certificate}\label{sec:certificate}
+
+\subsection{The word and its compressed recurrence}
+
+For a type $(a,b,c)$, define the two ordered pairs
+\[
+ L=((-a,b,c),(-a,-b,c)),\qquad
+ R=((a,b,c),(a,-b,c)).
+\]
+Starting with an empty word, read the type list from inner to outer and
+replace the current word $W$ by $L,W,R$. This completely specifies the
+row order. The resulting word has four rows per type.
+
+Write $X=x^2,Y=y^2,Z=z^2$ and
+\begin{equation}\label{eq:orbitfactor}
+ p=a^4X^2+b^4Y^2+c^4Z^2
+       -2a^2b^2XY-2a^2c^2XZ-2b^2c^2YZ.
+\end{equation}
+The product polynomial is $f(x,y,z)=F(X,Y,Z)$. Its actual wedge has
+the parity decomposition
+\begin{align*}
+ G_{01}&=yz\,U_{01}(X,Y,Z)+xz\,V_{01}(X,Y,Z),\\
+ G_{02}&=U_{02}(X,Y,Z),\\
+ G_{12}&=xy\,U_{12}(X,Y,Z)+V_{12}(X,Y,Z).
+\end{align*}
+Initially $F=1$ and the other five polynomials are zero. All arithmetic
+below is over $\Z$. Subscripts denote partial derivatives in the
+squared variables. One outer type updates the six polynomials by
+\begin{align}
+ F'&=pF,\label{eq:recF}\\
+ U'_{01}&=pU_{01}+8ac\{b^2F+2b^2XF_X
+                  +(a^2X+b^2Y-c^2Z)F_Y\},\label{eq:rec01}\\
+ U'_{02}&=pU_{02}+8ac\{(a^2X-c^2Z)F
+          +X(a^2X-b^2Y-c^2Z)F_X\notag\\
+        &\hspace{39mm}+Z(a^2X+b^2Y-c^2Z)F_Z\},\label{eq:rec02}\\
+ U'_{12}&=pU_{12}+8ac\{-b^2F
+                 +(a^2X-b^2Y-c^2Z)F_Y-2b^2ZF_Z\},\label{eq:rec12}\\
+ V'_{01}&=pV_{01}+8a^2bcF,\label{eq:recV01}\\
+ V'_{12}&=pV_{12}+4bc(a^2X-b^2Y+c^2Z)F.\label{eq:recV12}
+\end{align}
+
+\begin{lemma}[Exact recurrence]\label{lem:recurrence}
+Equations~\eqref{eq:recF}--\eqref{eq:recV12} give the ordinary product
+and actual ordered wedge polynomials of the specified row word.
+\end{lemma}
+\begin{proof}
+For concatenated words with pairs $(f,G)$ and $(h,H)$, separate wedge
+pairs within each word and crossing between them. The cross sum is
+$\nabla f\wedge\nabla h$, so concatenation gives
+\[
+ (f,G)\mathbin{\|}(h,H)=(fh,hG+fH+\nabla f\wedge\nabla h).
+\]
+For the negative and positive pairs their products are
+$q_-=(cz-ax)^2-b^2y^2$ and $q_+=(cz+ax)^2-b^2y^2$;
+their wedge vectors are $(2ab,0,2bc)$ and $(-2ab,0,2bc)$.
+Applying concatenation twice gives
+\[
+ f'=q_-q_+f,
+ \quad G'=pG+f(H+E)+\nabla f\wedge K,
+\]
+where direct differentiation gives
+\begin{align*}
+ H&=(8ab^2c\,yz,\ 8ac(a^2X-c^2Z),\ -8ab^2c\,xy),\\
+ E&=(8a^2bc\,xz,\ 0,\ 4bc(a^2X-b^2Y+c^2Z)),\\
+ K&=4ac\bigl(z(-a^2X-b^2Y+c^2Z),\ 2b^2xyz,\
+                    x(a^2X-b^2Y-c^2Z)\bigr).
+\end{align*}
+Use $f_x=2xF_X,f_y=2yF_Y,f_z=2zF_Z$ and collect the five
+indicated parity classes. This gives the displayed recurrences and
+proves the assertion by induction.
+\end{proof}
+
+For $e\in\{0,1\}^3$ and $Q=\sum_\alpha Q_\alpha X^{\alpha_0}Y^{\alpha_1}Z^{\alpha_2}$,
+put
+\[
+ \mathcal N_e(Q)=\sum_\alpha Q_\alpha^2
+                   (2\alpha_0+e_0)!(2\alpha_1+e_1)!(2\alpha_2+e_2)!.
+\]
+Distinct physical exponent parities are Fischer-orthogonal. Hence
+\begin{align}
+ P:=\per B&=\NN{000}{F},\label{eq:certP}\\
+ T_U&:=\NN{011}{U_{01}}+\NN{000}{U_{02}}+\NN{110}{U_{12}},\label{eq:certU}\\
+ T:=\|G\|_{\F}^2&=T_U+\NN{101}{V_{01}}+\NN{000}{V_{12}}\ge T_U.
+ \label{eq:certT}
+\end{align}
+The exact integer inequality $T_U>\binom n2P$ therefore suffices for
+a negative endpoint derivative. The two correction terms need not be
+evaluated for that conclusion; they are retained in the independent
+full-wedge arithmetic check.
+
+\subsection{The finite data and sign}
+
+\input{sections/witness_summary}
+
+The data in Appendix~\ref{app:data} specify every row, without any
+optimization routine or floating-point number in their definition.
+Applying the integer recurrences and factorial sums gives the exact
+strict inequalities in Table~\ref{tab:witness}. Lemma~\ref{lem:endpoint}
+then proves the negative sign. Positive semidefiniteness follows from
+$B=VV^T$. A nonzero three-by-three minor specified in the table proves
+rank three; each row is nonzero, so every diagonal entry is positive.
+This proves Theorem~\ref{thm:finite}.
+
+The accompanying package also records the full integer numerators and
+denominator of the rational pair specified in Section~\ref{fr:section}.
+The common denominator has $16834$ decimal digits; its compact exact
+formula is preferable in the mathematical text.
+
+The exact engine compares integers, not the displayed decimal ratios.
+A second, independent program uses neither the four-row symmetry nor
+the recurrences above. It expands the ordinary product and ordered-wedge
+recurrences
+\[
+ f'=f\ell,\qquad S'_a=S_a\ell+v_af,\qquad
+ G'_{ab}=G_{ab}\ell+v_bS_a-v_aS_b
+\]
+row by row in the actual order, where $\ell=v\cdot z$ is the new row
+form and $S_a=\partial f/\partial z_a$, and evaluates $P$ and the
+Fischer norms of every exponent-parity class of the three components
+of $G$ modulo $500$ primes between $2^{30}$ and $2^{31}$. Every permutation
+monomial has absolute value at most $\prod_ib_{ii}$, so
+$P\le n!\prod_ib_{ii}$ and each parity-class norm is at most
+$\binom n2n!\prod_ib_{ii}$. The product of the primes exceeds this
+bound, which has $15471$ bits. The Chinese remainder theorem therefore
+determines $P$, $T_U$ and $T$ exactly from the residues, and all three
+agree with the integer report. The only nonzero parity classes are the
+five in \eqref{eq:certP}--\eqref{eq:certT}. This determination is
+independent of Lemma~\ref{lem:recurrence}; it relies only on
+Lemma~\ref{lem:endpoint} and exact arithmetic. The precise Lean proof
+boundary is given in Section~\ref{sec:lean}.
+
+\input{sections/finite_regularization}
+\input{sections/coherent_ordering}
+\input{sections/mean_field}
+\input{sections/four_sphere_refinement}
+\input{sections/spectral_obstruction}
+\input{sections/random_order}
+
+\section{Formal proof and reproducibility}\label{sec:lean}
+\input{sections/formal_status}
+
+\section{Limits and further questions}
+
+The finite certificate provides an economical explicit real witness,
+but it does not establish the minimum possible order. The formal
+rank-three construction does not prove that rank two is impossible
+at every parameter; no minimum-rank theorem is asserted here.
+Monotonicity on the whole negative half-interval and failure at an
+arbitrarily prescribed positive interior parameter are not settled here.
+
+The mean-field result distinguishes a coherent-saddle threshold from
+the sign of the endpoint derivative. The general limiting functional
+contains three nonnegative exterior contributions, and negativity of
+$D_1$ requires their combined score to exceed one. The subcritical
+formula shows that this cannot happen below limiting condition number
+two within the stated fixed-rank class. The gap between that obstruction
+and the explicit upper construction at $227$ remains open.
+The stronger spectral obstruction also requires three limiting
+nontrivial eigenvalues above two for a strictly negative $N^2$-scale
+derivative. It does not resolve the sign of a vanishing normalized
+derivative at the first critical threshold, and is not a theorem about
+every finite positive-definite matrix satisfying a spectral bound.
+The asymptotic theorems do not supply a numerical sufficient order for
+their particular well-conditioned families. The finite matrix and the
+bounded-condition constructions should not be conflated.
+
+\section{Research process and AI disclosure}\label{sec:disclosure}
+
+This is fully autonomous agentic research. The finite witness, its
+exact certificate and four-row recurrence, the regularization, the
+asymptotic and spectral theory, the original Lean development (for
+Lean~4.19.0), an evaluation of the certificate with native code, and
+the literature search were produced by autonomous AI research agents in
+earlier sessions. Their records do not name the system used. The audits
+and separate implementations in those records were produced within the
+same automated workflow.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for
+this release. It reran the integer recurrence program on the frozen
+inputs, wrote and ran the independent row-by-row modular computation
+and the Chinese-remainder determination of Section~\ref{sec:certificate},
+checked the endpoint identity and the regularization of
+Section~\ref{fr:section} line by line, removed the native evaluation
+from the formal development, added the frozen-input module with its
+rank and conditional all-orders theorems, ran the fresh Lean build and
+whole-project axiom audit, and revised this manuscript. The asymptotic
+and spectral sections were carried over from the earlier sessions and
+were read, but not rederived line by line, in this release.
+
+Dev D. Goyal is responsible for publication. The work has not been
+externally peer reviewed; no expert validation is claimed, AI checks are
+not human peer review, and the novelty assessment is provisional and
+does not establish priority. Section~\ref{sec:lean} states the formal
+scope.
+
+\appendix
+\section{Complete ordered integer data}\label{app:data}
+
+The following table is read by increasing index. Each triple is a type
+$(a,b,c)$, added as the outer four-row operation in
+Section~\ref{sec:certificate}. Thus the list is inner-to-outer. In a
+list implementation that recursively wraps the first type around the
+tail, the input must be reversed; the formal source records this
+conversion explicitly.
+\input{sections/witness_table}
+
+\bibliographystyle{plain}
+{\small\raggedright\bibliography{references}}
+\end{document}

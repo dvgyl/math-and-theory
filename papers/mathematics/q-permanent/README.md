@@ -12,6 +12,8 @@ The construction also gives correlation matrices with no zero entries and exampl
 
 The results refute da Fonseca's 2010 Conjecture 1 and its [2018 restatement as Conjecture 2](https://arxiv.org/abs/1804.02231). I make no claim of first priority.
 
+**Update, 1 November 2026.** The real-symmetric question on `[−1,1]` is addressed in the separate package [Finite real counterexamples and spectral obstructions for q-permanent monotonicity](../q-permanent-finite/README.md). It gives an explicit integer positive-definite matrix of order 896 whose q-permanent decreases between two rationals in `(0,1)`, checked by exact integer certificates, with a Lean reduction. This paper and its formalization are unchanged.
+
 ## Autonomous AI research
 
 This work is fully autonomous agentic research. The initial research and proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex autonomously produced the formalizations and corrections. I checked the proofs to the best of my mathematical abilities. This check is not expert validation or peer review. I am responsible for publication. [AUTHORSHIP.md](../../../AUTHORSHIP.md) gives the collection disclosure. This preprint has not been peer reviewed.

@@ -1,0 +1,1226 @@
+% Input-ready conventional-proof component.
+% Requires amsmath, amssymb, amsthm and theorem/lemma/proposition/corollary environments.
+% Labels and equation labels in this file have the prefix mf:.
+\providecommand{\per}{\operatorname{per}}
+
+\section{Finite-rank mean-field perturbations}\label{mf:setup}
+
+The next results give an asymptotic criterion for a negative endpoint
+derivative and a strict obstruction in the subcritical regime. They are
+conventional mathematical proofs. Their measure and limiting arguments
+are not asserted to form a completed Lean theorem.
+
+Fix a finite integer \(r\ge1\), a real number \(t>0\), and ordered vectors
+\(v_{i,N}\in\mathbb R^r\), \(1\le i\le N\), with
+\(\|v_{i,N}\|\le L\) for a constant \(L<\infty\) independent of \(N\).
+Write \(V_N\) for the matrix with these rows and set
+\begin{equation}\label{mf:matrices}
+ B_N=V_NV_N^T,\qquad
+ A_N=I_N+\frac tN B_N,\qquad
+ \Sigma_N=\frac1N\sum_{i=1}^N v_{i,N}v_{i,N}^T.
+\end{equation}
+Every \(A_N\) is real positive definite. Suppose initially that the ordered
+empirical measures satisfy
+\begin{equation}\label{mf:empirical}
+ \mu_N=\frac1N\sum_{i=1}^N\delta_{(i/N,v_{i,N})}
+ \ \Longrightarrow\ \mu
+\end{equation}
+weakly on \([0,1]\times\overline B(0,L)\). The first marginal of \(\mu\)
+is Lebesgue measure, and
+\[
+ \Sigma=\int vv^T\,d\mu(x,v)=\lim_N\Sigma_N.
+\]
+The order coordinate \(x\) is retained throughout.
+
+For an ordered matrix \(A\), let \(D_1(A)=P'_1(A)\), with the
+inversion-weighted \(q\)-permanent as defined in the main text.
+For Gram rows \(w_i\), put
+\[
+ f(z)=\prod_i(w_i\cdot z),\qquad
+ G(z)=\sum_{i<j}(w_i\wedge w_j)
+                    \prod_{a\ne i,j}(w_a\cdot z),\qquad
+ T(A)=\|G\|_{\mathrm F}^2.
+\]
+Here the Fischer norm is
+\(\|\sum_\alpha c_\alpha z^\alpha\|_{\mathrm F}^2
+=\sum_\alpha\alpha!|c_\alpha|^2\), summed over exterior components.
+The identities
+\begin{equation}\label{mf:endpoint}
+ \per A=\|f\|_{\mathrm F}^2,\qquad
+ 2D_1(A)=\binom N2\per A-T(A)
+\end{equation}
+follow by expanding the Fischer inner products: the coefficient of a
+permutation monomial in \(T(A)\) is
+\(\binom N2-2\operatorname{inv}(\sigma)\).
+The ordered wedge identity is also used in Kitamura's public proof
+package \cite{Kitamura2026}.
+Consequently, for positive permanent,
+\begin{equation}\label{mf:ratio}
+ \frac{D_1(A)}{N(N-1)\per A}
+ =\frac14\left(1-\frac{T(A)}{\binom N2\per A}\right).
+\end{equation}
+
+\subsection{The general endpoint criterion}
+
+For \(h\in\mathbb C^r\), define
+\begin{align}
+ \Phi(h)&=\int\log(1+t|v\cdot h|^2)\,d\mu(x,v)-\|h\|^2,
+       &K&=\operatorname*{arg\,max}_{h\in\mathbb C^r}\Phi(h),\label{mf:potential}\\
+ \ell_h(v)&=v\cdot h,
+       &p_h(v)&=\frac{t|\ell_h(v)|^2}{1+t|\ell_h(v)|^2},\label{mf:p}\\
+ q_h(v)&=\frac{t\overline{\ell_h(v)}\,v}{1+t|\ell_h(v)|^2},
+       &m_h&=\int p_h(v)\,d\mu(x,v),\label{mf:q}\\
+ Q_h(s)&=\int_{\{x<s\}}q_h(v)\,d\mu(x,v),
+       &Q_h&=\int q_h(v)\,d\mu(x,v).\label{mf:prefix}
+\end{align}
+The vector-valued function \(q_h\) is continuous, including at
+\(\ell_h(v)=0\). Put
+\begin{equation}\label{mf:ordered-wedge}
+ W_h=\iint_{\{x<y\}}q_h(v)\wedge q_h(w)\,
+                       d\mu(x,v)\,d\mu(y,w)
+\end{equation}
+and
+\begin{equation}\label{mf:score}
+ \mathcal R(h)=2\|W_h\|^2+
+ 2\int(1-p_h(v))\|Q_h-2Q_h(x)\|^2\,d\mu(x,v)
+ +(1-m_h)^2.
+\end{equation}
+
+\begin{theorem}[Full mean-field endpoint criterion]\label{mf:criterion}
+Under \eqref{mf:empirical}, \(K\) is nonempty and compact, and
+\begin{align}
+ \min_{h\in K}\mathcal R(h)
+ &\le\liminf_{N\to\infty}\frac{T(A_N)}{\binom N2\per A_N}\notag\\
+ &\le\limsup_{N\to\infty}\frac{T(A_N)}{\binom N2\per A_N}
+ \le\max_{h\in K}\mathcal R(h).\label{mf:criterion-bounds}
+\end{align}
+If \(\min_K\mathcal R>1\), then \(D_1(A_N)<0\) for all sufficiently
+large \(N\). If \(\mathcal R=\mathcal R_*\) on \(K\), then
+\begin{equation}\label{mf:criterion-limit}
+ \frac{D_1(A_N)}{N(N-1)\per A_N}\longrightarrow
+                  \frac{1-\mathcal R_*}{4}.
+\end{equation}
+At every \(h\in K\),
+\begin{equation}\label{mf:stationarity}
+ Q_h=\overline h,\qquad m_h=\|h\|^2<1.
+\end{equation}
+\end{theorem}
+
+Both \(\Phi\) and \(\mathcal R\) are invariant under a global phase of
+\(h\), and under conjugation because the rows are real.
+Thus two conjugate phase circles of maxima give a single limiting score.
+A simpler sufficient criterion is
+\(\min_{h\in K}2\|W_h\|^2>1\). The other two terms in
+\eqref{mf:score} are nonnegative.
+
+\begin{corollary}[Product ordered limits]\label{mf:product-limit}
+Suppose that the ordered empirical limit is
+\(\mu(dx,dv)=dx\,\nu(dv)\), so that its row law does not depend on
+the position coordinate. Then, for every \(h\in K\),
+\begin{equation}\label{mf:product-score}
+ \mathcal R(h)=1-\frac{m_h(4-m_h)}3.
+\end{equation}
+If \(t\lambda_{\max}(\Sigma)>1\), then
+\begin{equation}\label{mf:product-positive}
+ \liminf_{N\to\infty}
+ \frac{D_1(A_N)}{N(N-1)\per A_N}
+ \ge\min_{h\in K}\frac{m_h(4-m_h)}{12}>0.
+\end{equation}
+In particular the endpoint derivative is eventually positive.
+\end{corollary}
+\begin{proof}
+The product form of \(\mu\) gives \(Q_h(s)=sQ_h\) and
+\(W_h=\tfrac12 Q_h\wedge Q_h=0\). At a maximizer,
+\eqref{mf:stationarity} gives \(\|Q_h\|^2=m_h\). Since \(p_h\)
+also depends only on the row, the middle term of \eqref{mf:score} is
+\[
+ 2(1-m_h)\|Q_h\|^2\int_0^1(1-2s)^2\,ds
+ =\frac23m_h(1-m_h).
+\]
+Adding \((1-m_h)^2\) proves \eqref{mf:product-score}.
+
+Let \(u\) be a real unit top eigenvector of \(\Sigma\). The elementary
+bound \(\log(1+s)\ge s-s^2/2\) for \(s\ge0\) and the row bound
+\(\|v\|\le L\) yield
+\[
+ \Phi(\epsilon u)
+ \ge\epsilon^2\bigl(t\lambda_{\max}(\Sigma)-1\bigr)
+       -\frac{t^2L^4}{2}\epsilon^4>0
+\]
+for sufficiently small \(\epsilon>0\). Since \(\Phi(0)=0\), zero
+does not belong to \(K\). Compactness of \(K\) and
+\(m_h=\|h\|^2<1\) therefore imply
+\(\min_K m_h(4-m_h)>0\).
+Combining \eqref{mf:product-score}, \eqref{mf:criterion-bounds}, and
+\eqref{mf:ratio} proves \eqref{mf:product-positive}.
+\end{proof}
+
+The hypothesis is a product form of the ordered empirical limit itself;
+no probabilistic assertion about finite random row orders is used.
+
+\subsection{A strict obstruction below the covariance threshold}
+
+\begin{theorem}[Subcritical endpoint increase]\label{mf:subcritical}
+Suppose \(\Sigma\ne0\) and \(t\lambda_{\max}(\Sigma)<1\).
+Define
+\[
+ R_0=(I_r-t\Sigma)^{-1},\qquad
+ M_s=\int_{\{x<s\}}vv^T\,d\mu(x,v).
+\]
+Then
+\begin{equation}\label{mf:permanent-limit}
+ \per A_N\longrightarrow\det(I_r-t\Sigma)^{-1}
+\end{equation}
+and
+\begin{equation}\label{mf:subcritical-limit}
+ \frac{D_1(A_N)}{N\per A_N}\longrightarrow
+ 2t^2\int_0^1\operatorname{tr}
+       \bigl(M_sR_0(\Sigma-M_s)\bigr)\,ds>0.
+\end{equation}
+In particular \(D_1(A_N)>0\) for all sufficiently large \(N\).
+\end{theorem}
+
+\begin{corollary}[Arbitrary changing orders]\label{mf:arbitrary-orders}
+The ordered weak-convergence assumption can be dropped from the strict
+sign conclusion. If only \(\Sigma_N\to\Sigma\ne0\) is assumed, with the
+same fixed rank and row bound, and \(t\lambda_{\max}(\Sigma)<1\), then
+\begin{equation}\label{mf:uniform-positive}
+ \liminf_N\frac{D_1(A_N)}{N\per A_N}
+ \ge\frac{t^2(\operatorname{tr}\Sigma^2)^2}{8L^4}>0.
+\end{equation}
+More generally, eventual bounds
+\(t\lambda_{\max}(\Sigma_N)\le1-\varepsilon\) and
+\(\operatorname{tr}(\Sigma_N^2)\ge s>0\), for fixed
+\(\varepsilon,s>0\), imply the lower bound \(t^2s^2/(8L^4)\).
+\end{corollary}
+
+For \(N>r\), the least eigenvalue of \(A_N\) is one, while its largest
+eigenvalue is \(1+t\lambda_{\max}(\Sigma_N)\).
+Thus Theorem~\ref{mf:subcritical} gives a strict obstruction for this
+entire bounded-row, fixed-rank mean-field construction below limiting
+condition number two. It is not a theorem for every positive-definite
+matrix of condition number below two, and does not include the critical
+boundary \(t\lambda_{\max}(\Sigma)=1\).
+
+\section{Proof of the full endpoint criterion}\label{mf:criterion-proof}
+
+\subsection{Gaussian representation and concentration}
+
+Gaussian representations of permanents also appear in the analysis of
+spatial random permutations \cite{FyodorovMuirhead2021}.
+We give the specific identities and limiting arguments needed here.
+Let \(Z\) be a standard complex Gaussian vector in \(\mathbb C^r\), with
+density \(\pi^{-r}e^{-\|z\|^2}\). Expanding by principal subsets and using
+the Fischer identity gives
+\begin{equation}\label{mf:gaussian}
+ \per A_N=
+ \mathbb E\prod_{i=1}^N\left(1+\frac tN|v_i\cdot Z|^2\right).
+\end{equation}
+After \(z=\sqrt N\,h\), the corresponding probability measure is
+\begin{equation}\label{mf:tilted}
+ \Pi_N(dh)=
+ \frac{e^{N\Phi_N(h)}\,dh}{\int e^{N\Phi_N(u)}\,du},\qquad
+ \Phi_N(h)=\frac1N\sum_i\log(1+t|v_i\cdot h|^2)-\|h\|^2.
+\end{equation}
+The functions \(\Phi_N\) converge to \(\Phi\) locally uniformly.
+Indeed, weak convergence and uniform continuity on compact products give
+uniform convergence on a finite \(h\)-net, and then on each compact set.
+Uniformly in \(N\),
+\begin{equation}\label{mf:coercive}
+ \Phi_N(h)\le\log(1+tL^2\|h\|^2)-\|h\|^2.
+\end{equation}
+The right side is coercive and is at most \(-\|h\|^2/2\) outside a
+fixed ball. This proves the compactness and nonemptiness of \(K\).
+
+The measures \(\Pi_N\) concentrate in every neighborhood of \(K\).
+To see this, take a large ball containing \(K\) and the region where
+the upper bound in \eqref{mf:coercive} may be nonnegative.
+On the compact complement of a neighborhood of \(K\), \(\Phi\) is
+separated from its maximum by a strictly positive amount.
+Local uniform convergence preserves a smaller gap for \(\Phi_N\).
+A small ball around one maximizer gives a denominator bounded below by
+its fixed volume times \(e^{N(\max\Phi-\epsilon)}\).
+The outer tail is controlled uniformly by
+\(e^{-N\|h\|^2/2}\). Choosing \(\epsilon\) smaller than the compact gap
+proves the assertion. No nondegeneracy of the Hessian is needed.
+
+Differentiating \(\Phi\) in the real and imaginary coordinates is
+legitimate by the uniform row bound. Its stationary equation is
+\(Q_h=\overline h\). Taking its bilinear scalar product with \(h\)
+gives \(m_h=\|h\|^2\). Since \(p_h(v)<1\) everywhere, \(m_h<1\).
+This proves \eqref{mf:stationarity}.
+
+\subsection{An exact three-sector identity}
+
+Suppress the index \(N\). For a retained set \(I\subset[N]\), put
+\(J=I^c\), \(k=|I|\), and
+\begin{align*}
+ f_I(z)&=\prod_{i\in I}(v_i\cdot z),\\
+ G_I(z)&=\sum_{\substack{i<j\\i,j\in I}}
+        (v_i\wedge v_j)\prod_{b\in I\setminus\{i,j\}}(v_b\cdot z),\\
+ H_{a,I}(z)&=\sum_{i\in I}\operatorname{sign}(a-i)\,v_i
+                       \prod_{b\in I\setminus\{i\}}(v_b\cdot z),
+                       \qquad a\in J.
+\end{align*}
+Empty products equal one and empty sums equal zero.
+
+\begin{lemma}[All exterior sectors]\label{mf:sector-identity}
+One has the exact identity
+\begin{equation}\label{mf:three-sectors}
+ T(A_N)=\sum_{I\subset[N]}\left(\frac tN\right)^{|I|}
+ \left(
+  \|G_I\|_{\mathrm F}^2+
+  \sum_{a\in I^c}\|H_{a,I}\|_{\mathrm F}^2+
+  \binom{|I^c|}{2}\|f_I\|_{\mathrm F}^2
+ \right).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Use Gram rows
+\(w_i=\sqrt{t/N}\,v_i\oplus e_i\).
+Split their wedge polynomial into the exterior sectors
+\(\Lambda^2\mathbb C^r\), \(\mathbb C^r\wedge\mathbb C^N\), and
+\(\Lambda^2\mathbb C^N\).
+In the first sector, the coefficient of the added-variable monomial
+\(\prod_{a\in J}x_a\) is \((t/N)^{k/2}G_I\).
+In the second, with exterior index \(a\in J\), the coefficient of
+\(\prod_{b\in J\setminus\{a\}}x_b\) is
+\((t/N)^{k/2}H_{a,I}\), up to one irrelevant common sign.
+In the third sector, each exterior pair in \(J\) gives
+\((t/N)^{k/2}f_I\) multiplying the corresponding remaining monomial.
+Distinct added-variable monomials are Fischer-orthogonal and each has
+factorial weight one. The three exterior sectors are orthogonal.
+Taking squared norms proves \eqref{mf:three-sectors}.
+\end{proof}
+
+For clarity, this also identifies precisely what diagonal dilution adds
+to the derivative. Define
+\[
+ F(B)_{ij}=b_{ij}\per B(i\mid j),\qquad
+ \operatorname{cut}_F(B[I];a)=
+       \sum_{\substack{i<a<j\\i,j\in I}}F(B[I])_{ij},
+\]
+where retained indices keep their original labels in the cut.
+The matrix \(F(B[I])\) has row sums \(\per B[I]\). Hence
+\[
+ \|H_{a,I}\|_{\mathrm F}^2
+       =|I|\per B[I]-4\operatorname{cut}_F(B[I];a),
+\]
+and \eqref{mf:endpoint} gives
+\begin{equation}\label{mf:derivative-dilution}
+ D_1(A_N)=\sum_I\left(\frac tN\right)^{|I|}
+ \left(D_1(B_N[I])
+          +2\sum_{a\in I^c}\operatorname{cut}_F(B_N[I];a)\right).
+\end{equation}
+The cross-block cuts are nonnegative, as follows by differentiating
+Lieb's cross-block scaling expansion, whose coefficients in the square
+of the scaling variable are nonnegative \cite{Lieb1966}.
+
+\subsection{Conditional Bernoulli moments}
+
+For fixed \(z\), let \(I\) be a random retained set with independent
+membership probabilities
+\[
+ p_i(z)=
+ \frac{(t/N)|v_i\cdot z|^2}{1+(t/N)|v_i\cdot z|^2}.
+\]
+Summing \((t/N)^{|I|}|f_I(z)|^2\) produces exactly the product in
+\eqref{mf:gaussian}. At \(z=\sqrt N\,h\), these probabilities are
+\(p_h(v_i)\).
+
+Away from the zero sets of the nonzero linear forms, let
+\[
+ U_i=\xi_i\,\frac{v_i}{\ell_h(v_i)},\qquad
+ \xi_i\ \hbox{independent Bernoulli}(p_h(v_i)).
+\]
+Then
+\begin{equation}\label{mf:bounded-moments}
+ \mathbb E U_i=q_h(v_i),\qquad
+ \mathbb E\|U_i\|^2
+ =\frac{t\|v_i\|^2}{1+t|\ell_h(v_i)|^2}\le tL^2,\qquad
+ \|\mathbb E U_i\|\le\frac{\sqrt t\,L}{2}.
+\end{equation}
+These quotient random variables are used only almost everywhere.
+For each nonzero row its zero set is a complex hyperplane of Lebesgue
+measure zero. Zero rows contribute zero and can be omitted from this
+calculation. At a vanishing nonzero linear form, declaring \(U_i=0\)
+would not reproduce the continuous limiting second moment in
+\eqref{mf:bounded-moments}; that identification is not made.
+Instead the moment expressions have continuous extensions in the original
+polynomial integrals, and values on these null sets do not affect an
+integral. The final functions \(p_h,q_h,\mathcal R\) have no quotient
+singularities.
+
+Set
+\begin{align*}
+ W_N(h)&=\frac1{N^2}\sum_{i<j}q_h(v_i)\wedge q_h(v_j),
+ &Q_N(h)&=\frac1N\sum_iq_h(v_i),\\
+ Q_{a,N}(h)&=\frac1N\sum_{i<a}q_h(v_i),
+ &m_N(h)&=\frac1N\sum_ip_h(v_i).
+\end{align*}
+For the first exterior sector the random quotient is
+\[
+ \frac1N\sum_{i<j}U_i\wedge U_j,
+\]
+whose mean is \(NW_N\). In its variance, disjoint pairs have zero
+covariance. There are \(O(N^3)\) pairs sharing an index and \(O(N^2)\)
+identical pairs. Every surviving covariance is bounded by a constant
+depending only on \(t,L\), using independence and
+\eqref{mf:bounded-moments}. The factor \(N^{-2}\) thus makes the variance
+\(O(N)\). The contribution of this sector divided by \(N^2\per A_N\)
+equals
+\begin{equation}\label{mf:first-sector-limit}
+ \mathbb E_{\Pi_N}\|W_N(h)\|^2+O(N^{-1}).
+\end{equation}
+
+For a fixed missing index \(a\), the second-sector quotient is
+\[
+ \frac1{\sqrt N}\sum_{i\ne a}\operatorname{sign}(a-i)U_i.
+\]
+Its mean is
+\(\sqrt N(2Q_{a,N}-Q_N+q_h(v_a)/N)\), and its variance is at most
+\(tL^2\). Membership of \(a\) is independent of this sum. Summing over
+\(a\) and using the uniform bounds gives the normalized second-sector
+contribution
+\begin{equation}\label{mf:second-sector-limit}
+ \mathbb E_{\Pi_N}\frac1N\sum_a
+ (1-p_h(v_a))\|Q_N(h)-2Q_{a,N}(h)\|^2+O(N^{-1}).
+\end{equation}
+The third sector counts missing pairs. Its normalized contribution is
+\begin{equation}\label{mf:third-sector-limit}
+ \frac12\mathbb E_{\Pi_N}(1-m_N(h))^2+O(N^{-1}).
+\end{equation}
+All three error estimates are uniform in \(h\).
+
+\subsection{Convergence of the ordered functionals}
+
+The discrete functions in
+\eqref{mf:first-sector-limit}--\eqref{mf:third-sector-limit} converge to
+their \(\mu\)-integral versions locally uniformly in \(h\).
+For the order indicators, partition the \(x\)-interval into short
+subintervals. The first marginal is Lebesgue measure, so boundaries
+\(x=s\) and \(x=y\) have zero \(\mu\) and \(\mu\otimes\mu\) mass.
+The uniform bound on \(q_h\) controls the contribution of the short
+subintervals. This proves prefix convergence uniformly in \(s\).
+A finite \(h\)-net and uniform continuity give joint local uniformity
+in \(s,h\); the same argument handles the ordered double integral.
+
+Thus \(\mathcal R\) is continuous and bounded, as are the discrete
+integrands uniformly. Tightness of \(\Pi_N\), local uniform convergence,
+and the three sector estimates give
+\begin{equation}\label{mf:score-integral}
+ \frac{T(A_N)}{\binom N2\per A_N}
+       =\mathbb E_{\Pi_N}\mathcal R(h)+o(1).
+\end{equation}
+Concentration near \(K\) proves
+\eqref{mf:criterion-bounds}. Equation~\eqref{mf:ratio} proves the
+remaining assertions of Theorem~\ref{mf:criterion}.
+
+\section{Proof of the subcritical obstruction}\label{mf:subcritical-proof}
+
+\subsection{A dominated Gaussian limit}
+
+Assume \(t\lambda_{\max}(\Sigma)<1\). Choose \(s>1\) and \(b<1\)
+such that \(st\lambda_{\max}(\Sigma_N)\le b\) for all sufficiently
+large \(N\). Since \(\log(1+x)\le x\),
+\[
+ \prod_i\left(1+\frac{st}{N}|v_i\cdot z|^2\right)
+ \le e^{stz^*\Sigma_Nz}\le e^{b\|z\|^2}.
+\]
+This is integrable against the standard complex Gaussian, even after
+multiplication by any fixed power of \(\|z\|\).
+The bounded row assumption and the quadratic Taylor remainder show
+pointwise convergence of the product with parameter \(t\) to
+\(e^{tz^*\Sigma z}\). Dominated convergence gives
+\[
+ \per A_N\longrightarrow
+ \mathbb E e^{tZ^*\Sigma Z}=\det(I-t\Sigma)^{-1},
+\]
+which proves \eqref{mf:permanent-limit}.
+
+The positive principal-permanent weights
+\[
+ \mathbb P_N(I)=
+ \frac{(t/N)^{|I|}\per B_N[I]}{\per A_N}
+\]
+define a random retained size \(K_N=|I|\). Its exponential moment is
+\begin{equation}\label{mf:retained-mgf}
+ \mathbb E s^{K_N}
+ =\frac{\per(I+(st/N)B_N)}{\per A_N}\le C_s.
+\end{equation}
+Therefore every fixed moment of \(K_N\) is uniformly bounded.
+
+\subsection{Polynomial bounds for compressed endpoint terms}
+
+For any \(k\times k\) PSD Gram matrix \(B\), put \(C_k=\binom k2\).
+Cauchy--Schwarz applied to the \(C_k\) wedge summands gives
+\begin{align}
+ T(B)
+ &\le C_k\sum_{i<j}
+       \det B[\{i,j\}]\per B[\{i,j\}^c]\notag\\
+ &\le C_k^2\per B.\label{mf:wedge-bound}
+\end{align}
+The last inequality uses the elementary two-by-two inequality
+\(\det\le\per\), followed by Lieb's principal-block inequality
+\cite{Lieb1966}. The latter is also a consequence of the Fischer product
+inequality for products of linear forms \cite{Reznick1993}.
+It follows that
+\begin{equation}\label{mf:derivative-bound}
+ |D_1(B)|\le\frac{C_k+C_k^2}{2}\per B.
+\end{equation}
+The matrix \(F(B)\) is PSD: it is the Gram matrix of the vector-valued
+polynomials \(v_i\prod_{j\ne i}\ell_j\).
+Lieb's inequality gives
+\(F(B)_{ii}=b_{ii}\per B(i\mid i)\le\per B\).
+Thus \(|F(B)_{ij}|\le\per B\), and
+\begin{equation}\label{mf:footrule-bound}
+ \left|\sum_{i,j}|i-j|F(B)_{ij}\right|\le k^3\per B.
+\end{equation}
+The polynomial dependence on \(k\) is needed here; a factorial bound
+would not suffice for \eqref{mf:retained-mgf}.
+
+\subsection{Replacing inversions by the footrule}
+
+Define
+\begin{equation}\label{mf:footrule}
+ \mathcal L(A)=\sum_{i,j}|i-j|a_{ij}\per A(i\mid j)
+ =\sum_\sigma\left(\sum_i|i-\sigma(i)|\right)
+                         \prod_i a_{i,\sigma(i)}.
+\end{equation}
+If a permutation fixes an index \(a\), deleting that index reduces its
+inversion count by twice the number of edges crossing that cut in one
+direction. It reduces its footrule by the same amount, because each
+crossing edge has its length reduced by one and the crossing counts in
+the two directions agree. Therefore
+\[
+ \operatorname{inv}(\sigma)-\sum_i|i-\sigma(i)|
+\]
+is unchanged by deleting fixed indices and compressing the remaining
+order.
+Expanding \(A_N=I+(t/N)B_N\) gives the exact identity
+\begin{equation}\label{mf:compression}
+ D_1(A_N)-\mathcal L(A_N)
+ =\sum_I\left(\frac tN\right)^{|I|}
+       \bigl(D_1(B_N[I])-\mathcal L(B_N[I])\bigr),
+\end{equation}
+where the submatrix quantities use their compressed order.
+Equations~\eqref{mf:retained-mgf},
+\eqref{mf:derivative-bound}, and \eqref{mf:footrule-bound} imply
+\begin{equation}\label{mf:bounded-defect}
+ |D_1(A_N)-\mathcal L(A_N)|\le C\per A_N
+\end{equation}
+with \(C\) independent of \(N\).
+
+\subsection{The limiting cross trace}
+
+For \(i\ne j\), Gaussian expansion of the cross permanent gives
+\begin{equation}\label{mf:cross-minor}
+ \per A_N(i\mid j)=\frac tN\,
+ \mathbb E\left[
+ (v_j\cdot Z)\overline{(v_i\cdot Z)}
+ \prod_{a\ne i,j}\left(1+\frac tN|v_a\cdot Z|^2\right)\right].
+\end{equation}
+The domination used above, with the required Gaussian moment weight,
+shows uniformly in \(i,j\) that the expectation in
+\eqref{mf:cross-minor}, divided by \(\per A_N\), is
+\(v_j^TR_0v_i+o(1)\).
+Indeed, omitting two factors costs at most
+\(O(N^{-1})\|Z\|^4\) times the dominating product; the full tilted
+second-moment matrix converges in the fixed dimension.
+Consequently
+\[
+ \frac{F(A_N)_{ij}}{\per A_N}
+ =\frac{t^2}{N^2}(v_i^Tv_j)(v_j^TR_0v_i)+o(N^{-2})
+\]
+uniformly for \(i\ne j\). Weak convergence and \eqref{mf:footrule} yield
+\begin{align}
+ \frac{\mathcal L(A_N)}{N\per A_N}
+ &\longrightarrow
+ t^2\iint |x-y|(v^Tw)(w^TR_0v)\,d\mu(x,v)\,d\mu(y,w)\notag\\
+ &=2t^2\int_0^1\operatorname{tr}
+             \bigl(M_sR_0(\Sigma-M_s)\bigr)\,ds.\label{mf:footrule-limit}
+\end{align}
+The last equality integrates the two cut orientations of \(|x-y|\).
+The two traces agree and are real, since \(R_0\) is a function of
+\(\Sigma\).
+
+\begin{lemma}[A resolvent cross-trace inequality]\label{mf:trace}
+If \(A,B\succeq0\), \(S=A+B\), and \(t\|S\|<1\), then
+\begin{equation}\label{mf:trace-inequality}
+ \operatorname{tr}\bigl(A(I-tS)^{-1}B\bigr)
+       \ge\operatorname{tr}(AB)\ge0.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Restrict to the range of \(S\), since both \(A\) and \(B\) annihilate
+its kernel. Write
+\(A=S^{1/2}CS^{1/2}\), \(B=S^{1/2}(I-C)S^{1/2}\), with
+\(0\preceq C\preceq I\), and diagonalize \(S\) with eigenvalues
+\(\lambda_i>0\).
+If \(f\ge0\) and \(x\mapsto xf(x)\) is nondecreasing on this spectrum,
+direct expansion gives
+\begin{align}
+ \operatorname{tr}(Af(S)B)
+ &=\sum_i\lambda_i^2f(\lambda_i)
+                   \bigl(C_{ii}-(C^2)_{ii}\bigr)\notag\\
+ &\quad+\frac12\sum_{i,j}(\lambda_i-\lambda_j)
+       \bigl(\lambda_if(\lambda_i)-\lambda_jf(\lambda_j)\bigr)
+                        |C_{ij}|^2\ge0.\label{mf:trace-expansion}
+\end{align}
+Every term is nonnegative, because \(C^2\preceq C\).
+Apply this to \(f(x)=(1-tx)^{-1}-1\);
+then \(xf(x)=tx^2/(1-tx)\) is nonnegative and increasing.
+This proves the first inequality in \eqref{mf:trace-inequality};
+the second is the standard trace inequality for two PSD matrices.
+\end{proof}
+
+The lower comparison is strictly positive after integration:
+\begin{equation}\label{mf:strict-trace}
+ 2\int_0^1\operatorname{tr}\bigl(M_s(\Sigma-M_s)\bigr)\,ds
+ =\iint|x-y||v^Tw|^2\,d\mu\,d\mu>0.
+\end{equation}
+The unweighted integral of \(|v^Tw|^2\) is
+\(\operatorname{tr}(\Sigma^2)>0\), while \(x=y\) has zero
+\(\mu\otimes\mu\) measure.
+More quantitatively, \(|v^Tw|^2\le L^4\), and the mass of
+\(|x-y|<\epsilon\) is at most \(2\epsilon\).
+Taking \(\epsilon=\operatorname{tr}(\Sigma^2)/(4L^4)\) gives
+\begin{equation}\label{mf:strict-lower-bound}
+ \iint|x-y||v^Tw|^2\,d\mu\,d\mu
+ \ge\frac{(\operatorname{tr}\Sigma^2)^2}{8L^4}.
+\end{equation}
+Equations~\eqref{mf:bounded-defect} and \eqref{mf:footrule-limit},
+followed by Lemma~\ref{mf:trace}, prove
+Theorem~\ref{mf:subcritical}.
+
+\begin{proof}[Proof of Corollary~\ref{mf:arbitrary-orders}]
+The ordered empirical measures lie in a compact space of probability
+measures. Extract a weakly convergent subsequence from any proposed
+violating subsequence. Its first marginal is Lebesgue measure and its
+covariance is the corresponding limit of \(\Sigma_N\).
+Apply Theorem~\ref{mf:subcritical} and
+\eqref{mf:strict-lower-bound} on that subsequence.
+This proves \eqref{mf:uniform-positive} and the version with uniform
+\(\varepsilon,s\).
+\end{proof}
+
+\section{The exact spherical saddles and a stronger Gini bound}\label{mf:sphere}
+
+\subsection{The anisotropic spherical potential}
+
+Let \(Y\) be uniform on the real sphere \(S^2\) and
+\[
+ v=T_\tau Y,\qquad T_\tau=\operatorname{diag}(1,1,\tau),
+ \qquad 0<\tau<1.
+\]
+The marginal law of \(v\) has covariance
+\(\Sigma=\operatorname{diag}(1/3,1/3,\tau^2/3)\).
+The order is specified below and does not affect \(\Phi\).
+
+\begin{proposition}[Exact coherent transition]\label{mf:spherical-saddles}
+For this spherical law, \(h=0\) is the unique maximizer of \(\Phi\)
+when \(t\le3\). When \(t>3\), its maximizers are exactly
+\begin{equation}\label{mf:circular-poles}
+ h=e^{i\phi}\sqrt{m/2}(1,i,0)
+ \quad\hbox{or}\quad
+ h=e^{i\phi}\sqrt{m/2}(1,-i,0),
+\end{equation}
+where \(m\in(0,1)\) is uniquely determined by
+\begin{equation}\label{mf:radial-saddle}
+ m=m(k):=\int_0^1\frac{k(1-z^2)}{1+k(1-z^2)}\,dz,\qquad
+ k=\frac{tm}{2}.
+\end{equation}
+Equivalently, \(t=2k/m(k)\), a strictly increasing function of \(k>0\),
+and
+\begin{equation}\label{mf:mass-formula}
+ 1-m(k)=
+ \frac{\operatorname{artanh}\sqrt{k/(1+k)}}{\sqrt{k(1+k)}}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Multiply \(h\) by a phase so that the real and imaginary parts of
+\(T_\tau h\) are orthogonal, and rotate \(Y\).
+If their squared lengths are \(\lambda_1,\lambda_2\), the logarithmic
+term in \(\Phi\) becomes
+\[
+ \mathbb E\log\bigl(1+t(\lambda_1Y_1^2+\lambda_2Y_2^2)\bigr).
+\]
+It is symmetric and strictly concave along each line with fixed positive
+\(\lambda_1+\lambda_2\): the second derivative is the negative
+expectation of a nonzero square proportional to
+\((Y_1^2-Y_2^2)^2\).
+It is therefore maximized at \(\lambda_1=\lambda_2\), and is strictly
+increasing in their sum. That sum is
+\(\|T_\tau h\|^2\le\|h\|^2\), with equality only if \(h_3=0\).
+Thus, at fixed \(\|h\|^2=m>0\), the maximizing directions are precisely
+\eqref{mf:circular-poles}.
+
+The remaining radial function is strictly concave:
+\[
+ \varphi_t(m)=\int_0^1\log(1+(tm/2)(1-z^2))\,dz-m.
+\]
+Its derivative at zero is \(t/3-1\). It tends to \(-\infty\) as
+\(m\to\infty\), so the asserted unique radial maximum follows.
+The stationary equation gives \eqref{mf:radial-saddle}; its right side
+is strictly between zero and one.
+The function \(m(k)/k\) is strictly decreasing, proving the asserted
+monotonicity of \(t(k)\). Integrating
+ \((1+k-kz^2)^{-1}\) gives \eqref{mf:mass-formula}.
+\end{proof}
+
+The transition at \(t=3\) is a transition of the coherent maximizers.
+It does not by itself imply a negative endpoint derivative for every
+\(t>3\); the ordered score must still exceed one.
+
+\subsection{A quantitative strict Gini inequality}
+
+Let \(R\) have density \(1/[2(1+r^2)^{3/2}]\), independently of a
+uniform angle \(\Theta\). For an integrable real random variable \(Z\),
+write \(\mathcal C(Z)=\tfrac12\mathbb E|Z-Z'|\), with an independent
+copy \(Z'\). Put \(X=\sqrt2R\cos\Theta\).
+
+\begin{lemma}[A stronger spherical Gini gain]\label{mf:strong-gini}
+One has
+\begin{equation}\label{mf:gini-gain}
+ \mathcal C(X)\ge\frac1{\sqrt2}
+             +\frac{\pi^2-8}{32\sqrt2\,\pi}
+             >\frac1{\sqrt2}+\frac{13}{1000}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let \(U=|R|\) and
+\(g(a,b)=\mathbb E\max(aU,bU')\) for \(a,b\ge0\).
+Independent symmetric signs show that
+\(g(a,b)=\mathbb E|aR-bR'|\).
+The distribution function of \(U\) is \(u/\sqrt{1+u^2}\), so
+\[
+ g(a,b)=\int_0^\infty
+ \left(1-\frac{s^2}{\sqrt{(s^2+a^2)(s^2+b^2)}}\right)\,ds.
+\]
+For positive \(a,b\), differentiating the expectation of the maximum
+gives
+\[
+ g_{aa}(a,b)=\frac1b\int_0^\infty
+ \frac{u^2\,du}
+ {(1+u^2)^{3/2}(1+(a/b)^2u^2)^{3/2}}.
+\]
+Differentiation is justified locally by an integrable majorant when
+\(a,b\) range in a compact subset of \((0,\infty)\).
+Homogeneity gives \(g_{ab}=-(a/b)g_{aa}\) and
+\(g_{bb}=(a/b)^2g_{aa}\).
+
+Set \(H(x)=g(1+x,1-x)\) and \(a=1+x,b=1-x\).
+Substitution \(u=s\sqrt{b/a}\) yields
+\[
+ H''(x)=\frac4{(ab)^{3/2}}\int_0^\infty
+ \frac{s^2\,ds}
+ {\bigl((1+s^2)^2+4(1-ab)s^2/(ab)\bigr)^{3/2}}.
+\]
+Because \(4s^2\le(1+s^2)^2\) and \(0<ab\le1\), the denominator
+inside the parentheses is at most \((1+s^2)^2/(ab)\).
+Hence
+\[
+ H''(x)\ge4\int_0^\infty\frac{s^2}{(1+s^2)^3}\,ds
+          =\frac\pi4.
+\]
+Symmetry gives \(H'(0)=0\).
+The radial distribution function
+\(F_R(r)=\tfrac12+r/(2\sqrt{1+r^2})\) gives
+\[
+ \mathcal C(R)=\int_{\mathbb R}F_R(r)(1-F_R(r))\,dr
+             =\int_{\mathbb R}\frac{dr}{4(1+r^2)}=\frac\pi4,
+\]
+so \(H(0)=\pi/2\).
+Integrating twice and rescaling proves
+\begin{equation}\label{mf:uniform-convexity}
+ g(a,b)\ge\frac\pi4(a+b)
+               +\frac\pi{16}\frac{(a-b)^2}{a+b}.
+\end{equation}
+Continuity extends this to the boundary, interpreting the final term as
+zero at \(a=b=0\). For example, continuity follows from
+\(\mathbb E U=1\) and the Lipschitz bound for the maximum.
+
+By symmetry \(X\) has the law of \(SR\), with
+\(S=\sqrt2|\cos\Theta|\) independent of \(R\).
+Here
+\[
+ \mathbb ES=\frac{2\sqrt2}{\pi},\qquad
+ \mathbb ES^2=1,\qquad 0\le S\le\sqrt2.
+\]
+Average \eqref{mf:uniform-convexity} over \(S,S'\). Since
+\(S+S'\le2\sqrt2\) and
+\(\mathbb E(S-S')^2=2\operatorname{Var}(S)\), this gives
+\[
+ \mathcal C(X)=\tfrac12\mathbb Eg(S,S')
+ \ge\frac\pi4\mathbb ES+\frac{\pi}{32\sqrt2}\operatorname{Var}(S)
+ =\frac1{\sqrt2}+\frac{\pi^2-8}{32\sqrt2\,\pi}.
+\]
+For the displayed rational bound, use
+\(\pi>157/50\), \(\pi<22/7\), and \(\sqrt2<99/70\).
+The resulting rational lower bound for the gain exceeds \(13/1000\).
+\end{proof}
+
+\section{A bounded-condition consequence}\label{mf:concrete}
+
+Use spherical coordinates
+\[
+ Y=(\sqrt{1-z^2}\cos\theta,\sqrt{1-z^2}\sin\theta,z),
+\]
+where \(z\) is uniform on \([-1,1]\) and \(\theta\) is independently
+uniform on \([0,2\pi]\). Order rows by the real quotient
+\begin{equation}\label{mf:sort-coordinate}
+ X_\tau(Y)=\frac{\sqrt2\,\tau z\cos\theta}{\sqrt{1-z^2}}.
+\end{equation}
+Its values at the two sphere poles can be assigned arbitrarily, since
+those points have measure zero.
+
+At the positive saddle in \eqref{mf:circular-poles}, write \(a=\sqrt m\)
+and use the unitary coordinates with first basis vector
+\((1,i,0)/\sqrt2\). Dividing a row form by its pole value gives
+\[
+ c=(1,e^{-2i\theta},
+          \sqrt2\,\tau z e^{-i\theta}/\sqrt{1-z^2}).
+\]
+In these coordinates \(q_h=(p/a)c\), with
+\[
+ p(z)=\frac{k(1-z^2)}{1+k(1-z^2)}.
+\]
+Consequently the real part of one exterior component is
+\begin{equation}\label{mf:effective-gini}
+ C_{\mathrm{eff}}:=\Re(W_{02})
+ =\frac1m\cdot\frac12
+      \mathbb E\bigl[p(z)p(z')|X_\tau-X'_\tau|\bigr].
+\end{equation}
+Although the quotient is unbounded, \(p\,c\) is bounded. Equivalently,
+\(q_h\) is a continuous bounded function on the original compact sphere.
+No logarithmic clipping or radial truncation is needed.
+
+\begin{lemma}[Loss from diagonal dilution]\label{mf:gini-loss}
+With \(C_X=\mathcal C(\sqrt2R\cos\Theta)\) as above,
+\begin{equation}\label{mf:gini-loss-bound}
+ C_{\mathrm{eff}}\ge
+ \tau\left(C_X-\frac{\sqrt2}{\sqrt k}
+                   -\frac{\log(1+k)}k\right).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let \(C_p=\tfrac12\mathbb E[pp'|X_\tau-X'_\tau|]\).
+The inequality \(1-pp'\le(1-p)+(1-p')\), followed by the triangle
+inequality, gives
+\[
+ \tau C_X-C_p\le
+ \mathbb E[(1-p)|X_\tau|]+(1-m)\mathbb E|X_\tau|.
+\]
+Direct integration gives
+\[
+ \mathbb E|X_\tau|=\frac{2\sqrt2\,\tau}{\pi},\qquad
+ \mathbb E[(1-p)|X_\tau|]
+ =\frac{2\sqrt2\,\tau}{\pi}
+                  \frac{\arctan\sqrt k}{\sqrt k}.
+\]
+For the second identity substitute \(u=\sqrt{1-z^2}\) into the
+radial integral. Also
+\[
+ 1-m=\int_0^1\frac{dz}{1+k(1-z^2)}
+ \le\int_0^1\frac{dz}{1+k(1-z)}
+ =\frac{\log(1+k)}k.
+\]
+Now use \(\arctan\sqrt k\le\pi/2\),
+\(2\sqrt2/\pi<1\), and \(C_{\mathrm{eff}}=C_p/m\ge C_p\).
+\end{proof}
+
+\begin{theorem}[An eventual family with condition number below \(20002\)]
+\label{mf:20002}
+There is an explicit algebraic sequence of real positive-definite
+correlation matrices \(C_N\), defined for every sufficiently large order,
+such that
+\begin{equation}\label{mf:strong-derivative}
+ \limsup_{N\to\infty}
+ \frac{D_1(C_N)}{N(N-1)\per C_N}<-\frac1{800}.
+\end{equation}
+Its off-diagonal entries have modulus at most \(60000/N\), its least
+eigenvalue tends to one, and its condition number tends to \(20001\).
+In particular its condition number is eventually less than \(20002\).
+No explicit sufficient order is asserted in this theorem.
+\end{theorem}
+\begin{proof}
+Take
+\[
+ \tau=\frac{999}{1000},\qquad t=60000.
+\]
+The saddle parameter satisfies \(k>25000\).
+Indeed \(t(k)=2k/m(k)\) is strictly increasing, and
+\[
+ 1-m(25000)\le\frac{\log25001}{25000}<\frac16
+\]
+implies \(t(25000)<60000\).
+Both loss functions in \eqref{mf:gini-loss-bound} decrease with \(k\).
+At \(k=25000\), the bounds
+\(\sqrt2<3/2\), \(\sqrt{25000}>158\), and \(\log25001<11\) give
+\[
+ \frac{\sqrt2}{\sqrt k}+\frac{\log(1+k)}k
+ <\frac3{316}+\frac{11}{25000}<\frac1{100}.
+\]
+For example, \(\log25001<11\) follows from \(e>8/3\) and
+\((8/3)^{11}>25001\).
+Lemmas~\ref{mf:strong-gini} and \ref{mf:gini-loss} therefore imply
+\[
+ C_{\mathrm{eff}}>
+ \tau\left(\frac1{\sqrt2}+\frac3{1000}\right)
+ >\frac1{\sqrt2}+\frac2{1000}.
+\]
+Using \(\sqrt2>5/4\) shows
+\[
+ 2C_{\mathrm{eff}}^2>1+\frac1{200}.
+\]
+The two saddle circles are conjugate, so their full score is constant.
+Theorem~\ref{mf:criterion}, even using only the first exterior sector,
+proves \eqref{mf:strong-derivative} for any ordered discretization
+converging to this sphere law.
+
+Here is one deterministic algebraic discretization in every order.
+Let \(m=\lfloor\sqrt N\rfloor\), and form the \(m^2\) sphere rows
+\[
+ z_\ell=\frac{2\ell-1}{m}-1,\quad
+ \theta_j=\frac{2\pi j}{m},\quad
+ Y_{j,\ell}=
+  (\sqrt{1-z_\ell^2}\cos\theta_j,
+   \sqrt{1-z_\ell^2}\sin\theta_j,z_\ell),
+\]
+for \(1\le\ell\le m\), \(0\le j<m\).
+Apply \(T_\tau\), add \(N-m^2\) copies of \((1,0,0)\), and sort by
+\eqref{mf:sort-coordinate}, breaking ties lexicographically by the
+original labels. The grid avoids the two poles and all entries are
+algebraic.
+
+These empirical sphere measures converge to the uniform sphere law.
+The quotient is continuous away from the two poles and its limiting
+distribution has no atoms. Its empirical distribution functions therefore
+converge uniformly to its continuous distribution function \(F_X\), and
+the largest relative tie multiplicity tends to zero.
+The sorted empirical position differs uniformly by \(o(1)\) from
+\(F_X(X_\tau(Y))\). Hence the joint ordered law converges to that of
+\((F_X(X_\tau(Y)),T_\tau Y)\). Its first marginal is uniform on
+\([0,1]\), verifying \eqref{mf:empirical}.
+
+Set \(A_N=I+(60000/N)V_NV_N^T\) and normalize its diagonal:
+\[
+ C_N=\Delta_N^{-1/2}A_N\Delta_N^{-1/2},\qquad
+ \Delta_N=\operatorname{diag}(A_N).
+\]
+Every permutation monomial, and hence the permanent and its derivative,
+is multiplied by the same positive factor. Thus the normalized derivative
+ratio is unchanged.
+The covariance eigenvalues converge to \(1/3,1/3,\tau^2/3\), so the
+condition number of \(A_N\) tends to \(1+60000/3=20001\).
+Its least eigenvalue is one for large \(N\).
+Since \(\Delta_N=I+O(N^{-1})\) in operator norm and \(\|A_N\|\) is
+bounded, \(\|C_N-A_N\|\to0\). This proves the asserted eigenvalue and
+condition-number limits. The unit bound on \(\|T_\tau Y\|\), and
+diagonal normalization factors at least one, give the off-diagonal bound.
+\end{proof}
+
+Before correlation normalization, exactly \(N-3\) eigenvalues equal one
+when the rows span \(\mathbb R^3\). Nonconstant diagonal normalization
+need not preserve that exact multiplicity; only the stated limiting
+spectral conclusions are claimed for \(C_N\).
+This theorem concerns large orders only and supplies no explicit
+sufficient order; the finite certificate of Section~\ref{sec:certificate}
+is a separate construction.
+
+\section{A four-dimensional sphere and condition numbers below 257}
+\label{mf:four-sphere}
+
+The second exterior sector can make a decisive contribution. We now use
+the complete score \eqref{mf:score} for a four-dimensional real spherical
+law. The resulting condition-number bound is much smaller, while the
+preceding construction retains its advantage of using three-dimensional
+latent rows.
+
+Let \(Y\) be uniform on \(S^3\subset\mathbb R^4\), and set
+\[
+ v=T_\tau Y,\qquad T_\tau=\operatorname{diag}(1,1,\tau,\tau),
+ \qquad 0<\tau<1.
+\]
+Write
+\[
+ w_1=Y_1+iY_2,\qquad w_2=Y_3+iY_4,\qquad
+ S=|w_1|^2,\qquad b=w_2/w_1.
+\]
+The variable \(S\) is uniform on \([0,1]\), and the two complex phases
+are independent and uniform. These statements follow, for example, by
+normalizing two independent standard complex Gaussians.
+The ratio \(b\) has density
+\begin{equation}\label{mf:complex-cauchy}
+ \frac{1}{\pi(1+|b|^2)^2}\,d^2b.
+\end{equation}
+Indeed \(S=(1+|b|^2)^{-1}\), and changing from the uniform \(S\) to the
+radius of \(b\) gives the radial density \(2r/(1+r^2)^2\).
+Order the rows by \(x=\Re b\); the exceptional set \(w_1=0\) has
+measure zero.
+
+\subsection{Exact saddle geometry and marginal formulas}
+
+The proof of Proposition~\ref{mf:spherical-saddles} applies in real
+dimension four: rotational invariance and strict concavity in the two
+squared singular values force a maximizing complex direction to be
+circular in the first coordinate plane.
+For \(t>4\), the maximizers are exactly
+\[
+ h=e^{i\phi}\sqrt{m/2}(1,i,0,0)
+ \quad\hbox{or its conjugate},
+\]
+where
+\begin{equation}\label{mf:four-saddle}
+ m=\int_0^1\frac{kS}{1+kS}\,dS
+   =1-\frac{\log(1+k)}k,\qquad k=\frac{tm}{2}.
+\end{equation}
+For completeness, the radial potential is
+\(\int_0^1\log(1+(tm/2)S)\,dS-m\); it is strictly concave, has
+derivative \(t/4-1\) at zero, and tends to \(-\infty\).
+This proves uniqueness of the positive radial saddle.
+The function \(t(k)=2k/m(k)\) is strictly increasing by the same
+integral argument as before.
+
+Put \(K=1+k\), \(\delta=1-m=\log K/k\), and
+\[
+ p=\frac{kS}{1+kS}=\frac{k}{K+|b|^2}.
+\]
+The unweighted marginal density of \(x=\Re b\), and its density
+weighted by \(p\), are respectively
+\begin{align}
+ f(x)&=\frac1{2(1+x^2)^{3/2}},\label{mf:four-f}\\
+ f_p(x)&=
+ \frac1{2(1+x^2)^{3/2}}
+ -\frac1{k\sqrt{1+x^2}}
+ +\frac1{k\sqrt{K+x^2}}.\label{mf:four-fp}
+\end{align}
+To check the second formula, use
+\[
+ \frac{k}{u^2(u+k)}=\frac1{u^2}-\frac1{ku}
+                         +\frac1{k(u+k)}
+\]
+with \(u=1+|b|^2\), and integrate the imaginary coordinate.
+Thus \(f_p\ge0\), \(f-f_p\ge0\), and their masses are \(m\) and
+\(\delta\), respectively.
+
+Define the centered prefix mass and first moment
+\[
+ \mathcal A(x)=\int_{-\infty}^x f_p(u)\,du-\frac m2,\qquad
+ \mathcal M(x)=\int_{-\infty}^x u f_p(u)\,du.
+\]
+Elementary antiderivatives give
+\begin{align}
+ \mathcal A(x)
+ &=\frac{x}{2\sqrt{1+x^2}}
+   -\frac{\operatorname{arsinh}x-
+          \operatorname{arsinh}(x/\sqrt K)}k,\label{mf:four-prefix}\\
+ \mathcal M(x)
+ &=-\frac1{2\sqrt{1+x^2}}
+   +\frac1{\sqrt{K+x^2}+\sqrt{1+x^2}}.\label{mf:four-moment}
+\end{align}
+For the second identity, the difference
+\((\sqrt{K+x^2}-\sqrt{1+x^2})/k\) is rationalized.
+The integration constant is fixed by the zero limit at \(-\infty\).
+
+\subsection{The full score in one-dimensional integrals}
+
+Use the unitary basis
+\((1,\pm i,0,0)/\sqrt2\), \((0,0,1,\pm i)/\sqrt2\).
+If \(\theta=\arg w_1\) and \(a=e^{-2i\theta}\), the row divided by
+its first pole value has coefficients
+\begin{equation}\label{mf:four-coefficients}
+ c=(1,a,\tau b,\tau a\overline b).
+\end{equation}
+The phase \(a\) is uniform and independent of \(b\). Conditional on
+\(x=\Re b\), the imaginary part of \(b\) has a symmetric law, also
+after multiplication by \(p\).
+Consequently only coordinates zero and two of the averaged vector
+\(q_h=(p/\sqrt m)c\) survive, with densities
+\[
+ \frac1{\sqrt m}\bigl(f_p(x),0,\tau x f_p(x),0\bigr).
+\]
+Writing
+\begin{equation}\label{mf:four-gamma}
+ \Gamma_k=\frac1{2m}\iint|x-y|f_p(x)f_p(y)\,dx\,dy,
+\end{equation}
+we obtain \(\|W_h\|^2=\tau^2\Gamma_k^2\).
+The prefix vector gives
+\[
+ \|Q_h-2Q_h(x)\|^2
+   =\frac4m\bigl(\mathcal A(x)^2+\tau^2\mathcal M(x)^2\bigr).
+\]
+It follows that the exact limiting score at either saddle circle is
+\begin{equation}\label{mf:four-full-score}
+ \mathcal R_*=
+ 2\tau^2\Gamma_k^2+
+ \frac8m\int_{\mathbb R}(f-f_p)
+         \bigl(\mathcal A^2+\tau^2\mathcal M^2\bigr)\,dx+
+ \delta^2.
+\end{equation}
+All terms are finite. This calculation uses the complete
+Theorem~\ref{mf:criterion}; omitting the middle term would not give the
+bound below.
+
+\begin{lemma}[Bounds for the two nonconstant sectors]\label{mf:four-bounds}
+One has
+\begin{equation}\label{mf:four-gamma-lower}
+ \Gamma_k\ge
+ \frac{\pi/4-2\sqrt K/k}{m}.
+\end{equation}
+If
+\[
+ \rho_k=\frac12-\frac\delta2-\frac1{\sqrt K+1}>0,
+\]
+then
+\begin{equation}\label{mf:four-mixed-lower}
+ \frac8m\int(f-f_p)(\mathcal A^2+\tau^2\mathcal M^2)\,dx
+ \ge\frac{8\tau^2\delta}{m}\rho_k^2.
+\end{equation}
+\end{lemma}
+\begin{proof}
+For the probability density \(f\), the absolute-difference potential is
+\[
+ g(x)=\int|x-y|f(y)\,dy=\sqrt{1+x^2}.
+\]
+Its derivative is \(2F(x)-1=x/\sqrt{1+x^2}\), and its value at zero
+is one, proving the formula. The half mean absolute difference of this
+law is \(\pi/4\), by the radial calculation in
+Lemma~\ref{mf:strong-gini}.
+If \(d=f-f_p\), expansion of \(f_p=f-d\) yields
+\[
+ \frac12\iint|x-y|f_p(x)f_p(y)\,dx\,dy
+ \ge\frac\pi4-\int d(x)g(x)\,dx.
+\]
+The omitted term is
+\(\tfrac12\iint|x-y|d(x)d(y)\,dx\,dy\ge0\).
+Using \eqref{mf:four-fp},
+\begin{align*}
+ \int d(x)g(x)\,dx
+ &=\frac1k\int_{\mathbb R}
+       \left(1-\frac{\sqrt{1+x^2}}{\sqrt{K+x^2}}\right)\,dx\\
+ &\le\frac2k\int_0^\infty
+       \left(1-\frac{x}{\sqrt{K+x^2}}\right)\,dx
+ =\frac{2\sqrt K}{k}.
+\end{align*}
+Dividing by \(m\) proves \eqref{mf:four-gamma-lower}.
+
+For the mixed term, compare with the unweighted pair
+\[
+ \mathcal A_\infty(x)=\frac{x}{2\sqrt{1+x^2}},\qquad
+ \mathcal M_\infty(x)=-\frac1{2\sqrt{1+x^2}},
+\]
+which satisfies \(\mathcal A_\infty^2+\mathcal M_\infty^2=1/4\).
+Equations~\eqref{mf:four-prefix}--\eqref{mf:four-moment} give the
+uniform estimates
+\[
+ |\mathcal A-\mathcal A_\infty|\le\delta/2,\qquad
+ |\mathcal M-\mathcal M_\infty|\le\frac1{\sqrt K+1}.
+\]
+The first follows also by integrating the even nonnegative density
+\(f-f_p\) of mass \(\delta\) from zero to \(x\).
+The triangle inequality in \(\mathbb R^2\) therefore gives
+\[
+ \mathcal A^2+\tau^2\mathcal M^2
+ \ge\tau^2(\mathcal A^2+\mathcal M^2)
+ \ge\tau^2\rho_k^2.
+\]
+Integrating against \(f-f_p\), whose mass is \(\delta\), proves
+\eqref{mf:four-mixed-lower}.
+\end{proof}
+
+\begin{theorem}[An eventual family with condition number below \(257\)]
+\label{mf:257}
+There is an explicit algebraic sequence of real positive-definite
+correlation matrices \(E_N\), defined for every sufficiently large order,
+such that
+\begin{equation}\label{mf:four-derivative}
+ \lim_{N\to\infty}
+ \frac{D_1(E_N)}{N(N-1)\per E_N}<-\frac1{1000}.
+\end{equation}
+Its off-diagonal entries have modulus at most \(1020/N\), its least
+eigenvalue tends to one, and its condition number tends to \(256\).
+In particular its condition number is eventually below \(257\).
+The unnormalized mean-field perturbation has latent rank four.
+This theorem asserts no explicit sufficient order.
+\end{theorem}
+\begin{proof}
+Set \(\tau=999/1000\) and \(t=1020\).
+Equation~\eqref{mf:four-saddle} implies \(k<510\).
+Since \(m(500)>1-7/500>50/51\), monotonicity of \(t(k)\) gives
+\(t(500)<1020\), and therefore \(k>500\).
+On this interval,
+\[
+ 6<\log(1+k)<7,\qquad
+ \frac6{510}<\delta<\frac7{500},\qquad
+ 22<\sqrt K<\frac{1131}{50}.
+\]
+For example, the logarithmic bounds follow from
+\(e<11/4\), \((11/4)^6<501\), \(e>8/3\), and
+\((8/3)^7>511\). These are strict elementary inequalities.
+Using \(\pi>157/50\), Lemma~\ref{mf:four-bounds} gives
+\begin{align*}
+ \Gamma_k
+ &>\frac{157/200-2(1131/50)/500}{1-6/510}
+   =\frac{295171}{420000},\\
+ \rho_k
+ &>\frac12-\frac7{1000}-\frac1{23}
+   =\frac{10339}{23000}>0.
+\end{align*}
+In \eqref{mf:four-full-score}, use \(1/m>1\) and
+\(\delta^2\ge\tau^2\delta^2\). The resulting entirely rational bound is
+\begin{align}
+ \mathcal R_*
+ &>\left(\frac{999}{1000}\right)^2
+ \left[
+ 2\left(\frac{295171}{420000}\right)^2
+ +8\frac6{510}\left(\frac{10339}{23000}\right)^2
+ +\left(\frac6{510}\right)^2
+ \right]\notag\\
+ &=\frac{1505674035849200604129}
+         {1498233800000000000000}
+ >1+\frac1{250}.\label{mf:four-rational-margin}
+\end{align}
+The full score is constant on the two conjugate saddle circles.
+Theorem~\ref{mf:criterion} and \eqref{mf:ratio} prove
+\eqref{mf:four-derivative}.
+
+An explicit discretization uses \(m=\lfloor N^{1/3}\rfloor\) and the
+\(m^3\) rows
+\[
+ S_\ell=\frac{2\ell-1}{2m},\quad
+ \theta_j=\frac{2\pi j}{m},\quad \psi_a=\frac{2\pi a}{m},
+\]
+\[
+ Y_{j,a,\ell}=
+ (\sqrt{S_\ell}\cos\theta_j,\sqrt{S_\ell}\sin\theta_j,
+  \sqrt{1-S_\ell}\cos\psi_a,\sqrt{1-S_\ell}\sin\psi_a).
+\]
+Here \(1\le\ell\le m\) and \(0\le j,a<m\).
+Apply \(T_\tau\), pad to \(N\) rows with \((1,0,0,0)\), and sort by
+\[
+ \Re b=\sqrt{\frac{1-S_\ell}{S_\ell}}\cos(\psi_a-\theta_j)
+\]
+with a fixed lexicographic tie convention. All entries are algebraic
+and \(w_1\ne0\) on the grid. The number of added rows is \(O(N^{2/3})\).
+The unweighted empirical sphere measures converge to the uniform law.
+The limiting ordering coordinate has the continuous density \(f\) in
+\eqref{mf:four-f}; the same distribution-function argument used in
+Theorem~\ref{mf:20002} verifies ordered empirical convergence.
+
+Set \(A_N=I+(1020/N)V_NV_N^T\) and normalize its diagonal as before.
+Its covariance tends to
+\(\operatorname{diag}(1/4,1/4,\tau^2/4,\tau^2/4)\), so its condition
+number tends to \(1+1020/4=256\).
+The row norms are at most one. Diagonal normalization preserves the
+derivative ratio, changes the operator by \(o(1)\), and gives the claimed
+off-diagonal bound and spectral limits.
+\end{proof}
+
+Theorems~\ref{mf:20002} and \ref{mf:257} express a tradeoff: the first
+uses three-dimensional latent vectors and has the larger derivative
+margin, while the second uses four-dimensional latent vectors and has
+the much smaller condition-number bound.
+Both are eventual-order conclusions from conventional asymptotic proofs.
+Neither claims a finite negative Lean certificate.
+
