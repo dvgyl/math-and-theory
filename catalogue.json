@@ -928,6 +928,70 @@
       }
     },
     {
+      "id": "harmonic-boundary-five",
+      "discipline": "Mathematics",
+      "area": "Graph theory",
+      "title": "Graphs with five harmonic boundary vertices, subcubic graphs with six, and minimum-boundary two-trees",
+      "kind": "Computer-assisted complete classification with exact certificates and partial Lean proofs",
+      "significance_rank": 145,
+      "keywords": [
+        "graph boundary",
+        "Steinerberger boundary",
+        "harmonic boundary vertices",
+        "graph classification",
+        "subcubic graphs",
+        "two-trees",
+        "five-point metrics"
+      ],
+      "summary": "Every two-connected graph with at most five Steinerberger boundary vertices has diameter at most two, and a connected graph has exactly five boundary vertices if and only if it is a bridge subdivision of one of 227 reduced graphs of order at most fourteen, answering Problem 6.1 of Chiem, Dudarov, Lee, Lee and Liu. The proof reduces boundary metrics of every diameter, via the three cones of five-point metrics and a cap that preserves local configurations, to an exact certificate leaving fifteen metrics that are excluded by hand. Connected graphs of maximum degree three with exactly six boundary vertices are the bridge subdivisions of 201 reduced graphs of order at most eighteen. For n ≥ 6 every two-tree on n vertices has at least ⌈n/2⌉ + 2 boundary vertices; there are three extremal two-trees at each even n ≥ 8 and, at odd n ≥ 9, a period-eight quartic quasi-polynomial number asymptotic to n⁴/192.",
+      "formal_scope": "Lean 4.35.0 proves, for finite simple graphs with certified shortest-path distances and the original strict boundary inequality, that a nonboundary degree-three vertex whose deletion leaves the graph connected forces six boundary vertices; the one-point gluing and block-accounting identities; the 14-vertex sharpness example; all 835 integer infeasibility systems of the local certificate; the bipartite subcubic boundary characterization; a sharp rooted metric truncation theorem; and the grammar weight bounds and polynomial identities for two-trees. A strict audit covers all 15,771 project declarations. The cone coverage, capping reduction, diameter-three argument, subcubic interior reduction, block decomposition, grammar correspondence and catalogue enumerations are conventional proofs and exact computations, replayed by the package checkers and by independent enumerations.",
+      "source": "The boundary is due to Steinerberger (The boundary of a graph and its isoperimetric inequality, Discrete Appl. Math. 338 (2023)). The five-boundary classification is Problem 6.1 of Chiem, Dudarov, Lee, Lee and Liu (A characterization of graphs with at most four boundary vertices, J. Combin. 15 (2024), arXiv:2209.04438), who classified the graphs with at most four boundary vertices. The profile frame is due to Müller, Pór and Sereni and the five-point metric cones to Koolen, Lesser and Moulton. The subcubic six-boundary and two-tree results extend the question. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/harmonic-boundary-five/README.md",
+      "paper": "papers/mathematics/harmonic-boundary-five/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/mathematics/harmonic-boundary-five"
+      },
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Classify the connected graphs with exactly five Steinerberger boundary vertices",
+        "posed_by": "Chiem, Dudarov, Lee, Lee and Liu, A characterization of graphs with at most four boundary vertices, J. Combin. 15 (2024), Problem 6.1; boundary defined by Steinerberger, Discrete Appl. Math. 338 (2023)",
+        "problem_url": "https://arxiv.org/abs/2209.04438",
+        "status": "Solved with a computer-assisted proof: 227 reduced graphs; subcubic six-boundary graphs and minimum-boundary two-trees also classified",
+        "claim": "A connected graph has exactly five boundary vertices if and only if it is a bridge subdivision of one of 227 reduced graphs; two-connected graphs with at most five boundary vertices have diameter at most two.",
+        "title_tag": "Graphs With Five Boundary Vertices: Complete Classification",
+        "description": "All connected graphs with five Steinerberger boundary vertices: 227 reduced graphs, answering a problem of Chiem et al.; also subcubic graphs with six and two-trees.",
+        "queries": [
+          "graphs with five boundary vertices",
+          "Steinerberger boundary of a graph classification",
+          "Chiem Dudarov Lee Liu boundary vertices problem",
+          "graph boundary average distance neighbours",
+          "two-connected graph boundary diameter two",
+          "minimum boundary two-tree",
+          "subcubic graphs six boundary vertices",
+          "boundary stability number graph"
+        ],
+        "faq": [
+          [
+            "Which graphs have exactly five boundary vertices?",
+            "A connected graph has exactly five Steinerberger boundary vertices if and only if it is obtained by subdividing bridges of one of 227 reduced graphs, which have at most fourteen vertices. Eighteen of them are two-connected, of order five or six, and every two-connected graph with at most five boundary vertices has diameter at most two. This answers Problem 6.1 of Chiem, Dudarov, Lee, Lee and Liu."
+          ],
+          [
+            "What is the boundary of a graph in this sense?",
+            "Steinerberger calls a vertex x a boundary vertex if some vertex y is strictly farther from x than the average distance from y to the neighbours of x. Chiem, Dudarov, Lee, Lee and Liu classified the graphs with at most four such vertices."
+          ],
+          [
+            "How many boundary vertices must a two-tree have?",
+            "For n ≥ 6 every two-tree on n vertices has at least ⌈n/2⌉ + 2 boundary vertices. Equality holds for three two-trees at each even n ≥ 8, and for a number of two-trees at odd n ≥ 9 given by an explicit quartic quasi-polynomial of period eight, asymptotic to n⁴/192."
+          ],
+          [
+            "Is the classification formally verified?",
+            "Partly. Lean proves the degree-three obstruction at graph level, the 835 local infeasibility systems of the certificate and several further components. The metric-cone reduction, the capping argument and the catalogue enumerations are conventional proofs and exact computations, rechecked by independent programs."
+          ]
+        ]
+      }
+    },
+    {
       "id": "singer-orbit-blocking",
       "discipline": "Mathematics",
       "area": "Finite geometry",

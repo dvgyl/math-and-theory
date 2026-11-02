@@ -1,0 +1,63 @@
+\section{Boundary metrics and their local profiles}\label{sec:frames}
+The representation in this section is the frame construction of
+M\"uller--P\'or--Sereni \cite[Lemmas 7--8 and Theorem 13]{muller}.
+We include its short proof to make the completeness of the finite
+certificates explicit. The new contribution here is the harmonic-boundary
+exclusion obtained from this representation.
+
+\begin{lemma}[Boundary profiles]\label{lem:profiles}
+Let $B=\{b_1,\ldots,b_k\}$ contain the CEJZ boundary of a connected graph.
+Write $M_{ij}=d(b_i,b_j)$ and $f(x)=(d(x,b_1),\ldots,d(x,b_k))$. Then
+\begin{align*}
+ d(x,y)&=\|f(x)-f(y)\|_\infty,\\
+ f_i(x)+f_j(x)&\ge M_{ij},\\
+ \text{for each }i\text{ there is }j\text{ with }f_i(x)+f_j(x)&=M_{ij}.
+\end{align*}
+In particular the profiles are injective, and adjacency is forced:
+$x\sim y$ if and only if their profile distance is one.
+Moreover $\stab(u)=\max_{b\in B}\stab(u,b)$.
+\end{lemma}
+\begin{proof}
+Extend a shortest $x$--$y$ path by steps that increase the distance from
+$x$, until no such step exists. Its final vertex $b$ is CEJZ boundary
+with witness $x$, and $d(x,b)=d(x,y)+d(y,b)$. The triangle inequality
+gives the reverse bound for every coordinate, proving the norm identity.
+The sum inequalities are triangle inequalities. Extending a shortest
+$b_i$--$x$ path in the same way gives the required tight partner $b_j$.
+For the last statement extend a shortest $u$--$t$ path to $b\in B$.
+For every $w\sim u$,
+\[
+ d(w,b)\le d(w,t)+d(t,b),\qquad
+ d(u,b)=d(u,t)+d(t,b),
+\]
+so $\stab(u,b)\ge\stab(u,t)$. Maximizing proves the identity.
+\end{proof}
+The difference inequalities $|f_i-f_j|\le M_{ij}$ also follow from the
+displayed sum and tightness conditions: choose $\ell$ tight with $i$,
+and use $f_i+f_\ell=M_{i\ell}\le M_{ij}+M_{j\ell}
+\le M_{ij}+f_j+f_\ell$. Thus the two independent implementations may
+include these inequalities explicitly or derive them implicitly.
+
+\begin{lemma}[No long pendant metric segment]\label{lem:pendantmetric}
+In a two-connected graph, let $B$ contain its CEJZ boundary and have at
+least three vertices. For every $b\in B$,
+\[
+ \min_{j\ne k,\ b_j,b_k\ne b}
+ \bigl(d(b,b_j)+d(b,b_k)-d(b_j,b_k)\bigr)\le1.
+\]
+Equivalently, the usual pendant length of each designated boundary point
+in its finite metric is zero or one half.
+\end{lemma}
+\begin{proof}
+If that minimum were at least two, let $x$ be any neighbor of $b$.
+Its coordinate at $b$ equals one, and $f_j(x)\ge d(b,b_j)-1$ for all
+other coordinates. If $f_j(x)\ge d(b,b_j)$, no other coordinate $k$
+can be tight with $j$: for $k\ne b,j$ the assumed inequality gives
+$f_j(x)+f_k(x)>d(b_j,b_k)$, for $k=b$ this is immediate, and
+$k=j$ cannot be tight because $f_j(x)>0$.
+Thus every $j\ne b$ has $f_j(x)=d(b,b_j)-1$.
+Every neighbor of $b$ has the identical profile. Injectivity of profiles
+forces degree one, contradicting two-connectivity.
+\end{proof}
+This restriction is independent of the diameter. It bounds the five
+pendant coefficients used in the uniform finite reduction below.

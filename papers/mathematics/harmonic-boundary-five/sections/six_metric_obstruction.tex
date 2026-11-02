@@ -1,0 +1,116 @@
+\section{An infinite obstruction to purely local six-boundary tests}\label{sec:six-local-barrier}
+The general rooted reduction does not settle global compatibility. The
+following theorem makes the obstruction explicit, at unbounded diameter.
+The local model here is exactly the radius-two induced-frame model with
+minimum degrees, harmonic inequalities, all selected-target descents, and
+the two-path condition used in the experimental extension.
+
+\begin{theorem}[All-root local feasibility does not imply realizability]
+For each integer $t\ge3$, let $M_t$ be the metric on
+$A=\{a_1,a_2,a_3\}$ and $B=\{b_1,b_2,b_3\}$ with
+\[
+ M_t(a_i,b_j)=t,\qquad
+ M_t(a_i,a_h)=M_t(b_i,b_h)=2t-1\quad(i\ne h).
+\]
+At every designated root, $M_t$ has a feasible radius-two local model
+satisfying all the conditions just listed, including every nonpositive
+interior score toward every designated or selected local target.
+Nevertheless, no finite simple connected graph has exactly these six
+harmonic boundary vertices with boundary metric $M_t$.
+\end{theorem}
+\begin{proof}
+First describe its entire positive profile frame. Each part has a unique
+coordinate at most $t-1$. Otherwise its coordinates could have no tight
+partner; two such small coordinates would violate their sum inequality.
+Write the small coordinates as $a$ at $a_i$ and $b$ at $b_j$. Every other
+coordinate in its part must be at least $2t-1$ minus that minimum. It is
+therefore at least $t$, so it cannot have a cross-part tight partner. Its
+only possible tight partner is its own part's minimum. Thus every positive
+profile is exactly
+\[
+ \begin{array}{ll}
+ p(a_i)=a,&p(a_h)=2t-1-a\quad(h\ne i),\\
+ p(b_j)=b,&p(b_h)=2t-1-b\quad(h\ne j),
+ \end{array}
+ \qquad 1\le a,b\le t-1,\quad a+b\ge t.
+\]
+Denote this profile by $p(i,j;a,b)$. Conversely each displayed profile
+satisfies all frame conditions.
+
+At root $a_i$, select the root and the six profiles
+\[
+ p(i,j;1,t-1),\quad p(i,j;2,t-2)\qquad(j=1,2,3).
+\]
+They induce a $K_4$ on the root and its three first-step vertices, with one
+pendant second-step vertex at each first-step vertex. The root degree is
+three and the three constrained interior degrees are four. There are
+three disjoint layer-one to layer-two edges. For the first-step vertex
+indexed by $j$, its scores toward $a_i$, any other $a_h$, $b_j$, and any
+other $b_h$ are respectively $0,0,-2,0$. Toward the selected local vertices,
+the only negative scores are at itself and its own pendant, and all other
+scores are zero. Every target has a closer selected neighbor. The
+six-sector rule for degree-three interiors is vacuous. Symmetry gives a
+valid model at all six roots, uniformly in $t$.
+
+Suppose a graph realizing this exact boundary exists. Its distance profiles
+form an isometric induced subgraph of the full frame. A length-$t$ geodesic
+from $a_i$ to $b_j$ forces every profile $p(i,j;k,t-k)$,
+$1\le k\le t-1$: at its $k$th step both endpoint distances are below $t$,
+so they are the unique small coordinates. Hence every diagonal profile
+$a+b=t$ is present.
+
+Consider such a forced profile with $a=k\le t-2$, and its score toward
+$a_h$ with $h\ne i$. Its predecessor on the diagonal, or $a_i$ when $k=1$,
+contributes $-1$; its forced successor contributes $+1$. For $k>1$, the
+only possible additional positive contributors are profiles with
+coordinates $(k+1,t-k)$ or $(k+1,t-k+1)$; the profile $(k,t-k+1)$, if
+present, contributes zero. At $k=1$, the other first-step vertices also
+contribute zero, while all the profiles $p(i,j';2,t-1)$ contribute $+1$.
+An interior score cannot be positive. Thus every additional positive
+contributor is absent. Applying this at all diagonal profiles deletes the
+entire two layers $a+b=t+1$ and $a+b=t+2$.
+
+Every profile edge changes $a$ and $b$ by at most one. If an index changes,
+the corresponding two small coordinates must both equal $t-1$, which
+also respects that bound. Designated points meet only diagonal profiles.
+The two missing layers therefore separate every higher profile from the
+boundary. Connectivity excludes all higher profiles, leaving precisely
+the six designated points and the forced diagonals.
+
+This remaining graph consists of six $K_4$ clusters, with ports
+$P_{ij}$ at the $A$ side and $Q_{ij}$ at the $B$ side, joined by nine
+internally disjoint chains of length $L=t-2$. For $i\ne i'$ and $j\ne j'$,
+\[
+ \|P_{ij}-Q_{i'j'}\|_\infty=t-1,
+ \qquad d(P_{ij},Q_{i'j'})=t.
+\]
+Indeed, using one chain requires a turn in each endpoint cluster, for a
+total of $L+2=t$, and this is attained. Any other route uses at least
+three chains and costs at least $3L\ge L+2$. The discrepancy contradicts
+isometry of the boundary-profile embedding. This proves the impossibility
+for every $t\ge3$.
+\end{proof}
+
+The positive frame has $9t(t-1)/2$ profiles; the forced diagonal graph has
+$9t-3$ vertices. The smallest member was found by a local metric search;
+its full 33-vertex frame is also independently rejected by an SMT model.
+The theorem's proof is the uniform argument above, not that solver result.
+The standard-library checker regenerates the full frame directly for
+$t=3,4,5$, checks local score coefficients and layer exclusions for
+$3\le t\le12$, and checks the final distance discrepancy by fresh BFS.
+This identifies a precise limitation of the existing local model, rather
+than extrapolating a six-boundary classification from small graphs.
+
+\begin{corollary}[The same local obstruction at every larger boundary size]
+For every $k\ge6$ there are integer metrics on $k$ designated points, of
+unbounded diameter, which pass all the specified radius-two local tests
+at every root but cannot be harmonic boundary metrics of any connected graph.
+\end{corollary}
+Indeed, use parts of sizes $p,q\ge3$ with $p+q=k$, cross distances $t$ and
+within-part distances $2t-1$. The same profile, layer, and isometry arguments
+apply. At an $A$-root the local model is a $K_{q+1}$ with a pendant
+second-step vertex at each nonroot vertex. Its first-layer interior degrees
+are $q+1\ge4$. The score toward the matching opposite target is $1-q$;
+the other designated-target scores are zero. The symmetric description
+holds at a $B$-root. Thus the local witnesses meet the same constraints,
+while the two missing layers force the same global distance discrepancy.

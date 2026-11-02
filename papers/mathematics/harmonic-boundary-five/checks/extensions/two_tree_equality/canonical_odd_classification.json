@@ -1,0 +1,773 @@
+{
+  "description": "Canonical structural classification of every odd-order equality two-tree.",
+  "arm_states": [
+    {
+      "id": 0,
+      "leaves": 1,
+      "root_state": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        4,
+        2
+      ],
+      "slack": 0,
+      "weight": 2
+    },
+    {
+      "id": 1,
+      "leaves": 1,
+      "root_state": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        5,
+        2
+      ],
+      "slack": 0,
+      "weight": 2
+    },
+    {
+      "id": 2,
+      "leaves": 1,
+      "root_state": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        5,
+        2
+      ],
+      "slack": 1,
+      "weight": 3
+    },
+    {
+      "id": 3,
+      "leaves": 1,
+      "root_state": [
+        1,
+        2,
+        3,
+        3,
+        4,
+        4,
+        2
+      ],
+      "slack": 0,
+      "weight": 3
+    },
+    {
+      "id": 4,
+      "leaves": 1,
+      "root_state": [
+        1,
+        2,
+        3,
+        3,
+        4,
+        5,
+        2
+      ],
+      "slack": 0,
+      "weight": 3
+    },
+    {
+      "id": 5,
+      "leaves": 1,
+      "root_state": [
+        1,
+        2,
+        3,
+        3,
+        4,
+        5,
+        2
+      ],
+      "slack": 1,
+      "weight": 4
+    },
+    {
+      "id": 6,
+      "leaves": 1,
+      "root_state": [
+        1,
+        2,
+        3,
+        3,
+        4,
+        6,
+        2
+      ],
+      "slack": 0,
+      "weight": 3
+    },
+    {
+      "id": 7,
+      "leaves": 1,
+      "root_state": [
+        1,
+        2,
+        3,
+        3,
+        5,
+        4,
+        2
+      ],
+      "slack": 0,
+      "weight": 4
+    },
+    {
+      "id": 8,
+      "leaves": 1,
+      "root_state": [
+        1,
+        2,
+        3,
+        3,
+        5,
+        5,
+        2
+      ],
+      "slack": 0,
+      "weight": 4
+    },
+    {
+      "id": 9,
+      "leaves": 1,
+      "root_state": [
+        1,
+        2,
+        3,
+        3,
+        5,
+        6,
+        2
+      ],
+      "slack": 0,
+      "weight": 4
+    }
+  ],
+  "arm_initial_caps": [
+    {
+      "state": 0,
+      "ears": 1
+    },
+    {
+      "state": 4,
+      "ears": 2
+    },
+    {
+      "state": 9,
+      "ears": 3
+    }
+  ],
+  "arm_extensions": [
+    {
+      "source": 3,
+      "destination": 6,
+      "operation": [
+        "extend",
+        0,
+        1,
+        0,
+        -1,
+        6
+      ],
+      "increment": 0
+    },
+    {
+      "source": 7,
+      "destination": 2,
+      "operation": [
+        "extend",
+        0,
+        0,
+        0,
+        -1,
+        6
+      ],
+      "increment": -1
+    },
+    {
+      "source": 8,
+      "destination": 2,
+      "operation": [
+        "extend",
+        0,
+        0,
+        0,
+        -1,
+        6
+      ],
+      "increment": -1
+    },
+    {
+      "source": 4,
+      "destination": 1,
+      "operation": [
+        "extend",
+        0,
+        0,
+        0,
+        -1,
+        5
+      ],
+      "increment": -1
+    },
+    {
+      "source": 5,
+      "destination": 2,
+      "operation": [
+        "extend",
+        0,
+        0,
+        0,
+        -1,
+        5
+      ],
+      "increment": -1
+    },
+    {
+      "source": 0,
+      "destination": 8,
+      "operation": [
+        "extend",
+        1,
+        1,
+        0,
+        1,
+        4
+      ],
+      "increment": 2
+    },
+    {
+      "source": 1,
+      "destination": 2,
+      "operation": [
+        "extend",
+        0,
+        0,
+        0,
+        1,
+        4
+      ],
+      "increment": 1
+    },
+    {
+      "source": 0,
+      "destination": 3,
+      "operation": [
+        "extend",
+        1,
+        0,
+        0,
+        1,
+        3
+      ],
+      "increment": 1
+    },
+    {
+      "source": 1,
+      "destination": 8,
+      "operation": [
+        "extend",
+        1,
+        1,
+        0,
+        1,
+        4
+      ],
+      "increment": 2
+    },
+    {
+      "source": 3,
+      "destination": 1,
+      "operation": [
+        "extend",
+        0,
+        0,
+        0,
+        -1,
+        5
+      ],
+      "increment": -1
+    },
+    {
+      "source": 0,
+      "destination": 2,
+      "operation": [
+        "extend",
+        0,
+        0,
+        0,
+        1,
+        4
+      ],
+      "increment": 1
+    },
+    {
+      "source": 3,
+      "destination": 7,
+      "operation": [
+        "extend",
+        1,
+        0,
+        0,
+        1,
+        3
+      ],
+      "increment": 1
+    },
+    {
+      "source": 4,
+      "destination": 6,
+      "operation": [
+        "extend",
+        0,
+        1,
+        0,
+        -1,
+        6
+      ],
+      "increment": 0
+    },
+    {
+      "source": 4,
+      "destination": 8,
+      "operation": [
+        "extend",
+        1,
+        0,
+        0,
+        1,
+        3
+      ],
+      "increment": 1
+    },
+    {
+      "source": 1,
+      "destination": 4,
+      "operation": [
+        "extend",
+        1,
+        0,
+        0,
+        1,
+        3
+      ],
+      "increment": 1
+    },
+    {
+      "source": 2,
+      "destination": 5,
+      "operation": [
+        "extend",
+        1,
+        0,
+        0,
+        1,
+        3
+      ],
+      "increment": 1
+    },
+    {
+      "source": 6,
+      "destination": 9,
+      "operation": [
+        "extend",
+        1,
+        0,
+        0,
+        1,
+        3
+      ],
+      "increment": 1
+    },
+    {
+      "source": 6,
+      "destination": 6,
+      "operation": [
+        "extend",
+        0,
+        1,
+        0,
+        -1,
+        6
+      ],
+      "increment": 0
+    },
+    {
+      "source": 9,
+      "destination": 2,
+      "operation": [
+        "extend",
+        0,
+        0,
+        0,
+        -1,
+        6
+      ],
+      "increment": -1
+    }
+  ],
+  "path_core_endpoint_choices": [
+    {
+      "cap_ears": 1,
+      "cap_state": 0,
+      "arm_state": 0,
+      "arm_orientation": 0,
+      "root_ears": 1,
+      "final_signs": [
+        1,
+        -1
+      ],
+      "final_degrees": [
+        4,
+        6
+      ]
+    },
+    {
+      "cap_ears": 1,
+      "cap_state": 0,
+      "arm_state": 1,
+      "arm_orientation": 0,
+      "root_ears": 1,
+      "final_signs": [
+        1,
+        -1
+      ],
+      "final_degrees": [
+        4,
+        6
+      ]
+    },
+    {
+      "cap_ears": 1,
+      "cap_state": 0,
+      "arm_state": 2,
+      "arm_orientation": 0,
+      "root_ears": 0,
+      "final_signs": [
+        1,
+        -1
+      ],
+      "final_degrees": [
+        3,
+        5
+      ]
+    },
+    {
+      "cap_ears": 1,
+      "cap_state": 0,
+      "arm_state": 3,
+      "arm_orientation": 0,
+      "root_ears": 0,
+      "final_signs": [
+        1,
+        -1
+      ],
+      "final_degrees": [
+        3,
+        6
+      ]
+    },
+    {
+      "cap_ears": 1,
+      "cap_state": 0,
+      "arm_state": 3,
+      "arm_orientation": 1,
+      "root_ears": 0,
+      "final_signs": [
+        -1,
+        1
+      ],
+      "final_degrees": [
+        5,
+        4
+      ]
+    },
+    {
+      "cap_ears": 1,
+      "cap_state": 0,
+      "arm_state": 4,
+      "arm_orientation": 0,
+      "root_ears": 0,
+      "final_signs": [
+        1,
+        -1
+      ],
+      "final_degrees": [
+        3,
+        6
+      ]
+    },
+    {
+      "cap_ears": 1,
+      "cap_state": 0,
+      "arm_state": 4,
+      "arm_orientation": 1,
+      "root_ears": 0,
+      "final_signs": [
+        -1,
+        1
+      ],
+      "final_degrees": [
+        5,
+        4
+      ]
+    },
+    {
+      "cap_ears": 1,
+      "cap_state": 0,
+      "arm_state": 6,
+      "arm_orientation": 0,
+      "root_ears": 0,
+      "final_signs": [
+        1,
+        -1
+      ],
+      "final_degrees": [
+        3,
+        6
+      ]
+    },
+    {
+      "cap_ears": 2,
+      "cap_state": 4,
+      "arm_state": 0,
+      "arm_orientation": 0,
+      "root_ears": 0,
+      "final_signs": [
+        1,
+        -1
+      ],
+      "final_degrees": [
+        3,
+        6
+      ]
+    },
+    {
+      "cap_ears": 2,
+      "cap_state": 4,
+      "arm_state": 0,
+      "arm_orientation": 1,
+      "root_ears": 0,
+      "final_signs": [
+        1,
+        -1
+      ],
+      "final_degrees": [
+        4,
+        5
+      ]
+    },
+    {
+      "cap_ears": 2,
+      "cap_state": 4,
+      "arm_state": 1,
+      "arm_orientation": 0,
+      "root_ears": 0,
+      "final_signs": [
+        1,
+        -1
+      ],
+      "final_degrees": [
+        3,
+        6
+      ]
+    },
+    {
+      "cap_ears": 2,
+      "cap_state": 4,
+      "arm_state": 1,
+      "arm_orientation": 1,
+      "root_ears": 0,
+      "final_signs": [
+        1,
+        -1
+      ],
+      "final_degrees": [
+        4,
+        5
+      ]
+    },
+    {
+      "cap_ears": 2,
+      "cap_state": 4,
+      "arm_state": 3,
+      "arm_orientation": 1,
+      "root_ears": 1,
+      "final_signs": [
+        -1,
+        -1
+      ],
+      "final_degrees": [
+        6,
+        6
+      ]
+    },
+    {
+      "cap_ears": 2,
+      "cap_state": 4,
+      "arm_state": 4,
+      "arm_orientation": 1,
+      "root_ears": 1,
+      "final_signs": [
+        -1,
+        -1
+      ],
+      "final_degrees": [
+        6,
+        6
+      ]
+    },
+    {
+      "cap_ears": 2,
+      "cap_state": 4,
+      "arm_state": 5,
+      "arm_orientation": 1,
+      "root_ears": 0,
+      "final_signs": [
+        -1,
+        -1
+      ],
+      "final_degrees": [
+        5,
+        5
+      ]
+    },
+    {
+      "cap_ears": 2,
+      "cap_state": 4,
+      "arm_state": 6,
+      "arm_orientation": 1,
+      "root_ears": 1,
+      "final_signs": [
+        -1,
+        -1
+      ],
+      "final_degrees": [
+        6,
+        6
+      ]
+    },
+    {
+      "cap_ears": 2,
+      "cap_state": 4,
+      "arm_state": 7,
+      "arm_orientation": 1,
+      "root_ears": 0,
+      "final_signs": [
+        -1,
+        -1
+      ],
+      "final_degrees": [
+        6,
+        5
+      ]
+    },
+    {
+      "cap_ears": 2,
+      "cap_state": 4,
+      "arm_state": 8,
+      "arm_orientation": 1,
+      "root_ears": 0,
+      "final_signs": [
+        -1,
+        -1
+      ],
+      "final_degrees": [
+        6,
+        5
+      ]
+    },
+    {
+      "cap_ears": 2,
+      "cap_state": 4,
+      "arm_state": 9,
+      "arm_orientation": 1,
+      "root_ears": 0,
+      "final_signs": [
+        -1,
+        -1
+      ],
+      "final_degrees": [
+        6,
+        5
+      ]
+    },
+    {
+      "cap_ears": 3,
+      "cap_state": 9,
+      "arm_state": 3,
+      "arm_orientation": 1,
+      "root_ears": 0,
+      "final_signs": [
+        -1,
+        -1
+      ],
+      "final_degrees": [
+        5,
+        6
+      ]
+    },
+    {
+      "cap_ears": 3,
+      "cap_state": 9,
+      "arm_state": 4,
+      "arm_orientation": 1,
+      "root_ears": 0,
+      "final_signs": [
+        -1,
+        -1
+      ],
+      "final_degrees": [
+        5,
+        6
+      ]
+    }
+  ],
+  "one_branch": {
+    "arms_A": [
+      0,
+      1
+    ],
+    "arms_B": [
+      3,
+      4,
+      6
+    ],
+    "rule": "Take two A arms as an unordered pair and one B arm. Glue all roots, aligning the high endpoint of each A arm with the low endpoint of the B arm; no root ears."
+  },
+  "two_branches": {
+    "arms_A": [
+      0,
+      1
+    ],
+    "rule": "Take an unordered pair of unordered A-arm pairs. Align low-low and high-high within each pair. Add an initial central triangle and r>=0 degree-six strip steps, then glue the second pair crosswise. The exact construction is in exact_odd_enumeration.md."
+  },
+  "complete_core_exceptions": [
+    {
+      "n": 7,
+      "ear_multiplicities": [
+        1,
+        3,
+        0
+      ]
+    },
+    {
+      "n": 7,
+      "ear_multiplicities": [
+        2,
+        2,
+        0
+      ]
+    }
+  ],
+  "isomorphism": "Arms are canonical rooted isomorphism classes. The two branch constructions have only the explicitly stated unordered-pair symmetries. Path endpoint descriptions are identified by end exchange; the five symmetric-center cases are in the proof."
+}

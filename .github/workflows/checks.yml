@@ -355,6 +355,9 @@ jobs:
           - package: berge-subdivided-star
             root: papers/mathematics/berge-subdivided-star
             project: lean
+          - package: harmonic-boundary-five
+            root: papers/mathematics/harmonic-boundary-five
+            project: lean
           - package: singer-orbit-blocking
             root: papers/mathematics/singer-orbit-blocking
             project: lean
@@ -456,6 +459,12 @@ jobs:
           elif [[ '${{ matrix.package }}' == 'berge-subdivided-star' ]]; then
             lake build BergeBroom BergeBroom.AxiomAudit 2>&1 | tee "${RUNNER_TEMP}/berge-subdivided-star-build.log"
             python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/berge-subdivided-star-build.log" --project . --output "${RUNNER_TEMP}/berge-subdivided-star-axioms.json"
+          elif [[ '${{ matrix.package }}' == 'harmonic-boundary-five' ]]; then
+            lake build HarmonicBoundary HarmonicBoundary.AxiomAudit 2>&1 | tee "${RUNNER_TEMP}/harmonic-boundary-five-build.log"
+            python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/harmonic-boundary-five-build.log" --project . --output "${RUNNER_TEMP}/harmonic-boundary-five-axioms.json"
+            python3 -m venv "${RUNNER_TEMP}/harmonic-boundary-venv"
+            "${RUNNER_TEMP}/harmonic-boundary-venv/bin/pip" install --quiet -r ../checks/requirements.txt
+            "${RUNNER_TEMP}/harmonic-boundary-venv/bin/python" ../checks/run_checks.py --independent
           elif [[ '${{ matrix.package }}' == 'singer-orbit-blocking' ]]; then
             python3 ../verify.py --output "${RUNNER_TEMP}/singer-orbit-blocking-verification"
           elif [[ '${{ matrix.package }}' == 'width-two-order-polynomial' ]]; then

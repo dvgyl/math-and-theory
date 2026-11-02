@@ -1,0 +1,136 @@
+\section{Interior eccentricity and diameter three}\label{sec:diamthree}
+\begin{lemma}[Eccentricity-two interiors]\label{lem:ecc2}
+If a two-connected graph has at most five boundary vertices and every
+interior vertex has eccentricity at most two, then its diameter is at most two.
+\end{lemma}
+\begin{proof}
+Suppose, to the contrary, that the diameter is at least three. Two internally
+disjoint paths between a diametral pair each have length at least three, so the graph
+has at least six vertices. Choose a five-element set $B$ containing its
+boundary and put $I=V\setminus B\ne\varnothing$.
+Every $u\in I$ has eccentricity two by hypothesis; eccentricity one would
+make the whole diameter at most two.
+If two vertices of $I$ were nonadjacent, a closer neighbor of one toward
+the other would need a farther neighbor at distance three, a contradiction.
+Thus $I$ is a clique.
+
+Write $H=G[B]$, $S_u=N(u)\cap B$, $t_b=|N(b)\cap I|$, and
+$F_b=\{c\in B:d(b,c)=3\}$. For distinct $u,v\in I$,
+\begin{equation}\label{eq:antichain}
+ \stab(u,v)=1-|S_u\setminus S_v|\le0.
+\end{equation}
+Hence the $S_u$ are distinct, incomparable, nonempty proper subsets of $B$.
+For $b\notin S_u$ the exact score is
+\begin{equation}\label{eq:d3score}
+ \stab(u,b)=t_b+|N_H(b)\cap S_u|-|F_b\cap S_u|\le0.
+\end{equation}
+Also, eccentricity two gives
+\begin{equation}\label{eq:d3center}
+ t_b=0\quad\Longrightarrow\quad N_H(b)\cap S_u\ne\varnothing
+ \quad\hbox{for every }u\in I.
+\end{equation}
+
+Assume first $|I|\ge2$. Every row $S_u$ has at least two elements.
+If $S_u=\{a\}$, incomparability makes $u$ the unique interior neighbor
+of $a$. Any boundary neighbor $b$ of $a$ makes \eqref{eq:d3score}
+positive at $u$. Thus $a$ has degree one, impossible.
+
+We next prove that no ordered pair of rows differs by one element.
+Suppose $S=S_u$, $T=S_v$, and $S\setminus T=\{a\}$. Put
+$R=S\cap T$, $Y=T\setminus S$, and $Z=B\setminus(S\cup T)$.
+Both $R,Y$ are nonempty. For every $y\in Y$, all of $T$ is within
+distance two of $y$ through $v$, so $F_y\cap S\subseteq\{a\}$.
+Equation~\eqref{eq:d3score} forces
+\[
+ t_y=1,\qquad N_H(y)\cap S=\varnothing,\qquad d(y,a)=3.
+\]
+Deleting $v$ must not disconnect $Y$, so some edge joins $Y$ to $Z$.
+The partition of five vertices now leaves $|Z|=1$ or two.
+
+If $Z=\{c\}$, take $y\in Y$ adjacent to $c$. An interior neighbor
+$w$ of $c$ would differ from $v$ and would not be adjacent to $y$.
+Since $F_y\subseteq\{a\}$, its score toward $y$ is at least
+$1+1-1>0$. Thus $t_c=0$. By \eqref{eq:d3center}, $c$ has a neighbor
+in $S$, which cannot be $a$ because $d(a,y)=3$; it therefore lies in $R$.
+Now $c$ has at least two neighbors in $T$, one in $R$ and one in $Y$.
+But $|T|=3$, so \eqref{eq:d3score} at $v$ toward $c$ is positive.
+
+If $|Z|=2$, write $R=\{r\}$, $Y=\{b\}$, $Z=\{c,d\}$.
+Thus $S=\{a,r\}$, $T=\{b,r\}$. The preceding argument in both
+directions makes $a,b$ have unique interior neighbors, neither adjacent to
+$r$, and $d(a,b)=3$. Minimum degree two requires each of $a,b$ to have
+a neighbor in $Z$; they cannot share one. Relabel so that $a\sim c$,
+$b\sim d$, and $b\not\sim c$. The score at $u$ toward $c$ forces
+$t_c=0$ and $d(c,r)=3$. Yet \eqref{eq:d3center} at $v$ requires $c$
+to be adjacent to $b$ or $r$, neither of which is possible.
+We have proved
+\begin{equation}\label{eq:d3differences}
+ |S_u\setminus S_v|\ge2\quad(u\ne v).
+\end{equation}
+
+Every row now has size two or three. A row of size two forces every other
+row to lie in its three-element complement, which accommodates at most
+one further row satisfying \eqref{eq:d3differences}. If all rows have
+size three, their two-element complements must be pairwise disjoint,
+again leaving at most two rows. Therefore $|I|\le2$.
+
+For $I=\{u,v\}$ there are three possible row types. If $S,T$ are
+disjoint of sizes two and three, an edge between them makes
+\eqref{eq:d3score} positive: it supplies one closer boundary neighbor
+in addition to the one closer interior neighbor, and leaves at most one
+farther vertex in the size-two row. No such edge exists, so $uv$ is a
+bridge. If both rows are disjoint pairs, again there is no edge between
+them. The fifth boundary vertex $c$ must be adjacent to each pair by
+\eqref{eq:d3center}. Its score at $u$ forces exactly one vertex of $S$
+adjacent to $c$, the other at distance three. The latter has no boundary
+neighbor and only $u$ as an interior neighbor, giving degree one.
+Finally, if $S,T$ are triples intersecting at $r$, let $A=S\setminus\{r\}$,
+$C=T\setminus\{r\}$. An edge $a\sim c$ between $A,C$ would make
+the score at $u$ toward $c$ positive; the common vertex $r$ is within
+distance two of $c$, so cannot compensate. Hence no such edge exists.
+Connectivity of $G-u$ and of $G-v$ gives $a\in A,c\in C$ both
+adjacent to $r$. The score at $v$ toward $a$ is then at least
+$1+1+0-1>0$. These contradictions exclude two interior vertices.
+
+For $I=\{u\}$, the graph has six vertices. Degree two is excluded by
+the cycle lemma, degree three by Theorem~\ref{thm:degree3}, and degree
+five by the diameter. Thus $\dd(u)=4$. Let $c$ be its unique nonneighbor.
+Minimum degree two gives at least two neighbors of $c$ among $N(u)$.
+To have $\stab(u,c)\le0$, exactly two vertices of $N(u)$ must be adjacent
+to $c$ and exactly two must be at distance three from $c$.
+There is no edge between these two pairs. Deleting $u$ disconnects the
+far pair, the final contradiction.
+\end{proof}
+
+\begin{theorem}[Sharp diameter-three exclusion]\label{thm:diamthree}
+Every two-connected graph of diameter exactly three has at least six
+Steinerberger boundary vertices. The bound is sharp, as witnessed by $C_6$.
+\end{theorem}
+\begin{proof}
+In a diameter-three graph, any vertex of eccentricity three is peripheral
+and hence boundary: a diametral target has at least one closer neighbor
+and no farther neighbor. Thus every interior vertex has eccentricity at
+most two, and Lemma~\ref{lem:ecc2} gives the contradiction.
+\end{proof}
+
+\subsection{Independent finite audit and all positive diameter-three graphs}
+The exclusion above is a hand proof. Independently, the antichain
+representation gives a finite exhaustive audit: there are 7,579 antichains
+of nonempty proper subsets of five points, including the empty family,
+and 1,024 boundary graphs. The maximum antichain size is ten, by counting
+intersections with the $5!$ maximal Boolean-lattice chains. Thus every
+diameter-three five-boundary graph is among exactly 7,760,896 patterns;
+there is no empirical order cutoff.
+
+Two independently written exhaustive programs reject all two-connected
+candidates. The C++ program retains every positive labeled graph: 2,466
+patterns, giving 71 isomorphism types. Their counts by orders
+$5,6,7,8,9,10$ are $2,10,42,13,3,1$. Every nonbridge block has diameter
+at most two; all reduced graphs occur in the 227-kernel catalogue.
+The order-ten bound is attained by $K_5$ with one leaf attached at each
+vertex. A separate complete Python enumeration adds minimum-degree tests
+and leaves 518 explicit graphs, of which 238 have the wrong diameter and
+280 have a cut vertex. Both programs use integer distances and scores.
+The positive 71-type classification depends on these finite certificates;
+the negative diameter-three theorem does not. Neither exhaustive program
+is claimed to have been verified inside Lean.

@@ -1,0 +1,127 @@
+\section{Sharp local metric reduction for every boundary size}\label{sec:rooted-truncation}
+The five-point cone argument above proves the unrestricted classification.
+We now give a separate metric theorem that applies to any number of designated
+points and any radius. It replaces metric-cone enumeration for a \emph{single
+rooted local problem}; compatibility between different roots remains a
+separate requirement.
+
+\begin{theorem}[Sharp rooted metric representative]\label{thm:rooted-truncation}
+Let $M$ be an integer metric with distinguished point $o$, and let $R\ge0$ be
+an integer. For each point $i$ put
+\[
+ D_i=M(o,i),\qquad H_{ij}=D_i+D_j-M(i,j),\qquad T=2R+1.
+\]
+Set $D'_i=D_i$ when $D_i\le R$ and $D'_i=T$ otherwise. For distinct points set
+$H'_{ij}=\min(H_{ij},T)$ and
+\[
+ M'(i,j)=D'_i+D'_j-H'_{ij},\qquad M'(i,i)=0.
+\]
+Then $M'$ is an integer metric on the same points, with root distances $D'_i$.
+It preserves the clipped rooted signature
+\[
+ \bigl(\min(D_i,R+1),\ \min(H_{ij},2R+1)\bigr)_{i,j},
+\]
+and satisfies
+\[
+ \max_i M'(o,i)\le2R+1,\qquad \diam(M')\le4R+2.
+\]
+The transformation is idempotent. Both constants are best possible:
+four points force the root-distance bound and five points force the diameter
+bound.
+\end{theorem}
+\begin{proof}
+The metric inequalities are equivalent to the relevant relations
+\[
+ 0\le H_{ij}\le2\min(D_i,D_j),\quad
+ H_{ij}<D_i+D_j\ (i\ne j),\quad
+ H_{ij}+H_{jk}-H_{ik}\le2D_j.
+\]
+Symmetry is immediate. If both $D_i,D_j$ are at most $R$, their mutual
+distance is unchanged. If both exceed $R$, their new distance is at least
+$T$. In the mixed case their new distance is at least $T-D_j\ge R+1$,
+where $D_j$ is the smaller root distance. Thus distinct points remain distinct.
+
+The triangle inequality through $j$ becomes
+$H'_{ij}+H'_{jk}-H'_{ik}\le2D'_j$. If $D_j>R$, the left side is at most
+$2T=2D'_j$. If $D_j\le R$, its two incident $H$ values are unchanged. When
+$H_{ik}\le T$ the old triangle inequality applies. Otherwise
+\[
+ H'_{ij}+H'_{jk}-H'_{ik}\le4D_j-T\le2D_j.
+\]
+The root distances, signature identities, bounds, and idempotence now follow
+from the definitions.
+
+For root-bound sharpness take points $o,i,j,k$ with
+\[
+ M(o,i)=M(o,k)=M(i,j)=M(j,k)=R+1,\quad
+ M(o,j)=T,\quad M(i,k)=2R+2.
+\]
+These distances form a metric. Its products satisfy
+$H_{ij}=H_{jk}=T$ and $H_{ik}=0$. Any representative with the same clipped
+signature therefore has $2D'_j\ge T+T-0$, so $D'_j\ge T$.
+
+For diameter sharpness take four cyclically ordered points and a root.
+Give each root distance and each cyclic-edge distance the value $T$, and
+each opposite-pair distance $2T$. This is a metric. Products are $T$ on
+cyclic edges and zero on opposite pairs. For each cyclic point the preceding
+triangle inequality forces root distance at least $T$. Each opposite pair
+still has product zero, so its distance is at least $2T=4R+2$.
+\end{proof}
+
+\begin{theorem}[Preservation of the complete local frame]\label{thm:rooted-frame}
+At radius $R$, the preceding transformation preserves every positive profile,
+every designated point in the ball, sup-norm adjacency, and all signed
+neighbor-score coefficients toward designated points, in normalized
+coordinates.
+\end{theorem}
+\begin{proof}
+At root-distance $1\le r\le R$, write
+$f_o=r$ and $f_i=D_i+\epsilon_i$ with $-r\le\epsilon_i\le r$.
+The positive-frame conditions become
+\[
+ D_i+\epsilon_i>0,\qquad \epsilon_i+\epsilon_j\ge-H_{ij},\qquad
+ \exists i:\epsilon_i=-r,
+\]
+and, for every $i$, either $\epsilon_i=-r$ or some $j\ne i$ satisfies
+$\epsilon_i+\epsilon_j=-H_{ij}$. Positivity is automatic whenever $D_i>R$.
+When $H_{ij}>2R$, its inequality is automatic and cannot be tight. All other
+quantities in these tests are unchanged, giving the required bijection.
+
+A designated point $c$ lies in the ball exactly when $D_c\le R$. Its
+normalized coordinates are $r=D_c$, $\epsilon_c=-D_c$, and
+$\epsilon_i=D_c-H_{ci}$ for $i\ne c$. Since $H_{ci}\le2D_c\le2R$, these
+coordinates are unchanged. Finally, keeping every offset keeps every
+coordinate difference. This preserves sup-norm distances, adjacency, and
+all signed coefficients in the local harmonic inequalities.
+\end{proof}
+
+For $k$ designated points, a direct finite search now needs at most
+\[
+ (R+1)^{k-1}(2R+2)^{\binom{k-1}{2}}
+\]
+rooted signatures before the metric conditions and symmetries are imposed.
+This is a uniform finite reduction for all $k,R$, with no classification of
+metric cones as an input. For $k=5,R=2$, direct generation gives 13,022
+canonical metric types. The stronger experimental local model leaves 1,226
+feasible types. These latter computations are discovery checks, not a
+replacement for the independently certified all-root proof in the main
+classification.
+
+\paragraph{A necessary limitation.}
+The theorem preserves the data at the chosen root only. At $R=2$, a
+three-point metric with $D_a=3$, $D_b=4$, and $M(a,b)=1$ becomes
+$D'_a=D'_b=5$, $M'(a,b)=5$. The root-$o$ signature is preserved while the
+root-$a$ signature changes. Thus one cannot obtain a simultaneous global
+cap merely by applying the transformation at different roots.
+
+\paragraph{Formal and independent verification.}
+\texttt{RootedMetricTruncation.lean} proves the actual metric axioms on an
+arbitrary index type, the signatures and bounds, idempotence, full local
+positive-profile invariance, marked-point offsets, coordinate differences,
+and both sharpness examples. All sixteen principal axiom audits passed in
+Lean~4.35.0; the file contains forty theorem declarations and uses only the
+standard logical foundations. A separate exact checker examined 6,321
+four-point metrics, 102,000 rooted instances, 96 large-weight adversarial
+metrics, 864 full-profile comparisons, and the sharpness families for
+$0\le R\le20$. The finite tests corroborate the universal proof; their
+range is not the theorem's range.

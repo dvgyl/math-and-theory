@@ -1,0 +1,331 @@
+\section{Rational enumeration at every fixed excess}
+\label{sec:fixed-excess-rationality}
+
+The fixed-excess grammar can be strengthened to an effective rational
+enumeration theorem.  The proof counts canonical colored incidence
+trees, rather than ambiguous grammar derivations.
+
+\begin{theorem}[Rational unlabelled enumeration at fixed excess]
+\label{thm:fixed-excess-rationality}
+Fix an integer $e\ge0$, and let $\mathcal C_e$ be the isomorphism
+classes of two-trees $G$ of order at least six with
+$2|\partial G|-|V(G)|-4=e$.  Then
+\[
+ F_e(z)=\sum_{[G]\in\mathcal C_e}z^{|V(G)|}
+\]
+is an effectively computable rational function.  In particular,
+for each fixed $e$, its exact unlabelled counts eventually satisfy
+a constant-coefficient linear recurrence.
+\end{theorem}
+
+The restriction to orders at least six avoids the exceptional small
+orders in the sharp bound.  Extending a fixed-excess count to all
+orders changes its generating function by only a finite polynomial.
+No practical complexity bound is asserted for the general algorithm.
+
+\subsection{Finite bounds and an intrinsic pending-root weight}
+
+Put
+\[
+ C=2e+6,\qquad D=\max(4,2e+3),\qquad L=2e+2.
+\]
+The structural defect theorem bounds interior degrees by $C$ and
+boundary degrees by $D$.  Remove all degree-two graph vertices to
+obtain the canonical core $H$.  If $H$ is noncomplete, it is a
+two-tree with at most $L$ ears.  Its internal triangle--edge incidence
+tree, obtained by deleting private edge-nodes, has at most $L$
+leaves.  Every removed vertex is an ear on a core edge $f$; write its
+multiplicity as $q_f$.  Since each core endpoint has degree at least
+two in $H$,
+\[
+ 0\le q_f\le C-2.
+\]
+The complete cores $K_2,K_3$ have the already classified orders
+$e+4$ or $e+6$ and bounded ear multiplicities, so contribute a
+finite polynomial.  We treat noncomplete cores below.
+
+Cut at an internal core edge $uv$, with at least one core triangle
+on either side, and defer all ears on that root edge.  Exclude
+$u,v$ from the component weight $W$.  Every other vertex receives
+its boundary/interior sign under the \emph{pending-root convention}
+that the final multiplicity of $uv$ is at least two.  This is not
+the raw boundary weight of the isolated component.  Indeed, adding
+the first outside triangle can activate a local condition at a page
+vertex.  Under the pending convention that condition is already
+active: the local formula
+\[
+ \beta(u)=R_u-\deg u,\quad
+ R_u=\max\{2+t_{uv},\ 2+t_{ua}+t_{ub}:
+ uab\text{ a triangle},\ t_{ab}\ge2\}
+\]
+depends on the root edge, for a nonroot vertex, only through the
+threshold $t_{uv}\ge2$.  All incident edges and degrees of that
+nonroot vertex are closed.  Thus $W$ is intrinsic and independent
+of the chosen completion with an active root edge.
+
+Every such component of a graph in $\mathcal C_e$ satisfies
+\begin{equation}
+ 0\le W\le e+6.
+ \label{eq:rational-pending-weight}
+\end{equation}
+To prove the lower bound, add one vertex on the root edge.  Its
+multiplicity is now at least two, preserving exactly the pending
+nonroot signs just defined.  Every two-tree of order at least three
+has total boundary-minus-interior weight at least three, by the
+sharp theorem and the direct small-order check.  This completion
+has at least four vertices, so a convention also admitting $K_2$
+is irrelevant.  Its two former roots and new degree-two vertex
+contribute at most three, proving $W\ge0$.
+
+For the upper bound, let $W'$ be the pending nonroot weight of the
+complementary component, and $q$ the root ear multiplicity.  With
+root signs $s_u,s_v\in\{-1,1\}$, the final graph gives
+\[
+ e+4=W+W'+q+s_u+s_v.
+\]
+Since $W'\ge0$, $q\ge0$, and $s_u+s_v\ge-2$, the upper bound in
+\eqref{eq:rational-pending-weight} follows.  The argument also
+applies to any nonempty proper group of pages at an internal edge.
+
+\subsection{An exact finite-alphabet incidence encoding}
+
+A two-tree has a proper three-coloring unique up to one global
+permutation: name the colors on an initial triangle, after which
+each added vertex is forced to use its two parents' missing color.
+For a named coloring of $H$, color every edge-node of its full
+triangle--edge incidence tree by the missing endpoint color.  The
+three edge-nodes at a triangle have different colors.  This colored
+tree reconstructs the colored graph uniquely.  Root at a triangle,
+name its three vertices by color, and traverse the tree; every new
+triangle shares a known edge and introduces one new vertex of the
+missing color, while its two other edge colors determine the
+incidences.  Conversely this procedure reconstructs a two-tree
+from every locally valid such colored incidence tree.
+
+Use the internal incidence tree $T$, obtained by deleting all
+edge-nodes lying in just one triangle.  Give its nodes finite labels:
+\begin{itemize}
+\item an internal edge-node carries its missing color and $q_f$;
+\item a triangle-node records the subset of edge colors remaining
+internal, and the ear multiplicity for each missing private edge
+color.
+\end{itemize}
+Its neighboring edge colors must be precisely that recorded subset.
+All deleted private edges can be restored uniquely.  Thus these
+labels reconstruct $H$ and then $G$.  Ears on one edge are represented
+by their multiplicity, so their permutations are already removed.
+
+The alphabet is finite.  Triangle degrees are at most three, and
+edge-node degrees are at most $L$, since $T$ has at most $L$ leaves.
+All leaves are triangle-nodes.  Define a node weight by
+\[
+ \omega(v)=
+ \begin{cases}
+ 1+\sum q_f,&v\text{ a triangle-node, over its private edges},\\
+ q_f,&v\text{ an internal edge-node}.
+ \end{cases}
+\]
+Then
+\begin{equation}
+ |V(G)|=2+\sum_{v\in T}\omega(v).
+ \label{eq:rational-node-weight}
+\end{equation}
+A core with $t$ triangles has $t+2$ vertices, and every ear has been
+counted once.  All weights are nonnegative and triangle weights
+are positive.  Color permutations preserve them.  Colored decorated
+tree isomorphism is exactly colored graph isomorphism; forgetting
+colors adds precisely the one global $S_3$ action, with no separate
+gluing gauge at each edge.
+
+\subsection{A deterministic recognizer on the canonical tree}
+
+Root $T$ at a designated leaf triangle.  At an internal edge cut,
+order the two graph endpoints by their named colors and retain:
+the number of inside root triangles; both current endpoint degrees;
+both requirements $\max(A,B+t)$, with $A$ capped at $C+1$ and $B$
+at $C-1$; the inside leaf count; actual pending weight $W$ in
+$\{0,\ldots,e+6\}$; and the finite deferred-ear and color data.
+Continuing degrees are at most $C-1$.  The requirement caps preserve
+every final comparison at degree at most $C$, since $t\ge2$.
+All coordinates are finite; include a rejecting state.
+
+There are canonical deterministic transitions.  A triangle has zero,
+one, or two active child core edges, whose ports are distinguished
+by color.  The local boundary formula computes the affine root
+requirements and the final sign and degree of its third vertex;
+labels specify all ear multiplicities.  Add that sign and the ears
+to $W$.  At an edge-node combine \emph{one unordered star of all
+child triangle branches at once}: root degrees add with subtraction
+for the repeated root neighbor, requirements combine by maxima,
+and triangle counts, leaves, and nonroot weights add.  This transition
+is symmetric in a bounded multiset of child states, retaining the
+full multiplicity of repeated branches.  No binary-join history is
+counted.  The affine constants can be defined intrinsically as
+maxima of constant and root-linear local contributions, rather
+than by a choice among equivalent formulas.
+
+Require each finalized retained core vertex to have degree at least
+three and satisfy the appropriate boundary/interior cap.  Reject if
+any state bound is exceeded.  At the root leaf triangle, close the
+remaining edge, account for its ears and the two private edges,
+finalize all remaining vertices, and accept exactly at total weight
+$e+4$.  The root core vertices must also finish with degree at least
+three.
+
+Every member of $\mathcal C_e$ passes under any chosen leaf root,
+by the proved bounds and exact local formula.  Conversely an accepted
+decorated tree reconstructs a two-tree whose specified core vertices
+all have degree at least three and whose attached ears have degree
+two.  Its specified core is therefore the canonical pruned core.
+All signs are correct and total weight $e+4$ is exactly the desired
+excess.  A noncomplete pruned core with all ears retained above degree
+two gives order at least six.  Thus the deterministic recognizer
+accepts exactly the required graph property.  Intermediate states
+may depend on the designated root, but acceptance does not.
+
+\subsection{Finite skeletons and a disjoint language partition}
+
+Suppress all degree-two \emph{incidence nodes} of $T$.  This is
+distinct from removing degree-two graph vertices.  The resulting
+skeleton $K$ has at most $L$ leaves and $L-2$ branch nodes, hence
+at most $2L-2$ nodes.  Choose one named representative of each of
+the finitely many abstract skeletons, a designated leaf, and an
+orientation of each edge.  A decorated core with this skeleton is
+specified by finite labels on the skeleton nodes and one word on
+each oriented edge, listing its suppressed degree-two node labels.
+Local type and color compatibility are finite conditions.  Chain
+reversal is literal word reversal and color action is letterwise.
+
+Along a chain, rooted towards the designated leaf, the recognizer
+applies unary maps on its finite state set.  Adjoin rejection to
+make every map total.  A chain word has one exact composite map
+in a finite transformation monoid.  For any fixed map, its words
+form a regular language, and these languages are disjoint.  Endpoint
+compatibility can be incorporated in the finite machine.  Once all
+skeleton labels and composite chain maps are fixed, acceptance is
+decided by the finite remaining computation at skeleton nodes.
+
+The valid configurations on a named skeleton are consequently a
+\emph{disjoint finite union of products of regular chain languages},
+with fixed skeleton labels.  This exact-map partition avoids
+counting a graph once per derivation or state annotation.
+
+The word weight is the sum of the node weights in
+\eqref{eq:rational-node-weight}.  Edge letters can have weight zero,
+but types alternate and triangle letters have positive weight;
+a word of length $h$ has weight at least $\lfloor h/2\rfloor$.
+Thus there are finitely many words of each weight.  On a productive
+recognizing automaton no zero-weight directed cycle is possible,
+and the weighted transfer-matrix expression is a well-defined
+rational formal power series.
+
+\subsection{Fixed words under twisted reversal}
+
+We need a finite-language fact that includes reflections.  Let
+$\mathcal L$ be a regular language on a finite nonnegatively
+weighted alphabet, with finitely many realizations at each weight,
+and let $\rho$ be a weight-preserving permutation of its letters.
+The generating functions for
+\[
+ \{w\in\mathcal L:w=\rho(w)\},\qquad
+ \{w\in\mathcal L:w=\rho(\operatorname{rev}w)\}
+\]
+are rational.  The first language restricts to letters fixed by
+$\rho$.  For the second, applying the equation twice restricts all
+letters to $\operatorname{Fix}(\rho^2)$, on which $\rho$ is an
+involution.  Each fixed word is uniquely
+\[
+ u\rho(\operatorname{rev}u)quad\text{or}\quad
+ ua\rho(\operatorname{rev}u),\qquad\rho(a)=a.
+\]
+
+Let a deterministic automaton for $\mathcal L$ have initial state
+$q_0$, accepting set $F$, and letter transitions $\delta_b$.
+While reading $u$, track
+\[
+ \bigl(\delta(q_0,u),T_{\rho(\operatorname{rev}u)}\bigr),
+\]
+where $T_v$ is the full state transformation for word $v$.  This
+is a finite state.  Appending a letter $b$ updates it by
+\begin{equation}
+ (p,T)\longmapsto
+ \bigl(\delta_b(p),T\circ\delta_{\rho(b)}\bigr).
+ \label{eq:rational-half-update}
+\end{equation}
+For even length accept if $T(p)\in F$.  For an odd center $a$,
+accept if $T(\delta_a(p))\in F$.  Therefore the half-words form
+regular languages.  Give a half-letter twice its original weight
+and add the central weight where present.  This proves rationality,
+counting each fixed word once by its unique half-word.  The
+alternating-type weight bound also precludes productive zero-weight
+cycles here.  Intersections and inverse images under letter
+permutations or reversal preserve regularity, so the same argument
+applies with finitely many additional chain constraints.
+
+\subsection{The full isomorphism quotient and Burnside count}
+
+For a fixed named skeleton the finite group is
+\[
+ \Gamma_K=\operatorname{Aut}(K)\times S_3.
+\]
+The first factor permutes nodes and chains and reverses their words
+when it reverses the selected orientation; the second acts globally
+on all color labels.  The actions commute and preserve weights.
+Their orbits are exactly the uncolored graph isomorphism classes.
+An isomorphism preserves the canonical core, its incidence tree,
+and its suppression.  On a chain it is determined by the endpoints
+and hence preserves or reverses the word; there are no translations
+or extra local gauges.  The colored incidence encoding is bijective,
+and forgetting the unique named coloring adds precisely $S_3$.
+Conversely every such group identification reconstructs an
+isomorphism of the graphs.  Ear permutations are already represented
+by multiplicity counts.
+
+For $g\in\Gamma_K$, choose an assignment of skeleton labels fixed by $g$,
+and one accepting product of the disjoint classes defined by chain maps. On
+an orbit of $m$ chains, all words are determined by one representative
+$w$ through specified color permutations and reversals.  Pull the
+regular conditions on the other chains back to $w$ and intersect
+them.  Going around the orbit imposes exactly
+\[
+ w=\rho(w)\quad\text{or}\quad
+ w=\rho(\operatorname{rev}w)
+\]
+for an accumulated color permutation $\rho$.  The preceding
+half-word construction gives a rational representative series.
+All $m$ copies have the same weight, so use the substitution
+$z\mapsto z^m$.  Different chain orbits are independent once
+their finite maps and labels are fixed, so their series multiply.
+Summing over the finite disjoint products gives a rational fixed
+configuration series for $g$.
+
+The designated recognizer root need not be fixed by $g$: acceptance
+is the intrinsic graph property.  Nor must the exact-map partition
+be group-invariant; intersecting each disjoint product with the
+fixed-point conditions counts every fixed configuration once.
+Burnside averaging
+\[
+ \frac1{|\Gamma_K|}\sum_{g\in\Gamma_K}
+ \bigl(\text{valid configuration series fixed by }g\bigr)
+\]
+therefore counts exactly the unlabelled graphs of this skeleton
+and is rational.  Include the finite skeleton-label monomials
+and the global factor $z^2$ from \eqref{eq:rational-node-weight},
+sum over the finitely many skeletons, and add the complete-core
+polynomial.  This proves Theorem~\ref{thm:fixed-excess-rationality}.
+
+\paragraph{Effectivity and scope.}
+All objects in this construction are finite and enumerable: bounded
+labels and states, canonical incidence transitions, skeletons and
+their automorphism groups, exact chain transformation maps,
+regular-language intersections, and the half-word automata
+\eqref{eq:rational-half-update}.  Weighted transfer matrices and
+finite-group averages use exact rational arithmetic.  This gives
+a terminating construction for any specified $e$, although its
+transformation monoids can be very large.  Rationality implies
+eventual constant-coefficient recurrences; it does not imply
+polynomial growth, quasipolynomial coefficients, or only roots of
+unity as poles.  Those stronger properties were proved explicitly
+for $e=0,1$.  The present structural/automata proof has passed
+independent mathematical audit; it is not an end-to-end Lean
+formalization.

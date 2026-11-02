@@ -1,0 +1,228 @@
+\section{A sharp theorem for every two-tree}\label{sec:twotree}
+A $k$-tree starts with $K_{k+1}$ and repeatedly adds a vertex whose neighbors
+are the vertices of an existing $k$-clique. In particular, a two-tree is built
+by adding triangle ears on edges. This section has no diameter restriction.
+
+\begin{theorem}[Exact minimum boundary of a two-tree]\label{thm:twotree}
+Among all two-trees on $n$ vertices, the minimum boundary cardinality is
+\[
+ \min b(G)=
+ \begin{cases}
+ 3,&n=3,\\
+ 4,&n=4,5,\\
+ \lceil n/2\rceil+2,&n\ge6.
+ \end{cases}
+\]
+In particular, $n\le2b(G)-4$ for every two-tree of order at least six.
+There are exactly three two-trees with five boundary vertices: the book of
+three triangles $K_2\vee\overline{K_3}$, the cone over $P_5$, and the cone
+over the five-vertex tree of degree sequence $(3,2,1,1,1)$.
+\end{theorem}
+The order bound is sharp at every even order, and its rounded boundary form
+is sharp at every odd order as well. Maximality matters: there are
+two-connected series-parallel graphs on nine vertices with boundary six,
+so the same order bound does not hold for all partial two-trees.
+
+\subsection{Localizing stability in chordal graphs}
+A graph is chordal if it has no induced cycle of length at least four.
+We use the elementary chordal facts that minimal vertex separators are
+cliques and that a perfect elimination ordering can end in any specified
+clique.
+
+\begin{theorem}[Radius-two localization]\label{thm:local}
+In every connected chordal graph,
+\[
+ \stab_G(u)=\max_{y:d_G(u,y)\le2}\stab_G(u,y).
+\]
+This identity concerns the maximum stability itself, not just its sign.
+\end{theorem}
+\begin{proof}
+Let $y\notin N[u]$, let $C$ be its component in $G-N[u]$, and put
+$S=N(C)\subseteq N(u)$. For every $s\in S$ a path $u,s,C,y$ avoids
+$S\setminus\{s\}$, so $S$ is a minimal $u$--$y$ separator and is a clique.
+There is a vertex $x\in C$ adjacent to all of $S$. For completeness, take
+a perfect elimination ordering of $G[S\cup C]$ ending in $S$.
+Deleting a simplicial vertex of $C$ preserves connectivity of the remaining
+$C$, and preserves its full neighborhood $S$: a neighbor $s\in S$ of the
+deleted vertex is also adjacent to its remaining neighbor in $C$.
+The last vertex of $C$ is therefore complete to $S$.
+
+Set $r=\min_{s\in S}d(s,y)$ and $A=\{s\in S:d(s,y)=r\}$.
+Since $S$ is a clique, its other members have distance $r+1$.
+Every path from $N(u)$ to $y$ enters $C$ through $S$. It follows that the
+distances of vertices of $N(u)$ to $y$ are $r$ on $A$, $r+1$ on
+$(N(u)\cap N[A])\setminus A$, and $r+2$ on $N(u)\setminus N[A]$.
+As $d(u,y)=r+1$,
+\[
+ \stab(u,y)=|A|-|N(u)\setminus N[A]|
+ \le |S|-|N(u)\setminus N[S]|=\stab(u,x).
+\]
+The final equality uses $N(x)\cap N(u)=S$, and $d(u,x)=2$.
+\end{proof}
+
+\begin{lemma}[Interior degree in a chordal graph]\label{lem:chordal-degree}
+In a $k$-connected chordal graph, $k\ge2$, every nonuniversal interior
+vertex has degree at least $2k+1$.
+\end{lemma}
+\begin{proof}
+First $G[N(u)]$ is connected. A path in $G-u$ between two neighbors of $u$
+can be shortened into $N(u)$, because each excursion through a component
+of $G-N[u]$ enters and exits its clique separator.
+Choose such a component, with separator $S$ of size $s\ge k$, and the
+vertex $x$ complete to $S$ from the preceding proof. Put
+$T=N(u)\cap N[S]$. Interiorness gives
+$0\ge\stab(u,x)=s-\dd(u)+|T|$, so $\dd(u)\ge s+|T|$.
+The set $S$ is proper in $N(u)$, since otherwise that score is positive.
+Connectivity of $G[N(u)]$ gives $|T|\ge s+1$, proving the result.
+\end{proof}
+
+For an edge $ab$ of a two-tree, put $t_{ab}=|N(a)\cap N(b)|$.
+The neighbor graph $G[N(u)]$ is a tree; the degree of its vertex $v$ is
+$t_{uv}$. This follows directly by induction under triangle-ear addition.
+Each exterior component has a separator which is an edge $ab$ of this tree;
+such an attachment exists exactly when $t_{ab}\ge2$. Consequently
+Theorem~\ref{thm:local} gives the exact formula
+\begin{equation}\label{eq:local-two}
+\stab(u)=\max\left\{
+\begin{array}{ll}
+2+t_{uv}-\dd(u)&(v\in N(u)),\\
+2+t_{ua}+t_{ub}-\dd(u)&(uab\text{ a triangle},\ t_{ab}\ge2).
+\end{array}\right.
+\end{equation}
+Indeed, the closed neighborhood of the edge $ab$ in the neighbor tree has
+size $t_{ua}+t_{ub}$. A common exterior neighbor of $a,b$ gives the second
+score; a neighboring target $v$ gives the first.
+
+\subsection{Pruning and the sharp count}
+\begin{lemma}[Pruning]\label{lem:pruning}
+Let $G$ be a noncomplete $k$-tree, $k\ge2$, and remove any set $Q$ of
+degree-$k$ vertices. If $H=G-Q$ has at least $k+2$ vertices, every
+simplicial vertex of $H$ is a boundary vertex of $G$.
+\end{lemma}
+\begin{proof}
+Degree-$k$ vertices of a noncomplete $k$-tree are independent and simplicial.
+Their removal leaves a $k$-tree while at least $k+1$ vertices remain.
+For a simplicial $u$ of $H$, the $k$-clique $S=N_H(u)$ extends in $H-u$
+to a clique $S\cup\{x\}$. Thus $x\notin N_H[u]$ and $d_G(u,x)=2$.
+Every removed neighbor $q$ of $u$ has its other $k-1$ neighbors in $S$.
+Since $k\ge2$, $d_G(q,x)=2$. The $k$ vertices of $S$ are closer and
+all other neighbors are equidistant, so $\stab_G(u,x)=k>0$.
+\end{proof}
+If the remainder is $K_k$, all its vertices are universal. If it is
+$K_{k+1}$ and all its vertices were interior, a removed vertex $q$ omits
+one core vertex $u$ and gives the same positive score $\stab_G(u,q)=k$.
+These observations handle the small remainders below.
+
+\begin{proof}[Proof of the lower bound in Theorem~\ref{thm:twotree}]
+Suppose $n\ge6$, let $I=V\setminus\bd G$, let $i=|I|$, and write
+$I_5=\{u\in I:\dd(u)=5\}$. Every interior vertex has degree at least
+five, by Lemma~\ref{lem:chordal-degree}, or by $\dd(u)=n-1\ge5$
+when it is universal.
+
+We assign a distinct boundary vertex to every $u\in I_5$. Its neighbor
+tree has five vertices. It cannot be a star, because the star center gives
+a positive first score in \eqref{eq:local-two}. If the neighbor tree is
+$P_5$, the second score says that only its two terminal edges can have
+exterior attachments: an active edge's endpoint degrees must sum to at
+most three. Its middle vertex $c$ therefore has global degree three.
+If the neighbor tree is the fork of degrees $(3,2,1,1,1)$, only the edge
+from the degree-two vertex to its leaf can have an exterior attachment.
+The branching vertex $c$ has global degree four. In both cases $c$ is
+boundary by Lemma~\ref{lem:chordal-degree}; assign it to $u$.
+
+This assignment is injective. The two types cannot collide because their
+assigned vertices have different global degrees. In the path case, write
+the neighbor path as $a,b,c,d,e$. The only alternative interior neighbors
+that could assign $c$ are $b,d$. In either of their neighbor trees, $c$
+has degree one, rather than the degree two required of a path middle.
+In the fork case, two other neighbors of the assigned branch have global
+degree two. The sole remaining possible interior neighbor again sees
+the assigned vertex with link degree one, rather than three.
+
+Set $E_B=\sum_{v\in\bd G}(\dd(v)-2)$. Injectivity gives
+$E_B\ge|I_5|$: path assignments use one unit, and fork assignments two.
+The degree sum $4n-6$ now yields
+\begin{equation}\label{eq:charge}
+2(b-i-3)=E_B-|I_5|+
+ \sum_{u\in I:\dd(u)\ge7}(\dd(u)-6)\ge0.
+\end{equation}
+Equality would force all assignments to be path assignments, and every
+boundary vertex of degree greater than two to be an assigned degree-three
+middle. Each such middle has three neighbors of degree greater than two:
+its assigned interior root and its two neighboring vertices in the path.
+
+Delete all degree-two vertices. They are independent, and the remainder
+$H$ has at least two vertices, because each deleted vertex has two
+undeleted neighbors. Every remaining boundary vertex still has degree
+three in $H$. If $H$ is a noncomplete two-tree, its simplicial degree-two
+vertex cannot be boundary, but cannot be interior by Lemma~\ref{lem:pruning}.
+If $H=K_3$, all its vertices would be interior, excluded by the small-remainder
+argument. If $H=K_2$, both vertices are universal and boundary, again
+impossible. Equality in \eqref{eq:charge} is therefore excluded.
+Its integer right side is even, hence at least two. Thus $b-i\ge4$,
+and $n=b+i\le2b-4$.
+\end{proof}
+
+\subsection{Matching constructions and classification at five}
+For $r\ge2$, start with a path $v_1,\ldots,v_r$ and independent vertices
+$c_1,\ldots,c_r$. Join $c_j$ to $v_j$ and its available path neighbors
+$v_{j-1},v_{j+1}$. This core is a two-tree. At each endpoint $v$, with
+its corresponding $c$, choose either of the following three-vertex-end
+configurations (the vertex $c$ is already present):
+\begin{itemize}
+\item add $p$ on $vc$, and then $q$ on $vp$;
+\item add $p,q$ separately on $vc$.
+\end{itemize}
+Every $v_j$ has degree five; its neighbor tree is a path or the permitted
+fork. Formula~\eqref{eq:local-two} gives $\stab(v_j)=0$.
+Every other vertex has degree at most four and is boundary. Thus
+$n=2r+4$ and $b=r+4$. The three unordered choices of endpoint types
+give three equality examples for each $r\ge2$. The following sections prove
+that these exhaust the even-order equality cases, classify all odd-order
+cases, and give their exact unlabelled counts.
+For $r=1$ the two appropriate choices give the cones over $P_5$ and
+the fork, of order six. To obtain every odd order, use the first type at
+both ends and add one ear on the outer edge $pq$. This activates only
+a permitted terminal edge in the adjacent interior vertex's link.
+The old $p,q$ have stability at least two, so remain boundary, and exactly
+one new boundary vertex is added. This proves sharpness at every order.
+
+At boundary five the bound forces $n\le6$. The two two-trees of order
+five are the three-triangle book and the cone over $P_4$, of boundaries
+five and four respectively. At order six there is one interior vertex;
+its degree is five, so it is universal. A two-tree with a universal vertex
+is the cone over a tree. The only five-vertex trees without a universal
+vertex are $P_5$ and the fork. This proves the stated classification.
+
+\begin{proposition}[All $k$-trees at boundary five]\label{prop:ktrees}
+Every $k$-tree, $k\ge2$, satisfies
+\[
+ n\le(k+1)(b-k),
+\]
+with equality only for $K_{k+1}$. Across all $k\ge2$, the five-boundary
+graphs are the three two-trees above, $K_5$ minus one edge (a three-tree),
+and $K_5$ (a four-tree). For $k=1$ they are all trees with five leaves.
+\end{proposition}
+\begin{proof}
+When $n\ge2k+2$, interior degrees are at least $2k+1$ and boundary
+degrees at least $k$. The degree sum $2kn-k(k+1)$ gives the bound.
+There are at least two boundary vertices of degree greater than $k$:
+delete all degree-$k$ vertices and apply Lemma~\ref{lem:pruning} to the
+two simplicial vertices of a noncomplete remainder. For a complete
+remainder, at most one boundary core vertex would force every deleted
+vertex to omit that same vertex, leaving at least two universal interior
+vertices, a contradiction. Hence the large-order bound improves by two.
+
+For $n\le2k+1$, minimum degree $k$ forces diameter at most two.
+The known diameter-two theorem gives $b\ge n-1$. The cases
+$n=k+1,k+2$ are a clique and a clique minus one edge; in the latter
+there are at least two universal vertices and $b=n$.
+For $n\ge k+3$,
+$(k+1)(n-k-1)-n=kn-(k+1)^2\ge k-1>0$.
+This proves the bound and its equality statement.
+For $b=5$, it leaves $k=2,3,4$ and orders at most $9,8,5$.
+Independent ear generation and recursive simplicial-degree-$k$
+recognition on those finite ranges give exactly the five listed graphs.
+The two-tree part has already been proved directly above.
+\end{proof}
+

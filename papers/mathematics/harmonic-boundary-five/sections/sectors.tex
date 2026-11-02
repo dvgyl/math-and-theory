@@ -1,0 +1,85 @@
+\section{A flux theorem and a Lean-verified six-boundary obstruction}
+For any vertex set $W$ and target $t$, internal edges cancel to give
+\begin{equation}\label{eq:flux}
+ \sum_{x\in W}\stab(x,t)=
+ \sum_{xy\in E:\,x\in W,\,y\notin W}(d(x,t)-d(y,t)).
+\end{equation}
+Strictly positive outgoing flux therefore certifies a boundary vertex in $W$.
+Say a root $u$ has the \emph{unique first-step property} if every $x\ne u$
+has exactly one neighbor $v_i$ of $u$ with $d(v_i,x)=d(u,x)-1$.
+Put $f(x)=d(u,x)$ and let $S_i$ be the sector of vertices with that first
+neighbor. The sectors partition $V\setminus\{u\}$.
+
+\begin{theorem}[Sector lower bound]\label{thm:sectors}
+Let $u$ have the unique first-step property, and let $J$ be the set of
+indices $i$ for which there is a nonadjacent root neighbor $v_j$ and
+an $x\in S_i$ with $d(v_j,x)=f(x)$. Then
+\[
+ b(G)\ge\dd(u)+|J|+\ind_{\{u\in\bd G\}}.
+\]
+If $u$ is not a cut vertex and $G[N(u)]$ has $c\ge2$ components, then
+\[
+ b(G)\ge\dd(u)+c+\ind_{\{u\in\bd G\}}.
+\]
+In particular, if $u$ is not a cut vertex, independent neighbors and $\dd(u)\ge2$ give
+$b(G)\ge2\dd(u)+\ind_{\{u\in\bd G\}}$.
+\end{theorem}
+\begin{proof}
+An edge between distinct sectors preserves $f$: a rise of one would
+produce a shortest path with a second first neighbor. Consequently the
+outgoing $f$-flux of $S_i$ is exactly one, from the edge $v_i u$.
+Each sector contains a boundary vertex.
+
+For $i\in J$ choose $j$ as in the statement and partition
+\[
+ P=\{x\in S_i:d(v_j,x)=f(x)\},\qquad T=S_i\setminus P.
+\]
+The set $P$ is nonempty and $v_i\in T$, because $v_i,v_j$ are nonadjacent.
+For an edge $xy$ from $P$ to $T$, distance Lipschitzness gives
+$f(x)\ge f(y)$, since $d(v_j,y)=f(y)+1$.
+Edges from $P$ to other sectors preserve $f$, and none goes to $u$.
+A vertex of $P$ minimizing $f$ has a geodesic predecessor outside $P$,
+giving a strictly positive contribution. Thus $P$ has positive $f$-flux.
+
+For $T$ use target $v_j$. The edge $v_i u$ contributes $2-1=1$.
+An edge $xy$ from $T$ to $P$ contributes $f(x)+1-f(y)\ge0$.
+An edge leaving $S_i$ preserves $f$ and cannot enter $S_j$, since its
+distances to $v_j$ would differ by two. In every other sector its endpoint
+has distance at most $f(x)+1$ from $v_j$, giving a nonnegative contribution.
+Thus $T$ also has positive flux. The two disjoint sets give two distinct
+boundary vertices in every sector indexed by $J$, proving the first bound.
+
+Let $Q=G[N(u)]$, and let $H$ join two root neighbors when their sectors
+have a crossing edge. Then $Q\subseteq H$, and each endpoint of an edge
+of $H\setminus Q$ belongs to $J$. If $G-u$ is connected, projecting a
+path onto its sectors shows that $H$ is connected. Each of the $c$
+components of $Q$ is incident with an edge leaving it, so $|J|\ge c$.
+\end{proof}
+
+\begin{theorem}[Degree-three obstruction]\label{thm:degree3}
+If a graph has a non-cut interior vertex of degree three, it has at least
+six boundary vertices. The constant six is sharp.
+\end{theorem}
+\begin{proof}
+At an interior degree-three root, every nonroot target has at least one
+closer neighbor. Two closer neighbors would give positive stability,
+since at most one could be farther. Thus there is exactly one closer
+neighbor, and at least one farther neighbor: the unique first-step property
+holds.
+Its three neighbors are independent. A path of length two among them
+would give its middle neighbor a positive score at the root. If there is
+exactly one neighbor edge $v_1v_2$, then for every $x\in S_1$ the
+distance from $v_2$ equals $f(x)$. Interiorness forces the distance from
+$v_3$ to equal $f(x)+1$. No edge can therefore join $S_1$ to $S_3$;
+the same holds for $S_2,S_3$. This contradicts connectivity of $G-u$.
+Theorem~\ref{thm:sectors} now gives six.
+
+For sharpness, take three internally disjoint paths between two terminals
+of lengths $1,4,4$. The six internal degree-two vertices are boundary;
+both degree-three terminals have stability zero. Hence $b=6$.
+\end{proof}
+The full statement of Theorem~\ref{thm:degree3}, including extraction of
+six distinct actual boundary vertices from graph distances and connectivity
+after deleting the root, is proved in the Lean file\\
+\texttt{RootSectors.lean}.
+

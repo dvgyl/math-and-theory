@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**53 manuscripts and research notes across 52 result families in mathematics, theoretical computer science, and mathematical physics.**
+**54 manuscripts and research notes across 53 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -186,6 +186,18 @@ Let B_a be the star K_{1,a} with one edge subdivided. For all a, r ≥ 3 and n �
 **Prior work.** [English, Graber, Kirkpatrick, Methuku and Sullivan, arXiv:1710.03735.](https://arxiv.org/abs/1710.03735) · [Faudree, Faudree, Gould and Jacobson, Saturation numbers for trees, 2009.](https://doi.org/10.37236/180) · [English, Gerbner, Methuku and Tait, 2019.](https://arxiv.org/abs/1807.06947)
 
 [Paper PDF](papers/mathematics/berge-subdivided-star/manuscript.pdf) · [LaTeX](papers/mathematics/berge-subdivided-star/manuscript.tex) · [Proof and reproduction](papers/mathematics/berge-subdivided-star/README.md) · [Citation](papers/mathematics/berge-subdivided-star/CITATION.bib)
+
+#### [Graphs with five harmonic boundary vertices, subcubic graphs with six, and minimum-boundary two-trees](papers/mathematics/harmonic-boundary-five/manuscript.pdf)
+
+**Family:** `harmonic-boundary-five`.
+
+Every two-connected graph with at most five Steinerberger boundary vertices has diameter at most two, and a connected graph has exactly five boundary vertices if and only if it is a bridge subdivision of one of 227 reduced graphs of order at most fourteen; this answers Problem 6.1 of Chiem, Dudarov, Lee, Lee and Liu. The proof reduces boundary metrics of every diameter, through the three cones of five-point metrics and a cap preserving local configurations, to an exact certificate that leaves fifteen metrics, excluded by hand. Connected graphs of maximum degree three with exactly six boundary vertices are the bridge subdivisions of 201 reduced graphs. For n ≥ 6 every two-tree on n vertices has at least ⌈n/2⌉ + 2 boundary vertices, with three extremal two-trees at each even n ≥ 8 and, at odd n ≥ 9, a period-eight quartic quasi-polynomial number of them, asymptotic to n⁴/192.
+
+**Formal scope.** Lean 4.35.0 proves at graph level that a nonboundary degree-three vertex whose deletion leaves the graph connected forces six boundary vertices, together with the gluing and accounting identities, the 14-vertex sharpness example, all 835 infeasibility systems of the local certificate, the bipartite subcubic boundary theorem, a sharp rooted metric truncation theorem and the two-tree grammar bounds; a strict audit covers all 15,771 project declarations. The cone and capping reduction, the subcubic interior reduction and the catalogue enumerations are conventional proofs and exact computations, rechecked by independent enumerations.
+
+**Prior work.** [Chiem, Dudarov, Lee, Lee and Liu, A characterization of graphs with at most four boundary vertices, 2024.](https://arxiv.org/abs/2209.04438) · [Steinerberger, The boundary of a graph and its isoperimetric inequality, 2023.](https://arxiv.org/abs/2201.03489) · [Koolen, Lesser and Moulton, Optimal realizations of generic five-point metrics, 2009.](https://doi.org/10.1016/j.ejc.2008.09.021)
+
+[Paper PDF](papers/mathematics/harmonic-boundary-five/manuscript.pdf) · [LaTeX](papers/mathematics/harmonic-boundary-five/manuscript.tex) · [Proof and reproduction](papers/mathematics/harmonic-boundary-five/README.md) · [Citation](papers/mathematics/harmonic-boundary-five/CITATION.bib)
 
 ### Inequalities and real analysis
 

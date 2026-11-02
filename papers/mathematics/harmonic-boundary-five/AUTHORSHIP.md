@@ -1,0 +1,9 @@
+# Authorship and disclosure
+
+This work is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed.
+
+Autonomous AI research agents found the results and their proofs, wrote the finite certificates and checkers, wrote an original Lean development for Lean 4.35.0, ran censuses with nauty 2.8.9 and searched the literature in an earlier session. The records of that session describe internal audits carried out within the same automated workflow; they do not name the system used.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It identified the source problem and checked the cited statements, read the proofs of the diameter theorem, the capping reduction and the subcubic interior reduction, reran the upload's checkers from a copy, wrote and ran independent enumerations (a census of all 60,070 two-connected subcubic graphs of orders six to fourteen without nauty, closures rebuilding the 227 and 201 catalogues, and small-order comparisons including the two-tree counts), arranged the Lean files as one project with a whole-project axiom audit, ran the fresh build recorded in [verification/](verification/), edited the manuscript and integrated the package into this repository. The nauty-based checkers were not rerun with nauty. The earlier session's internal reviews, logs, exploratory searches and large experiment files are not included. AI checks are not human peer review.
+
+The boundary is credited to Steinerberger and the question, with the classification through four boundary vertices, to Chiem, Dudarov, Lee, Lee and Liu; the profile frame to Müller, Pór and Sereni; and the five-point metric cones to Koolen, Lesser and Moulton. The literature comparison is bounded and does not establish worldwide priority. The package is distributed under the Apache-2.0 license.

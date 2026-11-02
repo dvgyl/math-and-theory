@@ -1,0 +1,258 @@
+\section{Exact enumeration: a rational function and a period-eight formula}
+\label{sec:exact-odd-count}
+
+The finite grammar can be made unambiguous by using the canonical
+degree-two-pruned core.  This gives an exact count, strengthening the
+quartic growth theorem.
+
+\begin{theorem}[Exact unlabelled equality count]
+There is one minimum-boundary two-tree at each of orders three,
+four, and five, namely $K_3$, $K_4-e$, and the cone over $P_4$.
+There are two at order six, seven at order seven, and exactly three
+at every even order at least eight.  For every odd $n\ge9$,
+\[
+ a_n=\frac{n^4-20n^3+239n^2+c_rn+d_r}{192},\qquad r=n\pmod8,
+\]
+where
+\[
+\begin{array}{c|rrrr}
+r&1&3&5&7\\ \hline
+c_r&-1126&-1090&-1126&-1090\\
+d_r&2250&1962&2298&1914
+\end{array}
+\]
+In particular $a_n\sim n^4/192$ through odd $n$.
+With $t=x^2$, the exact generating function is
+\begin{equation}
+ \sum_{\substack{n\ge7\\n\text{ odd}}}a_nx^n
+ =\frac{x^7N(t)}{(1-t)^5(1+t)^2(1+t^2)},
+ \label{eq:exact-count-gf}
+\end{equation}
+where
+\[
+ N(t)=7-3t-4t^2+8t^3-t^4+4t^5+11t^6-8t^7+t^8+t^9.
+\]
+\end{theorem}
+
+\subsection{Canonical arms and their generating functions}
+
+Use the state numbering of the compact odd grammar.  For
+$j=0,\ldots,9$, let $F_j(x)$ count rooted component isomorphism
+classes in state $j$, with $x$ marking vertices other than its two
+root endpoints.  These are one-leaf components, so their pruned
+core is a triangle path.  Their root endpoint triples are unequal
+and fix an orientation.
+
+There is a unique decomposition of such a rooted graph.  Retain
+the two marked root endpoints and remove every other degree-two
+vertex; this recovers its rooted core.  Its root triangle either
+is the sole triangle, or has exactly one continuing core edge.
+The ear multiplicities and the continuing edge determine the
+last extension uniquely, including the predecessor orientation.
+Iterate towards the leaf.  The only duplicate initial parameters
+are $(p,0)$ and $(0,p)$ for $p=1,2,3$, which describe the same
+canonically oriented cap and are counted once.  Thus the unary
+transition equations are exact unlabelled equations, rather than
+equations for derivations.  Their solutions are
+\[
+\begin{array}{c|l@{\qquad}c|l}
+j&F_j(x)&j&F_j(x)\\ \hline
+0&x^2&5&x^4(1+4t-3t^2)/(1-t)^3\\
+1&2x^4/(1-t)&6&2x^5/(1-t)^2\\
+2&x^3(1+4t-3t^2)/(1-t)^3&7&x^4\\
+3&x^3&8&2x^4(1+t)/(1-t)\\
+4&x^3(1+t)/(1-t)&9&x^4(1+t^2)/(1-t)^2
+\end{array}
+\]
+These identities follow from all one-leaf rules with the three
+initial seeds $F_0=x^2$, an added $x^3$ in $F_4$, and an added
+$x^4$ in $F_9$.  Every extension increases order, so the solution
+as formal power series is unique.
+
+Define
+\[
+ A=F_0+F_1=\frac{x^2(1+t)}{1-t},\qquad
+ B=F_3+F_4+F_6=\frac{2x^3}{(1-t)^2}.
+\]
+The $A$-arms have weight two and root degrees $(2,3)$; the
+$B$-arms have weight three and root degrees $(2,4)$.  For an
+unlabelled class $C$, unordered pairs have generating function
+\[
+ \operatorname{Pair}(C)(x)=\frac{C(x)^2+C(x^2)}2.
+\]
+Set
+\[
+ M=\operatorname{Pair}(A)
+   =\frac{x^4(1+t+2t^2)}{(1-t)^2(1+t)}.
+\]
+
+\subsection{One or two branches}
+
+If the core has one branch, its unique trivalent edge-node
+canonically roots the graph.  Each arm has low root degree two
+and high root degree at least three.  One root ear would make
+the sum of final root degrees at least $3\cdot5-4+2=13$, so
+there are no root ears.  No endpoint can be high in all three
+arms, which would give degree at least seven.  Each therefore
+has requirement at least six.  The degree sum is at least
+eleven; degrees five and six would give one boundary and one
+interior root, and weight at least six.  Hence both root
+endpoints are interior of degree six.  The three arm
+weights must be $2,2,3$.  The endpoint degree equations force
+the weight-three arm to have root degrees $(2,4)$, and the
+two weight-two arms to have their degree-three sides aligned
+with its degree-two side.  Thus there are two $A$-arms and one
+$B$-arm.  The unique $B$-arm fixes the root ordering, and the
+$A$-arms form an unordered pair.  Every such combination has
+requirement six at both final endpoints.  Therefore the exact
+three-leaf contribution is
+\begin{equation}
+ U_3=x^2MB
+ =\frac{2x^9(1+t+2t^2)}{(1-t)^4(1+t)}.
+ \label{eq:count-u3}
+\end{equation}
+
+With two branches, the same root equations force two $A$-arms
+at each branch and state 12 for the component leading to the
+other branch.  The only entries into state 12 are an extension
+of states 14 or 15, which are a pair of $A$-arms, and its
+degree-six self-loop.  Hence the graph is determined by an
+unordered pair of unordered pairs of $A$-arms, and a central
+length $r\ge0$.  The core canonically recovers all these data.
+Reversing the central strip exchanges its two branches: the
+central core is the square of a path, with one ear on each
+strictly internal consecutive edge, and the higher arm-degree
+endpoint at the outer end of either terminal edge.  This
+reversal preserves the endpoint roles for every $r$.
+Consequently the exact four-leaf contribution is
+\begin{equation}
+ U_4=\frac{x^3}{1-x^2}\operatorname{Pair}(M)
+ =\frac{x^{11}(1+4t^2+2t^3+6t^4+3t^6)}
+ {(1-t)^5(1+t)^2(1+t^2)}.
+ \label{eq:count-u4}
+\end{equation}
+The canonical decomposition proves that repeated or equal arms
+are counted correctly; there is no assumption that grammar
+derivations are unambiguous.
+
+\subsection{Path cores and reflection}
+
+For a path core, mark one of its two end triangles.  Its core
+ear and opposite internal edge are intrinsic.  Exactly one
+closed edge of this end triangle has ears, so this fixes the
+root endpoint order.  The end component is a literal initial
+cap in state 0,4, or9.  The terminal table with this cap first
+and its orientation zero gives the end-rooted function
+\begin{align*}
+ E={}&x^4(F_2+2F_3+2F_4+F_6)\\
+ &+x^5(3F_0+3F_1+F_5+F_7+F_8+F_9)\\
+ &+x^6(2F_3+2F_4+F_6)\\
+ ={}&\frac{4x^7(2+t-3t^2+t^3)}{(1-t)^3}.
+\end{align*}
+Selecting the other end is an involution.  Its fixed classes
+are exactly graphs admitting an end-exchanging automorphism.
+If their generating function is $S$, Burnside's elementary
+two-element formula gives $U_2=(E+S)/2$.
+
+The center of the core incidence path is an edge-node or a
+triangle-node.  Its symmetry cases are exhaustive as follows;
+$q$ counts ears on the central edge, or on each of the two
+internal edges at a central triangle.
+\[
+\begin{array}{c|c|l|c}
+\text{center}&\text{half states}&\text{matching}&q\\ \hline
+\text{edge}&0,1&\text{same endpoint order}&1\\
+\text{edge}&3,4,6&\text{opposite endpoint order}&1\\
+\text{triangle}&0,1&\text{shared corner high}&0\\
+\text{triangle}&3,4&\text{shared corner low}&0\\
+\text{triangle}&3,4,6&\text{shared corner low}&1
+\end{array}
+\]
+Here ``low'' and ``high'' refer to the half's two root degrees.
+At an edge center the weight equation is
+$2w+q+s_u+s_v=5$, so parity forces $q=1$; the root degree and
+requirement tests give the first two rows.  At a triangle
+center, let $u$ be the shared corner and $v,w$ the exchanged
+corners.  Initially allow $r$ ears on the third edge.  Then
+$D_u=2d_u+2q$, $D_v=D_w=d_v+q+1+r$, and the weight is
+$2w+2q+r+s_u+2s_v$.  The degree bound gives $q\le1$.
+If $r>0,q=1$, the shared corner would have degree six and
+requirement at least eight, impossible.  If $r>0,q=0$ and
+the shared corner is high, the other two corners are boundary
+and the weight is at least $4+r+1\ge6$.  If the shared corner
+is low, it is boundary.  Half high degree three then gives
+weight at least eight; high degree four allows only $r=1$
+and gives weight at least six; larger degrees are impossible.
+Thus $r=0$.  The degrees reduce to
+$D_u=2d_u+2q$ and $D_v=D_w=d_v+q+1$, and the weight equation is
+$2w+2q+s_u+2s_v=5$.  If $u$ is low, its requirement is $5+q$,
+and that at $v$ is $\max(A_v,5+q)$.  If $u$ is high, the
+degree-six bound forces high degree three and $q=0$.  These
+conditions give exactly the remaining three rows.
+
+Isomorphic rooted halves always give the required reflection;
+use an isomorphism in one direction and its inverse in the
+other.  Conversely every end exchange identifies the halves
+in one listed way.  Unequal root summaries preclude another
+root-swapping identification within a half.  The center type
+and its ear multiplicities are intrinsic, so the cases are
+disjoint.  Doubling the half replaces $x$ by $x^2$, giving
+\begin{align*}
+ S_{\rm edge}&=x^3(F_0+F_1+F_3+F_4+F_6)(x^2),\\
+ S_{\rm triangle}&=x^3(F_0+F_1+F_3+F_4)(x^2)
+                  +x^5(F_3+F_4+F_6)(x^2),\\
+ S&=\frac{2x^7(1+t-t^3)}{(1-t)^2(1+t)}.
+\end{align*}
+Thus
+\begin{equation}
+ U_2=\frac{x^7(5+6t-5t^2-5t^3+3t^4)}{(1-t)^3(1+t)}.
+ \label{eq:count-u2}
+\end{equation}
+The path-core count is five at order seven and, for odd $n\ge9$,
+equals $(n^2-25)/4+\lfloor(n+1)/4\rfloor$.
+
+\subsection{Exact algebra and independent checks}
+
+The complete-core exceptions contribute $2x^7$.  The other
+classes have respectively two, three, and four core leaves,
+so are disjoint.  Adding $2x^7+U_2+U_3+U_4$ yields
+\eqref{eq:exact-count-gf}.
+
+To certify the quasipolynomial without extrapolation, put
+$m=(n-7)/2=4k+r$.  Its four Newton coefficient rows, indexed
+by $r=0,1,2,3$, are
+\[
+\begin{array}{c|rrrrr}
+0&8&109&502&896&512\\
+1&18&177&678&1024&512\\
+2&36&280&886&1152&512\\
+3&66&420&1126&1280&512
+\end{array}
+\]
+The corresponding polynomial is
+$P_r(k)=\sum_{j=0}^4c_{rj}\binom{k}{j}$; subtract one only
+at $m=0$.  Since
+$\sum_{k\ge0}\binom{k}{j}z^k=z^j/(1-z)^{j+1}$, these rows
+give a rational function with denominator $(1-t^4)^5$.
+Cross-multiplication with \eqref{eq:exact-count-gf} is an
+exact integer polynomial identity.  Expanding the four
+polynomials in $n$ proves the displayed residue formula for
+every odd $n\ge9$, with $a_7=7$ as its sole initial correction.
+
+The standard-library checker \texttt{exact\_odd\_count.py}
+verifies every one-leaf recurrence, terminal sum, symmetry
+formula, unordered-pair identity, and the exact polynomial
+certificate.  A separate program of the earlier session generates the complete
+grammar by increasing order and canonicalizes graphs using
+recursive ordered-edge incidence codes.  Equality of these
+codes is exact equality of recursive tuples; rerooting at
+all edges and both orders gives unlabelled isomorphism.
+It reproduces every individual nauty class through order 13
+and all stratified counts through order 35, where there are
+$4686$ extremizers.  These experiments check the all-order
+canonical proof rather than replace it.  The counting
+correspondence is not represented as an end-to-end Lean
+formalization.  The exact integer-polynomial identities for
+the summed numerator and Newton coefficient formula are
+separately kernel-checked in
+\texttt{OddCountingIdentities.lean}.

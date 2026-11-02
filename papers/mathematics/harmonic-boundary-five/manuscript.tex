@@ -1,0 +1,721 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,longtable,enumitem}
+\usepackage{xcolor,tikz,graphicx}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!55!black,citecolor=blue!45!black]{hyperref}
+\hypersetup{pdftitle={Graphs with five harmonic boundary vertices, subcubic graphs with six, and minimum-boundary two-trees},pdfsubject={227 five-boundary kernels, 201 subcubic six-boundary kernels, exact two-tree enumeration, and sharp metric bounds},pdfauthor={Dev D. Goyal}}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Harmonic graph boundaries}\fancyhead[R]{\small D. D. Goyal}\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\setlist{nosep,leftmargin=*}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\bd}{\partial}
+\newcommand{\stab}{\beta}
+\newcommand{\cuts}{\mathcal A}
+\newcommand{\blocks}{\mathcal B}
+\newcommand{\dd}{\operatorname{deg}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\ind}{\mathbf 1}
+\title{Graphs with five harmonic boundary vertices,\\subcubic graphs with six, and minimum-boundary two-trees}
+\author{Dev D. Goyal}
+\date{2 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a computer-assisted classification of all finite simple connected
+graphs with exactly five Steinerberger (harmonic) boundary vertices.
+The key theorem is that every two-connected graph with at most five such
+vertices has diameter at most two. An all-diameter reduction uses the three
+classical cones of five-point metrics and preserves boundary-radius-two
+profile configurations while capping their parameters. An exact local
+certificate leaves only fifteen bounded representatives, excluded by hand.
+Independent programs and explicit contradiction trees certify the finite step.
+The resulting classification consists of exactly 227 reduced kernels, with
+arbitrary subdivisions of bridges; their order is at most fourteen, sharply.
+The six-boundary sequel is completely solved for subcubic graphs: there
+are twelve two-connected cores and exactly 201 reduced connected kernels,
+of order at most eighteen, with two equality kernels. We classify every
+equality case in the sharp two-tree bound: exactly three at each even order
+at least eight, and an explicit period-eight quartic quasipolynomial at odd
+orders, asymptotic to $n^4/192$. A canonical core decomposition gives the
+exact rational generating function. More generally, every fixed excess
+above the two-tree bound admits a finite grammar with a polynomial state
+bound and an effectively computable rational unlabelled generating function.
+For every boundary size, bipartite subcubic graphs have boundary
+exactly at their leaves and cyclic vertices; boundary six gives ten kernels.
+A general rooted metric theorem has sharp bounds $2R+1$ and $4R+2$,
+while an infinite family proves that the stated radius-two tests alone
+cannot certify global realizability at any boundary size at least six.
+The general metric theorem and full bipartite subcubic boundary theorem are
+proved in Lean. Exact certificates, formalization scope, and remaining
+six-boundary limitations are specified explicitly.
+\end{abstract}
+\clearpage
+\setcounter{tocdepth}{1}
+\tableofcontents
+\clearpage
+
+\section{Setting, prior work, and status}
+All graphs in this note are finite, simple, undirected, connected, and have at
+least two vertices. Distances are unweighted shortest-path distances. Put
+\[
+ \stab_G(x,y)=\sum_{z\in N_G(x)}\bigl(d_G(x,y)-d_G(z,y)\bigr),\qquad
+ \stab_G(x)=\max_{y\in V(G)}\stab_G(x,y).
+\]
+The boundary in the question is exactly
+$\bd G=\{x:\stab_G(x)>0\}$. Write $b(G)=|\bd G|$.
+
+Steinerberger introduced this boundary \cite{steinerberger2022}.
+Chiem et al. introduced the stability number, proved the bridge rule and the
+classification through boundary four, and posed boundary five as Problem 6.1
+\cite{chiem}. Their Theorem 5.2 describes the boundary at diameter at most two.
+These ingredients are credited prior results, not contributions of this note.
+The 2025 potential-theory paper \cite{steinerberger2025} does not settle the
+classification.
+
+The main new result is the unrestricted classification. Its finite step is
+supported by a uniform parameter reduction, not by extrapolation from a
+bounded graph census. The three-cone description of five-point metrics is
+classical \cite{koolen,celik}; the local capping argument and the harmonic
+infeasibility certificate are proved here. The sharp two-tree theorem is strengthened here to complete equality grammars,
+a parity-dependent counting theorem, and effective grammars and rational
+unlabelled generating functions at every fixed excess.
+
+A targeted literature search in November 2026 found no earlier
+classification of graphs with five harmonic boundary vertices and no earlier
+statement of the sharp two-tree bound. Such a search cannot establish
+priority. How the results were obtained and checked is described in
+Section~\ref{sec:disclosure}.
+
+\begin{theorem}[Main classification]\label{thm:main}
+Every two-connected graph with at most five harmonic boundary vertices
+has diameter at most two. Exactly eighteen two-connected graphs have
+boundary five: eight of order five and ten of order six.
+Every connected graph with boundary five is obtained by independently
+subdividing bridges of one of exactly 227 reduced kernels.
+The largest reduced order is fourteen, with a unique equality kernel.
+\end{theorem}
+The core theorem is proved in Theorem~\ref{thm:unrestricted}; the explicit
+block palette and complete assembly are given in Lemma~\ref{lem:palette}
+and Theorem~\ref{thm:227}. A reduced kernel suppresses degree-two vertices
+only when they lie on no cycle. Thus the theorem describes all graph
+orders and all diameters.
+
+\textbf{Proof status.} The graph and metric reductions are proved in prose.
+The finite local step has independently generated exact certificates and a
+separate verifier. The 227-kernel count has a complete closure certificate.
+The whole classification is not claimed to be formalized end to end in Lean.
+
+\input{sections/sectors}
+\input{sections/diameter_three}
+\input{sections/frames}
+\input{sections/capping}
+
+\section{An exact block formula}
+A block is a maximal two-connected subgraph, or a bridge regarded as $K_2$.
+Let $\blocks(G)$ be the blocks and $\cuts(G)$ the cut vertices. Blocks and their
+incident cut vertices form a tree. In particular, distinct blocks meet in at
+most one vertex, and every block is isometric in $G$.
+
+\begin{theorem}[Block stability formula]\label{thm:block}
+For every $x\in V(G)$,
+\begin{equation}\label{eq:block}
+ \stab_G(x)=\max_{B\in\blocks(G):x\in B}
+       \bigl(\stab_B(x)-\dd_G(x)+\dd_B(x)\bigr).
+\end{equation}
+All block quantities in this expression are intrinsic to the block.
+\end{theorem}
+\begin{proof}
+Fix a target $y\ne x$. The block-cut tree selects a unique first block $B$
+on the route from $x$ to $y$. If $y\in B$, set $z=y$; otherwise let $z$ be
+the exit cut vertex of $B$ on that route. For each $w\in B$, every path to $y$
+must pass through $z$, so
+$d_G(w,y)=d_B(w,z)+d_G(z,y)$. The common tail cancels from the stability sum.
+Each neighbor of $x$ outside $B$ reaches $y$ through $x$ and contributes $-1$.
+Thus
+\[
+ \stab_G(x,y)=\stab_B(x,z)-\bigl(\dd_G(x)-\dd_B(x)\bigr).
+\]
+For $y=x$ the value is $-\dd_G(x)$ and is also obtained by the corresponding
+within-block expression. Conversely every target $z\in B$ can be used in
+$G$, giving the displayed expression. Maximizing proves the formula.
+\end{proof}
+
+For a cut vertex $x$, define
+\[
+ t_x=|\{B:x\in B\}|,\quad
+ c_x=|\{B:x\in\bd B\}|,\quad
+ I_x=\ind_{\{x\in\bd G\}},\quad
+ \delta_x=2(t_x-1)-c_x+I_x.
+\]
+\begin{theorem}[Nonnegative block budget]\label{thm:budget}
+Every $\delta_x\ge t_x-2\ge0$, and
+\begin{equation}\label{eq:budget}
+ b(G)=2+\sum_{B\in\blocks(G)}(b(B)-2)
+                  +\sum_{x\in\cuts(G)}\delta_x.
+\end{equation}
+\end{theorem}
+\begin{proof}
+A vertex belonging to one block has the same stability in that block and in
+$G$, by Theorem~\ref{thm:block}. Summing intrinsic block boundaries therefore
+overcounts each cut vertex by exactly $c_x-I_x$:
+\[
+ b(G)=\sum_B b(B)-\sum_{x\in\cuts(G)}(c_x-I_x).
+\]
+The block-cut tree gives $\sum_x(t_x-1)=|\blocks(G)|-1$. Substitution yields
+\eqref{eq:budget}. Finally, $c_x\le t_x$ and $I_x\ge0$ imply
+$\delta_x\ge t_x-2$.
+\end{proof}
+
+A nonbridge block has at least three boundary vertices: the known
+two-boundary theorem says that such a connected graph is a path, which cannot
+be a nonbridge block. Therefore \eqref{eq:budget} immediately gives the following.
+
+\begin{corollary}[The five-boundary reduction]\label{cor:five}
+If $b(G)=5$, every block has boundary at most five, there are at most three
+nonbridge blocks, and the possible multisets of their intrinsic boundary
+sizes are precisely constrained by the following table.
+\begin{center}
+\begin{tabular}{@{}lrrrrrrr@{}}\toprule
+Multiset & $\varnothing$ & $(3)$ & $(4)$ & $(5)$ & $(3,3)$ & $(3,4)$ & $(3,3,3)$\\
+Required $\sum_x\delta_x$ & 3 & 2 & 1 & 0 & 1 & 0 & 0\\\bottomrule
+\end{tabular}
+\end{center}
+The table is an exact boundary test once the blocks and their incidences are
+specified. A two-connected block of boundary three is $K_3$; the
+four-boundary blocks are already known. The eighteen five-boundary blocks are classified by Theorem~\ref{thm:unrestricted}
+and Lemma~\ref{lem:palette}; the budget is therefore a complete construction rule.
+\end{corollary}
+
+\begin{corollary}[A block exhausting the boundary]\label{cor:exhaust}
+If $G$ has $k$ boundary vertices and contains a block $B$ with $b(B)=k$, then
+$G$ consists of $B$ with pendant paths attached at distinct vertices $x$ with
+$\stab_B(x)=1$. Conversely every such attachment preserves $b(G)=k$.
+\end{corollary}
+\begin{proof}
+Equation~\eqref{eq:budget} forces every other block to be a bridge and every
+defect to vanish. A zero defect implies $t_x=2$, $c_x=2$, and $I_x=0$.
+The outside components are therefore paths, with no branching and at most one
+at each attachment point. At such a point,
+$\stab_G(x)=\max\{\stab_B(x)-1,1-\dd_B(x)\}=\stab_B(x)-1$;
+the maximum identity follows also directly from \eqref{eq:block}.
+Because the cut vertex is locally boundary and globally interior, its
+intrinsic stability is exactly one. The same formula proves the converse.
+\end{proof}
+
+\section{A sharp bound after suppressing bridge paths}
+\begin{definition}
+Let $K(G)$ be the graph obtained by suppressing all degree-two vertices
+lying on no cycle. These vertices lie internally on paths of bridges.
+The resulting reduced graph is unique up to isomorphism.
+\end{definition}
+Suppression cannot create a loop or a parallel edge: an alternative connection
+would put the original path on a cycle. Formula~\eqref{eq:block} shows that
+suppression preserves the boundary of every retained vertex; the removed
+vertices are interior. Thus $b(K(G))=b(G)$. Conversely arbitrary subdivisions
+of bridges preserve the boundary cardinality.
+
+Write $s$ for the number of nonbridge blocks and put
+\[
+ R=\sum_B(b(B)-2),\qquad
+ \Delta_*=\sum_x\delta_x,\qquad
+ D=\sum_B\bigl(|V(B)|-b(B)\bigr).
+\]
+The star in $\Delta_*$ distinguishes this defect sum from maximum degree.
+
+\begin{theorem}[Universal bound retaining block interiors]\label{thm:universal}
+For every connected graph with $b(G)=k\ge2$,
+\[
+ |V(K(G))|\le 2k-2+2s+D\le4k-6+D.
+\]
+\end{theorem}
+\begin{proof}
+Partition the reduced vertices into those in nonbridge blocks, the remaining
+vertices of degree at least three, and leaves. Call their counts $S,A,L$.
+Then $S\le R+2s+D$. A vertex counted by $A$ belongs only to bridge blocks,
+has $t_x=\dd(x)\ge3$, and has $c_x=t_x$, $I_x=0$; hence
+$\delta_x=t_x-2\ge1$. Thus $A\le\Delta_*$, while $L\le k$.
+Using $R+\Delta_*=k-2$ gives
+$S+A+L\le2k-2+2s+D$. Finally $s\le R\le k-2$.
+\end{proof}
+
+\begin{theorem}[Sharp finite kernel]\label{thm:sharp}
+Suppose every nonbridge block $B$ satisfies at least one of:
+\begin{enumerate}[label=(\roman*)]
+\item $\bd B=V(B)$;
+\item $\diam(B)\le2$.
+\end{enumerate}
+If $b(G)=k\ge2$, then
+\begin{equation}\label{eq:sharp}
+ |V(K(G))|\le4k-6.
+\end{equation}
+Equality holds precisely when $K(G)$ is obtained from a tree with $k$ leaves
+and all internal vertices of degree three by replacing every internal vertex
+by a triangle, attaching its three incident edges at three distinct triangle
+vertices. At $k=2$, this means a single edge.
+\end{theorem}
+\begin{proof}
+For every nonbridge block in the stated class,
+\begin{equation}\label{eq:efficiency}
+ |V(B)|\le3(b(B)-2),
+\end{equation}
+with equality only for $K_3$. In case (i), $|V(B)|=b(B)\ge3$.
+In case (ii), the diameter-two boundary theorem gives $|V(B)|\le b(B)+1$.
+The three-boundary two-connected case is $K_3$; for $b(B)\ge4$, the inequality
+$b(B)+1<3(b(B)-2)$ is strict.
+
+Use the partition $S,A,L$ from Theorem~\ref{thm:universal}. Then
+\[
+ |V(K(G))|=S+A+L\le3R+\Delta_*+k
+              =4k-6-2\Delta_*\le4k-6.
+\]
+Equality forces $\Delta_*=0$, equality in every block inequality, no overlap
+between nonbridge blocks, $A=0$, and $L=k$. Consequently all nonbridge blocks
+are pairwise disjoint triangles; all noncyclic vertices are leaves.
+Every triangle vertex must be a cut vertex, since otherwise it is a non-leaf
+boundary vertex. Zero defect forces exactly one bridge at each triangle
+vertex. Contracting the triangles produces the stated trivalent tree.
+
+Conversely, a trivalent tree with $k$ leaves has $k-2$ internal vertices.
+Its triangle expansion has $3(k-2)+k=4k-6$ vertices. Formula~\eqref{eq:block}
+gives stability zero at every triangle vertex and one at every leaf.
+Its boundary therefore has exactly $k$ vertices.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=.88,
+ v/.style={circle,draw=blue!60!black,fill=blue!8,inner sep=2pt,minimum size=5mm,font=\scriptsize},
+ b/.style={circle,draw=red!70!black,fill=red!15,inner sep=2pt,minimum size=5mm,font=\scriptsize}]
+\node[v](a0)at(0,1){0};\node[v](a1)at(0,-1){1};\node[v](a2)at(1.7,0){2};
+\node[v](a3)at(3,0){3};\node[v](a4)at(4,1.5){4};\node[v](a5)at(5,0){5};
+\node[v](a6)at(6.3,0){6};\node[v](a7)at(8,1){7};\node[v](a8)at(8,-1){8};
+\node[b](a9)at(-1.3,1.7){9};\node[b](a10)at(-1.3,-1.7){10};
+\node[b](a11)at(4,2.8){11};\node[b](a12)at(9.3,1.7){12};\node[b](a13)at(9.3,-1.7){13};
+\draw(a0)--(a1)--(a2)--(a0);\draw(a3)--(a4)--(a5)--(a3);\draw(a6)--(a7)--(a8)--(a6);
+\draw[thick](a2)--(a3)(a5)--(a6)(a0)--(a9)(a1)--(a10)(a4)--(a11)(a7)--(a12)(a8)--(a13);
+\end{tikzpicture}
+\caption{The unique 14-vertex reduced equality graph at boundary five. Red
+vertices are exactly the boundary. The labels agree with the Lean certificate
+\texttt{Sharp14.lean}. Any bridge may be subdivided arbitrarily.}
+\label{fig:sharp}
+\end{figure}
+
+\begin{proposition}[A degree constraint in the same class]\label{prop:degree}
+Under the hypotheses of Theorem~\ref{thm:sharp},
+\[
+ \dd_G(x)+\ind_{\{x\in\bd G\}}\le b(G)\qquad(x\in V(G)).
+\]
+By Theorem~\ref{thm:unrestricted}, every five-boundary graph belongs to this
+class. Thus every such graph has maximum degree at most five, and every
+boundary vertex has degree at most four.
+\end{proposition}
+\begin{proof}
+Each block satisfies
+$\dd_B(x)+\ind_{\{x\in\bd B\}}\le b(B)$. This is immediate in case (i).
+In case (ii), either every vertex is boundary, or there is one universal
+interior vertex. That vertex has degree $b(B)$, and every other vertex is
+nonuniversal and has degree at most $b(B)-1$.
+For a non-cut vertex, use $b(B)\le b(G)$. At a cut vertex retain just the
+incident blocks and its own defect in the nonnegative budget to obtain
+\[
+ b(G)\ge2+\sum_{B\ni x}(b(B)-2)+\delta_x
+       =\sum_{B\ni x}b(B)-c_x+I_x\ge\dd_G(x)+I_x.
+\]
+\end{proof}
+
+\section{The complete 227-kernel classification}
+By Theorems~\ref{thm:budget} and \ref{thm:unrestricted}, every nonbridge
+block of any five-boundary graph has diameter at most two. There is now
+no restriction to a subclass. For consistency with the supplied initial
+catalogue files, let $\mathcal C_2$ denote the class whose nonbridge
+blocks have diameter at most two; all graphs considered here belong to it.
+
+\begin{lemma}[The finite block palette]\label{lem:palette}
+Exactly 24 nonbridge block types can occur in a connected graph with
+boundary at most five. Their orders and intrinsic boundaries are:
+\begin{center}
+\begin{tabular}{@{}rrrl@{}}\toprule
+Order & Boundary & Types & Description\\\midrule
+3 & 3 & 1 & $K_3$\\
+4 & 4 & 3 & $C_4$, $K_4$ minus an edge, $K_4$\\
+5 & 4 & 2 & cones over $P_4$ and $C_4$\\
+5 & 5 & 8 & all-boundary two-connected graphs of order five\\
+6 & 5 & 10 & cones over connected order-five graphs with no universal vertex\\\bottomrule
+\end{tabular}
+\end{center}
+The eight order-five cores are
+\[
+ C_5,\quad \Theta(1,2,3),\quad K_{2,3},\quad
+ K_2\vee\overline{K_3},\quad K_{2,3}+e_3,\quad
+ K_5-E(P_3),\quad K_5-e,\quad K_5.
+\]
+Here $e_3$ joins two vertices in the three-vertex part of $K_{2,3}$,
+and $E(P_3)$ denotes two adjacent edges. The ten order-six cores are
+$K_1\vee H$, where $H$ runs through the connected five-vertex graphs
+of maximum degree at most three. These descriptions contain no boundary
+predicate that still needs to be classified. The adjacency lists and
+all stability values are in \texttt{small\_biconnected\_cores.json}.
+\end{lemma}
+\begin{proof}
+The budget bounds the block boundary by five; the diameter-two theorem then
+bounds its order by six. When there is an interior vertex, it is unique and
+universal, so the graph is a cone. Two-connectivity is equivalent to connectivity
+after deleting that vertex, and uniqueness says that the base has no universal
+vertex. These facts give the listed descriptions. The remaining finite counts
+were certified by enumerating all 33,864 labeled graphs of orders three through
+six, with exhaustive degree-compatible permutation tests for isomorphism. This
+checker is independent of the atlas and of nauty.
+\end{proof}
+
+\begin{remark}
+Each boundary vertex in a two-connected cone with a unique universal vertex
+has stability at least two. Indeed its base is connected, and every base vertex
+$u$ has a nonneighbor at base distance two. Such a target has both the universal
+vertex and a base neighbor as closer neighbors of $u$; all other neighbors are
+at distance at most two. Hence the ten order-six/five-boundary cores admit no
+boundary-preserving pendant attachment by Corollary~\ref{cor:exhaust}.
+\end{remark}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth,height=.92\textheight,keepaspectratio]{figures/eighteen_cores.pdf}
+\caption{All eighteen two-connected cores at boundary five. Vertex labels
+are exact stability values, not vertex identifiers. Graph6 codes and the
+full adjacency data are provided with the figure.}
+\label{fig:eighteencores}
+\end{figure}
+
+\begin{theorem}[Exact finite classification]\label{thm:227}
+A finite simple connected graph $G$ has five boundary vertices if and only if it is
+obtained by independently subdividing bridges of one of the 227 pairwise
+nonisomorphic graphs in \texttt{reduced\_kernels\_boundary5.g6}.
+Their order distribution is
+\begin{center}
+\begin{tabular}{@{}lrrrrrrrrrrr@{}}\toprule
+Order &5&6&7&8&9&10&11&12&13&14&Total\\
+Kernels&10&33&34&42&41&34&19&10&3&1&227\\\bottomrule
+\end{tabular}
+\end{center}
+The unique order-fourteen graph is Figure~\ref{fig:sharp}.
+\end{theorem}
+\begin{proof}[Mathematical completeness and finite verification]
+Theorem~\ref{thm:sharp} bounds each reduced graph by 14 vertices, and
+Lemma~\ref{lem:palette} gives its complete nonbridge palette. Include $K_2$ as
+the bridge block. Starting from these 25 seeds, perform the following finite
+closure: attach a rooted seed at a vertex of a current graph, or at a newly
+inserted point inside one of its bridges; suppress any new degree-two bridge
+vertex; retain boundary at most five; and identify isomorphic graphs.
+
+This procedure is exhaustive, with single-block graphs as the induction base.
+Remove an end block from a target reduced graph,
+retaining its attachment vertex $x$. If a graph remains, it is connected and
+stays in $\mathcal C_2$. Identifying graphs $A,B$ at a vertex gives
+\[
+ b(A\cup B)=b(A)+b(B)-I_A-I_B+I_{A\cup B}\ge b(A),
+\]
+because $b(B)\ge2$. Thus end-block deletion cannot increase the boundary.
+Only $x$ can newly require suppression. Reversing deletion attaches the block
+at an existing vertex or at a point in a bridge, exactly the two operations
+above. Induction on the number of blocks proves completeness.
+
+The computed closure contains 264 kernels with boundary at most five:
+1, 5, 31, and 227 at boundaries 2, 3, 4, and 5. A second run without orbit
+pruning reproduced the same set. A separate verifier used fresh breadth-first
+distances and exact graph isomorphism, without nauty or the incremental
+stability formula. It verified all seeds, pairwise nonisomorphism, and closure
+under 7,788 attachment placements; all 3,194 placements retaining boundary at
+most five were already in the catalogue. The completeness argument plus these
+finite checks proves the count. Finally, bridge subdivision preserves the
+boundary, completing both directions.
+\end{proof}
+
+\section{All five-boundary cacti}
+For a cactus, every nonbridge block is a cycle. The intrinsic stability of every
+vertex is one on an odd cycle and two on an even cycle. To see this, compare a
+vertex with a target around the cycle: an even antipode has two closer
+neighbors; an odd farthest target has one closer and one equidistant neighbor.
+No target produces a larger value.
+
+\begin{theorem}[Cactus boundary and exact classification]\label{thm:cactus}
+The boundary of a cactus consists exactly of leaves, degree-two vertices on
+cycles, and vertices incident with one even-cycle block and one bridge.
+If
+\[
+ R_C=\sum_{\text{cycle blocks }C}(|C|-2),\qquad
+ X=\sum_{x\in\cuts(G)}(t_x-2),
+\]
+and $E$ is the number of vertices meeting exactly one even cycle and one bridge,
+then $b(G)=2+R_C+X+E$. Consequently the following is a complete
+necessary-and-sufficient classification at boundary five:
+\begin{center}
+\begin{tabular}{@{}ll@{}}\toprule
+Cycle multiset & Required attachment condition\\\midrule
+No cycles & $X=3$ (trees with five leaves)\\
+One triangle & $X=2$\\
+Two triangles & $X=1$\\
+Three triangles & $X=0$\\
+One square & $X+E=1$\\
+One pentagon & $X=0$\\
+One triangle and one square & $X=0$, $E=0$\\\bottomrule
+\end{tabular}
+\end{center}
+Every condition is computed on the actual cactus block tree. All bridge-path
+lengths are arbitrary. Equivalently, there are exactly 121 reduced cactus
+kernels, supplied in \path{cactus_reduced_kernels_boundary5.g6}.
+\end{theorem}
+\begin{proof}
+A bridge block has intrinsic stability one at each endpoint. Combining these
+values and the cycle values with \eqref{eq:block} gives the boundary list.
+Every block vertex is intrinsically boundary, so $c_x=t_x$. The only globally
+boundary cuts are the $E$ exceptional cuts, and
+$\delta_x=t_x-2+I_x$. Equation~\eqref{eq:budget} gives the count.
+
+The condition $R_C+X+E=3$ is necessary and sufficient. Since every cycle has
+length at least three, partitioning $R_C\le3$ gives exactly the seven rows.
+It also forces every cycle to have length at most five, so every five-boundary
+cactus lies in $\mathcal C_2$. Selecting the cactus members of the complete
+catalogue in Theorem~\ref{thm:227} gives 121 kernels.
+\end{proof}
+
+For clarity, the square row permits exactly one pendant path, or two pendant
+paths at the same square vertex. The pentagon permits a single pendant path
+at any chosen subset of its vertices. In the triangle-and-square row, the
+cycles share one vertex directly; pendant paths may occur only at the other
+two triangle vertices. The triangle-only rows are described without case
+ambiguity by $X$. The unique 14-vertex kernel is a cactus, so the bound is
+sharp already in this subclass.
+
+\input{sections/two_trees}
+\input{sections/two_tree_equality_extension}
+\input{sections/exact_odd_enumeration}
+\input{sections/fixed_excess_rationality}
+
+\section{A further general exclusion: Cartesian products}
+\begin{proposition}\label{prop:product}
+For connected graphs $H,J$,
+\[
+ \stab_{H\square J}(h,j)=\stab_H(h)+\stab_J(j).
+\]
+In particular every graph with five boundary vertices is Cartesian-prime:
+it has no decomposition with both factors having at least two vertices.
+\end{proposition}
+\begin{proof}
+Product distance is the sum of factor distances. Splitting the neighbors into
+the two changing coordinates gives
+$\stab_{H\square J}((h,j),(u,v))=\stab_H(h,u)+\stab_J(j,v)$.
+The two targets are independent, so maxima add. Thus
+$\bd H\times\bd J\subseteq\bd(H\square J)$.
+If the product boundary has five vertices and both factors are nontrivial,
+then $b(H),b(J)\ge2$ and $b(H)b(J)\le5$, forcing both to equal two.
+Both factors are paths. Directly summing the path stability values gives
+$b(P_m\square P_n)=2m+2n-4$ for $m,n\ge2$, which is even.
+\end{proof}
+The product identity is elementary and is recorded as a secondary exclusion,
+not as the main contribution.
+
+\input{sections/rooted_metric_extension}
+\input{sections/bipartite_subcubic_extension}
+\input{sections/subcubic_six_extension}
+\input{sections/six_metric_obstruction}
+
+\section{Verification, dependencies, and further questions}\label{sec:verification}
+\subsection{Exact computational scope}
+All finite decisions use integer breadth-first distances and integer
+stability sums. The package directory \texttt{checks/} contains the
+checkers and data used below; \texttt{checks/run\_checks.py} replays them
+in a temporary copy. The checks needed by the proofs are: the exact
+inverse matrices of the three cones; the capped local certificate, with
+its 835 contradiction trees, 306 feasible selections and a regeneration
+of all 1,613,472 coefficient choices; the fifteen residual metrics; the
+complete block palette through order six; the 227-kernel closure; and,
+for the extensions, the grammar closures, counting identities and audits
+cited in their sections. The subcubic core census and the 201-kernel
+closure were carried out with nauty~2.8.9 \cite{nauty}; their checkers
+are included and run when the nauty programs are supplied.
+
+The following enumerations were written independently for this release
+and share no code with the other checkers. Graphs were generated by adding
+vertices (or, for two-connected graphs, ears) and deduplicated by exact
+isomorphism tests.
+\begin{itemize}
+\item Every connected graph of order at most eight with five boundary
+vertices reduces to one of the 119 catalogue kernels of order at most
+eight, and every such kernel occurs.
+\item Every connected subcubic graph of order at most eleven with six
+boundary vertices reduces to one of the 86 catalogue kernels of order at
+most eleven, and every such kernel occurs.
+\item At orders $6,\dots,14$ the numbers of two-connected graphs of
+maximum degree at most three are $10$, $18$, $49$, $115$, $349$, $1011$,
+$3421$, $11679$ and $43418$; these
+60,070 graphs agree with the nauty census, and exactly twelve of them,
+the cores of Theorem~\ref{thm:subcubic-six}, have six boundary vertices.
+\item Starting from the two-connected blocks with boundary at most six
+found by that census, and from $K_2$, the attachment closure of
+Theorem~\ref{thm:227} produces exactly 264 subcubic reduced graphs with
+boundary at most six, of which exactly 201 have boundary six; they are
+the catalogue. The same closure started from all two-connected graphs of
+order at most six with boundary at most five produces 264 reduced graphs,
+of which exactly 227 have boundary five; they are the catalogue.
+\item For $n\le13$, the minimum boundary of an $n$-vertex two-tree and the
+number of minimizers agree with Theorem~\ref{thm:twotree} and with the
+counts $2,7,3,18,3,36,3,66$ at $n=6,\dots,13$ given by
+Section~\ref{sec:exact-odd-count}.
+\end{itemize}
+These enumerations check the catalogues and the implementations; the
+order bounds that make the catalogues complete are the proved theorems.
+
+\subsection{Formal verification: precise scope}
+The Lean project in \texttt{lean/} uses Lean~4.35.0 and its standard
+library; it pins Mathlib for uniformity with the other projects of this
+repository but imports none of it. The audit module
+\texttt{HarmonicBoundary.AxiomAudit} enumerates every declaration defined
+in the project modules (15,771 declarations, including generated ones)
+and checks that each depends only on \texttt{propext},
+\texttt{Classical.choice} and \texttt{Quot.sound}. There is no
+\texttt{sorry}, no added axiom and no \texttt{native\_decide}; finite facts
+are proved by kernel-checked \texttt{decide} or \texttt{omega}.
+\begin{itemize}
+\item \texttt{DistanceCertificate} defines walks of a given length and
+proves that a table satisfying local conditions is the shortest-walk metric.
+\item \texttt{RootSectors} proves Theorem~\ref{thm:degree3} at graph level:
+from a finite simple graph, certified distances, a nonboundary vertex of
+degree three and connectivity after deleting it, it constructs a
+duplicate-free list of six boundary vertices.
+\item \texttt{WedgeDistance} and \texttt{WedgeBoundary} prove the distance
+and stability formulas for a one-point union of two graphs, the binary case
+of Theorem~\ref{thm:block}. \texttt{BlockBudget} proves the accounting
+identity and the kernel bounds from an explicit accounting record; it does
+not construct the block-cut tree.
+\item \texttt{Sharp14} certifies the distances of Figure~\ref{fig:sharp} and
+that exactly vertices 9--13 are boundary.
+\item The 42 modules \texttt{LocalSystems/} state and prove the 835 local
+infeasibility systems of Section~\ref{sec:capping}, each with its Boolean
+bounds, degree and score inequalities and two-path condition written in the
+statement. The link between these statements and the profile certificate is
+made by the certificate checker, not in Lean.
+\item \texttt{RootedMetricTruncation} proves the rooted metric theorem of
+Section~\ref{sec:rooted-truncation}, with both sharp constants, on an
+arbitrary index type; \texttt{BipartiteSubcubic} proves the boundary
+characterization of Section~\ref{sec:bipartite-subcubic} at graph level.
+\item \texttt{EvenEqualityAutomaton} and \texttt{OddEqualityGrammar} prove
+the weight bounds for all runs and derivations of the two-tree grammars,
+and the degree bound six; \texttt{OddCountingIdentities} proves the
+polynomial identities behind the counting formula. The correspondence
+between graphs and grammar derivations is a conventional proof.
+\end{itemize}
+The metric-cone coverage, the capping reduction, the diameter-three
+argument, the general block decomposition, the two-tree charging argument,
+the subcubic interior reduction and the catalogue enumerations are not
+formalized.
+
+\subsection{Rejected shortcuts and remaining extensions}
+Two tempting reductions are false. A theta graph with three internally
+disjoint terminal paths of lengths $1,4,4$ has boundary six and diameter four,
+so a proposed general bound $b(G)\ge2\diam(G)$ for two-connected graphs fails.
+Also, take a pentagon with leaves attached at three vertices, two of them
+adjacent. The endpoints of the edge joining those two vertices are interior.
+Contracting that edge
+produces a square and increases boundary five to boundary six. An explicit
+adjacency certificate is included. Thus arbitrary interior-edge contraction
+cannot justify the finite core bound.
+
+The former unbounded-diameter obstruction is closed by
+Theorem~\ref{thm:unrestricted}. The large order and diameter searches are
+independent audits and discovery tools; they are not needed to justify
+unbounded completeness. The essential finite dependency is the capped
+local certificate. The small residual metrics have hand exclusions.
+
+The previous open equality cases in the two-tree bound are now closed by
+Section~\ref{sec:two-tree-equality-new}; Section~\ref{sec:exact-odd-count}
+gives the exact unlabelled count at every order. The complete connected
+subcubic six-boundary classification is proved in
+Section~\ref{sec:subcubic-six}, including the sharp order bound and both
+equality kernels. Sections~\ref{sec:rooted-truncation} and
+\ref{sec:bipartite-subcubic} give all-radius and all-boundary-size extensions.
+The stated radius-two approach has a proved global compatibility limitation
+at every boundary size at least six, by Section~\ref{sec:six-local-barrier}.
+
+The remaining limits are specific. Six-boundary graphs having maximum degree
+at least four are not classified here; no general order bound for their
+two-connected cores is proved. The exact block budget reduces that question
+to the missing core palette. The complete five-boundary
+graph-to-cone-to-kernel chain, the new subcubic six-boundary classification,
+and the two-tree graph-to-grammar and unlabelled-counting correspondences
+are not formalized end to end in Lean. At every fixed two-tree excess,
+rational unlabelled enumeration is proved by a terminating finite procedure;
+explicit simplified formulas for $e\ge2$ are not computed here, and no
+general quasipolynomial or polynomial-growth assertion is made. The metric truncation theorem
+preserves the specified neighborhoods about one chosen root; simultaneous
+all-root compatibility is a distinct question. No external peer review
+or exhaustive priority claim is made.
+
+\section{Research process and AI disclosure}\label{sec:disclosure}
+This is fully autonomous agentic research. The results, their proofs, the
+finite certificates and checkers, the original Lean development and the
+literature search were produced by autonomous AI research agents in an
+earlier session; its records do not name the system used. The audits
+described in those records were carried out within the same automated
+workflow.
+
+Opus~5.5 by Anthropic used with Claude Code assessed the work for this
+release. It identified the source problem in the paper of Chiem, Dudarov,
+Lee, Lee and Liu, read the proofs of the diameter theorem, the capping
+reduction and the subcubic interior reduction, reran the checkers listed
+in the previous section, wrote and ran the independent enumerations listed
+there, arranged the Lean files as one project with a whole-project axiom
+audit, ran the fresh build, and edited this manuscript. The nauty-based
+census and closure were not rerun with nauty; the independent census and
+closure replace them in this release. The remaining sections were carried
+over and read, but not all were rederived line by line.
+
+Dev D. Goyal is responsible for publication. The work has not been
+externally peer reviewed; AI checks are not human peer review, no expert
+validation is claimed, and the literature comparison is bounded and does
+not establish priority.
+
+\clearpage
+\begingroup\small\setlength{\parskip}{0pt}
+\begin{thebibliography}{99}\setlength{\itemsep}{2pt}
+\bibitem{chiem}
+N. Chiem, W. Dudarov, C. Lee, S. Lee, and K. Liu,
+\emph{A characterization of graphs with at most four boundary vertices},
+Journal of Combinatorics 15(3) (2024), 361--382.
+\href{https://arxiv.org/abs/2209.04438}{arXiv:2209.04438v2};
+\href{https://doi.org/10.4310/JOC.240907013024}{doi:10.4310/JOC.240907013024}.
+\bibitem{steinerberger2022}
+S. Steinerberger, \emph{The boundary of a graph and its isoperimetric inequality},
+Discrete Applied Mathematics 338 (2023), 125--134.
+\href{https://arxiv.org/abs/2201.03489}{arXiv:2201.03489}.
+\bibitem{steinerberger2025}
+S. Steinerberger, \emph{Potential theory and the boundary of combinatorial graphs},
+2025. \href{https://arxiv.org/abs/2507.20833}{arXiv:2507.20833v1}.
+\bibitem{muller}
+T. M\"uller, A. P\'or, and J.-S. Sereni,
+\emph{Graphs with four boundary vertices},
+\href{https://www.math.rug.nl/~tobias/Papers/boundary4.pdf}{author-hosted paper}.
+\bibitem{koolen}
+J. H. Koolen, A. Lesser, and V. Moulton,
+\emph{Optimal realizations of generic five-point metrics},
+European Journal of Combinatorics 30 (2009), 1164--1171.
+\href{https://doi.org/10.1016/j.ejc.2008.09.021}{doi:10.1016/j.ejc.2008.09.021}.
+\bibitem{celik}
+D. \c{C}elik, \emph{Explicit determination of Gromov-product types of
+five-point metric spaces}, Eski\c{s}ehir Technical University Journal of
+Science and Technology B 6(2) (2018), 185--192.
+\href{https://doi.org/10.20290/aubtdb.375635}{doi:10.20290/aubtdb.375635}.
+\bibitem{nauty}
+B. D. McKay and A. Piperno, \emph{nauty and Traces}, version 2.8.9.
+\href{https://users.cecs.anu.edu.au/~bdm/nauty/}{Maintainer distribution and documentation}.
+\end{thebibliography}
+\endgroup
+\end{document}

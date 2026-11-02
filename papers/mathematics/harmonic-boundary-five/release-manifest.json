@@ -1,0 +1,648 @@
+{
+  "format_version": 1,
+  "package_id": "harmonic-boundary-five",
+  "formal_scope": "Lean 4.35.0 proves, for finite simple graphs with certified shortest-path distances and the original strict boundary inequality, that a nonboundary degree-three vertex whose deletion leaves the graph connected forces six boundary vertices; the one-point gluing and block-accounting identities; the 14-vertex sharpness example; all 835 integer infeasibility systems of the local certificate; the bipartite subcubic boundary characterization; a sharp rooted metric truncation theorem; and the grammar weight bounds and polynomial identities for two-trees. A strict audit covers all 15,771 project declarations. The cone coverage, capping reduction, diameter-three argument, subcubic interior reduction, block decomposition, grammar correspondence and catalogue enumerations are conventional proofs and exact computations, replayed by the package checkers and by independent enumerations.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.35.0",
+      "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile": "lakefile.toml",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/HarmonicBoundary/AxiomAudit.lean": "7a1da14a2ab17d00e4ec6d38c4da7039f7c0092f75af9aa5614fa81797977ba7",
+    "lean/HarmonicBoundary/BipartiteSubcubic.lean": "1aae286e497497a3853350ba94e9597b0e051f550713d86a1c78527ad9ded970",
+    "lean/HarmonicBoundary/BlockBudget.lean": "aa9b0e5ec6507a0648c402997b7726da7338064c806ea40f9971dfe04f78fdad",
+    "lean/HarmonicBoundary/DistanceCertificate.lean": "92a87bf7e5014011cd67e9be13d5fa7cb15bd4eaf024a300a6b9a4ed957af84b",
+    "lean/HarmonicBoundary/EvenEqualityAutomaton.lean": "f332c1672a6b2e7d451ccfbac04c060fad9704f64c4322557dc66d727258e2a1",
+    "lean/HarmonicBoundary/LocalFeasibility.lean": "c16dd5cdd2b354826443044914fd797b765292bbe27b49f536b3ea7296b327e8",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0000.lean": "7430ab70142c94d5e0a6056d79a60ad469ec80dd0f18c8a30954026ddc534cfc",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0020.lean": "41fac55ba8653e18cb4d30f3238f4d3ed8b69ba63bfb3632a882d8fdbe09810a",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0040.lean": "f7ec31f069d2007dda14ed8af9f52fa8f8f20d06d2d844e0d20dee4edd9384d9",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0060.lean": "d795d8f970adfd802aa81318f7ad2b73a7a44a23f63f8577bdd5baea5c2dce93",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0080.lean": "2580b893711d7143c0eedf8598d22846bfaed8a6e8cc150c0aae2abb2138fec5",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0100.lean": "a7e8162e34f319d62d51822f09936e404d7988cd94f1066297c1b3c70309e296",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0120.lean": "5df483dd155d8d97f844b23a809c67f6df20e578b4b15f5623f283c1f4d3d90c",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0140.lean": "626d58459493ef2778013dc487c54a6e66fc55934713b2d44ea99bf3febd87cf",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0160.lean": "dbd21c706e816d4c9e72a9f6710ae15a94c311231af8fcb27a09847389daa9fe",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0180.lean": "2233183f23f568c3b364d3c96903656148be8ecccda0cf419180b50e21a1651f",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0200.lean": "54b97ba6a44ff002b6aa6682124950a4264cd2af98e38fe21b036f04045d6f14",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0220.lean": "0052619d6f2a172f12eae2f5b5f3c5626114e53d8207ae68a11143e35ec3147a",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0240.lean": "896ee92176b20f9f8d0360de97f83897edac6dfd5446ea8692d801ceee42557d",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0260.lean": "5f5bbe1ccfb2f4bf3ad980ede7b7260b29145d34515fc1c2a7b4c17cb346179e",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0280.lean": "89625a4196ca7f25669473a199d6add375883138aed835c7e1796c3c55f0d871",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0300.lean": "30d0d22344ee64f61120194c5387f95a5209e0f002296377289b22d1c3963369",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0320.lean": "71ea4e9c7621b7e5d831ce24d58a963658bf6ab3241bf4da1ac497ad3bbbfb6e",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0340.lean": "1feaa5fa202a85117632aa0c117e27b72b258f446611c43d0d1d3c29a580686a",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0360.lean": "b3b532828b421b4dc27e3173e4ea474fea961bad62780726521b8a39396d754c",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0380.lean": "65824584f7429f95cbe754749b5b98546a2b6f9e055d4d152ab9f159d88b7695",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0400.lean": "124bec1606800b6e43c86f2d23df1f85ae0ef9dd60a097d1fc91ec823816cd60",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0420.lean": "df621871194de89570d25533a25f19f8bb8c0d723380f27e8fbb1523d74b5d06",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0440.lean": "e9036d7c91c7ba9ea39bb9db69cf93e8c6e016c0d492371545504e18e7c862fc",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0460.lean": "a75b16b96623fbdb0c7846ab04b9d014825d2c5319858dd7da83923700db9da7",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0480.lean": "00e25ff5f8d41b67cf11601d2f291c7b978e03d4e7a2e40869cab04204fd4ee3",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0500.lean": "c6403450c30f7cd3d406ea9328682bb99ee902e6579060120bb0abca89602fb3",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0520.lean": "5cd0cc00210ac2ae23cfbb05e448b4700ebbeb57d8b0860eefa42892349b5e43",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0540.lean": "4f7ce0b12b5c4df224991f9693cd802a1547601de412c184c8172f838055aef0",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0560.lean": "d2f085d9a27eda9e999ced97cfcc8d5df07d1ed35f9ad1b91bf8f997e1d01587",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0580.lean": "81421da9ce64d8a9dd9b18730a1d72a7cf34b6e61aef2d623918f1c3d4332603",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0600.lean": "6d14d7eaaaf67a65a80ae7e419592106c9dfed2c7c8e3a6d63bd4c8a7d5a8d45",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0620.lean": "bf86c89e53b1c54a9422ca8cc315181669a9553a447d72433f2472e4f1190c1e",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0640.lean": "723204501ba0238fa3ef257921d3f680d109938f2ecae6f0d66f3d74d29a3280",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0660.lean": "8c420b58170f1817ac248f1cae119fb4e74a8ea859cde1674eaa1732ab880104",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0680.lean": "42094bc8734ba1b2e6b2bf27465f24cc2dddc356bb7f34c6695f5a62d7ebff8c",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0700.lean": "59c8347932e0a75e9cbb602977089b3cbf18ed18388d1024b56387bb030e5295",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0720.lean": "555dd1171a5587d45bcea8d16e1de205b448435e2fcc00bb48e8e1482901d643",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0740.lean": "228f92cb581525e92878c736f6b9ae64c9ef30fa6d0fe00aa4b4925ea501d5a7",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0760.lean": "dbe283070c71991a8c86345432df787a77fa5fc34c5c023a45e226bd4db0bde2",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0780.lean": "d7d21a1c7d5bf93eb0936074cada04ff565853edc37404fe03dc781ae2a844fc",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0800.lean": "82a137812ded0e042b3a2247ba8b18ba87a96d506f71ceb8b51de8321c8cb783",
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0820.lean": "bfddef7974402fe5d2e1999731b88810ddd897252a82cc076d028c34a2991fd1",
+    "lean/HarmonicBoundary/OddCountingIdentities.lean": "ca8c17a996f5d87224db3d281e1024f811eb9077dee6e679f4f66bf0c4806de9",
+    "lean/HarmonicBoundary/OddEqualityGrammar.lean": "61e1aed2330fbf36e686da2065b9ac8edfd4f1710087335219022e4728d8b240",
+    "lean/HarmonicBoundary/RootSectors.lean": "d91c66be5cde4c171a05b8289eb6a5dbf9cc0bba19fdcee7c55e7fb28cbc177a",
+    "lean/HarmonicBoundary/RootedMetricTruncation.lean": "2de959b6a4e7006efb86faae0d81bac32c98503c7a37d1956efb04e1588b4849",
+    "lean/HarmonicBoundary/Sharp14.lean": "e00b3e9c376adf7a7d973e814e6fab25c188005b415d235fe747cd4e541c528d",
+    "lean/HarmonicBoundary/WedgeAudit.lean": "a52723cb783242683f796d71bff78d6bd38e9f747d4880290b6cece5fb43a1ca",
+    "lean/HarmonicBoundary/WedgeBoundary.lean": "c96d9051e16aa6aad52bff2e84136d8a820e661688ee17747c1e5065d111d1a3",
+    "lean/HarmonicBoundary/WedgeDistance.lean": "cb035b4303e95b38f6c83c4277e18aad30b42fa4e3970857d739a1f0536ac155",
+    "lean/HarmonicBoundary.lean": "15b7cd2e824627a6878550f590dcb13c97d1e9f3bb472101f9a44321d0ad3a6a"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 1902,
+      "sha256": "c7b7a706c7fac9d334105cceddb339734668deeba019dcd30ecf8b2c7ddf8824"
+    },
+    "CITATION.bib": {
+      "bytes": 415,
+      "sha256": "7dab0296768302c173c9671783eb0236dc0b267c2ea94854e6084b1a90f612d4"
+    },
+    "CITATION.cff": {
+      "bytes": 1936,
+      "sha256": "525f899c901d7115f286e434af6e2fa2249c06071a19ae29839a7b9bc65813f5"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 6985,
+      "sha256": "e2cdc4f7f0231d94c29d03ab8d7a0317c7dd3ae74e4cdc339ec7e19193bd999d"
+    },
+    "VERIFICATION.md": {
+      "bytes": 4717,
+      "sha256": "cbeb25e5e8970e25578226a9336e24aa6e87a58f557247adb2ba7025489a04c3"
+    },
+    "checks/check_graph.py": {
+      "bytes": 4790,
+      "sha256": "9b75cedca02a1f4b21adb50e2b57f4526741b7238c2cdc8ee16c1a8dfe900680"
+    },
+    "checks/data/sharp14.json": {
+      "bytes": 2641,
+      "sha256": "c95c849deb155bf69f84c1b14c343c6ab0d07ff4fc6b0be70ee6fea36baa9d48"
+    },
+    "checks/data/subcubic6_sharp18_path.json": {
+      "bytes": 685,
+      "sha256": "93e3c54051f536f7a3c38ad1901f8e6baa0c90a3098cf7076a7be9f00950f246"
+    },
+    "checks/data/subcubic6_sharp18_star.json": {
+      "bytes": 685,
+      "sha256": "f2b2af3951d880888a79ad453a5ae9c1342b15144e1d7a2590b79d97d4e43e7b"
+    },
+    "checks/data/subcubic6_subdividedK4.json": {
+      "bytes": 391,
+      "sha256": "c2c974613d36acdc0c224854238230265f038a39c53c2e68c6132837c4d20488"
+    },
+    "checks/data/subcubic6_theta144.json": {
+      "bytes": 300,
+      "sha256": "e9099220da34cd34074a478428246f4fef3b9022664f25fe208393bb5372d8f0"
+    },
+    "checks/experiments/all_reduced_kernels_boundary_le5.g6": {
+      "bytes": 1982,
+      "sha256": "799f33728f79ac95f78236f9c7b6b9c54fb45f7b5f3e1beb9bdeb2461ba45aca"
+    },
+    "checks/experiments/reduced_kernels.json.xz": {
+      "bytes": 4716,
+      "sha256": "a51d31b25fbd37bf4200a7266e171f35043774ceb0fb3f706945fd2b04d3ad9f"
+    },
+    "checks/experiments/reduced_kernels_boundary5.g6": {
+      "bytes": 1792,
+      "sha256": "80423f6cde0f0863f41195269487bcc1b82ba12460424148ed88bc2338b629f7"
+    },
+    "checks/experiments/small_biconnected_cores.json": {
+      "bytes": 15036,
+      "sha256": "772a44862c98b04c530ae7d4e0991e5d3e326d925314b900559f6a82e3b8e0eb"
+    },
+    "checks/experiments/verify_catalogue.py": {
+      "bytes": 3412,
+      "sha256": "462910918448effb4b8dbb27288993f2d67fb02319128e278be13e9366587420"
+    },
+    "checks/extensions/audit_generalize/audit_automaton_graph_semantics.py": {
+      "bytes": 7408,
+      "sha256": "c9274d47bc715db5b08390caf4fd9e18a65b1c448d29f182d538d61727c39b5f"
+    },
+    "checks/extensions/audit_generalize/audit_grammar_growth.py": {
+      "bytes": 4937,
+      "sha256": "e4be6c290bb68ab8f810685f21c06b717d742e8d0c2d7372df305ef3ccbf7d57"
+    },
+    "checks/extensions/audit_generalize/audit_odd_count_centers.py": {
+      "bytes": 6120,
+      "sha256": "0e956eb34f3ca7faea40c9a9535da7bd0994ea3c9c1bf6a3e60650befab6d834"
+    },
+    "checks/extensions/audit_generalize/check_rooted_metric.py": {
+      "bytes": 5668,
+      "sha256": "4d36b10316bd09b074b03f0e67ef9fb638ca0e8c0a6668703b3b7b276cbd0afb"
+    },
+    "checks/extensions/audit_generalize/verify_general_equality_grammar.py": {
+      "bytes": 14278,
+      "sha256": "e8631157e0ec5d419eef44eb1a7804f9a63ec648ea3051fadb26e3d6bd44982b"
+    },
+    "checks/extensions/audit_generalize/verify_subcubic_kernel_closure.py": {
+      "bytes": 9164,
+      "sha256": "860c9781382213578d873f3965f629d940c58bf705476676fea642035fc1679c"
+    },
+    "checks/extensions/six_boundary/check_new_results.py": {
+      "bytes": 9718,
+      "sha256": "7d2203eccb7a9df44e06b26f6ec77cf86672f15215bbdd7e6a545b9d8a53f320"
+    },
+    "checks/extensions/six_boundary/connected_subcubic_boundary6.g6": {
+      "bytes": 2690,
+      "sha256": "03b0e3d096adfb635f1c12f2426fe6bb634423275aefddf784ad8c4fe41ef342"
+    },
+    "checks/extensions/six_boundary/connected_subcubic_boundary_le6.g6": {
+      "bytes": 3190,
+      "sha256": "057c88d34ae76466817b6dae19ec7f2c0c012a73b55143dbbc3e56e0bc01f05f"
+    },
+    "checks/extensions/six_boundary/connected_subcubic_extremizers18.json": {
+      "bytes": 2761,
+      "sha256": "c3402e83b9a6779662c613fd57a921e3308c0bba4a237f5e9dad5c28f364793f"
+    },
+    "checks/extensions/six_boundary/connected_subcubic_kernels.json.xz": {
+      "bytes": 6588,
+      "sha256": "f17d0eec802b12935f83930ef9e8c7a8ff7b4f4f48227b346d107cd9dc152c89"
+    },
+    "checks/extensions/six_boundary/subcubic_core_palette.json": {
+      "bytes": 8765,
+      "sha256": "8e33f45c6cbcc2041ad7ea180d0f55b738bdd1eea9a5fab391558e66a16ce57d"
+    },
+    "checks/extensions/six_local/check_infinite_obstruction.py": {
+      "bytes": 3173,
+      "sha256": "c37f5d2af505716cc2c377d714138055bbf7405f3d3c8e58d6efc632405e064b"
+    },
+    "checks/extensions/six_local/verify_subcubic_cores_small.py": {
+      "bytes": 2313,
+      "sha256": "04a47c1fab25259a6aca1a5b5a66356c649b40be69e61441d321f9a3fcb1df64"
+    },
+    "checks/extensions/two_tree_equality/all_equality_grammar.json.xz": {
+      "bytes": 188460,
+      "sha256": "b00d4095f890020845dbfefe4b7c8a98a123483b9a31a4d30ec6d80ad95c464c"
+    },
+    "checks/extensions/two_tree_equality/canonical_odd_classification.json": {
+      "bytes": 11743,
+      "sha256": "a09a07724229355f6578653a26a026f8c03d21c3bf687edad2880220db56e135"
+    },
+    "checks/extensions/two_tree_equality/compact_odd_grammar.json": {
+      "bytes": 73214,
+      "sha256": "ce829273b52ddfd8d650d04253b0b6d6528187427fb2bba820e7094cf0fcd8db"
+    },
+    "checks/extensions/two_tree_equality/exact_odd_count.py": {
+      "bytes": 7830,
+      "sha256": "54899e6c8164551f77965248303fa4525260cf4771b0061fc5cb5e8f3fc4c0ed"
+    },
+    "checks/extensions/two_tree_equality/extremal_grammars.json.xz": {
+      "bytes": 39068,
+      "sha256": "0a9f118c5d896fc7811e78a321b8d39b6c38f2dacf21aed7e4d337a5426862d0"
+    },
+    "checks/extensions/two_tree_equality/extremizers.json.xz": {
+      "bytes": 4540,
+      "sha256": "431fae89c80e7f067e0284c5db4f6913b956613f45adc7cd50a0313910db28d8"
+    },
+    "checks/extensions/two_tree_equality/grammar_graph_witnesses.py": {
+      "bytes": 5306,
+      "sha256": "ab026624a471fd6f5545f4a3fdfef3955d9500aed1b28e8eb8a2014345ff784f"
+    },
+    "checks/extensions/two_tree_equality/odd_grammar_enumeration.json": {
+      "bytes": 7096,
+      "sha256": "114aead989334da6e57d38b69ae7a1e5fa0592bc12a31bd281ef74f88232d6b2"
+    },
+    "checks/extensions/two_tree_equality/path_core_automaton.json": {
+      "bytes": 4889,
+      "sha256": "b34a709b0e532f0f720114d029261f73bb687361c509ed52a36755cd1903aceb"
+    },
+    "checks/extensions/two_tree_equality/path_core_automaton.py": {
+      "bytes": 3583,
+      "sha256": "f134d699fc2c37985c1d2a19c3102a027ecbb5e55d5ac85aaa033b592e7c153d"
+    },
+    "checks/extensions/two_tree_equality/strip_growth.py": {
+      "bytes": 10071,
+      "sha256": "f416805fec8d3a70038248dc02d6db73bfa90a3307776b48ce4aeb1bdefbb4ed"
+    },
+    "checks/extensions/two_tree_equality/verify_path_core_automaton.py": {
+      "bytes": 5233,
+      "sha256": "10416bc2db6f954fe46c4357d8a11317e3608e8d66854a7b7b69adfe0e12c105"
+    },
+    "checks/independent/check.py": {
+      "bytes": 4394,
+      "sha256": "ffd9228140202dc1d40b0fc6374495ef9b98b4fe5785be239ade3e936c76a206"
+    },
+    "checks/independent/closure.py": {
+      "bytes": 3279,
+      "sha256": "5cbc098b8d4aa26e1515acba4213ceefb234f9592ebaf5fe8591729f3e189448"
+    },
+    "checks/independent/ears.py": {
+      "bytes": 2841,
+      "sha256": "844b0add543e455e23c11ea0b258082dc2e72eec868602ab6504e4be0514d069"
+    },
+    "checks/independent/twotree.py": {
+      "bytes": 1548,
+      "sha256": "be21d8631c931f023017f1135b3fb304e386756e973085e421e8a90eaa986065"
+    },
+    "checks/literature/verify_small_cores_independent.py": {
+      "bytes": 4993,
+      "sha256": "b8ac0908b10f488f568ed567b6849a2d2cd31db3f0fe3747cbd6dafe8aba0df3"
+    },
+    "checks/literature/verify_sp_delta1_independent.py": {
+      "bytes": 9447,
+      "sha256": "d5da472e0e620472faf5ffc43c3b06839e7ceb8ceeebeec33c8d8311d55e1508"
+    },
+    "checks/requirements.txt": {
+      "bytes": 14,
+      "sha256": "63b83d49071ae093c187423c768c6711a3716cda354d3a24e2bb10b0f536d34c"
+    },
+    "checks/run_checks.py": {
+      "bytes": 5478,
+      "sha256": "5cce97d80630c4ba0484efaa71cf3a2682be74ff3d7d05a86e7c0674f10a4195"
+    },
+    "checks/structure/capped_local_proof_certificate.json.xz": {
+      "bytes": 12268,
+      "sha256": "058d8c125d82494e4ef046d6b00ce2ea32db5b5afacbe189b26d48c65b0bf27f"
+    },
+    "checks/structure/check_block_theorems.py": {
+      "bytes": 8264,
+      "sha256": "13c6b2e57994102a86d99585dc5411c44e195b0062f7499155c7cc8f8af9124a"
+    },
+    "checks/structure/verify_capped_local_certificate.py": {
+      "bytes": 13568,
+      "sha256": "8fe7259c07c65bc87e39212c4a0491d91f1cc704cf346c3af69595a9c4e202d5"
+    },
+    "checks/verification/check_capped_survivors.py": {
+      "bytes": 3964,
+      "sha256": "64816916ee4af4d4ebb183af1ad19f642d57e1ed7da25d761f1ac388d1172cd6"
+    },
+    "checks/verification/check_five_point_cones.py": {
+      "bytes": 4692,
+      "sha256": "1dd7686f754831201b2de6e15e48f26542aabaffba53148fca07ba6ead070c8a"
+    },
+    "checks/verification/verify_diameter4_frames_independent.py": {
+      "bytes": 8348,
+      "sha256": "63662203938916c0fa29049d50740c1bd116c86c0234bdebe1121eeab67426b9"
+    },
+    "checks/verification/verify_diameter5_frames_independent.py": {
+      "bytes": 8092,
+      "sha256": "f138c264165fffa6f5d87426fd87a4dc48c5fe1143d460e2c2c87216cfdaf4b9"
+    },
+    "figures/bipartite_six_kernels.pdf": {
+      "bytes": 22287,
+      "sha256": "d37b1ef587df555935f77f27bccc58b30d45f50d22022b7b3d4c7be8765fd317"
+    },
+    "figures/eighteen_cores.pdf": {
+      "bytes": 54536,
+      "sha256": "8403d553c038a5eede57ff6d087e7ed3dbedd891b7e3b64344487af28573ab40"
+    },
+    "figures/even_extremal_families.pdf": {
+      "bytes": 14616,
+      "sha256": "8bcff63671f6a1ede20d2433d467addbfb8110dbc4e6c17f64900e2df9c631f6"
+    },
+    "figures/subcubic_extremizers18.pdf": {
+      "bytes": 23476,
+      "sha256": "1fd995e0e3b1247b1f2f3f6d529f177638b499811f4002fc2e2f66886491cc12"
+    },
+    "figures/subcubic_twelve_cores.pdf": {
+      "bytes": 32461,
+      "sha256": "c2ba42bb9e67d29ccf78e0ab0b3d5ca665f480c8da35f1f7caa826703ceac8b6"
+    },
+    "lean/HarmonicBoundary/AxiomAudit.lean": {
+      "bytes": 5899,
+      "sha256": "7a1da14a2ab17d00e4ec6d38c4da7039f7c0092f75af9aa5614fa81797977ba7"
+    },
+    "lean/HarmonicBoundary/BipartiteSubcubic.lean": {
+      "bytes": 13741,
+      "sha256": "1aae286e497497a3853350ba94e9597b0e051f550713d86a1c78527ad9ded970"
+    },
+    "lean/HarmonicBoundary/BlockBudget.lean": {
+      "bytes": 9263,
+      "sha256": "aa9b0e5ec6507a0648c402997b7726da7338064c806ea40f9971dfe04f78fdad"
+    },
+    "lean/HarmonicBoundary/DistanceCertificate.lean": {
+      "bytes": 3275,
+      "sha256": "92a87bf7e5014011cd67e9be13d5fa7cb15bd4eaf024a300a6b9a4ed957af84b"
+    },
+    "lean/HarmonicBoundary/EvenEqualityAutomaton.lean": {
+      "bytes": 5031,
+      "sha256": "f332c1672a6b2e7d451ccfbac04c060fad9704f64c4322557dc66d727258e2a1"
+    },
+    "lean/HarmonicBoundary/LocalFeasibility.lean": {
+      "bytes": 2268,
+      "sha256": "c16dd5cdd2b354826443044914fd797b765292bbe27b49f536b3ea7296b327e8"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0000.lean": {
+      "bytes": 50009,
+      "sha256": "7430ab70142c94d5e0a6056d79a60ad469ec80dd0f18c8a30954026ddc534cfc"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0020.lean": {
+      "bytes": 49456,
+      "sha256": "41fac55ba8653e18cb4d30f3238f4d3ed8b69ba63bfb3632a882d8fdbe09810a"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0040.lean": {
+      "bytes": 58158,
+      "sha256": "f7ec31f069d2007dda14ed8af9f52fa8f8f20d06d2d844e0d20dee4edd9384d9"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0060.lean": {
+      "bytes": 90394,
+      "sha256": "d795d8f970adfd802aa81318f7ad2b73a7a44a23f63f8577bdd5baea5c2dce93"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0080.lean": {
+      "bytes": 75977,
+      "sha256": "2580b893711d7143c0eedf8598d22846bfaed8a6e8cc150c0aae2abb2138fec5"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0100.lean": {
+      "bytes": 47324,
+      "sha256": "a7e8162e34f319d62d51822f09936e404d7988cd94f1066297c1b3c70309e296"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0120.lean": {
+      "bytes": 79821,
+      "sha256": "5df483dd155d8d97f844b23a809c67f6df20e578b4b15f5623f283c1f4d3d90c"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0140.lean": {
+      "bytes": 86245,
+      "sha256": "626d58459493ef2778013dc487c54a6e66fc55934713b2d44ea99bf3febd87cf"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0160.lean": {
+      "bytes": 82699,
+      "sha256": "dbd21c706e816d4c9e72a9f6710ae15a94c311231af8fcb27a09847389daa9fe"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0180.lean": {
+      "bytes": 73554,
+      "sha256": "2233183f23f568c3b364d3c96903656148be8ecccda0cf419180b50e21a1651f"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0200.lean": {
+      "bytes": 48017,
+      "sha256": "54b97ba6a44ff002b6aa6682124950a4264cd2af98e38fe21b036f04045d6f14"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0220.lean": {
+      "bytes": 66109,
+      "sha256": "0052619d6f2a172f12eae2f5b5f3c5626114e53d8207ae68a11143e35ec3147a"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0240.lean": {
+      "bytes": 83897,
+      "sha256": "896ee92176b20f9f8d0360de97f83897edac6dfd5446ea8692d801ceee42557d"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0260.lean": {
+      "bytes": 65791,
+      "sha256": "5f5bbe1ccfb2f4bf3ad980ede7b7260b29145d34515fc1c2a7b4c17cb346179e"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0280.lean": {
+      "bytes": 76598,
+      "sha256": "89625a4196ca7f25669473a199d6add375883138aed835c7e1796c3c55f0d871"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0300.lean": {
+      "bytes": 124109,
+      "sha256": "30d0d22344ee64f61120194c5387f95a5209e0f002296377289b22d1c3963369"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0320.lean": {
+      "bytes": 100450,
+      "sha256": "71ea4e9c7621b7e5d831ce24d58a963658bf6ab3241bf4da1ac497ad3bbbfb6e"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0340.lean": {
+      "bytes": 60164,
+      "sha256": "1feaa5fa202a85117632aa0c117e27b72b258f446611c43d0d1d3c29a580686a"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0360.lean": {
+      "bytes": 110615,
+      "sha256": "b3b532828b421b4dc27e3173e4ea474fea961bad62780726521b8a39396d754c"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0380.lean": {
+      "bytes": 128333,
+      "sha256": "65824584f7429f95cbe754749b5b98546a2b6f9e055d4d152ab9f159d88b7695"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0400.lean": {
+      "bytes": 106549,
+      "sha256": "124bec1606800b6e43c86f2d23df1f85ae0ef9dd60a097d1fc91ec823816cd60"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0420.lean": {
+      "bytes": 101956,
+      "sha256": "df621871194de89570d25533a25f19f8bb8c0d723380f27e8fbb1523d74b5d06"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0440.lean": {
+      "bytes": 95477,
+      "sha256": "e9036d7c91c7ba9ea39bb9db69cf93e8c6e016c0d492371545504e18e7c862fc"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0460.lean": {
+      "bytes": 107990,
+      "sha256": "a75b16b96623fbdb0c7846ab04b9d014825d2c5319858dd7da83923700db9da7"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0480.lean": {
+      "bytes": 63825,
+      "sha256": "00e25ff5f8d41b67cf11601d2f291c7b978e03d4e7a2e40869cab04204fd4ee3"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0500.lean": {
+      "bytes": 65107,
+      "sha256": "c6403450c30f7cd3d406ea9328682bb99ee902e6579060120bb0abca89602fb3"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0520.lean": {
+      "bytes": 73148,
+      "sha256": "5cd0cc00210ac2ae23cfbb05e448b4700ebbeb57d8b0860eefa42892349b5e43"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0540.lean": {
+      "bytes": 87543,
+      "sha256": "4f7ce0b12b5c4df224991f9693cd802a1547601de412c184c8172f838055aef0"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0560.lean": {
+      "bytes": 116022,
+      "sha256": "d2f085d9a27eda9e999ced97cfcc8d5df07d1ed35f9ad1b91bf8f997e1d01587"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0580.lean": {
+      "bytes": 119146,
+      "sha256": "81421da9ce64d8a9dd9b18730a1d72a7cf34b6e61aef2d623918f1c3d4332603"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0600.lean": {
+      "bytes": 111498,
+      "sha256": "6d14d7eaaaf67a65a80ae7e419592106c9dfed2c7c8e3a6d63bd4c8a7d5a8d45"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0620.lean": {
+      "bytes": 109636,
+      "sha256": "bf86c89e53b1c54a9422ca8cc315181669a9553a447d72433f2472e4f1190c1e"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0640.lean": {
+      "bytes": 107497,
+      "sha256": "723204501ba0238fa3ef257921d3f680d109938f2ecae6f0d66f3d74d29a3280"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0660.lean": {
+      "bytes": 96969,
+      "sha256": "8c420b58170f1817ac248f1cae119fb4e74a8ea859cde1674eaa1732ab880104"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0680.lean": {
+      "bytes": 72580,
+      "sha256": "42094bc8734ba1b2e6b2bf27465f24cc2dddc356bb7f34c6695f5a62d7ebff8c"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0700.lean": {
+      "bytes": 70419,
+      "sha256": "59c8347932e0a75e9cbb602977089b3cbf18ed18388d1024b56387bb030e5295"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0720.lean": {
+      "bytes": 67091,
+      "sha256": "555dd1171a5587d45bcea8d16e1de205b448435e2fcc00bb48e8e1482901d643"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0740.lean": {
+      "bytes": 85446,
+      "sha256": "228f92cb581525e92878c736f6b9ae64c9ef30fa6d0fe00aa4b4925ea501d5a7"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0760.lean": {
+      "bytes": 113872,
+      "sha256": "dbe283070c71991a8c86345432df787a77fa5fc34c5c023a45e226bd4db0bde2"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0780.lean": {
+      "bytes": 104444,
+      "sha256": "d7d21a1c7d5bf93eb0936074cada04ff565853edc37404fe03dc781ae2a844fc"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0800.lean": {
+      "bytes": 72137,
+      "sha256": "82a137812ded0e042b3a2247ba8b18ba87a96d506f71ceb8b51de8321c8cb783"
+    },
+    "lean/HarmonicBoundary/LocalSystems/LocalSystems0820.lean": {
+      "bytes": 49026,
+      "sha256": "bfddef7974402fe5d2e1999731b88810ddd897252a82cc076d028c34a2991fd1"
+    },
+    "lean/HarmonicBoundary/OddCountingIdentities.lean": {
+      "bytes": 2163,
+      "sha256": "ca8c17a996f5d87224db3d281e1024f811eb9077dee6e679f4f66bf0c4806de9"
+    },
+    "lean/HarmonicBoundary/OddEqualityGrammar.lean": {
+      "bytes": 10352,
+      "sha256": "61e1aed2330fbf36e686da2065b9ac8edfd4f1710087335219022e4728d8b240"
+    },
+    "lean/HarmonicBoundary/RootSectors.lean": {
+      "bytes": 34498,
+      "sha256": "d91c66be5cde4c171a05b8289eb6a5dbf9cc0bba19fdcee7c55e7fb28cbc177a"
+    },
+    "lean/HarmonicBoundary/RootedMetricTruncation.lean": {
+      "bytes": 19246,
+      "sha256": "2de959b6a4e7006efb86faae0d81bac32c98503c7a37d1956efb04e1588b4849"
+    },
+    "lean/HarmonicBoundary/Sharp14.lean": {
+      "bytes": 3403,
+      "sha256": "e00b3e9c376adf7a7d973e814e6fab25c188005b415d235fe747cd4e541c528d"
+    },
+    "lean/HarmonicBoundary/WedgeAudit.lean": {
+      "bytes": 560,
+      "sha256": "a52723cb783242683f796d71bff78d6bd38e9f747d4880290b6cece5fb43a1ca"
+    },
+    "lean/HarmonicBoundary/WedgeBoundary.lean": {
+      "bytes": 14295,
+      "sha256": "c96d9051e16aa6aad52bff2e84136d8a820e661688ee17747c1e5065d111d1a3"
+    },
+    "lean/HarmonicBoundary/WedgeDistance.lean": {
+      "bytes": 7582,
+      "sha256": "cb035b4303e95b38f6c83c4277e18aad30b42fa4e3970857d739a1f0536ac155"
+    },
+    "lean/HarmonicBoundary.lean": {
+      "bytes": 524,
+      "sha256": "15b7cd2e824627a6878550f590dcb13c97d1e9f3bb472101f9a44321d0ad3a6a"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3241,
+      "sha256": "4a7c38f34f3dc62fde4f42ae193d4226c4b730fbcd4007c358dab7a77ff0db3f"
+    },
+    "lean/lakefile.toml": {
+      "bytes": 289,
+      "sha256": "ba4eb219a60461949bd4e47ddc6a9263f5d83781e1c200f3ebd645c4db7731ed"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c"
+    },
+    "manuscript.pdf": {
+      "bytes": 729372,
+      "sha256": "4b05fa73e186d796becfca08420b27356e66a598f72f156f6b2df610bdf1a6cd"
+    },
+    "manuscript.tex": {
+      "bytes": 36790,
+      "sha256": "3748486bb22e5260aa8fb0a02cc8b2ee318c91d77503463d413001947150ef67"
+    },
+    "scripts/check_axiom_audit.py": {
+      "bytes": 4688,
+      "sha256": "c43ae06dce550fe04ac0ba15bc3eaf0d1c87927d373dc77904bf279e50761d48"
+    },
+    "scripts/verify.sh": {
+      "bytes": 671,
+      "sha256": "e1c6ea3f9f8826533e815529d9fc4a870e854c6287fb65dc78e838c78ab08330"
+    },
+    "sections/bipartite_subcubic_extension.tex": {
+      "bytes": 6966,
+      "sha256": "462df342b00e7584d8c9025d29312c4f96da5c24bd11c250294f44270d8f794f"
+    },
+    "sections/capping.tex": {
+      "bytes": 13914,
+      "sha256": "d4548b6c826ca04b0e8e3c88590f0e719e6845bb28a07edf76da31c558ff6c03"
+    },
+    "sections/diameter_three.tex": {
+      "bytes": 7296,
+      "sha256": "612b797ab0486b9ed8524397accec3437069496eae15b2b5a0d98388d4440e3e"
+    },
+    "sections/exact_odd_enumeration.tex": {
+      "bytes": 10641,
+      "sha256": "1b0f58f424ce766230b9435887e436b353fd9b8a8c5086cbc8e5d2ebc3cfb491"
+    },
+    "sections/fixed_excess_rationality.tex": {
+      "bytes": 15841,
+      "sha256": "36bb0aa4e79092a6f187deb59e98281d94bd94872979a2f6a81f7dccddb01439"
+    },
+    "sections/frames.tex": {
+      "bytes": 3015,
+      "sha256": "f2d242488356e01dc160f4fcfdb5e3b0b5c897fc1c54cc8f8359dcc728d5e098"
+    },
+    "sections/rooted_metric_extension.tex": {
+      "bytes": 5851,
+      "sha256": "229aa7c1304da6b7b3d9d39fa7b4d290531aa6ce8ed49998831623865bdaa21f"
+    },
+    "sections/sectors.tex": {
+      "bytes": 4193,
+      "sha256": "03dfdf7618e7f9b17b39c4389a8501b14b35ed040f236dffc482da7aa2bc688c"
+    },
+    "sections/six_metric_obstruction.tex": {
+      "bytes": 6276,
+      "sha256": "dbd1f807ef595741f7f35cfe006dd0425a58d2b243d7c5ce27d00d45344f71e8"
+    },
+    "sections/subcubic_six_extension.tex": {
+      "bytes": 13842,
+      "sha256": "df47495b07d2b5e4744a0214c5723a5f638278cddbc728e33d247b0135de030d"
+    },
+    "sections/two_tree_equality_extension.tex": {
+      "bytes": 17486,
+      "sha256": "dd5e93d9bce189898434d56f2b56f5c449cbae0da5ea89071b656978ea2b8124"
+    },
+    "sections/two_trees.tex": {
+      "bytes": 11573,
+      "sha256": "1aca5da42ab045612c66c652d100b4a26b973c4971314add5b4bdb565bd578b2"
+    },
+    "verification/README.md": {
+      "bytes": 1400,
+      "sha256": "1b528649fd98325c5919914dc8c48d00e6b2516bbb1f79eda23a9ceb5b1865f5"
+    },
+    "verification/axiom-inventory.json": {
+      "bytes": 6117,
+      "sha256": "cb03986c85efbee211e981a40f524bacaaada6f0f13c9f2bec1d96fc4b3ea464"
+    },
+    "verification/build.log.xz": {
+      "bytes": 38220,
+      "sha256": "5b2e24350289af6effbe7a5747c6315edb3fdc4ae9d0909d5451d0b56e722d4b"
+    },
+    "verification/checks.log": {
+      "bytes": 1211,
+      "sha256": "deb36f062228a45081a321fde1351234132ae7a70cf45b0d6f82e5d5a2675378"
+    }
+  }
+}

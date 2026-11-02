@@ -1,0 +1,286 @@
+\section{The uniform finite reduction and the core theorem}\label{sec:capping}
+\begin{theorem}[Small boundary forces diameter two]\label{thm:unrestricted}
+Every finite simple two-connected graph with at most five harmonic
+boundary vertices has diameter at most two. Equivalently, every
+two-connected graph of diameter at least three has at least six boundary
+vertices. The constant six is sharp, for example at $C_6$.
+\end{theorem}
+The proof below is computer assisted through one finite local certificate.
+Its parameter reduction applies to every diameter. The only residual
+metrics have separate hand exclusions, so the large diameter censuses
+are not dependencies of this theorem.
+
+\subsection{The three classical five-point metric cones}
+For a nonempty proper subset $A\subset\{0,1,2,3,4\}$ let $\delta_A$
+be the split pseudometric, equal to one when $A$ separates the two
+arguments and zero otherwise. Let $R$ be the graph metric of $K_{2,3}$
+with parts $\{0,1\}$ and $\{2,3,4\}$.
+
+The classical five-point metric fan has 102 maximal cones, in three
+symmetry classes \cite[Section 2]{koolen}. Up to relabeling, every
+five-point metric is a nonnegative combination of the five singleton
+splits and one of these five-element lists:
+\begin{center}
+\begin{tabular}{@{}cl@{}}\toprule
+Type & Nonpendant generators $Q_1,\ldots,Q_5$\\\midrule
+I & $\delta_{01},\delta_{12},\delta_{23},\delta_{34},\delta_{40}$\\
+II & $\delta_{02},\delta_{03},\delta_{12},\delta_{13},R$\\
+III & $\delta_{02},\delta_{03},\delta_{14},\delta_{13},R$\\\bottomrule
+\end{tabular}
+\end{center}
+These explicit expressions are also stated in \cite[p.~186]{celik}.
+Write the resulting representation as
+\begin{equation}\label{eq:cone}
+ M=\sum_{i=0}^4 p_i\delta_{\{i\}}+\sum_{j=1}^5 q_jQ_j,
+ \qquad p_i,q_j\ge0.
+\end{equation}
+The closed cones include all degeneracies. Indeed generic metrics are
+dense, only finitely many relabeled cones occur, and every nonnegative
+coefficient is bounded by the largest distance. A convergent subsequence
+therefore gives the same expression with zero coefficients permitted.
+
+For an integer metric all ten coefficients are half-integers. The split
+coefficients are isolation indices, which are halves of finite minima and
+maxima of integer distance expressions. When present, the coefficient of
+$R$ is recovered from an entry where $R=1$ after subtracting the split
+terms. These facts pass to cone boundaries by continuity. An independent
+exact arithmetic check in the package verifies that twice the inverse
+of each of the three $10\times10$ generator matrices is integral.
+
+The singleton coefficient $p_i$ equals
+$\tfrac12\min_{j\ne k,\,j,k\ne i}(M_{ij}+M_{ik}-M_{jk})$.
+One can check this directly in the generator lists: every nonsingleton
+contribution to each Gromov product is nonnegative, and at every root
+some pair makes all of them zero. The chosen pairs, in root order
+$0,1,2,3,4$, may be taken as
+\[
+\begin{array}{c|ccccc}
+ \mathrm{I}&14&02&13&24&03\\
+ \mathrm{II}&23&23&01&01&01\\
+ \mathrm{III}&23&34&01&01&01.
+\end{array}
+\]
+For a boundary metric of a two-connected graph,
+Lemma~\ref{lem:pendantmetric} consequently gives
+\begin{equation}\label{eq:pendantcoeff}
+ p_i\in\{0,\tfrac12\}.
+\end{equation}
+
+\subsection{An exact cap preserving all local data}
+Fix a designated boundary root $b$, and put
+\[
+ D_c=M_{bc},\qquad h_{ce}=D_c+D_e-M_{ce}\quad(c,e\ne b,\ c\ne e).
+\]
+In its radius-two frame ball, write a profile as
+\[
+ f_b=r\in\{0,1,2\},\qquad f_c=D_c+\epsilon_c,
+ \qquad -r\le\epsilon_c\le r.
+\]
+For a positive profile with $r>0$, Lemma~\ref{lem:profiles} becomes
+\begin{align*}
+ &D_c+\epsilon_c>0,\qquad
+ \epsilon_c+\epsilon_e\ge-h_{ce},\qquad
+ \text{some }\epsilon_c=-r,\\
+ &\text{for each }c:\quad
+ \epsilon_c=-r\quad\text{or}\quad
+ \epsilon_c+\epsilon_e=-h_{ce}\text{ for some }e\ne b,c.
+\end{align*}
+The complete local data therefore depend only on the ten-entry signature
+\begin{equation}\label{eq:signature}
+ \bigl(\min(D_c,3):c\ne b;\quad
+       \min(h_{ce},5):\{c,e\}\subset B\setminus\{b\}\bigr).
+\end{equation}
+The sums of two offsets lie between minus four and four; values $h>4$
+cannot be tight and impose no further inequality. When $D_c>2$,
+positivity is automatic. A designated boundary point $c$ lies in this
+ball exactly when $D_c\le2$. Its shifted coordinates are
+$r=D_c$, $\epsilon_c=-D_c$, and
+$\epsilon_e=D_c-h_{ce}$. Triangle inequalities give $h_{ce}\le2D_c$,
+so these values have not been truncated.
+
+Adjacency is the sup-norm-one relation between the shifted vectors.
+Every signed score toward a designated boundary target is a sum of
+coordinate differences. Thus the signature determines the profile set,
+its boundary markings, all adjacencies, and all score coefficients.
+
+For a nonnegative half-integer $q$, define
+\[
+ \operatorname{cap}(q)=
+ \begin{cases}
+ q,&q\le2,\\
+ 5/2,&q>2\text{ and }q\notin\mathbb Z,\\
+ 3,&q>2\text{ and }q\in\mathbb Z.
+ \end{cases}
+\]
+Replace all five $q_j$ in \eqref{eq:cone} by their caps, leaving the
+$p_i$ unchanged. Split metrics and $R$ have Gromov products zero or one
+on distinct triples. Their nonzero distance entries are one or two.
+Every distance $D_c$ and Gromov product $h_{ce}/2$ is therefore a
+nonnegative integer combination of the coefficients. Any such quantity
+at most two is unchanged. If a quantity greater than two changes, one
+of its contributing coefficients becomes $5/2$ or three, so it stays
+greater than two. This proves that every signature \eqref{eq:signature}
+is preserved.
+
+Every coefficient change is an integer multiplying an integer-valued
+pseudometric, so the capped metric stays integral. Positive distances
+stay positive, and diameter greater than two is preserved.
+There are at most
+\begin{equation}\label{eq:capcount}
+ 3\cdot2^5\cdot7^5=1,613,472
+\end{equation}
+coefficient representatives to check. Relabelings need not be repeated
+because the test below is invariant under permutation of the five labels.
+
+\textbf{No global graph contraction is being assumed.}
+If an actual graph has metric $M$, each of its boundary radius-two balls
+transfers into the capped abstract frame ball by
+$f_c\mapsto f_c+(D'_c-D_c)$, keeping the same offsets.
+All selected adjacencies, boundary markings, and signed scores are
+preserved. We do not assert that a graph realizing the entire capped
+metric exists. Local transfer is all that the proof needs.
+
+\subsection{The necessary local model and its certificate}
+Suppose, toward Theorem~\ref{thm:unrestricted}, that $b(G)\le5$ and
+$\diam(G)\ge3$. Two-connectivity gives at least six vertices. Pad the
+harmonic boundary to a five-element designated set $B$ if necessary.
+It still contains CEJZ boundary, and every vertex outside $B$ is interior.
+By the cycle lemma and Theorem~\ref{thm:degree3}, these vertices all have
+degree at least four. All designated vertices have degree at least two.
+
+At each root $b\in B$, select all designated boundary profiles in its
+radius-two frame ball and any subset of its positive interior profiles.
+Every actual graph ball must satisfy these conditions:
+\begin{enumerate}[label=(\roman*)]
+\item A selected vertex at distance zero or one from the root has degree
+at least two if designated, and at least four otherwise.
+\item Each selected nondesignated vertex at distance one has nonpositive
+score toward each of the five designated targets.
+\item If some designated target is at distance at least three from the
+root, two selected layer-one vertices are joined to two distinct selected
+layer-two vertices by two edges with disjoint endpoints.
+\end{enumerate}
+The complete neighborhood of a layer-one vertex is inside this ball, so
+its degree and scores are exact. For (iii), take two internally disjoint
+paths from the root to a far target. Stop each at its first layer-two
+vertex, and shortcut its preceding layer-one vertex directly to the root.
+This gives the two required edges. Layer-two interior vertices receive
+no additional constraints; the local test is deliberately only necessary.
+
+The exact finite result is:
+\begin{center}
+\begin{tabular}{@{}lr@{}}\toprule
+Stage & Coefficient representatives\\\midrule
+Integral after capping & 100,842\\
+With coincident designated points & 2,604\\
+Positive metrics of diameter at most two & 139\\
+Positive metrics of diameter at least three & 98,099\\
+Rejected at at least one boundary root & 98,084\\
+Passing all five necessary local tests & 15\\\bottomrule
+\end{tabular}
+\end{center}
+The surviving coefficients are listed below. Entries are doubled
+coefficients, in the generator order of \eqref{eq:cone}.
+\begin{center}\small
+\begin{tabular}{@{}cllr@{}}\toprule
+Type & $2(q_1,\ldots,q_5)$ & $2(p_0,\ldots,p_4)$ & Diameter\\\midrule
+I &(1,1,1,1,1)&(1,1,1,1,1)&3\\
+II&(0,0,0,0,3)&(1,1,0,0,0)&4\\
+II&(0,1,1,0,1)&(0,0,1,1,0)&3\\
+II&(1,0,0,1,1)&(0,0,1,1,0)&3\\
+II&(1,1,1,1,0)&(1,1,1,1,1)&3\\
+II&(1,1,1,2,0)&(1,0,1,0,1)&3\\
+II&(1,1,2,1,0)&(1,0,0,1,1)&3\\
+II&(1,2,1,1,0)&(0,1,1,0,1)&3\\
+II&(1,2,2,1,0)&(0,0,0,0,1)&3\\
+II&(2,1,1,1,0)&(0,1,0,1,1)&3\\
+II&(2,1,1,2,0)&(0,0,0,0,1)&3\\
+III&(0,0,0,0,3)&(1,1,0,0,0)&4\\
+III&(0,1,1,0,1)&(0,0,0,1,1)&3\\
+III&(1,0,0,1,1)&(0,0,1,1,0)&3\\
+III&(1,0,1,0,1)&(0,0,1,0,1)&3\\\bottomrule
+\end{tabular}
+\end{center}
+
+This finite step was obtained by exact Boolean/integer constraints and
+independently reproduced by a C++ program with its own profile construction
+and exhaustive branching. The 15 complete records agree exactly.
+The independent run needs 1,141 local types, each with at most fifteen
+profiles. It supplies 306 explicit feasible selections and 835 explicit
+contradiction certificates. A separate standard-library Python verifier
+reconstructs every profile set, checks each selection or contradiction
+tree, and independently enumerates all coefficient choices using only
+the verified truth table. No external SAT solver is needed to verify the
+delivered certificate.
+
+All 835 rejected local systems are also proved as explicit infeasibility
+theorems in Lean 4.35.0. The 42 proof modules and their aggregate import
+compile successfully; their axiom audits use only standard logical axioms.
+An independent semantic comparison checks the generated theorem statements
+against the separately constructed local profile data. This formalizes
+the finite contradictions, while cone coverage, capping, and exhaustive
+parameter coverage retain the mathematical and exact-checker proofs above.
+
+For clarity, the contradiction rules are elementary. Maintain forced and
+available selected vertices. A vertex with too few available neighbors
+cannot be selected; a forced vertex with exactly its required number of
+available neighbors forces all of them. For an interior score, subtract
+the number of available farther neighbors from the number of forced closer
+neighbors. If this lower bound is positive, the vertex is impossible.
+If it is zero at a forced vertex, every available farther neighbor is
+forced and every optional closer neighbor is excluded. An impossible
+two-edge matching is a contradiction; if there are just two available
+layer-two vertices, both are forced. An undecided vertex may be split
+into its selected and excluded cases. Each rule preserves every feasible
+selection, and the certificate checks both children of every split.
+
+\subsection{Why the finite check covers unbounded diameters}
+Every surviving $q_j$ is at most $3/2$. A coefficient larger than two
+would cap to $5/2$ or three, neither of which appears in a survivor.
+Hence each surviving representative has a singleton preimage under the
+cap: the original metric is exactly the surviving capped metric.
+This rules out the possibility that an arbitrarily large metric was
+silently identified with a small surviving one.
+
+Thirteen representatives have diameter three and are excluded by
+Theorem~\ref{thm:diamthree}. The remaining two represent the same metric:
+\begin{equation}\label{eq:specialfour}
+ M_{ab}=4,\qquad M_{a c_i}=M_{b c_i}=2,\qquad
+ M_{c_i c_j}=3\quad(1\le i\ne j\le3).
+\end{equation}
+It has the following short hand exclusion.
+
+\begin{lemma}\label{lem:specialfour}
+No graph of minimum degree at least two with all of its harmonic boundary
+in $\{a,b,c_1,c_2,c_3\}$ can realize \eqref{eq:specialfour}.
+\end{lemma}
+\begin{proof}
+The only possible positive frame profiles are nine vertices
+$p_{r,i}$, where $r=1,2,3$ and $i=1,2,3$. Their coordinates at $a,b$
+are $(r,4-r)$; their coordinate at $c_i$ is one and the other two
+$c$-coordinates are two. To derive this list, tightness at $a,b$ forces
+their positive coordinates to sum to four. At most one $c$-coordinate
+can be one, since distinct $c$'s have distance three, and tightness
+forces exactly one to be one and the rest two.
+
+Each row $r$ induces $K_3$, consecutive rows are completely joined, and
+the first and third rows have no edges between them. Vertex $a$ sees
+only the first row, $b$ only the third, and $c_i$ sees just its three
+column vertices $p_{1,i},p_{2,i},p_{3,i}$.
+If a middle vertex $p_{2,k}$ is selected, choose $j\ne k$.
+Its score toward $c_j$ equals the number of selected column-$j$ vertices
+minus one: $c_k$ contributes minus one and each column-$j$ vertex
+contributes one. Minimum degree two at $c_j$ makes this positive.
+Thus every middle vertex is absent. Minimum degree two at each $c_i$
+then forces all six outer vertices. For $i\ne j$, the profiles of
+$p_{1,i}$ and $p_{3,j}$ have sup-norm distance two, but these vertices
+have no common selected neighbor. Their actual distance cannot be two,
+contradicting Lemma~\ref{lem:profiles}.
+\end{proof}
+
+All possible metrics of diameter at least three have now been excluded,
+which proves Theorem~\ref{thm:unrestricted}. As another independent audit,
+a fresh full-frame program enumerates all 1,188 subsets arising from the
+15 residual representatives (six metric isomorphism types), recomputes
+actual BFS distances and all scores, and finds no two-connected survivor.
+This final small check does not use the degree-three obstruction.
