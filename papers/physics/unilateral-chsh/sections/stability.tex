@@ -1,0 +1,157 @@
+\section{Convexity, noise scaling, and quantitative stability}
+\label{sec:ext-stability}
+
+\begin{proposition}[Convex sublevel sets and a genuine discontinuity]
+\label{prop:ext-convexity}
+For every $b_0\ge0$, the set $\{\rho:B_A^*(\rho)\le b_0\}$ is convex.
+On each affine slice with a fixed Alice marginal, both $B_A^*$ and
+$(B_A^*)^2$ are convex functions of $\rho$.
+In general $B_A^*$ is neither convex nor continuous at states with
+pure filtered-side marginal.
+\end{proposition}
+
+\begin{proof}
+For a fixed invertible filter, filtering a mixture
+$\sum_jq_j\rho_j$ produces the mixture of the individually filtered
+states with weights proportional to their success probabilities.
+The CHSH norm is convex, because it is the supremum of the appropriate
+normalized linear Bell expressions. Its value on the filtered mixture
+is therefore at most $\max_j B_A^*(\rho_j)$.
+Taking the supremum over filters proves convexity of the sublevel set.
+
+If all $\rho_j$ have the same Alice marginal, each fixed filter has
+the same success probability on every component. The weights remain
+$q_j$, and taking the supremum proves convexity of $B_A^*$ on the
+slice. The square of a nonnegative convex function is convex,
+giving the second assertion.
+
+For the last statement, consider
+\[
+ \rho_p=p|\Phi^+\rangle\langle\Phi^+|
+ +(1-p)|0\rangle\langle0|\otimes I/2.
+\]
+At $p=0$, Alice is pure and Bob maximally mixed, so $B_A^*(\rho_0)=0$.
+For $0<p\le1/2$,
+$\Delta_B(\rho_p)=p(2p-1)/2\le0$, which gives the upper bound one.
+A rank-one Alice filter onto $|1\rangle$ removes the second component
+and leaves Bob pure, giving the matching supremum one.
+Thus $B_A^*(\rho_p)=1$ throughout $0<p\le1/2$.
+It jumps at zero and exceeds the convex interpolation
+$pB_A^*(|\Phi^+\rangle)=p\sqrt2$ for, for example, $p=1/4$.
+\end{proof}
+
+\begin{proposition}[Exact noise scaling on the unfiltered party]
+\label{prop:ext-noise}
+Let $\mathcal D_\eta(X)=\eta X+(1-\eta)\tr(X)I/2$ be the
+depolarizing channel, with $0\le\eta\le1$. Then
+\begin{equation}
+ \boxed{
+ B_A^*((\mathrm{id}\otimes\mathcal D_\eta)(\rho))
+ =\eta B_A^*(\rho).
+ }
+ \label{eq:ext-noise-scaling}
+\end{equation}
+For $\eta>0$, the optimal Alice filters are unchanged.
+If the original optimum exceeds one, the exact surviving-violation
+threshold is $\eta>1/B_A^*(\rho)$.
+For a canonical state the same statement applies to admixture of
+global white noise.
+\end{proposition}
+
+\begin{proof}
+Alice filtering commutes with the trace-preserving channel on Bob,
+and the filtering success probability is unchanged.
+For every normalized filtered state, the channel multiplies its
+correlation matrix by $\eta$, and hence its CHSH norm by $\eta$.
+The equality follows after taking suprema.
+If $\rho_A=I/2$, then
+$(\mathrm{id}\otimes\mathcal D_\eta)(\rho)
+=\eta\rho+(1-\eta)I/4$, proving the last statement.
+For a noncanonical state, global white noise does not generally
+obey this scaling law.
+\end{proof}
+
+\begin{proposition}[A universal canonical Lipschitz estimate]
+\label{prop:ext-lipschitz}
+Let $S,S'$ be the squared unilateral optima of two canonical states,
+with derived data $(A,s,d)$ and $(A',s',d')$. Then
+\begin{equation}
+ \boxed{
+ |S-S'|\le
+ 2\norm{A-A'}_{\mathrm{op}}+|s-s'|+2\norm{d-d'}.
+ }
+ \label{eq:ext-lipschitz}
+\end{equation}
+This estimate requires no spectral gap and includes all singular
+and repeated-eigenvalue cases.
+\end{proposition}
+
+\begin{proof}
+For a common feasible pair, put $u=-n\times v$ and
+$P=I-nn^T-vv^T$. Because $n\cdot v=0$, $\norm n=1$, and
+$\norm v\le1$, the matrix $P$ is positive semidefinite and
+$\tr P=2-\norm v^2\le2$. The objective is
+\[
+ f(n,v)=\tr(PA)+s\norm v^2+2u\cdot d.
+\]
+Since $\norm u=\norm v\le1$, the absolute difference of the
+two objectives is bounded by the right-hand side of
+\eqref{eq:ext-lipschitz}, uniformly over the common compact domain.
+Taking maxima in both orders proves the claim.
+\end{proof}
+
+For example, an estimated value $\widehat S$ with certified right-hand
+side at most $\varepsilon$ proves activation if
+$\widehat S-\varepsilon>1$, and excludes activation if
+$\widehat S+\varepsilon\le1$.
+The estimate is in canonical coordinates; it does not assert uniform
+continuity of whitening as a marginal approaches purity.
+
+\begin{proposition}[Gradients at a simple optimum]
+\label{prop:ext-gradient}
+Suppose $H_0\succ0$ and the smallest eigenvalue of $M$ is simple.
+Choose its normalized eigenvector $n$, put
+$v=-K^{-1}Cn$, $u=-n\times v$, and
+$P=I-nn^T-vv^T$. Then $S=(B_A^*)^2$ is differentiable in the
+canonical data and
+\begin{equation}
+ \boxed{
+ \nabla_D S=2(PD+uc^T),\qquad
+ \nabla_c S=2(D^Tu+\norm v^2c).
+ }
+ \label{eq:ext-gradients}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Under the stated hypotheses the optimizing reduced pair is unique up
+to the simultaneous sign change $(n,v)\mapsto(-n,-v)$, which leaves
+$P$ and $u$ unchanged. The simple-eigenvalue formula is smooth locally.
+Equivalently, differentiating the maximized objective while holding
+an optimizing pair fixed gives the same derivative.
+In
+$f=\tr(PDD^T)+\norm c^2\norm v^2+2u^TDc$,
+differentiation with respect to $D$ and $c$ gives precisely
+\eqref{eq:ext-gradients}.
+\end{proof}
+
+\paragraph{Independent checks and scope.}
+The accompanying independent script tests these extensions through
+complex $4\times4$ density-matrix calculations, separately from the
+reference solver. With the recorded seed it checks the Gram identity,
+plane-purity identity, determinant covariance, rational ellipsoid data,
+and scalar probability formula on $1{,}000$ states of ranks one through
+four. It tests $417$ purity-positive shortcut instances, $600$ physical
+axial states, and $102$ success-frontier comparisons against direct
+multistart filtering. The largest shortcut-attainment discrepancy is
+$2.7\times10^{-15}$ and the largest frontier discrepancy is
+$8.2\times10^{-10}$.
+Further checks cover $1{,}000$ independent random rank-two states,
+$129$ rational-cubic value evaluations, and $11$ points of the exact
+tilted frontier. The rank-two ceiling discrepancy is below
+$1.8\times10^{-15}$; the explicit tilted filters agree with direct
+optimization within $2.9\times10^{-15}$.
+These numerical checks support the mathematical
+proofs; they do not establish them or extend the Lean coverage.
+The exact formalization boundary is stated separately in
+Appendix~\ref{sec:verification}.

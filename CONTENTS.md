@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**58 manuscripts and research notes across 57 result families in mathematics, theoretical computer science, and mathematical physics.**
+**59 manuscripts and research notes across 58 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -652,6 +652,18 @@ Closed formulas for both one-sided filtered F₃ measures of Equation 10 of Ducu
 **Prior work.** [Ducuara, Susa and Skrzypczyk, Phys. Rev. A 110, 022435 (2024).](https://arxiv.org/abs/2406.03945) The reused Lean library contains the fully-entangled-fraction bound, Conjecture 2 of Milne et al., for which the Omega Institute's public repository records a claimed Lean proof committed on 8 October 2026 (issue #14206); no priority is claimed for it. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-steering-centre-bounds).
 
 [Paper PDF](papers/physics/one-sided-f3/manuscript.pdf) · [LaTeX](papers/physics/one-sided-f3/manuscript.tex) · [Citation](papers/physics/one-sided-f3/CITATION.bib) · [Proof and reproduction](papers/physics/one-sided-f3/README.md)
+
+#### [The one-sided CHSH measure under local filtering: exact supremum, violation criterion and a least-eigenvalue formula](papers/physics/unilateral-chsh/manuscript.pdf)
+
+**Family:** `unilateral-chsh`.
+
+Ducuara, Susa and Skrzypczyk defined the one-sided hidden CHSH measures, the largest normalized CHSH value when only one party applies an invertible local filter (Eq. (9) of their 2024 paper), and noted that no closed formula was known. This paper solves the optimization for every two-qubit state. After whitening the filtering party, the supremum is the maximum of an explicit quadratic over a compact set of vector pairs, and in general only a supremum. With whitened data c, D and A = DDᵀ, K = A − |c|²I, C = [Dc]×, α = tr A − |c|², one-sided violation requires α > 1, and there the squared supremum is tr A − λ_min(A + CK⁻¹C), attained by an explicit invertible filter; violation occurs exactly when this exceeds 1. States with α ≤ 1 have value at most 1, given by at most four algebraic candidates. States of rank at most two have a rational formula, and the quasi-distillable family of the 2024 paper has one-sided value max(1, 2p/(2−p)).
+
+**Formal scope.** Lean 4.19.0 proves, for every positive semidefinite trace-one complex 4×4 matrix, every invertible complex filter on either party and arbitrary traceless Hermitian involutive qubit observables, the exact suprema, the least-eigenvalue formula when α > 1, the violation and hidden-activation criteria, invertible attainment and the finite-candidate theorem; a whole-project audit covers all 32 modules. The secular-root evaluation of the boundary radius, the polynomial activation tests, the rank-two formula and the success-probability trade-offs are conventional.
+
+**Prior work.** [Ducuara, Susa and Skrzypczyk, Locally inaccessible hidden quantum correlations, 2024.](https://arxiv.org/abs/2406.03945) · [Horodecki, Horodecki and Horodecki, Violating Bell inequality by mixed spin-1/2 states, 1995.](https://doi.org/10.1016/0375-9601(95)00214-N) · [Zhang, Araiza Bravo, Lorenz and Chitambar, Channel activation of CHSH nonlocality, 2020.](https://arxiv.org/abs/1911.06349) · The Omega Institute's public repository records an earlier claimed Lean proof of Milne's Conjecture 1 (issue #16558) that uses the same plane-purity identity and filtering covariance and, with Result 1 of Ducuara et al., already gives the inaccessible interval 0 < p ≤ 2/3 of the quasi-distillable family; no priority is claimed for these. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-steering-centre-bounds).
+
+[Paper PDF](papers/physics/unilateral-chsh/manuscript.pdf) · [LaTeX](papers/physics/unilateral-chsh/manuscript.tex) · [Proof and reproduction](papers/physics/unilateral-chsh/README.md) · [Citation](papers/physics/unilateral-chsh/CITATION.bib)
 
 #### [The three-state root-fidelity entropy bound](papers/physics/fidelity-three-state/manuscript.pdf)
 

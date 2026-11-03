@@ -14,6 +14,7 @@ Each family directory contains its manuscripts, proof sources or shared-library 
 | [Optimal entanglement witnesses under ellipsoid containment: the Milne–Jennings–Rudolph conjecture and its chirality correction](ellipsoid-witness-optimality/) | [PDF](ellipsoid-witness-optimality/manuscript.pdf) |
 | [The full correlation range, filtering frontier and volume trade-off at fixed steering centre](steering-joint-range/) | [PDF](steering-joint-range/manuscript.pdf) |
 | [Exact one-sided filtering of the two-qubit F₃ functional](one-sided-f3/) | [PDF](one-sided-f3/manuscript.pdf) |
+| [The one-sided CHSH measure under local filtering: exact supremum, violation criterion and a least-eigenvalue formula](unilateral-chsh/) | [PDF](unilateral-chsh/manuscript.pdf) |
 | [The three-state root-fidelity entropy bound](fidelity-three-state/) | [PDF](fidelity-three-state/manuscript.pdf) |
 | [Exact conditional contraction for Pauli channels and depolarization in every dimension](quantum-exact-contraction/) | [PDF](quantum-exact-contraction/quantum_exact_contraction.pdf) |
 | [Strong minimum-rank multiplicativity from unextendible product constraints](upb-tensor-rank/) | [PDF](upb-tensor-rank/manuscript.pdf) |

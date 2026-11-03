@@ -1,0 +1,99 @@
+\section{The compact reduction}
+\label{sec:compact}
+
+\paragraph{Idea.} A filter on Alice acts on the Pauli coordinates by a Lorentz transformation followed by normalization, and the CHSH value of the output is the sum of the two largest squared singular values of its correlation matrix. Fixing the two measured directions and choosing the remaining filter freedom optimally turns the supremum over all invertible filters into the maximum of one explicit quadratic function $f(n,v)$ over a compact set of pairs of vectors in $\R^3$. Everything else in the paper is an analysis of this maximum.
+
+\subsection{Filtering and a Lorentz two-plane}
+
+The usual Lorentz representation of local filtering follows from the Pauli determinant identity~\cite{verstraete}: for a Hermitian matrix $X=x_0I+x\cdot\sigma$,
+$\det X=x_0^2-\norm x^2$. Conjugation by an invertible filter, divided by $|\det F|$, preserves this quadratic form and the future cone. Thus Alice filtering acts on the real matrix $R$ by a Lorentz matrix, followed by trace normalization.
+
+For a canonical marginal the denominator is the time coordinate $w_0$ of the timelike row. Choose the first two spatial rows to be the two maximizing directions in the Ky Fan formula for $B^2$; write them as $(x_0,X)$ and $(y_0,Y)$. Let the omitted spatial row have time coordinate $z_0$. Lorentz orthogonality gives
+\begin{equation}
+ X^TX=1+x_0^2,\quad Y^TY=1+y_0^2,\quad X^TY=x_0y_0,
+ \quad w_0^2=1+x_0^2+y_0^2+z_0^2.
+ \label{eq:lorentzrows}
+\end{equation}
+The sum of the two selected squared correlation-row norms is
+\begin{equation}
+ \frac{\mathcal N}{w_0^2},\qquad
+ \mathcal N=X^TAX+Y^TAY+s(x_0^2+y_0^2)
+ +2d^T(x_0X+y_0Y).
+\end{equation}
+This numerator is a sum of squared Euclidean norms and is nonnegative.
+
+Define
+\begin{equation}
+ k=X\times Y,\quad h=x_0Y-y_0X,\quad
+ \Delta=1+x_0^2+y_0^2.
+\end{equation}
+Elementary vector identities give
+\begin{align}
+ \norm k^2&=\Delta,& \norm h^2&=\Delta-1,& k^Th&=0,\\
+ XX^T+YY^T&=\Delta I-kk^T-hh^T,&
+ x_0X+y_0Y&=-k\times h.
+ \label{eq:bivectoridentities}
+\end{align}
+Set $n=k/\sqrt\Delta$, $v=h/\sqrt\Delta$. Then $\norm n=1$, $n^Tv=0$, and $\norm v<1$. Substitution gives
+\begin{equation}
+ \frac{\mathcal N}{\Delta}
+ =f(n,v):=\tr A-n^TAn-v^TKv-2v^TCn.
+ \label{eq:f}
+\end{equation}
+Since $w_0^2\ge\Delta$ and $\mathcal N\ge0$, every filtered CHSH value squared is at most a value of $f$ on
+\begin{equation}
+ \mathcal D=\{(n,v):\norm n=1,\ n^Tv=0,\ \norm v\le1\}.
+ \label{eq:domain}
+\end{equation}
+
+Conversely, for any pair in $\mathcal D$ set $u=-n\times v$. Then $\norm u=\norm v\le1$ and $n^Tu=0$. The positive filter with effect $I+u\cdot\sigma$ produces the correlation matrix
+\begin{equation}
+ D_u=S_uD+uc^T,\qquad
+ S_u=\sqrt{1-\norm u^2}\,I+
+ \frac{uu^T}{1+\sqrt{1-\norm u^2}}.
+ \label{eq:filtercorrelation}
+\end{equation}
+Because the initial marginal is maximally mixed, its normalization denominator is $1$. Direct expansion, using
+\begin{equation}
+ u^TAu+v^TAv=\norm v^2(\tr A-n^TAn),
+\end{equation}
+shows
+\begin{equation}
+ \tr[(I-nn^T)D_uD_u^T]=f(n,v).
+ \label{eq:converse}
+\end{equation}
+The Ky Fan maximum is at least this selected-plane value. Thus
+\begin{equation}
+ \boxed{(B_A^*)^2=\max_{(n,v)\in\mathcal D}f(n,v).}
+ \label{eq:compactreduction}
+\end{equation}
+The boundary corresponds to rank-one filters and is reached by a limit of invertible ones. Continuity on the compact domain proves that the supremum and this maximum coincide. No Lorentz-surjectivity assertion is needed for the converse: the filter in~\eqref{eq:filtercorrelation} is explicit.
+
+\subsection{Boundary versus interior}
+On $\norm v=1$, the vectors $n,v,u=-n\times v$ are orthonormal, and
+\begin{equation}
+ f(n,v)=s+u^TAu+2d^Tu=\norm{c+D^Tu}^2.
+\end{equation}
+Every unit $u$ occurs, so the boundary maximum is exactly $E$.
+
+At an interior maximum, $\norm v<1$. The equality-constraint gradients of $\norm n^2=1$ and $n^Tv=0$ are independent: their $v$ blocks are $0$ and the nonzero vector $n$. Lagrange multipliers therefore exist. With a convenient sign convention their equations are
+\begin{equation}
+ An-Cv=\lambda n-\beta v,\qquad Kv+Cn=-\beta n.
+ \label{eq:kkt}
+\end{equation}
+Take the first inner product with $v$ and the second with $n$. Skew-symmetry of $C$ and $K=A-sI$ give
+\begin{equation}
+ n^TAv=-\beta\norm v^2,\qquad n^TAv=-\beta.
+\end{equation}
+Consequently $\beta(1-\norm v^2)=0$, and the interior condition forces $\beta=0$. This is the cancellation that removes the remaining continuous optimization. The stationary equations are precisely
+\begin{equation}
+ \HH\binom n v=\lambda\BB\binom n v,
+ \quad\text{or}\quad An-Cv=\lambda n,\quad Kv+Cn=0.
+ \label{eq:stationary}
+\end{equation}
+Taking their inner products with $n,v$ proves
+\begin{equation}
+ f(n,v)=\tr A-\lambda,
+ \qquad (\lambda-s)n^Tv=0.
+ \label{eq:stationaryvalue}
+\end{equation}

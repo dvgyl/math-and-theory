@@ -1,0 +1,223 @@
+{
+  "status": "PASS",
+  "seed": 240603945,
+  "counts": {
+    "exact_state_side_certificates": 48,
+    "guarded_shortcuts": 18,
+    "noise_tests": 96,
+    "gradient_directions": 12,
+    "frontier_cases": 36,
+    "lipschitz_pairs": 47,
+    "exact_cubic_state_sides": 8,
+    "irreducible_cubic_examples": 2,
+    "rank_two_state_sides": 32,
+    "rank_two_threshold_examples": 2,
+    "axial_frontier_cases": 72,
+    "rejected_out_of_scope_inputs": 7
+  },
+  "maximum_errors": {
+    "shortcut": 4.440892098500626e-16,
+    "ellipsoid": 9.43689570931383e-16,
+    "raw_guard": 8.881784197001252e-16,
+    "original_success": 4.440892098500626e-16,
+    "depolarization": 6.661338147750939e-16,
+    "gradient": 1.1576664071810683e-09,
+    "gradient_unrefined": 6.637919334195885e-07,
+    "frontier_witness": 5.572053929370213e-11,
+    "frontier_probability": 8.835598919176846e-12,
+    "frontier_closed_formula": 5.5720317249097207e-11,
+    "exact_cubic": 4.440892098500626e-16,
+    "rank_two": 1.3322676295501878e-15,
+    "axial_frontier": 5.5720317249097207e-11,
+    "axial_witness": 5.551115123125783e-16,
+    "axial_probability": 3.3306690738754696e-16
+  },
+  "largest_lipschitz_excess": -2.7557410287644276e-16,
+  "exact_examples": [
+    {
+      "name": "rank_three_activation",
+      "side": "A",
+      "guard": "7/25",
+      "initial_nonviolating": true,
+      "filtered_violation": true,
+      "hidden_activation": true,
+      "activation_signs": [
+        -1,
+        1,
+        1
+      ],
+      "coefficients": [
+        "-560126889/800000000000",
+        "2084207185439379/80000000000000000000000",
+        "4984056909066972740546907/128000000000000000000000000000000000"
+      ]
+    },
+    {
+      "name": "rank_three_activation",
+      "side": "B",
+      "guard": "21/40",
+      "initial_nonviolating": true,
+      "filtered_violation": true,
+      "hidden_activation": true,
+      "activation_signs": [
+        -1,
+        1,
+        -1
+      ],
+      "coefficients": [
+        "-138743418640400/8066469991433841",
+        "53901252192109148960000000/556136223270962999110419487293",
+        "-6821486806128237390002576000000000000/38342360309098919566116720924509861753416089"
+      ]
+    },
+    {
+      "name": "alice_only_full_rank",
+      "side": "A",
+      "guard": "1127/15625",
+      "initial_nonviolating": true,
+      "filtered_violation": true,
+      "hidden_activation": true,
+      "activation_signs": [
+        -1,
+        1,
+        -1
+      ],
+      "coefficients": [
+        "-22020096/244140625",
+        "161628209283072/59604644775390625",
+        "-395452076080148512768/14551915228366851806640625"
+      ]
+    },
+    {
+      "name": "alice_only_full_rank",
+      "side": "B",
+      "guard": "-9241/15625",
+      "initial_nonviolating": true,
+      "filtered_violation": false,
+      "hidden_activation": false,
+      "activation_signs": null,
+      "coefficients": []
+    },
+    {
+      "name": "guard_counterexample",
+      "side": "A",
+      "guard": "-97/200",
+      "initial_nonviolating": true,
+      "filtered_violation": false,
+      "hidden_activation": false,
+      "activation_signs": null,
+      "coefficients": []
+    },
+    {
+      "name": "guard_counterexample",
+      "side": "B",
+      "guard": "-61/200",
+      "initial_nonviolating": true,
+      "filtered_violation": false,
+      "hidden_activation": false,
+      "activation_signs": null,
+      "coefficients": []
+    },
+    {
+      "name": "threshold_rank_three",
+      "side": "A",
+      "guard": "0",
+      "initial_nonviolating": true,
+      "filtered_violation": false,
+      "hidden_activation": false,
+      "activation_signs": null,
+      "coefficients": []
+    },
+    {
+      "name": "threshold_rank_three",
+      "side": "B",
+      "guard": "1/8",
+      "initial_nonviolating": true,
+      "filtered_violation": true,
+      "hidden_activation": true,
+      "activation_signs": [
+        1,
+        -1,
+        1
+      ],
+      "coefficients": [
+        "5168/6328125",
+        "-66881536/333709716796875",
+        "38315425792/3519594669342041015625"
+      ]
+    }
+  ],
+  "exact_cubic_examples": [
+    {
+      "name": "rank_three_activation",
+      "side": "A",
+      "squared_value": "79/75",
+      "numerical_value": 1.0533333333333332,
+      "polynomial": "nu**3 - 2441817*nu**2/80000000 + 246082060287*nu/800000000000000 - 26244866059144929/25600000000000000000000",
+      "distinct_roots": 2
+    },
+    {
+      "name": "rank_three_activation",
+      "side": "B",
+      "squared_value": "292/247",
+      "numerical_value": 1.1821862348178138,
+      "polynomial": "nu**3 - 9991701475*nu**2/65474062641 + 11065204854117640625*nu/1428950959572530631627 - 24115394755675412587890625/184534959838203016090803735201",
+      "distinct_roots": 2
+    },
+    {
+      "name": "alice_only_full_rank",
+      "side": "A",
+      "squared_value": "32/25",
+      "numerical_value": 1.28,
+      "polynomial": "nu**3 - 196608*nu**2/390625 + 12884901888*nu/152587890625 - 281474976710656/59604644775390625",
+      "distinct_roots": 1
+    },
+    {
+      "name": "generic_full_rank",
+      "side": "A",
+      "squared_value": "91/80 - 640000*CRootOf(1677721600000000000000000000*x**3 - 84375367843840000000000000*x**2 + 1375108726162078464000000*x - 7294863079430243830881, 0)/30153",
+      "numerical_value": 0.8662972257975484,
+      "polynomial": "nu**3 - 64373297*nu**2/1280000000 + 5371518461570619*nu/6553600000000000000 - 7294863079430243830881/1677721600000000000000000000",
+      "distinct_roots": 3
+    },
+    {
+      "name": "generic_full_rank",
+      "side": "B",
+      "squared_value": "461/394 - 9494696984224*CRootOf(52351845124714548196992373467921912785453449216*x**3 - 3198340408451346947543253036050490684401561600*x**2 + 63514282274918056360908051038257205564600000*x - 411485223342478492345402587190065066015625, 0)/509750137025",
+      "numerical_value": 0.8768416435470617,
+      "polynomial": "nu**3 - 228544104712475*nu**2/3740910611784256 + 16978294556101256968932771875*nu/13994412205360056505895889473536 - 411485223342478492345402587190065066015625/52351845124714548196992373467921912785453449216",
+      "distinct_roots": 3
+    },
+    {
+      "name": "circle_of_optimizers",
+      "side": "A",
+      "squared_value": "145/144",
+      "numerical_value": 1.0069444444444444,
+      "polynomial": "nu**3 - 5287639*nu**2/2592000000 + 36549268815553*nu/26873856000000000000 - 31999882221941881/107495424000000000000000000",
+      "distinct_roots": 2
+    },
+    {
+      "name": "bell",
+      "side": "A",
+      "squared_value": "2",
+      "numerical_value": 2.0,
+      "polynomial": "nu**3 - 3*nu**2 + 3*nu - 1",
+      "distinct_roots": 1
+    },
+    {
+      "name": "bell",
+      "side": "B",
+      "squared_value": "2",
+      "numerical_value": 2.0,
+      "polynomial": "nu**3 - 3*nu**2 + 3*nu - 1",
+      "distinct_roots": 1
+    }
+  ],
+  "axial_frontier_modes": [
+    "axial",
+    "identity",
+    "plateau",
+    "tilted"
+  ],
+  "scope": "Implementation checks and exact rational sign certificates; numerical checks are not proofs."
+}

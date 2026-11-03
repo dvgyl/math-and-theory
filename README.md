@@ -10,7 +10,7 @@ The collection contains results with different formal verification scopes. Each 
 
 ## Navigating the collection
 
-The current catalogue contains 58 manuscripts and research notes across 57 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
+The current catalogue contains 59 manuscripts and research notes across 58 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
 
 - Start with the [overview](overview.pdf) for descriptions of the result families.
 - Use the [manuscript map](CONTENTS.md) to find individual papers, abstracts and supporting materials.
@@ -70,7 +70,7 @@ The eleven results I consider the strongest, in order of significance. This is m
 ### Mathematical physics
 
 - [Stochastic thermodynamics](CONTENTS.md#stochastic-thermodynamics): thermal current kurtosis, unicyclic current skewness.
-- [Quantum information](CONTENTS.md#quantum-information): universal entanglement embezzlement, the Higuchi–Sudbery entropy bound, a matched-basis information counterexample, exact steering correlation bounds, exact one-sided filtered F₃ formulas, the full steering correlation range with filtering and volume trade-offs, equality, rigidity and full-ellipsoid envelopes for CHSH at fixed steering centre, the Milne–Jennings–Rudolph ellipsoid conjecture on optimal entanglement witnesses with its chirality correction, three-state root fidelity, exact conditional quantum contraction, Schmidt numbers of tensor powers of the Tiles state, noncollapse of the upper PPT entanglement-cost hierarchy.
+- [Quantum information](CONTENTS.md#quantum-information): universal entanglement embezzlement, the Higuchi–Sudbery entropy bound, a matched-basis information counterexample, exact steering correlation bounds, exact one-sided filtered F₃ formulas, the full steering correlation range with filtering and volume trade-offs, the exact one-sided CHSH measure under local filtering, equality, rigidity and full-ellipsoid envelopes for CHSH at fixed steering centre, the Milne–Jennings–Rudolph ellipsoid conjecture on optimal entanglement witnesses with its chirality correction, three-state root fidelity, exact conditional quantum contraction, Schmidt numbers of tensor powers of the Tiles state, noncollapse of the upper PPT entanglement-cost hierarchy.
 
 ## Find a result
 
@@ -113,6 +113,7 @@ I use the names below to connect common search terms to each result and its file
 | Entanglement witnesses, optimal witnesses, steering ellipsoids, Milne–Jennings–Rudolph conjecture, chirality, block-positive operators | [Optimal witnesses under ellipsoid containment](papers/physics/ellipsoid-witness-optimality/) |
 | Steering ellipsoid volume, local filtering, success probability, F₃ correlation range | [Steering correlation range](papers/physics/steering-joint-range/) |
 | Local filtering, hidden steering, one-sided filters, F₃ inequality, Ducuara–Susa–Skrzypczyk, steering ellipsoids | [One-sided filtered F₃ formulas](papers/physics/one-sided-f3/) |
+| CHSH inequality, hidden nonlocality, one-sided local filtering, CHSH-breaking channels | [One-sided CHSH under local filtering](papers/physics/unilateral-chsh/) |
 
 To search the source on GitHub, use `repo:dvgyl/math-and-theory` followed by a name or term. For example, use `repo:dvgyl/math-and-theory Higuchi`. To find a file by name, open the repository and press **t**. For proof scope and known gaps, read [UNFINISHED.md](UNFINISHED.md).
 

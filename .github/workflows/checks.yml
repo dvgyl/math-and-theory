@@ -292,6 +292,9 @@ jobs:
           - package: one-sided-f3
             root: papers/physics/one-sided-f3
             project: lean
+          - package: unilateral-chsh
+            root: papers/physics/unilateral-chsh
+            project: lean
           - package: strong-gradient
             root: papers/mathematics/strong-gradient
             project: lean
@@ -425,6 +428,12 @@ jobs:
             lake build OneSidedF3 2>&1 | tee "${RUNNER_TEMP}/one-sided-f3-build.log"
             python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/one-sided-f3-build.log" --project . --output "${RUNNER_TEMP}/one-sided-f3-axioms.json"
             python3 -I ../checks/verify_galois_certificate.py
+          elif [[ '${{ matrix.package }}' == 'unilateral-chsh' ]]; then
+            lake build UnilateralCHSHLib UnilateralAudit 2>&1 | tee "${RUNNER_TEMP}/unilateral-chsh-build.log"
+            python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/unilateral-chsh-build.log" --project . --output "${RUNNER_TEMP}/unilateral-chsh-axioms.json"
+            python3 -m venv "${RUNNER_TEMP}/unilateral-chsh-venv"
+            "${RUNNER_TEMP}/unilateral-chsh-venv/bin/pip" install --quiet -r ../calculations/requirements.txt
+            "${RUNNER_TEMP}/unilateral-chsh-venv/bin/python" ../scripts/run_checks.py --quick
           elif [[ '${{ matrix.package }}' == 'strong-gradient' ]]; then
             python3 verify.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib --output "${RUNNER_TEMP}/gradient-source-verification" --timeout 600
           elif [[ '${{ matrix.package }}' == 'unicyclic-skewness' ]]; then

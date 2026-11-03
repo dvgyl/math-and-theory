@@ -1,0 +1,221 @@
+\section{Optimal filters, attainment and violation criteria}
+\label{sec:attainment}
+
+Let $S$ denote the right side of~\eqref{eq:main}. For an admissible level $\tr A-\lambda=S$, choose a normalized feasible solution $(n,v)$ as above and put $u=-n\times v$. An extremizing filter on the original state is
+\begin{equation}
+ \boxed{F=\kappa V\sqrt{I+u\cdot\sigma}\,(2\rho_A)^{-1/2},}
+ \label{eq:finalfilter}
+\end{equation}
+where $V$ is any output unitary and $\kappa>0$ is small enough that $F^\dagger F\le I$. Choosing
+$\kappa=1/\norm{\sqrt{I+u\cdot\sigma}(2\rho_A)^{-1/2}}_{\rm op}$ maximizes the success probability for this normalized branch. Its success probability is $\kappa^2$, since the unscaled combined filter has trace normalization $1$.
+
+If $\norm v<1$, the filter is invertible and attains the value. If $\norm v=1$, it is rank one and yields a limiting value for the paper's invertible-filter domain. Likewise the boundary maximizers from Section~\ref{sec:boundary} give rank-one filters, approached by replacing $u$ with $ru$, $r\uparrow1$.
+
+\begin{corollary}[Exact attainment criterion]
+For an invertible filtered-side marginal and $S>0$, the supremum is attained by an invertible filter if and only if there is a root $\lambda$ of $p$ such that
+\begin{equation}
+ \tr A-\lambda=S,\qquad \chi_\lambda>0.
+ \label{eq:attainment}
+\end{equation}
+If $S>E$, attainment is automatic. If $S=0$, necessarily $D=c=0$, and every invertible filter attains zero. The pure-marginal case is given by~\eqref{eq:puremarginal}.
+\end{corollary}
+\begin{proof}
+Sufficiency follows from the explicit construction. Conversely, a positive finite optimum must have equality in the Lorentz denominator bound. The numerator is then positive, so $z_0=0$ in~\eqref{eq:lorentzrows}. It therefore supplies an interior maximizing pair in $\mathcal D$, which satisfies~\eqref{eq:stationary} and has positive $\JJ$-quadratic form. Lorentz completeness gives
+$w=(e_0+x_0(x_0,X)+y_0(y_0,Y))/\sqrt\Delta$, hence its effect direction is
+$w_{\rm sp}/w_0=(x_0X+y_0Y)/\Delta=-n\times v$. Thus reconstruction recovers the original positive-filter part, not merely some other optimum. If $S>E$, a compact maximizer cannot be on the boundary. Finally $E=0$ implies $c+D^Tu=0$ for every unit $u$; comparing $u$ and $-u$ gives $c=0$ and $D=0$.
+\end{proof}
+
+For positive $S$, this also characterizes \emph{all} invertible optimal filters up to irrelevant scale and output unitary: take all stationary solutions at the maximizing level with $\norm n=1$, $n^Tv=0$, $\norm v<1$, and use~\eqref{eq:finalfilter}. All rank-one optimal filters are the boundary-radius solutions when $S=E$.
+
+\begin{corollary}[Necessary and sufficient unilateral violation criterion]
+For a physical state with invertible filtered-side marginal,
+\begin{equation}
+ \boxed{B_A^*(\rho)>1\quad\Longleftrightarrow\quad
+ \exists\lambda:\ p(\lambda)=0,\quad
+ \lambda<\tr A-1,\quad\chi_\lambda>0.}
+ \label{eq:activation}
+\end{equation}
+Thus Alice-only activation from a CHSH-nonviolating state occurs exactly when~\eqref{eq:activation} holds and $s_1(T)^2+s_2(T)^2\le1$ for the original state. The Bob criterion is obtained by swapping parties. No ellipsoid-centre conjecture is used.
+\end{corollary}
+\begin{proof}
+The boundary obeys $E\le1$, so any value above $1$ must be an attained interior spectral value. Conversely a feasible level exceeding $1$ supplies a violating filter. A level exceeding $1$ cannot have only a boundary representative, which explains the strict eligibility condition.
+\end{proof}
+
+\begin{corollary}[One-party maximal violation]
+$B_A^*(\rho)=\sqrt2$ if and only if $\rho$ is pure and entangled. The same is true for Bob.
+\end{corollary}
+\begin{proof}
+A pure entangled state can be converted to a Bell state by whitening either marginal. Conversely a value $\sqrt2>1$ must be attained by an invertible filter. Every singular value of a physical correlation matrix is at most $1$, so $B^2=2$ forces two singular values to equal $1$. Their singular vectors give two orthogonal perfect correlation directions. The corresponding commuting Pauli-product stabilizers have a joint eigenspace projector of trace one, hence a one-dimensional simultaneous eigenspace, a Bell state up to local unitaries. Thus the filtered state is pure maximally entangled; invertible local filtering preserves density rank and Schmidt rank, so the original state is pure and entangled.
+\end{proof}
+
+\section{Root-free tests in the original state coordinates}
+\label{sec:ext-polynomial}
+
+\begin{theorem}[Polynomial and ellipsoid activation criteria]
+\label{thm:ext-polynomial}
+For a state with mixed Alice marginal, Alice-only CHSH violation is
+equivalent to
+\begin{equation}
+ \alpha>1
+ \quad\text{and}\quad
+ M-(\tr A-1)I\not\succeq0.
+ \label{eq:ext-activation}
+\end{equation}
+Let $t=\tr A-1$. Within the guarded region $\alpha>1$, define
+\begin{equation}
+ R_A=\det K\,(A-tI)+C\adj(K)C.
+ \label{eq:ext-polynomial-R}
+\end{equation}
+Then the second condition is equivalent to $R_A\not\succeq0$.
+
+An orientation-independent expression uses only the steering ellipsoid
+shape $Q=D^TD$ and center $c$. Put
+\[
+ s=c^Tc,\qquad \delta_K=\det(Q-sI),\qquad
+ q=c^TQ(Q-sI)c,\qquad t=\tr Q-1,
+\]
+and define the real symmetric polynomial matrix
+\begin{equation}
+ \boxed{\begin{aligned}
+ R_E={}&\det Q\,(\delta_K-q)I
+       +(s q-t\delta_K)\adj Q\\
+      &+\det Q\,(Q-sI)cc^T(Q-sI).
+ \end{aligned}}
+ \label{eq:ext-ellipsoid-R}
+\end{equation}
+Activation is equivalent to
+$\tr Q-s>1$ and $R_E\not\succeq0$.
+For either $R=R_A$ or $R=R_E$, failure of positive semidefiniteness is
+equivalent to at least one of the following three numbers being negative:
+\begin{equation}
+ e_1(R)=\tr R,\qquad
+ e_2(R)=\frac{(\tr R)^2-\tr R^2}{2},\qquad
+ e_3(R)=\det R.
+ \label{eq:ext-three-signs}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The purity obstruction excludes $\alpha\le1$; for $\alpha>1$,
+Theorem~\ref{thm:ext-shortcut} gives~\eqref{eq:ext-activation}.
+Here $\det K>0$, and
+$R_A=\det K\,[M-tI]$, proving the first polynomial test.
+
+The cross-product identity
+\begin{equation}
+ CK^{-1}C
+ =\frac{Kdd^TK-(d^TKd)K}{\det K}
+ \label{eq:ext-cross-inverse}
+\end{equation}
+can be checked after diagonalizing the positive matrix $K$; for example
+its $(1,1)$ entry is $-d_3^2/k_2-d_2^2/k_3$, and its
+$(1,2)$ entry is $d_1d_2/k_3$.
+Under the guard, $Q$ and $Q-sI$ are positive definite, so $D$ is
+invertible, $\det K=\delta_K>0$, and $d^TKd=q$. Substitution gives
+\[
+ \delta_K(M-tI)
+ =(\delta_K-q)A+(s q-t\delta_K)I+Kdd^TK.
+ \]
+Congruence by $D^{-1}$ and $D^{-T}$ therefore gives
+\begin{equation}
+ D^{-1}\delta_K(M-tI)D^{-T}
+ =(\delta_K-q)I+(s q-t\delta_K)Q^{-1}
+   +(Q-sI)cc^T(Q-sI).
+ \label{eq:ext-ellipsoid-congruence}
+\end{equation}
+Multiplication by the positive number $\det Q$ produces $R_E$.
+Congruence and positive scaling preserve positive semidefiniteness.
+
+Finally, let $\lambda_1,\lambda_2,\lambda_3$ be the real eigenvalues
+of a symmetric matrix $R$. If all are nonnegative, their elementary
+symmetric coefficients are nonnegative. Conversely, if all three
+coefficients in~\eqref{eq:ext-three-signs} are nonnegative, then
+$x^3+e_1x^2+e_2x+e_3$ is strictly positive for every $x>0$.
+Since this polynomial is $\prod_j(x+\lambda_j)$, it cannot have
+the positive root associated with a negative $\lambda_j$.
+\end{proof}
+
+All data in the ellipsoid test can be obtained rationally from the
+original Bloch coefficients. With $h=1-\norm a^2>0$ and $X=T-ab^T$,
+\begin{equation}
+ c=\frac{b-T^Ta}{h},\qquad
+ Q=\frac1h X^T\left(I+\frac{aa^T}{h}\right)X.
+ \label{eq:ext-raw-ellipsoid}
+\end{equation}
+For example, the matrix multiplying $X$ in the formula for $D$ is
+$L=\sqrt h\,I+aa^T/(1+\sqrt h)$, and $L^2=hI+aa^T$.
+This proves~\eqref{eq:ext-raw-ellipsoid} and removes its apparent
+square roots. Thus the activation decision consists of rational
+arithmetic and three sign comparisons, after the explicit quadratic
+guard. Clearing positive powers of $h$ makes it a polynomial
+decision on the original state data.
+
+\begin{corollary}[A rational cubic for the optimum itself]
+\label{cor:ext-rational-cubic}
+In the region $\tr Q-s>1$, retain $\delta_K,q$ from
+Theorem~\ref{thm:ext-polynomial}, and put
+\[
+ z=(Q-sI)c,\qquad J=(\delta_K-q)(Q-sI).
+\]
+The cubic
+\begin{equation}
+ P(\nu)=\det(\nu I-J)-z^TQ\adj(\nu I-J)z
+ \label{eq:ext-rational-cubic}
+\end{equation}
+has three real positive roots, counted with multiplicity. If
+$\nu_{\min}$ is the smallest, then
+\begin{equation}
+ \boxed{\quad (B_A^*)^2=\alpha-\frac{\nu_{\min}}{\delta_K}.\quad}
+ \label{eq:ext-rational-value}
+\end{equation}
+The coefficients are rational functions of the original Bloch data,
+so this value formula requires no choice of a square root of $Q$.
+\end{corollary}
+
+\begin{proof}
+Since $Kd=Dz$, the cross-product identity gives the similarity
+\[
+ D^{-1}\delta_K(M-sI)D=J+zz^TQ.
+\]
+The right side is therefore similar to a positive definite symmetric
+matrix and has three real positive eigenvalues.
+The rank-one determinant identity gives
+$\det(\nu I-J-zz^TQ)
+=\det(\nu I-J)-z^TQ\adj(\nu I-J)z$, including values where
+$\nu I-J$ is singular. Thus its least eigenvalue is
+$\delta_K[\lambda_{\min}(M)-s]$, and
+\eqref{eq:ext-rational-value} follows from the shortcut theorem.
+\end{proof}
+
+\begin{corollary}[Directional guards and hidden activation]
+\label{cor:ext-direction}
+Define
+\[
+ G_A=\norm{T}_F^2+\norm a^2-\norm b^2-1,\qquad
+ G_B=\norm{T}_F^2+\norm b^2-\norm a^2-1.
+\]
+Alice activation requires $G_A>0$; Bob activation requires $G_B>0$.
+If $\norm{T}_F^2\le1$, at most one party can activate, and it must be
+the party with the longer local Bloch vector. Both parties activating
+requires $\norm{T}_F^2>1$.
+
+The additional condition that the original state does not violate CHSH is
+exactly
+\begin{equation}
+ TT^T-(\tr(TT^T)-1)I\succeq0.
+ \label{eq:ext-initial-nonviolation}
+\end{equation}
+Combining its three nonnegative coefficients
+from~\eqref{eq:ext-three-signs}, the appropriate guard, and
+\eqref{eq:ext-ellipsoid-R} gives a necessary-and-sufficient algebraic
+test for \emph{hidden} unilateral activation.
+\end{corollary}
+
+\begin{proof}
+The guards follow from~\eqref{eq:ext-raw-alpha} and the swapped formula.
+Their sum is $2(\norm{T}_F^2-1)$; when this is nonpositive, both
+cannot be positive. If $\norm a\le\norm b$ and
+$\norm{T}_F^2\le1$, then $G_A\le0$, proving the directional assertion.
+Finally $B(\rho)^2=\tr(TT^T)-\lambda_{\min}(TT^T)$, which is
+at most one precisely under~\eqref{eq:ext-initial-nonviolation}.
+\end{proof}

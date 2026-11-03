@@ -2272,6 +2272,56 @@
         "lean/TrustRegion.lean": "f0291f450a6c8549c4bf32809778ea8b8a5bd6168b90214b00fe09c598093c3f"
       },
       "integrity_manifests": []
+    },
+    "unilateral-chsh": {
+      "root": "papers/physics/unilateral-chsh",
+      "release_manifest_sha256": "7e2c7b04b917ce991bca2ef0164f0d0048c93083f7979deec0e52bf8c639c226",
+      "formal_scope": "Lean 4.19.0 with Mathlib proves, for every positive semidefinite trace-one complex 4×4 matrix, every invertible complex 2×2 filter on either party and every quadruple of traceless Hermitian involutive qubit observables: the exact one-sided suprema, the least-eigenvalue formula with an attaining invertible filter when α > 1, the violation and hidden-activation criteria, invertible attainment of every violating supremum, the pure-marginal value and the finite-candidate theorem; a whole-project audit covers all 1,060 declarations of the 32 modules. The secular-root evaluation of the boundary radius, the polynomial activation tests, the rank-two formula, the threshold regimes, the quasi-distillable and axial families and the success-probability trade-offs are conventional.",
+      "proof_roots": [
+        {
+          "path": "lean",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "lean/Lean/AllStates.lean": "c0db316ff1d1817ff50d1120ca652076229e80df3e2c5f6be49aaac642ad3468",
+        "lean/Lean/CanonicalEffects.lean": "c1d4faf967635426c70a7df36af4e330ad62bc8c99208099cd89b3b5864a71bc",
+        "lean/Lean/CanonicalGL.lean": "dec0b809b96892600465d4396a3e90b9a78836d16806000144246f96438cd84d",
+        "lean/Lean/CanonicalGLValues.lean": "604fac2a0ecabe744decdeea224a239805ab3663cfe47499bcfc4ea15c0a81f5",
+        "lean/Lean/CanonicalSupremum.lean": "ff3a135db0055de416864a9fda622c565b8e95efb6c1ff72a4ae7d0d75a239c2",
+        "lean/Lean/FilterAlgebra.lean": "93f9a3e63c63be3b45776042b6021b8064df34101b623903271f085e18e9a2b8",
+        "lean/Lean/FilterReduction.lean": "c5cd69d80fa8f71aacb544b255faec7b110ad1be5133e9dab322730902f4ab00",
+        "lean/Lean/GlobalFinite.lean": "cb93e656881e00faea986167c5e06fc022042d04b88022a927e03aebd06eddeb",
+        "lean/Lean/GlobalOptimization.lean": "b203c41ae06ee662fa61f3d533614eb0b85088047444456641ad53c971f95638",
+        "lean/Lean/Horodecki.lean": "4f48464f4ee6a6d6b1ed1c83ddf583cf8010c40a4f4881cbee0ec6c0b225724c",
+        "lean/Lean/PhysicalCHSH.lean": "e453aad03e80835062126fc3eb10c7631701a00b179b260b5c0a6827ce0dfba4",
+        "lean/Lean/PhysicalTheorems.lean": "ac0bfef0abe7aa0bfaa390a5d7bb38db4d2ff4ee70f8068a8f8cd96888c533ff",
+        "lean/Lean/QuantumCHSH.lean": "d8a9f5cb6db376ac3e90a8d1c4587fa80ba1343e21cbf669880255718e530ccb",
+        "lean/Lean/QuantumConsequences.lean": "d64c98257960821fcf80f92cacdb07bd4d27e6bc7df886afa0f3a958fb7c03bb",
+        "lean/Lean/QuantumCore.lean": "5775b4b85ab30ba0a084ec93f505f54526f084bd6566c1de82c370ca212eb757",
+        "lean/Lean/QuantumFano.lean": "fa12ad3e16e3b70927597fa26b717a10be2680be74e78847a2f67afa05408604",
+        "lean/Lean/QuantumFilterCoordinates.lean": "5e04157f0d599868aa9a5b6563872718bc5415ddcc818a3edd74fe750119105f",
+        "lean/Lean/QuantumFilters.lean": "48408df0d5f8c05fffee944b73eeec90018a55efb4e0b34af1ef564ba2659979",
+        "lean/Lean/QuantumGLPhysical.lean": "f80077ce46fdec8433c23658e2b282dcf05a830c7b48a111b1bb18737fc5976d",
+        "lean/Lean/QuantumLocalUnitary.lean": "4e6fc3b54ff895d8ca0ad1e2a3759c6d395adf2c86648c778f78f902bb033cd4",
+        "lean/Lean/QuantumObservableValues.lean": "750bd54b09dc1b569ffe7fe57c9dd5553d206235418874911c277167687f7a2e",
+        "lean/Lean/QuantumProduct.lean": "9d839923f8a75936f4a3923fef26c224d71dea9531f8448e953362bb9bc320e4",
+        "lean/Lean/QuantumPureMarginal.lean": "37ad822753fc974a7077aa03c9f6cb28895aba4a8f949e731cc84803d7b07dda",
+        "lean/Lean/QuantumSupport.lean": "829cf49b522ff8592e497ae41fa4ff592579a0ae541639a69b41a00333d5d799",
+        "lean/Lean/QuantumSwap.lean": "ba964fdc5c4114911ee9d3bbd7d778cae5854f0c3f14e15ecfc9e32cd41b644b",
+        "lean/Lean/QuantumWhitening.lean": "f7b1dbf6a65951792cee9715a53de8e2d80bcc73a1910763085c31ae0224ead1",
+        "lean/Lean/QuantumWhiteningOrbit.lean": "11ceb1f48c2de90769f283b3aeb02cc255476a5267aa9779ba2552723ab6ab5c",
+        "lean/Lean/SchurCore.lean": "a35db79854a0c54061f89bd86ad40e8be0ce4056b544ced09e9d616392ad6166",
+        "lean/Lean/Shortcut.lean": "e8c5ac46751294936b307f71a8117c8db1c8085d6dade4f6f891cf1063ff216c",
+        "lean/Lean/SpectralInverse.lean": "a56dd1ffbfa96a7e35b25edb304458e61df8fddb600cae64c8ada884a1f05da4",
+        "lean/Lean/SpectralPencil.lean": "3991fe482667ec06f88bd49b932c7a53c4eb007945a532be7c2de7c6d080fe11",
+        "lean/Lean/UnilateralAxiomAudit.lean": "754913420e5e7ddf81de428d12b88a58a3526bb2c3904bf3c22f229c5ed0d751",
+        "lean/Lean/UnilateralCHSH.lean": "3c9380d8ca30ae5e3054b8472174122cb2866b9ab0c59ffe240cedf3892d04eb"
+      },
+      "integrity_manifests": []
     }
   }
 }

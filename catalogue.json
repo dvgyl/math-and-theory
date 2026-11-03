@@ -3532,6 +3532,70 @@
           ]
         ]
       }
+    },
+    {
+      "id": "unilateral-chsh",
+      "discipline": "Mathematical physics",
+      "area": "Quantum information",
+      "title": "The one-sided CHSH measure under local filtering: exact supremum, violation criterion and a least-eigenvalue formula",
+      "kind": "Exact solution with Lean matrix proofs and exact certificates",
+      "significance_rank": 212,
+      "keywords": [
+        "CHSH inequality",
+        "hidden nonlocality",
+        "local filtering",
+        "one-sided filtering",
+        "two-qubit states",
+        "Bell nonlocality",
+        "CHSH-breaking channels"
+      ],
+      "summary": "The one-sided hidden CHSH measures of Ducuara, Susa and Skrzypczyk (Eq. (9) of Phys. Rev. A 110, 022435 (2024)), the largest normalized CHSH value when only one party applies an invertible local filter, are determined for every two-qubit state; the paper noted that no closed formula was known. After whitening the filtering party, the supremum is the maximum of an explicit quadratic over a compact set of vector pairs, and in general only a supremum. With whitened data c, D and A = DDᵀ, K = A − |c|²I, C = [Dc]×, α = tr A − |c|², one-sided violation requires α > 1, and there the squared supremum is tr A − λ_min(A + CK⁻¹C), attained by an explicit invertible filter; violation occurs exactly when this exceeds 1, a test by three polynomial signs. States with α ≤ 1 have value at most 1, given by at most four algebraic candidates including a secular-equation boundary radius. States of rank at most two have a rational formula, and the quasi-distillable family p·ψ⁻ + (1−p)|00⟩⟨00| has one-sided value max(1, 2p/(2−p)).",
+      "formal_scope": "Lean 4.19.0 with Mathlib proves, for every positive semidefinite trace-one complex 4×4 matrix, every invertible complex 2×2 filter on either party and every quadruple of traceless Hermitian involutive qubit observables: the exact one-sided suprema, the least-eigenvalue formula with an attaining invertible filter when α > 1, the violation and hidden-activation criteria, invertible attainment of every violating supremum, the pure-marginal value and the finite-candidate theorem; a whole-project audit covers all 1,060 declarations of the 32 modules. The secular-root evaluation of the boundary radius, the polynomial activation tests, the rank-two formula, the threshold regimes, the quasi-distillable and axial families and the success-probability trade-offs are conventional.",
+      "source": "Answers the question left open after Eq. (9) of Ducuara, Susa and Skrzypczyk (Phys. Rev. A 110, 022435 (2024), arXiv:2406.03945). The CHSH value is the Horodecki formula; the Lorentz picture of filtering is due to Verstraete, Dehaene and De Moor, the two-sided optimum to Kent–Linden–Massar and Verstraete–Wolf, the unital channel case to Zhang, Araiza Bravo, Lorenz and Chitambar, the purity necessity to the Horodeckis, the rank-two normal form to Ruskai–Szarek–Werner. The Omega Institute's public repository records a claimed Lean proof of Conjecture 1 of Milne et al. (issue #16558, 14 October 2026) whose proof uses the same plane-purity identity and filtering covariance and which, with Result 1 of Ducuara et al., already gives the inaccessible interval 0 < p ≤ 2/3 of the quasi-distillable family; no priority is claimed for these. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/physics/unilateral-chsh/README.md",
+      "paper": "papers/physics/unilateral-chsh/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/physics/unilateral-chsh"
+      },
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Closed formula for the one-sided hidden CHSH measures HB_A and HB_B of two-qubit states under one-party local filtering",
+        "posed_by": "Ducuara, Susa and Skrzypczyk, Locally inaccessible hidden quantum correlations, Phys. Rev. A 110, 022435 (2024), Eq. (9) and the stated absence of closed formulas for the one-sided measures",
+        "problem_url": "https://arxiv.org/abs/2406.03945",
+        "status": "Solved for every two-qubit state: exact supremum, violation criterion and a closed least-eigenvalue formula wherever violation is possible",
+        "claim": "With whitened data A = DDᵀ, K = A − |c|²I, C = [Dc]×, one-sided CHSH violation is possible only if α = tr A − |c|² > 1, and then the squared one-sided optimum is tr A − λ_min(A + CK⁻¹C), attained by an invertible filter.",
+        "title_tag": "One-Sided Hidden CHSH Measure: Exact Formula Under Local Filtering",
+        "description": "Exact one-sided hidden CHSH measure for every two-qubit state under one-party local filtering: supremum, violation test and a 3×3 least-eigenvalue formula. Lean.",
+        "queries": [
+          "one-sided local filtering CHSH",
+          "unilateral filtering Bell violation two qubits",
+          "hidden nonlocality one party filter",
+          "locally inaccessible hidden CHSH violation",
+          "Ducuara Susa Skrzypczyk one-sided measure",
+          "CHSH-breaking qubit channel criterion",
+          "local filtering CHSH closed formula",
+          "hidden CHSH nonlocality single party SLOCC"
+        ],
+        "faq": [
+          [
+            "What is the one-sided hidden CHSH measure?",
+            "It is the largest normalized CHSH value, with local bound 1 and Tsirelson bound √2, that a two-qubit state reaches when only Alice (or only Bob) applies an invertible local filter and the outcome is postselected. Ducuara, Susa and Skrzypczyk defined it in Eq. (9) of their 2024 paper and noted that no closed formula was known."
+          ],
+          [
+            "When can a single party's filter reveal a CHSH violation?",
+            "Whiten the filtering party's marginal and form A = DDᵀ, K = A − |c|²I and C = [Dc]× from the other party's Bloch vector c and the correlation matrix D. A violation is possible exactly when α = tr A − |c|² > 1 and the matrix A + CK⁻¹C − (tr A − 1)I is not positive semidefinite; the optimum is then attained by an explicit invertible filter. Lean proves this for actual density matrices."
+          ],
+          [
+            "Is the one-sided value always attained?",
+            "No. If it exceeds the local bound it is attained by an invertible filter, but in general the supremum may be reached only by a limit of invertible filters approaching a rank-one filter. For α ≤ 1 the value is at most 1 and is the largest of at most four algebraic candidates."
+          ],
+          [
+            "What does it give for the quasi-distillable family p·singlet + (1−p)|00⟩⟨00|?",
+            "The squared one-sided value is max(1, 2p/(2−p)) for both parties, so neither party alone can violate for 0 < p ≤ 2/3, while filters on both sides can. The inaccessibility interval also follows from Result 1 of Ducuara et al. combined with the Omega Institute's claimed proof of Milne's Conjecture 1; the exact value and the sharp endpoint are given here."
+          ]
+        ]
+      }
     }
   ],
   "research_notes": [

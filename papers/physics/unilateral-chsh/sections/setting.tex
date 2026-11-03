@@ -1,0 +1,55 @@
+\section{Setting, notation and the canonical reduction}
+\label{sec:setting}
+
+Write a two-qubit density matrix as
+\begin{equation}
+ \rho=\frac14\sum_{\mu,\nu=0}^3 R_{\mu\nu}\sigma_\mu\otimes\sigma_\nu,
+ \qquad R=\begin{pmatrix}1&b^T\\a&T\end{pmatrix}.
+\end{equation}
+We use precisely the normalization of Equations (2) and (9) of Ducuara--Susa--Skrzypczyk~\cite{ducuara}; the expression of the optimal CHSH value through the two largest singular values $s_1(T)\ge s_2(T)$ of the correlation matrix is the Horodecki criterion~\cite{horodecki1995}:
+\begin{equation}
+ B(\rho)=\sqrt{s_1(T)^2+s_2(T)^2},\qquad
+ B_A^*(\rho)=\sup_{F\in\mathrm{GL}(2,\C)}
+ B\!\left(\frac{(F\otimes I)\rho(F^\dagger\otimes I)}
+ {\tr[(F^\dagger F\otimes I)\rho]}\right).
+ \label{eq:definition}
+\end{equation}
+The CHSH local bound is $1$, the Tsirelson bound is $\sqrt2$, and the usual unnormalized Bell expression is $2B$. Only the traceless spin observables in the paper's definition are being optimized. Consequently $B_A^*$ can be less than $1$, or even zero. It is incorrect to insert a universal floor of $1$.
+
+The paper writes a maximum over invertible filters. A supremum is necessary: the maximizing sequence can converge to a rank-one filter. All positive scalar multiples of a filter yield the same normalized state; a scalar can always make $F^\dagger F\le I$.
+
+If $\rho_A=(I+a\cdot\sigma)/2$ is invertible, set
+\begin{equation}
+ W=(2\rho_A)^{-1/2},\qquad
+ \rho_c=(W\otimes I)\rho(W\otimes I),\qquad
+ R_c=\begin{pmatrix}1&c^T\\0&D\end{pmatrix}.
+ \label{eq:canonical}
+\end{equation}
+The trace of $\rho_c$ is $1$. Since $W$ is invertible, composing filters with $W$ gives a bijection of the unilateral filtering orbit. Thus it suffices to compute $B_A^*(\rho_c)$. For direct Bloch-data evaluation, with $r_a=\sqrt{1-\norm a^2}>0$,
+\begin{align}
+ c&=\frac{b-T^Ta}{r_a^2},\\
+ D&=\frac{\left(r_a I+\dfrac{aa^T}{1+r_a}\right)T-ab^T}{r_a^2}.
+ \label{eq:canonicalbloch}
+\end{align}
+No inverse of $T$, $D$, or the full density matrix is required.
+
+If $\rho_A$ is pure, positivity implies $\rho=\rho_A\otimes\rho_B$. Every nonzero invertible Alice filter leaves a pure Alice marginal and the same Bob marginal. Hence
+\begin{equation}
+ \boxed{B_A^*(\rho)=\norm b\quad\text{when }\norm a=1,}
+ \label{eq:puremarginal}
+\end{equation}
+and the value is attained. For Bob-only filtering, interchange $a,b$ and transpose $T$ throughout.
+
+\paragraph{Canonical data.}
+From the canonical data $(D,c)$ define
+\begin{equation}
+ A=DD^T,\quad s=c^Tc,\quad d=Dc,\quad C=[d]_\times,\quad K=A-sI,
+ \qquad [d]_\times x=d\times x.
+ \label{eq:data}
+\end{equation}
+Thus $A,K$ are real symmetric, while $C^T=-C$. Throughout we also use the \emph{boundary radius}, the largest squared length of a Bloch vector to which a rank-one Alice effect steers Bob:
+\begin{equation}
+ E=\max_{\norm u=1}\norm{c+D^Tu}^2;
+ \label{eq:boundarydescription}
+\end{equation}
+Section~\ref{sec:boundary} evaluates it in closed form up to one scalar root.

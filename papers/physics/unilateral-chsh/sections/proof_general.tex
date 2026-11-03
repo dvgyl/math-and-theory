@@ -1,0 +1,48 @@
+\section{Proof of the finite-candidate theorem}
+\label{sec:proof-general}
+
+Section~\ref{sec:compact} reduced the problem to the maximum~\eqref{eq:compactreduction} and showed that the boundary maximum is $E$ and that interior maxima satisfy the pencil equations~\eqref{eq:stationary}. It remains to analyse the pencil.
+
+\subsection{Why the pencil is a cubic with real roots}
+
+Both $\HH$ and $\BB$ annihilate $\mathcal L_0$ and preserve its orthogonal complement. Their restrictions have no common kernel. If
+$(\widehat H-i\widehat B)z=0$, its Hermitian inner product with $z$ has imaginary part $-z^*\widehat Bz=0$. Positive semidefiniteness of $\widehat B$ implies $\widehat Bz=0$ and then $\widehat Hz=0$, a contradiction. Thus $p(i)\ne0$, so $p$ is nonzero. Its degree is at most $\rank\widehat B\le3$.
+
+If $(\widehat H-\lambda\widehat B)z=0$ for a nonzero complex $z$, then $z^*\widehat Bz>0$ by the same common-kernel argument. Hence
+\begin{equation}
+ \lambda=\frac{z^*\widehat Hz}{z^*\widehat Bz}\in\R.
+\end{equation}
+Moreover, projecting an eigenspace representative onto its first three coordinates is injective; a representative with $n=0$ would lie in the removed common kernel. Thus every reduced eigenspace has dimension at most three.
+
+\subsection{The feasibility test and the exceptional level}
+\label{sec:phase}
+
+For $\lambda\ne s$,~\eqref{eq:stationaryvalue} already forces $n^Tv=0$. A nonzero solution can be normalized to $\norm n=1$, $\norm v\le1$ exactly when some solution has
+\begin{equation}
+ \norm n^2-\norm v^2\ge0.
+\end{equation}
+Adding a common-kernel vector changes only the component of $v$ in $\ker K\cap\ker C$. Removing that component maximizes the displayed difference. The existence test is therefore exactly $\chi_\lambda\ge0$, and its strict version gives $\norm v<1$.
+
+At $\lambda=s$, the equations are the real and imaginary parts of
+\begin{equation}
+ (K+iC)(n+iv)=0.
+ \label{eq:complexkernel}
+\end{equation}
+They are invariant under multiplication of $n+iv$ by a complex phase. Choose that phase so that the real and imaginary parts are orthogonal and the real part has at least the imaginary part's norm. This is just diagonalization of the real $2\times2$ Gram matrix of $n,v$. Then normalize the real part to norm one. The resulting pair belongs to $\mathcal D$ and has the required value. If $\chi_s>0$, the phase can give strict inequality of norms. Conversely, an interior representative has a positive $\JJ$-quadratic form, so it implies $\chi_s>0$ after removing the common-kernel component.
+
+An equivalent exact strict test is useful in implementations: for any complex basis matrix $Q_c$ of $\ker(K+iC)$, the exceptional level has an interior representative if and only if
+\begin{equation}
+ Q_c^TQ_c\ne0.
+ \label{eq:nonisotropic}
+\end{equation}
+Indeed $z^Tz\ne0$ means that a phase can make $z^Tz$ positive real, giving orthogonal real and imaginary parts with unequal norms. If all these bilinear squares vanish, every phase-normalized representative is on the boundary. This handles repeated eigenvalues without choosing an arbitrary real eigenvector.
+
+Every admissible spectral level therefore has a feasible representative, while every interior maximum is among those levels. Together with the boundary maximum, this proves Theorem~\ref{thm:main}.
+
+\subsection{Justification of the singular compression}
+From $Kv=-Cn$ we obtain $n\perp C\ker K$, so $n\in\ran P$. The general solution is
+$v=-K^\dagger Cn+Nw$. Substitution into the first stationary equation yields
+\begin{equation}
+ (M_0-\lambda I)n=CNw.
+\end{equation}
+Projecting to $(C\ker K)^\perp$ gives exactly the eigenproblem for $M_L$. The residual lies in $\ran(CN)$, and the minimum-norm solution for $w$ gives~\eqref{eq:V}. All remaining freedom is a vector in $\ker K\cap\ker C$, which only increases $\norm v$ from its minimum. For $\lambda\ne s$, orthogonality to $n$ is automatic for every such solution. This proves the stated singular-value test and demonstrates that no regularization limit is hidden in the formula.

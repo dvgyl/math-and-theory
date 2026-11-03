@@ -1,0 +1,169 @@
+\section{Verification and formal scope}
+\label{sec:verification}
+
+\subsection{What the Lean development proves}
+
+The Lean project in \path{lean/} pins Lean~4.19.0 and Mathlib revision
+\path{c44e0c8ee63ca166450922a373c7409c5d26b00b}. Its $32$ proof modules
+use the following definitions. A state is a matrix
+$\rho\in\C^{4\times4}$, indexed by pairs of qubit indices, with the
+hypotheses that $\rho$ is positive semidefinite (Mathlib's
+\texttt{PosSemidef}) and has trace one. An Alice filter is any
+$F\in\C^{2\times2}$ with $\det F\ne0$; the filtered state is
+$(F\otimes I)\rho(F\otimes I)^\dagger$ divided by the real part of its
+trace, and the development proves that this trace is positive and that the
+result is again a density matrix. Bob filters act on the second factor.
+A measurement observable is a $2\times2$ complex matrix $O$ with
+$O^\dagger=O$, $O^2=I$ and $\tr O=0$; this is proved equivalent to
+$O=\hat u\cdot\sigma$ for a unit vector $\hat u$. The value attached to a
+filter and four observables is the square of
+$\Re\tr(\rho'\mathcal B)/2$, where $\mathcal B$ is the usual Bell operator,
+so that the local bound is $1$; the measure is the supremum (least upper
+bound) of these values. As in~\cite{ducuara}, filters are not required to
+be contractions: a scalar multiple of a filter gives the same normalized
+state.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.43\textwidth}>{\raggedright\arraybackslash}p{0.51\textwidth}@{}}
+\toprule
+Statement & Lean declaration (namespace \path{UnilateralCHSH.Quantum}) \\
+\midrule
+Result A: both one-sided suprema, every state, arbitrary observables
+ & \path{all_states_operator_both_isLUB} \\
+Pure filtered marginal: value $\norm b^2$, attained
+ & \path{pure_marginal_gl_isGreatest} \\
+Result B: least-eigenvalue formula for $\alpha>1$ with an attaining filter
+ & \path{all_states_alice_schur_formula} \\
+Result C: violation criterion (Alice, Bob)
+ & \path{all_states_alice_operator_activation_iff},
+   \path{all_states_bob_operator_activation_iff} \\
+Hidden one-sided activation
+ & \path{all_states_alice_operator_hidden_activation_iff} and the Bob version \\
+Invertible attainment of a violating supremum
+ & \path{all_states_alice_operator_violation_attained} and the Bob version \\
+Result D: at most four candidates (boundary value and spectral levels)
+ & \path{original_finite_candidates} \\
+Whitening in explicit coordinates, orbit equality
+ & \path{original_filter_orbit_explicit} \\
+Bob's measure from Alice's by an actual qubit swap
+ & \path{bobGLValues_eq_alice_swap} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In these statements the value of the supremum is the function
+\texttt{aliceMaximum}: for a mixed Alice marginal it is the maximum of the
+reduced objective~\eqref{eq:f} over the compact domain~\eqref{eq:domain},
+evaluated at the whitened coordinates, and for a pure marginal it is
+$\norm b^2$. The least-eigenvalue statement asserts $\det K\ne0$ and
+produces $r>0$ and a unit vector $n$ with $(K+CK^{-1}C)n=rn$, $r\norm x^2\le
+x^{\mathsf T}(K+CK^{-1}C)x$ for every $x$, value $\alpha-r$, and an
+invertible filter attaining it; with $M-sI=K+CK^{-1}C$ this is
+Result~B. The violation criterion is stated as $\norm a<1$, $\alpha>1$ and
+the existence of a unit vector $n$ with
+$n^{\mathsf T}(K+CK^{-1}C)n<\alpha-1$, which is
+$\lambda_{\min}(M)<\tr A-1$. Along the way the development proves the
+compact attainment and Lagrange conditions derived from actual
+maximality, the finite spectral candidates including all singular cases,
+the reduction of every filter and measurement plane, the Gram identity and
+purity guard, the Horodecki plane formula with explicit attaining
+measurements, local-unitary invariance, polar factorization of every
+invertible filter, the Fano representation, whitening and its inverse,
+continuity and radial approximation of the supremum, and product
+factorization at a pure marginal.
+
+\paragraph{Audit.} The audit module \texttt{UnilateralAxiomAudit}
+enumerates every declaration whose defining module is one of the $32$
+proof modules and collects its axioms with Lean's \texttt{collectAxioms}.
+In the fresh build recorded in \path{verification/} it covers $1{,}060$
+declarations. The $869$ declarations other than code-generation
+auxiliaries are not axioms and depend only on \texttt{propext},
+\texttt{Classical.choice} and \texttt{Quot.sound}; the other $191$ are
+auxiliary declarations that the Lean~4.19 code generator stores for
+executable definitions, $12$ of which refer to its placeholder
+\texttt{lcProof}, which the audit permits for such auxiliaries only. All
+$730$ named source declarations were audited, and the sources contain no
+\texttt{sorry}, \texttt{admit}, \path{native_decide},
+\texttt{ofReduceBool}, \path{implemented_by}, \texttt{extern},
+\texttt{unsafe} or \texttt{axiom}.
+
+\subsection{What is conventional}
+
+The following have conventional proofs in this paper, with the exact and
+numerical checks listed below, but are not formalized: the explicit
+evaluation of the boundary radius $E$ by the secular equation and its hard
+case (Section~\ref{sec:boundary}), the explicit cubic, the admissibility
+tests and the singular compression of Section~\ref{sec:formula} (the formal
+finite-candidate theorem uses an attained maximum over the sphere and the
+eligible spectral levels); the polynomial and rational-ellipsoid
+activation tests and the rational cubic (Section~\ref{sec:ext-polynomial});
+the three regimes at $B_A^*=1$ and the product-kernel criterion; the
+rank-two formula, which uses the Ruskai--Szarek--Werner
+classification~\cite{ruskai2002}; the characterization of $B_A^*=\sqrt2$;
+the axial family and the quasi-distillable family; all success-probability
+results of Sections~\ref{sec:ext-probability} and~\ref{sec:r3-success};
+and the convexity, scaling and stability results of
+Section~\ref{sec:ext-stability}. The extension of Result~B to the
+hypothesis $K+iC\succ0$ is also conventional.
+
+\subsection{Exact and numerical checks}
+
+The directory \path{calculations/} contains the checkers and their
+recorded outputs; \path{scripts/run_checks.py} replays all of them in a
+temporary copy with \texttt{python3 -I} and compares each output with the
+record. They are falsification attempts and exact checks of particular
+instances; no theorem rests on them.
+
+\begin{itemize}[leftmargin=1.5em]
+\item \path{exact_examples.py}: exact SymPy verification of positivity,
+Bloch data, candidate eigenvalues, filters, success probabilities and output
+correlations for the examples of Section~\ref{sec:attainment} and the
+following sections, and of the symbolic pencil determinant identity.
+\item \path{audit_spectral_cases.py}: $655$ canonical data sets, including
+$\rank K\in\{0,1,2\}$, common kernels, repeated eigenvalues and vanishing
+centres, with an independent spectral reconstruction and $252{,}500$ sampled
+filters; reconstructed witnesses match to about $10^{-13}$ and no sampled
+filter exceeds the formula.
+\item \path{independent_audit/check_spectral.py}: $275$ comparisons of the
+formula with multistart direct filtering of complex density matrices
+(canonical states of ranks one to four, original states for both parties,
+singular cases, exact examples); direct optimization never exceeds the
+formula by more than roundoff, with a largest gap of about
+$4.4\times10^{-8}$ consistent with approaching a boundary supremum.
+\item \path{extensions/independent_checks.py}: $1{,}000$ states of ranks
+one to four for the Gram, plane-purity, covariance and ellipsoid identities;
+$417$ guard-region instances; $600$ axial states; $102$ success-frontier
+comparisons with direct filtering; the counterexample showing that $K\succ0$
+alone does not suffice.
+\item \path{extensions/additional_exact_checks.py},
+\path{rank2_checks.py}, \path{nonunique_optimizer_example.py},
+\path{bilateral_family_certificate.py}: the rational cubic on sampled
+states, $1{,}000$ rank-two states, an exact circle of optimal filters, and
+an exact certificate for the bilateral filter of the quasi-distillable
+family at $p=3/5$.
+\item \path{original_input/}: $256$ original states with $512$ arbitrary
+complex filter comparisons for the whitening formulas, and the
+original-input success lens, Gram matrix and closed frontiers.
+\item \path{check_extensions.py}: tests of the public solver functions,
+including exact activation signs and exact cubic roots.
+\item \path{check_filter_reduction.py}: $2{,}000$ instances of the real
+filter reduction used in the formal proof.
+\item \path{release_check.py}, written for this release without importing
+the other files: exact values for $\rho_1$, $\rho_2$ and the
+quasi-distillable family on the grid $p=k/12$, the explicit optimal filter
+of $\rho_1$ applied to the density matrix, and $160$ random states of ranks
+one to four with $\alpha>1$, for which the least-eigenvalue value agrees
+with the reconstructed invertible filter and with multistart direct
+maximization to about $10^{-13}$.
+\end{itemize}
+
+\paragraph{Numerical rank caution.}
+The reference solver uses floating-point eigensolvers and tolerances and is
+not an exact certificate near degeneracies. There is a genuine
+discontinuity at a pure filtered-side marginal: for
+$\sqrt{1-\varepsilon}|00\rangle+\sqrt\varepsilon|11\rangle$, every
+$\varepsilon>0$ has $B_A^*=\sqrt2$, whereas $\varepsilon=0$ has value $1$.
+Treating a small positive marginal eigenvalue as zero can therefore produce
+an order-one error; the solver refuses unsafe near-singular marginal
+decisions instead of returning a product-state answer.

@@ -1,0 +1,414 @@
+\section{A physical Gram matrix and the purity obstruction}
+\label{sec:ext-gram}
+
+The general spectral formula of Section~\ref{sec:formula} treats every value of the
+unilateral optimum, including sub-classical values and singular pencils. Physical
+positivity allows a much simpler formula throughout the entire region in which
+unilateral CHSH violation is possible, and we present it first. The simplification also yields
+polynomial activation tests and useful probability tradeoffs.
+
+Continue to use the canonical data in~\eqref{eq:data}, and write
+\begin{equation}
+ \alpha=\tr A-s,\qquad m=\frac{\alpha-1}{2},\qquad H_0=K+iC.
+ \label{eq:ext-alpha}
+\end{equation}
+Here and below $\alpha$ denotes this purity invariant. The complex matrix
+$H_0$ is Hermitian. We use $z^\dagger z$ for the Hermitian squared norm and
+$z^Tz$ for the complex bilinear quadratic form; the distinction will matter
+at the CHSH threshold.
+
+\begin{lemma}[Spin-flip Gram identity]
+\label{lem:ext-gram}
+Let
+\[
+ \widetilde\rho_c=(\sigma_y\otimes\sigma_y)\rho_c^T
+                    (\sigma_y\otimes\sigma_y),\qquad
+ S_i=\sigma_i\otimes I,
+ \qquad
+ G_{ij}=\tr(\rho_c S_i\widetilde\rho_c S_j).
+\]
+Then
+\begin{equation}
+ \boxed{\,2G=K-mI+iC\succeq0.\,}
+ \label{eq:ext-gram}
+\end{equation}
+In particular $K\succeq mI$, or equivalently
+\begin{equation}
+ \tr A+s\le 1+2\lambda_{\min}(A).
+ \label{eq:ext-canonical-physicality}
+\end{equation}
+For real vectors $n,v$ and $z=n+iv$,
+\begin{equation}
+ z^\dagger(K-mI+iC)z
+ =n^T(K-mI)n+v^T(K-mI)v+2v^TCn.
+ \label{eq:ext-real-gram}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The spin flip is positive semidefinite, since it is a unitary conjugate of
+the transpose of a positive semidefinite matrix. For $Z=\sum_jz_jS_j$,
+\[
+ z^\dagger Gz
+ =\tr(\rho_c Z^\dagger\widetilde\rho_c Z)
+ =\norm{\widetilde\rho_c^{1/2}Z\rho_c^{1/2}}_F^2\ge0.
+\]
+For completeness the Pauli coefficient calculation is as follows. The
+identity--identity contribution to $G_{ij}$ is $\delta_{ij}/4$; the
+Bob-marginal contribution is $-s\delta_{ij}/4$; and the
+correlation--correlation contribution is
+$(2A_{ij}-\tr A\,\delta_{ij})/4$. The two remaining cross terms are
+\[
+ \frac{i}{4}\sum_k\epsilon_{ikj}d_k
+ -\frac{i}{4}\sum_k\epsilon_{kij}d_k
+ =-\frac{i}{2}\sum_k\epsilon_{ijk}d_k
+ =\frac{i}{2}C_{ij}.
+\]
+Their sum is
+$G=\tfrac12 A+\tfrac14(1-s-\tr A)I+\tfrac i2 C
+ =\tfrac12(K-mI+iC)$.
+Expanding $z=n+iv$ and using $C^T=-C$ gives
+\eqref{eq:ext-real-gram}. Taking $v=0$ gives the real-matrix inequality
+$K\succeq mI$.
+\end{proof}
+
+The bare implication from CHSH violation to a negative conditional
+R\'enyi-2 entropy is established in the literature~\cite{horodecki1996}.
+The next proof records its precise quantitative form and its covariance
+under unilateral filtering, because these are the ingredients needed for
+the spectral simplification. The plane-purity identity
+\eqref{eq:ext-plane-purity} and the determinant covariance
+\eqref{eq:ext-delta-covariance}, with the roles of the two parties
+exchanged, also appear in the proof of Conjecture~1 of Milne, Jennings,
+Jevtic and Rudolph recorded in the Omega Institute's public
+repository~\cite{dossier} (Section~\ref{sec:prior}); they are not claimed
+as new here.
+
+\begin{proposition}[Purity obstruction and determinant covariance]
+\label{prop:ext-purity}
+For a possibly unnormalized Hermitian two-qubit matrix $X$, define
+\[
+ \Delta_B(X)=\tr X^2-\tr[(\tr_A X)^2].
+\]
+For every complex $2\times2$ matrix $F$,
+\begin{equation}
+ \Delta_B((F\otimes I)X(F^\dagger\otimes I))
+ =|\det F|^2\Delta_B(X).
+ \label{eq:ext-delta-covariance}
+\end{equation}
+For every normalized two-qubit state,
+\begin{equation}
+ B(\rho)^2\le1+2\Delta_B(\rho).
+ \label{eq:ext-purity-bound}
+\end{equation}
+Consequently Alice-only CHSH violation requires $\Delta_B(\rho)>0$.
+For a canonical state and a filter with effect proportional to
+$I+u\cdot\sigma$,
+\begin{equation}
+ B((\rho_c)_u)^2\le1+m(1-\norm u^2).
+ \label{eq:ext-filter-purity}
+\end{equation}
+Thus $B_A^*>1$ implies $\alpha>1$ and $K\succ0$.
+\end{proposition}
+
+\begin{proof}
+Expand $X=\tfrac12\sum_{\nu=0}^3X_\nu\otimes\sigma_\nu$, with Hermitian
+$2\times2$ coefficients $X_\nu$. Pauli orthogonality and
+$\tr Y^2-(\tr Y)^2=-2\det Y$ give
+\[
+ \Delta_B(X)
+ =\frac12\sum_\nu[\tr(X_\nu^2)-(\tr X_\nu)^2]
+ =-\sum_\nu\det X_\nu.
+\]
+Every coefficient transforms as $X_\nu\mapsto FX_\nu F^\dagger$,
+which proves~\eqref{eq:ext-delta-covariance}, including singular $F$.
+
+For the quantitative bound, let $(a,b,T)$ be the Bloch data of $\rho$,
+let $n$ be a real unit vector, and conjugate the full spin flip
+$\widetilde\rho$ by $(n\cdot\sigma)\otimes I$ to obtain the positive
+matrix $\widetilde\rho_n$. Conjugation on Alice acts on Bloch vectors
+by $2nn^T-I$, so Pauli orthogonality gives
+\[
+ 4\tr(\rho\widetilde\rho_n)
+ =1+\norm a^2-\norm b^2-\tr(TT^T)
+       -2(a\cdot n)^2+2n^TTT^Tn.
+\]
+Together with
+$4\Delta_B(\rho)=\norm a^2-\norm b^2+\tr(TT^T)-1$, this proves
+the exact identity
+\begin{equation}
+ \tr(TT^T)-n^TTT^Tn+(a\cdot n)^2
+       +2\tr(\rho\widetilde\rho_n)
+ =1+2\Delta_B(\rho).
+ \label{eq:ext-plane-purity}
+\end{equation}
+Both of the last two terms on the left are nonnegative. Minimizing
+$n^TTT^Tn$ proves~\eqref{eq:ext-purity-bound}. Equality requires a
+maximizing CHSH plane whose omitted direction has $a\cdot n=0$ and
+$\tr(\rho\widetilde\rho_n)=0$.
+
+If a filter succeeds with probability $p$, covariance and normalization
+give
+\[
+ B(\rho_F)^2
+ \le1+\frac{2|\det F|^2}{p^2}\Delta_B(\rho).
+\]
+In canonical coordinates,
+$\Delta_B(\rho_c)=(\alpha-1)/4$, and the effect $I+u\cdot\sigma$
+has normalization one and determinant $1-\norm u^2$.
+This proves~\eqref{eq:ext-filter-purity}. The same inequality with
+$\alpha\le1$ excludes every violation, including any limiting violation.
+If $\alpha>1$, Lemma~\ref{lem:ext-gram} gives
+$K\succeq mI\succ0$.
+\end{proof}
+
+For the original Bloch data, put $h=1-\norm a^2>0$. Whitening has
+$|\det W|^2=1/h$, so covariance gives the useful identities
+\begin{equation}
+ \boxed{\quad
+ \alpha-1=\frac{\norm{T}_F^2+\norm a^2-\norm b^2-1}{h},
+ \qquad
+ \alpha=\frac{\norm{T}_F^2-\norm b^2}{h}.
+ \quad}
+ \label{eq:ext-raw-alpha}
+\end{equation}
+Here $\norm{T}_F$ is the Frobenius norm. Thus the purity guard is
+already a quadratic polynomial inequality in the original state
+coordinates.
+
+\section{The smallest eigenvalue is automatically feasible}
+\label{sec:ext-shortcut}
+
+\begin{theorem}[A single smallest eigenvalue in the violation-relevant region]
+\label{thm:ext-shortcut}
+For a physical canonical state with $\alpha>1$, define
+$M=A+CK^{-1}C$. Then
+\begin{equation}
+ \boxed{\qquad (B_A^*)^2=\tr A-\lambda_{\min}(M).\qquad}
+ \label{eq:ext-shortcut}
+\end{equation}
+Every unit vector $n$ in the minimum eigenspace gives an optimal
+invertible filter:
+\begin{equation}
+ v=-K^{-1}Cn,\qquad u=-n\times v,\qquad
+ F\ \text{proportional to}\ \sqrt{I+u\cdot\sigma}\,W.
+ \label{eq:ext-shortcut-filter}
+\end{equation}
+In particular, $n\cdot v=0$ and $\norm v<1$ hold automatically.
+All optimal pairs in the compact reduction are precisely the pairs in
+\eqref{eq:ext-shortcut-filter}.
+
+The same conclusion holds under the algebraic hypothesis
+$K+iC\succ0$, even when $\alpha\le1$.
+\end{theorem}
+
+\begin{proof}
+The Gram identity gives $H_0\succeq mI\succ0$ when $\alpha>1$.
+Under either hypothesis in the theorem, the real representation
+\[
+ \begin{pmatrix}K&-C\\ C&K\end{pmatrix}
+\]
+is positive definite. Its Schur complement is
+$L=K+CK^{-1}C=M-sI\succ0$. Let
+$\delta=\lambda_{\min}(L)>0$, choose $\norm n=1$ with $Ln=\delta n$,
+and put $v=-K^{-1}Cn$. Then
+\begin{equation}
+ Kn-Cv=\delta n,\qquad Kv+Cn=0.
+ \label{eq:ext-paired-equations}
+\end{equation}
+Taking the inner product of the first equation with $v$ and of the
+second with $n$ gives $\delta n\cdot v=0$. Hence $n\cdot v=0$.
+
+The crucial norm estimate is not a generic property of a stationary
+eigenvector. It follows here from the following exact identity:
+\begin{equation}
+ \boxed{\,v^TLv=\delta-\delta^2n^TK^{-1}n.\,}
+ \label{eq:ext-rayleigh-identity}
+\end{equation}
+Indeed $Cv=(K-\delta I)n$, and taking the inner product of the
+first equation in~\eqref{eq:ext-paired-equations} with $n$ yields
+$v^TKv=n^TKn-\delta$. Therefore
+\begin{align*}
+ v^TLv
+ &=v^TKv-(Cv)^TK^{-1}(Cv)\\
+ &=n^TKn-\delta
+   -n^T(K-\delta I)K^{-1}(K-\delta I)n\\
+ &=\delta-\delta^2n^TK^{-1}n.
+\end{align*}
+The minimum Rayleigh bound for $L$ now gives
+\begin{equation}
+ \norm v^2\le1-\delta n^TK^{-1}n<1.
+ \label{eq:ext-feasible-margin}
+\end{equation}
+Thus the constructed pair belongs to the interior of the exact compact
+domain~\eqref{eq:domain}.
+
+For the matching upper bound, complete the square in~\eqref{eq:f}:
+\begin{equation}
+ f(n,v)=\tr A-n^TMn
+ -(v+K^{-1}Cn)^TK(v+K^{-1}Cn).
+ \label{eq:ext-square-completion}
+\end{equation}
+The last term is nonnegative, and $n^TMn\ge\lambda_{\min}(M)$.
+The constructed pair gives equality in both inequalities. Because
+$K\succ0$, equality also characterizes every optimizing pair: $n$
+must lie in the minimum eigenspace and $v=-K^{-1}Cn$.
+\end{proof}
+
+\begin{corollary}[Strict boundary gap and a uniform probability guarantee]
+\label{cor:ext-boundary-gap}
+Whenever $H_0\succ0$, the optimum strictly exceeds the rank-one
+boundary value: $(B_A^*)^2>E$, even if the optimum is at most one.
+Writing $\delta=\lambda_{\min}(M)-s>0$, every canonical optimal
+effect obeys
+\begin{equation}
+ \norm u^2\le1-\frac{\delta}{\lambda_{\max}(K)},\qquad
+ p_{\max}\ge
+ \frac1{1+\sqrt{1-\delta/\lambda_{\max}(K)}}>\frac12.
+ \label{eq:ext-probability-margin}
+\end{equation}
+If the minimum eigenvalue of $M$ is simple, the positive optimal
+filter is unique up to scale. An arbitrary output unitary remains
+irrelevant to the CHSH value.
+\end{corollary}
+
+\begin{proof}
+Every equality pair in~\eqref{eq:ext-square-completion} satisfies
+the strict estimate~\eqref{eq:ext-feasible-margin}. No boundary pair
+can therefore attain the global maximum. Compactness of the boundary
+gives the strict gap. Moreover
+$n^TK^{-1}n\ge1/\lambda_{\max}(K)$ gives the first inequality in
+\eqref{eq:ext-probability-margin}; its radicand is nonnegative because
+$M-sI=K+CK^{-1}C\preceq K$.
+The probability statement follows by maximal Kraus rescaling.
+For a simple eigenvalue, $n$ is unique up to sign, and simultaneous
+sign change of $n,v$ leaves $u=-n\times v$ fixed.
+The equality discussion following~\eqref{eq:attainment} shows that
+this reconstruction recovers the original positive-filter part of
+every finite optimum.
+\end{proof}
+
+\begin{corollary}[Sharp purity ceiling and its equality cases]
+\label{cor:ext-ceiling}
+If $\alpha>1$, then
+\begin{equation}
+ (B_A^*)^2\le\frac{1+\alpha}{2}.
+ \label{eq:ext-ceiling}
+\end{equation}
+Equality holds exactly when
+\begin{equation}
+ \ker(K-mI)\cap\ker C\ne\{0\}.
+ \label{eq:ext-ceiling-equality}
+\end{equation}
+In that case the canonical state itself is optimal. Every state of rank
+at least three satisfies~\eqref{eq:ext-ceiling} strictly.
+\end{corollary}
+
+\begin{proof}
+Apply~\eqref{eq:ext-filter-purity} to the optimal filter supplied by
+Theorem~\ref{thm:ext-shortcut}. Since $m>0$, equality forces its
+canonical effect to have $u=0$. The omitted direction $n$ then satisfies
+$n^T(K-mI)n=0$. Positivity of $K-mI+iC$ implies that this matrix
+annihilates $n$; its real and imaginary parts yield
+$(K-mI)n=0$ and $Cn=0$. Conversely, such a unit vector gives
+$f(n,0)=\alpha-m=(1+\alpha)/2$.
+
+For the rank statement, a real nonzero $n$ gives an invertible
+$Z=(n\cdot\sigma)\otimes I$. If $r=\rank\rho_c\ge3$, then
+\[
+ \rank(\widetilde\rho_c^{1/2}Z\rho_c^{1/2})\ge2r-4>0.
+\]
+Thus its squared Frobenius norm cannot vanish, excluding a real
+nonzero vector in $\ker G$. More generally, the same argument excludes
+any $z\in\ker G$ with $z^Tz\ne0$, since
+$\det(z\cdot\sigma)=-z^Tz$.
+\end{proof}
+
+\subsection{Why positivity of \(K\) alone is insufficient}
+
+The purity or positive-Gram hypothesis in
+Theorem~\ref{thm:ext-shortcut} cannot be replaced by $K\succ0$.
+Consider the full-rank canonical state
+\begin{equation}
+ \rho_{\mathrm{guard}}=\frac1{40}
+ \begin{pmatrix}
+ 19&0&0&7\\0&1&0&0\\0&0&7&0\\7&0&0&13
+ \end{pmatrix}.
+ \label{eq:ext-counterexample}
+\end{equation}
+Its parameters are
+\[
+ \begin{aligned}
+ c&=(0,0,3/10),&
+ D&=\diag(7/20,-7/20,3/5),\\
+ K&=\diag(13/400,13/400,27/100)\succ0,&
+ \alpha&=103/200.
+ \end{aligned}
+\]
+The unrestricted smallest-eigenvalue expression gives
+\[
+ \tr A-\lambda_{\min}(M)=\frac{7693}{5200}>1,
+ \qquad \norm v=\frac{72}{13}>1.
+\]
+The spurious minimum eigenspace is the entire transverse plane, and
+every unit vector in that plane has the same infeasible norm.
+The only remaining interior eigenvalue gives $49/200$.
+For the boundary radius, writing $z=u_3$ yields a convex quadratic
+on $[-1,1]$ whose largest endpoint is $(3/10+3/5)^2=81/100$.
+The general spectral theorem therefore gives the exact answer
+\[
+ \boxed{(B_A^*(\rho_{\mathrm{guard}}))^2=81/100.}
+\]
+This example explains why an unguarded cubic formula can incorrectly
+predict a CHSH violation.
+
+\subsection{A full-rank violating state with a circle of optimal filters}
+
+The simple-eigenvalue hypothesis in the uniqueness statement cannot be
+discarded, even for a full-rank state with a strictly violating optimum.
+Take
+\[
+ c=(9/20,0,0),\qquad D=\diag(8/15,-2/3,3/4),
+\]
+or equivalently
+\begin{equation}
+ \rho_{\mathrm{circle}}=
+ \begin{pmatrix}
+ 7/16&9/80&0&3/10\\
+ 9/80&1/16&-1/30&0\\
+ 0&-1/30&1/16&9/80\\
+ 3/10&0&9/80&7/16
+ \end{pmatrix}.
+ \label{eq:ext-circle-state}
+\end{equation}
+In the Bell-parity basis its two blocks are
+$\left(\begin{smallmatrix}59/80&9/80\\9/80&7/240\end{smallmatrix}\right)$
+and
+$\left(\begin{smallmatrix}11/80&9/80\\9/80&23/240\end{smallmatrix}\right)$.
+Their determinants are $17/1920$ and $1/1920$, respectively, and
+their diagonals are positive, giving an exact certificate that
+$\rho_{\mathrm{circle}}\succ0$.
+Here
+\[
+ \begin{aligned}
+ \alpha&=\frac{49}{45},\qquad d=(6/25,0,0),\\
+ K&=\diag\left(\frac{59}{720},\frac{871}{3600},\frac9{25}\right),\\
+ M-sI&=\diag\left(\frac{59}{720},\frac{59}{720},\frac{531}{4355}\right).
+ \end{aligned}
+\]
+The minimum eigenspace is $\operatorname{span}(e_1,e_2)$.
+For $n=(\cos\theta,\sin\theta,0)$,
+$v=(0,0,-2\sin\theta/3)$, so the complete set of optimal canonical
+effects is
+\begin{equation}
+ u=\frac23(\sin^2\theta,-\cos\theta\sin\theta,0),
+ \qquad
+ (u_1-\tfrac13)^2+u_2^2=\frac19,\quad u_3=0.
+ \label{eq:ext-optimal-circle}
+\end{equation}
+Every point of this circle attains
+$(B_A^*)^2=145/144>1$.
+The circle includes the identity effect $u=0$, and all its points
+have $\norm u\le2/3<1$. Thus equality cases can form a genuine
+continuous family of distinct positive filters without loss of
+rank or CHSH violation.

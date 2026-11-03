@@ -1,0 +1,141 @@
+\section{All states: finite spectral candidates}
+\label{sec:formula}
+
+\paragraph{Idea.} Outside the guard region of Section~\ref{sec:ext-shortcut} the maximum of $f$ may sit on the boundary of the compact domain (a rank-one limit of invertible filters) or at one of finitely many interior stationary points. The interior candidates are the roots of a cubic pencil determinant, and the boundary candidate is the radius~$E$. This section states the resulting formula for every state, including all singular and degenerate cases; its proof is given in Appendix~\ref{sec:proof-general}.
+
+For the canonical data~\eqref{eq:data}, introduce three real symmetric $6\times6$ matrices
+\begin{equation}
+ \HH=\begin{pmatrix}A&-C\\C&K\end{pmatrix},\qquad
+ \BB=\begin{pmatrix}I&0\\0&0\end{pmatrix},\qquad
+ \JJ=\begin{pmatrix}I&0\\0&-I\end{pmatrix}.
+ \label{eq:pencil}
+\end{equation}
+Let
+\begin{equation}
+ \mathcal L_0=\ker\HH\cap\ker\BB
+ =\{(0,w):w\in\ker K\cap\ker C\}.
+\end{equation}
+Choose any orthonormal-column matrix $U$ spanning $\mathcal L_0^\perp$, and put
+\begin{equation}
+ \widehat H=U^T\HH U,\qquad \widehat B=U^T\BB U,
+ \qquad p(z)=\det(\widehat H-z\widehat B).
+ \label{eq:regularized}
+\end{equation}
+The choice of $U$ does not affect the following construction.
+
+For each distinct real root $\lambda$ of $p$, choose an orthonormal-column basis $Z_\lambda$ of
+$\ker(\widehat H-\lambda\widehat B)$, set $Y_\lambda=UZ_\lambda$, and define
+\begin{equation}
+ \chi_\lambda=\lambda_{\max}(Y_\lambda^T\JJ Y_\lambda).
+ \label{eq:eligibility}
+\end{equation}
+These are finite linear-algebra operations. A level is \emph{admissible} when $\chi_\lambda\ge0$.
+
+Finally let $E$ be the boundary radius~\eqref{eq:boundarydescription}, given explicitly in Section~\ref{sec:boundary}.
+
+\begin{theorem}[Unilateral spectral formula]
+\label{thm:main}
+The polynomial $p$ is nonzero, has degree at most three, and every one of its roots is real. Each eigenspace used in~\eqref{eq:eligibility} has dimension at most three. For every two-qubit state with invertible Alice marginal,
+\begin{equation}
+ \boxed{\bigl(B_A^*(\rho)\bigr)^2
+ =\max\left(\{E\}\cup
+ \{\tr A-\lambda:p(\lambda)=0,\ \chi_\lambda\ge0\}\right).}
+ \label{eq:main}
+\end{equation}
+This remains valid when $\rho$, $D$, $A$, $K$, or the pencil blocks are singular, and when eigenvalues are repeated. Equation~\eqref{eq:puremarginal} covers the only excluded marginal case. The Bob formula follows by interchanging parties.
+\end{theorem}
+
+The result requires at most three interior candidate values, not an optimization over filter directions or measurement settings. If the data are algebraic, all steps are exact algebraic operations with decidable comparisons. The word ``closed'' here means this finite algebraic/spectral expression, not a universal expression in radicals for the boundary sextic.
+
+\subsection{Generic form: one symmetric $3\times3$ matrix}
+When $K$ is invertible, no common kernel is present and the Schur complement gives
+\begin{equation}
+ p(z)=\det K\det(M-zI),\qquad
+ \boxed{M=A+CK^{-1}C.}
+ \label{eq:genericM}
+\end{equation}
+For each eigenspace $\mathcal E_\lambda=\ker(M-\lambda I)$, choose an orthonormal basis matrix $N_\lambda$. Then admissibility is exactly
+\begin{equation}
+ \boxed{\sigma_{\min}(K^{-1}CN_\lambda)\le1.}
+ \label{eq:genericeligibility}
+\end{equation}
+For a simple eigenvalue with unit eigenvector $n$, this is just $\norm{K^{-1}Cn}\le1$. Use strict inequality for an invertible-filter representative at that level. A repeated eigenspace must be tested as a whole; testing an arbitrary eigenbasis vector by vector can give the wrong answer.
+
+An explicit cubic is also available. Put $t=z-s$, $\delta=\det K$, $q=d^TKd$, $r=d^Td$, and $e_2=((\tr K)^2-\tr K^2)/2$. Before common-kernel removal,
+\begin{align}
+ \det(\HH-z\BB)
+ ={}&-\delta t^3+
+ [\delta\tr K+d^T\adj(K)d-e_2r]t^2\notag\\
+ &-(\delta-q)(e_2-r)t+(\delta-q)^2.
+ \label{eq:explicitcubic}
+\end{align}
+This polynomial identity holds also for singular $K$. If it vanishes identically because of a common kernel, use~\eqref{eq:regularized}; do not attempt to select roots of the zero polynomial.
+
+For $\lambda\ne s$, a feasible unit vector $n$ gives
+\begin{equation}
+ v=-K^{-1}Cn,\qquad u=-n\times v.
+ \label{eq:genericfilter}
+\end{equation}
+Orthogonality $n^Tv=0$ is automatic. At $\lambda=s$, apply the phase operation in Section~\ref{sec:phase} before forming $u$.
+
+\subsection{An ordinary $3\times3$ compression for singular $K$}
+The pencil is conceptually convenient, but an implementation can use only ordinary symmetric eigenproblems of dimension at most three. Let $N$ have orthonormal columns spanning $\ker K$, set $L=CN$, and let $P$ have orthonormal columns spanning $(\ran L)^\perp$. Define
+\begin{equation}
+ M_0=A+CK^\dagger C,\qquad M_L=P^TM_0P.
+ \label{eq:compressed}
+\end{equation}
+For an eigenvalue $\lambda$ of $M_L$, let $Q$ be an ambient orthonormal basis of its eigenspace in $\ran P$. Put
+\begin{equation}
+ V_\lambda=-K^\dagger CQ+NL^\dagger(M_0-\lambda I)Q.
+ \label{eq:V}
+\end{equation}
+For $\lambda\ne s$, the branch is admissible exactly when
+$\lambda_{\min}(V_\lambda^TV_\lambda)\le1$. Strict inequality gives an interior representative. For $\lambda=s$, use the complex-kernel prescription below; the closed branch is always feasible. The reference implementation uses this compression.
+
+\section{The boundary radius, including the hard case}
+\label{sec:boundary}
+
+Diagonalize $A$: let its eigenvalues be $\alpha_i\ge0$, and write the coordinates of $d$ in an orthonormal eigenbasis as $g_i$. Set $\alpha_* = \max_i\alpha_i$.
+
+If the component of $d$ in the top eigenspace is zero and
+\begin{equation}
+ h=\sum_{\alpha_i<\alpha_*}\frac{g_i^2}{(\alpha_*-\alpha_i)^2}\le1,
+ \label{eq:hardcondition}
+\end{equation}
+then the hard-case answer is
+\begin{equation}
+ \boxed{E=s+\alpha_*+
+ \sum_{\alpha_i<\alpha_*}\frac{g_i^2}{\alpha_*-\alpha_i}.}
+ \label{eq:hardvalue}
+\end{equation}
+An extremizing $u$ has coordinates $u_i=g_i/(\alpha_*-\alpha_i)$ below the top eigenspace, and an arbitrary top component of squared norm $1-h$.
+
+In every other case, there is a unique $\eta>\alpha_*$ satisfying
+\begin{equation}
+ \sum_i\frac{g_i^2}{(\eta-\alpha_i)^2}=1.
+ \label{eq:secular}
+\end{equation}
+Then
+\begin{equation}
+ \boxed{E=s+\eta+\sum_i\frac{g_i^2}{\eta-\alpha_i},\qquad
+ u=(\eta I-A)^{-1}d.}
+ \label{eq:regularvalue}
+\end{equation}
+This is a specified root of a polynomial of degree at most six:
+\begin{equation}
+ \det(\eta I-A)^2-d^T\adj(\eta I-A)^2d=0,
+ \qquad \eta>\alpha_*.
+ \label{eq:sextic}
+\end{equation}
+Use the hard-case rule rather than accepting poles or arbitrary roots of this polynomial.
+
+\begin{proof}[Proof of the boundary formula]
+The squared radius is $s+u^TAu+2d^Tu$ on the unit sphere. In both constructions, $H=\eta I-A\succeq0$, $Hu=d$, and $\norm u=1$. For any other unit vector $x$,
+\begin{equation}
+ (s+u^TAu+2d^Tu)-(s+x^TAx+2d^Tx)
+ =(x-u)^TH(x-u)\ge0.
+\end{equation}
+Thus the constructed value is globally optimal. Equality means $x-u\in\ker H$ together with $\norm x=1$. In the regular case, the secular function is strictly decreasing from a value greater than $1$ (or infinity) to $0$, proving existence and uniqueness. In the hard case, the specified top component supplies exactly the missing norm. The formulas also cover $d=0$, repeated eigenvalues, $A=0$, and a point ellipsoid.
+\end{proof}
+
+For physical canonical states $E\le1$: conditioning Bob on any rank-one Alice effect produces a valid qubit Bloch vector $c+D^Tu$.

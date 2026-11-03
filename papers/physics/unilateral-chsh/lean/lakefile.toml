@@ -1,0 +1,20 @@
+name = "unilateral_chsh"
+version = "0.3.0"
+defaultTargets = ["UnilateralCHSHLib"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "c44e0c8ee63ca166450922a373c7409c5d26b00b"
+
+# The 32 proof modules (listed in modules.txt).
+[[lean_lib]]
+name = "UnilateralCHSHLib"
+srcDir = "Lean"
+roots = ["UnilateralCHSH", "SpectralPencil", "SpectralInverse", "GlobalOptimization", "GlobalFinite", "FilterAlgebra", "FilterReduction", "SchurCore", "Shortcut", "QuantumCore", "QuantumConsequences", "QuantumFilters", "PhysicalTheorems", "Horodecki", "QuantumCHSH", "PhysicalCHSH", "CanonicalSupremum", "QuantumLocalUnitary", "CanonicalEffects", "CanonicalGL", "CanonicalGLValues", "QuantumSupport", "QuantumGLPhysical", "QuantumFano", "QuantumWhitening", "QuantumFilterCoordinates", "QuantumWhiteningOrbit", "QuantumProduct", "QuantumPureMarginal", "QuantumSwap", "AllStates", "QuantumObservableValues"]
+
+# Whole-project transitive axiom audit (not a default target).
+[[lean_lib]]
+name = "UnilateralAudit"
+srcDir = "Lean"
+roots = ["UnilateralAxiomAudit"]
