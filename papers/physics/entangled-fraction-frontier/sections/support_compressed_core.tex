@@ -1,0 +1,19 @@
+\begin{corollary}[Support-compressed unique core]
+Let $A,B$ be arbitrary density matrices, and compress the target to
+$x'=(P_A\otimes P_B)x$, where $P_A,P_B$ project onto their supports.
+If the coefficient matrix of $x'$ has rank
+$\min(\operatorname{rank}A,\operatorname{rank}B)$, the unique-core and
+complete residual-face conclusions hold on those support spaces. Their
+dimension and rank bounds use $\operatorname{rank}A$ and
+$\operatorname{rank}B$ in place of the ambient local dimensions.
+\end{corollary}
+\begin{proof}
+Every feasible positive coupling, and every feasible reduced vector, is
+supported on $\operatorname{ran}A\otimes\operatorname{ran}B$. Indeed,
+a zero marginal expectation on a local vector forces every corresponding
+joint diagonal expectation to vanish; positivity then annihilates that
+entire local-kernel tensor factor. Compressing therefore changes neither
+optimization problem. On that product space the two marginals are
+positive definite, and the unique-core theorem applies. Its proof permits
+an arbitrary nonzero target, so no normalization of $x'$ is needed.
+\end{proof}

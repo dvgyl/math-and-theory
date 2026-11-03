@@ -1,0 +1,90 @@
+\section{A robust certificate of maximal Schmidt number}\label{sec:robust-sn}
+Assume $d\ge2$. The explicit dual in Theorem~\ref{thm:dual} only uses the diagonal
+populations of the marginal matrices. Consequently its gap identity and
+support bound remain valid if the actual marginal matrices have arbitrary
+off-diagonal entries. Let these populations be $a_i,b_i$, assume
+$m_i=\min(a_i,b_i)>0$, and let the normalized target be
+$x=\sum_i s_i|ii\rangle$ with every $s_i>0$.
+Set
+\[
+ S=\sum_i s_i\sqrt{m_i},\quad L=\sum_i m_i,\quad
+ z=\sum_i\sqrt{m_i}|ii\rangle,\quad
+ I_A=\{i:a_i>b_i\},\quad I_B=\{i:b_i>a_i\}.
+\]
+Let $P$ project onto
+$K=\operatorname{span}\{z\}\oplus
+\operatorname{span}\{|ij\rangle:i\in I_A,j\in I_B\}$,
+and use $Q=\Id-P$ in this section. With
+$\gamma_0=(S/2)\min_i(s_i/\sqrt{m_i})$, the dual slack $Z$ from
+Theorem~\ref{thm:dual} satisfies
+\begin{equation}\label{eq:dual-exact-deficit}
+ \epsilon=S^2-\langle x|\rho|x\rangle=\tr(\rho Z),
+ \qquad Z\succeq\gamma_0 Q.
+\end{equation}
+This gives a noise-tolerant certificate of the maximum Schmidt number,
+not just a description of exact equality states.
+
+Put $|\zeta\rangle=z/\sqrt L$ and
+\[
+ c_m={(d-1)^{d-1}\prod_i m_i\over L^d}.
+\]
+For \emph{every} density matrix $\omega$ of Schmidt number at most $d-1$,
+whether or not it has the populations above,
+\begin{equation}\label{eq:schmidt-support-witness}
+ \operatorname{Tr}\omega Q\ge
+       c_m\bigl(\langle\zeta|\omega|\zeta\rangle\bigr)^d.
+\end{equation}
+Here $K,P,Q$ use the displayed $z$ and disjoint rectangle $I_A\times I_B$.
+
+\emph{Proof.} First let $\omega=|\psi\rangle\langle\psi|$ have Schmidt
+rank at most $d-1$, and let $C$ be its coefficient matrix, with Frobenius
+norm one. The projection $P\psi$ has coefficient matrix
+\[
+ C_K=a\operatorname{diag}\sqrt m+N,
+ \qquad N_{ij}=0\ \text{outside }I_A\times I_B.
+\]
+Because the two index sets are disjoint, a simultaneous permutation puts
+$N$ strictly above the diagonal. Thus
+$|\det C_K|=|a|^d\sqrt{\prod_i m_i}$.
+Let $\sigma_1\ge\cdots\ge\sigma_d$ be its singular values.
+Since $C$ has a nonzero kernel vector,
+\[
+ \sigma_d\le\|C-C_K\|_{\mathrm{op}}\le\|C-C_K\|_{\mathrm F}
+                         =\sqrt{\langle\psi|Q|\psi\rangle}.
+\]
+The other singular values satisfy
+\[
+ \prod_{j=1}^{d-1}\sigma_j
+ \le\left({\sum_{j=1}^{d-1}\sigma_j^2\over d-1}\right)^{(d-1)/2}
+ \le(d-1)^{-(d-1)/2},
+\]
+because $\|C_K\|_{\mathrm F}\le1$. Multiplying and squaring gives
+\[
+ \langle\psi|Q|\psi\rangle
+       \ge(d-1)^{d-1}\left(\prod_i m_i\right)|a|^{2d}
+       =c_m|\langle\zeta|\psi\rangle|^{2d}.
+\]
+For a mixed state of Schmidt number at most $d-1$, choose a decomposition
+into such vectors and average. Jensen's inequality for $u\mapsto u^d$
+gives \eqref{eq:schmidt-support-witness}.
+
+Combining the witness with \eqref{eq:dual-exact-deficit}, a state with the
+specified local populations is certified to have Schmidt number $d$ whenever
+\[
+ S^2-\langle x|\rho|x\rangle
+ <\gamma_0c_m\bigl(\langle\zeta|\rho|\zeta\rangle\bigr)^d.
+\]
+This is a quantitative, directly testable sufficient criterion. No optimality
+is claimed for its constant. At an exact spectral-FEF saturator,
+$\langle\zeta|\rho|\zeta\rangle=L$ and the deficit is zero, so the
+criterion recovers maximal Schmidt number and tolerates a nonzero error.
+
+
+The assumptions $m_i>0$ and $s_i>0$ keep the displayed gap positive.
+The associated projected-state estimate controls distance to the forced
+support subspace, not to a state with exactly the same marginal matrices.
+General Schmidt-number witnesses and $G$-concurrence lower bounds have
+substantial prior literature~\cite{terhalhorodecki,sentis}; the displayed
+witness is tailored here to the coherent-core/rectangle geometry.
+It has an exact analytic proof and seeded falsification tests, and is
+not included among the end-to-end Lean theorems.

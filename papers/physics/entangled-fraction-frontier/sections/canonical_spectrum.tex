@@ -1,0 +1,40 @@
+\section{A sharper canonical-marginal theorem in every dimension}\label{sec:highdim}
+\begin{theorem}[Canonical spectrum and physical Bob spectrum]\label{thm:canonical-spectra}
+Let $\rho_B>0$. Let $\alpha_i$ be the decreasing eigenvalues of $\sigma_A$ for the canonical state \eqref{eq:whiten}, and let $\beta_i>0$ be the decreasing eigenvalues of the physical marginal $\rho_B$. Then
+\begin{equation}\label{eq:canonical-spectra}
+ \boxed{\quad f_d(\rho)\le
+ \left(\sum_i\sqrt{\beta_i\min(\alpha_i,1/d)}\right)^2.\quad}
+\end{equation}
+This bound is sharp for every probability spectrum $\alpha$ and every strictly positive probability spectrum $\beta$.
+\end{theorem}
+\begin{proof}
+Write $\rho=(\Id\otimes K)\sigma(\Id\otimes K^\dagger)$ with $K=\sqrt{d\rho_B}$. For any maximally entangled $e$, put $x=(\Id\otimes K^\dagger)e$. Its squared norm is $\tr(KK^\dagger)/d=1$, and its reduced Bob spectrum is $\beta$. Apply Theorem~\ref{thm:weighted} to $\sigma$, whose marginals have spectra $\alpha$ and $(1/d,\ldots,1/d)$, and to this $x$.
+
+For sharpness, take the construction \eqref{eq:coherent-min} for marginal spectra $\alpha$ and $(1/d,\ldots,1/d)$, and filter with
+\[
+ K=\diag\bigl(\sqrt{d\beta_1},\ldots,\sqrt{d\beta_d}\bigr).
+\]
+The resulting state is normalized, has physical Bob spectrum $\beta$, and whitening returns the chosen canonical state. The Bell target $d^{-1/2}\sum_i\ket{ii}$ has expectation equal to the right side of \eqref{eq:canonical-spectra}.\end{proof}
+
+Let $m_i=\min(\alpha_i,1/d)$, $L=\sum_i m_i>0$, and $\nu_i=m_i/L$. Then \eqref{eq:canonical-spectra} reads
+\begin{equation}\label{eq:affinity}
+ f_d(\rho)\le L\left(\sum_i\sqrt{\beta_i\nu_i}\right)^2\le L.
+\end{equation}
+The last upper bound is the old unweighted marginal-spectrum result of Klyachko \cite{klyachko}. The retained overlap factor is the additional information here. Equality in its Cauchy--Schwarz step requires $\beta=\nu$. If every $m_i>0$, this is an admissible full-rank Bob spectrum and is attained by the construction. If some $m_i=0$, $L$ is a supremum over positive Bob spectra, approached as they tend to $\nu$; it cannot be attained within that full-rank stratum.
+
+\begin{corollary}[Marginal-spectrum stability]
+If $L-f_d(\rho)\le\varepsilon$, then
+\begin{equation}\label{eq:highdim-stability}
+ \|\beta-\nu\|_1\le2\sqrt{\varepsilon/L}.
+\end{equation}
+\end{corollary}
+\begin{proof}
+Write $A=\sum_i\sqrt{\beta_i\nu_i}$. From \eqref{eq:affinity}, $1-A^2\le\varepsilon/L$. Also
+\[
+ \sum_i|\beta_i-\nu_i|
+ \le\sqrt{\sum_i(\sqrt{\beta_i}-\sqrt{\nu_i})^2}
+      \sqrt{\sum_i(\sqrt{\beta_i}+\sqrt{\nu_i})^2}
+ =2\sqrt{1-A^2}.
+\]
+This proves the assertion. It is a statement about marginal eigenvalues, not trace-distance closeness of the entire bipartite state.\end{proof}
+

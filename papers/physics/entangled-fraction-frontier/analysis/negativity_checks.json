@@ -1,0 +1,122 @@
+{
+  "seed": 733039,
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "sympy": "1.14.0",
+    "cvxpy": "1.6.5"
+  },
+  "scope": "Exact symbolic certificates plus numerical falsification; not a Lean or universal proof.",
+  "saddle_strict_convexity": {
+    "cases": 560,
+    "max_convexity_violation": 0.0,
+    "max_strong_convexity_violation": 0.0
+  },
+  "dephasing_and_coherence_penalty": {
+    "cases": 350,
+    "max_block_formula_error": 1.9984014443252818e-15,
+    "max_gap_violation": 4.440892098500626e-16,
+    "max_actual_marginal_change": 2.721526519431462e-16
+  },
+  "transport_quantum_sdp_comparison": [
+    {
+      "shape": [
+        2,
+        2
+      ],
+      "classical_value": 0.45766650401747133,
+      "quantum_value": 0.4576665040094301,
+      "absolute_difference": 8.041234345057546e-12,
+      "classical_status": "optimal",
+      "quantum_status": "optimal",
+      "quantum_off_diagonal_norm": 2.339330854025216e-19
+    },
+    {
+      "shape": [
+        2,
+        2
+      ],
+      "classical_value": 0.4435829524003994,
+      "quantum_value": 0.4435829561369845,
+      "absolute_difference": 3.736585096891787e-09,
+      "classical_status": "optimal",
+      "quantum_status": "optimal",
+      "quantum_off_diagonal_norm": 7.22390422392744e-19
+    },
+    {
+      "shape": [
+        2,
+        3
+      ],
+      "classical_value": 0.4050511144247814,
+      "quantum_value": 0.4050511154681509,
+      "absolute_difference": 1.0433695019074207e-09,
+      "classical_status": "optimal",
+      "quantum_status": "optimal",
+      "quantum_off_diagonal_norm": 2.699451937254496e-18
+    },
+    {
+      "shape": [
+        3,
+        2
+      ],
+      "classical_value": 0.552134116089482,
+      "quantum_value": 0.5521341219464329,
+      "absolute_difference": 5.856950813232231e-09,
+      "classical_status": "optimal",
+      "quantum_status": "optimal",
+      "quantum_off_diagonal_norm": 2.5886842972377532e-18
+    },
+    {
+      "shape": [
+        3,
+        3
+      ],
+      "classical_value": 0.7088551040185269,
+      "quantum_value": 0.708855105649834,
+      "absolute_difference": 1.6313070894113935e-09,
+      "classical_status": "optimal",
+      "quantum_status": "optimal",
+      "quantum_off_diagonal_norm": 7.105097160145504e-19
+    },
+    {
+      "shape": [
+        3,
+        3
+      ],
+      "classical_value": 0.5918291218592622,
+      "quantum_value": 0.5918291218725185,
+      "absolute_difference": 1.3256284958629294e-11,
+      "classical_status": "optimal",
+      "quantum_status": "optimal",
+      "quantum_off_diagonal_norm": 1.829310236081136e-19
+    }
+  ],
+  "exact_symbolic": {
+    "passed": true,
+    "checks": 21,
+    "nonproduct_transport_KKT": "exact derivatives (-3/10,-1/5;-1/5,-1/10); determinant>0, so product coupling is strictly worse",
+    "four_level_FEF": "sqrt(3)/5 + 2/5",
+    "four_level_G": "2*sqrt(3)/5",
+    "four_level_N_min": "1",
+    "four_level_N_max": "3/10 + sqrt(13)/5",
+    "endpoint_global_ranks": [
+      5,
+      2
+    ],
+    "singular_D_counterexample": "D=diag(1,0), C_t=diag(0,t), F_D(C_t)=2+t for t>=0"
+  },
+  "balanced_faces": {
+    "families": 80,
+    "endpoint_cases": 160,
+    "isotropic_path_points": 1680,
+    "max_bound_violation": 0.0,
+    "max_formula_or_endpoint_error": 1.3322676295501878e-15,
+    "max_uniform_marginal_error": 2.979944066812707e-13,
+    "max_sinkhorn_iterations": 78
+  },
+  "elapsed_seconds": 8.554058313369751,
+  "source_sha256": "cb27711023849b0d42206ba7a6fd8e8ed55344cb099b131b43bd457b2e9b12f1",
+  "all_passed": true
+}

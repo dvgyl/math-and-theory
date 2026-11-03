@@ -1,0 +1,70 @@
+\section{Sharp bounds from the full signed ellipsoid}\label{sec:shape}
+\subsection{Exact filtering-orbit value}
+For a canonical state $\sigma_B=\Id/d$ and any Bob filter $F\ne0$,
+\[
+ \rho_F=\frac{(\Id\otimes F)\sigma(\Id\otimes F^\dagger)}{\tr(F^\dagger F)/d}.
+\]
+For a maximally entangled $e$, let $x=(\Id\otimes F^\dagger)e$. Then
+\[
+ \bra e\rho_F\ket e=\frac{\bra x\sigma\ket x}{\|x\|^2}\le\lambda_{\max}(\sigma).
+\]
+Every coefficient matrix of a vector $x$ arises from some $F$ and a fixed Bell vector. Therefore
+\begin{equation}\label{eq:orbit}
+ \sup_{F\ \mathrm{invertible}}f_d(\rho_F)=\lambda_{\max}(\sigma).
+\end{equation}
+The supremum is an actual maximum among invertible filters if and only if the top eigenspace contains a full-Schmidt-rank vector. Otherwise singular filters attain the closed-orbit optimum and invertible filters approach it. Singular filtering can change the steering ellipsoid, so it must not be silently described as preserving the original ellipsoid.
+
+For qubits this is equivalent, through the channel--state correspondence, to the established optimization of Pal, Bandyopadhyay and Ghosh \cite{pal}. It is useful here but not claimed as a new optimization theorem.
+
+\subsection{An explicit polynomial in geometric invariants}
+Write the canonical Bloch form as
+\[
+ \sigma=\frac14\left(\Id+\bm c\cdot\bm\sigma\otimes\Id+
+ \sum_{ij}S_{ij}\sigma_i\otimes\sigma_j\right),\qquad Q=SS^T.
+\]
+Besides $c$, use
+\[
+ q=\tr Q,\quad q_2=\tr(Q^2),\quad k=\bm c^TQ\bm c,\quad
+ d_S=\det S=\chi\sqrt{\det Q},\quad r=c^2+q.
+\]
+For $H=4\sigma-\Id$, the characteristic polynomial is
+\begin{equation}\label{eq:quartic}
+ \boxed{P_H(z)=z^4-2rz^2+8d_Sz+r^2-4k-2q^2+2q_2.}
+\end{equation}
+If $z_+$ is its largest root, then
+\begin{equation}\label{eq:geometric-bound}
+ f(\rho)\le\Lambda(\bm c,Q,\chi):=\frac{1+z_+}{4}\le1-\frac c2.
+\end{equation}
+This gives the exact filtering-orbit supremum, with the attainment condition above. Unlike the centre-only bound, it uses shape, skew and chirality.
+
+To verify \eqref{eq:quartic}, local unitary rotations diagonalize $S$ by signed singular values, leaving an arbitrary $\bm c$. Direct Pauli multiplication gives
+\begin{align*}
+ \tr H&=0,&\tr H^2&=4r,&\tr H^3&=-24d_S,\\
+ \tr H^4&=4r^2+16k+8(q^2-q_2).
+\end{align*}
+Newton identities give the polynomial. The supplied SymPy calculation verifies the determinant with all diagonal signed correlations and all three centre components symbolic; the numerical harness checks the invariant formula without diagonalizing $S$ first. Its determinant ancestry is already present in steering-ellipsoid physicality work \cite{milnegeometry}.
+
+\textbf{Chirality matters.} An unsigned ellipsoid need not identify a unique canonical spectrum. At $c=0$, $Q=(1/16)\Id$, the physical states with $S=\diag(1/4,-1/4,1/4)$ and $S=\diag(1/4,1/4,1/4)$ have the same unsigned geometry but different orbit optima, $7/16$ and $5/16$. For an unsigned-only bound take the maximum over physically admissible chiralities. In the entangled qubit case the chirality is necessarily negative.
+
+\subsection{Strict exact example}
+Take
+\[
+ \bm c=(0,0,3/5),\qquad S=\diag(2/5,-2/5,1/5).
+\]
+Then $\spec\sigma=(11/20,7/20,1/20,1/20)$. Thus the best ellipsoid bound is $11/20$, versus the centre-only value $7/10$. Filtering Bob with $F=\diag(1,1/2)$ succeeds with probability $5/8$ and produces
+\[
+ \rho=\begin{pmatrix}
+ 18/25&0&0&4/25\\
+ 0&7/50&0&0\\
+ 0&0&2/25&0\\
+ 4/25&0&0&3/50
+ \end{pmatrix},\qquad f(\rho)=11/20.
+\]
+This example proves the shape refinement is both strict and attainable. It also shows that the full-ellipsoid and joint-centre/marginal refinements carry different information; taking their minimum is valid.
+
+For $0<c<1$, the centre-only envelope equals the ellipsoid envelope only for the maximally obese geometry
+\[
+ \bm c=c\bm e_z,\qquad Q=\diag(1-c,1-c,(1-c)^2),\qquad\chi=-1,
+\]
+up to rotations. Indeed equality in the canonical spectral bound forces \eqref{eq:sigma-ad}; conversely that state has top eigenvalue $1-c/2$ and a full-Schmidt-rank top eigenvector. The endpoint $c=1$ is a point ellipsoid, with a supremum approached through nearly singular Bob filters.
+

@@ -1,0 +1,466 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=24mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{graphicx,booktabs,longtable,array,xcolor}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black,citecolor=blue!45!black]{hyperref}
+\hypersetup{pdftitle={Saturating the steering-centre bound on the fully entangled fraction},pdfauthor={Dev D. Goyal},pdfsubject={Fully entangled fraction, steering ellipsoids, equality cases, saturation geometry and Lean verification}}
+\graphicspath{{figures/}}
+\setlength{\parskip}{5pt}\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\setlist{nosep,leftmargin=1.5em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\DeclareMathOperator{\tr}{tr}\DeclareMathOperator{\diag}{diag}\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\rank}{rank}\DeclareMathOperator{\Rea}{Re}
+\newcommand{\ket}[1]{\lvert #1\rangle}\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}\newcommand{\C}{\mathbb C}\newcommand{\R}{\mathbb R}
+\newcommand{\Id}{\mathbb I}\newcommand{\HH}{\mathcal H}
+\newcommand{\Fe}{\mathcal F}
+\title{Saturating the steering-centre bound on the fully entangled fraction:\\[4pt]
+\large the sharp centre--marginal frontier, all equality cases,\\
+saturation geometry in every dimension and tensor laws}
+\author{Dev D. Goyal}
+\date{3 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Milne, Jennings, Jevtic and Rudolph conjectured that the fully entangled
+fraction of a two-qubit state, the largest overlap with a maximally
+entangled state, is at most $1-c/2$, where $c$ is the length of the centre
+of Alice's steering ellipsoid (arXiv:1404.3951, Conjecture~2). That bound and
+its sharpness are prior work: the Omega Institute's public repository records
+a claimed Lean proof committed on 8 October 2026, and this repository's
+\texttt{steering-bounds} package proves it with sharpness. We claim no
+priority for it. This paper studies when and how the bound is attained.
+For two qubits with Bob Bloch length $b<1$ we prove the sharp joint bound
+$f\le\bigl[\sqrt{1+b}+\sqrt{(1-c)(1-b)}\bigr]^2/4$, which equals $1-c/2$
+exactly when $b=c/(2-c)$; every pair $(c,b)$ is attained, each point of the
+frontier is attained by a single local-unitary orbit, and for each $c$ the
+states with $f=1-c/2$ form one orbit, of rank two when $0<c<1$. The best
+constant in the stability estimate $((2-c)b-c)^2\le K(c)(1-c/2-f)$ is
+$K(c)=4(1+\sqrt{1-c})^2$. In every dimension we prove a prescribed-Schmidt
+overlap bound in terms of the two marginal spectra and classify all states
+attaining the resulting marginal-spectrum bound, including degenerate
+spectra. Consequences include exact optimizer-rank bounds for fixed
+marginals, sharp ellipsoid-shape refinements, a universal tensor law
+$\operatorname{SN}(\rho\otimes\sigma)=r\operatorname{SN}(\sigma)$ for the
+saturating states, a qutrit state with equal $G$-concurrence roofs $3/7$
+whose tensor square has $G$-concurrence zero, exact negativity optimization
+on optimal faces, and the exact regularized collective coupling capacity.
+Lean~4 proves the qubit frontier, its sharpness, the optimal stability
+constant, the general prescribed-Schmidt bound, the fixed-marginal reduction
+and the optimizer-rank ceilings for actual complex matrices; the equality
+classifications and the entanglement consequences are written proofs with
+exact certificates and numerical checks.
+\end{abstract}
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduction}\label{sec:intro}
+
+\subsection{The question in plain language}
+A two-qubit state $\rho$ can be used to teleport a qubit. How well it does so
+is measured by its \emph{fully entangled fraction} $f(\rho)$, the largest
+overlap $\bra e\rho\ket e$ with a maximally entangled vector $e$; the optimal
+fidelity of standard teleportation with $\rho$ is $(2f+1)/3$. Another, geometric, description of
+the same state is its \emph{steering ellipsoid}: the set of Bloch vectors
+to which Bob can steer Alice by measuring his qubit. The ellipsoid lies in
+the Bloch ball, so a centre far from the origin leaves room only for a small
+ellipsoid. Milne, Jennings, Jevtic and Rudolph
+asked how far the centre alone constrains entanglement, and conjectured that
+\[
+ f(\rho)\le 1-\frac c2,\qquad c=\text{length of the centre},
+\]
+with equality possible for every $c$ \cite{milne2014}. This inequality is now
+known (Section~\ref{sec:known}). The questions answered here are the next
+ones. \emph{Which states attain the bound? What does the bound become when
+Bob's marginal is also known? How close to the extremal states must a state
+be when it nearly attains the bound? What survives in higher dimensions, and
+what do the saturating states do under tensor products?}
+
+\subsection{The answer in brief}
+For two qubits, knowing Bob's Bloch length $b$ as well as $c$ gives an exact
+frontier $\Fe(c,b)$, which touches $1-c/2$ at exactly one value of $b$; there
+the state is unique up to local unitaries. Nearly attaining $1-c/2$ forces
+$b$ close to that value, with the best possible constant. In every dimension
+the bound comes from one inequality comparing a target vector's Schmidt
+coefficients with the two marginal spectra of the state, and the states
+attaining it have a rigid normal form: a fixed coherent vector plus a residual
+supported on a rectangle of product vectors that the coherent vector does not
+see. That normal form forces maximal Schmidt number, multiplicative behaviour
+under tensor products and an exact convex-roof entanglement value. An
+explicit qutrit example shows that the multiplicativity can fail completely
+for states that only share the convex-roof property.
+
+\subsection{Main results}
+Notation is fixed in Section~\ref{sec:defs}; $\rho_B$ is Bob's marginal, $b$
+its Bloch length and $\Fe(c,b)=[\sqrt{1+b}+\sqrt{(1-c)(1-b)}]^2/4$.
+\begin{enumerate}[leftmargin=2em,itemsep=3pt]
+\item \textbf{Sharp centre--marginal frontier}
+(Theorem~\ref{thm:joint}). If $b<1$ then $f(\rho)\le\Fe(c,b)$, and every pair
+$0\le c\le1$, $0\le b<1$ is attained by an explicit state of rank at most two. The exact
+identity $1-c/2-\Fe(c,b)=[\sqrt{1-b}-\sqrt{(1-c)(1+b)}]^2/4$ shows that
+$\Fe\le1-c/2$ with equality if and only if $b=c/(2-c)$. At $b=0$ the
+frontier is Milne et al.'s canonical-state theorem. If $b=1$, then
+$f=(1+c)/4$.
+\item \textbf{All equality cases} (Theorem~\ref{thm:joint-equality} and
+Corollary~\ref{cor:original-equality}). Each frontier value is attained by
+exactly one local-unitary orbit. For each $c$, the states with $f=1-c/2$
+form one orbit: pure maximally entangled states at $c=0$, rank-two states
+for $0<c<1$, pure product states at $c=1$. No full-rank state attains the
+bound.
+\item \textbf{Optimal stability} (Theorem~\ref{thm:optimal-stability}). For
+every two-qubit state,
+$((2-c)b-c)^2\le4(1+\sqrt{1-c})^2\,(1-c/2-f(\rho))$, and for each $c$ this
+constant is the best possible.
+\item \textbf{Prescribed-Schmidt overlap bound in every dimension}
+(Theorem~\ref{thm:weighted}). For a state on $\C^d\otimes\C^d$ with
+decreasing marginal spectra $\alpha,\beta$ and a unit target with
+decreasing Schmidt amplitudes $s$,
+$\bra x\tau\ket x\le\bigl(\sum_is_i\sqrt{\min(\alpha_i,\beta_i)}\bigr)^2$,
+sharply. Filtering gives a sharp bound in the canonical Alice spectrum and
+the physical Bob spectrum (Theorem~\ref{thm:canonical-spectra}).
+\item \textbf{Complete saturation normal form}
+(Section~\ref{sec:spectral-saturation}). The states attaining the
+marginal-spectrum bound $f_d\le\frac1d(\sum_i\sqrt{\min(\alpha_i,\beta_i)})^2$
+are exactly $\ket{z_m}\bra{z_m}+R$ with $R\succeq0$ supported on an explicit
+rectangle, with no simplicity or rank assumption. The same set maximizes the
+overlap with every full-Schmidt-rank target orbit. Consequences: maximal
+Schmidt number, fixed partial-transpose inertia, one-copy distillability,
+exact $G$-concurrence and quasidistillation.
+\item \textbf{Fixed marginal matrices} (Sections~\ref{sec:reduction}
+to~\ref{sec:cap-stability}). An exact reduction of pure-target overlap
+optimization with arbitrary, possibly singular or rectangular marginals; a
+sharp rank bound for \emph{every} optimizer, $\rank M\le1+\lfloor d^2/4\rfloor$
+for full-Schmidt square targets; a low-rank optimizer for every target; and a
+unique coherent core with a complete description of the optimizer face.
+\item \textbf{Ellipsoid refinements} (Sections~\ref{sec:shape}
+and~\ref{sec:purity-envelope}). An explicit quartic in signed ellipsoid
+invariants gives the exact filtering-orbit value; the exact envelope
+$H(c,\tr Q)$ in the centre and the sum of squared semiaxes; low-branch
+rigidity; and the exact success-probability frontier for filtering.
+\item \textbf{Tensor laws and a counterexample}
+(Sections~\ref{sec:universal-tensor} and~\ref{sec:flat-roof-counterexample}).
+Every saturator multiplies the Schmidt number of every bipartite second
+factor by $r=\min(\rank\rho_A,\rank\rho_B)$, and full-rank saturators factor
+both $G$-concurrence roofs. A rank-three qutrit state with
+$G=G^{\rm a}=3/7$ has $G(\omega\otimes\omega)=0$.
+\item \textbf{Negativity and collective capacity}
+(Sections~\ref{sec:negativity-face} and~\ref{sec:collective-capacity}). On
+aligned optimal faces the negativity is strictly convex in the residual; its
+unique minimum solves a classical transportation problem, with exact
+endpoints in every even dimension. Prescribed-target coupling across copies
+is strictly supermultiplicative when the marginals differ, with the exact
+Chernoff-type rate $\lim_nC_n^{1/n}=\kappa^2$; in a two-qubit example the
+values are $3/5$, $(15+3\sqrt{21})/50$ and $\sqrt{21}/5$.
+\end{enumerate}
+
+\subsection{Prior work, priority and what is new}\label{sec:priority}
+\paragraph{Earlier public work (note dated 3 November 2026).}
+The inequality $f(\rho)\le1-c/2$ and its sharpness at every centre length are
+not results of this paper. The Omega Institute's public repository
+\texttt{the-omega-institute/trureturing} records a claimed Lean proof of
+Conjecture~2 of~\cite{milne2014} for every two-qubit density matrix, with an
+attaining state for every $c$; its dossier for issue \#14206 was committed on
+8 October 2026 at 12:27:48 UTC~\cite{publicproof}. That proof also gives the
+operator inequality $\rho\preceq(2-c)(\Id\otimes\rho_B)$. This repository's
+package \texttt{steering-bounds}, first committed on 29 October 2026, proves
+the same bound with sharpness from the canonical spectral bound
+$\lambda_{\max}(\sigma)\le1-c/2$~\cite{steeringbounds}, and the package
+\texttt{steering-joint-range} includes those Lean modules
+unchanged~\cite{jointrange}. \emph{We claim no priority for the bound, for its
+attaining family or for the operator inequality.} Section~\ref{sec:known}
+recalls the mechanism, and this package includes a kernel replay of the Omega
+Lean proof with attribution.
+
+\paragraph{What goes beyond these records.}
+As read on 3 November 2026, the Omega dossier lists the characterization of
+the states with $f=1-c/2$ and higher-dimensional analogues as open, and
+neither the dossier nor the two earlier packages of this repository
+contains the joint frontier $\Fe(c,b)$, an equality classification, a
+stability estimate, or any of results~4--9 above. These are the new parts
+of this paper. A bounded primary-source search, described in
+Section~\ref{sec:novelty}, did not find them elsewhere; this does not
+establish priority.
+
+\paragraph{Credited ingredients.}
+Milne et al.\ proved the canonical-state value $(1+\sqrt{1-c})^2/4$, the
+case $b=0$ of the frontier~\cite{milne2014}. The steering-ellipsoid framework
+and the formula for the centre are due to Jevtic, Pusey, Jennings and
+Rudolph~\cite{ellipsoid2014} and Milne et al.~\cite{milnegeometry}.
+Klyachko proved the sharp maximal-eigenvalue value
+$\sum_i\min(\alpha_i,\beta_i)$ and a low-rank coupling attaining
+it~\cite{klyachko}, and the coherent-minimum construction is Wolf's
+quantum-coupling lemma~\cite{wolf}. The canonical filtering-orbit value is
+equivalent to a qubit-channel result of Pal, Bandyopadhyay and
+Ghosh~\cite{pal}; the purity envelope uses Bravyi's compatibility
+inequalities~\cite{bravyi}; positive equality of the two $G$ roofs is
+characterized by Gour and Guo~\cite{gourguo}; quasidistillation of classical
+residuals is due to Baio et al.~\cite{baio}; coupling capacity is due to
+Skalski, Todorov and Turowska~\cite{capacity2025}; the nilpotent pencil of
+the counterexample is classical. Ducuara, Susa and Skrzypczyk use centre
+bounds of this type for hidden correlations~\cite{ducuara}. Section~\ref{sec:novelty}
+gives the full list.
+
+\subsection{What is verified, and how}
+\begin{center}\small
+\begin{tabular}{p{.20\textwidth}p{.72\textwidth}}\toprule
+Status & Results\\\midrule
+Lean proof for actual complex matrices &
+The replayed Omega theorem (credited); the prescribed-Schmidt bound in every
+dimension and its coherent-minimum attainer; the qubit frontier for $b<1$,
+the bound $(1+c)/4$ at $b=1$, and attaining states for every pair; the
+stability bound and the optimality of $K(c)$, including $c=0$; the
+fixed-marginal reduction with both optimizer transfers; optimizer
+complementarity, the marginal-rank inequality and the rank ceilings for
+every optimizer; the matrix identities and the density-matrix properties of
+the qutrit counterexample; scalar certificates for the deficit identity,
+cap rigidity, the filter frontier and the purity envelope.\\
+Exact certificates &
+SymPy and rational arithmetic for the nine-term ensemble and minors of the
+counterexample, the explicit examples, the finite-copy capacities and the
+symbolic identities (Appendix~\ref{sec:checks}).\\
+Written proofs &
+The equality classifications, the saturation normal form and its
+entanglement consequences, low-rank existence, the unique core, the quartic
+and purity envelopes as statements about states, the tensor laws, the
+negativity theorems and the asymptotic capacity formula.\\\bottomrule
+\end{tabular}
+\end{center}
+Floating-point and solver checks are used only to look for errors.
+Appendix~\ref{sec:formal} states the formal scope precisely.
+
+\subsection{How to read this paper}
+Section~\ref{sec:defs} fixes notation and Section~\ref{sec:known} recalls
+the known bound. Sections~\ref{sec:weighted}--\ref{sec:equality} contain
+the two-qubit results in the order in which they are proved: the general
+overlap inequality, its filtered form, the frontier, stability and the
+equality cases. A reader interested only in two qubits can stop there.
+Sections~\ref{sec:shape}--\ref{sec:purity-envelope} refine the frontier by
+the shape of the ellipsoid. Sections~\ref{sec:reduction}--\ref{sec:robust-sn}
+treat fixed marginals and saturation in every dimension, and
+Sections~\ref{sec:negativity-face}--\ref{sec:collective-capacity} the
+entanglement consequences. The appendices contain the exact examples, the
+computational checks and the formal coverage.
+
+\section{Setting and notation}\label{sec:defs}
+For a density matrix on $\C^d\otimes\C^d$, define
+\[
+ f_d(\rho)=\max_{e\ \mathrm{maximally\ entangled}}\bra e\rho\ket e.
+\]
+A maximally entangled unit vector has both reduced density matrices equal to
+$\Id/d$. The set of such vectors is compact, so this maximum exists. We write
+$f=f_2$.
+
+For two qubits use the Pauli expansion
+\[
+ \rho=\frac14\left(\Id\otimes\Id+\bm a\cdot\bm\sigma\otimes\Id+
+ \Id\otimes\bm b\cdot\bm\sigma+\sum_{ij}T_{ij}\sigma_i\otimes\sigma_j\right).
+\]
+Set $b=|\bm b|$. If $b<1$, Alice's steering-ellipsoid centre is
+\[
+ \bm c=\frac{\bm a-T\bm b}{1-b^2},\qquad c=|\bm c|.
+\]
+For $b=1$, positivity forces $\rho=\rho_A\otimes\ket\beta\bra\beta$; its
+steering set is the single point $\bm a$, and we use $\bm c=\bm a$. This
+singular convention matters: it is not the limit of the preceding quotient
+along all state families (Section~\ref{sec:equality}).
+
+If $\rho_B>0$, define the canonical state
+\begin{equation}\label{eq:whiten}
+ \sigma=\bigl(\Id\otimes(d\rho_B)^{-1/2}\bigr)\rho
+          \bigl(\Id\otimes(d\rho_B)^{-1/2}\bigr).
+\end{equation}
+Then $\sigma_B=\Id/d$, $\tr\sigma=1$, and
+\[
+ \rho=(\Id\otimes K)\sigma(\Id\otimes K^\dagger),\qquad
+ K=\sqrt{d\rho_B},\quad\tr K^\dagger K=d.
+\]
+For qubits, $\sigma_A=(\Id+\bm c\cdot\bm\sigma)/2$. More generally an
+arbitrary invertible $K$ with $\tr K^\dagger K=d$ produces a normalized state
+from a canonical $\sigma$, with $\rho_B=KK^\dagger/d$. These conventions
+agree with Milne et al.~\cite{milne2014,ellipsoid2014}. No singular inverse
+is used when the Bob marginal is rank deficient.
+
+\section{The known bound and how it is proved}\label{sec:known}
+\begin{theorem}[Milne--Jennings--Jevtic--Rudolph Conjecture~2; prior work]
+For every two-qubit density matrix, $f(\rho)\le1-c/2$, and for every
+$c\in[0,1]$ some state attains equality.
+\end{theorem}
+This theorem is not a result of this paper (Section~\ref{sec:priority}). We
+recall the mechanism of the Omega proof~\cite{publicproof}, because the new
+results refine each of its steps. First,
+\begin{equation}\label{eq:canonical-operator}
+ \sigma\preceq\left(1-\frac c2\right)\Id
+ \quad\text{whenever}\quad\sigma_B=\frac{\Id}{2}.
+\end{equation}
+For a test vector $x$ with $t=\bra x\sigma\ket x>0$, subtract the positive
+rank-one component $\sigma xx^\dagger\sigma/t$. The two marginals of that
+rank-one operator have equal nonzero spectra, positivity bounds their Bloch
+radii by their traces, and the triangle inequality for Alice's Bloch vector
+together with Cauchy--Schwarz proves~\eqref{eq:canonical-operator}.
+Whitening and reversing the filter transports this to
+\begin{equation}\label{eq:public-operator}
+ \rho\preceq(2-c)(\Id\otimes\rho_B).
+\end{equation}
+At $b=1$ the proof separately shows $\rho\preceq\Id\otimes\rho_B$, without
+dividing by $\det\rho_B$. A maximally entangled vector has expectation $1/2$
+in $\Id\otimes\rho_B$, which gives the bound. The \texttt{steering-bounds}
+package reaches the same conclusion from~\eqref{eq:canonical-operator} and
+the identity $\|(\Id\otimes F)\Phi\|^2=\tr F^2/2$~\cite{steeringbounds}.
+
+The Omega Lean source at commit \texttt{609e95e} (file SHA-256
+\texttt{12103d83\ldots e3ab1d}) states the theorem for actual positive
+semidefinite complex $4\times4$ matrices of trace one, with the centre
+defined by the quotient above and the singular branch $\bm c=\bm a$, and the
+fully entangled fraction defined as a real supremum over unit vectors whose
+two reduced states are $\Id/2$. Its proof bodies replay unchanged in this
+package's Lean project (Appendix~\ref{sec:formal}). We read the proof and
+found no definitional mismatch or extra assumption.
+
+The proof strategy behind every new result is the same extraction step,
+with the Schmidt coefficients of the target kept rather than maximized away:
+for $t=\bra x\tau\ket x>0$ and $w=\tau x/\sqrt t$,
+\[
+ \tau-\ket w\bra w\succeq0,\qquad\ip xw=\sqrt t,
+\]
+so that both marginals of $\ket w\bra w$ are dominated by those of $\tau$.
+Section~\ref{sec:weighted} turns this into a sharp inequality, and the
+equality analysis of that inequality yields the classifications.
+
+\input{sections/weighted_overlap.tex}
+\input{sections/canonical_spectrum.tex}
+\input{sections/qubit_frontier.tex}
+\input{sections/optimal_stability.tex}
+\input{sections/equality.tex}
+\input{sections/shape.tex}
+\input{sections/purity_envelope.tex}
+\input{sections/low_branch_rigidity.tex}
+\input{sections/additional_theorems.tex}
+\input{sections/saturation_classification.tex}
+\input{sections/robust_schmidt_witness.tex}
+\input{sections/negativity_theorems.tex}
+\input{sections/tensor_entanglement.tex}
+\input{sections/collective_capacity.tex}
+
+\section{Prior art and novelty assessment}\label{sec:novelty}
+The search reviewed the original ellipsoid papers and thesis, the Omega
+dossier and Lean source, this repository's earlier steering packages,
+fixed-marginal entanglement families, Klyachko's marginal theorems, Wolf's
+quantum coupling lemma, Bravyi's two-qubit compatibility theorem, the
+quantum-coupling duality literature and the $G$-concurrence equality
+literature~\cite{milne2014,milnegeometry,thesis,publicproof,steeringbounds,jointrange,adesso,baio,klyachko,wolf,bravyi,cole2023,capacity2025,gourguo,zhu}.
+Targeted searches covered prescribed Schmidt overlap, equality in marginal
+spectral bounds, pure-target quantum coupling optimization, optimal ranks,
+steering-ellipsoid invariants and local-filter success probabilities. It is a
+bounded search, not a certificate of priority.
+
+\paragraph{Results credited to earlier work.}
+The inequality $1-c/2$, its attaining family and the operator
+inequality~\eqref{eq:public-operator} are in the Omega record, and the
+inequality with sharpness is in \texttt{steering-bounds}. Klyachko's
+Theorem~6.3.1 gives the sharp maximal-eigenvalue value
+$L=\sum_i\min(\alpha_i,\beta_i)$; his Theorem~6.4.1 gives a coupling of rank
+at most the larger marginal rank attaining that spectral norm. Wolf's
+Lemma~1.44 contains the coherent-minimum vector plus product residual. The
+general positive completion of a submarginal coupling appears in the
+coupling-capacity literature. The rank-two coherent-plus-product qubit family
+occurs in earlier fixed-marginal entanglement work. The canonical
+filtering-orbit value is equivalent to a qubit-channel singlet-fraction
+result~\cite{pal}. The signed ellipsoid quartic builds on established
+determinant algebra. The purity envelope uses Bravyi's compatibility
+inequalities; the new step is their exact constrained optimization and the
+rigidity statement. Baio et al.\ give an acyclic-support filtering mechanism
+for classical residuals~\cite{baio}. Gour and Guo characterize positive
+equality between $G$-concurrence and its assistance using nilpotent support
+spaces~\cite{gourguo}; the determinant calculation here applies that
+mechanism to the saturation class. Schmidt-number witnesses are established
+tools~\cite{terhalhorodecki,sentis}. Zhu, Bao, Li, Zhao and Fei give other
+analytic upper bounds on the fully entangled fraction of $d\otimes d$
+states~\cite{zhu}. These credits stand even where a special formula was
+derived independently.
+
+\paragraph{Additional statements.}
+The candidate contributions are the joint $(c,b)$ frontier with its equality
+classification and optimal stability constant; the prescribed-Schmidt
+spectral theorem; the all-dimensional normal form for its saturators,
+including degeneracies, and its equivalence with the spectral-norm
+maximizers; the fixed-target reduction and the low-rank optimizer with a
+short separable remainder; the unique-core and optimizer-face theorem and the
+rank bound for every optimizer; the centre--purity envelope with its
+low-branch analysis; the universal tensor multiplier and factorization
+theorems for the saturation support; the qutrit flat-roof tensor collapse
+and its filtering obstruction; strict convexity and exact negativity
+optimization on the stated faces; and the collective fixed-target capacity
+formula and regularization. Klyachko raised the problem of describing the
+spectral-norm maximizers after his Theorem~6.3.1; the normal form answers
+that classification question, but the search does not establish that no
+equivalent later classification exists. The rank-$D$ statement here
+optimizes an arbitrary prescribed pure target, a stronger requirement than
+maximizing the spectral norm over the target as well. The rectangular
+coupling-capacity calculation identifies a discrepancy in the displayed
+statement of Theorem~3.7(ii) of~\cite{capacity2025} for $n<m$; it does not
+affect that paper's square-dimensional statements or its duality theorem.
+
+\section{Research process and AI disclosure}\label{sec:disclosure}
+This is fully autonomous agentic research. Autonomous AI research agents
+produced the results, the written proofs, the Python checkers, the Lean
+development and an earlier version of this text in earlier sessions,
+starting from Conjecture~2 of~\cite{milne2014} and an audit of the public
+Omega proof. The records of those sessions do not name the system used; the
+audits and reviews they describe are internal AI-assisted reviews within the
+same workflow, not peer review, and they are not included. Opus~5.5 by
+Anthropic used with Claude Code assessed the package for this release: it
+compared the results with the Omega dossier and Lean source and with this
+repository's \texttt{steering-bounds} and \texttt{steering-joint-range}
+packages to determine what is new, read the proofs of the frontier, the
+equality classification, the stability theorem, the saturation normal form
+and the Schmidt-number tensor law, reran all eighteen checkers from a copy,
+extended an independent checker with tests in dimensions three and four,
+rebuilt the Lean project from source with a whole-project axiom audit,
+checked the formal statements against actual density matrices, corrected
+the Lake configuration so that the project builds as documented,
+reorganized and edited the manuscript for readability, and integrated the
+package into the repository. The mathematical statements were not changed.
+Dev D. Goyal is responsible for publication. The work has not been
+externally peer reviewed.
+
+\appendix
+\input{sections/appendix_checks.tex}
+\input{sections/appendix_formal.tex}
+
+\begingroup\small
+\begin{thebibliography}{99}
+\bibitem{milne2014} A. Milne, D. Jennings, S. Jevtic and T. Rudolph, \emph{Quantum correlations of two-qubit states with one maximally mixed marginal}, Phys. Rev. A 90, 024302 (2014). \href{https://arxiv.org/abs/1404.3951}{arXiv:1404.3951}.
+\bibitem{ellipsoid2014} S. Jevtic, M. F. Pusey, D. Jennings and T. Rudolph, \emph{Quantum Steering Ellipsoids}, Phys. Rev. Lett. 113, 020402 (2014). \href{https://arxiv.org/abs/1303.4724}{arXiv:1303.4724}.
+\bibitem{milnegeometry} A. Milne, S. Jevtic, D. Jennings, H. Wiseman and T. Rudolph, \emph{Quantum steering ellipsoids, extremal physical states and monogamy}, New J. Phys. 16, 083017 (2014). \href{https://arxiv.org/abs/1403.0418}{arXiv:1403.0418}.
+\bibitem{thesis} A. Milne, \emph{Quantum steering ellipsoids}, PhD thesis, Imperial College London (2016). \href{https://doi.org/10.25560/44111}{doi:10.25560/44111}.
+\bibitem{publicproof} The Omega Institute, \emph{The fully entangled fraction is at most one minus half the steering-ellipsoid centre}, problem dossier for issue \#14206 and Lean module \nolinkurl{D5/S3/Quantum/Entanglement/SteeringEllipsoidFullyEntangledFraction.lean}, public repository \nolinkurl{the-omega-institute/trureturing}; dossier committed 8 October 2026 (\href{https://github.com/the-omega-institute/trureturing/blob/49e63cc2124d91dc82b3e463c6a0fe9b2cc2a6dc/Problems/milne-jennings-jevtic-rudolph-2014-fully-entangled-fraction.md}{commit 49e63cc}); Lean source read at commit 609e95e447fb1045172423c4d7bcf2a6e321eef0. Apache License 2.0.
+\bibitem{steeringbounds} D. D. Goyal, \emph{Exact three-setting correlation bounds at fixed steering centre}, package \texttt{papers/physics/steering-bounds}, \href{https://github.com/dvgyl/math-and-theory/tree/main/papers/physics/steering-bounds}{github.com/dvgyl/math-and-theory} (2026), section ``Fully entangled fraction''.
+\bibitem{jointrange} D. D. Goyal, \emph{The full correlation range, filtering frontier and volume trade-off at fixed steering centre}, package \texttt{papers/physics/steering-joint-range}, \href{https://github.com/dvgyl/math-and-theory/tree/main/papers/physics/steering-joint-range}{github.com/dvgyl/math-and-theory} (2026).
+\bibitem{ducuara} A. F. Ducuara, C. E. Susa and P. Skrzypczyk, \emph{Locally inaccessible hidden quantum correlations}, Phys. Rev. A 110, 022435 (2024). \href{https://arxiv.org/abs/2406.03945}{arXiv:2406.03945}.
+\bibitem{klyachko} A. Klyachko, \emph{Quantum marginal problem and representations of the symmetric group}, Theorems 6.3.1 and 6.4.1 (2004). \href{https://arxiv.org/abs/quant-ph/0409113}{arXiv:quant-ph/0409113}.
+\bibitem{wolf} M. M. Wolf, \emph{Mathematical Introduction to Quantum Information Processing}, Lemma 1.44 (Quantum coupling), lecture notes, Technical University of Munich. \href{https://mediatum.ub.tum.de/doc/1706981/1706981.pdf}{mediatum.ub.tum.de/doc/1706981}.
+\bibitem{bravyi} S. Bravyi, \emph{Requirements for compatibility between local and multipartite quantum states}, Quantum Inf. Comput. 4, 12--26 (2004), Eq. (2). \href{https://arxiv.org/abs/quant-ph/0301014}{arXiv:quant-ph/0301014}.
+\bibitem{adesso} G. Adesso, F. Illuminati and S. De Siena, \emph{Characterizing entanglement with global and marginal entropic measures}, Phys. Rev. A 68, 062318 (2003). \href{https://arxiv.org/abs/quant-ph/0307192}{arXiv:quant-ph/0307192}.
+\bibitem{baio} G. Baio, D. Chru\'sci\'nski, P. Horodecki, A. Messina and G. Sarbicki, \emph{Bounds on bipartite entanglement from fixed marginals}, Phys. Rev. A 99, 062312 (2019), Sections II--III. \href{https://arxiv.org/abs/1904.07650}{arXiv:1904.07650}.
+\bibitem{pal} R. Pal, S. Bandyopadhyay and S. Ghosh, \emph{Entanglement sharing through noisy qubit channels: One-shot optimal singlet fraction}, Phys. Rev. A 90, 052304 (2014), Theorem 1 and Eq. 17. \href{https://arxiv.org/abs/1401.1388}{arXiv:1401.1388}.
+\bibitem{zhu} X.-N. Zhu, G. Bao, M. Li, M.-J. Zhao and S.-M. Fei, \emph{On fully entangled fraction of arbitrary $d\otimes d$ quantum states} (2026). \href{https://arxiv.org/abs/2602.21471}{arXiv:2602.21471}.
+\bibitem{parthasarathy2003} K. R. Parthasarathy, \emph{Extremal quantum states in coupled systems} (2003). \href{https://arxiv.org/abs/quant-ph/0307182}{arXiv:quant-ph/0307182}.
+\bibitem{cole2023} S. Cole, M. Eckstein, S. Friedland and K. \.{Z}yczkowski, \emph{Quantum optimal transport}, Math. Phys. Anal. Geom. 26, 14 (2023), Theorem 3.2 and Appendix B.3. \href{https://arxiv.org/abs/2105.06922}{arXiv:2105.06922}.
+\bibitem{capacity2025} A. Skalski, I. G. Todorov and L. Turowska, \emph{Coupling capacity in C*-algebras}, Proc. Roy. Soc. Edinburgh Sect. A 155 (2025), 81--103, Section 3. \href{https://doi.org/10.1017/prm.2023.81}{doi:10.1017/prm.2023.81}; \href{https://arxiv.org/abs/2211.02401}{arXiv:2211.02401}.
+\bibitem{gourguo} G. Gour and Y. Guo, \emph{Monogamy of entanglement without inequalities}, Quantum 2, 81 (2018), Theorem 7. \href{https://doi.org/10.22331/q-2018-08-13-81}{doi:10.22331/q-2018-08-13-81}.
+\bibitem{terhalhorodecki} B. M. Terhal and P. Horodecki, \emph{A Schmidt number for density matrices}, Phys. Rev. A 61, 040301 (2000). \href{https://arxiv.org/abs/quant-ph/9911117}{arXiv:quant-ph/9911117}.
+\bibitem{sentis} G. Sent\'is, C. Eltschka, O. G\"uhne, M. Huber and J. Siewert, \emph{Quantifying entanglement of maximal dimension in bipartite mixed states}, Phys. Rev. Lett. 117, 190502 (2016). \href{https://arxiv.org/abs/1605.09783}{arXiv:1605.09783}.
+\bibitem{nielsen2022} F. Nielsen, \emph{Revisiting Chernoff information with likelihood ratio exponential families}, Entropy 24(10), 1400 (2022). \href{https://arxiv.org/abs/2207.03745}{arXiv:2207.03745}.
+\bibitem{yuechitambar2019} Q. Yue and E. Chitambar, \emph{The zero-error entanglement cost is highly non-additive}, J. Math. Phys. 60, 112204 (2019). \href{https://arxiv.org/abs/1808.10516}{arXiv:1808.10516}.
+\bibitem{vidalwerner2002} G. Vidal and R. F. Werner, \emph{A computable measure of entanglement}, Phys. Rev. A 65, 032314 (2002). \href{https://arxiv.org/abs/quant-ph/0102117}{arXiv:quant-ph/0102117}.
+\end{thebibliography}
+\endgroup
+\end{document}

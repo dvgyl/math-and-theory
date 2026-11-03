@@ -3596,6 +3596,70 @@
           ]
         ]
       }
+    },
+    {
+      "id": "entangled-fraction-frontier",
+      "discipline": "Mathematical physics",
+      "area": "Quantum information",
+      "title": "Saturating the steering-centre bound on the fully entangled fraction: sharp frontier, equality cases and tensor laws",
+      "kind": "Sharp bounds and classification theorems with Lean proofs of the frontier, stability constant and rank ceilings, exact certificates and written proofs",
+      "significance_rank": 395,
+      "keywords": [
+        "fully entangled fraction",
+        "teleportation fidelity",
+        "steering ellipsoids",
+        "two-qubit states",
+        "quantum marginal problem",
+        "Schmidt number",
+        "G-concurrence"
+      ],
+      "summary": "For two-qubit states with steering-ellipsoid centre length c and Bob Bloch length b < 1, the fully entangled fraction satisfies f ≤ [√(1+b) + √((1−c)(1−b))]²/4, sharply for every pair; this equals the known bound 1 − c/2 exactly when b = c/(2−c). Each frontier value is attained by one local-unitary orbit, the states with f = 1 − c/2 form one orbit for each c (rank two for 0 < c < 1), and the best constant in ((2−c)b − c)² ≤ K(1 − c/2 − f) is 4(1+√(1−c))². In every dimension a prescribed-Schmidt overlap bound in the two marginal spectra is sharp, and its saturators have a complete normal form. Consequences include optimizer-rank bounds for fixed marginals, ellipsoid-shape refinements, the tensor law SN(ρ⊗σ) = r·SN(σ) for saturators, a qutrit state with G = Gᵃ = 3/7 whose tensor square has G = 0, negativity optimization on optimal faces and the exact collective coupling capacity. The bound f ≤ 1 − c/2 itself is prior work.",
+      "formal_scope": "Lean 4.32.0 proves, for actual complex matrices, the joint frontier f ≤ [√(1+b) + √((1−c)(1−b))]²/4 for every two-qubit density matrix with b < 1, the bound f ≤ (1+c)/4 at b = 1, attaining density matrices for every pair, the stability bound and the optimality of its constant, the prescribed-Schmidt overlap bound in every dimension, the fixed-marginal reduction, optimizer complementarity and the rank ceilings for every optimizer, and the matrix facts of the qutrit counterexample; it also replays the Omega Institute's proof of f ≤ 1 − c/2 with attribution, and a whole-project audit covers all 620 declarations. The equality classifications, the saturation normal form and its entanglement consequences, the ellipsoid envelopes as statements about states, the tensor laws, the negativity theorems and the asymptotic capacity formula are conventional proofs with exact certificates and numerical checks.",
+      "source": "Milne, Jennings, Jevtic and Rudolph, Quantum correlations of two-qubit states with one maximally mixed marginal, Phys. Rev. A 90, 024302 (2014), arXiv:1404.3951, Conjecture 2 (f ≤ 1 − c/2) and Theorem 3 (the canonical case b = 0). The bound f ≤ 1 − c/2 and its sharpness are prior work: the Omega Institute's public repository records a claimed Lean proof committed on 8 October 2026 (issue #14206), and this repository's steering-bounds package proves it; no priority is claimed for it. Klyachko's marginal theorems, Wolf's quantum-coupling lemma, Bravyi's compatibility theorem and Gour and Guo's G-roof characterization are credited. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/physics/entangled-fraction-frontier/README.md",
+      "paper": "papers/physics/entangled-fraction-frontier/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/physics/entangled-fraction-frontier"
+      },
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Which two-qubit states attain the steering-centre bound f ≤ 1 − c/2 on the fully entangled fraction, and what is the sharp bound given Bob's marginal as well",
+        "posed_by": "Milne, Jennings, Jevtic and Rudolph, Phys. Rev. A 90, 024302 (2014), Conjecture 2 and Theorem 3; the characterization of equality states is listed as open in the Omega Institute's record for issue #14206",
+        "problem_url": "https://arxiv.org/abs/1404.3951",
+        "status": "Equality states classified and the joint (c, b) frontier determined; the bound f ≤ 1 − c/2 itself is prior work",
+        "claim": "For two-qubit states with b < 1, f ≤ [√(1+b) + √((1−c)(1−b))]²/4 sharply; for each c the states with f = 1 − c/2 form one local-unitary orbit, and the optimal stability constant is 4(1+√(1−c))².",
+        "title_tag": "Fully Entangled Fraction at Fixed Steering Centre: Equality",
+        "description": "Sharp joint bound on the two-qubit fully entangled fraction in steering centre and Bob marginal, all equality cases, optimal stability and saturation in every dimension.",
+        "queries": [
+          "fully entangled fraction steering ellipsoid centre",
+          "Milne conjecture fully entangled fraction equality",
+          "teleportation fidelity steering ellipsoid bound",
+          "fully entangled fraction marginal spectra bound",
+          "quantum marginal problem maximal eigenvalue maximizers",
+          "Schmidt number tensor product multiplicativity",
+          "G-concurrence flat roof tensor product",
+          "fixed marginals pure target overlap optimal coupling"
+        ],
+        "faq": [
+          [
+            "What does this paper determine?",
+            "For two-qubit states it gives the sharp bound on the fully entangled fraction in terms of both the steering-ellipsoid centre length c and Bob's Bloch length b, classifies all states attaining it and the known bound 1 − c/2 up to local unitaries, and finds the optimal stability constant. In every dimension it proves a sharp overlap bound in the two marginal spectra and a complete normal form for the states attaining it, with tensor, negativity and capacity consequences."
+          ],
+          [
+            "Is the bound f ≤ 1 − c/2 new here?",
+            "No. It is Conjecture 2 of Milne, Jennings, Jevtic and Rudolph. The Omega Institute's public repository records a claimed Lean proof committed on 8 October 2026, and this repository's steering-bounds package also proves it. No priority is claimed for it; the package includes a replay of the Omega Lean proof with attribution."
+          ],
+          [
+            "Which states attain 1 − c/2?",
+            "For each c exactly one local-unitary orbit: pure maximally entangled states at c = 0, a rank-two state (|χ⟩⟨χ| + c(1−c)|01⟩⟨01|)/(2−c) with χ = |00⟩ + (1−c)|11⟩ for 0 < c < 1, and pure product states at c = 1. Bob's Bloch length is then c/(2−c)."
+          ],
+          [
+            "Is the result formally verified?",
+            "Lean 4 proves the joint frontier, its sharpness for every pair, the stability bound and the optimality of its constant, the general overlap bound and the optimizer-rank ceilings for actual complex matrices, with a whole-project axiom audit. The equality classifications, the saturation normal form and the tensor, negativity and capacity theorems are written proofs with exact certificates and numerical checks."
+          ]
+        ]
+      }
     }
   ],
   "research_notes": [

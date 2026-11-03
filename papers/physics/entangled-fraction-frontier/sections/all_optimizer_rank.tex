@@ -1,0 +1,183 @@
+% This standalone fragment does not overwrite the unique-core discussion.
+\section{A sharp rank bound for every pure-target optimizer}
+\label{sec:all-optimizer-rank}
+
+The existence of a low-rank optimizer does not constrain the rank of other
+points in an optimal face. The following theorem supplies a sharp bound for
+every optimizer, including singular prescribed marginals.
+
+For positive integers $m,n$ and $1\le k\le\min(m,n)$ define
+\[
+ N=m+n-k,\qquad
+ R_{m,n,k}=\max\{rs:0\le r\le m,\ 0\le s\le n,\ r+s\le N,
+                  \ r,s\text{ integers}\}.
+\]
+The elementary closed form is
+\[
+ R_{m,n,k}=
+ \begin{cases}
+ n(m-k),&m-n\ge k,\\
+ m(n-k),&n-m\ge k,\\
+ \lfloor(m+n-k)^2/4\rfloor,&|m-n|\le k.
+ \end{cases}
+\]
+The formulas coincide at their shared boundaries.
+
+\begin{theorem}[Sharp rank bound for all optimizers]
+\label{thm:all-optimizer-rank}
+Fix arbitrary density matrices $A,B$ on $\mathbb C^m,\mathbb C^n$ and a
+unit pure target $x$ of Schmidt rank $k$. Every coupling maximizing
+$\langle x,\rho x\rangle$ with these actual marginals obeys
+\[
+                  \boxed{\operatorname{rank}\rho\le1+R_{m,n,k}.}
+\]
+If the optimal target overlap is zero, the stronger bound
+$\operatorname{rank}\rho\le R_{m,n,k}$ holds. No positivity assumption
+on the marginal eigenvalues is needed.
+
+For every specified unit target of Schmidt rank $k$, except the trivial
+$m=n=k=1$ case, there exist positive definite marginals and an optimizer
+of rank exactly $1+R_{m,n,k}$. Thus the universal bound is sharp for every
+target Schmidt spectrum, not merely for one conveniently chosen target.
+In square dimensions it reads
+\[
+ \boxed{\operatorname{rank}\rho\le
+       1+\left\lfloor{(2d-k)^2\over4}\right\rfloor.}
+\]
+For a full-Schmidt target this is $1+\lfloor d^2/4\rfloor$.
+\end{theorem}
+
+\begin{proof}
+Let $t=\langle x,\rho x\rangle$ be the optimal value. Suppose first that
+$t>0$. The exact extraction
+\[
+ w={\rho x\over\sqrt t},\qquad R=\rho-ww^\dagger\ge0
+\]
+satisfies $\langle x,w\rangle=\sqrt t$ and $Rx=0$. Its residual
+marginals are
+\[
+ A_0=A-\operatorname{Tr}_B(ww^\dagger),\qquad
+ B_0=B-\operatorname{Tr}_A(ww^\dagger).
+\]
+They have the same nonnegative trace $\delta$. If $\delta=0$, $R=0$ and
+$\rho$ is pure. Otherwise
+$ww^\dagger+(A_0\otimes B_0)/\delta$ is another actual coupling.
+Its overlap cannot exceed $t$, while its pure term already has overlap
+$t$. Consequently
+\[
+                     \langle x,A_0\otimes B_0\,x\rangle=0.
+\]
+The product is positive definite on its support, so
+$x\perp\operatorname{ran}A_0\otimes\operatorname{ran}B_0$.
+
+Put $r=\operatorname{rank}A_0$ and $s=\operatorname{rank}B_0$.
+In local bases adapted to these supports, the coefficient matrix $X$ of
+$x$ has a zero $r\times s$ block. Splitting its rows and columns around
+that block gives
+\[
+                k=\operatorname{rank}X\le(m-r)+(n-s),
+                \qquad r+s\le N.
+\]
+Every positive matrix with residual marginals $A_0,B_0$ is supported on
+their product support, so $\operatorname{rank}R\le rs$.
+Since $Rx=0$ whereas $\langle x,w\rangle\ne0$, the vector $w$ is not in
+$\operatorname{ran}R$. For a sum of positive matrices the range is the
+sum of their ranges. Thus the ranks add exactly:
+\[
+        \operatorname{rank}\rho=1+\operatorname{rank}R
+                             \le1+rs\le1+R_{m,n,k}.
+\]
+
+If $t=0$, the product coupling $A\otimes B$ must also have zero target
+overlap. Hence $x\perp\operatorname{ran}A\otimes\operatorname{ran}B$.
+Writing $r=\operatorname{rank}A$, $s=\operatorname{rank}B$, the same
+zero-block argument gives $r+s\le N$. Every feasible coupling is
+supported on that product space, so its rank is at most $rs\le R_{m,n,k}$.
+
+To evaluate $R_{m,n,k}$, increasing either non-saturated variable cannot
+decrease $rs$. An optimum may therefore be chosen with $r+s=N$.
+Then $m-k\le r\le m$ and one maximizes the concave quadratic
+$r(N-r)$ over this integer interval. The closest permitted integer to
+$N/2$ gives the displayed piecewise formula.
+\end{proof}
+
+\begin{proof}[Sharpness construction]
+Choose maximizing integers $r,s$ with $r+s=N$ and put
+$a=m-r$, $b=n-s$. Then $a+b=k$. Outside the trivial one-dimensional
+case, $r,s>0$. Write a Schmidt decomposition
+\[
+ x=\sum_{j=1}^{k}\sqrt{p_j}\,e_j\otimes f_j,
+ \qquad p_j>0,\quad\sum_jp_j=1.
+\]
+Let $U$ contain the first $b$ Schmidt vectors on Alice and all of Alice's
+unused Schmidt directions. Let $V$ contain the last $a$ Schmidt vectors
+on Bob and all of Bob's unused Schmidt directions. Then
+\[
+ \dim U=b+(m-k)=r,\qquad \dim V=a+(n-k)=s,
+\]
+and
+\[
+ x\in(U\otimes V^\perp)\oplus(U^\perp\otimes V),
+ \qquad x\perp U\otimes V.
+\]
+For any $0<q<1$ define
+\[
+ \rho_q=q\,xx^\dagger+{1-q\over rs}\,P_U\otimes P_V.
+\]
+It has rank $1+rs$. Both marginals are positive definite: the residual
+is strictly positive on $U$ and $V$, while the target's nonzero Schmidt
+coefficients cover their respective complements.
+
+The local-sum operator
+\[
+          D=P_{U^\perp}\otimes I+I\otimes P_{V^\perp}
+\]
+is zero on $U\otimes V$, the identity on the two off-diagonal blocks
+containing $x$, and twice the identity on
+$U^\perp\otimes V^\perp$. Therefore $D\ge xx^\dagger$ and
+$\operatorname{Tr}(D\rho_q)=q$. Every state with the same two marginals
+has this same local-sum expectation and hence target overlap at most
+$q$. The displayed state has target overlap exactly $q$, so it is an
+optimizer attaining the bound. When $m=n=k=1$, the only coupling has
+rank one, as claimed.
+\end{proof}
+
+\paragraph{Relation to prior rank bounds.}
+Parthasarathy's general extremal-coupling bound is
+$\operatorname{rank}\rho\le\sqrt{m^2+n^2-1}$
+(arXiv:quant-ph/0307182). That is a statement about extreme points of the
+whole coupling set. The theorem above instead concerns every point of
+the exposed face selected by a pure target and tracks the target's Schmidt
+rank. It complements the separate existence theorem giving an optimizer
+of rank at most $\max\{\operatorname{rank}A,\operatorname{rank}B\}$. A high-rank member of the optimal face need not
+be extreme. These distinctions are essential when comparing the bounds.
+The precise target-dependent sharp theorem was not located in the bounded
+primary-source search; historical priority has not been certified.
+
+\paragraph{Verification scope.}
+The proof is exact. The supporting rank-one extraction, positive completion,
+and zero-residual-expectation steps are supplied in the finite-matrix Lean
+modules. The full support/rank theorem is not claimed to be Lean formalized.
+The accompanying exact-arithmetic script verifies the maximizing integer
+formula, the sharp states and their local-sum dual certificates for small
+rectangular dimensions and all allowed Schmidt ranks.
+
+\subsection{What the two rank statements say in small dimensions}
+For full-Schmidt targets on square systems, the existence bound and the
+all-optimizer bound are both sharp, but answer different questions.
+\begin{center}
+\begin{tabular}{ccl}\toprule
+Local dimension $d$ & Some optimizer & Every optimizer\\\midrule
+2 & rank at most 2 & rank at most 2\\
+3 & rank at most 3 & rank at most 3\\
+4 & rank at most 4 & rank at most 5\\
+5 & rank at most 5 & rank at most 7\\
+6 & rank at most 6 & rank at most 10\\
+8 & rank at most 8 & rank at most 17\\\bottomrule
+\end{tabular}
+\end{center}
+For positive definite marginals, fixed full-Schmidt targets in dimensions
+two and three have a unique optimizer, by the unique-core theorem below.
+Dimension four permits both a nine-dimensional optimal face and rank-five
+optimizers. Thus a low-rank attaining representative must not be mistaken
+for a classification of all attaining states.

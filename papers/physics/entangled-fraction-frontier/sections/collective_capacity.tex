@@ -1,0 +1,235 @@
+\section{Collective coupling capacity and its exact regularization}
+\label{sec:collective-capacity}
+
+This section concerns fixed actual marginals and a fixed pure target, not
+optimization over local target orientations. The distinction matters:
+even commuting, diagonal marginals produce a strict advantage when several
+copies are optimized collectively. The calculation reduces the quantum
+optimization to the classical Chernoff overlap of two generally
+unnormalized measures. The Chernoff mechanism itself is established prior
+art; the result here identifies its exact role in this coupling problem.
+
+Let $a,b,p$ be strictly positive probability vectors on $\{1,\ldots,d\}$,
+and put $A=\diag a$, $B=\diag b$ and
+$x_p=\sum_i\sqrt{p_i}|ii\rangle$. Define
+\[
+ C_n(a,b;p)=\max_{\rho_A=A^{\otimes n},\ \rho_B=B^{\otimes n}}
+       \langle x_p^{\otimes n}|\rho|x_p^{\otimes n}\rangle.
+\]
+The tensor factors are grouped across the bipartition
+$A_1\cdots A_n:B_1\cdots B_n$. Set
+\[
+ u_i=\sqrt{p_i a_i},\qquad v_i=\sqrt{p_i b_i},\qquad
+ Z(t)=\sum_i u_i^t v_i^{1-t},\quad 0\le t\le1,
+ \qquad \kappa=\min_{0\le t\le1}Z(t).
+\]
+
+\begin{theorem}[Exact collective formula, strict gain, and asymptotic rate]
+\label{thm:collective-capacity}
+For every positive integer $n$,
+\begin{equation}\label{eq:collective-exact}
+ C_n(a,b;p)=\left[\sum_{\boldsymbol i\in\{1,\ldots,d\}^n}
+          \min\left(\prod_{j=1}^n u_{i_j},
+                     \prod_{j=1}^n v_{i_j}\right)\right]^2.
+\end{equation}
+The maximum is attained by the coherent-minimum coupling of the product
+populations $a^{\otimes n},b^{\otimes n}$. If $a\ne b$, then
+\begin{equation}\label{eq:collective-strict}
+ C_{n+m}>C_n C_m \quad(n,m\ge1),\qquad
+ \kappa^2>C_1,
+\end{equation}
+and
+\begin{equation}\label{eq:collective-rate}
+ \boxed{\displaystyle
+ \lim_{n\to\infty} C_n^{1/n}
+   =\left[\min_{0\le t\le1}
+       \sum_i\sqrt{p_i}\,a_i^{t/2}b_i^{(1-t)/2}\right]^2
+   =\kappa^2.}
+\end{equation}
+If $a=b$, instead $C_n=C_1^n$ for every $n$.
+\end{theorem}
+
+\begin{proof}
+The exact diagonal-marginal theorem applied to the product populations
+gives
+\[
+ C_n=\left[\sum_{\boldsymbol i}
+       \sqrt{p_{\boldsymbol i}\min(a_{\boldsymbol i},
+                                     b_{\boldsymbol i})}\right]^2,
+\]
+where $a_{\boldsymbol i}=\prod_j a_{i_j}$, and similarly for $b,p$.
+Each summand is exactly the minimum in
+\eqref{eq:collective-exact}. This also proves attainment by an actual
+positive trace-one matrix, not merely a feasible scalar vector.
+
+For nonnegative numbers $U,V,U',V'$,
+\[
+ \min(UU',VV')\ge\min(U,V)\min(U',V').
+\]
+If $U>V>0$ and $V'>U'>0$, this inequality is strict.
+When $a\ne b$, normalization supplies indices $i,j$ with $a_i>b_i$
+and $a_j<b_j$. The all-$i$ string of length $n$ and all-$j$ string of
+length $m$ give a strict term. Summing the nonnegative differences
+and squaring proves \eqref{eq:collective-strict}'s first assertion.
+Also $u_i^t v_i^{1-t}\ge\min(u_i,v_i)$ for every $t$.
+For $0<t<1$ at least one term is strict, and both endpoints have a
+strict term because the two signs of $a_i-b_i$ occur. Continuity on
+$[0,1]$ then yields $\kappa>\sum_i\min(u_i,v_i)=\sqrt{C_1}$.
+
+For the upper asymptotic estimate, apply
+$\min(U,V)\le U^tV^{1-t}$ to each product string. The sum factorizes,
+so $C_n\le\kappa^{2n}$. For completeness, an elementary matching
+lower estimate is established next; it proves the limit without invoking
+an unproved statistical asymptotic theorem.
+\end{proof}
+
+\begin{theorem}[Finite-copy lower certificate]
+\label{thm:finite-copy}
+Choose a minimizer $t_*$ of $Z$ and define
+\[
+ q_i=\frac{u_i^{t_*}v_i^{1-t_*}}{\kappa},\qquad
+ \ell_i=\log(u_i/v_i),\qquad
+ \mu=\sum_iq_i\ell_i,\qquad
+ \sigma^2=\sum_iq_i(\ell_i-\mu)^2.
+\]
+For every $n\ge1$ and $0<\eta<1$,
+\begin{equation}\label{eq:chernoff-sandwich}
+ (1-\eta)^2\exp\left(-2\sigma\sqrt{n/\eta}\right)\kappa^{2n}
+ \ \le\ C_n\ \le\ \kappa^{2n}.
+\end{equation}
+If $\sigma=0$, equality $C_n=\kappa^{2n}$ holds.
+\end{theorem}
+
+\begin{proof}
+For $n$ independent $q$-distributed letters let $Y_n=\sum_j\ell_{i_j}$.
+Factoring the products in \eqref{eq:collective-exact} gives the exact identity
+\[
+ \sqrt{C_n}=\kappa^n\,
+ \mathbb E_q\exp\bigl(\min((1-t_*)Y_n,-t_*Y_n)\bigr).
+\]
+If $0<t_*<1$, differentiation of $Z$ gives $\mu=0$.
+At $t_*=0$, the right derivative is nonnegative and $\mu\ge0$;
+at $t_*=1$, the left derivative is nonpositive and $\mu\le0$.
+For $\sigma>0$, Chebyshev's inequality gives probability at least
+$1-\eta$ to the event
+$|Y_n-n\mu|<\sigma\sqrt{n/\eta}$, with non-strict endpoints usable
+without changing the bound. In the interior case $|Y_n|$ is bounded by
+this threshold. At $t_*=0$ only the lower bound on $Y_n$ matters, and
+$n\mu\ge0$; at $t_*=1$ only the upper bound matters, and $n\mu\le0$.
+In all three cases the exponent in the expectation is at least
+$-\sigma\sqrt{n/\eta}$ on this event. Squaring proves
+\eqref{eq:chernoff-sandwich}. If $\sigma=0$, all $\ell_i$ coincide.
+The minimizing endpoint, or either endpoint in the constant-zero case,
+then gives the exact equality directly. Taking logarithms of the two
+bounds and dividing by $n$ proves \eqref{eq:collective-rate}.
+\end{proof}
+
+The probability normalization of $q$ is essential: $u$ and $v$ themselves
+usually have total mass below one. Replacing them silently by normalized
+probability vectors changes the minimization unless their total masses
+coincide. In classical language, $\sum\min(u^{\otimes n},v^{\otimes n})$
+is an overlap for unnormalized product measures. The proof above explicitly
+retains their masses.
+
+\paragraph{Zero populations.}
+The same exact formula holds with zero entries. For the regularization,
+restrict to $I=\{i:p_i a_i b_i>0\}$ before defining $u,v,Z$.
+Every surviving string lies in $I^n$. If $I$ is empty, all capacities
+vanish. If it is nonempty, use the positive restricted weights without
+renormalizing them. The strict-supermultiplicativity criterion is precisely
+the existence in $I$ of both $a_i>b_i$ and $a_j<b_j$.
+When all active ratios have one sign, the same side is the minimum in
+every product and $C_n=C_1^n$. Thus the criterion is necessary as well
+as sufficient for the nonnegative case.
+
+\subsection{An exact two-qubit counterexample to multiplicativity}
+Take
+\[
+ A=\diag(7/10,3/10),\qquad B=\diag(3/10,7/10),
+ \qquad x=\frac{|00\rangle+|11\rangle}{\sqrt2}.
+\]
+The one-copy optimum is $C_1=3/5$, attained by the state already used
+to rule out optimization over normalized pure couplings. Two copies have
+the diagonal minima
+\[
+ (9/100,21/100,21/100,9/100),
+\]
+and therefore
+\begin{equation}\label{eq:capacity-counterexample}
+ \boxed{C_2=\frac{15+3\sqrt{21}}{50}
+       \simeq0.57495454\ >\ \frac9{25}=C_1^2.}
+\end{equation}
+An exact attaining four-by-four bipartite state is
+\[
+ \rho_2=|z_2\rangle\langle z_2|+\frac25|0,3\rangle\langle0,3|,
+ \qquad
+ z_2=\frac{3|00\rangle+\sqrt{21}|11\rangle
+                       +\sqrt{21}|22\rangle+3|33\rangle}{10}.
+\]
+Here the local label $0,1,2,3$ encodes $00,01,10,11$ on two copies.
+The marginal diagonals are exactly
+$(49,21,21,9)/100$ and $(9,21,21,49)/100$.
+Symmetry forces $t_*=1/2$, giving the exact regularized value
+\[
+ \boxed{\lim_{n\to\infty}C_n^{1/n}=\frac{\sqrt{21}}5
+       \simeq0.91651514.}
+\]
+Consequently the ratio to independent one-copy optimization grows
+exponentially at rate
+\[
+ \lim_{n\to\infty}\left(\frac{C_n}{C_1^n}\right)^{1/n}
+       =\frac{\sqrt{21}}3>1.
+\]
+This is a gain in a prescribed-target coupling optimization. It is not a
+claim that the fully entangled fraction of a fixed tensor-product state
+equals $C_n$, or that $C_n$ approaches one: in this example $C_n$ tends
+to zero despite the exponentially growing relative advantage.
+
+Strict supermultiplicativity also does not imply monotonicity of the
+per-copy quantities. Here
+\[
+ C_3=\frac{297+27\sqrt{21}}{1000},\qquad
+ C_2^3-C_3^2=\frac{2349\sqrt{21}-4239}{500000}>0,
+\]
+so $C_3^{1/3}\simeq0.749321<C_2^{1/2}\simeq0.758258$.
+The asymptotic limit remains exact; the parity effect below explains
+these finite-copy oscillations.
+
+\subsection{Exact parity-dependent prefactors for the symmetric binary family}
+Let $a=(t,1-t)$, $b=(1-t,t)$, $p=(1/2,1/2)$ with $1/2<t<1$.
+Write $r=\sqrt{(1-t)/t}\in(0,1)$ and $\lambda=2\sqrt{t(1-t)}$.
+For $K_n\sim\operatorname{Binomial}(n,1/2)$ the exact formula becomes
+\begin{equation}\label{eq:binary-expectation}
+ C_n=\lambda^n\left[\mathbb E r^{|K_n-n/2|}\right]^2.
+\end{equation}
+The following sharper asymptotics distinguish even and odd copy numbers:
+\begin{align}
+ C_n&\sim\lambda^n\frac2{\pi n}
+           \left(\frac{1+r}{1-r}\right)^2,
+             &&n\to\infty\text{ through even integers},\label{eq:binary-even}\\
+ C_n&\sim\lambda^n\frac2{\pi n}
+           \left(\frac{2\sqrt r}{1-r}\right)^2,
+             &&n\to\infty\text{ through odd integers}.\label{eq:binary-odd}
+\end{align}
+To prove them, divide each probability mass in the expectation by its
+central binomial mass. For every fixed distance from the centre this
+ratio tends to one, and it is always at most one. Dominated convergence
+applies to the summable geometric weights. The limiting weight sums are
+$1+2\sum_{j\ge1}r^j=(1+r)/(1-r)$ for even $n$, and
+$2\sum_{j\ge0}r^{j+1/2}=2\sqrt r/(1-r)$ for odd $n$.
+Stirling's formula gives central mass asymptotic
+$\sqrt{2/(\pi n)}$, which proves both displayed equivalents.
+The $n^{-1}$ prefactor shows why the exponential rate alone substantially
+overestimates finite-copy capacities.
+
+\paragraph{Attribution and verification.}
+The coupling-capacity framework is due to Skalski, Todorov and Turowska
+\cite{capacity2025}. The classical error-exponent method originates with
+Chernoff and is reviewed, including geometric mixtures and unnormalized
+divergence formulations, by Nielsen \cite{nielsen2022}. Neither that
+method nor Stirling's formula is claimed as new. The additional result is
+the exact collective quantum-coupling formula, its strict equality
+criterion, explicit optimal states, and the resulting regularized value
+and binary prefactors. A bounded search did not locate this specific
+statement; that is not a proof of historical priority. The asymptotic
+argument is an exact written proof, not a Lean-checked probability theorem.

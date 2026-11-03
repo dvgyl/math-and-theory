@@ -1,0 +1,95 @@
+\section{A sharp prescribed-Schmidt overlap theorem}\label{sec:weighted}
+This theorem is the main reusable proof tool. It retains the target's Schmidt coefficients instead of maximizing them away.
+
+\begin{theorem}[Weighted marginal-spectrum overlap]\label{thm:weighted}
+Let $\tau$ be a density matrix on $\C^d\otimes\C^d$, with decreasing marginal spectra
+\[
+ \alpha_1\ge\cdots\ge\alpha_d\ge0,\qquad
+ \beta_1\ge\cdots\ge\beta_d\ge0.
+\]
+Let $x$ be a unit vector with decreasing Schmidt amplitudes $s_1\ge\cdots\ge s_d\ge0$, so $\sum_i s_i^2=1$. Then
+\begin{equation}\label{eq:weighted}
+ \boxed{\quad\bra x\tau\ket x\le
+ \left(\sum_{i=1}^d s_i\sqrt{\min(\alpha_i,\beta_i)}\right)^2.\quad}
+\end{equation}
+For every prescribed triple $(\alpha,\beta,s)$ this bound is attained by an explicit state and target with those spectra. The same state can attain it for every $s$, with the target Schmidt bases fixed to its marginal eigenbases.
+\end{theorem}
+
+\begin{proof}
+Put $t=\bra x\tau\ket x$. If $t=0$, the assertion is immediate. Otherwise set
+\[
+ w=\frac{\tau x}{\sqrt t}.
+\]
+For any vector $y$, positive-semidefinite Cauchy--Schwarz gives
+\[
+ |\bra y\tau\ket x|^2\le\bra y\tau\ket y\bra x\tau\ket x,
+\]
+and therefore
+\begin{equation}\label{eq:extract}
+ \tau-\ket w\bra w\succeq0,\qquad\ip{x}{w}=\sqrt t.
+\end{equation}
+Let $q_1\ge\cdots\ge q_d\ge0$ be the squared Schmidt amplitudes of the generally unnormalized $w$. Taking partial traces in \eqref{eq:extract} and using eigenvalue monotonicity under positive-semidefinite order yields
+\[
+ q_i\le\alpha_i,\qquad q_i\le\beta_i\quad(1\le i\le d).
+\]
+The monotonicity follows, for example, directly from the minimum--maximum characterization of ordered eigenvalues, since every Rayleigh quotient increases under a positive-semidefinite perturbation.
+
+Write $X,W$ for the coefficient matrices of $x,w$. Their singular values are $s_i,\sqrt{q_i}$. The singular-value trace inequality gives
+\[
+ \sqrt t=|\tr(X^\dagger W)|\le\sum_i s_i\sqrt{q_i}
+ \le\sum_i s_i\sqrt{\min(\alpha_i,\beta_i)}.
+\]
+Squaring proves the upper bound. An elementary proof of the trace inequality is supplied below, so this step does not require a specialized quantum-information assumption.
+
+For sharpness we use a coherent minimum-eigenvalue core with a product residual. This construction is established prior art; see Klyachko and Wolf's quantum-coupling lemma~\cite{klyachko,wolf}. Its simultaneous optimality for the prescribed target coefficients follows from the calculation here. Put
+\[
+ m_i=\min(\alpha_i,\beta_i),\quad
+ u_i=\alpha_i-m_i,\quad v_i=\beta_i-m_i,\quad
+ \delta=1-\sum_i m_i.
+\]
+Then $u_i,v_i\ge0$, $u_iv_i=0$ for every $i$, and $\sum_i u_i=\sum_i v_i=\delta$. In marginal eigenbases define
+\begin{align}\label{eq:coherent-min}
+ \ket z&=\sum_i\sqrt{m_i}\ket{ii},\\
+ \tau_*&=\ket z\bra z+
+ \sum_{i,j}\frac{u_iv_j}{\delta}\ket{ij}\bra{ij}
+ \qquad(\delta>0).
+\end{align}
+It is a sum of positive matrices, has trace $(1-\delta)+\delta=1$, and its marginals are $\diag\alpha$ and $\diag\beta$. For $x_s=\sum_i s_i\ket{ii}$, the diagonal residual contributes zero because $u_iv_i=0$. Hence
+\[
+ \bra{x_s}\tau_*\ket{x_s}=\left(\sum_i s_i\sqrt{m_i}\right)^2.
+\]
+If $\delta=0$, then $\alpha=\beta=m$, and the normalized pure state $\ket z\bra z$ supplies the same conclusion. Rank-deficient spectra and zero Schmidt coefficients are allowed.
+\end{proof}
+
+\subsection{Elementary trace-inequality proof}
+Take singular value decompositions of $X,W$. After cyclically moving their unitaries inside the trace, its absolute value is bounded by
+\[
+ \sum_{i,j}s_i w_j C_{ij},\qquad C_{ij}=|A_{ij}|\,|B_{ij}|,
+\]
+where $A,B$ are unitary and $w_j$ are the singular values of $W$. Cauchy--Schwarz shows that every row and column sum of $C$ is at most one. For nonnegative decreasing sequences $s,w$, append $s_{d+1}=w_{d+1}=0$ and use
+\[
+ s_i=\sum_{k\ge i}(s_k-s_{k+1}),\qquad
+ w_j=\sum_{\ell\ge j}(w_\ell-w_{\ell+1}).
+\]
+Every leading $k\times\ell$ block of $C$ has sum at most $\min(k,\ell)$. Expanding with these differences proves
+\[
+ \sum_{ij}s_iw_jC_{ij}\le
+ \sum_{k,\ell}(s_k-s_{k+1})(w_\ell-w_{\ell+1})\min(k,\ell)
+ =\sum_i s_iw_i.
+\]
+This is exactly the required singular-value trace inequality.
+
+\begin{corollary}[Exact maximal FEF from prescribed marginal spectra]\label{cor:marginal-fef}
+For any density matrix $\tau$ with marginal spectra $\alpha,\beta$,
+\begin{equation}\label{eq:two-marginal-fef}
+ f_d(\tau)\le\frac1d\left(\sum_i\sqrt{\min(\alpha_i,\beta_i)}\right)^2.
+\end{equation}
+The bound is the exact maximum over states with those marginal spectra, and also over states with any particular marginal matrices having those spectra.
+\end{corollary}
+\begin{proof}
+Use $s_i=1/\sqrt d$ in Theorem~\ref{thm:weighted}. For given marginal matrices choose their respective eigenbases in \eqref{eq:coherent-min}; the equal-coefficient target in these bases is maximally entangled.\end{proof}
+
+\begin{remark}[Scope of sharpness]
+For a general prescribed $s$, the theorem is an exact optimization over the state and target orientations compatible with the three spectra. It does not claim to solve the different problem in which two noncommuting-in-the-target-bases marginal matrices and an external target vector are all fixed. The FEF corollary is unaffected because the target is optimized.
+\end{remark}
+

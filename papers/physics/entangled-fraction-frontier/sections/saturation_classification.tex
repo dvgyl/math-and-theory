@@ -1,0 +1,643 @@
+\section{Complete higher-dimensional saturation geometry}\label{sec:spectral-saturation}
+
+For a state $\rho$ on $\mathbb C^d\otimes\mathbb C^d$, write
+\[
+ f_d(\rho)=\max_{|e\rangle\ \text{maximally entangled}}
+                  \langle e|\rho|e\rangle.
+\]
+Let $\alpha_1\ge\cdots\ge\alpha_d\ge0$ and
+$\beta_1\ge\cdots\ge\beta_d\ge0$ be its marginal eigenvalues. Put
+\[
+ m_i=\min(\alpha_i,\beta_i),\qquad
+ L=\sum_i m_i,\qquad \delta=1-L,
+\]
+\[
+ I_A=\{i:\alpha_i>\beta_i\},\qquad
+ I_B=\{i:\beta_i>\alpha_i\},\qquad
+ |z_m\rangle=\sum_i\sqrt{m_i}|ii\rangle.
+\]
+The sets $I_A,I_B$ are disjoint. The sharp marginal-spectrum bound is
+\begin{equation}\label{eq:marginal-fef}
+ f_d(\rho)\le {1\over d}\left(\sum_i\sqrt{m_i}\right)^2.
+\end{equation}
+
+\subsection{All equality cases, including repeated and zero eigenvalues}
+
+\paragraph{Theorem (complete saturation normal form).}
+Equality in \eqref{eq:marginal-fef} holds if and only if, up to local unitaries,
+\begin{equation}\label{eq:all-saturators}
+ \rho=|z_m\rangle\langle z_m|+R,\qquad
+ R\succeq0,\qquad
+ \operatorname{supp}R\subseteq
+       \operatorname{span}\{|ij\rangle:i\in I_A,\ j\in I_B\},
+\end{equation}
+where $\rho_A,\rho_B$ have the specified spectra $\alpha,\beta$.
+There is no simplicity or full-rank assumption on either spectrum.
+
+The remaining spectral condition has a smaller, explicit form. Write
+$M_A=\operatorname{diag}(m_i:i\in I_A)$ and
+$M_B=\operatorname{diag}(m_i:i\in I_B)$. Regarding $R$ as an operator on
+$\mathbb C^{I_A}\otimes\mathbb C^{I_B}$, the permitted residuals are exactly
+\[
+ R\succeq0,\quad
+ \operatorname{spec}(M_A+\operatorname{Tr}_B R)
+                  =\{\alpha_i:i\in I_A\},\quad
+ \operatorname{spec}(M_B+\operatorname{Tr}_A R)
+                  =\{\beta_i:i\in I_B\}.
+\]
+In particular $\operatorname{Tr}R=\delta$. Either index set can be empty
+only when $\alpha=\beta$; in that case $R=0$ and the saturator is pure.
+The displayed characterization is of states with fixed marginal spectra.
+For fixed marginal matrices one additionally imposes their matrix equalities.
+
+\paragraph{Idea of the proof.} A saturating state contains the coherent
+vector $z_m$ with the largest weights the marginals allow. Whatever is left
+over is a positive residual whose marginals only add to the parts of the
+spectra where one marginal exceeds the other. The lemma below handles
+repeated eigenvalues, and positivity then confines the residual to the
+rectangle $I_A\times I_B$, which the maximally entangled target does not
+see.
+
+\paragraph{A positive-perturbation lemma.}
+Let $M=\operatorname{diag}(m_1,\ldots,m_d)$ with decreasing $m_i$, and
+$Y\succeq0$. Suppose $M+Y$ has decreasing eigenvalues $a_i$.
+For a maximal constant block $m_{k+1}=\cdots=m_{k+r}=\lambda$, let
+$E_\lambda$ be its eigenspace and let
+\[
+ s=\#\{i\in\{k+1,\ldots,k+r\}:a_i>\lambda\}.
+\]
+Then $\dim(E_\lambda\cap\ker Y)\ge r-s$.
+
+\emph{Proof.} The case $s=r$ is immediate. Otherwise monotonicity gives
+$a_i\ge m_i$, so $M+Y$ has exactly $k+s$ eigenvalues strictly greater than
+$\lambda$. On $V=E_{>\lambda}\oplus E_\lambda$, the compression of
+$M+Y-\lambda I$ is positive semidefinite. Its kernel is exactly
+$E_\lambda\cap\ker Y$: both nonnegative quadratic-form summands must
+vanish, and a zero quadratic form of a positive operator is in its kernel.
+Consequently this compression has a strictly positive subspace of dimension
+$k+r-\dim(E_\lambda\cap\ker Y)$. The min--max principle bounds that
+dimension by the number $k+s$ of positive eigenvalues of $M+Y-\lambda I$.
+This proves the lemma. This argument also covers $\lambda=0$.
+
+\paragraph{Proof of the theorem.}
+Take a maximizing maximally entangled vector, and use local unitaries so it
+is $|\Phi_d\rangle=d^{-1/2}\sum_i|ii\rangle$. Put
+$t=\langle\Phi_d|\rho|\Phi_d\rangle$ and
+$|w\rangle=\rho|\Phi_d\rangle/\sqrt t$. The zero case is irrelevant:
+$L>0$ for probability spectra, so the upper bound being saturated is positive.
+Positive-matrix Cauchy--Schwarz gives
+\[
+ R:=\rho-|w\rangle\langle w|\succeq0,\qquad
+ \langle\Phi_d|w\rangle=\sqrt t.
+\]
+If $W$ is the coefficient matrix of $w$ and $q_i$ are its squared singular
+values in decreasing order, partial trace and eigenvalue monotonicity give
+$q_i\le m_i$. Therefore
+\[
+ \sqrt{dt}=\operatorname{Re}\operatorname{Tr}W
+ \le\operatorname{Tr}\sqrt{W^\dagger W}
+ =\sum_i\sqrt{q_i}\le\sum_i\sqrt{m_i}.
+\]
+Equality forces $q_i=m_i$ for every $i$ and $W\succeq0$.
+For the latter assertion, write $W=UH$ in polar form: equality in
+$\operatorname{Re}\operatorname{Tr}UH\le\operatorname{Tr}H$ forces
+$U$ to be the identity on the range of $H$. A transformation
+$U_0\otimes\overline{U_0}$ preserves $\Phi_d$ and diagonalizes $W$.
+Thus $w=z_m$, and
+\[
+ \rho_A=M+R_A,\qquad \rho_B^T=M+R_B^T,
+\]
+with both residual marginals positive.
+
+Consider any maximal constant block of $m$. The indices in that block with
+$\alpha_i>m_i$ form a prefix, as do those with $\beta_i>m_i$. These two
+prefixes cannot both be nonempty, since that would contradict
+$m_i=\min(\alpha_i,\beta_i)$ at the first position of the block. Hence
+at most one residual marginal is active on any such block. Apply the lemma
+to both residual marginals. The inactive marginal annihilates the entire
+block. The active marginal has at least as many kernel vectors in that
+block as there are positions without surplus. Choose an orthonormal basis
+of the block whose last vectors lie in that kernel. This basis choice
+preserves both $M$ and $\Phi_d$, so it can be made independently on every
+constant block. In the resulting bases
+\[
+ \operatorname{supp}R_A\subseteq\mathbb C^{I_A},\qquad
+ \operatorname{supp}R_B\subseteq\mathbb C^{I_B}.
+\]
+Positivity upgrades marginal support to joint support. Indeed, for any local
+kernel vector $u$, the nonnegative sum
+$\sum_j\langle u,j|R|u,j\rangle=\langle u|R_A|u\rangle=0$
+forces every $|u,j\rangle$ into $\ker R$. Applying this on both sides
+gives the rectangle in \eqref{eq:all-saturators}.
+
+Conversely, a positive residual on that rectangle is orthogonal to every
+$|ii\rangle$, because $I_A\cap I_B=\varnothing$. Therefore
+\[
+ \langle\Phi_d|\rho|\Phi_d\rangle
+       ={1\over d}\left(\sum_i\sqrt{m_i}\right)^2,
+\]
+and the spectral upper bound makes this the fully entangled fraction.
+The smaller spectral conditions follow by splitting each marginal into
+its active residual block and the unaffected diagonal complement.
+
+\subsection{The same equality set for every full-Schmidt-rank target orbit}
+
+Let $p_1\ge\cdots\ge p_d\ge0$ be a probability vector and define
+\[
+ F_p(\rho)=\max_{\substack{|x\rangle:\ \text{squared Schmidt coefficients }p}}
+                  \langle x|\rho|x\rangle.
+\]
+The sharp overlap bound is
+\[
+ F_p(\rho)\le\left(\sum_i\sqrt{p_i m_i}\right)^2.
+\]
+For fixed marginal spectra $\alpha,\beta$, the following are equivalent:
+\begin{enumerate}
+\item $\lambda_{\max}(\rho)=L=\sum_i m_i$;
+\item $\rho$ has the complete normal form \eqref{eq:all-saturators};
+\item $f_d(\rho)=d^{-1}(\sum_i\sqrt{m_i})^2$;
+\item for at least one decreasing probability vector $p$ with all $p_i>0$,
+      $F_p(\rho)=(\sum_i\sqrt{p_i m_i})^2$;
+\item for every decreasing probability vector $p$, including those with zero entries,
+      $F_p(\rho)=(\sum_i\sqrt{p_i m_i})^2$.
+\end{enumerate}
+Thus the complete maximizing set is independent of every strictly positive
+target Schmidt profile. This identifies all maximizers of the previously
+known maximal-eigenvalue bound, not merely one family attaining its value.
+
+\emph{Proof.} Suppose first that $\lambda_{\max}(\rho)=L$ and choose a
+normalized top eigenvector $v$. The vector $w=\sqrt L\,v$ satisfies
+$\rho\succeq|w\rangle\langle w|$. If $q_i$ are its decreasing squared
+Schmidt coefficients, marginal positivity gives $q_i\le m_i$. But
+$\sum_i q_i=L=\sum_i m_i$, so every inequality is an equality. Apply
+independent local unitaries to put $w=z_m$ and use the positive-perturbation
+lemma above. Its block argument depends only on the marginal spectra and
+$q=m$, and therefore gives \eqref{eq:all-saturators}. Conversely, a state
+in that normal form has $\rho z_m=Lz_m$, since the residual rectangle is
+orthogonal to $z_m$. The general bound $\lambda_{\max}(\rho)\le L$
+then makes its largest eigenvalue exactly $L$.
+
+For the target-orbit assertion, choose a maximizing target $x$ and extract
+$w=\rho x/\sqrt{\langle x|\rho|x\rangle}$ as before. The singular-value
+trace inequality gives
+\[
+ \sqrt{\langle x|\rho|x\rangle}
+ \le\sum_i\sqrt{p_i q_i}\le\sum_i\sqrt{p_i m_i}.
+\]
+If all $p_i>0$, equality forces every $q_i=m_i$. The same block argument
+again gives the normal form. Conversely, in the normal-form bases the
+target $x_p=\sum_i\sqrt{p_i}|ii\rangle$ is orthogonal to $R$ and has
+overlap $(\sum_i\sqrt{p_i m_i})^2$. This works also when some $p_i=0$.
+The maximally entangled target is the special case $p_i=1/d$, completing
+all implications.
+
+The condition that the one target profile in item 4 have no zero entry is
+needed only on the positive cap support: the same equivalence holds whenever
+$p_i>0$ for every $i$ with $m_i>0$. Indeed $q_i\le m_i=0$ already fixes
+all remaining extracted Schmidt coefficients. For decreasing profiles this
+condition says that the target Schmidt rank is at least
+$r=\min(\operatorname{rank}\rho_A,\operatorname{rank}\rho_B)$.
+Some positivity condition on the active support is necessary. For $d=2$, the state
+\[
+ \rho={1\over2}|00\rangle\langle00|
+       +{1\over2}|11\rangle\langle11|
+\]
+has marginal spectra $\alpha=\beta=(1/2,1/2)$ and attains the product-target
+cap $F_{(1,0)}=1/2$. Nevertheless its fully entangled fraction and largest
+eigenvalue are both $1/2$, strictly below the corresponding caps $1$.
+
+\paragraph{Prior-art boundary for the equivalence.}
+Klyachko~\cite{klyachko}, Theorem 6.3.1, already proved that the
+maximum possible largest eigenvalue for prescribed marginal spectra is
+$\sum_i\min(\alpha_i,\beta_i)$. Immediately after that theorem he raised
+the problem of describing its maximizers and discussed a representation-theoretic
+recurrence for the associated spectra. The complete positive-residual
+normal form and its equivalence with every full-Schmidt-rank overlap
+maximization are the additional results proved here. A bounded search for
+subsequent equality classifications found no matching statement; that search
+does not establish worldwide priority or certify that the classification
+problem remained open until this work.
+
+\subsection{Exact rank-one coupling capacity in every dimension}
+
+For positive integers $n\le m$, define the uniform-marginal coupling capacity
+of a normalized pure target $x\in\mathbb C^n\otimes\mathbb C^m$ by
+\[
+ \mathsf a_{n,m}(x)=\max_{\substack{\rho\succeq0\\
+                     \rho_A=I_n/n,\ \rho_B=I_m/m}}
+                   \langle x|\rho|x\rangle.
+\]
+If $s_1,\ldots,s_n\ge0$ are the Schmidt amplitudes of $x$, then
+\begin{equation}\label{eq:uniform-capacity}
+ \boxed{\mathsf a_{n,m}(x)={1\over m}\left(\sum_{i=1}^n s_i\right)^2.}
+\end{equation}
+Equivalently, for arbitrary local dimensions the denominator is
+$\max(n,m)$ and the sum runs over the $\min(n,m)$ Schmidt amplitudes.
+For $n=m=d$ and every $s_i>0$, the optimizing coupling is unique:
+it is the maximally entangled pure state in the target's Schmidt bases.
+
+\emph{Elementary proof.} Use local unitaries to write
+$x=\sum_{i=1}^n s_i|ii\rangle$. Put $d_i=\rho_{ii,ii}$.
+The Bob marginal gives $0\le d_i\le1/m$, while positivity gives
+$\operatorname{Re}\rho_{ii,jj}\le\sqrt{d_i d_j}\le1/m$.
+Consequently
+\[
+ \langle x|\rho|x\rangle
+   \le\left(\sum_i s_i\sqrt{d_i}\right)^2
+   \le {1\over m}\left(\sum_i s_i\right)^2.
+\]
+This proof also permits zero Schmidt amplitudes. For sharpness, let
+\[
+ z={1\over\sqrt m}\sum_{i=1}^n|ii\rangle,\qquad
+ \rho_*=|z\rangle\langle z|+
+        {1\over nm}\sum_{i=1}^n\sum_{j=n+1}^m|ij\rangle\langle ij|.
+\]
+The sum is empty if $n=m$. Its Alice marginal is
+$I_n/m+(m-n)I_n/(nm)=I_n/n$; its Bob marginal is $I_m/m$.
+It is positive and its target overlap is the right side of
+\eqref{eq:uniform-capacity}. In the square case with every $s_i>0$,
+equality forces every $d_i=1/d$. These $d$ populations already sum to one,
+so all other populations, and hence their rows and columns by positivity,
+vanish. Equality in the off-diagonal estimates forces the remaining block
+to have every entry $1/d$, giving the unique pure Bell coupling.
+
+More generally, if every $s_i>0$ and $n<m$, the entire rectangular
+optimizer face is
+\[
+ \rho=|z\rangle\langle z|+R,\quad R\succeq0,\quad
+ \operatorname{supp}R\subseteq\mathbb C^n\otimes
+                    \operatorname{span}\{|n+1\rangle,\ldots,|m\rangle\},
+\]
+\[
+ R_A=(1/n-1/m)I_n,\qquad R_B=P_{\mathrm{tail}}/m.
+\]
+Indeed equality forces $\rho_{ii,ii}=1/m$ for all $i\le n$ and the
+correlated principal block $zz^*$. The fixed Bob marginal forces every
+other population in the first $n$ Bob columns to vanish. Positivity leaves
+only a possible coherent cross vector $v$ between $z$ and the tail, but
+the Bob off-diagonal entries between the first $n$ columns and the tail
+are $m^{-1/2}v_{ij}$ or their conjugates; the prescribed diagonal Bob
+marginal therefore forces $v=0$. The remaining partial traces are exactly
+the displayed ones. Conversely every such residual attains the bound.
+The face has affine dimension
+\[
+ (n^2-1)((m-n)^2-1).
+\]
+For $n<m$ the optimizer is unique precisely when $n=1$ or $m=n+1$;
+for $n=m$ it is the unique pure Bell state. The two-by-three attainer below
+is consequently unique for its displayed target.
+
+\paragraph{Published capacity comparison.}
+Proposition 3.5 of Skalski et al.~\cite{capacity2025} proves the lower bound
+corresponding to \eqref{eq:uniform-capacity} in the square case and proves
+equality when $d=2$. The formula above establishes equality for every $d$.
+The paper does not label this particular all-dimensional extension as an
+open problem. Its capacity $\alpha(E_x)$ equals $\mathsf a_{n,m}(x)$:
+the paper's normalized-trace density $A_\sigma$ corresponds to the ordinary
+trace-one matrix $\rho=A_\sigma/(nm)$, and the normalized-trace marginal
+functionals correspond exactly to $I_n/n,I_m/m$.
+
+The same paper's printed Theorem 3.7(ii), stated for $n\le m$, says that a
+maximally entangled target has capacity one. With the paper's definition
+of rectangular maximal entanglement, its Schmidt amplitudes are all
+$1/\sqrt n$. Formula \eqref{eq:uniform-capacity} gives the corrected value
+$n/m$, so the printed statement requires either $n=m$ or replacement of
+one by $n/m$. In fact Cauchy--Schwarz in \eqref{eq:uniform-capacity}
+proves the exact rectangular characterization
+\[
+ x\text{ is maximally entangled in }\mathbb C^n\otimes\mathbb C^m
+ \quad\Longleftrightarrow\quad \mathsf a_{n,m}(x)=n/m.
+\]
+
+For a concrete counterexample to the printed rectangular value, take
+\[
+ x={|00\rangle+|11\rangle\over\sqrt2}\in\mathbb C^2\otimes\mathbb C^3,
+ \qquad
+ \rho_*={2\over3}|x\rangle\langle x|
+       +{1\over6}\bigl(|02\rangle\langle02|+|12\rangle\langle12|\bigr).
+\]
+Both marginals are uniform, and the elementary bound above proves
+$\mathsf a_{2,3}(x)=2/3<1$ exactly. The printed statement has this form in arXiv:2211.02401v3; no erratum was found in a bounded search. This is a correction of the displayed rectangular
+statement; it does not affect the paper's square-dimensional statement
+or its general duality theorem.
+
+For completeness, the same paper's projective coupling capacity has the
+particularly simple exact expression
+\[
+ \gamma(E_x)={r\over m},\qquad r=\operatorname{Schmidt\ rank}(x),\quad n\le m.
+\]
+Its defining feasibility condition is
+$(P^\perp\otimes Q^\perp)x=0$ for local orthogonal projections $P,Q$.
+If $X$ is the coefficient matrix of $x$, this condition writes $X$ as a
+sum of a matrix with range in $\operatorname{ran}P$ and one whose right
+support has dimension $\operatorname{rank}Q$. Thus
+$r\le\operatorname{rank}P+\operatorname{rank}Q$, and the normalized cost
+satisfies
+\[
+ {\operatorname{rank}P\over n}+{\operatorname{rank}Q\over m}
+ \ge {r\over m}.
+\]
+Taking $P=0$ and $Q$ equal to the Bob Schmidt-support projection attains
+this value. Hence $\alpha(E_x)=\gamma(E_x)$ exactly when all nonzero
+Schmidt amplitudes are equal, by Cauchy--Schwarz.
+
+The paper ends by asking whether its Proposition 3.10 extends beyond
+dimension two. Part (i), which would say that a subspace supporting a
+uniform-marginal coupling must contain a maximally entangled vector, has
+a negative answer already in dimension three. Let $F$ be the swap and
+$P_-=(I-F)/2$ the projection onto the antisymmetric subspace. The state
+\[
+ \rho_-={P_-\over3}={I-F\over6}
+\]
+has both marginals $I_3/3$ and is supported on $P_-$, so
+$\alpha(P_-)=1$. Every vector in that subspace has a skew-symmetric
+$3\times3$ coefficient matrix, whose determinant is zero since
+$\det C=\det(-C^T)=-\det C$. It therefore has Schmidt rank at most two
+and cannot be maximally entangled in dimension three. This uses the
+standard antisymmetric state as an exact counterexample to the proposed
+extension; it is not a new construction of that state. The formula for
+$\gamma$ likewise gives the precise higher-dimensional replacement for
+the rank-one part (ii). These observations are immediate consequences of
+the displayed definitions and do not require a further conjectural step.
+
+\subsection{The aligned face and sharp rank restriction}
+For decreasing diagonal marginal matrices and a fixed target with positive
+diagonal Schmidt amplitudes, the complete face is the coherent core plus
+all residual couplings with marginals $\operatorname{diag}(\alpha-m)$ and
+$\operatorname{diag}(\beta-m)$. This is the ordered specialization of
+Theorems~\ref{thm:optimizer-face} and~\ref{thm:boundary-face}. Even when
+some $m_i=0$, at most one marginal has a surplus in the final zero block,
+so the possible zero-block cross rectangle in the general unordered
+boundary theorem is empty.
+
+For every spectral saturator the normal form gives
+\[
+ \operatorname{rank}\rho=1+\operatorname{rank}R
+ \le1+|I_A||I_B|\le1+\lfloor d^2/4\rfloor.
+\]
+This is sharp for every $d\ge2$: choose a positive strictly decreasing
+$m$ of sum $1-\delta$, partition the surplus indices as evenly as possible,
+and distribute the two residual masses positively on opposite sides.
+For sufficiently small $\delta$, both marginal lists remain decreasing.
+The product residual is positive definite on its rectangle and attains
+the bound. This is consistent with the more general fixed-target theorem
+in Section~\ref{sec:all-optimizer-rank}; it describes every saturator,
+whereas Theorem~\ref{thm:low-rank-pure-target} guarantees a smaller-rank
+attaining representative.
+
+\subsection{Every saturator has the largest possible Schmidt number}
+
+\paragraph{Theorem.}
+Every state saturating \eqref{eq:marginal-fef} has
+\[
+ \operatorname{SN}(\rho)
+       =\min\{\operatorname{rank}\rho_A,\operatorname{rank}\rho_B\}.
+\]
+This conclusion includes all degeneracies and rank-deficient marginal states.
+
+\emph{Proof.} Let $r=\#\{i:m_i>0\}$, which equals the displayed minimum
+of local ranks. In the normal form, the support of $\rho$ is the orthogonal
+sum of $\operatorname{span}\{z_m\}$ and $\operatorname{supp}R$.
+Every vector in that support has a coefficient matrix
+\[
+ C=a\operatorname{diag}(\sqrt{m_1},\ldots,\sqrt{m_d})+N,
+ \qquad N_{ij}=0\quad\hbox{unless }i\in I_A, j\in I_B.
+\]
+Reorder the first $r$ indices by placing $I_A$ first and $I_B$ last.
+The leading $r\times r$ block becomes upper triangular apart from its
+diagonal, and therefore
+\[
+ \det C_{[r],[r]}=a^r\prod_{i=1}^r\sqrt{m_i}.
+\]
+For $a\ne0$ this minor is nonzero, so the vector has Schmidt rank at least
+$r$. Every pure-state decomposition of $\rho$ contains a vector with
+$a\ne0$, because its expectation on $z_m$ is nonzero. Hence its maximum
+Schmidt rank is at least $r$, proving $\operatorname{SN}(\rho)\ge r$.
+Every vector in the support of any bipartite state lies in the tensor product
+of its marginal supports, giving the reverse bound $\operatorname{SN}(\rho)
+\le\min(\operatorname{rank}\rho_A,\operatorname{rank}\rho_B)=r$.
+
+\subsection{Fixed partial-transpose inertia and one-copy distillability}
+
+Write $\Gamma$ for the partial transpose on Bob. If every $m_i>0$, every
+saturator has the exact partial-transpose inertia
+\[
+ \boxed{\quad
+ n_+(\rho^\Gamma)={d(d+1)\over2},\qquad
+ n_-(\rho^\Gamma)={d(d-1)\over2},\qquad n_0(\rho^\Gamma)=0.
+ \quad}
+\]
+The statement permits an arbitrary positive quantum residual in the normal
+form. If exactly $r$ cap eigenvalues are positive, then
+$n_-(\rho^\Gamma)\ge r(r-1)/2$. Whenever $r\ge2$, a single copy can be
+locally projected with positive probability to an entangled two-qubit state;
+thus every such saturator is one-copy distillable.
+
+\emph{Proof.} Put $T=I_A\times I_B$ and let
+$T'=\{(j,i):(i,j)\in T\}$. These coordinate sets are disjoint. In the
+paired bases of $T$ and $T'$, the corresponding partial-transpose block is
+\[
+ H=\begin{pmatrix}C&D\\D&0\end{pmatrix},\qquad
+ C=(R^\Gamma)_{T,T}=C^\dagger,\qquad
+ D=\operatorname{diag}(\sqrt{m_i m_j}:(i,j)\in T)>0.
+\]
+There are no couplings from this block to its complement. The invertible
+shear
+\[
+ S=\begin{pmatrix}I&0\\-\tfrac12D^{-1}C&I\end{pmatrix}
+ \quad\hbox{satisfies}\quad
+ S^\dagger H S=\begin{pmatrix}0&D\\D&0\end{pmatrix}.
+\]
+Sylvester's law of inertia therefore gives $|T|$ positive and $|T|$
+negative eigenvalues on this block. Every remaining unordered pair
+$\{i,j\}$ gives the unchanged two-dimensional block with eigenvalues
+$\pm\sqrt{m_i m_j}$, and each diagonal vector $|ii\rangle$ gives the
+positive eigenvalue $m_i$. Counting these blocks proves the full-rank
+formula. Applying the same argument to the principal compression onto the
+first $r$ indices on both sides, followed by eigenvalue interlacing, proves
+the lower bound when some $m_i$ vanish.
+
+Finally fix any $i\ne j$ with $m_i,m_j>0$ and project both local spaces
+onto $\operatorname{span}\{|i\rangle,|j\rangle\}$. The coherent term
+survives. The residual rectangle contributes at most one of the two
+populations $|ij\rangle\langle ij|$ and $|ji\rangle\langle ji|$.
+The projected state's partial transpose consequently has a principal
+two-dimensional block of the form
+\[
+ \begin{pmatrix}\kappa&\sqrt{m_i m_j}\\
+                 \sqrt{m_i m_j}&0\end{pmatrix}
+ \quad\hbox{or its reversed ordering},\qquad \kappa\ge0,
+\]
+whose determinant is $-m_i m_j<0$. Its negative direction has Schmidt
+rank two. The local projection succeeds with probability at least
+$m_i+m_j>0$, proving the asserted one-copy distillability.
+
+\subsection{An exact convex-roof entanglement value}
+
+For full-rank $m$, use the standard normalization of the $G$-concurrence:
+for a normalized pure state with coefficient matrix $C$,
+$G_d(C)=d|\det C|^{2/d}$. Let $G_d(\rho)$ be its convex roof and
+$G_d^{\mathrm a}(\rho)$ the concave roof over pure-state decompositions.
+Then every saturator has the exact values
+\[
+ G_d(\rho)=G_d^{\mathrm a}(\rho)
+                   =d\left(\prod_{i=1}^d m_i\right)^{1/d}.
+\]
+In fact every pure-state decomposition has the same average $G$-concurrence.
+For any normalized support vector $C=a\operatorname{diag}\sqrt m+N$,
+the triangular determinant identity gives
+$G_d(C)=d|a|^2(\prod_i m_i)^{1/d}$. For a decomposition of $\rho$,
+the expectation of the projection onto $z_m/\sqrt L$ gives
+$\sum_k p_k|a_k|^2=1$. Averaging proves the formula without optimization.
+
+This affine-roof mechanism has prior art: Gour and Guo~\cite{gourguo}, Theorem 7, characterize equality of $G$-concurrence and assistance using
+nilpotent subspaces. The rectangle matrices here square to zero after
+diagonal rescaling. The new connection established above is that every
+marginal-spectrum FEF maximizer lies in this class, with the displayed
+entanglement value fixed entirely by the two marginal spectra.
+
+\subsection{Explicit quasidistillation, including quantum residuals}
+
+Let $r=\#\{i:m_i>0\}$, put $\mu=\min_{i\le r}m_i$, and write a saturator in
+the normal form. Let $D$ be diagonal with $D_i=m_i^{-1/4}$ for $i\le r$
+and $D_i=0$ otherwise, and put
+$\widetilde R=(D\otimes D)R(D\otimes D)$, with
+$r_R=\operatorname{Tr}\widetilde R$. For $0<\varepsilon\le1$, define
+diagonal filters
+\[
+ A_\varepsilon=\mu^{1/4}D\operatorname{diag}(\varepsilon^{a_i}),\qquad
+ B_\varepsilon=\mu^{1/4}D\operatorname{diag}(\varepsilon^{1-a_i}),
+\]
+where $a_i=1$ on $I_A$, $a_i=0$ on $I_B$, and $a_i=1/2$ otherwise.
+Both are contractions, since every retained diagonal factor
+$\mu^{1/4}m_i^{-1/4}\varepsilon^{a_i}$ is at most one and the other
+entries vanish. Direct multiplication
+gives the unnormalized output and its success probability:
+\[
+ (A_\varepsilon\otimes B_\varepsilon)\rho
+ (A_\varepsilon\otimes B_\varepsilon)^\dagger
+ =\mu\varepsilon^2\bigl(r|\Phi_r\rangle\langle\Phi_r|
+                               +\varepsilon^2\widetilde R\bigr),
+\]
+\[
+ P_\varepsilon=\mu\varepsilon^2(r+\varepsilon^2r_R),\qquad
+ F_\varepsilon:=\langle\Phi_r|\rho_\varepsilon|\Phi_r\rangle
+                         ={r\over r+\varepsilon^2r_R}.
+\]
+Here $\Phi_r=r^{-1/2}\sum_{i=1}^r|ii\rangle$ is embedded in the original
+space. Because $\widetilde R\perp\Phi_r$, the trace distance is exact:
+\[
+ {1\over2}\|\rho_\varepsilon-|\Phi_r\rangle\langle\Phi_r|\|_1
+                =1-F_\varepsilon.
+\]
+For $\varepsilon^2\lambda_{\max}(\widetilde R)\le r$, the displayed Bell
+vector is also a top eigenvector, and the fully entangled fraction within
+the surviving $r\times r$ subspace equals $F_\varepsilon$.
+Thus every saturator can approach the maximally entangled state of the
+largest dimension permitted by its marginal ranks, even when its
+residual $R$ is entangled and has off-diagonal coherences. For $R\ne0$ the
+exact protocol relation, for sufficiently large $F$, is
+\[
+ P={\mu r^2\over r_R}{1-F\over F^2}\qquad(r_R>0).
+\]
+This is an attained protocol curve, not a claim of globally optimal success
+probability. If $r_R=0$, the projected output is already exactly $\Phi_r$
+with positive success probability $\mu r\varepsilon^2$; this can happen
+for a mixed original state when $r<d$. When $r=d$, a mixed saturator
+cannot yield an exact $d$-dimensional Bell
+state in a single nonzero-probability local-filter branch: full Schmidt
+rank of the output would require both local filters to be invertible,
+whereas invertible filtering preserves the state's rank.
+
+\subsection{Nonuniqueness even for fixed, simple marginal matrices}
+
+Take $d=4$ and
+\[
+ \alpha=(2/5,3/10,1/5,1/10),\quad
+ \beta=(7/20,33/100,17/100,3/20),\quad
+ m=(7/20,3/10,17/100,1/10).
+\]
+All three lists have strictly decreasing positive entries. Here
+$I_A=\{1,3\}$, $I_B=\{2,4\}$, $L=23/25$, and $\delta=2/25$.
+Let
+\[
+ C={1\over20}|1\rangle\langle1|+{3\over100}|3\rangle\langle3|,
+ \qquad
+ D={3\over100}|2\rangle\langle2|+{1\over20}|4\rangle\langle4|.
+\]
+The product residual $R_0=C\otimes D/\delta$ and the pure residual
+\[
+ R_1=|r\rangle\langle r|,\qquad
+ |r\rangle=\sqrt{1/20}|1,4\rangle+\sqrt{3/100}|3,2\rangle
+\]
+have exactly the same partial traces $C,D$. Consequently
+\[
+ \rho_s=|z_m\rangle\langle z_m|+(1-s)R_0+sR_1,\qquad0\le s\le1,
+\]
+all have the same fixed marginal matrices $\operatorname{diag}\alpha$ and
+$\operatorname{diag}\beta$, and all attain the same sharp fully entangled
+fraction. Nevertheless their purity varies:
+\[
+ \operatorname{Tr}\rho_s^2
+ = {135713\over160000}+{3\over16000}s+{141\over32000}s^2.
+\]
+In particular $\rho_0$ and $\rho_1$ have purities $135713/160000$ and
+$533/625$, and have ranks five and two respectively. They cannot be locally
+unitarily equivalent. This gives an explicit continuum of inequivalent
+saturators even with simple spectra and fixed marginal matrices. All of
+them have Schmidt number four by the preceding theorem.
+
+\subsection{Maximal Schmidt number with a small fully entangled fraction}
+
+The Schmidt-number conclusion is stronger than certification by a large
+fully entangled fraction alone. Consider the four-dimensional state
+\[
+ |z\rangle={1\over2}|00\rangle+
+       {1\over10}(|11\rangle+|22\rangle+|33\rangle),\qquad
+ \rho=|z\rangle\langle z|+{6\over25}\sum_{j=1}^3|0j\rangle\langle0j|.
+\]
+Its marginals are
+\[
+ \rho_A=\operatorname{diag}(97/100,1/100,1/100,1/100),\qquad
+ \rho_B=I/4.
+\]
+It attains the spectral bound with
+\[
+ f_4(\rho)={4\over25}<{1\over4},\qquad
+ \operatorname{SN}(\rho)=4,\qquad
+ G_4(\rho)=G_4^{\mathrm a}(\rho)={\sqrt5\over25}.
+\]
+Thus even a saturator below the usual unfiltered teleportation threshold
+can possess entanglement of the maximum available dimension. The explicit
+filters above have $\mu=1/100$ and $r_R=72/5$, so
+\[
+ F_\varepsilon={5\over5+18\varepsilon^2},\qquad
+ P_\varepsilon={\varepsilon^2(25+90\varepsilon^2)\over625}.
+\]
+The Bell overlap equals the output fully entangled fraction for
+$\varepsilon^2\le5/6$, and tends to one as the success probability tends
+to zero. The state has rank four, with eigenvalues
+$7/25,6/25,6/25,6/25$ and twelve zeros.
+
+\subsection{Prior-art and formal-verification scope}
+
+Klyachko's 2004 maximal spectral-norm theorem gives $\lambda_{\max}\rho\le L$
+with sharp value and a representation-theoretic discussion of maximizers;
+that value is not a new result here.
+Baio et al.~\cite{baio}, Theorem 2, establish quasidistillability for a
+rank-one maximally correlated component plus a \emph{classical diagonal}
+residual precisely when the residual's directed support is acyclic. That
+older filtering mechanism covers the classical instances above. The theorem
+here classifies every saturator of the weighted marginal FEF bound, permits
+arbitrary quantum residuals on the forced rectangle, and yields the exact
+Schmidt-number consequence. No claim of worldwide priority is certified by
+the bounded literature search.
+
+The saturation classification, its degeneracy argument, the Schmidt-number,
+partial-transpose inertia, one-copy distillability and quasidistillation
+consequences, the maximizing-face dimension, and the
+$G$-concurrence calculation are exact analytic proofs. They are not
+yet end-to-end Lean theorems. The \texttt{PopulationOverlap} section of \texttt{AllProofs.lean}
+formalizes an end-to-end actual-complex-matrix optimization using target-basis
+marginal populations, with a genuine positive trace-one attaining matrix.
+That result needs no spectral or singular-value hypotheses.

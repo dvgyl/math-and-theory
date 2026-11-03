@@ -1,0 +1,528 @@
+\section{Universal tensor laws for the saturating states}
+\label{sec:universal-tensor}
+
+The single-copy saturation normal form has consequences even when the
+second tensor factor is an arbitrary mixed state. Throughout, tensor
+products are regrouped as $(A_1A_2):(B_1B_2)$, rather than as the two
+original bipartite systems. For a coefficient matrix $C$, write
+$|C\rangle=\sum_{ij}C_{ij}|i,j\rangle$; its Schmidt rank is $\operatorname{rank}C$.
+Ensembles below use subnormalized vectors, so that
+$\rho=\sum_j|C_j\rangle\langle C_j|$ without separate probabilities.
+
+\paragraph{Idea.} By the saturation normal form, every saturator contains a
+fixed coherent vector $z$ that is orthogonal to the residual. Projecting any
+ensemble of $\rho\otimes\sigma$ onto $z$ in the first factor returns an
+ensemble of $\sigma$, and the coefficient matrices of the ensemble vectors
+have a block-triangular form whose diagonal blocks are multiples of those of
+the projected vectors. Ranks and determinants therefore multiply.
+
+\begin{theorem}[Universal Schmidt-number multiplication]
+\label{thm:universal-schmidt}
+Let $\rho$ be any state saturating the sharp marginal-spectrum fully
+entangled fraction bound, and put
+$r=\min(\operatorname{rank}\rho_A,\operatorname{rank}\rho_B)$.
+For every finite-dimensional bipartite state $\sigma$, with arbitrary
+rectangular local dimensions,
+\[
+ \boxed{\quad \operatorname{SN}(\rho\otimes\sigma)
+                      =r\,\operatorname{SN}(\sigma).\quad}
+\]
+In particular $\operatorname{SN}(\rho^{\otimes n})=r^n$ for every
+positive integer $n$.
+\end{theorem}
+\begin{proof}
+Use the established saturation normal form
+\[
+ \rho=|z\rangle\langle z|+R,\qquad
+ z=\sum_i\sqrt{m_i}|ii\rangle,\qquad
+ \operatorname{supp}R\subseteq\mathbb C^I\otimes\mathbb C^J,
+ \qquad I\cap J=\varnothing.
+\]
+Here precisely $r$ entries of $m$ are positive and $L=\|z\|^2>0$.
+Every vector in $\operatorname{supp}(\rho\otimes\sigma)$ has a unique
+coefficient along the first factor $z$: it can be written
+\[
+       |v\rangle=|z\rangle\otimes|v_0\rangle+|v_\perp\rangle,
+       \qquad v_\perp\in\operatorname{supp}R\otimes\operatorname{supp}\sigma.
+\]
+The coefficient vector is
+$v_0=(\langle z|/L\otimes I)v$.
+This is an algebraic ensemble-extraction map; it is not asserted to be a
+local physical operation.
+
+If $C_0$ is the coefficient matrix of $v_0$, the coefficient matrix $T$
+of $v$ has block form
+\[
+       T=\operatorname{diag}(\sqrt m)\otimes C_0
+                        +\sum_{i\in I,j\in J}E_{ij}\otimes C_{ij}.
+\]
+Order the positive-cap indices with $I$ first and $J$ last. The principal
+first-factor $r\times r$ block array is upper triangular, with diagonal
+blocks $\sqrt{m_i}C_0$. If $C_0$ has rank $k$, select a nonzero $k\times k$
+minor and repeat those row and column selections in each diagonal block.
+The resulting $rk\times rk$ minor of $T$ has determinant
+\[
+        \left(\prod_{i:m_i>0}m_i^{k/2}\right)
+                               \bigl(\det C_0[\mathcal I,\mathcal J]\bigr)^r
+                           \ne0.
+\]
+Consequently $\operatorname{rank}T\ge r\operatorname{rank}C_0$, including
+rectangular $C_0$.
+
+Now take any subnormalized ensemble
+$\rho\otimes\sigma=\sum_\ell|v_\ell\rangle\langle v_\ell|$.
+Every ensemble vector lies in the support of the state. Applying the
+coefficient-extraction map on both sides gives exactly
+\[
+       \sum_\ell|v_{0,\ell}\rangle\langle v_{0,\ell}|=\sigma,
+\]
+because $Rz=0$ and $\langle z|\rho|z\rangle=L^2$.
+By the definition of Schmidt number, at least one nonzero $v_{0,\ell}$
+has Schmidt rank at least $\operatorname{SN}(\sigma)$. The preceding
+minor proves the required lower bound for every ensemble of
+$\rho\otimes\sigma$.
+For the upper bound, take ensembles of $\rho$ and $\sigma$ with maximal
+Schmidt ranks $r$ and $\operatorname{SN}(\sigma)$, respectively, and use
+their product ensemble. Pure-state Schmidt ranks multiply. This proves
+equality and induction gives the tensor-power formula.
+\end{proof}
+
+There is also a short derivation from the preceding quasidistillation
+result: local filters approach $|\Phi_r\rangle\langle\Phi_r|$ on the first
+factor, Schmidt-number sublevel sets are closed, and
+$\operatorname{SN}(\Phi_r\otimes\sigma)=r\operatorname{SN}(\sigma)$.
+The last identity follows by the same repeated-diagonal-block argument.
+Thus the Schmidt-number theorem is a strong consequence of the already
+established normal form and quasidistillation; the determinant factorization
+of both $G$ roofs below supplies separate additional information.
+
+\begin{theorem}[Universal factorization of both $G$ roofs]
+\label{thm:universal-g}
+Suppose, in addition, that $\rho$ is on $\mathbb C^d\otimes\mathbb C^d$
+and every $m_i>0$. For every state $\sigma$ on
+$\mathbb C^e\otimes\mathbb C^e$,
+\[
+ \boxed{\begin{aligned}
+ G_{de}(\rho\otimes\sigma)&=G_d(\rho)G_e(\sigma),\\
+ G_{de}^{\rm a}(\rho\otimes\sigma)&=G_d(\rho)G_e^{\rm a}(\sigma),
+ \end{aligned}}
+ \qquad
+ G_d(\rho)=G_d^{\rm a}(\rho)
+              =d\left(\prod_i m_i\right)^{1/d}.
+\]
+There is no flat-roof, rank, marginal, or saturation assumption on
+$\sigma$. Here the homogeneous pure-state normalization is
+$G_e(C)=e|\det C|^{2/e}$; the convex roof is the infimum of the ensemble
+sum and the assistance roof is its supremum.
+\end{theorem}
+\begin{proof}
+Use the coefficient matrix $T$ from the preceding proof. Its $d$ diagonal
+blocks have size $e$, so block triangularity gives
+\[
+       \det T=\left(\prod_i m_i^{e/2}\right)(\det C_0)^d.
+\]
+This identity also holds when $C_0$ is singular. Therefore, with
+$g=d(\prod_i m_i)^{1/d}$,
+\[
+                   G_{de}(T)=g\,G_e(C_0).
+\]
+Every ensemble of $\rho\otimes\sigma$ induces an actual ensemble of
+$\sigma$ by the exactly normalized projection already proved. It follows
+that every ensemble sum lies between $gG_e(\sigma)$ and
+$gG_e^{\rm a}(\sigma)$.
+Conversely, choose any ensemble of $\rho$ and an optimizing ensemble of
+$\sigma$. Every ensemble of $\rho$ has $G$ sum $g$. The determinant
+identity for a Kronecker product gives
+$G_{de}(C\otimes D)=G_d(C)G_e(D)$, so the product ensemble attains the
+corresponding lower or upper endpoint. Equivalently one may use sequences
+of ensembles approaching the infimum or supremum; no attainment lemma is
+needed for the equalities.
+\end{proof}
+
+\subsection{The actual structural hypothesis is a common triangular flag}
+
+The preceding factorization is more general than spectral saturation.
+Let $D=\operatorname{diag}(d_1,\ldots,d_d)$ with every $d_i\ne0$, and let
+$\mathcal T$ be a linear subspace of strictly upper triangular matrices.
+Suppose the coefficient-matrix support of a state $\tau$ is contained in
+$\mathbb CD+\mathcal T$ and is not contained in $\mathcal T$.
+For $C=aD+N$ define $\ell(C)=a$ and put
+\[
+       \eta=\sum_j|\ell(C_j)|^2>0
+       \quad\text{for any ensemble }\tau=\sum_j|C_j\rangle\langle C_j|.
+\]
+This number is ensemble independent: it is the expectation of the positive
+rank-one operator representing the linear functional $\ell$.
+The same arguments give, for arbitrary bipartite $\sigma$,
+\[
+ \operatorname{SN}(\tau\otimes\sigma)=d\operatorname{SN}(\sigma),
+\]
+and for square $\sigma$ the two $G$ factorization identities, with
+\[
+       G_d(\tau)=G_d^{\rm a}(\tau)=d|\det D|^{2/d}\eta.
+\]
+Indeed the induced subnormalized vectors now sum to $\eta\sigma$;
+dividing them by $\sqrt\eta$ gives an ensemble of $\sigma$.
+The tensor coefficient matrix still has diagonal blocks $d_iC_0$.
+This version permits cross coherences between the distinguished vector
+$D$ and the triangular residual subspace. It is also invariant under
+invertible local filtering: Schmidt numbers are unchanged, while the
+normalized $G$ roofs acquire the common factor
+$|\det A\det B|^{2/d}/p$, where $p$ is the filter success probability.
+On a tensor product the same factor occurs, so it cancels from each
+factorization identity.
+
+\subsection{Exact operational consequences}
+
+For a saturator, the zero-error cost of preparing $n$ copies by LOCC from
+a maximally entangled resource is exactly
+\[
+       E_c^{(0)}(\rho^{\otimes n})=n\log_2 r,
+       \qquad E_c^{(0,\infty)}(\rho)=\log_2 r.
+\]
+The operational identity $E_c^{(0)}(\omega)=\log_2\operatorname{SN}(\omega)$
+is established prior work; see Yue and Chitambar,
+\href{https://arxiv.org/abs/1808.10516}{arXiv:1808.10516}.
+The value here follows by substituting the exact tensor theorem.
+This is zero-error preparation cost and makes no equality claim for the
+usual vanishing-error asymptotic entanglement cost.
+
+The same theorem rules out erasing a strict Schmidt-number obstruction
+with a saturator as an exactly returned, uncorrelated catalyst. If an LOCC
+success branch maps $\rho\otimes\sigma$ to $\rho\otimes\tau$ with nonzero
+probability, then
+$\operatorname{SN}(\tau)\le\operatorname{SN}(\sigma)$.
+For a full-positive square saturator the $G$ factorization also gives the
+necessary success-probability bound
+$pG_e(\tau)\le G_e(\sigma)$, using the standard average monotonicity of
+$G$-concurrence. These statements require exact product return of the
+catalyst; they do not cover correlated or approximately returned catalysts.
+The $G$-concurrence monotonicity and determinant scaling used here are
+established properties, reviewed in Gour,
+\href{https://arxiv.org/abs/quant-ph/0506229}{arXiv:quant-ph/0506229},
+Eqs.~(4)--(5) and the proof of Theorem~1.
+
+Tensor closure of the \emph{saturation condition} itself is not required
+and is false. For example set
+\[
+ z=(3|00\rangle+|11\rangle)/4,
+ \qquad \rho_*=|z\rangle\langle z|+\frac38|01\rangle\langle01|.
+\]
+Its decreasing marginal spectra are
+$\alpha=(15,1)/16$, $\beta=(9,7)/16$, and it is a spectral saturator with
+$f_2=1/2$ and $G_2=3/8$. But
+\[
+ \lambda_{\max}(\rho_*^{\otimes2})=\frac{25}{64}
+    <\frac7{16}
+    =\sum_i\min\{(\alpha^{\otimes2})_i^\downarrow,
+                         (\beta^{\otimes2})_i^\downarrow\}.
+\]
+The earlier equality classification therefore excludes tensor-square
+saturation, whereas the present theorem gives Schmidt number four and
+$G_4=G_4^{\rm a}=9/64$ exactly.
+
+For an example with different lower and upper roofs in the second factor,
+take the two-qubit isotropic state
+\[
+ \sigma=\frac34|\Phi_2\rangle\langle\Phi_2|
+            +\frac1{12}(I-|\Phi_2\rangle\langle\Phi_2|).
+\]
+Then $G_2(\sigma)=1/2$ and $G_2^{\rm a}(\sigma)=1$, giving
+\[
+       G_4(\rho_*\otimes\sigma)=\frac3{16},\qquad
+       G_4^{\rm a}(\rho_*\otimes\sigma)=\frac38.
+\]
+The lower value for $\sigma$ follows without a numerical roof search.
+For any normalized two-qubit pure state,
+$\langle\Phi_2|\psi\rangle\langle\psi|\Phi_2\rangle\le(1+G_2(\psi))/2$,
+so every ensemble of $\sigma$ has mean concurrence at least $1/2$.
+An attaining six-vector ensemble has coefficient matrices
+\[
+ C_{j,\pm}=\frac{\sqrt3\,I\pm P_j}{2\sqrt2},
+       \qquad j=1,2,3,
+\]
+with equal weights $1/6$, where the $P_j$ are Pauli matrices.
+Each is normalized and has concurrence $1/2$; their mixture is $\sigma$.
+The Bell eigenensemble attains assistance one, the universal upper bound.
+
+\section{Flat \texorpdfstring{$G$}{G} roofs can collapse completely under tensoring}
+\label{sec:flat-roof-counterexample}
+
+The common triangular flag cannot be replaced by the statement that
+the lower and upper $G$ roofs agree. The following explicit counterexample
+also shows why a linear space consisting entirely of nilpotent matrices
+is not enough for the tensor proof.
+The underlying nilpotent pencil is classical: the matrices below are the
+transposes of those in Christensen,
+\href{https://arxiv.org/abs/funct-an/9702017}{arXiv:funct-an/9702017},
+Example~3.1, which credits Wielandt and Motzkin--Taussky.
+The quantum state, ensemble conversion and entanglement conclusions are
+derived explicitly here; the matrix pencil itself is not claimed as new.
+
+\begin{theorem}[A three-level flat-roof counterexample]
+\label{thm:flat-roof-tensor-failure}
+Define
+\[
+ A=\begin{pmatrix}0&1&0\\0&0&1\\0&0&0\end{pmatrix},\qquad
+ B=\begin{pmatrix}0&0&0\\1&0&0\\0&-1&0\end{pmatrix},\qquad
+ \omega=\frac{|I_3\rangle\langle I_3|
+                 +|A\rangle\langle A|+|B\rangle\langle B|}{7}.
+\]
+This is a rank-three state on $\mathbb C^3\otimes\mathbb C^3$, with
+\[
+ G_3(\omega)=G_3^{\rm a}(\omega)=\frac37,
+       \qquad \operatorname{SN}(\omega)=3.
+\]
+Nevertheless,
+\[
+ \boxed{\quad G_9(\omega\otimes\omega)=0,\qquad
+          \operatorname{SN}(\omega\otimes\omega)\le7<9,\qquad
+          G_9^{\rm a}(\omega\otimes\omega)\ge\frac9{49}>0.\quad}
+\]
+The bound seven is an explicit ensemble upper bound; equality of the
+tensor-square Schmidt number with seven is not asserted.
+\end{theorem}
+The nilpotent plane $\operatorname{span}\{A,B\}$ has no common triangular
+flag: $\ker A=\mathbb Ce_0$, $\ker B=\mathbb Ce_2$, so their common
+kernel is zero. Simultaneously strictly upper triangular matrices would
+annihilate the same nonzero first basis vector.
+\begin{proof}
+The three coefficient matrices $I_3,A,B$ are Hilbert--Schmidt orthogonal
+with squared norms $3,2,2$. Positivity and trace one are therefore
+immediate, and the eigenvalues are $3/7,2/7,2/7$.
+Direct multiplication gives
+\[
+        (aA+bB)^3=0,\qquad
+        \det(cI_3+aA+bB)=c^3
+           \quad(a,b,c\in\mathbb C).
+\]
+In any subnormalized ensemble of $\omega$, write the coefficient
+matrices as $C_j=c_jI_3+a_jA+b_jB$. Taking the expectation on
+$|I_3\rangle/\sqrt3$ gives $\sum_j|c_j|^2=1/7$. Hence
+\[
+         \sum_jG_3(C_j)=3\sum_j|c_j|^2=3/7
+\]
+for \emph{every} ensemble. This proves both roof values. Every ensemble
+has a vector with $c_j\ne0$, hence of Schmidt rank three, proving the
+Schmidt-number assertion.
+
+The tensor product initially has the nine-term subnormalized ensemble
+$|C\otimes D\rangle/7$, for $C,D\in\{I_3,A,B\}$.
+Let $\zeta=e^{2\pi i/3}$. Replace the three coefficient matrices
+$I_3\otimes I_3,A\otimes B,B\otimes A$ by
+\[
+          V_j=\frac{I_9+\zeta^jA\otimes B
+                           +\zeta^{2j}B\otimes A}{\sqrt3},
+                   \qquad j=0,1,2.
+\]
+The $3\times3$ Fourier matrix is unitary, so this substitution preserves
+the sum of the three vector projectors exactly. The remaining six terms
+are left unchanged.
+The determinant identity
+\[
+ \det(I_9+xA\otimes B+yB\otimes A)
+                       =(xy-1)^2(2xy+1)
+\]
+shows that every $V_j$ is singular. More precisely, for $xy=1$ the
+matrix has the two independent kernel vectors
+\[
+    -x|01\rangle+|10\rangle,
+                 \qquad x|12\rangle+|21\rangle.
+\]
+Its principal minor indexed, in zero-based lexicographic order, by
+$\{0,1,2,4,5,6,8\}$ has determinant three. Thus its rank is exactly
+seven for $x\ne0$, and this applies to all three Fourier vectors.
+The six remaining matrices are
+$I\otimes A,I\otimes B,A\otimes I,B\otimes I,A\otimes A,B\otimes B$;
+their ranks are $6,6,6,6,4,4$.
+
+After normalization, the three rank-seven ensemble vectors each have
+probability $17/147$, the four rank-six vectors each have probability
+$6/49$, and the two rank-four vectors each have probability $4/49$.
+These probabilities sum to one. This is an exact ensemble of
+$\omega\otimes\omega$ in which every coefficient determinant vanishes,
+so the convex-roof $G_9$ is zero and the Schmidt number is at most seven.
+The original product eigenensemble has $G_9$ sum $(3/7)^2$, proving the
+positive assistance lower bound.
+\end{proof}
+
+For additional checks, both actual marginals of $\omega$ are
+$\operatorname{diag}(2,3,2)/7$, its fully entangled fraction is $3/7$,
+and its partial-transpose eigenvalues are
+\[
+       \frac17\ [3\text{ times}],\quad
+       \frac27\ [2\text{ times}],\quad
+       0\ [2\text{ times}],\quad
+       \frac{\sqrt3}{7},\quad-\frac{\sqrt3}{7}.
+\]
+The FEF value follows because $|I_3\rangle/\sqrt3$ is a maximally
+entangled top eigenvector. The state is entangled and NPT, but it is
+not a spectral saturator: its equal marginal spectra have sharp FEF
+cap $(11+4\sqrt6)/21>3/7$. Equivalently their maximal-eigenvalue cap
+is one, which only a pure coupling can attain.
+
+\subsection{A whole family with strict failure of tensor multiplicativity}
+
+The counterexample is not isolated. With the same $A,B$, define
+\[
+ \omega_p=\frac p3|I_3\rangle\langle I_3|
+       +\frac{1-p}{4}\bigl(|A\rangle\langle A|+|B\rangle\langle B|\bigr),
+                  \qquad 0<p\le1.
+\]
+Every member has
+\[
+       G_3(\omega_p)=G_3^{\rm a}(\omega_p)=p,
+       \qquad \operatorname{SN}(\omega_p)=3.
+\]
+This follows from the same determinant identity and the coefficient
+expectation $\sum_j|c_j|^2=p/3$.
+For their tensor squares one has the explicit rigorous bounds
+\begin{equation}\label{eq:flat-family-bound}
+ \boxed{\quad
+ G_9(\omega_p^{\otimes2})
+       \le\max\left\{0,p^2-\frac9{16}(1-p)^2\right\},
+       \qquad G_9^{\rm a}(\omega_p^{\otimes2})\ge p^2.
+ \quad}
+\end{equation}
+In particular the lower roof is exactly zero for $0<p\le3/7$,
+and $G_9(\omega_p^{\otimes2})<p^2$ for every $0<p<1$.
+For $p>3/7$ the upper bound in \eqref{eq:flat-family-bound} is not claimed
+to be the exact convex-roof value.
+
+To prove this, put
+\[
+ T=\frac{|A\rangle\langle A|+|B\rangle\langle B|}{4},
+ \qquad P_3=|\Phi_3\rangle\langle\Phi_3|.
+\]
+The state $T$ has an explicit ensemble of Schmidt rank two, so
+$\operatorname{SN}(T)\le2$. For $0<p\le3/7$,
+\[
+       \omega_p=\frac{7p}{3}\omega
+                      +\left(1-\frac{7p}{3}\right)T.
+\]
+Its tensor square is a convex combination of
+$\omega\otimes\omega$, $\omega\otimes T$, $T\otimes\omega$ and
+$T\otimes T$, with Schmidt-number upper bounds $7,6,6,4$.
+Thus $\operatorname{SN}(\omega_p^{\otimes2})\le7$, proving the exact
+zero lower roof on that interval.
+For $3/7\le p\le1$, put $q=(7p-3)/4\in[0,1]$. Then
+\[
+                   \omega_p=qP_3+(1-q)\omega.
+\]
+Convexity of the lower roof, the zero tensor-square value for $\omega$,
+and the pure-factor tensor identity give
+\[
+ \begin{aligned}
+ G_9(\omega_p^{\otimes2})
+  &\le q^2+\frac67q(1-q)\\
+  &=\frac{(7p-3)(p+3)}{16}
+    =p^2-\frac9{16}(1-p)^2.
+ \end{aligned}
+\]
+The product ensemble supplies the assistance bound $p^2$. At $p=1$ the
+state is a pure Bell state and equality with one is recovered. The
+strict failure for every nonpure $\omega_p$ is therefore fully explicit.
+
+\subsection{A quantitative obstruction to full-dimensional distillation}
+
+For every one-copy stochastic LOCC output $\tau$ of $\omega$ on a
+$3\times3$ output space,
+\[
+                         f_3(\tau)\le\frac{\sqrt7}{3}<1.
+\]
+Indeed, perform the same success branch independently on both copies.
+It succeeds with positive probability and gives $\tau\otimes\tau$.
+Schmidt number cannot increase even on a success branch, so
+$\operatorname{SN}(\tau\otimes\tau)\le7$.
+Choose a maximizing Bell vector for $\tau$; its tensor square is a
+nine-dimensional Bell vector. The standard Schmidt-number overlap bound
+$f_D(\nu)\le\operatorname{SN}(\nu)/D$ therefore gives
+$f_3(\tau)^2\le7/9$.
+This is a rigorous upper bound, not a claim that $\sqrt7/3$ is attainable.
+It excludes quasidistillation to a three-dimensional Bell state despite
+$G_3=G_3^{\rm a}>0$.
+The same bound holds for every $\omega_p$ with $0<p\le3/7$, because the
+preceding argument gives the same tensor-square Schmidt-number bound.
+
+In fact \emph{every} nonpure member of the family fails to be
+quasidistillable to $|\Phi_3\rangle$. For $0<p<1$ define
+\[
+ c=\min\left\{\frac{7p}{3},\frac{7(1-p)}4\right\},\qquad
+ C=\max\left\{\frac{7p}{3},\frac{7(1-p)}4\right\}.
+\]
+The common orthogonal eigenvectors give $c\omega\le\omega_p\le C\omega$.
+For any stochastic LOCC success map $\Lambda$ with
+$q_p=\operatorname{Tr}\Lambda(\omega_p)>0$, positivity gives
+$q_0=\operatorname{Tr}\Lambda(\omega)>0$ and $q_p\le Cq_0$.
+The normalized outputs consequently satisfy
+\[
+ \tau_p=\frac{\Lambda(\omega_p)}{q_p}
+   \ge\frac cC\frac{\Lambda(\omega)}{q_0}
+   =\frac cC\tau_0.
+\]
+Thus $\tau_p$ is a convex combination with weight $c/C$ on $\tau_0$.
+Convexity of the FEF and $f_3(\tau_0)\le\sqrt7/3$ imply the explicit
+piecewise bound
+\[
+ f_3(\tau_p)\le
+ \begin{cases}
+  \sqrt7/3,&0<p\le3/7,\\[2pt]
+  1-\dfrac{3(1-p)}{4p}\left(1-\dfrac{\sqrt7}{3}\right),
+       &3/7\le p<1.
+ \end{cases}
+\]
+Both expressions agree at $p=3/7$ and are strictly below one on their
+stated intervals. No claim of attainability is made. The comparison
+argument uses positivity of the success map, while the bound for its
+output on $\omega$ uses the LOCC Schmidt-number constraint.
+
+Grouping copies into pairs also gives, for every $n\ge2$,
+\[
+ \operatorname{SN}(\omega^{\otimes n})
+        \le 7^{\lfloor n/2\rfloor}3^{n\bmod2}<3^n,
+ \qquad G_{3^n}(\omega^{\otimes n})=0,
+ \qquad G_{3^n}^{\rm a}(\omega^{\otimes n})\ge(3/7)^n.
+\]
+In particular,
+$E_c^{(0,\infty)}(\omega)\le\tfrac12\log_2 7<\log_2 3$.
+An arbitrary collective LOCC success branch into a $3^n\times3^n$ space
+has FEF at most $(7/9)^{\lfloor n/2\rfloor}$, since it cannot increase
+the displayed Schmidt number. This last statement concerns output at the
+full dimension $3^n$; it does not exclude distillation to a smaller
+maximally entangled state.
+
+\subsection{Minimality and prior-art boundary}
+
+The failure just proved first becomes possible in square local dimension
+three among states with positive equal $G$ roofs. By Gour and Guo's
+classification, a two-qubit state with $G_2=G_2^{\rm a}>0$ has coefficient
+support $X(\mathbb CI+\mathcal N)$, where $X$ is invertible and
+$\mathcal N$ is a nilpotent linear space of dimension at most one.
+A single nilpotent matrix is triangularizable. Thus invertible local
+filtering carries its support into a common triangular flag, and the
+universal tensor laws proved above apply. Dimension one is trivial.
+Our explicit dimension-three example proves that this minimality is sharp.
+
+Gour and Guo's Theorem 7 in
+\href{https://quantum-journal.org/papers/q-2018-08-13-81/}{Quantum 2, 81 (2018)}
+already characterizes positive equality of the two $G$ roofs using
+nilpotent linear spaces. That single-state result is credited here.
+The nilpotent pencil and the distinction between scalar and matrix-valued
+pencils also have prior matrix-theory antecedents in Christensen's paper.
+Terhal and Horodecki,
+\href{https://arxiv.org/abs/quant-ph/9911117}{arXiv:quant-ph/9911117},
+already established that mixed-state Schmidt number need not multiply
+under tensor products. Yue and Chitambar's subsequent zero-error-cost
+work gives strong forms of that nonmultiplicativity. The additions here
+are the universal factorization laws forced by the spectral-saturator
+support, and the exact positive-flat-roof counterexample separating a
+common triangular flag from a general nilpotent linear space, together
+with its quantitative filtering obstruction. Targeted primary-source
+searches did not locate these precise statements; they do not certify
+worldwide priority.
+
+These tensor and convex-roof theorems are written exact proofs. The
+companion verification script checks determinant identities, ensemble
+normalization, actual marginals, ranks, and random ensemble identities;
+those checks do not by themselves formalize Schmidt-number convex roofs
+or LOCC in Lean. Formal coverage is reported separately.

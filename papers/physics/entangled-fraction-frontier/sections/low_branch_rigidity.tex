@@ -1,0 +1,53 @@
+\subsection{Complete low-branch equality and invertible-filter nonattainment}
+
+\begin{theorem}[Classical rigidity of low-branch maximizers]\label{thm:low-branch}
+Let $0<c\le1$ and $0\le q\le q_*(c):=\min\{c^2/4,(1-c)^2\}$. Put
+\[
+ \lambda=H(c,q)=\frac{1+c+\sqrt q}{4},\qquad h=c/2.
+\]
+Every canonical state with these invariants and largest eigenvalue $\lambda$ is, up to local unitaries, the single state
+\begin{equation}\label{eq:low-classical}
+ \sigma=\diag\left(\lambda,\frac12-\lambda+h,
+                         \frac12-\lambda,\lambda-h\right).
+\end{equation}
+It is classical in a product basis, and every vector in its top eigenspace is a product vector. For every invertible Bob-filtered output of such a state, with actual Bob radius $b<1$,
+\begin{equation}\label{eq:low-filtered}
+ \boxed{f(\rho)\le H(c,q)-\frac{c(1-b)}4
+                   =\frac{1+\sqrt q+cb}{4}<H(c,q).}
+\end{equation}
+For each fixed $b\in[0,1)$ equality in the first inequality is attained by a diagonal filter of~\eqref{eq:low-classical}.
+Consequently, throughout the positive-$c$ low branch, the two-invariant bound is a strict supremum when Bob's marginal is required to remain invertible.
+\end{theorem}
+\begin{proof}
+Equality in the minimum-purity certificate forces each squared deviation to vanish. Therefore the ordered spectrum is
+\[
+ (\lambda,u,v,w)=
+ \left(\lambda,\frac12-\lambda+h,\lambda-h,\frac12-\lambda\right).
+\]
+Writing $d=2\lambda-h-1/2=\sqrt q/2$, one has $0\le d\le h/2$ and $u-v=h-d>0$. Let $a$ be the top eigenvector of the Alice marginal and put $P=|a\rangle\langle a|\otimes I$. This rank-two projection has
+\[
+ \tr(P\sigma)=\frac{1+c}{2}=\lambda+u.
+\]
+For completeness, in an orthonormal eigenbasis $e_i$ of $\sigma$, put $p_i=\langle e_i,Pe_i\rangle$. These numbers lie in $[0,1]$ and sum to two. The spectral gap gives
+\[
+ \lambda+u-\sum_i\lambda_i p_i\ge(u-v)(p_3+p_4).
+\]
+Thus $p_3=p_4=0$ and $p_1=p_2=1$. Projection positivity implies that $P$ is exactly the projection onto the top-two spectral subspace. Hence
+\[
+ \sigma=|a\rangle\langle a|\otimes R_0+
+        |a^\perp\rangle\langle a^\perp|\otimes R_1,
+ \qquad R_1=I/2-R_0.
+\]
+The two Bob blocks commute and can be simultaneously diagonalized, yielding~\eqref{eq:low-classical}. Its entire top eigenspace lies in $|a\rangle\otimes\C^2$.
+
+Moreover $\sigma\preceq\lambda P+v(I-P)$. A normalized reverse-filtered maximally entangled test vector has squared Schmidt coefficients $(1+b)/2,(1-b)/2$, so its expectation in $P$ is at most $(1+b)/2$. Its expectation in $\sigma$ is therefore at most
+\[
+ \lambda\frac{1+b}{2}+v\frac{1-b}{2}
+       =\lambda-\frac{c(1-b)}4.
+\]
+For the displayed diagonal state, the filter $K=\diag(\sqrt{1+b},\sqrt{1-b})$ and Bell vector $\Phi^+$ attain this value. This proves the exact filtered claim for the family of canonical low-branch extremizers. If any other state with the same $(c,q)$ attained $H$, its canonical state would also have top eigenvalue $H$, hence would belong to this family, contradicting the strict inequality.
+\end{proof}
+
+At $c=q=0$, the canonical state is $I/4$ and the envelope $1/4$ is attained. For $c>0$, the $b=1$ limit of~\eqref{eq:low-classical} is a point ellipsoid of centre length $c+\sqrt q$. For $q>0$ this changes the invariants. For $q=0$ the point ellipsoid is preserved and a singular product output attains $H(c,0)=(1+c)/4$. Formula~\eqref{eq:low-filtered} is an exact finite-bias result for canonical states that maximize $\lambda_{\max}$; it is not asserted to be the full three-invariant $(c,q,b)$ envelope for all states.
+
+The underlying spectral compatibility inequalities are Bravyi's established theorem. The optimization, sharp realization, and low-branch equality analysis above are deductions checked by exact computation. The \texttt{PurityCertificates} section of \texttt{AllProofs.lean} addresses the three real quadratic certificates; it does not install Bravyi's theorem as an axiom or claim an end-to-end formalization of this ellipsoid result.

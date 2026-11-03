@@ -1,0 +1,112 @@
+{
+  "seed": 2026110303,
+  "scope": "Deterministic floating-point falsification diagnostics; not proofs",
+  "fixed_marginal_duals": {
+    "cases": 2500,
+    "max_population_violation": 0.0,
+    "max_dual_nonpositivity": 2.7559368632323514e-15,
+    "max_dual_value_error": 4.440892098500626e-16,
+    "max_kernel_dimension_error": 0,
+    "max_gap_identity_error": 4.440892098500626e-16,
+    "max_support_stability_violation": 0.0,
+    "max_support_projection_distance_violation": 0.0
+  },
+  "random_population_and_spectral_stability": {
+    "cases": 4000,
+    "max_violation": 0.0,
+    "max_individual_cap_stability_violation": 0.0,
+    "max_total_cap_stability_violation": 0.0
+  },
+  "filter_success": {
+    "cases": 6012,
+    "max_feasible_violation": 0.0,
+    "max_attainment_error": 3.3306690738754696e-16,
+    "max_kraus_excess": 0.0,
+    "max_probability_error": 2.220446049250313e-16
+  },
+  "universal_embeddings": {
+    "cases": 300,
+    "max_marginal_error": 1.1102409939074323e-16,
+    "max_attainment_error": 2.220446049250313e-16,
+    "max_negative_eigenvalue": 2.1062474519470982e-16,
+    "max_local_extraction_error": 1.1102230246251565e-16,
+    "max_rank_error": 0,
+    "max_sorting_violation": 0.0
+  },
+  "boundary_and_exact_families": {
+    "boundary_marginal_error": 5.551115123125783e-17,
+    "boundary_min_eigenvalue": -5.611011833163111e-17,
+    "boundary_overlap_error": 2.7755575615628914e-17,
+    "boundary_cross_norm": 0.49999999999999994,
+    "regularized_dual": [
+      {
+        "eta": 0.01,
+        "dual_gap": 0.04314581817910115,
+        "min_slack_eigenvalue": -1.1956618419653214e-16,
+        "largest_multiplier": 3.1561111737613516
+      },
+      {
+        "eta": 0.0001,
+        "dual_gap": 0.004403554361726764,
+        "min_slack_eigenvalue": -1.0273125810117153e-15,
+        "largest_multiplier": 24.354959424503413
+      },
+      {
+        "eta": 1e-06,
+        "dual_gap": 0.0004404475284638665,
+        "min_slack_eigenvalue": -1.4681594094547388e-14,
+        "largest_multiplier": 236.7825268706866
+      },
+      {
+        "eta": 1e-08,
+        "dual_gap": 4.404484499059835e-05,
+        "min_slack_eigenvalue": -4.0184966080933104e-14,
+        "largest_multiplier": 2361.1026391193923
+      },
+      {
+        "eta": 1e-10,
+        "dual_gap": 4.4044845912138975e-06,
+        "min_slack_eigenvalue": 0.0,
+        "largest_multiplier": 23604.308205926372
+      }
+    ],
+    "fourdimensional": [
+      {
+        "residual": "bell",
+        "bell_overlap": 0.6944444444444444,
+        "certified_spectral_cap": 0.6944444444444443,
+        "rank": 2,
+        "alice": [
+          0.5277777777777777,
+          0.25,
+          0.19444444444444442,
+          0.027777777777777776
+        ],
+        "bob": [
+          0.4444444444444444,
+          0.3333333333333333,
+          0.1111111111111111,
+          0.11111111111111109
+        ]
+      },
+      {
+        "residual": "maximally_mixed",
+        "bell_overlap": 0.6944444444444444,
+        "certified_spectral_cap": 0.6944444444444443,
+        "rank": 5,
+        "alice": [
+          0.5277777777777778,
+          0.25,
+          0.19444444444444442,
+          0.027777777777777776
+        ],
+        "bob": [
+          0.4444444444444444,
+          0.33333333333333337,
+          0.1111111111111111,
+          0.1111111111111111
+        ]
+      }
+    ]
+  }
+}

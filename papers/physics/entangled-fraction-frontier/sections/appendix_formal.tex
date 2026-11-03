@@ -1,0 +1,116 @@
+\section{Lean verification: exact coverage and remaining gaps}\label{sec:formal}
+The Lean project in \texttt{lean/} uses Lean~4.32.0 and Mathlib commit
+\begin{center}\small\texttt{81a5d257c8e410db227a6665ed08f64fea08e997}.\end{center}
+It has six modules. \texttt{AllProofs.lean} (4,954 lines) is a single
+compilation unit assembled from 21 constituent files; each constituent body
+is a marked section named after its source file, and
+\texttt{lean/source\_manifest.json} records the original hashes and line
+mapping. Five further modules (924 lines) extend it. A fresh build of all
+six modules from source, followed by the module
+\texttt{ProjectAxiomAudit}, enumerates every declaration whose defining
+module is one of the six, 620 in all, including private and generated
+declarations, and collects its transitive axioms with Lean's own collector.
+Every one is a non-axiom depending only on \texttt{propext},
+\texttt{Classical.choice} and \texttt{Quot.sound}. The sources contain no
+\texttt{sorry}, \texttt{admit}, custom axiom, \texttt{native\_decide},
+\texttt{implemented\_by}, \texttt{extern} or \texttt{unsafe}. The remaining
+compiler warnings in \texttt{AllProofs.lean} are style linters.
+
+\paragraph{Third-party code.} The sections \texttt{LocalPrerequisites} and
+\texttt{Replay} of \texttt{AllProofs.lean} are the Omega Institute's Lean
+proof of the known bound~\cite{publicproof}, Apache License~2.0, at commit
+\texttt{609e95e}. \texttt{Replay} is the target file with its six imports
+removed and three \texttt{\#print axioms} commands appended; its statements
+and proof bodies are unchanged. \texttt{LocalPrerequisites} copies the
+declarations it consumes from six upstream files; part of one of them is
+adapted upstream from \texttt{zblore/csd-lean4} (Apache License~2.0). The
+sections \texttt{WeylMonotonicity} and \texttt{GramUnitaryExtension} are
+extracted from QICLean (Apache License~2.0), and two short proofs adapt
+Mathlib lemmas. \texttt{lean/THIRD\_PARTY\_NOTICE.md} gives the sources and
+changes.
+
+\subsection{What is checked about actual matrices}
+\begin{center}\small
+\begin{longtable}{p{.28\textwidth}p{.63\textwidth}}
+\toprule
+Component & Formal scope\\\midrule\endhead
+Replay of the known bound & The Omega theorem
+\nolinkurl{D5.S3.Quantum.Entanglement.SteeringEllipsoidFullyEntangledFraction.result},
+its operator bounds and its attaining states, for actual positive
+semidefinite complex $4\times4$ matrices of trace one (credited prior
+work).\\
+Prescribed-Schmidt bound & \nolinkurl{MilneExpanded.quantum_overlap_bound}
+(section \texttt{SchmidtOverlap}) proves Theorem~\ref{thm:weighted}'s upper
+bound for an actual positive semidefinite complex matrix on
+$\C^d\otimes\C^d$ and an actual target vector. It constructs the ordered
+singular-value decomposition and the partial traces internally; no
+spectral, SVD or overlap certificate is a hypothesis.\\
+Coherent-minimum attainer & Section \texttt{CoherentMin432}: the actual
+coherent-minimum matrix, its positivity, normalization, both diagonal
+marginals and the prescribed target overlap.\\
+Qubit frontier & \nolinkurl{MilneNew.Qubit.fef_frontier_standard}: for every
+actual two-qubit density matrix with $b<1$,
+$f(\rho)\le\Fe(c,b)$, with $f$, $c$ and $b$ defined exactly as in the Omega
+module; the singular bound $(1+c)/4$ at $b=1$;
+\nolinkurl{MilneNew.Qubit.frontier_sharp}: an actual density matrix with
+centre length $c$, Bob length $b$ and $f=\Fe(c,b)$ for every
+$0\le c\le1$, $0\le b<1$.\\
+Optimal stability & Sections \texttt{QuantumStability} and
+\texttt{SharpStability}: the bound of Theorem~\ref{thm:optimal-stability}
+for actual states, and
+\nolinkurl{MilneNew.Qubit.quantum_stability_coefficient_optimal_closed}: any
+constant valid for all states of centre length $c$ is at least
+$4(1+\sqrt{1-c})^2$, including $c=0$.\\
+Fixed marginals & Sections \texttt{GeneralPartialTrace} and
+\texttt{FixedMarginalReduction}: positive completions, extraction,
+equivalence of every feasible overlap threshold and of all nonnegative
+squared upper bounds, both optimizer transfers and zero residual
+expectation, in rectangular dimensions and with singular marginals.\\
+Population overlap & Section \texttt{PopulationOverlap}: the target-basis
+population bound and an attaining matrix with both prescribed diagonal
+marginals.\\
+Optimizer complementarity & \texttt{OptimizerComplementarity.lean}: every
+positive coupling of the residual marginals of an actual optimizer
+annihilates the target and completes it to an optimizer;
+$R_AXR_B^T=0$ and $\rank R_A+\rank R_B+\rank X\le m+n$.\\
+Marginal rank and every-optimizer rank &
+\texttt{MarginalRank.lean}: $\rank R\le(\rank R_A)(\rank R_B)$ for every
+positive semidefinite bipartite matrix, and
+$\rank M\le1+\lfloor d^2/4\rfloor$ for every optimizer of a full-Schmidt
+square target. \texttt{RectangularOptimizerRank.lean}: the piecewise
+ceiling $1+R_{\max}(m,n,\rank X)$ for every actual optimizer.\\
+Qutrit counterexample & \texttt{NilpotentTensor.lean}: nilpotence and the
+affine determinant identity of the $3\times3$ pencil, its trivial common
+kernel and the $9\times9$ Kronecker determinant polynomial.
+\texttt{NilpotentState.lean}: the counterexample matrix $\omega$ is positive
+semidefinite with trace one, both marginals and the three eigenvector
+relations.\\
+Scalar certificates & Sections \texttt{SharpEnvelope} (deficit identity and
+optimal Bob radius), \texttt{SchmidtCap} (cap rigidity from explicit
+scalar hypotheses), \texttt{FilterFrontier} (the scalar success-constrained
+optimization), \texttt{PurityCertificates} (the three quadratic
+certificates of the purity envelope) and \texttt{FurtherConsequences} (a
+complementary-support rank lemma and a local-dual obstruction).\\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\subsection{What is not formalized}
+The following are written proofs, supported by exact certificates and
+numerical checks but not end-to-end Lean theorems: the local-unitary equality
+classifications (Theorem~\ref{thm:joint-equality},
+Corollary~\ref{cor:original-equality}); the filtered canonical-spectrum bound
+in general dimension (Theorem~\ref{thm:canonical-spectra}), which follows from
+the formal prescribed-Schmidt bound; the all-dimensional saturation normal
+form and its Schmidt-number, partial-transpose, distillability,
+$G$-concurrence and quasidistillation consequences; low-rank optimizer
+existence, the sharpness constructions for the rank ceilings, the unique core
+and optimizer faces; compactness and SDP attainment, the Schur-complement
+form and dual attainment; the quartic and the purity envelope as statements
+about states (Bravyi's theorem is used, not formalized); the Kraus-operator
+interpretation of the filter frontier; the tensor laws, the convex-roof
+interpretation of the Fourier ensemble and the LOCC conclusions; the
+negativity theorems; and the asymptotic capacity formula. The fixed-marginal
+reduction is formalized through threshold and optimizer equivalences, not
+through a maximum operator. Formal verification does not establish novelty
+or priority.

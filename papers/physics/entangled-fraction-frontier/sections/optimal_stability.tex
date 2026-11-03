@@ -1,0 +1,40 @@
+\subsection{The optimal fixed-centre stability coefficient}
+The earlier estimate can be sharpened to its best possible coefficient, including the singular Bob stratum.
+
+\begin{theorem}[Optimal quantitative marginal rigidity]\label{thm:optimal-stability}
+For every two-qubit density matrix, let
+\[
+ \epsilon=1-c/2-f(\rho),\qquad b=|\bm b|,\qquad
+ K(c)=4\bigl(1+\sqrt{1-c}\bigr)^2.
+\]
+Then
+\begin{equation}\label{eq:optimal-stability}
+ \boxed{\bigl((2-c)b-c\bigr)^2\le K(c)\epsilon,\qquad
+ \left|b-\frac{c}{2-c}\right|^2
+ \le\frac{4(1+\sqrt{1-c})^2}{(2-c)^2}\epsilon.}
+\end{equation}
+For each fixed $c\in[0,1]$, the coefficient $K(c)$ is the smallest possible coefficient in the first inequality over all states with that centre radius. For $c>0$ it is attained by the joint-frontier state with $b=0$. For $c=0$ it is approached by the frontier family as $b\downarrow0$.
+\end{theorem}
+\begin{proof}
+The continuous expression $\Fe(c,b)$ remains an upper bound at $b=1$, because there it equals $1/2$ and the actual product-state FEF is $(1+c)/4\le1/2$. Thus $\epsilon\ge D(c,b):=1-c/2-\Fe(c,b)$ throughout the physical domain.
+Put $u=\sqrt{1-b}$ and $v=\sqrt{1-c}\sqrt{1+b}$. The exact deficit identity gives
+\[
+ D(c,b)=\frac{(u-v)^2}{4},\qquad
+ \bigl((2-c)b-c\bigr)^2=4(u+v)^2D(c,b).
+\]
+Since $c,b\ge0$,
+\[
+ (u+v)^2=2-c-cb+2\sqrt{1-c}\sqrt{1-b^2}
+ \le2-c+2\sqrt{1-c}=(1+\sqrt{1-c})^2.
+\]
+This proves the bound. At $b=0$ and $c>0$, both inequalities used above are equalities for the explicit frontier state, and its deficit is strictly positive. Hence its ratio of squared displacement to deficit is exactly $K(c)$.
+At $c=0$ and $0<b<1$, that ratio is
+\[
+ \frac{4b^2}{(1-\sqrt{1-b^2})/2}
+       =8(1+\sqrt{1-b^2}),
+\]
+which approaches $16=K(0)$. No smaller coefficient can hold uniformly.
+\end{proof}
+
+The improvement over the earlier coefficient $8(2-c)$ is exactly
+$4(1-\sqrt{1-c})^2$. The theorem controls the marginal radius. It is not a trace-distance estimate to a single state in higher dimensions, where the optimizer face can contain many states.

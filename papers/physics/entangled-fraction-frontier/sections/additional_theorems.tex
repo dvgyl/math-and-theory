@@ -1,0 +1,376 @@
+\section{An exact reduction for arbitrary fixed marginal matrices}\label{sec:reduction}
+The spectral formula does not directly solve the problem of a prescribed target that is misaligned with prescribed marginal matrices. An exact variational reduction does. It is valid in rectangular dimensions and for singular marginals.
+
+Let $A$ and $B$ be density matrices on $\C^m$ and $\C^n$, and let $x=\operatorname{vec}X\in\C^m\otimes\C^n$ be a unit vector, using row-major coefficients $X_{ij}$ in $\ket{i}\otimes\ket{j}$. Then the marginals of $ww^\dagger$, for $w=\operatorname{vec}W$, are $WW^\dagger$ and $(W^\dagger W)^T$.
+
+\begin{theorem}[Exact pure-component variational reduction]\label{thm:reduction}
+Define
+\[
+ \mathcal W(A,B)=\{W\in\C^{m\times n}:WW^\dagger\preceq A,\ W^\dagger W\preceq B^T\}.
+\]
+Then
+\begin{equation}\label{eq:reduction}
+ \boxed{\max_{\rho_A=A,\,\rho_B=B}\bra x\rho\ket x
+ =\left[\max_{W\in\mathcal W(A,B)}\Rea\tr(X^\dagger W)\right]^2
+ =\left[\max_{W\in\mathcal W(A,B)}|\tr(X^\dagger W)|\right]^2.}
+\end{equation}
+Both maxima are attained. An optimal $W$ produces an actual optimal density matrix by a rank-one term plus a separable product residual.
+\end{theorem}
+\begin{proof}
+If $t=\bra x\rho\ket x>0$, rank-one extraction gives $w=\rho x/\sqrt t$, $\rho\succeq ww^\dagger$ and $\langle x,w\rangle=\sqrt t$. Taking partial traces gives the two constraints on its coefficient matrix. If $t=0$, use $w=0$. This proves one inequality.
+
+Conversely, for any feasible $W$ put $w=\operatorname{vec}W$,
+\[
+ A_0=A-WW^\dagger,\quad B_0=B-(W^\dagger W)^T,\quad
+ \delta=\tr A_0=\tr B_0=1-\|w\|^2.
+\]
+When $\delta>0$,
+\begin{equation}\label{eq:completion}
+ \rho_W=ww^\dagger+\frac{A_0\otimes B_0}{\delta}
+\end{equation}
+is positive, has trace one and the required actual marginals. Its target overlap is at least $|\langle x,w\rangle|^2$. When $\delta=0$, positivity forces $A_0=B_0=0$, and $ww^\dagger$ alone is a coupling. This proves the opposite inequality. The feasible vector set is closed and bounded by $\|w\|^2\le1$, and the coupling set is compact and nonempty, so maxima exist. Finally global phase preserves the constraints on $W$ and rotates its overlap to a nonnegative real number. At a maximizing $W$, the completion must have exactly the optimal overlap; any extra positive residual contribution would contradict the already-proved equality.
+\end{proof}
+
+The positive completion formula itself has a general prior antecedent in
+Remark 2.4(ii) of Skalski--Todorov--Turowska~\cite{capacity2025}.
+The reduction additionally extracts a rank-one component from an arbitrary
+coupling and identifies the exact target optimization, including optimizer
+transfers.
+
+\subsection{A smaller semidefinite optimization problem}
+The feasible set $\mathcal W(A,B)$ is convex. By the Schur complement its constraints are equivalent to
+\[
+ \begin{pmatrix}A&W\\W^\dagger&\Id_n\end{pmatrix}\succeq0,
+ \qquad
+ \begin{pmatrix}\Id_m&W\\W^\dagger&B^T\end{pmatrix}\succeq0.
+\]
+Thus maximizing the real amplitude is a semidefinite program with $2mn$ real scalar variables and two positive blocks of size $m+n$. Squaring its nonnegative optimum gives the original optimum over a positive matrix of size $mn$, which has $(mn)^2$ real entries before constraints. This is an exact size reduction, not a relaxation. The numerical checks compare both formulations for independently generated, misaligned complex marginals and targets. Numerical solver tolerances are reported separately from exact proofs.
+
+\begin{theorem}[Complementarity and a sharp optimizer-rank bound]\label{thm:rank-bound}
+If $x$ has Schmidt rank $k\ge1$, some coupling maximizing its overlap has rank at most
+\[
+ \boxed{m+n-k.}
+\]
+It can be chosen as one pure positive term plus a separable residual. For a full-Schmidt target on $\C^d\otimes\C^d$, the bound becomes $d$ and is sharp even when both prescribed marginals are positive definite.
+\end{theorem}
+\begin{proof}
+Take an optimal $W$ from Theorem~\ref{thm:reduction}. If $\delta=0$, the coupling is pure and the conclusion is immediate. Otherwise the nonnegative residual contribution in~\eqref{eq:completion} must vanish:
+\[
+ \bra x A_0\otimes B_0\ket x=0.
+\]
+The product is strictly positive on the product of its support spaces, so $x$ is orthogonal to that entire product support. Write $r=\rank A_0$ and $s=\rank B_0$. In coefficient-matrix language, $P_{A_0}X P_{B_0}^T=0$. The rank of $X$ restricted to the $s$-dimensional support of $B_0^T$ is at least $s-(n-k)$, while its image lies in a space of dimension $m-r$. Therefore
+\[
+ r+s\le m+n-k.
+\]
+In eigenbases of $A_0$ and $B_0$, couple their positive eigenvalues by a classical transportation matrix. The elementary greedy procedure matches two remaining positive masses, removes the smaller, and repeats. Each occupied cell exhausts at least one row or column, and the last exhausts both; hence it uses at most $r+s-1$ cells. The corresponding mixture of orthogonal product projectors has the same residual marginals, is supported on the same product space, and has rank at most $r+s-1$. It remains invisible to the target. Adding $ww^\dagger$ gives an optimal state of rank at most $r+s\le m+n-k$.
+
+For $d=1$ the sharp rank is trivially one. For sharpness in the square case $d\ge2$, take $0<\eta<1/d$,
+\[
+ B=\Id/d,\qquad
+ A=\diag\bigl(1/d+(d-1)\eta,\,1/d-\eta,\ldots,1/d-\eta\bigr),
+\]
+and any full-Schmidt positive diagonal target. The optimizer classification in Theorem~\ref{thm:optimizer-face} has one surplus Alice index and $d-1$ surplus Bob indices. It is unique, and its residual has rank $d-1$. The full optimizer therefore has rank exactly $d$. Both $A$ and $B$ are positive definite.
+\end{proof}
+
+The general extreme-point rank bound for fixed-marginal couplings is
+$\rank\rho\le\sqrt{m^2+n^2-1}$, established by Parthasarathy~\cite{parthasarathy2003}. The target-dependent bound above can be combined with it by taking the smaller integer bound; it is not claimed to improve it for every target rank. For full-Schmidt square targets it improves the general bound to the sharp value $d$.
+
+Klyachko's Theorem~6.4.1 already gives a coupling of prescribed marginals with rank at most the larger marginal rank, even while maximizing the spectral norm~\cite{klyachko}. Thus bare existence of a rank-$d$ coupling is established prior art. The conclusion here additionally optimizes an independently specified pure target. Applying Klyachko's theorem to $A_0,B_0$ gives the further credited existence refinement $\rank\rho\le1+\max(r,s)$; the Fourier construction below can make that residual separable. Target orthogonality of the entire residual product support preserves optimality. A further maximal-norm argument, given below, removes the extra one and establishes the stronger fixed-target bound $\max(m,n)$.
+
+\paragraph{Subnormalized vectors are essential.}
+Take $A=\diag(7/10,3/10)$, $B=\diag(3/10,7/10)$ and $x=\ket{\Phi^+}$. Every normalized pure coupling is
+$\sqrt{7/10}\ket{01}+e^{i\theta}\sqrt{3/10}\ket{10}$ up to an overall phase, and has zero overlap with $x$. Nevertheless the unique optimal mixed coupling is
+\[
+ \rho_* =\frac3{10}(\ket{00}+\ket{11})(\bra{00}+\bra{11})
+            +\frac25\ket{01}\bra{01},
+ \qquad \bra x\rho_*\ket x=\frac35.
+\]
+Both marginals are positive and isospectral. The correct reduced optimizer has squared norm $3/5$, with its missing trace supplied by the residual. Restricting~\eqref{eq:reduction} to normalized pure couplings would therefore give a false answer.
+
+\input{sections/all_optimizer_rank.tex}
+\input{sections/low_rank_optimizer.tex}
+
+\input{sections/unique_reduced_optimizer.tex}
+
+\section{Fixed marginal matrices: the whole optimizer set}\label{sec:face}
+The spectral theorem has a second, basis-sensitive version. It also exposes much more of the equality geometry than a single attaining example. This section fixes the actual marginal matrices and the target vector, not only their spectra. No ordering of the diagonal entries is required.
+
+Let $a,b,p\in\R^d$ be probability vectors, with $p_i>0$ for every $i$. Put
+\[
+ A=\diag(a),\quad B=\diag(b),\quad
+ x=\sum_i\sqrt{p_i}\ket{ii},\quad
+ m_i=\min(a_i,b_i),\quad u=a-m,\quad v=b-m,
+\]
+\[
+ z=\sum_i\sqrt{m_i}\ket{ii},\qquad
+ L=\sum_i m_i,\qquad \delta=1-L,\qquad
+ S=\sum_i\sqrt{p_i m_i}.
+\]
+Define $I_+=\{i:a_i>b_i\}$ and $I_-=\{i:b_i>a_i\}$, and the orthogonal subspaces
+\[
+ E_+=\operatorname{span}\{\ket i:i\in I_+\},\quad
+ E_-=\operatorname{span}\{\ket i:i\in I_-\},\quad
+ \mathcal T=E_+\otimes E_-.
+\]
+The entries of $u$ and $v$ have disjoint supports. Unless $a=b$, both $I_+$ and $I_-$ are nonempty.
+
+\begin{theorem}[Exact fixed-matrix overlap optimum]\label{thm:fixed-matrix}
+For all bipartite density matrices with $\rho_A=A$ and $\rho_B=B$,
+\[
+ \boxed{\max_\rho\bra x\rho\ket x=S^2.}
+\]
+This holds also when $a$ or $b$ has zero entries. The statement fixes the diagonal marginal matrices in the target's Schmidt bases; it is not a formula for arbitrary misaligned fixed matrices and a prescribed target.
+\end{theorem}
+\begin{proof}
+Write $d_i=\rho_{ii,ii}$. Marginal positivity gives $0\le d_i\le a_i,b_i$, hence $d_i\le m_i$. Positive semidefiniteness gives $|\rho_{ii,jj}|\le\sqrt{d_i d_j}$. Therefore
+\[
+ \bra x\rho\ket x
+ \le\sum_{ij}\sqrt{p_i p_j}\,|\rho_{ii,jj}|
+ \le\left(\sum_i\sqrt{p_i d_i}\right)^2
+ \le S^2.
+\]
+For $\delta>0$, the state
+\[
+ zz^\dagger+\frac1\delta\diag(u)\otimes\diag(v)
+\]
+has the required marginals and overlap $S^2$, since $u_i v_i=0$. For $\delta=0$, $a=b=m$ and $zz^\dagger$ attains the bound. This is an actual matrix optimization, with no singular-value existence assumption.
+\end{proof}
+
+\begin{theorem}[Complete optimizer face for positive marginal entries]\label{thm:optimizer-face}
+Suppose every $m_i>0$. The complete set of optimizers in Theorem~\ref{thm:fixed-matrix} consists precisely of
+\begin{equation}\label{eq:optimizer-face}
+ \boxed{\rho=zz^\dagger+R,\quad R\succeq0,\quad
+ \operatorname{ran}R\subseteq\mathcal T,\quad
+ R_A=\diag(u),\quad R_B=\diag(v).}
+\end{equation}
+Thus the freedom in the optimizer is exactly a smaller quantum coupling problem on $E_+\otimes E_-$.
+\end{theorem}
+\begin{proof}
+Equality throughout the preceding proof first forces $d_i=m_i$: all $\sqrt{p_i}$ are strictly positive and the scalar square root is strictly increasing. Equality in the entrywise sum forces the whole diagonal-coordinate block to be $\rho_{ii,jj}=\sqrt{m_i m_j}$. Every off-diagonal basis vector $\ket{ij}$, $i\ne j$, outside $\mathcal T$ has zero population. Indeed, either $u_i=0$, which exhausts row $i$'s marginal population at $\ket{ii}$, or $v_j=0$, which exhausts column $j$'s population at $\ket{jj}$. A zero diagonal entry of a positive matrix forces its entire row and column to vanish.
+
+Relative to the diagonal-coordinate space and $\mathcal T$, a positive matrix whose first block is $zz^\dagger$ must have the form
+\[
+ \rho=zz^\dagger+zy^\dagger+yz^\dagger+R,
+ \qquad y\in\mathcal T,\qquad R\succeq yy^\dagger.
+\]
+This follows either from the rank-one Schur complement or by testing the kernel of $zz^\dagger$. For $i\in I_+$ and $j\in I_-$, the off-diagonal entry $(j,i)$ of $\rho_A$ receives from the cross block the unique contribution $\sqrt{m_j}\,\overline{y_{ij}}$. The residual $R_A$ is supported on $E_+$, so it cannot cancel this entry. Likewise the corresponding entry of $\rho_B$ is proportional to $\sqrt{m_i}\,y_{ij}$. Both prescribed marginals are diagonal, and $m_i,m_j>0$, so $y_{ij}=0$. Hence $y=0$ and the remaining marginal equations are exactly those in~\eqref{eq:optimizer-face}. Conversely every state in~\eqref{eq:optimizer-face} has the prescribed marginals and the same overlap, since $x\perp\mathcal T$.
+\end{proof}
+
+\begin{corollary}[Uniqueness, dimension and rank]\label{cor:face-dimension}
+Let $r=|I_+|$ and $s=|I_-|$. Under the hypotheses of Theorem~\ref{thm:optimizer-face}:
+\begin{enumerate}
+\item If $a=b$, the optimizer is the pure state $zz^\dagger$.
+\item If $a\ne b$, the optimizer is unique if and only if $\min(r,s)=1$.
+\item If $r,s\ge2$, its face has real affine dimension
+\[
+ (r^2-1)(s^2-1).
+\]
+\item Every optimizer satisfies $\rank\rho=1+\rank R\le1+rs$. The upper rank is attained by $R=\diag(u)\otimes\diag(v)/\delta$.
+\end{enumerate}
+In particular no optimizer of this positive-marginal problem is full rank for $d\ge2$.
+\end{corollary}
+\begin{proof}
+If either residual local space has dimension one, its fixed marginal determines $R$ uniquely. Otherwise the Hermitian operators on an $r s$-dimensional space have real dimension $r^2s^2$. Prescribing both marginals imposes $r^2+s^2-1$ independent real linear constraints, with the trace counted once. Independence follows by allowing arbitrary traceless perturbations of either marginal and one common trace perturbation. The product residual is positive definite on $\mathcal T$, so the feasible set has the full affine dimension claimed. Its dimension is positive exactly when $r,s\ge2$. Finally $z\perp\mathcal T$, so the ranks add. Since $r+s\le d$, $1+rs\le1+\lfloor d^2/4\rfloor<d^2$ for $d\ge2$.
+\end{proof}
+
+\subsection{The boundary: extra coherences are real}
+For completeness the zero-entry case can also be classified exactly. Set
+\[
+ Z_+=\{i\in I_+:m_i=0\},\qquad
+ Z_-=\{i\in I_-:m_i=0\},\qquad
+ \mathcal T_0=\operatorname{span}\{\ket{ij}:i\in Z_+,j\in Z_-\}.
+\]
+\begin{theorem}[Complete boundary parametrization]\label{thm:boundary-face}
+If $L>0$, all optimizers in Theorem~\ref{thm:fixed-matrix} are precisely
+\begin{equation}\label{eq:boundary-face}
+ \rho=zz^\dagger+zy^\dagger+yz^\dagger+R,
+ \quad y\in\mathcal T_0,\quad R-yy^\dagger\succeq0,
+\end{equation}
+where $R$ is supported on $\mathcal T$ and has marginals $\diag(u),\diag(v)$. If $L=0$, the optimum is zero and every coupling with the prescribed marginals is optimal.
+\end{theorem}
+\begin{proof}
+The same equality and positivity argument gives the rank-one first block, the allowed support, and $R\succeq yy^\dagger$. The off-diagonal marginal equations now give only $\sqrt{m_i}y_{ij}=\sqrt{m_j}y_{ij}=0$. These are exactly $y\in\mathcal T_0$. Conversely such cross terms have both partial traces zero, and are orthogonal to $x$ on their residual side, so they preserve the marginals, trace and optimal overlap. The Schur-complement condition is exactly positivity. When $L=0$, no coordinate $\ket{ii}$ can have positive population, hence every admissible positive state annihilates the target.
+\end{proof}
+
+For example, $a=(1/2,1/2,0)$ and $b=(1/2,0,1/2)$ have $m=(1/2,0,0)$. For every full-Schmidt diagonal target,
+\[
+ \rho=\tfrac12(\ket{00}+\ket{12})(\bra{00}+\bra{12})
+\]
+is an optimizer. Its cross terms are nonzero. Dropping the positivity assumption on $m$ in~\eqref{eq:optimizer-face} would therefore be false.
+
+\section{An exact dual certificate and a singular nonattainment theorem}\label{sec:dual}
+The local-sum dual and its positive-marginal attainment are established quantum-transport tools~\cite{cole2023}. That paper also gives a singular two-qubit example of nonattainment and the zero-row obstruction used below. The additions here are an explicit certificate for the whole diagonal pure-target problem, its kernel and support estimate, and a general zero-entry criterion. Assume $m_i>0$. Put
+\[
+ \ell_i=S\sqrt{p_i/m_i},\qquad
+ h_i=\begin{cases}\ell_i&a_i<b_i,\\0&a_i>b_i,\\\ell_i/2&a_i=b_i,\end{cases}
+ \qquad k_i=\ell_i-h_i.
+\]
+Let $H=\diag(h)$, $K=\diag(k)$, and
+\[
+ Z=H\otimes\Id+\Id\otimes K-xx^\dagger.
+\]
+\begin{theorem}[Dual certificate and robust support]\label{thm:dual}
+The operator $Z$ is positive semidefinite,
+\[
+ \tr(HA)+\tr(KB)=S^2,
+ \qquad \ker Z=\operatorname{span}\{z\}\oplus\mathcal T.
+\]
+If $P$ projects onto this kernel and $\ell_{\min}=\min_i\ell_i$, then
+\[
+ Z\succeq\frac{\ell_{\min}}2(\Id-P).
+\]
+Consequently every admissible $\rho$ with overlap deficit $\epsilon=S^2-\bra x\rho\ket x$ satisfies
+\begin{equation}\label{eq:support-stability}
+ \boxed{\tr((\Id-P)\rho)\le\frac{2\epsilon}{\ell_{\min}}.}
+\end{equation}
+If the right side is less than one, there is a normalized state $\widehat\rho$ supported on $\ker Z$ with
+\[
+ \|\rho-\widehat\rho\|_1\le2\sqrt{2\epsilon/\ell_{\min}}.
+\]
+This last state is not asserted to have exactly the original marginals. The conclusion is a quantitative support theorem, not an unstated distance bound to the entire optimizer face.
+\end{theorem}
+\begin{proof}
+On diagonal coordinates, $Z=D-xx^\dagger$ with $D=\diag(\ell)$ and
+\[
+ x^\dagger D^{-1}x=\sum_i p_i/\ell_i=1.
+\]
+Thus $D^{-1/2}ZD^{-1/2}$ is an orthogonal projection. Its kernel corresponds to $D^{-1}x=z/S$, and its nonzero eigenvalues are at least $\ell_{\min}$: the nonzero spectra of $D^{1/2}(\Id-aa^\dagger)D^{1/2}$ and $(\Id-aa^\dagger)D(\Id-aa^\dagger)$ agree, where $a=D^{-1/2}x$ is unit. On an off-diagonal coordinate $\ket{ij}$ the coefficient is $h_i+k_j$. It is zero exactly for $i\in I_+,j\in I_-$, and otherwise at least $\ell_{\min}/2$. This proves the operator and kernel assertions. The dual objective is $\sum_i m_i\ell_i=S^2$, so $\epsilon=\tr(Z\rho)$ and~\eqref{eq:support-stability} follows. Finally use $\widehat\rho=P\rho P/\tr(P\rho)$ and a purification projected onto $P$: its overlap with the original purification is $\sqrt{\tr(P\rho)}$. The pure-state trace-distance formula and contractivity under partial trace give the displayed bound.
+\end{proof}
+
+\begin{theorem}[A sharp boundary failure of dual attainment]\label{thm:dual-noattain}
+Suppose $p_i>0$ for every $i$, $L>0$, and $m_j=0$ for at least one $j$. The primal optimum $S^2$ is attained, but no finite Hermitian matrices $H,K$ attain the matching dual problem
+\[
+ \inf\{\tr(HA)+\tr(KB):H\otimes\Id+\Id\otimes K\succeq xx^\dagger\}.
+\]
+The infimum still equals $S^2$.
+\end{theorem}
+\begin{proof}
+For $\eta>0$ define $m_i^{(\eta)}=m_i+\eta$, $S_\eta=\sum_i\sqrt{p_i(m_i+\eta)}$ and $\ell_i^{(\eta)}=S_\eta\sqrt{p_i/(m_i+\eta)}$. Split each coefficient between $H$ and $K$ according to the smaller actual marginal entry, as above. The same diagonal weighted-Cauchy argument gives a feasible dual pair, with objective
+\[
+ C_\eta=\sum_i m_i\ell_i^{(\eta)}\longrightarrow S^2.
+\]
+Weak duality and the explicit primal optimizer prove equality of the infimum. If finite multipliers attained it, their positive slack $Z$ would obey $\tr(Z\rho_*)=0$ for the explicit primal state $\rho_*=zz^\dagger+R_*$ with $R_*\succeq0$. Hence $Zz=0$. But at the coordinate $(j,j)$ with $m_j=0$, any local-sum operator obeys
+\[
+ [(H\otimes\Id+\Id\otimes K)z]_{jj}=0,
+\]
+whereas $(xx^\dagger z)_{jj}=\sqrt{p_j}S>0$. This contradiction proves nonattainment. The assumption $L>0$ is essential; when $L=0$, an optimal dual of objective zero can be constructed by assigning positive diagonal coefficients only to zero-cost marginal entries.
+\end{proof}
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\textwidth]{singular_dual_limit.png}
+\caption{The explicit feasible dual sequence for $a=(0.3,0.2,0.5,0)$, $b=(0.3,0.2,0,0.5)$ and $p=(0.1,0.2,0.3,0.4)$. Its objective converges to the attained primal optimum while a multiplier diverges. Curves evaluate the exact formula; they are not solver output.}
+\end{figure}
+
+\section{Universality of higher-dimensional equality sets}\label{sec:universality}
+The optimizer face is large enough to contain an arbitrary smaller bipartite fixed-marginal problem. This explains why a qubit-like unique normal form should not be expected in higher dimension.
+
+\begin{theorem}[Embedding arbitrary residual quantum correlations]\label{thm:universality}
+Let $\omega$ be any density matrix on $\C^r\otimes\C^s$ with specified marginals. There exist positive probability vectors $a,b$ in dimension $d=r+s$, with both lists decreasing, and an affine embedding of the whole fixed-marginal state space of $\omega$ into the optimizers of the marginal-spectrum FEF bound. Each embedded state has the form
+\[
+ \rho_\omega=zz^\dagger+\delta V\omega V^\dagger,\qquad \delta>0,
+\]
+and satisfies
+\[
+ f_d(\rho_\omega)=\frac1d\left(\sum_i\sqrt{m_i}\right)^2,
+ \qquad \rank\rho_\omega=1+\rank\omega.
+\]
+The local product projection onto the residual subspaces extracts $V\omega V^\dagger$ with probability exactly $\delta$.
+\end{theorem}
+\begin{proof}
+Diagonalize the two prescribed marginals of $\omega$, with eigenvalue vectors $a',b'$. Choose a strictly decreasing positive probability vector $\lambda$ of length $d$. Allocate disjoint index sets of sizes $r,s$ to the two residual spaces, and embed $a',b'$ on these respective sets as $\widetilde a,\widetilde b$. Choose $0<\delta<1$ sufficiently small that
+\[
+ \delta\max(\|\widetilde a\|_\infty,\|\widetilde b\|_\infty)
+ <(1-\delta)\min_{i<d-1}(\lambda_i-\lambda_{i+1}).
+\]
+Set $m=(1-\delta)\lambda$, $a=m+\delta\widetilde a$ and $b=m+\delta\widetilde b$. They remain strictly decreasing positive probability vectors, and their componentwise minimum is $m$. The isometry $V$ embeds $\omega$ in the product of the disjoint residual spaces. The displayed state has marginals $\diag(a),\diag(b)$ and its Bell overlap is $(\sum\sqrt m)^2/d$. The universal spectral theorem proves that no other maximally entangled target does better. Orthogonality of the coherent and residual supports gives the rank identity and the local-projection statement. All choices depend only on the prescribed marginal pair, so the embedding is affine on the entire corresponding coupling space.
+\end{proof}
+
+\subsection{An exact four-dimensional family with different residual entanglement}
+Take
+\[
+ m=\frac1{36}(16,9,4,1),\qquad
+ a=\frac1{36}(19,9,7,1),\qquad
+ b=\frac1{36}(16,12,4,4),\qquad\delta=\frac16.
+\]
+Here $I_+=\{0,2\}$, $I_-=\{1,3\}$, and
+\[
+ z=\frac16(4\ket{00}+3\ket{11}+2\ket{22}+\ket{33}).
+\]
+Let $\omega$ be any two-qubit state with both marginals $\Id_2/2$, embedded by $V\ket{i,j}=\ket{2i,2j+1}$. Then
+\[
+ \rho_\omega=zz^\dagger+\frac16V\omega V^\dagger,
+ \qquad \boxed{f_4(\rho_\omega)=\frac{25}{36}.}
+\]
+For $\omega=\ket{\Phi^+}\bra{\Phi^+}$ the full state has rank two, and local projection onto even Alice and odd Bob levels yields a Bell pair with probability $1/6$. For $\omega=\Id_4/4$ the full state has rank five and the same projection yields a separable state. Both have exactly the same actual marginals and fully entangled fraction. The optimizer face has affine dimension nine. The coherent-plus-product sharpness witness is therefore only one point in a much larger equality set.
+
+\section{Success probability versus conditional entangled fraction}\label{sec:success}
+Local filtering is operational only after specifying its success probability. Here the input is a canonical two-qubit state $\sigma$ with $\sigma_B=\Id/2$ and centre length $c$. A single successful Bob Kraus operator $K$ satisfies $K^\dagger K\preceq\Id$; the successful state is normalized by its probability $q_K$.
+
+\begin{theorem}[Sharp required-success frontier]\label{thm:success}
+Let $0\le c\le1$ and $0<q\le1$. Over all such canonical inputs and filters with success probability at least $q$, the maximal conditional FEF is
+\begin{equation}\label{eq:success-frontier}
+ \boxed{
+ G(c,q)=\begin{cases}
+ 1-c/2,&0<q\le1-c/2,\\[2mm]
+ \displaystyle\frac{[1+\sqrt{(1-c)(2q-1)}]^2}{4q},&1-c/2\le q\le1.
+ \end{cases}}
+\end{equation}
+Every value is attained. The two expressions agree at the transition. At $q=1$, the frontier is the canonical bound; allowing success $q=1-c/2$ reaches Milne's larger centre-only bound.
+\end{theorem}
+\begin{proof}
+The input Bob marginal is uniform, so $q_K=\tr(K^\dagger K)/2$. If the normalized output Bob length is $b$, the two eigenvalues of $K^\dagger K$ are $q_K(1+b)$ and $q_K(1-b)$. Physical admissibility therefore implies
+\[
+ q_K(1+b)\le1,\qquad b\le\frac{1-q}{q}.
+\]
+For invertible filters the centre is unchanged and the joint frontier gives $f\le\Fe(c,b)$. Its unique peak is $b_*=c/(2-c)$ and it increases on $[0,b_*]$. Thus the optimal allowed value is $b=\min\{b_*,(1-q)/q\}$, which gives~\eqref{eq:success-frontier}. One elementary proof of monotonicity writes $x_b=\sqrt{1+b}$, $y_b=\sqrt{1-b}$ and $s=\sqrt{1-c}$. For $b\le B\le b_*$ one has $y_B\ge s x_B$ and
+\[
+ (x_B-x_b)(x_B+x_b)=(y_b-y_B)(y_b+y_B).
+\]
+Since $y_b+y_B\ge s(x_B+x_b)$, this implies $x_b+s y_b\le x_B+s y_B$.
+
+For attainment take the canonical amplitude-damping state $\sigma_c$ of the equality classification and
+\[
+ K=\diag\bigl(\sqrt{q(1+b)},\sqrt{q(1-b)}\bigr)
+\]
+with the optimal $b$ just identified. It is a valid contraction, succeeds with probability exactly $q$, and gives $\rho_{c,b}$. A singular filter has success probability at most $1/2$, since its sole nonzero squared singular value is at most one. It is therefore infeasible when $q>1/2$; when $q\le1/2$, its product output has FEF at most $1/2\le1-c/2=G(c,q)$. Singular filters are needed for attainment only at the endpoint $c=1$, $q\le1/2$, where the successful state is a pure product. No singular whitening identity is used.
+\end{proof}
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=.95\textwidth]{filter_success_frontier.png}
+\caption{Exact required-success frontier. A marker identifies $q=1-c/2$, the largest required success at which Milne's centre-only value can still be attained. The curves apply to optimization over canonical inputs with the stated centre and physically allowed Bob filters.}
+\end{figure}
+
+\section{Quantitative rigidity of the extracted Schmidt spectrum}\label{sec:cap-stability}
+Let $\alpha,\beta,p$ be as in the prescribed-Schmidt theorem, with $p_i>0$, $m_i=\min(\alpha_i,\beta_i)$ and $S=\sum_i\sqrt{p_i m_i}>0$. Let $t=\bra x\tau\ket x>0$ and $w=\tau x/\sqrt t$, and write $q_i$ for the decreasing squared Schmidt coefficients of $w$. The original proof gives $q_i\le m_i$ and
+\[
+ \sqrt t\le\sum_i\sqrt{p_i q_i}\le S.
+\]
+\begin{theorem}[Individual cap-deficit control]\label{thm:cap-stability}
+For $\epsilon=S^2-t$,
+\[
+ \boxed{\sqrt{p_i}\,S\,(m_i-q_i)\le2\sqrt{m_i}\,\epsilon\quad\text{for every }i.}
+\]
+Consequently, writing $p_{\min}=\min_i p_i$ and $m_{\max}=\max_i m_i$,
+\[
+ \sum_i(m_i-q_i)
+ \le\frac{2\sqrt{m_{\max}}}{S\sqrt{p_{\min}}}\,\epsilon.
+\]
+The residual positive matrix $\tau-ww^\dagger$ therefore has trace at most $1-\sum_i m_i$ plus this explicit error. At equality every cap is saturated.
+\end{theorem}
+\begin{proof}
+Each nonnegative term satisfies
+\[
+ \sqrt{p_i}(\sqrt{m_i}-\sqrt{q_i})
+ \le S-\sum_j\sqrt{p_jq_j}\le S-\sqrt t.
+\]
+Multiply by $\sqrt{m_i}+\sqrt{q_i}\le2\sqrt{m_i}$, then by $S$, and use
+\[
+ S(S-\sqrt t)\le S^2-t=\epsilon.
+\]
+This proves the individual bound, including $m_i=0$. For the aggregate estimate, first sum the square-root deficits with their weights, rather than summing the individual upper bounds:
+\[
+ \sqrt{p_{\min}}\sum_i(\sqrt{m_i}-\sqrt{q_i})
+ \le S-\sum_i\sqrt{p_iq_i}\le\epsilon/S.
+\]
+Use $m_i-q_i\le2\sqrt{m_{\max}}(\sqrt{m_i}-\sqrt{q_i})$. This avoids an extraneous factor of $d$. This is spectrum rigidity of the canonical extraction, not a claim of universal trace-distance rigidity to a unique state; the high-dimensional optimizer faces above rule out such a uniqueness claim.
+\end{proof}

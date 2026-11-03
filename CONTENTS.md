@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**59 manuscripts and research notes across 58 result families in mathematics, theoretical computer science, and mathematical physics.**
+**60 manuscripts and research notes across 59 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -664,6 +664,17 @@ Ducuara, Susa and Skrzypczyk defined the one-sided hidden CHSH measures, the lar
 **Prior work.** [Ducuara, Susa and Skrzypczyk, Locally inaccessible hidden quantum correlations, 2024.](https://arxiv.org/abs/2406.03945) · [Horodecki, Horodecki and Horodecki, Violating Bell inequality by mixed spin-1/2 states, 1995.](https://doi.org/10.1016/0375-9601(95)00214-N) · [Zhang, Araiza Bravo, Lorenz and Chitambar, Channel activation of CHSH nonlocality, 2020.](https://arxiv.org/abs/1911.06349) · The Omega Institute's public repository records an earlier claimed Lean proof of Milne's Conjecture 1 (issue #16558) that uses the same plane-purity identity and filtering covariance and, with Result 1 of Ducuara et al., already gives the inaccessible interval 0 < p ≤ 2/3 of the quasi-distillable family; no priority is claimed for these. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-steering-centre-bounds).
 
 [Paper PDF](papers/physics/unilateral-chsh/manuscript.pdf) · [LaTeX](papers/physics/unilateral-chsh/manuscript.tex) · [Proof and reproduction](papers/physics/unilateral-chsh/README.md) · [Citation](papers/physics/unilateral-chsh/CITATION.bib)
+#### [Saturating the steering-centre bound on the fully entangled fraction: sharp frontier, equality cases and tensor laws](papers/physics/entangled-fraction-frontier/manuscript.pdf)
+
+**Family:** `entangled-fraction-frontier`.
+
+For two-qubit states with steering-ellipsoid centre length c and Bob Bloch length b < 1, the fully entangled fraction satisfies f ≤ [√(1+b) + √((1−c)(1−b))]²/4, sharply for every pair, with equality to the known bound 1 − c/2 exactly at b = c/(2−c). Each frontier value is attained by one local-unitary orbit; for each c the states with f = 1 − c/2 form one orbit, of rank two for 0 < c < 1, and the optimal stability constant is 4(1+√(1−c))². In every dimension a prescribed-Schmidt overlap bound in the two marginal spectra is sharp and its saturators have a complete normal form, with optimizer-rank bounds for fixed marginals, ellipsoid-shape refinements, the tensor law SN(ρ⊗σ) = r·SN(σ), a qutrit flat-roof state whose tensor square has G-concurrence zero, negativity optimization and the exact collective coupling capacity.
+
+**Formal scope.** Lean 4.32.0 proves the joint frontier, its sharpness for every pair, the stability bound and the optimality of its constant, the general prescribed-Schmidt bound, the fixed-marginal reduction and the rank ceilings for every optimizer, for actual complex matrices, with a whole-project audit. The equality classifications, the saturation normal form, the tensor laws and the negativity and capacity theorems are conventional proofs with exact certificates and numerical checks.
+
+**Prior work.** [Milne, Jennings, Jevtic and Rudolph, Phys. Rev. A 90, 024302 (2014).](https://arxiv.org/abs/1404.3951) The bound f ≤ 1 − c/2 (their Conjecture 2) and its sharpness are prior work: the Omega Institute's public repository records a claimed Lean proof committed on 8 October 2026 (issue #14206), replayed here with attribution, and [steering-bounds](papers/physics/steering-bounds/README.md) also proves it; no priority is claimed for it. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-steering-centre-bounds).
+
+[Paper PDF](papers/physics/entangled-fraction-frontier/manuscript.pdf) · [LaTeX](papers/physics/entangled-fraction-frontier/manuscript.tex) · [Citation](papers/physics/entangled-fraction-frontier/CITATION.bib) · [Proof and reproduction](papers/physics/entangled-fraction-frontier/README.md)
 
 #### [The three-state root-fidelity entropy bound](papers/physics/fidelity-three-state/manuscript.pdf)
 

@@ -1,0 +1,32 @@
+{
+  "method": "SymPy exact rational and symbolic arithmetic",
+  "all_assertions_passed": true,
+  "cases": {
+    "noncommuting_positive_marginals": {
+      "optimum": "289/900",
+      "state_rank": 2,
+      "dual_slack_rank": 2,
+      "fixed_cross_amplitude": "1/10",
+      "coherent_core_squared_norm": "17/50",
+      "unique_state_from_exact_linear_kernel_equations": true,
+      "exact_psd_certification": "all principal minors nonnegative"
+    },
+    "singular_marginal_counterexample": {
+      "dimension": 3,
+      "target_schmidt_rank": 3,
+      "two_distinct_reduced_maximizers": true,
+      "optimal_overlap_squared": "1/6"
+    },
+    "product_target_counterexample": {
+      "positive_marginals": true,
+      "target_schmidt_rank": 1,
+      "two_distinct_reduced_maximizers": true,
+      "optimal_overlap_squared": "1/2"
+    },
+    "pure_coupling_restriction_counterexample": {
+      "positive_isospectral_marginals": true,
+      "all_pure_coupling_overlap": "0",
+      "mixed_optimal_overlap": "3/5"
+    }
+  }
+}

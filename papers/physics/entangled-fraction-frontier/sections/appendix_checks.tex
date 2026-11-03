@@ -1,0 +1,113 @@
+\section{Exact examples and counterexample searches}\label{sec:checks}
+\subsection{Certified sharpness and invalid extrapolations}
+The family \eqref{eq:joint-state} establishes sharpness for every admissible pair, with positivity supplied by its rank-one decomposition. Substitution of $b=c/(2-c)$ gives the original sharp family without numerical approximation.
+
+For a concrete counterexample to applying the canonical-only bound to an arbitrary state, take $c=3/5$ and
+\[
+ \rho_{3/5}=\begin{pmatrix}
+ 5/7&0&0&2/7\\0&6/35&0&0\\0&0&0&0\\2/7&0&0&4/35
+ \end{pmatrix}.
+\]
+Its Bob length is $3/7$ and $f=7/10$, whereas the canonical bound at that centre is
+\[
+ (1+\sqrt{2/5})^2/4\simeq0.6662277660<0.7.
+\]
+Thus canonicality cannot be dropped from Milne's Theorem 3. Separately, the pure-Bob product states in \eqref{eq:singular} refute a claim that the joint formula remains sharp at $b=1$ with the singular centre held fixed.
+
+For the genuinely higher-dimensional marginal-spectrum bound, take
+\[
+ \alpha=(3/5,3/10,1/10),\qquad\beta=(1/2,2/5,1/10).
+\]
+The exact optimum FEF among all states with these marginals is
+\[
+ \frac{(\sqrt{1/2}+\sqrt{3/10}+\sqrt{1/10})^2}{3}
+ \simeq0.8227401421.
+\]
+The one-marginal square-root bounds give about $0.8949454158$ and $0.9138802622$, respectively. The construction \eqref{eq:coherent-min}, with residual $(1/10)\ket{01}\bra{01}$, attains the stricter two-marginal value.
+
+\subsection{Reproducible numerical evidence}
+The seeded Python harness \texttt{verify\_results.py} uses seed 20261103 and performs:
+\begin{itemize}
+\item 20,000 independently generated two-qubit density matrices, cycling ranks one through four; no sample was skipped for marginal conditioning;
+\item 3,006 explicit sharp-family states, including endpoint and nearly singular cases;
+\item 600 random general states and 600 attaining constructions in each dimension $d=2,3,4,5,6$;
+\item two independent FEF calculations, using correlation singular values and the real symmetric magic-basis formulation;
+\item independent centre calculations from whitening and from $(\bm a-T\bm b)/(1-b^2)$, and invariant-polynomial checks.
+\end{itemize}
+No violation above floating-point tolerance was found. The largest apparent joint-bound excess was $5.67\times10^{-15}$, on an almost singular pure state. The independent FEF formulas agreed within $1.12\times10^{-15}$; sharp-family FEF errors were below $3.34\times10^{-16}$. General-dimensional sharpness and marginal errors were below $4.45\times10^{-16}$. The invariant-polynomial residual was below $8.89\times10^{-12}$.
+
+These samples do not prove the theorem. Their purpose is to falsify normalization errors, missed ranks, mistaken Schmidt ordering and formula errors. All universal claims above rest on the exact proofs.
+
+An exploratory SLSQP search also examined 16 $(c,b)$ pairs with three starts per pair. Its boundary solutions did not meet the solver's success flag and sometimes had small negative eigenvalues. Apparent excesses of order $10^{-6}$ were therefore rejected as infeasible numerical artifacts, not reported as counterexamples. Those raw search results are not part of this package.
+
+The equality script proves 25 exact symbolic identities, including trace, marginals, the centre quotient, correlations, characteristic polynomial, filtering, Bell overlap and endpoint identities. A separate symbolic script checks \eqref{eq:quartic} for arbitrary centre coordinates and signed diagonal correlations.
+
+\subsection{Expanded tests and exact counterexample certificates}
+The extended suite adds 40,000 random canonical states, 5,151 explicit
+attainers and 180 independent constrained quadratic optimizations for the
+centre--purity envelope. The maximum random-state excess is below
+$1.9\times10^{-14}$ and the quadratic-program optimum agrees with the
+closed form within $4.02\times10^{-14}$. Square-root evaluation at a
+branch endpoint produces a larger $5.27\times10^{-9}$ floating-point
+attainment discrepancy; the exact phase certificates and branch formulas
+are checked symbolically and in Lean.
+
+The population/dual suite checks 2,500 explicit duals, 4,000 population and
+extracted-Schmidt stability instances, 6,012 filter-success cases and 300
+universal residual embeddings. The separate robust-witness suite tests
+36 low-Schmidt-rank states against the determinant inequality. Structural
+fixtures cover 8 saturation states, 32 explicit filter choices and 18
+mixed-ensemble $G$-concurrence averages, including repeated and zero caps.
+These calculations test identities and inequalities; they do not infer
+Schmidt number by a heuristic numerical optimization.
+
+Exact SymPy arithmetic separately verifies 40 expanded certificates,
+55 all-optimizer rank cases, 45 low-rank existence/short-product-ensemble
+cases, the noncommuting unique-core example and hypothesis failures,
+and 9 rectangular capacity primal--dual matches. The antisymmetric
+$3\times3$ support counterexample has an exact symbolic singularity
+certificate. The partial-transpose congruence has separate exact
+rational-complex checks. The run log \texttt{verification/checks.log} records each script's successful exit status.
+
+Finally, 16 independent complex SDP instances compare the full joint
+optimization and the reduced coefficient-matrix formulation in dimensions
+$2\times2$, $2\times3$, $3\times3$ and $3\times4$, including singular
+marginals and rank-one targets. Their maximum value difference is
+$1.35\times10^{-8}$. Singular marginals are compressed to their exact
+support spaces, and the compressed target is \emph{not renormalized}.
+A prior uncompressed run gave a discrepancy of approximately
+$3.20\times10^{-4}$ and a solver failure. That diagnostic is not included; some solver statuses are reported as \texttt{optimal\_inaccurate}; no
+approximate SDP output is promoted to an exact certificate.
+
+
+\subsection{Checks for the tensor, negativity and capacity results}
+The new checks include exact matrix and ensemble certificates, followed
+by seeded numerical falsification tests. The tensor suite checks the
+three-level state and its entire $81\times81$ tensor-square ensemble
+identity in exact arithmetic, including the Fourier mixture, two kernel
+vectors, a nonzero seven-dimensional minor, and all ensemble ranks and
+probabilities. It also checks arbitrary-block triangular determinant
+identities and the displayed isotropic-state ensembles. Random ensemble
+tests assess the algebraic projection identities, rather than attempting
+to estimate a convex roof by numerical search.
+
+The negativity suite independently compares the classical transportation
+problem with the full quantum residual SDP, tests strict and strong
+convexity of the saddle trace norm, and checks the exact endpoint formulas
+and their attaining states. Approximate SDP comparisons are reported as
+solver diagnostics. Exact scalar certificates include a nonproduct
+minimizing transport and its four optimality conditions.
+
+The collective-capacity suite checks an actual two-copy attaining matrix,
+its marginals, eigenvalues and objective in exact arithmetic. It tests
+120 independently generated positive triples, 480 finite-copy formulas,
+360 strict supermultiplicativity instances, and the upper and lower
+Chernoff certificates. Boundary minimizers, equal marginals and zero
+population supports have dedicated fixtures. Binomial formulas and parity
+prefactors are tested independently, including large-copy computations in
+logarithmic arithmetic. The exact three-copy counterexample confirms that
+strict supermultiplicativity does not imply monotone per-copy roots.
+
+The per-script logs record exact counts and the largest numerical residuals. Every universal
+claim has a written proof; a finite set of numerical successes is never
+used as its justification.

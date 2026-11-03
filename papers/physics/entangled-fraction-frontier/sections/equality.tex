@@ -1,0 +1,85 @@
+\section{Complete equality classification}\label{sec:equality}
+\begin{theorem}[All joint-frontier maximizers]\label{thm:joint-equality}
+For every $0\le c\le1$ and $0\le b<1$, a two-qubit state attains \eqref{eq:joint} if and only if it is locally unitarily equivalent to \eqref{eq:joint-state}.
+\end{theorem}
+\paragraph{Idea of the proof.} Equality must hold in every step of the
+proof of Theorem~\ref{thm:weighted}. The extracted vector $w$ must then have
+the largest admissible Schmidt coefficients, the positive residual
+$\sigma-\ket w\bra w$ must live where the target cannot see it, and the filter
+must be aligned with the Schmidt bases of $w$. Each of these conditions is
+rigid, and together they determine the state up to local unitaries.
+
+\begin{proof}
+First assume $0<c<1$. Choose a maximizing maximally entangled $e$ and write the state as a filter of its canonical $\sigma$. Put $x=(\Id\otimes K^\dagger)e$, so $x$ is unit with Schmidt amplitudes
+\[
+ s_1=\sqrt{(1+b)/2},\qquad s_2=\sqrt{(1-b)/2}>0.
+\]
+Extract $w=\sigma x/\sqrt{t}$, $t=\bra x\sigma\ket x=\Fe(c,b)>0$. In the proof of Theorem~\ref{thm:weighted} every inequality must be an equality. Both positive $s_i$ force the squared Schmidt amplitudes of $w$ to be
+\[
+ q_1=\frac12,\qquad q_2=\frac{1-c}{2}.
+\]
+Apply local unitaries to put
+\[
+ w=\frac1{\sqrt2}\bigl(\ket{00}+\sqrt{1-c}\ket{11}\bigr),\qquad
+ R=\sigma-\ket w\bra w\succeq0.
+\]
+The Bob marginal then satisfies
+\[
+ R_B=\frac c2\ket1\bra1.
+\]
+A positive operator with its Bob marginal supported on $\ket1$ is supported on $\C^2\otimes\mathrm{span}\{\ket1\}$: the expectation on every vector with Bob component $\ket0$ is zero, and a positive operator annihilates a vector of zero expectation. Hence $R=H\otimes\ket1\bra1$ with $H\succeq0$ and $\tr H=c/2$.
+
+Now $\sigma_A=\diag(q_1,q_2)+H$ has smallest eigenvalue $q_2$. Take a unit eigenvector $u$ for that eigenvalue. The two nonnegative terms
+\[
+ \ip{u}{(\diag(q_1,q_2)-q_2\Id)u}\quad\text{and}\quad\ip{u}{Hu}
+\]
+sum to zero. Because $q_1>q_2$, $u$ is a phase multiple of $\ket1$, and positivity implies $H\ket1=0$. Therefore $H=(c/2)\ket0\bra0$. We have proved that the canonical state is exactly
+\begin{equation}\label{eq:sigma-ad}
+ \sigma_c=\frac12\bigl(\ket{00}+\sqrt{1-c}\ket{11}\bigr)
+                    \bigl(\bra{00}+\sqrt{1-c}\bra{11}\bigr)
+            +\frac c2\ket{01}\bra{01}.
+\end{equation}
+
+It remains to check the filter orientation, rather than merely its singular values. In the chosen Schmidt bases write $W=\diag(w_1,w_2)$ with $w_1>w_2>0$, and let $X$ be the coefficient matrix of $x$. Then
+\[
+ |\tr(W^\dagger X)|
+ \le(w_1-w_2)|X_{00}|+w_2|\tr X|
+ \le(w_1-w_2)s_1+w_2(s_1+s_2).
+\]
+Equality forces $|X_{00}|=s_1$. Since $s_1$ is the operator norm of $X$, the off-diagonal entries in its first row and column must vanish. The remaining diagonal entry has modulus $s_2$, and equality in the triangle inequality aligns the two phases. Thus, up to an irrelevant overall phase,
+\[
+ x=s_1\ket{00}+s_2\ket{11}.
+\]
+This argument also covers $b=0$, when $s_1=s_2$; only the strict inequality $w_1>w_2$ was used.
+
+If $E$ is the coefficient matrix of the maximally entangled $e$, then $E^\dagger E=\Id/2$ and $X=E\overline K$. Consequently
+\[
+ K^\dagger K=2(X^\dagger X)^T=\diag(1+b,1-b).
+\]
+Polar decomposition absorbs the remaining output unitary into a local Bob unitary. Filtering \eqref{eq:sigma-ad} by this positive diagonal matrix's square root gives exactly \eqref{eq:joint-state}.
+
+For $c=0$, equality in both positive-weight caps gives $\|w\|^2=1$. The positive residual has trace zero and vanishes, so $\sigma$ is a pure maximally entangled state. The filtered state is pure, and its Schmidt spectrum is fixed by $b$; all such pure states form one local-unitary orbit, represented by $\rho_{0,b}$.
+
+For $c=1$, $\sigma_A$ is pure, so $\sigma=\ket0\bra0\otimes\Id/2$ up to local unitaries. The state $\rho$ is pure Alice tensor Bob, and all states with the given $b$ again form one local-unitary orbit. Their FEF is $(1+b)/4=\Fe(1,b)$. The converse in all cases follows from the explicitly checked attaining family.\end{proof}
+
+\begin{corollary}[All saturators of Milne's original inequality]\label{cor:original-equality}
+For each $c\in[0,1]$ there is exactly one local-unitary orbit of states satisfying $f(\rho)=1-c/2$. A representative is
+\begin{equation}\label{eq:milne-saturator}
+ \boxed{\rho_c=
+ \frac{\ket{\chi_c}\bra{\chi_c}+c(1-c)\ket{01}\bra{01}}{2-c},
+ \qquad\ket{\chi_c}=\ket{00}+(1-c)\ket{11}.}
+\end{equation}
+At $c=0$ these are exactly pure maximally entangled states; for $0<c<1$ they have rank two; at $c=1$ they are exactly pure product states. No full-rank state saturates.
+\end{corollary}
+\begin{proof}
+For $b<1$, combine \eqref{eq:deficit} with Theorem~\ref{thm:joint-equality}: equality forces $b=c/(2-c)$ and substitution gives \eqref{eq:milne-saturator}. This includes $c=0$ and excludes $c=1$ within the full-rank Bob stratum.
+
+For $b=1$, $\rho=\rho_A\otimes\ket\beta\bra\beta$. A direct Schmidt/Bell calculation gives
+\begin{equation}\label{eq:singular}
+ f(\rho)=\frac12\lambda_{\max}(\rho_A)=\frac{1+c}{4}.
+\end{equation}
+Equality with $1-c/2$ forces $c=1$, hence both marginals are pure.\end{proof}
+
+\subsection{What happens at a singular Bob marginal}
+For fixed $c<1$, $\lim_{b\to1^-}\Fe(c,b)=1/2$, whereas the exact value at $b=1$ is $(1+c)/4<1/2$. There is no discontinuity of the physical function $f(\rho)$: the matrices $\rho_{c,b}$ tend to the pure product $\ket{00}\bra{00}$, whose actual singular centre is $c=1$. It is the coordinate $c$ that fails to extend continuously along this approach. Replacing the singular branch by the limit would answer a different question.
+

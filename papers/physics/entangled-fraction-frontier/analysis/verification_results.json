@@ -1,0 +1,140 @@
+{
+  "seed": 20261103,
+  "scope": "Numerical falsification tests, not proofs",
+  "qubits": {
+    "count": 20000,
+    "skipped": 0,
+    "maxima": {
+      "joint_violation": 5.662137425588298e-15,
+      "milne_violation": 0.0,
+      "ellipsoid_violation": 0.0,
+      "magic_svd_difference": 1.1102230246251565e-15,
+      "centre_difference": 1.5429959930322719e-12,
+      "quartic_residual": 8.885336910680053e-12,
+      "stability_violation": 0.0
+    },
+    "minimum_joint_slack": -5.662137425588298e-15,
+    "closest_random_state": {
+      "c": 1.916858025968946e-13,
+      "b": 0.9994709556226735,
+      "f": 0.5162619868612379,
+      "F": 0.5162619868612323,
+      "rank": 1
+    }
+  },
+  "sharp_family": {
+    "count": 3006,
+    "maxima": {
+      "centre_error": 2.7755575615628914e-16,
+      "bob_error": 2.220446049250313e-16,
+      "fef_error": 3.3306690738754696e-16,
+      "nonpositivity": 1.43982048506075e-16,
+      "trace_error": 2.220446049250313e-16
+    },
+    "singular_bob_tests": [
+      {
+        "c": 0.0,
+        "f": 0.25,
+        "exact": 0.25
+      },
+      {
+        "c": 0.2,
+        "f": 0.3,
+        "exact": 0.3
+      },
+      {
+        "c": 0.6,
+        "f": 0.4,
+        "exact": 0.4
+      },
+      {
+        "c": 1.0,
+        "f": 0.5,
+        "exact": 0.5
+      }
+    ]
+  },
+  "general_spectral_overlap": [
+    {
+      "d": 2,
+      "random_tests": 600,
+      "sharpness_tests": 600,
+      "max_violation": 0.0,
+      "max_sharpness_error": 3.3306690738754696e-16,
+      "max_marginal_error": 3.3306690738754696e-16,
+      "max_nonpositivity": 1.8559423305791562e-16
+    },
+    {
+      "d": 3,
+      "random_tests": 600,
+      "sharpness_tests": 600,
+      "max_violation": 0.0,
+      "max_sharpness_error": 3.3306690738754696e-16,
+      "max_marginal_error": 3.3306690738754696e-16,
+      "max_nonpositivity": 2.0641223512259118e-16
+    },
+    {
+      "d": 4,
+      "random_tests": 600,
+      "sharpness_tests": 600,
+      "max_violation": 0.0,
+      "max_sharpness_error": 3.3306690738754696e-16,
+      "max_marginal_error": 4.440892098500626e-16,
+      "max_nonpositivity": 2.3517559649881103e-16
+    },
+    {
+      "d": 5,
+      "random_tests": 600,
+      "sharpness_tests": 600,
+      "max_violation": 0.0,
+      "max_sharpness_error": 4.440892098500626e-16,
+      "max_marginal_error": 3.3306690738754696e-16,
+      "max_nonpositivity": 2.296692031527824e-16
+    },
+    {
+      "d": 6,
+      "random_tests": 600,
+      "sharpness_tests": 600,
+      "max_violation": 0.0,
+      "max_sharpness_error": 4.440892098500626e-16,
+      "max_marginal_error": 4.440892098500626e-16,
+      "max_nonpositivity": 3.654461094832449e-16
+    }
+  ],
+  "examples": {
+    "canonical_bound_misuse_counterexample": {
+      "c": 0.6,
+      "b": 0.42857142857142855,
+      "actual_f": 0.7,
+      "canonical_bound": 0.6662277660168381
+    },
+    "shape_refinement": {
+      "canonical_spectrum": [
+        0.04999999999999995,
+        0.04999999999999999,
+        0.35,
+        0.55
+      ],
+      "c": 0.6,
+      "centre_bound": 0.7,
+      "ellipsoid_bound": 0.55,
+      "achieved_f": 0.55,
+      "filter_success": 0.625
+    },
+    "higher_d_spectral_example": {
+      "alpha": [
+        0.6,
+        0.3,
+        0.1
+      ],
+      "beta": [
+        0.5,
+        0.4,
+        0.1
+      ],
+      "fef_bound": 0.8227401420850725,
+      "marginal_A_only_bound": 0.8949454158314228,
+      "marginal_B_only_bound": 0.9138802621666248
+    }
+  }
+}

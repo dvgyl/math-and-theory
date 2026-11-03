@@ -2322,6 +2322,30 @@
         "lean/Lean/UnilateralCHSH.lean": "3c9380d8ca30ae5e3054b8472174122cb2866b9ab0c59ffe240cedf3892d04eb"
       },
       "integrity_manifests": []
+    },
+    "entangled-fraction-frontier": {
+      "root": "papers/physics/entangled-fraction-frontier",
+      "release_manifest_sha256": "a9908f61b5abd27d876e948eb19d40b79bfab14906f80329054814f06c96f972",
+      "formal_scope": "Lean 4.32.0 proves, for actual complex matrices, the joint frontier f ≤ [√(1+b) + √((1−c)(1−b))]²/4 for every two-qubit density matrix with b < 1, the bound f ≤ (1+c)/4 at b = 1, attaining density matrices for every pair, the stability bound and the optimality of its constant, the prescribed-Schmidt overlap bound in every dimension, the fixed-marginal reduction, optimizer complementarity and the rank ceilings for every optimizer, and the matrix facts of the qutrit counterexample; it also replays the Omega Institute's proof of f ≤ 1 − c/2 with attribution, and a whole-project audit covers all 620 declarations. The equality classifications, the saturation normal form and its entanglement consequences, the ellipsoid envelopes as statements about states, the tensor laws, the negativity theorems and the asymptotic capacity formula are conventional proofs with exact certificates and numerical checks.",
+      "proof_roots": [
+        {
+          "path": "lean",
+          "lean_version": "4.32.0",
+          "mathlib_revision": "81a5d257c8e410db227a6665ed08f64fea08e997",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "lean/AllProofs.lean": "4133ec694527d2fe10f3dae9c707999942790599c1cce0da5416f94e9391eb17",
+        "lean/MarginalRank.lean": "9e168f073eb96dd49a4866a39e99d543673f7d6eb939c91b9aa42ada5bcf4ce4",
+        "lean/NilpotentState.lean": "dbc36c85aa640a14ff9089b6fb0f5d8fa7c0c5a5175e20e0eca985b0bccefd01",
+        "lean/NilpotentTensor.lean": "ff3db3fe8355e2aedfce1c2a25a1474571d5ed8e99afa8735776225761b180f7",
+        "lean/OptimizerComplementarity.lean": "f1ede1385964fb6dbc0a281bb12d9edaa6ff60f00e4cc35f7bf49bc7ad5cefea",
+        "lean/ProjectAxiomAudit.lean": "af9bd94c59af3d254bb9a384e53a84e97820ab9adb82f421e0788c66cca52525",
+        "lean/RectangularOptimizerRank.lean": "0dbea8a6511d82dd2ef903bd88f520261da1b32c56c89bea9eec549d818272e2"
+      },
+      "integrity_manifests": []
     }
   }
 }

@@ -1,0 +1,321 @@
+\section{A sharp low-rank optimizer with a separable remainder}
+\label{sec:low-rank-optimizer}
+
+The preceding rank bound controls every point of the optimal face. A stronger
+existence statement holds independently of the target's Schmidt rank. It also
+controls the form of an attaining ensemble.
+
+\begin{theorem}[A low-rank pure-target optimizer]
+\label{thm:low-rank-pure-target}
+Let $A,B$ be arbitrary finite-dimensional density matrices, let $x$ be any
+vector in their bipartite space, and put
+\[
+                 D=\max\{\operatorname{rank}A,\operatorname{rank}B\}.
+\]
+Among the states with actual marginals $A,B$, the maximum of
+$\langle x,\rho x\rangle$ is attained by a state of the form
+\[
+ \boxed{\quad
+ \rho=ww^\dagger+\sum_{j=1}^{q}p_j
+                 |a_j\otimes b_j\rangle\langle a_j\otimes b_j|,
+ \qquad 0\le q\le D-1,\quad p_j\ge0,
+ \quad}
+\]
+where the local vectors $a_j,b_j$ are unit vectors. Consequently
+\[
+                         \boxed{\operatorname{rank}\rho\le D.}
+\]
+The pure core is subnormalized: $\|w\|^2+\sum_jp_j=1$.
+The theorem includes singular marginals, rectangular systems, and the case
+in which the optimal target overlap is zero. If the remainder is nonzero,
+its product vectors can be chosen with equal weights $p_j=\delta/q$.
+\end{theorem}
+
+We first give the elementary coupling construction used in the proof.
+
+\begin{lemma}[A short separable coupling of arbitrary marginals]
+\label{lem:fourier-separable-coupling}
+Suppose $E,F\ge0$ have the same positive trace $\delta$, and let
+$q=\max\{\operatorname{rank}E,\operatorname{rank}F\}$. There is a
+positive separable operator $R$ with marginals $E,F$ that is a sum of $q$
+product projectors, and therefore has rank at most $q$. No separable
+coupling with these marginals can have fewer than $q$ nonzero product
+terms.
+\end{lemma}
+
+\begin{proof}
+Diagonalize the marginals and pad their positive eigenvalue lists with zeros
+to length $q$:
+\[
+ E=\sum_{i=0}^{q-1}a_i|e_i\rangle\langle e_i|,
+ \qquad F=\sum_{j=0}^{q-1}b_j|f_j\rangle\langle f_j|,
+ \qquad \sum_i a_i=\sum_jb_j=\delta.
+\]
+Terms with zero coefficients are omitted if the corresponding physical
+space has dimension less than $q$. Write $\omega=e^{2\pi i/q}$ and define
+\[
+ u_t=\sum_i\sqrt{a_i}\,\omega^{ti}e_i,
+ \qquad v_t=\sum_j\sqrt{b_j}\,\omega^{-tj}f_j,
+ \qquad t=0,\ldots,q-1.
+\]
+Both vectors have squared norm $\delta$. Finite Fourier orthogonality gives
+\[
+ {1\over q}\sum_tu_tu_t^\dagger=E,
+ \qquad {1\over q}\sum_tv_tv_t^\dagger=F.
+\]
+Hence
+\[
+ R={1\over q\delta}\sum_{t=0}^{q-1}
+       (u_tu_t^\dagger)\otimes(v_tv_t^\dagger)
+   ={\delta\over q}\sum_{t=0}^{q-1}
+       \left|{u_t\over\sqrt\delta}\otimes
+                    {v_t\over\sqrt\delta}\right\rangle
+       \left\langle{u_t\over\sqrt\delta}\otimes
+                    {v_t\over\sqrt\delta}\right|
+\]
+has the required marginals and is explicitly separable with $q$ terms.
+Conversely, each product projector contributes rank at most one to each
+marginal, so any separable ensemble requires at least
+$\max\{\operatorname{rank}E,\operatorname{rank}F\}$ terms.
+
+For comparison with a cyclic-matching construction, define
+\[
+ z_\ell=\sum_{i=0}^{q-1}
+       \sqrt{a_i b_{i+\ell}/\delta}\;e_i\otimes f_{i+\ell},
+       \qquad \ell=0,\ldots,q-1,
+\]
+with indices modulo $q$. The same Fourier identity gives
+$R=\sum_\ell z_\ell z_\ell^\dagger$: both sides have entry
+$\sqrt{a_i b_j a_k b_l}/\delta$ precisely when
+$j-i=l-k\pmod q$, and entry zero otherwise. Individual $z_\ell$ may be
+entangled; their sum of projectors nevertheless has the displayed
+separable decomposition. Its rank is exactly $q$, because the $q$
+nonzero matching vectors have disjoint supports when one eigenvalue
+list has $q$ positive entries.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:low-rank-pure-target}]
+Every feasible state is supported on
+$\operatorname{ran}A\otimes\operatorname{ran}B$. Compress to these
+supports and compress $x$ accordingly. Write their dimensions as $m,n$;
+then $D=\max(m,n)$. The compressed target need not be a unit vector and
+may vanish. The proof below allows both possibilities.
+
+Use the coefficient-matrix convention
+$w=\sum_{ij}W_{ij}|i,j\rangle$, so the pure marginal matrices are
+$WW^\dagger$ and $(W^\dagger W)^T$. Set $C=B^T$ and consider
+\[
+ \mathcal K=\{W:\ WW^\dagger\le A,\quad W^\dagger W\le C\}.
+\]
+This is a nonempty compact set: it contains zero, is closed, and every
+element obeys $\|W\|_F^2\le1$. It is convex, for example by the two
+equivalent Schur-complement linear matrix inequalities. If $X$ is the
+coefficient matrix of the compressed target, define
+\[
+ \tau=\max_{W\in\mathcal K}\operatorname{Re}\operatorname{Tr}(X^\dagger W).
+\]
+Phase invariance of $\mathcal K$ shows that this is also
+$\max_{W\in\mathcal K}|\operatorname{Tr}(X^\dagger W)|$, and the exact
+pure-target reduction identifies the optimal state overlap as $\tau^2$.
+For completeness, the two directions of that reduction are the
+rank-one extraction $w=\rho x/\sqrt{\langle x,\rho x\rangle}$ when the
+denominator is nonzero, and the product-residual completion of any
+feasible $w$. A zero state overlap uses $w=0$ instead. These arguments
+do not require an invertible target or an invertible coupling.
+
+Among all maximizers of the real linear objective, choose $W$ maximizing
+$\|W\|_F^2$. Such a choice exists because the maximizing set is compact.
+Put
+\[
+ E=A-WW^\dagger,\qquad F=C-W^\dagger W,
+ \qquad \delta=\operatorname{Tr}E=\operatorname{Tr}F=1-\|W\|_F^2.
+\]
+If $\delta=0$, both residual matrices vanish, so $ww^\dagger$ is already
+an optimal state of rank one. Suppose henceforth that $\delta>0$.
+
+We claim
+\[
+                 \max\{\operatorname{rank}E,\operatorname{rank}F\}
+                    \le D-1.                                      \tag{LR1}
+\]
+First assume $m\ge n$. If $E$ were positive definite, let
+$V=\operatorname{ran}F$, of dimension $s\ge1$. Since
+\[
+                 \dim W(V^\perp)\le n-s<m,
+\]
+there is a nonzero vector $u\perp W(V^\perp)$. Choose any nonzero
+$v\in V$ and set $Y=uv^\dagger$. Then $W^\dagger u\in V$, so all
+three matrices
+$W^\dagger Y$, $Y^\dagger W$, and $Y^\dagger Y$ are supported on $V$.
+For sufficiently small $\varepsilon>0$, both signs satisfy
+\[
+ \begin{split}
+ A-(W\pm\varepsilon Y)(W\pm\varepsilon Y)^\dagger
+    &=E\mp\varepsilon(WY^\dagger+YW^\dagger)
+                           -\varepsilon^2YY^\dagger\ge0,\\
+ C-(W\pm\varepsilon Y)^\dagger(W\pm\varepsilon Y)
+    &=F\mp\varepsilon(W^\dagger Y+Y^\dagger W)
+                           -\varepsilon^2Y^\dagger Y\ge0.
+ \end{split}
+\]
+The first assertion follows from strict positivity of $E$ on its full
+space. The second follows from strict positivity of $F$ on $V$, since
+the perturbations vanish on $V^\perp$ and have no cross blocks. Thus
+both $W+\varepsilon Y$ and $W-\varepsilon Y$ lie in $\mathcal K$.
+Their linear objectives average to the optimal value, so both are
+themselves maximizers. But
+\[
+ {\|W+\varepsilon Y\|_F^2+\|W-\varepsilon Y\|_F^2\over2}
+       =\|W\|_F^2+\varepsilon^2\|Y\|_F^2>\|W\|_F^2,
+\]
+contradicting the choice of $W$. Therefore
+$\operatorname{rank}E\le m-1$. If $m>n$, also
+$\operatorname{rank}F\le n\le m-1$. If $m=n$, apply the same argument
+to $W^\dagger$ with the two caps exchanged to obtain
+$\operatorname{rank}F\le n-1$. The case $n>m$ is symmetric. This proves
+(LR1).
+
+The product completion
+\[
+                ww^\dagger+{E\otimes F^T\over\delta}
+\]
+has marginals $A,B$. Its pure term already has target overlap $\tau^2$,
+the global optimum. Consequently
+\[
+       \langle x,E\otimes F^T\,x\rangle=0,
+       \qquad
+       x\perp\operatorname{ran}E\otimes\operatorname{ran}F^T.       \tag{LR2}
+\]
+Here the second conclusion follows because the positive product matrix
+is strictly positive on its support. The argument remains valid for
+$\tau=0$: the product completion cannot have positive target overlap
+when zero is the global maximum.
+
+Apply Lemma~\ref{lem:fourier-separable-coupling} to $E,F^T$. It gives a
+separable residual $R$ with these actual marginals and at most
+$q=\max(\operatorname{rank}E,\operatorname{rank}F)\le D-1$ product
+terms. It is supported on the space in (LR2), hence
+$\langle x,Rx\rangle=0$. Therefore $\rho=ww^\dagger+R$ has the correct
+actual marginals and still attains the global target optimum. Its rank
+is at most $1+q\le D$, with the asserted separable decomposition.
+\end{proof}
+
+\paragraph{Sharpness in every rectangular dimension.}
+The bound $D$ cannot be lowered, even for positive definite marginals.
+Suppose $m\ge n$, let $A=I_m/m$, and choose a positive definite $B$ with
+an eigenvalue $\beta>(m-1)/m$ and unit eigenvector $b$. For any coupling,
+the positive principal block
+$T=(I\otimes\langle b|)\rho(I\otimes|b\rangle)$ satisfies
+$0\le T\le A$ and $\operatorname{Tr}T=\beta$. Consequently
+\[
+       \beta\le {\operatorname{rank}T\over m}
+             \le {\operatorname{rank}\rho\over m},
+       \qquad \operatorname{rank}\rho\ge m.
+\]
+Such $B$ exists for every $n$: for $n>1$, take the remaining eigenvalues
+equal to $\varepsilon$ with
+$0<\varepsilon<1/[m(n-1)]$; for $n=1$, take $B=[1]$. The case $n>m$
+is symmetric. This example forces rank $D$ for every coupling, and
+therefore makes the theorem sharp for every choice of target.
+
+An explicit unique optimizer of rank $m$ is also available for a
+maximal-Schmidt-rank target in every $m\ge n$ with $m>1$. Let
+$0<\delta<1$, $\mu=(1-\delta)/n$, and
+\[
+ x={1\over\sqrt n}\sum_{i=0}^{n-1}|i,i\rangle,
+ \quad w=\sqrt\mu\sum_{i=0}^{n-1}|i,i\rangle,
+ \quad E={\delta\over m-1}\sum_{i=1}^{m-1}|i\rangle\langle i|.
+\]
+Take
+\[
+ A=\mu\sum_{i=0}^{n-1}|i\rangle\langle i|+E,
+ \qquad B=\mu I_n+\delta|0\rangle\langle0|,
+ \qquad \rho=ww^\dagger+E\otimes|0\rangle\langle0|.
+\]
+Both actual marginals are positive definite. Each target-diagonal
+population is capped by $\mu$, so positivity and Cauchy--Schwarz give
+target overlap at most $n\mu=1-\delta$, attained by this $\rho$.
+For $n>1$, equality forces every target population to equal $\mu$ and
+the target-diagonal principal block to be $ww^\dagger$. All remaining
+nonzero populations are confined to
+$\operatorname{span}\{|i,0\rangle:i\ne0\}$. Positivity therefore
+writes any optimizer as
+$ww^\dagger+wy^\dagger+yw^\dagger+R$ on these two blocks.
+The off-diagonal Alice marginal entries with index zero force $y=0$;
+the Alice marginal then forces $R=E\otimes|0\rangle\langle0|$.
+Thus the displayed state is the unique optimizer and has rank $m$.
+For $n=1$, the only coupling is $A\otimes B$, also of rank $m$.
+For $m=n=1$, the only state has rank one.
+
+\begin{corollary}[Fully entangled fraction and other target orbits]
+For fixed actual marginals $A,B$ on $\mathbb C^d\otimes\mathbb C^d$,
+the largest possible fully entangled fraction is attained by a state of
+rank at most $D=\max(\operatorname{rank}A,\operatorname{rank}B)$, with
+one pure core and at most $D-1$ product residual terms. The same holds
+when the maximally entangled targets are replaced by any compact family
+of pure targets, including a local-unitary orbit with prescribed Schmidt
+coefficients.
+\end{corollary}
+
+\begin{proof}
+The coupling set and the target family are compact, so choose a joint
+maximizer $(\rho_*,x_*)$. Apply the theorem to the fixed target $x_*$.
+The resulting low-rank state attains the joint optimal value at that
+target, and therefore attains the maximum over the target family as
+well. No assumption about uniqueness of the optimizing target is used.
+\end{proof}
+
+\begin{corollary}[A shorter simultaneous coherent-minimum witness]
+Let $\alpha,\beta$ be probability vectors of length $d$, set
+$m_i=\min(\alpha_i,\beta_i)$, $u=\alpha-m$, $v=\beta-m$, and
+$\delta=\sum_i u_i=\sum_i v_i$. There is one state with actual diagonal
+marginals $\operatorname{diag}\alpha,\operatorname{diag}\beta$ that
+simultaneously attains
+\[
+ \langle x_p,\rho x_p\rangle
+       =\left(\sum_i\sqrt{p_i m_i}\right)^2,
+ \qquad x_p=\sum_i\sqrt{p_i}|i,i\rangle,
+\]
+for every probability vector $p$. If $\delta=0$, this state is pure.
+Otherwise it may be chosen with rank at most
+\[
+           1+\max\{|\{i:u_i>0\}|,|\{i:v_i>0\}|\}\le d
+\]
+and with a separable residual having this same maximum number of product
+terms. The displayed rank is exact when $\sum_i m_i>0$; when all
+$m_i=0$, the pure core vanishes and the rank is one smaller.
+\end{corollary}
+
+\begin{proof}
+Put $z=\sum_i\sqrt{m_i}|i,i\rangle$. If $\delta>0$, replace the
+product residual of the coherent-minimum construction by the Fourier
+coupling $R$ of $\operatorname{diag}u,\operatorname{diag}v$ from
+Lemma~\ref{lem:fourier-separable-coupling}. Their positive supports are
+disjoint, so $R$ is supported off the target diagonal and annihilates
+every $x_p$. Thus $\rho=zz^\dagger+R$ has the displayed overlaps and
+the required actual marginals. If $z\ne0$, its range is orthogonal to
+the range of $R$, so the ranks add exactly. If $z=0$, all the overlaps
+vanish and the same construction has rank equal to the residual rank,
+which is an even stronger bound. Both residual supports are nonempty
+when $\delta>0$ and are disjoint subsets of $\{1,\ldots,d\}$, so their
+maximum size is at most $d-1$. If $\delta=0$, use $\rho=zz^\dagger$.
+The exact target-population inequality proves optimality for each $p$;
+when the spectra and weights have the required order, this also gives
+a shorter attaining witness for the spectral-overlap theorem.
+\end{proof}
+
+\paragraph{Prior-art boundary and verification scope.}
+The existence of some coupling with rank at most the larger marginal
+rank is already Theorem~6.4.1 of A.~Klyachko,
+\emph{Quantum marginal problem and representations of the symmetric
+group}, arXiv:quant-ph/0409113. That theorem also discusses simultaneous
+maximization of the spectral norm. The elementary Fourier ensemble
+construction above is not asserted to be new. The additional statement
+here is simultaneous maximization of an arbitrary prescribed pure-target
+overlap, with a pure core and at most $D-1$ product residual terms.
+Targeted searches of primary quantum-coupling, marginal, and quantum
+transport sources did not locate this exact statement; that bounded
+search does not establish publication priority. The perturbation and
+rank arguments in this section are exact mathematical proofs, separate
+from the Lean-verified extraction/completion reduction. No Lean
+formalization of these new rank arguments is claimed.

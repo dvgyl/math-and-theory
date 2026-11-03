@@ -1,0 +1,32 @@
+{
+  "source_repository": "https://github.com/LionSR/QICLean",
+  "source_commit": "c457682404aa548b4acd16ac27be5d3835e68892",
+  "source_file": "QICLean/Analysis/WeylMonotonicity.lean",
+  "source_toolchain": "leanprover/lean4:v4.36.0-rc1",
+  "source_mathlib_commit": "625d8914199bc567cca9b91f90e8e5afafa5ae51",
+  "checked_toolchain": "Lean 4.32.0",
+  "retained_theorems": [
+    "LinearMap.IsSymmetric.eigenvalues_le_of_sub_isPositive",
+    "Matrix.IsHermitian.eigenvalues₀_mono",
+    "Matrix.IsHermitian.eigenvalues_mono"
+  ],
+  "changes": [
+    "Removed later low-energy perturbation theorem and its two unused imports.",
+    "Removed low-energy bullet from documentation.",
+    "Added extraction provenance and axiom report commands.",
+    "Retained all five mathematical proofs (two private, three public) unchanged."
+  ],
+  "compilation": {
+    "exit_code": 0,
+    "seconds": 32.354933738708496,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "source_sha256": "a76607b0b28830cd7b3b3bcd7041b34f632f89b70c1daf36f9b6642acd4cb254",
+  "extracted_sha256": "30fae47ee42f246b0d9ead85cfa0d582da2bcec268bda8eac5146bc0498f57b0",
+  "license": "Apache-2.0; see QICLean-LICENSE",
+  "scope": "A small, checked Mathlib-only dependency slice. No QICLean umbrella imports or unfinished source modules are trusted."
+}

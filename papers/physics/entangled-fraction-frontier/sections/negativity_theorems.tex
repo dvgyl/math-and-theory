@@ -1,0 +1,352 @@
+\section{Negativity throughout a fully-entangled-fraction maximizing face}
+\label{sec:negativity-face}
+
+The saturation classification fixes the fully entangled fraction and the
+$G$-concurrence, but it does not fix the negativity.  Here we solve the
+minimum-negativity problem on every full-positive coherent-core rectangle,
+and obtain both endpoints exactly on an infinite family of spectral
+maximizer faces. We use the convention
+$\mathcal N(\rho)=(\|\rho^\Gamma\|_1-1)/2$.
+The conclusions concern the FEF-maximizing face under discussion; they do
+not assert that its largest negativity is the largest among all states
+with the same marginals.
+
+Let $m_i>0$, $z=\sum_{i=1}^d\sqrt{m_i}\,|ii\rangle$, and let $I,J$ be
+nonempty disjoint subsets of $\{1,\ldots,d\}$. Put
+$L=\sum_i m_i$, $\delta=1-L>0$. Consider
+\[
+ \rho_R=|z\rangle\langle z|+R,
+ \quad R\succeq0,\quad
+ \operatorname{supp}R\subseteq\mathbb C^I\otimes\mathbb C^J,
+ \quad \operatorname{Tr}_B R=\operatorname{diag}(u),\quad
+ \operatorname{Tr}_A R=\operatorname{diag}(v),
+\]
+where $u_i,v_j>0$ and $\sum_i u_i=\sum_jv_j=\delta$.
+This includes aligned fixed-matrix faces of full-rank spectral saturators,
+as well as aligned fixed-population optimizer faces without any spectral
+ordering assumption. No assertion is made that every prescribed-spectrum
+optimizer admits this extra simultaneous alignment of its residual
+marginals with the core. Without the spectral ordering condition, the
+more general aligned face maximizes overlap with a fixed pure target;
+FEF optimality over varying target bases is not asserted. Define
+\[
+ d_{ij}=\sqrt{m_i m_j},\qquad
+ N_0=\sum_{1\le i<j\le d}\sqrt{m_i m_j}
+                -\sum_{i\in I,j\in J}d_{ij}.
+\]
+The omitted pairs are distinct because $I\cap J=\varnothing$.
+
+\subsection{A strict-convexity lemma for a saddle matrix}
+
+\begin{lemma}\label{lem:strict-saddle}
+For every positive definite $D\in M_n(\mathbb C)$, the function
+\[
+ C\longmapsto F_D(C)=
+ \left\|\begin{pmatrix}C&D\\D&0\end{pmatrix}\right\|_1
+\]
+is strictly convex on the real vector space of Hermitian $n\times n$
+matrices.
+\end{lemma}
+\begin{proof}
+Write $H(C)$ for the displayed block matrix. It is invertible: the bottom
+block of $H(C)(x,y)^T=0$ gives $Dx=0$, hence $x=0$ and then $Dy=0$.
+For an invertible Hermitian matrix $H$, the maximizer of
+$\operatorname{Tr}(SH)$ over Hermitian contractions $-I\preceq S\preceq I$
+is unique and equals $\operatorname{sign}(H)$. This follows by diagonalizing
+$H$: each diagonal entry of a maximizing contraction must have the sign
+of the corresponding eigenvalue, and a contraction with a diagonal entry
+of modulus one has zero off-diagonal entries in that row and column.
+
+Suppose equality holds in convexity between $H(C_1)$ and $H(C_2)$ at an
+interior mixing parameter. The unique supporting contraction of their
+invertible mixture maximizes both endpoints, so
+$S=\operatorname{sign}H(C_1)=\operatorname{sign}H(C_2)$.
+Write $S=\begin{psmallmatrix}A&B\\B^*&E\end{psmallmatrix}$.
+Since $H(C_1)S=|H(C_1)|\succ0$, its lower-right block $DB$ is positive
+definite. Thus $B$ is invertible. Both $H(C_i)$ commute with $S$, hence
+$\operatorname{diag}(C_1-C_2,0)$ commutes with $S$. Its upper-right
+commutator block is $(C_1-C_2)B=0$. Invertibility of $B$ gives
+$C_1=C_2$, proving strict convexity.
+\end{proof}
+
+Positive definiteness of $D$ matters. For
+$D=\operatorname{diag}(1,0)$ and $C_t=\operatorname{diag}(0,t)$,
+$F_D(C_t)=2+t$ for $t\ge0$; strict convexity fails.
+
+\subsection{The unique minimum is a classical transportation problem}
+
+\begin{theorem}\label{thm:negativity-transport}
+The map $R\mapsto\mathcal N(\rho_R)$ is strictly convex. Its unique minimum
+on the prescribed residual-marginal face is attained by a diagonal
+residual
+\[
+ R_* = \sum_{i\in I,j\in J}t^*_{ij}|ij\rangle\langle ij|,
+\]
+where $t^*$ is the unique solution of the strictly convex transportation
+problem
+\[
+ \boxed{\quad
+ \min_{\substack{t_{ij}\ge0,\ \sum_jt_{ij}=u_i\\
+                        \sum_it_{ij}=v_j}}
+ \left[N_0+\frac12\sum_{i\in I,j\in J}
+       \left(\sqrt{t_{ij}^2+4m_i m_j}-t_{ij}\right)\right].
+ \quad}
+\]
+For every nondiagonal $R$, deleting its off-diagonal entries strictly
+reduces $\mathcal N(\rho_R)$ and preserves both actual marginal matrices.
+\end{theorem}
+\begin{proof}
+In the ordered bases of $I\times J$ and the reversed rectangle
+$J\times I$, the varying partial-transpose block is
+\[
+ H(C)=\begin{pmatrix}C&D\\D&0\end{pmatrix},
+ \quad C=R^\Gamma,\quad D=\operatorname{diag}(d_{ij})\succ0.
+\]
+All other diagonal and two-dimensional blocks are fixed. Consequently
+\[
+ \mathcal N(\rho_R)=N_0+\frac{F_D(R^\Gamma)-\delta}{2}.
+\]
+Partial transpose is an injective real-linear map on Hermitian matrices,
+so Lemma~\ref{lem:strict-saddle} implies strict convexity.
+
+Average the local unitaries $U\otimes\overline U$ over all diagonal
+sign matrices $U$. They fix $z$, preserve the diagonal marginal matrices,
+and delete precisely the off-diagonal entries of $R$. The characters
+$\varepsilon_i\varepsilon_j$ on the disjoint rectangle are distinct.
+Negativity is invariant under each local unitary and convex under their
+mixture. Strict convexity makes the inequality strict unless every
+conjugate is the same, which is equivalent to $R$ being diagonal.
+For a diagonal residual the paired block eigenvalues are
+$(t_{ij}\pm\sqrt{t_{ij}^2+4d_{ij}^2})/2$; summing their negative parts gives
+the displayed objective. Each scalar cost has second derivative
+$2d_{ij}^2/(t^2+4d_{ij}^2)^{3/2}>0$.
+The compact nonempty transportation polytope therefore has exactly one
+minimizer, which is also the unique quantum minimizer.
+\end{proof}
+
+This gives an exact efficient convex characterization even when the
+minimizing transport is not a product coupling. Its optimality conditions
+are particularly simple: there exist real potentials $\lambda_i,\mu_j$
+such that, with
+$g_{ij}'(t)=\tfrac12(t/\sqrt{t^2+4d_{ij}^2}-1)$,
+\[
+ \lambda_i+\mu_j=g'_{ij}(t^*_{ij})\quad(t^*_{ij}>0),
+ \qquad \lambda_i+\mu_j\le-\tfrac12\quad(t^*_{ij}=0).
+\]
+These conditions are necessary and sufficient. For positive cells set
+$h_{ij}=1+2\lambda_i+2\mu_j\in(0,1)$; then
+$t^*_{ij}=2d_{ij}h_{ij}/\sqrt{1-h_{ij}^2}$.
+
+\begin{corollary}[A closed sharp lower bound]\label{cor:negativity-total}
+Put $P=(\sum_{i\in I}\sqrt{m_i})(\sum_{j\in J}\sqrt{m_j})$.
+Then every residual satisfies
+\[
+ \boxed{\quad \mathcal N(\rho_R)\ge
+ N_0+\frac{\sqrt{\delta^2+4P^2}-\delta}{2}.\quad}
+\]
+Equality holds exactly when
+\[
+ R=\sum_{i,j}\frac{\delta\sqrt{m_i m_j}}{P}
+                         |ij\rangle\langle ij|.
+\]
+In particular, equality is feasible exactly when
+$u_i=\delta\sqrt{m_i}/\sum_{k\in I}\sqrt{m_k}$ and
+$v_j=\delta\sqrt{m_j}/\sum_{\ell\in J}\sqrt{m_\ell}$.
+\end{corollary}
+\begin{proof}
+First dephase as in the theorem. The triangle inequality in $\mathbb R^2$
+gives
+$\sum_{i,j}\sqrt{t_{ij}^2+4d_{ij}^2}\ge
+\sqrt{(\sum t_{ij})^2+4(\sum d_{ij})^2}$.
+All $d_{ij}>0$, so equality holds exactly when $t_{ij}/d_{ij}$ is constant.
+Trace $\delta$ fixes that constant to $\delta/P$. Strictness under
+dephasing gives the full quantum equality statement.
+\end{proof}
+
+\paragraph{An exact nonproduct minimizer.}
+The usual product residual need not minimize negativity, even within a
+spectral FEF-maximizer face. Put
+\[
+ k=\frac{17}{3}+\frac4{\sqrt{21}},\quad
+ a=\left(\frac{101}{50}+\frac{k}{10}\right)^{-1},\quad
+ b=\frac a{100},\quad d_0=\frac a{10},\quad \delta=kd_0.
+\]
+Take $m=(a,a,b,b)$, $I=\{1,2\}$, $J=\{3,4\}$, and let
+\[
+ t^*=d_0\begin{pmatrix}4/\sqrt{21}&3/2\\3/2&8/3\end{pmatrix},
+ \qquad u=v=t^*\binom11.
+\]
+Normalization follows from $2a+2b+\delta=1$. Both prescribed marginals
+can be put in decreasing order by permutations within the two equal-core
+blocks. Indeed $b+\max_jv_j=(1/100+5/12)a<a$.
+The KKT potentials $\lambda=(-1/5,-1/10)$ and $\mu=(-1/10,0)$ have
+sums $(-3/10,-1/5;-1/5,-1/10)$, exactly the four cost derivatives at
+$t^*$. Thus the unique minimum is
+\[
+ \mathcal N_{\min}=a+b+d_0\left(\frac43+\frac3{\sqrt{21}}\right).
+\]
+But
+$\det(t^*/d_0)=32/(3\sqrt{21})-9/4>0$, since
+$128^2>27^2\cdot21$. The product transport $uv^T/\delta$ has determinant
+zero and is different. Strict convexity therefore makes its negativity
+strictly larger. This example distinguishes the coherent-minimum product
+construction, which proves sharpness of the FEF bound, from the residual
+that minimizes a different entanglement measure on the same optimal face.
+
+\subsection{A quantitative penalty for residual coherence}
+
+There is also an explicit, nonoptimal stability estimate. Let
+$d_- =\min_{i,j}d_{ij}>0$, $d_+=\max_{i,j}d_{ij}$ and
+\[
+ h=\frac{\sqrt{\delta^2+4d_-^2}-\delta}{2},\qquad
+ \kappa=\frac{h^2}{8d_+^2(\delta+d_+)}.
+\]
+For the diagonal dephasing $\Delta R$,
+\begin{equation}\label{eq:negativity-coherence-gap}
+ \mathcal N(\rho_R)-\mathcal N(\rho_{\Delta R})
+       \ge \kappa\,\|R-\Delta R\|_2^2,
+\end{equation}
+where $\|\cdot\|_2$ is the Hilbert--Schmidt norm.
+To prove this, along every residual segment we have
+$\|C\|\le\|C\|_2=\|R\|_2\le\delta$ and
+$\|H(C)\|\le M=\delta+d_+$.
+For an eigenpair $H(C)(x,y)=\lambda(x,y)$, $x\ne0$ and
+\[
+ \lambda^2\|x\|^2-\lambda\langle x,Cx\rangle-\|Dx\|^2=0.
+\]
+It follows that $|\lambda|^2+\delta|\lambda|\ge d_-^2$, hence
+$|H(C)|\succeq hI$. If
+$S=\operatorname{sign}H=\begin{psmallmatrix}A&B\\B^*&E\end{psmallmatrix}$,
+then $DB=(|H|)_{22}\succeq hI$, so
+$\sigma_{\min}(B)\ge h/d_+$.
+For a Hermitian perturbation $Q$ in the upper-left block, the spectral
+second-derivative formula gives
+\[
+ F_D''(C)[Q,Q]
+ =4\sum_{\lambda_r>0>\lambda_s}
+      \frac{|\langle r,\operatorname{diag}(Q,0)s\rangle|^2}
+           {\lambda_r-\lambda_s}
+ \ge\frac{\|[\operatorname{diag}(Q,0),S]\|_2^2}{4M}
+ \ge\frac{h^2}{2Md_+^2}\|Q\|_2^2.
+\]
+The same formula is valid with repeated eigenvalues, because the positive
+and negative spectral subspaces stay separated from zero; repeated values
+within one sign contribute zero. Averaging this strong-convexity inequality
+over the finite diagonal-sign twirl gives
+$F_D(C)-F_D(\Delta C)\ge h^2\|C-\Delta C\|_2^2/(4Md_+^2)$.
+Negativity is one half of this varying trace norm and partial transpose
+preserves the Hilbert--Schmidt norm, proving
+\eqref{eq:negativity-coherence-gap}.
+
+\subsection{An exact negativity interval in every even dimension}
+
+\begin{theorem}\label{thm:balanced-negativity}
+Fix $q\ge2$, $a,b>0$ and
+$\delta=1-q(a+b)>0$ with $\delta\le q(a-b)$.
+On $\mathbb C^{2q}\otimes\mathbb C^{2q}$ set
+\[
+ z=\sqrt a\sum_{i=1}^q|ii\rangle+
+   \sqrt b\sum_{j=q+1}^{2q}|jj\rangle,
+ \qquad \rho_\omega=|z\rangle\langle z|+\delta V\omega V^*,
+\]
+where $V|ij\rangle=|i,j+q\rangle$ and
+$\omega\succeq0$ has both marginals $I_q/q$.
+All these states have the same actual marginal matrices, decreasing spectra
+\[
+ \alpha=((a+\delta/q)^{[q]},b^{[q]}),\quad
+ \beta=(a^{[q]},(b+\delta/q)^{[q]}),
+\]
+and attain the same sharp spectral FEF bound
+\[
+ f(\rho_\omega)=\frac q2(\sqrt a+\sqrt b)^2.
+\]
+Their negativity takes every value in the exact interval
+\[
+ \boxed{\quad N_{\min}\le\mathcal N(\rho_\omega)\le N_{\max},\quad}
+\]
+where
+\begin{align*}
+ N_{\min}&=\frac{q(q-1)}2(a+b)
+          +\frac{\sqrt{\delta^2+4q^4ab}-\delta}{2},\\
+ N_{\max}&=\frac{q(q-1)}2(a+b)
+          +\frac{q\sqrt{\delta^2+4q^2ab}-\delta}{2}.
+\end{align*}
+The lower endpoint is attained only by $\omega=I_{q^2}/q^2$.
+The upper endpoint is attained exactly by pure maximally entangled
+$\omega$. Thus the two endpoints have joint-state ranks $1+q^2$ and $2$,
+respectively, despite having identical marginals, FEF, Schmidt number
+$2q$, $G$-concurrence $2q\sqrt{ab}$, and partial-transpose inertia.
+\end{theorem}
+\begin{proof}
+The ordering assumption is equivalent to $a\ge b+\delta/q$ and ensures
+that the two decreasing marginal lists have componentwise minimum
+$m=(a^{[q]},b^{[q]})$. The saturation normal form gives the FEF formula
+and the common entanglement invariants. The varying block has
+$D=\sqrt{ab}I_{q^2}$ and $C=\delta\omega^\Gamma$.
+Diagonalizing $C$ splits it into two-dimensional blocks, giving
+\[
+ \mathcal N(\rho_\omega)=\frac{q(q-1)}2(a+b)
+   +\frac12\left(\operatorname{Tr}\sqrt{C^2+4abI}-\delta\right).
+\]
+Strict scalar convexity of $s\mapsto\sqrt{s^2+4ab}$, and
+$\operatorname{Tr}C=\delta$, give the lower endpoint, with equality only
+for $C=\delta I/q^2$.
+For the upper endpoint use Cauchy--Schwarz and preservation of the
+Hilbert--Schmidt norm by partial transpose:
+\[
+ \operatorname{Tr}\sqrt{C^2+4abI}
+ \le \sqrt{q^2(\operatorname{Tr}C^2+4abq^2)}
+ \le q\sqrt{\delta^2+4abq^2}.
+\]
+The second inequality is $\operatorname{Tr}\omega^2\le1$. Equality forces
+$\omega$ to be pure. Its fixed uniform marginals then force maximal
+entanglement, and its partial transpose has squared value $I/q^2$, so
+both inequalities are equalities. This also proves the complete upper
+endpoint classification. Finally, the path
+$\omega_t=(1-t)I/q^2+t|\Phi_q\rangle\langle\Phi_q|$, $0\le t\le1$,
+is feasible and continuous and joins the endpoints. Thus every
+intermediate negativity is attained.
+\end{proof}
+
+Along that path a fully explicit formula is available. Put
+$n_\pm=q(q\pm1)/2$ and
+$c_+(t)=\delta[1+(q-1)t]/q^2$,
+$c_-(t)=\delta[1-(q+1)t]/q^2$. Then
+\[
+ \mathcal N(\rho_{\omega_t})=
+ \frac{q(q-1)}2(a+b)+\frac12\left[
+ n_+\sqrt{c_+(t)^2+4ab}+n_-\sqrt{c_-(t)^2+4ab}-\delta\right].
+\]
+It is strictly increasing for $0<t\le1$: strict convexity gives a strictly
+increasing derivative and the derivative vanishes at $t=0$.
+
+\paragraph{Exact four-level example.}
+Take $q=2$, $a=3/10$, $b=1/10$, $\delta=1/5$. Then
+\[
+ \alpha=(2/5,2/5,1/10,1/10),\quad
+ \beta=(3/10,3/10,1/5,1/5),\quad
+ f=\frac25+\frac{\sqrt3}{5},\quad G_4=\frac{2\sqrt3}{5},
+\]
+while
+\[
+ \boxed{\quad 1\le\mathcal N\le\frac3{10}+\frac{\sqrt{13}}5.\quad}
+\]
+The lower state has rank five and a classical uniform residual; the upper
+states have rank two and a Bell residual. This is an exact counterexample
+to the assertion that the FEF, both full marginal spectra, the
+$G$-concurrence, and partial-transpose inertia determine the negativity.
+
+\paragraph{Scope and prior art.}
+The negativity and its local-unitary invariance and convexity are standard;
+see Vidal--Werner, \emph{A computable measure of entanglement},
+\href{https://arxiv.org/abs/quant-ph/0102117}{arXiv:quant-ph/0102117}.
+Fixed-marginal negativity optimization has a substantial prior literature,
+including Baio et al., \emph{Bounds on bipartite entanglement from fixed
+marginals}, \href{https://arxiv.org/abs/1904.07650}{arXiv:1904.07650}.
+The new candidates here are the strict-convexity reduction on an entire
+FEF-maximizing face, its complete quantum minimum and quantitative
+coherence penalty, and the exact all-even-dimensional endpoint family.
+A bounded primary-source search did not locate these precise statements;
+this is not a certified worldwide-priority claim. These are exact written
+proofs; any accompanying scalar Lean certificates must not be described
+as an end-to-end formalization of partial transpose and trace norm.

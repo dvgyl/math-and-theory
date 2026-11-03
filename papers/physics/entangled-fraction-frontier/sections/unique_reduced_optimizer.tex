@@ -1,0 +1,205 @@
+% Fragment for inclusion in the main report. This proof is not Lean formalized.
+\section{A unique coherent core for arbitrary full-rank marginals}\label{sec:unique-core}
+
+The phase convention is essential in the following result. The reduced
+optimization uses the real part of the overlap. Absolute-overlap maximizers
+are determined only up to a global phase.
+
+\begin{theorem}[Unique coherent core and the entire optimizer face]\label{thm:unique-core}
+Let $A>0$ and $B>0$ be density matrices on $\mathbb C^m$ and
+$\mathbb C^n$. Let $x\ne0$ have coefficient matrix $X$ of maximal rank
+$\min(m,n)$. Set
+\[
+ M=\max\{\langle x,\rho x\rangle:
+       \rho\ge0,\ \operatorname{Tr}_B\rho=A,\
+       \operatorname{Tr}_A\rho=B\}.
+\]
+Then $M>0$, and there is a unique vector $w_*$ maximizing
+$\operatorname{Re}\langle x,w\rangle$ subject to
+\[
+ \operatorname{Tr}_B|w\rangle\langle w|\le A,
+ \qquad \operatorname{Tr}_A|w\rangle\langle w|\le B.
+\]
+Its overlap is $\langle x,w_*\rangle=\sqrt M$. Every density-matrix
+optimizer has the same extracted vector
+\[
+                   \frac{\rho x}{\sqrt M}=w_*.
+\]
+Define $A_*=A-\operatorname{Tr}_B|w_*\rangle\langle w_*|$ and
+$B_*=B-\operatorname{Tr}_A|w_*\rangle\langle w_*|$. The complete optimizer
+face is precisely
+\[
+ \left\{|w_*\rangle\langle w_*|+R:
+ R\ge0,\ \operatorname{Tr}_B R=A_*,\
+ \operatorname{Tr}_A R=B_*\right\}.
+\]
+Every such residual is supported on
+$\operatorname{ran}A_*\otimes\operatorname{ran}B_*$, a subspace
+orthogonal to $x$. If $r=\operatorname{rank}A_*$ and
+$s=\operatorname{rank}B_*$, then $r+s\le\max(m,n)$ whenever the residual
+trace is nonzero. In the square case, every optimizer has rank at most
+$1+rs\le1+\lfloor d^2/4\rfloor$, while some optimizer has rank at most $d$.
+\end{theorem}
+
+\begin{proof}
+The product coupling $A\otimes B$ is positive definite. Consequently the
+coupling SDP is strictly feasible, $M>0$, and its local-sum dual has an
+attained optimum:
+\[
+ D=H\otimes I+I\otimes K\ \ge\ |x\rangle\langle x|,
+ \qquad \operatorname{Tr}(HA)+\operatorname{Tr}(KB)=M.
+\]
+This is the standard quantum-coupling dual; see Cole et al., Theorem~3.2~\cite{cole2023}. Since $D\ge0$,
+$\lambda_{\min}(H)+\lambda_{\min}(K)\ge0$. Replacing
+$H$ by $H-\lambda_{\min}(H)I$ and $K$ by
+$K+\lambda_{\min}(H)I$ leaves both $D$ and the dual objective unchanged
+and makes $H,K\ge0$.
+
+Put $U=\ker H$, $V=\ker K$, and $T=U\otimes V=\ker D$.
+The inequality $D\ge|x\rangle\langle x|$ implies $x\perp T$. On
+$T^\perp$, $D$ is positive definite. Let $v=D^+x$, where $D^+$ is the
+Moore--Penrose inverse, and let $\gamma=\langle x,D^+x\rangle$.
+Congruence with $D^{+1/2}$ gives $0<\gamma\le1$. If $\gamma<1$, then
+the slack $Z=D-|x\rangle\langle x|$ has kernel exactly $T$.
+Complementary slackness would then force every optimal $\rho$ to be
+supported on $T$, giving $\langle x,\rho x\rangle=0$, contrary to $M>0$.
+Thus $\gamma=1$ and
+\[
+      \ker Z=\mathbb Cv\oplus T,\qquad
+      \langle x,v\rangle=1,\qquad v\perp T.
+\]
+These assertions also follow directly from
+$Zq=0\iff Dq=x\langle x,q\rangle$ after splitting off $\ker D$.
+
+Set $z=\sqrt M\,v$. Any optimal $\rho$ is supported on
+$\mathbb Cz\oplus T$ and has the unique block form
+\[
+ \rho=|z\rangle\langle z|+|z\rangle\langle y|
+            +|y\rangle\langle z|+R,
+ \quad y\in T,\quad R\text{ supported on }T,\quad R\ge|y\rangle\langle y|.
+\]
+Indeed the scalar coefficient of $|z\rangle\langle z|$ is fixed to one
+by $\langle x,z\rangle=\sqrt M$ and the optimal objective $M$; positivity
+gives the stated Schur-complement condition. Also
+$\rho x/\sqrt M=z+y$.
+
+It remains to prove that $y$ is independent of the optimizer. Choose
+orthonormal local bases diagonalizing $H,K$. In these bases write $Z_0$,
+$Y$ for the coefficient matrices of $z,y$. Then $Y$ is supported on the
+$U\times V$ block and $(Z_0)_{U,V}=0$, while
+\[
+                   HZ_0+Z_0K^{\mathsf T}=\sqrt M\,X.
+\]
+Suppose first $m\ge n$, so $X$ is injective. On the columns indexed by
+$V$ the preceding identity becomes
+\[
+   (Z_0)_{U^\perp,V}
+      =\sqrt M\,(H|_{U^\perp})^{-1}X_{U^\perp,V}.
+\]
+Because $X_{U,V}=0$ and $X$ is injective, this matrix has full column
+rank. For two optimizers subtract their $A$-marginal equations and take
+the $U^\perp\times U$ block. The pure core cancels, the residual terms
+have support in $U\times U$, and one obtains
+\[
+              (Z_0)_{U^\perp,V}(Y_1-Y_2)^*=0.
+\]
+Full column rank therefore gives $Y_1=Y_2$. If $m\le n$, apply the same
+argument to the other marginal and $X^*$, which is injective. Empty
+$U$ or $V$ cause no exception: then $T=0$ and $y=0$ immediately.
+
+Write the common vector $z+y$ as $w_*$. Completing the square shows
+\[
+ \rho=|w_*\rangle\langle w_*|+(R-|y\rangle\langle y|).
+\]
+Thus every optimizer has the asserted positive residual, supported on
+$T$ and with marginals $A_*,B_*$. Conversely, $\operatorname{ran}A_*
+\subseteq U$ and $\operatorname{ran}B_*\subseteq V$. Every positive
+coupling of these marginals is supported on
+$\operatorname{ran}A_*\otimes\operatorname{ran}B_*\subseteq T$, so it is
+orthogonal to $x$ and yields objective $M$ after adding the fixed pure
+core. This proves the face description.
+
+Any reduced real-overlap optimizer $w$ has
+$\langle x,w\rangle=\sqrt M$. A positive completion
+$\rho\ge|w\rangle\langle w|$ is optimal by the exact reduction. Its
+residual has zero expectation in $x$, hence annihilates $x$, and
+$\rho x/\sqrt M=w$. Therefore $w=w_*$, proving uniqueness, including
+the real-overlap phase convention.
+
+Finally $x\perp\operatorname{ran}A_*\otimes\operatorname{ran}B_*$
+means that its coefficient matrix contains a zero $r\times s$ block.
+Hence $\operatorname{rank}X\le(m-r)+(n-s)$ and
+$r+s\le m+n-\operatorname{rank}X=\max(m,n)$. Every residual has rank
+at most $rs$. A classical transport coupling of the eigenvalue lists of
+$A_*,B_*$ can be chosen with at most $r+s-1$ nonzero cells and gives a
+residual of that rank. The stated rank bounds follow, with the zero
+residual case handled by the pure state itself.
+\end{proof}
+
+\begin{corollary}[The first dimension with nonunique fixed-target optimizers]
+For positive definite marginals on $\mathbb C^d\otimes\mathbb C^d$ and a full-Schmidt-rank fixed pure target, the optimizing density matrix is unique whenever $d\le3$.
+If the residual trace is nonzero, the full optimizer face has real affine dimension
+$(r^2-1)(s^2-1)$, where $r,s$ are its residual marginal ranks. It is unique exactly when $\min(r,s)=1$. The zero-residual case is also unique.
+Dimension four is the first square dimension permitting nonuniqueness under these hypotheses; the $25/36$ family below realizes a nine-dimensional face.
+\end{corollary}
+\begin{proof}
+The residual product coupling is positive definite on the product of the residual supports, so the fixed-marginal affine space has its full dimension $r^2s^2-r^2-s^2+1$. This is positive precisely when $r,s\ge2$. If $d\le3$, the inequality $r+s\le d$ excludes that case. Addition of the fixed pure core is injective and affine. This is a fixed-target statement; it does not assert uniqueness when the maximally entangled target itself is also varied in the definition of FEF.
+\end{proof}
+
+\input{sections/support_compressed_core.tex}
+
+\paragraph{Why strict positivity matters.}
+Take $A=\operatorname{diag}(1/2,1/2,0)$,
+$B=\operatorname{diag}(1/2,0,1/2)$ and
+$x=(|00\rangle+|11\rangle+|22\rangle)/\sqrt3$.
+The exact optimum is $M=1/6$. Both
+\[
+ w_0=|00\rangle/\sqrt2,
+ \qquad w_1=(|00\rangle+|12\rangle)/\sqrt2
+\]
+are admissible and have real overlap $1/\sqrt6$. Thus a full-Schmidt-rank
+target alone does not force uniqueness. The missing positive-definiteness
+assumption cannot be silently replaced by nonnegative marginals.
+
+\paragraph{Why maximal Schmidt rank matters.}
+Take $A=B=I_2/2$ and the product target $x=|00\rangle$. The optimum is
+$M=1/2$, and both $w_0=|00\rangle/\sqrt2$ and
+$w_1=(|00\rangle+|11\rangle)/\sqrt2$ are reduced real-overlap
+optimizers. Thus positive definite marginals alone do not give a unique
+coherent core.
+
+\subsection{An exact noncommuting example with a nonzero cross component}
+The proof fixes the cross vector $y$; it does not generally make $y$ zero.
+An explicit example is
+\[
+ x=\frac13(2,0,1,2)^T,\qquad
+ A=\frac1{100}\begin{pmatrix}83&8\\8&17\end{pmatrix},\qquad
+ B=\frac1{100}\begin{pmatrix}17&8\\8&83\end{pmatrix}.
+\]
+Both marginals are positive definite. The unique optimizer is
+\[
+ \rho_* =\frac1{100}
+ \begin{pmatrix}
+ 16&4&4&16\\4&67&1&4\\4&1&1&4\\16&4&4&16
+ \end{pmatrix}
+ =w_*w_*^\dagger+\frac{33}{50}|01\rangle\langle01|,
+ \quad w_*=\frac1{10}(4,1,1,4)^T.
+\]
+Its overlap is $289/900$. An exact dual certificate is
+\[
+ D=\frac{17}{18}\diag(1,0,2,1),\qquad
+ D-xx^\dagger=\frac{17aa^\dagger+bb^\dagger}{36}\succeq0,
+\]
+where $a=(1,0,0,-1)^T$ and $b=(1,0,-8,1)^T$. The local dual objective is also $289/900$, proving optimality without a numerical solver.
+In the proof's decomposition, $z=(4,0,1,4)^T/10$ and $y=|01\rangle/10\ne0$.
+All entries, principal-minor positivity checks, partial traces, the dual decomposition, and the uniqueness equations on the dual kernel are verified with exact rational arithmetic in the accompanying script.
+
+\paragraph{Status and prior art.}
+The local-sum dual, complementary slackness, and positive-marginal dual
+attainment are standard and explicitly established in
+arXiv:2105.06922v2, Theorem~3.2. The unique-core and complete residual-face
+conclusions above are derived here. A bounded primary-source
+search did not locate this precise theorem; this is a novelty candidate,
+not a certified priority claim. The proof above is exact mathematics, not
+an asserted Lean result. The \texttt{FixedMarginalReduction} section of \texttt{AllProofs.lean} establishes the actual finite-matrix
+reduction and optimizer transfer on which it relies.

@@ -295,6 +295,9 @@ jobs:
           - package: unilateral-chsh
             root: papers/physics/unilateral-chsh
             project: lean
+          - package: entangled-fraction-frontier
+            root: papers/physics/entangled-fraction-frontier
+            project: lean
           - package: strong-gradient
             root: papers/mathematics/strong-gradient
             project: lean
@@ -434,6 +437,9 @@ jobs:
             python3 -m venv "${RUNNER_TEMP}/unilateral-chsh-venv"
             "${RUNNER_TEMP}/unilateral-chsh-venv/bin/pip" install --quiet -r ../calculations/requirements.txt
             "${RUNNER_TEMP}/unilateral-chsh-venv/bin/python" ../scripts/run_checks.py --quick
+          elif [[ '${{ matrix.package }}' == 'entangled-fraction-frontier' ]]; then
+            lake build MilneResearch ProjectAxiomAudit 2>&1 | tee "${RUNNER_TEMP}/entangled-fraction-frontier-build.log"
+            python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/entangled-fraction-frontier-build.log" --project . --output "${RUNNER_TEMP}/entangled-fraction-frontier-axioms.json"
           elif [[ '${{ matrix.package }}' == 'strong-gradient' ]]; then
             python3 verify.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib --output "${RUNNER_TEMP}/gradient-source-verification" --timeout 600
           elif [[ '${{ matrix.package }}' == 'unicyclic-skewness' ]]; then
