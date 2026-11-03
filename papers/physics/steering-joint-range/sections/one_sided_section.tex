@@ -1,0 +1,128 @@
+\section{An exact test for one-sided hidden \texorpdfstring{$F_3$}{F3} violation}\label{sec:orbit}
+The centre bound is a universal obstruction. Using the entire ellipsoid gives
+a necessary and sufficient test for whether any Bob-only filter can reveal
+$F_3>1$. This directly addresses the asymmetric filtering problem raised
+in Eqs.~(9)--(10) and the conclusion of the 2024 paper~\cite{ducuara}.
+
+Fix canonical Bloch data $(\cc,0,S)$ and put
+\begin{equation}\label{eq:orbitdefs}
+\tau=\norm S_F^2,\qquad \mathbf k=S^{\mathsf T}\cc,\qquad
+K=(\tau-c^2)\Id-S^{\mathsf T}S.
+\end{equation}
+Every positive invertible Bob filter, after normalization, is represented by
+$F=\sqrt{\Id+\bb\cdot\bs}$, $\norm\bb<1$. Polar decomposition shows that
+post-filter unitaries do not enlarge the achievable $F_3$ values. From
+\eqref{eq:filteridentity} and $\aa=\cc+S\bb$, the exact squared value is
+\begin{equation}\label{eq:orbitquadratic}
+f(\bb)=\tau+2\mathbf k\cdot\bb-\bb^{\mathsf T}K\bb.
+\end{equation}
+On the unit sphere its continuous boundary value is
+\begin{equation}\label{eq:orbitboundary}
+f(\bb)=\norm{\cc+S\bb}^2\leq1.
+\end{equation}
+Boundary parameters represent singular filters producing product states.
+
+\begin{theorem}[One-sided violation criterion and exact optimum]\label{thm:orbit}
+Some invertible Bob filter produces $F_3>1$ if and only if
+\begin{equation}\label{eq:orbitcriterion}
+K\succ0,\qquad \norm{K^{-1}\mathbf k}^2<1,\qquad
+V:=\tau+\mathbf k^{\mathsf T}K^{-1}\mathbf k>1.
+\end{equation}
+When these conditions hold, the maximum squared value is $V$, attained at
+the unique positive-filter parameter $\bb_*=K^{-1}\mathbf k$.
+Singular or indefinite $K$ cannot permit an $F_3$ violation.
+\end{theorem}
+\begin{proof}
+A value greater than one in the open ball gives, by continuity, a maximum
+greater than one on the compact closed ball. Equation~\eqref{eq:orbitboundary}
+forces it to be interior. First and second derivative conditions give
+$K\bb_*=\mathbf k$ and $K\succeq0$.
+If $K$ had a nonzero null vector $\mathbf v$, then
+$\mathbf k\cdot\mathbf v=\bb_*^{\mathsf T}K\mathbf v=0$.
+The value of $f$ would be constant on the line $\bb_*+s\mathbf v$, which
+meets the unit sphere, contradicting \eqref{eq:orbitboundary}.
+Thus $K\succ0$. Completing the square gives
+\[
+f(\bb)=V-(\bb-\bb_*)^{\mathsf T}K(\bb-\bb_*).
+\]
+This proves the necessary conditions, value, and uniqueness. Conversely,
+\eqref{eq:orbitcriterion} places this stationary point in the physical
+open ball with value greater than one; the same identity proves optimality.
+\end{proof}
+
+For an original state with full-rank Bob marginal, whitening followed by this
+filter is one Bob filter, scaled to a valid Kraus contraction. Conversely
+every Bob filter is represented in this canonical orbit up to a Bob unitary.
+A pure Bob marginal is a product case and never violates. Thus both
+possible marginal ranks and every global rank are covered.
+
+\subsection{Ellipsoid-only and exact polynomial forms}
+Put $L=(\tau-c^2)\Id-Q$, where $Q=SS^{\mathsf T}$. The matrices $K,L$ have
+the same eigenvalues, including when $S$ is singular. Intertwining yields
+\begin{equation}\label{eq:geometriccriterion}
+L\succ0,\qquad \cc^{\mathsf T}QL^{-2}\cc<1,\qquad
+\tau+\cc^{\mathsf T}QL^{-1}\cc>1.
+\end{equation}
+This equivalent test depends only on the centre and ellipsoid matrix.
+For rational data, let $\ell=\det L$ and $R=\operatorname{adj}L$.
+After certifying $L\succ0$ by principal minors, so $\ell>0$, the other tests are
+\[
+\cc^{\mathsf T}QR^2\cc<\ell^2,\qquad
+(\tau-1)\ell+\cc^{\mathsf T}QR\cc>0.
+\]
+These are finite polynomial inequalities and require no numerical inverse.
+
+The unit-ball condition cannot be dropped. The positive definite canonical state
+\[
+\sigma=\frac1{40}\begin{pmatrix}19&0&0&5\\0&7&1&0\\0&1&1&0\\5&0&0&13\end{pmatrix}
+\]
+has two positive $2\times2$ blocks with determinants $222/1600$ and $6/1600$.
+Its data are $\cc=(0,0,3/10)$, $S=\operatorname{diag}(3/10,-1/5,3/5)$,
+$\tau=49/100$, $K=\operatorname{diag}(31,36,4)/100\succ0$.
+The unconstrained vertex is $(0,0,9/2)$ with value $13/10>1$, outside the
+physical ball. The actual supremum is $81/100<1$, from
+\[
+f(x,y,z)=\frac{49}{100}+\frac9{25}z-\frac{31}{100}x^2
+-\frac9{25}y^2-\frac1{25}z^2.
+\]
+It increases with $z$ on $[-1,1]$, and its transverse terms are nonpositive.
+
+The criterion gives another proof of the threshold. For $c>0$ and
+$q=\nn^{\mathsf T}Q\nn$, $\nn=\cc/c$, some direction perpendicular to $\nn$
+has Rayleigh quotient at least $(\tau-q)/2$. Hence
+\[
+\lambda_{\min}(L)\leq\frac{\tau+q-2c^2}{2}
+\leq\frac{1-3c^2+3q}{2}\leq2-3c.
+\]
+For $c\geq2/3$, the necessary positive-definiteness condition fails.
+
+\subsection{The entire orbit supremum, including singular quadratic cases}
+For completeness, the exact scalar trust-region characterization is
+\begin{equation}\label{eq:trustregion}
+\sup_{\norm\bb<1}f(\bb)=\tau+
+\min_{\substack{\lambda\geq0,\ K+\lambda\Id\succeq0\\
+\mathbf k\in\operatorname{range}(K+\lambda\Id)}}
+\left[\lambda+\mathbf k^{\mathsf T}(K+\lambda\Id)^\dagger\mathbf k\right].
+\end{equation}
+Here $\dagger$ is the Moore--Penrose inverse. For the upper bound, put
+$B=K+\lambda\Id$ and complete the square:
+\[
+f(\bb)=\tau+\lambda\norm\bb^2+\mathbf k^{\mathsf T}B^\dagger\mathbf k
+-(\bb-B^\dagger\mathbf k)^{\mathsf T}B(\bb-B^\dagger\mathbf k).
+\]
+For equality, use $\lambda=0$ if $K\succeq0$,
+$\mathbf k\in\operatorname{range}K$, and $\norm{K^\dagger\mathbf k}\leq1$.
+Otherwise let $\lambda_0=\max(0,-\lambda_{\min}(K))$. For
+$\lambda>\lambda_0$, $\norm{(K+\lambda\Id)^{-1}\mathbf k}$ is continuous,
+nonincreasing, and tends to zero. If its limit at $\lambda_0$ exceeds one,
+choose a root with norm one. If the limit is at most one, the excluded
+$\lambda=0$ case implies $\lambda_0>0$; the limiting matrix is singular
+and $\mathbf k$ is orthogonal to its kernel. Add a kernel vector to its
+minimum-norm solution to reach the unit sphere. The square term vanishes in
+both cases, giving equality. The open ball has the same supremum as its
+closure by continuity, but need not attain a boundary optimum.
+
+In a $K$ eigenbasis, the scalar objective is
+$\lambda+\sum_i k_i^2/(\kappa_i+\lambda)$; a zero denominator is admissible
+only when the corresponding numerator vanishes. Unlike the formula in the
+violating regime, this exact characterization retains a scalar minimization.

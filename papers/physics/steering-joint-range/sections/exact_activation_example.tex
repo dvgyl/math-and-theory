@@ -1,0 +1,35 @@
+\subsection{An exact physical filtering experiment with rational matrices}
+The probability frontier can be illustrated without numerical diagonalization.
+Take the canonical rank-two input
+\[
+ \sigma=\frac1{50}
+ \begin{pmatrix}25&0&0&15\\0&16&0&0\\0&0&0&0\\15&0&0&9\end{pmatrix},
+ \qquad c=\frac{16}{25},\qquad
+ S=\operatorname{diag}\!\left(\frac35,-\frac35,\frac9{25}\right).
+\]
+Its squared correlation is $531/625<1$. The contracting Kraus operator
+\[
+ G=\operatorname{diag}(1,5/13),\qquad G^\dagger G\preceq I,
+\]
+has success probability $p=97/169$. Conditional on success, its output is
+\[
+ \rho=\frac1{194}
+ \begin{pmatrix}169&0&0&39\\0&16&0&0\\0&0&0&0\\39&0&0&9\end{pmatrix}.
+\]
+Direct calculation gives
+\[
+ \aa=\frac{88}{97}\mathbf e_z,\qquad
+ \bb=\frac{72}{97}\mathbf e_z,\qquad
+ T=\operatorname{diag}\!\left(\frac{39}{97},-\frac{39}{97},\frac{81}{97}\right),
+ \qquad F_3(\rho)^2=\frac{99}{97}>1.
+\]
+The actual output centre is still $16/25$. This value attains the global
+centre-constrained envelope and the probability-constrained envelope at
+$p=97/169$; the filter saturates its largest allowed singular value.
+At this same input centre, strict activation with success floor $p_0$ is
+possible exactly when $p_0<97/144$. Thus the optimum-correlation protocol
+and the largest permissible success floor answer distinct quantitative
+questions. The exact rational script
+\path{calculations/exact_physical_example.py} verifies the input and output
+principal minors, both marginal vectors, the centre identity, the success
+probability, and the two frontier values.

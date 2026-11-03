@@ -1,0 +1,212 @@
+\section{Sharp volume bounds at fixed centre, radial width, and correlation}
+\label{sec:volume-v2}
+The determinant of the canonical correlation matrix controls the steering
+ellipsoid volume: $\operatorname{Vol}(\mathcal E)=(4\pi/3)|\det S|$.
+The preceding centre/radial correlation theorem admits a distinct sharp
+volume refinement. In particular, the state maximizing correlation at a
+fixed radial width generally does not maximize volume at that width.
+
+\begin{theorem}[Exact signed-determinant interval]\label{thm:volume-radial-v2}
+For canonical data $(c\nn,0,S)$ with $\norm\nn=1$, $0\leq c\leq1$ and
+$t=\norm{S^{\mathsf T}\nn}\in[0,1-c]$, the exact signed-determinant range is
+\begin{equation}\label{eq:signed-volume-v2}
+ -\frac{t((1+t)^2-c^2)}4\ \leq\ \det S\ \leq\
+ \frac{t((1-t)^2-c^2)}4.
+\end{equation}
+Every value in this interval is attained. Consequently the sharp absolute
+volume bound is
+\begin{equation}\label{eq:volume-radial-v2}
+ \boxed{\quad |\det S|\leq \frac{t((1+t)^2-c^2)}4.\quad}
+\end{equation}
+For $t>0$ the absolute maximum has a unique local-unitary orbit. In radial
+axes it is \eqref{eq:interval-family-v2} with the $00$--$11$ coherence
+$\sqrt{ad}$ and the $01$--$10$ coherence zero. Its rank is three if
+$t<1-c$, two if $0<c<1$ and $t=1-c$, and one at $(c,t)=(0,1)$.
+At $t=0$, every feasible state has determinant zero.
+\end{theorem}
+
+\begin{proof}
+Rotate into the radial axes used in
+Theorem~\ref{thm:canonical-interval-v2}. The state then has the form
+\begin{equation}\label{eq:aligned-volume-v2}
+ \sigma=\begin{pmatrix}
+ a&0&z&w\\0&b&v&-z\\
+ \overline z&\overline v&e&0\\
+ \overline w&-\overline z&0&d
+ \end{pmatrix},
+\end{equation}
+where $a,b,e,d$ have the definitions in that theorem. Its actual correlation
+matrix is
+\[
+ S=\begin{pmatrix}
+ 2\Re(w+v)&2\Im(v-w)&4\Re z\\
+ -2\Im(w+v)&2\Re(v-w)&-4\Im z\\
+ 0&0&t
+ \end{pmatrix}.
+\]
+Thus, putting $W=|w|^2$, $J=|v|^2$, $Z=|z|^2$,
+\begin{equation}\label{eq:volume-coordinates-v2}
+ \det S=4t(J-W),\qquad
+ \tau=t^2+8(W+J+2Z).
+\end{equation}
+The two principal minors give $W\leq ad$ and $J\leq be$.
+Since $ad-be=t/4\geq0$, these give precisely
+\eqref{eq:signed-volume-v2} and \eqref{eq:volume-radial-v2}.
+Take $z=0$ and independently choose
+$0\leq W\leq ad$, $0\leq J\leq be$ with real nonnegative coherences.
+The two $2\times2$ blocks are positive, so every signed determinant in the
+claimed interval is attained.
+
+If $t>0$, then $ad>be$. Absolute equality forces $W=ad$ and $J=0$.
+The saturated $00,11$ principal minor and positivity force its two rows to
+be proportional, which forces $z=0$. A phase rotation removes the phase
+of $w$. The state is consequently the indicated unique orbit. Its block
+ranks give the stated ranks. For $t=0$, the last row of $S$ vanishes and
+the determinant is identically zero, so no uniqueness is asserted.
+\end{proof}
+
+At the extreme radial width $t=1-c$, \eqref{eq:volume-radial-v2} reduces to
+$|\det S|\leq(1-c)^2$, the established fixed-centre maximum
+of Milne et al.~\cite{milnevolume}. The refinement here fixes the radial
+width as well, and then also fixes the correlation strength.
+At smaller radial widths, the volume maximizer usually
+has rank three, whereas the correlation maximizer has rank two. There is a
+sharp quantitative tradeoff between these two objectives.
+
+\begin{theorem}[Sharp correlation--volume tradeoff]\label{thm:triple-volume-v2}
+Fix any feasible $c,t$ and any
+$\tau\in[t^2,1-c^2+2t^2]$. Among canonical states with these three prescribed
+parameters, the exact greatest absolute determinant is
+\begin{equation}\label{eq:triple-volume-v2}
+ \boxed{\quad
+ V_{\max}(c,t,\tau)=\frac t2\min\bigl\{
+ \tau-t^2,\ 1+2t+2t^2-c^2-\tau\bigr\}.
+ \quad}
+\end{equation}
+In particular the largest volume occurs at
+$\tau=t^2+[(1+t)^2-c^2]/2$, while at the largest correlation
+$\tau=1-c^2+2t^2$ the determinant magnitude is at most $t^2$.
+Every value on the upper tradeoff curve is attained by an explicit positive
+$X$ state, including all rank-deficient and zero-width cases.
+\end{theorem}
+
+\begin{proof}
+Use \eqref{eq:aligned-volume-v2} and set
+\[
+ U=ad=\frac{(1+t)^2-c^2}{16},\quad
+ V=be=\frac{(1-t)^2-c^2}{16},\quad
+ s=\frac{\tau-t^2}{8}=W+J+2Z.
+\]
+The allowed correlation interval gives $0\leq s\leq U+V$.
+The block matrices $A=\operatorname{diag}(a,b)$ and
+$D=\operatorname{diag}(e,d)$ satisfy
+$A\preceq a\Id$ and $D\preceq d\Id$.
+Block positivity gives, for arbitrary $\xi,\eta\in\C^2$,
+\[
+ |\xi^\dagger C\eta|^2\leq(\xi^\dagger A\xi)(\eta^\dagger D\eta)
+                    \leq ad\norm\xi^2\norm\eta^2,
+ \qquad C=\begin{pmatrix}z&w\\v&-z\end{pmatrix}.
+\]
+Here the scalar Cauchy--Schwarz inequality follows by restricting the
+positive block matrix to the two vectors $(\xi,0)$ and $(0,\eta)$; it holds when
+either restricted diagonal entry is zero. Consequently
+$\norm C_{\mathrm{op}}^2\leq U$, and in particular
+\[
+ W+Z\leq U,\qquad J+Z\leq U.
+\]
+No inverse, strict positivity assumption, or limiting argument is needed.
+The elementary inequalities
+\[
+ |W-J|\leq W+J\leq s,
+ \qquad
+ |W-J|=2\max\{W,J\}+2Z-s\leq2U-s
+\]
+therefore give $|\det S|\leq4t\min\{s,2U-s\}$.
+Substituting the definitions yields \eqref{eq:triple-volume-v2}.
+
+To attain the bound, set $z=0$ and take real nonnegative $w,v$. For
+$0\leq s\leq U$, choose $W=s$, $J=0$. For $U\leq s\leq U+V$, choose
+$W=U$, $J=s-U$. In each case $W\leq U$ and $J\leq V$, so both independent
+$2\times2$ blocks of the state are positive. The correlation is exactly
+$t^2+8s=\tau$. In the first branch the determinant magnitude is $4ts$;
+in the second it is $4t(2U-s)$, where $2U-s\geq U-V=t/4\geq0$.
+This proves sharpness for every feasible triple.
+\end{proof}
+
+
+\paragraph{Complete equality classification for the tradeoff.}
+For $t>0$, keep $U=ad$, $V=be$, $s=(\tau-t^2)/8$, so that $U>V$.
+If $0\leq s\leq U$, every maximizer, after removing coherence phases by
+local $z$ rotations, is one of
+\[
+ (z,w,v)=(0,\sqrt s,0),\qquad
+ (z,w,v)=(0,0,\sqrt s)\quad\text{when }s\leq V.
+\]
+The two representatives coincide at $s=0$. For $s>0$ they have opposite
+signed determinant and hence belong to distinct local-unitary orbits.
+If $U<s\leq U+V$, there is exactly one maximizing orbit, represented by
+\[
+ (z,w,v)=(0,\sqrt U,\sqrt{s-U}).
+\]
+To verify necessity in the first range, equality in
+$|W-J|\leq W+J+2Z$ forces $Z=0$ and $\min\{W,J\}=0$.
+In the second range, equality forces $\max\{W,J\}+Z=U$.
+The second row actually satisfies $J+Z\leq bd<ad=U$, so the maximum must
+be $W$. Applying positivity to the explicit vector
+$(d,0,-\overline z,-\overline w)$ gives
+\[
+ 0\leq d\,[ad-W-Z]-\frac t2Z.
+\]
+Since $t>0$, equality $W+Z=U$ forces $Z=0$ and then $W=U$.
+The displayed phase removal uses two independent local phase rotations,
+so it preserves all physical parameters and the signed determinant.
+At $t=0$ every feasible state has zero volume and is a maximizer.
+
+When $t<1-c$ and $t>0$, the first, negative-chirality branch has rank four
+for $s<U$, rank three at $s=U$, rank three for $U<s<U+V$, and rank two
+at $s=U+V$. The secondary positive-chirality branch has rank four for
+$s<V$ and rank three at $s=V$. Zero diagonal entries at $t=1-c$ reduce
+these ranks by the same block-counting rule used above.
+
+The alignment of the two qubits used in these written proofs is realized by
+local qubit unitaries. Signed-determinant invariance can be verified directly,
+without assuming a correspondence with every real orthogonal matrix.
+Using $\sigma_i\sigma_j=\delta_{ij}\Id+i\epsilon_{ijk}\sigma_k$, expansion
+of a canonical density matrix gives
+\[
+ 16\Tr(\sigma^3)=1+3c^2+3\tau-6\det S.
+\]
+Here $c^2=2\Tr(\sigma_A^2)-1$ and
+$\tau=4\Tr(\sigma^2)-1-c^2$. A local unitary preserves each of these
+three traces and keeps Bob maximally mixed. It therefore preserves
+$\det S$ itself. This proves the asserted distinction between the two
+signed orbits, and explains why the formulas describe chirality as well
+as volume.
+
+\paragraph{Formalization boundary.}
+The finite-matrix determinant identity, both signed determinant bounds,
+the rank-safe row quadratic-form tests, and the three-parameter upper
+bound are checked in \path{MilneVolumeGeometry.lean}; the principal
+statement is \path{alignedState_triple_volume_bound}.
+The two independent positive coherence families and exact attained maximum
+are checked in \path{MilneVolumeSharpness.lean}, principally by
+\path{alignedTripleVolumeSpectrum_isGreatest} and
+\path{volumeWitness_attains}.
+
+The final results are stated for arbitrary density matrices in
+\path{MilneVolumePhysical.lean}, principally by
+\path{physicalTripleVolumeSpectrum_isGreatest} and
+\path{physicalRadialVolumeSpectrum_isGreatest}. Their domain imposes the
+actual Pauli conditions $\aa=c\mathbf e_z$, $\bb=0$, and
+$\norm{S^{\mathsf T}\mathbf e_z}^2=t^2$, and imposes no form on the other
+matrix entries. The axis $\mathbf e_z$ is a fixed marked axis, retained also
+when $c=0$. The checked Bob-only normalization in
+\path{MilneBobRadialNormalForm.lean} puts every such density matrix into
+radial coordinates while preserving that marked Alice axis.
+\path{MilneVolumeUnitary.lean} verifies the cubic-trace identity and the
+signed-determinant invariance under actual local unitaries. Thus no
+positivity surrogate, assumed row bound, assumed unitary invariance, or
+rank assumption is supplied to the final physical theorems.
+The additional orbit equality classification, complete signed-interval
+attainability, and detailed rank counts in this section are written proofs;
+they are not claimed as separately formalized Lean theorems.

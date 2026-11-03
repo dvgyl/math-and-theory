@@ -1,0 +1,269 @@
+{
+  "seed": 2406039452026,
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "sympy": "1.14.0"
+  },
+  "exact": {
+    "identities": {
+      "threshold_factor": "0",
+      "probability_polynomial": "0",
+      "minimum_probability_factor": "0",
+      "positive_minimum_upper_gap": "0",
+      "interpolated_correlation": "0"
+    },
+    "radical_threshold_polynomial": "0",
+    "minimum_rational_example": {
+      "c": "3/4",
+      "r": "1/2",
+      "diagonal": [
+        "9/16",
+        "1/4",
+        "3/16",
+        "0"
+      ],
+      "minimum_F3_squared": "1/64",
+      "maximum_F3_squared": "49/64"
+    },
+    "probability_threshold_endpoints": {
+      "p=1/2": "2/3",
+      "p=1": "2 - sqrt(2)"
+    }
+  },
+  "matrix_checks": {
+    "states_by_rank": {
+      "1": 500,
+      "2": 500,
+      "3": 500,
+      "4": 500
+    },
+    "joint_witnesses": 160,
+    "residuals": {
+      "joint_min_slack": 0.05368469744421059,
+      "joint_max_slack": -2.886579864025407e-15,
+      "witness_min_eigenvalue": -8.500145187174971e-17,
+      "witness_centre_error": 1.1113332476497817e-13,
+      "witness_value_error": 4.440892098500626e-16,
+      "radial_interval_error": 8.881784197001252e-16,
+      "kraus_effect_slack": 0.0,
+      "kraus_success_error": 1.1102230246251565e-16,
+      "kraus_output_error": 2.4713572205637075e-16,
+      "triple_volume_slack": -8.171241461241152e-14,
+      "triple_volume_witness_error": 1.1102230246251565e-16
+    }
+  },
+  "trust_region_checks": {
+    "problems": 126,
+    "cases": {
+      "positive_semidefinite_interior_or_flat": 5,
+      "singular_boundary_hard_case": 2,
+      "regular_boundary": 119
+    },
+    "residuals": {
+      "stationarity": 3.625264947627759e-15,
+      "complementarity": 5.4506630487907555e-14,
+      "smallest_shift_eigenvalue": 0.0,
+      "ball_excess": 1.9095836023552692e-14,
+      "optimization_error": 2.3796964399025455e-11
+    },
+    "named_cases": [
+      {
+        "name": "zero",
+        "x": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "lambda": 0.0,
+        "value": 0.7,
+        "case": "positive_semidefinite_interior_or_flat"
+      },
+      {
+        "name": "singular_PSD",
+        "x": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "lambda": 0.0,
+        "value": 0.74,
+        "case": "positive_semidefinite_interior_or_flat"
+      },
+      {
+        "name": "hard_indefinite",
+        "x": [
+          0.99498743710662,
+          0.1,
+          0.0
+        ],
+        "lambda": 1.0,
+        "value": 1.72,
+        "case": "singular_boundary_hard_case"
+      },
+      {
+        "name": "hard_degenerate",
+        "x": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "lambda": 1.0,
+        "value": 1.7,
+        "case": "singular_boundary_hard_case"
+      },
+      {
+        "name": "regular_indefinite",
+        "x": [
+          0.9945616515501022,
+          0.045431961285214886,
+          0.09371797138068368
+        ],
+        "lambda": 1.2010936171611728,
+        "value": 2.1326645350139186,
+        "case": "regular_boundary"
+      },
+      {
+        "name": "positive_interior",
+        "x": [
+          0.2,
+          0.05,
+          0.0
+        ],
+        "lambda": 0.0,
+        "value": 0.7449999999999999,
+        "case": "positive_semidefinite_interior_or_flat"
+      }
+    ]
+  },
+  "probability_frontier": [
+    {
+      "p": 0.5,
+      "c": 0.6566666666666666,
+      "threshold": 0.6666666666666666,
+      "radius": 0.8825627419424987,
+      "max_F3_squared": 1.0035231177417252
+    },
+    {
+      "p": 0.5,
+      "c": 0.6666666666666666,
+      "threshold": 0.6666666666666666,
+      "radius": 1.0,
+      "max_F3_squared": 1.0
+    },
+    {
+      "p": 0.5,
+      "c": 0.6766666666666666,
+      "threshold": 0.6666666666666666,
+      "radius": 1.0,
+      "max_F3_squared": 1.0
+    },
+    {
+      "p": 0.55,
+      "c": 0.6491779203441698,
+      "threshold": 0.6591779203441698,
+      "radius": 0.8127624657586225,
+      "max_F3_squared": 1.0098236492151917
+    },
+    {
+      "p": 0.55,
+      "c": 0.6591779203441698,
+      "threshold": 0.6591779203441698,
+      "radius": 0.8181818181818181,
+      "max_F3_squared": 1.0
+    },
+    {
+      "p": 0.55,
+      "c": 0.6691779203441698,
+      "threshold": 0.6591779203441698,
+      "radius": 0.8181818181818181,
+      "max_F3_squared": 0.9901911920134506
+    },
+    {
+      "p": 0.6,
+      "c": 0.6415307716504657,
+      "threshold": 0.6515307716504657,
+      "radius": 0.6666666666666667,
+      "max_F3_squared": 1.0163410427296657
+    },
+    {
+      "p": 0.6,
+      "c": 0.6515307716504657,
+      "threshold": 0.6515307716504657,
+      "radius": 0.6666666666666667,
+      "max_F3_squared": 1.0
+    },
+    {
+      "p": 0.6,
+      "c": 0.6615307716504657,
+      "threshold": 0.6515307716504657,
+      "radius": 0.6666666666666667,
+      "max_F3_squared": 0.9836811794925565
+    },
+    {
+      "p": 0.75,
+      "c": 0.6177186767309857,
+      "threshold": 0.6277186767309857,
+      "radius": 0.33333333333333326,
+      "max_F3_squared": 1.0255758339846133
+    },
+    {
+      "p": 0.75,
+      "c": 0.6277186767309857,
+      "threshold": 0.6277186767309857,
+      "radius": 0.33333333333333326,
+      "max_F3_squared": 1.0
+    },
+    {
+      "p": 0.75,
+      "c": 0.6377186767309857,
+      "threshold": 0.6277186767309857,
+      "radius": 0.33333333333333326,
+      "max_F3_squared": 0.9745130549042753
+    },
+    {
+      "p": 0.9,
+      "c": 0.5928191401552718,
+      "threshold": 0.6028191401552718,
+      "radius": 0.11111111111111116,
+      "max_F3_squared": 1.0280838456864352
+    },
+    {
+      "p": 0.9,
+      "c": 0.6028191401552718,
+      "threshold": 0.6028191401552718,
+      "radius": 0.11111111111111116,
+      "max_F3_squared": 1.0
+    },
+    {
+      "p": 0.9,
+      "c": 0.6128191401552718,
+      "threshold": 0.6028191401552718,
+      "radius": 0.11111111111111116,
+      "max_F3_squared": 0.9720741790049228
+    },
+    {
+      "p": 1.0,
+      "c": 0.575786437626905,
+      "threshold": 0.585786437626905,
+      "radius": 0.0,
+      "max_F3_squared": 1.0283842712474618
+    },
+    {
+      "p": 1.0,
+      "c": 0.585786437626905,
+      "threshold": 0.585786437626905,
+      "radius": 0.0,
+      "max_F3_squared": 1.0
+    },
+    {
+      "p": 1.0,
+      "c": 0.595786437626905,
+      "threshold": 0.585786437626905,
+      "radius": 0.0,
+      "max_F3_squared": 0.971815728752538
+    }
+  ],
+  "status": "PASS"
+}

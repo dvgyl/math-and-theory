@@ -1,0 +1,9 @@
+# Fresh replay record
+
+This directory records the fresh verification of this package run for its publication on 3 November 2026.
+
+- [`build.log.xz`](build.log.xz): first `lake build` (the default target `MilneBounds`, all 70 project modules) in a fresh copy of [lean/](../lean/) with no project build output, then `lake build MilneBounds MilneAxiomAudit`, using Lean 4.19.0 (commit `6caaee842e94`) on Linux x86_64 and a checkout of Mathlib `c44e0c8ee63ca166450922a373c7409c5d26b00b` whose modules came from the Mathlib build cache (`lake exe cache get`). All 70 project modules and the audit module compiled; the first build took about forty minutes on a shared machine. The warnings are style linter messages. Absolute paths are replaced by `<package>/lean`, `<mathlib>` and `<scratch>`.
+- [`axiom-inventory.json`](axiom-inventory.json): the output of `scripts/check_axiom_audit.py` on that log. The audit covers all 1,298 declarations defined in the 70 project modules; six modules only print axiom reports and define none. The 1,044 declarations other than code-generation auxiliaries are theorems, definitions and other constructions, none an axiom, and depend only on `propext`, `Classical.choice` and `Quot.sound`. The other 254 are auxiliary declarations that the Lean 4.19 code generator stores for executable definitions; 18 of them refer to its placeholder `lcProof`, which the audit permits for auxiliaries only. All 811 named source declarations were audited.
+- [`checks.log`](checks.log): `python3 -I scripts/run_checks.py` with Python 3.13, NumPy 2.3.5, SciPy 1.17.0, SymPy 1.14.0 and Matplotlib 3.10.8. All eleven checkers reproduced the recorded outputs and the figure script ran.
+
+Each checker was also run directly from a copy of the uploaded files before integration, with the same results. Compiled objects are not included. The CI workflow repeats the Lean build, the audit and the quick calculation replay on every push.

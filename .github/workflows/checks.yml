@@ -259,7 +259,7 @@ jobs:
     runs-on: ubuntu-24.04
     # The ADMM certificates compile 168 modules one at a time; the Nesterov
     # verifier replays every imported proof at each of its 56 modules.
-    timeout-minutes: ${{ matrix.package == 'admm-multiplier-step' && 300 || (matrix.package == 'nesterov-subcritical' || matrix.package == 'singer-orbit-blocking') && 120 || 60 }}
+    timeout-minutes: ${{ matrix.package == 'admm-multiplier-step' && 300 || (matrix.package == 'nesterov-subcritical' || matrix.package == 'singer-orbit-blocking' || matrix.package == 'steering-joint-range') && 120 || 60 }}
     strategy:
       fail-fast: false
       max-parallel: 2
@@ -285,6 +285,9 @@ jobs:
             project: .
           - package: ellipsoid-witness-optimality
             root: papers/physics/ellipsoid-witness-optimality
+            project: lean
+          - package: steering-joint-range
+            root: papers/physics/steering-joint-range
             project: lean
           - package: strong-gradient
             root: papers/mathematics/strong-gradient
@@ -409,6 +412,12 @@ jobs:
             python3 -m venv "${RUNNER_TEMP}/ellipsoid-witness-optimality-venv"
             "${RUNNER_TEMP}/ellipsoid-witness-optimality-venv/bin/pip" install --quiet -r ../verification/requirements.txt
             "${RUNNER_TEMP}/ellipsoid-witness-optimality-venv/bin/python" ../scripts/run_exact_checks.py
+          elif [[ '${{ matrix.package }}' == 'steering-joint-range' ]]; then
+            lake build MilneBounds MilneAxiomAudit 2>&1 | tee "${RUNNER_TEMP}/steering-joint-range-build.log"
+            python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/steering-joint-range-build.log" --project . --output "${RUNNER_TEMP}/steering-joint-range-axioms.json"
+            python3 -m venv "${RUNNER_TEMP}/steering-joint-range-venv"
+            "${RUNNER_TEMP}/steering-joint-range-venv/bin/pip" install --quiet -r ../calculations/requirements.txt
+            "${RUNNER_TEMP}/steering-joint-range-venv/bin/python" ../scripts/run_checks.py --quick
           elif [[ '${{ matrix.package }}' == 'strong-gradient' ]]; then
             python3 verify.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib --output "${RUNNER_TEMP}/gradient-source-verification" --timeout 600
           elif [[ '${{ matrix.package }}' == 'unicyclic-skewness' ]]; then

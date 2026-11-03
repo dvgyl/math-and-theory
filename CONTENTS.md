@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**56 manuscripts and research notes across 55 result families in mathematics, theoretical computer science, and mathematical physics.**
+**57 manuscripts and research notes across 56 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -630,6 +630,17 @@ Milne, Jennings and Rudolph conjectured that if E* is an ellipsoid in the Bloch 
 **Prior work.** [Milne, Jennings and Rudolph, Geometric representation of two-qubit entanglement witnesses, 2015.](https://arxiv.org/abs/1407.8440) · [Lewenstein, Kraus, Cirac and Horodecki, Optimization of entanglement witnesses, 2000.](https://arxiv.org/abs/quant-ph/0005014) · [Avron and Kenneth, Entanglement and the geometry of two qubits, 2009.](https://doi.org/10.1016/j.aop.2008.07.007)
 
 [Paper PDF](papers/physics/ellipsoid-witness-optimality/manuscript.pdf) · [LaTeX](papers/physics/ellipsoid-witness-optimality/manuscript.tex) · [Proof and reproduction](papers/physics/ellipsoid-witness-optimality/README.md) · [Citation](papers/physics/ellipsoid-witness-optimality/CITATION.bib)
+#### [The full correlation range, filtering frontier and volume trade-off at fixed steering centre](papers/physics/steering-joint-range/manuscript.pdf)
+
+**Family:** `steering-joint-range`.
+
+For two-qubit states with steering-ellipsoid centre length c and Bob Bloch length r < 1, the values of the three-setting correlation value F₃² = ‖T‖²_F form exactly the interval [max(0, c(1+r)−1)², (1−r²)(3−4c)+(c+(1−c)r)²], with separable minimizers, their classification and a trace-norm stability estimate. For canonical states with radial support half-width t and squared correlation τ, the largest steering-ellipsoid volume is (4π/3)(t/2)min(τ−t², 1+2t+2t²−c²−τ), attained at every feasible triple. A filter succeeding with probability at least p ∈ [1/2, 1] can reveal F₃ > 1 from a canonical input exactly when c < 2/(1+p+√((1−p)²+2)). Every one-sided filtering orbit is solved exactly, and the maximizers of the steering-bounds envelope are classified. This extends steering-bounds, whose envelope and threshold it recalls.
+
+**Formal scope.** Lean 4.19.0 proves the joint interval, the lower-endpoint equality and rigidity, the canonical (c, t) interval, the probability frontier from actual Kraus contractions, the complete orbit solution, the classification and trace-norm rigidity of the maximizers and the volume maxima in a fixed marked-axis convention, for actual complex density matrices; a whole-project audit covers all 70 modules. The flat-branch exponents, the volume-maximizer orbit classification and rank counts, and the CJWR measurement interpretation are conventional.
+
+**Prior work.** [Ducuara, Susa and Skrzypczyk, Locally inaccessible hidden quantum correlations, 2024.](https://arxiv.org/abs/2406.03945) · [Milne, Jevtic, Jennings, Wiseman and Rudolph, Quantum steering ellipsoids, extremal physical states and monogamy, 2014.](https://arxiv.org/abs/1403.0418) · The Omega Institute's public repository records an earlier claimed Lean proof of the fully entangled fraction bound (issue #14206), whose Lean proof from steering-bounds is included unchanged; no priority is claimed for it. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-steering-centre-bounds).
+
+[Paper PDF](papers/physics/steering-joint-range/manuscript.pdf) · [LaTeX](papers/physics/steering-joint-range/manuscript.tex) · [Proof and reproduction](papers/physics/steering-joint-range/README.md) · [Citation](papers/physics/steering-joint-range/CITATION.bib)
 
 #### [The three-state root-fidelity entropy bound](papers/physics/fidelity-three-state/manuscript.pdf)
 

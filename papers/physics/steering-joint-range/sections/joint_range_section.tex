@@ -1,0 +1,140 @@
+\section{The full correlation range at fixed centre and marginal}
+\label{sec:jointrange}
+The upper envelope has a complementary sharp lower bound. Together they
+determine every possible value of the correlation norm, not merely its
+largest value. This also identifies a region in which a nonzero centre
+forces a strictly positive measured correlation.
+
+\begin{theorem}[Complete joint range]\label{thm:jointrange}
+Fix $0\leq c\leq1$ and $0\leq r<1$. Among all two-qubit density matrices
+with Alice steering-centre length $c$ and Bob Bloch length $r$, the set of
+attainable squared correlations is exactly
+\begin{equation}\label{eq:jointinterval}
+\left[\bigl(\max\{0,c(1+r)-1\}\bigr)^2,\;
+ (1-r^2)(3-4c)+\bigl(c+(1-c)r\bigr)^2\right].
+\end{equation}
+Both endpoints are attained. The lower endpoint is attained by a state
+diagonal in a product basis. Every lower-endpoint state is locally unitarily
+equivalent to the displayed diagonal witness below. At $r=1$, the entire
+range is instead the singleton $\{c^2\}$.
+\end{theorem}
+
+\begin{proof}
+Choose unit vectors $\nn,\mathbf m$ so that the centre is $c\nn$ and
+$\bb=r\mathbf m$. When a vector vanishes, choose its direction arbitrarily;
+the argument does not divide by $c$ or $r$. Put
+$q=\nn^{\mathsf T}T\mathbf m$. The probability of obtaining both minus
+outcomes in the corresponding local spin measurements is nonnegative:
+\[
+ 1-\aa\cdot\nn-r+q\geq0.
+\]
+The centre relation gives
+$\aa\cdot\nn=(1-r^2)c+rq$, hence
+\begin{equation}\label{eq:lowerfactor}
+0\leq(1-r)\bigl(q-[c(1+r)-1]\bigr).
+\end{equation}
+Since $r<1$, $q\geq c(1+r)-1$. Cauchy--Schwarz gives
+$|q|\leq\norm T_F$, proving the lower bound. The upper bound is the sharp
+joint envelope proved earlier.
+
+For attainment, put
+\[
+x=\max\{0,c(1+r)-1\},\qquad a_0=c(1-r^2)+rx.
+\]
+Take $\aa=a_0\mathbf e_z$, $\bb=r\mathbf e_z$, and
+$T=\operatorname{diag}(0,0,x)$. The associated density matrix is
+\begin{equation}\label{eq:jointlowerwitness}
+\rho^-_{c,r}=\frac14\operatorname{diag}
+ (1+a_0+r+x,\;1+a_0-r-x,\;1-a_0+r-x,\;1-a_0-r+x).
+\end{equation}
+If $x=0$, then $0\leq a_0\leq1-r$, so all entries are nonnegative.
+If $x>0$, then $0<x\leq r$, $a_0=1-r+x$, and its eigenvalues are
+\[
+\frac{1+x}{2},\quad\frac{1-r}{2},\quad\frac{r-x}{2},\quad0.
+\]
+Its centre is exactly $c\mathbf e_z$ and $F_3^2=x^2$.
+These checks include all vanishing diagonal entries, without assuming a
+strictly positive state.
+
+Let $\rho^+_{c,r}$ be the upper witness in
+Eq.~\eqref{eq:globalwitness}, in the same coordinate convention.
+Both witnesses have the same $\bb=r\mathbf e_z$ and the same vector
+$\aa-T\bb=(1-r^2)c\mathbf e_z$. Every convex combination
+\[
+\rho_\alpha=(1-\alpha)\rho^-_{c,r}+\alpha\rho^+_{c,r},
+\qquad0\leq\alpha\leq1,
+\]
+therefore has the same centre and Bob marginal. Write $d=1-c$ and
+$z=d+cr$. Direct computation gives
+\begin{equation}\label{eq:jointinterpolate}
+F_3(\rho_\alpha)^2=
+2\alpha^2d(1-r^2)+\bigl[x+\alpha(z-x)\bigr]^2.
+\end{equation}
+Here $x\geq0$ and $z-x\geq0$; for $x>0$, the latter difference is
+$2(1-c)$. Thus the expression is continuous and nondecreasing from the
+lower endpoint to the upper endpoint. It supplies every intermediate value.
+
+For the equality classification, if $x>0$ then equality in the lower bound
+forces $q=x$ and equality in the Frobenius Cauchy--Schwarz inequality.
+Consequently $T=x\nn\mathbf m^{\mathsf T}$, and the centre relation fixes
+$\aa=a_0\nn$. If $x=0$, equality means $T=0$, and the centre relation again
+fixes $\aa=c(1-r^2)\nn$. Independent local changes of spin axes give precisely
+Eq.~\eqref{eq:jointlowerwitness}. Finally, when $r=1$, positivity forces
+$\rho=\rho_A\otimes|\beta\rangle\langle\beta|$; its point centre has
+length $c$, and its squared correlation is $c^2$.
+\end{proof}
+
+The zero-correlation region is exactly $c(1+r)\leq1$.
+A state with $T=0$ need not be a product: when both local vectors are
+nonzero, the product state would have $T=\aa\bb^{\mathsf T}$.
+The lower witness is nevertheless separable because it is diagonal in a
+product basis.
+
+For example, at $c=3/4$ and $r=1/2$, the lower witness is
+\[
+\rho^-_{3/4,1/2}=\operatorname{diag}(9/16,1/4,3/16,0),
+\qquad F_3^2=1/64,
+\]
+while the upper value is $49/64$. All values between them occur at exactly
+the same centre length and Bob marginal. At $c=1$, the two endpoints
+coincide at $r^2$; the allowed states have pure Alice marginal and are
+products. At $r=0$, the range reduces to $[0,(1-c)(3-c)]$.
+
+\begin{corollary}[A quantitative directional consequence]
+For every state with $r<1$, centre $c\nn$, and Bob vector $r\mathbf m$,
+\[
+\nn^{\mathsf T}T\mathbf m\geq c(1+r)-1,
+\qquad c(1+r)\leq1+\norm T_F.
+\]
+If $x=c(1+r)-1>0$ and $F_3^2-x^2\leq\eta$, then
+\begin{equation}\label{eq:lowerstability}
+\norm{T-x\nn\mathbf m^{\mathsf T}}_F^2\leq\eta,
+\qquad
+\norm{\aa-a_0\nn}^2\leq r^2\eta.
+\end{equation}
+\end{corollary}
+\begin{proof}
+The first assertions were proved above. Since $q\geq x>0$,
+\[
+\norm{T-x\nn\mathbf m^{\mathsf T}}_F^2
+=\norm T_F^2-2xq+x^2\leq\norm T_F^2-x^2\leq\eta.
+\]
+Subtracting the common centre equations gives
+$\aa-a_0\nn=r(T-x\nn\mathbf m^{\mathsf T})\mathbf m$;
+the Frobenius bound proves the second assertion.
+\end{proof}
+
+This yields an explicit state-distance consequence in the same axes. For
+$\rho^-$ with the same centre and Bob vector,
+\[
+\norm{\rho-\rho^-}_2^2
+=\tfrac14\bigl(\norm{\aa-a_0\nn}^2+
+\norm{T-x\nn\mathbf m^{\mathsf T}}_F^2\bigr)
+\leq\frac{1+r^2}{4}\eta,
+\qquad
+\norm{\rho-\rho^-}_1^2\leq(1+r^2)\eta.
+\]
+The norm $\norm{\cdot}_2$ is the Hilbert--Schmidt norm. The same conclusion
+holds in the $x=0$ region with $\eta=F_3^2$, since then the correlation
+matrix of the witness vanishes. Thus lower-endpoint rigidity has a direct
+square-root modulus, including the interface $c(1+r)=1$.

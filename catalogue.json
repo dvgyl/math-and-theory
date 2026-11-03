@@ -3404,6 +3404,70 @@
           ]
         ]
       }
+    },
+    {
+      "id": "steering-joint-range",
+      "discipline": "Mathematical physics",
+      "area": "Quantum information",
+      "title": "The full correlation range, filtering frontier and volume trade-off at fixed steering centre",
+      "kind": "Exact theorems with Lean matrix proofs and exact certificates",
+      "significance_rank": 405,
+      "keywords": [
+        "quantum steering",
+        "steering ellipsoids",
+        "two-qubit states",
+        "CJWR steering inequality",
+        "local filtering",
+        "steering ellipsoid volume",
+        "Pauli correlations"
+      ],
+      "summary": "For two-qubit states with steering-ellipsoid centre length c and Bob Bloch length r < 1, the attainable values of the three-setting correlation value F₃² = ‖T‖²_F form exactly the interval [max(0, c(1+r)−1)², (1−r²)(3−4c)+(c+(1−c)r)²], with separable diagonal minimizers, a classification of the minimizers and a trace-norm stability estimate; at r = 1 the only value is c². For canonical states with radial support half-width t, the squared correlation fills [t², 1−c²+2t²], and at prescribed (c, t, τ) the largest steering-ellipsoid volume is (4π/3)(t/2)min(τ−t², 1+2t+2t²−c²−τ), attained at every feasible triple. A canonical input and a Bob filter succeeding with probability at least p ∈ [1/2, 1] can produce F₃ > 1 exactly when c < 2/(1+p+√((1−p)²+2)). Every one-sided filtering orbit is solved exactly, including singular hard cases, and the maximizers of the fixed-centre envelope of steering-bounds are classified with explicit trace-norm rigidity.",
+      "formal_scope": "Lean 4.19.0 with Mathlib proves, for actual complex 4×4 density matrices, Kraus contractions and local unitaries, the joint (c, r) interval, the lower-endpoint equality and trace-norm rigidity, the canonical (c, t) interval, the probability-constrained frontier, the complete one-sided orbit solution with all maximizing effects, the local-unitary classification and trace-norm rigidity of the envelope maximizers, and the signed and three-parameter volume maxima in a fixed marked-axis convention; a whole-project audit covers every declaration of the 70 modules, including the 18 unchanged modules of steering-bounds. The flat-branch exponents, the volume-maximizer orbit classification and rank counts, attainment of every signed determinant, and the identification of ‖T‖_F with the optimized CJWR expression are conventional.",
+      "source": "Extends steering-bounds (29 October 2026), whose envelope G(c), threshold c < 2/3 and joint upper bound are recalled, not claimed again. The F₃ convention is Eq. (3) of Ducuara, Susa and Skrzypczyk (Phys. Rev. A 110, 022435 (2024), arXiv:2406.03945); the steering-ellipsoid framework and the fixed-centre volume maximum are due to Jevtic et al. and Milne et al. (arXiv:1303.4724, 1404.3951, 1403.0418); trust-region theory to Moré–Sorensen and Fortin–Wolkowicz. The Omega Institute's public repository records a claimed Lean proof of the fully entangled fraction bound (Conjecture 2 of Milne et al., issue #14206, 8 October 2026), whose Lean proof from steering-bounds is included unchanged; no priority is claimed for it. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/physics/steering-joint-range/README.md",
+      "paper": "papers/physics/steering-joint-range/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/physics/steering-joint-range"
+      },
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Exact range of the two-qubit F₃ = ‖T‖_F steering value at fixed steering-ellipsoid centre and Bob marginal, with filtering and volume trade-offs",
+        "posed_by": "Ducuara, Susa and Skrzypczyk, Locally inaccessible hidden quantum correlations, Phys. Rev. A 110, 022435 (2024), Eq. (3) and the hidden-steering filtering question; extends the fixed-centre envelope of steering-bounds",
+        "problem_url": "https://arxiv.org/abs/2406.03945",
+        "status": "Determined exactly: joint correlation interval, success-probability frontier and volume–correlation trade-off",
+        "claim": "At centre length c and Bob Bloch length r < 1, F₃² takes exactly the values in [max(0, c(1+r)−1)², (1−r²)(3−4c)+(c+(1−c)r)²]; a filter of success probability ≥ p can reveal F₃ > 1 iff c < 2/(1+p+√((1−p)²+2)).",
+        "title_tag": "Two-Qubit F3 Steering Range at Fixed Ellipsoid Centre and Marginal",
+        "description": "Exact attainable range of the two-qubit F3 = ‖T‖_F steering value at fixed steering-ellipsoid centre and Bob marginal, filtering frontier and volume bound. Lean.",
+        "queries": [
+          "F3 steering inequality two qubits range",
+          "steering ellipsoid centre correlation matrix bound",
+          "minimum correlation fixed steering ellipsoid centre",
+          "steering ellipsoid volume correlation trade-off",
+          "local filtering success probability steering violation",
+          "hidden steering local filtering two qubits",
+          "Ducuara Susa Skrzypczyk F3 centre bound",
+          "two-qubit correlation matrix Frobenius norm interval"
+        ],
+        "faq": [
+          [
+            "What values can F₃² take at fixed steering-ellipsoid centre and Bob marginal?",
+            "For centre length c and Bob Bloch length r < 1, exactly the closed interval from max(0, c(1+r)−1)² to (1−r²)(3−4c)+(c+(1−c)r)². The upper end was proved in the earlier steering-bounds package; the lower end is new, is attained by separable states diagonal in a product basis, and every value in between occurs. At r = 1 the state is a product and F₃² = c²."
+          ],
+          [
+            "How does the success probability of a local filter limit hidden steering?",
+            "Over canonical inputs of centre length c and Bob filters succeeding with probability at least p between 1/2 and 1, an output with F₃ > 1 exists exactly when c < 2/(1+p+√((1−p)²+2)). The threshold falls from 2/3 at p = 1/2 to 2−√2 at p = 1; the cost of a preceding whitening step is not included."
+          ],
+          [
+            "What is the largest steering-ellipsoid volume at given correlation?",
+            "For a canonical state with centre length c, radial support half-width t and squared correlation τ, the largest volume is (4π/3)(t/2)min(τ−t², 1+2t+2t²−c²−τ), attained at every feasible triple. At t = 1−c it recovers the known maximum (4π/3)(1−c)² of Milne et al."
+          ],
+          [
+            "What is proved in Lean and what was known before?",
+            "Lean proves the joint interval, the probability frontier, the orbit solution, the maximizer classification and the volume maxima for actual density matrices and Kraus operators. The envelope G(c) and the threshold c < 2/3 are from steering-bounds. The Omega Institute's public repository records an earlier claimed Lean proof of the fully entangled fraction bound included here unchanged; no priority is claimed for it."
+          ]
+        ]
+      }
     }
   ],
   "research_notes": [

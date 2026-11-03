@@ -1,0 +1,598 @@
+{
+  "format_version": 1,
+  "package_id": "steering-joint-range",
+  "formal_scope": "Lean 4.19.0 with Mathlib proves, for actual complex 4×4 density matrices, Kraus contractions and local unitaries, the joint (c, r) interval, the lower-endpoint equality and trace-norm rigidity, the canonical (c, t) interval, the probability-constrained frontier, the complete one-sided orbit solution with all maximizing effects, the local-unitary classification and trace-norm rigidity of the envelope maximizers, and the signed and three-parameter volume maxima in a fixed marked-axis convention; a whole-project audit covers every declaration of the 70 modules, including the 18 unchanged modules of steering-bounds. The flat-branch exponents, the volume-maximizer orbit classification and rank counts, attainment of every signed determinant, and the identification of ‖T‖_F with the optimized CJWR expression are conventional.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.lean",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/Lean/MilneAlignedEquality.lean": "700e38aac996498fbec84ef6f1af5e554ab3ae713117fe73da065ef4d8563957",
+    "lean/Lean/MilneAlignedStability.lean": "9833bdd3a4d0225b95cd0ad6e12253a5396966c4240f2d2c92275e43615066a9",
+    "lean/Lean/MilneAlignedState.lean": "e9f3c452a8aa07509c7e718adff4e28c8c2f3081b91189e8696be1e872a107fe",
+    "lean/Lean/MilneAllStates.lean": "9b126bdb4f0d4887116a0c29e6b9cf0fa46fb4066d64be5ff0c61d7444598245",
+    "lean/Lean/MilneAxiomAudit.lean": "c478ffa1e3b425f4877ca74f7fc9b6d2382e915085ded566a560d70b84833a59",
+    "lean/Lean/MilneBlochDefs.lean": "56324a6f0b5edc2fbdd8c452b2c194c61d6cbd61d93e0c8b8763d1c2c5d3dac5",
+    "lean/Lean/MilneBlochIdentities.lean": "53b5e7c6122581e4de272dd6ec4a0dac00dc6a5da1e1fca9dcdfe34b39a0e0f3",
+    "lean/Lean/MilneBobRadialNormalForm.lean": "8ef49f41079cee717c00bebfce453ea701e07476e94f9eb024ad64ec2ab3a0eb",
+    "lean/Lean/MilneCanonicalNormalForm.lean": "5b1d7c267eb502bd4edd277aabce99af2b3619a69fa1d2a4de1459df8730b9c7",
+    "lean/Lean/MilneCanonicalRigidity.lean": "5a638cc1c266b2dbf91d2d6573c0a68b63e2032bc9a12cf6a48963d47840043a",
+    "lean/Lean/MilneCanonicalization.lean": "d7c6af0870431eeab45467b6ed86c56d6893233122f717b85ab670cacb9f5bef",
+    "lean/Lean/MilneCenterCoordinates.lean": "31a1e3731940c067cb01c0bd0d271415e6d10783827885792b0ad089cfa316d2",
+    "lean/Lean/MilneCenterVerification.lean": "93de39ae8f8350c275bc9e1c86cdb187bf00af1c577ba94ad8b72def78f5dd17",
+    "lean/Lean/MilneComplexFiltering.lean": "ea6ce69d8d3edb261a24f4500f693d0c09954c4348cdb489de27205069b836a0",
+    "lean/Lean/MilneCore.lean": "d7fa814acdc81e75961b0fa9ef846d989da94cac0bba4bf1d400b13b5f6348ea",
+    "lean/Lean/MilneCorrelation.lean": "502a21928eac4d84c8cd07c0e3ea8b78282076d9d9645b8738b22deaca8db93d",
+    "lean/Lean/MilneDefs.lean": "7f1d3ec37eeac51c8e29a148fa5dcf628676c093dfe76d574fff8e0d310aeb0c",
+    "lean/Lean/MilneEndpointRigidity.lean": "3424052c480a3d6296bdf2331c5b9113e0c6e9fe2bef55b3d684538352f3c319",
+    "lean/Lean/MilneFiltering.lean": "9d50348aceee9419f2c3868a72e5a7ba6e50afc4c231589096333fec033038e6",
+    "lean/Lean/MilneFractionOptimality.lean": "54ac5c12cf8848ee34dd3b6097f2c27692bf201ac599e622c5bb602e0f91236b",
+    "lean/Lean/MilneFractionSharpness.lean": "823304c63a54d8e5b4f3db2416420389be803041bb42377f37ebb0f68e186ade",
+    "lean/Lean/MilneGeometry.lean": "d04411ac10661d16f784b1148c9fe5e75f776424efc280e1f53a2a8ef4212ab3",
+    "lean/Lean/MilneGeometryBridge.lean": "e85cbbe1efeb69bf6fabd6a8f774e978ef98ba1d1622a7a668edaf516d1ff7aa",
+    "lean/Lean/MilneGeometryConsequences.lean": "6cce1e0f43b793a4ed2c0c3e258bdf0584b0599786ab663c9fccba680d151b7a",
+    "lean/Lean/MilneGeometryInterval.lean": "df216be58b95152cdeb03def7a11fb4ca3c7c65cb621d41d418aa47d0e47db9c",
+    "lean/Lean/MilneGeometryRange.lean": "a088319c1c3d1190d54962e2039c198ea33f347a2c67cae71433ecfc7a87f614",
+    "lean/Lean/MilneGeometrySharpness.lean": "b411c91c4a82b758b8a0b4b5a15da5799f11845b91df0e87014530f8467fbc7d",
+    "lean/Lean/MilneGlobalRigidity.lean": "5f104b0db0236cf6f8d13eb8b6091e22a6f143f1d0015a0f60e5aa15d784127e",
+    "lean/Lean/MilneJointArbitraryStability.lean": "e5aa3f7850837f5ca24a863245394c5e93aee3b5e6787561316fd6ccdf734528",
+    "lean/Lean/MilneJointMinimum.lean": "85698550ace31d47d6d116beeb8808e236f4b0fe2d9c06a304b9bf3a0cea8555",
+    "lean/Lean/MilneJointMinimumPhysical.lean": "eb3e4e5eba1905a1fc598d98122080ab2c69df52628a7c091fe35c257671077e",
+    "lean/Lean/MilneJointPhysicalStability.lean": "9e1854ba5746faaec247da18ef9d3b60eea2108ac80f20a7ec96be5bdcd97478",
+    "lean/Lean/MilneJointSpectrum.lean": "ccb2e0e09c86a8959d4a21a7d28e965350ca8ad9510d25c588a441a03886ddfb",
+    "lean/Lean/MilneJointStability.lean": "2c9e1e3310fec0a4db979ccb0bd6e32670ff9d0a43e56a5e3494b5c550ac54df",
+    "lean/Lean/MilneKrausProbability.lean": "250eead24c768e70192d2c18b3af97d4fb3fbf86c27e52dd75fa0398e5aa01d7",
+    "lean/Lean/MilneLocalUnitary.lean": "fbd09f6bcbcdbe0c3c26fde2db63a7d891afab084ef7e2204025c55fa878ec25",
+    "lean/Lean/MilneNonattainment.lean": "a36f22874d9ca7c92adf1460f51ce71e5cf9aea3a2ed2175436a96f4a9a2ade6",
+    "lean/Lean/MilneOneSided.lean": "e574d85feb0b5e317a89fe2e074056096e179e906ccb37d31641ce9dfc4301fc",
+    "lean/Lean/MilneOptimality.lean": "1235c1650d76b82f3fa47cc3e8e25ca144f3e9df72c62d7add6e8a29da44fbf0",
+    "lean/Lean/MilneOrbitDiagonal.lean": "312e5abe560b1f8333a738f3c6b5c340c32d66c687babb3660dcede8b72d8939",
+    "lean/Lean/MilneOrbitFullFilter.lean": "a5193ddb98195958a4c429ef9f48c3515cada0e30192fc1bca37e723d26dce5d",
+    "lean/Lean/MilneOrbitOpenBall.lean": "5ddc67e17cc7ab74339dcacaceb5bf3da69c271e9b71f8553b9aefd8b642c373",
+    "lean/Lean/MilneOrbitOrthogonal.lean": "2bd3d6eb9fb4191ca1f7f5f580414093d287becdc493d92e46ec871eeaad0228",
+    "lean/Lean/MilneOrbitPolynomial.lean": "42ed7d5d246d7752dffb6ba7c25320d941510087b0c787002c3363168624175b",
+    "lean/Lean/MilneOrbitSecular.lean": "69279ceb134219c4c82caf25635de0e00f5a126414d4e51d9ec734158b57426c",
+    "lean/Lean/MilneOrbitSpectral.lean": "cf46944fa8ac1f67f4ec8f9213fe2b04eb89af79cd85b4ca6cba099f78ddaf2c",
+    "lean/Lean/MilneOrbitV2Verification.lean": "0549cb812360b8caa99e75bc8e5ab354a058d90774d4f05a00f12645d07cc6fe",
+    "lean/Lean/MilnePhysicalOrbit.lean": "64d1a90e86d26f73717c13312d5aa63bf6e3f9fea907cc832e65a191486a9086",
+    "lean/Lean/MilnePhysicalOrbitFilter.lean": "6eeb6aef0efafb5751e7794f3b6fe6e277875bab0ad8dec11fddfc1168e4b6ae",
+    "lean/Lean/MilneProbabilityEnvelope.lean": "7eba26494f999a4b4f353bf5d7cdfcb29ab4150dbb5dc65515edd5f1917f4288",
+    "lean/Lean/MilneProbabilityScalar.lean": "0fea0cddcc443883455d7a672b1bd923f01e1e979615da3ab88029c8b0edd3db",
+    "lean/Lean/MilnePurityCovariance.lean": "02280332571dd6a5fb15cf275662346e7fd3da25a93f7c4afdae7a2fab5dc35e",
+    "lean/Lean/MilneQubit.lean": "ff3417a85bd52b1d50e6b3615a38158ff952383d2211d529c6ca14efb855e6b6",
+    "lean/Lean/MilneQubitBall.lean": "712ef18e0f40340fb1fabbda0e091c7c82af841be0a7877eb91466f412a1ccf0",
+    "lean/Lean/MilneQubitDiagonalization.lean": "2ae94a9f397c9c1848e230f850097fb2b7ae0c3b1b596064aec8e223bbfadeca",
+    "lean/Lean/MilneRefinement.lean": "b09d885287ccff98430a55e405a017bdbc05f498adc00157166001d6c0c6baab",
+    "lean/Lean/MilneReleaseVerification.lean": "125fcb3f14c8c21ec525783a197cfc1cf119f5d948089d325c9484687582c609",
+    "lean/Lean/MilneResearchVerification.lean": "7e70954ca9d2a462ae5b063e4d603d77086583fa2bf63b6beb395c36cecf7009",
+    "lean/Lean/MilneRigidityVerification.lean": "bd01a493a0f89f9263bdce85a7532f9dd4a13a55208315e50924600a33a62bed",
+    "lean/Lean/MilneScalarBounds.lean": "39c653ad30be9668a1133612c2b25c428b7ecf8d95484b00337f24675c28678c",
+    "lean/Lean/MilneSharpness.lean": "37d76a30e4d450074131d32a6732944648c095e463d20ed36147849af339f7b2",
+    "lean/Lean/MilneSingular.lean": "96fd57ec294bbd06a2d4ed94bfe005daa5f4bea109d0030d086bea261303b5f5",
+    "lean/Lean/MilneStabilityScalar.lean": "6cb2af9ef6dab93292320975747788afe96b766b2d86c96e7ec2af78cc2bb2e9",
+    "lean/Lean/MilneSteering.lean": "ef295945ffb165db00dad4dd0021bc6a748dd5698e46529474d49bf006de1546",
+    "lean/Lean/MilneTraceDistance.lean": "3995fcebe0c2eec8d6854c4416f3f758bef951c2dcb510c7baff6e409d10259f",
+    "lean/Lean/MilneTraceNorm.lean": "e062add50dd41a1cf6eaae817571fdc438c7a86da43584aaa55168189737044b",
+    "lean/Lean/MilneVerification.lean": "980de7b159e8b6b00e6abf04e94e945d3e5174f13377c3f89a705b8edca8b9d1",
+    "lean/Lean/MilneVolumeGeometry.lean": "4adb1cbe24251f75bda76cd324e91a735f724cc24f7500f05d7a98f6e9251b9c",
+    "lean/Lean/MilneVolumePhysical.lean": "7feb8f92cc1f78ee08e76a65321b876b424438ab675858f668bb65ccf4f5b721",
+    "lean/Lean/MilneVolumeSharpness.lean": "1290035bff1f081b555251e40569e3ff052ea19023e497cc12261cf9711981e9",
+    "lean/Lean/MilneVolumeUnitary.lean": "a6c938e525a63f1f39b672db3ac4a39980e8a95c6a87c7451a658cc5f619a467"
+  },
+  "integrity_manifests": [],
+  "files": {
+    ".gitignore": {
+      "bytes": 120,
+      "sha256": "5e3912d34ca6b165ef83a3fd3e88495a0e2b460530f2f53b4a75bff63dd45b94"
+    },
+    "AUTHORSHIP.md": {
+      "bytes": 2109,
+      "sha256": "4ff321e443ae039e2ad522c4805e55ba708c28973a598b1ab781f3f6f2670cc8"
+    },
+    "CITATION.bib": {
+      "bytes": 398,
+      "sha256": "67339884be587bf91753a6b4a36765243bb70a59eec445e80aee069c1201c057"
+    },
+    "CITATION.cff": {
+      "bytes": 2029,
+      "sha256": "0ef0e0760d4fbdbb8b78c435871f354fa0f5e63af9d94502527e386477cbf8f4"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 8161,
+      "sha256": "c0569ba84c4068fa7026bc4317c0fd79eb40112426d5cd4f02830ff8d0ce662b"
+    },
+    "VERIFICATION.md": {
+      "bytes": 5737,
+      "sha256": "b42a5585f9c613a231abffddfbec2210e6f8c73d328eb91923ce979cfb7101f5"
+    },
+    "calculations/exact_filter_certificate.py": {
+      "bytes": 5222,
+      "sha256": "4d231e4a0bb032ca5aedce375f4c40a4de755a7470040e49bb1ffdefaa3ac526"
+    },
+    "calculations/exact_filter_certificates.json": {
+      "bytes": 15383,
+      "sha256": "7da4070736c2143c8e7aeec0250707abb7834fef1ef6e1374e47514a66d5827d"
+    },
+    "calculations/exact_orbit_certificate.py": {
+      "bytes": 4208,
+      "sha256": "959a0f9d12e9b7b25e8d44056aed7a91e8131d4d72fb7b2b9c9e82912b0ec281"
+    },
+    "calculations/exact_orbit_certificates.json": {
+      "bytes": 23071,
+      "sha256": "08e1954e7d18407d54b4eee5463d7b2664b6b021776b790b2565092bca325139"
+    },
+    "calculations/exact_physical_example.json": {
+      "bytes": 3340,
+      "sha256": "47386421e3dfd73f78fc8bca74062ad58a363be4469e10b2d1f1838244725490"
+    },
+    "calculations/exact_physical_example.py": {
+      "bytes": 2537,
+      "sha256": "8df9ee0ce0c34e44b5b8ffd20f6262dfece9429d586c389f2c6f5cf300eae167"
+    },
+    "calculations/independent/exact_new_results.json": {
+      "bytes": 447,
+      "sha256": "ea766fb2388e5e89f67260d6f1e24dd935bd727e07580504eeb69ffd9adc4377"
+    },
+    "calculations/independent/exact_new_results.py": {
+      "bytes": 9279,
+      "sha256": "ac7d89e84ffa5e3aec54c325554e3356c3c03f34d2b5573661de8438660f9437"
+    },
+    "calculations/independent/geometry_checks.json": {
+      "bytes": 791,
+      "sha256": "680402d3c46659301550822d616ed0711bccfbdc50ca382cd362b657a99ea60b"
+    },
+    "calculations/independent/independent_audit.json": {
+      "bytes": 1431,
+      "sha256": "5d0f1647acdca8c5594d5dd3f1f59252fb80fc2aacb50746e668e64de913a0fd"
+    },
+    "calculations/independent/independent_audit.py": {
+      "bytes": 8089,
+      "sha256": "e4b5b1582800136c4174e1d882a4c4d8289cbb3ccd1f4486d9679e6c9ed8e8bd"
+    },
+    "calculations/independent/one_sided_checks.json": {
+      "bytes": 1138,
+      "sha256": "c4c6d104e25a870c2f1c61ddefe0a604b03353695ad8796174a30ea4aa3bb308"
+    },
+    "calculations/independent/verify_geometry.py": {
+      "bytes": 8408,
+      "sha256": "02d659ed5aa2554ca0784f094f839d72c0902eaf4041b9a17ca2bbb61e2ea898"
+    },
+    "calculations/independent/verify_one_sided.py": {
+      "bytes": 6062,
+      "sha256": "50fd4bc22ee9d1a89652bd190bd12a0d5d704e77f28eb5fe0021d54d6c05f7f8"
+    },
+    "calculations/one_sided_filter.py": {
+      "bytes": 3634,
+      "sha256": "fd40c379c98256e252b1cab41ab2cdf18f86e91a4055cdc69690cd602421d1c6"
+    },
+    "calculations/one_sided_results.json": {
+      "bytes": 941,
+      "sha256": "d8d70b415bf0435005def9653931f74f05812407e9e881cf4375581a4ab42417"
+    },
+    "calculations/plot_v2.py": {
+      "bytes": 3147,
+      "sha256": "b2fa762f9f698b9b02d5db7ec768ec6b49b4693889877745d51df8aa34d1c851"
+    },
+    "calculations/probability_geometry_checks.json": {
+      "bytes": 750,
+      "sha256": "9a77654d50aa32ae8e7ec6bb84c81e123bb5eab81a345dad4320d5213fbac4c9"
+    },
+    "calculations/reproduce.py": {
+      "bytes": 9188,
+      "sha256": "aaff0f19cf3514edf0c50d254151712568663edcedd8bf444fcb0336d5d6d33d"
+    },
+    "calculations/reproduce_v2.py": {
+      "bytes": 12360,
+      "sha256": "0a2377b89267bba17562c400187a5b240c791fecfbc11e4ab9ed572cbe7a4eb0"
+    },
+    "calculations/requirements.txt": {
+      "bytes": 60,
+      "sha256": "221f78707100ffe7e95d10ee62d3e89241137c2f6638b528091d9bb8cd526623"
+    },
+    "calculations/results.json": {
+      "bytes": 1673,
+      "sha256": "af9d79d67d3f4f460eb335c975e95ae825d7917d24c4c7be62af83652e80b262"
+    },
+    "calculations/results_v2.json": {
+      "bytes": 6442,
+      "sha256": "4d71d16e8f82a894742808d803a0cf2ca116065ce61f6cb4edab88ff8d3bf457"
+    },
+    "calculations/verify_probability_geometry.py": {
+      "bytes": 7819,
+      "sha256": "a6866be535ef58d42efb5902b53848b55f13f2096db0fd3deef17d223f25af08"
+    },
+    "figures/envelope.pdf": {
+      "bytes": 61363,
+      "sha256": "8c076f51334a666fd72302fab1787f809e0bcd43dd6590913219e6d13e0224d9"
+    },
+    "figures/new_frontiers.pdf": {
+      "bytes": 38029,
+      "sha256": "b56d6d2762c009f718a6c812d802fc665bf7461994fcd84c6b145001b69c877c"
+    },
+    "figures/volume_frontier.pdf": {
+      "bytes": 31966,
+      "sha256": "d4544b27d3a3baf00034afd15e5117c0cdbf80d8c36b1b05b1dfad0afd238b9c"
+    },
+    "lean/FORMAL_COVERAGE.md": {
+      "bytes": 9752,
+      "sha256": "9e2f3720a29ce0ef0ca2f0a10c18cc76809aa398c35ceb0fde4beed5176e3609"
+    },
+    "lean/Lean/MilneAlignedEquality.lean": {
+      "bytes": 6369,
+      "sha256": "700e38aac996498fbec84ef6f1af5e554ab3ae713117fe73da065ef4d8563957"
+    },
+    "lean/Lean/MilneAlignedStability.lean": {
+      "bytes": 6167,
+      "sha256": "9833bdd3a4d0225b95cd0ad6e12253a5396966c4240f2d2c92275e43615066a9"
+    },
+    "lean/Lean/MilneAlignedState.lean": {
+      "bytes": 7670,
+      "sha256": "e9f3c452a8aa07509c7e718adff4e28c8c2f3081b91189e8696be1e872a107fe"
+    },
+    "lean/Lean/MilneAllStates.lean": {
+      "bytes": 3771,
+      "sha256": "9b126bdb4f0d4887116a0c29e6b9cf0fa46fb4066d64be5ff0c61d7444598245"
+    },
+    "lean/Lean/MilneAxiomAudit.lean": {
+      "bytes": 8266,
+      "sha256": "c478ffa1e3b425f4877ca74f7fc9b6d2382e915085ded566a560d70b84833a59"
+    },
+    "lean/Lean/MilneBlochDefs.lean": {
+      "bytes": 1583,
+      "sha256": "56324a6f0b5edc2fbdd8c452b2c194c61d6cbd61d93e0c8b8763d1c2c5d3dac5"
+    },
+    "lean/Lean/MilneBlochIdentities.lean": {
+      "bytes": 2744,
+      "sha256": "53b5e7c6122581e4de272dd6ec4a0dac00dc6a5da1e1fca9dcdfe34b39a0e0f3"
+    },
+    "lean/Lean/MilneBobRadialNormalForm.lean": {
+      "bytes": 5217,
+      "sha256": "8ef49f41079cee717c00bebfce453ea701e07476e94f9eb024ad64ec2ab3a0eb"
+    },
+    "lean/Lean/MilneCanonicalNormalForm.lean": {
+      "bytes": 6601,
+      "sha256": "5b1d7c267eb502bd4edd277aabce99af2b3619a69fa1d2a4de1459df8730b9c7"
+    },
+    "lean/Lean/MilneCanonicalRigidity.lean": {
+      "bytes": 9829,
+      "sha256": "5a638cc1c266b2dbf91d2d6573c0a68b63e2032bc9a12cf6a48963d47840043a"
+    },
+    "lean/Lean/MilneCanonicalization.lean": {
+      "bytes": 4003,
+      "sha256": "d7c6af0870431eeab45467b6ed86c56d6893233122f717b85ab670cacb9f5bef"
+    },
+    "lean/Lean/MilneCenterCoordinates.lean": {
+      "bytes": 7972,
+      "sha256": "31a1e3731940c067cb01c0bd0d271415e6d10783827885792b0ad089cfa316d2"
+    },
+    "lean/Lean/MilneCenterVerification.lean": {
+      "bytes": 652,
+      "sha256": "93de39ae8f8350c275bc9e1c86cdb187bf00af1c577ba94ad8b72def78f5dd17"
+    },
+    "lean/Lean/MilneComplexFiltering.lean": {
+      "bytes": 4746,
+      "sha256": "ea6ce69d8d3edb261a24f4500f693d0c09954c4348cdb489de27205069b836a0"
+    },
+    "lean/Lean/MilneCore.lean": {
+      "bytes": 15302,
+      "sha256": "d7fa814acdc81e75961b0fa9ef846d989da94cac0bba4bf1d400b13b5f6348ea"
+    },
+    "lean/Lean/MilneCorrelation.lean": {
+      "bytes": 4609,
+      "sha256": "502a21928eac4d84c8cd07c0e3ea8b78282076d9d9645b8738b22deaca8db93d"
+    },
+    "lean/Lean/MilneDefs.lean": {
+      "bytes": 2056,
+      "sha256": "7f1d3ec37eeac51c8e29a148fa5dcf628676c093dfe76d574fff8e0d310aeb0c"
+    },
+    "lean/Lean/MilneEndpointRigidity.lean": {
+      "bytes": 4172,
+      "sha256": "3424052c480a3d6296bdf2331c5b9113e0c6e9fe2bef55b3d684538352f3c319"
+    },
+    "lean/Lean/MilneFiltering.lean": {
+      "bytes": 3755,
+      "sha256": "9d50348aceee9419f2c3868a72e5a7ba6e50afc4c231589096333fec033038e6"
+    },
+    "lean/Lean/MilneFractionOptimality.lean": {
+      "bytes": 4680,
+      "sha256": "54ac5c12cf8848ee34dd3b6097f2c27692bf201ac599e622c5bb602e0f91236b"
+    },
+    "lean/Lean/MilneFractionSharpness.lean": {
+      "bytes": 4699,
+      "sha256": "823304c63a54d8e5b4f3db2416420389be803041bb42377f37ebb0f68e186ade"
+    },
+    "lean/Lean/MilneGeometry.lean": {
+      "bytes": 5474,
+      "sha256": "d04411ac10661d16f784b1148c9fe5e75f776424efc280e1f53a2a8ef4212ab3"
+    },
+    "lean/Lean/MilneGeometryBridge.lean": {
+      "bytes": 4655,
+      "sha256": "e85cbbe1efeb69bf6fabd6a8f774e978ef98ba1d1622a7a668edaf516d1ff7aa"
+    },
+    "lean/Lean/MilneGeometryConsequences.lean": {
+      "bytes": 6822,
+      "sha256": "6cce1e0f43b793a4ed2c0c3e258bdf0584b0599786ab663c9fccba680d151b7a"
+    },
+    "lean/Lean/MilneGeometryInterval.lean": {
+      "bytes": 8023,
+      "sha256": "df216be58b95152cdeb03def7a11fb4ca3c7c65cb621d41d418aa47d0e47db9c"
+    },
+    "lean/Lean/MilneGeometryRange.lean": {
+      "bytes": 3163,
+      "sha256": "a088319c1c3d1190d54962e2039c198ea33f347a2c67cae71433ecfc7a87f614"
+    },
+    "lean/Lean/MilneGeometrySharpness.lean": {
+      "bytes": 5650,
+      "sha256": "b411c91c4a82b758b8a0b4b5a15da5799f11845b91df0e87014530f8467fbc7d"
+    },
+    "lean/Lean/MilneGlobalRigidity.lean": {
+      "bytes": 10173,
+      "sha256": "5f104b0db0236cf6f8d13eb8b6091e22a6f143f1d0015a0f60e5aa15d784127e"
+    },
+    "lean/Lean/MilneJointArbitraryStability.lean": {
+      "bytes": 3134,
+      "sha256": "e5aa3f7850837f5ca24a863245394c5e93aee3b5e6787561316fd6ccdf734528"
+    },
+    "lean/Lean/MilneJointMinimum.lean": {
+      "bytes": 4979,
+      "sha256": "85698550ace31d47d6d116beeb8808e236f4b0fe2d9c06a304b9bf3a0cea8555"
+    },
+    "lean/Lean/MilneJointMinimumPhysical.lean": {
+      "bytes": 8126,
+      "sha256": "eb3e4e5eba1905a1fc598d98122080ab2c69df52628a7c091fe35c257671077e"
+    },
+    "lean/Lean/MilneJointPhysicalStability.lean": {
+      "bytes": 4244,
+      "sha256": "9e1854ba5746faaec247da18ef9d3b60eea2108ac80f20a7ec96be5bdcd97478"
+    },
+    "lean/Lean/MilneJointSpectrum.lean": {
+      "bytes": 7170,
+      "sha256": "ccb2e0e09c86a8959d4a21a7d28e965350ca8ad9510d25c588a441a03886ddfb"
+    },
+    "lean/Lean/MilneJointStability.lean": {
+      "bytes": 8253,
+      "sha256": "2c9e1e3310fec0a4db979ccb0bd6e32670ff9d0a43e56a5e3494b5c550ac54df"
+    },
+    "lean/Lean/MilneKrausProbability.lean": {
+      "bytes": 15363,
+      "sha256": "250eead24c768e70192d2c18b3af97d4fb3fbf86c27e52dd75fa0398e5aa01d7"
+    },
+    "lean/Lean/MilneLocalUnitary.lean": {
+      "bytes": 9246,
+      "sha256": "fbd09f6bcbcdbe0c3c26fde2db63a7d891afab084ef7e2204025c55fa878ec25"
+    },
+    "lean/Lean/MilneNonattainment.lean": {
+      "bytes": 2540,
+      "sha256": "a36f22874d9ca7c92adf1460f51ce71e5cf9aea3a2ed2175436a96f4a9a2ade6"
+    },
+    "lean/Lean/MilneOneSided.lean": {
+      "bytes": 11990,
+      "sha256": "e574d85feb0b5e317a89fe2e074056096e179e906ccb37d31641ce9dfc4301fc"
+    },
+    "lean/Lean/MilneOptimality.lean": {
+      "bytes": 2793,
+      "sha256": "1235c1650d76b82f3fa47cc3e8e25ca144f3e9df72c62d7add6e8a29da44fbf0"
+    },
+    "lean/Lean/MilneOrbitDiagonal.lean": {
+      "bytes": 6931,
+      "sha256": "312e5abe560b1f8333a738f3c6b5c340c32d66c687babb3660dcede8b72d8939"
+    },
+    "lean/Lean/MilneOrbitFullFilter.lean": {
+      "bytes": 12757,
+      "sha256": "a5193ddb98195958a4c429ef9f48c3515cada0e30192fc1bca37e723d26dce5d"
+    },
+    "lean/Lean/MilneOrbitOpenBall.lean": {
+      "bytes": 5684,
+      "sha256": "5ddc67e17cc7ab74339dcacaceb5bf3da69c271e9b71f8553b9aefd8b642c373"
+    },
+    "lean/Lean/MilneOrbitOrthogonal.lean": {
+      "bytes": 8134,
+      "sha256": "2bd3d6eb9fb4191ca1f7f5f580414093d287becdc493d92e46ec871eeaad0228"
+    },
+    "lean/Lean/MilneOrbitPolynomial.lean": {
+      "bytes": 4900,
+      "sha256": "42ed7d5d246d7752dffb6ba7c25320d941510087b0c787002c3363168624175b"
+    },
+    "lean/Lean/MilneOrbitSecular.lean": {
+      "bytes": 11272,
+      "sha256": "69279ceb134219c4c82caf25635de0e00f5a126414d4e51d9ec734158b57426c"
+    },
+    "lean/Lean/MilneOrbitSpectral.lean": {
+      "bytes": 8361,
+      "sha256": "cf46944fa8ac1f67f4ec8f9213fe2b04eb89af79cd85b4ca6cba099f78ddaf2c"
+    },
+    "lean/Lean/MilneOrbitV2Verification.lean": {
+      "bytes": 5754,
+      "sha256": "0549cb812360b8caa99e75bc8e5ab354a058d90774d4f05a00f12645d07cc6fe"
+    },
+    "lean/Lean/MilnePhysicalOrbit.lean": {
+      "bytes": 4305,
+      "sha256": "64d1a90e86d26f73717c13312d5aa63bf6e3f9fea907cc832e65a191486a9086"
+    },
+    "lean/Lean/MilnePhysicalOrbitFilter.lean": {
+      "bytes": 7698,
+      "sha256": "6eeb6aef0efafb5751e7794f3b6fe6e277875bab0ad8dec11fddfc1168e4b6ae"
+    },
+    "lean/Lean/MilneProbabilityEnvelope.lean": {
+      "bytes": 7960,
+      "sha256": "7eba26494f999a4b4f353bf5d7cdfcb29ab4150dbb5dc65515edd5f1917f4288"
+    },
+    "lean/Lean/MilneProbabilityScalar.lean": {
+      "bytes": 10052,
+      "sha256": "0fea0cddcc443883455d7a672b1bd923f01e1e979615da3ab88029c8b0edd3db"
+    },
+    "lean/Lean/MilnePurityCovariance.lean": {
+      "bytes": 2057,
+      "sha256": "02280332571dd6a5fb15cf275662346e7fd3da25a93f7c4afdae7a2fab5dc35e"
+    },
+    "lean/Lean/MilneQubit.lean": {
+      "bytes": 4778,
+      "sha256": "ff3417a85bd52b1d50e6b3615a38158ff952383d2211d529c6ca14efb855e6b6"
+    },
+    "lean/Lean/MilneQubitBall.lean": {
+      "bytes": 3866,
+      "sha256": "712ef18e0f40340fb1fabbda0e091c7c82af841be0a7877eb91466f412a1ccf0"
+    },
+    "lean/Lean/MilneQubitDiagonalization.lean": {
+      "bytes": 3780,
+      "sha256": "2ae94a9f397c9c1848e230f850097fb2b7ae0c3b1b596064aec8e223bbfadeca"
+    },
+    "lean/Lean/MilneRefinement.lean": {
+      "bytes": 17833,
+      "sha256": "b09d885287ccff98430a55e405a017bdbc05f498adc00157166001d6c0c6baab"
+    },
+    "lean/Lean/MilneReleaseVerification.lean": {
+      "bytes": 37511,
+      "sha256": "125fcb3f14c8c21ec525783a197cfc1cf119f5d948089d325c9484687582c609"
+    },
+    "lean/Lean/MilneResearchVerification.lean": {
+      "bytes": 16541,
+      "sha256": "7e70954ca9d2a462ae5b063e4d603d77086583fa2bf63b6beb395c36cecf7009"
+    },
+    "lean/Lean/MilneRigidityVerification.lean": {
+      "bytes": 5221,
+      "sha256": "bd01a493a0f89f9263bdce85a7532f9dd4a13a55208315e50924600a33a62bed"
+    },
+    "lean/Lean/MilneScalarBounds.lean": {
+      "bytes": 4995,
+      "sha256": "39c653ad30be9668a1133612c2b25c428b7ecf8d95484b00337f24675c28678c"
+    },
+    "lean/Lean/MilneSharpness.lean": {
+      "bytes": 12419,
+      "sha256": "37d76a30e4d450074131d32a6732944648c095e463d20ed36147849af339f7b2"
+    },
+    "lean/Lean/MilneSingular.lean": {
+      "bytes": 8927,
+      "sha256": "96fd57ec294bbd06a2d4ed94bfe005daa5f4bea109d0030d086bea261303b5f5"
+    },
+    "lean/Lean/MilneStabilityScalar.lean": {
+      "bytes": 1850,
+      "sha256": "6cb2af9ef6dab93292320975747788afe96b766b2d86c96e7ec2af78cc2bb2e9"
+    },
+    "lean/Lean/MilneSteering.lean": {
+      "bytes": 13368,
+      "sha256": "ef295945ffb165db00dad4dd0021bc6a748dd5698e46529474d49bf006de1546"
+    },
+    "lean/Lean/MilneTraceDistance.lean": {
+      "bytes": 4183,
+      "sha256": "3995fcebe0c2eec8d6854c4416f3f758bef951c2dcb510c7baff6e409d10259f"
+    },
+    "lean/Lean/MilneTraceNorm.lean": {
+      "bytes": 4003,
+      "sha256": "e062add50dd41a1cf6eaae817571fdc438c7a86da43584aaa55168189737044b"
+    },
+    "lean/Lean/MilneVerification.lean": {
+      "bytes": 1811,
+      "sha256": "980de7b159e8b6b00e6abf04e94e945d3e5174f13377c3f89a705b8edca8b9d1"
+    },
+    "lean/Lean/MilneVolumeGeometry.lean": {
+      "bytes": 7134,
+      "sha256": "4adb1cbe24251f75bda76cd324e91a735f724cc24f7500f05d7a98f6e9251b9c"
+    },
+    "lean/Lean/MilneVolumePhysical.lean": {
+      "bytes": 5154,
+      "sha256": "7feb8f92cc1f78ee08e76a65321b876b424438ab675858f668bb65ccf4f5b721"
+    },
+    "lean/Lean/MilneVolumeSharpness.lean": {
+      "bytes": 11173,
+      "sha256": "1290035bff1f081b555251e40569e3ff052ea19023e497cc12261cf9711981e9"
+    },
+    "lean/Lean/MilneVolumeUnitary.lean": {
+      "bytes": 4172,
+      "sha256": "a6c938e525a63f1f39b672db3ac4a39980e8a95c6a87c7451a658cc5f619a467"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3539,
+      "sha256": "ddc264c85dd38cf609e40f817f82a905ead0f18a51ff0bee310d6b098aa388db"
+    },
+    "lean/lakefile.lean": {
+      "bytes": 2264,
+      "sha256": "9dcdb60e4db408560c9a399e54a485f9b003627e9ac9f5a6c66611ed268580a8"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    "lean/modules.txt": {
+      "bytes": 1460,
+      "sha256": "5990477c227ead0647354a9bc1b88b636a44332877052e4046a66353d792eaa5"
+    },
+    "manuscript.pdf": {
+      "bytes": 682501,
+      "sha256": "c567b82039c5273f6f6bcf6697c20322957d2f2ac64369feb99832c987148b55"
+    },
+    "manuscript.tex": {
+      "bytes": 50974,
+      "sha256": "5a5504507556155c3872f658f4ac661c95115a809713d68391ece70ccb3e9a74"
+    },
+    "scripts/check_axiom_audit.py": {
+      "bytes": 6182,
+      "sha256": "9bf184525d0996a46d7326d5d3c599afad1d7fe1853265e54fec959ca8f29720"
+    },
+    "scripts/run_checks.py": {
+      "bytes": 5782,
+      "sha256": "91e832252cd98017c5ea3518587d8e287ee056c7196b6a726648c05855b32db8"
+    },
+    "scripts/verify.sh": {
+      "bytes": 665,
+      "sha256": "b127823955248e4f19e548076118ac80196ab312659a4765372138ef7bdd5fe3"
+    },
+    "sections/exact_activation_example.tex": {
+      "bytes": 1568,
+      "sha256": "1b8250f30f802bc51e8f94e89e86edd706af1d08619f6d9c3a8a3fcbfdbc9c96"
+    },
+    "sections/flat_branch_section.tex": {
+      "bytes": 4033,
+      "sha256": "ad2b999d331b127c9b9aaaf0bd736c94507910247ea7c3410cc149f685d4fbb3"
+    },
+    "sections/geometry_probability_section.tex": {
+      "bytes": 16123,
+      "sha256": "9a3c0d577774ed52594adc0439c110d44a8ede635eb9be75843c1c80d52c7b11"
+    },
+    "sections/joint_range_section.tex": {
+      "bytes": 5749,
+      "sha256": "35e418c31f3f61c1bf8f33668aa32df151c0876c11e7d64683daf8aeeac5d5c0"
+    },
+    "sections/one_sided_section.tex": {
+      "bytes": 6335,
+      "sha256": "baecad3a8c10ca73d7c2bbe57202285bf54e316029173e4d22ecb489f701bbf9"
+    },
+    "sections/rigidity_section.tex": {
+      "bytes": 9939,
+      "sha256": "d315e5cfc94a204aa2b3b744d268eab570013c939a836276551b4a6f57b89ae0"
+    },
+    "sections/trust_region_complete_section.tex": {
+      "bytes": 11563,
+      "sha256": "58d9e6d9df7fdfafb0c101bf519b5fa3574abd7aa482b20220b0658209a63541"
+    },
+    "sections/volume_section.tex": {
+      "bytes": 9508,
+      "sha256": "79def2b770fa13de74194a457f421579ba34fe3395022fc92daec88e5680667f"
+    },
+    "verification/README.md": {
+      "bytes": 1943,
+      "sha256": "ccbcb5a6b4c09d89868ae0fb8e8bd088d1ccecfc1a6bb91c309d156c7c9b9b2e"
+    },
+    "verification/axiom-inventory.json": {
+      "bytes": 322362,
+      "sha256": "f76f01222dd47fff0d351b597df4ae13a044b515c93a9b242e5da7f0a306a77f"
+    },
+    "verification/build.log.xz": {
+      "bytes": 22108,
+      "sha256": "b8b0c98312933c8b429aff0725ba95ec6d6731dad4ed3cb64dece41b8b16bd84"
+    },
+    "verification/checks.log": {
+      "bytes": 609,
+      "sha256": "1dd3ff8110ad97d43d2b71329d3281dc6dc1fbdab6e8e96db858568d3613f980"
+    }
+  }
+}

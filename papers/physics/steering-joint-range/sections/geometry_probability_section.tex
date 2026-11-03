@@ -1,0 +1,352 @@
+\section{Complete canonical correlation intervals and a sharp success-probability frontier}
+\label{sec:probability-frontier}
+
+The centre and radial-width bound determines an entire attainable interval,
+not only its upper endpoint. A separate operational refinement keeps track of
+the probability of the filtering event. Throughout this section a canonical
+input has Bloch data $(c\nn,0,S)$, where $\norm\nn=1$ and $0\leq c\leq1$.
+When $c=0$, the direction $\nn$ is a specified reference direction; it is not
+claimed to be determined by the vanishing centre. Set
+\[
+ t=\norm{S^{\mathsf T}\nn},\qquad \tau=\norm S_F^2.
+\]
+All Kraus probabilities below refer to the canonical \emph{input} state.
+
+\begin{theorem}[Complete canonical correlation interval]\label{thm:canonical-interval-v2}
+The pair $(c,t)$ is feasible exactly when $0\leq t\leq1-c$. At every feasible
+pair, the complete set of squared correlation norms is
+\begin{equation}\label{eq:canonical-full-interval-v2}
+ \boxed{\quad t^2\leq\tau\leq1-c^2+2t^2,\quad}
+\end{equation}
+with every value in this closed interval attained by a density matrix.
+Both endpoints and all singular parameter cases are included.
+
+The lower endpoint is attained exactly when $S=\nn\mathbf u^{\mathsf T}$ for
+some $\norm{\mathbf u}=t$. Thus the lower-endpoint state is unique up to local
+unitaries. The upper-endpoint state is also unique up to local unitaries and
+has the matrix form displayed below. Its spectrum is
+$\{(1+t)/2,(1-t)/2,0,0\}$.
+\end{theorem}
+
+\begin{proof}
+A local rotation puts $\nn=\mathbf e_z$; a Bob rotation puts
+$S^{\mathsf T}\nn=t\mathbf e_z$. Positivity of the conditional qubit with
+Bob direction $\mathbf e_z$ gives $c+t\leq1$. The lower bound follows from
+\[
+ \tau-t^2=\norm{(\Id-\nn\nn^{\mathsf T})S}_F^2\geq0,
+\]
+and equality is precisely the stated rank-one condition. Its diagonal
+representative is physical for exactly $t\leq1-c$.
+For the upper bound, let
+\[
+ U=(\nn\cdot\bs)\sigma_y\otimes\sigma_y,
+ \qquad \sigma_{\nn}=U\overline\sigma U^\dagger.
+\]
+Both $\sigma$ and $\sigma_{\nn}$ are positive semidefinite, so their trace
+product is nonnegative. Pauli orthogonality gives
+\[
+ 4\Tr(\sigma\sigma_{\nn})=1-c^2+2t^2-\tau\geq0.
+\]
+This argument does not require either state to be invertible.
+
+For explicit attainability define
+\[
+ a=\frac{1+c+t}{4},\quad b=\frac{1+c-t}{4},\quad
+ e=\frac{1-c-t}{4},\quad d=\frac{1-c+t}{4}.
+\]
+All four numbers are nonnegative. For $0\leq\alpha\leq1$ set
+\begin{equation}\label{eq:interval-family-v2}
+ \sigma_{c,t,\alpha}=\begin{pmatrix}
+ a&0&0&\alpha\sqrt{ad}\\
+ 0&b&\alpha\sqrt{be}&0\\
+ 0&\alpha\sqrt{be}&e&0\\
+ \alpha\sqrt{ad}&0&0&d
+ \end{pmatrix}.
+\end{equation}
+Its two $2\times2$ blocks have determinants $(1-\alpha^2)ad$ and
+$(1-\alpha^2)be$. Hence it is a density matrix, including when a diagonal
+entry vanishes. Its Bloch data are
+\[
+ \cc=c\mathbf e_z,\quad\bb=0,\quad
+ S=\operatorname{diag}\bigl(2\alpha(\sqrt{ad}+\sqrt{be}),
+                    2\alpha(\sqrt{be}-\sqrt{ad}),t\bigr),
+\]
+so
+\begin{equation}\label{eq:interval-param-v2}
+ \tau=t^2+\alpha^2(1-c^2+t^2).
+\end{equation}
+For $1-c^2+t^2>0$, any requested $\tau$ in
+\eqref{eq:canonical-full-interval-v2} is obtained by choosing
+$\alpha=\sqrt{(\tau-t^2)/(1-c^2+t^2)}$. If that denominator vanishes,
+$c=1,t=0$ and the interval consists of the single value zero.
+
+For completeness, consider upper-endpoint rigidity. In the chosen axes,
+every canonical state has block form
+\[
+ \sigma=\begin{pmatrix}A&C\\C^\dagger&D\end{pmatrix},\qquad
+ A=\operatorname{diag}(a,b),\quad D=\operatorname{diag}(e,d),\quad\Tr C=0.
+\]
+If $0<t<1-c$, both diagonal blocks are positive definite. Block positivity
+is equivalent to $C=A^{1/2}KD^{1/2}$ with $K$ a contraction. The matrix
+$(|K_{ij}|^2)$ has row and column sums at most one. The elementary
+rearrangement inequality for such a $2\times2$ matrix gives
+\[
+ \norm C_F^2\leq ad+be.
+\]
+One way to verify the equality condition is to extend the matrix of squared
+moduli to a doubly stochastic matrix. Because all four weights are strictly
+positive, equality permits no added entry. Every doubly stochastic
+$2\times2$ matrix is a convex combination of the two permutation matrices;
+the difference between their weighted sums is
+$(a-b)(d-e)=t^2/4>0$. Equality therefore forces $K$ to be antidiagonal with
+both nonzero entries of modulus one. Alice and Bob rotations about $z$
+remove its two phases, giving \eqref{eq:interval-family-v2} with $\alpha=1$.
+
+If $t=0$ and $c<1$, the two blocks are scalar matrices. Equality gives
+$C=\sqrt{ad}\,V$, where $V$ is a traceless unitary. Every traceless
+$2\times2$ unitary is a scalar phase times a traceless Hermitian unitary;
+Bob conjugation and an Alice phase rotation reduce it to $\sigma_x$.
+This again gives the displayed upper-endpoint representative. If
+$t=1-c>0$, the diagonal entry $e$ vanishes. Positivity forces its entire row
+and column to vanish; the remaining coherence has modulus at most
+$\sqrt{ad}$, and upper equality fixes that modulus. The cases $(c,t)=(0,1)$
+and $(1,0)$ follow directly from the same zero-row rule. Thus no inverse of
+a zero diagonal block was used. At $\alpha=1$, the two blocks have traces
+$(1+t)/2$ and $(1-t)/2$ and determinant zero, proving the eigenvalue claim.
+\end{proof}
+
+\paragraph{Ranks in the explicit interpolation.}
+For $c<1$ and $t<1-c$, the state \eqref{eq:interval-family-v2} has rank four
+for $\alpha<1$ and rank two for $\alpha=1$. For $0<c<1$ and $t=1-c$, these
+ranks are three and two. At $(c,t)=(0,1)$ they are two and one. At
+$(c,t)=(1,0)$ the matrix is the fixed rank-two product state
+$|0\rangle\langle0|\otimes\Id/2$, for every $\alpha$.
+
+\begin{lemma}[Exact filtering probability]\label{lem:success-probability-v2}
+Let $\sigma_B=\Id/2$ and let $G$ be a nonzero-probability Bob Kraus operator,
+$G^\dagger G\preceq\Id$. Its success probability is
+\[
+ p=\Tr[(\Id\otimes G)\sigma(\Id\otimes G^\dagger)]
+   =\tfrac12\Tr(G^\dagger G)>0.
+\]
+Writing $F=G/\sqrt p$ gives the unique normalized effect representation
+\[
+ F^\dagger F=\Id+\mathbf x\cdot\bs,\qquad r=\norm{\mathbf x}\leq1.
+\]
+For a fixed normalized effect, the exact maximal success probability is
+\begin{equation}\label{eq:pmax-v2}
+ p_{\max}(r)=\frac1{1+r}.
+\end{equation}
+Every probability $0<p\leq p_{\max}(r)$ is attained by
+$G=\sqrt p\,F$. Its normalized output is exactly
+$(\Id\otimes F)\sigma(\Id\otimes F^\dagger)$.
+\end{lemma}
+
+\begin{proof}
+The trace identity follows by tracing out Alice and using $\sigma_B=\Id/2$.
+The positive matrix $F^\dagger F$ has trace two and therefore has the indicated
+Bloch representation, with eigenvalues $1\pm r$. The Kraus condition is
+\[
+ \Id-pF^\dagger F\succeq0
+ \quad\Longleftrightarrow\quad p(1+r)\leq1.
+\]
+This proves both necessity and attainability, including $r=1$. The scalar
+factor $p$ cancels from the normalized output. If $p>1/2$, the inequality
+forces $r<1$, so $G$ is invertible. Conversely a singular nonzero qubit Kraus
+operator has $r=1$ and success at most $1/2$.
+\end{proof}
+
+For a required success probability $p_0\in[1/2,1]$, define
+\begin{align}
+ R(p_0)&=\frac{1-p_0}{p_0},&
+ D(c)&=2-2c-c^2,\\
+ H_c(r)&=(1-r^2)(3-4c)+[c+(1-c)r]^2,\label{eq:prob-H-v2}\\
+ r_*(c)&=\frac{c(1-c)}{D(c)}\quad(0\leq c\leq2/3),&
+ \widehat r(c,p_0)&=
+ \begin{cases}\min\{R(p_0),r_*(c)\},&c\leq2/3,\\
+ R(p_0),&c>2/3.
+ \end{cases}\label{eq:prob-ropt-v2}
+\end{align}
+The definition of $r_*$ at $c=2/3$ is regular and gives $r_*=1$.
+
+\begin{theorem}[Sharp probability-constrained correlation envelope]
+\label{thm:probability-envelope-v2}
+Over all canonical input density matrices with centre length $c\in[0,1]$
+and all Bob Kraus operators of success probability at least
+$p_0\in[1/2,1]$, the exact greatest squared correlation norm is
+\begin{equation}\label{eq:prob-envelope-v2}
+ \boxed{\quad \mathcal G(c,p_0)=H_c(\widehat r(c,p_0)).\quad}
+\end{equation}
+This is a maximum, including all endpoints. An explicit maximizer is
+\begin{align}
+ \sigma_c&=\frac c2|00\rangle\langle00|
+ +\frac12(|01\rangle+\sqrt{1-c}|10\rangle)
+           (\langle01|+\sqrt{1-c}\langle10|),\label{eq:prob-obese-v2}\\
+ G_{c,p_0}&=\sqrt{p_0}\,
+     \operatorname{diag}\bigl(\sqrt{1-\widehat r},
+                              \sqrt{1+\widehat r}\bigr).
+\end{align}
+The actual success probability of this witness is exactly $p_0$.
+\end{theorem}
+
+\begin{proof}
+Normalize any admissible Kraus operation as in
+Lemma~\ref{lem:success-probability-v2}. If its actual success is $p\geq p_0$,
+then $p_0(1+r)\leq p(1+r)\leq1$, hence $0\leq r\leq R(p_0)$.
+The exact correlation identity and positivity give
+\[
+ F_3^2=(1-r^2)(\tau-c^2)+\norm{\cc+S\mathbf x}^2
+ \leq(1-r^2)(3-4c)+[c+(1-c)r]^2=H_c(r).
+\]
+The canonical bound used here is $\tau\leq3-4c+c^2$. The marginal bound
+follows by writing
+$\cc+S\mathbf x=(1-r)\cc+r(\cc+S\mathbf u)$, with
+$\mathbf u=\mathbf x/r$ when $r>0$; the conditional endpoint
+$\cc+S\mathbf u$ lies in the Bloch ball. The case $r=0$ follows directly.
+The identity and inequalities hold also for $r=1$ by direct substitution.
+
+Expanding gives
+\[
+ H_c(r)=3-4c+c^2+2c(1-c)r-D(c)r^2.
+\]
+For $c\leq2/3$, $D(c)>0$ and the quadratic reaches its maximum at $r_*(c)$;
+clipping to $[0,R]$ gives \eqref{eq:prob-ropt-v2}. For $c\geq2/3$, the
+quadratic is nondecreasing on $[0,1]$. Indeed if $D\geq0$, its derivative
+is bounded below by $2[c(1-c)-D]=2(3c-2)\geq0$, and if $D<0$ its derivative
+is nonnegative directly. The endpoint $R$ is therefore optimal.
+
+The state \eqref{eq:prob-obese-v2} is a positive sum of two rank-one
+operators, has trace one, has Bob marginal $\Id/2$, and has centre length
+$c$. Direct multiplication by the displayed diagonal filter gives
+$F_3^2=H_c(\widehat r)$. Its normalized effect has radius $\widehat r$;
+$p_0(1+\widehat r)\leq1$ proves the actual Kraus condition. Its success is
+$p_0$ by the canonical trace identity. This proves the maximum over the
+full physical class, not only over a scalar relaxation.
+\end{proof}
+
+\begin{corollary}[Exact activation frontier]\label{cor:success-threshold-v2}
+There exists a canonical input of centre length $c$ and a Bob Kraus operation
+of success probability at least $p_0\in[1/2,1]$ whose output has $F_3>1$
+if and only if
+\begin{equation}\label{eq:success-critical-v2}
+ \boxed{\qquad c<C_{\rm crit}(p_0):=
+ \frac{2}{1+p_0+\sqrt{(1-p_0)^2+2}}.\qquad}
+\end{equation}
+The equality curve is nonviolating. It interpolates between
+$C_{\rm crit}(1/2)=2/3$ and $C_{\rm crit}(1)=2-\sqrt2$.
+\end{corollary}
+
+\begin{proof}
+Let $E(c)=2-4c+c^2$. The exact factorization is
+\begin{equation}\label{eq:prob-factor-v2}
+ H_c(r)-1=(1-r)[D(c)r+E(c)].
+\end{equation}
+If there is a violating point with $r\leq R$, then $c<2/3$ by the global
+nonviolation bound, so $D(c)>0$. The linear second factor must be positive
+and is increasing in $r$. It follows that
+\[
+ g(c,p_0):=p_0[D(c)R(p_0)+E(c)]
+          =2-2(1+p_0)c+(2p_0-1)c^2>0.
+\]
+For $p_0>1/2$, the converse follows by evaluating the endpoint:
+\[
+ H_c(R)-1=\frac{(2p_0-1)g(c,p_0)}{p_0^2}.
+\]
+At $p_0=1/2$, this endpoint identity is identically zero and cannot establish
+activation. Instead $g=2-3c>0$ means $c<2/3$; the interior vertex
+$r_*(c)<1=R$ gives $H_c(r_*)=G(c)>1$.
+
+Put $s=\sqrt{(1-p_0)^2+2}$. Then
+\[
+ 2g(c,p_0)=[2-(1+p_0+s)c][2-(1+p_0-s)c].
+\]
+For $0\leq c\leq1$ and $1/2\leq p_0\leq1$, the second factor is strictly
+positive: $s\geq1$, hence $(1+p_0-s)c\leq1$. The sign of $g$ is therefore
+exactly the sign of the first factor, proving the claimed strict threshold.
+\end{proof}
+
+\paragraph{Nonbinding budgets and equality for $p_0>1/2$.}
+For $0\leq c<2/3$, the probability constraint leaves the unrestricted maximum
+unchanged exactly when
+\begin{equation}\label{eq:nonbinding-prob-v2}
+ p_0\leq p_*(c):=\frac1{1+r_*(c)}
+                  =\frac{D(c)}{2-c-2c^2}.
+\end{equation}
+Above that value the maximum is the endpoint expression $H_c(R(p_0))$.
+For $2-\sqrt2<c<2/3$, the largest allowed success floor for strict activation
+is equivalently
+\[
+ p_0<\frac{D(c)}{2c(1-c)}.
+\]
+At $c=2-\sqrt2$, activation occurs for every $p_0<1$ and fails at $p_0=1$.
+For $c<2-\sqrt2$, the displayed canonical input
+\eqref{eq:prob-obese-v2} itself already violates.
+
+For $0<c<1$ and $p_0>1/2$, an extremizer must saturate the sharp joint
+centre/radius bound at its uniquely optimal radius $\widehat r<1$.
+The canonical input is therefore a local-unitary copy of
+\eqref{eq:prob-obese-v2}. When $\widehat r>0$, its normalized effect points
+toward the pure contact of that canonical ellipsoid; in the displayed axes
+it is $\Id-\widehat r\sigma_z$. A post-filter Bob unitary is unrestricted.
+When $\widehat r=0$, the normalized effect is the identity. In a strictly
+binding case $\widehat r=R$, the actual success of every maximizer is exactly
+$p_0$. In a nonbinding case $\widehat r=r_*$, the actual success can be any
+$q\in[p_0,p_*(c)]$, by scalar rescaling of the same normalized filter.
+At the crossover these two descriptions agree. For $c=0$, the canonical
+maximizers are maximally entangled pure states and the optimal normalized
+effect is the identity. For $c=1$, the canonical state is
+$a\otimes\Id/2$ with $a$ pure, and $F_3^2=r^2$; any filter direction is
+allowed, with $r=R$.
+
+\paragraph{Singular endpoints and the meaning of the centre constraint.}
+At $p_0=1/2$, all radii through $r=1$ are feasible. For $c<2/3$, the optimum
+still uses the invertible radius $r_*<1$. For $2/3\leq c\leq1$, the maximum
+is one and is attained at $r=1$ by a singular Kraus operator selecting a pure
+contact point. More generally, among canonical inputs in this range,
+a singular filter attains one precisely when its selected conditional
+Alice state is pure; the normalized output is then a pure product.
+Many canonical input orbits with pure ellipsoid contacts can therefore
+attain this singular maximum. No unique obese-input classification is
+claimed there.
+
+For $p_0>1/2$, all admissible filters are invertible and preserve the steering
+ellipsoid and its centre. At $p_0=1/2$, the singular maximizing output has
+centre length one, even if the specified \emph{input} centre is $c<1$.
+This does not contradict the nonattainment of the global fixed-\emph{output}
+centre envelope for $2/3\leq c<1$. If the success floor is instead
+$0<p_0<1/2$, every normalized radius in $[0,1]$ is feasible; the maximum is
+$G(c)$, interpreted as an attained value one on the large-centre branch,
+and the activation threshold remains $c<2/3$.
+
+\paragraph{Exact formalization boundary for this section.}
+The complete physical interval, including its interpolation witness and
+lower-endpoint equality condition, is checked in
+\path{MilneGeometryInterval.lean}, principally by
+\path{geometryPhysicalSkewSpectrum_eq_interval} and
+\path{geometry_radial_lower_equality_iff}.
+The upper-endpoint local-unitary classification and the listed interpolation
+ranks are written proofs in this section.
+
+\path{MilneKrausProbability.lean} checks actual complex Kraus positivity,
+normalization, success probability, and output density. Its principal
+lemmas are \path{scaledKraus_admissible_iff},
+\path{fixed_filter_maximal_success},
+\path{canonicalKrausProbability_is_actual},
+\path{normalizedKrausOutput_density}, and
+\path{canonical_complex_joint_bound}.
+\path{MilneProbabilityScalar.lean} checks the clipped optimizer and exact
+activation curve, including the separate $p_0=1/2$ argument, through
+\path{successOptimalRadius_maximizes} and
+\path{successEnvelope_violation_iff_center}.
+\path{MilneProbabilityEnvelope.lean} states the optimization over
+\emph{actual} density matrices and contracting complex Kraus operators.
+Its main theorems are \path{successPhysicalSpectrum_isGreatest} and
+\path{successPhysicalSpectrum_violation_iff}.
+The exact saturation below probability one half is also checked by
+\path{successPhysicalSpectrum_low_probability} and
+\path{looseSuccessPhysicalSpectrum_isGreatest}; singularity exclusion above
+one half is checked by
+\path{KrausAdmissible_det_ne_zero_of_success_gt_half}.
+The additional local-unitary equality classification and probability
+nonbinding descriptions are written consequences; they are not represented
+as separately checked Lean theorems here.

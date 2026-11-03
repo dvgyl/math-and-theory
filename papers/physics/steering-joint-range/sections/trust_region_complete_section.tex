@@ -1,0 +1,276 @@
+\section{Complete one-sided orbit optimization, including all hard cases}
+\label{sec:complete-trust-region}
+
+The generic optimization method in this section is classical trust-region
+theory; see Mor\'e--Sorensen (1983) and Fortin--Wolkowicz (2004).  The extension
+here is its exact application to the complete physical one-sided $F_3$ orbit,
+with singular filters retained, together with a constructive formal proof.
+In particular, a scalar minimization is not left as the answer: an explicitly
+tested spectral endpoint or one uniquely admissible root of a degree-six
+polynomial determines the result.
+
+\subsection{Spectral algorithm for an arbitrary real quadratic}
+
+Let $K=K^T\in\mathbb R^{3\times3}$, $k\in\mathbb R^3$, and $\tau\in\mathbb R$.
+We seek the exact maximum of
+\begin{equation}
+ f(x)=\tau+2k^Tx-x^TKx,\qquad \|x\|\leq1.
+ \label{eq:full-orbit-quadratic}
+\end{equation}
+Choose an orthogonal diagonalization
+\[
+ K=U\operatorname{diag}(d_1,d_2,d_3)U^T,\qquad h=U^Tk,
+ \qquad d_{\min}=\min_i d_i,
+ \qquad L=\max\{0,-d_{\min}\}.
+\]
+For $\ell\geq L$, define the partial reciprocal vector and its squared norm by
+\[
+ q_i(\ell)=
+ \begin{cases}h_i/(d_i+\ell),&d_i+\ell\ne0,\\0,&d_i+\ell=0,\end{cases}
+ \qquad \psi(\ell)=\sum_i q_i(\ell)^2.
+\]
+The zero-denominator convention alone does not make the endpoint admissible:
+the range condition below must also hold.
+
+\paragraph{Exact finite algorithm.}
+First test the endpoint condition
+\begin{equation}
+ h_i=0\quad\hbox{whenever }d_i+L=0,
+ \qquad \psi(L)\leq1.
+ \label{eq:floor-admissibility}
+\end{equation}
+If it holds, set $\ell_*=L$.  If it fails, let $\ell_*>L$ be the unique solution of
+\begin{equation}
+ \sum_{i=1}^3\frac{h_i^2}{(d_i+\ell_*)^2}=1.
+ \label{eq:regular-secular}
+\end{equation}
+This regular equation is equivalently the polynomial equation
+\begin{align}
+ P(\ell)={}&h_1^2(d_2+\ell)^2(d_3+\ell)^2
+ +h_2^2(d_1+\ell)^2(d_3+\ell)^2\notag\\
+ &+h_3^2(d_1+\ell)^2(d_2+\ell)^2
+ -(d_1+\ell)^2(d_2+\ell)^2(d_3+\ell)^2=0.
+ \label{eq:secular-polynomial}
+\end{align}
+Its degree is exactly six, with leading coefficient $-1$, including when
+$h=0$ or eigenvalues coincide.  Consequently the endpoint and the real roots
+of $P$ form a set of at most seven candidates.  The endpoint test
+\eqref{eq:floor-admissibility} and the regular restriction $\ell>L$ select
+exactly one admissible candidate.  Clearing denominators introduces no
+spurious candidate on that regular interval, because every denominator is
+strictly positive there.  In the original coordinates the same regular
+polynomial equation can be written
+\[
+ \|\operatorname{adj}(K+\ell I)k\|^2-\det(K+\ell I)^2=0.
+\]
+The spectral version is particularly convenient for explicitly resolving the
+singular endpoint.
+
+\paragraph{Exact maximum and every maximizing point.}
+The answer is
+\begin{equation}
+ M=\tau+\ell_*+
+ \sum_{i:\,d_i+\ell_*\ne0}\frac{h_i^2}{d_i+\ell_*}.
+ \label{eq:complete-orbit-value}
+\end{equation}
+Put $q=q(\ell_*)$ and
+$E_* = \{z\in\mathbb R^3:z_i=0\text{ whenever }d_i+\ell_*\ne0\}$.
+The complete maximizing set is
+\begin{equation}
+ \left\{U(q+z):z\in E_*,\quad
+ \begin{cases}
+  \|z\|^2\leq1-\psi(\ell_*),&\ell_*=0,\\
+  \|z\|^2=1-\psi(\ell_*),&\ell_*>0.
+ \end{cases}\right\}.
+ \label{eq:complete-orbit-maximizers}
+\end{equation}
+The endpoint range condition guarantees $h_i=0$ on $E_*$, and $q$ is
+orthogonal to $E_*$.  Thus this description includes every degenerate case:
+
+\begin{itemize}
+\item If $\ell_*>L$, all shifted eigenvalues are positive, and the unique
+maximizer is $Uq$, on the unit sphere.
+\item If $\ell_*=0$, the original $K$ is positive semidefinite.  The
+maximizers form the explicitly displayed affine ball in $\ker K$.
+For $K\succ0$ this is the single unconstrained vertex $K^{-1}k$.
+\item If $\ell_*=L>0$, then $d_{\min}<0$ and $h$ is orthogonal to the
+lowest-eigenvalue eigenspace.  This is the hard case.  The missing radius
+is supplied by a vector in that eigenspace, giving precisely the sphere
+in \eqref{eq:complete-orbit-maximizers}.  When its radius is zero the
+maximizer is nevertheless unique.
+\item If $k=0$, the formula reduces to $M=\tau+\max\{0,-d_{\min}\}$.
+For $d_{\min}>0$ the maximizer is zero; for $d_{\min}=0$ it is the unit
+ball in the kernel; for $d_{\min}<0$ it is the unit sphere in the
+lowest-eigenvalue eigenspace.  This includes $K=0$.
+\end{itemize}
+
+\subsection{Constructive proof, without assumed optimality conditions}
+
+In the eigenbasis, write $y=U^Tx$ and
+$f_D(y)=\tau+\sum_i(2h_i y_i-d_i y_i^2)$.
+We construct $p$ and $\ell$ satisfying
+\begin{equation}
+ \ell\geq0,\quad d_i+\ell\geq0,\quad
+ (d_i+\ell)p_i=h_i,\quad
+ \|p\|\leq1,\quad \ell(1-\|p\|^2)=0.
+ \label{eq:constructed-certificate}
+\end{equation}
+These conditions are conclusions of the construction, not hypotheses
+substituted for the optimization problem.
+
+Suppose first that \eqref{eq:floor-admissibility} holds.
+At $\ell=L=0$, take $p=q(L)$.  At $\ell=L>0$, choose an index $j$ for
+which $d_j+L=0$, and set
+\[
+ p=q(L)+\sqrt{1-\psi(L)}\,e_j.
+\]
+The range condition gives $q_j(L)=h_j=0$, so $\|p\|=1$ and every equation
+in \eqref{eq:constructed-certificate} holds.  This directly treats the
+hard case, including repeated lowest eigenvalues and a zero linear term.
+
+If the endpoint is inadmissible, a regular root exists by a finite bracket.
+When the range condition holds but $\psi(L)>1$, choose $a=L$.
+If instead $d_j+L=0$ and $h_j\ne0$ for some $j$, choose
+$a=L+|h_j|/2$.  The $j$th summand of $\psi(a)$ is then exactly $4$,
+so $\psi(a)>1$.  In either case all denominators at $a$ are nonnegative,
+and any zero denominator has zero numerator.  The function $\psi$ is
+therefore continuous on $[a,\infty)$.  For the explicit endpoint
+\[
+ b=a+1+\|h\|
+\]
+we have
+\[
+ \psi(b)\leq\frac{\|h\|^2}{(1+\|h\|)^2}<1.
+\]
+The intermediate value theorem gives a root $\ell\in(a,b)$, hence
+$\ell>L$.  Now take $p=q(\ell)$; this proves
+\eqref{eq:constructed-certificate} in the remaining case.  No compactness
+or differentiability assumption about an unknown optimizer was needed.
+
+For every such constructed certificate and every $y\in\mathbb R^3$,
+direct expansion yields the exact gap identity
+\begin{equation}
+ f_D(p)-f_D(y)=
+ \sum_i(d_i+\ell)(y_i-p_i)^2+\ell(1-\|y\|^2).
+ \label{eq:trust-exact-gap}
+\end{equation}
+Both terms are nonnegative on the ball, proving global optimality.
+Equality holds exactly when $y_i=p_i$ for every strictly positive
+$d_i+\ell$, together with $\ell(1-\|y\|^2)=0$.
+This proves \eqref{eq:complete-orbit-maximizers}.  Multiplying each
+stationary equation by $p_i$ and using complementarity gives
+\eqref{eq:complete-orbit-value}.
+
+For completeness, the admissible shift is also unique in the hard and flat
+cases.  Let $(p,\ell)$ and $(q,m)$ be two certificates.  Each point is
+globally maximizing, so equality in \eqref{eq:trust-exact-gap} gives
+$(d_i+\ell)q_i=h_i$ and $\ell(1-\|q\|^2)=0$.
+Subtracting $(d_i+m)q_i=h_i$ yields $(m-\ell)q_i=0$ for every $i$.
+If $m\ne\ell$, then $q=0$, and the two complementarity equations force
+$m=\ell=0$, a contradiction.  Thus the algorithm selects one shift even
+when it selects a continuum of maximizing vectors.
+
+Equivalently, in the original coordinates, a point $x$ is globally
+maximizing if and only if it belongs to the unit ball and there exists
+$\ell\geq0$ with
+\[
+ K+\ell I\succeq0,\qquad (K+\ell I)x=k,
+ \qquad \ell(1-\|x\|^2)=0.
+\]
+The proof above establishes existence of this global certificate for every
+real symmetric $K$, rather than assuming this characterization.
+
+\subsection{Exact application to all canonical quantum-filter orbits}
+
+Let $\sigma$ be any actual two-qubit density matrix with Bob marginal $I/2$,
+Alice Bloch vector $c\in\mathbb R^3$, and correlation matrix $S$.
+Set
+\begin{equation}
+ \tau=\|S\|_F^2,\qquad k=S^Tc,\qquad
+ K=(\tau-\|c\|^2)I-S^TS.
+ \label{eq:physical-trust-data}
+\end{equation}
+For every complex $2\times2$ filter $F$ normalized by
+$\operatorname{Tr}(F^\dagger F)=2$, there is an $x$ in the closed unit ball
+such that $F^\dagger F=I+x\cdot\sigma$.  The actual normalized output
+$\rho_F=(I\otimes F)\sigma(I\otimes F^\dagger)$ satisfies the exact identity
+\begin{equation}
+ F_3(\rho_F)^2=\tau+2k^Tx-x^TKx.
+ \label{eq:physical-complete-objective}
+\end{equation}
+Conversely every such $x$ is realized by the positive filter
+$F=(I+x\cdot\sigma)^{1/2}$.  These statements hold at every joint-state
+rank and include singular filters.
+
+Apply the finite algorithm to \eqref{eq:physical-trust-data}.
+The exact maximum over all normalized complex one-sided filters is the
+number $M$ in \eqref{eq:complete-orbit-value}, and the exact maximum of
+$F_3$ is $\sqrt M$.  Every maximizing effect, and no other effect, is
+\[
+ F^\dagger F=I+\bigl(U(q+z)\bigr)\cdot\sigma,
+\]
+with $z$ exactly as in \eqref{eq:complete-orbit-maximizers}.  All complex
+filters with a given maximizing effect are included; no Hermiticity
+restriction is imposed on $F$.  A positive square-root filter explicitly
+realizes each maximizing effect.
+
+This completes the orbit optimization even when its maximum is at or below
+the steering threshold.  The earlier violation criterion is recovered as
+the special case in which the physical sphere bound $F_3^2\leq1$ forces
+an interior optimizer with $K\succ0$.
+
+\subsection{Invertible filters: supremum versus attainment}
+
+For normalized filters,
+\[
+ \det(F^\dagger F)=1-\|x\|^2,
+\]
+so invertibility is equivalent to $\|x\|<1$.  The exact supremum over
+invertible filters is still $M$: if $x_*$ is any closed-ball maximizer,
+the effects $t x_*$ with $0\leq t<1$ are realized by invertible positive
+filters, and their values tend to $M$ as $t\uparrow1$.
+
+An invertible filter attains that supremum if and only if
+\begin{equation}
+ \ell_*=0\quad\hbox{and}\quad\psi(\ell_*)<1.
+ \label{eq:invertible-attainment}
+\end{equation}
+Indeed positive shift forces every optimizer onto the unit sphere.
+At zero shift the squared norm of $q+z$ is
+$\psi(0)+\|z\|^2$, and an interior point exists exactly under
+\eqref{eq:invertible-attainment}.  In particular, an endpoint maximum
+can be attained by singular filters while only being approached by
+invertible ones.  This distinction is not removed by assuming that the
+input joint state has full rank.
+
+\subsection{State rank, quadratic rank, and filter rank are different}
+Two full-rank physical examples show why the singular cases cannot be
+removed by imposing positivity on the input state.
+
+First take
+\[
+ \sigma=\frac{I+cZ}{2}\otimes\frac I2,\qquad 0<c<1.
+\]
+Here $S=0$, $k=0$, and $K=-c^2I$. The objective is
+$f(x)=c^2\|x\|^2$. Its maximum is $c^2$, every unit vector maximizes,
+and the spectral shift is $\ell_*=c^2$. This is a hard case with a
+three-dimensional nullspace of $K+\ell_*I$. Every maximizing filter is
+singular, and the same value is only a supremum for invertible filters,
+even though the input density matrix has rank four.
+
+Next take
+\[
+ \sigma=\frac14(I+tX\otimes X),\qquad 0<t<1.
+\]
+This state also has rank four, but now $k=0$ and
+$K=\operatorname{diag}(0,t^2,t^2)$. The exact maximum is $t^2$ and every
+point $x=(s,0,0)$ with $|s|\leq1$ is a maximizer. Thus the complete
+maximizing effect set contains both invertible and singular filters.
+These are direct specializations of the universal checked theorem.
+The exact rational certificate file includes both types of example.
+
+\paragraph{Verification scope.}
+The accompanying formal-coverage manifest identifies the exact Lean
+declarations and compiler evidence for the results above.  Numerical
+comparisons are reproducibility checks only; no numerical result is a
+logical premise of a formal theorem.

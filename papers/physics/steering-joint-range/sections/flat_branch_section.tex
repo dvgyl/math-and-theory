@@ -1,0 +1,86 @@
+\subsection{Extremizing sequences and a sharp change in stability exponent}
+The unattained branch has a different stability phenomenon from the curved
+branch. Its limiting pure products have centre length one, even when every
+state in the sequence has the same smaller centre length.
+
+\begin{theorem}[Sharp rates on the unattained branch]\label{thm:flatstability}
+Fix $2/3\leq c<1$. If a sequence of states with centre length $c$ has
+$F_3(\rho_j)^2\to1$, then eventually its Bob marginals are full rank,
+$r_j\to1$, and its distance to the set $\mathcal P$ of pure product states
+tends to zero. Put
+\[
+\varepsilon=1-F_3(\rho)^2,\quad h=1-r,\quad
+A=4c-2-c^2,\quad B=6c-4,\quad D=2-2c-c^2.
+\]
+For $r<1$,
+\begin{equation}\label{eq:flatrate}
+\varepsilon\geq Ah^2+B(1-h)h=Bh+Dh^2,\qquad
+\inf_{\pi\in\mathcal P}\norm{\rho-\pi}_1^2\leq2\varepsilon+14h.
+\end{equation}
+Consequently, at fixed $c$, as $\varepsilon\downarrow0$,
+\begin{equation}\label{eq:criticalrate}
+\inf_{\pi\in\mathcal P}\norm{\rho-\pi}_1=
+\begin{cases}
+O(\varepsilon^{1/4}),&c=2/3,\\
+O(\varepsilon^{1/2}),&2/3<c<1.
+\end{cases}
+\end{equation}
+Both exponents are sharp: neither can be increased in a bound valid for all
+states at the specified fixed centre length.
+\end{theorem}
+\begin{proof}
+A state with $r=1$ has $F_3^2=c^2<1$, so such states cannot occur arbitrarily
+late in an extremizing sequence. Equation~\eqref{eq:flat} gives the first
+bound in \eqref{eq:flatrate}. Since $A>0$ and $B\geq0$, it forces $h\to0$.
+The exact filter identity gives
+\[
+1-\norm\aa^2=\varepsilon+(1-r^2)(\norm S_F^2-c^2)
+\leq\varepsilon+3(1-r^2)\leq\varepsilon+6h.
+\]
+Choose the top eigenvectors of both marginal states and let $\pi$ be their
+product projector. The elementary union bound for their commuting projectors
+gives $\Tr(\rho\pi)\geq(\norm\aa+r)/2$. The pure-target trace-norm bound
+$\norm{\rho-\pi}_1\leq2\sqrt{1-\Tr(\rho\pi)}$ follows, for example, by
+spectral decomposition, the pure-state formula, and concavity of the square
+root. Since $1-\norm\aa\leq1-\norm\aa^2$, this proves
+the second inequality in \eqref{eq:flatrate}.
+
+At $c=2/3$, $B=0$ and $D=2/9$, so
+$h\leq3\sqrt{\varepsilon}/\sqrt2$. At fixed $c>2/3$, once $h\leq1/2$,
+the first expression in \eqref{eq:flatrate} gives
+$h\leq2\varepsilon/B$. Substitution proves \eqref{eq:criticalrate}.
+
+For sharpness, take $\rho_{c,1-h}$ from \eqref{eq:globalwitness}.
+It has exactly $\varepsilon=Bh+Dh^2$. Let
+$W=(|\psi^-\rangle\langle\psi^-|)^{\Gamma_B}$, with
+$|\psi^-\rangle=(|01\rangle-|10\rangle)/\sqrt2$.
+This operator has operator norm $1/2$ and nonnegative expectation in every separable
+state, because its expectation in a product is a squared overlap with a
+partially conjugated product vector. Direct calculation gives
+\[
+\Tr(W\rho_{c,1-h})=\frac{ch}{4}
+-\frac12\sqrt{(1-c)(2h-h^2)}.
+\]
+Trace-norm duality therefore implies, even for the distance to the larger
+set of separable states,
+\begin{equation}\label{eq:flatlower}
+\inf_{\pi\in\mathcal P}\norm{\rho_{c,1-h}-\pi}_1
+\geq\sqrt{(1-c)(2h-h^2)}-\frac{ch}{2}.
+\end{equation}
+Its leading term is $\sqrt{2(1-c)h}$. At $c=2/3$ the leading lower bound is
+$2^{1/4}\varepsilon^{1/4}$; at fixed $2/3<c<1$ it is
+$\sqrt{2(1-c)/(6c-4)}\sqrt\varepsilon$. This proves sharpness of both
+exponents. The constants are not asserted uniform in $c$, and the case
+$c=1$ is the separately attained endpoint.
+\end{proof}
+
+For a \emph{fixed} canonical state with $2/3\leq c<1$, the supremum over
+invertible Bob filters equals one exactly when its ellipsoid has a pure
+contact: $\norm{\cc+S\mathbf u}=1$ for some unit $\mathbf u$.
+Indeed, the continuous objective on the closed filter ball has no interior
+point of value one, and on the sphere it is exactly
+$\norm{\cc+S\mathbf u}^2$. Compactness proves necessity; approaching a pure
+contact radially proves sufficiency. For any sequence in this fixed orbit
+with $F_3^2\to1$, every cluster point of its filter directions lies in this
+contact set. Thus an individual ellipsoid can
+have an orbit supremum strictly below the global value one.

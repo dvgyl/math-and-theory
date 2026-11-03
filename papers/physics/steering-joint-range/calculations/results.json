@@ -1,0 +1,67 @@
+{
+  "seed": 240603945,
+  "samples": 20000,
+  "rank_counts": {
+    "1": 5000,
+    "2": 5000,
+    "3": 5000,
+    "4": 5000
+  },
+  "maxima": {
+    "envelope_excess": -0.006945446654029297,
+    "coordinate_centre_error": 1.2085952481390759e-12,
+    "filter_identity_error": 6.217248937900877e-15,
+    "spinflip_identity_error": 1.6137265135274248e-15,
+    "geometric_slack_identity_error": 6.13398221105399e-15,
+    "stability_excess": 3.5659021665362266e-25,
+    "stability_normal_form_error": 6.100509425606418e-14
+  },
+  "minima": {
+    "general_LMI_eigenvalue": -1.571687816808148e-15,
+    "radial_slack": -8.43769498715119e-15,
+    "radial_support_gap": 3.2088112965150684e-05
+  },
+  "sharp_family_max_error": 1.5876200354369985e-10,
+  "radial_family_max_error": 8.881784197001252e-16,
+  "radial_family_min_eigenvalue": -1.6653345369377348e-16,
+  "exact_checks": {
+    "examples": [
+      {
+        "c": "0",
+        "r_star": "0",
+        "squared_F3": "3",
+        "attained": true
+      },
+      {
+        "c": "1/2",
+        "r_star": "1/3",
+        "squared_F3": "4/3",
+        "attained": true
+      },
+      {
+        "c": "3/5",
+        "r_star": "6/11",
+        "squared_F3": "12/11",
+        "attained": true
+      },
+      {
+        "c": "53/80",
+        "r_star": "1431/1511",
+        "squared_F3": "1512/1511",
+        "attained": true
+      },
+      {
+        "c": "2/3",
+        "r_star": "1",
+        "squared_F3": "1",
+        "attained": false
+      }
+    ],
+    "rational_identity_evaluations": 441
+  },
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5"
+  },
+  "status": "PASS; numerical checks supplement the proofs, not replace them"
+}

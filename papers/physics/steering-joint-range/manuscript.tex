@@ -1,0 +1,981 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm,booktabs,array,longtable}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,graphicx,xcolor,xurl,hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black,citecolor=blue!45!black,pdftitle={The full correlation range, filtering frontier and volume trade-off at fixed steering centre},pdfauthor={Dev D. Goyal},pdfsubject={Exact F3 correlation intervals, probability-constrained filtering, steering-ellipsoid volume and Lean matrix proofs}}
+\setlength{\parskip}{5pt}\setlength{\parindent}{0pt}
+\widowpenalty=10000\clubpenalty=10000
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Id}{\mathbb I}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\bs}{\boldsymbol\sigma}
+\renewcommand{\aa}{\mathbf a}\newcommand{\bb}{\mathbf b}
+\newcommand{\cc}{\mathbf c}\newcommand{\nn}{\mathbf n}
+\newcommand{\yy}{\mathbf y}
+\title{The full correlation range, filtering frontier and\\volume trade-off at fixed steering centre}
+\author{Dev D. Goyal}
+\date{3 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For two-qubit states we study the three-setting correlation value
+$F_3=\norm T_{\mathrm F}$ of Eq.~(3) of Ducuara, Susa and Skrzypczyk
+(arXiv:2406.03945) as a function of the steering-ellipsoid geometry.
+An earlier package in this collection determined the exact supremum
+$G(c)$ of $F_3^2$ at fixed centre length $c$, with violation $F_3>1$
+possible exactly when $c<2/3$. Here we determine the entire attainable
+set at fixed centre length $c$ and Bob Bloch length $r<1$: it is the closed
+interval
+$\bigl[\max\{0,c(1+r)-1\}^2,\ (1-r^2)(3-4c)+(c+(1-c)r)^2\bigr]$, with
+separable diagonal minimizers, a classification of the lower endpoint and
+a trace-norm stability estimate. For canonical states with centre
+length $c$ and radial support half-width $t$, the squared correlation
+$\tau=\norm S_{\mathrm F}^2$ fills $[t^2,1-c^2+2t^2]$, and the greatest
+ellipsoid volume at prescribed $(c,t,\tau)$ is
+$(4\pi/3)(t/2)\min\{\tau-t^2,\,1+2t+2t^2-c^2-\tau\}$, attained at every
+feasible triple. A canonical input and a Bob filter succeeding with
+probability at least $p\in[1/2,1]$ can produce $F_3>1$ exactly when
+$c<2/[1+p+\sqrt{(1-p)^2+2}]$. We also solve every one-sided filtering
+orbit exactly, including singular hard cases, and classify the maximizers
+of $G(c)$ with explicit trace-norm rigidity. Lean~4 with Mathlib proves the
+central statements for actual complex $4\times4$ density matrices, Kraus
+operators and local unitaries; the remaining statements, listed in
+Appendix~\ref{sec:verification}, have conventional proofs.
+\end{abstract}
+
+\section{Introduction}
+Ducuara, Susa and Skrzypczyk~\cite{ducuara} relate hidden steering to the
+steering ellipsoid of Jevtic, Pusey, Jennings and Rudolph~\cite{jevtic}.
+They leave open the function bounding the three-setting correlation
+value $F_3=\norm T_{\mathrm F}$ in terms of the centre length $c$ of Alice's
+steering ellipsoid, and report from random states an apparent cutoff near
+$c\approx0.66$ for violation of $F_3\leq1$. An earlier package in this
+collection, \emph{Exact three-setting correlation bounds at fixed steering
+centre}~\cite{earlier}, dated 29 October 2026, answered that question: it
+proved that the least upper bound of $F_3^2$ at centre length $c$ is
+$G(c)=1+(2-3c)^2/(2-2c-c^2)$ for $c\leq2/3$ and $1$ for $c>2/3$, attained
+exactly for $c<2/3$ and $c=1$, together with the joint upper bound
+$F_3^2\leq H_c(r)$ at Bob Bloch length $r$ and its attainment along one
+explicit family. This paper determines the remaining parts of the picture.
+
+\paragraph{The question and the answers in plain terms.} In Bloch form a
+two-qubit state has three ingredients: Alice's local vector $\aa$, Bob's local
+vector $\bb$, and the $3\times3$ matrix $T$ of correlations between spin
+measurements on the two qubits. The number $F_3=\norm T_{\mathrm F}$ measures
+how strongly the spins are correlated along three orthogonal measurement
+directions; a value above one violates the corresponding three-setting
+steering inequality. Alice's steering ellipsoid is the set of Bloch vectors
+to which Bob's measurements can steer Alice's qubit, and its centre and shape
+constrain $T$. The earlier package found the largest $F_3$ compatible with a
+given centre length. This paper answers three follow-up questions.
+\begin{itemize}
+\item \emph{Which values of $F_3$ are possible once both the centre length and
+the length $r$ of Bob's Bloch vector are fixed?} Exactly an interval. Its new
+lower end says that a long centre together with a strongly polarized Bob forces
+some correlation, because otherwise the probability of one particular pair of
+measurement outcomes would be negative.
+\item \emph{When can a local filter on Bob's side, required to succeed with
+probability at least $p$, reveal a hidden violation?} Exactly when the centre
+length lies below an explicit threshold, which decreases from $2/3$ at $p=1/2$
+to $2-\sqrt2$ at $p=1$.
+\item \emph{How large can the steering ellipsoid be when its correlation
+strength is fixed?} At most an explicit piecewise linear cap in the squared
+correlation, attained everywhere. The states with the largest correlation do
+not have the largest volume: the two objectives compete for the same
+off-diagonal entries of the density matrix.
+\end{itemize}
+
+\paragraph{Main results.} For centre length $c\in[0,1]$ and Bob Bloch
+length $r\in[0,1)$:
+\begin{enumerate}
+\item The set of attainable values of $F_3^2$ is exactly the interval
+$[L(c,r),H_c(r)]$, $L(c,r)=\max\{0,c(1+r)-1\}^2$,
+$H_c(r)=(1-r^2)(3-4c)+(c+(1-c)r)^2$ (Theorem~\ref{thm:jointrange}).
+The lower endpoint has separable diagonal witnesses, every minimizer is
+locally unitarily equivalent to the witness, and a state with
+$F_3^2=L(c,r)+\eta$ lies within squared trace norm $(1+r^2)\eta$ of an
+explicit minimizer. At $r=1$ the only value is $c^2$.
+\item For canonical states (Bob maximally mixed) with centre $c\nn$ and
+radial support half-width $t=\norm{S^{\mathsf T}\nn}$, the attainable
+squared correlations form $[t^2,1-c^2+2t^2]$, for exactly
+$0\leq t\leq 1-c$ (Theorem~\ref{thm:canonical-interval-v2}); the signed
+determinant fills $[-t((1+t)^2-c^2)/4,\ t((1-t)^2-c^2)/4]$; and at
+prescribed $(c,t,\tau)$ the greatest $|\det S|$ is
+$(t/2)\min\{\tau-t^2,1+2t+2t^2-c^2-\tau\}$, attained at every feasible
+triple (Theorems~\ref{thm:volume-radial-v2} and~\ref{thm:triple-volume-v2}).
+The ellipsoid volume is $(4\pi/3)|\det S|$. At $t=1-c$ this recovers the
+fixed-centre volume maximum $(4\pi/3)(1-c)^2$ of Milne
+et~al.~\cite{milnevolume}.
+\item Over canonical inputs of centre length $c$ and Bob Kraus operators
+with success probability at least $p\in[1/2,1]$, the greatest $F_3^2$ of
+the normalized output is $H_c(\widehat r)$ with $\widehat r$ the clipped
+vertex of $H_c$ on $[0,(1-p)/p]$, and violation is possible exactly when
+$c<2/[1+p+\sqrt{(1-p)^2+2}]$ (Theorem~\ref{thm:probability-envelope-v2}
+and Corollary~\ref{cor:success-threshold-v2}).
+\item Every one-sided filtering orbit of a canonical state is solved by an
+explicit spectral algorithm with at most seven algebraic candidates,
+including singular and hard cases, with all maximizing effects classified
+(Sections~\ref{sec:orbit} and~\ref{sec:complete-trust-region}).
+\item The maximizers of $G(c)$ are classified up to local unitaries, with
+explicit trace-norm stability of the canonical optimizer
+(Theorems~\ref{thm:classification} and~\ref{thm:stability},
+Appendix~\ref{sec:matrix-rigidity}).
+\end{enumerate}
+
+\paragraph{What is new, and what is not.} The envelope $G(c)$, the
+threshold $c<2/3$, the joint upper bound $H_c(r)$ with its attaining
+family, and the fully entangled fraction bound are results of the earlier
+package~\cite{earlier}; Sections~\ref{sec:global} and~\ref{sec:witness}
+recall them so that this paper is self-contained. New relative to that
+package are the lower bound $L(c,r)$ and the complete joint interval, the
+lower-endpoint classification and stability, the canonical $(c,t)$
+interval, the probability-constrained frontier, the complete solution of
+the one-sided filtering orbits, the classification and trace-norm rigidity
+of the maximizers, the flat-branch stability exponents, and the signed and
+three-parameter volume bounds. Classical ingredients are credited where
+they are used: the steering-ellipsoid and canonical-filtering framework
+and the maximally obese states~\cite{jevtic,milne,milnevolume}, the
+spin-flip method and Bloch-matrix positivity~\cite{milne,jevtic,gamel},
+the measurement optimization behind the interpretation of
+$F_3$~\cite{costa}, marginal spectral constraints~\cite{bravyi}, and
+trust-region theory for quadratics on a ball~\cite{more,fortin}.
+The fixed-centre volume maximum is Theorem~3 of~\cite{milnevolume}.
+A bounded literature search did not find the new frontiers; this does not
+establish priority.
+
+\paragraph{Earlier public record.} On 31 October 2026 a check of public
+records found that the Omega Institute's public repository records a
+claimed Lean proof of Conjecture~2 of Milne, Jennings, Jevtic and
+Rudolph~\cite{milne}, the fully entangled fraction bound $f\leq1-c/2$ at
+fixed centre, committed on 8 October 2026 (issue \#14206)~\cite{omegafef},
+and a proof of their Conjecture~1, a sharp bound on the CHSH value at fixed
+centre, committed on 14 October 2026 (issue \#16558)~\cite{omegachsh}.
+The Lean project of this package contains, unchanged from the earlier
+package, a proof of the fully entangled fraction bound; no priority is
+claimed for it, and it is not a result of this paper. The CHSH value is a
+different quantity from $F_3$. The CHSH dossier also records, as an
+intermediate lemma proved with the same filtering covariance identity, an
+upper bound on the CHSH value in terms of both $c$ and Bob's Bloch length;
+it lists the $F_3$ centre bound as open. As read on 3 November 2026,
+neither dossier treats the lower bound or the full interval of $F_3^2$, the
+probability frontier, the filtering orbits or the volume bounds.
+Xing and Yang~\cite{xing} give volume-based bounds on entanglement and Bell
+nonlocality through the steering ellipsoid; their full text was not
+compared with this paper.
+
+\paragraph{Verification.} Lean~4.19.0 with Mathlib proves the joint
+interval, the lower-endpoint equality and trace-norm rigidity, the
+canonical $(c,t)$ interval, the probability frontier from actual Kraus
+operators, the complete orbit solution, the classification and rigidity of
+the maximizers, and the signed and three-parameter volume maxima, for
+actual complex density matrices; a whole-project audit confirms that every
+declaration other than compiler-generated auxiliaries depends only on the
+standard axioms. The flat-branch
+exponents, the volume-maximizer orbit classification and rank counts, the
+attainment of every signed determinant, and the physical interpretation of
+$F_3$ rest on conventional proofs. Appendix~\ref{sec:verification} gives
+the details.
+
+\paragraph{Organization.} Section~\ref{sec:defs} fixes notation.
+Section~\ref{sec:geometric} proves a rank-safe geometric inequality and the
+sharp centre and radial-width envelope, and Section~\ref{sec:global} recalls
+the envelope of the earlier package; everything else builds on these.
+Sections~\ref{sec:jointrange}--\ref{sec:volume-v2} contain the new joint
+interval, the canonical interval with the probability frontier, and the
+volume bounds. Sections~\ref{sec:classification}--\ref{sec:complete-trust-region}
+classify the maximizers, quantify their stability and solve the one-sided
+filtering orbits. Section~\ref{sec:scope} states the scope. The appendices
+give the matrix proofs of rigidity (Appendix~\ref{sec:matrix-rigidity}), the
+comparison with the earlier package (Appendix~\ref{sec:audit}) and the
+verification record (Appendix~\ref{sec:verification}).
+
+\section{Definitions and conventions}\label{sec:defs}
+Write an arbitrary two-qubit density matrix as
+\begin{equation}\label{eq:bloch}
+\rho=\frac14\left(\Id\otimes\Id+\aa\cdot\bs\otimes\Id
++\Id\otimes\bb\cdot\bs+\sum_{i,j=1}^3T_{ij}\sigma_i\otimes\sigma_j\right),
+\qquad \rho\succeq0,\quad\Tr\rho=1.
+\end{equation}
+The correlation quantity in Eq.~(3) of Ducuara--Susa--Skrzypczyk~\cite{ducuara}
+is $F_3(\rho)=\norm T_F$, with violation when $F_3>1$. Its identification with
+the optimized three-setting linear CJWR expression uses the measurement
+optimization of Costa--Angelo~\cite{costa}. This is a particular steering
+inequality; $F_3\leq1$ does not prove the existence of a local hidden-state
+model for all measurements.
+The orthonormal Bob triad is optimized here. If that triad is fixed and only
+Alice's three directions are optimized, the value is instead
+$\sum_j\norm{T\mathbf e_j}/\sqrt3$, which can be smaller than $\norm T_F$.
+Thus the matrix target is exactly the convention of Eq.~(3), not an
+assertion about every fixed laboratory frame.
+
+We use Alice's steering ellipsoid. Put $r=\norm\bb$. If $r<1$, its centre is
+\begin{equation}\label{eq:center}
+\cc=\frac{\aa-T\bb}{1-r^2},\qquad c=\norm\cc.
+\end{equation}
+Whitening Bob produces the canonical state
+\begin{equation}\label{eq:white}
+\sigma=(\Id\otimes(2\rho_B)^{-1/2})\rho(\Id\otimes(2\rho_B)^{-1/2}),
+\qquad \sigma_B=\Id/2.
+\end{equation}
+Its Alice Bloch vector is $\cc$; write its correlation matrix as $S$ and its
+ellipsoid matrix as $Q=SS^{\mathsf T}$. These conventions are standard in the
+steering-ellipsoid construction~\cite{jevtic,milne}. Swapping Alice and Bob
+gives an identical theorem for the other centre.
+
+If $r=1$, the state is a product $\rho_A\otimes|\beta\rangle\langle\beta|$.
+Its steering set is one point; we define its centre to be $\aa$. This is a
+separate case, not a substitution into the zero denominator in
+\eqref{eq:center}.
+
+The 2024 paper leaves the function bounding $F_3$ in terms of $c$ undetermined
+and reports an apparent cutoff near $0.66$ from random states. The earlier
+package~\cite{earlier} showed that the exact threshold is $2/3$;
+Section~\ref{sec:witness} recalls an exact state with centre length above
+$0.66$ and $F_3>1$.
+
+\section{A rank-safe geometric inequality}\label{sec:geometric}
+The following supplies an independent geometric route to the canonical bound
+used by the earlier proof. It is stronger than a bound involving $c$ alone.
+
+\begin{theorem}[Directional matrix inequality]\label{thm:lmi}
+For every state \eqref{eq:bloch}, without a rank restriction,
+\begin{align}
+M_A&=(1+\norm\aa^2-\norm\bb^2-\norm T_F^2)\Id_3
++2(TT^{\mathsf T}-\aa\aa^{\mathsf T})\succeq0,\label{eq:lmi}\\
+M_B&=(1+\norm\bb^2-\norm\aa^2-\norm T_F^2)\Id_3
++2(T^{\mathsf T}T-\bb\bb^{\mathsf T})\succeq0.
+\end{align}
+For a unit vector $\nn$, equality $\nn^{\mathsf T}M_A\nn=0$ holds exactly when
+$\rho$ and the positive spin-flipped state defined below have orthogonal supports.
+\end{theorem}
+\begin{proof}
+Let $Y=\sigma_y$, $N=\nn\cdot\bs$, and define
+\[
+\widetilde\rho=(Y\otimes Y)\overline\rho(Y\otimes Y),\qquad
+\rho_{\nn}=(N\otimes\Id)\widetilde\rho(N\otimes\Id).
+\]
+Complex conjugation preserves positivity. Both conjugating matrices are
+unitary for unit $\nn$, so $\rho_{\nn}\succeq0$. The full spin flip sends
+$(\aa,\bb,T)$ to $(-\aa,-\bb,T)$, and conjugation by $N$ acts on Alice's
+Bloch space by $R_{\nn}=2\nn\nn^{\mathsf T}-\Id$. Pauli orthogonality gives
+the exact identity
+\begin{equation}\label{eq:overlap}
+4\Tr(\rho\rho_{\nn})=1+\norm\aa^2-\norm\bb^2
+-2(\aa\cdot\nn)^2+2\norm{T^{\mathsf T}\nn}^2-\norm T_F^2
+=\nn^{\mathsf T}M_A\nn.
+\end{equation}
+The left side is nonnegative because it is the trace of
+$\rho^{1/2}\rho_{\nn}\rho^{1/2}\succeq0$. Homogeneity extends nonnegativity
+from unit vectors to all real vectors. Exchange the two qubits for $M_B$.
+
+If the overlap is zero, the positive matrix
+$\rho^{1/2}\rho_{\nn}\rho^{1/2}$ is zero. Equivalently,
+$\rho_{\nn}^{1/2}\rho^{1/2}=0$, giving orthogonal supports and
+$\rho\rho_{\nn}=0$. The converse is immediate. No inverse is used.
+\end{proof}
+
+\begin{theorem}[Sharp centre and radial-width envelope]\label{thm:radial}
+For a canonical state with centre $\cc$, choose $\nn=\cc/c$ when $c>0$;
+when $c=0$, choose any unit direction. Put
+\[
+t=\norm{S^{\mathsf T}\nn},\qquad q=t^2=\nn^{\mathsf T}Q\nn.
+\]
+Then
+\begin{equation}\label{eq:radial}
+0\leq t\leq1-c,\qquad \tr Q\leq1-c^2+2t^2.
+\end{equation}
+For every $0\leq c\leq1$ and $0\leq t\leq1-c$, the upper bound is attained.
+Consequently, if
+$\delta=(1-c)(3-c)-\tr Q$, then
+\begin{equation}\label{eq:radialgap}
+\delta\geq2\big((1-c)^2-q\big)\geq0.
+\end{equation}
+\end{theorem}
+Here $t$ is the support half-width of the ellipsoid in the centre direction.
+For a tilted ellipsoid it need not be a semiaxis or its radius along that ray.
+
+\begin{proof}
+Specialize \eqref{eq:lmi} to $\bb=0$, $\aa=\cc$, and evaluate it on $\nn$.
+This gives the second inequality in \eqref{eq:radial}.
+Every conditional Bloch vector $\cc+S\mathbf u$, $\norm{\mathbf u}\leq1$,
+has norm at most one. Maximizing its projection on $\nn$ gives
+$c+\norm{S^{\mathsf T}\nn}=c+t\leq1$. This argument is valid also at $t=0$.
+Substitute $t\leq1-c$ to obtain \eqref{eq:radialgap}.
+
+For sharpness, define
+\[
+a_\pm=\frac{1+c\pm t}{4},\qquad d_\pm=\frac{1-c\pm t}{4},\qquad
+w=\sqrt{a_+d_+},\quad v=\sqrt{a_-d_-},
+\]
+and, in the order $00,01,10,11$, set
+\begin{equation}\label{eq:radialwitness}
+\sigma_{c,t}=\begin{pmatrix}
+a_+&0&0&w\\0&a_-&v&0\\0&v&d_-&0\\w&0&0&d_+
+\end{pmatrix}.
+\end{equation}
+All four diagonal parameters are nonnegative. After grouping the pairs
+$00,11$ and $01,10$, the matrix is the direct sum of two positive matrices of
+rank at most one, including a zero block at an endpoint. Its eigenvalues are
+$(1+t)/2,(1-t)/2,0,0$.
+Its marginals are $(\Id+cZ)/2$ and $\Id/2$, and
+\[
+S=\operatorname{diag}(2(w+v),2(v-w),t).
+\]
+Hence $\norm{S^{\mathsf T}\mathbf e_z}^2=t^2$ and
+$\tr Q=8(w^2+v^2)+t^2=1-c^2+2t^2$. The construction includes the zero-block
+endpoints, the rank-one Bell state $(c,t)=(0,1)$, and the product
+$|0\rangle\langle0|\otimes\Id/2$ at $(1,0)$.
+\end{proof}
+
+\section{The exact global correlation envelope}\label{sec:global}
+The envelope, the joint upper bound and the attaining family in this
+section are results of the earlier package~\cite{earlier}. We recall them
+with their proofs, because the new results build on the same identities.
+
+\begin{lemma}[Exact filter identity and marginal bound]\label{lem:filter}
+Let $\sigma_B=\Id/2$, and let $F\succeq0$ satisfy $\Tr F^2=2$.
+Write $\rho=(\Id\otimes F)\sigma(\Id\otimes F)$ and $r=\norm\bb$. Then
+\begin{align}
+\norm T_F^2&=(1-r^2)(\norm S_F^2-c^2)+\norm\aa^2,\label{eq:filteridentity}\\
+\norm\aa&\leq c+(1-c)r.\label{eq:marginal}
+\end{align}
+These identities and inequalities remain valid for singular $F$ when $c$
+means the prefilter canonical centre.
+\end{lemma}
+\begin{proof}
+For any complex $4\times4$ matrix $X$, define
+$E(X)=\Tr(X^2)-\Tr((\Tr_BX)^2)$. For every $2\times2$ matrix $F$,
+\begin{equation}\label{eq:detcov}
+E((\Id\otimes F)X(\Id\otimes F))=\det(F)^2E(X).
+\end{equation}
+To verify this, write $X$ in Bob-valued blocks $X_{ij}$ and use
+$E(X)=\sum_{ij}[\Tr(X_{ij}X_{ji})-\Tr X_{ij}\Tr X_{ji}]$.
+Polarizing the $2\times2$ determinant identity under $A\mapsto FAF$ proves
+the equality for each pair of blocks. It is a polynomial identity and
+requires neither an inverse nor positivity.
+
+Here $\rho_B=F^2/2$, so $\det(F)^2=1-r^2$.
+The Pauli purity identity
+$4\Tr\rho^2=1+\norm\aa^2+\norm\bb^2+\norm T_F^2$
+turns \eqref{eq:detcov} into \eqref{eq:filteridentity}.
+
+The smallest eigenvalue of $F^2$ is $1-r$, so
+$K=F^2-(1-r)\Id\succeq0$ and $\Tr K=2r$. Put
+$R=\Tr_B[\sigma(\Id\otimes K)]$. Partial-trace cyclicity writes $R$ as the
+partial trace of a positive congruence, proving $R\succeq0$. Moreover
+$\Tr R=r$ and $\rho_A=(1-r)\sigma_A+R$.
+The Bloch-vector length of a positive qubit matrix is bounded by its trace.
+The triangle inequality therefore gives \eqref{eq:marginal}, including $r=0,1$.
+
+For the centre identification, let $B=\bb\cdot\bs=F^2-\Id$.
+The filter commutes with $B$, and $B^2=r^2\Id$, so
+$FBF=B+r^2\Id$. Taking Pauli expectations and using partial-trace cyclicity
+gives
+\[
+\aa=\cc+S\bb,\qquad T\bb=S\bb+r^2\cc,\qquad
+\aa-T\bb=(1-r^2)\cc.
+\]
+For $r<1$ this proves that the whitening centre is exactly
+\eqref{eq:center}. It requires no inverse of the joint state.
+\end{proof}
+
+\begin{theorem}[Joint bound and global envelope]\label{thm:global}
+For an actual output state with $r<1$ and centre length $c$,
+\begin{equation}\label{eq:joint}
+F_3(\rho)^2\leq H_c(r):=(1-r^2)(3-4c)+[c+(1-c)r]^2.
+\end{equation}
+For every pair $0\leq c\leq1$, $0\leq r<1$, equality is attained. At $r=1$
+the sharp bound at the actual output centre is instead $c^2$.
+
+Over all states with specified actual centre length $c$,
+\begin{equation}\label{eq:global}
+\sup F_3^2=G(c)=\begin{cases}
+1+\dfrac{(2-3c)^2}{2-2c-c^2},&0\leq c<2/3,\\[5pt]
+1,&2/3\leq c\leq1.
+\end{cases}
+\end{equation}
+The supremum is attained for $c<2/3$ and $c=1$, and is not attained for
+$2/3\leq c<1$. There exists an $F_3$-violating state at centre length $c$
+if and only if $c<2/3$.
+\end{theorem}
+\begin{proof}
+For $r<1$, use \eqref{eq:white} and apply Theorem~\ref{thm:radial} and
+Lemma~\ref{lem:filter}. They give
+$\norm S_F^2-c^2\leq3-4c$ and \eqref{eq:joint}.
+
+Put $d=1-c$ and $D(c)=2-2c-c^2$. Then
+$H_c(r)=3-4c+c^2+2cd\,r-D(c)r^2$. On $0\leq c\leq2/3$, $D(c)>0$ and
+\begin{equation}\label{eq:square}
+G(c)-H_c(r)=D(c)\left(r-\frac{c(1-c)}{D(c)}\right)^2.
+\end{equation}
+The optimizer $r_*=c(1-c)/D(c)$ belongs to $[0,1)$ exactly when $c<2/3$.
+At $c=2/3$ it equals one. For $2/3\leq c\leq1$ the exact identity
+\begin{equation}\label{eq:flat}
+1-H_c(r)=(1-r)^2(4c-2-c^2)+r(1-r)(6c-4)
+\end{equation}
+is nonnegative. Its first coefficient is strictly positive throughout that
+interval; thus $H_c(r)<1$ if $r<1$.
+
+If $r=1$, positivity and the pure Bob marginal force the product form:
+indeed the compression of $\rho$ to Bob's orthogonal marginal support has
+trace zero, hence is zero, and positivity annihilates its off-support rows
+and columns. Then $T=\aa\bb^{\mathsf T}$ and
+$F_3^2=\norm\aa^2=c^2$. No extra maximizer appears when $c<1$.
+
+The explicit family in the next subsection attains \eqref{eq:joint} for
+every $r<1$. Choosing $r=r_*$ proves attainment on the first branch.
+Letting $r\uparrow1$ proves sharpness of the flat branch. At $c=1$, a pure
+product state attains one. Finally $G(c)>1$ precisely when $c<2/3$.
+\end{proof}
+
+\subsection{Explicit sharp states and exact counterexamples}\label{sec:witness}
+The following family is a Bob-filtered maximally obese canonical state:
+\begin{equation}\label{eq:globalwitness}
+\rho_{c,r}=\frac12\begin{pmatrix}
+1+r&0&0&\sqrt{(1-c)(1-r^2)}\\
+0&c(1-r)&0&0\\
+0&0&0&0\\
+\sqrt{(1-c)(1-r^2)}&0&0&(1-c)(1-r)
+\end{pmatrix},\quad 0\leq r<1.
+\end{equation}
+It is positive semidefinite and trace one. Its Bloch data are
+\[
+\aa=[c+(1-c)r]\mathbf e_z,\quad\bb=r\mathbf e_z,\quad
+T=\operatorname{diag}\left(\sqrt{(1-c)(1-r^2)},-\sqrt{(1-c)(1-r^2)},1-c+cr\right).
+\]
+Substitution into \eqref{eq:center} gives $\cc=c\mathbf e_z$ and
+$F_3^2=H_c(r)$. The canonical representative is $\sigma_{c,1-c}$.
+
+At $c=3/5$ the best filter is $r=6/11$, giving
+\[
+\rho=\frac1{22}\begin{pmatrix}17&0&0&\sqrt{34}\\0&3&0&0\\0&0&0&0\\\sqrt{34}&0&0&2\end{pmatrix},
+\qquad F_3^2=\frac{12}{11}>1.
+\]
+Its canonical representative has $F_3^2=24/25<1$. This explicitly excludes
+the tempting but invalid argument that canonical filtering preserves $F_3$.
+
+At $c=53/80=0.6625>0.66$, the exact optimizer is
+$r=1431/1511$ and $F_3^2=1512/1511>1$. Thus the reported decimal $0.66$
+can only be interpreted as numerical evidence near the true cutoff.
+
+For $2/3\leq c<1$, the states \eqref{eq:globalwitness} approach
+$|00\rangle\langle00|$ as $r\uparrow1$. That limit has centre length one,
+not $c$. The fixed-$c$ set is not closed at this singular marginal boundary;
+this explains why compactness of the entire density-matrix set does not
+turn the supremum into a maximum.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.96\linewidth]{figures/envelope.pdf}
+\caption{The exact envelope, with random states shown only as numerical
+diagnostics. The dashed branch is not attained before $c=1$. Random sampling
+is especially insensitive to the narrow violation region near $2/3$.}
+\end{figure}
+
+\input{sections/joint_range_section}
+
+\input{sections/geometry_probability_section}
+
+\input{sections/exact_activation_example}
+
+\input{sections/volume_section}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.88\linewidth]{figures/volume_frontier.pdf}
+\caption{The exact determinant--correlation frontier at $c=2/5$, $t=3/10$.
+The feasible correlation interval is $[0.09,1.02]$. The maximum volume
+occurs at $\tau=0.855$, with $|\det S|=0.11475$; at maximum correlation,
+$|\det S|=0.09$. Each boundary value has an explicit positive density-matrix
+witness, including all singular endpoints.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/new_frontiers.pdf}
+\caption{Two exact refinements. Left: the strict activation region lies below
+$C_{\rm crit}(p)$, optimizing over canonical inputs at each centre. Right: every point between the
+sharp lower and upper curves is attained at Bob Bloch length $r=1/2$.
+The dashed line is the $F_3^2=1$ threshold.}
+\end{figure}
+
+\section{Complete equality classification}\label{sec:classification}
+Appendix~\ref{sec:matrix-rigidity} gives the constructive unitary and matrix
+proofs behind the formal classification, including repeated eigenvalues,
+vanishing coherences, and the pure-product endpoint.
+\begin{theorem}[Extremizing states]\label{thm:classification}
+For $0<c<2/3$, every state attaining $G(c)$ is locally unitarily equivalent
+to \eqref{eq:globalwitness} with $r=r_*(c)$. At $c=0$, the maximizers are
+exactly the maximally entangled pure states. There are no maximizers for
+$2/3\leq c<1$. At $c=1$, the maximizers are exactly pure product states.
+\end{theorem}
+\begin{proof}
+First classify canonical equality in $\tr Q\leq(1-c)(3-c)$.
+Rotate Alice so $\cc=c\mathbf e_z$, and Bob so
+$S^{\mathsf T}\mathbf e_z=t\mathbf e_z$, $t\geq0$. At $c=0$, choose any
+Alice direction before this rotation. The general canonical matrix now has form
+\begin{equation}\label{eq:normal}
+\sigma=\begin{pmatrix}
+a_+&0&z&w\\0&a_-&v&-z\\
+\overline z&\overline v&d_-&0\\\overline w&-\overline z&0&d_+
+\end{pmatrix}.
+\end{equation}
+The diagonal Bob-valued blocks sum to $\Id/2$, commute, and were simultaneously
+diagonalized by the Bob rotation. The zero Alice transverse Bloch components
+give the $z,-z$ constraint. Direct computation yields
+\begin{equation}\label{eq:normalcorr}
+\tr Q=t^2+16|z|^2+8|w|^2+8|v|^2.
+\end{equation}
+Canonical equality and \eqref{eq:radialgap} force $t=1-c$. Then $d_-=0$.
+Positivity of $2\times2$ principal minors forces the entire third row and
+column to vanish, so $z=v=0$. Equation~\eqref{eq:normalcorr} forces
+$|w|=\sqrt{1-c}/2$. A local $Z$ rotation makes $w$ nonnegative, yielding exactly
+$\sigma_{c,1-c}$. This argument includes all zero diagonal entries.
+At $c=1$, the canonical state is pure on Alice and maximally mixed on Bob.
+
+For $0<c<2/3$, \eqref{eq:square} and the nonnegative losses in
+Section~\ref{sec:rigidity} force $r=r_*$, canonical equality, and equality in
+\eqref{eq:marginal}. Here $0<r_*<1$, so equality in the triangle inequality
+requires the conditional Bloch vector
+$\yy=\cc+S\widehat{\bb}$ to equal $\mathbf e_z$.
+In the aligned obese form
+$S=\operatorname{diag}(\sqrt{1-c},-\sqrt{1-c},1-c)$ this forces
+$\widehat{\bb}=\mathbf e_z$. The state is therefore
+\eqref{eq:globalwitness} with its unique filter length.
+For $c=0$, the square term forces $r=0$ and the canonical equality class is
+the Bell orbit. The flat and endpoint cases follow from Theorem~\ref{thm:global}
+and the product calculation at $r=1$.
+\end{proof}
+
+At fixed $(c,r)$ with $r<1$, the same reasoning classifies equality in
+\eqref{eq:joint}. For $0<c<1$, the canonical state must be maximally obese;
+when $r>0$ the filter points toward its outward contact with the Bloch sphere.
+At $r=0$ there is no filter direction. At $c=0$ equality consists of pure
+states with the specified marginal length $r$; at $c=1$ it consists of a
+pure Alice state times a Bob state of length $r$. At $r=1$ every state is a
+product and $F_3^2=c^2$.
+
+\section{Exact losses and quantitative rigidity}\label{sec:rigidity}
+The following is stronger than the original centre-only estimate because it
+records separately where each loss occurs.
+\begin{proposition}[Exact deficit identity]\label{prop:deficit}
+For $0\leq c<2/3$ and $r<1$, put
+$\delta=3-4c+c^2-\norm S_F^2$. Then
+\begin{equation}\label{eq:deficit}
+G(c)-F_3^2=D(c)(r-r_*)^2+(1-r^2)\delta
++[c+(1-c)r]^2-\norm\aa^2.
+\end{equation}
+All three terms are nonnegative. Thus equality is equivalent to the
+simultaneous vanishing of these three explicitly defined matrix losses.
+If $c>0$, this implies the sharper geometric inequality
+\begin{equation}\label{eq:strongrigidity}
+G(c)-F_3^2\geq D(c)(r-r_*)^2
++2(1-r^2)\big((1-c)^2-q\big).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Subtract \eqref{eq:filteridentity} from \eqref{eq:square} together with
+the definition of $H_c(r)$. Nonnegativity follows from the canonical and
+marginal bounds. Then apply \eqref{eq:radialgap}.
+\end{proof}
+
+There is a more detailed identity. For $0<c<2/3$ and $0<r<1$, set
+$\nn=\cc/c$, $\yy=\cc+S\widehat{\bb}$, and
+$\tau=4\Tr(\sigma\sigma_{\nn})=1-c^2+2q-\tr Q$. Then
+\begin{align}\label{eq:five}
+G(c)-F_3^2={}&D(c)(r-r_*)^2+(1-r^2)\{2[(1-c)^2-q]+\tau\}\nonumber\\
+&+r[r+c(1-r)](1-\norm\yy^2)+rc(1-r)\norm{\yy-\nn}^2.
+\end{align}
+Each displayed contribution is nonnegative. The last line follows by
+expanding $\aa=(1-r)c\nn+r\yy$ and using
+$2(1-\nn\cdot\yy)=1-\norm\yy^2+\norm{\yy-\nn}^2$.
+At $r=0$ the endpoint terms vanish; at $c=0$ use \eqref{eq:deficit} without
+dividing by $c$. The five losses correspond to filter length, radial support
+width, spin-flip overlap, conditional-state impurity, and endpoint direction.
+
+\begin{theorem}[Explicit stability of the canonical optimizer]\label{thm:stability}
+For a canonical state with $0\leq c<1$, put $d=1-c$, let $t$ be the radial
+support half-width, and put $\delta=3-4c+c^2-\tr Q$.
+There exist local unitaries $U_A,U_B$ such that, with $U=U_A\otimes U_B$,
+\begin{align}\label{eq:stability}
+\norm{U\sigma U^\dagger-\sigma_{c,d}}_1^2
+&\leq\min\left\{4,\left[\frac12+\frac{2+c}{d+t}\right]\delta\right\}\nonumber\\
+&\leq\min\left\{4,\frac{5+c}{2(1-c)}\delta\right\}.
+\end{align}
+The norm is the trace norm. For the convention that trace distance is one
+half of that norm, divide the square-root bounds by two. The constants are
+proved upper bounds and are not claimed optimal.
+\end{theorem}
+\begin{proof}
+Use \eqref{eq:normal}; make $w\geq0$ by a local phase rotation. Let
+$y=d-t\in[0,d]$ and $w_0=\sqrt d/2$. Principal-minor positivity gives
+\[
+w^2\leq a_+d_+\leq w_0^2,\qquad |z|^2\leq a_+y/4,\qquad
+|v|^2\leq a_-y/4.
+\]
+In particular,
+\begin{equation}\label{eq:minorbound}
+16(2|z|^2+|v|^2)\leq y(3+3c+t)=y(4+2c-y).
+\end{equation}
+Equation~\eqref{eq:normalcorr} implies exactly
+\[
+\delta=(d^2-t^2)+8(w_0^2-w^2)-16|z|^2-8|v|^2.
+\]
+Since $0\leq w\leq w_0$, $(w_0-w)^2\leq w_0^2-w^2$.
+The four diagonal differences from $\sigma_{c,d}$ are $\pm y/4$, so
+\[
+\norm{\sigma-\sigma_{c,d}}_F^2=y^2/4+4|z|^2+2|v|^2+2(w_0-w)^2.
+\]
+For $4\times4$ matrices, Cauchy--Schwarz on singular values gives
+$\norm X_1^2\leq4\norm X_F^2$. Retaining the radial deficit term yields
+\begin{align*}
+\norm{\sigma-\sigma_{c,d}}_1^2
+&\leq\delta+y^2-(d^2-t^2)+16(2|z|^2+|v|^2)\\
+&\leq\delta+y(3+3c-t).
+\end{align*}
+By \eqref{eq:radialgap}, $\delta\geq2y(d+t)$. Since $d+t>0$ and
+$3+3c-t\geq0$, we obtain
+\[
+\norm{\sigma-\sigma_{c,d}}_1^2\leq
+\delta\left[1+\frac{3+3c-t}{2(d+t)}\right]
+=\delta\left[\frac12+\frac{2+c}{d+t}\right].
+\]
+Use $d+t\geq d$ for the uniform version and
+$\norm{\sigma-\sigma_{c,d}}_1\leq2$ for the other branch. None of the
+arguments divides by a diagonal entry or assumes a full-rank state.
+\end{proof}
+
+In particular, if $F_3(\rho)^2\geq G(c)-\varepsilon$, $c<2/3$, and $r<1$, then
+\[
+|r-r_*|\leq\sqrt{\varepsilon/D(c)},\qquad
+\delta\leq\frac{\varepsilon}{1-r^2}.
+\]
+The whitened state is therefore, up to local unitaries, within trace norm
+\[
+\min\left\{2,\sqrt{\frac{(5+c)\varepsilon}{2(1-c)(1-r^2)}}\right\}
+\]
+of the canonical obese optimizer. This conclusion concerns the whitened
+state; it is not a claimed trace-distance bound to the globally optimal
+\emph{unfiltered} state.
+
+\input{sections/flat_branch_section}
+
+\input{sections/one_sided_section}
+
+\input{sections/trust_region_complete_section}
+
+\section{Scope}\label{sec:scope}
+The results concern the matrix quantity $F_3=\norm T_{\mathrm F}$ in the
+convention of Eq.~(3) of~\cite{ducuara}; $F_3\leq1$ does not prove the
+existence of a local hidden-state model for all measurements. If Bob's
+measurement triad is fixed and only Alice's directions are optimized, the
+value can be smaller. The success probabilities refer to canonical inputs;
+an arbitrary original input has a separate whitening cost. The actual
+centre of a singularly filtered output is handled separately from the
+input centre. The explicit trace-norm stability constants are upper bounds
+and are not claimed to be optimal.
+
+\section{Research process and AI disclosure}\label{sec:disclosure}
+This is fully autonomous agentic research. The results, their proofs, the
+Lean development, the exact and numerical checkers and a draft report were
+produced by autonomous AI research agents, which took the earlier
+package~\cite{earlier} as their starting point; their records describe
+internal reviews carried out within the same automated workflow and do not
+name the system used.
+
+Opus~5.5 by Anthropic used with Claude Code assessed the work for this
+release. It read the proofs of the joint interval, the canonical interval,
+the probability frontier and the volume bounds, compared the principal
+Lean statements with the mathematics, reran every checker from a copy,
+wrote the exact check \path{calculations/independent/exact_new_results.py},
+added the whole-project axiom audit, ran the fresh Lean build recorded in
+\path{verification/}, and edited this manuscript from the draft report.
+The remaining proofs were carried over and read, but not all were
+rederived line by line.
+
+Dev D. Goyal is responsible for publication. The work has not been
+externally peer reviewed; AI checks are not human peer review, no expert
+validation is claimed, and the literature comparison is bounded and does
+not establish priority. Appendix~\ref{sec:verification} states the formal
+scope and its limits.
+
+\appendix
+\input{sections/rigidity_section}
+
+\section{Relation to the earlier package}\label{sec:audit}
+The earlier package~\cite{earlier} contains the envelope
+\eqref{eq:global}, its witnesses, the nonattainment on the flat branch and
+the fully entangled fraction bound. Its proof was read again for this
+paper; the table records the status of each step.
+
+\begin{longtable}{p{.24\linewidth}p{.69\linewidth}}
+\toprule Step & Finding\\\midrule\endhead
+Canonical spectral estimate & Valid. For a top eigenvector of weight $\lambda$,
+the two pure-state marginal Bloch lengths agree. Positivity of the Bob
+remainder gives $\lambda r_0\leq1-\lambda$; the Alice triangle inequality
+gives $c\leq\lambda r_0+1-\lambda\leq2(1-\lambda)$. Thus
+$\lambda_{\max}\leq1-c/2$. This also follows from established marginal
+constraints~\cite{bravyi}; it is not a novelty claim.\\
+Purity bound & Valid. A probability vector with each entry at most
+$L=1-c/2\geq1/2$ has squared sum at most $L^2+(1-L)^2$.
+This gives $\Tr\sigma^2\leq1-c+c^2/2$ and the canonical correlation bound.\\
+Filter covariance & Valid as a polynomial identity. It remains valid for
+singular filters. The earlier manuscript uses $FXF$ for Hermitian physical
+filters; it does not replace $F^\dagger$ by $F$ for arbitrary physical
+filters.\\
+Marginal estimate & Valid by positivity of the weighted partial trace.
+The proof does not assume that filtering preserves $F_3$.\\
+Scalar maximization & Exact; the completed square and flat-branch deficit
+identities verify the rational branch and the exact threshold.\\
+Degenerate cases & Singular global states are correctly separated from
+singular Bob marginals. The point-ellipsoid convention is essential.\\
+Maximizers & The earlier package gives sharp witnesses and nonattainment,
+but not a proof that all curved-branch maximizers belong to the displayed
+local-unitary orbit. Theorem~\ref{thm:classification} supplies that
+classification.\\
+Formal scope & The formal target is the actual positive semidefinite
+matrix correlation quantity and the computed canonical centre. It does not
+formalize measurement models or EPR steering in general.\\
+Fully entangled fraction & Not a result of this paper; the Omega
+Institute's public repository records a claimed Lean proof of the same
+bound~\cite{omegafef}, with a related CHSH record~\cite{omegachsh}.\\
+\bottomrule
+\end{longtable}
+
+No counterexample or invalid inference was found in the earlier envelope
+proof. A successful Lean kernel check establishes the formal declarations,
+not the accuracy of every informal phrase in an accompanying text.
+
+\section{Formal and computational verification}\label{sec:verification}
+\subsection{The Lean project and its audit}
+The Lean project in \path{lean/} pins Lean~4.19.0 and Mathlib revision
+\path{c44e0c8ee63ca166450922a373c7409c5d26b00b}, with every transitive
+dependency fixed in its manifest. It has 70 modules in \path{lean/Lean/},
+listed in dependency order in \path{lean/modules.txt}. Eighteen of them are
+the original modules of the earlier package~\cite{earlier}, in the form in
+which they were first produced (the earlier package's copies differ only
+by linter clean-ups, docstring wording and added \texttt{\#check}
+commands); the other 52 are new. The audit module
+\path{MilneAxiomAudit} enumerates every declaration whose defining module
+is one of the 70, including private and compiler-generated ones, and
+collects its transitive axioms. Apart from the code-generation auxiliaries
+that Lean~4.19 stores for executable definitions, which may refer only to
+the compiler placeholder \texttt{lcProof} and to each other, every
+declaration is a non-axiom depending only on \texttt{propext},
+\path{Classical.choice} and \texttt{Quot.sound}. The sources contain no
+\texttt{sorry}, \texttt{admit}, \texttt{axiom} declaration,
+\texttt{native\_decide} or \texttt{ofReduceBool}. The fresh build and audit
+recorded with this package compiled all 70 modules and audited
+1{,}298 declarations, 1{,}044 of them other than
+code-generation auxiliaries; six modules only print axiom reports and
+define no declarations.
+
+\texttt{Density M} means that the complex matrix
+$M\in\C^{4\times4}$, indexed by \texttt{Fin 2 × Fin 2}, is positive
+semidefinite with trace one. \texttt{correlation M} is the real matrix of
+Pauli expectation values $\Tr(M\,\sigma_i\otimes\sigma_j)$ and
+\texttt{correlationSq M} the sum of their squares. \texttt{steeringCenter}
+is computed by the positive canonicalizing filter
+$(2\rho_B)^{-1/2}$ when Bob's marginal is invertible and is Alice's Bloch
+length otherwise. \texttt{hermitianTraceNorm} is the sum of the absolute
+eigenvalues; the usual trace distance is half of it. Local unitaries are
+elements of the unitary group of $\C^{2\times2}$, and Kraus operators are
+complex $2\times2$ matrices $G$ with $\Id-G^\dagger G\succeq0$.
+
+\subsection{Formal results and their domains}
+\begin{longtable}{>{\raggedright\arraybackslash}p{.32\linewidth}p{.61\linewidth}}
+\toprule Mathematical result & Formal coverage\\\midrule\endhead
+Global envelope and exact $2/3$ threshold (earlier package) & Actual complex
+$4\times4$ positive semidefinite trace-one matrices; computed centre, least
+upper bound, sharp witnesses, attainment and nonattainment, and pure Bob
+marginals.\\
+Centre-coordinate bridge & The whitening centre equals
+$(\aa-T\bb)/(1-\norm\bb^2)$ whenever Bob is nonsingular; the envelope and
+threshold are also stated in measured Pauli coordinates.\\
+Global extremizer classification & Actual local qubit unitaries put every
+curved-branch maximizer into the displayed optimal family. The optimal
+complex filter effect is unique; no full-rank premise is imposed.
+At $c=1$, the maximizers are exactly the pure-product unitary orbit.\\
+Complete joint $(c,r)$ interval & Equality of the actual density-matrix
+correlation spectrum with the closed interval in
+Theorem~\ref{thm:jointrange}, for $r<1$; a separate endpoint theorem gives
+$c^2$ at $r=1$. Explicit physical interpolating states are supplied.\\
+Lower-endpoint equality and stability & Exact matrix-coordinate equality
+conditions, correlation and marginal displacement bounds, spectral
+trace-norm stability, and a proof that the rotated reference is itself
+positive and trace one, including vanishing correlations.\\
+Geometric matrix inequality & Reconstruction from arbitrary density
+matrices, the directional spin-flip trace identity, and the full real
+$3\times3$ positive semidefinite conclusion.\\
+Complete canonical $(c,t)$ interval & Exact attained interval, its feasible
+range, explicit physical witnesses, and lower-endpoint equality. The
+upper endpoint has a complete algebraic equality criterion after an
+explicit Bob unitary with the marked Alice axis fixed.\\
+Canonical equality and trace-norm rigidity & Actual two-qubit local
+unitaries, complete equality with the canonical obese state,
+Hilbert--Schmidt and spectral trace-norm estimates, and the norm-diameter
+cap, including the zero-coherence and pure-marginal cases.\\
+Probability-constrained filtering & Exact optimum and activation criterion
+for actual contracting complex Kraus operators and actual normalized output
+states; the success trace and radius restriction are derived. The
+$p=1/2$ boundary and all looser budgets are included.\\
+Complete one-sided orbit & Every normalized complex filter, singular or
+invertible. The unique admissible spectral shift exists, lies among at most
+seven algebraic candidates, and gives the exact maximum and every
+maximizing effect. The open orbit has the same supremum, with an exact
+attainment criterion.\\
+Volume--correlation geometry & Exact signed bounds, rank-safe row tests,
+physical sharpness, signed-determinant invariance under local unitaries,
+and the attained three-parameter volume maximum over actual density
+matrices in the fixed marked-axis convention below.\\
+\bottomrule
+\end{longtable}
+
+At $c=0$, a specified radial direction remains part of the data. The
+volume formalization takes that marked Alice direction to be $\mathbf e_z$:
+its domain is all density matrices with Alice Bloch vector $c\,\mathbf e_z$,
+Bob Bloch vector zero and $\norm{S^{\mathsf T}\mathbf e_z}=t$, and it
+proves the needed Bob-only normal form. The rotation to an arbitrary
+marked frame is a change of coordinates in the written proof. The
+canonical and global local-unitary classifications have no marked-axis
+premise.
+
+\subsection{Principal declarations}
+\begin{itemize}
+\small\setlength{\itemsep}{1pt}\setlength{\parsep}{0pt}
+\item \path{Milne.steeringEnvelope_isLUB},
+\path{Milne.three_setting_violation_possible_iff},
+\path{Milne.steeringCenter_coordinates}.
+\item \path{Milne.global_steering_equality_iff},
+\path{Milne.global_endpoint_equality_iff},
+\path{Milne.canonical_obese_equality_iff},
+\path{Milne.canonical_trace_rigidity_capped}.
+\item \path{Milne.jointSteeringSpectrum_eq_Icc},
+\path{Milne.actual_joint_value_iff},
+\path{Milne.joint_lower_equality_iff},
+\path{Milne.joint_physical_trace_rigidity},
+\path{Milne.arbitrary_joint_trace_rigidity}.
+\item \path{Milne.geometryPhysicalSkewSpectrum_eq_interval},
+\path{Milne.physical_radial_equality_iff}.
+\item \path{Milne.successPhysicalSpectrum_isGreatest},
+\path{Milne.successPhysicalSpectrum_violation_iff}.
+\item \path{Milne.trust_global_optimum_iff_certificate},
+\path{Milne.canonical_filter_finite_spectral_solution},
+\path{Milne.canonical_filter_all_maximizers},
+\path{Milne.canonical_invertible_F3_attainment_iff}.
+\item \path{Milne.physicalTripleVolumeSpectrum_isGreatest},
+\path{Milne.physicalRadialVolumeSpectrum_isGreatest},
+\path{Milne.localConjugate_correlation_det}.
+\end{itemize}
+
+\subsection{Statements with conventional proofs}
+The sharp flat-branch distance exponents in
+Theorem~\ref{thm:flatstability}, the rank counts of the interpolation and
+volume families, the phase-gauge simplifications of the fixed-radial
+equality equations, the attainment of every value in the signed-determinant
+interval, and the full piecewise classification of all volume maximizers
+have conventional proofs only. Lean checks the physical bounds and sharp
+witnesses, including their singular endpoints, but does not separately
+package every rank count or phase-gauge corollary. The ellipsoid-only and
+adjugate restatements and the composition of an optimal canonical filter
+with a preceding whitening operation are likewise written consequences.
+
+The identification of $\norm T_{\mathrm F}$ with the optimized
+three-setting CJWR expression~\cite{costa}, the steering-ellipsoid
+interpretation of the canonical centre, local-hidden-state models and
+steering under arbitrary measurements are outside the formal development.
+The success frontier prices a filter applied to a canonical input; it does
+not include the cost of a preceding whitening operation.
+
+\subsection{Exact and numerical checks}
+The checks in \path{calculations/} are reproducible and record their seeds
+and residuals; they support debugging and corroborate the proofs, and no
+universal statement rests on them. \path{calculations/reproduce_v2.py}
+(seed 2406039452026) checks 2{,}000 random density matrices, 500 of each
+rank, 160 joint-interval witnesses, canonical radial interpolations, 480
+sharp volume witnesses, physical Kraus operations and 126 quadratic
+problems with regular, singular, indefinite and hard-case data; the
+largest optimizer discrepancy was $2.4\times10^{-11}$ and the largest
+apparent violation of a volume bound $8.2\times10^{-14}$, at roundoff
+scale. \path{calculations/reproduce.py} (seed 240603945) checks 20{,}000
+random states against the filter identity, the global bound, the matrix
+inequality, the deficit identity and the stability estimate.
+\path{calculations/exact_orbit_certificate.py} and
+\path{calculations/exact_filter_certificate.py} verify six exact rational
+certificates each, using all principal minors of the physical state and of
+the shifted quadratic matrix; they reject floating-point input.
+\path{calculations/exact_physical_example.py} verifies the activation
+example of Section~\ref{sec:probability-frontier} in rational arithmetic.
+The scripts in \path{calculations/independent/} are separate
+implementations of the same checks, and
+\path{calculations/independent/exact_new_results.py}, written for this
+release, verifies the witnesses and scalar identities of the joint
+interval, the volume trade-off and the probability frontier in exact
+symbolic arithmetic. All of these were rerun for this release and
+reproduced the recorded outputs. The Python programs are not formally
+verified.
+
+
+\clearpage
+\begin{thebibliography}{99}
+\small\setlength{\itemsep}{3pt}\setlength{\parskip}{0pt}
+\bibitem{ducuara} A. F. Ducuara, C. E. Susa, and P. Skrzypczyk,
+\emph{Locally inaccessible hidden quantum correlations}, Phys. Rev. A
+\textbf{110}, 022435 (2024).
+\href{https://arxiv.org/abs/2406.03945}{arXiv:2406.03945}.
+\bibitem{earlier} D. D. Goyal, \emph{Exact three-setting correlation bounds
+at fixed steering centre}, preprint (29 October 2026),
+\url{https://github.com/dvgyl/math-and-theory/tree/main/papers/physics/steering-bounds}.
+\bibitem{jevtic} S. Jevtic, M. Pusey, D. Jennings, and T. Rudolph,
+\emph{Quantum steering ellipsoids}, Phys. Rev. Lett. \textbf{113}, 020402
+(2014). \href{https://arxiv.org/abs/1303.4724}{arXiv:1303.4724}.
+\bibitem{milne} A. Milne, D. Jennings, S. Jevtic, and T. Rudolph,
+\emph{Quantum correlations of two-qubit states with one maximally mixed
+marginal}, Phys. Rev. A \textbf{90}, 024302 (2014).
+\href{https://arxiv.org/abs/1404.3951}{arXiv:1404.3951}.
+\bibitem{milnevolume} A. Milne, S. Jevtic, D. Jennings, H. Wiseman, and
+T. Rudolph, \emph{Quantum steering ellipsoids, extremal physical states and
+monogamy}, New J. Phys. \textbf{16}, 083017 (2014).
+\href{https://arxiv.org/abs/1403.0418}{arXiv:1403.0418}.
+\bibitem{costa} A. C. S. Costa and R. M. Angelo,
+\emph{Quantification of Einstein--Podolsky--Rosen steering for two-qubit
+states}, Phys. Rev. A \textbf{93}, 020103(R) (2016).
+\href{https://arxiv.org/abs/1510.08030}{arXiv:1510.08030}.
+\bibitem{bravyi} S. Bravyi, \emph{Requirements for compatibility between
+local and multipartite quantum states}, Quantum Inf. Comput. \textbf{4},
+12--26 (2004).
+\href{https://arxiv.org/abs/quant-ph/0301014}{arXiv:quant-ph/0301014}.
+\bibitem{gamel} O. Gamel, \emph{Entangled Bloch spheres: Bloch matrix and
+two-qubit state space}, Phys. Rev. A \textbf{93}, 062320 (2016).
+\href{https://arxiv.org/abs/1602.01548}{arXiv:1602.01548}.
+\bibitem{more} J. J. Mor\'e and D. C. Sorensen,
+\emph{Computing a trust region step}, SIAM J. Sci. Stat. Comput.
+\textbf{4}, 553--572 (1983),
+\href{https://doi.org/10.1137/0904038}{doi:10.1137/0904038}.
+\bibitem{fortin} C. Fortin and H. Wolkowicz,
+\emph{The trust region subproblem and semidefinite programming},
+Optim. Methods Softw. \textbf{19}, 41--67 (2004),
+\url{https://www.math.uwaterloo.ca/~hwolkowi/henry/reports/2004fortinwolkTRS.pdf}.
+\bibitem{xing} Xing and Yang, \emph{Bounding entanglement and Bell
+nonlocality for arbitrary two-qubit state via quantum steering ellipsoid},
+Phys. Scr. \textbf{101}, 135103 (2026),
+\href{https://doi.org/10.1088/1402-4896/ae5354}{doi:10.1088/1402-4896/ae5354}.
+\bibitem{omegafef} The Omega Institute, \emph{Fully entangled fraction at
+fixed steering-ellipsoid centre} (Conjecture~2 of Milne, Jennings, Jevtic
+and Rudolph), problem dossier with a claimed Lean proof, issue \#14206,
+committed 8 October 2026,
+\url{https://github.com/the-omega-institute/trureturing/blob/49e63cc2124d91dc82b3e463c6a0fe9b2cc2a6dc/Problems/milne-jennings-jevtic-rudolph-2014-fully-entangled-fraction.md}.
+\bibitem{omegachsh} The Omega Institute, \emph{CHSH value at fixed
+steering-ellipsoid centre} (Conjecture~1 of Milne, Jennings, Jevtic and
+Rudolph), problem dossier, issue \#16558, committed 14 October 2026,
+\url{https://github.com/the-omega-institute/trureturing/blob/af41108edc85c119837189f120c6d2d9aa3f5a25/Problems/milne-jennings-jevtic-rudolph-2014-chsh-centre-bound.md}.
+\end{thebibliography}
+\end{document}

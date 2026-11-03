@@ -1,0 +1,244 @@
+\section{Constructive matrix proofs of rigidity and extremizer classification}
+\label{sec:matrix-rigidity}
+
+The equality and stability results in this section concern actual complex
+density matrices and actual qubit unitaries.  In particular, no unproved
+rotation-to-unitary lifting assertion is used.  Write
+\(\tau(\sigma)=\|T(\sigma)\|_F^2\), and use the trace norm
+\(\|X\|_1=\sum_j|\lambda_j(X)|\) for Hermitian \(X\).
+The usual trace distance between states is \(\frac12\|\rho-\sigma\|_1\).
+
+\subsection{A complete radial normal form, including degenerate cases}
+
+For a canonical state, Bob's marginal is \(I/2\).  First diagonalize Alice's
+marginal by a qubit unitary, putting her Bloch vector at \(c e_z\), where
+\(c\geq0\).  In Alice blocks write
+\(\sigma=\left(\begin{smallmatrix}A&C\\C^\dagger&D\end{smallmatrix}\right)\).
+Then \(A+D=I/2\).  A second qubit unitary, acting only on Bob, diagonalizes
+the Hermitian matrix \(H=A-D\), with its eigenvalues in decreasing order.
+If their difference is \(t\geq0\), the resulting state is exactly
+\begin{equation}
+ M(c,t,z,w,v)=
+ \begin{pmatrix}
+ a_+&0&z&w\\
+ 0&a_-&v&-z\\
+ \overline z&\overline v&d_-&0\\
+ \overline w&-\overline z&0&d_+
+ \end{pmatrix},\qquad
+ a_\pm=\frac{1+c\pm t}{4},\quad
+ d_\pm=\frac{1-c\pm t}{4}.
+ \label{eq:rigidity-normal-form}
+\end{equation}
+Positivity implies \(0\leq t\leq1-c\).  Both spectral diagonalizations
+remain valid for repeated eigenvalues and singular density matrices.
+The trace-zero condition on \(C\), which forces its diagonal entries to
+be \(z,-z\), follows from the vanishing off-diagonal entry of Alice's
+marginal.
+
+There is also a version with a prescribed radial axis.  If Alice's Bloch
+vector is already \(c e_z\), diagonalize only \(H=A-D\).  Direct Pauli
+expansion gives
+\begin{equation}
+ \operatorname{BlochSq}(H)=\|T^{\mathsf T}e_z\|^2=t^2.
+\end{equation}
+Thus the prescribed \(t\) is preserved.  This statement holds even when
+\(c=0\): the marked axis is still \(e_z\), and Alice's unitary is exactly
+the identity.  Diagonalizing a maximally mixed Alice marginal alone would
+not justify preservation of an arbitrary marked axis.
+
+In the normal form,
+\begin{equation}
+ \tau=t^2+16|z|^2+8|w|^2+8|v|^2.
+ \label{eq:normal-form-correlation}
+\end{equation}
+The sharp geometric inequality \(\tau\leq1-c^2+2t^2\) has the following
+complete equality conditions:
+\begin{align}
+ t z&=0,\label{eq:rigidity-equality-one}\\
+ |z|^2+|w|^2&=a_+d_+,\label{eq:rigidity-equality-two}\\
+ |z|^2+|v|^2&=a_-d_-,\label{eq:rigidity-equality-three}\\
+ z\overline v&=w\overline z.\label{eq:rigidity-equality-four}
+\end{align}
+These are necessary and sufficient for every positive matrix
+\eqref{eq:rigidity-normal-form}.  For \(t>0\), they reduce to
+\begin{equation}
+ z=0,\qquad |w|^2=a_+d_+,\qquad |v|^2=a_-d_-.
+ \label{eq:positive-t-equality}
+\end{equation}
+Thus all extremizers in this basis are the explicit two-block states
+\eqref{eq:positive-t-equality}, including arbitrary admissible complex
+phases.  At \(t=0\), the correct condition is instead
+\begin{equation}
+ C C^\dagger=\frac{1-c^2}{16}I.
+ \label{eq:zero-t-equality}
+\end{equation}
+In particular, setting \(z=0\) at \(t=0\) would discard legitimate
+extremizers.  Equation \eqref{eq:zero-t-equality} includes \(c=1\), when
+\(C=0\).
+
+For necessity, the geometric spin-flip proof gives the exact identity
+\[
+ 4\operatorname{Re}\operatorname{tr}(M\widetilde M)
+ =1-c^2+2t^2-\tau.
+\]
+Both \(M\) and \(\widetilde M\) are positive.  Zero trace therefore implies
+\(M\widetilde M=0\): conjugate by the positive square root of
+\(\widetilde M\), use that a positive matrix with zero trace is zero, and
+then use the kernel of that square root.  Four entries of the zero product
+give \eqref{eq:rigidity-equality-one}--\eqref{eq:rigidity-equality-four}.
+Conversely, the two norm identities and
+\eqref{eq:normal-form-correlation} give equality immediately.  This proof
+never divides by an eigenvalue or a diagonal entry.
+
+\subsection{Actual matrix stability for the canonical envelope}
+
+Put \(d=1-c\), and define the canonical maximizing reference
+\begin{equation}
+ M_{\rm ob}(c)=\frac12
+ \begin{pmatrix}
+ 1&0&0&\sqrt d\\
+ 0&c&0&0\\
+ 0&0&0&0\\
+ \sqrt d&0&0&d
+ \end{pmatrix}.
+ \label{eq:aligned-obese}
+\end{equation}
+This is a Bob Pauli-X conjugate of the standard maximally obese state.
+For every canonical state \(\sigma\), let
+\[
+ c=|a|,\qquad
+ \delta=(1-c)(3-c)-\tau(\sigma)\geq0.
+\]
+If \(0\leq c<1\), there exist genuine qubit unitaries \(U,V\) such that,
+with \(\sigma'=(U\otimes V)\sigma(U\otimes V)^\dagger\),
+\begin{equation}
+ \|\sigma'-M_{\rm ob}(c)\|_1^2
+ \leq4\|\sigma'-M_{\rm ob}(c)\|_{\rm HS}^2
+ \leq \delta\left(\frac12+\frac{2+c}{1-c+t}\right)
+ \leq\frac{5+c}{2(1-c)}\,\delta,
+ \label{eq:actual-matrix-rigidity}
+\end{equation}
+where \(t\) is the radial parameter of the normal form chosen above.
+The trace-norm estimate can be capped by the diameter of the state space:
+\begin{equation}
+ \|\sigma'-M_{\rm ob}(c)\|_1^2
+ \leq \min\left\{4,\frac{5+c}{2(1-c)}\delta\right\}.
+ \label{eq:capped-matrix-rigidity}
+\end{equation}
+Consequently the usual trace distance is at most
+\(\min\{1,\frac12\sqrt{(5+c)\delta/[2(1-c)]}\}\).
+
+Here is the matrix estimate behind the theorem.  An Alice diagonal phase
+unitary makes \(w\) real and nonnegative; the zero-coherence case is
+handled by choosing phase one.  Set \(y=d-t\), \(w_0=\sqrt d/2\),
+\(Z=|z|^2\), and \(J=|v|^2\).  Direct expansion of the actual entries gives
+\begin{align}
+ \|M-M_{\rm ob}(c)\|_{\rm HS}^2
+   &=\frac{y^2}{4}+4Z+2J+2(w-w_0)^2,\\
+ \delta&=d^2-t^2+8(w_0^2-w^2)-16Z-8J.
+\end{align}
+Positive principal minors give
+\[
+ Z\leq\frac{(1+c+t)y}{16},\qquad
+ J\leq\frac{(1+c-t)y}{16},\qquad
+ 0\leq w\leq w_0.
+\]
+Using \((w-w_0)^2\leq w_0^2-w^2\) yields
+\[
+ 4\|M-M_{\rm ob}(c)\|_{\rm HS}^2
+ \leq\delta+y(3+3c-t).
+\]
+The geometric inequality gives
+\(\delta\geq2y(d+t)\).  Substitution proves the middle estimate in
+\eqref{eq:actual-matrix-rigidity}; monotonicity in \(t\geq0\) gives the last.
+The first estimate follows from the spectral theorem and Cauchy--Schwarz
+for four eigenvalues.  The cap follows from positivity and trace one of
+both density matrices.  These spectral and matrix identities are proved
+in Lean, rather than supplied as assumptions to scalar algebra.
+
+Setting \(\delta=0\) proves the complete canonical equality classification:
+\begin{equation}
+ \tau(\sigma)=(1-c)(3-c)
+ \quad\Longleftrightarrow\quad
+ \exists U,V:\ (U\otimes V)\sigma(U\otimes V)^\dagger=M_{\rm ob}(c).
+ \label{eq:canonical-LU-classification}
+\end{equation}
+The endpoint \(c=1\) is proved separately: the normal form has \(t=0\),
+and positivity forces all three coherences to vanish.  No estimate
+containing \(1/(1-c)\) is used at that endpoint.
+
+\subsection{The complete global maximizing orbits}
+
+For \(0\leq c<2/3\), put
+\[
+ D(c)=2-2c-c^2,\qquad r_*(c)=\frac{c(1-c)}{D(c)},\qquad d=1-c.
+\]
+Define the density matrix
+\begin{equation}
+ \rho_*(c)=\frac12
+ \begin{pmatrix}
+ 1+r_*&0&0&\sqrt{d(1-r_*^2)}\\
+ 0&c(1-r_*)&0&0\\
+ 0&0&0&0\\
+ \sqrt{d(1-r_*^2)}&0&0&d(1-r_*)
+ \end{pmatrix}.
+ \label{eq:global-optimal-normal-form}
+\end{equation}
+Every state with actual steering-centre length \(c\) satisfies
+\begin{equation}
+ \tau(\rho)=G(c)
+ \quad\Longleftrightarrow\quad
+ \exists U,V:\ (U\otimes V)\rho(U\otimes V)^\dagger=\rho_*(c).
+ \label{eq:global-LU-classification}
+\end{equation}
+The theorem assumes no rank condition.  If equality holds, \(G(c)>1\)
+forces Bob's marginal to be invertible, because a pure Bob marginal gives
+\(\tau\leq1\).  The global deficit identity then forces the canonical
+representative to saturate its canonical envelope.  Apply
+\eqref{eq:canonical-LU-classification} and conjugate the positive
+reconstruction filter by the same Bob unitary.
+
+The remaining filter orientation is fixed by an exact identity.  For the
+canonical reference \eqref{eq:aligned-obese} and any normalized complex
+filter with effect \(F^\dagger F=I+b\cdot\sigma\),
+\begin{equation}
+ G(c)-\tau(FM_{\rm ob}(c)F^\dagger)
+ =(2-3c)(b_x^2+b_y^2)+D(c)(b_z-r_*)^2.
+ \label{eq:obese-directional-completed-square}
+\end{equation}
+The displayed notation means filtering on Bob.  Both coefficients are
+strictly positive for \(c<2/3\), so every maximizing effect is exactly
+\(I+r_*\sigma_z\).  The reconstruction filter is positive, hence uniqueness
+of the positive square root gives
+\(F=\operatorname{diag}(\sqrt{1+r_*},\sqrt{1-r_*})\), which proves
+\eqref{eq:global-optimal-normal-form}.  The effect argument covers all
+complex normalized filters, including singular ones; no unproved polar
+decomposition is needed.
+
+For \(2/3\leq c<1\), the supremum \(G(c)=1\) is not attained, as proved by
+the strict flat-branch bound for both marginal-rank cases.  At \(c=1\),
+the only maximizers are pure product states.  Indeed an invertible Bob
+marginal would give the strict joint bound \(\tau<1\); with singular Bob,
+\(\tau=1\) forces Alice's marginal to be pure too.  Ordered qubit
+diagonalization puts both marginals at \(|0\rangle\langle0|\), and the
+positive support identity then forces the entire joint state to be
+\(|00\rangle\langle00|\).
+
+\subsection{Formal coverage of the matrix statements}
+
+The new modules use the same pinned Lean 4.19.0 and mathlib revision as
+the original development.  The principal declarations are
+\path{canonical_aligned_normal_form},
+\path{physical_bob_radial_normal_form},
+\path{physical_radial_equality_iff},
+\path{canonical_trace_rigidity_capped},
+\path{canonical_obese_equality_iff},
+\path{alignedObese_optimal_effect},
+\path{global_steering_equality_iff}, and
+\path{global_endpoint_equality_iff}.
+Their hypotheses are positivity, normalization, and the stated measured
+coordinates; actual unitary witnesses, matrix distances, and singular
+support are derived inside Lean.  The marked-axis theorem uses \(e_z\)
+explicitly, including at zero centre.  The global maximizing-orbit
+classification has no coordinate or local-unitary lifting hypothesis.
+
