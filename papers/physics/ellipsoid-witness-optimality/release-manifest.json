@@ -1,0 +1,231 @@
+{
+  "format_version": 1,
+  "package_id": "ellipsoid-witness-optimality",
+  "formal_scope": "Lean 4.19.0 proves, for genuine complex 4×4 matrices with states ranging over all complex density matrices and block positivity over all complex product vectors, that W_{1/4}, W_{3/4} and, for every 0 < p < 1/2, W_p and W_{1−p} are Class D witnesses with equal canonical ellipsoids, that W_{1−p} is strictly finer and that W_p is optimal in no set containing W_{1−p}; also the exact detection and geometric orders of the family, a noncanonical Class C comparison, normal-form remainder certificates, the sharp mirror interval, soundness of the containment LMI and product-vector existence. A strict audit covers all 623 project declarations. Necessity and the chirality characterization for arbitrary targets are conventional proofs using the published two-qubit decomposability and Lorentz normal-form theorems; the Lean assembly of the classification takes cofinality, incomparability and faithfulness as explicit hypotheses, and the finite identities are checked by exact SymPy scripts.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.lean",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/AxiomAudit.lean": "073f71a3d2c8c1526c02022c3a8197c9431083c8da1859dc21bf256d6033280b",
+    "lean/ClassCComparison.lean": "6276df8bd707e85989ab9957939a03d7b7e108b5aab1ddbcb38e756c3a4830d8",
+    "lean/EllipsoidCounterexample.lean": "1db9bc77b0ad828277c57a4ebeb450d34883311ffc36e55897e32e041fc3df80",
+    "lean/GeometryCertificates.lean": "f311e961b1d2a8469dd9c7dc614f8d03f2563936137385db14c7b171825966fb",
+    "lean/Main.lean": "8b3a8cbf47afc138f5de8c08ef7e5ecea67ada6526dd4685dd9c8c28a6ca90f3",
+    "lean/MirrorComparison.lean": "0118be805a098ee7407abdf153e12f23570730194199733dcbf8f9614f1b0d23",
+    "lean/NormalFormCertificates.lean": "066fb6877a2c8bd3e717e552043f22ad79088c5b4973ef68faf7c6cc98bd63a1",
+    "lean/OptimalityReduction.lean": "e04c6c38b1e16bc7c6c538534661bdf8fdc86d58cedaeaad5b014cbd1f6852c6",
+    "lean/ParametricFamily.lean": "ea68812da52c3c2b723cfeef49501ece6e53757e1aef5d3a478ed13b99705caa",
+    "lean/ProductVector.lean": "d7fcd61ae80b140dd8382a4b420a31dedd02e5f35e0195ddf95b2a09043724e7",
+    "lean/ProjectAxiomAudit.lean": "ac63799f8405b483776f09362fe67a6f1ca10fc1d499133eac6d1798d57abe17",
+    "lean/SameChirality.lean": "c8a32dafcf875c8ee3978127e7736ac2997ee8c12c1be17f2004926cfd0170b8"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 1844,
+      "sha256": "121e4100ef7d67fb40258eed2817514074395467b23be3f32e4b2e93ff5cf459"
+    },
+    "CITATION.bib": {
+      "bytes": 446,
+      "sha256": "e734dbf6159ea47889705a293bbe3dc946e87a87c7c9191ee36483adb69cd59c"
+    },
+    "CITATION.cff": {
+      "bytes": 2322,
+      "sha256": "b56b245c3d6327f1ab2dbfb60ed7e6e0ae077c7b078f2821d26b7a661d222fbf"
+    },
+    "FORMALIZATION_STATUS.md": {
+      "bytes": 5747,
+      "sha256": "7c4c5e839387f222f47f5d07831848dc912b034385ce1377dd3a8b11eeeeac14"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 8443,
+      "sha256": "cc541df9e5a2a020d6066983abfd9ca7c21d0b4de2d299b2d55a2f97f7d7a9c2"
+    },
+    "THEOREM_INDEX.md": {
+      "bytes": 26657,
+      "sha256": "d7b214db2bf44a1183b2a9a4d3591eb87e854e3d3037ce3b2bf595419430a2f0"
+    },
+    "VERIFICATION.md": {
+      "bytes": 5140,
+      "sha256": "7edf2c51d5b7136f47803786c753ace8917eb22cc0c3474d335139833e6c8d5d"
+    },
+    "figures/class_c_incomparability.pdf": {
+      "bytes": 16006,
+      "sha256": "28477e8a5a334fab450d4fe4200d5d902c3e1587e0986862184df6c00e482309"
+    },
+    "figures/parameter_orders.pdf": {
+      "bytes": 17217,
+      "sha256": "dac8d05e6dae11be631f28cb6cf34b08baa4d12c0160894c97d2e0c2ace331d7"
+    },
+    "lean/AxiomAudit.lean": {
+      "bytes": 3591,
+      "sha256": "073f71a3d2c8c1526c02022c3a8197c9431083c8da1859dc21bf256d6033280b"
+    },
+    "lean/ClassCComparison.lean": {
+      "bytes": 13925,
+      "sha256": "6276df8bd707e85989ab9957939a03d7b7e108b5aab1ddbcb38e756c3a4830d8"
+    },
+    "lean/EllipsoidCounterexample.lean": {
+      "bytes": 15063,
+      "sha256": "1db9bc77b0ad828277c57a4ebeb450d34883311ffc36e55897e32e041fc3df80"
+    },
+    "lean/GeometryCertificates.lean": {
+      "bytes": 12387,
+      "sha256": "f311e961b1d2a8469dd9c7dc614f8d03f2563936137385db14c7b171825966fb"
+    },
+    "lean/Main.lean": {
+      "bytes": 533,
+      "sha256": "8b3a8cbf47afc138f5de8c08ef7e5ecea67ada6526dd4685dd9c8c28a6ca90f3"
+    },
+    "lean/MirrorComparison.lean": {
+      "bytes": 3879,
+      "sha256": "0118be805a098ee7407abdf153e12f23570730194199733dcbf8f9614f1b0d23"
+    },
+    "lean/NormalFormCertificates.lean": {
+      "bytes": 7455,
+      "sha256": "066fb6877a2c8bd3e717e552043f22ad79088c5b4973ef68faf7c6cc98bd63a1"
+    },
+    "lean/OptimalityReduction.lean": {
+      "bytes": 11538,
+      "sha256": "e04c6c38b1e16bc7c6c538534661bdf8fdc86d58cedaeaad5b014cbd1f6852c6"
+    },
+    "lean/ParametricFamily.lean": {
+      "bytes": 21258,
+      "sha256": "ea68812da52c3c2b723cfeef49501ece6e53757e1aef5d3a478ed13b99705caa"
+    },
+    "lean/ProductVector.lean": {
+      "bytes": 7023,
+      "sha256": "d7fcd61ae80b140dd8382a4b420a31dedd02e5f35e0195ddf95b2a09043724e7"
+    },
+    "lean/ProjectAxiomAudit.lean": {
+      "bytes": 5619,
+      "sha256": "ac63799f8405b483776f09362fe67a6f1ca10fc1d499133eac6d1798d57abe17"
+    },
+    "lean/SameChirality.lean": {
+      "bytes": 6515,
+      "sha256": "c8a32dafcf875c8ee3978127e7736ac2997ee8c12c1be17f2004926cfd0170b8"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3554,
+      "sha256": "b87d7160d444bae457c8bc5ff1276496970cbc88a1987da521529468960500a6"
+    },
+    "lean/lakefile.lean": {
+      "bytes": 615,
+      "sha256": "fe69b582477e7bca12f803656f5dd49dd9b57bd035be4b137804bfc7e9291750"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    "manuscript.pdf": {
+      "bytes": 514498,
+      "sha256": "b0d66ec7cff8c673881dd6da05aa594f78bdf76799ae58a6bab261c3f9a5d47d"
+    },
+    "manuscript.tex": {
+      "bytes": 46214,
+      "sha256": "b50ceebb0f63c9f01c14144d3ac1ba86fd86be4171048d4cb10ccfc132e9e7de"
+    },
+    "scripts/check_axiom_audit.py": {
+      "bytes": 6092,
+      "sha256": "ffef61c748432b981709721a0611512f0eb5e55114faead4b9f136df6c4e6c88"
+    },
+    "scripts/run_exact_checks.py": {
+      "bytes": 2734,
+      "sha256": "87a4f1418848e6a604cb466d48e2cbce2c780765b2129c491e8c2f31e89dca8e"
+    },
+    "scripts/verify.sh": {
+      "bytes": 939,
+      "sha256": "165bb5cc9d74ea43931408273be8beae436bb3a3cb812146beeafe29cdd010af"
+    },
+    "sections/extensions.tex": {
+      "bytes": 29831,
+      "sha256": "c08502dcfa2ada571fc8759ad88b4c29190c052b5cbbf7d85b6c34c06c415aab"
+    },
+    "sections/formal_status.tex": {
+      "bytes": 9751,
+      "sha256": "d72fad6fff5a833bf123f3e36b616bd22ac2ecb50852479af57e39707a59108e"
+    },
+    "sections/related.tex": {
+      "bytes": 3871,
+      "sha256": "462e7234a7d55a6875e1305d21250e97f2cee76d49f4e40edb2152d62b5418f6"
+    },
+    "verification/class_d_verify.py": {
+      "bytes": 6064,
+      "sha256": "1ef4d87d42d749a077f6569f2761e9569ed59a3b2ed133c765d678d3a66c2679"
+    },
+    "verification/class_d_verify_output.json": {
+      "bytes": 6185,
+      "sha256": "e4e5b5d6e80231afdfd1b9d1b3385ee990a0d17b0dbceff10610e01dc0cb97a7"
+    },
+    "verification/exact_sdp_certificates.json": {
+      "bytes": 47272,
+      "sha256": "c913f8c5629d50f93eeb57e2e751aec1abec0e39cd17564ff467743c21f6b980"
+    },
+    "verification/exact_sdp_certificates.py": {
+      "bytes": 4453,
+      "sha256": "167802b42648a32c0a885ca775d14404dedd755988126e1961825fe88ac748b6"
+    },
+    "verification/make_figures.py": {
+      "bytes": 2697,
+      "sha256": "cf86910ecf7c2de69027563df485be5662155cddd1d9c734b7cc707d9e45e81f"
+    },
+    "verification/mirror_formulas_output.txt": {
+      "bytes": 374,
+      "sha256": "68addcbcfc8d067d5f6b281e99e5b1a9afc9958a4281a366fa27739a4adf63fe"
+    },
+    "verification/new_results_verify.py": {
+      "bytes": 10433,
+      "sha256": "e53ceb4746da5f679125aad6667b0b6bb5c9c7eeae7f7f0cbf8707883669e14b"
+    },
+    "verification/new_results_verify_output.json": {
+      "bytes": 7834,
+      "sha256": "95dd032ad10828e73c95ceddcab88ada046f9a8c7b952cc19cb79e83c645e549"
+    },
+    "verification/replay/README.md": {
+      "bytes": 2592,
+      "sha256": "e8c2039e266ef7ae40427aff428936fd7efbe20cb5eda4605a2ad42bffb7fd71"
+    },
+    "verification/replay/axiom-inventory.json": {
+      "bytes": 161514,
+      "sha256": "78a3b264fc5d401ae2b576d9a660c460cde53e113d883a31b474460058533407"
+    },
+    "verification/replay/build.log": {
+      "bytes": 160587,
+      "sha256": "6f55b59420aabf8dbff78ce09f2a799c81a9f4882e26b8870e2281598d81830b"
+    },
+    "verification/replay/exact-checks.json": {
+      "bytes": 405,
+      "sha256": "d13b74ebd349921a5b2b038ce5569b2addb439770f5eebd9adc0e853074c3925"
+    },
+    "verification/replay/selected-axioms.log": {
+      "bytes": 8133,
+      "sha256": "2384e7ab4724370840242449b31b1052674851d3a383d4e5221b7cd13a45c868"
+    },
+    "verification/requirements.txt": {
+      "bytes": 28,
+      "sha256": "47fd19021144e071cc43b6e265aafada0056abe89724ad95bd6e3a8e37995b94"
+    },
+    "verification/sdp_examples.json": {
+      "bytes": 17222,
+      "sha256": "310f7c4a22f0819804f7145ee8a467766b8295b047c27d359309612a51664cc0"
+    },
+    "verification/solve_refinement.py": {
+      "bytes": 8579,
+      "sha256": "cdcd8937312eeba786df3b45629ae8f92339e2788d04b21f205501049aef9e08"
+    },
+    "verification/verify_mirror_formulas.py": {
+      "bytes": 3560,
+      "sha256": "2b89867e28d39ce817eed95f5ddf9ea5434002bbbc05bf221d2ba8ceff453608"
+    }
+  }
+}

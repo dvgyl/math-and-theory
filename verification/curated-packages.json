@@ -399,6 +399,35 @@
       },
       "integrity_manifests": []
     },
+    "ellipsoid-witness-optimality": {
+      "root": "papers/physics/ellipsoid-witness-optimality",
+      "release_manifest_sha256": "084d9830d721b527a5a990f12d67f3e1ed80ed49a6687c6926b1a6c19782d3c4",
+      "formal_scope": "Lean 4.19.0 proves, for genuine complex 4×4 matrices with states ranging over all complex density matrices and block positivity over all complex product vectors, that W_{1/4}, W_{3/4} and, for every 0 < p < 1/2, W_p and W_{1−p} are Class D witnesses with equal canonical ellipsoids, that W_{1−p} is strictly finer and that W_p is optimal in no set containing W_{1−p}; also the exact detection and geometric orders of the family, a noncanonical Class C comparison, normal-form remainder certificates, the sharp mirror interval, soundness of the containment LMI and product-vector existence. A strict audit covers all 623 project declarations. Necessity and the chirality characterization for arbitrary targets are conventional proofs using the published two-qubit decomposability and Lorentz normal-form theorems; the Lean assembly of the classification takes cofinality, incomparability and faithfulness as explicit hypotheses, and the finite identities are checked by exact SymPy scripts.",
+      "proof_roots": [
+        {
+          "path": "lean",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.lean",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "lean/AxiomAudit.lean": "073f71a3d2c8c1526c02022c3a8197c9431083c8da1859dc21bf256d6033280b",
+        "lean/ClassCComparison.lean": "6276df8bd707e85989ab9957939a03d7b7e108b5aab1ddbcb38e756c3a4830d8",
+        "lean/EllipsoidCounterexample.lean": "1db9bc77b0ad828277c57a4ebeb450d34883311ffc36e55897e32e041fc3df80",
+        "lean/GeometryCertificates.lean": "f311e961b1d2a8469dd9c7dc614f8d03f2563936137385db14c7b171825966fb",
+        "lean/Main.lean": "8b3a8cbf47afc138f5de8c08ef7e5ecea67ada6526dd4685dd9c8c28a6ca90f3",
+        "lean/MirrorComparison.lean": "0118be805a098ee7407abdf153e12f23570730194199733dcbf8f9614f1b0d23",
+        "lean/NormalFormCertificates.lean": "066fb6877a2c8bd3e717e552043f22ad79088c5b4973ef68faf7c6cc98bd63a1",
+        "lean/OptimalityReduction.lean": "e04c6c38b1e16bc7c6c538534661bdf8fdc86d58cedaeaad5b014cbd1f6852c6",
+        "lean/ParametricFamily.lean": "ea68812da52c3c2b723cfeef49501ece6e53757e1aef5d3a478ed13b99705caa",
+        "lean/ProductVector.lean": "d7fcd61ae80b140dd8382a4b420a31dedd02e5f35e0195ddf95b2a09043724e7",
+        "lean/ProjectAxiomAudit.lean": "ac63799f8405b483776f09362fe67a6f1ca10fc1d499133eac6d1798d57abe17",
+        "lean/SameChirality.lean": "c8a32dafcf875c8ee3978127e7736ac2997ee8c12c1be17f2004926cfd0170b8"
+      },
+      "integrity_manifests": []
+    },
     "strong-gradient": {
       "root": "papers/mathematics/strong-gradient",
       "release_manifest_sha256": "435f31b25c7add6f32da96bea8e5c7c59754b99148eca969accd1d872957c9e1",

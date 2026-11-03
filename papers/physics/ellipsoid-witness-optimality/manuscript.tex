@@ -1,0 +1,576 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=26mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{booktabs,tabularx,array,xcolor,enumitem,graphicx,longtable}
+\usepackage{fancyvrb,float}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black,citecolor=blue!45!black]{hyperref}
+\hypersetup{pdftitle={Optimal entanglement witnesses under ellipsoid containment: the Milne-Jennings-Rudolph conjecture and its chirality correction},pdfauthor={Dev D. Goyal},pdfsubject={Two-qubit entanglement witnesses, steering ellipsoids, optimality within a set}}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Optimal witnesses under ellipsoid containment}
+\fancyhead[R]{\small D. D. Goyal}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parskip}{5pt}\setlength{\parindent}{0pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\PSD}{\mathrm{PSD}}
+\newcommand{\BP}{\mathrm{BP}}
+\newcommand{\B}{\mathbb B^3}
+\newcommand{\E}{\mathcal E}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\proj}[1]{\ket{#1}\bra{#1}}
+\newcommand{\XX}{X\otimes X}
+\newcommand{\YY}{Y\otimes Y}
+\newcommand{\ZZ}{Z\otimes Z}
+\newcommand{\II}{I\otimes I}
+\newcommand{\cstar}{c_*}
+\newcommand{\Qstar}{Q_*}
+\newcommand{\Sstar}{\mathcal S_*}
+\theoremstyle{plain}\newtheorem*{theorem*}{Theorem}
+\title{Optimal entanglement witnesses under ellipsoid containment:\\[2pt] the Milne--Jennings--Rudolph conjecture and its chirality correction}
+\author{Dev D. Goyal}
+\date{3 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Milne, Jennings and Rudolph represented two-qubit entanglement witnesses by ellipsoids in the Bloch ball and conjectured, in Section~IV\,D of \emph{Geometric representation of two-qubit entanglement witnesses} (Phys.\ Rev.\ A \textbf{92}, 012311 (2015), arXiv:1407.8440): if $\E_*$ is an ellipsoid inside the Bloch sphere and $\Sstar$ is the set of witnesses whose ellipsoid lies inside $\E_*$, then the optimal witnesses in $\Sstar$ are represented by $\E_*$. We prove the conjecture as stated: every trace-one witness that is optimal in $\Sstar$ has ellipsoid exactly $\E_*$. The stronger reading, that every witness with ellipsoid $\E_*$ is optimal in $\Sstar$, is false. The witnesses $W_p$ of Example~2 of the same paper satisfy $W_p=\frac{p}{1-p}W_{1-p}+\frac{1-2p}{1-p}P_+$ with $P_+\succeq0$, so for every $0<p<1/2$ the left-handed witness $W_p$ and the right-handed witness $W_{1-p}$ have the same full-dimensional Class~D ellipsoid while $W_{1-p}$ detects strictly more states. The correct characterization needs chirality: for a full-dimensional admissible target the optimal witnesses are exactly the right-handed witnesses with ellipsoid $\E_*$; for a planar target they are exactly the witnesses with ellipsoid $\E_*$; segments and points represent no witness. Thus the unrestricted equivalence holds in Class~C and for planar targets and fails for full-dimensional Class~D targets. The proof uses the two-qubit decomposability theorem and the Avron--Kenneth Lorentz normal forms. We also give an exact $4\times4$ semidefinite containment test that covers singular targets, a polynomial optimality test, a convex program with a unique rank-one optimizer, and several order-theoretic and geometric consequences. A Lean~4 development checks the counterexample for actual complex $4\times4$ matrices against all complex density matrices, for the rational pair $p=1/4,3/4$ and for every $0<p<1/2$, together with further algebraic and geometric ingredients; the general classification is a conventional proof, and its Lean assembly is stated with its structural hypotheses explicit.
+\end{abstract}
+\clearpage
+\setcounter{tocdepth}{1}
+\begingroup
+\small
+\setlength{\parskip}{0pt}
+\tableofcontents
+\endgroup
+\clearpage
+
+\section{Introduction}
+
+\paragraph{The question in plain terms.} An entanglement witness is an observable whose expectation value is negative on some entangled states and nonnegative on every separable state; one witness is \emph{finer} than another if it detects every state the other detects. For two qubits, Milne, Jennings and Rudolph drew each witness as an ellipsoid inside the Bloch ball, together with a handedness (chirality) sign. They asked: if we only allow witnesses whose ellipsoid fits inside a fixed ellipsoid $\E^\star$, are the best (optimal) ones exactly those that fill $\E^\star$? \emph{Answer:} every optimal witness does fill $\E^\star$, so their conjecture as printed is true; but filling $\E^\star$ is not enough, because a left-handed witness that fills a full-dimensional target can always be improved by a right-handed one with the same ellipsoid. The ellipsoid forgets exactly the information, chirality, that decides optimality.
+
+Milne, Jennings and Rudolph \cite{milne} extended the quantum steering ellipsoid formalism from two-qubit states to arbitrary two-qubit block-positive operators. A unit-trace entanglement witness $W$ is then represented by an ellipsoid $\E(W)$ inside the Bloch ball, with a chirality sign, and optimality and weak optimality of $W$ become visible in $\E(W)$ \cite[Theorem~4]{milne}. Motivated by two examples (the set of all witnesses, whose optimal members fill the whole Bloch ball, and the set $EW_4$, whose optimal members fill the $xz$ unit disc), they stated the following conjecture in Section~IV\,D of \cite{milne}; we quote it verbatim from arXiv:1407.8440v2.
+
+\begin{quote}
+\textbf{Conjecture.} Let $\E^\star$ be an ellipsoid lying inside the Bloch sphere and $S$ be a set of two-qubit entanglement witnesses defined as follows: $W\in S$ if and only if $\E$ representing $W$ lies inside $\E^\star$. The optimal $W\in S$ are then represented by $\E=\E^\star$.
+\end{quote}
+
+The authors add that the conjecture applies to any $\E^\star$ belonging to Class~C or Class~D, and that it is nontrivial to approach analytically, partly because deciding whether one ellipsoid lies inside another is itself difficult. Here a witness $W\in S$ is optimal in $S$ if no member of $S$ is strictly finer, that is, detects a strictly larger set of states \cite{milne,lewenstein}. The conjecture is restated in Milne's doctoral thesis \cite{thesis}.
+
+The printed sentence admits two readings. The \emph{necessity} reading says that every optimal $W\in S$ has $\E(W)=\E^\star$. The \emph{characterization} reading adds the converse, that the optimal members of $S$ are exactly the witnesses represented by $\E^\star$. The two motivating examples are consistent with both, because in them every witness filling the target is optimal. We show that the two readings have different answers.
+
+\begin{theorem*}[Summary of the main results]
+Let $\E_*$ be an ellipsoid in the Bloch ball that represents at least one witness, and let $\Sstar$ be the set of trace-one witnesses $W$ with $\E(W)\subseteq\E_*$.
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(The conjecture holds.)} Every witness optimal in $\Sstar$ has $\E(W)=\E_*$; moreover every member of $\Sstar$ has a finer or equal member of $\Sstar$ whose ellipsoid is $\E_*$.
+\item \emph{(The converse fails.)} For every $0<p<1/2$, the witnesses $W_p$ and $W_{1-p}$ of \cite[Example~2]{milne} have the same full-dimensional Class~D ellipsoid, and $W_{1-p}$ is strictly finer than $W_p$. Hence $W_p$ represents $\E_*=\E(W_p)$ but is not optimal in $\Sstar$.
+\item \emph{(Corrected characterization.)} If $\E_*$ is full-dimensional, $W$ is optimal in $\Sstar$ if and only if $\E(W)=\E_*$ and $W$ is right-handed. If $\E_*$ is planar, $W$ is optimal in $\Sstar$ if and only if $\E(W)=\E_*$. Segments and points represent no witness.
+\end{enumerate}
+\end{theorem*}
+
+Theorem~\ref{thm:main} below is the precise statement. In Class~C every witness filling a full-dimensional target is automatically right-handed, so the characterization reading is true there and for planar targets; it fails exactly for left-handed representatives of full-dimensional Class~D targets, which are always strictly improvable (Lemma~\ref{lem:mirror}). This is consistent with Theorem~4 of \cite{milne}, where optimality among all witnesses requires the whole Bloch ball \emph{and} right-handedness.
+
+\paragraph{What is new and what is not.} The witness family $W_p$ is Example~2 of \cite{milne}, introduced earlier in the literature cited there; only its use to separate the two readings is new here. Positive-remainder subtraction and the fineness criterion are due to Lewenstein, Kraus, Cirac and Horodecki \cite{lewenstein}; best separable approximations and product-vector subtraction to Lewenstein--Sanpera and Karnas--Lewenstein \cite{ls,karnas}; best positive-part witness decompositions to Bru\ss{} et al.\ \cite{bruss}; semidefinite programming for optimal decompositions to Thiang--Raynal--Englert \cite{thiang}. The two external theorems on which the classification rests are the two-qubit decomposability theorem \cite{woronowicz} and the complete Lorentz normal forms of Avron and Kenneth \cite{avron}. The candidate contributions are the proof of the conjecture, the chirality correction for arbitrary admissible targets including singular and translated ones, and the consequences in Part~II. A bounded literature search through 3 November 2026, including the works citing \cite{milne}, found no earlier resolution of the conjecture; this is not a priority guarantee.
+
+\paragraph{Verification scope.} A Lean~4 development (Lean 4.19.0, Mathlib \texttt{c44e0c8}) proves, for genuine complex $4\times4$ matrices, with states ranging over all complex density matrices and block positivity over all complex product vectors, the counterexample of part~(b) for the rational pair $p=1/4,3/4$ and for every $0<p<1/2$, its nonoptimality in every surrounding set containing the finer witness, and further ingredients listed in Appendix~\ref{app:formal}. Parts~(a) and~(c) are conventional proofs; their Lean assembly theorem takes the cofinality, incomparability and faithfulness inputs as explicit hypotheses. Exact SymPy scripts check the remaining finite identities and certificates. Appendix~\ref{app:formal} states the split precisely.
+
+\paragraph{How the proof works.} The argument has four steps, each proved in Part~I.
+\begin{enumerate}[label=\arabic*.]
+\item \emph{Fineness is subtraction.} A normalized witness $V$ is finer than $W$ exactly when $W=\alpha V+P$ with $0<\alpha\le1$ and $P\succeq0$ (Lemma~\ref{lem:fine}). So improving a witness means peeling off a positive operator.
+\item \emph{Pull back to the whole Bloch ball.} The target ellipsoid is the image of the Bloch ball under a positive qubit map $L$ (Section~\ref{sec:lift}). Every witness inside the target lifts through $L$ to a block-positive operator; decomposability and product-vector subtraction then refine it to the image of a single partially transposed entangled pure state, whose ellipsoid is the whole target. This gives necessity: an optimal witness must fill the target.
+\item \emph{Chirality decides.} A left-handed representative of a full-dimensional target is strictly dominated by the right-handed one with the same ellipsoid (Lemma~\ref{lem:mirror}, using the Avron--Kenneth normal forms); this is where the converse fails, and $W_p$ versus $W_{1-p}$ is the simplest instance.
+\item \emph{No improvement within one orbit.} Two witnesses with the same ellipsoid and the same chirality differ by a local filter on Bob's side, and such filters can never produce a strictly finer witness (Lemma~\ref{lem:orbit}, Corollary~\ref{cor:sameE}). This gives sufficiency of the corrected condition.
+\end{enumerate}
+Part~I contains the classification and the counterexample, Part~II further results (exact orders of the family $W_p$, a convex program with a unique optimizer, robustness, Class~C examples and decision rules), Section~\ref{sec:related} related work, and the appendices the formal verification scope and reproduction details.
+
+\part{The conjecture and its analytic resolution}
+
+\section{Main theorem and conventions}
+
+
+We interpret ellipsoid containment as containment of the filled geometric sets; it does not impose a chirality constraint. This is the set definition in Section~IV\,D of \cite{milne}. Write
+\[
+ \E_*=\cstar+A\B,\qquad \Qstar=AA^{\mathsf T},\qquad \B=\{u\in\R^3:\|u\|\leq1\}.
+\]
+An admissible target here means that at least one witness is represented by that ellipsoid. All operators below are on $\C^2\otimes\C^2$, unless otherwise stated. Partial transpose on Bob is denoted $\Gamma$.
+
+\begin{theorem}[Complete classification]\label{thm:main}
+Let $\E_*\subseteq\B$ be admissible, and define
+\[
+ \Sstar=\{W:\ W\text{ is a trace-one entanglement witness},\ \E(W)\subseteq\E_*\}.
+\]
+Then every $W\in\Sstar$ has a finer or equal witness $U\in\Sstar$ with $\E(U)=\E_*$. Moreover:
+\begin{enumerate}[label=(\roman*)]
+\item If $\rank\Qstar=3$, $W$ is optimal in $\Sstar$ if and only if $\E(W)=\E_*$ and $\chi(W)=+1$.
+\item If $\rank\Qstar=2$, $W$ is optimal in $\Sstar$ if and only if $\E(W)=\E_*$. These witnesses have $\chi(W)=0$.
+\item If $\rank\Qstar\leq1$, the containment set contains no witnesses, so such a target is not admissible.
+\end{enumerate}
+In particular, the literal necessary implication in the paper is valid in both Classes C and D. Its unrestricted converse fails in full-dimensional Class D.
+\end{theorem}
+
+\begin{center}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\toprule
+Target & Dimension & Optimal witnesses in the containment set\\
+\midrule
+Class C & 3 & Exactly the witnesses with $\E(W)=\E_*$; their chirality is necessarily $+1$.\\
+Class D & 3 & Exactly the witnesses with $\E(W)=\E_*$ and chirality $+1$. Left-handed representatives are strictly improvable.\\
+Class D & 2 & Exactly the witnesses with $\E(W)=\E_*$.\\
+Line or point & 0 or 1 & No witnesses.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The proof is a complete mathematical argument using named published inputs. Those inputs are not new claims of this work. The exact counterexample and its detection relation are machine checked separately. The expanded formal development and its remaining gaps are documented in Appendix~\ref{app:formal}. No claim of an end-to-end Lean formalization of Theorem~\ref{thm:main}, or of established publication priority, is made.
+
+\section{Definitions and matrix conventions}
+
+A Hermitian operator $W$ is block positive if
+\[
+ \bra{x\otimes y}W\ket{x\otimes y}\geq0\quad\text{for every }x,y\in\C^2.
+\]
+It is an entanglement witness if it is block positive but not positive semidefinite. We normalize witnesses by $\tr W=1$. Its detected states are
+\[
+ D(W)=\{\rho\succeq0:\tr\rho=1,\ \tr(\rho W)<0\}.
+\]
+The witness $V$ is finer than $W$ when $D(W)\subseteq D(V)$; strict fineness means proper inclusion. Optimality in a specified set excludes a distinct strictly finer member of that set.
+
+Using the standard Pauli matrices $X,Y,Z$, write
+\begin{equation}\label{eq:bloch}
+ W=\frac14\left(\II+a\cdot\sigma\otimes I+I\otimes b\cdot\sigma+
+       \sum_{i,j=1}^3 T_{ij}\sigma_i\otimes\sigma_j\right),
+ \qquad \Theta_W=\begin{pmatrix}1&b^{\mathsf T}\\a&T\end{pmatrix}.
+\end{equation}
+For a Bob effect with Bloch vector $u\in\B$, the normalized conditional Alice vector is
+\begin{equation}\label{eq:fractional}
+ r_W(u)=\frac{a+Tu}{1+b\cdot u}.
+\end{equation}
+Its range is the filled ellipsoid $\E(W)$. The denominator is strictly positive for witnesses, by the next lemma.
+
+\begin{lemma}[A witness has a nonsingular Bob marginal]\label{lem:marginal}
+If $W$ is a two-qubit witness, then $W_B=\tr_A W\succ0$; equivalently, $\|b\|<1$.
+\end{lemma}
+\begin{proof}
+Block positivity makes $W_B$ positive semidefinite. If it has a kernel vector, choose a Bob basis in which that vector is first. The corresponding Alice diagonal block of $W$ is positive semidefinite with zero trace, hence zero. Write the other blocks as
+\[
+ W=\begin{pmatrix}0&C\\C^\dagger&D\end{pmatrix}_{\!B}.
+\]
+For every Alice vector $x$, the $2\times2$ matrix of Bob expectations in $x$ is positive semidefinite. Its zero first diagonal entry forces $x^\dagger Cx=0$. Complex polarization gives $C=0$. Block positivity also gives $D\succeq0$, so $W\succeq0$, a contradiction.
+\end{proof}
+
+Whitening Bob gives the canonical witness
+\[
+ \widetilde W=(I\otimes(2W_B)^{-1/2})W(I\otimes(2W_B)^{-1/2})
+ =\frac14\left(\II+c\cdot\sigma\otimes I+
+ \sum_{i,j}\widetilde T_{ij}\sigma_i\otimes\sigma_j\right).
+\]
+Its ellipsoid is $c+\widetilde T\B$, with $Q=\widetilde T\widetilde T^{\mathsf T}$ and $\chi=\sgn\det\widetilde T$. In terms of the original data, set $\gamma^2=(1-\|b\|^2)^{-1}$; then
+\begin{align}
+ c&=\gamma^2(a-Tb),\\
+ Q&=\gamma^2(T-ab^{\mathsf T})(I+\gamma^2bb^{\mathsf T})(T^{\mathsf T}-ba^{\mathsf T}).\label{eq:shape}
+\end{align}
+The chirality sign can also be computed as $\sgn\det\Theta_W$, since whitening has positive determinant on the real Pauli coefficient space.
+
+For a block-positive two-qubit operator, Class C means $W\not\succeq0$ but $W^\Gamma\succeq0$, and Class D means both $W$ and $W^\Gamma$ fail to be positive semidefinite. The determinant characterization in \cite{milne} gives the corresponding strict signs for witnesses. The proof below uses positivity itself, so it does not rely on determinants near a numerical threshold.
+
+\section{Exact containment and fineness inequalities}
+
+\subsection{Canonical containment, including a singular target}
+
+Let $H=\Qstar^+$ be the Moore--Penrose inverse, let $\Pi=\Qstar\Qstar^+$ be the orthogonal support projector, and let $d=c-\cstar$. Then
+\begin{equation}\label{eq:contain-support}
+ (I-\Pi)d=0,\qquad (I-\Pi)\widetilde T=0
+\end{equation}
+are necessary support conditions. Subject to these conditions,
+\begin{equation}\label{eq:contain-lmi}
+ \E(W)\subseteq\E_*
+ \quad\Longleftrightarrow\quad
+ \exists\lambda\geq0:\
+ \begin{pmatrix}
+ \lambda I_3-\widetilde T^{\mathsf T}H\widetilde T&-\widetilde T^{\mathsf T}Hd\\
+ -d^{\mathsf T}H\widetilde T&1-d^{\mathsf T}Hd-\lambda
+ \end{pmatrix}\succeq0.
+\end{equation}
+Indeed, membership in the outer ellipsoid is equivalent to support membership and $(x-\cstar)^{\mathsf T}H(x-\cstar)\leq1$. Substitute $x=c+\widetilde T u$. The S-lemma \cite{polik} applies with the strictly feasible ball constraint $1-\|u\|^2\geq0$ (take $u=0$), and gives precisely \eqref{eq:contain-lmi}. The support constraints are essential for a flat target; merely replacing an inverse by a pseudoinverse would be incorrect.
+
+\subsection{An equivalent criterion before whitening}
+
+Define
+\[
+ h=a-\cstar,\qquad D=T-\cstar b^{\mathsf T}.
+\]
+The support conditions are $(I-\Pi)h=0$ and $(I-\Pi)D=0$. Because $1+b\cdot u>0$, containment is equivalent to
+\[
+ (1+b\cdot u)^2-(h+Du)^{\mathsf T}H(h+Du)\geq0
+ \qquad(\|u\|\leq1).
+\]
+Consequently its exact matrix certificate is
+\begin{equation}\label{eq:raw-lmi}
+ \exists\lambda\geq0:\quad
+ \begin{pmatrix}
+ \lambda I_3+bb^{\mathsf T}-D^{\mathsf T}HD&b-D^{\mathsf T}Hh\\
+ b^{\mathsf T}-h^{\mathsf T}HD&1-h^{\mathsf T}Hh-\lambda
+ \end{pmatrix}\succeq0.
+\end{equation}
+This is an exact test for fixed Bloch data. Its entries are quadratic in those data; it is not being asserted to be jointly affine in all unknown entries of $W$.
+
+\subsection{Fineness is positive semidefinite subtraction}
+
+\begin{lemma}[Fineness criterion]\label{lem:fine}
+For trace-one witnesses $W,V$,
+\begin{equation}\label{eq:fine}
+ D(W)\subseteq D(V)
+ \quad\Longleftrightarrow\quad
+ W=\alpha V+P,\qquad 0<\alpha\leq1,\quad P\succeq0.
+\end{equation}
+Strict inclusion is equivalent to $P\neq0$, and then $\alpha<1$. Equivalently, there exists $t\geq1$ with $tW-V\succeq0$.
+\end{lemma}
+\begin{proof}
+The reverse implication follows by taking expectations. For the forward implication, contraposition gives $\tr(V\rho)\geq0\Rightarrow\tr(W\rho)\geq0$ for every $\rho\succeq0$. The dual cone of $\{\rho\succeq0:\tr(V\rho)\geq0\}$ is $\PSD+\R_+V$. This sum is closed: if a convergent sequence $P_n+\alpha_nV$ had unbounded $\alpha_n\geq0$, division by $\alpha_n$ would give $-V\succeq0$, impossible for a trace-one witness. Thus $W=P+\alpha V$. Since $W$ is not positive semidefinite, $\alpha>0$; taking traces gives $\alpha\leq1$.
+
+If inclusion held in both directions, there would also be $V=\beta W+Q$ with $0<\beta\leq1$ and $Q\succeq0$. Substitution gives $(1-\alpha\beta)W=P+\alpha Q\succeq0$. As $W$ is a witness, $\alpha\beta=1$ and consequently $\alpha=\beta=1$, $P=Q=0$. Hence normalized witnesses with the same detection set are equal. This proves the strictness assertion. The criterion is also the standard witness refinement relation of \cite{lewenstein}.
+\end{proof}
+
+Together, \eqref{eq:contain-support}--\eqref{eq:contain-lmi} and \eqref{eq:fine} translate the original optimization problem into exact matrix conditions. Theorem~\ref{thm:main} goes further: it eliminates the search for an improving witness.
+
+\subsection{Optimality without any remaining optimization}
+
+For an already certified witness and admissible target, put
+\[
+ \delta=1-\|b\|^2>0,\qquad K=T-ab^{\mathsf T}.
+\]
+Theorem~\ref{thm:main} and \eqref{eq:shape} give the following exact algebraic test:
+\begin{equation}\label{eq:polynomial-optimality}
+ \boxed{\begin{aligned}
+ a-Tb&=\delta\cstar,\\
+ K(\delta I_3+bb^{\mathsf T})K^{\mathsf T}&=\delta^2\Qstar,\\
+ \det K&\geq0.
+ \end{aligned}}
+\end{equation}
+These conditions are equivalent to relative optimality. The determinant is strictly positive in rank three and zero in rank two. They are polynomial equalities and an inequality in the original Bloch data; no canonical square root, semidefinite optimization, or filter search remains.
+
+\begin{corollary}[The test also certifies witness validity]\label{cor:algebraic-validity}
+Let $W$ be any trace-one Hermitian operator, and let $\E_*$ be an admissible target. Then $W$ is a witness optimal in $\Sstar$ if and only if $\delta>0$ and all three conditions in \eqref{eq:polynomial-optimality} hold.
+\end{corollary}
+\begin{proof}
+Necessity follows from Theorem~\ref{thm:main}. Conversely, $\delta>0$ makes every steering denominator positive. The first two equations and the exact shape formula give $\E(W)=\E_*\subseteq\B$, so every conditional Alice operator is positive; hence $W$ is block positive. The determinant condition gives positive chirality in rank three and zero in rank two. Choose a known witness for the admissible target and, in rank three, use the mirror lemma if necessary to choose positive chirality. The same-ellipsoid, same-chirality filter correspondence in Corollary~\ref{cor:sameE} relates it to $W$ by an invertible Bob congruence and positive normalization. Failure of positive semidefiniteness is preserved. Thus $W$ is a witness, and the classification proves its relative optimality.
+\end{proof}
+
+The strict marginal inequality cannot be dropped. For any product state with a pure Bob factor, $\|b\|=1$ and $T=ab^{\mathsf T}$. Thus $\delta=0$, $K=0$, and $a-Tb=0$. All three displayed polynomial conditions then hold for \emph{every} target, although the operator is positive semidefinite and is not a witness. Trace normalization, Hermiticity, target admissibility and $\delta>0$ are essential domain conditions of the strengthened test.
+
+For a full-dimensional target the equations simplify further. Put $D=T-\cstar b^{\mathsf T}$. Under the same domain conditions, relative optimality is equivalent to
+\begin{equation}\label{eq:quadratic-optimality}
+ \boxed{a-Tb=\delta\cstar,\qquad
+ D^{\mathsf T}\Qstar^{-1}D=\delta I_3+bb^{\mathsf T},\qquad
+ \det D>0.}
+\end{equation}
+The matrix equalities are quadratic in the original Bloch coefficients, with the target fixed. To verify equivalence, the centre equation gives $a-\cstar=Db$ and hence $K=D(I-bb^{\mathsf T})$. Since
+\[
+ (I-bb^{\mathsf T})(\delta I+bb^{\mathsf T})=\delta I,
+\]
+the shape equation is $D(I-bb^{\mathsf T})D^{\mathsf T}=\delta\Qstar$. Invertibility gives the displayed inverse-metric equation, and $\det K=\delta\det D$ gives the orientation sign. This reformulation applies only to a nonsingular target; the polynomial criterion above covers planar targets without using an inverse.
+
+\section{An exact counterexample to the unrestricted converse}
+
+For $0\leq p\leq1$, define
+\begin{equation}\label{eq:Wp}
+ W_p=\frac12\begin{pmatrix}
+ p&0&0&0\\0&1-p&1&0\\0&1&1-p&0\\0&0&0&p
+ \end{pmatrix}.
+\end{equation}
+This family already occurs in Example 2 of \cite{milne}; the comparison below is an immediate exact consequence, not a claim that the family itself is new. Let
+\[
+ \ket{\psi^\pm}=\frac{\ket{01}\pm\ket{10}}{\sqrt2},\qquad
+ P_+=\proj{\psi^+},\qquad F\ket{x,y}=\ket{y,x}.
+\]
+Then $W_p=pF/2+(1-p)P_+$. Both summands are block positive, since the product expectation of $F$ is $|\langle x,y\rangle|^2$. Also
+\[
+ \operatorname{spec}(W_p)=\left\{\frac p2,\frac p2,\frac{2-p}{2},-\frac p2\right\}.
+\]
+Thus every $0<p\leq1$ is a witness. For $0<p<1$,
+\begin{equation}\label{eq:dets}
+ \det W_p=-\frac{p^3(2-p)}{16}<0,
+ \qquad \det W_p^\Gamma=-\frac{(1-p)^3(1+p)}{16}<0,
+\end{equation}
+so these are Class D.
+
+Take $W=W_{1/4}$ and $V=W_{3/4}$. Explicitly,
+\[
+ W=\frac18\begin{pmatrix}1&0&0&0\\0&3&4&0\\0&4&3&0\\0&0&0&1\end{pmatrix},
+ \qquad
+ V=\frac18\begin{pmatrix}3&0&0&0\\0&1&4&0\\0&4&1&0\\0&0&0&3\end{pmatrix}.
+\]
+Their canonical correlation matrices are $\operatorname{diag}(1,1,-1/2)$ and $\operatorname{diag}(1,1,1/2)$. They have exactly the same ellipsoid
+\begin{equation}\label{eq:exampleE}
+ \E_* = \{(x,y,z):x^2+y^2+4z^2\leq1\}\subseteq\B,
+\end{equation}
+but opposite chiralities. The exact identity
+\begin{equation}\label{eq:counter-id}
+ \boxed{W=\frac13 V+\frac23P_+}
+\end{equation}
+proves $D(W)\subsetneq D(V)$. Strictness can also be seen without invoking Lemma~\ref{lem:fine}: the density matrix
+\[
+ \rho=\tfrac34\proj{\psi^-}+\tfrac14\proj{\psi^+}
+ =\begin{pmatrix}0&0&0&0\\0&1/2&-1/4&0\\0&-1/4&1/2&0\\0&0&0&0\end{pmatrix}
+\]
+satisfies
+\[
+ \tr(\rho W)=\frac18>0,\qquad \tr(\rho V)=-\frac18<0.
+\]
+The determinant pairs are $(-7/4096,-135/4096)$ for $W$ and $(-135/4096,-7/4096)$ for $V$, where each pair lists the operator and its partial transpose.
+
+There is also an improvement that preserves negative chirality. Set $V'=W_{1/3}$. Then
+\[
+ W=\frac34V'+\frac14P_+,
+ \qquad
+ \E(V')=\{x^2+y^2+9z^2\leq1\}\subsetneq\E_*.
+\]
+Both $W$ and $V'$ are left-handed Class D witnesses. Therefore the simple claim that filling a given ellipsoid guarantees optimality fails even if the improving witness is required to have the same chirality. For example $\rho'=\tfrac67\proj{\psi^-}+\tfrac17\proj{\psi^+}$ gives $\tr(\rho'W)=1/56$ and $\tr(\rho'V')=-1/42$.
+
+\subsection{The failure also occurs strictly inside the Bloch ball}
+
+It is not a consequence of contact with the Bloch sphere. Set
+\[
+ H_\pm=\frac14\left(\II+\frac34\XX+\frac34\YY\pm\frac14\ZZ\right).
+\]
+Both are Class D, have semiaxes $(3/4,3/4,1/4)$, and have expectation at least $1/16$ on every normalized product vector. Their Bell spectra are $(5,5,9,-3)/16$ and $(3,3,11,-1)/16$, respectively. With $\ket{\phi^\pm}=(\ket{00}\pm\ket{11})/\sqrt2$,
+\[
+ H_-=\tfrac13H_++\tfrac1{12}\proj{\phi^+}+\tfrac1{12}\proj{\phi^-}+\tfrac12\proj{\psi^+}.
+\]
+This is another exact positive-remainder certificate. The state $\tfrac45\proj{\psi^-}+\tfrac15\proj{\psi^+}$ gives expectations $7/80$ for $H_-$ and $-3/80$ for $H_+$. These additional identities are verified by the exact symbolic scripts of the package.
+
+\section{Incomparability inside a Bob-filter orbit}
+
+\begin{lemma}[One-sided filters cannot give strict fineness within an orbit]\label{lem:orbit}
+Let $W$ be block positive but not positive semidefinite on $\C^m\otimes\C^2$, with positive definite Bob marginal. If
+\[
+ P=W-(I\otimes G)W(I\otimes G^\dagger)\succeq0,
+\]
+then $P=0$.
+\end{lemma}
+\begin{proof}
+Apply a common Bob whitening congruence and rescale so that $W_B=I/2$. The transformed identity has the same form, with a possibly different $G$. Taking the Alice partial trace gives $I-GG^\dagger\succeq0$; hence $G$ is a contraction.
+
+If its spectral radius is less than one, iterate the identity:
+\[
+ W=\sum_{j=0}^{n-1}(I\otimes G^j)P(I\otimes(G^\dagger)^j)
+ +(I\otimes G^n)W(I\otimes(G^\dagger)^n).
+\]
+The final term tends to zero. Every summand is positive semidefinite, so closedness of the positive semidefinite cone implies $W\succeq0$, a contradiction.
+
+Otherwise $G$ has an eigenvalue $\lambda$ of modulus one. Its eigenvector is reducing: equality in the contraction inequality yields $G^\dagger v=\bar\lambda v$. As Bob has dimension two, a unitary change of basis gives $G=\operatorname{diag}(\lambda,\mu)$ with $|\mu|\leq1$. If $|\mu|=1$, $G$ is unitary and $\tr P=0$, so $P=0$.
+
+If $|\mu|<1$, write the Bob blocks of $W$ as $\bigl(\begin{smallmatrix}A&C\\C^\dagger&D\end{smallmatrix}\bigr)$. Block positivity implies $A,D\succeq0$. The first diagonal block of $P$ is zero, so positivity of $P$ forces its off-diagonal block $(1-\lambda\bar\mu)C$ to vanish. This coefficient is nonzero; thus $C=0$, again making $W$ positive semidefinite. This contradiction exhausts the cases.
+\end{proof}
+
+\begin{corollary}\label{cor:sameE}
+Two normalized witnesses with the same full-dimensional ellipsoid and the same chirality cannot be strictly comparable by fineness. For a degenerate ellipsoid, no chirality qualification is needed.
+\end{corollary}
+\begin{proof}
+Whiten both Bob marginals. Their centers agree, and their correlation matrices satisfy $T_1T_1^{\mathsf T}=T_2T_2^{\mathsf T}$. In full rank, equal determinant signs give $T_2=T_1O$ with $O\in SO(3)$. In deficient rank, an orthogonal solution can be adjusted on the kernel to have determinant $+1$. The rotation $O$ is implemented by a Bob unitary. Undoing whitening shows the original witnesses are related by an invertible Bob filter and a positive scale. Absorb the scale from the fineness inequality into that filter and apply Lemma~\ref{lem:orbit}.
+\end{proof}
+
+For ellipsoids of rank at least two, the orbit argument itself also applies to block-positive representatives that are states; their Bob marginals are positive definite. Invertible Bob congruence preserves positivity, and partial transpose merely conjugates the Bob filter. Thus positivity and the Class C/D status are constant within a fixed-chirality ellipsoid orbit. In rank two there is one such orbit, so partial transpose preserves witness status and every witness target is Class D. In rank three, a Class C target has a right-handed witness orbit and a left-handed state orbit, as also follows from the two normal forms below and agrees with the classification in \cite{milne}.
+
+\section{Every left-handed witness has a finer right-handed representative}
+
+This section uses the complete local-filter normal forms of Avron--Kenneth, Theorem 8.2 and Appendix B of \cite{avron}. The theorem applies to all real Lorentz-cone-preserving matrices, not just to strictly positive maps. Thus the non-diagonal boundary family must be included. Invertible local filters preserve block positivity, the positive semidefinite order, and chirality. Alice filtering applies the same bijective fractional transformation to both ellipsoids; Bob filtering does not change an ellipsoid. Equality of ellipsoids is therefore preserved by a common local filter.
+
+\begin{lemma}[Chirality comparison]\label{lem:mirror}
+Every left-handed two-qubit witness is strictly dominated by a right-handed witness with exactly the same ellipsoid.
+\end{lemma}
+\begin{proof}
+We may work with unnormalized operators. The two rank-one Lorentz exceptional forms describe positive product operators and cannot be witnesses. The other forms give the following two cases after proper local unitary transformations and relabeling of Pauli axes. No exchange of Alice and Bob is needed.
+
+\textbf{Ordinary diagonal form.} The left-handed operator can be written
+\[
+ B_-=w\II+s_1\XX+s_2\YY-s_3\ZZ,
+ \quad w\geq s_1\geq s_2\geq s_3>0.
+\]
+Its only possibly negative Bell eigenvalue is $w-s_1-s_2+s_3$. Set $a=s_1+s_2-w$; the witness condition is $a>s_3$. Define
+\begin{align*}
+ B_+&=w\II+s_1\XX+s_2\YY+s_3\ZZ,\qquad \eta=\frac{a-s_3}{a+s_3},\\
+ R&=w\II+s_1\XX+s_2\YY-a\ZZ.
+\end{align*}
+Then $0<\eta<1$ and
+\begin{equation}\label{eq:ordinary}
+ B_-=\eta B_+ +(1-\eta)R.
+\end{equation}
+The eigenvalues of $R$ are
+\[
+ 2(w-s_2),\quad2(w-s_1),\quad2(s_1+s_2),\quad0.
+\]
+They are nonnegative, so $R\succeq0$. The sign flip leaves the ellipsoid unchanged and changes chirality to $+1$. The operator $B_+$ is block positive by the same normal-form inequalities and has a negative Bell eigenvalue.
+
+\textbf{Extraordinary boundary form.} After relabeling the longitudinal axis as $Z$, the operator has the form
+\[
+ B_-=w(\II+\ZZ)+k(I+Z)\otimes(I-Z)+u\XX-s\YY,
+ \quad w\geq u>s>0,\quad k>0.
+\]
+The strict inequality $u>s$ follows from the witness condition: at $u=s$ this operator is positive semidefinite. Set
+\[
+ B_+=w(\II+\ZZ)+k(I+Z)\otimes(I-Z)+u\XX+s\YY,
+ \qquad\eta=\frac{u-s}{u+s}.
+\]
+Then
+\begin{equation}\label{eq:extraordinary}
+ B_- -\eta B_+
+ =(1-\eta)\bigl[w(\II+\ZZ)+u(\XX-\YY)+k(I+Z)\otimes(I-Z)\bigr]\succeq0.
+\end{equation}
+The bracket has eigenvalues $2(w+u),2(w-u),4k,0$. Both operators are block positive by the normal form, and $B_+$ is a witness because the $\{\ket{01},\ket{10}\}$ block has a nonzero off-diagonal entry and one zero diagonal entry. Partial transpose on Bob relates the two forms and leaves their ellipsoid identical.
+
+In both cases the positive remainder is nonzero. Undo the common invertible local filters and normalize. Lemma~\ref{lem:fine} then gives strict fineness, while the equality of ellipsoids and the chirality signs remain valid.
+\end{proof}
+
+The boundary case is not obtained by assuming a limiting diagonalization: it has its own finite exact certificate \eqref{eq:extraordinary}. This avoids an otherwise significant gap.
+
+There is a related literature pitfall: a trace-preserving restriction of some channel normal forms was corrected in \cite{davalos2019,davalos2023}. The argument here imposes no such restriction. Its extraordinary representative is unnormalized and retains both nonzero marginals. This is the full Lorentz-cone classification used in \cite{avron}, not a claim that every boundary channel has a trace-preserving diagonal or one-parameter representative.
+
+\section{Positive lifts and the finite refinement procedure}\label{sec:lift}
+
+\subsection{The qubit map associated with a target}
+
+Choose a factor $A$ with $AA^{\mathsf T}=\Qstar$. In full rank choose $\det A>0$; in rank two choose its second column to be zero. Define a trace-preserving Hermiticity-preserving qubit map $L$ by
+\begin{equation}\label{eq:L}
+ L(I)=I+\cstar\cdot\sigma,
+ \qquad L(\sigma_j)=\sum_i A_{ij}\sigma_i.
+\end{equation}
+It acts on Bloch vectors as $r\mapsto\cstar+Ar$, so $\E_*\subseteq\B$ is exactly the condition that $L$ is positive. Write $\mathscr L=L\otimes\id$.
+
+For a positive $L$, $\mathscr L$ preserves block positivity and maps positive product operators to positive semidefinite operators. The first assertion follows by testing against products and using positivity of $L^*$ on the Alice factor. Complete positivity of $L$ is not assumed in the Class D argument.
+
+Let $\Phi=\proj{\phi^+}$ with $\ket{\phi^+}=(\ket{00}+\ket{11})/\sqrt2$. Since $F/2=\Phi^\Gamma$,
+\[
+ W_* =\mathscr L(\Phi^\Gamma)
+ \quad\text{has ellipsoid }\E_*,
+ \qquad J(L)=\mathscr L(\Phi)=W_*^\Gamma.
+\]
+In full rank $W_*$ is right-handed. If the target is Class C, $J(L)\succeq0$, so $L$ is completely positive by the Choi criterion. This includes singular $J(L)$.
+
+\begin{lemma}[Exact positive lift]\label{lem:lift}
+For every $W\in\Sstar$, there exists a trace-one block-positive $V$ with $\mathscr L(V)=W$.
+\end{lemma}
+\begin{proof}
+Use the Bloch data of $W$ and define
+\[
+ a_V=A^+(a-\cstar),\quad b_V=b,\quad T_V=A^+(T-\cstar b^{\mathsf T}).
+\]
+Containment implies $a-\cstar$ and all columns of $T-\cstar b^{\mathsf T}$ lie in $\ran A$. Hence applying $\mathscr L$ returns $W$ exactly. For $u\in\B$,
+\[
+ \frac{a_V+T_Vu}{1+b\cdot u}=A^+\left(\frac{a+Tu}{1+b\cdot u}-\cstar\right).
+\]
+The right side is the minimum-norm preimage of a point in $\E_*$ and has norm at most one. Lemma~\ref{lem:marginal} makes the denominator positive. Thus every conditional Alice operator of $V$ is positive semidefinite, so $V$ is block positive. In full rank this is ordinary inversion; in rank two it is a genuine positive lift. $V$ need not itself be a witness.
+\end{proof}
+
+\subsection{Product subtraction terminates at an entangled vector}
+
+Two-qubit decomposability gives
+\begin{equation}\label{eq:decomp}
+ V=P+Q^\Gamma,\qquad P,Q\succeq0,
+\end{equation}
+for every block-positive $V$. This is the standard low-dimensional positive-map theorem \cite{woronowicz}; it is an external input, independent of the ellipsoid conjecture.
+
+We will also use the following elementary rank reduction. Every complex subspace of $\C^2\otimes\C^2$ of dimension at least two contains a nonzero product vector: identify vectors with $2\times2$ coefficient matrices, take a two-dimensional pencil, and use a projective zero of its homogeneous quadratic determinant. If $v$ is such a product vector in $\ran Q$, then
+\[
+ Q-\tau vv^\dagger\succeq0,
+ \qquad \tau=(v^\dagger Q^+v)^{-1}>0,
+\]
+and the rank drops. This follows by conjugating with $Q^{1/2}$ on its support and subtracting a normalized rank-one projector. Since $(vv^\dagger)^\Gamma$ is again a positive product operator, its image under $\mathscr L$ is positive semidefinite. Repeating at most three times reduces $Q$ to rank at most one.
+
+\subsection{Full-dimensional Class C}
+
+Take the lift $V$ and the decomposition \eqref{eq:decomp}. Since $L$ is completely positive,
+\[
+ W=\mathscr L(P)+\mathscr L(Q^\Gamma),\qquad\mathscr L(P)\succeq0.
+\]
+Apply the rank reduction to $Q$, moving the positive product images into the positive remainder. A zero or product rank-one remainder would make $W\succeq0$. Therefore the final source is a positive multiple of a pure entangled projector. We obtain
+\begin{equation}\label{eq:refine}
+ W=\mathscr L((qq^\dagger)^\Gamma)+P_0,
+ \qquad P_0\succeq0,
+ \qquad q\text{ entangled and nonzero}.
+\end{equation}
+The first term cannot be positive semidefinite, since otherwise $W$ would be. A pure entangled projector, and its partial transpose, have the entire Bloch ball as their ellipsoid: every such vector is an invertible Bob filtering of $\ket{\phi^+}$. Its image under $L$ therefore has ellipsoid $\E_*$ and positive chirality.
+
+\subsection{Full-dimensional Class D}
+
+Here $L$ need not be completely positive, so one cannot simply declare $\mathscr L(P)$ positive. Instead, decompose $P$ spectrally into rank-one projectors. A product summand has positive semidefinite image. An entangled summand has a left-handed ellipsoid $\E_*$ and is a witness because the target is Class D. Lemma~\ref{lem:mirror} replaces that image by a right-handed witness with the same ellipsoid, plus a positive semidefinite remainder.
+
+Every right-handed representative of $\E_*$ is a Bob-filter image of $W_*$, by the argument in Corollary~\ref{cor:sameE}. Since $\mathscr L$ commutes with Bob filtering, each replacement is $\mathscr L(R_j^\Gamma)$ for some positive rank-one entangled $R_j$, with positive scale absorbed into $R_j$. Combining these terms with $Q$ gives
+\[
+ W=\mathscr L(R^\Gamma)+P_0,
+ \qquad R\succeq0,\quad P_0\succeq0.
+\]
+The same product subtraction reduces $R$ to one entangled rank-one term. Thus \eqref{eq:refine} also holds in full-dimensional Class D. This explicitly resolves the failure of complete positivity rather than assuming it away.
+
+\subsection{Rank-two targets: a direct proof}
+
+Our factor $A$ has zero second column, so $L(Y)=0$. Since matrix transposition fixes $I,X,Z$ and negates $Y$,
+\begin{equation}\label{eq:transpose}
+ L\circ\mathsf T=L.
+\end{equation}
+Take the exact lift and \eqref{eq:decomp}. Full transpose is denoted $\mathsf T$ on the bipartite operator. Then
+\[
+ \mathscr L(P)=\mathscr L(P^{\mathsf T_A})
+ =\mathscr L((P^{\mathsf T})^\Gamma),\qquad P^{\mathsf T}\succeq0.
+\]
+It follows that
+\[
+ W=\mathscr L((P^{\mathsf T}+Q)^\Gamma).
+\]
+Apply the same finite product subtraction. Again the final vector must be entangled, and its image has the whole target ellipse. This proof works for translated and boundary-touching planar ellipses and uses no inverse of a singular matrix and no limiting argument.
+
+\section{Completion of the classification proof}
+
+Trace preservation gives $\alpha=\|q\|^2>0$ in \eqref{eq:refine}. Normalizing the witness term yields
+\[
+ W=\alpha U+P_0,\qquad 0<\alpha\leq1,\quad P_0\succeq0,
+\]
+Here $\E(U)=\E_*$ and $U$ is right-handed in rank three. By Lemma~\ref{lem:fine}, $U$ is finer or equal to $W$. Optimality of $W$ forces $P_0=0$ and $W=U$, proving necessity and the chirality restriction.
+
+For sufficiency, let $W$ have the required ellipsoid and chirality. If $V\in\Sstar$ were strictly finer, refining $V$ would yield a candidate $U$ strictly finer than $W$ by transitivity. Corollary~\ref{cor:sameE} excludes this, so $W$ is optimal.
+
+Finally, a canonical block-positive operator with rank-one correlation matrix can be put into the form
+\[
+ \frac14\left[(I+c\cdot\sigma)\otimes I+(v\cdot\sigma)\otimes Z\right].
+\]
+Its Bob-diagonal blocks, proportional to $I+(c\pm v)\cdot\sigma$, are positive by block positivity. Hence the operator is positive semidefinite. Rank zero is immediate. This excludes ranks at most one and completes Theorem~\ref{thm:main}.
+
+
+\clearpage
+\input{sections/extensions}
+\clearpage
+\part{Context, disclosure and verification}
+\input{sections/related}
+\appendix
+\input{sections/formal_status}
+\clearpage
+\begin{thebibliography}{99}
+\bibitem{milne} A. Milne, D. Jennings, and T. Rudolph, \emph{Geometric representation of two-qubit entanglement witnesses}, Physical Review A \textbf{92}, 012311 (2015). \href{https://arxiv.org/abs/1407.8440}{arXiv:1407.8440}; \href{https://doi.org/10.1103/PhysRevA.92.012311}{doi:10.1103/PhysRevA.92.012311}. In particular Sections II, IV\,C and IV\,D.
+\bibitem{lewenstein} M. Lewenstein, B. Kraus, J. I. Cirac, and P. Horodecki, \emph{Optimization of entanglement witnesses}, Physical Review A \textbf{62}, 052310 (2000). \href{https://arxiv.org/abs/quant-ph/0005014}{arXiv:quant-ph/0005014}.
+\bibitem{woronowicz} S. L. Woronowicz, \emph{Positive maps of low dimensional matrix algebras}, Reports on Mathematical Physics \textbf{10}, 165--183 (1976). \href{https://doi.org/10.1016/0034-4877(76)90038-0}{doi:10.1016/0034-4877(76)90038-0}.
+\bibitem{avron} J. E. Avron and O. Kenneth, \emph{Entanglement and the geometry of two qubits}, Annals of Physics \textbf{324}, 470--496 (2009). \href{https://doi.org/10.1016/j.aop.2008.07.007}{doi:10.1016/j.aop.2008.07.007}. Theorem 8.2, Section 9.4, and Appendix B. \href{https://phsites.technion.ac.il/avron/wp-content/uploads/sites/3/2013/05/Ann_Phys_324_470_2009.pdf}{Author-hosted full text}.
+\bibitem{polik} I. P\'olik and T. Terlaky, \emph{A survey of the S-lemma}, SIAM Review \textbf{49}, 371--418 (2007). \href{https://doi.org/10.1137/S003614450444614X}{doi:10.1137/S003614450444614X}; \href{https://optimization-online.org/2004/10/968/}{author preprint record}.
+\bibitem{augusiak} R. Augusiak, J. Tura, and M. Lewenstein, \emph{A note on the optimality of decomposable entanglement witnesses and completely entangled subspaces}, Journal of Physics A \textbf{44}, 212001 (2011). \href{https://arxiv.org/abs/1012.3786}{arXiv:1012.3786}.
+\bibitem{thesis} A. Milne, \emph{Quantum steering ellipsoids}, doctoral thesis, Imperial College London (issued 2016). Conjecture 7.6, p.~99. \href{https://doi.org/10.25560/44111}{doi:10.25560/44111}.
+\bibitem{davalos2019} D. Davalos, M. Ziman, and C. Pineda, \emph{Divisibility of qubit channels and dynamical maps}, Quantum \textbf{3}, 144 (2019), Appendix A. \href{https://arxiv.org/abs/1812.11437}{arXiv:1812.11437}.
+\bibitem{davalos2023} D. Davalos and M. Ziman, \emph{Quantum dynamics is not strictly bidivisible}, Physical Review Letters \textbf{130}, 080801 (2023), Theorem 3 and its supplemental proof. \href{https://doi.org/10.1103/PhysRevLett.130.080801}{doi:10.1103/PhysRevLett.130.080801}.
+\bibitem{boyd} L. Vandenberghe and S. Boyd, \emph{Semidefinite programming}, SIAM Review \textbf{38}, 49--95 (1996). Theorem 3.1. \href{https://web.stanford.edu/~boyd/papers/pdf/semidef_prog.pdf}{Author-hosted full text}.
+\bibitem{ls} M. Lewenstein and A. Sanpera, \emph{Separability and entanglement of composite quantum systems}, Physical Review Letters \textbf{80}, 2261 (1998). \href{https://doi.org/10.1103/PhysRevLett.80.2261}{doi:10.1103/PhysRevLett.80.2261}.
+\bibitem{karnas} S. Karnas and M. Lewenstein, \emph{Separable approximations of density matrices of composite quantum systems}, Journal of Physics A \textbf{34} (2001). \href{https://arxiv.org/abs/quant-ph/0011066}{arXiv:quant-ph/0011066}; \href{https://doi.org/10.1088/0305-4470/34/35/318}{doi:10.1088/0305-4470/34/35/318}.
+\bibitem{bruss} D. Bru\ss, J. I. Cirac, P. Horodecki, F. Hulpke, B. Kraus, M. Lewenstein, and A. Sanpera, \emph{Reflections upon separability and distillability}, Journal of Modern Optics \textbf{49}, 1399--1418 (2002). Theorem 3, Proposition 6, and the support-of-marginals observation. \href{https://arxiv.org/abs/quant-ph/0110081}{arXiv:quant-ph/0110081}; \href{https://doi.org/10.1080/09500340110105975}{doi:10.1080/09500340110105975}.
+\bibitem{thiang} G. C. Thiang, P. Raynal, and B.-G. Englert, \emph{Optimal Lewenstein--Sanpera decomposition of two-qubit states using semidefinite programming}, Physical Review A \textbf{80}, 052313 (2009). \href{https://arxiv.org/abs/0909.4599}{arXiv:0909.4599}; \href{https://doi.org/10.1103/PhysRevA.80.052313}{doi:10.1103/PhysRevA.80.052313}.
+\end{thebibliography}
+\end{document}
+

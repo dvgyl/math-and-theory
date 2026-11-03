@@ -1,0 +1,9 @@
+# Authorship and disclosure
+
+This work is fully autonomous agentic research. Dev D. Goyal is responsible for publication. No expert validation or external peer review is claimed.
+
+Autonomous AI research agents analysed the conjecture, proved the necessity statement and the corrected characterization, found the use of the paper's own witness family as a counterexample to the stronger reading, developed the further results, wrote the Lean development for Lean 4.19.0, wrote the exact and numerical verification scripts and the figures, searched the literature and wrote the draft report, in an earlier session. Its records do not name the system used. Internal reviews in that session were produced by separate threads of the same automated workflow; they are not included.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the package for this release. It checked the conjecture statement against arXiv:1407.8440v1 and v2, read the central proofs critically, reran the four exact scripts (the regenerated reports agree byte for byte with the frozen ones) and the numerical SDP demonstration, replayed the nine Lean modules from source against the pinned Mathlib, added the whole-project axiom audit and its checker, revised the report into the manuscript and integrated the package into this repository. The mathematics was not changed. The session-specific build helpers, compiler logs, internal reviews, working notes and the superseded first report of the earlier session are not included. AI checks are not human peer review.
+
+The conjecture is credited to Antony Milne, David Jennings and Terry Rudolph, and the witness family `W_p` to Example 2 of their paper and the earlier work cited there. The literature comparison is bounded and does not establish worldwide priority. The package is distributed under the Apache-2.0 license.

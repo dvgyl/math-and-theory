@@ -1,0 +1,82 @@
+\section{What the Lean development proves}\label{app:formal}
+
+The formal development uses Lean 4.19.0 and Mathlib at commit
+\begin{center}\small\texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}.\end{center}
+It is essential to distinguish its complete formal refutation of the unrestricted converse from the general corrected classification, which is not an end-to-end Lean theorem.
+
+\subsection{The formal mathematical objects}
+
+The matrix modules use genuine complex $4\times4$ matrices in the computational basis $00,01,10,11$, with the usual definitions:
+\begin{align*}
+ \operatorname{quad}(A,z)&=\operatorname{Re}\sum_{i,j}\overline{z_i}A_{ij}z_j,\\
+ \operatorname{PSD}(A)&\iff A=A^\dagger\ \text{and}\ \operatorname{quad}(A,z)\geq0\ \text{for every }z\in\C^4,\\
+ \operatorname{State}(\rho)&\iff\operatorname{PSD}(\rho)\ \text{and}\ \tr\rho=1.
+\end{align*}
+Block positivity quantifies over every pair of complex two-vectors. A witness is Hermitian, has trace one, is block positive and has a negative quadratic-form value. Detection uses $\operatorname{Re}\tr(W\rho)<0$, and fineness quantifies over every complex density matrix. No restriction to real or Bell-diagonal states is hidden in these definitions.
+
+The canonical ellipsoid is the image of the full real unit ball under the affine map read from the matrix's Pauli coefficients; this is the ellipsoid of \cite{milne} for an operator whose Bob marginal is maximally mixed, and canonicality is proved for each example from its actual coefficients. The Class~C comparison uses the full fractional Bloch map and proves positivity of its denominator on the ball; its noncanonical witness is not passed through the canonical definition. The surrounding set in the theorem \texttt{counterexample} is restricted to canonical witnesses, but the companion theorems \texttt{not\_optimal\_in\_any\_containing\_set} and \texttt{parametric\_not\_optimal\_in\_any\_containing\_set} remove that restriction: no set of complex $4\times4$ matrices that contains the finer witness makes the coarser one optimal.
+
+\subsection{Module-by-module coverage}
+
+\begin{longtable}{@{}p{.30\linewidth}p{.65\linewidth}@{}}
+\toprule
+Module & Kernel-checked mathematical content\\
+\midrule\endhead
+\texttt{EllipsoidCounterexample} & Direct witness and partial-transpose witness proofs, Pauli coefficients, equal ellipsoids, strict detection inclusion and the rational Class~D counterexample $p=1/4,3/4$.\\[4pt]
+\texttt{SameChirality} & A strictly finer negative-chirality witness with a properly smaller ellipsoid, including an exact density-matrix separator.\\[4pt]
+\texttt{ParametricFamily} & Exact fineness and strict-fineness orders for all valid parameters; complete ellipsoid containment and equality criteria; Class~C/D endpoint classification; unique scalar subtraction coefficient; sharp common separation margin; the counterexample for every $0<p<1/2$; unique optimizer within the explicitly stated one-parameter family.\\[4pt]
+\texttt{ClassCComparison} & Both Class~C witness properties, positive partial transposes, positive subtraction, strict fineness for arbitrary density matrices, actual noncanonical Bloch data, positive denominators, and two points proving incomparable ellipsoids.\\[4pt]
+\texttt{NormalFormCertificates} & A Bell-basis PSD equivalence for complex matrices, exact positive remainders for the ordinary and extraordinary Lorentz forms, their coefficient bounds, and the interior example's coercive quadratic identity.\\[4pt]
+\texttt{MirrorComparison} & The complete sharp three-parameter comparison interval, its exact width, nonemptiness, and the minimum-coefficient PSD certificate.\\[4pt]
+\texttt{GeometryCertificates} & The homogeneous $4\times4$ raw LMI expansion and containment implication; canonical specialization; positive denominators from the strict marginal bound; singular support equations; an explicit failure of metric-only planar containment; diagonal ellipsoid containment, zero axes allowed.\\[4pt]
+\texttt{ProductVector} & Determinant zero if and only if tensor-product factorization for a complex four-vector; a determinant-pencil quadratic root; every complex subspace of $\C^2\otimes\C^2$ of dimension at least two contains a nonzero product vector.\\[4pt]
+\texttt{OptimalityReduction} & A cofinal-antichain classification theorem, its connection to the actual matrix detection relation, a counted finite rank-reduction argument with a three-step bound, and the exact interpolation identity. The structural matrix hypotheses are explicit inputs.\\
+\bottomrule
+\end{longtable}
+
+Some entries are unconditional concrete-matrix or geometric theorems; others are explicitly conditional assembly results. Their type signatures, not their file names, determine what has been proved. The files \texttt{THEOREM\_INDEX.md} and \texttt{FORMALIZATION\_STATUS.md} of the package map each statement to its declaration and list the remaining bridges.
+
+\subsection{The decisive formal conclusion}
+
+The theorem \texttt{infinite\_ClassD\_counterexamples} applies to every $0<p<1/2$. It certifies both Class~D witness properties, admissibility of the target, equality of the ellipsoids, strict fineness of $W_{1-p}$ over $W_p$, and nonoptimality of $W_p$ in the canonical containment-defined set. The theorem \texttt{parametric\_not\_optimal\_in\_any\_containing\_set} shows that no set containing $W_{1-p}$ makes $W_p$ optimal. Together they formally refute the characterization reading of the conjecture. They do not bear on the necessity reading, which Theorem~\ref{thm:main} proves conventionally.
+
+\section{What is not an end-to-end Lean proof}\label{app:gaps}
+
+\textbf{Theorem~\ref{thm:main} is a conventional theorem with published inputs, not an unconditional Lean theorem over arbitrary two-qubit matrices.} The following dependencies remain outside the checked matrix chain:
+
+\begin{enumerate}
+\item The two-qubit decomposability theorem $\BP=\PSD+\PSD^\Gamma$ \cite{woronowicz}. It is cited, not introduced as a Lean axiom.
+\item Existence and completeness of the Lorentz normal forms, including the extraordinary boundary case \cite{avron}. The PSD certificates \emph{inside} both forms are checked; the reduction of every witness to those forms is not.
+\item The general Bob-marginal, whitening, local-filter and orbit-incomparability arguments. The abstract cofinal-antichain theorem does not supply them.
+\item The exact positive lift for arbitrary translated or singular targets, its Pauli-map interpretation, and the rank-drop formula involving $Q^+$. Product-vector existence is checked separately; the whole PSD subtraction step is not.
+\item Necessity in the S-lemma characterization and the general identification of the pseudoinverse metric enclosure with a matrix-defined ellipsoid. Lean proves soundness of the displayed certificate and the exact diagonal case.
+\item The general SDP existence and rank-one uniqueness, the robustness ball, the compactification and the volume reversal, which are conventional results with exact symbolic checks where indicated.
+\end{enumerate}
+
+The formal assembly theorem \texttt{quantum\_classification\_given\_structural\_inputs} takes three substantive hypotheses besides membership: every feasible witness has a candidate refinement, candidates are mutually incomparable, and normalized witnesses with the same detection set are equal. Given those inputs it proves the final optimality equivalence for the actual detector definitions. Part~I proves the inputs conventionally; the Lean development does not instantiate them for arbitrary admissible ellipsoids. Likewise the counted rank-reduction theorem assumes a positive-remainder rank drop for every source of rank at least two and then proves termination and the step bound.
+
+The sources contain no \texttt{sorry}, \texttt{admit}, added axiom or native evaluation. A whole-project audit, run with the build, enumerates every declaration defined in the nine content modules and requires each declaration other than the Lean~4.19 code-generation auxiliaries to depend only on \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
+
+\section{How to reproduce the work}
+
+\subsection{Lean}
+
+From the package directory \texttt{lean/}, with the Lean version manager \texttt{elan} and network access for the pinned dependencies:
+\begin{Verbatim}[fontsize=\small]
+lake exe cache get
+lake build Main ProjectAxiomAudit
+python3 ../scripts/check_axiom_audit.py --log build.log --project .
+lake env lean AxiomAudit.lean
+\end{Verbatim}
+Here \texttt{build.log} is the saved output of the build command. The last command prints the dependency closures and type signatures of 44 selected theorems.
+
+\subsection{Exact algebra and numerical examples}
+
+From the package directory, with SymPy~1.14.0:
+\begin{Verbatim}[fontsize=\small]
+python3 scripts/run_exact_checks.py
+python3 verification/solve_refinement.py --output sdp.json
+python3 verification/make_figures.py
+\end{Verbatim}
+The first command runs the four exact scripts in a temporary copy, which check 159 symbolic identities, the normal-form formulas, five primal--dual pairs and two containment certificates (positivity by all principal minors), and compares each regenerated report byte for byte with the committed one. The SDP script uses floating-point conic optimization (CVXPY) and labels its results as diagnostics. Its sample cases include full-dimensional Class~C, boundary and strictly interior Class~D, a planar target, a translated target, and a case with feasible refinement but failed containment. The five exactly certified optima are $1/3$, $1/3$, $2/5$, $1/4$ and $2/15$. The translated example is a numerical illustration, not an exact certificate. The figures are generated from exact formulas.
+

@@ -1,0 +1,59 @@
+import Main
+
+-- Concrete refutations and all-parameter detector/geometry theorems.
+#print axioms EllipsoidCounterexample.counterexample
+#print axioms EllipsoidCounterexample.not_optimal_in_any_containing_set
+#print axioms EllipsoidCounterexample.same_chirality_counterexample
+#print axioms EllipsoidCounterexample.parametric_finer_iff
+#print axioms EllipsoidCounterexample.parametric_strictlyFiner_iff
+#print axioms EllipsoidCounterexample.familyRemainder_psd_iff
+#print axioms EllipsoidCounterexample.maximal_common_separation_margin
+#print axioms EllipsoidCounterexample.midpoint_separator
+#print axioms EllipsoidCounterexample.parametric_ellipsoid_subset_iff
+#print axioms EllipsoidCounterexample.parametric_ellipsoid_equal_iff
+#print axioms EllipsoidCounterexample.parametric_classC_iff
+#print axioms EllipsoidCounterexample.parametric_classD_iff
+#print axioms EllipsoidCounterexample.infinite_ClassD_counterexamples
+#print axioms EllipsoidCounterexample.parametric_not_optimal_in_any_containing_set
+#print axioms EllipsoidCounterexample.axialFamily_unique_optimal
+#print axioms EllipsoidCounterexample.ClassCComparison.classC_refinement_without_geometric_containment
+#print axioms EllipsoidCounterexample.ClassCComparison.denominators_positive
+#print axioms EllipsoidCounterexample.ClassCComparison.positive_subtraction_identity
+
+-- Normal-form matrix arithmetic; not normal-form existence.
+#print axioms EllipsoidNormalForms.bell_psd_iff
+#print axioms EllipsoidNormalForms.ordinary_positive_certificate
+#print axioms EllipsoidNormalForms.extraordinary_positive_certificate
+#print axioms EllipsoidNormalForms.ordinary_coefficient_bounds
+#print axioms EllipsoidNormalForms.extraordinary_coefficient_bounds
+#print axioms EllipsoidNormalForms.interior_remainder_quad
+#print axioms EllipsoidMirrorComparison.residual_identity
+#print axioms EllipsoidMirrorComparison.sharp_mirror_interval
+#print axioms EllipsoidMirrorComparison.mirror_interval_width
+#print axioms EllipsoidMirrorComparison.mirror_interval_nonempty
+#print axioms EllipsoidMirrorComparison.mirror_interval_strict
+#print axioms EllipsoidMirrorComparison.minimum_coefficient_psd
+
+-- Geometry, including singular support and exact product-vector existence.
+#print axioms GeometryCertificates.raw_certificate_identity
+#print axioms GeometryCertificates.denominator_positive_of_marginal_bound
+#print axioms GeometryCertificates.raw_LMI_with_marginal_bound
+#print axioms GeometryCertificates.canonical_LMI_implies_containment
+#print axioms GeometryCertificates.support_condition_is_essential
+#print axioms GeometryCertificates.diagonal_containment_iff
+#print axioms ProductVector.determinant_zero_iff_product
+#print axioms ProductVector.dimension_at_least_two_contains_product
+#print axioms ProductVector.completely_entangled_subspace_dimension_le_one
+
+-- Explicitly conditional assembly and rank descent: inspect their hypotheses.
+#print axioms OptimalityReduction.classification_from_cofinal_antichain
+#print axioms OptimalityReduction.finite_rank_one_refinement
+#print axioms OptimalityReduction.rank_four_requires_at_most_three_steps
+#print axioms OptimalityReduction.interpolation_decomposition
+#print axioms OptimalityReduction.QuantumConnection.quantum_classification_given_structural_inputs
+
+#check @EllipsoidCounterexample.infinite_ClassD_counterexamples
+#check @GeometryCertificates.raw_LMI_with_marginal_bound
+#check @ProductVector.dimension_at_least_two_contains_product
+#check @OptimalityReduction.QuantumConnection.quantum_classification_given_structural_inputs
+#check @OptimalityReduction.finite_rank_one_refinement

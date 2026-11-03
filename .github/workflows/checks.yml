@@ -283,6 +283,9 @@ jobs:
           - package: steering-bounds
             root: papers/physics/steering-bounds
             project: .
+          - package: ellipsoid-witness-optimality
+            root: papers/physics/ellipsoid-witness-optimality
+            project: lean
           - package: strong-gradient
             root: papers/mathematics/strong-gradient
             project: lean
@@ -400,6 +403,12 @@ jobs:
           elif [[ '${{ matrix.package }}' == 'steering-bounds' ]]; then
             ulimit -v 8388608
             python3 scripts/verify.py --serial
+          elif [[ '${{ matrix.package }}' == 'ellipsoid-witness-optimality' ]]; then
+            lake build Main ProjectAxiomAudit 2>&1 | tee "${RUNNER_TEMP}/ellipsoid-witness-optimality-build.log"
+            python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/ellipsoid-witness-optimality-build.log" --project . --output "${RUNNER_TEMP}/ellipsoid-witness-optimality-axioms.json"
+            python3 -m venv "${RUNNER_TEMP}/ellipsoid-witness-optimality-venv"
+            "${RUNNER_TEMP}/ellipsoid-witness-optimality-venv/bin/pip" install --quiet -r ../verification/requirements.txt
+            "${RUNNER_TEMP}/ellipsoid-witness-optimality-venv/bin/python" ../scripts/run_exact_checks.py
           elif [[ '${{ matrix.package }}' == 'strong-gradient' ]]; then
             python3 verify.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib --output "${RUNNER_TEMP}/gradient-source-verification" --timeout 600
           elif [[ '${{ matrix.package }}' == 'unicyclic-skewness' ]]; then

@@ -3340,6 +3340,70 @@
           ]
         ]
       }
+    },
+    {
+      "id": "ellipsoid-witness-optimality",
+      "discipline": "Mathematical physics",
+      "area": "Quantum information",
+      "title": "Optimal entanglement witnesses under ellipsoid containment: the Milne–Jennings–Rudolph conjecture and its chirality correction",
+      "kind": "Conjecture resolved with a corrected classification, formal counterexample family and partial Lean proofs",
+      "significance_rank": 185,
+      "keywords": [
+        "entanglement witnesses",
+        "optimal entanglement witnesses",
+        "quantum steering ellipsoids",
+        "two-qubit entanglement",
+        "Milne–Jennings–Rudolph conjecture",
+        "chirality",
+        "block-positive operators"
+      ],
+      "summary": "Milne, Jennings and Rudolph conjectured that if E* is an ellipsoid in the Bloch ball and S is the set of two-qubit entanglement witnesses whose ellipsoid lies inside E*, then the optimal witnesses in S are represented by E*. The conjecture holds as stated: every optimal member of S has ellipsoid E*. The stronger reading, that every witness with ellipsoid E* is optimal in S, is false: for 0 < p < 1/2 the witnesses W_p and W_{1−p} of their Example 2 share a full-dimensional Class D ellipsoid, and W_{1−p} is strictly finer. For a full-dimensional target the optimal witnesses are exactly the right-handed representatives, for a planar target all representatives; segments and points represent no witness.",
+      "formal_scope": "Lean 4.19.0 proves, for genuine complex 4×4 matrices with states ranging over all complex density matrices and block positivity over all complex product vectors, that W_{1/4}, W_{3/4} and, for every 0 < p < 1/2, W_p and W_{1−p} are Class D witnesses with equal canonical ellipsoids, that W_{1−p} is strictly finer and that W_p is optimal in no set containing W_{1−p}; also the exact detection and geometric orders of the family, a noncanonical Class C comparison, normal-form remainder certificates, the sharp mirror interval, soundness of the containment LMI and product-vector existence. A strict audit covers all 623 project declarations. Necessity and the chirality characterization for arbitrary targets are conventional proofs using the published two-qubit decomposability and Lorentz normal-form theorems; the Lean assembly of the classification takes cofinality, incomparability and faithfulness as explicit hypotheses, and the finite identities are checked by exact SymPy scripts.",
+      "source": "Section IV D of Milne, Jennings and Rudolph, Geometric representation of two-qubit entanglement witnesses, Phys. Rev. A 92, 012311 (2015), arXiv:1407.8440. The witness family is Example 2 of that paper; the classification uses the two-qubit decomposability theorem (Woronowicz) and the Lorentz normal forms of Avron and Kenneth. The Omega Institute records concerning Milne, Jennings, Jevtic and Rudolph (arXiv:1404.3951) treat different statements. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/physics/ellipsoid-witness-optimality/README.md",
+      "paper": "papers/physics/ellipsoid-witness-optimality/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/physics/ellipsoid-witness-optimality"
+      },
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Are the optimal two-qubit entanglement witnesses within an ellipsoid-containment set exactly those represented by the enclosing ellipsoid?",
+        "posed_by": "Antony Milne, David Jennings and Terry Rudolph, Geometric representation of two-qubit entanglement witnesses, Phys. Rev. A 92, 012311 (2015), Section IV D (conjecture)",
+        "problem_url": "https://arxiv.org/abs/1407.8440",
+        "status": "Conjecture proved as stated (necessity); the stronger characterization is refuted for full-dimensional Class D targets and corrected by a chirality condition",
+        "claim": "Every witness optimal among those whose ellipsoid lies in E* has ellipsoid E*; for full-dimensional E* the optimal witnesses are exactly the right-handed representatives, and W_p, W_{1−p} (0 < p < 1/2) show that left-handed ones are not optimal.",
+        "title_tag": "Optimal Entanglement Witnesses and the Steering-Ellipsoid Conjecture",
+        "description": "Proof of the Milne–Jennings–Rudolph ellipsoid conjecture for optimal two-qubit witnesses, a Lean-checked counterexample to its converse, and the chirality correction.",
+        "queries": [
+          "optimal entanglement witness ellipsoid conjecture",
+          "Milne Jennings Rudolph conjecture entanglement witnesses",
+          "geometric representation of two-qubit entanglement witnesses",
+          "steering ellipsoid entanglement witness optimality",
+          "optimality within a set of entanglement witnesses",
+          "two-qubit witness ellipsoid chirality",
+          "Class D entanglement witness ellipsoid",
+          "ellipsoid containment semidefinite test"
+        ],
+        "faq": [
+          [
+            "What did Milne, Jennings and Rudolph conjecture?",
+            "In Section IV D of Geometric representation of two-qubit entanglement witnesses (Phys. Rev. A 92, 012311 (2015), arXiv:1407.8440) they conjectured that if E* is an ellipsoid inside the Bloch sphere and S is the set of two-qubit witnesses whose ellipsoid lies inside E*, then the optimal witnesses in S are represented by E = E*."
+          ],
+          [
+            "Is the conjecture true?",
+            "As printed, yes: every witness that is optimal in S has ellipsoid exactly E*. The stronger reading, that every witness represented by E* is optimal in S, holds in Class C and for planar targets but fails for every full-dimensional Class D target; there the optimal witnesses are exactly the right-handed representatives."
+          ],
+          [
+            "What is the counterexample to the stronger reading?",
+            "For 0 < p < 1/2 the witnesses W_p and W_{1−p} of Example 2 of the same paper have the same Class D ellipsoid with semiaxes 1, 1 and 1 − 2p and opposite chiralities, and W_p = (p/(1−p)) W_{1−p} + ((1−2p)/(1−p)) P_+ with P_+ positive, so W_{1−p} detects strictly more states."
+          ],
+          [
+            "What is formally verified?",
+            "Lean 4 proves the counterexample for genuine complex 4×4 matrices and all complex density matrices, for every 0 < p < 1/2, together with exact orders, normal-form certificates and containment certificates. The general classification is a conventional proof using published decomposability and normal-form theorems; its Lean assembly states its structural inputs as hypotheses."
+          ]
+        ]
+      }
     }
   ],
   "research_notes": [

@@ -11,6 +11,7 @@ Each family directory contains its manuscripts, proof sources or shared-library 
 | [A pure-state matched-basis information inequality violation in dimension five](pure-ecqc/) | [PDF](pure-ecqc/manuscript/manuscript.pdf) |
 | [Exact three-setting correlation bounds at fixed steering centre](steering-bounds/) | [PDF](steering-bounds/paper/steering_bounds.pdf) |
 | [Equality, rigidity and full-ellipsoid CHSH envelopes at fixed steering-ellipsoid centre](chsh-steering-ellipsoid/) | [PDF](chsh-steering-ellipsoid/manuscript.pdf) |
+| [Optimal entanglement witnesses under ellipsoid containment: the Milne–Jennings–Rudolph conjecture and its chirality correction](ellipsoid-witness-optimality/) | [PDF](ellipsoid-witness-optimality/manuscript.pdf) |
 | [The three-state root-fidelity entropy bound](fidelity-three-state/) | [PDF](fidelity-three-state/manuscript.pdf) |
 | [Exact conditional contraction for Pauli channels and depolarization in every dimension](quantum-exact-contraction/) | [PDF](quantum-exact-contraction/quantum_exact_contraction.pdf) |
 | [Strong minimum-rank multiplicativity from unextendible product constraints](upb-tensor-rank/) | [PDF](upb-tensor-rank/manuscript.pdf) |

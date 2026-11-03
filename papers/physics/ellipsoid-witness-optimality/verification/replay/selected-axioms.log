@@ -1,0 +1,103 @@
+'EllipsoidCounterexample.counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidCounterexample.not_optimal_in_any_containing_set' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidCounterexample.same_chirality_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidCounterexample.parametric_finer_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidCounterexample.parametric_strictlyFiner_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidCounterexample.familyRemainder_psd_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidCounterexample.maximal_common_separation_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidCounterexample.midpoint_separator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidCounterexample.parametric_ellipsoid_subset_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidCounterexample.parametric_ellipsoid_equal_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidCounterexample.parametric_classC_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidCounterexample.parametric_classD_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidCounterexample.infinite_ClassD_counterexamples' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidCounterexample.parametric_not_optimal_in_any_containing_set' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'EllipsoidCounterexample.axialFamily_unique_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidCounterexample.ClassCComparison.classC_refinement_without_geometric_containment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'EllipsoidCounterexample.ClassCComparison.denominators_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'EllipsoidCounterexample.ClassCComparison.positive_subtraction_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'EllipsoidNormalForms.bell_psd_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidNormalForms.ordinary_positive_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidNormalForms.extraordinary_positive_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidNormalForms.ordinary_coefficient_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidNormalForms.extraordinary_coefficient_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidNormalForms.interior_remainder_quad' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidMirrorComparison.residual_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidMirrorComparison.sharp_mirror_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidMirrorComparison.mirror_interval_width' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidMirrorComparison.mirror_interval_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidMirrorComparison.mirror_interval_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EllipsoidMirrorComparison.minimum_coefficient_psd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GeometryCertificates.raw_certificate_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GeometryCertificates.denominator_positive_of_marginal_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GeometryCertificates.raw_LMI_with_marginal_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GeometryCertificates.canonical_LMI_implies_containment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GeometryCertificates.support_condition_is_essential' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GeometryCertificates.diagonal_containment_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ProductVector.determinant_zero_iff_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ProductVector.dimension_at_least_two_contains_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ProductVector.completely_entangled_subspace_dimension_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'OptimalityReduction.classification_from_cofinal_antichain' depends on axioms: [propext, Quot.sound]
+'OptimalityReduction.finite_rank_one_refinement' depends on axioms: [propext, Quot.sound]
+'OptimalityReduction.rank_four_requires_at_most_three_steps' depends on axioms: [propext, Quot.sound]
+'OptimalityReduction.interpolation_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OptimalityReduction.QuantumConnection.quantum_classification_given_structural_inputs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+@EllipsoidCounterexample.infinite_ClassD_counterexamples : ∀ {p : ℝ},
+  0 < p →
+    p < 1 / 2 →
+      EllipsoidCounterexample.Admissible (EllipsoidCounterexample.canonicalEllipsoid (EllipsoidCounterexample.W p)) ∧
+        EllipsoidCounterexample.ClassD (EllipsoidCounterexample.W p) ∧
+          EllipsoidCounterexample.ClassD (EllipsoidCounterexample.W (1 - p)) ∧
+            EllipsoidCounterexample.canonicalEllipsoid (EllipsoidCounterexample.W p) =
+                EllipsoidCounterexample.canonicalEllipsoid (EllipsoidCounterexample.W (1 - p)) ∧
+              EllipsoidCounterexample.StrictlyFiner (EllipsoidCounterexample.W (1 - p)) (EllipsoidCounterexample.W p) ∧
+                ¬EllipsoidCounterexample.OptimalIn
+                    (EllipsoidCounterexample.canonicalEllipsoid (EllipsoidCounterexample.W p))
+                    (EllipsoidCounterexample.W p)
+GeometryCertificates.raw_LMI_with_marginal_bound : ∀ (a b c : GeometryCertificates.R3) (T H P : GeometryCertificates.M3)
+  (lam : ℝ),
+  0 ≤ lam →
+    GeometryCertificates.normSq3 b < 1 →
+      ((GeometryCertificates.mul3 P fun i => a i - c i) = fun i => a i - c i) →
+        P * GeometryCertificates.deviationMatrix T c b = GeometryCertificates.deviationMatrix T c b →
+          GeometryCertificates.PSD4
+              (GeometryCertificates.rawCertificate (fun i => a i - c i) (fun i j => T i j - c i * b j) b H lam) →
+            GeometryCertificates.fractionalEllipsoid a T b ⊆ GeometryCertificates.metricEnclosure c H P
+ProductVector.dimension_at_least_two_contains_product : ∀ (S : Submodule ℂ EllipsoidCounterexample.V4),
+  2 ≤ Module.finrank ℂ ↥S → ∃ a b, EllipsoidCounterexample.product a b ∈ S ∧ EllipsoidCounterexample.product a b ≠ 0
+OptimalityReduction.QuantumConnection.quantum_classification_given_structural_inputs : ∀
+  (S C : Set EllipsoidCounterexample.M4),
+  C ⊆ S →
+    (∀ W ∈ S, ∃ U ∈ C, EllipsoidCounterexample.Finer U W) →
+      (∀ W ∈ C, ∀ U ∈ C, EllipsoidCounterexample.Finer U W → EllipsoidCounterexample.Finer W U) →
+        (∀ W ∈ S,
+            ∀ U ∈ S,
+              OptimalityReduction.QuantumConnection.detected W = OptimalityReduction.QuantumConnection.detected U →
+                W = U) →
+          ∀ W ∈ S, EllipsoidCounterexample.OptimalAmong S W ↔ W ∈ C
+@OptimalityReduction.finite_rank_one_refinement : ∀ {α : Type u_1} {β : Type u_2} [inst : AddCommMonoid β]
+  (rank : α → ℕ) (image : α → β) (Positive : β → Prop),
+  Positive 0 →
+    (∀ (x y : β), Positive x → Positive y → Positive (x + y)) →
+      (∀ (q : α), rank q = 0 → Positive (image q)) →
+        (∀ (q : α), 2 ≤ rank q → ∃ r, OptimalityReduction.RankStep rank image Positive q r) →
+          ∀ (q : α),
+            ¬Positive (image q) →
+              ∃ r p k,
+                rank r = 1 ∧
+                  Positive p ∧
+                    image q = image r + p ∧
+                      OptimalityReduction.ReductionChain (OptimalityReduction.RankStep rank image Positive) q r k ∧
+                        k + 1 ≤ rank q

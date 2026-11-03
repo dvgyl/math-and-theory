@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**55 manuscripts and research notes across 54 result families in mathematics, theoretical computer science, and mathematical physics.**
+**56 manuscripts and research notes across 55 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -619,6 +619,17 @@ For two-qubit states with steering-ellipsoid centre length c and Bob Bloch lengt
 **Prior work.** [Milne, Jennings, Jevtic and Rudolph, 2014, Conjecture 1.](https://arxiv.org/abs/1404.3951) · [Omega Institute dossier, issue #16558, committed 14 October 2026; claimed Lean proof of Conjecture 1 containing the joint bound.](https://github.com/the-omega-institute/trureturing/blob/af41108edc85c119837189f120c6d2d9aa3f5a25/Problems/milne-jennings-jevtic-rudolph-2014-chsh-centre-bound.md) · [Zhang, Araiza Bravo, Lorenz and Chitambar, 2020, Appendix B.](https://doi.org/10.1088/1367-2630/ab7bef) No priority is claimed for Conjecture 1, the joint bound or its attaining value. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-steering-centre-bounds).
 
 [Paper PDF](papers/physics/chsh-steering-ellipsoid/manuscript.pdf) · [LaTeX](papers/physics/chsh-steering-ellipsoid/manuscript.tex) · [Proof and reproduction](papers/physics/chsh-steering-ellipsoid/README.md) · [Citation](papers/physics/chsh-steering-ellipsoid/CITATION.bib)
+#### [Optimal entanglement witnesses under ellipsoid containment: the Milne–Jennings–Rudolph conjecture and its chirality correction](papers/physics/ellipsoid-witness-optimality/manuscript.pdf)
+
+**Family:** `ellipsoid-witness-optimality`.
+
+Milne, Jennings and Rudolph conjectured that if E* is an ellipsoid in the Bloch ball and S is the set of two-qubit entanglement witnesses whose ellipsoid lies inside E*, then the optimal witnesses in S are represented by E*. The conjecture holds as stated: every optimal member of S has ellipsoid E*. The stronger reading, that every witness with ellipsoid E* is optimal in S, is false: for 0 < p < 1/2 the witnesses W_p and W_{1−p} of their Example 2 share a full-dimensional Class D ellipsoid, and W_{1−p} is strictly finer. For a full-dimensional target the optimal witnesses are exactly the right-handed representatives, for a planar target all representatives; segments and points represent no witness.
+
+**Formal scope.** Lean 4.19.0 proves, for genuine complex 4×4 matrices with states ranging over all complex density matrices and block positivity over all complex product vectors, that W_{1/4}, W_{3/4} and, for every 0 < p < 1/2, W_p and W_{1−p} are Class D witnesses with equal canonical ellipsoids, that W_{1−p} is strictly finer and that W_p is optimal in no set containing W_{1−p}; also the exact detection and geometric orders of the family, a noncanonical Class C comparison, normal-form remainder certificates, the sharp mirror interval, soundness of the containment LMI and product-vector existence. A strict audit covers all 623 project declarations. Necessity and the chirality characterization for arbitrary targets are conventional proofs using the published two-qubit decomposability and Lorentz normal-form theorems; the Lean assembly of the classification takes cofinality, incomparability and faithfulness as explicit hypotheses, and the finite identities are checked by exact SymPy scripts.
+
+**Prior work.** [Milne, Jennings and Rudolph, Geometric representation of two-qubit entanglement witnesses, 2015.](https://arxiv.org/abs/1407.8440) · [Lewenstein, Kraus, Cirac and Horodecki, Optimization of entanglement witnesses, 2000.](https://arxiv.org/abs/quant-ph/0005014) · [Avron and Kenneth, Entanglement and the geometry of two qubits, 2009.](https://doi.org/10.1016/j.aop.2008.07.007)
+
+[Paper PDF](papers/physics/ellipsoid-witness-optimality/manuscript.pdf) · [LaTeX](papers/physics/ellipsoid-witness-optimality/manuscript.tex) · [Proof and reproduction](papers/physics/ellipsoid-witness-optimality/README.md) · [Citation](papers/physics/ellipsoid-witness-optimality/CITATION.bib)
 
 #### [The three-state root-fidelity entropy bound](papers/physics/fidelity-three-state/manuscript.pdf)
 

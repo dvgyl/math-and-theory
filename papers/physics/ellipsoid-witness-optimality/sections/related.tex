@@ -1,0 +1,25 @@
+\section{Related work and novelty}\label{sec:related}
+
+The bounded search through 3 November 2026 did not locate a prior resolution of this conjecture. Section~IV\,D of \cite{milne} and Milne's thesis \cite{thesis} are the primary statements. The search covered the works citing \cite{milne} indexed by OpenAlex; this is evidence about a bounded search, not a proof of priority.
+
+Closely related earlier work limits any novelty claim. Best separable approximation, pure two-qubit entangled remainders and uniqueness of separable approximations were developed by Lewenstein--Sanpera and Karnas--Lewenstein \cite{ls,karnas}. Bru\ss{} and coauthors gave a general framework for best positive-part witness decompositions and a unique maximal subtraction \emph{coefficient}, distinguishing uniqueness of the coefficient from uniqueness of the decomposition \cite{bruss}. Their support-of-marginals observation also covers the basic marginal-support phenomenon used here. Semidefinite programming and duality for optimal Lewenstein--Sanpera decompositions were developed by Thiang--Raynal--Englert \cite{thiang}. Optimality of decomposable witnesses and completely entangled subspaces were studied by Augusiak, Tura and Lewenstein \cite{augusiak}.
+
+Accordingly, this paper does not claim to originate positive subtraction, the product-vector removal method, best-decomposition optimization or SDP duality. The candidate contribution is the chirality-sensitive resolution for an arbitrary admissible ellipsoid target, with its target-map formulations and geometric consequences. The unique-source result for \eqref{eq:sdp-primal} is proved here for this explicitly defined positive-map problem; its novelty has not been established by the search.
+
+Several distinctions should survive any later presentation:
+\begin{itemize}
+\item The literal necessity conjecture and the stronger characterization have different outcomes.
+\item Class~C complete positivity cannot be used in Class~D without the mirror comparison.
+\item A three-dimensional normal-form proof must include the extraordinary boundary case.
+\item A flat target needs support equations and a genuine singular lift.
+\item A complete formal counterexample is not a complete formal proof of the corrected classification.
+\item Neither relative optimality nor fineness imposes a general monotone ellipsoid-volume order.
+\end{itemize}
+
+\section{Research process and AI disclosure}
+
+This is fully autonomous agentic research. Autonomous AI research agents produced the conjecture analysis, the proofs, the Lean development, the exact and numerical verification scripts, the figures and the draft report from which this paper is derived, in an earlier session whose records do not name the system used. Internal AI-assisted reviews in that session, by separate research threads of the same workflow, found no substantive gap in the analytic chain under its stated published inputs; they are not external peer review and are not included.
+
+Opus 5.5 by Anthropic used with Claude Code assessed the upload for this release. It checked the conjecture statement against arXiv:1407.8440v1 and v2, read the central proofs (the fineness criterion, the orbit incomparability lemma, the mirror comparison, the positive lift and the refinement argument) critically, reran the exact scripts and the numerical demonstration, replayed the Lean development from source against the pinned Mathlib with a new whole-project axiom audit, revised the text into this paper and integrated the package into the repository. The mathematics was not changed.
+
+Dev D. Goyal is responsible for publication. The work has not been externally peer reviewed and no expert validation is claimed. The formal scope and its limits are stated in Appendix~\ref{app:formal} and in the package files \texttt{FORMALIZATION\_STATUS.md} and \texttt{VERIFICATION.md}.

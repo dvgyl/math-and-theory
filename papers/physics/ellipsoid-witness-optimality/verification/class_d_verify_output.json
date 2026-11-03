@@ -1,0 +1,284 @@
+{
+  "arithmetic": "exact SymPy rational/symbolic arithmetic; no floats",
+  "passed": 55,
+  "failed": 0,
+  "rational_counterexamples": {
+    "3/4": {
+      "alpha": "1/3",
+      "low_determinant": "-7/4096",
+      "high_determinant": "-135/4096",
+      "low_PT_determinant": "-135/4096",
+      "high_PT_determinant": "-7/4096",
+      "detector_expectations": [
+        "1/8",
+        "-1/8"
+      ],
+      "containment_LMI_diagonal": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "1/3": {
+      "alpha": "3/4",
+      "low_determinant": "-7/4096",
+      "high_determinant": "-5/1296",
+      "low_PT_determinant": "-135/4096",
+      "high_PT_determinant": "-2/81",
+      "detector_expectations": [
+        "1/48",
+        "-1/48"
+      ],
+      "containment_LMI_diagonal": [
+        "0",
+        "0",
+        "5/9",
+        "0"
+      ]
+    }
+  },
+  "ordinary_residual_eigenvalues": [
+    "2(w1+w2)",
+    "2(w0-w2)",
+    "2(w0-w1)",
+    "0"
+  ],
+  "extraordinary_residual_eigenvalues": [
+    "2(w0+w2)",
+    "2(w0-w2)",
+    "4k",
+    "0"
+  ],
+  "checks": [
+    {
+      "check": "family trace one",
+      "passed": true
+    },
+    {
+      "check": "family Pauli expansion",
+      "passed": true
+    },
+    {
+      "check": "family determinant",
+      "passed": true
+    },
+    {
+      "check": "partial transpose determinant",
+      "passed": true
+    },
+    {
+      "check": "family eigenvector [1, 0, 0, 0]",
+      "passed": true
+    },
+    {
+      "check": "family eigenvector [0, 0, 0, 1]",
+      "passed": true
+    },
+    {
+      "check": "family eigenvector [0, 1, 1, 0]",
+      "passed": true
+    },
+    {
+      "check": "family eigenvector [0, 1, -1, 0]",
+      "passed": true
+    },
+    {
+      "check": "PT eigenvector [1, 0, 0, 1]",
+      "passed": true
+    },
+    {
+      "check": "PT eigenvector [1, 0, 0, -1]",
+      "passed": true
+    },
+    {
+      "check": "PT eigenvector [0, 1, 0, 0]",
+      "passed": true
+    },
+    {
+      "check": "PT eigenvector [0, 0, 1, 0]",
+      "passed": true
+    },
+    {
+      "check": "general refinement identity",
+      "passed": true
+    },
+    {
+      "check": "general strict detector lower",
+      "passed": true
+    },
+    {
+      "check": "general strict detector upper",
+      "passed": true
+    },
+    {
+      "check": "rational refinement q=3/4",
+      "passed": true
+    },
+    {
+      "check": "detector density q=3/4",
+      "passed": true
+    },
+    {
+      "check": "strict detection q=3/4",
+      "passed": true
+    },
+    {
+      "check": "Class D determinants q=3/4",
+      "passed": true
+    },
+    {
+      "check": "exact containment LMI q=3/4",
+      "passed": true
+    },
+    {
+      "check": "rational refinement q=1/3",
+      "passed": true
+    },
+    {
+      "check": "detector density q=1/3",
+      "passed": true
+    },
+    {
+      "check": "strict detection q=1/3",
+      "passed": true
+    },
+    {
+      "check": "Class D determinants q=1/3",
+      "passed": true
+    },
+    {
+      "check": "exact containment LMI q=1/3",
+      "passed": true
+    },
+    {
+      "check": "ordinary mirror residual identity",
+      "passed": true
+    },
+    {
+      "check": "ordinary residual eigenvalue Phi+",
+      "passed": true,
+      "detail": "2*w1 + 2*w2"
+    },
+    {
+      "check": "ordinary residual eigenvalue Phi-",
+      "passed": true,
+      "detail": "2*w0 - 2*w2"
+    },
+    {
+      "check": "ordinary residual eigenvalue Psi+",
+      "passed": true,
+      "detail": "2*w0 - 2*w1"
+    },
+    {
+      "check": "ordinary residual eigenvalue Psi-",
+      "passed": true,
+      "detail": "0"
+    },
+    {
+      "check": "ordinary chirality flip is Bob partial transpose",
+      "passed": true
+    },
+    {
+      "check": "extraordinary mirror residual identity",
+      "passed": true
+    },
+    {
+      "check": "extraordinary residual eigenvalue Phi+",
+      "passed": true,
+      "detail": "2*w0 + 2*w2"
+    },
+    {
+      "check": "extraordinary residual eigenvalue Phi-",
+      "passed": true,
+      "detail": "2*w0 - 2*w2"
+    },
+    {
+      "check": "extraordinary residual eigenvalue 01",
+      "passed": true,
+      "detail": "4*k"
+    },
+    {
+      "check": "extraordinary residual eigenvalue 10",
+      "passed": true,
+      "detail": "0"
+    },
+    {
+      "check": "extraordinary chirality flip is Bob partial transpose",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (0, 0)",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (0, 1)",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (0, 2)",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (0, 3)",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (1, 0)",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (1, 1)",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (1, 2)",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (1, 3)",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (2, 0)",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (2, 1)",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (2, 2)",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (2, 3)",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (3, 0)",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (3, 1)",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (3, 2)",
+      "passed": true
+    },
+    {
+      "check": "rank2 transpose absorption basis (3, 3)",
+      "passed": true
+    },
+    {
+      "check": "full transpose then Bob PT equals Alice PT",
+      "passed": true
+    },
+    {
+      "check": "rank2 map trace preservation on basis",
+      "passed": true
+    }
+  ],
+  "scope": "Algebraic certificates only; general cone decomposition, normal-form classification, and filtering arguments are analytic inputs audited separately."
+}

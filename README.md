@@ -10,7 +10,7 @@ The collection contains results with different formal verification scopes. Each 
 
 ## Navigating the collection
 
-The current catalogue contains 55 manuscripts and research notes across 54 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
+The current catalogue contains 56 manuscripts and research notes across 55 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
 
 - Start with the [overview](overview.pdf) for descriptions of the result families.
 - Use the [manuscript map](CONTENTS.md) to find individual papers, abstracts and supporting materials.
@@ -70,7 +70,7 @@ The eleven results I consider the strongest, in order of significance. This is m
 ### Mathematical physics
 
 - [Stochastic thermodynamics](CONTENTS.md#stochastic-thermodynamics): thermal current kurtosis, unicyclic current skewness.
-- [Quantum information](CONTENTS.md#quantum-information): universal entanglement embezzlement, the Higuchi–Sudbery entropy bound, a matched-basis information counterexample, exact steering correlation bounds, equality, rigidity and full-ellipsoid envelopes for CHSH at fixed steering centre, three-state root fidelity, exact conditional quantum contraction, Schmidt numbers of tensor powers of the Tiles state, noncollapse of the upper PPT entanglement-cost hierarchy.
+- [Quantum information](CONTENTS.md#quantum-information): universal entanglement embezzlement, the Higuchi–Sudbery entropy bound, a matched-basis information counterexample, exact steering correlation bounds, equality, rigidity and full-ellipsoid envelopes for CHSH at fixed steering centre, the Milne–Jennings–Rudolph ellipsoid conjecture on optimal entanglement witnesses with its chirality correction, three-state root fidelity, exact conditional quantum contraction, Schmidt numbers of tensor powers of the Tiles state, noncollapse of the upper PPT entanglement-cost hierarchy.
 
 ## Find a result
 
@@ -110,6 +110,7 @@ I use the names below to connect common search terms to each result and its file
 | Markov rings, stochastic currents, unicyclic networks, skewness | [Unicyclic current bound](papers/physics/unicyclic-skewness/) |
 | Quantum steering, steering ellipsoids, two-qubit correlations, three-setting bounds | [Fixed-centre steering bounds](papers/physics/steering-bounds/) |
 | CHSH inequality, steering-ellipsoid centre, Milne conjecture, maximally obese states, CHSH-breaking channels | [CHSH envelopes at fixed steering centre](papers/physics/chsh-steering-ellipsoid/) |
+| Entanglement witnesses, optimal witnesses, steering ellipsoids, Milne–Jennings–Rudolph conjecture, chirality, block-positive operators | [Optimal witnesses under ellipsoid containment](papers/physics/ellipsoid-witness-optimality/) |
 
 To search the source on GitHub, use `repo:dvgyl/math-and-theory` followed by a name or term. For example, use `repo:dvgyl/math-and-theory Higuchi`. To find a file by name, open the repository and press **t**. For proof scope and known gaps, read [UNFINISHED.md](UNFINISHED.md).
 
