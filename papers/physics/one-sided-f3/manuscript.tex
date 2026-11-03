@@ -1,0 +1,1055 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,mathrsfs,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{microtype,graphicx}
+\hypersetup{pdftitle={Exact one-sided filtering of the two-qubit F3 functional},pdfauthor={Dev D. Goyal}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\HF}{\mathcal H}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\DeclareMathOperator{\rmax}{rmax}
+\setlength{\emergencystretch}{3em}
+\title{Exact one-sided filtering of the two-qubit $F_3$ functional:\\
+\large closed forms for both one-sided hidden $F_3$ measures, every optimal filter,\\
+a radical obstruction and success-probability frontiers}
+\author{Dev D. Goyal}
+\date{3 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Ducuara, Susa and Skrzypczyk defined one-sided hidden correlation measures,
+in which only Alice or only Bob applies a local filter, and noted that, unlike
+the two-sided measures, they had no closed formulas
+(arXiv:2406.03945, Phys.\ Rev.\ A \textbf{110}, 022435). We give exact
+formulas for both one-sided $F_3$ measures of their Equation~(10), for every
+two-qubit state and the invariant functional $F_3(\rho)=\norm{T}_F$ of their
+Equation~(3). The squared value is $\beta+\eta+c^TQ(\eta I-Q)^\dagger c$,
+where $(c,Q)$ are the centre and shape matrix of the other party's steering
+ellipsoid, $\eta$ is the larger of $\tr Q-\norm c^2$ and the largest real
+eigenvalue of an explicit $6\times6$ matrix, and $\dagger$ is the
+Moore--Penrose inverse; a pure filtered marginal gives the product value.
+The optimum is a supremum, which an invertible filter need not attain. We
+prove optimality through an explicit S-lemma certificate, describe every
+optimal filter and decide attainment. A value greater than one has a rational
+formula and a unique optimal effect. A strictly positive rational state has
+an optimal squared value of degree six with Galois group $S_6$, so no formula
+in radicals exists. Further sections give the exact success-probability
+frontier, the highest optimal success rate, a sharp bound from the purity of
+one conditional state and the set of limit values at every pure-marginal
+state. Lean~4 proves the main theorem for actual complex $4\times4$ density
+matrices and invertible complex filters, with a whole-project axiom audit;
+the extensions and the Galois argument rest on written proofs, exact
+certificates and numerical checks. The one-sided CHSH measures of
+Equation~(9) are not treated.
+\end{abstract}
+
+\tableofcontents
+\clearpage
+
+\section{Introduction}
+
+For a two-qubit state with Pauli correlation matrix $T$, the Costa--Angelo
+form of the three-setting linear steering inequality \cite{costa,cjwr} has
+optimized value $F_3(\rho)=\norm{T}_F$, and $F_3>1$ certifies steering.
+Local filtering can reveal such violations when they are absent from the
+original state. Ducuara, Susa and Skrzypczyk \cite{ducuara} compared the
+two-sided hidden measures, for which closed expressions are available
+through the Bell-diagonal normal form (their Equations~(7) and~(8)), with
+\emph{one-sided} measures in which only one party filters
+(their Equations~(9) and~(10)). They wrote that ``there are currently no
+closed formulas for the one-sided versions defined in (9) and (10)'' and
+listed the derivation of closed formulas among their open questions.
+
+This paper answers that question for both $F_3$ measures of Equation~(10),
+$\HF_A$ and $\HF_B$. Theorem~\ref{thm:main} gives a finite spectral formula
+in the steering-ellipsoid data of the other party, valid for every density
+matrix, with all rank degeneracies and the pure-marginal branch included.
+Because Equation~(10) quantifies invertible filters, its ``max'' is in
+general a supremum; we decide exactly when it is attained. The one-sided
+CHSH measures of Equation~(9) remain open. We also note that Equation~(8)
+evaluates $F_3$ at the normal form; the paper states that it is not known
+whether this is the two-sided optimum, and we do not address that question.
+
+\paragraph{The question in plain terms.}
+Alice and Bob share two qubits. Before measuring, Alice may pass her qubit
+through a local filter: a measurement that either succeeds, leaving the pair
+in a new normalized state, or fails and the round is discarded. A good
+filter can make the correlations look stronger, so a state that shows no
+steering may show it after filtering. The question is how large Alice alone
+can make $F_3$ in this way, and the same for Bob alone. Naively this is an
+optimization over all invertible complex $2\times2$ matrices; we want an
+explicit answer in terms of the state.
+
+\paragraph{The answer in plain terms.}
+Bob's possible conditional states, as Alice varies her measurement, fill an
+ellipsoid inside the Bloch ball, his steering ellipsoid
+\cite{jevtic}, with centre $c$ and shape matrix $Q$. The best value Alice
+can reach depends only on this ellipsoid. After an explicit change of
+coordinates on Alice's side, every filter corresponds to a point $x$ of the
+unit ball, and the squared filtered value becomes a quadratic function of
+$x$. Maximizing a quadratic over a ball is a classical problem whose answer
+is governed by one scalar, a Lagrange multiplier, that solves a polynomial
+equation. Writing that equation in terms of $(c,Q)$ gives the formula.
+
+\paragraph{Main results.}
+\begin{enumerate}
+\item \emph{Closed formula} (Theorem~\ref{thm:main}). For every state with a
+mixed filtered marginal,
+$\HF_A^2=\beta+\eta+c^TQ(\eta I-Q)^\dagger c$, where $\beta=\norm c^2$ and
+$\eta$ is the larger of $\tr Q-\beta$ and the largest real eigenvalue of an
+explicit $6\times6$ matrix; a pure filtered marginal gives the product
+value. Bob's value follows by exchanging the parties.
+Corollary~\ref{cor:sixinvariants} gives an equivalent rule using six scalar
+invariants.
+\item \emph{Optimal filters and attainment} (Lemma~\ref{lem:gap},
+Corollary~\ref{cor:attain}). An explicit gap identity certifies the value,
+all optimal filters are described, and an invertible optimal filter exists
+exactly when an explicit condition holds.
+\item \emph{Violation is rational} (Theorem~\ref{thm:violation}). Three
+explicit inequalities decide whether $\HF_A>1$; when it holds, the value has
+a rational formula and the optimal effect is unique up to scale.
+\item \emph{No formula in radicals} (Proposition~\ref{prop:galois}). A
+strictly positive rational state has an optimal squared value of degree six
+with Galois group $S_6$.
+\item \emph{Operational extensions} (Sections~\ref{sec:lens}--\ref{sec:cluster}). The exact frontier at a
+prescribed success probability (Theorems~\ref{thm:lens}
+and~\ref{thm:fourteen}), the highest success rate compatible with the
+optimum (Theorem~\ref{thm:bestrate}), continuity
+(Theorem~\ref{thm:continuitylocus}), a sharp bound from the purity of one
+conditional state (Theorem~\ref{thm:conditional}) and the set of limit
+values at pure-marginal states (Theorem~\ref{thm:clusters}).
+\end{enumerate}
+
+\paragraph{How the proof works.}
+Lemma~\ref{lem:fraction} computes the filtered correlation matrix for an
+arbitrary filter and expresses $F_3^2$ as a ratio of quadratics.
+Lemma~\ref{lem:white} removes the denominator by whitening Alice's marginal;
+the problem becomes the maximization of a quadratic $q(x)$ over the unit
+ball. Lemma~\ref{lem:spectral} identifies the multiplier with the largest
+real eigenvalue of a $6\times6$ block matrix, including the degenerate
+``hard case'', and Lemma~\ref{lem:gap} proves optimality by writing the gap
+between the claimed value and $q(x)$ as a sum of two visibly nonnegative
+terms. Everything else, including attainment, the rational branch and the
+filters themselves, is read off from this identity.
+
+\paragraph{Organization.}
+Section~\ref{sec:defs} fixes definitions and two necessary
+qualifications. Section~\ref{sec:formula} states the formula and its
+variants; Sections~\ref{sec:fraction}--\ref{sec:galois} prove it and derive
+its consequences, and Section~\ref{sec:examples} gives examples. Sections~\ref{sec:lens}--\ref{sec:cluster}
+contains the operational extensions. Appendix~\ref{app:checks} describes the
+computational checks and Appendix~\ref{sec:formal} the Lean formalization.
+
+\paragraph{What is new and what is credited.}
+The spectral solution of a quadratic over a ball (the trust-region
+subproblem) is classical \cite{adachi}, and two-ball problems have their own
+literature \cite{twoballs,rontsis}. The contribution here is the reduction of
+actual one-sided filtering to such a problem, the closed formula in
+steering-ellipsoid data, the complete filter and attainment classification,
+the rational criterion for $\HF_A>1$, the radical obstruction and the
+operational extensions. Steering ellipsoids and canonical filtering are due
+to Jevtic, Pusey, Jennings and Rudolph and to Milne et al.\
+\cite{jevtic,milne}; the PPT criterion is used in
+Corollary~\ref{cor:rankdeficient} \cite{horodecki}. The fixed-centre
+envelope of $F_3$ is the subject of a companion package \cite{steeringbounds}.
+Steerability under local filters has been classified for assemblages
+\cite{ku}, a different object from the invariant optimized here.
+A bounded literature search in November 2026 found no earlier closed formula
+for these measures; this does not establish priority.
+
+\paragraph{Formal verification.}
+The Lean development proves, for every positive semidefinite complex
+$4\times4$ matrix of trace one, that the explicit right side is the least
+upper bound of the values of $\norm T_F$ over all normalized states obtained
+by invertible complex filters on either side (Appendix~\ref{sec:formal}). The
+rational Bloch-coordinate expressions for $(c,Q)$, the six-invariant rule,
+the Galois obstruction and the extensions of
+Sections~\ref{sec:lens}--\ref{sec:cluster} are conventional proofs supported
+by exact and floating-point checks.
+
+\part*{The closed formula}
+\addcontentsline{toc}{part}{The closed formula}
+
+\section{Definitions and the two necessary qualifications}\label{sec:defs}
+
+Write an arbitrary two-qubit density operator as
+\begin{equation}\label{eq:bloch}
+\rho=\frac14\left(I\otimes I+a\cdot\sigma\otimes I+
+ I\otimes b\cdot\sigma+\sum_{i,j=1}^3T_{ij}\sigma_i\otimes\sigma_j\right),
+\quad a,b\in\R^3,\quad T\in\R^{3\times3}.
+\end{equation}
+We use exactly the invariant expression in Equation (3) of \cite{ducuara}:
+$F_3(\rho)=\sqrt{\tr(T^TT)}$. For $W=A,B$, define
+\begin{equation}\label{eq:def}
+\HF_W(\rho)=\sup_{K\in\operatorname{GL}(2,\C)}
+ F_3\left(\frac{K_W\rho K_W^\dagger}{\tr(K_W\rho K_W^\dagger)}\right),
+\quad K_A=K\otimes I,\quad K_B=I\otimes K.
+\end{equation}
+Multiplying $K$ by a nonzero scalar changes neither the normalized state nor
+the value, so imposing $K^\dagger K\preceq I$ does not affect the supremum.
+
+\emph{Supremum versus maximum.} The paper uses ``max'' while specifying
+invertible filters. A maximum need not exist. For example,
+$\rho=\frac I2\otimes\frac{I+r\sigma_z}{2}$ with $0<r<1$ has
+$\HF_A=r$, but every invertible Alice filter gives strictly less than $r$.
+All our statements identify exactly when the supremum is attained. Allowing
+rank-one filters of positive success probability makes it a genuine maximum
+when the filtered marginal is mixed.
+
+\emph{Measurement convention.} Optimizing Alice's observables against a
+permanently fixed Bob Pauli triad gives
+$\sum_j\norm{Te_j}/\sqrt3$, generally not $\norm{T}_F$. Optimizing the
+orthonormal triad as well gives $\norm{T}_F$. The present theorem concerns
+the paper's Equation (3) functional, which is the intended invariant input to
+Equation (10). It does not silently identify these two distinct conventions.
+
+\section{The closed spectral formula}\label{sec:formula}
+
+For the Alice-filtered quantity assume first $\norm a<1$ and set
+\begin{align}\label{eq:shape}
+ \delta&=1-\norm a^2, & B&=T-ab^T,\\
+ c&=\frac{b-T^Ta}{\delta}, &
+ Q&=\frac{B^T(\delta I+aa^T)B}{\delta^2}.\nonumber
+\end{align}
+Here $(c,Q)$ is Bob's steering-ellipsoid centre and shape matrix; $Q\succeq0$
+may be singular. These expressions are rational in the original Bloch data.
+Define
+\begin{equation}\label{eq:defs}
+ \tau=\tr Q,\qquad \beta=\norm c^2,\qquad d=\tau-\beta,\qquad
+ \mathscr M(Q,c)=\begin{pmatrix}Q&I_3\\ Qcc^T&Q\end{pmatrix}.
+\end{equation}
+The matrix $\mathscr M$ need not be symmetric. In the following,
+$\rmax$ means its \emph{largest real eigenvalue}, not its spectral radius or
+largest eigenvalue magnitude. Such a real eigenvalue always exists here.
+
+\begin{theorem}[Exact one-sided filtering]\label{thm:main}
+With \eqref{eq:shape}--\eqref{eq:defs}, put
+\begin{equation}\label{eq:eta}
+ \nu=\rmax\mathscr M(Q,c),\qquad
+ \eta=\max\{d,\nu\},\qquad D=\eta I_3-Q.
+\end{equation}
+Then
+\begin{equation}\label{eq:main}\boxed{
+ \HF_A(\rho)^2=\beta+\eta+c^TQ(\eta I_3-Q)^\dagger c.}
+\end{equation}
+The dagger denotes the Moore--Penrose inverse, including at zero or repeated
+eigenvalues. For Bob, use precisely the same formula after the substitution
+\begin{equation}\label{eq:swap}(a,b,T)\longmapsto(b,a,T^T).
+\end{equation}
+If the filtered marginal is pure, the corresponding formula instead is
+\begin{equation}\label{eq:pure}
+ \norm a=1\implies\HF_A(\rho)=\norm b,
+ \qquad \norm b=1\implies\HF_B(\rho)=\norm a.
+\end{equation}
+The pure-marginal values are attained by every invertible filter on that side.
+\end{theorem}
+
+This is a finite algebraic spectral expression, analogous in its use of
+matrix spectra to other exact two-qubit criteria. It is stronger than a
+reformulation as an optimization problem. Section \ref{sec:galois} proves
+that requiring radicals instead would be impossible in general.
+
+An equivalent explicit polynomial version is often convenient. Diagonalize
+$Q$ with eigenvalues $\kappa_1,\kappa_2,\kappa_3\geq0$, and write $c_i$ for
+the centre components in that orthonormal eigenbasis. Then $\nu$ is the
+largest real root of
+\begin{equation}\label{eq:poly}
+ P(z)=\prod_{i=1}^3(z-\kappa_i)^2
+ -\sum_{i=1}^3\kappa_i c_i^2\prod_{j\ne i}(z-\kappa_j)^2.
+\end{equation}
+Repeated eigenvalues and zero $\kappa_i$ are allowed; no cancellation of
+factors is to be performed before choosing the largest root. Finally,
+\begin{equation}\label{eq:diagvalue}
+ \HF_A^2=\beta+\eta+
+ \sum_{\kappa_i<\eta}\frac{\kappa_i c_i^2}{\eta-\kappa_i}.
+\end{equation}
+For every omitted index with $\kappa_i=\eta$, the construction guarantees
+$\sqrt{\kappa_i}c_i=0$. Thus the omitted term means zero, not $0/0$.
+
+\subsection{A formula using six scalar invariants only}
+
+The pseudoinverse and eigenbasis can both be eliminated from evaluation of
+the value. This also gives an efficient invariant representation of the sextic.
+Set
+\[
+ s_2=\frac{\tau^2-\tr(Q^2)}2,\quad s_3=\det Q,\quad
+ u=c^TQc,\quad v=c^TQ^2c,
+\]
+and retain $\tau=\tr Q$, $\beta=c^Tc$. Define the cubic and quadratic
+\begin{equation}\label{eq:compressedDN}
+ D(z)=z^3-\tau z^2+s_2z-s_3,\qquad
+ N(z)=uz^2+(v-\tau u)z+s_3\beta.
+\end{equation}
+
+\begin{corollary}[Six-invariant algebraic formula, including poles]
+\label{cor:sixinvariants}
+The characteristic sextic in \eqref{eq:poly} is exactly
+\begin{equation}\label{eq:compressedP}\boxed{
+ P(z)=D(z)^2+D(z)N'(z)-D'(z)N(z).}
+\end{equation}
+Let $\nu$ be its largest real root and $\eta=\max\{\tau-\beta,\nu\}$.
+Let $r$ be the first index in $\{0,1,2,3\}$ with $D^{(r)}(\eta)\ne0$,
+where $D^{(0)}=D$. Then
+\begin{equation}\label{eq:derivativevalue}\boxed{
+ \HF_A(\rho)^2=\beta+\eta+
+             \frac{N^{(r)}(\eta)}{D^{(r)}(\eta)}.}
+\end{equation}
+Thus the six real numbers $(\tau,s_2,s_3,\beta,u,v)$ determine the exact
+value. No matrix diagonalization, pseudoinverse, limiting operation,
+continuous optimization or pole cancellation is needed to evaluate this rule.
+The Bob version uses its own swapped ellipsoid data.
+\end{corollary}
+\begin{proof}
+Cayley--Hamilton gives
+\[
+ \operatorname{adj}(zI-Q)
+ =z^2I+z(Q-\tau I)+Q^2-\tau Q+s_2I,
+ \qquad Q^3-\tau Q^2+s_2Q=s_3I.
+\]
+Hence $D(z)=\det(zI-Q)$ and
+$N(z)=c^TQ\operatorname{adj}(zI-Q)c$.
+Away from the spectrum, $R(z)=N(z)/D(z)=c^TQ(zI-Q)^{-1}c$ has
+$R'(z)=-c^TQ(zI-Q)^{-2}c$. The determinant lemma for the companion
+matrix therefore gives
+$P(z)=D(z)^2(1+R'(z))$, which expands to
+\eqref{eq:compressedP}. Equality away from finitely many points is
+polynomial equality everywhere.
+
+If $D(\eta)\ne0$, the value correction is simply $N(\eta)/D(\eta)$.
+Otherwise, the main theorem's compatibility condition annihilates the
+component of $Q^{1/2}c$ in the $\eta$-eigenspace. Thus $R$ has a removable
+singularity at $\eta$, and its value there is exactly
+$c^TQ(\eta I-Q)^\dagger c$. If $r$ is the multiplicity of $\eta$ in
+$D$, divisibility makes the first $r$ powers cancel in both $N$ and $D$;
+the ratio of their coefficients at that order is
+$N^{(r)}(\eta)/D^{(r)}(\eta)$. The factorials cancel.
+This covers $r=3$ as well: compatibility then makes $N$ identically zero.
+Only the finite derivative rule is used in \eqref{eq:derivativevalue}.
+\end{proof}
+
+\begin{corollary}[Radicals for every rank-deficient ellipsoid]
+\label{cor:rankdeficient}
+If $\operatorname{rank}Q\leq2$, the original state is separable, so both
+one-sided values are at most one. The exact value is expressible by radicals: $P$
+has a factor $z^2$, leaving at most a quartic. A uniform root-selection
+rule retains zero as a candidate; at rank exactly two the largest real
+root is positive and comes from the quartic.
+If $\operatorname{rank}Q\leq1$, the formula simplifies to
+\begin{equation}\label{eq:rankonevalue}\boxed{
+ \HF_A^2=\beta+\tau+2\sqrt{c^TQc}\leq1.}
+\end{equation}
+For a mixed filtered marginal in this rank-at-most-one case, the raw
+$F_3$ optimum is attained invertibly if and only if $c=0$.
+These ranks are ranks of the ellipsoid shape $Q$, not of the density matrix.
+\end{corollary}
+\begin{proof}
+For the separability statement, use the canonical state $(0,c,S)$.
+If $\operatorname{rank}S\leq2$, an Alice rotation makes the third row of
+$S$ zero. Alice's partial transpose flips its second row; conjugation by
+$\sigma_x\otimes I$ flips both the second and third rows and therefore
+produces the same state. The partial transpose is consequently positive.
+The two-qubit PPT criterion \cite{horodecki} makes the canonical state
+separable, and inverse local whitening preserves separability. Local filters
+then preserve separability, and convexity of the Frobenius norm of product
+correlation matrices gives both one-sided bounds by one.
+
+Rank at most two gives $s_3=0$ in \eqref{eq:compressedDN}; substitution
+into \eqref{eq:compressedP} shows the factor $z^2$ directly. At rank two,
+$\nu\geq\lambda_{\max}(Q)>0$. The value formula then uses rational
+operations and finite derivatives of a degree-at-most-four algebraic
+number, followed by a square root for $\HF_A$.
+
+At rank at most one, $s_2=s_3=0$ and $v=\tau u$, so
+$P(z)=z^4[(z-\tau)^2-u]$. Hence $\nu=\tau+\sqrt u$ and
+$\eta=\nu$, since $d=\tau-\beta\leq\tau$. Substitution, including the
+removable-pole convention when $u=0$, gives \eqref{eq:rankonevalue}.
+For $Q=\tau ee^T$ its right side is
+$\max\{\norm{c+\sqrt\tau e}^2,\norm{c-\sqrt\tau e}^2\}$.
+Both endpoints are physical conditional Bloch vectors, proving the upper
+bound one; $Q=0$ is the same statement with coincident endpoints.
+The multiplier is $\lambda=\eta-d=\beta+\sqrt u$, so an invertible
+optimizer requires $\beta=0$. Conversely $c=0$ gives $g=0$, $\lambda=0$
+and the interior optimum $x=0$.
+\end{proof}
+
+\section{Bloch geometry and elimination of the fractional denominator}\label{sec:fraction}
+
+\begin{lemma}[Fractional quadratic identity]\label{lem:fraction}
+For an Alice filter whose effect is proportional to $I+x\cdot\sigma$, with
+$\norm x<1$, set $t=\norm T_F^2$, $u=Tb$, and
+$H_0=TT^T+(\norm b^2-t)I_3$. Then
+\begin{equation}\label{eq:fraction}
+ F_3(\rho_{A,x})^2=
+ \frac{t+2u^Tx+x^TH_0x}{(1+a^Tx)^2}.
+\end{equation}
+For $\norm a<1$ the expression extends continuously to the closed unit ball.
+\end{lemma}
+\begin{proof}
+Polar decomposition removes the output unitary, since it only rotates $T$.
+After removing an irrelevant positive scalar, the filter is
+$\sqrt{I+x\cdot\sigma}$. Put $s=\sqrt{1-\norm x^2}$ and
+\[
+ L_x=sI_3+\frac{xx^T}{1+s}.
+\]
+The Pauli identity
+$(v\cdot\sigma)(w\cdot\sigma)=(v\cdot w)I+i(v\times w)\cdot\sigma$
+gives the transformed correlation matrix
+\[
+ T_x=\frac{L_xT+xb^T}{1+a^Tx}.
+\]
+Since $L_xx=x$ and $L_x^2=(1-\norm x^2)I+xx^T$, its squared Frobenius norm
+has numerator
+\[
+ (1-\norm x^2)t+x^TTT^Tx+2x^TTb+\norm x^2\norm b^2,
+\]
+which is \eqref{eq:fraction}. The denominator is at least
+$(1-\norm a)^2>0$ on the closed ball.
+\end{proof}
+
+\begin{lemma}[Whitening and canonical data]\label{lem:white}
+For $\norm a<1$, let
+\begin{align}\label{eq:white}
+ W&=(I+a\cdot\sigma)^{-1/2}, &
+ L_a&=\sqrt\delta I_3+\frac{aa^T}{1+\sqrt\delta},\\
+ S&=\frac{L_aT-ab^T}{\delta}.\nonumber
+\end{align}
+Then $(W\otimes I)\rho(W\otimes I)$ already has trace one and Bloch data
+$(0,c,S)$. Moreover $S^TS=Q$. Its one-sided filtering supremum equals the
+original state's supremum.
+\end{lemma}
+\begin{proof}
+The Alice marginal becomes $W(I+a\cdot\sigma)W/2=I/2$, proving the trace
+and zero-marginal claims. Applying Lemma \ref{lem:fraction}'s Pauli
+transformation with $x=-a$ gives $c$ and $S$. Since $L_aa=a$,
+$S=L_a(T-ab^T)/\delta$, and $L_a^2=\delta I+aa^T$ proves $S^TS=Q$.
+Multiplication by the invertible matrix $W$ is a bijection on all invertible
+filter matrices, up to their irrelevant scalars. Thus it preserves the
+optimization orbit, even though $W$ itself may need rescaling to be a valid
+measurement operator.
+\end{proof}
+
+For the canonical state define
+\begin{equation}\label{eq:canonicalq}
+ C=SS^T,\qquad g=Sc,\qquad
+ q(x)=\tau+2g^Tx+x^T(C-dI)x.
+\end{equation}
+The remaining task is exactly $\max_{\norm x\leq1}q(x)$; its value is also
+the supremum over the open ball by continuity. Notice the special boundary
+identity
+\begin{equation}\label{eq:boundary}
+ \norm x=1\quad\Longrightarrow\quad q(x)=\norm{c+S^Tx}^2\leq1.
+\end{equation}
+The equality follows by expanding both sides. The inequality follows either
+from the steering ellipsoid lying in the Bloch ball or from the fact that a
+rank-one Alice filter produces a product state with a pure Alice factor.
+
+\section{Exact spectral solution, including the hard case}
+
+We prove the spectral step explicitly instead of appealing to an SDP solver.
+In this section write $\kappa=\lambda_{\max}(C)$ and use an orthonormal
+eigenbasis of the real symmetric $C$. Let $g_i$ be the components of $g$.
+For $z>\kappa$ define
+\begin{equation}\label{eq:secular}
+ f(z)=\sum_i\frac{g_i^2}{(z-\kappa_i)^2}.
+\end{equation}
+If $g\ne0$, $f$ is continuous, strictly decreasing, and tends to zero at
+infinity. At the top eigenvalue it tends to infinity if $g$ has a component in
+the top eigenspace. Otherwise its one-sided limit is
+\[
+ f(\kappa+)=\sum_{\kappa_i<\kappa}
+ \frac{g_i^2}{(\kappa-\kappa_i)^2}.
+\]
+
+\begin{lemma}[Spectral parameter]\label{lem:spectral}
+Let
+\[
+ M_C=\begin{pmatrix}C&I\\gg^T&C\end{pmatrix}.
+\]
+Its largest real eigenvalue $\nu$ exists and satisfies $\nu\geq\kappa$.
+Exactly one of the following descriptions applies:
+\begin{enumerate}
+ \item If $f(\kappa+)>1$, $\nu>\kappa$ is the unique solution of $f(\nu)=1$.
+ \item Otherwise $\nu=\kappa$, $g$ is orthogonal to the top eigenspace,
+ and $\norm{(\nu I-C)^\dagger g}\leq1$.
+\end{enumerate}
+The convention $f\equiv0$ covers $g=0$.
+\end{lemma}
+\begin{proof}
+Block elimination gives the polynomial identity
+\begin{equation}\label{eq:det}
+ \det(zI_6-M_C)=\det((zI_3-C)^2-gg^T).
+\end{equation}
+For $z>\kappa$, the determinant lemma makes this
+$\det(zI-C)^2(1-f(z))$. The intermediate value theorem and strict
+monotonicity prove the first case and exclude any larger real root.
+In the second case $g$ has no top-eigenspace component. A top eigenvector is
+therefore in the kernel of $(\kappa I-C)^2-gg^T$, so $\kappa$ is a root.
+Monotonicity excludes roots above it. The stated norm is exactly the limit
+$f(\kappa+)$ under a square root. This also treats repeated top eigenvalues.
+\end{proof}
+
+Set $\eta=\max(d,\nu)$, $A=\eta I-C$, $\lambda=\eta-d$, and
+$x_0=A^\dagger g$. The lemma proves
+\begin{equation}\label{eq:conditions}
+ \lambda\geq0,\quad A\succeq0,\quad Ax_0=g,\quad \norm{x_0}\leq1.
+\end{equation}
+If $\eta>\nu$, $A$ is positive definite, $\lambda=0$, and
+$\norm{x_0}<1$. If $\eta=\nu>\kappa$, the norm is one. If
+$\eta=\nu=\kappa$, the kernel of $A$ is nonzero; one may add a kernel
+vector to fill any missing norm. Consequently there always exists
+\begin{equation}\label{eq:attainment}
+ x_*=x_0+z,\quad z\in\ker A,\quad \norm{x_*}\leq1,
+ \quad\lambda(1-\norm{x_*}^2)=0.
+\end{equation}
+When $\lambda>0$ and the norm of $x_0$ is less than one, one can choose any
+unit $e\in\ker A$ and take $z=\sqrt{1-\norm{x_0}^2}\,e$. The range of a
+symmetric matrix is orthogonal to its kernel, so this construction is exact.
+
+\begin{lemma}[Gap identity and complete equality classification]\label{lem:gap}
+Let $V=\beta+\eta+g^TA^\dagger g=\tau+\lambda+g^Tx_0$. For every $x$,
+\begin{equation}\label{eq:gap}\boxed{
+ V-q(x)=\lambda(1-\norm x^2)+(x-x_0)^TA(x-x_0).}
+\end{equation}
+Thus $V$ is the global maximum on the unit ball. All maximizing points are
+exactly
+\begin{equation}\label{eq:allmax}
+ x=x_0+z,\quad z\in\ker A,\quad \norm x\leq1,
+ \quad\lambda(1-\norm x^2)=0.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Expand the right side using $Ax_0=g$ and $A=\lambda I-(C-dI)$.
+Both summands are nonnegative on the ball. Construction \eqref{eq:attainment}
+makes both zero. Conversely, equality forces both nonnegative terms to
+vanish, and a positive semidefinite quadratic form vanishes exactly on its
+kernel. This proves the full classification, including all singular cases.
+\end{proof}
+
+To finish the spectral part of Theorem \ref{thm:main}, choose an orthogonal
+extension of the polar decomposition $S=O\sqrt Q$. Such an extension exists
+even when $S$ is singular. Under $x\mapsto O^Tx$, $(C,g)$ becomes
+$(Q,\sqrt Qc)$. Thus
+$g^T(\eta I-C)^\dagger g=c^TQ(\eta I-Q)^\dagger c$.
+The characteristic polynomial of the resulting symmetric-Gram block matrix
+equals that of $\mathscr M(Q,c)$: away from the eigenvalues of $Q$, both are
+\[
+ \det(zI-Q)^2\left(1-c^TQ(zI-Q)^{-2}c\right).
+\]
+Since these are polynomials, equality on that open set is equality
+everywhere. This proves \eqref{eq:main} and \eqref{eq:poly} without assuming
+$Q$ invertible.
+
+\section{The S-lemma certificate is explicit}
+
+The ball has a strictly feasible point. The S-lemma therefore identifies
+upper bounds on the quadratic as nonnegative quadratic certificates. Here
+the certificate is supplied in closed form, with no remaining multiplier
+optimization. In canonical coordinates,
+\begin{equation}\label{eq:slmi}
+ \begin{pmatrix}
+ V-\tau-\lambda&-g^T\\-g&\lambda I-(C-dI)
+ \end{pmatrix}
+ =\begin{pmatrix}x_0^TAx_0&-x_0^TA\\-Ax_0&A\end{pmatrix}\succeq0.
+\end{equation}
+It factors as
+$\binom{x_0^T}{-I}A\begin{pmatrix}x_0&-I\end{pmatrix}$.
+Together with $\lambda\geq0$, this is exactly the identity
+\eqref{eq:gap}. The separately constructed maximizing point proves there is
+no duality gap.
+
+For comparison, applying the S-lemma directly to the fractional expression
+\eqref{eq:fraction} says that $v$ is a global upper bound if and only if
+there exists $s\geq0$ such that
+\begin{equation}\label{eq:originalslemma}
+ \begin{pmatrix}
+ v-t-s&(va-u)^T\\ va-u&vaa^T-H_0+sI
+ \end{pmatrix}\succeq0.
+\end{equation}
+This display alone would only be an SDP restatement. Whitening followed by
+\eqref{eq:eta}--\eqref{eq:main} eliminates the unknown optimization variables
+and provides the exact value and an explicit saturation certificate.
+
+\section{Every extremizing filter and every singular case}
+
+For $\norm a<1$, compute $S$ as in \eqref{eq:white}, and put
+\begin{equation}\label{eq:filterdata}
+ A=\eta I-SS^T,\qquad x_0=A^\dagger Sc,\qquad \lambda=\eta-d.
+\end{equation}
+Choose any $x$ in \eqref{eq:allmax}. Every corresponding maximizer in the
+closed filter domain, including rank-one limiting filters, is, up to the
+allowed equivalences,
+\begin{equation}\label{eq:filter}\boxed{
+ K=\gamma U\sqrt{I+x\cdot\sigma}\,(I+a\cdot\sigma)^{-1/2},}
+\end{equation}
+where $U$ is an arbitrary qubit unitary and $\gamma>0$ is any scaling that
+makes $K^\dagger K\preceq I$. Conversely, polar decomposition after
+whitening shows that every optimal filter is of this form.
+
+For a direct description in the original normalized effect coordinates,
+the same filter has effect proportional to $I+y\cdot\sigma$, where
+\begin{equation}\label{eq:ballmap}
+ y=\frac{L_ax-a}{1-a\cdot x},\qquad
+ 1-\norm y^2=\frac{\delta(1-\norm x^2)}{(1-a\cdot x)^2}.
+\end{equation}
+Indeed $W(I+x\cdot\sigma)W=
+[(1-a\cdot x)I+(L_ax-a)\cdot\sigma]/\delta$.
+This is a ball automorphism; it explicitly relates the fractional quadratic
+coordinates to the canonical quadratic coordinates and preserves the
+interior/boundary distinction.
+
+\begin{corollary}[Attainment by invertible filters]\label{cor:attain}
+For a mixed filtered marginal, the supremum in Equation (10) is attained by
+an invertible filter if and only if
+\begin{equation}\label{eq:glcriterion}
+ \lambda=0\quad\hbox{and}\quad\norm{x_0}<1.
+\end{equation}
+Every invertible maximizer uses precisely the points of \eqref{eq:allmax}
+with norm strictly less than one. Otherwise all maximizing points have norm
+one, and replacing such a point by $(1-\varepsilon)x$ gives an explicit
+sequence of invertible filters approaching the supremum.
+\end{corollary}
+\begin{proof}
+The positive matrix $I+x\cdot\sigma$ is invertible exactly for $\norm x<1$.
+Since $x_0\perp\ker A$, it is the minimum-norm member of $x_0+\ker A$.
+The claimed condition follows from \eqref{eq:allmax}.
+\end{proof}
+
+The success probability is also explicit. With $K_0$ denoting
+\eqref{eq:filter} before multiplying by $\gamma$, the canonical trace
+normalization gives $\tr(K_0\rho_AK_0^\dagger)=1$. Therefore the maximum
+success probability among scalar multiples of this effect is
+\begin{align}\label{eq:success}
+ p_{\max}(x)&=\frac1{\lambda_{\max}(W(I+x\cdot\sigma)W)}\\
+ &=\frac{\delta}{1-a\cdot x+
+ \sqrt{(1-a\cdot x)^2-\delta(1-\norm x^2)}}.\nonumber
+\end{align}
+This follows from the trace and determinant of the positive $2\times2$
+matrix in the first line. The denominator is positive for $\norm a<1$.
+In particular a boundary optimum here has a nonzero limiting success
+probability; nonattainment under the GL convention need not mean a
+zero-probability limit.
+
+\paragraph{Pure marginal.}
+If $\norm a=1$, rotate Alice so her marginal is $|0\rangle\langle0|$.
+In the corresponding block form of $\rho$, the lower diagonal positive
+block has trace zero and is zero. Positivity forces its off-diagonal blocks
+to vanish (equivalently apply Cauchy--Schwarz to the positive form).
+Thus $\rho=|0\rangle\langle0|\otimes\rho_B$. Every nonzero successful
+Alice filter preserves the product structure and the purity of her factor.
+Its correlation matrix has squared norm $\norm b^2$, proving
+\eqref{eq:pure}. A rank-one filter annihilating the occupied Alice state has
+zero success probability and is excluded.
+
+\paragraph{Other rank deficiencies.}
+No assumption on $\operatorname{rank}\rho$, $\operatorname{rank}T$, or
+$\operatorname{rank}Q$ entered the mixed-marginal proof. A singular $A$ uses
+its pseudoinverse and the explicitly described kernel freedom. Repeated
+eigenvalues do not require a preferred eigenbasis. The cases $Q=0$, $g=0$,
+and a zero multiplier are all included. In particular, if $Q=0$ the value
+is $\norm c$; if $c=0$ the squared value is simply $\tr Q$.
+
+\section{The entire violating branch is rational}
+
+\begin{theorem}[Rational criterion and unique violating optimizer]\label{thm:violation}
+For a mixed filtered marginal, put $D_0=dI-Q$. Then $\HF_A>1$ if and only if
+all three conditions hold:
+\begin{align}\label{eq:criterion}
+ D_0&\succ0,\\
+ c^TQD_0^{-2}c&<1,\nonumber\\
+ \tau+c^TQD_0^{-1}c&>1.\nonumber
+\end{align}
+Whenever they hold,
+\begin{equation}\label{eq:rational}\boxed{
+ \HF_A^2=\tau+c^TQ(dI-Q)^{-1}c,\qquad
+ x_*=(dI-SS^T)^{-1}Sc.}
+\end{equation}
+The optimal filter effect is unique up to positive scalar, and all optimal
+filters differ only by that scalar and an output unitary. For rational
+original Bloch data, the squared optimum on this branch is rational.
+\end{theorem}
+\begin{proof}
+Suppose the maximum exceeds one. By \eqref{eq:boundary}, every optimizer
+is interior. The quadratic's stationary equation holds and its Hessian
+$2(C-dI)$ is negative semidefinite. If it had a null vector, stationarity
+would make the quadratic constant on a line through the optimum in that
+direction; that line reaches the sphere, contradicting
+\eqref{eq:boundary}. Hence $dI-C\succ0$. The unique stationary point is
+$(dI-C)^{-1}g$, has norm less than one, and yields
+$\tau+g^T(dI-C)^{-1}g$. Conjugating by the polar orthogonal map proves
+all three conditions and \eqref{eq:rational}.
+Conversely these conditions describe a strictly concave quadratic with its
+unique stationary point strictly inside the ball and value greater than one.
+It is the global maximum. Rationality follows from \eqref{eq:shape} and
+the ordinary matrix inverse formula.
+\end{proof}
+
+Thus high-degree algebra is needed only for nonviolating values, not for
+deciding whether the one-sided filtered functional can exceed one.
+In particular, if $\kappa_1\geq\kappa_2\geq\kappa_3$ are the eigenvalues
+of $Q$, a useful geometric exclusion criterion is
+\begin{equation}\label{eq:exclusion}
+ \norm c^2\geq\kappa_2+\kappa_3\quad\Longrightarrow\quad\HF_A\leq1.
+\end{equation}
+Indeed $D_0\succ0$ would require
+$d>\kappa_1$, equivalently $\norm c^2<\kappa_2+\kappa_3$.
+The full criterion \eqref{eq:criterion}, rather than this necessary
+geometric condition alone, decides violation.
+
+\section{Why a universal radical formula is impossible}\label{sec:galois}
+
+Consider the rational canonical Bloch data
+\begin{equation}\label{eq:galoisstate}
+ a=0,\qquad c=(1/5,1/6,1/7)^T,\qquad
+ S=\diag(1/20,1/15,1/10).
+\end{equation}
+These describe a strictly positive density matrix: $\norm c<1/3$ and
+$\sum_i|S_{ii}|=13/60$, so the norm of the nonidentity part in
+\eqref{eq:bloch} is less than $11/20<1$. In fact every density eigenvalue
+is greater than $9/80$. Here
+$\tau=61/3600<\beta=3889/44100$, so $C-dI$ is positive definite and the
+optimum is a boundary optimum.
+
+The primitive integer polynomial obtained from \eqref{eq:poly} is
+\begin{align}\label{eq:integerpoly}
+ P_0(z)={}&3175200000000000z^6-107604000000000z^5
+ +65685000000z^4\nonumber\\
+ &+18599100000z^3-188411500z^2+695840z-913.
+\end{align}
+The included standard-library-only checker reconstructs these coefficients
+from exact fractions and verifies these squarefree modular factorizations:
+\begin{align*}
+ P_0&\equiv 5(z+6)(z^5+16z^4+4z^3+13z^2+9z+3)\pmod {17},\\
+ P_0&\equiv 22(z^6+55z^5+2z^4+35z^3+2z^2+48z+47)\pmod {59},\\
+ P_0&\equiv 188(z+460)(z+355)(z+332)(z+114)
+ (z^2+309z+411)\pmod {487}.
+\end{align*}
+It proves the degree-five, degree-six, and degree-two displayed factors
+irreducible using finite-field polynomial arithmetic, not a numerical
+factorization or a call to a symbolic Galois-group routine.
+
+\begin{proposition}[Physical obstruction to radicals]\label{prop:galois}
+For \eqref{eq:galoisstate}, neither $\HF_A^2$ nor $\HF_A$ is expressible
+by radicals over $\mathbb Q$. Consequently no formula using only rational
+operations and radicals in arbitrary rational Bloch data can give both
+one-sided filtered measures in general.
+\end{proposition}
+\begin{proof}
+Irreducibility modulo $59$ implies irreducibility over $\mathbb Q$ and a
+transitive degree-six Galois group. The squarefree factor patterns modulo
+$17$ and $487$ give respectively a $5$-cycle and a transposition.
+A transitive group of degree six containing a $5$-cycle is primitive:
+a nontrivial block system would have blocks of size two or three, and the
+$5$-cycle could neither move the fewer-than-five blocks nor act
+nontrivially inside a block of size less than five. A primitive group
+containing a transposition is $S_6$. To see this directly, form the graph
+whose edges are all conjugates of that transposition. Its connected
+components form a block system; primitivity makes the graph connected,
+and edge transpositions of a connected graph generate the full symmetric
+group. Therefore the normal closure has group $S_6$.
+
+Let $\nu$ be the largest real root of $P_0$ and $K=\mathbb Q(\nu)$.
+The optimum is
+\[
+ V=\beta+\nu+\sum_i\frac{\kappa_ic_i^2}{\nu-\kappa_i}\in K.
+\]
+It is not rational: after multiplying by
+$\prod_i(\nu-\kappa_i)$, an alleged rational value would give a nonzero
+degree-four polynomial, with leading coefficient one, annihilating a
+degree-six algebraic number. In the $S_6$ normal closure the field $K$ is
+fixed by a point stabilizer $S_5$, a maximal subgroup. Thus $K$ has no proper
+intermediate fields and $\mathbb Q(V)=K$. Its nonsolvable normal closure
+precludes expression of $V$ by radicals. Expression of $\sqrt V$ by
+radicals would imply one for $V$ and is also impossible.
+\end{proof}
+
+The exact checker also isolates
+$0.02806139<\nu<0.02806140$ and encloses the optimum using rational
+interval endpoints; numerically $V\simeq0.1366862793$. These decimal
+approximations are illustrations, not inputs to the Galois proof.
+
+\section{Examples that exercise different branches}\label{sec:examples}
+
+\paragraph{Werner states.}
+For $a=b=0$ and $T=-pI$, $0\leq p\leq1$, one obtains
+$\HF_A^2=\HF_B^2=3p^2$. The identity filter is optimal. The case $p=0$
+is entirely flat.
+
+\paragraph{A full-rank example without an invertible maximizer.}
+For $a=0$, $T=0$, $b=(0,0,r)$, $0<r<1$, one has $Q=0$, $\nu=\eta=0$,
+$\HF_A^2=r^2$. Here $q(x)=r^2\norm x^2$: exactly the sphere maximizes.
+This disproves literal universal existence of the maximum written in
+Equation (10) under a GL-only convention.
+
+\paragraph{A singular flat optimum.}
+For $a=b=0$, $T=\diag(0,0,s)$ with $|s|\leq1$, the quadratic is
+$q(x)=s^2(1-x_1^2-x_2^2)$. Every $(0,0,x_3)$ with $|x_3|\leq1$ is
+optimal. Both invertible and rank-one optimal filters occur. An ordinary
+inverse formula would fail, while the pseudoinverse formula is exact.
+
+\paragraph{A nonzero-gradient hard case.}
+The physical canonical data
+\[c=(0,0,3/10),\qquad S=\diag(1/5,1/10,1/50)\]
+yield a positive multiplier, a singular optimal
+matrix, and a nonzero gradient. They give
+$\HF_A^2=36/275\simeq0.1309090909$. The pseudoinverse solution must be
+completed in the top eigenspace to have norm one. This checks a hard case
+that does not reduce to $g=0$.
+
+\paragraph{Both directions exhibit different exact hidden values.}
+Consider the amplitude-damping Choi state with
+\[
+ a=0,\quad b=(0,0,3/5),\quad
+ T=\diag(\sqrt{2/5},-\sqrt{2/5},2/5).
+\]
+Its unfiltered $F_3^2=24/25<1$, whereas
+\begin{equation}\label{eq:asymmetricexample}
+ \HF_A^2=\frac{12}{11},\qquad\HF_B^2=\frac{120}{71}.
+\end{equation}
+For Alice the optimal canonical vector is $(0,0,6/11)$ and the maximum
+success probability is $11/17$. For Bob it is $(0,0,-15/71)$ after
+whitening Bob; the maximum success probability is $71/215$. Bob's canonical
+data are $c=(0,0,-3/8)$ and
+$Q=\diag(5/8,5/8,25/64)$, which directly reproduce the second fraction.
+
+\input{sections/extensions}
+\input{sections/conditional_purity}
+
+\section{Research process and AI disclosure}\label{sec:disclosure}
+
+This work is fully autonomous agentic research. Autonomous AI research
+agents produced the results, the written proofs, the exact and numerical
+checkers and the Lean development in an earlier session, starting from the
+open question of Ducuara, Susa and Skrzypczyk \cite{ducuara}. The records
+of that session describe internal audits carried out within the same
+automated workflow; they are internal AI-assisted reviews, not peer review,
+and they are not included. Opus~5.5 by Anthropic used with Claude Code
+assessed the package for this release: it checked the source question and
+the cited equations, read the proofs of Theorems~\ref{thm:main}
+and~\ref{thm:violation} and of Proposition~\ref{prop:galois}, reran every
+checker from a copy, wrote and ran the brute-force comparison, rebuilt the
+Lean project module by module with a new whole-project axiom audit, checked
+the formal statement against actual density matrices and filters, edited
+the manuscript and integrated the package into the repository. The
+mathematics of the extensions was not changed. Dev D. Goyal is responsible
+for publication. The work has not been externally peer reviewed. The formal
+scope is stated in Appendix~\ref{sec:formal}; the remaining results rest on
+the written proofs and the checks of Appendix~\ref{app:checks}.
+
+The Lean library in \texttt{lean/QuantumPrior} is adapted, with
+attribution, from the author's earlier formalization of steering-ellipsoid
+results, from which the companion package \cite{steeringbounds} was
+released. It contains the fully-entangled-fraction bound
+$f(\rho)\leq1-c/2$, which is Conjecture~2 of Milne, Jennings, Jevtic and
+Rudolph \cite{milnemaxmixed}. The Omega Institute's public repository
+records a claimed Lean proof of that conjecture committed on 8 October 2026
+(issue \#14206), and a proof of their Conjecture~1, on the CHSH value at
+fixed centre, committed on 14 October 2026 (issue \#16558). No priority is
+claimed for either statement; neither is used in the main theorem here, and
+neither record contains the one-sided filtered measures.
+
+\appendix
+\part*{Appendices}
+\addcontentsline{toc}{part}{Appendices}
+
+\section{Independent verification and reproducibility}\label{app:checks}
+
+All programs are in the package directory \texttt{checks/}. The command
+\begin{verbatim}
+python3 checks/run_checks.py --independent
+\end{verbatim}
+replays them in a temporary copy with \texttt{python3 -I}.
+
+\paragraph{Primary numerical implementation.}
+\texttt{f3\_exact.py} evaluates the finite spectral prescription and
+reconstructs valid Kraus operators. \texttt{verify.py} uses seed
+$20261103$, generates $400$ random density matrices, $100$ of each rank
+$1,2,3,4$, and checks both filtering directions ($800$ instances).
+It checks the original fractional identity, canonicalization, ellipsoid
+shape, reconstructed density matrices, the exact gap identity as a numerical
+identity, and the spectral prescription, with explicit singular examples.
+The maximum recovered-filter squared-value discrepancy was
+$9.09\times10^{-13}$; the largest gap-identity residual was
+$8.33\times10^{-16}$. The secondary nonsymmetric shape-spectrum check had
+maximum discrepancy $3.47\times10^{-9}$, reflecting repeated-root
+conditioning. These are floating-point checks and are not substituted for
+the proofs.
+
+\paragraph{Separate implementation.}
+\texttt{independent\_check.py} was written separately. It whitens through
+$2\times2$ marginal eigendecomposition and directly filters $4\times4$
+density matrices, rather than reusing the primary Bloch implementation.
+It checks $240$ independently generated rank-$1$--$4$ states plus named
+cases ($514$ one-sided instances). The largest reconstruction discrepancy
+was $3.26\times10^{-13}$. For $64$ instances it also compared against
+multistart constrained optimization, with maximum absolute discrepancy
+$1.70\times10^{-7}$ and no observed optimizer excess above the formula
+larger than $1.78\times10^{-15}$. No failed checks were recorded.
+
+\paragraph{Brute-force comparison.}
+\texttt{independent\_bruteforce.py} was written for this release and shares
+no code with the other programs. For $24$ random states of ranks $1$--$4$,
+some mixed with the maximally mixed state, it maximizes $F_3$ of the
+normalized Alice-filtered $4\times4$ state over the eight real parameters
+of a complex $2\times2$ filter by multistart Nelder--Mead and compares the
+result with a fresh implementation of Theorem~\ref{thm:main}. The search
+never exceeded the formula by more than $10^{-8}$ and reached it within
+$10^{-6}$ in every case. In the hard case the top eigenvalue of
+$\mathscr M$ can be defective, and a floating-point eigenvalue routine
+then returns a nearly real pair; the comparison therefore accepts
+eigenvalues with imaginary part below $10^{-6}$ as real. A first version
+with a tighter tolerance missed such a root in one case; this was an error
+of the comparison program, which the exact evaluators avoid.
+
+\paragraph{Exact arithmetic.}
+\texttt{verify\_galois\_certificate.py} uses Python's standard library,
+exact fractions and finite-field arithmetic. It reconstructs the sextic,
+verifies modular products, squarefreeness, and irreducibility, and supplies
+rational root/value enclosures. The finite checks support the explicitly
+written Galois argument; the program is not a Lean proof of field theory.
+
+\paragraph{Exact evaluation for rational states.}
+\texttt{exact\_rational.py} accepts rational original Bloch data and checks
+all fifteen nonempty principal minors of the resulting Hermitian density
+matrix. It constructs the six invariant coefficients using rational arithmetic,
+isolates the ordered real roots of the sextic, and uses an exact Sturm count
+to choose the branch $\eta=\max(d,\nu)$. At a spectral pole, divisibility by
+the minimal polynomial determines the first nonzero derivative in
+Corollary~\ref{cor:sixinvariants}; quotient-field reduction then certifies
+the returned value. No floating-point approximation chooses a branch or
+accepts a value. \texttt{verify\_exact\_rational.py} passes $23$ exact cases,
+covering both parties, all derivative orders $0,1,2,3$, the nonzero-gradient
+hard case, flat optima, pure marginals, rational pure entangled states, and
+the degree-six Galois example. It also checks exact invariance under a
+rational orthogonal rotation and reconstructs determinant and adjugate
+identities independently. \texttt{verify\_companion\_exact.py} checks the
+companion determinant in exact integer arithmetic in dimensions $1$--$4$,
+including singular shifts, and the six-invariant compression.
+
+\paragraph{Operational and conditional-state checks.}
+\texttt{extension\_checks.py} checks $48$ physical states at $144$
+probability budgets, using $1008$ independent constrained-optimizer starts.
+The maximum reconstructed squared-value error is $1.43\times10^{-13}$;
+the maximum comparison discrepancy is $1.33\times10^{-9}$.
+It also checks $96$ arbitrary affine optimal families, $72$ boundary-only
+families against $80$ directions each, and $27$ pure-state frontier cases.
+The reference solver for the rate reports numerical success in $69$ of
+$96$ cases; all $96$ endpoint values nevertheless agree within
+$6.14\times10^{-10}$. The JSON report preserves those statuses.
+A scalar rate expression loses $2.87\times10^{-8}$ near a double root,
+while direct Hermitian effect evaluation remains accurate to
+$6.11\times10^{-15}$.
+\texttt{conditional\_checks.py} tests $384$ projections from $48$ physical
+states, the complex block identity, invariance under invertible filters,
+seven exact equality families, and $21$ collapsing states. The largest
+block-identity residual is $6.67\times10^{-16}$ and the largest
+conditional-state invariance error is $2.65\times10^{-15}$. Five exact
+symbolic identities also pass. These checks detect errors; the analytical
+proofs are the source of the universal claims.
+
+\input{sections/formal_status}
+
+\begin{thebibliography}{99}
+\bibitem{ducuara}
+A. F. Ducuara, C. E. Susa, and P. Skrzypczyk,
+\emph{Locally inaccessible hidden quantum correlations},
+Physical Review A \textbf{110}, 022435 (2024).
+\href{https://arxiv.org/abs/2406.03945}{arXiv:2406.03945};
+\href{https://doi.org/10.1103/PhysRevA.110.022435}{doi:10.1103/PhysRevA.110.022435}.
+Equation numbers refer to arXiv version~1.
+
+\bibitem{costa}
+A. C. S. Costa and R. M. Angelo,
+\emph{Quantification of Einstein--Podolsky--Rosen steering for two-qubit states},
+Physical Review A \textbf{93}, 020103(R) (2016).
+\href{https://doi.org/10.1103/PhysRevA.93.020103}{doi:10.1103/PhysRevA.93.020103}.
+
+\bibitem{cjwr}
+E. G. Cavalcanti, S. J. Jones, H. M. Wiseman, and M. D. Reid,
+\emph{Experimental criteria for steering and the Einstein--Podolsky--Rosen paradox},
+Physical Review A \textbf{80}, 032112 (2009).
+\href{https://doi.org/10.1103/PhysRevA.80.032112}{doi:10.1103/PhysRevA.80.032112}.
+
+\bibitem{jevtic}
+S. Jevtic, M. Pusey, D. Jennings, and T. Rudolph,
+\emph{Quantum steering ellipsoids},
+Physical Review Letters \textbf{113}, 020402 (2014).
+\href{https://doi.org/10.1103/PhysRevLett.113.020402}{doi:10.1103/PhysRevLett.113.020402}.
+
+\bibitem{milne}
+A. Milne, S. Jevtic, D. Jennings, H. Wiseman, and T. Rudolph,
+\emph{Quantum steering ellipsoids, extremal physical states and monogamy},
+New Journal of Physics \textbf{16}, 083017 (2014).
+\href{https://doi.org/10.1088/1367-2630/16/8/083017}{doi:10.1088/1367-2630/16/8/083017}.
+
+\bibitem{milnemaxmixed}
+A. Milne, D. Jennings, S. Jevtic, and T. Rudolph,
+\emph{Quantum correlations of two-qubit states with one maximally mixed marginal},
+Physical Review A \textbf{90}, 024302 (2014).
+\href{https://arxiv.org/abs/1404.3951}{arXiv:1404.3951}.
+
+\bibitem{steeringbounds}
+D. D. Goyal,
+\emph{Exact three-setting correlation bounds at fixed steering centre},
+preprint (2026),
+\url{https://github.com/dvgyl/math-and-theory/tree/main/papers/physics/steering-bounds}.
+
+\bibitem{adachi}
+S. Adachi, S. Iwata, Y. Nakatsukasa, and A. Takeda,
+\emph{Solving the trust-region subproblem by a generalized eigenvalue problem},
+SIAM Journal on Optimization \textbf{27}(1), 269--291 (2017).
+\href{https://doi.org/10.1137/16M1058200}{doi:10.1137/16M1058200}.
+This paper credits the earlier spectral reduction of Gander, Golub, and
+von Matt (1989). The general spectral trust-region method is not claimed
+as new here.
+\bibitem{twoballs}
+S. Ansary Karbasy and M. Salahi,
+\emph{Quadratic optimization with two ball constraints},
+Numerical Algebra, Control and Optimization \textbf{10}(2), 165--175 (2020).
+\href{https://doi.org/10.3934/naco.2019046}{doi:10.3934/naco.2019046}.
+
+\bibitem{rontsis}
+N. Rontsis, P. J. Goulart, and Y. Nakatsukasa,
+\emph{An active-set algorithm for norm constrained quadratic problems},
+Mathematical Programming \textbf{193}, 447--483 (2022).
+\href{https://doi.org/10.1007/s10107-021-01617-2}{doi:10.1007/s10107-021-01617-2}.
+
+\bibitem{vidal}
+G. Vidal, \emph{Entanglement of pure states for a single copy},
+Physical Review Letters \textbf{83}, 1046--1049 (1999).
+\href{https://arxiv.org/abs/quant-ph/9902033}{arXiv:quant-ph/9902033};
+\href{https://doi.org/10.1103/PhysRevLett.83.1046}{doi:10.1103/PhysRevLett.83.1046}.
+
+\bibitem{ku}
+H.-Y. Ku et al., \emph{Complete classification of steerability under local
+filters and its relation with measurement incompatibility},
+Nature Communications \textbf{13}, 4973 (2022).
+\href{https://doi.org/10.1038/s41467-022-32466-y}{doi:10.1038/s41467-022-32466-y}.
+Filtering equivalence and success-probability questions are studied for
+steering assemblages, a different resource from the invariant optimized here.
+
+\bibitem{probabilityprior}
+A. F. Ducuara, C. E. Susa, and J. H. Reina,
+\emph{Emergence of maximal hidden quantum correlations and its trade-off
+with the filtering probability in dissipative two-qubit systems},
+Physica A \textbf{594}, 127035 (2022).
+\href{https://doi.org/10.1016/j.physa.2022.127035}{doi:10.1016/j.physa.2022.127035}.
+
+\bibitem{horodecki}
+M. Horodecki, P. Horodecki, and R. Horodecki,
+\emph{Separability of mixed states: necessary and sufficient conditions},
+Physics Letters A \textbf{223}, 1--8 (1996).
+\href{https://arxiv.org/abs/quant-ph/9605038}{arXiv:quant-ph/9605038};
+\href{https://doi.org/10.1016/S0375-9601(96)00706-2}{doi:10.1016/S0375-9601(96)00706-2}.
+
+\end{thebibliography}
+\end{document}

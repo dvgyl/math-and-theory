@@ -1,0 +1,419 @@
+{
+  "format_version": 1,
+  "package_id": "one-sided-f3",
+  "formal_scope": "Lean 4.19.0 proves, for every positive semidefinite complex 4\u00d74 matrix of trace one, that the explicit algebraic value is the least upper bound of the Frobenius norm of the Pauli correlation matrix over all success-normalized states obtained by invertible complex filters on Alice's side, and likewise on Bob's side, together with the gap identity, all maximizers, attainment by invertible filters and the rational violating criterion in canonical coordinates; a whole-project audit covers every declaration. The rational Bloch-coordinate expressions, the six-invariant rule, the Galois obstruction and the operational extensions are conventional proofs with exact certificates and numerical checks; the measurement-optimization meaning of F3 is cited.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.toml",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/AxiomAudit.lean": "0f58b8fbfcbe7d4ecc7a84e7daa298f1cdb4c7b7dbd0a86d57f38684db91eb23",
+    "lean/CompanionPolynomial.lean": "1a5354122368645c6f8556ccd25e2c6d6b185d4413dde39afa4e0109da57a7d9",
+    "lean/ConditionalPurityScalar.lean": "1c7477c7a97f6542b09e33e75a3108625b3d7c2090463304fc879b137021a609",
+    "lean/ExpandedF3.lean": "4366d3bcc051bde9c1f034b8f451171011b2ddca237faaad88d0746d49db016b",
+    "lean/FilteredF3.lean": "d1c3fecd2596e48f7aa9919cb0ba28dc1853e8784fb1f773eda6ea7e831f7a8e",
+    "lean/MatrixCompanionBridge.lean": "c8f83ced88c01aaf6459893169fa9cd46bbce2e359a9b5cf0a60f8253261cf80",
+    "lean/OpenBallSupremum.lean": "6e0a38b23ef07fb735b8d0a9f8a96af1bb58fd616771b752a2e2c2cda38e3c10",
+    "lean/OperationalExtensions.lean": "66a8ed0e082f0b9925c45de97e3541b95446cc6d6a8bf15b5e8f9517723c23e5",
+    "lean/PolynomialFormula.lean": "c0422b15f9418bfd51fe644d848eae6ddc8660b3e37971a23ac234f5e6d8d941",
+    "lean/QuantumBloch.lean": "6a1d78375cd7d20459a1f222d00b946e0be22fae9be78df582ed54e3680d04e8",
+    "lean/QuantumExtremizers.lean": "47d8c5f9ab8b3b7074913c5db7e5b0033d18457b86fd0044b771fce647f6fa74",
+    "lean/QuantumInvertible.lean": "b832789399676af89b9822b3796922b6bae62dcd649736a7aca037606683b91f",
+    "lean/QuantumNormalization.lean": "1cb547e7ad63fab98bffea79595ef54d735604c93bc4fbe59a63a6bd47907cdf",
+    "lean/QuantumPrior/MilneAllStates.lean": "b56fa234cef8b00c61c6bf97f86685f81be765d1ce7a6628881aed61974c78fd",
+    "lean/QuantumPrior/MilneBlochDefs.lean": "401196288d30f12d1a29a6bc98c624fecce8ee3db49788d4101deda685b2db3f",
+    "lean/QuantumPrior/MilneBlochIdentities.lean": "65debc308db3736d548f53b4f9e34477ec67a2a2f1449c488cddbaefff4939b6",
+    "lean/QuantumPrior/MilneCanonicalization.lean": "77cd62a2edd246ee06f45f9f314578585cca7d76249be271f1df6aac4dbfd47c",
+    "lean/QuantumPrior/MilneCenterCoordinates.lean": "7f94299f74959757da2687236fa2d066e54d55dce68867b5997b727e9ffa8c55",
+    "lean/QuantumPrior/MilneComplexFiltering.lean": "6ceb6503e6f6f5c38fbb8d4e09ba22c027c13a5f0f566a54c908a2dfaee19ed2",
+    "lean/QuantumPrior/MilneCore.lean": "741d02644fac9e0c29cc2b744dd336c094145521cd098fa2d8bee7ec53ab5b75",
+    "lean/QuantumPrior/MilneCorrelation.lean": "66def959771f59766708c6ec135bb4899d7eac03b1370b6ffbe7fae0e066e3db",
+    "lean/QuantumPrior/MilneDefs.lean": "cd26f6bdd709c6a23cc28847986769ea50b9f6e6904360a2cef27e177b1d8d95",
+    "lean/QuantumPrior/MilneFiltering.lean": "7576c1599cc0e665283b4c29a536693bac59b8520315eeaf9ed244cf22d8c17b",
+    "lean/QuantumPrior/MilneGeometry.lean": "859d1318a6c78efe8a2685ea5b6d41320f2a3f1f77af6fb85895345f0d8f2b82",
+    "lean/QuantumPrior/MilneGeometryBridge.lean": "5cb2b56c8eadf67f0041722db0c08708882ee291dcae4fb1045a42d8cfe86210",
+    "lean/QuantumPrior/MilneOneSided.lean": "bbde457c2dd8727ae03f7a29b23bacc29b594da741d84405ff5efd3133bfd98c",
+    "lean/QuantumPrior/MilnePauliAlgebra.lean": "0034368639c10046245a3d737e01b1527715e28edb151db71c416a1627498b7a",
+    "lean/QuantumPrior/MilnePhysicalOrbit.lean": "af81d257c17627f0b1744ebe11584ee76fe5a0ccbc1b67c53466cd0a8b36edd4",
+    "lean/QuantumPrior/MilnePhysicalOrbitFilter.lean": "99d6430552981643b6fbef62c8bce772f0ac714b5cdb532e63e851417b2cc7d9",
+    "lean/QuantumPrior/MilnePurityCovariance.lean": "74e5718593c6d7526e1146a5c8235bba738bfac68e921d319c6e03a6bc19cf19",
+    "lean/QuantumPrior/MilneQubit.lean": "e25769c78969dce556f7b32f99ea9c1290ccf087b7ed2431f56bd16c0ffb3e6d",
+    "lean/QuantumPrior/MilneQubitBall.lean": "66b8dbf0a708ed34b083e3a1736ab813796349ff52692f448a9bd5cc0d1d9b9b",
+    "lean/QuantumPrior/MilneScalarBounds.lean": "f339d8e707732d04eccde2cbb1c31548bfb808403b440556bdbb9d022734964b",
+    "lean/QuantumPrior/MilneSingular.lean": "bcbed11f296e7a6294df55a5ec38372e913780530d9ec72813e46c0e35eb5a7e",
+    "lean/QuantumPrior/MilneSteering.lean": "653fe1bc914769e546fb400e27209e8d09c1cc15aa6fca5af89a741939db4004",
+    "lean/QuantumSingular.lean": "677b19ffa4c50674fc82690afa3d5cde145f66b61e48cac4b5734c098b75f5b6",
+    "lean/QuantumSupremum.lean": "80a803005082f3ac3245a1ce97f0f4944d17164ab821ef2930bab4ec1f7d3861",
+    "lean/QuantumTwoSided.lean": "476c3feb31b2da542491b341da3f105fdb3c8a4e87f257b4a1c3860e03a598ad",
+    "lean/RootExtremizers.lean": "230d77ef74d1d680a4fcfb41ddd3673b0512c289d202b089f59ced1bd0a7d7a3",
+    "lean/SecularBranches.lean": "8f91057d2dd7d0b38d961c243dc24610e635d0aa509ffa34faa33cf50db16ac0",
+    "lean/SecularExistence.lean": "12fb8b33d0a6f7087cad03ac25338bceaa5fcc06dd8b6bdd4ae4ab662a009e9e",
+    "lean/SpectralBridge.lean": "d4cbdd9ef4dcfe407e07394880f1c9e866997253e3e22322475e493b4b9b393b",
+    "lean/ThreeDimensional.lean": "16019cf31d7745b6d8e6b7c3921bc58a553c76a2661a24c7fdf61d7f4ec153fd",
+    "lean/TrustRegion.lean": "f0291f450a6c8549c4bf32809778ea8b8a5bd6168b90214b00fe09c598093c3f"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 2344,
+      "sha256": "db5f7f0ac4982b66d87fddaf6654577439e5281bc432e3e227adf3860d65b043"
+    },
+    "CITATION.bib": {
+      "bytes": 351,
+      "sha256": "11ccc12da1b6f3d649d47268b1dc255c169211fd3c59803cf5a4a6bae008c2d6"
+    },
+    "CITATION.cff": {
+      "bytes": 1811,
+      "sha256": "deb914de306182e18be0b544104f0cc4d6c7c2a4cb8a5b0baf01e83a22564d69"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 8990,
+      "sha256": "a89c8e10328e5cba56493345a939dbdab02cc1030fc0b0986bd516f8a3a49a3a"
+    },
+    "VERIFICATION.md": {
+      "bytes": 6467,
+      "sha256": "4ecc7a1e7faed94b0c844656ed6639ae6c51f1c88a35a6ce98aba8d270798789"
+    },
+    "checks/companion_exact_results.json": {
+      "bytes": 704,
+      "sha256": "7722c18181b04511f5be10bf548b17fd1a044fdef432f64f733144126f740707"
+    },
+    "checks/conditional_checks.py": {
+      "bytes": 5148,
+      "sha256": "d8ddf92d66a5c95b5efac4fec3ae32d7493e1c66fc883e1c15665e1d9c587957"
+    },
+    "checks/conditional_results.json": {
+      "bytes": 6196,
+      "sha256": "fe84c2064a6588b4b587175b982b49d379753f37587d239e25b3673e15ff819b"
+    },
+    "checks/exact_rational.py": {
+      "bytes": 14917,
+      "sha256": "c272529c1d474c6fa62cc07bb59231908ddf84250d45ba30b88d365d2138608c"
+    },
+    "checks/exact_rational_README.txt": {
+      "bytes": 10324,
+      "sha256": "271080f31d2c78872f3a66b95ebbd765cf8fafc7ebfe016f6a664f1bbfe47710"
+    },
+    "checks/exact_rational_results.json": {
+      "bytes": 98501,
+      "sha256": "0501a0be5683702d8e2029b8a614518af31050236ec72f5cd75d53cde3aae767"
+    },
+    "checks/extension_checks.py": {
+      "bytes": 24777,
+      "sha256": "dac834e21a6d9e250f9df836669a1ae43f18dcc702406b0715a6c26b1b9b1ef6"
+    },
+    "checks/extension_results.json": {
+      "bytes": 4033,
+      "sha256": "34c11a021e3ed24966f9e804247cfd3704c53173c4c4dd0bad8387ca11575375"
+    },
+    "checks/f3_exact.py": {
+      "bytes": 6252,
+      "sha256": "7af658a920d7177e105b0247d7b3e0cb640222504d505077a34d3156f54ee364"
+    },
+    "checks/galois_results.json": {
+      "bytes": 6711,
+      "sha256": "5056940f70a2eaf1855964ff439975e0eec484e0e93f1182692c7a678a8773d1"
+    },
+    "checks/independent_bruteforce.py": {
+      "bytes": 3597,
+      "sha256": "e6915ab4640f6808110c740a01f285a0ec0f4f5732d24f6e020c43b0163ea492"
+    },
+    "checks/independent_bruteforce_results.json": {
+      "bytes": 4356,
+      "sha256": "42caccdb7d3af07a32e591b10996fd1166d5de34848f1fcdc50e4d76a6b8b358"
+    },
+    "checks/independent_check.py": {
+      "bytes": 16030,
+      "sha256": "09ddf46e6d1c37d1bcd17e3702bb5ef775abf6ae94a8b5f7566710144078bf81"
+    },
+    "checks/independent_results.json": {
+      "bytes": 10099,
+      "sha256": "10de09f4663e46cc3abd28bd9df584b7b5dea64310e9d732f333e03b8f9abd48"
+    },
+    "checks/make_figures.py": {
+      "bytes": 2184,
+      "sha256": "e61b3da69273382e5b2e29b756266186dca288fb77899b66f83e67c0b7376015"
+    },
+    "checks/requirements.txt": {
+      "bytes": 60,
+      "sha256": "6eadd5750ad4ac421433314852a6c96f49ca2c61c3cec9fef89fb83ae7b7ef8e"
+    },
+    "checks/run_checks.py": {
+      "bytes": 2936,
+      "sha256": "e395ae9ca97777f4ff1609bce50c0af95083125261ae3b31e5a4c5575c28fd2a"
+    },
+    "checks/verification_results.json": {
+      "bytes": 2022,
+      "sha256": "cd2a99dd2d21ce4a3b4598d94139ce65a03ef2cee439457b131280dfd00d038b"
+    },
+    "checks/verify.py": {
+      "bytes": 6685,
+      "sha256": "b500bafb47e4910d13d4d8bd12ae90750339cf3c7107a4b163e1a11f396f6e9a"
+    },
+    "checks/verify_companion_exact.py": {
+      "bytes": 5442,
+      "sha256": "596c991dd93cb8befd8181d317f80b0602650fb4eea239a15932bbc6f89ddc60"
+    },
+    "checks/verify_exact_rational.py": {
+      "bytes": 7677,
+      "sha256": "1993e73e6c53fb2e0713a1a7e4ef158764ac589b8147d01cbe6e12e8d0e74916"
+    },
+    "checks/verify_galois_certificate.py": {
+      "bytes": 11421,
+      "sha256": "ddb34afb865949ed2222ee40c8e9aca7470350c931c94a6bae59a48e2d84eb0e"
+    },
+    "figures/operational_frontiers.pdf": {
+      "bytes": 45759,
+      "sha256": "6e09a3efdec132b9ed633e5f3caf58bec81d81d52ab0cee45eebd4a18106753f"
+    },
+    "lean/AxiomAudit.lean": {
+      "bytes": 5920,
+      "sha256": "0f58b8fbfcbe7d4ecc7a84e7daa298f1cdb4c7b7dbd0a86d57f38684db91eb23"
+    },
+    "lean/CompanionPolynomial.lean": {
+      "bytes": 4414,
+      "sha256": "1a5354122368645c6f8556ccd25e2c6d6b185d4413dde39afa4e0109da57a7d9"
+    },
+    "lean/ConditionalPurityScalar.lean": {
+      "bytes": 3521,
+      "sha256": "1c7477c7a97f6542b09e33e75a3108625b3d7c2090463304fc879b137021a609"
+    },
+    "lean/ExpandedF3.lean": {
+      "bytes": 474,
+      "sha256": "4366d3bcc051bde9c1f034b8f451171011b2ddca237faaad88d0746d49db016b"
+    },
+    "lean/FilteredF3.lean": {
+      "bytes": 47,
+      "sha256": "d1c3fecd2596e48f7aa9919cb0ba28dc1853e8784fb1f773eda6ea7e831f7a8e"
+    },
+    "lean/MatrixCompanionBridge.lean": {
+      "bytes": 5688,
+      "sha256": "c8f83ced88c01aaf6459893169fa9cd46bbce2e359a9b5cf0a60f8253261cf80"
+    },
+    "lean/OpenBallSupremum.lean": {
+      "bytes": 3862,
+      "sha256": "6e0a38b23ef07fb735b8d0a9f8a96af1bb58fd616771b752a2e2c2cda38e3c10"
+    },
+    "lean/OperationalExtensions.lean": {
+      "bytes": 6230,
+      "sha256": "66a8ed0e082f0b9925c45de97e3541b95446cc6d6a8bf15b5e8f9517723c23e5"
+    },
+    "lean/PolynomialFormula.lean": {
+      "bytes": 9035,
+      "sha256": "c0422b15f9418bfd51fe644d848eae6ddc8660b3e37971a23ac234f5e6d8d941"
+    },
+    "lean/QuantumBloch.lean": {
+      "bytes": 8732,
+      "sha256": "6a1d78375cd7d20459a1f222d00b946e0be22fae9be78df582ed54e3680d04e8"
+    },
+    "lean/QuantumExtremizers.lean": {
+      "bytes": 8993,
+      "sha256": "47d8c5f9ab8b3b7074913c5db7e5b0033d18457b86fd0044b771fce647f6fa74"
+    },
+    "lean/QuantumInvertible.lean": {
+      "bytes": 7614,
+      "sha256": "b832789399676af89b9822b3796922b6bae62dcd649736a7aca037606683b91f"
+    },
+    "lean/QuantumNormalization.lean": {
+      "bytes": 4518,
+      "sha256": "1cb547e7ad63fab98bffea79595ef54d735604c93bc4fbe59a63a6bd47907cdf"
+    },
+    "lean/QuantumPrior/MilneAllStates.lean": {
+      "bytes": 4045,
+      "sha256": "b56fa234cef8b00c61c6bf97f86685f81be765d1ce7a6628881aed61974c78fd"
+    },
+    "lean/QuantumPrior/MilneBlochDefs.lean": {
+      "bytes": 1844,
+      "sha256": "401196288d30f12d1a29a6bc98c624fecce8ee3db49788d4101deda685b2db3f"
+    },
+    "lean/QuantumPrior/MilneBlochIdentities.lean": {
+      "bytes": 3005,
+      "sha256": "65debc308db3736d548f53b4f9e34477ec67a2a2f1449c488cddbaefff4939b6"
+    },
+    "lean/QuantumPrior/MilneCanonicalization.lean": {
+      "bytes": 4264,
+      "sha256": "77cd62a2edd246ee06f45f9f314578585cca7d76249be271f1df6aac4dbfd47c"
+    },
+    "lean/QuantumPrior/MilneCenterCoordinates.lean": {
+      "bytes": 8269,
+      "sha256": "7f94299f74959757da2687236fa2d066e54d55dce68867b5997b727e9ffa8c55"
+    },
+    "lean/QuantumPrior/MilneComplexFiltering.lean": {
+      "bytes": 5020,
+      "sha256": "6ceb6503e6f6f5c38fbb8d4e09ba22c027c13a5f0f566a54c908a2dfaee19ed2"
+    },
+    "lean/QuantumPrior/MilneCore.lean": {
+      "bytes": 15563,
+      "sha256": "741d02644fac9e0c29cc2b744dd336c094145521cd098fa2d8bee7ec53ab5b75"
+    },
+    "lean/QuantumPrior/MilneCorrelation.lean": {
+      "bytes": 4896,
+      "sha256": "66def959771f59766708c6ec135bb4899d7eac03b1370b6ffbe7fae0e066e3db"
+    },
+    "lean/QuantumPrior/MilneDefs.lean": {
+      "bytes": 2304,
+      "sha256": "cd26f6bdd709c6a23cc28847986769ea50b9f6e6904360a2cef27e177b1d8d95"
+    },
+    "lean/QuantumPrior/MilneFiltering.lean": {
+      "bytes": 4016,
+      "sha256": "7576c1599cc0e665283b4c29a536693bac59b8520315eeaf9ed244cf22d8c17b"
+    },
+    "lean/QuantumPrior/MilneGeometry.lean": {
+      "bytes": 5735,
+      "sha256": "859d1318a6c78efe8a2685ea5b6d41320f2a3f1f77af6fb85895345f0d8f2b82"
+    },
+    "lean/QuantumPrior/MilneGeometryBridge.lean": {
+      "bytes": 4929,
+      "sha256": "5cb2b56c8eadf67f0041722db0c08708882ee291dcae4fb1045a42d8cfe86210"
+    },
+    "lean/QuantumPrior/MilneOneSided.lean": {
+      "bytes": 12397,
+      "sha256": "bbde457c2dd8727ae03f7a29b23bacc29b594da741d84405ff5efd3133bfd98c"
+    },
+    "lean/QuantumPrior/MilnePauliAlgebra.lean": {
+      "bytes": 1380,
+      "sha256": "0034368639c10046245a3d737e01b1527715e28edb151db71c416a1627498b7a"
+    },
+    "lean/QuantumPrior/MilnePhysicalOrbit.lean": {
+      "bytes": 4592,
+      "sha256": "af81d257c17627f0b1744ebe11584ee76fe5a0ccbc1b67c53466cd0a8b36edd4"
+    },
+    "lean/QuantumPrior/MilnePhysicalOrbitFilter.lean": {
+      "bytes": 7985,
+      "sha256": "99d6430552981643b6fbef62c8bce772f0ac714b5cdb532e63e851417b2cc7d9"
+    },
+    "lean/QuantumPrior/MilnePurityCovariance.lean": {
+      "bytes": 2318,
+      "sha256": "74e5718593c6d7526e1146a5c8235bba738bfac68e921d319c6e03a6bc19cf19"
+    },
+    "lean/QuantumPrior/MilneQubit.lean": {
+      "bytes": 5039,
+      "sha256": "e25769c78969dce556f7b32f99ea9c1290ccf087b7ed2431f56bd16c0ffb3e6d"
+    },
+    "lean/QuantumPrior/MilneQubitBall.lean": {
+      "bytes": 4106,
+      "sha256": "66b8dbf0a708ed34b083e3a1736ab813796349ff52692f448a9bd5cc0d1d9b9b"
+    },
+    "lean/QuantumPrior/MilneScalarBounds.lean": {
+      "bytes": 5214,
+      "sha256": "f339d8e707732d04eccde2cbb1c31548bfb808403b440556bdbb9d022734964b"
+    },
+    "lean/QuantumPrior/MilneSingular.lean": {
+      "bytes": 9214,
+      "sha256": "bcbed11f296e7a6294df55a5ec38372e913780530d9ec72813e46c0e35eb5a7e"
+    },
+    "lean/QuantumPrior/MilneSteering.lean": {
+      "bytes": 13668,
+      "sha256": "653fe1bc914769e546fb400e27209e8d09c1cc15aa6fca5af89a741939db4004"
+    },
+    "lean/QuantumPrior/PROVENANCE.json": {
+      "bytes": 9584,
+      "sha256": "7809026a481208c23e9ae62eca99bfec09b20aa6fd78a7bff26fe703a30aa0bf"
+    },
+    "lean/QuantumPrior/README.md": {
+      "bytes": 2137,
+      "sha256": "cadbb64729b7aa9efaee3c3a619637acc518f519e23812b42555a41a4bd16979"
+    },
+    "lean/QuantumSingular.lean": {
+      "bytes": 6702,
+      "sha256": "677b19ffa4c50674fc82690afa3d5cde145f66b61e48cac4b5734c098b75f5b6"
+    },
+    "lean/QuantumSupremum.lean": {
+      "bytes": 4753,
+      "sha256": "80a803005082f3ac3245a1ce97f0f4944d17164ab821ef2930bab4ec1f7d3861"
+    },
+    "lean/QuantumTwoSided.lean": {
+      "bytes": 5893,
+      "sha256": "476c3feb31b2da542491b341da3f105fdb3c8a4e87f257b4a1c3860e03a598ad"
+    },
+    "lean/RootExtremizers.lean": {
+      "bytes": 2177,
+      "sha256": "230d77ef74d1d680a4fcfb41ddd3673b0512c289d202b089f59ced1bd0a7d7a3"
+    },
+    "lean/SecularBranches.lean": {
+      "bytes": 7430,
+      "sha256": "8f91057d2dd7d0b38d961c243dc24610e635d0aa509ffa34faa33cf50db16ac0"
+    },
+    "lean/SecularExistence.lean": {
+      "bytes": 7972,
+      "sha256": "12fb8b33d0a6f7087cad03ac25338bceaa5fcc06dd8b6bdd4ae4ab662a009e9e"
+    },
+    "lean/SpectralBridge.lean": {
+      "bytes": 11052,
+      "sha256": "d4cbdd9ef4dcfe407e07394880f1c9e866997253e3e22322475e493b4b9b393b"
+    },
+    "lean/ThreeDimensional.lean": {
+      "bytes": 3391,
+      "sha256": "16019cf31d7745b6d8e6b7c3921bc58a553c76a2661a24c7fdf61d7f4ec153fd"
+    },
+    "lean/TrustRegion.lean": {
+      "bytes": 8704,
+      "sha256": "f0291f450a6c8549c4bf32809778ea8b8a5bd6168b90214b00fe09c598093c3f"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3539,
+      "sha256": "d8b532e20ae37b214faa86943c1d6a566126c842a83d2fdb5952474f6750856b"
+    },
+    "lean/lakefile.toml": {
+      "bytes": 1522,
+      "sha256": "00f52d3c93a6ee1171fb0c60aa1b20fa5257785b8c3fc8271613576244d6ddd9"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    "manuscript.pdf": {
+      "bytes": 550809,
+      "sha256": "5e919585a46e1f2d549bc259a32d5e5d6223b71dcd851f310e5ea795e1fc155e"
+    },
+    "manuscript.tex": {
+      "bytes": 51972,
+      "sha256": "8cb56b670a423a4fa133cf113c1d97bfec81f4a2791c45ae0c6899ea88026f37"
+    },
+    "scripts/check_axiom_audit.py": {
+      "bytes": 6155,
+      "sha256": "076befec529a198dd6e1d03f2fe637586351101584f4c4f531c65bf1332df55c"
+    },
+    "scripts/verify.sh": {
+      "bytes": 649,
+      "sha256": "ea83def3edf52566c1e351f5ae28b5d293bf0b68a2866ea2dfa7f3416e128c08"
+    },
+    "sections/conditional_purity.tex": {
+      "bytes": 9973,
+      "sha256": "48abffeb483f21315bd910791cb5b2804621e39f552e15b0676d0996f16e196e"
+    },
+    "sections/extensions.tex": {
+      "bytes": 29369,
+      "sha256": "6e2d6c4682cffb90e8a1204a8d63ea4f5308b64200950ab40ec0a588c38dd9fe"
+    },
+    "sections/formal_status.tex": {
+      "bytes": 4732,
+      "sha256": "8c7f17e5a908c8a7ad3294135d9787320accc99b7f847ed73b4d7572950c4165"
+    },
+    "verification/README.md": {
+      "bytes": 2121,
+      "sha256": "0b838189094e912f5aa59f1d85fa3b49caa0373d4992ef856b5630f337be2c78"
+    },
+    "verification/axiom-inventory.json": {
+      "bytes": 190179,
+      "sha256": "9e956f6afc36d91c05dc3a0a250c7c8ff1e24360b771b51df8def3838e358f5d"
+    },
+    "verification/build.log.xz": {
+      "bytes": 8832,
+      "sha256": "519fa449ef3e4a4537b6fab57c29797f745a908d11c5ace9cd3da09fd21c279c"
+    },
+    "verification/checks.log": {
+      "bytes": 705,
+      "sha256": "631af2dac19ad227c800b39626d0cf34340a826c24c142b9e93f4a7e6b39b5a8"
+    }
+  }
+}

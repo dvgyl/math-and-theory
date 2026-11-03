@@ -1,0 +1,4009 @@
+{
+  "sympy_version": "1.14.0",
+  "exact_cases": 23,
+  "principal_minors_per_validated_state": 15,
+  "pole_orders_exercised": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "all_exact_checks_passed": true,
+  "rejected_invalid_inputs": [
+    {
+      "name": "nonphysical_principal_minor",
+      "exception": "ValueError",
+      "message": "Not a physical density matrix: principal minor (1,) is -1/4."
+    },
+    {
+      "name": "floating_input",
+      "exception": "TypeError",
+      "message": "Bloch entries must be exact rational numbers; floats and irrational entries are rejected."
+    },
+    {
+      "name": "irrational_input",
+      "exception": "TypeError",
+      "message": "Bloch entries must be exact rational numbers; floats and irrational entries are rejected."
+    }
+  ],
+  "additional_decimal_comparison": {
+    "not_used_for_exact_certification": true,
+    "maximum_absolute_difference_from_float64_evaluator": 1.1102230246251565e-16
+  },
+  "cases": [
+    {
+      "name": "Werner_p_0_A",
+      "expected_rational_value": "0",
+      "side": "A",
+      "branch": "singular_pole_order_3",
+      "attained_by_an_invertible_filter": true,
+      "squared_F3_exact": "0",
+      "F3_exact": "0",
+      "canonical_c": [
+        "0",
+        "0",
+        "0"
+      ],
+      "canonical_Q": [
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "0",
+        "beta": "0",
+        "s2": "0",
+        "s3": "0",
+        "u": "0",
+        "v": "0",
+        "d": "0"
+      },
+      "D": "z**3",
+      "N": "0",
+      "P": "z**6",
+      "largest_real_root_nu": "0",
+      "eta": "0",
+      "nu_minimal_polynomial": "z",
+      "eta_minimal_polynomial": "z",
+      "derivative_order": 3,
+      "roots_strictly_above_rational_d": 0,
+      "value_number_field_residue": "0",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [
+          0,
+          1,
+          2
+        ],
+        "vanishing_N_derivative_orders": [
+          0,
+          1,
+          2
+        ],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": "0",
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "1/4"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "1/4"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "1/4"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "1/4"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "1/16"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "1/16"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "1/16"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "1/16"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "1/16"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "1/16"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "1/64"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "1/64"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "1/64"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "1/64"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "1/256"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y"
+    },
+    {
+      "name": "Werner_p_0_B",
+      "expected_rational_value": "0",
+      "side": "B",
+      "branch": "singular_pole_order_3",
+      "attained_by_an_invertible_filter": true,
+      "squared_F3_exact": "0",
+      "F3_exact": "0",
+      "canonical_c": [
+        "0",
+        "0",
+        "0"
+      ],
+      "canonical_Q": [
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "0",
+        "beta": "0",
+        "s2": "0",
+        "s3": "0",
+        "u": "0",
+        "v": "0",
+        "d": "0"
+      },
+      "D": "z**3",
+      "N": "0",
+      "P": "z**6",
+      "largest_real_root_nu": "0",
+      "eta": "0",
+      "nu_minimal_polynomial": "z",
+      "eta_minimal_polynomial": "z",
+      "derivative_order": 3,
+      "roots_strictly_above_rational_d": 0,
+      "value_number_field_residue": "0",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [
+          0,
+          1,
+          2
+        ],
+        "vanishing_N_derivative_orders": [
+          0,
+          1,
+          2
+        ],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": "0",
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "1/4"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "1/4"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "1/4"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "1/4"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "1/16"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "1/16"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "1/16"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "1/16"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "1/16"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "1/16"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "1/64"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "1/64"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "1/64"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "1/64"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "1/256"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y"
+    },
+    {
+      "name": "Werner_p_1/4_A",
+      "expected_rational_value": "3/16",
+      "side": "A",
+      "branch": "regular",
+      "attained_by_an_invertible_filter": true,
+      "squared_F3_exact": "3/16",
+      "F3_exact": "sqrt(3)/4",
+      "canonical_c": [
+        "0",
+        "0",
+        "0"
+      ],
+      "canonical_Q": [
+        [
+          "1/16",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1/16",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1/16"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "3/16",
+        "beta": "0",
+        "s2": "3/256",
+        "s3": "1/4096",
+        "u": "0",
+        "v": "0",
+        "d": "3/16"
+      },
+      "D": "z**3 - 3*z**2/16 + 3*z/256 - 1/4096",
+      "N": "0",
+      "P": "z**6 - 3*z**5/8 + 15*z**4/256 - 5*z**3/1024 + 15*z**2/65536 - 3*z/524288 + 1/16777216",
+      "largest_real_root_nu": "1/16",
+      "eta": "3/16",
+      "nu_minimal_polynomial": "z - 1/16",
+      "eta_minimal_polynomial": "z - 3/16",
+      "derivative_order": 0,
+      "roots_strictly_above_rational_d": 0,
+      "value_number_field_residue": "3/16",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [],
+        "vanishing_N_derivative_orders": [],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": "0",
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "3/16"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "5/16"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "5/16"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "3/16"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "15/256"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "15/256"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "9/256"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "21/256"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "15/256"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "15/256"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "63/4096"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "45/4096"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "45/4096"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "63/4096"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "189/65536"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 3/16"
+    },
+    {
+      "name": "Werner_p_1/4_B",
+      "expected_rational_value": "3/16",
+      "side": "B",
+      "branch": "regular",
+      "attained_by_an_invertible_filter": true,
+      "squared_F3_exact": "3/16",
+      "F3_exact": "sqrt(3)/4",
+      "canonical_c": [
+        "0",
+        "0",
+        "0"
+      ],
+      "canonical_Q": [
+        [
+          "1/16",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1/16",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1/16"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "3/16",
+        "beta": "0",
+        "s2": "3/256",
+        "s3": "1/4096",
+        "u": "0",
+        "v": "0",
+        "d": "3/16"
+      },
+      "D": "z**3 - 3*z**2/16 + 3*z/256 - 1/4096",
+      "N": "0",
+      "P": "z**6 - 3*z**5/8 + 15*z**4/256 - 5*z**3/1024 + 15*z**2/65536 - 3*z/524288 + 1/16777216",
+      "largest_real_root_nu": "1/16",
+      "eta": "3/16",
+      "nu_minimal_polynomial": "z - 1/16",
+      "eta_minimal_polynomial": "z - 3/16",
+      "derivative_order": 0,
+      "roots_strictly_above_rational_d": 0,
+      "value_number_field_residue": "3/16",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [],
+        "vanishing_N_derivative_orders": [],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": "0",
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "3/16"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "5/16"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "5/16"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "3/16"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "15/256"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "15/256"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "9/256"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "21/256"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "15/256"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "15/256"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "63/4096"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "45/4096"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "45/4096"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "63/4096"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "189/65536"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 3/16"
+    },
+    {
+      "name": "Werner_p_1/2_A",
+      "expected_rational_value": "3/4",
+      "side": "A",
+      "branch": "regular",
+      "attained_by_an_invertible_filter": true,
+      "squared_F3_exact": "3/4",
+      "F3_exact": "sqrt(3)/2",
+      "canonical_c": [
+        "0",
+        "0",
+        "0"
+      ],
+      "canonical_Q": [
+        [
+          "1/4",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1/4",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1/4"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "3/4",
+        "beta": "0",
+        "s2": "3/16",
+        "s3": "1/64",
+        "u": "0",
+        "v": "0",
+        "d": "3/4"
+      },
+      "D": "z**3 - 3*z**2/4 + 3*z/16 - 1/64",
+      "N": "0",
+      "P": "z**6 - 3*z**5/2 + 15*z**4/16 - 5*z**3/16 + 15*z**2/256 - 3*z/512 + 1/4096",
+      "largest_real_root_nu": "1/4",
+      "eta": "3/4",
+      "nu_minimal_polynomial": "z - 1/4",
+      "eta_minimal_polynomial": "z - 3/4",
+      "derivative_order": 0,
+      "roots_strictly_above_rational_d": 0,
+      "value_number_field_residue": "3/4",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [],
+        "vanishing_N_derivative_orders": [],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": "0",
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "1/8"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "3/8"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "3/8"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "1/8"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "3/64"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "3/64"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "1/64"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "5/64"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "3/64"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "3/64"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "5/512"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "3/512"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "3/512"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "5/512"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "5/4096"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 3/4"
+    },
+    {
+      "name": "Werner_p_1/2_B",
+      "expected_rational_value": "3/4",
+      "side": "B",
+      "branch": "regular",
+      "attained_by_an_invertible_filter": true,
+      "squared_F3_exact": "3/4",
+      "F3_exact": "sqrt(3)/2",
+      "canonical_c": [
+        "0",
+        "0",
+        "0"
+      ],
+      "canonical_Q": [
+        [
+          "1/4",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1/4",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1/4"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "3/4",
+        "beta": "0",
+        "s2": "3/16",
+        "s3": "1/64",
+        "u": "0",
+        "v": "0",
+        "d": "3/4"
+      },
+      "D": "z**3 - 3*z**2/4 + 3*z/16 - 1/64",
+      "N": "0",
+      "P": "z**6 - 3*z**5/2 + 15*z**4/16 - 5*z**3/16 + 15*z**2/256 - 3*z/512 + 1/4096",
+      "largest_real_root_nu": "1/4",
+      "eta": "3/4",
+      "nu_minimal_polynomial": "z - 1/4",
+      "eta_minimal_polynomial": "z - 3/4",
+      "derivative_order": 0,
+      "roots_strictly_above_rational_d": 0,
+      "value_number_field_residue": "3/4",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [],
+        "vanishing_N_derivative_orders": [],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": "0",
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "1/8"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "3/8"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "3/8"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "1/8"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "3/64"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "3/64"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "1/64"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "5/64"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "3/64"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "3/64"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "5/512"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "3/512"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "3/512"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "5/512"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "5/4096"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 3/4"
+    },
+    {
+      "name": "Werner_p_1_A",
+      "expected_rational_value": "3",
+      "side": "A",
+      "branch": "regular",
+      "attained_by_an_invertible_filter": true,
+      "squared_F3_exact": "3",
+      "F3_exact": "sqrt(3)",
+      "canonical_c": [
+        "0",
+        "0",
+        "0"
+      ],
+      "canonical_Q": [
+        [
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "3",
+        "beta": "0",
+        "s2": "3",
+        "s3": "1",
+        "u": "0",
+        "v": "0",
+        "d": "3"
+      },
+      "D": "z**3 - 3*z**2 + 3*z - 1",
+      "N": "0",
+      "P": "z**6 - 6*z**5 + 15*z**4 - 20*z**3 + 15*z**2 - 6*z + 1",
+      "largest_real_root_nu": "1",
+      "eta": "3",
+      "nu_minimal_polynomial": "z - 1",
+      "eta_minimal_polynomial": "z - 3",
+      "derivative_order": 0,
+      "roots_strictly_above_rational_d": 0,
+      "value_number_field_residue": "3",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [],
+        "vanishing_N_derivative_orders": [],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": "0",
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "1/2"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "1/2"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "0"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 3"
+    },
+    {
+      "name": "Werner_p_1_B",
+      "expected_rational_value": "3",
+      "side": "B",
+      "branch": "regular",
+      "attained_by_an_invertible_filter": true,
+      "squared_F3_exact": "3",
+      "F3_exact": "sqrt(3)",
+      "canonical_c": [
+        "0",
+        "0",
+        "0"
+      ],
+      "canonical_Q": [
+        [
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "3",
+        "beta": "0",
+        "s2": "3",
+        "s3": "1",
+        "u": "0",
+        "v": "0",
+        "d": "3"
+      },
+      "D": "z**3 - 3*z**2 + 3*z - 1",
+      "N": "0",
+      "P": "z**6 - 6*z**5 + 15*z**4 - 20*z**3 + 15*z**2 - 6*z + 1",
+      "largest_real_root_nu": "1",
+      "eta": "3",
+      "nu_minimal_polynomial": "z - 1",
+      "eta_minimal_polynomial": "z - 3",
+      "derivative_order": 0,
+      "roots_strictly_above_rational_d": 0,
+      "value_number_field_residue": "3",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [],
+        "vanishing_N_derivative_orders": [],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": "0",
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "1/2"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "1/2"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "0"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 3"
+    },
+    {
+      "name": "product_Q_zero_triple_pole",
+      "expected_rational_value": "9/25",
+      "side": "A",
+      "branch": "singular_pole_order_3",
+      "attained_by_an_invertible_filter": false,
+      "squared_F3_exact": "9/25",
+      "F3_exact": "3/5",
+      "canonical_c": [
+        "0",
+        "0",
+        "3/5"
+      ],
+      "canonical_Q": [
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "0",
+        "beta": "9/25",
+        "s2": "0",
+        "s3": "0",
+        "u": "0",
+        "v": "0",
+        "d": "-9/25"
+      },
+      "D": "z**3",
+      "N": "0",
+      "P": "z**6",
+      "largest_real_root_nu": "0",
+      "eta": "0",
+      "nu_minimal_polynomial": "z",
+      "eta_minimal_polynomial": "z",
+      "derivative_order": 3,
+      "roots_strictly_above_rational_d": 1,
+      "value_number_field_residue": "9/25",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [
+          0,
+          1,
+          2
+        ],
+        "vanishing_N_derivative_orders": [
+          0,
+          1,
+          2
+        ],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": null,
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "2/5"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "1/10"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "2/5"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "1/10"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "1/25"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "4/25"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "1/25"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "1/25"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "1/100"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "1/25"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "2/125"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "1/250"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "2/125"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "1/250"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "1/625"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 9/25"
+    },
+    {
+      "name": "product_opposite_direction",
+      "expected_rational_value": "0",
+      "side": "B",
+      "branch": "singular_pole_order_3",
+      "attained_by_an_invertible_filter": true,
+      "squared_F3_exact": "0",
+      "F3_exact": "0",
+      "canonical_c": [
+        "0",
+        "0",
+        "0"
+      ],
+      "canonical_Q": [
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "0",
+        "beta": "0",
+        "s2": "0",
+        "s3": "0",
+        "u": "0",
+        "v": "0",
+        "d": "0"
+      },
+      "D": "z**3",
+      "N": "0",
+      "P": "z**6",
+      "largest_real_root_nu": "0",
+      "eta": "0",
+      "nu_minimal_polynomial": "z",
+      "eta_minimal_polynomial": "z",
+      "derivative_order": 3,
+      "roots_strictly_above_rational_d": 0,
+      "value_number_field_residue": "0",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [
+          0,
+          1,
+          2
+        ],
+        "vanishing_N_derivative_orders": [
+          0,
+          1,
+          2
+        ],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": "0",
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "2/5"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "1/10"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "2/5"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "1/10"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "1/25"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "4/25"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "1/25"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "1/25"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "1/100"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "1/25"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "2/125"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "1/250"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "2/125"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "1/250"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "1/625"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y"
+    },
+    {
+      "name": "rank_one_flat",
+      "expected_rational_value": "1/4",
+      "side": "A",
+      "branch": "singular_pole_order_1",
+      "attained_by_an_invertible_filter": true,
+      "squared_F3_exact": "1/4",
+      "F3_exact": "1/2",
+      "canonical_c": [
+        "0",
+        "0",
+        "0"
+      ],
+      "canonical_Q": [
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1/4"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "1/4",
+        "beta": "0",
+        "s2": "0",
+        "s3": "0",
+        "u": "0",
+        "v": "0",
+        "d": "1/4"
+      },
+      "D": "z**3 - z**2/4",
+      "N": "0",
+      "P": "z**6 - z**5/2 + z**4/16",
+      "largest_real_root_nu": "1/4",
+      "eta": "1/4",
+      "nu_minimal_polynomial": "z - 1/4",
+      "eta_minimal_polynomial": "z - 1/4",
+      "derivative_order": 1,
+      "roots_strictly_above_rational_d": 0,
+      "value_number_field_residue": "1/4",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [
+          0
+        ],
+        "vanishing_N_derivative_orders": [
+          0
+        ],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": "0",
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "3/8"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "1/8"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "1/8"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "3/8"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "3/64"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "3/64"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "9/64"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "1/64"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "3/64"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "3/64"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "3/512"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "9/512"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "9/512"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "3/512"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "9/4096"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 1/4"
+    },
+    {
+      "name": "rank_two_double_pole_flat",
+      "expected_rational_value": "2/25",
+      "side": "A",
+      "branch": "singular_pole_order_2",
+      "attained_by_an_invertible_filter": true,
+      "squared_F3_exact": "2/25",
+      "F3_exact": "sqrt(2)/5",
+      "canonical_c": [
+        "0",
+        "0",
+        "1/5"
+      ],
+      "canonical_Q": [
+        [
+          "1/25",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1/25",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "2/25",
+        "beta": "1/25",
+        "s2": "1/625",
+        "s3": "0",
+        "u": "0",
+        "v": "0",
+        "d": "1/25"
+      },
+      "D": "z**3 - 2*z**2/25 + z/625",
+      "N": "0",
+      "P": "z**6 - 4*z**5/25 + 6*z**4/625 - 4*z**3/15625 + z**2/390625",
+      "largest_real_root_nu": "1/25",
+      "eta": "1/25",
+      "nu_minimal_polynomial": "z - 1/25",
+      "eta_minimal_polynomial": "z - 1/25",
+      "derivative_order": 2,
+      "roots_strictly_above_rational_d": 0,
+      "value_number_field_residue": "2/25",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [
+          0,
+          1
+        ],
+        "vanishing_N_derivative_orders": [
+          0,
+          1
+        ],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": "0",
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "3/10"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "1/5"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "3/10"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "1/5"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "3/50"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "9/100"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "1/20"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "3/50"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "1/25"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "3/50"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "9/500"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "1/100"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "3/200"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "3/250"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "3/1000"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 2/25"
+    },
+    {
+      "name": "nonzero_gradient_hard_case",
+      "expected_rational_value": "36/275",
+      "side": "A",
+      "branch": "singular_pole_order_1",
+      "attained_by_an_invertible_filter": false,
+      "squared_F3_exact": "36/275",
+      "F3_exact": "6*sqrt(11)/55",
+      "canonical_c": [
+        "0",
+        "0",
+        "3/10"
+      ],
+      "canonical_Q": [
+        [
+          "1/25",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1/100",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1/2500"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "63/1250",
+        "beta": "9/100",
+        "s2": "21/50000",
+        "s3": "1/6250000",
+        "u": "9/250000",
+        "v": "9/625000000",
+        "d": "-99/2500"
+      },
+      "D": "z**3 - 63*z**2/1250 + 21*z/50000 - 1/6250000",
+      "N": "9*z**2/250000 - 9*z/5000000 + 9/625000000",
+      "P": "z**6 - 63*z**5/625 + 20901*z**4/6250000 - 2441*z**3/62500000 + 18*z**2/244140625 + 51*z/39062500000 - 7/1220703125000",
+      "largest_real_root_nu": "1/25",
+      "eta": "1/25",
+      "nu_minimal_polynomial": "z - 1/25",
+      "eta_minimal_polynomial": "z - 1/25",
+      "derivative_order": 1,
+      "roots_strictly_above_rational_d": 4,
+      "value_number_field_residue": "36/275",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [
+          0
+        ],
+        "vanishing_N_derivative_orders": [
+          0
+        ],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": null,
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "33/100"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "17/100"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "8/25"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "9/50"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "561/10000"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "66/625"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "2351/40000"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "1951/40000"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "153/5000"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "36/625"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "64383/4000000"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "39967/4000000"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "2351/125000"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "17559/2000000"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "4586801/1600000000"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 36/275"
+    },
+    {
+      "name": "rational_violating_state",
+      "expected_rational_value": "963/568",
+      "side": "A",
+      "branch": "regular",
+      "attained_by_an_invertible_filter": true,
+      "squared_F3_exact": "963/568",
+      "F3_exact": "3*sqrt(15194)/284",
+      "canonical_c": [
+        "0",
+        "0",
+        "1/8"
+      ],
+      "canonical_Q": [
+        [
+          "9/16",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "9/16",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "9/16"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "27/16",
+        "beta": "1/64",
+        "s2": "243/256",
+        "s3": "729/4096",
+        "u": "9/1024",
+        "v": "81/16384",
+        "d": "107/64"
+      },
+      "D": "z**3 - 27*z**2/16 + 243*z/256 - 729/4096",
+      "N": "9*z**2/1024 - 81*z/8192 + 729/262144",
+      "P": "z**6 - 27*z**5/8 + 4851*z**4/1024 - 14499*z**3/4096 + 194643*z**2/131072 - 347733*z/1048576 + 2066715/67108864",
+      "largest_real_root_nu": "21/32",
+      "eta": "107/64",
+      "nu_minimal_polynomial": "z - 21/32",
+      "eta_minimal_polynomial": "z - 107/64",
+      "derivative_order": 0,
+      "roots_strictly_above_rational_d": 0,
+      "value_number_field_residue": "963/568",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [],
+        "vanishing_N_derivative_orders": [],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": "36/5041",
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "15/32"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "1/32"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "3/32"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "13/32"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "15/1024"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "45/1024"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "51/1024"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "3/1024"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "13/1024"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "39/1024"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "45/32768"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "51/32768"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "153/32768"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "39/32768"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "153/1048576"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 963/568"
+    },
+    {
+      "name": "pure_filtered_marginal",
+      "expected_rational_value": "7/50",
+      "side": "A",
+      "branch": "pure_filtered_marginal",
+      "attained_by_an_invertible_filter": true,
+      "squared_F3_exact": "7/50",
+      "F3_exact": "sqrt(14)/10",
+      "canonical_c": null,
+      "canonical_Q": null,
+      "six_invariants_and_d": null,
+      "D": null,
+      "N": null,
+      "P": null,
+      "largest_real_root_nu": null,
+      "eta": null,
+      "nu_minimal_polynomial": null,
+      "eta_minimal_polynomial": null,
+      "derivative_order": null,
+      "roots_strictly_above_rational_d": null,
+      "value_number_field_residue": null,
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "exact_product_Bloch_identity_T_equals_a_bT": true,
+        "pure_marginal_branch": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "11/20"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "9/20"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "43/200"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "0"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 7/50"
+    },
+    {
+      "name": "pure_opposite_marginal",
+      "expected_rational_value": "1",
+      "side": "B",
+      "branch": "singular_pole_order_3",
+      "attained_by_an_invertible_filter": false,
+      "squared_F3_exact": "1",
+      "F3_exact": "1",
+      "canonical_c": [
+        "0",
+        "0",
+        "1"
+      ],
+      "canonical_Q": [
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "0",
+        "beta": "1",
+        "s2": "0",
+        "s3": "0",
+        "u": "0",
+        "v": "0",
+        "d": "-1"
+      },
+      "D": "z**3",
+      "N": "0",
+      "P": "z**6",
+      "largest_real_root_nu": "0",
+      "eta": "0",
+      "nu_minimal_polynomial": "z",
+      "eta_minimal_polynomial": "z",
+      "derivative_order": 3,
+      "roots_strictly_above_rational_d": 1,
+      "value_number_field_residue": "1",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [
+          0,
+          1,
+          2
+        ],
+        "vanishing_N_derivative_orders": [
+          0,
+          1,
+          2
+        ],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": null,
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "11/20"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "9/20"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "43/200"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "0"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 1"
+    },
+    {
+      "name": "pure_entangled_A",
+      "expected_rational_value": "3",
+      "side": "A",
+      "branch": "regular",
+      "attained_by_an_invertible_filter": true,
+      "squared_F3_exact": "3",
+      "F3_exact": "sqrt(3)",
+      "canonical_c": [
+        "0",
+        "0",
+        "0"
+      ],
+      "canonical_Q": [
+        [
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "3",
+        "beta": "0",
+        "s2": "3",
+        "s3": "1",
+        "u": "0",
+        "v": "0",
+        "d": "3"
+      },
+      "D": "z**3 - 3*z**2 + 3*z - 1",
+      "N": "0",
+      "P": "z**6 - 6*z**5 + 15*z**4 - 20*z**3 + 15*z**2 - 6*z + 1",
+      "largest_real_root_nu": "1",
+      "eta": "3",
+      "nu_minimal_polynomial": "z - 1",
+      "eta_minimal_polynomial": "z - 3",
+      "derivative_order": 0,
+      "roots_strictly_above_rational_d": 0,
+      "value_number_field_residue": "3",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [],
+        "vanishing_N_derivative_orders": [],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": "0",
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "16/25"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "9/25"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "0"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 3"
+    },
+    {
+      "name": "pure_entangled_B",
+      "expected_rational_value": "3",
+      "side": "B",
+      "branch": "regular",
+      "attained_by_an_invertible_filter": true,
+      "squared_F3_exact": "3",
+      "F3_exact": "sqrt(3)",
+      "canonical_c": [
+        "0",
+        "0",
+        "0"
+      ],
+      "canonical_Q": [
+        [
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "3",
+        "beta": "0",
+        "s2": "3",
+        "s3": "1",
+        "u": "0",
+        "v": "0",
+        "d": "3"
+      },
+      "D": "z**3 - 3*z**2 + 3*z - 1",
+      "N": "0",
+      "P": "z**6 - 6*z**5 + 15*z**4 - 20*z**3 + 15*z**2 - 6*z + 1",
+      "largest_real_root_nu": "1",
+      "eta": "3",
+      "nu_minimal_polynomial": "z - 1",
+      "eta_minimal_polynomial": "z - 3",
+      "derivative_order": 0,
+      "roots_strictly_above_rational_d": 0,
+      "value_number_field_residue": "3",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [],
+        "vanishing_N_derivative_orders": [],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": "0",
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "16/25"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "9/25"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "0"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "0"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 3"
+    },
+    {
+      "name": "rational_original_coordinates",
+      "expected_rational_value": "4/25",
+      "side": "A",
+      "branch": "regular",
+      "attained_by_an_invertible_filter": false,
+      "squared_F3_exact": "4/25",
+      "F3_exact": "2/5",
+      "canonical_c": [
+        "1/10",
+        "0",
+        "0"
+      ],
+      "canonical_Q": [
+        [
+          "9/100",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1/400",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1/2500"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "929/10000",
+        "beta": "1/100",
+        "s2": "131/500000",
+        "s3": "9/100000000",
+        "u": "9/10000",
+        "v": "81/1000000",
+        "d": "829/10000"
+      },
+      "D": "z**3 - 929*z**2/10000 + 131*z/500000 - 9/100000000",
+      "N": "9*z**2/10000 - 261*z/100000000 + 9/10000000000",
+      "P": "z**6 - 929*z**5/5000 + 825441*z**4/100000000 - 109099*z**3/2500000000 + 75997*z**2/1000000000000 - 2097*z/50000000000000 + 9/1250000000000000",
+      "largest_real_root_nu": "3/25",
+      "eta": "3/25",
+      "nu_minimal_polynomial": "z - 3/25",
+      "eta_minimal_polynomial": "z - 3/25",
+      "derivative_order": 0,
+      "roots_strictly_above_rational_d": 1,
+      "value_number_field_residue": "4/25",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [],
+        "vanishing_N_derivative_orders": [],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": null,
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "429/1700"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "421/1700"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "421/1700"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "429/1700"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "175709/2890000"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "147/10625"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "177641/2890000"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "167241/2890000"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "147/10625"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "175709/2890000"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "3932591/1228250000"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "4139159/1228250000"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "4139159/1228250000"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "3932591/1228250000"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "79774041/522006250000"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y - 4/25"
+    },
+    {
+      "name": "physical_Galois_state",
+      "expected_rational_value": null,
+      "side": "A",
+      "branch": "regular",
+      "attained_by_an_invertible_filter": false,
+      "squared_F3_exact": "(-17483*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)/3969000000 + 3889/396900000000 + 16969*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)**2/39690000)/(-61*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)**2/3600 - 1/9000000 + 29*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)/360000 + CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)**3) + CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1) + 3889/44100",
+      "F3_exact": "sqrt((-17483*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)/3969000000 + 3889/396900000000 + 16969*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)**2/39690000)/(-61*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)**2/3600 - 1/9000000 + 29*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)/360000 + CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)**3) + CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1) + 3889/44100)",
+      "canonical_c": [
+        "1/5",
+        "1/6",
+        "1/7"
+      ],
+      "canonical_Q": [
+        [
+          "1/400",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1/225",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1/100"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "61/3600",
+        "beta": "3889/44100",
+        "s2": "29/360000",
+        "s3": "1/9000000",
+        "u": "16969/39690000",
+        "v": "405721/142884000000",
+        "d": "-4189/58800"
+      },
+      "D": "z**3 - 61*z**2/3600 + 29*z/360000 - 1/9000000",
+      "N": "16969*z**2/39690000 - 17483*z/3969000000 + 3889/396900000000",
+      "P": "z**6 - 61*z**5/1800 + 4379*z**4/211680000 + 61997*z**3/10584000000 - 376823*z**2/6350400000000 + 4349*z/19845000000000 - 913/3175200000000000",
+      "largest_real_root_nu": "CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)",
+      "eta": "CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)",
+      "nu_minimal_polynomial": "z**6 - 61*z**5/1800 + 4379*z**4/211680000 + 61997*z**3/10584000000 - 376823*z**2/6350400000000 + 4349*z/19845000000000 - 913/3175200000000000",
+      "eta_minimal_polynomial": "z**6 - 61*z**5/1800 + 4379*z**4/211680000 + 61997*z**3/10584000000 - 376823*z**2/6350400000000 + 4349*z/19845000000000 - 913/3175200000000000",
+      "derivative_order": 0,
+      "roots_strictly_above_rational_d": 2,
+      "value_number_field_residue": "678528000000*z**5/49 - 20270080000*z**4/49 - 9663216800*z**3/7203 + 180029380*z**2/2401 - 285192214*z/540225 + 12012341/10804500",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [],
+        "vanishing_N_derivative_orders": [],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": null,
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "87/280"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "53/280"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "73/280"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "67/280"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "3851/70560"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "6351/78400"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "41959/564480"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "136883/2822400"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "3551/78400"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "4103/70560"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "11036033/790272000"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "3439361/263424000"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "14274863/790272000"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "2845831/263424000"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "550488469/177020928000"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y**6 - 42521*y**5/88200 + 386404289*y**4/3457440000 - 1214002111499*y**3/76236552000000 + 1069328515262509*y**2/747118209600000000 - 68386435402613791*y/915219806760000000000 + 10682310242418023/6643817856480000000000"
+    },
+    {
+      "name": "Galois_state_rational_Bob_rotation",
+      "expected_rational_value": null,
+      "side": "A",
+      "branch": "regular",
+      "attained_by_an_invertible_filter": false,
+      "squared_F3_exact": "(-17483*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)/3969000000 + 3889/396900000000 + 16969*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)**2/39690000)/(-61*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)**2/3600 - 1/9000000 + 29*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)/360000 + CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)**3) + CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1) + 3889/44100",
+      "F3_exact": "sqrt((-17483*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)/3969000000 + 3889/396900000000 + 16969*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)**2/39690000)/(-61*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)**2/3600 - 1/9000000 + 29*CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)/360000 + CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)**3) + CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1) + 3889/44100)",
+      "canonical_c": [
+        "-1/75",
+        "13/50",
+        "1/7"
+      ],
+      "canonical_Q": [
+        [
+          "337/90000",
+          "-7/7500",
+          "0"
+        ],
+        [
+          "-7/7500",
+          "2/625",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1/100"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "61/3600",
+        "beta": "3889/44100",
+        "s2": "29/360000",
+        "s3": "1/9000000",
+        "u": "16969/39690000",
+        "v": "405721/142884000000",
+        "d": "-4189/58800"
+      },
+      "D": "z**3 - 61*z**2/3600 + 29*z/360000 - 1/9000000",
+      "N": "16969*z**2/39690000 - 17483*z/3969000000 + 3889/396900000000",
+      "P": "z**6 - 61*z**5/1800 + 4379*z**4/211680000 + 61997*z**3/10584000000 - 376823*z**2/6350400000000 + 4349*z/19845000000000 - 913/3175200000000000",
+      "largest_real_root_nu": "CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)",
+      "eta": "CRootOf(3175200000000000*x**6 - 107604000000000*x**5 + 65685000000*x**4 + 18599100000*x**3 - 188411500*x**2 + 695840*x - 913, 1)",
+      "nu_minimal_polynomial": "z**6 - 61*z**5/1800 + 4379*z**4/211680000 + 61997*z**3/10584000000 - 376823*z**2/6350400000000 + 4349*z/19845000000000 - 913/3175200000000000",
+      "eta_minimal_polynomial": "z**6 - 61*z**5/1800 + 4379*z**4/211680000 + 61997*z**3/10584000000 - 376823*z**2/6350400000000 + 4349*z/19845000000000 - 913/3175200000000000",
+      "derivative_order": 0,
+      "roots_strictly_above_rational_d": 2,
+      "value_number_field_residue": "678528000000*z**5/49 - 20270080000*z**4/49 - 9663216800*z**3/7203 + 180029380*z**2/2401 - 285192214*z/540225 + 12012341/10804500",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [],
+        "vanishing_N_derivative_orders": [],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": null,
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "87/280"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "53/280"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "73/280"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "67/280"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "3851/70560"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "6351/78400"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "41959/564480"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "136883/2822400"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "3551/78400"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "4103/70560"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "11036033/790272000"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "3439361/263424000"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "14274863/790272000"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "2845831/263424000"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "550488469/177020928000"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y**6 - 42521*y**5/88200 + 386404289*y**4/3457440000 - 1214002111499*y**3/76236552000000 + 1069328515262509*y**2/747118209600000000 - 68386435402613791*y/915219806760000000000 + 10682310242418023/6643817856480000000000"
+    },
+    {
+      "name": "generic_rational_density_A",
+      "side": "A",
+      "branch": "regular",
+      "attained_by_an_invertible_filter": false,
+      "squared_F3_exact": "(-15264425*CRootOf(38263752*x**4 - 10949580*x**3 + 184050*x**2 + 7875*x - 625, 1)/55788550416 + 235625/223154201664 + 11443225*CRootOf(38263752*x**4 - 10949580*x**3 + 184050*x**2 + 7875*x - 625, 1)**2/688747536)/(-3917*CRootOf(38263752*x**4 - 10949580*x**3 + 184050*x**2 + 7875*x - 625, 1)**2/26244 - 25/8503056 + 1445*CRootOf(38263752*x**4 - 10949580*x**3 + 184050*x**2 + 7875*x - 625, 1)/1062882 + CRootOf(38263752*x**4 - 10949580*x**3 + 184050*x**2 + 7875*x - 625, 1)**3) + CRootOf(38263752*x**4 - 10949580*x**3 + 184050*x**2 + 7875*x - 625, 1) + 9425/26244",
+      "F3_exact": "sqrt((-15264425*CRootOf(38263752*x**4 - 10949580*x**3 + 184050*x**2 + 7875*x - 625, 1)/55788550416 + 235625/223154201664 + 11443225*CRootOf(38263752*x**4 - 10949580*x**3 + 184050*x**2 + 7875*x - 625, 1)**2/688747536)/(-3917*CRootOf(38263752*x**4 - 10949580*x**3 + 184050*x**2 + 7875*x - 625, 1)**2/26244 - 25/8503056 + 1445*CRootOf(38263752*x**4 - 10949580*x**3 + 184050*x**2 + 7875*x - 625, 1)/1062882 + CRootOf(38263752*x**4 - 10949580*x**3 + 184050*x**2 + 7875*x - 625, 1)**3) + CRootOf(38263752*x**4 - 10949580*x**3 + 184050*x**2 + 7875*x - 625, 1) + 9425/26244)",
+      "canonical_c": [
+        "44/81",
+        "0",
+        "41/162"
+      ],
+      "canonical_Q": [
+        [
+          "1361/13122",
+          "0",
+          "-394/6561"
+        ],
+        [
+          "0",
+          "1/162",
+          "0"
+        ],
+        [
+          "-394/6561",
+          "0",
+          "1033/26244"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "3917/26244",
+        "beta": "9425/26244",
+        "s2": "1445/1062882",
+        "s3": "25/8503056",
+        "u": "11443225/688747536",
+        "v": "39877438625/18075490334784",
+        "d": "-17/81"
+      },
+      "D": "z**3 - 3917*z**2/26244 + 1445*z/1062882 - 25/8503056",
+      "N": "11443225*z**2/688747536 - 15264425*z/55788550416 + 235625/223154201664",
+      "P": "z**6 - 3917*z**5/13122 + 4454*z**4/531441 + 23335*z**3/172186884 - 1042775*z**2/55788550416 + 23375*z/111577100832 - 625/1004193907488",
+      "largest_real_root_nu": "CRootOf(38263752*x**4 - 10949580*x**3 + 184050*x**2 + 7875*x - 625, 1)",
+      "eta": "CRootOf(38263752*x**4 - 10949580*x**3 + 184050*x**2 + 7875*x - 625, 1)",
+      "nu_minimal_polynomial": "z**4 - 3755*z**3/13122 + 10225*z**2/2125764 + 875*z/4251528 - 625/38263752",
+      "eta_minimal_polynomial": "z**4 - 3755*z**3/13122 + 10225*z**2/2125764 + 875*z/4251528 - 625/38263752",
+      "derivative_order": 0,
+      "roots_strictly_above_rational_d": 3,
+      "value_number_field_residue": "1377495072*z**3/12787825 - 59127732*z**2/2557565 + 186300*z/511513 + 135180/511513",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [],
+        "vanishing_N_derivative_orders": [],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": null,
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "3/14"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "5/28"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "11/28"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "3/14"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "1/56"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "31/392"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "5/196"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "23/392"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "3/112"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "41/784"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "2/343"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "23/10976"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "9/1568"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "71/10976"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "1/2401"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y**4 - 5045664335*y**3/3356036793 + 2524195975*y**2/3356036793 - 58298125*y/372892977 + 482500/41432553"
+    },
+    {
+      "name": "generic_rational_density_B",
+      "side": "B",
+      "branch": "regular",
+      "attained_by_an_invertible_filter": false,
+      "squared_F3_exact": "(-874735*CRootOf(3345563944*x**4 - 1819276940*x**3 + 256826870*x**2 - 2253825*x - 101250, 3)/6691127888 + 1678725/1418519112256 + 70745*CRootOf(3345563944*x**4 - 1819276940*x**3 + 256826870*x**2 - 2253825*x - 101250, 3)**2/126247696)/(-3161*CRootOf(3345563944*x**4 - 1819276940*x**3 + 256826870*x**2 - 2253825*x - 101250, 3)**2/11236 - 2025/126247696 + 635*CRootOf(3345563944*x**4 - 1819276940*x**3 + 256826870*x**2 - 2253825*x - 101250, 3)/148877 + CRootOf(3345563944*x**4 - 1819276940*x**3 + 256826870*x**2 - 2253825*x - 101250, 3)**3) + 829/11236 + CRootOf(3345563944*x**4 - 1819276940*x**3 + 256826870*x**2 - 2253825*x - 101250, 3)",
+      "F3_exact": "sqrt((-874735*CRootOf(3345563944*x**4 - 1819276940*x**3 + 256826870*x**2 - 2253825*x - 101250, 3)/6691127888 + 1678725/1418519112256 + 70745*CRootOf(3345563944*x**4 - 1819276940*x**3 + 256826870*x**2 - 2253825*x - 101250, 3)**2/126247696)/(-3161*CRootOf(3345563944*x**4 - 1819276940*x**3 + 256826870*x**2 - 2253825*x - 101250, 3)**2/11236 - 2025/126247696 + 635*CRootOf(3345563944*x**4 - 1819276940*x**3 + 256826870*x**2 - 2253825*x - 101250, 3)/148877 + CRootOf(3345563944*x**4 - 1819276940*x**3 + 256826870*x**2 - 2253825*x - 101250, 3)**3) + 829/11236 + CRootOf(3345563944*x**4 - 1819276940*x**3 + 256826870*x**2 - 2253825*x - 101250, 3))",
+      "canonical_c": [
+        "5/53",
+        "0",
+        "-27/106"
+      ],
+      "canonical_Q": [
+        [
+          "1375/5618",
+          "0",
+          "395/5618"
+        ],
+        [
+          "0",
+          "1/106",
+          "0"
+        ],
+        [
+          "395/5618",
+          "0",
+          "305/11236"
+        ]
+      ],
+      "six_invariants_and_d": {
+        "tau": "3161/11236",
+        "beta": "829/11236",
+        "s2": "635/148877",
+        "s3": "2025/126247696",
+        "u": "70745/126247696",
+        "v": "38181125/1418519112256",
+        "d": "11/53"
+      },
+      "D": "z**3 - 3161*z**2/11236 + 635*z/148877 - 2025/126247696",
+      "N": "70745*z**2/126247696 - 874735*z/6691127888 + 1678725/1418519112256",
+      "P": "z**6 - 3161*z**5/5618 + 25939*z**4/297754 - 68505*z**3/31561924 - 71735*z**2/6691127888 + 362475*z/709259556128 - 50625/18795378237392",
+      "largest_real_root_nu": "CRootOf(3345563944*x**4 - 1819276940*x**3 + 256826870*x**2 - 2253825*x - 101250, 3)",
+      "eta": "CRootOf(3345563944*x**4 - 1819276940*x**3 + 256826870*x**2 - 2253825*x - 101250, 3)",
+      "nu_minimal_polynomial": "z**4 - 3055*z**3/5618 + 45715*z**2/595508 - 42525*z/63123848 - 50625/1672781972",
+      "eta_minimal_polynomial": "z**4 - 3055*z**3/5618 + 45715*z**2/595508 - 42525*z/63123848 - 50625/1672781972",
+      "derivative_order": 0,
+      "roots_strictly_above_rational_d": 2,
+      "value_number_field_residue": "252495392*z**3/8474425 - 20595588*z**2/1694885 + 3619052*z/1694885 + 24440/338977",
+      "certificates": {
+        "all_15_principal_minors_nonnegative": true,
+        "nu_is_exact_largest_ordered_real_root": true,
+        "P_remainder_mod_nu_minpoly_is_zero": true,
+        "eta_comparison_method": "Exact Sturm count of distinct roots strictly above rational d",
+        "vanishing_D_derivative_orders": [],
+        "vanishing_N_derivative_orders": [],
+        "selected_D_derivative_nonzero_mod_eta_minpoly": true,
+        "derivative_ratio_matches_value_residue_mod_eta_minpoly": true,
+        "zero_multiplier_stationary_radius_squared": null,
+        "no_floating_point_root_or_value_evaluation": true
+      },
+      "density_principal_minors": [
+        {
+          "indices_zero_based": [
+            0
+          ],
+          "determinant": "3/14"
+        },
+        {
+          "indices_zero_based": [
+            1
+          ],
+          "determinant": "5/28"
+        },
+        {
+          "indices_zero_based": [
+            2
+          ],
+          "determinant": "11/28"
+        },
+        {
+          "indices_zero_based": [
+            3
+          ],
+          "determinant": "3/14"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1
+          ],
+          "determinant": "1/56"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2
+          ],
+          "determinant": "31/392"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            3
+          ],
+          "determinant": "5/196"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2
+          ],
+          "determinant": "23/392"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            3
+          ],
+          "determinant": "3/112"
+        },
+        {
+          "indices_zero_based": [
+            2,
+            3
+          ],
+          "determinant": "41/784"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2
+          ],
+          "determinant": "2/343"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            3
+          ],
+          "determinant": "23/10976"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            2,
+            3
+          ],
+          "determinant": "9/1568"
+        },
+        {
+          "indices_zero_based": [
+            1,
+            2,
+            3
+          ],
+          "determinant": "71/10976"
+        },
+        {
+          "indices_zero_based": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "determinant": "1/2401"
+        }
+      ],
+      "squared_value_minimal_polynomial": "y**4 - 801594575*y**3/952186393 + 218432851*y**2/952186393 - 20553261*y/952186393 + 496400/952186393"
+    }
+  ],
+  "scope": "Exact QQ/CRootOf evaluation for rational input; all arbitrary-real theorems remain mathematical statements. No new Lean claim."
+}

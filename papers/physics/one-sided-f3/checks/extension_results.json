@@ -1,0 +1,175 @@
+{
+  "seed": 2026110302,
+  "physical_states": 48,
+  "density_ranks": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "probability_constrained_cases": 144,
+  "regimes": {
+    "low": 47,
+    "middle": 49,
+    "high": 48
+  },
+  "winning_candidates": {
+    "stationary-affine": 47,
+    "sphere-1-regular": 24,
+    "sphere-regular": 60,
+    "sphere-singular": 3,
+    "sphere-0-singular": 2,
+    "intersection-circle": 5,
+    "sphere-0-regular": 3
+  },
+  "successful_reference_starts": 996,
+  "reference_starts_total": 1008,
+  "max_absolute_optimizer_gap": 1.3277758892371594e-09,
+  "max_optimizer_excess_over_formula": 1.3277758892371594e-09,
+  "max_direct_filtered_F3_squared_error": 1.425526363618701e-13,
+  "max_direct_success_probability_error": 1.4432899320127035e-15,
+  "minimum_I_minus_effect_eigenvalue": -1.7707764508184676e-13,
+  "exact_nonglobal_sphere_example": {
+    "all_fraction_assertions_passed": true,
+    "a": [
+      "-15/17",
+      "0",
+      "0"
+    ],
+    "b": [
+      "-14/85",
+      "0",
+      "0"
+    ],
+    "T_diagonal": [
+      "18/85",
+      "2/85",
+      "4/425"
+    ],
+    "minimum_success_probability": "10/51",
+    "optimal_canonical_x": [
+      "-2/5",
+      "0",
+      "0"
+    ],
+    "optimal_squared_F3": "17509/250000",
+    "positive_nonglobal_multiplier": "679/102500",
+    "circle_max_squared_F3": "118/28125",
+    "full_second_sphere_global_x": [
+      "-43/5",
+      "0",
+      "0"
+    ],
+    "canonical_positivity_norm_upper_bound": "47/100"
+  },
+  "structured_singular_checks": [
+    {
+      "value": 0.0,
+      "source": "stationary-affine",
+      "regime": "middle",
+      "reference_gap": 0.0
+    },
+    {
+      "value": 0.010000000000000002,
+      "source": "stationary-affine",
+      "regime": "middle",
+      "reference_gap": 0.0
+    },
+    {
+      "value": 1.0050000000000001,
+      "source": "sphere-0-singular",
+      "regime": "middle",
+      "reference_gap": 3.112399227234164e-12
+    },
+    {
+      "value": 1.0,
+      "source": "sphere-0-singular",
+      "regime": "middle",
+      "reference_gap": 5.329070518200751e-15
+    },
+    {
+      "value": -0.02493074792243766,
+      "source": "sphere-regular",
+      "regime": "high",
+      "reference_gap": 9.884107421420651e-14
+    }
+  ],
+  "best_success_optimal_family_checks": {
+    "seed": 2026110303,
+    "affine_disk_cases": 96,
+    "boundary_sphere_cases": 72,
+    "random_directions_per_sphere": 80,
+    "kernel_dimensions": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "radical_branches": {
+      "boundary": 18,
+      "interior": 78
+    },
+    "successful_convex_references": 69,
+    "max_probability_gap_against_convex_reference": 6.136594565830933e-10,
+    "max_scalar_radical_capacity_error": 2.8650058214729768e-08,
+    "max_direct_2x2_operator_capacity_error": 6.106226635438361e-15,
+    "max_reference_feasibility_residual": 1.1961328001902605e-08,
+    "max_feasibility_residual": 7.563394355258879e-16,
+    "structured_endpoints": [
+      {
+        "p": 1.0,
+        "branch": "interior",
+        "x": [
+          0.2,
+          0.3,
+          0.4
+        ]
+      },
+      {
+        "p": 0.5051250910614425,
+        "branch": "interior",
+        "x": [
+          0.1,
+          -0.2,
+          0.3
+        ]
+      },
+      {
+        "p": 0.44375,
+        "branch": "boundary",
+        "x": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "p": 0.625,
+        "branch": "boundary",
+        "x": [
+          0.8,
+          0.6,
+          0.0
+        ]
+      }
+    ],
+    "all_passed": true
+  },
+  "pure_state_frontier_checks": {
+    "Schmidt_epsilon_values": [
+      0.0,
+      0.0001,
+      0.01,
+      0.1,
+      0.25,
+      0.5
+    ],
+    "cases": 27,
+    "max_direct_filtering_squared_F3_error": 8.881784197001252e-16,
+    "max_lens_evaluator_squared_F3_error": 4.440892098500626e-16,
+    "max_direct_probability_error": 2.220446049250313e-16,
+    "all_passed": true
+  },
+  "all_passed": true,
+  "scope": "Float64 implementation checks plus a separate exact Fraction example; not a Lean proof."
+}

@@ -289,6 +289,9 @@ jobs:
           - package: steering-joint-range
             root: papers/physics/steering-joint-range
             project: lean
+          - package: one-sided-f3
+            root: papers/physics/one-sided-f3
+            project: lean
           - package: strong-gradient
             root: papers/mathematics/strong-gradient
             project: lean
@@ -418,6 +421,10 @@ jobs:
             python3 -m venv "${RUNNER_TEMP}/steering-joint-range-venv"
             "${RUNNER_TEMP}/steering-joint-range-venv/bin/pip" install --quiet -r ../calculations/requirements.txt
             "${RUNNER_TEMP}/steering-joint-range-venv/bin/python" ../scripts/run_checks.py --quick
+          elif [[ '${{ matrix.package }}' == 'one-sided-f3' ]]; then
+            lake build OneSidedF3 2>&1 | tee "${RUNNER_TEMP}/one-sided-f3-build.log"
+            python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/one-sided-f3-build.log" --project . --output "${RUNNER_TEMP}/one-sided-f3-axioms.json"
+            python3 -I ../checks/verify_galois_certificate.py
           elif [[ '${{ matrix.package }}' == 'strong-gradient' ]]; then
             python3 verify.py --lean "$(lean --print-prefix)/bin/lean" --mathlib .lake/packages/mathlib --output "${RUNNER_TEMP}/gradient-source-verification" --timeout 600
           elif [[ '${{ matrix.package }}' == 'unicyclic-skewness' ]]; then

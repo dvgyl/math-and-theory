@@ -1,0 +1,14 @@
+name = "one_sided_f3"
+version = "1.0.0"
+defaultTargets = ["OneSidedF3"]
+moreLeanArgs = ["-j1"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "c44e0c8ee63ca166450922a373c7409c5d26b00b"
+
+# The upload's modules keep their original top-level names; every module is a root.
+[[lean_lib]]
+name = "OneSidedF3"
+roots = ["TrustRegion", "SecularBranches", "SecularExistence", "PolynomialFormula", "ThreeDimensional", "RootExtremizers", "FilteredF3", "SpectralBridge", "CompanionPolynomial", "MatrixCompanionBridge", "OpenBallSupremum", "QuantumPrior.MilneDefs", "QuantumPrior.MilneCore", "QuantumPrior.MilneFiltering", "QuantumPrior.MilneBlochDefs", "QuantumPrior.MilneQubit", "QuantumPrior.MilnePurityCovariance", "QuantumPrior.MilneCorrelation", "QuantumPrior.MilneScalarBounds", "QuantumPrior.MilneCanonicalization", "QuantumPrior.MilneSteering", "QuantumPrior.MilneBlochIdentities", "QuantumPrior.MilneComplexFiltering", "QuantumPrior.MilneOneSided", "QuantumPrior.MilnePauliAlgebra", "QuantumPrior.MilnePhysicalOrbit", "QuantumPrior.MilneQubitBall", "QuantumPrior.MilnePhysicalOrbitFilter", "QuantumPrior.MilneGeometry", "QuantumPrior.MilneGeometryBridge", "QuantumPrior.MilneSingular", "QuantumPrior.MilneAllStates", "QuantumPrior.MilneCenterCoordinates", "QuantumBloch", "QuantumSingular", "QuantumNormalization", "QuantumTwoSided", "QuantumInvertible", "QuantumExtremizers", "QuantumSupremum", "OperationalExtensions", "ConditionalPurityScalar", "ExpandedF3", "AxiomAudit"]

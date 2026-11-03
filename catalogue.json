@@ -3468,6 +3468,70 @@
           ]
         ]
       }
+    },
+    {
+      "id": "one-sided-f3",
+      "discipline": "Mathematical physics",
+      "area": "Quantum information",
+      "title": "Exact one-sided filtering of the two-qubit F₃ functional",
+      "kind": "Closed-form theorem with Lean proof of the main statement, exact certificates and checked extensions",
+      "significance_rank": 215,
+      "keywords": [
+        "quantum steering",
+        "local filtering",
+        "hidden quantum correlations",
+        "steering ellipsoids",
+        "two-qubit states",
+        "CJWR steering inequality",
+        "trust-region subproblem"
+      ],
+      "summary": "Closed formulas for both one-sided filtered F3 measures of Equation 10 of Ducuara, Susa and Skrzypczyk, for every two-qubit state: the squared value is β + η + cᵀQ(ηI − Q)⁺c in the steering-ellipsoid centre c and shape Q of the other party, where η is the larger of tr Q − ‖c‖² and the largest real eigenvalue of an explicit 6×6 matrix; a pure filtered marginal gives the product value. Every optimal filter and attainment by invertible filters are described, a value above one has a rational formula and a unique optimal effect, and a strictly positive rational state has an optimal squared value with Galois group S6, so no formula in radicals exists. Success-probability frontiers, a sharp conditional-purity bound and the limit values at pure-marginal states are also given. The one-sided CHSH measures of Equation 9 are not treated.",
+      "formal_scope": "Lean 4.19.0 proves, for every positive semidefinite complex 4×4 matrix of trace one, that the explicit algebraic value is the least upper bound of the Frobenius norm of the Pauli correlation matrix over all success-normalized states obtained by invertible complex filters on Alice's side, and likewise on Bob's side, together with the gap identity, all maximizers, attainment by invertible filters and the rational violating criterion in canonical coordinates; a whole-project audit covers every declaration. The rational Bloch-coordinate expressions, the six-invariant rule, the Galois obstruction and the operational extensions are conventional proofs with exact certificates and numerical checks; the measurement-optimization meaning of F3 is cited.",
+      "source": "Ducuara, Susa and Skrzypczyk, Locally inaccessible hidden quantum correlations, Phys. Rev. A 110, 022435 (2024), arXiv:2406.03945, define the one-sided measures in Equations 9 and 10 and state that no closed formulas for them were known. Steering ellipsoids and canonical filtering are due to Jevtic, Pusey, Jennings and Rudolph and to Milne et al.; the spectral trust-region method is classical. The reused Lean library contains the fully-entangled-fraction bound, Conjecture 2 of Milne, Jennings, Jevtic and Rudolph, for which the Omega Institute's public repository records a claimed Lean proof committed on 8 October 2026 (issue #14206); no priority is claimed for it. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/physics/one-sided-f3/README.md",
+      "paper": "papers/physics/one-sided-f3/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/physics/one-sided-f3"
+      },
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Closed formulas for the one-sided filtered F3 steering measures of two-qubit states",
+        "posed_by": "Ducuara, Susa and Skrzypczyk, Locally inaccessible hidden quantum correlations, Phys. Rev. A 110, 022435 (2024), Equation 10 and concluding open questions",
+        "problem_url": "https://arxiv.org/abs/2406.03945",
+        "status": "Solved for both one-sided F3 measures (Equation 10); the one-sided CHSH measures (Equation 9) remain open",
+        "claim": "For every two-qubit state, the one-sided filtered F3 value satisfies H² = β + η + cᵀQ(ηI − Q)⁺c in the other party's steering-ellipsoid data, with η from the largest real eigenvalue of an explicit 6×6 matrix; no formula in radicals exists in general.",
+        "title_tag": "One-Sided Filtered F3 Steering: Exact Two-Qubit Formula",
+        "description": "Closed formulas for both one-sided filtered F3 measures of Ducuara, Susa and Skrzypczyk for every two-qubit state, with all optimal filters. Lean 4 proof.",
+        "queries": [
+          "one-sided local filtering steering two qubits",
+          "hidden F3 steering inequality violation formula",
+          "locally inaccessible hidden quantum correlations",
+          "Ducuara Susa Skrzypczyk one-sided filter",
+          "local filtering CJWR steering two-qubit maximum",
+          "steering ellipsoid filtering trust-region",
+          "hidden steering one-sided filter closed form",
+          "F3 inequality local filter optimal"
+        ],
+        "faq": [
+          [
+            "What does this paper determine?",
+            "Both one-sided filtered F3 measures of Equation 10 of Ducuara, Susa and Skrzypczyk: the largest value of ‖T‖_F reachable when only Alice, or only Bob, applies an invertible local filter. For a mixed filtered marginal the squared value is β + η + cᵀQ(ηI − Q)⁺c, where c and Q are the centre and shape of the other party's steering ellipsoid and η is the larger of tr Q − ‖c‖² and the largest real eigenvalue of an explicit 6×6 matrix; a pure filtered marginal gives the product value."
+          ],
+          [
+            "Was this an open question?",
+            "Yes. Ducuara, Susa and Skrzypczyk wrote that, unlike the two-sided measures, there were no closed formulas for the one-sided measures of their Equations 9 and 10, and listed deriving them as an open question. This package answers it for the F3 measures of Equation 10; the one-sided CHSH measures of Equation 9 are not treated. A bounded literature search found no earlier formula, which does not establish priority."
+          ],
+          [
+            "Is the supremum always attained?",
+            "Not by an invertible filter. The package decides exactly when an invertible optimal filter exists; otherwise the value is approached by invertible filters and attained by a rank-one limit with positive success probability. Values above one always have a unique optimal filter effect and a rational formula."
+          ],
+          [
+            "Is the result formally verified?",
+            "The main theorem is proved in Lean 4 for actual complex 4×4 density matrices and invertible complex filters on either side, with no rank assumptions, and a whole-project axiom audit. The rational Bloch-coordinate formulas, the six-invariant rule, the S6 Galois obstruction and the operational extensions are conventional proofs with exact and numerical checks."
+          ]
+        ]
+      }
     }
   ],
   "research_notes": [

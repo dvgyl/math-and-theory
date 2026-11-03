@@ -1,0 +1,84 @@
+{
+  "seed": 20261103,
+  "random_states": 400,
+  "one_sided_instances": 800,
+  "ranks": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "max_absolute_errors": {
+    "original_fraction": 1.4210854715202004e-14,
+    "canonical": 7.194245199571014e-14,
+    "shape": 7.576254874684209e-14,
+    "recovered_filter": 9.086065233532281e-13,
+    "certificate": 9.086259638946694e-13,
+    "gap": 8.326672684688674e-16,
+    "shape_spectrum": 3.4633450274323963e-09
+  },
+  "branches": {
+    "interior": 507,
+    "hard": 62,
+    "regular-boundary": 231
+  },
+  "explicit_cases": [
+    {
+      "name": "Werner p=0.0",
+      "value_squared": 0.0,
+      "branch": "interior"
+    },
+    {
+      "name": "Werner p=0.2",
+      "value_squared": 0.12000000000000002,
+      "branch": "interior"
+    },
+    {
+      "name": "Werner p=0.6",
+      "value_squared": 1.08,
+      "branch": "interior"
+    },
+    {
+      "name": "Werner p=1.0",
+      "value_squared": 3.0,
+      "branch": "interior"
+    },
+    {
+      "name": "full-rank product, no invertible maximizer",
+      "value_squared": 0.36,
+      "branch": "hard"
+    },
+    {
+      "name": "pure marginal",
+      "value_squared": 0.14,
+      "branch": "pure-marginal"
+    },
+    {
+      "name": "singular D, flat maximum",
+      "value_squared": 0.25,
+      "branch": "interior"
+    },
+    {
+      "name": "nontrivial physical hard case",
+      "value_squared": 0.13090909090909092,
+      "branch": "hard"
+    },
+    {
+      "name": "zero multiplier boundary, generic quadratic",
+      "value_squared": 1.0,
+      "branch": "boundary-zero-multiplier"
+    },
+    {
+      "name": "near-pure entangled state precision guard eps=1e-13",
+      "expected_exact_squared_value": 3,
+      "rejected_float64_shortcut": true
+    },
+    {
+      "name": "near-pure entangled state precision guard eps=1e-24",
+      "expected_exact_squared_value": 3,
+      "rejected_float64_shortcut": true
+    }
+  ],
+  "all_assertions_passed": true,
+  "scope": "Floating-point falsification and reconstruction checks; not a proof."
+}

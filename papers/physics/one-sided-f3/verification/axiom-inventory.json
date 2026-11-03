@@ -1,0 +1,8971 @@
+{
+ "verified": true,
+ "main_theorem": "FilteredF3.equation10_both_closed_forms",
+ "all_environment_declarations": 850,
+ "declarations_other_than_codegen_auxiliaries": 604,
+ "theorems": 503,
+ "codegen_auxiliaries": 246,
+ "codegen_auxiliaries_using_lcProof": 11,
+ "source_named_declarations": 490,
+ "observed_axioms_outside_codegen_auxiliaries": [
+  "Classical.choice",
+  "Quot.sound",
+  "propext"
+ ],
+ "modules": [
+  "CompanionPolynomial",
+  "ConditionalPurityScalar",
+  "MatrixCompanionBridge",
+  "OpenBallSupremum",
+  "OperationalExtensions",
+  "PolynomialFormula",
+  "QuantumBloch",
+  "QuantumExtremizers",
+  "QuantumInvertible",
+  "QuantumNormalization",
+  "QuantumPrior.MilneAllStates",
+  "QuantumPrior.MilneBlochDefs",
+  "QuantumPrior.MilneBlochIdentities",
+  "QuantumPrior.MilneCanonicalization",
+  "QuantumPrior.MilneCenterCoordinates",
+  "QuantumPrior.MilneComplexFiltering",
+  "QuantumPrior.MilneCore",
+  "QuantumPrior.MilneCorrelation",
+  "QuantumPrior.MilneDefs",
+  "QuantumPrior.MilneFiltering",
+  "QuantumPrior.MilneGeometry",
+  "QuantumPrior.MilneGeometryBridge",
+  "QuantumPrior.MilneOneSided",
+  "QuantumPrior.MilnePauliAlgebra",
+  "QuantumPrior.MilnePhysicalOrbit",
+  "QuantumPrior.MilnePhysicalOrbitFilter",
+  "QuantumPrior.MilnePurityCovariance",
+  "QuantumPrior.MilneQubit",
+  "QuantumPrior.MilneQubitBall",
+  "QuantumPrior.MilneScalarBounds",
+  "QuantumPrior.MilneSingular",
+  "QuantumPrior.MilneSteering",
+  "QuantumSingular",
+  "QuantumSupremum",
+  "QuantumTwoSided",
+  "RootExtremizers",
+  "SecularBranches",
+  "SecularExistence",
+  "SpectralBridge",
+  "ThreeDimensional",
+  "TrustRegion"
+ ],
+ "counts": {
+  "TrustRegion": 42,
+  "ThreeDimensional": 9,
+  "SpectralBridge": 65,
+  "SecularExistence": 25,
+  "SecularBranches": 13,
+  "RootExtremizers": 4,
+  "QuantumTwoSided": 38,
+  "QuantumSupremum": 10,
+  "QuantumSingular": 18,
+  "QuantumPrior.MilneSteering": 26,
+  "QuantumPrior.MilneSingular": 12,
+  "QuantumPrior.MilneScalarBounds": 28,
+  "QuantumPrior.MilneQubitBall": 11,
+  "QuantumPrior.MilneQubit": 8,
+  "QuantumPrior.MilnePurityCovariance": 10,
+  "QuantumPrior.MilnePhysicalOrbitFilter": 11,
+  "QuantumPrior.MilnePhysicalOrbit": 30,
+  "QuantumPrior.MilnePauliAlgebra": 3,
+  "QuantumPrior.MilneOneSided": 31,
+  "QuantumPrior.MilneGeometryBridge": 9,
+  "QuantumPrior.MilneGeometry": 22,
+  "QuantumPrior.MilneFiltering": 11,
+  "QuantumPrior.MilneDefs": 36,
+  "QuantumPrior.MilneCorrelation": 23,
+  "QuantumPrior.MilneCore": 40,
+  "QuantumPrior.MilneComplexFiltering": 11,
+  "QuantumPrior.MilneCenterCoordinates": 13,
+  "QuantumPrior.MilneCanonicalization": 14,
+  "QuantumPrior.MilneBlochIdentities": 17,
+  "QuantumPrior.MilneBlochDefs": 72,
+  "QuantumPrior.MilneAllStates": 13,
+  "QuantumNormalization": 13,
+  "QuantumInvertible": 14,
+  "QuantumExtremizers": 13,
+  "QuantumBloch": 17,
+  "PolynomialFormula": 32,
+  "OperationalExtensions": 10,
+  "OpenBallSupremum": 3,
+  "MatrixCompanionBridge": 13,
+  "ConditionalPurityScalar": 22,
+  "CompanionPolynomial": 38
+ },
+ "declarations": [
+  {
+   "module": "RootExtremizers",
+   "name": "FilteredF3.all_extremizers",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumExtremizers",
+   "name": "FilteredF3.arbitrary_quantum_Bob_all_filter_extremizers",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.bloch_orbit_matrix_objective",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.branch_multiplier_is_root_formula",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.canonical_bloch_B_zero",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.canonical_filter_trace_iff",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "OperationalExtensions",
+   "name": "FilteredF3.canonical_probability_radius",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumInvertible",
+   "name": "FilteredF3.canonical_quantum_GL_attainable_values",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumExtremizers",
+   "name": "FilteredF3.canonical_quantum_GL_extremizer_iff",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumExtremizers",
+   "name": "FilteredF3.canonical_quantum_all_filter_extremizers",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.canonical_quantum_attainable_values",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.canonical_quantum_filter_from_maximizer",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumExtremizers",
+   "name": "FilteredF3.canonical_quantum_positive_multiplier_nonattainment",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.canonicalize_bloch_reconstruction",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.canonicalize_complex_filtered",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.canonicalize_complex_reconstruction",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.closed_form_all_quantum_Alice",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.closed_form_all_quantum_Bob",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSupremum",
+   "name": "FilteredF3.closed_form_all_quantum_Bob_GL",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.closed_form_arbitrary_quantum_Bob",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSupremum",
+   "name": "FilteredF3.closed_form_arbitrary_quantum_Bob_GL",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSupremum",
+   "name": "FilteredF3.closed_form_both_invertible_normalized",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.closed_form_both_success_normalized",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.closed_form_canonical_quantum",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSupremum",
+   "name": "FilteredF3.closed_form_canonical_quantum_GL",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.closed_form_diagonal",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.closed_form_real_matrix_three",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.closed_form_real_symmetric_three",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.closed_form_selfAdjoint",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ThreeDimensional",
+   "name": "FilteredF3.closed_form_shifted",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumNormalization",
+   "name": "FilteredF3.closed_form_success_normalized_Bob",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSupremum",
+   "name": "FilteredF3.closed_form_success_normalized_Bob_GL",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ThreeDimensional",
+   "name": "FilteredF3.closed_form_three_dimensional",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "OperationalExtensions",
+   "name": "FilteredF3.coercive_gap",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.companionMatrix",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.companion_characteristic_determinant",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.companion_sextic_three",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.companion_shift_blocks",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumInvertible",
+   "name": "FilteredF3.complex_filter_invertible_iff_open_ball",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.complex_filtered_comp",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.complex_filtered_one",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumNormalization",
+   "name": "FilteredF3.complex_filtered_real_smul",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumNormalization",
+   "name": "FilteredF3.complex_filtered_trace_real",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditionalCapSq",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditionalDenominator",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditionalParabola",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditionalVertex",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditional_cap_attained",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditional_cap_bounds",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditional_cap_global",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditional_cap_isGreatest",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditional_denominator_positive",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditional_exact_square",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditional_vertex_physical",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "OpenBallSupremum",
+   "name": "FilteredF3.continuous_closedBall_isLUB_openBall",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "OperationalExtensions",
+   "name": "FilteredF3.convex_postselection_sublevel",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.density_singular_Bob_product",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.det_blockRotation",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.det_companion_block",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.diagObjective",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "OperationalExtensions",
+   "name": "FilteredF3.diagObjective_scale",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.diagValue",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularBranches",
+   "name": "FilteredF3.diagValue_secular",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.diagonal_equality_iff",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.diagonal_exact_gap",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.diagonal_maximum",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.diagonal_rank_one_determinant_three",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "OperationalExtensions",
+   "name": "FilteredF3.effect_condition_ratio",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.equality_iff",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSupremum",
+   "name": "FilteredF3.equation10_both_closed_forms",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.exact_diagonal_solution",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.exact_gap",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "OperationalExtensions",
+   "name": "FilteredF3.exact_positive_radius",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.exact_value_exists",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.exhaustive_branches",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.exists_secular_root",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.fromOrthoCoordinates",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.from_orthoCoordinates",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.global_maximum",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.global_upper_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.greatest_real_root_exists",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularBranches",
+   "name": "FilteredF3.hard_case_attained",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "OpenBallSupremum",
+   "name": "FilteredF3.inner_closedBall_isLUB_openBall",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.inner_orthoCoordinates",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.largestRealRoot",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ThreeDimensional",
+   "name": "FilteredF3.largestRealRoot_shift",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.largestRealRoot_spec",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.le_spectralThreshold",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixAlgebraicValue",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixAlgebraicValue_expansion",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixCoordinates",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixEigenvalues",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixObjective",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrix_objective_operator",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "MatrixCompanionBridge",
+   "name": "FilteredF3.matrix_secular_determinant_three",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ThreeDimensional",
+   "name": "FilteredF3.max_zero_sub_add",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "OperationalExtensions",
+   "name": "FilteredF3.near_optimal_boundary",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "OperationalExtensions",
+   "name": "FilteredF3.near_optimal_distance",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.no_roots_above",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.objective",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumNormalization",
+   "name": "FilteredF3.onBob_smul",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "OpenBallSupremum",
+   "name": "FilteredF3.open_ball_real_matrix_three",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "MatrixCompanionBridge",
+   "name": "FilteredF3.original_companion_largest_real_root",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "MatrixCompanionBridge",
+   "name": "FilteredF3.original_companion_sextic_three",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.orthoCoordinates",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.orthoCoordinates_from",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.plain_real_inner_three",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "OperationalExtensions",
+   "name": "FilteredF3.postselection_mixture_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumAliceExactValue",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumAliceFiltered",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumAliceSuccess",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumAliceValues",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumAlice_success_swap",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumAlice_values_swap",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.quantumBobAlgebraicValue",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.quantumBobExactValue",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.quantumBobExactValue_nonneg",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumInvertible",
+   "name": "FilteredF3.quantumBobGLValues",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.quantumBobValues",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumExtremizers",
+   "name": "FilteredF3.quantumCanonicalCoordinates",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumExtremizers",
+   "name": "FilteredF3.quantumCanonicalEigenvalues",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumExtremizers",
+   "name": "FilteredF3.quantumCanonicalMultiplier",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.quantumCanonicalValue",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSupremum",
+   "name": "FilteredF3.quantumF3AliceGLValues",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSupremum",
+   "name": "FilteredF3.quantumF3BobGLValues",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumNormalizedAlice",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumInvertible",
+   "name": "FilteredF3.quantumNormalizedAliceGLValues",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumNormalizedAliceValues",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumInvertible",
+   "name": "FilteredF3.quantumNormalizedAlice_GL_values_swap",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumNormalizedAlice_swap",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumNormalizedAlice_values_swap",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumNormalization",
+   "name": "FilteredF3.quantumNormalizedBob",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumInvertible",
+   "name": "FilteredF3.quantumNormalizedBobGLValues",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSupremum",
+   "name": "FilteredF3.quantumNormalizedBobGLValues_nonempty",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumInvertible",
+   "name": "FilteredF3.quantumNormalizedBobGLValues_unrestricted",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumNormalization",
+   "name": "FilteredF3.quantumNormalizedBobValues",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumNormalization",
+   "name": "FilteredF3.quantumNormalizedBob_density",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumNormalization",
+   "name": "FilteredF3.quantumNormalizedBob_realized",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumNormalization",
+   "name": "FilteredF3.quantumNormalizedBob_trace",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumExtremizers",
+   "name": "FilteredF3.quantumSpectralStationarity",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumNormalization",
+   "name": "FilteredF3.quantumSuccess",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumInvertible",
+   "name": "FilteredF3.quantumSuccess_pos_of_invertible",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap_aliceFiltered",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap_correlation",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap_correlationSq",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap_density",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap_involutive",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap_mul",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap_onAlice",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap_partialA",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap_partialB",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap_pauliPair",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap_smul",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap_trace",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.quantumTensor",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.quantumTensor_filtered",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.quantumTensor_partialA",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.quantumTensor_partialB",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.quantumTensor_trace",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumInvertible",
+   "name": "FilteredF3.quantum_GL_values_whitening",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumExtremizers",
+   "name": "FilteredF3.quantum_canonical_rational_value",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumExtremizers",
+   "name": "FilteredF3.quantum_canonical_violation_iff_rational",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumInvertible",
+   "name": "FilteredF3.quantum_normalization_GL_value_sets",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumNormalization",
+   "name": "FilteredF3.quantum_normalization_value_sets",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.quantum_values_whitening",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.radiusSq",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.radiusSq_nonneg",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "OperationalExtensions",
+   "name": "FilteredF3.radiusSq_scale",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularBranches",
+   "name": "FilteredF3.radius_add_orthogonal",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.radius_orthoCoordinates",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularBranches",
+   "name": "FilteredF3.radius_secularPoint",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.rank_one_qubit_sandwich",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "MatrixCompanionBridge",
+   "name": "FilteredF3.realRankOne",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "MatrixCompanionBridge",
+   "name": "FilteredF3.realRankOne_toMatrix",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.real_matrix_three_all_extremizers",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularBranches",
+   "name": "FilteredF3.regular_branch",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularBranches",
+   "name": "FilteredF3.secular",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularBranches",
+   "name": "FilteredF3.secularPoint",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.secularPolynomial",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.secularPolynomial_factor",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.secularPolynomial_root_iff",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ThreeDimensional",
+   "name": "FilteredF3.secularPolynomial_shift",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularBranches",
+   "name": "FilteredF3.secularValue",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ThreeDimensional",
+   "name": "FilteredF3.secularValue_shift",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.secular_continuousOn",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.secular_large_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.secular_nonneg",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.secular_root_unique",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.secular_strict_decrease",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.secular_top_component",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "RootExtremizers",
+   "name": "FilteredF3.selected_multiplier_conditions",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.selfAdjointCoordinates",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.selfAdjointValue",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.selfAdjoint_all_extremizers",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.selfAdjoint_attainable_values",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.selfAdjoint_objective_coordinates",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "MatrixCompanionBridge",
+   "name": "FilteredF3.selfAdjoint_toMatrix",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.singular_Bob_filter_value",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumInvertible",
+   "name": "FilteredF3.singular_Bob_quantum_GL_values",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.singular_Bob_quantum_values",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularBranches",
+   "name": "FilteredF3.singular_branch",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularBranches",
+   "name": "FilteredF3.singular_orthogonal",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.singular_polynomial_root",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumExtremizers",
+   "name": "FilteredF3.singular_quantum_Bob_every_filter_extremizes",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularBranches",
+   "name": "FilteredF3.singular_stationarity",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.spectralThreshold",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.spectralThreshold_endpoint",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.spectralThreshold_nonneg",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSupremum",
+   "name": "FilteredF3.sqrt_image_isLUB",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.supported_qubit_rank_one",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ThreeDimensional",
+   "name": "FilteredF3.three_dimensional_sextic",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.value_at_certificate",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularBranches",
+   "name": "FilteredF3.zero_branch",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.CMatrix",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.Density",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.MaximallyEntangled",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.Q",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.QQ",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.T3",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.V3",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometryBridge",
+   "name": "Milne.all_density_geometry_directional",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometryBridge",
+   "name": "Milne.all_density_geometry_matrix_psd",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneAllStates",
+   "name": "Milne.all_states_entangled_overlap_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneAllStates",
+   "name": "Milne.all_states_steering_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneAllStates",
+   "name": "Milne.all_states_steering_value_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCanonicalization",
+   "name": "Milne.arbitrary_entangled_overlap_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.arbitrary_steering_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.arbitrary_steering_threshold",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.arbitrary_steering_value_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.blochLength",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.blochLength_add_le",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.blochLength_nonneg",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.blochLength_psd_le",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.blochLength_smul",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.blochLength_sq",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.blochSq",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.blochSq_add_le",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubit",
+   "name": "Milne.blochSq_det_identity",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubit",
+   "name": "Milne.blochSq_eigenvalue_difference",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.blochSq_nonneg",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.blochSq_psd_le",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.blochSq_scalar_sub",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.blochSq_smul",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubit",
+   "name": "Milne.blochSq_trace_identity",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.blochState",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.blochState_blochSqA",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.blochState_blochSqB",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.blochState_canonical",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.blochState_center_formula",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.blochState_correlationSq",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.blochState_correlations",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.blochState_density",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.blochState_partialA",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.blochState_partialB",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.blochState_radial_center",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.blochState_trace",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePurityCovariance",
+   "name": "Milne.bobBlock",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePurityCovariance",
+   "name": "Milne.bobBlock_filter",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneComplexFiltering",
+   "name": "Milne.bobBlock_filter_general",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCanonicalization",
+   "name": "Milne.bobFilter",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCanonicalization",
+   "name": "Milne.bobFilter_hermitian",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCanonicalization",
+   "name": "Milne.bobFilter_isUnit",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCanonicalization",
+   "name": "Milne.bobFilter_sq",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCanonicalization",
+   "name": "Milne.bobFilter_trace",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.bobWeighted",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.bobWeighted_one",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.bobWeighted_psd",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.bobWeighted_smul",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.bobWeighted_sub",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.bobWeighted_trace",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.canonical_bobWeighted_fano",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbitFilter",
+   "name": "Milne.canonical_complex_filter_correlation",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbitFilter",
+   "name": "Milne.canonical_complex_filter_optimum",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbitFilter",
+   "name": "Milne.canonical_complex_filter_violation_iff",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbitFilter",
+   "name": "Milne.canonical_complex_filtered_alice",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.canonical_eigenvalue_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.canonical_endpoint_in_ball",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbitFilter",
+   "name": "Milne.canonical_filter_realizes_ball",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.canonical_operator_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.canonical_purity_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCanonicalization",
+   "name": "Milne.canonicalize",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCenterCoordinates",
+   "name": "Milne.canonicalize_center_coordinates",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCenterCoordinates",
+   "name": "Milne.canonicalize_center_length_coordinates",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCenterCoordinates",
+   "name": "Milne.canonicalize_center_numerator",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCanonicalization",
+   "name": "Milne.canonicalize_density",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCanonicalization",
+   "name": "Milne.canonicalize_partialB",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCanonicalization",
+   "name": "Milne.canonicalize_psd",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCanonicalization",
+   "name": "Milne.canonicalize_reconstruction",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.center",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCenterCoordinates",
+   "name": "Milne.center_actual_partialA",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCenterCoordinates",
+   "name": "Milne.center_actual_partialB",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCenterCoordinates",
+   "name": "Milne.center_denominator_ne_zero",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCenterCoordinates",
+   "name": "Milne.center_filter_sandwich",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.center_le_one",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.center_nonneg",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCenterCoordinates",
+   "name": "Milne.center_scaled_qubit_coordinates",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCenterCoordinates",
+   "name": "Milne.center_weighted_bloch",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCenterCoordinates",
+   "name": "Milne.center_weighted_congruence",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.chord_forces_positive_curvature",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.chsh_filter_interpolation",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneComplexFiltering",
+   "name": "Milne.complexFiltered",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneComplexFiltering",
+   "name": "Milne.complexFiltered_bob_marginal",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneComplexFiltering",
+   "name": "Milne.complexFiltered_correlation_identity",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneComplexFiltering",
+   "name": "Milne.complexFiltered_density",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneComplexFiltering",
+   "name": "Milne.complexFiltered_det_bloch",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneComplexFiltering",
+   "name": "Milne.complexFiltered_psd",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneComplexFiltering",
+   "name": "Milne.complexFiltered_purity_covariance",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbitFilter",
+   "name": "Milne.complex_filter_effect_coordinates",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.conjugate_single_diagonal",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCenterCoordinates",
+   "name": "Milne.coordinate_steering_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCenterCoordinates",
+   "name": "Milne.coordinate_steering_threshold",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.correlation",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.correlationSq",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.correlationSq_bloch",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.correlationSq_nonneg",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.correlationSq_purity",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.correlationSq_purityDifference",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.correlation_trace_polynomial",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSingular",
+   "name": "Milne.density_le_identity",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSingular",
+   "name": "Milne.density_overlap_le_normSq",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.eigencomponent_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.eigencomponent_remainder",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.filter_det_bloch",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneFiltering",
+   "name": "Milne.filtered_ME_norm",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.filtered_alice_bloch_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.filtered_bob_marginal",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.filtered_density",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneFiltering",
+   "name": "Milne.filtered_entangled_overlap_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.filtered_steering_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.filtered_steering_quadratic_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryFlip",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryFlipMatrix",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryFlip_psd",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometryBridge",
+   "name": "Milne.geometryLocalA",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometryBridge",
+   "name": "Milne.geometryLocalB",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryMatrix",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryMatrix_form",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometryBridge",
+   "name": "Milne.geometry_density_reconstruction",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometry_directional",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometry_matrix_psd",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometryBridge",
+   "name": "Milne.geometry_onAlice_hermitian",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometryBridge",
+   "name": "Milne.geometry_onBob_hermitian",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometryBridge",
+   "name": "Milne.geometry_pauli_reconstruction_polynomial",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometry_radial",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometry_spinflip_identity",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometry_trace_product_nonneg",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometry_unit_direction",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubit",
+   "name": "Milne.hermitian_det_im",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.hermitian_diag_im",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.linePoint",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.line_sphere_chord",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneAllStates",
+   "name": "Milne.no_three_setting_violation",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.normSq",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.onAlice",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.onBob",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneFiltering",
+   "name": "Milne.onBob_conjTranspose",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneFiltering",
+   "name": "Milne.onBob_hermitian",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneFiltering",
+   "name": "Milne.onBob_mul",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneFiltering",
+   "name": "Milne.onBob_one",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.onBob_smul",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.onBob_sub",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSingular",
+   "name": "Milne.onBob_sub_boundary",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK_hermitian",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbitQuadratic",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbitQuadratic_line",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbitVertex",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbitVertex_stationary",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbit_completed_square",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbit_critical_point_exists",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbit_critical_point_is_maximum",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbit_critical_point_unique",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbit_critical_value",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbit_inverse_optimum",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbit_physical_boundary",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbit_physical_quadratic_identity",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbit_vertex_inside_of_violation",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbit_violation_forces_posDef",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbit_violation_iff_inverse",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbit_violation_iff_stationary",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.overlap",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneFiltering",
+   "name": "Milne.overlap_congruence",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.partialA",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.partialA_add",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.partialA_bob_cycle",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.partialA_psd",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.partialA_smul",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.partialA_sub",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.partialB",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.partialB_add",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneFiltering",
+   "name": "Milne.partialB_filter",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.partialB_psd",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.partialB_smul",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.partialB_sub",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.pauliPair",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.pauliPair_hermitian",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauliZ",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.pauli_hermitian",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.physical_orbit_violation_iff",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.probability_sum_sq_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.psd_det_nonneg",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.psd_diag_nonneg",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSingular",
+   "name": "Milne.psd_eq_zero_of_trace_zero",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSingular",
+   "name": "Milne.psd_mul_eq_zero_of_congruence",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePauliAlgebra",
+   "name": "Milne.psd_real_smul",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.psd_trace_nonneg",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.pure",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSingular",
+   "name": "Milne.pure_Bob_ME_projected_norm",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.pure_blochSq_eq",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneFiltering",
+   "name": "Milne.pure_mulVec",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.pure_trace",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePurityCovariance",
+   "name": "Milne.purityDifference",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePurityCovariance",
+   "name": "Milne.purityDifference_blocks",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePurityCovariance",
+   "name": "Milne.purityDifference_filter",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneComplexFiltering",
+   "name": "Milne.purityDifference_filter_general",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.purityDifference_filter_re",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.quadratic_form_nonneg",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.quadratic_form_smul",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubitBall",
+   "name": "Milne.qubitBallFilter",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubitBall",
+   "name": "Milne.qubitBallFilter_det_eq_zero_iff",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubitBall",
+   "name": "Milne.qubitBallFilter_det_ne_zero",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubitBall",
+   "name": "Milne.qubitBallFilter_det_squared",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubitBall",
+   "name": "Milne.qubitBallFilter_hermitian",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubitBall",
+   "name": "Milne.qubitBallFilter_psd",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubitBall",
+   "name": "Milne.qubitBallFilter_squared",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubitBall",
+   "name": "Milne.qubitBallFilter_trace_squared",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubitBall",
+   "name": "Milne.qubitBall_det",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubitBall",
+   "name": "Milne.qubitBall_psd",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubitBall",
+   "name": "Milne.qubitBall_trace",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.qubitState",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.qubitState_blochSq",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.qubitState_trace",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.qubitState_zero",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubit",
+   "name": "Milne.qubit_bloch_le_one",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubit",
+   "name": "Milne.qubit_density_lower_operator_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSingular",
+   "name": "Milne.qubit_idempotent_of_trace_one_det_zero",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubit",
+   "name": "Milne.qubit_lower_operator_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePurityCovariance",
+   "name": "Milne.qubit_trace_covariance",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneComplexFiltering",
+   "name": "Milne.qubit_trace_covariance_general",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSingular",
+   "name": "Milne.singular_Bob_blochSq",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneAllStates",
+   "name": "Milne.singular_Bob_correlationSq_eq_blochSq",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneAllStates",
+   "name": "Milne.singular_Bob_correlationSq_le_one",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSingular",
+   "name": "Milne.singular_Bob_entangled_overlap_bound",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSingular",
+   "name": "Milne.singular_Bob_purityDifference_zero",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSingular",
+   "name": "Milne.singular_Bob_support",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.spin",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePauliAlgebra",
+   "name": "Milne.spin_hermitian",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.spin_plus_squared",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePauliAlgebra",
+   "name": "Milne.spin_squared",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneAllStates",
+   "name": "Milne.steeringCenter",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCenterCoordinates",
+   "name": "Milne.steeringCenter_coordinates",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneAllStates",
+   "name": "Milne.steeringCenter_le_one",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneAllStates",
+   "name": "Milne.steeringCenter_nonneg",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneAllStates",
+   "name": "Milne.steeringCenter_of_nonsingular",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringDenominator",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringDenominator_pos",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringEnvelopeSq",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringEnvelopeSq_eq_one",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringEnvelopeSq_formula",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringEnvelopeSq_ge_one",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringEnvelopeSq_gt_one",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringQuadratic",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringQuadratic_large",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringQuadratic_le_envelope",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringQuadratic_small",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneAllStates",
+   "name": "Milne.steeringValue",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steering_endpoint",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steering_vertex_attains",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steering_vertex_in_unit_interval",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steering_vertex_lt_one",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.tSq",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.tVec",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbitFilter",
+   "name": "Milne.traceTwoVector",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbitFilter",
+   "name": "Milne.traceTwo_reconstruction",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.trace_eq_eigenvalue_sum",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.trace_mul_hermitian_im",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.trace_partialA",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.trace_partialB",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.trace_sq_eq_eigenvalue_sq_sum",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.ttVec",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.unitary_column_normSq",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.vDot",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.vSq",
+   "kind": "definition",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.vSq_linePoint",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.vSq_pos_of_ne_zero",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.vSq_smul",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneAllStates",
+   "name": "Milne.violation_requires_center_lt_two_thirds",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "RootExtremizers",
+   "name": "FilteredF3.all_extremizers._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext"
+   ]
+  },
+  {
+   "module": "RootExtremizers",
+   "name": "FilteredF3.all_extremizers._proof_2",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "Pi.instNeg._elambda_1",
+    "Pi.instZero._elambda_1"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.companionMatrix._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.companionMatrix._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.companionMatrix.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditionalDenominator._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditionalDenominator._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "npowRec._at.Real.commRing._spec_2",
+    "Nat.cast._at.FilteredF3.conditionalDenominator._spec_1"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditionalDenominator._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditionalDenominator._proof_2",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditionalParabola._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditionalParabola._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "npowRec._at.Real.commRing._spec_2",
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditionalParabola._proof_3",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.diagObjective._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.diagObjective._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.diagValue._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.diagValue._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.diagonal_exact_gap._proof_2",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.fromOrthoCoordinates._proof_2",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.fromOrthoCoordinates.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixAlgebraicValue._proof_4",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixAlgebraicValue._proof_5",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixAlgebraicValue._proof_6",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixAlgebraicValue._proof_7",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixAlgebraicValue._proof_8",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixAlgebraicValue.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixCoordinates._proof_10",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixCoordinates.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixEigenvalues._proof_9",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixEigenvalues.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixObjective._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixObjective._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "dotProduct._at.FilteredF3.matrixObjective._spec_1",
+    "Matrix.mulVec._at.FilteredF3.matrixObjective._spec_3",
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.matrixObjective.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.objective._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.objective._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.objective._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.orthoCoordinates._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "lcProof",
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.orthoCoordinates._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.orthoCoordinates._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.orthoCoordinates.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumAliceFiltered.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumAliceSuccess.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumAliceValues.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumAlice_values_swap._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.quantumBobExactValue.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumBobValues.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumExtremizers",
+   "name": "FilteredF3.quantumCanonicalEigenvalues._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumExtremizers",
+   "name": "FilteredF3.quantumCanonicalMultiplier._proof_2",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext"
+   ]
+  },
+  {
+   "module": "QuantumBloch",
+   "name": "FilteredF3.quantumCanonicalValue._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumNormalizedAlice.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumInvertible",
+   "name": "FilteredF3.quantumNormalizedAliceGLValues.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumNormalizedAliceValues.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumInvertible",
+   "name": "FilteredF3.quantumNormalizedAlice_GL_values_swap._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumNormalizedAlice_values_swap._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumNormalization",
+   "name": "FilteredF3.quantumNormalizedBob.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumInvertible",
+   "name": "FilteredF3.quantumNormalizedBobGLValues.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumNormalizedBobValues.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumNormalization",
+   "name": "FilteredF3.quantumSuccess.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.quantumTensor._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.quantumTensor._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumSingular",
+   "name": "FilteredF3.quantumTensor.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.radiusSq._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.radiusSq._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.radiusSq.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "MatrixCompanionBridge",
+   "name": "FilteredF3.realRankOne._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "lcProof",
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "MatrixCompanionBridge",
+   "name": "FilteredF3.realRankOne._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "MatrixCompanionBridge",
+   "name": "FilteredF3.realRankOne._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "MatrixCompanionBridge",
+   "name": "FilteredF3.realRankOne._proof_2",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "MatrixCompanionBridge",
+   "name": "FilteredF3.realRankOne.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.secular.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularBranches",
+   "name": "FilteredF3.secularPoint.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.secularPolynomial._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.secularPolynomial._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "ThreeDimensional",
+   "name": "FilteredF3.secularPolynomial.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.secularPolynomial_root_iff._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext"
+   ]
+  },
+  {
+   "module": "ThreeDimensional",
+   "name": "FilteredF3.secularValue.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.selfAdjointCoordinates.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.selfAdjointValue._proof_3",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.selfAdjointValue.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.spectralThreshold._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "lcProof",
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.spectralThreshold._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.blochSq._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "lcProof",
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.blochSq._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "npowRec._at.Real.commRing._spec_2",
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.blochSq._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.blochSq._proof_2",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.blochSq._proof_3",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.blochSq.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.blochState._proof_3",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.blochState.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePurityCovariance",
+   "name": "Milne.bobBlock._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePurityCovariance",
+   "name": "Milne.bobBlock._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilnePurityCovariance",
+   "name": "Milne.bobBlock.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCanonicalization",
+   "name": "Milne.bobFilter._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCanonicalization",
+   "name": "Milne.bobFilter.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSteering",
+   "name": "Milne.bobWeighted.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.canonical_operator_bound._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCanonicalization",
+   "name": "Milne.canonicalize.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.center.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneComplexFiltering",
+   "name": "Milne.complexFiltered.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.correlation.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.correlationSq.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneSingular",
+   "name": "Milne.density_le_identity._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.eigencomponent_remainder._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryFlip.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryFlipMatrix._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryFlipMatrix.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryMatrix._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "lcProof",
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryMatrix._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "Finset.sum._at.Milne.vDot._spec_1",
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryMatrix._proof_2",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryMatrix.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometryBridge",
+   "name": "Milne.geometry_pauli_reconstruction_polynomial._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.linePoint._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.linePoint._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.linePoint.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.normSq._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.normSq._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.normSq.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.onAlice._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.onAlice._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.onAlice.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.onBob._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.onBob._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneFiltering",
+   "name": "Milne.onBob.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneFiltering",
+   "name": "Milne.onBob_one._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "Pi.instSub._elambda_1"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbitQuadratic._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbitQuadratic._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbitQuadratic._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbitQuadratic.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.partialA.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.partialB.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.pauli.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.pauliPair._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.pauliPair._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.pauliPair.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauliZ._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauliZ._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.pauliZ.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.pure._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.pure._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneCore",
+   "name": "Milne.pure.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePurityCovariance",
+   "name": "Milne.purityDifference.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.qubitState._proof_2",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.qubitState.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneQubit",
+   "name": "Milne.qubit_lower_operator_bound._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.spin._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "lcProof",
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.spin._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.spin._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.spin.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneAllStates",
+   "name": "Milne.steeringCenter.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringDenominator._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringDenominator._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "npowRec._at.Real.commRing._spec_2",
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringDenominator._proof_3",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringDenominator.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringEnvelopeSq.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringQuadratic._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringQuadratic._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "npowRec._at.Real.commRing._spec_2",
+    "Nat.cast._at.Milne.steeringQuadratic._spec_1"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringQuadratic._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringQuadratic._proof_2",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.tSq._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "lcProof",
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.tSq._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.Milne.vDot._spec_1"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneCorrelation",
+   "name": "Milne.tSq.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.tVec._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "lcProof",
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.tVec._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.Milne.vDot._spec_1"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.tVec.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbitFilter",
+   "name": "Milne.traceTwoVector._proof_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbitFilter",
+   "name": "Milne.traceTwoVector._proof_2",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbitFilter",
+   "name": "Milne.traceTwoVector.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.ttVec._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "lcProof",
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.ttVec._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.Milne.vDot._spec_1"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.ttVec.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.vDot._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "lcProof",
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.vDot._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.Milne.vDot._spec_1"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.vDot.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.vSq._cstage1",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "lcProof",
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.vSq._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.Milne.vDot._spec_1"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochIdentities",
+   "name": "Milne.vSq.eq_1",
+   "kind": "theorem",
+   "codegen_auxiliary": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Matrix.diagonal._at.FilteredF3.blockRotation._spec_1"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.companionMatrix._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Matrix.diagonal._at.FilteredF3.companionMatrix._spec_1",
+    "Matrix.vecMulVec._at.FilteredF3.companionMatrix._spec_2"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditionalParabola._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "FilteredF3.conditionalParabola._closed_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.diagObjective._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "Finset.sum._at.FilteredF3.diagObjective._spec_1"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.diagValue._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "Finset.sum._at.FilteredF3.diagValue._spec_1"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.matrixObjective._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.objective._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "FilteredF3.orthoCoordinates._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumTwoSided",
+   "name": "FilteredF3.quantumSwap._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.radiusSq._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.FilteredF3.radiusSq._spec_1"
+   ]
+  },
+  {
+   "module": "MatrixCompanionBridge",
+   "name": "FilteredF3.realRankOne._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.secularPolynomial._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "Finset.prod._at.FilteredF3.secularPolynomial._spec_1",
+    "Finset.sum._at.FilteredF3.secularPolynomial._spec_4"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "FilteredF3.spectralThreshold._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "Finset.sup'._at.FilteredF3.spectralThreshold._spec_1"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.blochSq._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.blochSq._closed_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryMatrix._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryMatrix._closed_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryMatrix._closed_3._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneGeometry",
+   "name": "Milne.geometryMatrix._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.normSq._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.Milne.normSq._spec_1"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.onAlice._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.onBob._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK._closed_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK._lambda_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "Matrix.diagonal._at.Milne.orbitK._spec_1"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK._lambda_3._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK._lambda_4._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "dotProduct._at.Milne.orbitK._spec_2"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK._lambda_5._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK._lambda_6._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneOneSided",
+   "name": "Milne.orbitQuadratic._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli._closed_10._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli._closed_11._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli._closed_12._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli._closed_13._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli._closed_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli._closed_3._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli._closed_4._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli._closed_5._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli._closed_6._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli._closed_7._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli._closed_8._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauli._closed_9._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauliZ._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauliZ._closed_10._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauliZ._closed_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauliZ._closed_3._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauliZ._closed_4._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauliZ._closed_5._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauliZ._closed_6._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauliZ._closed_7._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauliZ._closed_8._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.pauliZ._closed_9._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.pure._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.spin._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.spin._closed_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.spin._closed_3._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Milne.steeringDenominator._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.tSq._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "npowRec._at.Real.commRing._spec_2"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.tSq._lambda_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.Milne.vDot._spec_1"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.tVec._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.ttVec._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.vDot._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.vDot._closed_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.vDot._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Milne.vSq._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "npowRec._at.Real.commRing._spec_2"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._rarg._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._rarg._closed_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._rarg._closed_3._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._rarg._closed_4._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._rarg._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._rarg._lambda_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._rarg._lambda_3._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._rarg._lambda_4._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._rarg._lambda_5._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.diagObjective._rarg._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "npowRec._at.Real.commRing._spec_2",
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.diagValue._rarg._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.objective._rarg._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "FilteredF3.radiusSq._rarg._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "npowRec._at.Real.commRing._spec_2"
+   ]
+  },
+  {
+   "module": "MatrixCompanionBridge",
+   "name": "FilteredF3.realRankOne._rarg._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.secularPolynomial._rarg._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "npowRec._at.Real.commRing._spec_2"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "FilteredF3.secularPolynomial._rarg._lambda_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "npowRec._at.Real.commRing._spec_2",
+    "Finset.prod._at.FilteredF3.secularPolynomial._spec_3"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Milne.normSq._rarg._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK._lambda_5._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK._lambda_6._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Milne.orbitK._lambda_6._closed_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "dotProduct._at.FilteredF3.matrixObjective._spec_1",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "dotProduct._at.FilteredF3.matrixObjective._spec_1"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "dotProduct._at.FilteredF3.matrixObjective._spec_4",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "dotProduct._at.FilteredF3.matrixObjective._spec_4"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "dotProduct._at.Milne.orbitK._spec_2",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "dotProduct._at.Milne.orbitK._spec_2"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._rarg._lambda_2._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._rarg._lambda_2._closed_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._rarg._lambda_5._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "FilteredF3.blockRotation._rarg._lambda_5._closed_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "Finset.prod._at.FilteredF3.secularPolynomial._spec_1",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.prod._at.FilteredF3.secularPolynomial._spec_1"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "Finset.prod._at.FilteredF3.secularPolynomial._spec_3",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.prod._at.FilteredF3.secularPolynomial._spec_3"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "Finset.sum._at.FilteredF3.diagObjective._spec_1",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.FilteredF3.diagObjective._spec_1"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "Finset.sum._at.FilteredF3.diagValue._spec_1",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.FilteredF3.diagValue._spec_1"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "Finset.sum._at.FilteredF3.matrixObjective._spec_2",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.FilteredF3.matrixObjective._spec_2"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "Finset.sum._at.FilteredF3.matrixObjective._spec_5",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.FilteredF3.matrixObjective._spec_5"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "Finset.sum._at.FilteredF3.radiusSq._spec_1",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.FilteredF3.radiusSq._spec_1"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "Finset.sum._at.FilteredF3.secularPolynomial._spec_4",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.FilteredF3.secularPolynomial._spec_4"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Finset.sum._at.Milne.normSq._spec_1",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.Milne.normSq._spec_1"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Finset.sum._at.Milne.vDot._spec_1",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.Milne.vDot._spec_1"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "Finset.sup._at.FilteredF3.spectralThreshold._spec_2",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sup._at.FilteredF3.spectralThreshold._spec_2"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "Finset.sup'._at.FilteredF3.spectralThreshold._spec_1",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sup'._at.FilteredF3.spectralThreshold._spec_1"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "Matrix.diagonal._at.FilteredF3.blockRotation._spec_1",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Matrix.diagonal._at.FilteredF3.blockRotation._spec_1"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "Matrix.diagonal._at.FilteredF3.companionMatrix._spec_1",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Matrix.diagonal._at.FilteredF3.companionMatrix._spec_1"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Matrix.diagonal._at.Milne.orbitK._spec_1",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Matrix.diagonal._at.Milne.orbitK._spec_1"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "Matrix.mulVec._at.FilteredF3.matrixObjective._spec_3",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Matrix.mulVec._at.FilteredF3.matrixObjective._spec_3"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "Matrix.vecMulVec._at.FilteredF3.companionMatrix._spec_2",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Matrix.vecMulVec._at.FilteredF3.companionMatrix._spec_2"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "Multiset.prod._at.FilteredF3.secularPolynomial._spec_2",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Multiset.prod._at.FilteredF3.secularPolynomial._spec_2"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "Multiset.sum._at.FilteredF3.matrixObjective._spec_6",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Multiset.sum._at.FilteredF3.matrixObjective._spec_6"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "Multiset.sum._at.FilteredF3.radiusSq._spec_2",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Multiset.sum._at.FilteredF3.radiusSq._spec_2"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Multiset.sum._at.Milne.normSq._spec_2",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Multiset.sum._at.Milne.normSq._spec_2"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "Nat.cast._at.FilteredF3.conditionalDenominator._spec_1",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Nat.cast._at.FilteredF3.conditionalDenominator._spec_1"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Nat.cast._at.Milne.steeringQuadratic._spec_1",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Nat.cast._at.Milne.steeringQuadratic._spec_1"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "RingHom.id._at.FilteredF3.orthoCoordinates._spec_1",
+   "kind": "axiom",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "RingHom.id._at.FilteredF3.orthoCoordinates._spec_1"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "dotProduct._at.FilteredF3.matrixObjective._spec_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.FilteredF3.matrixObjective._spec_2"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "dotProduct._at.FilteredF3.matrixObjective._spec_4._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.FilteredF3.matrixObjective._spec_5"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "dotProduct._at.Milne.orbitK._spec_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sum._at.Milne.vDot._spec_1"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "Finset.prod._at.FilteredF3.secularPolynomial._spec_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "Finset.prod._at.FilteredF3.secularPolynomial._spec_3._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "TrustRegion",
+   "name": "Finset.sum._at.FilteredF3.diagObjective._spec_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "TrustRegion",
+   "name": "Finset.sum._at.FilteredF3.diagValue._spec_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "Finset.sum._at.FilteredF3.matrixObjective._spec_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "Finset.sum._at.FilteredF3.matrixObjective._spec_5._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Multiset.sum._at.FilteredF3.matrixObjective._spec_6"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "Finset.sum._at.FilteredF3.radiusSq._spec_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "Finset.sum._at.FilteredF3.secularPolynomial._spec_4._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Finset.sum._at.Milne.normSq._spec_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Finset.sum._at.Milne.vDot._spec_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "Finset.sup._at.FilteredF3.spectralThreshold._spec_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "SecularExistence",
+   "name": "Finset.sup'._at.FilteredF3.spectralThreshold._spec_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "Matrix.diagonal._at.FilteredF3.blockRotation._spec_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "Matrix.diagonal._at.FilteredF3.companionMatrix._spec_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "Matrix.diagonal._at.Milne.orbitK._spec_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "Matrix.mulVec._at.FilteredF3.matrixObjective._spec_3._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "dotProduct._at.FilteredF3.matrixObjective._spec_4"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "Matrix.vecMulVec._at.FilteredF3.companionMatrix._spec_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "Multiset.prod._at.FilteredF3.secularPolynomial._spec_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "Multiset.sum._at.FilteredF3.matrixObjective._spec_6._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "Multiset.sum._at.FilteredF3.radiusSq._spec_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Multiset.sum._at.Milne.normSq._spec_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "ConditionalPurityScalar",
+   "name": "Nat.cast._at.FilteredF3.conditionalDenominator._spec_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneScalarBounds",
+   "name": "Nat.cast._at.Milne.steeringQuadratic._spec_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Nat.cast._at.Real.instNatCast._spec_2"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "RingHom.id._at.FilteredF3.orthoCoordinates._spec_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "dotProduct._at.FilteredF3.matrixObjective._spec_1._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "dotProduct._at.FilteredF3.matrixObjective._spec_1._closed_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "dotProduct._at.FilteredF3.matrixObjective._spec_1._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "dotProduct._at.Milne.orbitK._spec_2._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "dotProduct._at.Milne.orbitK._spec_2._closed_2._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "QuantumPrior.MilnePhysicalOrbit",
+   "name": "dotProduct._at.Milne.orbitK._spec_2._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "Finset.prod._at.FilteredF3.secularPolynomial._spec_1._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Multiset.prod._at.FilteredF3.secularPolynomial._spec_2"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "Finset.prod._at.FilteredF3.secularPolynomial._spec_3._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Multiset.prod._at.FilteredF3.secularPolynomial._spec_2"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "Finset.sum._at.FilteredF3.diagObjective._spec_1._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "Finset.sum._at.FilteredF3.diagValue._spec_1._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "Finset.sum._at.FilteredF3.matrixObjective._spec_2._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "Finset.sum._at.FilteredF3.radiusSq._spec_1._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Multiset.sum._at.FilteredF3.radiusSq._spec_2"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "Finset.sum._at.FilteredF3.secularPolynomial._spec_4._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Finset.sum._at.Milne.normSq._spec_1._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Multiset.sum._at.Milne.normSq._spec_2"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneBlochDefs",
+   "name": "Finset.sum._at.Milne.vDot._spec_1._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "Finset.sup._at.FilteredF3.spectralThreshold._spec_2._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "SecularExistence",
+   "name": "Finset.sup'._at.FilteredF3.spectralThreshold._spec_1._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "Finset.sup._at.FilteredF3.spectralThreshold._spec_2"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "Matrix.diagonal._at.FilteredF3.blockRotation._spec_1._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "Matrix.diagonal._at.FilteredF3.companionMatrix._spec_1._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "CompanionPolynomial",
+   "name": "Matrix.vecMulVec._at.FilteredF3.companionMatrix._spec_2._rarg._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "Multiset.prod._at.FilteredF3.secularPolynomial._spec_2._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "TrustRegion",
+   "name": "Multiset.sum._at.FilteredF3.radiusSq._spec_2._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "QuantumPrior.MilneDefs",
+   "name": "Multiset.sum._at.Milne.normSq._spec_2._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SpectralBridge",
+   "name": "RingHom.id._at.FilteredF3.orthoCoordinates._spec_1._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "PolynomialFormula",
+   "name": "Finset.sum._at.FilteredF3.secularPolynomial._spec_4._rarg._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "Finset.sup._at.FilteredF3.spectralThreshold._spec_2._rarg._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  },
+  {
+   "module": "SecularExistence",
+   "name": "Finset.sup._at.FilteredF3.spectralThreshold._spec_2._rarg._lambda_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "module": "SecularExistence",
+   "name": "Finset.sup'._at.FilteredF3.spectralThreshold._spec_1._rarg._closed_1._cstage2",
+   "kind": "definition",
+   "codegen_auxiliary": true,
+   "axioms": []
+  }
+ ]
+}

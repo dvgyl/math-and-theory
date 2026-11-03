@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**57 manuscripts and research notes across 56 result families in mathematics, theoretical computer science, and mathematical physics.**
+**58 manuscripts and research notes across 57 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -641,6 +641,17 @@ For two-qubit states with steering-ellipsoid centre length c and Bob Bloch lengt
 **Prior work.** [Ducuara, Susa and Skrzypczyk, Locally inaccessible hidden quantum correlations, 2024.](https://arxiv.org/abs/2406.03945) · [Milne, Jevtic, Jennings, Wiseman and Rudolph, Quantum steering ellipsoids, extremal physical states and monogamy, 2014.](https://arxiv.org/abs/1403.0418) · The Omega Institute's public repository records an earlier claimed Lean proof of the fully entangled fraction bound (issue #14206), whose Lean proof from steering-bounds is included unchanged; no priority is claimed for it. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-steering-centre-bounds).
 
 [Paper PDF](papers/physics/steering-joint-range/manuscript.pdf) · [LaTeX](papers/physics/steering-joint-range/manuscript.tex) · [Proof and reproduction](papers/physics/steering-joint-range/README.md) · [Citation](papers/physics/steering-joint-range/CITATION.bib)
+#### [Exact one-sided filtering of the two-qubit F₃ functional](papers/physics/one-sided-f3/manuscript.pdf)
+
+**Family:** `one-sided-f3`.
+
+Closed formulas for both one-sided filtered F₃ measures of Equation 10 of Ducuara, Susa and Skrzypczyk, for every two-qubit state, answering their question for these measures. The squared value is β + η + cᵀQ(ηI − Q)⁺c in the other party's steering-ellipsoid centre c and shape Q, with η from the largest real eigenvalue of an explicit 6×6 matrix. Every optimal filter, attainment by invertible filters, a rational criterion for values above one and an S₆ obstruction to formulas in radicals are included, with success-probability frontiers and a sharp conditional-purity bound. The one-sided CHSH measures of Equation 9 are not treated.
+
+**Formal scope.** Lean proves the main theorem for actual complex 4×4 density matrices and invertible complex filters on either side, with no rank assumptions, and audits every project declaration. The rational Bloch-coordinate expressions, the six-invariant rule, the Galois obstruction and the extensions are conventional proofs with exact and numerical checks.
+
+**Prior work.** [Ducuara, Susa and Skrzypczyk, Phys. Rev. A 110, 022435 (2024).](https://arxiv.org/abs/2406.03945) The reused Lean library contains the fully-entangled-fraction bound, Conjecture 2 of Milne et al., for which the Omega Institute's public repository records a claimed Lean proof committed on 8 October 2026 (issue #14206); no priority is claimed for it. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-steering-centre-bounds).
+
+[Paper PDF](papers/physics/one-sided-f3/manuscript.pdf) · [LaTeX](papers/physics/one-sided-f3/manuscript.tex) · [Citation](papers/physics/one-sided-f3/CITATION.bib) · [Proof and reproduction](papers/physics/one-sided-f3/README.md)
 
 #### [The three-state root-fidelity entropy bound](papers/physics/fidelity-three-state/manuscript.pdf)
 

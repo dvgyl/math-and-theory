@@ -1,0 +1,668 @@
+\clearpage
+\part*{Operational and geometric extensions}
+\addcontentsline{toc}{part}{Operational and geometric extensions}
+
+\section{Prescribed success probability: an exact two-ball geometry}\label{sec:lens}
+\label{sec:probability}
+
+The unrestricted quantity ignores how frequently the chosen outcome occurs.
+Filtering-probability tradeoffs have been studied for particular systems \cite{probabilityprior}. We now obtain an arbitrary-state one-sided formula. For $0<p\leq1$ define
+\[
+ \HF_A(\rho;p)=\sup\left\{F_3(\rho_K):K^\dagger K\preceq I,
+     \ \tr[(K^\dagger K\otimes I)\rho]\geq p\right\},
+ \qquad V(p)=\HF_A(\rho;p)^2.
+\]
+The supremum may be restricted to invertible filters without changing its
+value. We prove that assertion rather than assume attainment. All the
+results in this part have a Bob version by the same swap as in
+\eqref{eq:swap}. We retain the canonical notation
+\[
+ C=SS^T,\quad g=Sc,\quad d=\tr C-\norm c^2,\quad H=C-dI,
+ \quad q(x)=\tau+2g^Tx+x^THx.
+\]
+
+\begin{theorem}[Exact probability lens]\label{thm:lens}
+If $\norm a<1$, then
+\begin{equation}\label{eq:lens}\boxed{
+ V(p)=\max_{x\in L_p}q(x),\qquad
+ L_p=\{x:\norm x\leq1,\ \norm{a-px}\leq1-p\}.}
+\end{equation}
+For $0<p<1$ this is the intersection of the two explicit balls
+$B(0,1)$ and $B(a/p,(1-p)/p)$. Each feasible point is realized with
+success probability exactly $p$ by
+\begin{equation}\label{eq:ratefilter}
+ K=\sqrt p\,U\sqrt{I+x\cdot\sigma}\,W.
+\end{equation}
+At $p=1$, $L_p=\{a\}$ and $V(1)=F_3(\rho)^2$.
+If $\norm a=1$, the entire frontier is instead constant:
+$\HF_A(\rho;p)=\norm b$ for every $0<p\leq1$.
+\end{theorem}
+\begin{proof}
+An admissible filter of probability $P\geq p$ can be multiplied by
+$\sqrt{p/P}$ without changing its output. Thus it suffices to prescribe
+probability exactly $p$. The canonical marginal is $I/2$, so
+\eqref{eq:ratefilter} has that probability. Positivity of its canonical
+effect is exactly $\norm x\leq1$. Moreover
+\[
+ K^\dagger K\preceq I
+ \ \Longleftrightarrow\ p(I+x\cdot\sigma)\preceq I+a\cdot\sigma
+ \ \Longleftrightarrow\ \norm{a-px}\leq1-p.
+\]
+Polar decomposition proves that this parametrization covers every output.
+The lens is compact and nonempty, since it contains $a$.
+
+For $p<1$, $a$ is strictly inside both balls: $\norm a<1$ and
+$\norm{a-pa}=(1-p)\norm a<1-p$. Consequently
+$x_\varepsilon=(1-\varepsilon)x+\varepsilon a$ remains feasible and has
+$\norm{x_\varepsilon}<1$. Continuity of $q$ shows that the closed-lens
+maximum equals the invertible-filter supremum. At $p=1$, the only point
+is $a$, and $\sqrt{I+a\cdot\sigma}W=I$. The pure-marginal statement
+follows from the product-state reduction already proved.
+\end{proof}
+
+\begin{corollary}[Containment regimes and a universal achievable rate]
+\label{cor:regimes}
+Put $r_a=\norm a$, $p_-=(1-r_a)/2$ and $p_+=(1+r_a)/2$.
+For $p\leq p_-$ the lens is the full unit ball. For $p_+\leq p<1$
+it is the second ball. Only $p_-<p<p_+$ requires a genuine lens.
+Every unrestricted optimum in the closed filter domain therefore has
+some realization with success at least $p_-$. Every strictly violating
+optimum has a realization with success strictly greater than $p_-$.
+\end{corollary}
+\begin{proof}
+The two containments are respectively equivalent to
+$r_a/p+1\leq(1-p)/p$ and
+$r_a/p+(1-p)/p\leq1$. For the strict assertion use the unique interior
+optimizer and
+\[
+ W(I+x\cdot\sigma)W\preceq
+   \frac{1+\norm x}{1-\norm a}I,
+ \qquad p_{\max}(x)\geq\frac{1-\norm a}{1+\norm x}>p_-.
+\]
+\end{proof}
+
+\begin{corollary}[Canonical frontier: a single six-dimensional spectrum]
+\label{cor:canonicalfrontier}
+If $a=0$ and $0<p<1$, put $R=\min\{1,(1-p)/p\}>0$. Define
+\[
+ \nu_R=\rmax\begin{pmatrix}Q&I\\Qcc^T/R^2&Q\end{pmatrix},
+ \qquad\eta_R=\max\{d,\nu_R\}.
+\]
+Then
+\begin{equation}\label{eq:canonicalfrontier}\boxed{
+ V(p)=\tau+R^2(\eta_R-d)+c^TQ(\eta_RI-Q)^\dagger c.}
+\end{equation}
+In particular the unrestricted canonical optimum is achievable with
+probability at least $1/2$, and a strictly violating optimum with
+probability strictly greater than $1/2$.
+\end{corollary}
+\begin{proof}
+The two balls are concentric. Apply the quadratic theorem to $x=Ry$.
+Equivalently, the regular secular equation is
+$\norm{(\eta_RI-C)^{-1}g}^2=R^2$, with the same kernel completion in
+the hard case. For $x_0=(\eta_RI-C)^\dagger g$ the exact identity is
+\[
+ V(p)-q(x)=(\eta_R-d)(R^2-\norm x^2)
+       +(x-x_0)^T(\eta_RI-C)(x-x_0).
+\]
+All maximizers follow by setting its nonnegative terms to zero.
+\end{proof}
+
+For completeness, the translated-ball branch is equally explicit. On
+$B(u,R)$, $R>0$, set $g_u=g+Hu$, $\tau_u=q(u)$ and
+\[
+ \nu_u=\rmax\begin{pmatrix}H&I\\g_ug_u^T/R^2&H\end{pmatrix},
+ \qquad\mu_u=\max\{0,\nu_u\}.
+\]
+Its maximum is
+\begin{equation}\label{eq:translatedball}
+ \tau_u+\mu_uR^2+g_u^T(\mu_uI-H)^\dagger g_u.
+\end{equation}
+Here $u=a/p$, $R=(1-p)/p$. A zero radius is the single-point case.
+
+\section{A finite algebraic formula for the genuine lens}
+\label{sec:finite_lens}
+
+Generic quadratic optimization over two balls is established mathematics
+\cite{twoballs,rontsis}. The contribution of this section is the explicit
+fixed-dimensional candidate formula for the physical domain
+\eqref{eq:lens}, including feasible singular families and all relevant
+stationary roots. It does not assume that a two-constraint S-lemma is exact.
+
+\begin{theorem}[At most fourteen candidate values]\label{thm:fourteen}
+Let $q(x)=\tau+2g^Tx+x^THx$ with $H=H^T\in\R^{3\times3}$.
+In the transverse lens regime of Corollary \ref{cor:regimes}, its maximum
+is the largest of the following explicitly constructed feasible values:
+one stationary-affine value, at most six stationary values from each
+boundary sphere, and one common-circle value. Every feasibility test below
+uses only arithmetic, square roots, matrix spectra and pseudoinverses.
+There is no remaining continuous optimization.
+\end{theorem}
+
+\paragraph{Candidate 1: the stationary affine family.}
+Write the two ball centres and radii as $(u_0,R_0)$ and $(u_1,R_1)$.
+For \eqref{eq:lens} these are $(0,1)$ and $(a/p,(1-p)/p)$.
+If $g\notin\Ran H$, there is no candidate of this type. Otherwise set
+\[
+ x_s=-H^\dagger g,\qquad K=\ker H,
+ \qquad V_s=\tau-g^TH^\dagger g,
+\]
+and let $P_K$ be orthogonal projection onto $K$. Define
+\[
+ k_i=P_K(u_i-x_s),\qquad
+ s_i^2=R_i^2-\norm{(I-P_K)(x_s-u_i)}^2.
+\]
+Include $V_s$ exactly when $s_0^2,s_1^2\geq0$ and
+\begin{equation}\label{eq:affinefeasible}
+ \norm{k_0-k_1}\leq\sqrt{s_0^2}+\sqrt{s_1^2}.
+\end{equation}
+A witness is $x_s+z$ with $z=k_0$ if $k_0=k_1$; otherwise use
+\[
+ z=k_0+\min\left\{1,\frac{\sqrt{s_0^2}}{\norm{k_1-k_0}}\right\}(k_1-k_0).
+\]
+This remains valid when $K=\{0\}$.
+
+\paragraph{Candidates 2--13: all stationary sphere families.}
+For $i\in\{0,1\}$ put $g_i=g+Hu_i$ and $\tau_i=q(u_i)$.
+Choose an orthonormal eigenbasis of $H$ with eigenvalues $h_j$ and
+components $g_{ij}$ of $g_i$. Form the degree-six polynomial
+\begin{equation}\label{eq:lenspoly}
+ P_i(\ell)=R_i^2\prod_{j=1}^3(\ell-h_j)^2
+    -\sum_{j=1}^3g_{ij}^2\prod_{k\ne j}(\ell-h_k)^2.
+\end{equation}
+The roots also are the eigenvalues of
+$\left(\begin{smallmatrix}H&I\\g_ig_i^T/R_i^2&H\end{smallmatrix}\right)$.
+Every \emph{real} root must be considered, including roots below the
+largest real root.
+
+If $\ell\notin\operatorname{spec}H$, set
+\[
+ y=(\ell I-H)^{-1}g_i,\qquad
+ V_i(\ell)=\tau_i+\ell R_i^2+g_i^Ty.
+\]
+Include this value exactly when $\norm{u_i+y-u_j}\leq R_j$, $j\ne i$.
+The root equation already gives $\norm y=R_i$.
+
+For a spectral value $\ell$, put $K_\ell=\ker(\ell I-H)$.
+Require $g_i\perp K_\ell$ and
+$y_0=(\ell I-H)^\dagger g_i$ with $\norm{y_0}\leq R_i$.
+Set $s=\sqrt{R_i^2-\norm{y_0}^2}$ and let $P_\ell$ project onto $K_\ell$.
+The family and its constant value are
+\[
+ x=u_i+y_0+z,\quad z\in K_\ell,\quad\norm z=s,
+ \qquad V_i(\ell)=\tau_i+\ell R_i^2+g_i^Ty_0.
+\]
+For $w=u_i+y_0-u_j$, include the value exactly when
+\begin{equation}\label{eq:spherefeasible}
+ \norm{(I-P_\ell)w}^2+(\norm{P_\ell w}-s)^2\leq R_j^2.
+\end{equation}
+One witness chooses $z=-sP_\ell w/\norm{P_\ell w}$ when the denominator
+is nonzero; otherwise any length-$s$ kernel vector works. Every compatible
+singular multiplier is also a root of \eqref{eq:lenspoly}, so these
+families add no values beyond its six possible distinct real roots.
+
+\paragraph{Candidate 14: the common circle.}
+For the physical lens define
+\[
+ h=1-\frac{1-\norm a^2}{2p},\qquad
+ z=\frac{h}{\norm a^2}a,\qquad
+ r=\sqrt{1-\frac{h^2}{\norm a^2}}>0.
+\]
+Choose $U\in\R^{3\times2}$ with orthonormal columns spanning $a^\perp$,
+and put
+\[
+ H_2=U^THU,\qquad g_2=U^T(g+Hz),\qquad\tau_2=q(z),
+ \qquad\nu_2=\rmax\begin{pmatrix}H_2&I_2\\g_2g_2^T/r^2&H_2\end{pmatrix}.
+\]
+Always include
+\begin{equation}\label{eq:circlevalue}
+ V_{\rm circ}=\tau_2+\nu_2r^2+g_2^T(\nu_2I_2-H_2)^\dagger g_2.
+\end{equation}
+There is \emph{no} clamp by zero in this expression: a sphere equality
+allows a negative multiplier. Its maximizing points are
+$z+U(y_0+v)$ where $y_0=(\nu_2I_2-H_2)^\dagger g_2$,
+$v\in\ker(\nu_2I_2-H_2)$ and $\norm{y_0+v}=r$.
+
+\begin{proof}[Proof of Theorem \ref{thm:fourteen}]
+The stationary equation inside both balls is $Hx=-g$. Its complete
+solution set is $x_s+K$, on which $q=V_s$. Orthogonal projection turns
+the two original ball constraints into the two balls
+$B_K(k_i,\sqrt{s_i^2})$ in $K$. They meet exactly under
+\eqref{eq:affinefeasible}; the displayed witness proves sufficiency.
+
+On a positive-radius sphere the constraint gradient never vanishes.
+Lagrange multipliers therefore give
+$(\ell I-H)(x-u_i)=g_i$. Off the spectrum, the norm equation is precisely
+\eqref{eq:lenspoly}. At a spectral value, orthogonality to the kernel is
+necessary and sufficient for solvability; the pseudoinverse solution is
+orthogonal to the kernel. Substitution into the quadratic gives the stated
+constant family value. Minimizing distance to the other centre over this
+kernel sphere is elementary: decompose $w$ orthogonally and choose the
+kernel vector opposite $P_\ell w$. The resulting squared distance is
+exactly the left side of \eqref{eq:spherefeasible}. A compatible singular
+multiplier is a root because a nonzero vector in its kernel is killed by
+$(\ell I-H)^2-g_ig_i^T/R_i^2$.
+
+Subtracting the two sphere equations gives $a\cdot x=h$. Their
+intersection is the stated circle. Restriction to its affine plane yields
+the two-dimensional quadratic. The greatest-real-root proof from the
+main theorem applies to a sphere without imposing a nonnegative
+multiplier: $\nu_2\geq\lambda_{\max}(H_2)$ still makes its matrix gap
+positive semidefinite, and the radial term vanishes identically.
+This proves \eqref{eq:circlevalue} and its maximizers, including hard cases.
+
+Finally the lens is compact. A global maximizer is either inside both
+balls, on exactly one sphere, or on their common circle. The first case
+is stationary; the second is a local extremum on that sphere; the third
+is a global extremum on the circle. The three constructions exhaust
+these possibilities. Conversely every included value has an explicit
+feasible witness. The largest candidate is therefore exactly the global
+maximum. All maximizers are the feasible members of precisely those
+families whose scalar value equals that maximum. The count is
+$1+6+6+1=14$.
+\end{proof}
+
+\begin{proposition}[A physical nonglobal sphere maximum is indispensable]
+\label{prop:nonglobal}
+Take the full-rank physical Bloch data
+\[
+ a=(-15/17,0,0),\quad b=(-14/85,0,0),\quad
+ T=\diag(18/85,2/85,4/425),\qquad p=10/51.
+\]
+The unique lens optimizer is $x_*=(-2/5,0,0)$ and
+\begin{equation}\label{eq:nonglobalvalue}
+ V(p)=\frac{17509}{250000}.
+\end{equation}
+It is a strict local maximum on the second boundary sphere, but not that
+sphere's global maximum. Keeping only the largest secular root on each
+sphere and the common circle gives an incorrect answer.
+\end{proposition}
+\begin{proof}
+The canonical data are $c=(1/10,0,0)$ and
+$S=\diag(3/10,1/20,1/50)$. They are strictly positive since
+$\norm c+\sum_i|S_{ii}|=47/100<1$. Inverse whitening with the stated
+$a$ gives the displayed rational physical data, using
+$\sqrt{1-\norm a^2}=8/17$. The second ball has centre $(-9/2,0,0)$
+and radius $41/10$, and
+\[
+ q(x)=\frac{929}{10000}+\frac3{50}x_1+\frac{71}{10000}x_1^2
+       -\frac{201}{2500}x_2^2-\frac{33}{400}x_3^2.
+\]
+Every feasible $x$ has $-1\leq x_1\leq-2/5$. Setting $x_2=x_3=0$
+increases $q$, and the remaining function has derivative at least
+$229/5000>0$ on that interval. This proves uniqueness and
+\eqref{eq:nonglobalvalue}.
+
+On the second sphere the translated gradient is
+$g_1=(-39/20000,0,0)$ and the multiplier at $x_*$ is
+$\ell=679/102500>0$. Its tangent Hessian is negative definite.
+The opposite pole $(-43/5,0,0)$ gives the global sphere maximum and
+is infeasible for the unit ball. The unit-sphere global maximum
+$(1,0,0)$ is infeasible for the second ball. The unconstrained stationary
+point has $x_1=-300/71$, and the common-circle maximum is only
+$118/28125<17509/250000$. All claims are also checked with exact
+rational arithmetic in the executable verification.
+\end{proof}
+
+\section{The highest success rate preserving the unrestricted optimum}
+\label{sec:bestrate}
+
+The rate of an arbitrarily chosen optimal filter need not be the best rate
+within a degenerate optimal family. The following formula solves that
+secondary problem without optimization.
+
+\begin{theorem}[Best rate and exact plateau endpoint]\label{thm:bestrate}
+Assume $\norm a<1$. Let $A=\eta I-C$, $x_0=A^\dagger g$, $\lambda=\eta-d$ as in the main
+theorem. Put
+\[
+ K=\ker A,\quad a_K=P_Ka,\quad a_R=a-a_K,\quad
+ r=\sqrt{1-\norm{x_0}^2},\quad\alpha=\norm{a_K},\quad u=a\cdot x_0,
+\]
+and define
+\begin{equation}\label{eq:pb}
+ p_b=\frac{1-\norm a^2}{2(1-u-r\alpha)}.
+\end{equation}
+If $\lambda>0$ or $r=0$, the greatest rate of an unrestricted optimal
+filter in the closed filter domain is $p_{\rm best}=p_b$.
+If $\lambda=0$, $r>0$ and $p_br\leq\alpha$, the same formula holds.
+In all other cases,
+\begin{equation}\label{eq:pi}\boxed{
+ p_{\rm best}=p_i=
+ \frac{1-\norm{a_R}^2}
+ {1-u+\sqrt{(1-u)^2-r^2(1-\norm{a_R}^2)}}.}
+\end{equation}
+For the boundary branch choose
+$x=x_0+r a_K/\alpha$ when $\alpha>0$; any available length-$r$
+kernel direction works when $\alpha=0$.
+For the interior branch choose $x=x_0+a_K/p_i$.
+Moreover the entire probability frontier has the exact plateau
+\begin{equation}\label{eq:plateau}
+ V(p)=\HF_A(\rho)^2\quad\Longleftrightarrow\quad0<p\leq p_{\rm best}.
+\end{equation}
+If the filtered marginal is pure instead, the frontier is constant and
+$p_{\rm best}=1$.
+\end{theorem}
+\begin{proof}
+The unrestricted optimizing family is $x_0+z$ with $z\in K$,
+$\norm z\leq r$, and equality required if $\lambda>0$.
+On its boundary the rate \eqref{eq:success} becomes
+$\delta/[2(1-a\cdot x)]$. Maximizing the linear functional $a\cdot x$
+on this kernel sphere gives $u+r\alpha$, proving \eqref{eq:pb}.
+The denominator is strictly positive because $u+r\alpha\leq\norm a<1$.
+
+When the full disk is permitted, probability $p$ is feasible on it exactly
+when the minimum squared distance to $a$ obeys
+\begin{equation}\label{eq:diskdistance}
+ \norm{a_R-px_0}^2+\max\{\alpha-pr,0\}^2\leq(1-p)^2.
+\end{equation}
+This formula is the orthogonal decomposition of the distance to the
+radius-$pr$ kernel ball. For $pr\leq\alpha$, expansion gives precisely
+$p\leq p_b$. If $p_br<\alpha$, the first infeasible probabilities
+therefore occur immediately beyond $p_b$. At the threshold $p_br=\alpha$,
+the left side of \eqref{eq:diskdistance} minus its right side has right
+derivative $2(1-u-r\alpha)>0$ at $p_b$, so infeasibility likewise begins
+immediately after $p_b$. Feasible probabilities form an
+interval, since a physical filter can always be scaled down. Thus no later
+feasible interval can occur.
+
+If $p_br>\alpha$, feasibility reaches $pr=\alpha$. For $pr\geq\alpha$,
+\eqref{eq:diskdistance} becomes
+\[
+ -r^2p^2+2(1-u)p-(1-\norm{a_R}^2)\leq0.
+\]
+Its smaller positive root, after rationalization, is \eqref{eq:pi}.
+The larger root is at least one, since at $p=1$ the left side equals
+$\norm{a_R-x_0}^2\geq0$. If the larger root equals one, then $a_R=x_0$
+and both roots equal one, so no isolated feasible endpoint is omitted.
+The smaller root is consequently the last
+feasible probability in $[0,1]$. It lies beyond $\alpha/r$, so the stated
+kernel correction is interior and attains the rate.
+The radicand is nonnegative: Cauchy--Schwarz bounds it below by
+$(\norm{a_R}-\norm{x_0})^2$.
+
+Finally $V(p)$ equals the unrestricted value precisely when the compact
+lens intersects the compact unrestricted maximizing family. The largest
+rate for such an intersection is exactly $p_{\rm best}$, proving
+\eqref{eq:plateau} and strict loss above it.
+For a pure filtered marginal, the product-state reduction makes every
+successful filtered value the same, and the identity attains it at rate one.
+\end{proof}
+
+\paragraph{The invertible convention.}
+If no invertible filter attains the unrestricted $F_3$ value, the set of
+exact invertible optimizers is empty; a supremum over that empty set must
+not be substituted for $p_{\rm best}$. In this case $p_{\rm best}$ is the
+greatest limiting success rate of \emph{asymptotically} optimal invertible
+filters. To prove this, approach a best-rate boundary point from the ball
+interior; conversely any sequence of asymptotically optimal effects has
+a subsequence converging to the closed optimal family, and
+$p_{\max}(x)$ is continuous. If $\lambda=0$ and $r>0$, invertible exact
+optimizers exist, and the formula is their rate supremum, attained
+exactly when some best-rate point is interior. Strict violation always
+falls in the attained interior case.
+
+\section{Continuity of the probability frontier}
+
+\begin{proposition}[Monotonicity and an explicit modulus]\label{prop:ratecontinuity}
+For a mixed filtered marginal, $V(p)$ is nonincreasing and continuous on
+$(0,1]$. For $0<p<p'\leq1$,
+\begin{equation}\label{eq:ratemodulus}
+ 0\leq V(p)-V(p')\leq
+ 2(\norm g+\norm H_{\rm op})(1+\norm a)\frac{p'-p}{pp'}.
+\end{equation}
+It is constant near zero, with the exact plateau endpoint from
+Theorem \ref{thm:bestrate}.
+\end{proposition}
+\begin{proof}
+Feasibility is preserved when a filter is scaled down, so $L_{p'}\subseteq L_p$.
+For $x\in L_p$, let
+\[
+ s=\frac{p(1-p')}{p'(1-p)},\qquad x'=sx+(1-s)a.
+\]
+Then $0\leq s\leq1$, $\norm{x'}\leq1$, and
+$p'x'-a=[(1-p')/(1-p)](px-a)$, hence $x'\in L_{p'}$.
+Also
+\[
+ \norm{x-a}\leq\frac{(1-p)(1+\norm a)}p,
+ \qquad\norm{x'-x}\leq(1+\norm a)\frac{p'-p}{pp'}.
+\]
+On the unit ball $\norm{\nabla q}\leq2(\norm g+\norm H_{\rm op})$.
+Apply this Lipschitz bound to a maximizing $x\in L_p$ and its feasible
+$x'$, and use monotonicity. The endpoint $p'=1$ is included.
+\end{proof}
+
+\begin{theorem}[A fixed positive rate removes every state discontinuity]
+\label{thm:fixedratecontinuous}
+For every fixed $p\in(0,1]$, the map
+$\rho\mapsto\HF_A(\rho;p)$ is continuous on the entire compact set of
+two-qubit density matrices, including all pure-marginal states.
+The same holds for Bob.
+\end{theorem}
+\begin{proof}
+Use all complex contractions $K$, a compact set in finite dimension.
+The admissibility condition $\tr(K\rho_AK^\dagger)\geq p$ is closed, and
+the normalized output is continuous whenever that denominator is at least
+$p>0$. If $\rho_n\to\rho$, any subsequential limit of maximizing
+contractions is feasible for $\rho$; taking limits proves upper
+semicontinuity.
+
+For lower semicontinuity when $p<1$, choose an optimal
+$K=U\sqrt E$ for $\rho$. If its success is strictly larger than $p$,
+it remains feasible in a neighbourhood. If the success equals $p$, use
+$E_t=(1-t)E+tI$ and $K_t=U\sqrt{E_t}$. The success is
+$p+t(1-p)>p$, while the filtered value tends to the optimal value as
+$t\downarrow0$, by continuity of the positive matrix square root.
+Each $K_t$ remains feasible for all sufficiently nearby states. This
+proves lower semicontinuity.
+
+At $p=1$, positivity and
+$\tr[(I-K^\dagger K)\rho_A]=0$ imply that $K$ is an isometry on the
+support of $\rho_A$. The joint state is supported there, and this isometry
+extends to a qubit unitary. Thus every admissible output differs from
+$\rho$ only by a local unitary, and
+$\HF_A(\rho;1)=F_3(\rho)$ is continuous.
+\end{proof}
+
+\section{An elementary exact frontier for every pure two-qubit state}
+
+The following specialization connects the general formula to the familiar
+pure-state entanglement concentration problem \cite{vidal}. It is included
+as a derived check and useful closed expression, not as a claim to have
+introduced optimal pure-state concentration.
+
+\begin{theorem}[Pure-state rate frontier]\label{thm:purefrontier}
+Let the smaller squared Schmidt coefficient be $\varepsilon\in[0,1/2]$.
+If $\varepsilon=0$, both one-sided frontiers equal one. If
+$0<\varepsilon\leq1/2$, then for either side
+\begin{equation}\label{eq:purefrontier}\boxed{
+ \HF_W(\rho;p)^2=
+ \begin{cases}
+ 3,&0<p\leq2\varepsilon,\\[2mm]
+ 1+\dfrac{8\varepsilon(p-\varepsilon)}{p^2},&2\varepsilon\leq p\leq1.
+ \end{cases}}
+\end{equation}
+All values are attained by invertible filters when $\varepsilon>0$.
+\end{theorem}
+\begin{proof}
+In Schmidt coordinates the state is
+$\sqrt{1-\varepsilon}|00\rangle+\sqrt\varepsilon|11\rangle$.
+Rescale a filter to have success exactly $p$. The unnormalized Bob
+marginal $B$ obeys
+$0\preceq B\preceq D=\diag(1-\varepsilon,\varepsilon)$ and $\tr B=p$.
+Writing its smaller eigenvalue as $s$, we have
+$s\leq\min\{\varepsilon,p/2\}$, and
+$\det B=s(p-s)$ is maximized by this largest allowed $s$.
+A pure two-qubit state's correlation singular values are
+$1,C,C$, where $C=2\sqrt{\det(B/p)}$. Hence
+$F_3^2=1+8\det B/p^2$, giving both upper bounds in
+\eqref{eq:purefrontier}.
+
+For $p\geq2\varepsilon$, the positive invertible contraction
+\[
+ K=\diag\left(\sqrt{\frac{p-\varepsilon}{1-\varepsilon}},1\right)
+\]
+attains the bound. At $p=2\varepsilon$ it produces a Bell state.
+Scaling that filter down gives the same Bell state with any smaller
+positive probability. The product-state endpoint is immediate.
+\end{proof}
+
+For fixed $p>0$, \eqref{eq:purefrontier} tends to one as
+$\varepsilon\downarrow0$, whereas the unrestricted squared optimum is
+three for every $\varepsilon>0$. This gives an exact example of the
+regularization mechanism in Theorem \ref{thm:fixedratecontinuous}.
+
+\section{Convex geometry and the complete discontinuity locus}
+
+\begin{theorem}[Quasiconvexity, but not convexity]\label{thm:quasiconvex}
+For any two density matrices and $0\leq t\leq1$,
+\begin{equation}\label{eq:quasiconvex}
+ \HF_A(t\rho+(1-t)\sigma)
+ \leq\max\{\HF_A(\rho),\HF_A(\sigma)\}.
+\end{equation}
+Every sublevel set is closed and convex. The function itself is not convex.
+\end{theorem}
+\begin{proof}
+For a fixed invertible filter, the filtered mixture is a mixture of the
+two filtered states with weights proportional to their positive success
+probabilities. The map $F_3$ is convex because it is a norm of a linear
+function of the state. This gives the maximum bound for that filter;
+taking the supremum gives \eqref{eq:quasiconvex}.
+
+More explicitly, for any fixed local filter $K$ let $N_K(\rho)$ be the
+nine unnormalized correlation coordinates and let $P_K(\rho)$ be its
+success probability. Both are real-linear in $\rho$. For $v\geq0$,
+\[
+ \{\rho:\HF_A(\rho)\leq v\}
+ =\bigcap_K\{\rho:\norm{N_K(\rho)}_2\leq vP_K(\rho)\}.
+\]
+Each condition is a closed convex norm inequality; negative sublevels are empty. Singular filters may
+also be included: a zero-success positive output has trace zero and is
+the zero matrix, making its condition $0\leq0$.
+
+For nonconvexity take
+$\rho_1=|00\rangle\langle00|$ and
+$\rho_2=|1\rangle\langle1|\otimes I/2$.
+Their Alice-filtered values are respectively one and zero, but every
+$t\rho_1+(1-t)\rho_2$, $0<t<1$, has supremum one by postselection on
+Alice's $|0\rangle$. It cannot exceed one because it is separable.
+Indeed a product correlation matrix has Frobenius norm at most one,
+and convexity proves the same for mixtures of products; local filtering
+preserves separability. Thus the mixture value is $1>t$.
+\end{proof}
+
+\begin{theorem}[Exact continuity locus]\label{thm:continuitylocus}
+The unrestricted quantity $\HF_A$ is lower semicontinuous everywhere.
+It is continuous at a state if and only if that state's Alice marginal
+is mixed. For $\HF_B$, replace Alice by Bob.
+\end{theorem}
+\begin{proof}
+For every fixed invertible $K$, the success denominator is bounded below
+by the positive smallest eigenvalue of $K^\dagger K$, uniformly over all
+states. Its filtered value is therefore continuous. A supremum of
+continuous functions is lower semicontinuous.
+
+At a state with $\norm a<1$, choose a neighbourhood where
+$\norm a\leq r<1$. The fractional formula \eqref{eq:fraction} is jointly
+continuous on that neighbourhood times the compact closed unit ball,
+with denominator bounded below by $(1-r)^2$. Its maximum is continuous,
+for example by uniform continuity and
+$|\max f-\max g|\leq\max|f-g|$.
+
+At any pure-Alice-marginal state, use local unitaries to write
+$\rho_0=|0\rangle\langle0|\otimes\sigma_B$ with Bloch vector $b$.
+If $\norm b<1$, the separable states
+\[
+ \rho_\varepsilon=(1-\varepsilon)|0\rangle\langle0|\otimes\sigma_B
+ +\varepsilon|1\rangle\langle1|\otimes|\phi\rangle\langle\phi|
+\]
+converge to $\rho_0$ and have $\HF_A=1$, whereas
+$\HF_A(\rho_0)=\norm b<1$. If $\norm b=1$, locally rotate to
+$|00\rangle$ and approach it by the entangled pure Schmidt states of
+Theorem \ref{thm:purefrontier}. Their unrestricted value is $\sqrt3$,
+whereas the product state's value is one. Every pure-marginal point is
+therefore a discontinuity point, completing the classification.
+\end{proof}
+
+\section{Quantitative optimality and numerical stability}
+
+\begin{proposition}[Distance and conditioning from the exact gap]
+\label{prop:stability}
+Let $V=\HF_A^2$ and retain $A,x_0,\lambda$ from the main theorem.
+If $A\succeq mI$ with $m>0$, then every feasible $x$ satisfies
+\begin{equation}\label{eq:coercive}
+ V-q(x)\geq m\norm{x-x_0}^2.
+\end{equation}
+Thus an $\epsilon$-optimal effect lies within
+$\sqrt{\epsilon/m}$ of the unique optimal effect. If $A$ is singular
+and nonzero, the analogous bound uses its smallest positive eigenvalue
+and distance to $x_0+\ker A$. If $A=0$, that distance is identically
+zero, so only the trivial distance bound applies.
+If $\lambda>0$ and $V-q(x)\leq\epsilon$, then
+\begin{equation}\label{eq:condition}
+ 1-\norm x^2\leq\frac\epsilon\lambda,
+ \qquad\frac{1-\norm x}{1+\norm x}\leq\frac\epsilon\lambda.
+\end{equation}
+The last ratio is the smaller-to-larger eigenvalue ratio of the canonical
+effect $I+x\cdot\sigma$.
+\end{proposition}
+\begin{proof}
+Both statements follow from
+$V-q(x)=\lambda(1-\norm x^2)+(x-x_0)^TA(x-x_0)$.
+For singular $A$ use its spectral decomposition on $(\ker A)^\perp$.
+For the eigenvalue ratio observe
+$(1-r)/(1+r)=(1-r^2)/(1+r)^2\leq1-r^2$ when $0\leq r\leq1$.
+\end{proof}
+
+\begin{proposition}[Stability under coefficient perturbations]
+For two real symmetric quadratic problems on the unit ball,
+\[
+ |V(\tau,H,g)-V(\widetilde\tau,\widetilde H,\widetilde g)|
+ \leq|\tau-\widetilde\tau|+\norm{H-\widetilde H}_{\rm op}
+          +2\norm{g-\widetilde g}.
+\]
+\end{proposition}
+\begin{proof}
+The same expression bounds the absolute difference of their objective
+values at every point of the ball. Taking maxima in both directions proves
+the result. This avoids differentiating a repeated or singular selected root.
+\end{proof}
+
+The continuity theorem also explains a critical implementation rule:
+a nearly pure marginal must never be silently treated as exactly pure.
+Arbitrarily weakly entangled pure states have squared unrestricted optimum
+three, even when ordinary floating-point arithmetic rounds their marginal
+purity to one. The supplied implementations conservatively reject such
+ambiguous cases and request higher precision. Their behavior is tested
+with explicit very small Schmidt weights.
+
+\section{The complete interval of attainable values}
+
+For mixed filtered marginals, not only the largest value but the entire
+closed-filter range is algebraically determined. For any symmetric $H$
+and vector $g$, let
+\[
+ \mathcal V(\tau,H,g)=\tau+\mu+g^T(\mu I-H)^\dagger g,
+ \quad\mu=\max\left\{0,\rmax
+   \begin{pmatrix}H&I\\gg^T&H\end{pmatrix}\right\}.
+\]
+\begin{corollary}[Exact attainable interval]
+For the canonical quadratic, the complete set of squared $F_3$ values
+under positive-success closed filters is
+\[
+ \left[-\mathcal V(-\tau,-H,-g),\ \mathcal V(\tau,H,g)\right].
+\]
+Its endpoints have the same explicit pseudoinverse/kernel classifications,
+using $(\tau,H,g)$ for the upper endpoint and $(-\tau,-H,-g)$ for the lower.
+Every value strictly between the endpoints is attained by an invertible
+filter. An endpoint belongs to the invertible range exactly when its
+corresponding optimal family meets the open ball.
+\end{corollary}
+\begin{proof}
+Negating the quadratic gives its minimum by the same maximum theorem.
+The closed ball is connected and compact, so its continuous real-valued
+image is the interval between its minimum and maximum. The open ball is
+connected and dense in the closed ball. Its image is an interval whose
+closure has these same two endpoints, so it contains every intermediate
+value. Endpoint attainment is exactly the already proved strict-ball
+criterion. Taking square roots gives the corresponding $F_3$ interval.
+\end{proof}

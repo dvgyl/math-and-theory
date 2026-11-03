@@ -2211,6 +2211,67 @@
         "lean/Lean/MilneVolumeUnitary.lean": "a6c938e525a63f1f39b672db3ac4a39980e8a95c6a87c7451a658cc5f619a467"
       },
       "integrity_manifests": []
+    },
+    "one-sided-f3": {
+      "root": "papers/physics/one-sided-f3",
+      "release_manifest_sha256": "3054bbcb5c74ec58e6261177d2c911d388cf9c3d315cb18bb3c9c06d4b53acc2",
+      "formal_scope": "Lean 4.19.0 proves, for every positive semidefinite complex 4×4 matrix of trace one, that the explicit algebraic value is the least upper bound of the Frobenius norm of the Pauli correlation matrix over all success-normalized states obtained by invertible complex filters on Alice's side, and likewise on Bob's side, together with the gap identity, all maximizers, attainment by invertible filters and the rational violating criterion in canonical coordinates; a whole-project audit covers every declaration. The rational Bloch-coordinate expressions, the six-invariant rule, the Galois obstruction and the operational extensions are conventional proofs with exact certificates and numerical checks; the measurement-optimization meaning of F3 is cited.",
+      "proof_roots": [
+        {
+          "path": "lean",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "lean/AxiomAudit.lean": "0f58b8fbfcbe7d4ecc7a84e7daa298f1cdb4c7b7dbd0a86d57f38684db91eb23",
+        "lean/CompanionPolynomial.lean": "1a5354122368645c6f8556ccd25e2c6d6b185d4413dde39afa4e0109da57a7d9",
+        "lean/ConditionalPurityScalar.lean": "1c7477c7a97f6542b09e33e75a3108625b3d7c2090463304fc879b137021a609",
+        "lean/ExpandedF3.lean": "4366d3bcc051bde9c1f034b8f451171011b2ddca237faaad88d0746d49db016b",
+        "lean/FilteredF3.lean": "d1c3fecd2596e48f7aa9919cb0ba28dc1853e8784fb1f773eda6ea7e831f7a8e",
+        "lean/MatrixCompanionBridge.lean": "c8f83ced88c01aaf6459893169fa9cd46bbce2e359a9b5cf0a60f8253261cf80",
+        "lean/OpenBallSupremum.lean": "6e0a38b23ef07fb735b8d0a9f8a96af1bb58fd616771b752a2e2c2cda38e3c10",
+        "lean/OperationalExtensions.lean": "66a8ed0e082f0b9925c45de97e3541b95446cc6d6a8bf15b5e8f9517723c23e5",
+        "lean/PolynomialFormula.lean": "c0422b15f9418bfd51fe644d848eae6ddc8660b3e37971a23ac234f5e6d8d941",
+        "lean/QuantumBloch.lean": "6a1d78375cd7d20459a1f222d00b946e0be22fae9be78df582ed54e3680d04e8",
+        "lean/QuantumExtremizers.lean": "47d8c5f9ab8b3b7074913c5db7e5b0033d18457b86fd0044b771fce647f6fa74",
+        "lean/QuantumInvertible.lean": "b832789399676af89b9822b3796922b6bae62dcd649736a7aca037606683b91f",
+        "lean/QuantumNormalization.lean": "1cb547e7ad63fab98bffea79595ef54d735604c93bc4fbe59a63a6bd47907cdf",
+        "lean/QuantumPrior/MilneAllStates.lean": "b56fa234cef8b00c61c6bf97f86685f81be765d1ce7a6628881aed61974c78fd",
+        "lean/QuantumPrior/MilneBlochDefs.lean": "401196288d30f12d1a29a6bc98c624fecce8ee3db49788d4101deda685b2db3f",
+        "lean/QuantumPrior/MilneBlochIdentities.lean": "65debc308db3736d548f53b4f9e34477ec67a2a2f1449c488cddbaefff4939b6",
+        "lean/QuantumPrior/MilneCanonicalization.lean": "77cd62a2edd246ee06f45f9f314578585cca7d76249be271f1df6aac4dbfd47c",
+        "lean/QuantumPrior/MilneCenterCoordinates.lean": "7f94299f74959757da2687236fa2d066e54d55dce68867b5997b727e9ffa8c55",
+        "lean/QuantumPrior/MilneComplexFiltering.lean": "6ceb6503e6f6f5c38fbb8d4e09ba22c027c13a5f0f566a54c908a2dfaee19ed2",
+        "lean/QuantumPrior/MilneCore.lean": "741d02644fac9e0c29cc2b744dd336c094145521cd098fa2d8bee7ec53ab5b75",
+        "lean/QuantumPrior/MilneCorrelation.lean": "66def959771f59766708c6ec135bb4899d7eac03b1370b6ffbe7fae0e066e3db",
+        "lean/QuantumPrior/MilneDefs.lean": "cd26f6bdd709c6a23cc28847986769ea50b9f6e6904360a2cef27e177b1d8d95",
+        "lean/QuantumPrior/MilneFiltering.lean": "7576c1599cc0e665283b4c29a536693bac59b8520315eeaf9ed244cf22d8c17b",
+        "lean/QuantumPrior/MilneGeometry.lean": "859d1318a6c78efe8a2685ea5b6d41320f2a3f1f77af6fb85895345f0d8f2b82",
+        "lean/QuantumPrior/MilneGeometryBridge.lean": "5cb2b56c8eadf67f0041722db0c08708882ee291dcae4fb1045a42d8cfe86210",
+        "lean/QuantumPrior/MilneOneSided.lean": "bbde457c2dd8727ae03f7a29b23bacc29b594da741d84405ff5efd3133bfd98c",
+        "lean/QuantumPrior/MilnePauliAlgebra.lean": "0034368639c10046245a3d737e01b1527715e28edb151db71c416a1627498b7a",
+        "lean/QuantumPrior/MilnePhysicalOrbit.lean": "af81d257c17627f0b1744ebe11584ee76fe5a0ccbc1b67c53466cd0a8b36edd4",
+        "lean/QuantumPrior/MilnePhysicalOrbitFilter.lean": "99d6430552981643b6fbef62c8bce772f0ac714b5cdb532e63e851417b2cc7d9",
+        "lean/QuantumPrior/MilnePurityCovariance.lean": "74e5718593c6d7526e1146a5c8235bba738bfac68e921d319c6e03a6bc19cf19",
+        "lean/QuantumPrior/MilneQubit.lean": "e25769c78969dce556f7b32f99ea9c1290ccf087b7ed2431f56bd16c0ffb3e6d",
+        "lean/QuantumPrior/MilneQubitBall.lean": "66b8dbf0a708ed34b083e3a1736ab813796349ff52692f448a9bd5cc0d1d9b9b",
+        "lean/QuantumPrior/MilneScalarBounds.lean": "f339d8e707732d04eccde2cbb1c31548bfb808403b440556bdbb9d022734964b",
+        "lean/QuantumPrior/MilneSingular.lean": "bcbed11f296e7a6294df55a5ec38372e913780530d9ec72813e46c0e35eb5a7e",
+        "lean/QuantumPrior/MilneSteering.lean": "653fe1bc914769e546fb400e27209e8d09c1cc15aa6fca5af89a741939db4004",
+        "lean/QuantumSingular.lean": "677b19ffa4c50674fc82690afa3d5cde145f66b61e48cac4b5734c098b75f5b6",
+        "lean/QuantumSupremum.lean": "80a803005082f3ac3245a1ce97f0f4944d17164ab821ef2930bab4ec1f7d3861",
+        "lean/QuantumTwoSided.lean": "476c3feb31b2da542491b341da3f105fdb3c8a4e87f257b4a1c3860e03a598ad",
+        "lean/RootExtremizers.lean": "230d77ef74d1d680a4fcfb41ddd3673b0512c289d202b089f59ced1bd0a7d7a3",
+        "lean/SecularBranches.lean": "8f91057d2dd7d0b38d961c243dc24610e635d0aa509ffa34faa33cf50db16ac0",
+        "lean/SecularExistence.lean": "12fb8b33d0a6f7087cad03ac25338bceaa5fcc06dd8b6bdd4ae4ab662a009e9e",
+        "lean/SpectralBridge.lean": "d4cbdd9ef4dcfe407e07394880f1c9e866997253e3e22322475e493b4b9b393b",
+        "lean/ThreeDimensional.lean": "16019cf31d7745b6d8e6b7c3921bc58a553c76a2661a24c7fdf61d7f4ec153fd",
+        "lean/TrustRegion.lean": "f0291f450a6c8549c4bf32809778ea8b8a5bd6168b90214b00fe09c598093c3f"
+      },
+      "integrity_manifests": []
     }
   }
 }

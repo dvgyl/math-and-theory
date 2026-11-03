@@ -1,0 +1,181 @@
+{
+  "description": "The 22 QuantumPrior modules are adapted, with attribution, from the author's own earlier Lean formalization of two-qubit steering-ellipsoid results, the same development from which papers/physics/steering-bounds was released. Local import names are prefixed with QuantumPrior and broad imports minimized; namespaces, statements and proof bodies are otherwise unchanged. MilnePauliAlgebra extracts three unchanged declarations (spin_hermitian, spin_squared from MilneGeometryConsequences; psd_real_smul from MilneSharpness). original_sha256 is the hash of the source file before adaptation; the comparison with steering-bounds refers to repository commit 88bc641.",
+  "lean_version": "4.19.0",
+  "modules": [
+    {
+      "module": "QuantumPrior.MilneDefs",
+      "original_file": "MilneDefs.lean",
+      "original_sha256": "7f1d3ec37eeac51c8e29a148fa5dcf628676c093dfe76d574fff8e0d310aeb0c",
+      "adapted_sha256": "cd26f6bdd709c6a23cc28847986769ea50b9f6e6904360a2cef27e177b1d8d95",
+      "steering_bounds_88bc641": "identical to original"
+    },
+    {
+      "module": "QuantumPrior.MilneCore",
+      "original_file": "MilneCore.lean",
+      "original_sha256": "d7fa814acdc81e75961b0fa9ef846d989da94cac0bba4bf1d400b13b5f6348ea",
+      "adapted_sha256": "741d02644fac9e0c29cc2b744dd336c094145521cd098fa2d8bee7ec53ab5b75",
+      "steering_bounds_88bc641": "same module in steering-bounds; later editorial revision differs"
+    },
+    {
+      "module": "QuantumPrior.MilneFiltering",
+      "original_file": "MilneFiltering.lean",
+      "original_sha256": "9d50348aceee9419f2c3868a72e5a7ba6e50afc4c231589096333fec033038e6",
+      "adapted_sha256": "7576c1599cc0e665283b4c29a536693bac59b8520315eeaf9ed244cf22d8c17b",
+      "steering_bounds_88bc641": "same module in steering-bounds; later editorial revision differs"
+    },
+    {
+      "module": "QuantumPrior.MilneBlochDefs",
+      "original_file": "MilneBlochDefs.lean",
+      "original_sha256": "56324a6f0b5edc2fbdd8c452b2c194c61d6cbd61d93e0c8b8763d1c2c5d3dac5",
+      "adapted_sha256": "401196288d30f12d1a29a6bc98c624fecce8ee3db49788d4101deda685b2db3f",
+      "steering_bounds_88bc641": "identical to original"
+    },
+    {
+      "module": "QuantumPrior.MilneQubit",
+      "original_file": "MilneQubit.lean",
+      "original_sha256": "ff3417a85bd52b1d50e6b3615a38158ff952383d2211d529c6ca14efb855e6b6",
+      "adapted_sha256": "e25769c78969dce556f7b32f99ea9c1290ccf087b7ed2431f56bd16c0ffb3e6d",
+      "steering_bounds_88bc641": "same module in steering-bounds; later editorial revision differs"
+    },
+    {
+      "module": "QuantumPrior.MilnePurityCovariance",
+      "original_file": "MilnePurityCovariance.lean",
+      "original_sha256": "02280332571dd6a5fb15cf275662346e7fd3da25a93f7c4afdae7a2fab5dc35e",
+      "adapted_sha256": "74e5718593c6d7526e1146a5c8235bba738bfac68e921d319c6e03a6bc19cf19",
+      "steering_bounds_88bc641": "same module in steering-bounds; later editorial revision differs"
+    },
+    {
+      "module": "QuantumPrior.MilneCorrelation",
+      "original_file": "MilneCorrelation.lean",
+      "original_sha256": "502a21928eac4d84c8cd07c0e3ea8b78282076d9d9645b8738b22deaca8db93d",
+      "adapted_sha256": "66def959771f59766708c6ec135bb4899d7eac03b1370b6ffbe7fae0e066e3db",
+      "steering_bounds_88bc641": "identical to original"
+    },
+    {
+      "module": "QuantumPrior.MilneScalarBounds",
+      "original_file": "MilneScalarBounds.lean",
+      "original_sha256": "39c653ad30be9668a1133612c2b25c428b7ecf8d95484b00337f24675c28678c",
+      "adapted_sha256": "f339d8e707732d04eccde2cbb1c31548bfb808403b440556bdbb9d022734964b",
+      "steering_bounds_88bc641": "identical to original"
+    },
+    {
+      "module": "QuantumPrior.MilneCanonicalization",
+      "original_file": "MilneCanonicalization.lean",
+      "original_sha256": "d7c6af0870431eeab45467b6ed86c56d6893233122f717b85ab670cacb9f5bef",
+      "adapted_sha256": "77cd62a2edd246ee06f45f9f314578585cca7d76249be271f1df6aac4dbfd47c",
+      "steering_bounds_88bc641": "same module in steering-bounds; later editorial revision differs"
+    },
+    {
+      "module": "QuantumPrior.MilneSteering",
+      "original_file": "MilneSteering.lean",
+      "original_sha256": "ef295945ffb165db00dad4dd0021bc6a748dd5698e46529474d49bf006de1546",
+      "adapted_sha256": "653fe1bc914769e546fb400e27209e8d09c1cc15aa6fca5af89a741939db4004",
+      "steering_bounds_88bc641": "same module in steering-bounds; later editorial revision differs"
+    },
+    {
+      "module": "QuantumPrior.MilneBlochIdentities",
+      "original_file": "MilneBlochIdentities.lean",
+      "original_sha256": "53b5e7c6122581e4de272dd6ec4a0dac00dc6a5da1e1fca9dcdfe34b39a0e0f3",
+      "adapted_sha256": "65debc308db3736d548f53b4f9e34477ec67a2a2f1449c488cddbaefff4939b6",
+      "steering_bounds_88bc641": "not in steering-bounds"
+    },
+    {
+      "module": "QuantumPrior.MilneComplexFiltering",
+      "original_file": "MilneComplexFiltering.lean",
+      "original_sha256": "ea6ce69d8d3edb261a24f4500f693d0c09954c4348cdb489de27205069b836a0",
+      "adapted_sha256": "6ceb6503e6f6f5c38fbb8d4e09ba22c027c13a5f0f566a54c908a2dfaee19ed2",
+      "steering_bounds_88bc641": "not in steering-bounds"
+    },
+    {
+      "module": "QuantumPrior.MilneOneSided",
+      "original_file": "MilneOneSided.lean",
+      "original_sha256": "e574d85feb0b5e317a89fe2e074056096e179e906ccb37d31641ce9dfc4301fc",
+      "adapted_sha256": "bbde457c2dd8727ae03f7a29b23bacc29b594da741d84405ff5efd3133bfd98c",
+      "steering_bounds_88bc641": "not in steering-bounds"
+    },
+    {
+      "module": "QuantumPrior.MilnePauliAlgebra",
+      "original_file": "MilneGeometryConsequences.lean",
+      "original_sha256": "6cce1e0f43b793a4ed2c0c3e258bdf0584b0599786ab663c9fccba680d151b7a",
+      "adapted_sha256": "0034368639c10046245a3d737e01b1527715e28edb151db71c416a1627498b7a",
+      "steering_bounds_88bc641": "not in steering-bounds",
+      "extracted_declarations": [
+        {
+          "name": "Milne.spin_hermitian",
+          "sha256": "7cf4c98e8edc217f16d15f7f5ef71c0efdedbe499898b66f340b4bf3f2f86204"
+        },
+        {
+          "name": "Milne.spin_squared",
+          "sha256": "5a00e39a67ceca2ccc60a2e76996eeddeeea93d5d12c73a9b77234e97db6b118"
+        },
+        {
+          "name": "Milne.psd_real_smul",
+          "source_file": "MilneSharpness.lean",
+          "sha256": "758b2f1d3abf2333833064b97008f04730301953fb808a92b3f0d3c29978c3eb"
+        }
+      ],
+      "additional_source_files": [
+        {
+          "source_file": "MilneSharpness.lean",
+          "original_sha256": "37d76a30e4d450074131d32a6732944648c095e463d20ed36147849af339f7b2"
+        }
+      ]
+    },
+    {
+      "module": "QuantumPrior.MilnePhysicalOrbit",
+      "original_file": "MilnePhysicalOrbit.lean",
+      "original_sha256": "64d1a90e86d26f73717c13312d5aa63bf6e3f9fea907cc832e65a191486a9086",
+      "adapted_sha256": "af81d257c17627f0b1744ebe11584ee76fe5a0ccbc1b67c53466cd0a8b36edd4",
+      "steering_bounds_88bc641": "not in steering-bounds"
+    },
+    {
+      "module": "QuantumPrior.MilneQubitBall",
+      "original_file": "MilneQubitBall.lean",
+      "original_sha256": "712ef18e0f40340fb1fabbda0e091c7c82af841be0a7877eb91466f412a1ccf0",
+      "adapted_sha256": "66b8dbf0a708ed34b083e3a1736ab813796349ff52692f448a9bd5cc0d1d9b9b",
+      "steering_bounds_88bc641": "not in steering-bounds"
+    },
+    {
+      "module": "QuantumPrior.MilnePhysicalOrbitFilter",
+      "original_file": "MilnePhysicalOrbitFilter.lean",
+      "original_sha256": "6eeb6aef0efafb5751e7794f3b6fe6e277875bab0ad8dec11fddfc1168e4b6ae",
+      "adapted_sha256": "99d6430552981643b6fbef62c8bce772f0ac714b5cdb532e63e851417b2cc7d9",
+      "steering_bounds_88bc641": "not in steering-bounds"
+    },
+    {
+      "module": "QuantumPrior.MilneGeometry",
+      "original_file": "MilneGeometry.lean",
+      "original_sha256": "d04411ac10661d16f784b1148c9fe5e75f776424efc280e1f53a2a8ef4212ab3",
+      "adapted_sha256": "859d1318a6c78efe8a2685ea5b6d41320f2a3f1f77af6fb85895345f0d8f2b82",
+      "steering_bounds_88bc641": "not in steering-bounds"
+    },
+    {
+      "module": "QuantumPrior.MilneGeometryBridge",
+      "original_file": "MilneGeometryBridge.lean",
+      "original_sha256": "e85cbbe1efeb69bf6fabd6a8f774e978ef98ba1d1622a7a668edaf516d1ff7aa",
+      "adapted_sha256": "5cb2b56c8eadf67f0041722db0c08708882ee291dcae4fb1045a42d8cfe86210",
+      "steering_bounds_88bc641": "not in steering-bounds"
+    },
+    {
+      "module": "QuantumPrior.MilneSingular",
+      "original_file": "MilneSingular.lean",
+      "original_sha256": "96fd57ec294bbd06a2d4ed94bfe005daa5f4bea109d0030d086bea261303b5f5",
+      "adapted_sha256": "bcbed11f296e7a6294df55a5ec38372e913780530d9ec72813e46c0e35eb5a7e",
+      "steering_bounds_88bc641": "same module in steering-bounds; later editorial revision differs"
+    },
+    {
+      "module": "QuantumPrior.MilneAllStates",
+      "original_file": "MilneAllStates.lean",
+      "original_sha256": "9b126bdb4f0d4887116a0c29e6b9cf0fa46fb4066d64be5ff0c61d7444598245",
+      "adapted_sha256": "b56fa234cef8b00c61c6bf97f86685f81be765d1ce7a6628881aed61974c78fd",
+      "steering_bounds_88bc641": "same module in steering-bounds; later editorial revision differs"
+    },
+    {
+      "module": "QuantumPrior.MilneCenterCoordinates",
+      "original_file": "MilneCenterCoordinates.lean",
+      "original_sha256": "31a1e3731940c067cb01c0bd0d271415e6d10783827885792b0ad089cfa316d2",
+      "adapted_sha256": "7f94299f74959757da2687236fa2d066e54d55dce68867b5997b727e9ffa8c55",
+      "steering_bounds_88bc641": "not in steering-bounds"
+    }
+  ]
+}

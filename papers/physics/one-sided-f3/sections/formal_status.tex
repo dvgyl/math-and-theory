@@ -1,0 +1,78 @@
+\section{Formal verification}\label{sec:formal}
+
+\paragraph{The end-to-end theorem.}
+The Lean declaration
+\texttt{FilteredF3.\allowbreak equation10\_\allowbreak both\_\allowbreak closed\_\allowbreak forms} states, for every
+\texttt{M : Milne.CMatrix} (a complex matrix indexed by pairs of qubit
+indices) satisfying \texttt{Milne.Density M} (positive semidefinite with
+trace one), that
+\[
+ \operatorname{IsLUB}(\mathcal V_A(\rho),\sqrt{V_A(\rho)})
+ \quad\text{and}\quad
+ \operatorname{IsLUB}(\mathcal V_B(\rho),\sqrt{V_B(\rho)}).
+\]
+Here $\mathcal V_A$ is the set of values $\sqrt{\sum_{i,j}T_{ij}^2}$, with
+$T_{ij}=\operatorname{Re}\tr(\rho'\,\sigma_i\otimes\sigma_j)$, over the
+states $\rho'=(K\otimes I)\rho(K\otimes I)^\dagger/p$ for complex
+$2\times2$ matrices $K$ with $\det K\neq0$ and success trace $p>0$;
+$\mathcal V_B$ is the same with $I\otimes K$. There are no rank
+assumptions on the state or its marginals. The right side $V_B$ is
+$\norm a^2$ when Bob's marginal is singular, and otherwise the spectral
+value of the canonical quadratic of the whitened state, computed from
+mathlib's orthonormal eigenbasis of a real symmetric $3\times3$ matrix and
+the greatest real root of the explicit secular polynomial, whose existence
+is proved; $V_A$ is $V_B$ of the swapped state. The definitions contain no
+optimization over filters and no assumed optimizer or certificate.
+
+\paragraph{What the formal chain proves.}
+The development proves the filtering-to-quadratic identity for actual
+matrices and the equality of the complete value sets, removes the canonical
+assumption by whitening and Pauli reconstruction, proves the product
+factorization at a pure filtered marginal, normalizes by the success
+probability and exchanges the parties by an explicit matrix swap.
+Invertibility of the filter is proved equivalent to the open Bloch ball, and
+continuity and density show that the open-ball supremum equals the
+closed-ball maximum. On the spectral side it proves the exact gap identity,
+root and optimizer existence for every finite diagonal quadratic, the
+transfer to arbitrary real symmetric matrices, a singular-safe
+block-determinant identity for the companion matrix, all maximizing
+coordinates and kernel freedoms, the extremizing filters and the
+characterization of attainment by invertible filters, and the rational
+violating-branch criterion in canonical coordinates. Additional modules
+prove scalar radius, convexity, gap-stability and parabola lemmas used by the
+extensions.
+
+\paragraph{Not formalized.}
+The rational Bloch-coordinate expressions for $(c,Q)$ in
+Theorem~\ref{thm:main}, the direct fractional numerator, the six-invariant
+rule of Corollary~\ref{cor:sixinvariants}, the separability corollary, the
+Galois obstruction, the two-ball success frontier and its candidate
+enumeration, the highest-success branch rule, continuity and the
+discontinuity locus, the pure-state frontier, the physical
+conditional-purity bound and its equality family, and the cluster interval
+are written proofs with the checks described above; for the last of these
+only a scalar lemma is formalized. The Lean functional is the Frobenius
+expression of Equation~(3) of \cite{ducuara}; its derivation from the
+optimization over measurement settings is cited, not formalized. The value
+sets use invertible matrices up to scale; the rescaling to a contractive
+physical filter is in the written proof.
+
+\paragraph{Build and audit.}
+The project in \texttt{lean/} pins Lean~4.19.0 and mathlib revision
+\texttt{c44e0c8e\allowbreak e63ca166\allowbreak 450922a3\allowbreak 73c7409c\allowbreak 5d26b00b}. Its 43 modules keep the
+names of the original development; 22 of them, in \texttt{QuantumPrior},
+are the attributed library described in Section~\ref{sec:disclosure}. For this release
+the project was built module by module from source with
+\texttt{lake build}, and the module \texttt{AxiomAudit} enumerates every
+declaration whose defining module is one of the 41 modules that define
+declarations, including private and compiler-generated ones, and checks its
+transitive axioms with Lean's own collector. The audit covers 850
+declarations, including all 490 named in the sources. The 604 declarations
+other than Lean~4.19 code-generation auxiliaries, among them the 503
+theorems, depend only on \texttt{propext}, \texttt{Classical.choice} and
+\texttt{Quot.sound}; the 246 auxiliaries depend in addition only on other
+auxiliaries and, for 11 of them, on the code generator's placeholder
+\texttt{lcProof}. The fresh build compiled all 43 modules and the audit
+from source against the pinned mathlib cache. The sources contain no
+\texttt{sorry}, \texttt{admit}, \texttt{axiom} declaration,
+\texttt{native\_decide} or \texttt{ofReduceBool}.

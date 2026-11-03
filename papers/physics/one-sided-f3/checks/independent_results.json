@@ -1,0 +1,410 @@
+{
+  "seed": 240603945,
+  "python": "3.13.18",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "meaning": "Independent floating-point checks; not a formal or exhaustive proof.",
+  "random_states_per_rank": 60,
+  "ranks": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "one_sided_cases": 514,
+  "direct_recovery_max_absolute_error": 3.2585045772748344e-13,
+  "original_fractional_identity_max_absolute_error": 1.2878587085651816e-14,
+  "optimality_stationarity_max": 8.000160254469118e-16,
+  "optimality_psd_min": -2.6494206844824763e-16,
+  "optimality_complementarity_max": 3.260341703816295e-13,
+  "optimizer_comparisons": 64,
+  "optimizer_max_absolute_gap": 1.692547977327763e-07,
+  "optimizer_max_excess_over_formula": 1.7763568394002505e-15,
+  "optimizer_successful_starts": 352,
+  "optimizer_total_starts": 384,
+  "failures": [],
+  "branches": {
+    "interior_or_flat": 332,
+    "hard_boundary": 43,
+    "secular_boundary": 134,
+    "pure_filtered_marginal": 5
+  },
+  "named_cases": [
+    {
+      "case": "maximally_mixed",
+      "by_side_A_B": [
+        {
+          "squared_value": 0.0,
+          "branch": "interior_or_flat",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": 0.0
+        },
+        {
+          "squared_value": 0.0,
+          "branch": "interior_or_flat",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": 0.0
+        }
+      ]
+    },
+    {
+      "case": "both_pure_product",
+      "by_side_A_B": [
+        {
+          "squared_value": 1.0,
+          "branch": "pure_filtered_marginal",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": null
+        },
+        {
+          "squared_value": 1.0,
+          "branch": "pure_filtered_marginal",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": null
+        }
+      ]
+    },
+    {
+      "case": "pure_A_mixed_B",
+      "by_side_A_B": [
+        {
+          "squared_value": 0.15999999999999998,
+          "branch": "pure_filtered_marginal",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": null
+        },
+        {
+          "squared_value": 1.0,
+          "branch": "hard_boundary",
+          "success_probability": 0.42,
+          "filter_rank": 1,
+          "lambda": 1.0
+        }
+      ]
+    },
+    {
+      "case": "mixed_A_pure_B",
+      "by_side_A_B": [
+        {
+          "squared_value": 1.0,
+          "branch": "hard_boundary",
+          "success_probability": 0.42,
+          "filter_rank": 1,
+          "lambda": 1.0
+        },
+        {
+          "squared_value": 0.15999999999999998,
+          "branch": "pure_filtered_marginal",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": null
+        }
+      ]
+    },
+    {
+      "case": "both_mixed_product",
+      "by_side_A_B": [
+        {
+          "squared_value": 0.1600000000000001,
+          "branch": "hard_boundary",
+          "success_probability": 0.6499999999999998,
+          "filter_rank": 1,
+          "lambda": 0.16000000000000006
+        },
+        {
+          "squared_value": 0.09,
+          "branch": "hard_boundary",
+          "success_probability": 0.42,
+          "filter_rank": 1,
+          "lambda": 0.09
+        }
+      ]
+    },
+    {
+      "case": "rank_one_correlation_flat",
+      "by_side_A_B": [
+        {
+          "squared_value": 0.3600000000000001,
+          "branch": "interior_or_flat",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": 0.0
+        },
+        {
+          "squared_value": 0.3600000000000001,
+          "branch": "interior_or_flat",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": 0.0
+        }
+      ]
+    },
+    {
+      "case": "hard_boundary_nonzero_g",
+      "by_side_A_B": [
+        {
+          "squared_value": 0.09782857142857145,
+          "branch": "hard_boundary",
+          "success_probability": 0.5000000000000001,
+          "filter_rank": 1,
+          "lambda": 0.08739999999999999
+        },
+        {
+          "squared_value": 0.009901112484548835,
+          "branch": "interior_or_flat",
+          "success_probability": 0.6974137931034483,
+          "filter_rank": 2,
+          "lambda": 0.0
+        }
+      ]
+    },
+    {
+      "case": "Werner_0.000000000",
+      "by_side_A_B": [
+        {
+          "squared_value": 0.0,
+          "branch": "interior_or_flat",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": 0.0
+        },
+        {
+          "squared_value": 0.0,
+          "branch": "interior_or_flat",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": 0.0
+        }
+      ]
+    },
+    {
+      "case": "Werner_0.100000000",
+      "by_side_A_B": [
+        {
+          "squared_value": 0.03,
+          "branch": "interior_or_flat",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": 0.0
+        },
+        {
+          "squared_value": 0.03,
+          "branch": "interior_or_flat",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": 0.0
+        }
+      ]
+    },
+    {
+      "case": "Werner_0.500000000",
+      "by_side_A_B": [
+        {
+          "squared_value": 0.7499999999999997,
+          "branch": "interior_or_flat",
+          "success_probability": 0.9999999999999999,
+          "filter_rank": 2,
+          "lambda": 0.0
+        },
+        {
+          "squared_value": 0.7499999999999997,
+          "branch": "interior_or_flat",
+          "success_probability": 0.9999999999999999,
+          "filter_rank": 2,
+          "lambda": 0.0
+        }
+      ]
+    },
+    {
+      "case": "Werner_0.577350269",
+      "by_side_A_B": [
+        {
+          "squared_value": 1.0,
+          "branch": "interior_or_flat",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": 0.0
+        },
+        {
+          "squared_value": 1.0,
+          "branch": "interior_or_flat",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": 0.0
+        }
+      ]
+    },
+    {
+      "case": "Werner_0.900000000",
+      "by_side_A_B": [
+        {
+          "squared_value": 2.4299999999999997,
+          "branch": "interior_or_flat",
+          "success_probability": 0.9999999999999998,
+          "filter_rank": 2,
+          "lambda": 0.0
+        },
+        {
+          "squared_value": 2.4299999999999997,
+          "branch": "interior_or_flat",
+          "success_probability": 0.9999999999999998,
+          "filter_rank": 2,
+          "lambda": 0.0
+        }
+      ]
+    },
+    {
+      "case": "Werner_1.000000000",
+      "by_side_A_B": [
+        {
+          "squared_value": 3.0,
+          "branch": "interior_or_flat",
+          "success_probability": 0.9999999999999998,
+          "filter_rank": 2,
+          "lambda": 0.0
+        },
+        {
+          "squared_value": 3.0,
+          "branch": "interior_or_flat",
+          "success_probability": 0.9999999999999998,
+          "filter_rank": 2,
+          "lambda": 0.0
+        }
+      ]
+    },
+    {
+      "case": "amplitude_damping_0",
+      "by_side_A_B": [
+        {
+          "squared_value": 3.0,
+          "branch": "interior_or_flat",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": 0.0
+        },
+        {
+          "squared_value": 3.0,
+          "branch": "interior_or_flat",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": 0.0
+        }
+      ]
+    },
+    {
+      "case": "amplitude_damping_0.3",
+      "by_side_A_B": [
+        {
+          "squared_value": 1.9236641221374047,
+          "branch": "interior_or_flat",
+          "success_probability": 0.861842105263158,
+          "filter_rank": 2,
+          "lambda": 0.0
+        },
+        {
+          "squared_value": 2.1513944223107577,
+          "branch": "interior_or_flat",
+          "success_probability": 0.6252669039145908,
+          "filter_rank": 2,
+          "lambda": 0.0
+        }
+      ]
+    },
+    {
+      "case": "amplitude_damping_0.6",
+      "by_side_A_B": [
+        {
+          "squared_value": 1.0909090909090908,
+          "branch": "interior_or_flat",
+          "success_probability": 0.6470588235294119,
+          "filter_rank": 2,
+          "lambda": 0.0
+        },
+        {
+          "squared_value": 1.6901408450704223,
+          "branch": "interior_or_flat",
+          "success_probability": 0.3302325581395349,
+          "filter_rank": 2,
+          "lambda": 0.0
+        }
+      ]
+    },
+    {
+      "case": "amplitude_damping_1",
+      "by_side_A_B": [
+        {
+          "squared_value": 1.0,
+          "branch": "hard_boundary",
+          "success_probability": 0.5,
+          "filter_rank": 1,
+          "lambda": 1.0
+        },
+        {
+          "squared_value": 0.0,
+          "branch": "pure_filtered_marginal",
+          "success_probability": 1.0,
+          "filter_rank": 2,
+          "lambda": null
+        }
+      ]
+    }
+  ],
+  "direct_trs_edge_cases": [
+    {
+      "name": "hard_positive_multiplier",
+      "value": 0.6,
+      "expected": 0.6,
+      "branch": "hard_boundary",
+      "error": 0.0
+    },
+    {
+      "name": "negative_semidefinite_flat",
+      "value": 0.0625,
+      "expected": 0.0625,
+      "branch": "interior_or_flat",
+      "error": 0.0
+    },
+    {
+      "name": "zero_hessian",
+      "value": 1.0000000000000104,
+      "expected": 1.0,
+      "branch": "secular_boundary",
+      "error": 1.0436096431476471e-14
+    },
+    {
+      "name": "zero_problem",
+      "value": 0.0,
+      "expected": 0.0,
+      "branch": "interior_or_flat",
+      "error": 0.0
+    }
+  ],
+  "near_pure_precision_guards": [
+    {
+      "epsilon": 1e-14,
+      "side": 0,
+      "correctly_rejected": true
+    },
+    {
+      "epsilon": 1e-14,
+      "side": 1,
+      "correctly_rejected": true
+    },
+    {
+      "epsilon": 1e-24,
+      "side": 0,
+      "correctly_rejected": true
+    },
+    {
+      "epsilon": 1e-24,
+      "side": 1,
+      "correctly_rejected": true
+    }
+  ],
+  "failure_count": 0
+}
