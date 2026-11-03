@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**54 manuscripts and research notes across 53 result families in mathematics, theoretical computer science, and mathematical physics.**
+**55 manuscripts and research notes across 54 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -607,6 +607,18 @@ The exact least upper bound of the optimized three-setting squared correlation v
 **Prior work.** The fully-entangled-fraction companion bound is Conjecture 2 of Milne et al.; the Omega Institute's public repository records a claimed Lean proof committed on 8 October 2026 (issue #14206), and a CHSH bound at fixed centre (issue #16558). No priority is claimed for the companion bound. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-steering-centre-bounds).
 
 [Paper PDF](papers/physics/steering-bounds/paper/steering_bounds.pdf) · [LaTeX](papers/physics/steering-bounds/paper/steering_bounds.tex) · [Citation](papers/physics/steering-bounds/CITATION.bib) · [Proof and reproduction](papers/physics/steering-bounds/README.md)
+
+#### [Equality, rigidity and full-ellipsoid CHSH envelopes at fixed steering-ellipsoid centre](papers/physics/chsh-steering-ellipsoid/manuscript.pdf)
+
+**Family:** `chsh-steering-ellipsoid`.
+
+For two-qubit states with steering-ellipsoid centre length c and Bob Bloch length r, the CHSH bound β²/4 ≤ 1 + (1 − r²)(1 − 2c) and its attaining value are prior work; this result classifies equality: for 0 < c < 1 the extremizers form one local-unitary class, a filtered maximally obese state with |b|² = b_z, and equality in Milne et al.'s Conjecture 1 is classified for every c. Near-extremal states are close in trace norm to exact extremizers; uniformly in c a canonical state lies within min(2, 9D^(1/4)) of a maximally obese state with the same Alice marginal, and the exponent 1/4 is optimal. Exact fixed-radius CHSH envelopes are given for every axial and every centred steering ellipsoid, with an exact CHSH-breaking criterion for axial qubit channels, and a printed optimizing direction in Zhang et al. (2020) is corrected.
+
+**Formal scope.** Lean 4.19.0 proves, for every admissible (c, r), that an explicit complex 4×4 density matrix with centre (0, 0, c) and Bob length r has CHSH supremum over all unit Pauli settings exactly 2√(1 + (1 − 2c)(1 − r²)), without assuming the Horodecki formula; it also checks a tilted axial witness, the rank-two sharpness family and the scalar spectral optimization behind the axial envelope, with a whole-project axiom audit. The general filtering correspondence, the equality classification and the rigidity theorems are conventional proofs, supported by exact symbolic checks.
+
+**Prior work.** [Milne, Jennings, Jevtic and Rudolph, 2014, Conjecture 1.](https://arxiv.org/abs/1404.3951) · [Omega Institute dossier, issue #16558, committed 14 October 2026; claimed Lean proof of Conjecture 1 containing the joint bound.](https://github.com/the-omega-institute/trureturing/blob/af41108edc85c119837189f120c6d2d9aa3f5a25/Problems/milne-jennings-jevtic-rudolph-2014-chsh-centre-bound.md) · [Zhang, Araiza Bravo, Lorenz and Chitambar, 2020, Appendix B.](https://doi.org/10.1088/1367-2630/ab7bef) No priority is claimed for Conjecture 1, the joint bound or its attaining value. [Priority and novelty record](PRIORITY_AND_NOVELTY.md#omega-steering-centre-bounds).
+
+[Paper PDF](papers/physics/chsh-steering-ellipsoid/manuscript.pdf) · [LaTeX](papers/physics/chsh-steering-ellipsoid/manuscript.tex) · [Proof and reproduction](papers/physics/chsh-steering-ellipsoid/README.md) · [Citation](papers/physics/chsh-steering-ellipsoid/CITATION.bib)
 
 #### [The three-state root-fidelity entropy bound](papers/physics/fidelity-three-state/manuscript.pdf)
 

@@ -3036,6 +3036,66 @@
       }
     },
     {
+      "id": "chsh-steering-ellipsoid",
+      "discipline": "Mathematical physics",
+      "area": "Quantum information",
+      "title": "Equality, rigidity and full-ellipsoid CHSH envelopes at fixed steering-ellipsoid centre",
+      "kind": "Equality classification, rigidity and exact ellipsoid envelopes building on a known bound, with a Lean attainment proof",
+      "significance_rank": 235,
+      "keywords": [
+        "CHSH inequality",
+        "quantum steering ellipsoids",
+        "Milne conjecture",
+        "maximally obese states",
+        "two-qubit states",
+        "CHSH-breaking channels",
+        "Lean"
+      ],
+      "summary": "For two-qubit states with steering-ellipsoid centre length c and Bob Bloch length r, the CHSH bound β²/4 ≤ 1 + (1 − r²)(1 − 2c) and its attaining value are prior work (the Omega Institute's public record of 14 October 2026 for Milne et al.'s Conjecture 1, and Zhang et al. 2020). For 0 < c < 1 the extremizers form one local-unitary class, a filtered maximally obese state with |b|² = b_z, and equality in Conjecture 1 is classified for every c. Near-extremal states are close in trace norm to exact extremizers; uniformly in c a canonical state lies within min(2, 9D^(1/4)) of a maximally obese state with the same Alice marginal, and the exponent 1/4 is optimal. Exact fixed-radius CHSH envelopes are given for every axial and every centred steering ellipsoid, with an exact CHSH-breaking criterion for axial qubit channels, and a printed optimizing direction in Zhang et al. is corrected.",
+      "formal_scope": "Lean 4.19.0 proves, for every admissible centre length c and Bob length r, that an explicit complex 4×4 density matrix with centre (0, 0, c) and Bob length r has CHSH supremum over all unit Pauli settings exactly 2√(1 + (1 − 2c)(1 − r²)), without assuming the Horodecki formula, and checks a tilted axial witness, the rank-two sharpness family and the scalar spectral optimization behind the axial envelope; a whole-project audit covers every declaration. The joint bound itself is prior work; the general filter-to-Gram correspondence, the equality classification and the rigidity theorems are conventional proofs supported by exact symbolic checks.",
+      "source": "Milne, Jennings, Jevtic and Rudolph, Phys. Rev. A 90, 024302 (2014), arXiv:1404.3951, Conjecture 1. The Omega Institute's public repository records a claimed Lean proof of Conjecture 1, whose proof contains the joint centre–marginal bound, committed on 14 October 2026 (issue #16558); Zhang, Araiza Bravo, Lorenz and Chitambar (2020) computed the attaining value. No priority is claimed for these. Historical priority is not certified.",
+      "source_url": "https://github.com/dvgyl/math-and-theory/blob/main/papers/physics/chsh-steering-ellipsoid/README.md",
+      "paper": "papers/physics/chsh-steering-ellipsoid/manuscript.pdf",
+      "formalization": {
+        "kind": "standalone",
+        "root": "papers/physics/chsh-steering-ellipsoid"
+      },
+      "manuscript_engine": "pdflatex",
+      "seo": {
+        "problem": "Equality cases and full-ellipsoid refinements of the CHSH bound at fixed steering-ellipsoid centre (two qubits)",
+        "posed_by": "Milne, Jennings, Jevtic and Rudolph, Phys. Rev. A 90, 024302 (2014), Conjecture 1",
+        "problem_url": "https://arxiv.org/abs/1404.3951",
+        "status": "Equality classified; axial and centred ellipsoids solved (bound itself prior work)",
+        "claim": "For 0 < c < 1 the two-qubit states attaining β = 2√(1 + (1 − r²)(1 − 2c)) form one local-unitary class; rigidity holds with optimal uniform exponent 1/4, and axial and centred ellipsoids have exact CHSH envelopes.",
+        "title_tag": "CHSH at Fixed Steering-Ellipsoid Centre: Equality and Rigidity",
+        "description": "Equality classification, optimal-exponent rigidity and exact axial and centred ellipsoid CHSH envelopes beyond the known Milne centre bound. Lean attainment proof.",
+        "queries": [
+          "Milne CHSH steering ellipsoid centre conjecture",
+          "CHSH bound steering ellipsoid centre equality cases",
+          "maximally obese states CHSH extremizers",
+          "CHSH bound Bloch vector length and steering centre",
+          "axial qubit channel CHSH breaking criterion",
+          "steering ellipsoid CHSH full ellipsoid bound",
+          "quantum steering ellipsoid CHSH rigidity",
+          "Zhang Chitambar channel activation CHSH amplitude damping optimum"
+        ],
+        "faq": [
+          [
+            "Was Milne et al.'s CHSH centre conjecture already proved?",
+            "Yes. The Omega Institute's public repository recorded a claimed Lean proof of Conjecture 1 on 14 October 2026 (issue #16558), and its proof contains the joint bound β²/4 ≤ 1 + (1 − r²)(1 − 2c); Zhang et al. (2020) had computed the attaining value. This package claims no priority for the conjecture, the joint bound or its attaining value."
+          ],
+          [
+            "What is new in this package?",
+            "The complete equality classification at fixed centre length c and Bob length r (for 0 < c < 1 a single local-unitary class of filtered maximally obese states with |b|² = b_z), quantitative trace-norm rigidity with an optimal uniform exponent 1/4, exact fixed-radius CHSH envelopes for every axial and every centred steering ellipsoid with an exact CHSH-breaking criterion for axial qubit channels, and a correction to a printed optimizing direction in Zhang et al. Displaced triaxial ellipsoids remain open."
+          ],
+          [
+            "Is the proof formally verified?",
+            "Partly. Lean 4 proves, for every admissible (c, r), that an explicit density matrix with the prescribed centre and Bob length has CHSH supremum exactly 2√(1 + (1 − 2c)(1 − r²)), together with two further witnesses and the scalar axial spectral optimization, using only the standard axioms. The equality classification, rigidity theorems and general filtering correspondence are conventional proofs checked by exact symbolic identities and numerical searches."
+          ]
+        ]
+      }
+    },
+    {
       "id": "fidelity-three-state",
       "discipline": "Mathematical physics",
       "area": "Quantum information",

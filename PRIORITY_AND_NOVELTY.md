@@ -162,6 +162,7 @@ Result: [Exact three-setting correlation bounds at fixed steering centre](papers
 - **Earlier public record, related question.** The [dossier for issue #16558](https://github.com/the-omega-institute/trureturing/blob/af41108edc85c119837189f120c6d2d9aa3f5a25/Problems/milne-jennings-jevtic-rudolph-2014-chsh-centre-bound.md), committed on 14 October 2026 at 08:40:22 UTC, proves Conjecture 1 of the same paper, a sharp bound on the CHSH value at fixed centre length. My main theorem concerns the three-setting value F₃² = ‖T‖²_F, a different quantity. I have not compared the two.
 - **Dates.** My first commit is dated 29 October 2026 at 03:22:17 UTC ([commit 9459d04](https://github.com/dvgyl/math-and-theory/commit/9459d0497a0dd767f75f1e8897f3fe9939513bb5)).
 - **My position.** I make no priority claim for the fully-entangled-fraction bound. The exact three-setting supremum does not appear in either dossier.
+- **Later package (3 November 2026).** The follow-up package [CHSH at fixed steering-ellipsoid centre](papers/physics/chsh-steering-ellipsoid/) treats Conjecture 1 jointly in the centre length and Bob's marginal. It claims no priority for Conjecture 1, for the joint bound proved on the way in the Omega record, or for the attaining value given by Zhang et al. (2020); its new parts are the equality classification, trace-norm rigidity with optimal exponent, and exact envelopes for axial and centred ellipsoids.
 
 ### Omega: book-graph domination roots
 

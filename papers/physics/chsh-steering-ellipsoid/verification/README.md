@@ -1,0 +1,10 @@
+# Fresh replay record
+
+This directory records the verification run for the publication of this package on 3 November 2026.
+
+- [`build.log`](build.log): `lake build` followed by `lake build ProjectAxiomAudit` in a fresh copy of `lean/` with no project build output, using Lean 4.19.0 (Lake 5.0.0-6caaee8) on Linux x86_64 and a checkout of Mathlib `c44e0c8ee63ca166450922a373c7409c5d26b00b` whose modules came from the Mathlib build cache (`lake exe cache get`), with every transitive dependency at the revision in `lake-manifest.json`. All fifteen project modules were compiled with warnings as errors (none occurred) and the audit module was compiled. Local paths are replaced by `<package>`.
+- [`axiom-inventory.json`](axiom-inventory.json): the output of `scripts/check_axiom_audit.py` on that log. The audit covers all 839 declarations defined in the fifteen modules. The 543 declarations other than code-generation auxiliaries are theorems, definitions and inductive constructions, none an axiom, and depend only on `propext`, `Classical.choice` and `Quot.sound`. The other 296 are auxiliary declarations stored by the Lean 4.19 code generator; one of them (`CertifiedCHSH.spin._cstage1`) refers to the code generator's placeholder `lcProof`, which the audit permits for auxiliaries only.
+- [`exact-checks.json`](exact-checks.json): the output of `python3 -I scripts/check_exact.py` (SymPy 1.14.0): 46 exact identities, all true.
+- [`numeric-checks.json`](numeric-checks.json): the output of the full run of `python3 -I scripts/check_numeric.py` (NumPy 2.3.5, seed 20261103): no violation beyond rounding; largest excess over the joint bound `3.1e-15`, over the axial envelope `6.7e-16` across 961,200 filter directions, and no mismatch of the channel criterion.
+
+The check programs were written for this release and are independent of the scripts in the original upload, which were not rerun. Compiled objects are not included. The CI workflow repeats the Lean build, the audit and the exact checks on every push.

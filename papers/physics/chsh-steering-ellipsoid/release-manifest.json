@@ -1,0 +1,183 @@
+{
+  "format_version": 1,
+  "package_id": "chsh-steering-ellipsoid",
+  "formal_scope": "Lean 4.19.0 proves, for every admissible centre length c and Bob length r, that an explicit complex 4×4 density matrix with centre (0, 0, c) and Bob length r has CHSH supremum over all unit Pauli settings exactly 2√(1 + (1 − 2c)(1 − r²)), without assuming the Horodecki formula, and checks a tilted axial witness, the rank-two sharpness family and the scalar spectral optimization behind the axial envelope; a whole-project audit covers every declaration. The joint bound itself is prior work; the general filter-to-Gram correspondence, the equality classification and the rigidity theorems are conventional proofs supported by exact symbolic checks.",
+  "proof_roots": [
+    {
+      "path": "lean",
+      "lean_version": "4.19.0",
+      "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "lakefile": "lakefile.toml",
+      "lockfile": "lake-manifest.json"
+    }
+  ],
+  "proof_sources": {
+    "lean/AxialCertificates.lean": "875d77eab9cc768e4e9f0d7d00032c0d360dd3bcca6bd6a34c5a6b46b1aa0827",
+    "lean/BoundarySharpness.lean": "89ccf8c63c621a55ddb0087de70ea64c68bcca002b93275a64a581b1950a65de",
+    "lean/CHSHAlgebra.lean": "58b07ead3b9f3f3035380a9eb8fd03d084863bc3e944b0693086dbd7c43e608c",
+    "lean/CHSHAxialWitness.lean": "43b87d019e0b472d661f186b4d32ae085b367cad9a186071b3c125471f273910",
+    "lean/CHSHFamily.lean": "b37027cc6fa05f44227a1c0475b317f6b1d44259883163cb5817b86e1627b896",
+    "lean/CHSHPhysical.lean": "35c339af84083a5efe53d271b5bd329cfa48e7ab25c403efe7c88ba0b84c0300",
+    "lean/CHSHQuantum.lean": "840e2d3c824c2a0edca7bbf3dd9f49b5be0e34c86f7ad0cef42e9394fa627285",
+    "lean/CriticalCap.lean": "5e804a585c209473e849431e9207e609bec34148189555355b726f9dabd34687",
+    "lean/ExplicitCriticalState.lean": "7d478d44333319866a7096674a2dad987b38f013818b24436f58ae5a30841f36",
+    "lean/GeneralAttainment.lean": "d98542d5c1d8e07fb5c79983cb48071dec5d4c54c0a42b51276d94c110529256",
+    "lean/GramFactorization.lean": "e9658a9104c173179cc3386f1a6841486e02129ba2e8dcb27db9e25bc488a01a",
+    "lean/ObeseSharp.lean": "1d96de91e6775483a740b8a0b6a71f3070725a71f9ca6a6dec2171bccedeb23b",
+    "lean/OrientationRigidity.lean": "d3961f135784a54112d9ac54534549fe0d50431ec53c4faded6bdab1cbe88d7c",
+    "lean/PriorCountercertificate.lean": "6438bcc29b11c8a351a7169b34d7d3b7ad8da7651b52cb78536f7d55ae044b7b",
+    "lean/ProjectAxiomAudit.lean": "f88e039a260780fd08789b1e0a736de9686ccc48a47c2234cc4cb37436529249",
+    "lean/PurityStability.lean": "891fcfe79449464d69afb1a9d4608b67bf7f5a390b8c7be738f2a4a646c0e235"
+  },
+  "integrity_manifests": [],
+  "files": {
+    "AUTHORSHIP.md": {
+      "bytes": 2110,
+      "sha256": "6a970158d6cc230ae80027b9895aea202f213bf841321e3e420450f9631e3651"
+    },
+    "CITATION.bib": {
+      "bytes": 401,
+      "sha256": "1a769c13eeb729f3aecdafeaa833f192ae66182fb3e5ea8edbefcf3596076fd1"
+    },
+    "CITATION.cff": {
+      "bytes": 2144,
+      "sha256": "33a9f5fef24352a79beaf2123d7e7971454cdb3bd354eec82042098fc105fa35"
+    },
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "README.md": {
+      "bytes": 6824,
+      "sha256": "6f56fbd4d75ab1af5ed5ef58f373fb1ac2fe67240653697382dc0331d780e25b"
+    },
+    "VERIFICATION.md": {
+      "bytes": 4307,
+      "sha256": "a0d81c321d37808c978ed324c4f3ff47ae75cddeb06a44d4166fa28d7559a9e8"
+    },
+    "lean/AxialCertificates.lean": {
+      "bytes": 35406,
+      "sha256": "875d77eab9cc768e4e9f0d7d00032c0d360dd3bcca6bd6a34c5a6b46b1aa0827"
+    },
+    "lean/BoundarySharpness.lean": {
+      "bytes": 8346,
+      "sha256": "89ccf8c63c621a55ddb0087de70ea64c68bcca002b93275a64a581b1950a65de"
+    },
+    "lean/CHSHAlgebra.lean": {
+      "bytes": 7614,
+      "sha256": "58b07ead3b9f3f3035380a9eb8fd03d084863bc3e944b0693086dbd7c43e608c"
+    },
+    "lean/CHSHAxialWitness.lean": {
+      "bytes": 13013,
+      "sha256": "43b87d019e0b472d661f186b4d32ae085b367cad9a186071b3c125471f273910"
+    },
+    "lean/CHSHFamily.lean": {
+      "bytes": 8038,
+      "sha256": "b37027cc6fa05f44227a1c0475b317f6b1d44259883163cb5817b86e1627b896"
+    },
+    "lean/CHSHPhysical.lean": {
+      "bytes": 7651,
+      "sha256": "35c339af84083a5efe53d271b5bd329cfa48e7ab25c403efe7c88ba0b84c0300"
+    },
+    "lean/CHSHQuantum.lean": {
+      "bytes": 4004,
+      "sha256": "840e2d3c824c2a0edca7bbf3dd9f49b5be0e34c86f7ad0cef42e9394fa627285"
+    },
+    "lean/CriticalCap.lean": {
+      "bytes": 6416,
+      "sha256": "5e804a585c209473e849431e9207e609bec34148189555355b726f9dabd34687"
+    },
+    "lean/ExplicitCriticalState.lean": {
+      "bytes": 9187,
+      "sha256": "7d478d44333319866a7096674a2dad987b38f013818b24436f58ae5a30841f36"
+    },
+    "lean/GeneralAttainment.lean": {
+      "bytes": 9716,
+      "sha256": "d98542d5c1d8e07fb5c79983cb48071dec5d4c54c0a42b51276d94c110529256"
+    },
+    "lean/GramFactorization.lean": {
+      "bytes": 3161,
+      "sha256": "e9658a9104c173179cc3386f1a6841486e02129ba2e8dcb27db9e25bc488a01a"
+    },
+    "lean/ObeseSharp.lean": {
+      "bytes": 10442,
+      "sha256": "1d96de91e6775483a740b8a0b6a71f3070725a71f9ca6a6dec2171bccedeb23b"
+    },
+    "lean/OrientationRigidity.lean": {
+      "bytes": 4589,
+      "sha256": "d3961f135784a54112d9ac54534549fe0d50431ec53c4faded6bdab1cbe88d7c"
+    },
+    "lean/PriorCountercertificate.lean": {
+      "bytes": 2282,
+      "sha256": "6438bcc29b11c8a351a7169b34d7d3b7ad8da7651b52cb78536f7d55ae044b7b"
+    },
+    "lean/ProjectAxiomAudit.lean": {
+      "bytes": 5236,
+      "sha256": "f88e039a260780fd08789b1e0a736de9686ccc48a47c2234cc4cb37436529249"
+    },
+    "lean/PurityStability.lean": {
+      "bytes": 4754,
+      "sha256": "891fcfe79449464d69afb1a9d4608b67bf7f5a390b8c7be738f2a4a646c0e235"
+    },
+    "lean/lake-manifest.json": {
+      "bytes": 3546,
+      "sha256": "92e9a8147956f3fb78306cc47ebd26e920faea12f9a4e900e158a3da5b12a47d"
+    },
+    "lean/lakefile.toml": {
+      "bytes": 1161,
+      "sha256": "472f21e150ee248eb0b5650651940124178c41f40d5bee4f7effce10df4cca5b"
+    },
+    "lean/lean-toolchain": {
+      "bytes": 25,
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    "manuscript.pdf": {
+      "bytes": 420863,
+      "sha256": "3551acda71d252824a0500e0610c00c0513b178bbe95b761343df124d448e439"
+    },
+    "manuscript.tex": {
+      "bytes": 52187,
+      "sha256": "d203bacf693b070f477c4cb3a0bef19ea3ebb575f97dd9dd34c42afd595238f8"
+    },
+    "scripts/check_axiom_audit.py": {
+      "bytes": 5563,
+      "sha256": "3827b2266e147c6e24a181f38ab56d78b4436748fa0a26030595ed27f2207065"
+    },
+    "scripts/check_exact.py": {
+      "bytes": 11835,
+      "sha256": "ac1861b2b2174d5780afe43840cda6777ceea3900ac0f33a1321c6f53d6470fc"
+    },
+    "scripts/check_numeric.py": {
+      "bytes": 10173,
+      "sha256": "ec4fc9e53f04c0d0bd73441cb1e4e1cab3b41648ab4a54637c5f4aab1e9dfe9d"
+    },
+    "scripts/requirements.txt": {
+      "bytes": 27,
+      "sha256": "11c495c6fd22a834f03652c1be83034c9a747b39e16b60ffae0249f92e6e4a09"
+    },
+    "scripts/verify.sh": {
+      "bytes": 841,
+      "sha256": "a56f97c83f7780cff2914db5dbd713ca037357c371e4d065db4300bcfb8edae0"
+    },
+    "verification/README.md": {
+      "bytes": 2019,
+      "sha256": "faba742cac1fc8b6a2285d7a1bd9c09d34816c9b947e48075061973a0ee01883"
+    },
+    "verification/axiom-inventory.json": {
+      "bytes": 202442,
+      "sha256": "0af552d84125db59ce513b8a422be94b048d2af83cb38dd88f1eb777d7a7a6aa"
+    },
+    "verification/build.log": {
+      "bytes": 189216,
+      "sha256": "c5b999aa31d036a293b662ff33d5e82c0fc362d39117e928643948ecf5295707"
+    },
+    "verification/exact-checks.json": {
+      "bytes": 2586,
+      "sha256": "1aea4a5ad6e5d09c2f6ff2aced425019dec7be7acc2a7a7aeea2323a2d9a73ee"
+    },
+    "verification/numeric-checks.json": {
+      "bytes": 1360,
+      "sha256": "37f112136a32ed7b091d00f144a5502002d12038f4447daafc1d8eaab448f2cc"
+    }
+  }
+}

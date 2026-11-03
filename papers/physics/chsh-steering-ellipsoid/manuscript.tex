@@ -1,0 +1,979 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{booktabs,array}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Equality, rigidity and full-ellipsoid CHSH envelopes at fixed steering-ellipsoid centre},pdfauthor={Dev D. Goyal}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\DeclareMathOperator{\tr}{tr}\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\spec}{spec}
+\newcommand{\R}{\mathbb R}\newcommand{\C}{\mathbb C}
+\newcommand{\id}{\mathbb I}\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle#1|}\newcommand{\proj}[1]{\ket{#1}\bra{#1}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\cv}{\bm c}\newcommand{\av}{\bm a}\newcommand{\bv}{\bm b}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\Dp}{D_{\mathrm{pur}}}
+\title{Equality, rigidity and full-ellipsoid CHSH envelopes\protect\\
+at fixed steering-ellipsoid centre}
+\author{Dev D. Goyal}
+\date{3 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Milne, Jennings, Jevtic and Rudolph conjectured that a two-qubit state whose
+steering-ellipsoid centre has length $c$ has CHSH value at most
+$\max\{2\sqrt{2(1-c)},2\}$ (arXiv:1404.3951, Conjecture~1). The Omega
+Institute's public repository recorded a claimed Lean proof of that conjecture
+on 14 October 2026, and its proof already contains the refined bound
+$\beta^2/4\le 1+(1-r^2)(1-2c)$, where $r$ is the length of Bob's Bloch vector;
+an attaining family with this value goes back to Zhang, Araiza Bravo, Lorenz
+and Chitambar (2020). We claim no priority for either. Building on them, we prove the
+complete equality classification at every fixed pair $(c,r)$: for $0<c<1$ the
+extremizers form a single local-unitary class, a filtered maximally obese state
+with the filter condition $\norm{\bv}^2=b_z$. We give a quantitative trace-norm
+rigidity theorem, including an estimate that preserves the whole centre vector
+with exponent $1/4$, and a separable rank-two family showing that this exponent
+cannot be improved uniformly in $c$. Beyond the centre alone, we determine the
+exact fixed-radius CHSH envelope for every axial steering ellipsoid, with all
+equality directions and a resulting exact CHSH-breaking criterion for axial
+qubit channels, and for every centred ellipsoid. We also correct a printed
+optimizing direction in the 2020 paper. A Lean~4 development checks, for every
+admissible $(c,r)$, an actual complex density matrix with the prescribed centre
+and Bob length whose CHSH supremum over all unit Pauli settings is exactly
+$2\sqrt{1+(1-2c)(1-r^2)}$, two further explicit witnesses, and the scalar
+spectral optimization behind the axial envelope; the classification, rigidity
+and general filtering steps are conventional proofs.
+\end{abstract}
+
+\section{Introduction}
+
+For a two-qubit state, the steering ellipsoid of Alice is the set of Bloch
+vectors to which Bob can steer her by local measurements and postselection.
+Milne, Jennings, Jevtic and Rudolph~\cite{milne} proved that, for states whose
+Bob marginal is maximally mixed, the CHSH value is at most
+$2\sqrt{2(1-c)}$, where $c$ is the length of the ellipsoid's centre, and they
+conjectured (Conjecture~1 of~\cite{milne}) that every two-qubit state obeys
+\begin{equation}\label{eq:milne}
+ \beta(\rho)\le\max\{2\sqrt{2(1-c)},2\}.
+\end{equation}
+Ducuara, Susa and Skrzypczyk~\cite{ducuara} use centre bounds of this kind
+in their criterion for locally inaccessible hidden correlations.
+
+\paragraph{Earlier public work and priority (note dated 3 November 2026).}
+The Omega Institute's public repository
+\texttt{the-omega-institute/trureturing} records a claimed Lean proof of
+Conjecture~1 for every two-qubit density matrix, with supremal sharpness at
+every centre length; the dossier for its issue \#16558 was committed on
+14 October 2026 at 08:40:22 UTC~\cite{dossier}. Its proof combines the inequalities
+$M\le1+2\Delta(\rho)$ and $\Delta(\rho)\le(1-r^2)(\tfrac12-c)$ (notation below),
+so it proves the refined joint inequality
+\begin{equation}\label{eq:H}
+ M(\rho):=\frac{\beta(\rho)^2}{4}\le H(c,r):=1+(1-r^2)(1-2c),
+\end{equation}
+and the dossier states this inequality explicitly as proved on the way.
+The same record proves Conjecture~2 of~\cite{milne} (issue \#14206, committed
+on 8 October 2026). Independently of both, Appendix~B of Zhang, Araiza Bravo,
+Lorenz and Chitambar~\cite{zhang} computes the optimum $1+\alpha^2(2p-1)$ of
+CHSH over an amplitude-damping family; with $p=1-c$ and $\alpha^2=1-r^2$ this
+is $H(c,r)$. Combining the two, the exact supremum of $\beta$ at fixed $(c,r)$
+is $2\sqrt{H(c,r)}$. \emph{We claim no priority for Conjecture~1, for the
+joint bound~\eqref{eq:H}, for its attaining value, or for the attaining family.}
+Section~\ref{sec:prior} reconstructs the bound only to fix notation and to
+extract the slack that the new results use. We have not compiled the Omega
+Lean proof and describe it as claimed; its mathematics was read and
+reconstructed.
+
+\paragraph{What is new here.}
+The following go beyond Conjecture~1 and the Omega record. The Omega dossier
+lists bounds involving the full steering ellipsoid as open and argues
+attainment only for the centre-only bound.
+\begin{enumerate}
+\item \emph{Equality classification} (Theorem~\ref{thm:joint}). For $0<c<1$
+and $r<1$, $M=H(c,r)$ holds exactly for one local-unitary class: a maximally
+obese canonical state filtered by $\sqrt{\id+\bv\cdot\bm\sigma}$ with
+$\norm{\bv}^2=b_z$. The necessity step is new; earlier work exhibits
+attaining states but does not exclude others. Equality in~\eqref{eq:milne} is
+classified for every $c$ (Corollary~\ref{cor:milne-equality}).
+\item \emph{Rigidity} (Section~\ref{sec:rigidity}). Near-equality forces
+closeness, in trace norm, to an exact extremizer with the same $c$ and $r$;
+a version preserves the whole centre vector. Uniformly in $c$, canonical
+states lie within $\min\{2,9\Dp^{1/4}\}$ of a maximally obese state with the
+same Alice marginal, and the exponent $1/4$ is optimal.
+\item \emph{Full-ellipsoid envelopes} (Section~\ref{sec:shapes}). Exact
+fixed-radius CHSH maxima, with all optimizing filter directions, for every
+translated sphere, every axial ellipsoid (centre on the symmetry axis, oblate
+or prolate) and every centred ellipsoid, and the closed optimization over the
+radius. For axial qubit channels $x\mapsto ce_z+\diag(s,s,t)x$ this gives an
+exact criterion for CHSH breaking.
+\item \emph{A printed optimizer} (Section~\ref{sec:zhang}). The optimizing
+direction displayed in Appendix~B of~\cite{zhang} is incorrect; an exact
+example shows it does not attain the stated maximum. The maximal value and
+threshold of~\cite{zhang} are unaffected.
+\end{enumerate}
+The literature comparison is bounded; it does not establish worldwide
+novelty.
+
+\paragraph{Verification.}
+A standalone Lean~4.19.0 project (Section~\ref{sec:formal}) proves, without
+assuming the Horodecki formula, that an explicit complex $4\times4$ density
+matrix with centre $(0,0,c)$ and Bob length $r$ has CHSH supremum exactly
+$2\sqrt{H(c,r)}$ for every admissible $(c,r)$, and it checks the axial witness
+of Section~\ref{sec:axial-witness}, the sharpness family of
+Corollary~\ref{cor:uniform-rigidity} and the scalar spectral optimization of
+Theorem~\ref{thm:axial}. The general filtering correspondence, the equality
+classification and the rigidity theorems are conventional proofs, supported
+by exact symbolic identities and seeded numerical falsification searches.
+
+\section{Definitions and conventions}\label{sec:defs}
+
+A two-qubit density matrix has the Bloch representation
+\begin{equation}\label{eq:bloch}
+ \rho=\frac14\Bigl(\id\otimes\id+\av\cdot\bm\sigma\otimes\id
+ +\id\otimes\bv\cdot\bm\sigma+\sum_{i,j=1}^{3}T_{ij}\sigma_i\otimes\sigma_j\Bigr),
+\end{equation}
+with Alice the first factor. Put $r=\norm{\bv}$. Following~\cite{milne}, four
+unit vectors define
+\[
+ B=(\alpha\cdot\bm\sigma)\otimes((\beta+\beta')\cdot\bm\sigma)
+ +(\alpha'\cdot\bm\sigma)\otimes((\beta-\beta')\cdot\bm\sigma),
+ \qquad \beta(\rho)=\max_B|\tr(\rho B)|.
+\]
+Constant observables $\pm\id$ are not allowed, so $\beta$ is not floored at
+two. By the Horodecki theorem~\cite{horodecki},
+\begin{equation}\label{eq:horodecki}
+ M(\rho)=\frac{\beta(\rho)^2}{4}
+ =\lambda_1(TT^{\mathsf T})+\lambda_2(TT^{\mathsf T})
+ =\max_{u\perp v,\ \norm u=\norm v=1}\bigl(\norm{T^{\mathsf T}u}^2+\norm{T^{\mathsf T}v}^2\bigr).
+\end{equation}
+For $r<1$, Alice's steering ellipsoid has centre and canonical form
+\begin{equation}\label{eq:centre}
+ \cv=\frac{\av-T\bv}{1-r^2},\quad c=\norm{\cv},\qquad
+ \sigma=(\id\otimes(2\rho_B)^{-1/2})\rho(\id\otimes(2\rho_B)^{-1/2}),
+ \quad\sigma_B=\id/2.
+\end{equation}
+The canonical state $\sigma$ has Alice Bloch vector $\cv$ and correlation
+matrix $C$; the shape matrix is $Q=CC^{\mathsf T}$, whose eigenvalues are the
+squared semiaxes. For $r=1$ positivity forces $\rho=\rho_A\otimes\rho_B$, the
+ellipsoid is the point $\{\av\}$ and we set $\cv=\av$, the convention also
+used in~\cite{dossier}.
+
+\paragraph{The centre formula.}
+For a Bob effect proportional to $\id+e\cdot\bm\sigma$, $\norm e\le1$, Alice's
+conditional Bloch vector is $(\av+Te)/(1+\bv\cdot e)$. An invertible positive
+Bob filter $F$ maps effects bijectively, up to positive rescaling, by
+$E\mapsto FEF$, so whitening preserves the steering set. Put $s=\sqrt{1-r^2}$,
+$W=s\id+\bv\bv^{\mathsf T}/(1+s)$ and $F=\sqrt{\id+\bv\cdot\bm\sigma}$. Pauli
+multiplication gives $F(x\cdot\bm\sigma)F=(\bv\cdot x)\id+(Wx)\cdot\bm\sigma$,
+$W\bv=\bv$ and $W^2=s^2\id+\bv\bv^{\mathsf T}$. If the canonical state has Alice
+vector $a_0$ and correlation matrix $C$, undoing the whitening gives
+$\av=a_0+C\bv$, $T=a_0\bv^{\mathsf T}+CW$ and $\av-T\bv=(1-r^2)a_0$. The
+canonical steering set is $\{a_0+Ce:\norm e\le1\}$, with centre $a_0$ and shape
+matrix $CC^{\mathsf T}$; hence $a_0=\cv$. The same identities give the Gram
+formula
+\begin{equation}\label{eq:gram}
+ \av=\cv+C\bv,\qquad
+ TT^{\mathsf T}=\av\av^{\mathsf T}+(1-r^2)(Q-\cv\cv^{\mathsf T}),
+\end{equation}
+valid for a state $\rho=(\id\otimes F_{\bv})\sigma(\id\otimes F_{\bv})$ obtained
+from a canonical state by the filter $F_{\bv}=\sqrt{\id+\bv\cdot\bm\sigma}$.
+Every state with $r<1$ has this form up to a local unitary on Bob, since
+$\rho=(\id\otimes\sqrt{2\rho_B})\sigma(\id\otimes\sqrt{2\rho_B})$.
+
+\section{The joint bound (prior work)}\label{sec:prior}
+
+This section reconstructs~\eqref{eq:H} along the route of the Omega
+proof~\cite{dossier}; nothing in it is claimed as new. Define
+$\Delta(X)=\tr(X^2)-\tr\bigl((\tr_BX)^2\bigr)$.
+
+\begin{lemma}[CHSH--purity bound]\label{lem:purity}
+For every two-qubit density matrix, $M(\rho)\le1+2\Delta(\rho)$.
+\end{lemma}
+\begin{proof}
+Let $u,v,n$ be an orthonormal frame, $K_n=\sigma_y\otimes((n\cdot\bm\sigma)\sigma_y)$
+and $\rho_n=K_n\rho^{\mathsf T}K_n^\dagger\succeq0$ (full transpose). The map
+$\rho\mapsto\rho_n$ sends $(\av,\bv,T)$ to
+$(-\av,\bv-2(\bv\cdot n)n,T(2nn^{\mathsf T}-\id))$, so Pauli orthogonality gives
+$4\tr(\rho\rho_n)=1-\norm{\av}^2+\norm{\bv}^2-2(\bv\cdot n)^2+2\norm{Tn}^2-\norm{T}_F^2$.
+With $4\Delta=\norm{T}_F^2+\norm{\bv}^2-\norm{\av}^2-1$,
+\begin{equation}\label{eq:flip}
+ \norm{Tu}^2+\norm{Tv}^2+(\bv\cdot n)^2+2\tr(\rho\rho_n)=1+2\Delta(\rho).
+\end{equation}
+The last two terms on the left are nonnegative; maximize over the plane.
+\end{proof}
+
+\begin{lemma}[Filter covariance]\label{lem:covariance}
+For every $4\times4$ matrix $X$ and every complex $2\times2$ matrix $F$,
+$\Delta((\id\otimes F)X(\id\otimes F)^\dagger)=|\det F|^2\Delta(X)$.
+\end{lemma}
+\begin{proof}
+For $2\times2$ matrices, $\tr(AB)-\tr A\tr B=\det A+\det B-\det(A+B)$, and
+simultaneous congruence by $F$ multiplies the right side by $|\det F|^2$.
+Apply this to the Bob blocks of $X$ and sum over Alice indices.
+\end{proof}
+
+\begin{lemma}[Canonical caps]\label{lem:cap}
+If $\sigma_B=\id/2$ and Alice's Bloch length is $c$, then
+$\lambda_{\max}(\sigma)\le L:=1-c/2$, $\tr\sigma^2\le L^2+(1-L)^2=1-c+c^2/2$
+and $\Delta(\sigma)\le1/2-c$.
+\end{lemma}
+\begin{proof}
+Let $\lambda$ be the largest eigenvalue with unit eigenvector $\psi$ and
+$\tau=\sigma-\lambda\proj\psi\succeq0$. Bob's marginal gives
+$\lambda\psi_B\preceq\id/2$; the marginals of a pure state have equal spectra,
+so $\lambda\psi_A\preceq\id/2$. For a top eigenvector $e_+$ of $\sigma_A$,
+$1-\lambda=\tr\tau_A\ge\bra{e_+}\tau_A\ket{e_+}=\tfrac{1+c}2-\lambda\bra{e_+}\psi_A\ket{e_+}\ge c/2$.
+If $\lambda\le1/2$ then $\tr\sigma^2\le\lambda\le1/2\le L^2+(1-L)^2$; otherwise
+$\tr\sigma^2\le\lambda^2+(1-\lambda)^2$, increasing for $\lambda\ge1/2$.
+Subtract Alice's purity $(1+c^2)/2$.
+\end{proof}
+
+For $r<1$ write $\rho=(\id\otimes F)\sigma(\id\otimes F)$ with
+$F=\sqrt{2\rho_B}$ and $|\det F|^2=1-r^2$; the three lemmas give~\eqref{eq:H}.
+If $r=1$ the state is a product and $M=c^2\le1=H$. Maximizing $H$ over $r$
+gives~\eqref{eq:milne}.
+
+\section{Canonical equality and a shape-sensitive deficit}
+
+Define the canonical maximally obese state
+\begin{equation}\label{eq:obese}
+ \omega_c=\proj{w_c}+\frac c2\proj{01},\qquad
+ \ket{w_c}=\frac{\ket{00}+\sqrt{1-c}\ket{11}}{\sqrt2},
+\end{equation}
+with $\cv=ce_z$, $C=\diag(\sqrt{1-c},-\sqrt{1-c},1-c)$ and
+$\spec(\omega_c)=\{1-c/2,c/2,0,0\}$. It is locally unitarily equivalent to
+the maximally obese state of~\cite{milne}.
+
+\begin{theorem}[Canonical equality]\label{thm:canonical-equality}
+Equality in the spectral cap or in the purity cap of Lemma~\ref{lem:cap} holds
+if and only if $\sigma$ is a local-unitary image of $\omega_c$.
+\end{theorem}
+\begin{proof}
+Let $0<c\le1$ and $\lambda=L$. Every inequality in the proof of the spectral
+cap is an equality, so $\tau_A=\frac c2\proj{e_+}$ and
+$\lambda\psi_A=\frac12\proj{e_+}+\frac{1-c}2\proj{e_-}$. A positive operator
+with a rank-one marginal is a product on that factor, so
+$\tau=\proj{e_+}\otimes\tau_B$. In Schmidt bases
+$\sqrt\lambda\ket\psi=\ket{e_+,f_0}/\sqrt2+\sqrt{(1-c)/2}\,\ket{e_-,f_1}$, and
+Bob's marginal forces $\tau_B=\frac c2\proj{f_1}$: this is~\eqref{eq:obese}
+in local bases. At $c=0$, $\lambda=1$ gives a pure state with maximally mixed
+Bob marginal, a maximally entangled state. The converse is immediate. For
+$c<1$ the purity cap exceeds $1/2$, so equality in it forces $\lambda>1/2$ and,
+by strict monotonicity of $x^2+(1-x)^2$, $\lambda=L$. At $c=1$ every canonical
+state is $\proj{e_+}\otimes\id/2$.
+\end{proof}
+
+Define the nonnegative shape deficit
+\begin{equation}\label{eq:D}
+ \Dp=1-c+\frac{c^2}2-\tr\sigma^2=\frac{3-4c+c^2-\tr Q}{4},
+\end{equation}
+using $4\tr\sigma^2=1+c^2+\tr Q$. Theorem~\ref{thm:canonical-equality} says
+$\Dp=0$ exactly on the obese orbit. Keeping this slack in the chain of
+Section~\ref{sec:prior} gives
+\begin{equation}\label{eq:shape-gap}
+ M(\rho)\le H(c,r)-2(1-r^2)\Dp=1+\frac{1-r^2}{2}\bigl(\tr Q-c^2-1\bigr).
+\end{equation}
+This is an immediate refinement of the prior chain, not a sharp bound for a
+general ellipsoid, since orientation is discarded; it penalizes every
+canonical state that is not maximally obese.
+
+\section{Equality in the joint bound}\label{sec:joint}
+
+\begin{theorem}[Equality classification]\label{thm:joint}
+For $0\le c\le1$ and $0\le r<1$,
+\begin{equation}\label{eq:joint-max}
+ \max_{\rho:\ \norm{\cv}=c,\ \norm{\bv}=r}\beta(\rho)=2\sqrt{1+(1-r^2)(1-2c)}.
+\end{equation}
+For $0<c<1$ the attaining states are, up to local unitaries, exactly
+\begin{equation}\label{eq:rho-b}
+ \rho_{c,\bv}=(\id\otimes F_{\bv})\omega_c(\id\otimes F_{\bv}),
+ \qquad F_{\bv}=\sqrt{\id+\bv\cdot\bm\sigma},\qquad \norm{\bv}^2=b_z<1,
+\end{equation}
+for instance $\bv=(r\sqrt{1-r^2},0,r^2)$. All transverse azimuths are
+equivalent under local unitaries fixing $\omega_c$, so each interior pair
+$(c,r)$ has one local-unitary class of extremizers. At $c=0$ the extremizers
+are the pure states with Bob length $r$; at $c=1$ every state is a product
+with pure Alice marginal and attains $2r$.
+\end{theorem}
+The value~\eqref{eq:joint-max} is prior work (Section~1); the classification
+is the new content.
+\begin{proof}
+The upper bound is~\eqref{eq:H}. If equality holds with $r<1$, every
+inequality in $M\le1+2\Delta(\rho)=1+2(1-r^2)\Delta(\sigma)\le H$ is an
+equality, so $\Dp=0$, and Theorem~\ref{thm:canonical-equality} reduces every
+extremizer to a filtered $\omega_c$ (the unitary freedom in $F$ is absorbed into
+local unitaries). It remains to find the filters that attain the cap. Let
+$R=\norm{\bv}^2$, $p=1-c$, and rotate so that $\bv=(\sqrt u,0,z)$, $u\ge0$,
+$R=u+z^2<1$. By~\eqref{eq:gram}, with
+$q=p(1-R)$, $k=(1-2c)(1-R)$ and $h=1+k-q=p+cR$, the $y$ direction is an
+eigenvector of $TT^{\mathsf T}$ with eigenvalue $q$, and the $xz$ block is
+\begin{equation}\label{eq:block}
+ B=\begin{pmatrix}
+ p(1-z^2)&\sqrt{pu}(c+pz)\\
+ \sqrt{pu}(c+pz)&k+(c+pz)^2
+ \end{pmatrix}.
+\end{equation}
+Its eigenvalues $\lambda_-\le\lambda_+$ satisfy $\lambda_-\le q\le\lambda_+$,
+because $\det(q\id-B)=-cp\,u(1-R)\le0$; hence $M=q+\lambda_+$. Moreover
+\begin{equation}\label{eq:factor}
+ (h\id-B)_{11}=cu+z^2,\qquad (h\id-B)_{22}=p\{u+c(z-1)^2\},\qquad
+ \det(h\id-B)=cp(R-z)^2,
+\end{equation}
+so $h\id-B\succeq0$ and $M\le q+h=H$. For $0<c<1$ equality holds exactly when
+$\det(h\id-B)=0$, that is $R=z$. This gives both directions of the
+classification; the displayed $\bv$ has $R=r^2=z$. The filter is invertible
+and positive and yields trace one because $(\omega_c)_B=\id/2$; scaled by
+$1/\sqrt{1+r}$ it is a valid Kraus operator. At $c=0$, $\Dp=0$ forces a
+maximally entangled canonical state, and invertible filtering gives exactly the
+entangled pure states with $r<1$, with $M=2-r^2$. At $c=1$ a pure Alice
+marginal forces a product and $M=r^2$.
+\end{proof}
+For $0<c<1$ and $r<1$ the classification reads, without coordinates,
+\[
+ M=H\iff \Dp=0\ \text{and}\ \cv\cdot(\av-\cv)=c(1-c)r^2,
+\]
+since $\av-\cv=C\bv$ and in the obese frame the left side is $c(1-c)b_z$.
+
+\begin{proposition}[Explicit extremizer]\label{prop:dyadic}
+For $0\le c\le1$ and $0\le r<1$ put $p=1-c$, $s=\sqrt{1-r^2}$, $a=\sqrt p\,s$,
+\[
+ v_0=\tfrac12(1+r,-(1-r),a,a)^{\mathsf T},\qquad
+ v_1=\tfrac{\sqrt c\,s}{2}(1,1,0,0)^{\mathsf T},\qquad
+ \rho^\sharp_{c,r}=v_0v_0^{\mathsf T}+v_1v_1^{\mathsf T}.
+\]
+Then $\rho^\sharp_{c,r}$ is a density matrix with $\bv=(0,0,r)$,
+$\av=(ra,0,c+pr^2)$, $\cv=(0,0,c)$,
+\[
+ T=\begin{pmatrix}ra&0&a\\0&-a&0\\-p(1-r^2)&0&r\end{pmatrix},\qquad
+ \det(x\id-TT^{\mathsf T})=(x-h)(x-q)(x-qh),
+\]
+with $h=p+cr^2\ge q=p(1-r^2)\ge qh$; consequently $M=h+q=H(c,r)$.
+\end{proposition}
+\begin{proof}
+Positivity is manifest and $\norm{v_0}^2+\norm{v_1}^2=1$. Partial traces give
+$\rho_B=\diag((1+r)/2,(1-r)/2)$ and the stated $\av$; Pauli traces give $T$;
+$\av-T\bv=(0,0,c(1-r^2))$ gives the centre. The characteristic polynomial and
+ordering follow from $a^2=q$, $h-q=r^2$ and $q-qh=qc(1-r^2)$. Whitening gives
+$C=\diag(\sqrt p,-\sqrt p,p)R_y$ with a rotation $R_y$, so $Q=\diag(p,p,p^2)$.
+\end{proof}
+This is a coordinate realization of the attaining family discussed above,
+not a new family. Its Bell supremum is the formal endpoint of
+Section~\ref{sec:formal}.
+
+\begin{remark}[Pure Bob marginal]
+At $r=1$ the constrained maximum is $2c$, not the limit $2$
+of~\eqref{eq:joint-max}: the state is a product and its centre is $\av$. The
+centre can jump when an invertible filter becomes rank one.
+\end{remark}
+
+\begin{corollary}[Equality in Conjecture~1]\label{cor:milne-equality}
+Up to local unitaries, equality in~\eqref{eq:milne} holds exactly as follows:
+for $0\le c<1/2$, only for $\omega_c$; for $c=1/2$, exactly for the states
+$\rho_{1/2,\bv}$ with $R=b_z<1$, whose filter vectors form the sphere
+$b_x^2+b_y^2+(b_z-1/2)^2=1/4$ without its north pole; for $1/2<c<1$, never
+(the supremum two is not attained); for $c=1$, exactly for pure product states.
+\end{corollary}
+\begin{proof}
+For $c<1/2$, $H=2(1-c)-r^2(1-2c)$ forces $r=0$. For $c=1/2$, $H=1$ for every
+$r<1$, and Theorem~\ref{thm:joint} applies. For $1/2<c<1$, $H<1$ when $r<1$,
+and a pure Bob marginal gives $M=c^2<1$. For $c=1$, $M=r^2$ requires $r=1$.
+\end{proof}
+The Omega dossier argues, without formalizing it, that~\eqref{eq:milne} is
+attained exactly for $c\in[0,1/2]\cup\{1\}$; the corollary adds the
+classification of the attaining states. At $c=1/2$ equality does not force a
+maximally mixed Bob marginal: the matrix
+\[
+ \rho_*=\frac1{32}\begin{pmatrix}
+ 21&-3&3\sqrt6&3\sqrt6\\
+ -3&5&-\sqrt6&-\sqrt6\\
+ 3\sqrt6&-\sqrt6&3&3\\
+ 3\sqrt6&-\sqrt6&3&3
+ \end{pmatrix}
+ =v_0v_0^{\mathsf T}+v_1v_1^{\mathsf T},\quad
+ v_0=\bigl(\tfrac34,-\tfrac14,\tfrac{\sqrt6}8,\tfrac{\sqrt6}8\bigr)^{\mathsf T},\
+ v_1=\bigl(\tfrac{\sqrt6}8,\tfrac{\sqrt6}8,0,0\bigr)^{\mathsf T},
+\]
+has $\rho_B=\diag(3/4,1/4)$, $\cv=(0,0,1/2)$,
+$\spec(TT^{\mathsf T})=\{5/8,3/8,15/64\}$ and hence $\beta(\rho_*)=2$.
+
+\section{Quantitative rigidity}\label{sec:rigidity}
+
+The norm $\norm{\cdot}_1$ is the full trace norm (twice the trace distance).
+
+\begin{lemma}[Spectral deficit]\label{lem:slack}
+Let $0\le c<1$, $p=1-c$, $L=1-c/2$ and $\delta=L-\lambda_{\max}(\sigma)$ for a
+canonical $\sigma$. Then $0\le\delta\le\Dp/p$.
+\end{lemma}
+\begin{proof}
+With $m=\lambda_{\max}$ we have $\tr\sigma^2\le c/2+pm$: if $m\le1/2$ use
+$\tr\sigma^2\le m$; if $m\ge1/2$ use $\tr\sigma^2\le m^2+(1-m)^2$ and
+$c/2+pm-m^2-(1-m)^2=(L-m)(2m-1)\ge0$. Subtract from $L^2+(1-L)^2$ and use
+$L^2+(1-L)^2-pL=c/2$.
+\end{proof}
+
+\begin{theorem}[Trace-norm rigidity]\label{thm:stability}
+If $0\le c<1$ and $\Dp\le(1-c)^2/4$, some local-unitary image $\omega$ of
+$\omega_c$ satisfies
+\begin{equation}\label{eq:stability}
+ \norm{\sigma-\omega}_1
+ \le2\sqrt{\frac{\Dp}{1-c}}+\frac{2\sqrt{\Dp}}{1-c}+\frac{\Dp}{1-c}
+ \le\frac{9\sqrt{\Dp}}{2(1-c)}.
+\end{equation}
+The target has the same centre length; the constants are not claimed sharp.
+\end{theorem}
+\begin{proof}
+Let $\lambda=L-\delta$ be the largest eigenvalue, $\sigma=\proj v+\tau$ with
+$v=\sqrt\lambda\psi$, $\tau\succeq0$, $\tau v=0$, $d=c/2$ and
+$t=\tr\tau=d+\delta$. In Schmidt bases
+$v=\sqrt{s_+}\ket{e_0f_0}+\sqrt{s_-}\ket{e_1f_1}$ with $s_+=1/2-\kappa$ and
+$s_-=p/2-\delta+\kappa$. Bob's marginal gives $\kappa\ge0$. The largest
+eigenvalue of $\sigma_A$ is at most $s_++t$, so
+$(1+c)/2\le1/2-\kappa+d+\delta$ and $\kappa\le\delta$. Lemma~\ref{lem:slack}
+and the hypothesis give $\delta\le\Dp/p\le p/4$, hence $s_-\ge p/4>0$.
+
+Let $\phi=e_0\otimes f_1$. Bob's marginal gives
+$\tau_B=\kappa\proj{f_0}+(t-\kappa)\proj{f_1}$. With
+$A=\bra{e_0f_0}\tau\ket{e_0f_0}$ and $B=\bra{e_1f_1}\tau\ket{e_1f_1}$, the
+relation $\tau v=0$ gives $s_+A=s_-B$. Since $A\le\kappa$, the weight of $\tau$
+outside $\phi$ is $\ell=t-\bra\phi\tau\ket\phi=\kappa+B\le\kappa\lambda/s_-$.
+For a spectral decomposition $\tau=\sum_j\mu_j\proj{\chi_j}$, the identity
+$\norm{\proj{\chi_j}-\proj\phi}_1=2\sqrt{1-|\langle\phi,\chi_j\rangle|^2}$, the
+triangle inequality and Cauchy--Schwarz give
+$\norm{\tau-t\proj\phi}_1\le2\sqrt{t\ell}\le2\sqrt{t\lambda\kappa/s_-}\le2\sqrt{\delta/p}$,
+using $t+\lambda=1$; replacing $t$ by $d$ costs $\delta$. Let
+$w=\ket{e_0f_0}/\sqrt2+\sqrt{p/2}\ket{e_1f_1}$ and
+$\omega=\proj w+d\proj\phi$. From $(\sqrt x-\sqrt y)^2\le|x-y|$,
+$\norm{v-w}^2\le\kappa+(\delta-\kappa)=\delta$, so
+$\norm{\proj v-\proj w}_1\le(\norm v+\norm w)\norm{v-w}\le2\sqrt\delta$.
+Altogether $\norm{\sigma-\omega}_1\le2\sqrt\delta+2\sqrt{\delta/p}+\delta$;
+then use $\delta\le\Dp/p$, $p\le1$ and $\sqrt{\Dp}\le p/2$.
+\end{proof}
+
+\begin{corollary}[Near saturation]\label{cor:near}
+Let $\eps=H(c,r)-M(\rho)$ with $c<1$, $r<1$ and $\eps\le(1-r^2)(1-c)^2/2$.
+Then some local-unitary image $\omega$ of $\omega_c$ satisfies
+$\norm{\sigma-\omega}_1\le\frac{9}{2(1-c)}\sqrt{\eps/(2(1-r^2))}$.
+\end{corollary}
+This follows from $\Dp\le\eps/[2(1-r^2)]$ in~\eqref{eq:shape-gap}. Undoing the
+whitening multiplies the bound by at most $1+r=\norm{F}_{\mathrm{op}}^2$; the
+approximant is a filtered obese state, and exact extremality also needs the
+orientation condition, which the next results control.
+
+\begin{proposition}[Orientation deficit]\label{prop:orientation}
+For a filtered obese state with $0<c<1$ and $R<1$, in the notation
+of~\eqref{eq:block},
+$(H-M)(h-\lambda_-)=c(1-c)(R-z)^2$, and hence $H-M\ge c(1-c)(R-z)^2$.
+\end{proposition}
+\begin{proof}
+The identity is~\eqref{eq:factor} with $M=q+\lambda_+$ and $H=q+h$. Since
+$0\le\lambda_-\le h\le1$, and $h-\lambda_->0$ (if $R>0$ use $h-q=R$ and
+$\lambda_-\le q$; if $R=0$ it equals $c(1-c)$), divide.
+\end{proof}
+
+\begin{lemma}[Fixed-radius filter transport]\label{lem:filter-metric}
+Let $\omega$ be any density matrix with $\omega_B=\id/2$, let
+$\rho_{\bv}=(\id\otimes F_{\bv})\omega(\id\otimes F_{\bv})$, and let
+$\norm{\bv}=\norm{\bm d}=r<1$. With $\gamma_r=(\sqrt{1+r}+\sqrt{1-r})^{-1}$ and
+$x=\norm{\bv-\bm d}$,
+\[
+ \norm{\rho_{\bv}-\rho_{\bm d}}_1\le2\gamma_rx\sqrt{1-\gamma_r^2x^2/4}\le2\gamma_rx,
+\]
+with equality in the first bound when $\omega$ is maximally entangled.
+\end{lemma}
+\begin{proof}
+At fixed radius $F_{\bv}=\alpha_r\id+\gamma_r\bv\cdot\bm\sigma$ with
+$\alpha_r=(\sqrt{1+r}+\sqrt{1-r})/2$ and $\alpha_r^2+\gamma_r^2r^2=1$. Apply both
+filters to a purification of $\omega$; both vectors have norm one because
+$\omega_B=\id/2$, and their overlap is
+$\frac12\tr(F_{\bv}F_{\bm d})=1-\gamma_r^2x^2/2$. The trace-norm distance of two
+pure states is twice the square root of one minus the squared overlap, and the
+partial trace contracts the trace norm. For maximally entangled $\omega$ no
+environment is traced out.
+\end{proof}
+
+\begin{theorem}[Distance to an exact extremizer]\label{thm:physical-rigidity}
+Let $0<c<1$, $0\le r<1$, $p=1-c$, $\eps=H(c,r)-M(\rho)$ and
+$0\le\eps\le(1-r^2)p^2/2$. Put $d=\frac9{2p}\sqrt{\eps/(2(1-r^2))}$,
+$t_0=(1+r)d$ and $J_r=2/(\sqrt{1+r}+\sqrt{1-r})$. Some density matrix $\tau$
+with the same $c$ and $r$ and $M(\tau)=H(c,r)$ satisfies
+\begin{equation}\label{eq:physical-rigidity}
+ \norm{\rho-\tau}_1\le t_0+J_r\sqrt{\frac2{1-r}}\sqrt{\frac{\eps+4t_0}{c(1-c)}}.
+\end{equation}
+For fixed interior $(c,r)$ this is $O(\eps^{1/4})$; when $r=0$ the bound
+$\norm{\rho-\tau}_1\le d$ holds.
+\end{theorem}
+\begin{proof}
+Corollary~\ref{cor:near} gives an obese $\omega$ with
+$\norm{\sigma-\omega}_1\le d$, so $\rho'=F_{\bv}\omega F_{\bv}$ has
+$\norm{\rho-\rho'}_1\le t_0$. Every CHSH operator has norm at most
+$2\sqrt2$ (its square is $4\id-[A,A']\otimes[B,B']$), so
+$|M(\rho)-M(\rho')|\le4\norm{\rho-\rho'}_1$ and $H-M(\rho')\le\eps+4t_0$. In the
+frame where $\omega=\omega_c$, Proposition~\ref{prop:orientation} gives
+$c(1-c)(r^2-b_z)^2\le\eps+4t_0$. Let $\bv^*$ have the radius and azimuth of
+$\bv$ and $b^*_z=r^2$. With $y=\sqrt{r^2-b_z^2}$ and $w=r\sqrt{1-r^2}$,
+$\norm{\bv-\bv^*}^2=(b_z-r^2)^2+(y-w)^2\le\frac2{1-r}(b_z-r^2)^2$, using
+$|b_z+r^2|\le r(1+r)$ and $y+w\ge r\sqrt{1-r^2}$. The state
+$\tau=F_{\bv^*}\omega_cF_{\bv^*}$ is an exact extremizer by
+Theorem~\ref{thm:joint}; apply Lemma~\ref{lem:filter-metric} with
+$2\gamma_r=J_r$.
+\end{proof}
+
+\begin{theorem}[Rigidity with the whole centre vector fixed]\label{thm:directional}
+Let $\sigma_B=\id/2$, let Alice's Bloch vector be $cn$ with $0<c<1$,
+$\norm n=1$, and let $\delta=L-\lambda_{\max}(\sigma)\le c/8$. There is an
+obese state $\omega$ with $\omega_A=\sigma_A$, $\omega_B=\id/2$ and
+$\norm{\sigma-\omega}_1\le\min\{2,9\sqrt{\delta/c}\}$. In particular, if
+$\Dp\le c(1-c)/8$, the bound $9\sqrt{\Dp/[c(1-c)]}$ holds with the same Alice
+centre vector.
+\end{theorem}
+\begin{proof}
+Set $q=c/2$, $p=1-c$, $\lambda=L-\delta$ and $t_1=1-\lambda=q+\delta$. Write
+$\sigma=\lambda\proj\psi+t_1\eta$ with $\eta$ a density matrix, let
+$a_\psi,b_\psi,a_\eta,b_\eta$ be the marginal Bloch vectors, $s=\norm{a_\psi}=\norm{b_\psi}$
+and $u=\norm{b_\eta}$. Bob-flatness gives $\lambda s=t_1u$ with opposite Bob
+directions, and Alice's marginal gives the nonnegative decomposition
+\begin{equation}\label{eq:directional-deficit}
+ 2\delta=t_1(1-u)+\lambda(s-n\cdot a_\psi)+t_1(1-n\cdot a_\eta).
+\end{equation}
+In particular $t_1u\ge q-\delta>0$. Let $e_0$ point along $n$, $f_1$ along
+$b_\eta/u$, and $\Phi=\proj{e_0f_1}$. The two local failure projectors commute,
+so \eqref{eq:directional-deficit} gives $\bra{e_0f_1}\eta\ket{e_0f_1}\ge1-\delta/t_1$
+and $\norm{t_1\eta-t_1\Phi}_1\le2\sqrt{t_1\delta}$. If $\theta$ is the angle
+between $a_\psi/s$ and $n$, the middle term gives
+$\sin^2(\theta/2)\le\delta/(\lambda s)\le\delta/(q-\delta)$. Rotating Alice's
+Schmidt axis to $n$ about an axis perpendicular to $a_\psi$ changes the vector
+by overlap $\cos(\theta/2)$, at trace-norm cost at most
+$2\lambda\sqrt{\delta/(q-\delta)}$. With $\kappa=t_1(1-u)/2\in[0,\delta]$ the
+rotated weighted vector is
+$\sqrt{1/2-\kappa}\ket{e_0f_0}+\sqrt{p/2-\delta+\kappa}\ket{e_1f_1}$; compare it
+with $w=\ket{e_0f_0}/\sqrt2+\sqrt{p/2}\ket{e_1f_1}$ and set
+$\omega=ww^\dagger+q\Phi$, which is obese with the required marginals. The
+vector error is at most $\sqrt\delta$ and the rank-one error at most
+$(\sqrt\lambda+\sqrt L)\sqrt\delta$; changing the weight $t_1$ to $q$ costs
+$\delta$. Hence
+$\norm{\sigma-\omega}_1\le2\sqrt{t_1\delta}+2\lambda\sqrt{\delta/(q-\delta)}
++(\sqrt\lambda+\sqrt L)\sqrt\delta+\delta\le9\sqrt{\delta/c}$ for
+$\delta\le c/8$. Lemma~\ref{lem:slack} gives the final statement.
+\end{proof}
+Consequently Theorem~\ref{thm:physical-rigidity} holds for an exact extremizer
+with the same centre \emph{vector} and Bob length under
+$\eps\le(1-r^2)c(1-c)/4$, with $d$ replaced by
+$9\sqrt{\eps/(2(1-r^2)c(1-c))}$; Bob filtering preserves the steering
+ellipsoid, so the orientation correction keeps the centre vector.
+
+\begin{lemma}[Small-centre direction correction]\label{lem:small-centre}
+For $0\le c\le1/2$, any local-unitary image of $\omega_c$ can be moved within
+its orbit to any prescribed Alice centre direction at trace-norm cost at most
+$3c$.
+\end{lemma}
+\begin{proof}
+With $\Phi$ the projector onto $(\ket{00}+\ket{11})/\sqrt2$,
+$\norm{\omega_c-\Phi}_1\le\sqrt2(1-\sqrt{1-c})+c/2$ in every local frame. An
+Alice rotation paired with $U\otimes\overline U$ fixes $\Phi$, so the cost is at
+most $2\sqrt2(1-\sqrt{1-c})+c=\bigl(\tfrac{2\sqrt2}{1+\sqrt{1-c}}+1\bigr)c\le3c$.
+\end{proof}
+
+\begin{corollary}[Uniform rigidity with optimal exponent]\label{cor:uniform-rigidity}
+For every canonical state, including $c=0,1$, there is an obese state $\omega$
+with the same Alice Bloch vector and
+\begin{equation}\label{eq:uniform-quarter}
+ \norm{\sigma-\omega}_1\le\min\{2,9\Dp^{1/4}\}.
+\end{equation}
+No bound $K\Dp^{\alpha}$ with $\alpha>1/4$ and a constant $K$ independent of $c$
+holds for all canonical states. The constant nine is not claimed optimal.
+\end{corollary}
+\begin{proof}
+\emph{Boundary estimate.} In Alice's eigenbasis write
+$\sigma=\left(\begin{smallmatrix}A&B\\B^\dagger&E\end{smallmatrix}\right)$ with
+$A+E=\id/2$ and $\tr E=p/2$, $p=1-c$. Positivity gives $B=A^{1/2}KE^{1/2}$ with
+a contraction $K$, hence $\norm B_1\le\sqrt{\tr A\tr E}$, and with
+$P=\proj0\otimes\id/2$ we get $\norm{\sigma-P}_1\le p+\sqrt{2p-p^2}$. The
+aligned obese state obeys the same bound, so the distance to an obese state
+with the same Alice vector is at most $2p+2\sqrt{2p-p^2}\le(2+2\sqrt2)\sqrt p$.
+
+\emph{Cases.} Assume $0<\Dp\le1/256$ and put $d=\Dp^{1/4}\le1/4$ (for
+$\Dp>1/256$ the bound exceeds two). If $c<1/2$ then $p>1/2$ and
+Theorem~\ref{thm:stability} gives distance at most $9\Dp^{1/2}=9d^2$ to some
+obese state; if moreover $c<d$, Lemma~\ref{lem:small-centre} fixes the
+direction at total cost $9d^2+3d\le9d$, while if $d\le c<1/2$ then
+$\Dp=d^4\le d/16\le cp/8$ and Theorem~\ref{thm:directional} gives at most
+$9\sqrt2d^{3/2}\le9d$. If $c\ge1/2$ and $p<2d^2$, the boundary estimate gives
+at most $(4+2\sqrt2)d<9d$. If $c\ge1/2$ and $p\ge2d^2$, then
+$\Dp\le d^2/8\le cp/8$ and $cp\ge d^2$, and Theorem~\ref{thm:directional} gives
+at most $9d$.
+
+\emph{Optimality.} For $0<c<1$ let
+\begin{equation}\label{eq:sharpness-family}
+ \sigma_c=\tfrac14\bigl[\id\otimes\id+c\sigma_z\otimes\id+\sqrt{1-c^2}\,\sigma_x\otimes\sigma_z\bigr],
+\end{equation}
+an equal mixture of two pure Alice states with Bloch vectors
+$(\pm\sqrt{1-c^2},0,c)$ paired with orthogonal Bob states. It is canonical,
+separable, $\sigma_c^2=\sigma_c/2$, and $\Dp=p^2/2$. Its correlation matrix
+has operator norm $\sqrt{2p-p^2}$, while every local-unitary image of
+$\omega_c$ has correlation operator norm $\sqrt p$. Testing against the
+norm-one observable $\sigma_x\otimes\sigma_z$ gives
+$\norm{\sigma_c-\omega}_1\ge\sqrt{2p-p^2}-\sqrt p=\sqrt p(\sqrt{2-p}-1)$ for
+every such $\omega$. Divided by $\Dp^{1/4}=2^{-1/4}\sqrt p$ this tends to
+$2^{1/4}(\sqrt2-1)>0$ as $p\downarrow0$, and divided by $\Dp^{\alpha}$ with
+$\alpha>1/4$ it diverges.
+\end{proof}
+The same exponent is optimal for canonical CHSH rigidity: if
+$\eps=2(1-c)-M(\sigma)$ then $\Dp\le\eps/2$, so~\eqref{eq:uniform-quarter}
+gives an obese state with the same centre vector within
+$\min\{2,9(\eps/2)^{1/4}\}$, while~\eqref{eq:sharpness-family} has
+$M=1-c^2$ and $\eps=(1-c)^2$.
+
+\section{Full-ellipsoid envelopes}\label{sec:shapes}
+
+The centre length alone does not determine the CHSH optimum of a fixed
+ellipsoid. For a fixed canonical state, \eqref{eq:gram} reduces the optimum
+over states with that ellipsoid and Bob length $r$ to the choice of the filter
+direction; right orthogonal changes of $C$ preserve the range of $C\bv$, so the
+optimum depends only on the ellipsoid. We solve this for three classes.
+
+\subsection{Translated spheres}
+Let $Q=s^2\id$ and $\cv=ce_z$ with $s,c\ge0$ and $s+c\le1$; the representative
+$C=s\diag(1,-1,1)$ is physical.
+
+\begin{theorem}[Translated-sphere envelope]\label{thm:sphere}
+For $0\le r<1$ the maximum of $M$ over states with this ellipsoid and Bob
+length $r$ is $2s^2+(c^2-s^2)r^2+2scr$; for $s,c,r>0$ it is attained exactly
+when $C\bv=sre_z$. For $s>0$ its supremum over $r<1$ is
+$2s^2+s^2c^2/(s^2-c^2)$ at $r_*=sc/(s^2-c^2)$ if $sc<s^2-c^2$, and otherwise
+$(s+c)^2$, approached as $r\to1$.
+\end{theorem}
+\begin{proof}
+For $sr>0$ let $n=C\bv/(sr)$. By~\eqref{eq:gram},
+$TT^{\mathsf T}=q\id+K$ with $q=s^2(1-r^2)$ and
+$K=s^2r^2nn^{\mathsf T}+scr(ne_z^{\mathsf T}+e_zn^{\mathsf T})+c^2r^2e_ze_z^{\mathsf T}$,
+which is supported on $\operatorname{span}\{n,e_z\}$ with nonpositive
+determinant there, so $M=2q+\lambda_{\max}(K)$. For every unit $x$,
+$x^{\mathsf T}Kx\le s^2r^2+2scr+c^2r^2$, with equality when $n=x=e_z$, and
+for $s,c,r>0$ equality in the cross term forces this alignment. Then
+maximize the quadratic in $r$; its vertex lies in $[0,1)$ exactly when
+$sc<s^2-c^2$.
+\end{proof}
+For $s=2/3$, $c=1/3$ the canonical state has $M=8/9<1$, while
+$\rho=\frac1{18}\left(\begin{smallmatrix}15&0&0&2\sqrt5\\0&1&0&0\\0&0&0&0\\2\sqrt5&0&0&2\end{smallmatrix}\right)$
+has the same ellipsoid and $M=28/27>1$: whitening need not maximize CHSH within
+a fixed ellipsoid. The loss-channel boundary $c=1-s$ overlaps Appendix~B
+of~\cite{zhang}.
+
+\subsection{Axial ellipsoids}\label{sec:axial}
+Take $\cv=ce_z$ and $C=\diag(s,-s,t)$ with $s,t,c\ge0$, and put $S=s^2$,
+$T=t^2$, $D=S-T$. The canonical density matrix
+$\frac14\left(\begin{smallmatrix}1+c+t&0&0&2s\\0&1+c-t&0&0\\0&0&1-c-t&0\\2s&0&0&1-c+t\end{smallmatrix}\right)$
+is positive exactly when
+\begin{equation}\label{eq:axial-physical}
+ c+t\le1,\qquad 4s^2+c^2\le(1+t)^2.
+\end{equation}
+The representative $\diag(s,s,t)$ needs $4s^2+c^2\le(1-t)^2$, so whenever it is
+physical so is the displayed one.
+
+\begin{theorem}[Axial envelope at fixed Bob length]\label{thm:axial}
+For $0\le r<1$,
+\begin{equation}\label{eq:axial-envelope}
+ \max_{\norm{\bv}=r}M=
+ \begin{cases}
+ 2S+Sr^2(c^2/D-1),& D>0\ \text{and}\ ctr\le D,\\
+ S+T+2ctr+(c^2-S)r^2,& D\le0\ \text{or}\ ctr\ge D,
+ \end{cases}
+\end{equation}
+the two expressions agreeing at $ctr=D>0$. For $r>0$ the optimizing filter
+directions (any azimuth when a latitude is given) are: $b_z=ctr^2/D$ if $D>0$
+and $ctr\le D$; $\bv=re_z$ if $D>0$ and $ctr\ge D$, if $D=0<c$ with $s=t>0$, or
+if $D<0<c$; $\bv=\pm re_z$ if $D<0=c$; every direction if $D=c=0$ or $s=t=0$.
+\end{theorem}
+\begin{proof}
+By symmetry $\bv=(\sqrt{R-z^2},0,z)$ with $R=r^2$, $|z|\le r$. The Gram matrix
+has the eigenvalue $q=S(1-R)$ and the block
+\[
+ B(z)=\begin{pmatrix}
+ S(1-z^2)&s\sqrt{R-z^2}(c+tz)\\
+ s\sqrt{R-z^2}(c+tz)&(1-R)(T-c^2)+(c+tz)^2
+ \end{pmatrix},
+\]
+with $\det(q\id-B)=-S(R-z^2)(1-R)(D+c^2)$. If $D+c^2\ge0$ then
+$\lambda_-\le q\le\lambda_+$ and $M=q+\lambda_+$; if $D+c^2<0$ the first
+diagonal entry is at least $q$, both block eigenvalues are at least $q$ and
+$M=\tr B$ (for $S=0$ the block is diagonal).
+
+\emph{Interior branch} ($D>0$, $ctr\le D$). With $h_i=S+Sc^2R/D$ and
+$z_i=ctR/D\in[0,r]$,
+\[
+ (h_i\id-B)_{11}=Sz^2+Sc^2R/D,\qquad\det(h_i\id-B)=S(D+c^2)(z-z_i)^2.
+\]
+The first entry is positive unless $z=cr=0$, when the off-diagonal entry
+vanishes and the other gap is $S-(1-R)T\ge D>0$. So $h_i\id-B\succeq0$, with
+singularity exactly at $z=z_i$.
+
+\emph{Boundary branch.} With $h_b=(t+cr)^2$, $A_b=h_bD+qc^2$ and
+$L_b=(c+rt)(t+cr)(ctr-D)$,
+\begin{align*}
+ (h_b\id-B)_{11}&=-D+2ctr+c^2R+Sz^2,\qquad
+ \det(h_b\id-B)=A_b(r-z)^2+2L_b(r-z),\\
+ A_br-ct(h_b-q)&=(c+rt)(t+cr)(D-ctr).
+\end{align*}
+If $D\ge0$ and $ctr\ge D$ the determinant terms are nonnegative, and for
+$D>0$ (or $D=0$ with $s=t$, $c,r>0$, where $q>0$) equality holds only at $z=r$.
+In the prolate interlacing case $D<0\le D+c^2$ one has $c,t>0$, the first gap
+is positive, and with $v=r-z\in[0,2r]$ the determinant is $v(A_bv+2L_b)$,
+whose affine factor is $2L_b>0$ at $v=0$ and $2ct(h_b-q)>0$ at $v=2r$; so the
+determinant is nonnegative, vanishing only at $z=r$. Finally, if $D+c^2<0$,
+$q+(t+cr)^2-M=(r-z)[(T-S)(r+z)+2ct]\ge0$, vanishing only at $z=r$ when $c>0$
+and at both poles when $c=0$. The degenerate spheres and points follow from
+the block directly.
+\end{proof}
+
+\paragraph{Optimizing the Bob length.}
+Let $\mathcal M=\sup_{r<1}\max_{\norm{\bv}=r}M$ and $U=S-c^2$. If $D>0$ and
+$c^2<D$ then $\mathcal M=2S$, attained only at $r=0$; if $D>0$ and $c^2=D$ the
+same value is attained at every radius with $ctr\le D$. Otherwise ($D\le0$ or
+$c^2>D$): if $U>ct$ then $\mathcal M=S+ST/U$ at the unique radius
+$r_*=ct/U$, with the aligned direction; if $U\le ct$ then
+$\mathcal M=S+Sc^2/D$ when $D>0$ and $ct\le D$, and $\mathcal M=(t+c)^2$ when
+$D\le0$ or $ct\ge D$, approached as $r\uparrow1$ and not attained except for a
+centred line or a point. Indeed the two branches
+$F_i(r)=2S+S(c^2-D)r^2/D$ and $F_b(r)=S+T+2ctr-Ur^2$ agree to first order at
+$r=D/(ct)$, and when $F_i$ increases the vertex of $F_b$ lies beyond the
+transition, since $ct/U-D/(ct)=S(c^2-D)/(ctU)>0$. The boundary value is the
+largest squared norm of a point of the ellipsoid, at most one by physicality.
+
+\begin{corollary}[Axial CHSH-breaking criterion]\label{cor:channel}
+The physical qubit channel $x\mapsto ce_z+\diag(s,s,t)x$ is CHSH-breaking,
+i.e.\ no two-qubit input yields $\beta>2$ after the channel acts on one qubit,
+if and only if
+\begin{equation}\label{eq:axial-breaking}
+ 2S\le1\quad\text{and}\quad\bigl[S\le c^2+ct\ \text{or}\ (1-S)(S-c^2)\ge ST\bigr].
+\end{equation}
+\end{corollary}
+\begin{proof}
+The canonical state above is the channel's Choi state. Every pure input is a
+maximally entangled state filtered on the untouched qubit, and the filter
+commutes with the channel, so the outputs of pure inputs with invertible
+filters form the orbit optimized above; product inputs (singular filters) give
+products, which are CHSH-local, and convexity of $\beta$ reduces mixed inputs
+to pure ones. The supremum is $2S$, the vertex value $S+ST/(S-c^2)$ when
+$S-c^2>ct$, or a boundary value at most one, and the first two are at most one
+exactly under~\eqref{eq:axial-breaking}.
+\end{proof}
+The criterion concerns arbitrary inputs with one channel use and no further
+filtering; filtering on both sides, as in Pal and Ghosh~\cite{pal}, and
+Choi-state nonlocality, as in Rutkowski and Siudzi\'nska~\cite{rutkowski}, are
+different questions. The unital and amplitude-damping cases are
+in~\cite{pal,zhang}.
+
+\subsection{An exact witness requiring a tilted filter}\label{sec:axial-witness}
+Take $c=1/5$, $t=3/5$, $S=3/5$, $r=1/2$; \eqref{eq:axial-physical} holds
+strictly and $ctr=3/50<D=6/25$. The interior branch gives $M=43/40>1$ at the
+canonical-frame filter $\bv=(\sqrt{15}/8,0,1/8)$, while the aligned filter at
+the same radius gives $M=47/50<1$. In a rotated Bob basis an attaining state is
+\begin{equation}\label{eq:axial-witness}
+ \rho_{\mathrm{ax}}=\frac1{160}\begin{pmatrix}
+ 81&-9\sqrt5&45&15\sqrt5\\
+ -9\sqrt5&21&-9\sqrt5&-15\\
+ 45&-9\sqrt5&39&9\sqrt5\\
+ 15\sqrt5&-15&9\sqrt5&19
+ \end{pmatrix},
+\end{equation}
+which is positive definite: $\rho_{\mathrm{ax}}=LDL^{\mathsf T}$ with
+$D=\diag(81/160,1/10,9/160,1/90)$ and unit lower-triangular
+$L$ with rows $(1)$, $(-\sqrt5/9,1)$, $(5/9,-\sqrt5/4,1)$,
+$(5\sqrt5/27,-5/12,-\sqrt5/9,1)$. Its Bloch data are $\av=(3/8,0,11/40)$,
+$\bv=(0,0,1/2)$ and
+$T=\left(\begin{smallmatrix}3\sqrt5/40&0&3/4\\0&-3\sqrt5/10&0\\-9\sqrt5/40&0&1/4\end{smallmatrix}\right)$,
+so $\cv=(0,0,1/5)$, $Q=\diag(3/5,3/5,9/25)$ up to rotation and
+$T^{\mathsf T}T=\diag(9/32,9/20,5/8)$. The unit settings
+$\alpha=(3,0,1)/\sqrt{10}$, $\alpha'=(0,-1,0)$,
+$\beta=(0,\sqrt{18},5)/\sqrt{43}$, $\beta'=(0,-\sqrt{18},5)/\sqrt{43}$ give
+$\tr(\rho_{\mathrm{ax}}B)=2\sqrt{43/40}$. A second example, $S=1/2$, $t=2/3$,
+$c=1/3$, has canonical value $M=1$ and global maximum $M=15/14$ at the aligned
+filter with $r=4/7$.
+
+\subsection{Centred ellipsoids}
+\begin{theorem}[Centred envelope]\label{thm:centred}
+Let $\cv=0$ and let $\ell_1\ge\ell_2\ge\ell_3\ge0$ be the eigenvalues of
+$Q=CC^{\mathsf T}$. For $0\le r<1$, $\max_{\norm{\bv}=r}M=\ell_1+(1-r^2)\ell_2$.
+For $r>0$ equality holds exactly when $\bv/r$ lies in the top eigenspace of
+$C^{\mathsf T}C$ (all directions if $Q=0$).
+\end{theorem}
+\begin{proof}
+With $\bv=rn$, $G=TT^{\mathsf T}=(1-r^2)Q+r^2Cnn^{\mathsf T}C^{\mathsf T}$. For
+every rank-two orthogonal projection $P$,
+$\tr(PG)\le(1-r^2)(\ell_1+\ell_2)+r^2\norm{Cn}^2\le(1-r^2)(\ell_1+\ell_2)+r^2\ell_1$.
+Choosing $n$ in the top right eigenspace and $P$ containing $Cn$ and a second
+leading left eigenvector attains both bounds; for $0<r<1$ equality forces
+$\norm{Cn}^2=\ell_1$.
+\end{proof}
+Over all radii the supremum is the canonical value $\ell_1+\ell_2$. The
+corresponding CHSH-breaking criterion for unital qubit channels is prior
+work~\cite{pal,zhang}; the fixed-radius value and equality cases are the
+finer statement here.
+
+\section{A printed optimizer in Zhang et al.}\label{sec:zhang}
+Appendix~B of~\cite{zhang} (arXiv~v2 and the published version) prints an
+optimizing vector with a repeated $R_{31}$ and last coordinate
+$R_{33}-(1-\alpha^2)$, and its prose states $R_{33}=1-\alpha^2$. Re-expanding
+its preceding correlation matrix gives, for $r=\sqrt{1-\alpha^2}$,
+$H'=-p(1-p)aa^{\mathsf T}+r^2e_ze_z^{\mathsf T}$ with
+$a=(\alpha R_{31},\alpha R_{32},R_{33}-r)$, so the optimizing condition is
+$R_{33}=r$, which is $b_z=\norm{\bv}^2$ in filter coordinates. For $p=1/2$,
+$r=1/2$, $\alpha=\sqrt3/2$ and a $y$ rotation with $R_{33}=1/4$, the correlation
+matrix is
+$T=\left(\begin{smallmatrix}\sqrt6/16&0&-3\sqrt5/16\\0&-\sqrt6/4&0\\\sqrt{30}/8&0&3/8\end{smallmatrix}\right)$
+and $M=(399+9\sqrt{145})/512<1$, strictly, since $113^2-81\cdot145=1024>0$;
+the printed direction does not attain the maximum, which the corrected
+direction does. The maximal value and the CHSH-breaking threshold
+of~\cite{zhang} are correct.
+
+\section{Verification}\label{sec:formal}
+
+\subsection{Lean}
+The package contains a standalone Lean project (Lean~4.19.0, Mathlib
+revision \texttt{c44e0c8ee63ca166\allowbreak450922a373c7409c\allowbreak5d26b00b}) of fifteen modules and a
+whole-project axiom audit. Its definitions are explicit: complex $4\times4$
+matrices; density matrices as Hermitian, trace one and
+$\operatorname{Re}\langle w,\rho w\rangle\ge0$ for \emph{every} complex vector
+$w$; the standard Pauli matrices and the tensor product in the basis
+$\ket{00},\ket{01},\ket{10},\ket{11}$; the Bell operator above with four real
+unit vectors; the modulus $\sqrt{\operatorname{normSq}}$ of the complex
+expectation $\tr(\rho B)$; and $\beta$ as the real supremum of these values.
+\begin{itemize}
+\item \texttt{CertifiedCHSH.physical\_joint\_chsh\_attainment}: for every
+$0\le c\le1$ and $r^2<1$ the matrix $\rho^\sharp_{c,r}$ of
+Proposition~\ref{prop:dyadic} is a density matrix, the centre formula
+\eqref{eq:centre} applied to its Bloch data gives $(0,0,c)$, Bob's length is
+$r$, and $\beta(\rho^\sharp_{c,r})=2\sqrt{1+(1-2c)(1-r^2)}$. The Bloch data are
+tied to the matrix by the readout theorems
+\texttt{CHSHPhysical.alice\_readout}, \texttt{bob\_readout} and
+\texttt{correlation\_readout}. The upper bound covers every setting through an
+elementary orthogonal-plane certificate, and explicit unit settings attain it;
+the Horodecki formula is not assumed.
+\item \texttt{CHSHAxialWitness.beta\_exact} and related theorems:
+the matrix~\eqref{eq:axial-witness} is a density matrix with the stated Pauli
+data and $\beta=2\sqrt{43/40}$.
+\item \texttt{BoundarySharpness}: the family~\eqref{eq:sharpness-family} is a
+canonical density matrix with $\rho^2=\rho/2$, purity $1/2$, the stated Pauli
+data, exact $\beta$ and canonical CHSH gap $(1-c)^2$.
+\item \texttt{AxialCertificates.axial\_exact\_maximum}: for $S,c,t,r\ge0$,
+$r^2\le1$ and $|z|\le r$, the largest sum of two of the three roots of the
+axial Gram matrix (the explicit radical roots of the block and $q$) is at most
+the envelope~\eqref{eq:axial-envelope}, with an attaining $z$; neither
+physicality nor the inequality is assumed. Further modules check the obese
+block algebra, the orientation correction, spectral purity inequalities and
+the countercertificate of Section~\ref{sec:zhang}.
+\end{itemize}
+A fresh replay compiled all modules with warnings as errors and audited all
+839 declarations owned by the fifteen modules: the 543 declarations other than
+code-generation auxiliaries are not axioms and depend only on
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}; the 296
+auxiliaries stored by the Lean~4.19 code generator are recorded separately,
+and one of them refers to the generator's placeholder \texttt{lcProof}. The sources contain no
+\texttt{sorry}, added axiom or \texttt{native\_decide}.
+
+\emph{Not formalized:} the arbitrary-state bound~\eqref{eq:H} (it is prior
+work); the general filter-to-Gram correspondence~\eqref{eq:gram} and the
+Horodecki identification for arbitrary states, which connect the theorem
+\texttt{axial\_\allowbreak exact\_\allowbreak maximum} to Theorem~\ref{thm:axial}; the equality
+classification; the rigidity theorems and the lower bound against arbitrary
+local-unitary images; and the operational meaning of the centre.
+
+\subsection{Exact and numerical checks}
+An exact SymPy program checks 46 identities: the Bloch data, centre, Gram
+characteristic polynomial and $M=H$ for $\rho^\sharp_{c,r}$ symbolically; the
+block identities~\eqref{eq:factor} and their agreement with~\eqref{eq:gram};
+the Gram formula on an explicitly filtered obese state; all axial identities
+in the proof of Theorem~\ref{thm:axial}; the axial witness (positivity,
+readouts, whitening, shape and Bell value); the sharpness family; the
+countercertificate of Section~\ref{sec:zhang}; and the examples $\rho_*$ and
+the translated sphere. A seeded NumPy program searches for counterexamples:
+$10^4$ random states of ranks one to four against~\eqref{eq:H}
+and~\eqref{eq:shape-gap}; the equality orbit and
+Proposition~\ref{prop:orientation}; brute-force filter directions for 300
+random axial shapes against~\eqref{eq:axial-envelope}; random centred
+ellipsoids against Theorem~\ref{thm:centred}; the channel criterion against a
+radius grid; and the sharpness lower bound. No violation beyond rounding
+($\sim10^{-15}$) was found. These searches are falsification attempts, not
+proofs.
+
+\section{Limitations}\label{sec:limits}
+The exact optimum for an unrestricted displaced triaxial ellipsoid remains
+open; \eqref{eq:gram} reduces it to an optimization over Bob's Bloch ball for
+each measurement plane, which is not solved here. The shape-gap
+bound~\eqref{eq:shape-gap} is not sharp for general ellipsoids. The rigidity
+constants are not claimed sharp; the uniform exponent is. The full text of
+Xing and Yang~\cite{xing}, on volume-based bounds, was not available, so that
+paper is not excluded as an overlapping source.
+
+\section{Research process and AI disclosure}
+This is fully autonomous agentic research. Autonomous AI research agents
+produced the mathematics, the Lean development, the computations, an audit of
+the public Omega proof and an earlier version of this text in earlier
+sessions; their records do not name the system used, and the reviews in those
+records were AI-assisted reviews within the same workflow. Opus 5.5 by
+Anthropic used with Claude Code assessed the package for this release: it
+compared the results with Conjecture~1, the Omega dossier and source, and the
+2020 paper, and determined what is new; read the central proofs; wrote and ran
+its own exact and numerical check programs; replayed the Lean project with a
+whole-project axiom audit; rewrote this manuscript; and integrated the package
+into the repository. The audit and replay records of the third-party Omega
+project are not included. Dev D. Goyal is responsible for publication. The
+work has not been externally peer reviewed. The formal scope and remaining
+limits are stated in Sections~\ref{sec:formal} and~\ref{sec:limits}.
+
+\begingroup\small
+\begin{thebibliography}{10}
+\bibitem{milne}
+A.~Milne, D.~Jennings, S.~Jevtic and T.~Rudolph,
+Quantum correlations of two-qubit states with one maximally mixed marginal,
+Phys.\ Rev.\ A \textbf{90}, 024302 (2014),
+\href{https://arxiv.org/abs/1404.3951}{arXiv:1404.3951}.
+\bibitem{dossier}
+The Omega Institute, CHSH nonlocality is tightly bounded by the
+steering-ellipsoid centre, problem dossier and Lean source, repository
+\texttt{the-omega-institute/trureturing}, issue \#16558; dossier committed
+14 October 2026 (commit \texttt{af41108}),
+\url{https://github.com/the-omega-institute/trureturing/blob/af41108edc85c119837189f120c6d2d9aa3f5a25/Problems/milne-jennings-jevtic-rudolph-2014-chsh-centre-bound.md};
+source read at commit \texttt{609e95e},
+\url{https://github.com/the-omega-institute/trureturing/blob/609e95e447fb1045172423c4d7bcf2a6e321eef0/D5/S3/Quantum/Entanglement/SteeringEllipsoidCHSH.lean}.
+Apache-2.0.
+\bibitem{zhang}
+Y.~Zhang, R.~Araiza Bravo, V.~O.~Lorenz and E.~Chitambar,
+Channel activation of CHSH nonlocality, New J.\ Phys.\ \textbf{22}, 043003
+(2020), Appendix~B,
+\href{https://doi.org/10.1088/1367-2630/ab7bef}{doi:10.1088/1367-2630/ab7bef},
+\href{https://arxiv.org/abs/1911.06349}{arXiv:1911.06349}.
+\bibitem{ducuara}
+A.~F.~Ducuara, C.~E.~Susa and P.~Skrzypczyk,
+Locally inaccessible hidden quantum correlations, Phys.\ Rev.\ A \textbf{110},
+022435 (2024), \href{https://arxiv.org/abs/2406.03945}{arXiv:2406.03945}.
+\bibitem{horodecki}
+R.~Horodecki, P.~Horodecki and M.~Horodecki,
+Violating Bell inequality by mixed spin-$\frac12$ states: necessary and
+sufficient condition, Phys.\ Lett.\ A \textbf{200}, 340--344 (1995),
+\href{https://doi.org/10.1016/0375-9601(95)00214-N}{doi:10.1016/0375-9601(95)00214-N}.
+\bibitem{pal}
+R.~Pal and S.~Ghosh, Non-locality breaking qubit channels: the case for CHSH
+inequality, J.\ Phys.\ A \textbf{48}, 155302 (2015),
+\href{https://arxiv.org/abs/1306.3151}{arXiv:1306.3151}.
+\bibitem{rutkowski}
+A.~Rutkowski and K.~Siudzi\'nska, Controlling nonlocality of bipartite qubit
+states via quantum channels, Phys.\ Lett.\ A (2025) 130313,
+\href{https://doi.org/10.1016/j.physleta.2025.130313}{doi:10.1016/j.physleta.2025.130313},
+\href{https://arxiv.org/abs/2407.16035}{arXiv:2407.16035}.
+\bibitem{xing}
+L.-L.~Xing and H.~Yang, Bounding entanglement and Bell nonlocality for
+arbitrary two-qubit state via quantum steering ellipsoid, Phys.\ Scr.\
+\textbf{101}, 135103 (2026),
+\href{https://doi.org/10.1088/1402-4896/ae5354}{doi:10.1088/1402-4896/ae5354}.
+\end{thebibliography}
+\endgroup
+\end{document}

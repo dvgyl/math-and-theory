@@ -358,6 +358,9 @@ jobs:
           - package: harmonic-boundary-five
             root: papers/mathematics/harmonic-boundary-five
             project: lean
+          - package: chsh-steering-ellipsoid
+            root: papers/physics/chsh-steering-ellipsoid
+            project: lean
           - package: singer-orbit-blocking
             root: papers/mathematics/singer-orbit-blocking
             project: lean
@@ -465,6 +468,12 @@ jobs:
             python3 -m venv "${RUNNER_TEMP}/harmonic-boundary-venv"
             "${RUNNER_TEMP}/harmonic-boundary-venv/bin/pip" install --quiet -r ../checks/requirements.txt
             "${RUNNER_TEMP}/harmonic-boundary-venv/bin/python" ../checks/run_checks.py --independent
+          elif [[ '${{ matrix.package }}' == 'chsh-steering-ellipsoid' ]]; then
+            { lake build && lake build ProjectAxiomAudit; } 2>&1 | tee "${RUNNER_TEMP}/chsh-steering-ellipsoid-build.log"
+            python3 ../scripts/check_axiom_audit.py --log "${RUNNER_TEMP}/chsh-steering-ellipsoid-build.log" --project . --output "${RUNNER_TEMP}/chsh-steering-ellipsoid-axioms.json"
+            python3 -m venv "${RUNNER_TEMP}/chsh-steering-venv"
+            "${RUNNER_TEMP}/chsh-steering-venv/bin/pip" install --quiet -r ../scripts/requirements.txt
+            "${RUNNER_TEMP}/chsh-steering-venv/bin/python" -I ../scripts/check_exact.py
           elif [[ '${{ matrix.package }}' == 'singer-orbit-blocking' ]]; then
             python3 ../verify.py --output "${RUNNER_TEMP}/singer-orbit-blocking-verification"
           elif [[ '${{ matrix.package }}' == 'width-two-order-polynomial' ]]; then

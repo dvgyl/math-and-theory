@@ -2061,6 +2061,39 @@
         "lean/HarmonicBoundary.lean": "15b7cd2e824627a6878550f590dcb13c97d1e9f3bb472101f9a44321d0ad3a6a"
       },
       "integrity_manifests": []
+    },
+    "chsh-steering-ellipsoid": {
+      "root": "papers/physics/chsh-steering-ellipsoid",
+      "release_manifest_sha256": "c4f90e5ce2be5045f63bce201b641c48649ae730fcfa5e1701dd525381d5f905",
+      "formal_scope": "Lean 4.19.0 proves, for every admissible centre length c and Bob length r, that an explicit complex 4×4 density matrix with centre (0, 0, c) and Bob length r has CHSH supremum over all unit Pauli settings exactly 2√(1 + (1 − 2c)(1 − r²)), without assuming the Horodecki formula, and checks a tilted axial witness, the rank-two sharpness family and the scalar spectral optimization behind the axial envelope; a whole-project audit covers every declaration. The joint bound itself is prior work; the general filter-to-Gram correspondence, the equality classification and the rigidity theorems are conventional proofs supported by exact symbolic checks.",
+      "proof_roots": [
+        {
+          "path": "lean",
+          "lean_version": "4.19.0",
+          "mathlib_revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+          "lakefile": "lakefile.toml",
+          "lockfile": "lake-manifest.json"
+        }
+      ],
+      "proof_sources": {
+        "lean/AxialCertificates.lean": "875d77eab9cc768e4e9f0d7d00032c0d360dd3bcca6bd6a34c5a6b46b1aa0827",
+        "lean/BoundarySharpness.lean": "89ccf8c63c621a55ddb0087de70ea64c68bcca002b93275a64a581b1950a65de",
+        "lean/CHSHAlgebra.lean": "58b07ead3b9f3f3035380a9eb8fd03d084863bc3e944b0693086dbd7c43e608c",
+        "lean/CHSHAxialWitness.lean": "43b87d019e0b472d661f186b4d32ae085b367cad9a186071b3c125471f273910",
+        "lean/CHSHFamily.lean": "b37027cc6fa05f44227a1c0475b317f6b1d44259883163cb5817b86e1627b896",
+        "lean/CHSHPhysical.lean": "35c339af84083a5efe53d271b5bd329cfa48e7ab25c403efe7c88ba0b84c0300",
+        "lean/CHSHQuantum.lean": "840e2d3c824c2a0edca7bbf3dd9f49b5be0e34c86f7ad0cef42e9394fa627285",
+        "lean/CriticalCap.lean": "5e804a585c209473e849431e9207e609bec34148189555355b726f9dabd34687",
+        "lean/ExplicitCriticalState.lean": "7d478d44333319866a7096674a2dad987b38f013818b24436f58ae5a30841f36",
+        "lean/GeneralAttainment.lean": "d98542d5c1d8e07fb5c79983cb48071dec5d4c54c0a42b51276d94c110529256",
+        "lean/GramFactorization.lean": "e9658a9104c173179cc3386f1a6841486e02129ba2e8dcb27db9e25bc488a01a",
+        "lean/ObeseSharp.lean": "1d96de91e6775483a740b8a0b6a71f3070725a71f9ca6a6dec2171bccedeb23b",
+        "lean/OrientationRigidity.lean": "d3961f135784a54112d9ac54534549fe0d50431ec53c4faded6bdab1cbe88d7c",
+        "lean/PriorCountercertificate.lean": "6438bcc29b11c8a351a7169b34d7d3b7ad8da7651b52cb78536f7d55ae044b7b",
+        "lean/ProjectAxiomAudit.lean": "f88e039a260780fd08789b1e0a736de9686ccc48a47c2234cc4cb37436529249",
+        "lean/PurityStability.lean": "891fcfe79449464d69afb1a9d4608b67bf7f5a390b8c7be738f2a4a646c0e235"
+      },
+      "integrity_manifests": []
     }
   }
 }
