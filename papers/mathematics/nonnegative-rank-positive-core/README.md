@@ -128,3 +128,5 @@ The original Kronecker-square conjecture was already disproved by Shitov in July
 In particular, Shitov's 2025 paper on restricted symmetric nonnegative trifactorization is relevant: its abstract establishes the existence of matrices without a balanced factorization. Its full proof was unavailable during this audit, leaving a concrete outstanding check on overlap with the cone obstruction. The source links and distinctions are in [LITERATURE_AND_NOVELTY.md](LITERATURE_AND_NOVELTY.md).
 
 Formal verification addresses correctness of the precise Lean statements. It does not certify novelty, completeness of the literature search, or suitability for a particular journal. The manuscript should receive specialist review before a submission claiming new mathematics.
+
+The conventional neighbourhood bounds assume a positive factorization width, `p ≥ 1`. This excludes the empty factorization of the zero matrix. The general formal lower bound and the exact mixed-block theorem are unchanged.
