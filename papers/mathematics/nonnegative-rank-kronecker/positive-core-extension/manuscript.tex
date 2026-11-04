@@ -286,7 +286,7 @@ This is stronger than checking another finite certificate. The lower obstruction
 The following statement is a consequence of existing local-openness theory, not a new local-openness theorem.
 
 \begin{proposition}[Positive balanced factors; known antecedent]\label{prop:local}
-Suppose $A=UV$ with $U,V>0$ of width $p$, and $\rk U=\rk V=\rk A=r$. In a sufficiently small neighborhood of $A$,
+Suppose $A=UV$ with $U,V>0$ of width $p\ge1$, and $\rk U=\rk V=\rk A=r$. In a sufficiently small neighborhood of $A$,
 \begin{equation}\label{eq:local}
 \rp(M)\le\max\{p,\rk M\}.
 \end{equation}
@@ -308,7 +308,7 @@ Write $B_0=xy^{\mathsf T}$ with $x,y>0$. Then $(U\otimes x)(V\otimes y^{\mathsf 
 Without minimum width, the same proof gives only the upper bound with the supplied $p$; it must not be turned into an equality by silently replacing $\rp(A)$.
 
 \subsection{A constructive alternative and the general factor-rank bound}
-A direct proof also gives a more general local estimate. If $A=UV$ with $U,V>0$, factor ranks $a,b$, and product rank $r$, then near $A$ one obtains
+A direct proof also gives a more general local estimate. If $A=UV$ has strictly positive factors of width $p\ge1$, factor ranks $a,b$, and product rank $r$, then near $A$ one obtains
 \begin{equation}\label{eq:signature}
 \rp(M)\le\max\{p,\rk M+a+b-2r\}.
 \end{equation}
