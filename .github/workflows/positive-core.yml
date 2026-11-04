@@ -1,14 +1,17 @@
 name: Verify positive-core extension
-
-# Each run checks a fresh copy of this companion package.
 on:
   push:
     paths: [papers/mathematics/nonnegative-rank-kronecker/positive-core-extension/**, .github/workflows/positive-core.yml]
   workflow_dispatch:
+    inputs:
+      manuscript_only:
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
   proof:
+    if: ${{ !inputs.manuscript_only }}
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -47,9 +50,15 @@ jobs:
           pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex
           pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex
           pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex
+          cp "$GITHUB_WORKSPACE/overview.tex" .
+          pdflatex -interaction=nonstopmode -halt-on-error overview.tex
+          pdflatex -interaction=nonstopmode -halt-on-error overview.tex
+          pdflatex -interaction=nonstopmode -halt-on-error overview.tex
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: positive-core-manuscript
           path: |
             ${{ runner.temp }}/paper/manuscript.pdf
             ${{ runner.temp }}/paper/manuscript.log
+            ${{ runner.temp }}/paper/overview.pdf
+            ${{ runner.temp }}/paper/overview.log

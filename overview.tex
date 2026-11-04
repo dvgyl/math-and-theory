@@ -31,7 +31,7 @@ AI checks are not expert human validation. These preprints have not been externa
 
 \begin{abstract}
 
-The catalogue contains sixty manuscripts and research notes across 59 result families in mathematics, theoretical computer science, and mathematical physics. Each paper states its formal verification scope. The thermal proof covers finite spectral statements, without a formal stochastic long-time identification theorem. The Gyires preprint proves inequalities for structured matrices and develops related polynomial bounds. Its principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean proofs. The results comprise counterexamples, exact special cases, sharp sequence bounds, and convergence thresholds for optimization methods. The collection makes no claim of first priority. The papers have not been peer reviewed.
+The catalogue contains sixty-one manuscripts and research notes across 60 result families in mathematics, theoretical computer science, and mathematical physics. Each paper states its formal verification scope. The thermal proof covers finite spectral statements, without a formal stochastic long-time identification theorem. The Gyires preprint proves inequalities for structured matrices and develops related polynomial bounds. Its principal order-five and order-six claims, the all-order permutation-polynomial and four-block theorems, and the exceptional-vector theorem have complete Lean proofs. The results comprise counterexamples, exact special cases, sharp sequence bounds, and convergence thresholds for optimization methods. The collection makes no claim of first priority. The papers have not been peer reviewed.
 
 \end{abstract}
 
@@ -113,6 +113,16 @@ For every $k\ge0$ an explicit rational nonnegative matrix $C$ of order $k+11$, r
 \noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/nonnegative-rank-kronecker/manuscript.pdf}{Manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/nonnegative-rank-kronecker/README.md}{Proof and reproduction}.
 
 \subsection{Graph theory and graph polynomials}
+
+\subsubsection{Positive factor ranks and exact Kronecker rank bounds}
+
+This separate companion defines a factor-rank defect $\Delta(A)$ over all nonnegative factorizations. For nonzero nonnegative matrices,
+\[
+\operatorname{rank}_{+}(A\otimes B)\ge \operatorname{rank}(A)\operatorname{rank}(B)+\max\{\Delta(A),\Delta(B)\}.
+\]
+It determines the earlier construction's mixed-block rank as $3t+4$ for every $t\ge1$. The general lower bound, obstruction, mixed-block equality and a concrete saturation interval have Lean proofs. The uniform neighbourhood formulas and the all-size saturation endpoint retain conventional proofs. The new seed lower bound is cited from classical work. Historical priority remains unconfirmed.
+
+\noindent\href{https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/nonnegative-rank-positive-core/manuscript.pdf}{Companion manuscript}\quad\href{https://github.com/dvgyl/math-and-theory/blob/main/papers/mathematics/nonnegative-rank-positive-core/README.md}{Proof and reproduction}.
 
 \subsubsection{An entropy increase for a structurally disassortative DomiRank graph}
 
