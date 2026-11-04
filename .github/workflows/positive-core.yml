@@ -1,19 +1,28 @@
 name: Verify positive-core extension
 on:
   push:
-    paths: [papers/mathematics/nonnegative-rank-kronecker/positive-core-extension/**]
+    branches: [main]
+    paths: [papers/mathematics/nonnegative-rank-positive-core/**, .github/workflows/positive-core.yml]
   workflow_dispatch:
+    inputs:
+      proof_only:
+        type: boolean
+        default: false
+      manuscript_only:
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
   proof:
+    if: ${{ !inputs.manuscript_only }}
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
       - name: Copy the package and install Lean
         run: |
-          cp -R papers/mathematics/nonnegative-rank-kronecker/positive-core-extension "$RUNNER_TEMP/positive-core"
+          cp -R papers/mathematics/nonnegative-rank-positive-core "$RUNNER_TEMP/positive-core"
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - name: Install exact dependencies
@@ -30,9 +39,11 @@ jobs:
           name: positive-core-proof-records
           path: |
             ${{ runner.temp }}/positive-core/lean/VERIFICATION.json
+            ${{ runner.temp }}/positive-core/lean/lake-manifest.json
             ${{ runner.temp }}/positive-core/lean/verification/
             ${{ runner.temp }}/positive-core/verification/fresh-replay.json
   manuscript:
+    if: ${{ !inputs.proof_only }}
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
@@ -40,14 +51,20 @@ jobs:
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq texlive-latex-extra texlive-fonts-recommended
       - name: Compile the manuscript
         run: |
-          cp -R papers/mathematics/nonnegative-rank-kronecker/positive-core-extension "$RUNNER_TEMP/paper"
+          cp -R papers/mathematics/nonnegative-rank-positive-core "$RUNNER_TEMP/paper"
           cd "$RUNNER_TEMP/paper"
           pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex
           pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex
           pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex
+          cp "$GITHUB_WORKSPACE/overview.tex" .
+          pdflatex -interaction=nonstopmode -halt-on-error overview.tex
+          pdflatex -interaction=nonstopmode -halt-on-error overview.tex
+          pdflatex -interaction=nonstopmode -halt-on-error overview.tex
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: positive-core-manuscript
           path: |
             ${{ runner.temp }}/paper/manuscript.pdf
             ${{ runner.temp }}/paper/manuscript.log
+            ${{ runner.temp }}/paper/overview.pdf
+            ${{ runner.temp }}/paper/overview.log

@@ -1,6 +1,6 @@
 # Manuscript collection
 
-**60 manuscripts and research notes across 59 result families in mathematics, theoretical computer science, and mathematical physics.**
+**61 manuscripts and research notes across 60 result families in mathematics, theoretical computer science, and mathematical physics.**
 
 [**Read the overview PDF**](overview.pdf).
 
@@ -93,6 +93,16 @@ Vandaele, Gillis, Glineur and Tuyttens conjectured in 2016 that every nonnegativ
 [Paper PDF](papers/mathematics/nonnegative-rank-kronecker/manuscript.pdf) · [LaTeX](papers/mathematics/nonnegative-rank-kronecker/manuscript.tex) · [Proof and reproduction](papers/mathematics/nonnegative-rank-kronecker/README.md) · [Citation](papers/mathematics/nonnegative-rank-kronecker/CITATION.bib)
 
 ### Graph theory and graph polynomials
+
+#### [Positive factor ranks, paired nullspaces, and exact Kronecker rank bounds](papers/mathematics/nonnegative-rank-positive-core/manuscript.pdf)
+
+**Family:** `nonnegative-rank-positive-core`. Companion to the separate Kronecker counterexample.
+
+**Abstract.** For nonzero nonnegative matrices A and B, the nonnegative rank of A ⊗ B is at least rank(A) rank(B) plus the larger factor-rank defect. The exact original mixed-block value is 3t + 4 for every t ≥ 1. Positive-factor perturbation results and a contrasting saturation construction explain when equality with ordinary rank can occur.
+
+**Formal scope.** Lean covers the factor-rank minimum, the general defect lower bound, paired-nullspace capacity, directional absorption, tensor compression, the nested-square obstruction and profile threshold, the original mixed-block equality in both orders, and the real-parameter saturation interval for the order-two auxiliary. Uniform neighbourhood formulas and the all-size saturation endpoint retain conventional proofs. The new seed lower bound relies on a cited classical result. Novelty is not certified.
+
+[Paper PDF](papers/mathematics/nonnegative-rank-positive-core/manuscript.pdf) · [LaTeX](papers/mathematics/nonnegative-rank-positive-core/manuscript.tex) · [Citation](papers/mathematics/nonnegative-rank-positive-core/CITATION.bib) · [Proof and reproduction](papers/mathematics/nonnegative-rank-positive-core/README.md)
 
 #### [An entropy increase for a structurally disassortative DomiRank graph](papers/mathematics/domirank-entropy/paper.pdf)
 

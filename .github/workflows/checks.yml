@@ -349,6 +349,9 @@ jobs:
           - package: structural-selfadhesivity
             root: papers/mathematics/structural-selfadhesivity
             project: proof/e3_lean
+          - package: nonnegative-rank-positive-core
+            root: papers/mathematics/nonnegative-rank-positive-core
+            project: lean
           - package: nonnegative-rank-kronecker
             root: papers/mathematics/nonnegative-rank-kronecker
             project: lean
@@ -476,6 +479,8 @@ jobs:
             python3 ../E3_all_overlap_check.py ../E3_all_overlap_polymatroids.json --output "${RUNNER_TEMP}/e3-positive-check.json"
             python3 ../E3_negative_check.py
             python3 ../E3_lean_witness_correspondence.py
+          elif [[ '${{ matrix.package }}' == 'nonnegative-rank-positive-core' ]]; then
+            python3 ../verify_all.py --lean
           elif [[ '${{ matrix.package }}' == 'nonnegative-rank-kronecker' ]]; then
             bash verify.sh
             python3 ../certificate/exact_certificate.py --verify-only ../certificate/C11_NMF109.json

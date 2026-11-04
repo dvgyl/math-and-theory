@@ -10,7 +10,7 @@ The collection contains results with different formal verification scopes. Each 
 
 ## Navigating the collection
 
-The current catalogue contains 60 manuscripts and research notes across 59 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
+The current catalogue contains 61 manuscripts and research notes across 60 result families. A result family groups related work, including principal theorems, companion arguments and supporting results. I organize the collection by discipline and subject.
 
 - Start with the [overview](overview.pdf) for descriptions of the result families.
 - Use the [manuscript map](CONTENTS.md) to find individual papers, abstracts and supporting materials.
@@ -18,6 +18,8 @@ The current catalogue contains 60 manuscripts and research notes across 59 resul
 - The [Lean library](lean/README.md), [formalization catalogue](lean/formalization.yaml) and [verification guide](verification/README.md) identify formal proofs, associated papers and checking commands.
 - [Unfinished formal proofs](UNFINISHED.md) lists the remaining Lean gaps and conventional-proof boundaries.
 - [Adding a result](docs/ADDING_RESULTS.md) explains the family layout, metadata template and required checks.
+
+The [positive-core companion](papers/mathematics/nonnegative-rank-positive-core/manuscript.pdf) extends the nonnegative-rank Kronecker result. It has its own manuscript, proof package and citation.
 
 ## Standout results
 

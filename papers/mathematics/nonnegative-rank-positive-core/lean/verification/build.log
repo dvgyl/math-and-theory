@@ -1,0 +1,197 @@
+✔ [3206/3237] Built MatCKronecker.NonnegativeRank (2.5s)
+✔ [3207/3237] Built MatCKronecker.Seed (5.0s)
+✔ [3208/3237] Built MatCKronecker.BlockSum (2.7s)
+⚠ [3209/3237] Built PositiveCore.ConeObstruction (3.9s)
+warning: PositiveCore/ConeObstruction.lean:73:75: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PositiveCore/ConeObstruction.lean:123:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PositiveCore/ConeObstruction.lean:126:52: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3210/3237] Built PositiveCore.BoundedRank (3.9s)
+warning: PositiveCore/BoundedRank.lean:19:5: Variable name `hd` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hd
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [3211/3237] Built MatCKronecker.PositiveIdentity (2.9s)
+✔ [3212/3237] Built MatCKronecker.BasicFactorizations (2.3s)
+✔ [3213/3237] Built MatCKronecker.SimplexFactorization (3.7s)
+✔ [3214/3237] Built MatCKronecker.SeedNonnegativeRank (2.6s)
+✔ [3215/3237] Built MatCKronecker.BlockRank (2.8s)
+✔ [3216/3237] Built MatCKronecker.BlockKronecker (2.8s)
+✔ [3217/3237] Built MatCKronecker.CrossData (2.0s)
+⚠ [3218/3237] Built PositiveCore.Compression (3.3s)
+warning: PositiveCore/Compression.lean:17:0: automatically included section variable(s) unused in theorem `PositiveCore.rank_kronecker_row_slice_le`:
+  [Fintype m]
+  [Fintype s]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype m] [Fintype s] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PositiveCore/Compression.lean:32:0: automatically included section variable(s) unused in theorem `PositiveCore.rank_kronecker_col_slice_le`:
+  [Fintype s]
+  [Fintype t]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype s] [Fintype t] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PositiveCore/Compression.lean:41:13: This simp argument is unused:
+  ite_mul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [S, mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PositiveCore/Compression.lean:57:34: This simp argument is unused:
+  Matrix.kronecker_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Matrix.submatrix_apply, mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PositiveCore/Compression.lean:73:34: This simp argument is unused:
+  Matrix.kronecker_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Matrix.submatrix_apply, mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3219/3237] Built PositiveCore.Duplication (3.2s)
+warning: PositiveCore/Duplication.lean:58:8: automatically included section variable(s) unused in theorem `PositiveCore.duplicateLeft_inl`:
+  [Fintype m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PositiveCore/Duplication.lean:63:8: automatically included section variable(s) unused in theorem `PositiveCore.duplicateLeft_inr`:
+  [Fintype m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PositiveCore/Duplication.lean:68:8: automatically included section variable(s) unused in theorem `PositiveCore.duplicateRight_inl`:
+  [Fintype n]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype n] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PositiveCore/Duplication.lean:75:8: automatically included section variable(s) unused in theorem `PositiveCore.duplicateRight_inr`:
+  [Fintype n]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype n] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PositiveCore/Duplication.lean:103:0: automatically included section variable(s) unused in theorem `PositiveCore.duplicate_product`:
+  [Fintype m]
+  [Fintype n]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype m] [Fintype n] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PositiveCore/Duplication.lean:111:0: automatically included section variable(s) unused in theorem `PositiveCore.duplicateLeft_rank`:
+  [Fintype m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [3220/3237] Built PositiveCore.RankSaturation (2.4s)
+warning: PositiveCore/RankSaturation.lean:51:0: automatically included section variable(s) unused in theorem `PositiveCore.saturated_factor_ranks`:
+  [Fintype m]
+  [DecidableEq k]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype m] [DecidableEq k] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [3221/3237] Built MatCKronecker.SimplexUniform (3.1s)
+✔ [3222/3237] Built PositiveCore.KroneckerRank (2.4s)
+⚠ [3223/3237] Built PositiveCore.Absorption (2.0s)
+warning: PositiveCore/Absorption.lean:61:19: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PositiveCore/Absorption.lean:61:19: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PositiveCore/Absorption.lean:69:15: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [3224/3237] Built MatCKronecker.CrossFactors (3.7s)
+⚠ [3225/3237] Built PositiveCore.RankProfile (2.8s)
+warning: PositiveCore/RankProfile.lean:32:0: automatically included section variable(s) unused in theorem `PositiveCore.exists_hasFactorRankBound`:
+  [Fintype m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PositiveCore/RankProfile.lean:38:0: automatically included section variable(s) unused in theorem `PositiveCore.factorRankProfile_le_of_bound`:
+  [Fintype m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PositiveCore/RankProfile.lean:118:0: automatically included section variable(s) unused in theorem `PositiveCore.exists_positive_entry_of_nonzero`:
+  [Fintype m]
+  [Fintype n]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype m] [Fintype n] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PositiveCore/RankProfile.lean:136:0: automatically included section variable(s) unused in theorem `PositiveCore.kronecker_swap_ranks`:
+  [Fintype m]
+  [Fintype s]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype m] [Fintype s] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PositiveCore/RankProfile.lean:144:34: This simp argument is unused:
+  Matrix.kronecker_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Matrix.submatrix_apply, mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3226/3237] Built PositiveCore.NullspaceAbsorption (2.4s)
+warning: PositiveCore/NullspaceAbsorption.lean:60:0: automatically included section variable(s) unused in theorem `PositiveCore.abs_mul_entry_le`:
+  [DecidableEq q]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq q] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [3227/3237] Built PositiveCore.OriginalMixedRank (2.5s)
+✔ [3228/3237] Built MatCKronecker.Counterexample (3.1s)
+✔ [3229/3237] Built MatCKronecker (2.8s)
+⚠ [3231/3237] Built PositiveCore.Capacity (4.6s)
+warning: PositiveCore/Capacity.lean:26:0: automatically included section variable(s) unused in theorem `PositiveCore.finrank_comap_subtype`:
+  [FiniteDimensional ℝ E]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [FiniteDimensional ℝ E] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: PositiveCore/Capacity.lean:136:0: automatically included section variable(s) unused in theorem `PositiveCore.exists_matrix_nullspace_frame_iff`:
+  [Fintype m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [3232/3237] Built PositiveCore.Directional (4.9s)
+⚠ [3233/3237] Built PositiveCore.TensorObstruction (8.2s)
+warning: PositiveCore/TensorObstruction.lean:130:31: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PositiveCore/TensorObstruction.lean:130:31: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PositiveCore/TensorObstruction.lean:135:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3234/3237] Built PositiveCore.ProfileExamples (6.2s)
+warning: PositiveCore/ProfileExamples.lean:141:89: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [3235/3237] Built PositiveCore.Activation (29s)
+✔ [3236/3237] Built PositiveCore (1.4s)
+Build completed successfully (3237 jobs).

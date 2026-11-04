@@ -11,6 +11,7 @@ Each family directory contains its manuscripts, proof sources or shared-library 
 | [An unbounded obstruction to projection AM–GM in Loewner order](projection-amgm/) | [PDF](projection-amgm/paper.pdf) |
 | [Matrix-pencil rank distance as an explicit completion problem](matrix-pencil-completion/) | [PDF](matrix-pencil-completion/manuscript.pdf) |
 | [Counterexamples to the Kronecker-square lower bound for nonnegative rank](nonnegative-rank-kronecker/) | [PDF](nonnegative-rank-kronecker/manuscript.pdf) |
+| [Positive factor ranks, paired nullspaces, and exact Kronecker rank bounds](nonnegative-rank-positive-core/) | [PDF](nonnegative-rank-positive-core/manuscript.pdf) |
 | [An entropy increase for a structurally disassortative DomiRank graph](domirank-entropy/) | [PDF](domirank-entropy/paper.pdf) |
 | [Ultra-log-concavity of domination sequences of powers of paths and cycles](galvin-zhang/) | [PDF](galvin-zhang/manuscript.pdf) |
 | [Sharp escape of complex domination roots in square flowers](graph-roots/) | [PDF](graph-roots/manuscript.pdf) |

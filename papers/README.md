@@ -17,3 +17,5 @@ scopes. The [shared Lean library](../lean/) serves the seven families listed in 
 other families have their own pinned Lean package beside the manuscript.
 [Common verification tools](../verification/) check the collection as a whole.
 See [adding a result](../docs/ADDING_RESULTS.md) for the repository conventions.
+
+I publish the [positive-core companion](mathematics/nonnegative-rank-positive-core/) separately from the earlier Kronecker result. It has its own [manuscript](mathematics/nonnegative-rank-positive-core/manuscript.pdf) and citation.

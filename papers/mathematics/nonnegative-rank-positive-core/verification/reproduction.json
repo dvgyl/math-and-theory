@@ -1,0 +1,159 @@
+{
+  "status": "PASS",
+  "upstream_files_preserved": 41,
+  "activation_certificates": [
+    {
+      "file": "activation_s2.json",
+      "sha256": "870838f1774334b7ec4bba310c253be43ae6012db8ed61f4eaa28071aa2948d0",
+      "status": "PASS",
+      "s": 2,
+      "epsilon": "1/238032",
+      "factor_width": 6,
+      "ordinary_rank_product": 6,
+      "nonnegative_rank_product_exact": 6,
+      "product_entries_checked": 64,
+      "pivot_columns": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "minimum_left": "1867/41760",
+      "minimum_right": "436393/108542592",
+      "seed_nonnegative_rank_lower_bound_checked": false
+    },
+    {
+      "file": "activation_s3.json",
+      "sha256": "1c277854418bfce361b453b5d03c5de363d125592e87ed19394b5d2188bc2b6b",
+      "status": "PASS",
+      "s": 3,
+      "epsilon": "1/1904256",
+      "factor_width": 9,
+      "ordinary_rank_product": 9,
+      "nonnegative_rank_product_exact": 9,
+      "product_entries_checked": 144,
+      "pivot_columns": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "minimum_left": "3977/83520",
+      "minimum_right": "5554081/2605022208",
+      "seed_nonnegative_rank_lower_bound_checked": false
+    },
+    {
+      "file": "activation_s5.json",
+      "sha256": "c9f69d75d4f58f6952b3414e75c42c7a301a718dd31e2bd73eff85a33b1190ba",
+      "status": "PASS",
+      "s": 5,
+      "epsilon": "1/15234048",
+      "factor_width": 15,
+      "ordinary_rank_product": 15,
+      "nonnegative_rank_product_exact": 15,
+      "product_entries_checked": 400,
+      "pivot_columns": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "minimum_left": "2041/41760",
+      "minimum_right": "75535489/69467258880",
+      "seed_nonnegative_rank_lower_bound_checked": false
+    }
+  ],
+  "regeneration": [
+    {
+      "status": "PASS",
+      "s": 2,
+      "q": 3,
+      "epsilon": "1/238032",
+      "factor_width": 6,
+      "rank_A": 3,
+      "rank_B": 2,
+      "rank_product": 6,
+      "minimum_L": "1867/41760",
+      "minimum_R": "436393/108542592",
+      "entries_checked": 64
+    },
+    {
+      "status": "PASS",
+      "s": 3,
+      "q": 6,
+      "epsilon": "1/1904256",
+      "factor_width": 9,
+      "rank_A": 3,
+      "rank_B": 3,
+      "rank_product": 9,
+      "minimum_L": "3977/83520",
+      "minimum_R": "5554081/2605022208",
+      "entries_checked": 144
+    },
+    {
+      "status": "PASS",
+      "s": 5,
+      "q": 12,
+      "epsilon": "1/15234048",
+      "factor_width": 15,
+      "rank_A": 3,
+      "rank_B": 5,
+      "rank_product": 15,
+      "minimum_L": "2041/41760",
+      "minimum_R": "75535489/69467258880",
+      "entries_checked": 400
+    }
+  ],
+  "regenerated_certificates_byte_identical": true,
+  "cone_pairings_checked": 16,
+  "original_exact_replay": {
+    "canonical_rational_entries_parsed": 26499,
+    "certificate_file": "upstream/original-package/certificate/C11_NMF109.json",
+    "certificate_file_sha256": "56b58aa043c70534b70059708dc82e2fa916ae3c140e8ea2c3f0cccd93f56ae7",
+    "checks": {
+      "entry_sign_checks": 26499,
+      "matrix_equalities": 7,
+      "matrix_equality_entries_checked": 14929,
+      "nonzero_scalar_products_evaluated": 41695,
+      "ordinary_rank_checks": 3,
+      "scalar_relations": 21
+    },
+    "elapsed_nanoseconds": 191523917,
+    "mode": "verify-only",
+    "square_nonnegative_rank_exact_value": null,
+    "square_nonnegative_rank_upper_bound": 109,
+    "status": "PASS"
+  },
+  "original_independent_replay": {
+    "status": "PASS",
+    "order": 11,
+    "factorization_width": 109,
+    "kronecker_entries_checked": 14641,
+    "rank_A": 3,
+    "rank_C": 10
+  },
+  "fresh_lean_build_this_invocation": false,
+  "stored_lean_source_and_log_hashes_valid": true,
+  "recorded_lean_module_count": 30,
+  "recorded_lean_declarations": 267,
+  "recorded_lean_theorems": 206,
+  "boundary": "External integer/rational checks do not certify literature priority. Without --lean, the stored Lean record is validated but not rerun."
+}
