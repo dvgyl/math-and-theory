@@ -1,9 +1,13 @@
 name: Verify positive-core extension
 on:
   push:
+    branches: [main]
     paths: [papers/mathematics/nonnegative-rank-kronecker/positive-core-extension/**, .github/workflows/positive-core.yml]
   workflow_dispatch:
     inputs:
+      proof_only:
+        type: boolean
+        default: false
       manuscript_only:
         type: boolean
         default: false
@@ -35,9 +39,11 @@ jobs:
           name: positive-core-proof-records
           path: |
             ${{ runner.temp }}/positive-core/lean/VERIFICATION.json
+            ${{ runner.temp }}/positive-core/lean/lake-manifest.json
             ${{ runner.temp }}/positive-core/lean/verification/
             ${{ runner.temp }}/positive-core/verification/fresh-replay.json
   manuscript:
+    if: ${{ !inputs.proof_only }}
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
