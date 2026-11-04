@@ -1,0 +1,1431 @@
+{
+  "recorded_utc": "2026-11-04T16:57:47.298280+00:00",
+  "fresh_project_build": true,
+  "build_exit_code": 0,
+  "axiom_audit_exit_code": 0,
+  "lean_version": "4.35.0-rc3",
+  "lean_commit": "470d5ce1400764999581fd26d5d72b00d990b0f4",
+  "mathlib_commit": "0db6cb99b412983de54b59ecc1b0b2747542cda3",
+  "executable_path_compatibility_shim_used": true,
+  "freshly_built_modules": [
+    "MatCKronecker",
+    "MatCKronecker.BasicFactorizations",
+    "MatCKronecker.BlockKronecker",
+    "MatCKronecker.BlockRank",
+    "MatCKronecker.BlockSum",
+    "MatCKronecker.Counterexample",
+    "MatCKronecker.CrossData",
+    "MatCKronecker.CrossFactors",
+    "MatCKronecker.NonnegativeRank",
+    "MatCKronecker.PositiveIdentity",
+    "MatCKronecker.Seed",
+    "MatCKronecker.SeedNonnegativeRank",
+    "MatCKronecker.SimplexFactorization",
+    "MatCKronecker.SimplexUniform",
+    "PositiveCore",
+    "PositiveCore.Absorption",
+    "PositiveCore.Activation",
+    "PositiveCore.BoundedRank",
+    "PositiveCore.Capacity",
+    "PositiveCore.Compression",
+    "PositiveCore.ConeObstruction",
+    "PositiveCore.Directional",
+    "PositiveCore.Duplication",
+    "PositiveCore.KroneckerRank",
+    "PositiveCore.NullspaceAbsorption",
+    "PositiveCore.OriginalMixedRank",
+    "PositiveCore.ProfileExamples",
+    "PositiveCore.RankProfile",
+    "PositiveCore.RankSaturation",
+    "PositiveCore.TensorObstruction"
+  ],
+  "audited_declarations": 267,
+  "audited_theorems": 206,
+  "allowed_foundational_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "axioms": {
+    "MatCKronecker.EntryNonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.EntryNonneg.blockDiag": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.EntryNonneg.fromBlocks": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.EntryNonneg.kronecker": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.EntryNonneg.smul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.EntryNonneg.transpose": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.blockDiag": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.blockDiag_kronecker": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.blockDiag_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.kronecker": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.kronecker_swap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.mono": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.rank_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.smul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.submatrix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.transpose": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.RationalEntries": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.abs_sum_eighteen_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.baselineScale": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.baselineScale_ge_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.blockDiag_kronecker_reindex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.blockProductEquiv": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCKronecker.centeredIdentity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.contrastLeft": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.contrastLeft_abs_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.contrastRight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.contrastRight_abs_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.contrast_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.correctedTerm": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.correctedTerm_hasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.counterexample_eleven": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossEpsilon": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossEpsilon_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossEpsilon_rational": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossEta": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossEta_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossRankLeft": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossRankLeft_abs_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossRankRight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossRankRight_abs_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossU": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossU_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossV": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossV_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.cross_factorization_identity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.cross_hasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.cross_rank_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.exists_hasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.exists_rational_counterexample_with_gap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.factor_term_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.finiteWitness": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.hasNMF_nnrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.hasNMF_of_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.hasNMF_submatrix_equiv_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.hasNMF_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nearOne": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nearOneInverse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nearOneInverse_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nearOne_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nearOne_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_fromBlocks": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_kronecker_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_le_card_width": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_le_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_le_of_hasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_nearOne": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_submatrix_equiv": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_transpose": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.onesMatrix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.onesMatrix_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.otherLeft": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.otherRight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.other_hasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.other_plus_main": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.rank_fromBlocks": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.rank_le_nnrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.rank_nearOne": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedLeft": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedLeft_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedMinor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedMinor_det": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedRankLeft": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedRankLeft_abs_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedRankRight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedRankRight_abs_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedRight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedRight_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_cross_product": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_diagonal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_hasNMF_four": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_nnrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_nonnegative_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_not_hasNMF_three": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_positive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_rank_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_rational": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexLeft": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexLeft_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexLeft_nonneg_eighteen": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexLeft_nonneg_uniform": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexRight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexRight_nonneg_eighteen": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexRight_nonneg_uniform": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexRight_sub_none": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexRight_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexRowDifferences": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplex_abs_sum_le_card_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplex_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.smallBlock": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.smallBlock_hasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.smallBlock_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.smallBlock_rational": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.vandaele_gillis_glineur_tuyttens_conjecture_false": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witnessIndexEquiv": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witnessMatrix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witness_nnrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witness_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witness_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witness_rational": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witness_square_hasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witness_square_nnrank_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witness_unbounded_gap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.auxiliary": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.auxiliary_det": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.auxiliary_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.hasNMF_six": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.left": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.leftEven": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.leftOdd": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.left_positive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.product_identity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.product_nnrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.product_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.product_rank_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.right": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.rightConstant": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.rightEvenSlope": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.rightOddSlope": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.right_positive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.seed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.seedMinor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.seedMinor_det": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.seedRankLeft": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.seedRankRight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.seed_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.Activation.seed_rank_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ConeObstruction.cone_pairing_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ConeObstruction.difference_mul_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ConeObstruction.factorization_score_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ConeObstruction.mass": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ConeObstruction.mass_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ConeObstruction.mass_nested": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ConeObstruction.nested": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ConeObstruction.parameter_le_half": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ConeObstruction.score": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ConeObstruction.score_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ConeObstruction.score_nested": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ConeObstruction.twist": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.HasFactorRankBound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.balanceRow": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.intrinsic_column_balance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.intrinsic_row_balance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.left_annihilator_of_equal_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.lowerLeft": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.lowerRight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.lower_factor_rank_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.lower_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.nested_balanced_parameter_le_half": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.nested_defect_high": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.nested_defect_low": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.nested_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.nested_profile_high": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.nested_profile_low": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.original_seed_defect": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.original_seed_profile": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.rank_le_three_of_last_column": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.right_annihilator_of_equal_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.ProfileExamples.score_bound_of_equal_factor_ranks": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.abs_mul_entry_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.absorption_bounded": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.absorption_of_coordinates": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.balanced_factorization_of_kronecker_rank_saturation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.capacityMap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.capacity_dimension": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.directional_absorption_factor_rank_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.directional_absorption_of_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.directional_nnrank_le_of_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.duplicateD": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.duplicateD_mul_duplicateE": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.duplicateE": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.duplicateLeft": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.duplicateLeft_inl": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.duplicateLeft_inr": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.duplicateLeft_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.duplicateLeft_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.duplicateRight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.duplicateRight_inl": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.duplicateRight_inr": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.duplicateRight_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.duplicateRight_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.duplicate_product": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.exists_bounded_rank_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.exists_factorization_max_rank_eq_profile": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.exists_hasFactorRankBound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.exists_left_inverse_of_full_column_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.exists_matrix_nullspace_frame_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.exists_nullspace_frame_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.exists_nullspace_frame_iff_dimension": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.exists_positive_duplication": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.exists_positive_entry_of_nonzero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.exists_rank_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.exists_right_inverse_of_full_row_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.factorRankDefect": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.factorRankDefect_eq_zero_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.factorRankProfile": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.factorRankProfile_add_product_rank_le_nnrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.factorRankProfile_add_product_rank_le_nnrank_right": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.factorRankProfile_add_product_rank_le_of_hasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.factorRankProfile_le_nnrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.factorRankProfile_le_of_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.finite_positive_margin": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.finrank_comap_subtype": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.four_column_relation_transfer": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.four_row_relation_transfer": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.hasFactorRankBound_profile": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.hasNMF_kronecker_compression": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.kronecker_factor_compression": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.kronecker_swap_ranks": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.left_annihilator_transfer": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.nested_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.nested_tensor_obstruction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.nullspace_absorption": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.nullspace_absorption_bounded": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.nullspace_absorption_identity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.nullspace_directional_interval": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.nullspace_nnrank_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.nullspace_scaled_absorption_identity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.original_mixed_nnrank_exact": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.original_mixed_nnrank_exact_reverse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.original_mixed_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.original_seed_tensor_obstruction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.original_seed_tensor_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.positive_affine_interval": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.positive_core_absorption": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.rank_add_max_factorRankDefect_le_nnrank_kronecker": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.rank_kronecker": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.rank_kronecker_col_slice": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.rank_kronecker_col_slice_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.rank_kronecker_row_slice": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.rank_kronecker_row_slice_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.rank_le_factorRankProfile": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.rank_mul_add_max_factorRankDefect_le_nnrank_kronecker": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.right_annihilator_transfer": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.saturated_factor_ranks": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.simplexLeft_nonneg_bounded": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.simplexLeft_nonneg_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.simplexRight_nonneg_bounded": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.simplexRight_nonneg_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PositiveCore.tensor_obstruction_of_score": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "source_and_log_sha256": {
+    "AxiomAudit.lean": "f44247fe4c014bf9a44b8bfa266665e26cf2ecbc8bcd0f57b3873deca67bf164",
+    "MatCKronecker/BasicFactorizations.lean": "02c22d1dfea0e737b50da31ebcd75dc130d95f98fc2501faf812b07acf754b98",
+    "MatCKronecker/BlockKronecker.lean": "bcf9f878675f7a5214b3a5d032c1abfdb82b3d182f393c16c23e7f122188709d",
+    "MatCKronecker/BlockRank.lean": "2ab4d27b7cafdb2f5d3a7c02f24d4f073e7814d28e98745e20661228491710d2",
+    "MatCKronecker/BlockSum.lean": "42e53b3bb8f548637cda758c7d8ca690375e9645633c51126f1b414bc089e043",
+    "MatCKronecker/Counterexample.lean": "65af2854a50caf3cdd1a9a9de2c60e7e75da5791d9704ece4df32e348e7824d7",
+    "MatCKronecker/CrossData.lean": "8da915faf0d4443dbc47dadb6891b29d7aae917824b48d187ff4db32cbb6e577",
+    "MatCKronecker/CrossFactors.lean": "7b11c9a8a02005b3699c33c17f131432e72a109009fe9df2b7810da739981250",
+    "MatCKronecker/NonnegativeRank.lean": "fe22aa80df229e6ee54bb4e2aae09b773c1e34c83a8821341145925c45680a24",
+    "MatCKronecker/PositiveIdentity.lean": "f7d518106ddef2a05b43f44cc7e5b86b79aa95a3b02141326988c6eb3029e4ad",
+    "MatCKronecker/Seed.lean": "d54eefb5ca7db269fff13a7b6500b852ec3a347c82d48c5032299b55c5564e2a",
+    "MatCKronecker/SeedNonnegativeRank.lean": "6dea1cd7392d84b55c35624a3103c59d807222a2bd92f0bb07a1ad487d827a47",
+    "MatCKronecker/SimplexFactorization.lean": "f87e0d8e0d6393f8198f48d0d88bb51b6ebddb22090ed77ae145c572beddff2e",
+    "MatCKronecker/SimplexUniform.lean": "50bda4c481f41211d21b90e05461fb21143816313963cc44d52615096e5c61c1",
+    "MatCKronecker.lean": "842e5c80a48f931f811672c5ab4ea20a59690854c6a2446816749aa02110c823",
+    "PositiveCore/Absorption.lean": "7e477d6fb1e3272bc9a1e6e4344d37132c7021ee5f36379b78eb0bad19d8a16b",
+    "PositiveCore/Activation.lean": "9aab1a4854e129118871490faabe81ec23bdf7701891f836e7e8c4f0d5a74215",
+    "PositiveCore/BoundedRank.lean": "0c5628bc32c0005ccf0a5784dbe81af6bb4a4700d681c92b7a44243f6a7f1d2b",
+    "PositiveCore/Capacity.lean": "cf2e508a6c353970cc1b3725e0af2d5f7e53acf4f1bbad0ae1684136e27f2b8b",
+    "PositiveCore/Compression.lean": "f13b98225725843ee59a03f7eb8b3bdeff88894ce52a7febb1d0344ae49f2dd0",
+    "PositiveCore/ConeObstruction.lean": "4017c45f61d7368652e541f2c6aa14b29dac66c664d6c06e410be6716bec5ae9",
+    "PositiveCore/Directional.lean": "180c82c11d74119d0bd01e174de34d5c3276606580530b935e60fe89d2c0dd55",
+    "PositiveCore/Duplication.lean": "601c2947e434bbfc5f1834e320cf018f94f4630e3293b1043e11d77097392b12",
+    "PositiveCore/KroneckerRank.lean": "8d72fadab3888cdf9367a826485f14463a405c64b348041272fe919e701e0fef",
+    "PositiveCore/NullspaceAbsorption.lean": "cea2c83b7e0497c3650cb047254061a9b338cf981aecd19a67a853797e13bbe9",
+    "PositiveCore/OriginalMixedRank.lean": "f3867ad2210aca70f250e6c5192e85f09a895248b08e3d33274e6214fee6e5a0",
+    "PositiveCore/ProfileExamples.lean": "4d5e33d406b0d655b579899502c9d4e77adcc29da99136dc7a267e3a8962e7ff",
+    "PositiveCore/RankProfile.lean": "4e0c1e5d312e614ecc8f0a670163e2d63e38275af6080088c33535387ebe2fc8",
+    "PositiveCore/RankSaturation.lean": "1bd38cb318e9017bb56cbedd758004e4bf70cb7a503ecb5c4f1cfdbc431a5a60",
+    "PositiveCore/TensorObstruction.lean": "afacf99259308097f488ed1b5c2378be5be2c0583aeea5d2bed134efbda338cf",
+    "PositiveCore.lean": "5adb9a16251d6da08daf8c74fa51b0c6e9e78a0f0b8ff82d9d82ab001a72b0ae",
+    "fetch_cache.py": "16825b331fdc968d01aa496e64139b07aaeadebf87e9cb180b2f7c8206bcf395",
+    "generate_audit.py": "8fa24f76c32fc6cdf40029f163223e209453fc2ec754ff9c705146ae3c3423da",
+    "lake-manifest.json": "d1791e43f0f917c3bcf2d351649a36acebebd18d0ba6ea261ab04d7cb813deb8",
+    "lakefile.toml": "6db9e4087fd5647477897f3c21d51c4231bca27b100c0fb153389552d508306a",
+    "lean-toolchain": "bc84812c94489d1e3e191baa1dc10d5eb684382d7fe9d2a5ab085e72c1c67e47",
+    "verification/axioms.log": "cf10d0be70792cd1f31aca9de489d6529484fad93d8d46bcf7df1c682724a0b5",
+    "verification/build.log": "1a5ee0106dfda1d31833da985519cac9c40453170fe5bf40df4f52c9bc6ec29c",
+    "verification/environment.log": "b12540b585a450291d8206f739292d3db9295f508e598dd081d653722581d75d",
+    "verification/lean_app_path_compat.c": "a5806d65a9e9b0b8e57026b723cb36dfa40724b48dc0f84f5fd0cc2f60632f7f",
+    "verification/upstream-sources.json": "ad2f12e11440d70a8130c8da470d08cb1c448500144419dccab699bdb6581e21",
+    "verify.sh": "708332ebabfa76a6886880e1db283e5d562b303d6b7d52b7683331a76145af1a",
+    "verify_record.py": "fc02ca5e698d84399b53e6a7dad3442cd6f4c860bae4a870c2a9dc34df623da9"
+  },
+  "verification_boundary": "All authored source modules were rebuilt after deleting their build directory. Pinned Mathlib dependency caches were retained. Proofs use only Lean standard foundations. The optional Linux executable-path compatibility shim changes no parser, elaborator, evaluator, or kernel. External Python certificate checks are additional arithmetic checks and are not premises of Lean theorems. This verification does not establish novelty or journal readiness."
+}

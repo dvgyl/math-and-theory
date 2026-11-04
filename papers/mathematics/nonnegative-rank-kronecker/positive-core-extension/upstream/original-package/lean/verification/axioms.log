@@ -1,0 +1,425 @@
+def MatCKronecker.EntryNonneg.{u_1, u_2} : {m : Type u_1} → {n : Type u_2} → Matrix m n ℝ → Prop :=
+fun {m} {n} A => ∀ (i : m) (j : n), 0 ≤ A i j
+def MatCKronecker.HasNMF.{u_1, u_2} : {m : Type u_1} → {n : Type u_2} → Matrix m n ℝ → ℕ → Prop :=
+fun {m} {n} A k => ∃ U V, MatCKronecker.EntryNonneg U ∧ MatCKronecker.EntryNonneg V ∧ U * V = A
+def MatCKronecker.RationalEntries.{u_1, u_2} : {m : Type u_1} → {n : Type u_2} → Matrix m n ℝ → Prop :=
+fun {m} {n} A => ∀ (i : m) (j : n), ∃ q, ↑q = A i j
+@MatCKronecker.factor_term_le : ∀ {m : Type u_1} {n : Type u_2} {κ : Type u_3} [inst : Fintype κ] (U : Matrix m κ ℝ)
+  (V : Matrix κ n ℝ),
+  MatCKronecker.EntryNonneg U → MatCKronecker.EntryNonneg V → ∀ (i : m) (j : n) (t : κ), U i t * V t j ≤ (U * V) i j
+'MatCKronecker.factor_term_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.EntryNonneg.transpose : ∀ {m : Type u_1} {n : Type u_2} {A : Matrix m n ℝ},
+  MatCKronecker.EntryNonneg A → MatCKronecker.EntryNonneg A.transpose
+'MatCKronecker.EntryNonneg.transpose' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.HasNMF.transpose : ∀ {m : Type u_1} {n : Type u_2} {A : Matrix m n ℝ} {k : ℕ},
+  MatCKronecker.HasNMF A k → MatCKronecker.HasNMF A.transpose k
+'MatCKronecker.HasNMF.transpose' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.nnrank_transpose : ∀ {m : Type u_1} {n : Type u_2} [Fintype m] [Fintype n] {A : Matrix m n ℝ},
+  MatCKronecker.EntryNonneg A → MatCKronecker.nnrank A.transpose = MatCKronecker.nnrank A
+'MatCKronecker.nnrank_transpose' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.EntryNonneg.kronecker : ∀ {m : Type u_1} {n : Type u_2} {p : Type u_3} {q : Type u_4} {A : Matrix m n ℝ}
+  {B : Matrix p q ℝ},
+  MatCKronecker.EntryNonneg A →
+    MatCKronecker.EntryNonneg B → MatCKronecker.EntryNonneg (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) A B)
+'MatCKronecker.EntryNonneg.kronecker' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.HasNMF.kronecker : ∀ {m : Type u_1} {n : Type u_2} {p : Type u_3} {q : Type u_4} {A : Matrix m n ℝ}
+  {B : Matrix p q ℝ} {a b : ℕ},
+  MatCKronecker.HasNMF A a →
+    MatCKronecker.HasNMF B b → MatCKronecker.HasNMF (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) A B) (a * b)
+'MatCKronecker.HasNMF.kronecker' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.nnrank_kronecker_le : ∀ {m : Type u_1} {n : Type u_2} {p : Type u_3} {q : Type u_4} [Fintype n]
+  [Fintype q] {A : Matrix m n ℝ} {B : Matrix p q ℝ},
+  MatCKronecker.EntryNonneg A →
+    MatCKronecker.EntryNonneg B →
+      MatCKronecker.nnrank (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) A B) ≤
+        MatCKronecker.nnrank A * MatCKronecker.nnrank B
+'MatCKronecker.nnrank_kronecker_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.HasNMF.add : ∀ {m : Type u_1} {n : Type u_2} {A B : Matrix m n ℝ} {a b : ℕ},
+  MatCKronecker.HasNMF A a → MatCKronecker.HasNMF B b → MatCKronecker.HasNMF (A + B) (a + b)
+'MatCKronecker.HasNMF.add' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.EntryNonneg.smul : ∀ {m : Type u_1} {n : Type u_2} {A : Matrix m n ℝ},
+  MatCKronecker.EntryNonneg A → ∀ {c : ℝ}, 0 ≤ c → MatCKronecker.EntryNonneg (c • A)
+'MatCKronecker.EntryNonneg.smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.HasNMF.smul : ∀ {m : Type u_1} {n : Type u_2} {A : Matrix m n ℝ} {k : ℕ},
+  MatCKronecker.HasNMF A k → ∀ {c : ℝ}, 0 ≤ c → MatCKronecker.HasNMF (c • A) k
+'MatCKronecker.HasNMF.smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.blockProductEquiv : (m : Type u_1) →
+  (p : Type u_2) → (r : Type u_3) → (u : Type u_4) → (m ⊕ p) × (r ⊕ u) ≃ (m × r ⊕ m × u) ⊕ p × r ⊕ p × u
+'MatCKronecker.blockProductEquiv' depends on axioms: [propext, Quot.sound]
+@MatCKronecker.blockDiag_kronecker_reindex : ∀ {m : Type u_1} {n : Type u_2} {p : Type u_3} {q : Type u_4}
+  {r : Type u_5} {s : Type u_6} {u : Type u_7} {v : Type u_8} (A : Matrix m n ℝ) (B : Matrix p q ℝ) (C : Matrix r s ℝ)
+  (D : Matrix u v ℝ),
+  (Matrix.fromBlocks
+          (Matrix.fromBlocks (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) A C) 0 0
+            (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) A D))
+          0 0
+          (Matrix.fromBlocks (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) B C) 0 0
+            (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) B D))).submatrix
+      ⇑(MatCKronecker.blockProductEquiv m p r u) ⇑(MatCKronecker.blockProductEquiv n q s v) =
+    Matrix.kroneckerMap (fun x1 x2 => x1 * x2) (Matrix.fromBlocks A 0 0 B) (Matrix.fromBlocks C 0 0 D)
+'MatCKronecker.blockDiag_kronecker_reindex' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.HasNMF.blockDiag_kronecker : ∀ {m : Type u_1} {n : Type u_2} {p : Type u_3} {q : Type u_4} {r : Type u_5}
+  {s : Type u_6} {u : Type u_7} {v : Type u_8} {A : Matrix m n ℝ} {B : Matrix p q ℝ} {C : Matrix r s ℝ}
+  {D : Matrix u v ℝ} {a b c d : ℕ},
+  MatCKronecker.HasNMF (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) A C) a →
+    MatCKronecker.HasNMF (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) A D) b →
+      MatCKronecker.HasNMF (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) B C) c →
+        MatCKronecker.HasNMF (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) B D) d →
+          MatCKronecker.HasNMF
+            (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) (Matrix.fromBlocks A 0 0 B) (Matrix.fromBlocks C 0 0 D))
+            (a + b + (c + d))
+'MatCKronecker.HasNMF.blockDiag_kronecker' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.HasNMF.kronecker_swap : ∀ {m : Type u_1} {n : Type u_2} {p : Type u_3} {q : Type u_4} {A : Matrix m n ℝ}
+  {B : Matrix p q ℝ} {k : ℕ},
+  MatCKronecker.HasNMF (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) A B) k →
+    MatCKronecker.HasNMF (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) B A) k
+'MatCKronecker.HasNMF.kronecker_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.rank_fromBlocks : ∀ {m : Type u_1} {n : Type u_2} {p : Type u_3} {q : Type u_4} [inst : Fintype n]
+  [inst_1 : Fintype q] (A : Matrix m n ℝ) (B : Matrix p q ℝ), (Matrix.fromBlocks A 0 0 B).rank = A.rank + B.rank
+'MatCKronecker.rank_fromBlocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.EntryNonneg.fromBlocks : ∀ {m : Type u_1} {n : Type u_2} {p : Type u_3} {q : Type u_4} {A : Matrix m n ℝ}
+  {B : Matrix m q ℝ} {C : Matrix p n ℝ} {D : Matrix p q ℝ},
+  MatCKronecker.EntryNonneg A →
+    MatCKronecker.EntryNonneg B →
+      MatCKronecker.EntryNonneg C → MatCKronecker.EntryNonneg D → MatCKronecker.EntryNonneg (Matrix.fromBlocks A B C D)
+'MatCKronecker.EntryNonneg.fromBlocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.EntryNonneg.blockDiag : ∀ {m : Type u_1} {n : Type u_2} {p : Type u_3} {q : Type u_4} {A : Matrix m n ℝ}
+  {B : Matrix p q ℝ},
+  MatCKronecker.EntryNonneg A → MatCKronecker.EntryNonneg B → MatCKronecker.EntryNonneg (Matrix.fromBlocks A 0 0 B)
+'MatCKronecker.EntryNonneg.blockDiag' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.HasNMF.blockDiag : ∀ {m : Type u_1} {n : Type u_2} {p : Type u_3} {q : Type u_4} {A : Matrix m n ℝ}
+  {B : Matrix p q ℝ} {a b : ℕ},
+  MatCKronecker.HasNMF A a → MatCKronecker.HasNMF B b → MatCKronecker.HasNMF (Matrix.fromBlocks A 0 0 B) (a + b)
+'MatCKronecker.HasNMF.blockDiag' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.HasNMF.blockDiag_lower : ∀ {m : Type u_1} {n : Type u_2} {p : Type u_3} {q : Type u_4} {A : Matrix m n ℝ}
+  {B : Matrix p q ℝ} {k : ℕ},
+  MatCKronecker.HasNMF (Matrix.fromBlocks A 0 0 B) k → MatCKronecker.nnrank A + MatCKronecker.nnrank B ≤ k
+'MatCKronecker.HasNMF.blockDiag_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.nnrank_fromBlocks : ∀ {m : Type u_1} {n : Type u_2} {p : Type u_3} {q : Type u_4} [Fintype n] [Fintype q]
+  {A : Matrix m n ℝ} {B : Matrix p q ℝ},
+  MatCKronecker.EntryNonneg A →
+    MatCKronecker.EntryNonneg B →
+      MatCKronecker.nnrank (Matrix.fromBlocks A 0 0 B) = MatCKronecker.nnrank A + MatCKronecker.nnrank B
+'MatCKronecker.nnrank_fromBlocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.witnessMatrix : (t : ℕ) → Matrix (Fin 4 ⊕ Option (Fin t)) (Fin 4 ⊕ Option (Fin t)) ℝ
+'MatCKronecker.witnessMatrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.smallBlock_nonneg : ∀ {t : ℕ}, 0 < t → MatCKronecker.EntryNonneg (MatCKronecker.smallBlock t)
+'MatCKronecker.smallBlock_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.witness_nonneg : ∀ {t : ℕ}, 0 < t → MatCKronecker.EntryNonneg (MatCKronecker.witnessMatrix t)
+'MatCKronecker.witness_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.witness_rank : ∀ {t : ℕ}, 0 < t → (MatCKronecker.witnessMatrix t).rank = t + 4
+'MatCKronecker.witness_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.witness_nnrank : ∀ {t : ℕ}, 0 < t → MatCKronecker.nnrank (MatCKronecker.witnessMatrix t) = t + 5
+'MatCKronecker.witness_nnrank' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.smallBlock_hasNMF : ∀ {t : ℕ}, 0 < t → MatCKronecker.HasNMF (MatCKronecker.smallBlock t) (t + 1)
+'MatCKronecker.smallBlock_hasNMF' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.witness_square_hasNMF : ∀ {t : ℕ},
+  0 < t →
+    MatCKronecker.HasNMF
+      (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) (MatCKronecker.witnessMatrix t) (MatCKronecker.witnessMatrix t))
+      ((t + 4) ^ 2 + 9)
+'MatCKronecker.witness_square_hasNMF' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.witness_square_nnrank_le : ∀ {t : ℕ},
+  0 < t →
+    MatCKronecker.nnrank
+        (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) (MatCKronecker.witnessMatrix t) (MatCKronecker.witnessMatrix t)) ≤
+      (t + 4) ^ 2 + 9
+'MatCKronecker.witness_square_nnrank_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.witness_unbounded_gap : ∀ (k : ℕ),
+  MatCKronecker.nnrank
+        (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) (MatCKronecker.witnessMatrix (k + 6))
+          (MatCKronecker.witnessMatrix (k + 6))) +
+      k <
+    MatCKronecker.nnrank (MatCKronecker.witnessMatrix (k + 6)) * (MatCKronecker.witnessMatrix (k + 6)).rank
+'MatCKronecker.witness_unbounded_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.RationalEntries : {m : Type u_1} → {n : Type u_2} → Matrix m n ℝ → Prop
+'MatCKronecker.RationalEntries' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seed_rational : MatCKronecker.RationalEntries MatCKronecker.seed
+'MatCKronecker.seed_rational' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.crossEpsilon_rational : ∀ (t : ℕ), ∃ q, ↑q = MatCKronecker.crossEpsilon t
+'MatCKronecker.crossEpsilon_rational' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.smallBlock_rational : ∀ (t : ℕ), MatCKronecker.RationalEntries (MatCKronecker.smallBlock t)
+'MatCKronecker.smallBlock_rational' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.witness_rational : ∀ (t : ℕ), MatCKronecker.RationalEntries (MatCKronecker.witnessMatrix t)
+'MatCKronecker.witness_rational' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.witnessIndexEquiv : (k : ℕ) → Fin 4 ⊕ Option (Fin (k + 6)) ≃ Fin (k + 11)
+'MatCKronecker.witnessIndexEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.finiteWitness : (k : ℕ) → Matrix (Fin (k + 11)) (Fin (k + 11)) ℝ
+'MatCKronecker.finiteWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.exists_rational_counterexample_with_gap : ∀ (k : ℕ),
+  ∃ C,
+    MatCKronecker.EntryNonneg C ∧
+      MatCKronecker.RationalEntries C ∧
+        C.rank = k + 10 ∧
+          MatCKronecker.nnrank C = k + 11 ∧
+            MatCKronecker.nnrank (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) C C) ≤ (k + 10) ^ 2 + 9 ∧
+              MatCKronecker.nnrank (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) C C) + k <
+                MatCKronecker.nnrank C * C.rank
+'MatCKronecker.exists_rational_counterexample_with_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.counterexample_eleven : ∃ C,
+  MatCKronecker.EntryNonneg C ∧
+    MatCKronecker.RationalEntries C ∧
+      C.rank = 10 ∧
+        MatCKronecker.nnrank C = 11 ∧
+          MatCKronecker.nnrank (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) C C) ≤ 109 ∧
+            MatCKronecker.nnrank (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) C C) < MatCKronecker.nnrank C * C.rank
+'MatCKronecker.counterexample_eleven' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.vandaele_gillis_glineur_tuyttens_conjecture_false : ¬∀ (m n : ℕ) (A : Matrix (Fin m) (Fin n) ℝ),
+    MatCKronecker.EntryNonneg A →
+      MatCKronecker.nnrank A * A.rank ≤ MatCKronecker.nnrank (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) A A)
+'MatCKronecker.vandaele_gillis_glineur_tuyttens_conjecture_false' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+MatCKronecker.contrastLeft : (t : ℕ) → Matrix (Option (Fin t)) (Fin t) ℝ
+'MatCKronecker.contrastLeft' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.contrastRight : (t : ℕ) → Matrix (Fin t) (Option (Fin t)) ℝ
+'MatCKronecker.contrastRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.centeredIdentity : (t : ℕ) → Matrix (Option (Fin t)) (Option (Fin t)) ℝ
+'MatCKronecker.centeredIdentity' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.contrastLeft_abs_le : ∀ (t : ℕ) (i : Option (Fin t)) (j : Fin t), |MatCKronecker.contrastLeft t i j| ≤ 1
+'MatCKronecker.contrastLeft_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.contrastRight_abs_le : ∀ (t : ℕ) (i : Fin t) (j : Option (Fin t)), |MatCKronecker.contrastRight t i j| ≤ 1
+'MatCKronecker.contrastRight_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.contrast_factorization : ∀ (t : ℕ),
+  MatCKronecker.contrastLeft t * MatCKronecker.contrastRight t = MatCKronecker.centeredIdentity t
+'MatCKronecker.contrast_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.crossRankLeft : (t : ℕ) → Matrix (Fin 4 × Option (Fin t)) (Fin 3 × Fin t) ℝ
+'MatCKronecker.crossRankLeft' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.crossRankRight : (t : ℕ) → Matrix (Fin 3 × Fin t) (Fin 4 × Option (Fin t)) ℝ
+'MatCKronecker.crossRankRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.cross_rank_factorization : ∀ (t : ℕ),
+  MatCKronecker.crossRankLeft t * MatCKronecker.crossRankRight t =
+    Matrix.kroneckerMap (fun x1 x2 => x1 * x2) MatCKronecker.seed (MatCKronecker.centeredIdentity t)
+'MatCKronecker.cross_rank_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.crossRankLeft_abs_le : ∀ (t : ℕ) (i : Fin 4 × Option (Fin t)) (k : Fin 3 × Fin t),
+  |MatCKronecker.crossRankLeft t i k| ≤ 17
+'MatCKronecker.crossRankLeft_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.crossRankRight_abs_le : ∀ (t : ℕ) (k : Fin 3 × Fin t) (j : Fin 4 × Option (Fin t)),
+  |MatCKronecker.crossRankRight t k j| ≤ 1
+'MatCKronecker.crossRankRight_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.crossEpsilon : ℕ → ℝ
+'MatCKronecker.crossEpsilon' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.crossEta : ℕ → ℝ
+'MatCKronecker.crossEta' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.crossEpsilon_pos : ∀ {t : ℕ}, 0 < t → 0 < MatCKronecker.crossEpsilon t
+'MatCKronecker.crossEpsilon_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.crossEta_pos : ∀ {t : ℕ}, 0 < t → 0 < MatCKronecker.crossEta t
+'MatCKronecker.crossEta_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.smallBlock : (t : ℕ) → Matrix (Option (Fin t)) (Option (Fin t)) ℝ
+'MatCKronecker.smallBlock' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.baselineScale : ℕ → ℝ
+'MatCKronecker.baselineScale' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.crossU : (t : ℕ) → Fin 4 × Option (Fin t) → ℝ
+'MatCKronecker.crossU' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.crossV : (t : ℕ) → Fin 4 × Option (Fin t) → ℝ
+'MatCKronecker.crossV' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.otherLeft : (t : ℕ) → Matrix (Fin 4 × Option (Fin t)) (Fin 3) ℝ
+'MatCKronecker.otherLeft' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.otherRight : (t : ℕ) → Matrix (Fin 3) (Fin 4 × Option (Fin t)) ℝ
+'MatCKronecker.otherRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.correctedTerm : (t : ℕ) → Matrix (Fin 4 × Option (Fin t)) (Fin 4 × Option (Fin t)) ℝ
+'MatCKronecker.correctedTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.baselineScale_ge_one : ∀ {t : ℕ}, 0 < t → 1 ≤ MatCKronecker.baselineScale t
+'MatCKronecker.baselineScale_ge_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.crossU_lower : ∀ (t : ℕ) (i : Fin 4 × Option (Fin t)), 1 / 36 ≤ MatCKronecker.crossU t i
+'MatCKronecker.crossU_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.crossV_lower : ∀ {t : ℕ}, 0 < t → ∀ (j : Fin 4 × Option (Fin t)), 1 / 10 ≤ MatCKronecker.crossV t j
+'MatCKronecker.crossV_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.correctedTerm_hasNMF : ∀ {t : ℕ},
+  0 < t → MatCKronecker.HasNMF (MatCKronecker.correctedTerm t) (3 * t + 1)
+'MatCKronecker.correctedTerm_hasNMF' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.other_hasNMF : ∀ {t : ℕ},
+  0 < t → MatCKronecker.HasNMF (MatCKronecker.otherLeft t * MatCKronecker.otherRight t) 3
+'MatCKronecker.other_hasNMF' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.other_plus_main : ∀ (t : ℕ) (i j : Fin 4 × Option (Fin t)),
+  (MatCKronecker.otherLeft t * MatCKronecker.otherRight t) i j + MatCKronecker.crossU t i * MatCKronecker.crossV t j =
+    MatCKronecker.baselineScale t * MatCKronecker.seed i.1 j.1
+'MatCKronecker.other_plus_main' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.cross_factorization_identity : ∀ (t : ℕ),
+  MatCKronecker.otherLeft t * MatCKronecker.otherRight t + MatCKronecker.correctedTerm t =
+    Matrix.kroneckerMap (fun x1 x2 => x1 * x2) MatCKronecker.seed (MatCKronecker.smallBlock t)
+'MatCKronecker.cross_factorization_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.cross_hasNMF : ∀ {t : ℕ},
+  0 < t →
+    MatCKronecker.HasNMF (Matrix.kroneckerMap (fun x1 x2 => x1 * x2) MatCKronecker.seed (MatCKronecker.smallBlock t))
+      (3 * t + 4)
+'MatCKronecker.cross_hasNMF' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.EntryNonneg : {m : Type u_1} → {n : Type u_2} → Matrix m n ℝ → Prop
+'MatCKronecker.EntryNonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.HasNMF : {m : Type u_1} → {n : Type u_2} → Matrix m n ℝ → ℕ → Prop
+'MatCKronecker.HasNMF' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.nnrank : {m : Type u_1} → {n : Type u_2} → Matrix m n ℝ → ℕ
+'MatCKronecker.nnrank' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.hasNMF_of_factorization : ∀ {m : Type u_1} {n : Type u_2} {κ : Type u_3} [inst : Fintype κ]
+  {A : Matrix m n ℝ} (U : Matrix m κ ℝ) (V : Matrix κ n ℝ),
+  MatCKronecker.EntryNonneg U → MatCKronecker.EntryNonneg V → U * V = A → MatCKronecker.HasNMF A (Fintype.card κ)
+'MatCKronecker.hasNMF_of_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.HasNMF.nonneg : ∀ {m : Type u_1} {n : Type u_2} {A : Matrix m n ℝ} {k : ℕ},
+  MatCKronecker.HasNMF A k → MatCKronecker.EntryNonneg A
+'MatCKronecker.HasNMF.nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.exists_hasNMF : ∀ {m : Type u_1} {n : Type u_2} [Fintype n] {A : Matrix m n ℝ},
+  MatCKronecker.EntryNonneg A → ∃ k, MatCKronecker.HasNMF A k
+'MatCKronecker.exists_hasNMF' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.nnrank_le_of_hasNMF : ∀ {m : Type u_1} {n : Type u_2} {A : Matrix m n ℝ} {k : ℕ},
+  MatCKronecker.HasNMF A k → MatCKronecker.nnrank A ≤ k
+'MatCKronecker.nnrank_le_of_hasNMF' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.hasNMF_nnrank : ∀ {m : Type u_1} {n : Type u_2} [Fintype n] {A : Matrix m n ℝ},
+  MatCKronecker.EntryNonneg A → MatCKronecker.HasNMF A (MatCKronecker.nnrank A)
+'MatCKronecker.hasNMF_nnrank' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.HasNMF.rank_le : ∀ {m : Type u_1} {n : Type u_2} [inst : Fintype n] {A : Matrix m n ℝ} {k : ℕ},
+  MatCKronecker.HasNMF A k → A.rank ≤ k
+'MatCKronecker.HasNMF.rank_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.rank_le_nnrank : ∀ {m : Type u_1} {n : Type u_2} [inst : Fintype n] {A : Matrix m n ℝ},
+  MatCKronecker.EntryNonneg A → A.rank ≤ MatCKronecker.nnrank A
+'MatCKronecker.rank_le_nnrank' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.nnrank_le_card_width : ∀ {m : Type u_1} {n : Type u_2} [inst : Fintype n] {A : Matrix m n ℝ},
+  MatCKronecker.EntryNonneg A → MatCKronecker.nnrank A ≤ Fintype.card n
+'MatCKronecker.nnrank_le_card_width' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.HasNMF.mono : ∀ {m : Type u_1} {n : Type u_2} {A : Matrix m n ℝ} {k l : ℕ},
+  MatCKronecker.HasNMF A k → k ≤ l → MatCKronecker.HasNMF A l
+'MatCKronecker.HasNMF.mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.nnrank_le_iff : ∀ {m : Type u_1} {n : Type u_2} [Fintype n] {A : Matrix m n ℝ},
+  MatCKronecker.EntryNonneg A → ∀ (k : ℕ), MatCKronecker.nnrank A ≤ k ↔ MatCKronecker.HasNMF A k
+'MatCKronecker.nnrank_le_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.hasNMF_zero : ∀ {m : Type u_1} {n : Type u_2}, MatCKronecker.HasNMF 0 0
+'MatCKronecker.hasNMF_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.nnrank_zero : ∀ {m : Type u_1} {n : Type u_2}, MatCKronecker.nnrank 0 = 0
+'MatCKronecker.nnrank_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.HasNMF.submatrix : ∀ {m : Type u_1} {n : Type u_2} {m' : Type u_3} {n' : Type u_4} {A : Matrix m n ℝ}
+  {k : ℕ}, MatCKronecker.HasNMF A k → ∀ (f : m' → m) (g : n' → n), MatCKronecker.HasNMF (A.submatrix f g) k
+'MatCKronecker.HasNMF.submatrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.hasNMF_submatrix_equiv_iff : ∀ {m : Type u_1} {n : Type u_2} {m' : Type u_3} {n' : Type u_4}
+  {A : Matrix m n ℝ} {k : ℕ} (f : m' ≃ m) (g : n' ≃ n),
+  MatCKronecker.HasNMF (A.submatrix ⇑f ⇑g) k ↔ MatCKronecker.HasNMF A k
+'MatCKronecker.hasNMF_submatrix_equiv_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.nnrank_submatrix_equiv : ∀ {m : Type u_1} {n : Type u_2} [Fintype n] {m' : Type u_3} {n' : Type u_4}
+  [Fintype n'] {A : Matrix m n ℝ},
+  MatCKronecker.EntryNonneg A →
+    ∀ (f : m' ≃ m) (g : n' ≃ n), MatCKronecker.nnrank (A.submatrix ⇑f ⇑g) = MatCKronecker.nnrank A
+'MatCKronecker.nnrank_submatrix_equiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.onesMatrix : (n : Type u_1) → Matrix n n ℝ
+'MatCKronecker.onesMatrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.nearOne : (n : Type u_1) → [DecidableEq n] → ℝ → Matrix n n ℝ
+'MatCKronecker.nearOne' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.nearOne_eq : ∀ (n : Type u_1) [inst : DecidableEq n] (rho : ℝ),
+  MatCKronecker.nearOne n rho = rho • 1 + MatCKronecker.onesMatrix n
+'MatCKronecker.nearOne_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.nearOne_nonneg : ∀ (n : Type u_1) [inst : DecidableEq n] {rho : ℝ},
+  0 ≤ rho → MatCKronecker.EntryNonneg (MatCKronecker.nearOne n rho)
+'MatCKronecker.nearOne_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.onesMatrix_mul : ∀ (n : Type u_1) [inst : Fintype n],
+  MatCKronecker.onesMatrix n * MatCKronecker.onesMatrix n = ↑(Fintype.card n) • MatCKronecker.onesMatrix n
+'MatCKronecker.onesMatrix_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.nearOneInverse : (n : Type u_1) → [Fintype n] → [DecidableEq n] → ℝ → Matrix n n ℝ
+'MatCKronecker.nearOneInverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.nearOneInverse_mul : ∀ (n : Type u_1) [inst : Fintype n] [inst_1 : DecidableEq n] {rho : ℝ},
+  0 < rho → MatCKronecker.nearOneInverse n rho * MatCKronecker.nearOne n rho = 1
+'MatCKronecker.nearOneInverse_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.rank_nearOne : ∀ (n : Type u_1) [inst : Fintype n] [inst_1 : DecidableEq n] {rho : ℝ},
+  0 < rho → (MatCKronecker.nearOne n rho).rank = Fintype.card n
+'MatCKronecker.rank_nearOne' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.nnrank_nearOne : ∀ (n : Type u_1) [inst : Fintype n] [inst_1 : DecidableEq n] {rho : ℝ},
+  0 < rho → MatCKronecker.nnrank (MatCKronecker.nearOne n rho) = Fintype.card n
+'MatCKronecker.nnrank_nearOne' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seed : Matrix (Fin 4) (Fin 4) ℝ
+'MatCKronecker.seed' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seedLeft : Matrix (Fin 4) (Fin 4) ℝ
+'MatCKronecker.seedLeft' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seedRight : Matrix (Fin 4) (Fin 4) ℝ
+'MatCKronecker.seedRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seedRankLeft : Matrix (Fin 4) (Fin 3) ℝ
+'MatCKronecker.seedRankLeft' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seedRankRight : Matrix (Fin 3) (Fin 4) ℝ
+'MatCKronecker.seedRankRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seed_positive : ∀ (i j : Fin 4), 0 < MatCKronecker.seed i j
+'MatCKronecker.seed_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seedLeft_lower : ∀ (i j : Fin 4), 1 / 36 ≤ MatCKronecker.seedLeft i j
+'MatCKronecker.seedLeft_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seedRight_lower : ∀ (i j : Fin 4), 1 / 10 ≤ MatCKronecker.seedRight i j
+'MatCKronecker.seedRight_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seed_nonnegative_factorization : MatCKronecker.seedLeft * MatCKronecker.seedRight = MatCKronecker.seed
+'MatCKronecker.seed_nonnegative_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seed_rank_factorization : MatCKronecker.seedRankLeft * MatCKronecker.seedRankRight = MatCKronecker.seed
+'MatCKronecker.seed_rank_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seedRankLeft_abs_le : ∀ (i : Fin 4) (j : Fin 3), |MatCKronecker.seedRankLeft i j| ≤ 17
+'MatCKronecker.seedRankLeft_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seedRankRight_abs_le : ∀ (i : Fin 3) (j : Fin 4), |MatCKronecker.seedRankRight i j| ≤ 1
+'MatCKronecker.seedRankRight_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seed_diagonal : ∀ (i : Fin 4), MatCKronecker.seed i i = 17
+'MatCKronecker.seed_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seed_cross_product : ∀ (i j : Fin 4), i ≠ j → MatCKronecker.seed i j * MatCKronecker.seed j i ≤ 17
+'MatCKronecker.seed_cross_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seedMinor : Matrix (Fin 3) (Fin 3) ℝ
+'MatCKronecker.seedMinor' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seedMinor_det : MatCKronecker.seedMinor.det = 4608
+'MatCKronecker.seedMinor_det' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seed_rank : MatCKronecker.seed.rank = 3
+'MatCKronecker.seed_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seed_nonneg : MatCKronecker.EntryNonneg MatCKronecker.seed
+'MatCKronecker.seed_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seed_hasNMF_four : MatCKronecker.HasNMF MatCKronecker.seed 4
+'MatCKronecker.seed_hasNMF_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seed_not_hasNMF_three : ¬MatCKronecker.HasNMF MatCKronecker.seed 3
+'MatCKronecker.seed_not_hasNMF_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+MatCKronecker.seed_nnrank : MatCKronecker.nnrank MatCKronecker.seed = 4
+'MatCKronecker.seed_nnrank' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.simplexLeft : {m : Type u_1} →
+  {q : Type u_2} → [Fintype q] → (m → ℝ) → Matrix m q ℝ → ℝ → Matrix m (Option q) ℝ
+'MatCKronecker.simplexLeft' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.simplexRight : {n : Type u_1} →
+  {q : Type u_2} → [Fintype q] → (n → ℝ) → Matrix q n ℝ → ℝ → ℝ → Matrix (Option q) n ℝ
+'MatCKronecker.simplexRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.simplexRight_sum : ∀ {n : Type u_1} {q : Type u_2} [inst : Fintype q] (v : n → ℝ) (T : Matrix q n ℝ)
+  (eps eta : ℝ) (j : n), ∑ a, MatCKronecker.simplexRight v T eps eta a j = v j
+'MatCKronecker.simplexRight_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.simplexRight_sub_none : ∀ {n : Type u_1} {q : Type u_2} [inst : Fintype q] (v : n → ℝ) (T : Matrix q n ℝ)
+  (eps eta : ℝ) (k : q) (j : n),
+  MatCKronecker.simplexRight v T eps eta (some k) j - MatCKronecker.simplexRight v T eps eta none j = eps / eta * T k j
+'MatCKronecker.simplexRight_sub_none' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.simplexRowDifferences : {n : Type u_1} → {q : Type u_2} → Matrix (Option q) n ℝ → Matrix q n ℝ
+'MatCKronecker.simplexRowDifferences' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.simplexLeft_mul : ∀ {m : Type u_1} {n : Type u_2} {q : Type u_3} [inst : Fintype q] (u : m → ℝ)
+  (R : Matrix m q ℝ) (eta : ℝ) (G : Matrix (Option q) n ℝ),
+  MatCKronecker.simplexLeft u R eta * G =
+    (Matrix.vecMulVec u fun j => ∑ a, G a j) + eta • (R * MatCKronecker.simplexRowDifferences G)
+'MatCKronecker.simplexLeft_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.simplex_factorization : ∀ {m : Type u_1} {n : Type u_2} {q : Type u_3} [inst : Fintype q] (u : m → ℝ)
+  (v : n → ℝ) (R : Matrix m q ℝ) (T : Matrix q n ℝ) (eps eta : ℝ),
+  eta ≠ 0 →
+    MatCKronecker.simplexLeft u R eta * MatCKronecker.simplexRight v T eps eta = Matrix.vecMulVec u v + eps • (R * T)
+'MatCKronecker.simplex_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.abs_sum_eighteen_le : ∀ {q : Type u_1} [inst : Fintype q],
+  Fintype.card q = 18 → ∀ (f : q → ℝ) (b : ℝ), (∀ (k : q), |f k| ≤ b) → |∑ k, f k| ≤ 18 * b
+'MatCKronecker.abs_sum_eighteen_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.simplexLeft_nonneg_eighteen : ∀ {m : Type u_1} {q : Type u_2} [inst : Fintype q],
+  Fintype.card q = 18 →
+    ∀ (u : m → ℝ) (R : Matrix m q ℝ),
+      (∀ (i : m), 1 / 36 ≤ u i) →
+        (∀ (i : m) (k : q), |R i k| ≤ 17) → MatCKronecker.EntryNonneg (MatCKronecker.simplexLeft u R (1 / 15120))
+'MatCKronecker.simplexLeft_nonneg_eighteen' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.simplexRight_nonneg_eighteen : ∀ {n : Type u_1} {q : Type u_2} [inst : Fintype q],
+  Fintype.card q = 18 →
+    ∀ (v : n → ℝ) (T : Matrix q n ℝ),
+      (∀ (j : n), 1 / 10 ≤ v j) →
+        (∀ (k : q) (j : n), |T k j| ≤ 1) →
+          MatCKronecker.EntryNonneg (MatCKronecker.simplexRight v T (1 / 11491200) (1 / 15120))
+'MatCKronecker.simplexRight_nonneg_eighteen' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.simplex_abs_sum_le_card_mul : ∀ {q : Type u_1} [inst : Fintype q] (f : q → ℝ) (b : ℝ),
+  (∀ (k : q), |f k| ≤ b) → |∑ k, f k| ≤ ↑(Fintype.card q) * b
+'MatCKronecker.simplex_abs_sum_le_card_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.simplexLeft_nonneg_uniform : ∀ {m : Type u_1} {q : Type u_2} [inst : Fintype q],
+  0 < Fintype.card q →
+    ∀ (u : m → ℝ) (R : Matrix m q ℝ),
+      (∀ (i : m), 1 / 36 ≤ u i) →
+        (∀ (i : m) (k : q), |R i k| ≤ 17) →
+          MatCKronecker.EntryNonneg (MatCKronecker.simplexLeft u R (1 / (840 * ↑(Fintype.card q))))
+'MatCKronecker.simplexLeft_nonneg_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MatCKronecker.simplexRight_nonneg_uniform : ∀ {n : Type u_1} {q : Type u_2} [inst : Fintype q],
+  0 < Fintype.card q →
+    ∀ (v : n → ℝ) (T : Matrix q n ℝ),
+      (∀ (j : n), 1 / 10 ≤ v j) →
+        (∀ (k : q) (j : n), |T k j| ≤ 1) →
+          MatCKronecker.EntryNonneg
+            (MatCKronecker.simplexRight v T (1 / (33600 * ↑(Fintype.card q) * (↑(Fintype.card q) + 1)))
+              (1 / (840 * ↑(Fintype.card q))))
+'MatCKronecker.simplexRight_nonneg_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]

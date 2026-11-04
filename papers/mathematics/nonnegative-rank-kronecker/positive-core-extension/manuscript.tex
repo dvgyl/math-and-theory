@@ -1,0 +1,457 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,longtable,array}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Positive factors and Kronecker rank bounds}
+\fancyhead[R]{\small Research extension}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+\allowdisplaybreaks
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\rp}{\operatorname{rank}_{+}}
+\newcommand{\col}{\operatorname{col}}
+\newcommand{\row}{\operatorname{row}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\R}{\mathbb R}
+\newcommand{\code}[1]{\nolinkurl{#1}}
+\title{\textbf{Positive factor ranks, paired nullspaces,\\and exact Kronecker rank bounds}}
+\author{Dev D. Goyal}
+\date{4 November 2026}
+\hypersetup{pdftitle={Positive factor ranks, paired nullspaces, and exact Kronecker rank bounds},pdfauthor={Dev D. Goyal}}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Nonnegative rank is the smallest number of nonnegative rank-one terms needed to represent a matrix. Ordinary rank gives a lower bound, but it can miss an obstruction that persists under tensor products. For a nonnegative matrix $A$, let $\sigma(A)$ be the smallest possible value of $\max\{\rk U,\rk V\}$ over all nonnegative factorizations $A=UV$ of arbitrary finite width, and put $\Delta(A)=\sigma(A)-\rk A$. For nonzero nonnegative matrices $A,B$, we prove
+\[
+\rp(A\otimes B)\ge\rk A\,\rk B+\max\{\Delta(A),\Delta(B)\}.
+\]
+The proof extracts rank-controlled factors of $A$ or $B$ from a factorization of their tensor product. A separating inequality for a classical nested-square family then determines the exact nonnegative rank of the mixed blocks in the earlier Kronecker construction: the value is $3s+1$. We also describe the opposite regime, where strictly positive factors absorb small signed perturbations and permit equality with ordinary rank. The main lower bound, the mixed-block equality, and a concrete saturation interval have Lean proofs. Broader neighbourhood statements retain conventional proofs. Local-openness results are credited to prior work; historical priority of the tensor applications remains subject to specialist review.
+\end{abstract}
+
+\section{Scope and contribution}
+
+A nonnegative factorization writes a matrix as a sum of nonnegative rank-one terms. Its width counts these terms. The ordinary ranks of the two factors measure a different property: the dimensions of the spaces that their columns and rows span. This distinction is the basis of the paper.
+
+The argument has two directions. First, a factorization of a tensor product imposes rank bounds on factorizations of its individual factors. This gives a lower bound and proves that one extra term in the earlier construction is necessary. Second, positive factors can absorb small perturbations. Their nullspaces determine how many perturbation directions the construction can accommodate. The explicit examples show both behaviours within one matrix family.
+
+
+For a nonnegative matrix $A$, $\rp(A)$ is the least width of a factorization $A=UV$ with real entrywise nonnegative factors. Ordinary rank is over $\R$. We use $U>0$ for entrywise strict positivity. The familiar inequalities
+\[
+\rk A\le\rp(A),\qquad
+\rp(A\otimes B)\le\rp(A)\rp(B),\qquad
+\rk(A\otimes B)=\rk A\,\rk B
+\]
+will be used with their usual finite-dimensional meanings \cite{CR,VGGT}.
+
+The starting package \cite{Goyal} has the seed
+\begin{equation}\label{eq:oldseed}
+A_* = \begin{pmatrix}17&17&1&1\\1&17&17&1\\1&1&17&17\\17&1&1&17\end{pmatrix},
+\quad \rk A_*=3,\quad \rp(A_*)=4.
+\end{equation}
+For $t\ge1$, put $s=t+1$ and
+\begin{equation}\label{eq:oldaux}
+\epsilon_t=\frac1{100800t(3t+1)},\qquad B_t=J_s+\epsilon_tI_s.
+\end{equation}
+That package proves $\rp(A_*\otimes B_t)\le3t+4=3s+1$ and leaves the exact value in $\{3s,3s+1\}$. We prove it is $3s+1$ for every $t\ge1$.
+
+The original square conjecture is already false: Shitov \cite{Shitov26} gives a positive $4\times4$ rank-three, nonnegative-rank-four matrix whose square has an eleven-term positive factorization. Another disproof is not the novelty of this paper. Our focus is on the factor-rank conditions that permit or forbid savings in unequal products.
+
+There are three contributions relative to the starting package:
+\begin{enumerate}
+\item A reusable quantitative formulation of its absorption mechanism, with an exact dimension for the paired nullspaces and a bound involving both factor ranks.
+\item A converse compression principle and an intrinsic-cone obstruction, yielding a sharp value for all original mixed blocks.
+\item A contrasting saturation regime, including an explicit rational construction and a general local tensor formula under a stronger factor-rank hypothesis.
+\end{enumerate}
+The first uses elementary linear algebra. The balanced local-openness principle in the third is established prior work \cite{Behrends,NR}. We do not present either fact as a new discovery. The tensor obstruction and exact product applications are candidate contributions for specialist review; the literature assessment is in Section~\ref{sec:novelty}.
+
+\section{Paired nullspaces and quantitative absorption}
+
+\begin{theorem}[Exact paired-nullspace capacity]\label{thm:capacity}
+Let $U\in\R^{m\times p}$ and $V\in\R^{p\times n}$. There are matrices $Z\in\R^{p\times q}$ and $W\in\R^{q\times p}$ satisfying
+\begin{equation}\label{eq:frame}
+UZ=0,\qquad WV=0,\qquad WZ=I_q
+\end{equation}
+if and only if
+\begin{equation}\label{eq:capacity}
+q+\rk U+\rk V\le p+\rk(UV).
+\end{equation}
+Thus the greatest possible $q$ is $d=p-\rk U-\rk V+\rk(UV)$.
+\end{theorem}
+
+\begin{proof}
+Let $K=\ker U$ and $R=\im V$ in the latent space $\R^p$, and consider
+\[
+f:K\longrightarrow\R^p/R,\qquad x\longmapsto x+R.
+\]
+Its kernel is $K\cap R$. Restricting $U$ to $R$ shows
+\[
+\dim(K\cap R)=\rk V-\rk(UV),
+\quad \rk f=p-\rk U-\rk V+\rk(UV)=d.
+\]
+If \eqref{eq:frame} holds, $Z$ takes values in $K$, and $W$ descends to $\R^p/R$. The induced composition on $\R^q$ is the identity, so the image of $f$ has dimension at least $q$.
+
+Conversely, choose a $q$-dimensional subspace of $\im f$, identify it with $\R^q$, and choose a linear right inverse of $f$ on that subspace. Its lift defines $Z$. Extend the coordinate map on that subspace to a linear map from $\R^p/R$ to $\R^q$, and compose with the quotient map to obtain $W$. These maps satisfy all three identities. No nonnegativity is asserted for $Z$ or $W$.
+\end{proof}
+
+\begin{theorem}[Quantitative absorption at fixed width]\label{thm:absorb}
+Suppose \eqref{eq:frame} holds and $X\in\R^{m\times q}$, $Y\in\R^{q\times n}$. For every nonzero $\eta$ and every real $\epsilon$,
+\begin{equation}\label{eq:identity}
+\left(U+\eta XW\right)\left(V+\frac\epsilon\eta ZY\right)=UV+\epsilon XY.
+\end{equation}
+If $U_{ih}\ge\alpha$, $V_{hj}\ge\beta$, and
+\[
+|X_{ih}|\le x,\quad |Y_{hj}|\le y,\quad |W_{ih}|\le w,\quad |Z_{hj}|\le z,
+\]
+where $x,y,w,z\ge0$, then the explicit sufficient conditions
+\begin{equation}\label{eq:budgets}
+|\eta|qxw\le\alpha,\qquad |\epsilon/\eta|qzy\le\beta
+\end{equation}
+give a nonnegative factorization of width $p$. Strict inequalities give strictly positive factors when $\alpha,\beta>0$.
+\end{theorem}
+
+\begin{proof}
+Expand the left side of \eqref{eq:identity}. The two linear cross terms vanish by $UZ=0$ and $WV=0$, and the remaining quadratic term is $\epsilon X(WZ)Y=\epsilon XY$. Each entry of $XW$ has absolute value at most $qxw$, and similarly $|(ZY)_{hj}|\le qzy$. The budgets therefore ensure the claimed signs.
+\end{proof}
+
+\begin{corollary}[Directional bound involving both factor ranks]\label{cor:direction}
+Let $A=UV$ with $U,V>0$ of width $p\ge1$, and let $E$ be any real matrix of the same shape. Write
+\[
+a=\rk U,\quad b=\rk V,\quad r=\rk A,\quad q=\rk E,\quad d=p-a-b+r.
+\]
+There is $\delta>0$ such that, for every real $\epsilon$ with $|\epsilon|\le\delta$,
+\begin{equation}\label{eq:direction}
+\rp(A+\epsilon E)\le p+\max(0,q-d).
+\end{equation}
+In particular, $q\le d$ allows the original width $p$.
+\end{corollary}
+
+\begin{proof}
+First suppose $q\le d$. Factor $E=XY$ over $\R$ with inner dimension $q$ and use Theorem~\ref{thm:capacity}. Choose a nonzero $\eta$ small enough that $U+\eta XW>0$. Then choose $\delta$ small enough that $V+(\epsilon/\eta)ZY>0$ throughout the specified interval. Theorem~\ref{thm:absorb} proves the bound.
+
+If $q>d$, replace one positive summand $u_0v_0$ by $q-d+1$ copies with left column $u_0$ and right row $v_0/(q-d+1)$. This increases the width by $q-d$ without changing the ranks of either factor: the original factors are recovered by summing the copied rows or selecting one copied column, while the enlarged factors are obtained by linear copying maps. The new capacity is $q$, so the first case applies.
+\end{proof}
+
+\begin{remark}[What is and is not optimal]
+The dimension $d$ is optimal for the three simultaneous identities \eqref{eq:frame}. It is not a bound on every possible way to perturb a factorization. For example, if $U$ has full row rank, an arbitrary sufficiently small matrix perturbation can be accommodated by changing $V$ alone, even if $d=0$.
+\end{remark}
+
+\subsection{Recovering the original simplex argument}
+For a single positive term $uv^{\mathsf T}$, $p=a=b=r=1$ and $d=0$. Duplicating it $q$ times creates $q$ paired nullspace directions at width $q+1$. Choosing the usual centered simplex coordinates in those directions gives the original identity. More explicitly, for $E=XY$, $S=\sum_hY_h$, the columns and rows
+\[
+H_h=u+\eta X_h,\quad H_*=u-\eta\sum_hX_h,
+\]
+\[
+G_h=\frac v{q+1}+\frac\epsilon\eta\left(Y_h-\frac S{q+1}\right),
+\quad G_*=\frac v{q+1}-\frac\epsilon\eta\frac S{q+1}
+\]
+multiply to $uv^{\mathsf T}+\epsilon XY$. The exact sign conditions are
+\[
+-u_i\le\eta X_{ih},\quad \eta\sum_hX_{ih}\le u_i,
+\]
+\[
+(\epsilon/\eta)\sum_hY_{hj}\le v_j,\quad
+(\epsilon/\eta)\left(\sum_\ell Y_{\ell j}-(q+1)Y_{hj}\right)\le v_j.
+\]
+These permit zero entries and restricted supports. They are necessary and sufficient for this particular simplex formula to be nonnegative, not a characterization of all width-$q+1$ factorizations.
+
+\section{A converse: factor ranks descend from tensor factorizations}\label{sec:compression}
+
+\begin{theorem}[Rank-controlled compression]\label{thm:compression}
+Let $A\ge0$ and $B\ge0$ be nonzero finite matrices, with ranks $r$ and $s$. If $A\otimes B$ has a nonnegative factorization of width $k$, then $A$ has a nonnegative factorization $A=UV$ of the same width with
+\begin{equation}\label{eq:compress}
+\rk U\le r+k-rs,\qquad\rk V\le r+k-rs.
+\end{equation}
+The analogous assertion holds for $B$.
+\end{theorem}
+
+\begin{proof}
+Write $A\otimes B=LH$ with inner dimension $k$. Choose $B_{ij}=c>0$, and let $P_i$ select the rows whose auxiliary index is $i$, while $Q_j$ selects the columns whose auxiliary index is $j$. Set
+\[
+U=P_iL,\qquad V=c^{-1}HQ_j.
+\]
+They are nonnegative and $UV=A$. Moreover,
+\[
+UH=P_i(A\otimes B)=A\otimes B_{i,:}
+\]
+has rank $r$, because $B_{i,:}\ne0$. Sylvester's rank inequality yields
+\[
+\rk U+\rk H\le k+r.
+\]
+Since $\rk H\ge\rk(LH)=rs$, the first inequality follows. Similarly, $L(HQ_j)=A\otimes B_{:,j}$ has rank $r$, and $\rk L\ge rs$, giving the second. Swapping tensor factors proves the last assertion.
+\end{proof}
+
+\begin{definition}
+For a nonzero nonnegative matrix $A$ of rank $r$, define its factor-rank excess by
+\[
+\Delta(A)=\min_{A=UV,\ U,V\ge0}\max\{\rk U,\rk V\}-r.
+\]
+The minimization permits arbitrary finite widths. It is a minimum of a nonempty set of nonnegative integers; the identity factorizations show it is finite. This notation is introduced for this paper, without a claim that the underlying optimization has not appeared under another name.
+\end{definition}
+
+\begin{corollary}[A structural Kronecker lower bound]\label{cor:lower}
+For nonzero nonnegative $A,B$,
+\begin{equation}\label{eq:lower}
+\rp(A\otimes B)\ge\rk A\,\rk B+\max\{\Delta(A),\Delta(B)\}.
+\end{equation}
+\end{corollary}
+\begin{proof}
+Apply Theorem~\ref{thm:compression} to a minimum-width factorization. Its excess over ordinary rank bounds $\Delta(A)$ and $\Delta(B)$ separately.
+\end{proof}
+
+In particular, equality $\rp(A\otimes B)=\rk(A\otimes B)$ requires a factorization of $A$ with
+\begin{equation}\label{eq:balanced}
+\rk U=\rk V=\rk A.
+\end{equation}
+We call such a factorization \emph{balanced in rank}; this says nothing about normalization of its entries.
+
+\subsection{An intrinsic-cone formulation}
+Let
+\[
+K_c(A)=\col(A)\cap\R^m_{\ge0},\qquad
+K_r(A)=\row(A)\cap\R^n_{\ge0}.
+\]
+A balanced nonnegative factorization exists exactly when $A$ lies in the finitely generated cone
+\begin{equation}\label{eq:intrinsiccone}
+\mathcal C(A)=\operatorname{cone}\{uv^{\mathsf T}:u\in K_c(A),\ v^{\mathsf T}\in K_r(A)\}.
+\end{equation}
+Indeed, in a balanced factorization the factor column and row spaces equal those of $A$. Conversely, a decomposition into the displayed terms has factor ranks at most $\rk A$, and the product forces equality. The cones $K_c,K_r$ are polyhedral, so finite extreme-ray generating sets suffice.
+
+Consequently a linear functional nonnegative on these rank-one generators but negative at $A$ obstructs ordinary-rank saturation for \emph{every} nonzero nonnegative auxiliary matrix. The next section gives an explicit certificate of this type.
+
+\section{The nested-square obstruction and the original exact value}\label{sec:obstruction}
+
+Put
+\begin{equation}\label{eq:twist}
+T=\begin{pmatrix}1&1&-1&-1\\-1&1&1&-1\\-1&-1&1&1\\1&-1&-1&1\end{pmatrix},
+\quad A(a)=J_4+aT,
+\quad w=(1,-1,1,-1)^{\mathsf T}.
+\end{equation}
+For $0<a\le1$, $A(a)$ is nonnegative of rank three, and both intrinsic spaces are $w^\perp$. In particular $A_*=9A(8/9)$. The rank claim follows from the alternating row and column relations and the leading $3\times3$ determinant $8a^2>0$.
+
+\begin{lemma}[Separating inequality]\label{lem:cone}
+If $u,v\ge0$ and $u_0+u_2=u_1+u_3$, $v_0+v_2=v_1+v_3$, then
+\begin{equation}\label{eq:conebound}
+u^{\mathsf T}Tv\le\tfrac12(\one^{\mathsf T}u)(\one^{\mathsf T}v).
+\end{equation}
+\end{lemma}
+\begin{proof}
+The cone $K=\{x\ge0:x_0+x_2=x_1+x_3\}$ is generated by the four adjacent vectors $g_i=e_i+e_{i+1}$, with subscripts modulo four. For completeness, choose $c_0=\min(x_0,x_1)$, $c_1=x_1-c_0$, $c_3=x_0-c_0$, and $c_2=x_2-c_1$. The balance relation shows $c_2\ge0$, and $x=\sum c_i g_i$. Direct inspection gives $g_i^{\mathsf T}Tg_j\le2$, while $(\one^{\mathsf T}g_i)(\one^{\mathsf T}g_j)=4$. Bilinearity proves \eqref{eq:conebound}.
+
+The Lean proof uses an equivalent four-sign scalar argument: with $s=u_0+u_2$, $t=v_0+v_2$, $c_0=v_0+v_1-v_2-v_3$ and $c_1=-v_0+v_1+v_2-v_3$, one has $|c_0|+|c_1|\le2t$ and $u^{\mathsf T}Tv\le s(|c_0|+|c_1|)$.
+\end{proof}
+
+\begin{theorem}[Universal obstruction above one half]\label{thm:half}
+If $1/2<a\le1$ and $B\ge0$ is nonzero, then
+\begin{equation}\label{eq:half}
+\rp(A(a)\otimes B)>\rk(A(a)\otimes B)=3\rk B.
+\end{equation}
+\end{theorem}
+\begin{proof}
+If equality held at ordinary rank, Theorem~\ref{thm:compression} would give a balanced nonnegative factorization of $A(a)$. Apply Lemma~\ref{lem:cone} to each factor term and sum. Writing $\langle T,M\rangle=\sum_{ij}T_{ij}M_{ij}$ and $\operatorname{mass}(M)=\sum_{ij}M_{ij}$, it would follow that
+\[
+16a=\langle T,A(a)\rangle\le\tfrac12\operatorname{mass}(A(a))=8,
+\]
+contradicting $a>1/2$.
+\end{proof}
+
+\begin{corollary}[The original bound is exact]\label{cor:original}
+For the unchanged matrices \eqref{eq:oldseed}--\eqref{eq:oldaux} and every $t\ge1$,
+\begin{equation}\label{eq:oldexact}
+\boxed{\quad\rp(A_*\otimes B_t)=\rp(B_t\otimes A_*)=3t+4.\quad}
+\end{equation}
+\end{corollary}
+\begin{proof}
+$B_t$ is invertible, so the ordinary product rank is $3(t+1)$. Theorem~\ref{thm:half} and positive scaling imply a lower bound of $3(t+1)+1$. The original mixed-block construction supplies the matching upper bound. Tensor commutation is a row and column permutation.
+\end{proof}
+
+This is stronger than checking another finite certificate. The lower obstruction holds for every nonzero nonnegative auxiliary, of any rectangular size, and the equality holds for every original family parameter. It shows that the remaining one-term excess in the original mixed blocks is mathematically necessary.
+
+\section{The saturation regime and its prior local-openness theorem}\label{sec:saturation}
+
+The following statement is a consequence of existing local-openness theory, not a new local-openness theorem.
+
+\begin{proposition}[Positive balanced factors; known antecedent]\label{prop:local}
+Suppose $A=UV$ with $U,V>0$ of width $p$, and $\rk U=\rk V=\rk A=r$. In a sufficiently small neighborhood of $A$,
+\begin{equation}\label{eq:local}
+\rp(M)\le\max\{p,\rk M\}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+For each possible target rank $k$, duplicate positive terms until the width is $w=\max(p,k)$. Both factor ranks remain $r$ and $\ker U\cap\im V=\{0\}$. If $w<\min(m,n)$, Theorem~8 of Nouiehed--Razaviyayn \cite{NR} says multiplication is locally open relative to matrices of rank at most $w$. A small enough factor neighborhood is positive, giving \eqref{eq:local} for rank-$k$ targets. If $w\ge\min(m,n)$, the trivial dimension bound suffices. Intersect the finitely many target-rank neighborhoods.
+\end{proof}
+
+\begin{theorem}[Exact local Kronecker saturation]\label{thm:localtensor}
+Suppose the factors in Proposition~\ref{prop:local} have minimum width $p=\rp(A)$. Fix a positive rank-one rectangular matrix $B_0$. For all $B$ in a sufficiently small positive neighborhood of $B_0$,
+\begin{equation}\label{eq:localtensor}
+\boxed{\quad\rp(A\otimes B)=\max\{p,\ r\rk B\}.\quad}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Write $B_0=xy^{\mathsf T}$ with $x,y>0$. Then $(U\otimes x)(V\otimes y^{\mathsf T})=A\otimes B_0$ is a positive width-$p$ factorization with both factor ranks $r$. Proposition~\ref{prop:local} applied at this product gives the upper bound. Ordinary rank gives $r\rk B$ as a lower bound. Any positive entry of $B$ determines a submatrix of the product equal to a positive multiple of $A$, giving the lower bound $p$.
+\end{proof}
+
+Without minimum width, the same proof gives only the upper bound with the supplied $p$; it must not be turned into an equality by silently replacing $\rp(A)$.
+
+\subsection{A constructive alternative and the general factor-rank bound}
+A direct proof also gives a more general local estimate. If $A=UV$ with $U,V>0$, factor ranks $a,b$, and product rank $r$, then near $A$ one obtains
+\begin{equation}\label{eq:signature}
+\rp(M)\le\max\{p,\rk M+a+b-2r\}.
+\end{equation}
+Here is a complete finite-dimensional argument. Choose an invertible $r\times r$ pivot of $A$. In this block chart, for nearby $M$ define its rank-$r$ Schur completion
+\[
+M_0=\begin{pmatrix}M_{11}&M_{12}\\M_{21}&M_{21}M_{11}^{-1}M_{12}\end{pmatrix}.
+\]
+Then $M_0\to A$, $M_0=P_M A Q_M$ for invertible $P_M,Q_M\to I$, and the Schur residual $E=M-M_0$ has rank $\rk M-r$. The factors $P_MU,VQ_M$ remain positive with ranks $a,b$. Their paired capacity is still $d=p-a-b+r$. Duplicate $\max(0,\rk M-r-d)$ terms and apply absorption. For each of the finitely many duplication counts, choose the paired frame once at $A$: the same $Z,W$ work throughout the chart because $(P_MU)Z=P_M(UZ)=0$ and $W(VQ_M)=(WV)Q_M=0$. Thus the frame entries remain uniformly bounded.
+
+Explicitly, define
+\[
+L_M=\begin{pmatrix}I&0\\M_{21}M_{11}^{-1}&I\end{pmatrix},\qquad
+R_M=\begin{pmatrix}I&M_{11}^{-1}M_{12}\\0&I\end{pmatrix}.
+\]
+Then $M_0=L_M\operatorname{diag}(M_{11},0)R_M$, and one can take
+$P_M=L_M\operatorname{diag}(M_{11}A_{11}^{-1},I)L_A^{-1}$ and
+$Q_M=R_A^{-1}R_M$. Block elimination also gives
+$\rk M=r+\rk(M_{22}-M_{21}M_{11}^{-1}M_{12})$, proving the asserted residual rank.
+
+For uniformity, the residual factors must be controlled rather than chosen arbitrarily. Every real matrix $E$ has a rank-sized factorization $E=XY$ with $|X_{ih}|\le1$ and $|Y_{hj}|\le m\|E\|_{\max}$: take an orthonormal basis of its column space, and use the inner products of its columns with that basis as coefficients. The Cauchy--Schwarz inequality, or the entrywise sum bound, gives the estimate. Scaling $X$ by a fixed sufficiently small positive number and $Y$ by its reciprocal then meets the positive budgets uniformly as $E\to0$. Only finitely many residual ranks occur; intersect their neighborhoods. Counting the final width gives \eqref{eq:signature}.
+
+In the original $17/1$ seed, one positive factorization has ranks $(4,3)$ and width four. Applying \eqref{eq:signature} at $A_*\otimes B_0$, then using the universal obstruction, gives the further exact local formula
+\begin{equation}\label{eq:oldlocal}
+\rp(A_*\otimes B)=3\rk B+1
+\end{equation}
+near every positive rank-one $B_0$ of fixed shape. The uniform Schur-chart statements in this subsection have handwritten proofs; their formal coverage is distinguished from the compiled directional theorem in Section~\ref{sec:verification}.
+
+\section{An explicit positive rational saturation family}\label{sec:explicit}
+
+Let $C$ be the cyclic permutation matrix with first row $(0,1,0,0)$, and $P=(I-C^2)/2$. Then $TP=T$, $JP=PJ=0$. For $0<a<1/2$, choose $2a<b<1$ and put
+\begin{equation}\label{eq:balancedexample}
+U=J+bT,\qquad V=J/4+(a/b)P.
+\end{equation}
+They are strictly positive, $UV=A(a)$, and all three ordinary ranks are three. Thus this family contrasts with Theorem~\ref{thm:half}.
+
+The factor-rank invariant itself has a complete threshold, including the endpoint:
+\begin{equation}\label{eq:profilethreshold}
+\Delta(A(a))=\begin{cases}0,&0<a\le1/2,\\1,&1/2<a\le1.\end{cases}
+\end{equation}
+Indeed, set $b=1$ in \eqref{eq:balancedexample}. Now $U,V$ are nonnegative for $0<a\le1/2$, and both have rank three. For $a>1/2$, the cone obstruction excludes excess zero, while the identity factorization $A(a)=A(a)I_4$ bounds the excess by one. The endpoint factors have zero entries; the strict local-openness argument therefore does not decide tensor saturation at $a=1/2$.
+
+For an explicit rational family take $a=9/20$, $b=19/20$. Then $\min U=1/20$, $\min V=1/76$. The classical nested-square threshold gives $\rp(A(a))=4$ because $a>\sqrt2-1$ \cite[Example~2]{BCR}\cite[\S6.1]{VGGT}. This classical lower bound is a literature input, not a new numerical inference or a theorem of the present Lean modules.
+
+For $s\ge2$, set $q=3(s-1)$ and choose
+\begin{equation}\label{eq:newconstants}
+0<\epsilon\le\frac1{8816q^3},\qquad \eta=\frac1{58q},\qquad\beta=1+\epsilon/s.
+\end{equation}
+Replace the first factor component by $q$ copies, obtaining factors $U',V'$ of width $q+3=3s$. Explicitly, let $D$ have first $q$ columns $e_0$ and final columns $e_1,e_2,e_3$, and let $F$ have first $q$ rows $e_0^{\mathsf T}/q$ and final rows $e_1^{\mathsf T},e_2^{\mathsf T},e_3^{\mathsf T}$. Then $DF=I_4$, $U'=UD$, $V'=FV$.
+
+Write $z=(1,-1,1,-1)^{\mathsf T}$, $w=z^{\mathsf T}/4$. Let $R_h=e_h-e_{q-1}$, $0\le h<q-1$, supported on the duplicate coordinates, and let the corresponding rows of $S$ be $e_h^{\mathsf T}-\one_{\rm dup}^{\mathsf T}/q$. The matrices
+\[
+Z=[Fz\mid R],\qquad W=\begin{bmatrix}wD\\ S\end{bmatrix}
+\]
+satisfy $U'Z=0$, $WV'=0$, $WZ=I_q$, and $|Z|,|W|\le1$ entrywise.
+
+Let $R_A$ consist of the first three columns of $A(9/20)$, and
+\[
+T_A=\begin{pmatrix}1&0&0&1\\0&1&0&-1\\0&0&1&1\end{pmatrix},\qquad R_AT_A=A(9/20).
+\]
+Let $W_s$ have first $s-1$ rows equal to the identity and last row $-\one^{\mathsf T}$; let $(Z_s)_{hj}=[h=j]-1/s$. Then $W_sZ_s=I_s-J_s/s$. Define
+\[
+X=R_A\otimes W_s,\quad Y=T_A\otimes Z_s,
+\]
+so $XY=A(9/20)\otimes(I_s-J_s/s)$, $|X|\le29/20$, $|Y|\le1$. The factors
+\begin{equation}\label{eq:explicitfactors}
+L=U'\otimes\one_s+\eta XW,
+\qquad H=\beta V'\otimes\one_s^{\mathsf T}+(\epsilon/\eta)ZY
+\end{equation}
+satisfy
+\[
+LH=A(9/20)\otimes(J_s+\epsilon I_s),
+\quad L_{ij}\ge\frac1{40},\quad H_{ij}\ge\frac1{152q}.
+\]
+The first lower bound follows from $1/20-\eta q(29/20)=1/40$. The second follows from $1/(76q)-(\epsilon/\eta)q\ge1/(152q)$. Hence
+\begin{equation}\label{eq:newexact}
+\boxed{\quad\rp\bigl(A(9/20)\otimes(J_s+\epsilon I_s)\bigr)=3s.\quad}
+\end{equation}
+The lower bound is ordinary rank. Rational $\epsilon$ gives rational factors.
+
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$s$ & certified $\epsilon$ & matrix order & exact product $\rp$\\
+\midrule
+2 & $1/238032$ & 8 & 6\\
+3 & $1/1904256$ & 12 & 9\\
+5 & $1/15234048$ & 20 & 15\\
+\bottomrule
+\end{tabular}
+\end{center}
+These examples are evaluated in exact rational arithmetic by two independent programs. The Lean development additionally checks the full real interval $0<\epsilon\le1/238032$ for $s=2$, including the exact ordinary-rank lower bound.
+
+\section{Formal verification and reproducibility}\label{sec:verification}
+
+The project reuses the original definitions of entrywise nonnegativity, real nonnegative factorization, and the actual least factorization width. It preserves the original fourteen source modules unchanged. Lean is pinned to \code{v4.35.0-rc3}, and Mathlib to \code{0db6cb99b412983de54b59ecc1b0b2747542cda3}; all transitive dependencies are locked.
+
+\input{verification-summary.tex}
+
+The code in \code{computations/generate.py} constructs rational factors from the displayed formulas. The independent \code{computations/check_certificate.py} imports no generator code, reconstructs the target matrices, validates dimensions and canonical rational entries, checks positivity and every product entry, and computes ordinary rank by rational elimination. Its checks remain active under \code{python -O}. The finite certificates establish exact product nonnegative ranks because the factor widths equal the independently computed ordinary ranks. They do not establish the seed's nonnegative rank four.
+
+The original width-109 certificate was replayed with both original Python programs. Both reported success, including the $14{,}641$ entries of the order-$121$ product, ordinary seed rank three, and original witness rank ten. The original Lean project is replayed separately from the preserved source. No recorded historical build is substituted for a fresh run.
+
+No invocation of a solver, floating-point optimizer, numerical rank tolerance, custom axiom, or native decision oracle enters the formal proofs. Standard foundational dependencies are \code{propext}, \code{Classical.choice}, and \code{Quot.sound}. The complete axiom audit and build record are part of the deliverable; their contents determine the verified scope.
+
+\section{Literature, novelty, and limitations}\label{sec:novelty}
+
+The simplex geometry, rank factorization rules, and direct-sum facts are established background \cite{CR,BCR,VGGT,QCL}. Bocci--Carlini--Rapallo study nonnegative rank under perturbations. Krone--Kubjas characterize relative interior points in the rank-equals-nonnegative-rank setting \cite[Proposition~5.3]{KK}. Behrends and Nouiehed--Razaviyayn study local openness of multiplication \cite{Behrends,NR}; the latter's Theorem~8 supplies the balanced local statement used here. Gillis's book already proves that a suitable nonnegative rank-one addition can reduce nonnegative rank to ordinary rank \cite[Theorem~3.3]{Gillis}. None of these should be repackaged as a newly discovered general positivity phenomenon.
+
+The two factor-rank restrictions are related to restricted NMF \cite{GG} and restricted symmetric nonnegative trifactorization \cite{KS,Shitov25}. For symmetric $A$, a balanced NMF $A=UV$ gives
+\[
+A=[U,V^{\mathsf T}]\,\frac12\begin{pmatrix}0&I\\I&0\end{pmatrix}[U,V^{\mathsf T}]^{\mathsf T},
+\]
+with the outer factor of rank $\rk A$. The converse follows by taking $U=B$, $V=CB^{\mathsf T}$ in a restricted trifactorization. A symmetric off-diagonal lift gives the analogous relationship for rectangular matrices. Thus failure of any balanced factorization is not claimed as a previously unknown phenomenon.
+
+The proposed new applications are the rank-controlled tensor compression bound, its explicit intrinsic-cone obstruction, the exact original mixed-block value, and the contrast with saturation in the same classical family. Targeted searches and inspection of the cited works did not locate these tensor statements. This is evidence from a bounded search, not proof of priority. In particular, the full text of Shitov's 2025 restricted-factorization paper was not retrievable in this session; its abstract was checked, but overlap with its detailed examples remains an explicit novelty gap.
+
+Chauhan--Choudhury's small-dimension multiplicativity theorem requires \emph{each} factor to have at most three rows or columns \cite[Theorem~1.4]{CC}. A $4\times4$ seed and a $2\times2$ auxiliary do not meet that hypothesis. Their rank-one multiplicativity theorem also does not apply to the higher-rank perturbed auxiliaries.
+
+Several limitations matter. Tensor saturation at parameter $1/2$ is not resolved by the strict construction, although \eqref{eq:profilethreshold} determines its factor-rank excess. The radii depend on matrix size and factorization; there is no size-uniform tensor-power statement. The universal obstruction does imply $\rp(A_*^{\otimes k})\ge3^k+1$ at every finite $k\ge1$, but this does not give an asymptotic rate greater than three. No exact value of $\rp(A_*\otimes A_*)$ or of the original full witness square is established. A proposed cancellation argument in the asymptotic spectrum was rejected: individual spectral functions need not dominate ordinary rank, so a positive full-rank auxiliary cannot be cancelled in that way \cite{CLT}. We assert no new asymptotic nonnegative-rank theorem.
+
+The result is suitable for expert assessment as a focused research note. It is not yet warranted to label it a major breakthrough or to promise acceptance by a mathematics journal. Submission requires specialist novelty review, comparison with the inaccessible 2025 paper, and an editorial decision about whether the constructive and formal contribution is substantial enough for the intended venue.
+
+\section{Authorship and verification limits}
+
+The research and initial proofs were generated autonomously by GPT 6 with Pro Reasoning in ChatGPT. GPT 6 Astra in Codex produced earlier formalizations and corrections. GPT 6.1 Sol in Codex checked the supplied extension and revised this manuscript for publication. I publish this work as fully autonomous agentic research. The authors have checked the proofs to the best of their mathematical abilities. These checks do not constitute expert validation or external peer review.
+
+This companion paper preserves the earlier research package as a separate result. The copied upstream sources retain their licenses and attribution. The correspondence document identifies the precise Lean statements and the claims that retain conventional proofs.
+
+\begin{thebibliography}{20}
+\bibitem{CR} J.~E.~Cohen and U.~G.~Rothblum, Nonnegative ranks, decompositions, and factorizations of nonnegative matrices, \emph{Linear Algebra Appl.} 190 (1993), 149--168. \href{https://doi.org/10.1016/0024-3795(93)90280-X}{doi:10.1016/0024-3795(93)90280-X}.
+\bibitem{VGGT} A.~Vandaele, N.~Gillis, F.~Glineur, and D.~Tuyttens, Heuristics for exact nonnegative matrix factorization, \emph{J. Global Optim.} 65 (2016), 369--400. \href{https://doi.org/10.1007/s10898-015-0350-z}{doi:10.1007/s10898-015-0350-z}.
+\bibitem{Goyal} D.~D.~Goyal, Counterexamples to the Kronecker-square lower bound for nonnegative rank, research package (2026). \url{https://github.com/dvgyl/math-and-theory/tree/main/papers/mathematics/nonnegative-rank-kronecker}.
+\bibitem{BCR} C.~Bocci, E.~Carlini, and F.~Rapallo, Perturbation of matrices and nonnegative rank with a view toward statistical models, \emph{SIAM J. Matrix Anal. Appl.} 32 (2011), 1500--1512. \href{https://doi.org/10.1137/110825455}{doi:10.1137/110825455}; \href{https://arxiv.org/abs/1010.3566}{arXiv:1010.3566}.
+\bibitem{QCL} Y.~Qi, P.~Comon, and L.-H.~Lim, Semialgebraic geometry of nonnegative tensor rank, \emph{SIAM J. Matrix Anal. Appl.} 37 (2016), 1556--1580.
+\bibitem{KK} R.~Krone and K.~Kubjas, Uniqueness of nonnegative matrix factorizations by rigidity theory, \emph{SIAM J. Matrix Anal. Appl.} (2021). \href{https://doi.org/10.1137/19M1279472}{doi:10.1137/19M1279472}; \href{https://arxiv.org/abs/1902.02868}{arXiv:1902.02868}.
+\bibitem{Behrends} E.~Behrends, Where is matrix multiplication locally open?, \emph{Linear Algebra Appl.} 517 (2017), 167--176. \href{https://doi.org/10.1016/j.laa.2016.12.014}{doi:10.1016/j.laa.2016.12.014}.
+\bibitem{NR} M.~Nouiehed and M.~Razaviyayn, Learning deep models: Critical points and local openness, \emph{INFORMS J. Optim.} 4 (2022), 148--173. \href{https://doi.org/10.1287/ijoo.2021.0062}{doi:10.1287/ijoo.2021.0062}; Theorem~8 in \href{https://arxiv.org/abs/1803.02968}{arXiv:1803.02968v2}.
+\bibitem{Gillis} N.~Gillis, \emph{Nonnegative Matrix Factorization}, SIAM, 2020. \href{https://doi.org/10.1137/1.9781611976410}{doi:10.1137/1.9781611976410}.
+\bibitem{GG} N.~Gillis and F.~Glineur, On the geometric interpretation of the nonnegative rank, \emph{Linear Algebra Appl.} 437 (2012), 2685--2712. \href{https://doi.org/10.1016/j.laa.2012.06.038}{doi:10.1016/j.laa.2012.06.038}.
+\bibitem{KS} D.~Kokol Bukov\v{s}ek and H.~\v{S}migoc, Symmetric nonnegative matrix trifactorization, \emph{Linear Algebra Appl.} (2023), Section~5. \href{https://doi.org/10.1016/j.laa.2023.01.027}{doi:10.1016/j.laa.2023.01.027}; \href{https://arxiv.org/abs/2106.14437}{arXiv:2106.14437}.
+\bibitem{Shitov25} Y.~Shitov, Further restricted versions of the nonnegative matrix factorization problem, \emph{Linear Algebra Appl.} 710 (2025), 267--272. \href{https://doi.org/10.1016/j.laa.2025.01.040}{doi:10.1016/j.laa.2025.01.040}. Abstract inspected; full-text comparison outstanding.
+\bibitem{Shitov26} Y.~Shitov, Factoring Kronecker squares of nonnegative matrices with GPT-5.6 Sol, preprint (July 2026). \href{https://doi.org/10.13140/RG.2.2.26449.90723}{doi:10.13140/RG.2.2.26449.90723}.
+\bibitem{CC} B.~P.~Chauhan and P.~N.~Choudhury, SNT-Rank: Kronecker products and Euclidean distance matrices, preprint (2026). \href{https://arxiv.org/abs/2607.27037}{arXiv:2607.27037}.
+\bibitem{CLT} Y.~M.~Chee, Q.-T.~Le, and H.~Ta, On the asymptotic nonnegative rank of matrices and its applications in information theory, \emph{ISIT 2024}, 1955--1960. \href{https://doi.org/10.1109/ISIT57864.2024.10619320}{doi:10.1109/ISIT57864.2024.10619320}; \href{https://arxiv.org/abs/2308.07187}{arXiv:2308.07187}.
+\end{thebibliography}
+\end{document}

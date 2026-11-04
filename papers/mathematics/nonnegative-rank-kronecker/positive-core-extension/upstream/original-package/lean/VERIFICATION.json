@@ -1,0 +1,848 @@
+{
+  "recorded_utc": "2026-10-30T23:37:41.501933+00:00",
+  "build_started_utc": "2026-10-30T23:35:36Z",
+  "fresh_build_exit_code": 0,
+  "axiom_audit_exit_code": 0,
+  "scope": "For every k:Nat, a rational entrywise nonnegative real (k+11)-square matrix C has ordinary rank k+10, actual real nonnegative rank k+11, nnrank(C tensor C) <= (k+10)^2+9 and nnrank(C tensor C)+k < nnrank(C)*rank(C). Includes a literal negation of the all-rectangular-nonnegative-real-matrices square conjecture.",
+  "full_theorem_formalized": true,
+  "square_nonnegative_rank_asserted_exact": false,
+  "novelty_verdict": "unresolved",
+  "lean": "4.35.0-rc3",
+  "lean_commit": "470d5ce1400764999581fd26d5d72b00d990b0f4",
+  "mathlib": "0db6cb99b412983de54b59ecc1b0b2747542cda3",
+  "reproduction_command": "bash verify.sh",
+  "freshly_built_modules": [
+    "MatCKronecker",
+    "MatCKronecker.BasicFactorizations",
+    "MatCKronecker.BlockKronecker",
+    "MatCKronecker.BlockRank",
+    "MatCKronecker.BlockSum",
+    "MatCKronecker.Counterexample",
+    "MatCKronecker.CrossData",
+    "MatCKronecker.CrossFactors",
+    "MatCKronecker.NonnegativeRank",
+    "MatCKronecker.PositiveIdentity",
+    "MatCKronecker.Seed",
+    "MatCKronecker.SeedNonnegativeRank",
+    "MatCKronecker.SimplexFactorization",
+    "MatCKronecker.SimplexUniform"
+  ],
+  "audited_source_declarations": 130,
+  "audited_theorems": 96,
+  "allowed_foundational_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "axiom_audits": {
+    "MatCKronecker.EntryNonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.EntryNonneg.blockDiag": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.EntryNonneg.fromBlocks": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.EntryNonneg.kronecker": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.EntryNonneg.smul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.EntryNonneg.transpose": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.blockDiag": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.blockDiag_kronecker": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.blockDiag_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.kronecker": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.kronecker_swap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.mono": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.rank_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.smul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.submatrix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.HasNMF.transpose": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.RationalEntries": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.abs_sum_eighteen_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.baselineScale": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.baselineScale_ge_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.blockDiag_kronecker_reindex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.blockProductEquiv": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MatCKronecker.centeredIdentity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.contrastLeft": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.contrastLeft_abs_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.contrastRight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.contrastRight_abs_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.contrast_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.correctedTerm": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.correctedTerm_hasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.counterexample_eleven": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossEpsilon": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossEpsilon_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossEpsilon_rational": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossEta": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossEta_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossRankLeft": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossRankLeft_abs_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossRankRight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossRankRight_abs_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossU": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossU_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossV": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.crossV_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.cross_factorization_identity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.cross_hasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.cross_rank_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.exists_hasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.exists_rational_counterexample_with_gap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.factor_term_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.finiteWitness": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.hasNMF_nnrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.hasNMF_of_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.hasNMF_submatrix_equiv_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.hasNMF_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nearOne": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nearOneInverse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nearOneInverse_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nearOne_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nearOne_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_fromBlocks": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_kronecker_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_le_card_width": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_le_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_le_of_hasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_nearOne": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_submatrix_equiv": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_transpose": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.nnrank_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.onesMatrix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.onesMatrix_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.otherLeft": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.otherRight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.other_hasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.other_plus_main": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.rank_fromBlocks": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.rank_le_nnrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.rank_nearOne": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedLeft": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedLeft_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedMinor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedMinor_det": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedRankLeft": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedRankLeft_abs_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedRankRight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedRankRight_abs_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedRight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seedRight_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_cross_product": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_diagonal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_hasNMF_four": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_nnrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_nonnegative_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_not_hasNMF_three": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_positive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_rank_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.seed_rational": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexLeft": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexLeft_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexLeft_nonneg_eighteen": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexLeft_nonneg_uniform": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexRight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexRight_nonneg_eighteen": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexRight_nonneg_uniform": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexRight_sub_none": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexRight_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplexRowDifferences": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplex_abs_sum_le_card_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.simplex_factorization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.smallBlock": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.smallBlock_hasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.smallBlock_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.smallBlock_rational": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.vandaele_gillis_glineur_tuyttens_conjecture_false": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witnessIndexEquiv": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witnessMatrix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witness_nnrank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witness_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witness_rank": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witness_rational": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witness_square_hasNMF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witness_square_nnrank_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MatCKronecker.witness_unbounded_gap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "printed_actual_types": [
+    "MatCKronecker.EntryNonneg",
+    "MatCKronecker.EntryNonneg.blockDiag",
+    "MatCKronecker.EntryNonneg.fromBlocks",
+    "MatCKronecker.EntryNonneg.kronecker",
+    "MatCKronecker.EntryNonneg.smul",
+    "MatCKronecker.EntryNonneg.transpose",
+    "MatCKronecker.HasNMF",
+    "MatCKronecker.HasNMF.add",
+    "MatCKronecker.HasNMF.blockDiag",
+    "MatCKronecker.HasNMF.blockDiag_kronecker",
+    "MatCKronecker.HasNMF.blockDiag_lower",
+    "MatCKronecker.HasNMF.kronecker",
+    "MatCKronecker.HasNMF.kronecker_swap",
+    "MatCKronecker.HasNMF.mono",
+    "MatCKronecker.HasNMF.nonneg",
+    "MatCKronecker.HasNMF.rank_le",
+    "MatCKronecker.HasNMF.smul",
+    "MatCKronecker.HasNMF.submatrix",
+    "MatCKronecker.HasNMF.transpose",
+    "MatCKronecker.RationalEntries",
+    "MatCKronecker.abs_sum_eighteen_le",
+    "MatCKronecker.baselineScale",
+    "MatCKronecker.baselineScale_ge_one",
+    "MatCKronecker.blockDiag_kronecker_reindex",
+    "MatCKronecker.blockProductEquiv",
+    "MatCKronecker.centeredIdentity",
+    "MatCKronecker.contrastLeft",
+    "MatCKronecker.contrastLeft_abs_le",
+    "MatCKronecker.contrastRight",
+    "MatCKronecker.contrastRight_abs_le",
+    "MatCKronecker.contrast_factorization",
+    "MatCKronecker.correctedTerm",
+    "MatCKronecker.correctedTerm_hasNMF",
+    "MatCKronecker.counterexample_eleven",
+    "MatCKronecker.crossEpsilon",
+    "MatCKronecker.crossEpsilon_pos",
+    "MatCKronecker.crossEpsilon_rational",
+    "MatCKronecker.crossEta",
+    "MatCKronecker.crossEta_pos",
+    "MatCKronecker.crossRankLeft",
+    "MatCKronecker.crossRankLeft_abs_le",
+    "MatCKronecker.crossRankRight",
+    "MatCKronecker.crossRankRight_abs_le",
+    "MatCKronecker.crossU",
+    "MatCKronecker.crossU_lower",
+    "MatCKronecker.crossV",
+    "MatCKronecker.crossV_lower",
+    "MatCKronecker.cross_factorization_identity",
+    "MatCKronecker.cross_hasNMF",
+    "MatCKronecker.cross_rank_factorization",
+    "MatCKronecker.exists_hasNMF",
+    "MatCKronecker.exists_rational_counterexample_with_gap",
+    "MatCKronecker.factor_term_le",
+    "MatCKronecker.finiteWitness",
+    "MatCKronecker.hasNMF_nnrank",
+    "MatCKronecker.hasNMF_of_factorization",
+    "MatCKronecker.hasNMF_submatrix_equiv_iff",
+    "MatCKronecker.hasNMF_zero",
+    "MatCKronecker.nearOne",
+    "MatCKronecker.nearOneInverse",
+    "MatCKronecker.nearOneInverse_mul",
+    "MatCKronecker.nearOne_eq",
+    "MatCKronecker.nearOne_nonneg",
+    "MatCKronecker.nnrank",
+    "MatCKronecker.nnrank_fromBlocks",
+    "MatCKronecker.nnrank_kronecker_le",
+    "MatCKronecker.nnrank_le_card_width",
+    "MatCKronecker.nnrank_le_iff",
+    "MatCKronecker.nnrank_le_of_hasNMF",
+    "MatCKronecker.nnrank_nearOne",
+    "MatCKronecker.nnrank_submatrix_equiv",
+    "MatCKronecker.nnrank_transpose",
+    "MatCKronecker.nnrank_zero",
+    "MatCKronecker.onesMatrix",
+    "MatCKronecker.onesMatrix_mul",
+    "MatCKronecker.otherLeft",
+    "MatCKronecker.otherRight",
+    "MatCKronecker.other_hasNMF",
+    "MatCKronecker.other_plus_main",
+    "MatCKronecker.rank_fromBlocks",
+    "MatCKronecker.rank_le_nnrank",
+    "MatCKronecker.rank_nearOne",
+    "MatCKronecker.seed",
+    "MatCKronecker.seedLeft",
+    "MatCKronecker.seedLeft_lower",
+    "MatCKronecker.seedMinor",
+    "MatCKronecker.seedMinor_det",
+    "MatCKronecker.seedRankLeft",
+    "MatCKronecker.seedRankLeft_abs_le",
+    "MatCKronecker.seedRankRight",
+    "MatCKronecker.seedRankRight_abs_le",
+    "MatCKronecker.seedRight",
+    "MatCKronecker.seedRight_lower",
+    "MatCKronecker.seed_cross_product",
+    "MatCKronecker.seed_diagonal",
+    "MatCKronecker.seed_hasNMF_four",
+    "MatCKronecker.seed_nnrank",
+    "MatCKronecker.seed_nonneg",
+    "MatCKronecker.seed_nonnegative_factorization",
+    "MatCKronecker.seed_not_hasNMF_three",
+    "MatCKronecker.seed_positive",
+    "MatCKronecker.seed_rank",
+    "MatCKronecker.seed_rank_factorization",
+    "MatCKronecker.seed_rational",
+    "MatCKronecker.simplexLeft",
+    "MatCKronecker.simplexLeft_mul",
+    "MatCKronecker.simplexLeft_nonneg_eighteen",
+    "MatCKronecker.simplexLeft_nonneg_uniform",
+    "MatCKronecker.simplexRight",
+    "MatCKronecker.simplexRight_nonneg_eighteen",
+    "MatCKronecker.simplexRight_nonneg_uniform",
+    "MatCKronecker.simplexRight_sub_none",
+    "MatCKronecker.simplexRight_sum",
+    "MatCKronecker.simplexRowDifferences",
+    "MatCKronecker.simplex_abs_sum_le_card_mul",
+    "MatCKronecker.simplex_factorization",
+    "MatCKronecker.smallBlock",
+    "MatCKronecker.smallBlock_hasNMF",
+    "MatCKronecker.smallBlock_nonneg",
+    "MatCKronecker.smallBlock_rational",
+    "MatCKronecker.vandaele_gillis_glineur_tuyttens_conjecture_false",
+    "MatCKronecker.witnessIndexEquiv",
+    "MatCKronecker.witnessMatrix",
+    "MatCKronecker.witness_nnrank",
+    "MatCKronecker.witness_nonneg",
+    "MatCKronecker.witness_rank",
+    "MatCKronecker.witness_rational",
+    "MatCKronecker.witness_square_hasNMF",
+    "MatCKronecker.witness_square_nnrank_le",
+    "MatCKronecker.witness_unbounded_gap"
+  ],
+  "sha256": {
+    "AxiomAudit.lean": "359e5331b0864107991fca34ead1ab98f7ba23f054c84df27b1911e16e5a0343",
+    "MatCKronecker/BasicFactorizations.lean": "02c22d1dfea0e737b50da31ebcd75dc130d95f98fc2501faf812b07acf754b98",
+    "MatCKronecker/BlockKronecker.lean": "bcf9f878675f7a5214b3a5d032c1abfdb82b3d182f393c16c23e7f122188709d",
+    "MatCKronecker/BlockRank.lean": "2ab4d27b7cafdb2f5d3a7c02f24d4f073e7814d28e98745e20661228491710d2",
+    "MatCKronecker/BlockSum.lean": "42e53b3bb8f548637cda758c7d8ca690375e9645633c51126f1b414bc089e043",
+    "MatCKronecker/Counterexample.lean": "65af2854a50caf3cdd1a9a9de2c60e7e75da5791d9704ece4df32e348e7824d7",
+    "MatCKronecker/CrossData.lean": "8da915faf0d4443dbc47dadb6891b29d7aae917824b48d187ff4db32cbb6e577",
+    "MatCKronecker/CrossFactors.lean": "7b11c9a8a02005b3699c33c17f131432e72a109009fe9df2b7810da739981250",
+    "MatCKronecker/NonnegativeRank.lean": "fe22aa80df229e6ee54bb4e2aae09b773c1e34c83a8821341145925c45680a24",
+    "MatCKronecker/PositiveIdentity.lean": "f7d518106ddef2a05b43f44cc7e5b86b79aa95a3b02141326988c6eb3029e4ad",
+    "MatCKronecker/Seed.lean": "d54eefb5ca7db269fff13a7b6500b852ec3a347c82d48c5032299b55c5564e2a",
+    "MatCKronecker/SeedNonnegativeRank.lean": "6dea1cd7392d84b55c35624a3103c59d807222a2bd92f0bb07a1ad487d827a47",
+    "MatCKronecker/SimplexFactorization.lean": "f87e0d8e0d6393f8198f48d0d88bb51b6ebddb22090ed77ae145c572beddff2e",
+    "MatCKronecker/SimplexUniform.lean": "50bda4c481f41211d21b90e05461fb21143816313963cc44d52615096e5c61c1",
+    "MatCKronecker.lean": "842e5c80a48f931f811672c5ab4ea20a59690854c6a2446816749aa02110c823",
+    "generate_audit.py": "91a1d09b940f85ee981345b6fa03cbc528e1429e8acfcb79af3b3054e0ef277c",
+    "lake-manifest.json": "23e3854189a340e6ba1bbb8b4e3f0a2b2344caf727d4bc6efe87f865e5d9e558",
+    "lakefile.toml": "7d3d4cfe5dfe4e1ca1416cba9bae78630399f0da408e1ccb73dc8561b194bb55",
+    "lean-toolchain": "bc84812c94489d1e3e191baa1dc10d5eb684382d7fe9d2a5ab085e72c1c67e47",
+    "make_verification_record.py": "177fab43a653c502fa61e7d4cd29f4fb808bbef85f19fab81dc3f3715851e8bb",
+    "verification/axioms.log": "9ee4aa670b23a9cf231c881edc3072d73a6e2e9ecfece1a32c50ede95282454c",
+    "verification/build.log": "3c0c992e27d51600a977035475d49c02460a95c2b4fcf6bff7c3826aaa9431ee",
+    "verification/environment.log": "90063c19873317db1c5d4fd2b0872030535ed2c60b611efbc5e9be50f6731252",
+    "verify.sh": "eaf4315a1d32c729727a6a85048de0169f2c1c0009829b71cc9307ba15171516"
+  },
+  "hash_exclusion": "This self-referential record and the still-active outer transcript are not hashed here; stable environment, full build, and axiom logs are hashed.",
+  "verification_note": "Generated only after the successful pinned pipeline, actual clean local-module rebuild, full type/axiom print, and source-construct checks. All dependency caches were retained. Mathematical verification does not establish novelty."
+}
